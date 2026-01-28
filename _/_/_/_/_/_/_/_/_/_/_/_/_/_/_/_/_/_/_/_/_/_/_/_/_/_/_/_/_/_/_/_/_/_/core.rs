@@ -1,17 +1,24 @@
-// 🛡️ Level 38 Logic (Metallic: Flow Control)
+// 🛡️ Level 28 Logic (Metallic: Multiparadigm Projections)
 
-pub struct Machine<S, I, O> {
-    pub state: S,
-    pub transition: Box<dyn Fn(S, I) -> (S, O)>,
+/**
+ * ACTOR: An independent computing entity.
+ */
+pub struct Actor<M> {
+    pub receive: Box<dyn Fn(M)>,
 }
 
-impl<S, I, O> Machine<S, I, O> {
-    pub fn step(&mut self, input: I) -> O 
-    where S: Clone {
-        let (next_state, output) = (self.transition)(self.state.clone(), input);
-        self.state = next_state;
-        output
-    }
+/**
+ * SEND: Transmission of message to an actor.
+ */
+pub fn send<M>(target: &Actor<M>, msg: M) {
+    (target.receive)(msg)
 }
 
-// Atoms for this level are transfused. (lvl: 38)
+/**
+ * BECOME: Changing the internal behavior of an actor.
+ */
+pub fn become<M>(actor: &mut Actor<M>, new_behavior: Box<dyn Fn(M)>) {
+    actor.receive = new_behavior;
+}
+
+// Atoms for this level are transfused. (lvl: 28)

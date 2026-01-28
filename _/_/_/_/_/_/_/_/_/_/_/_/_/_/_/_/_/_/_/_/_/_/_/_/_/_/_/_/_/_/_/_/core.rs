@@ -1,20 +1,17 @@
-// 🛡️ Level 36 Logic (Metallic: Flow Control)
+// 🛡️ Level 30 Logic (Metallic: Multiparadigm Projections)
 
-pub struct Lens<S, A> {
-    pub get: Box<dyn Fn(&S) -> A>,
-    pub set: Box<dyn Fn(&S, A) -> S>,
+/**
+ * OBSERVABLE: A source of asynchronous events.
+ */
+pub struct Observable<T> {
+    pub subscribe: Box<dyn Fn(Box<dyn Fn(T)>)>,
 }
 
-impl<S, A> Lens<S, A> {
-    pub fn view(&self, s: &S) -> A {
-        (self.get)(s)
-    }
-    
-    pub fn over<F>(&self, s: &S, f: F) -> S 
-    where F: Fn(A) -> A {
-        let a = (self.get)(s);
-        (self.set)(s, f(a))
-    }
+/**
+ * FLUX: A continuous stream of state updates.
+ */
+pub struct Flux<T> {
+    pub updates: Observable<T>,
 }
 
-// Atoms for this level are transfused. (lvl: 36)
+// Atoms for this level are transfused. (lvl: 30)

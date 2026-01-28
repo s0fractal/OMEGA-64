@@ -1,12 +1,16 @@
-// 🛡️ Level 37 Logic (Metallic: Flow Control)
+// 🛡️ Level 30 Logic (Metallic: Multiparadigm Projections)
 
-pub trait MetricSpace<T> {
-    fn distance(a: &T, b: &T) -> f64;
+/**
+ * UNIFY: The core operation of symbolic logic.
+ * λa.λb. (Substitution or Fail)
+ */
+pub fn unify<T: PartialEq>(a: T, b: T) -> Option<T> {
+    if a == b { Some(a) } else { None }
 }
 
-pub fn is_neighbor<T, M>(a: &T, b: &T, radius: f64) -> bool 
-where M: MetricSpace<T> {
-    M::distance(a, b) <= radius
-}
+/**
+ * GOAL: A logical destination in a proof search.
+ */
+pub type Goal = Box<dyn Fn() -> bool>;
 
-// Atoms for this level are transfused. (lvl: 37)
+// Atoms for this level are transfused. (lvl: 29)
