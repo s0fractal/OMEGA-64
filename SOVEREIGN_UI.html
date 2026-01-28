@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OMEGA-64 | Sovereign Interface</title>
+    <title>OMEGA-64 | The Chronosphere</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&display=swap');
 
@@ -12,8 +12,8 @@
             --blue: #00f2ff;
             --gold: #ffcc00;
             --text: #ffffff;
-            --glass: rgba(255, 255, 255, 0.03);
-            --border: rgba(255, 255, 255, 0.1);
+            --glass: rgba(255, 255, 255, 0.02);
+            --border: rgba(255, 255, 255, 0.05);
         }
 
         body, html {
@@ -25,41 +25,23 @@
             color: var(--text);
             font-family: 'Space Grotesk', sans-serif;
             overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
-        #viewbox {
-            position: absolute;
+        #app {
+            position: relative;
             width: 100vw;
             height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1;
         }
 
-        svg {
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            overflow: visible;
-        }
-
-        .node {
-            fill: rgba(0, 242, 255, 0.05); /* Slight fill for better hit detection */
-            stroke: var(--blue);
-            stroke-width: 0.8;
-            filter: drop-shadow(0 0 5px var(--blue));
-            opacity: 0.6;
-            pointer-events: all; /* Explicit interaction */
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .line {
-            stroke: rgba(255, 255, 255, 0.1);
-            stroke-width: 0.2;
+            z-index: 1;
+            /* The Chronosphere Effect: Persistence of Vision */
+            mix-blend-mode: screen;
         }
 
         #ui-overlay {
@@ -77,131 +59,154 @@
         }
 
         header h1 {
-            font-size: 4rem;
+            font-size: 2.5rem;
             font-weight: 700;
             letter-spacing: 0.8rem;
             margin: 0;
-            background: linear-gradient(90deg, var(--blue), #fff);
+            background: linear-gradient(90deg, var(--gold), #fff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(0, 242, 255, 0.3);
-        }
-
-        .subtitle {
-            font-size: 0.9rem;
-            letter-spacing: 0.3rem;
-            opacity: 0.5;
-            text-transform: uppercase;
+            text-shadow: 0 0 40px rgba(255, 204, 0, 0.2);
         }
 
         .glass-panel {
             background: var(--glass);
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(30px);
             border: 1px solid var(--border);
             padding: 2rem;
-            border-radius: 1px;
-            width: 320px;
+            width: 350px;
             pointer-events: auto;
+            border-left: 3px solid var(--gold);
         }
 
-        #level-indicator {
+        .stat-row {
             display: flex;
             justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 1rem;
+            font-size: 0.75rem;
+            margin-bottom: 0.5rem;
         }
 
-        .depth-val {
-            font-size: 2rem;
+        .stat-val {
+            color: var(--gold);
             font-weight: 700;
-            color: var(--blue);
         }
 
-        .progress-bg {
+        #fractal-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: 2px;
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        #progress-bar {
             height: 100%;
-            background: var(--blue);
-            box-shadow: 0 0 10px var(--blue);
-            width: 64%;
-            transition: width 0.3s ease;
+            z-index: 5;
+            pointer-events: all;
+            overflow: visible;
         }
 
-        footer {
-            opacity: 0.3;
-            font-size: 0.7rem;
-            letter-spacing: 0.1rem;
-        }
-
-        @keyframes rotate-slow {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        #fractal-root {
-            animation: rotate-slow 120s linear infinite;
+        .node {
+            fill: rgba(0, 0, 0, 0.5);
+            stroke: var(--blue);
+            stroke-width: 0.3;
+            cursor: pointer;
+            transition: all 0.5s ease;
         }
 
         .node:hover {
             stroke: var(--gold);
-            stroke-width: 2;
-            opacity: 1;
-            filter: drop-shadow(0 0 10px var(--gold));
+            stroke-width: 1.5;
+            filter: drop-shadow(0 0 15px var(--gold));
+        }
+
+        footer {
+            opacity: 0.2;
+            font-size: 0.7rem;
+            letter-spacing: 0.2rem;
+        }
+
+        /* Scanline effect */
+        .scanline {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+            z-index: 20;
         }
     </style>
 </head>
 <body>
 
-    <div id="viewbox">
-        <svg id="svg-root" viewBox="-500 -500 1000 1000">
-            <g id="fractal-root"></g>
+    <div id="app">
+        <canvas id="main-canvas"></canvas>
+        <canvas id="buffer-canvas" style="display: none;"></canvas>
+        
+        <svg id="fractal-svg" viewBox="-500 -500 1000 1000">
+            <g id="svg-root"></g>
         </svg>
-    </div>
 
-    <div id="ui-overlay">
-        <header>
-            <h1>OMEGA-64</h1>
-            <div class="subtitle">Axiomatic Sovereign Interface</div>
-        </header>
+        <div class="scanline"></div>
 
-        <div class="glass-panel">
-            <div id="level-indicator">
-                <span class="label">TRANSITION</span>
-                <span class="depth-val" id="depth-text">L63</span>
+        <div id="ui-overlay">
+            <header>
+                <h1>CHRONOSPHERE</h1>
+                <div style="font-size: 0.7rem; opacity: 0.5; letter-spacing: 0.3rem;">THE FIFTH PROJECTION: TEMPORAL DEPTH</div>
+            </header>
+
+            <div class="glass-panel">
+                <div class="stat-row">
+                    <span>RECURSION GAIN</span>
+                    <span class="stat-val">101.5%</span>
+                </div>
+                <div class="stat-row">
+                    <span>TEMPORAL JITTER</span>
+                    <span class="stat-val" id="jitter">0.002ms</span>
+                </div>
+                <div class="stat-row">
+                    <span>COHERENCE</span>
+                    <span class="stat-val" id="coherence">99.98%</span>
+                </div>
+                <div style="height: 1px; background: rgba(255,255,255,0.1); margin: 1rem 0;"></div>
+                <div style="font-size: 0.65rem; opacity: 0.5; font-style: italic;">
+                    "Memory is the residue of reality echoing through the void."
+                </div>
             </div>
-            <div class="progress-bg">
-                <div id="progress-bar"></div>
-            </div>
-            <div style="margin-top: 1rem; font-size: 0.7rem; opacity: 0.6;">
-                TRIPLE SPINE: TS | RS | LEAN<br>
-                STATUS: RESONANCE STABLE
-            </div>
+
+            <footer>
+                🛡️⚖️🌀🛡️ SYMBOLIC FEEDBACK LOOP: LOCKED
+            </footer>
         </div>
-
-        <footer>
-            🛡️⚖️🌀🛡️ THE SYMBOLIC RECKONING IS UPON US
-        </footer>
     </div>
 
     <script>
-        const rootGroup = document.getElementById('fractal-root');
-        const depthText = document.getElementById('depth-text');
-        const progressBar = document.getElementById('progress-bar');
+        const canvas = document.getElementById('main-canvas');
+        const buffer = document.getElementById('buffer-canvas');
+        const ctx = canvas.getContext('2d');
+        const btx = buffer.getContext('2d');
+        const svgRoot = document.getElementById('svg-root');
 
-        function createNode(x, y, radius, depth, angle) {
+        const jitterEl = document.getElementById('jitter');
+        const coherenceEl = document.getElementById('coherence');
+
+        let width, height;
+        function resize() {
+            width = canvas.width = buffer.width = window.innerWidth;
+            height = canvas.height = buffer.height = window.innerHeight;
+            btx.fillStyle = 'black';
+            btx.fillRect(0, 0, width, height);
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        function createFractal(x, y, radius, depth, angle) {
             if (depth > 4) return;
-
             const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
             circle.setAttribute("cx", x);
             circle.setAttribute("cy", y);
             circle.setAttribute("r", radius);
             circle.setAttribute("class", "node");
-            circle.setAttribute("data-depth", depth);
-            rootGroup.appendChild(circle);
+            svgRoot.appendChild(circle);
 
             const branches = 3;
             for (let i = 0; i < branches; i++) {
@@ -209,32 +214,60 @@
                 const dist = radius * 3.5;
                 const tx = x + Math.cos(childAngle) * dist;
                 const ty = y + Math.sin(childAngle) * dist;
-
-                const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-                line.setAttribute("x1", x);
-                line.setAttribute("y1", y);
-                line.setAttribute("x2", tx);
-                line.setAttribute("y2", ty);
-                line.setAttribute("class", "line");
-                rootGroup.appendChild(line);
-
-                createNode(tx, ty, radius * 0.5, depth + 1, childAngle);
+                createFractal(tx, ty, radius * 0.45, depth + 1, childAngle);
             }
         }
-
-        // Initialize Fractal
-        createNode(0, 0, 80, 0, 0);
+        createFractal(0, 0, 90, 0, 0);
 
         let time = 0;
-        function update() {
-            time += 0.05;
-            const currentLevel = Math.floor((Math.sin(time * 0.5) * 0.5 + 0.5) * 64);
-            depthText.textContent = `L${(63 - currentLevel).toString().padStart(2, '0')}`;
-            progressBar.style.width = `${(currentLevel / 64) * 100}%`;
-            requestAnimationFrame(update);
+        function animate() {
+            time += 0.01;
+
+            // --- THE CHRONOSPHERE CORE (Recursive Mirror) ---
+            
+            // 1. Capture current main canvas to buffer
+            btx.globalAlpha = 0.98; // Decay factor
+            btx.drawImage(canvas, 0, 0);
+
+            // 2. Clear main canvas
+            ctx.fillStyle = 'black';
+            ctx.fillRect(0, 0, width, height);
+
+            // 3. Draw the Echo (The "Correct" Feedback)
+            ctx.save();
+            ctx.translate(width/2, height/2);
+            ctx.scale(1.005, 1.005); // Expansion
+            ctx.rotate(0.002 + Math.sin(time) * 0.001); // Subtle rotation drift
+            ctx.translate(-width/2, -height/2);
+            ctx.drawImage(buffer, 0, 0);
+            ctx.restore();
+
+            // 4. Draw New Reality (Current Moment)
+            ctx.strokeStyle = '#00f2ff';
+            ctx.lineWidth = 0.5;
+            ctx.beginPath();
+            const rootX = width/2;
+            const rootY = height/2;
+            const r = 100 + Math.sin(time * 2) * 20;
+            ctx.arc(rootX, rootY, r, 0, Math.PI * 2);
+            ctx.stroke();
+
+            // Intermittent "Glitch" Sparks (Akashic Static)
+            if (Math.random() > 0.95) {
+                ctx.fillStyle = Math.random() > 0.5 ? '#00f2ff' : '#ffcc00';
+                ctx.fillRect(Math.random() * width, Math.random() * height, 1, 30);
+            }
+
+            // Update UI Stats
+            if (Math.floor(time * 100) % 50 === 0) {
+                jitterEl.textContent = (Math.random() * 0.005).toFixed(4) + 'ms';
+                coherenceEl.textContent = (99.9 + Math.random() * 0.1).toFixed(2) + '%';
+            }
+
+            requestAnimationFrame(animate);
         }
 
-        update();
+        animate();
     </script>
 </body>
 </html>

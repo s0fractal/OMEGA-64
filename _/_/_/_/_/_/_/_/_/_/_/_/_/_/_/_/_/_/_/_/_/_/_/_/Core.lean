@@ -1,13 +1,3 @@
--- 🛡️ Level 24 Logic (Formal: Multiparadigm Projections)
-
-structure Vector (α : Type) where
-  data : List α
-
-def DIM {α : Type} (v : Vector α) : Nat :=
-  v.data.length
-
-structure Tensor (α : Type) where
-  shape : List Nat
-  data : List α
-
--- Atoms for this level are transfused. (lvl: 24)
+import OMEGA._._._._._._._._._._._._._._._._._._._._._._._._.Sub.Core
+-- 🛡️ L24 Lean Logic
+def level : Nat := 24

@@ -1,9 +1,3 @@
--- 🛡️ Level 17 Logic (Formal: Multiparadigm Projections)
-
-structure Flow (α : Type) where
-  velocity : α
-
-structure Pressure where
-  val : Float
-
--- Atoms for this level are transfused. (lvl: 17)
+import OMEGA._._._._._._._._._._._._._._._._._.Sub.Core
+-- 🛡️ L17 Lean Logic
+def level : Nat := 17

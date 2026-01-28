@@ -1,7 +1,3 @@
--- 🛡️ Level 14 Logic (Formal: Deep Resonance)
-
-structure Wave where
-  vibration : Vibration
-  phase : Float
-
--- Atoms for this level are transfused. (lvl: 14)
+import OMEGA._._._._._._._._._._._._._._.Sub.Core
+-- 🛡️ L14 Lean Logic
+def level : Nat := 14
