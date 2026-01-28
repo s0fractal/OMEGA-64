@@ -221,6 +221,10 @@
                     <span>EXT. RESONANCE</span>
                     <span class="stat-val" id="external">0.50</span>
                 </div>
+                <div class="stat-row">
+                    <span>PULSE DRIFT</span>
+                    <span class="stat-val" id="drift">0ms</span>
+                </div>
                 <div style="height: 1px; background: rgba(255,255,255,0.1); margin: 1rem 0;"></div>
                 <div id="praxis-panel" style="display: none;">
                     <button id="harmonize-btn" style="width: 100%; padding: 0.5rem; background: var(--gold); color: black; border: none; font-family: inherit; font-weight: bold; cursor: pointer; letter-spacing: 0.1rem; margin-bottom: 0.5rem;">HARMONIZE WILL</button>
@@ -249,6 +253,7 @@
         const jitterEl = document.getElementById('jitter');
         const coherenceEl = document.getElementById('coherence');
         const externalEl = document.getElementById('external');
+        const driftEl = document.getElementById('drift');
         const sensorStatus = document.getElementById('sensorium-status');
 
         let width, height;
@@ -270,13 +275,30 @@
         const aurora = document.getElementById('sophia-aurora');
         const proofEl = document.getElementById('sophia-proofs');
 
+        // Kairos: Predictive Pulse Antiquated
+        class PulseAnticipator {
+            constructor() {
+                this.nextPulse = Date.now() + 2000;
+                this.isPreGlowTime = false;
+            }
+            update(estimate) {
+                this.nextPulse = estimate || (Date.now() + 2000);
+            }
+            check() {
+                const now = Date.now();
+                this.isPreGlowTime = (this.nextPulse - now) < 200 && (this.nextPulse - now) > 0;
+                return this.isPreGlowTime;
+            }
+        }
+        const anticipator = new PulseAnticipator();
+
         async function pollSignal() {
             try {
                 const response = await fetch('http://localhost:8080/signal');
                 currentSignal = await response.json();
                 
-                const histResponse = await fetch('http://localhost:8080/history');
-                signalHistory = await histResponse.json();
+                anticipator.update(currentSignal.next_pulse_estimate);
+                driftEl.textContent = `${currentSignal.pulse_drift || 0}ms`;
 
                 updateAkashaStream();
 
@@ -458,6 +480,20 @@
                 coherenceEl.textContent = (currentSignal.coherence * 100).toFixed(3) + '%';
                 externalEl.textContent = (currentSignal.external_resonance || 0.5).toFixed(3);
                 evolveFractal();
+            }
+
+            // Kairos: Predictive Pre-Glow
+            if (anticipator.check()) {
+                ctx.save();
+                ctx.globalAlpha = 0.3;
+                ctx.shadowBlur = 40;
+                ctx.shadowColor = "var(--blue)";
+                ctx.strokeStyle = "var(--blue)";
+                ctx.lineWidth = 10;
+                ctx.beginPath();
+                ctx.arc(width/2, height/2, 100 + Math.sin(time*2)*20, 0, Math.PI * 2);
+                ctx.stroke();
+                ctx.restore();
             }
 
             // Pulsating Breath Background

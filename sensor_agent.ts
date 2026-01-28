@@ -1,6 +1,6 @@
-// 🛡️ OMEGA-64 | Project Aeterna: Self-Sustenance | TEST_TRIGGER
-// This agent maintains the 'Akashic Record', 'Sophia Proofs', and implements 
-// the 'Immune System' (auto-harmonization).
+// 🛡️ OMEGA-64 | Project Kairos: Temporal Synchronicity
+// This agent maintains the 'Akashic Record', 'Sophia Proofs', and now 
+// implements the 'Kairos Master Clock' for temporal alignment.
 
 import { serve } from "https://deno.land/std@0.177.0/http/server.ts";
 import { auditIntegrity, initialize as initializeGuardians } from "./praxis_oracle.ts";
@@ -9,6 +9,7 @@ const ROOT_DIR = "/Users/s0fractal/OMEGA";
 const AKASHA_LOG = `${ROOT_DIR}/akasha.log`;
 const SOPHIA_PROOFS = `${ROOT_DIR}/sophia.proofs`;
 const MAX_HISTORY = 100;
+const HARMONIC_INTERVAL = 2000; // 2 seconds base rhythm
 
 interface State {
     cpu: number;
@@ -20,6 +21,8 @@ interface State {
     pulse_frequency: number;
     dream_insight?: string;
     external_resonance: number;
+    pulse_drift: number;
+    next_pulse_estimate: number;
 }
 
 const history: State[] = [];
@@ -28,6 +31,7 @@ let goldenMomentCounter = 0;
 let alertDwellCounter = 0;
 let lastRequestTime = Date.now();
 let latestInsight = "Awaiting Golden Resonance...";
+let lastPulseTime = Date.now();
 
 const INSIGHTS = [
     "Axiom of Alignment: Truth is a mobile target.",
@@ -73,7 +77,13 @@ function getSystemMetrics(): { cpu: number; timestamp: number; coherence: number
 
 async function startPoller() {
     await initializeGuardians();
+    lastPulseTime = Date.now();
+
     while (true) {
+        const now = Date.now();
+        const expectedTime = lastPulseTime + HARMONIC_INTERVAL;
+        const drift = now - expectedTime;
+        
         alertLevel = await auditIntegrity();
         const metrics = await getSystemMetrics();
         const architectActive = (Date.now() - lastRequestTime) < 10000;
@@ -110,7 +120,9 @@ async function startPoller() {
             status: status,
             alert_level: alertLevel,
             pulse_frequency: (0.5 + (metrics.cpu * 2)) * (1 - alertLevel * 0.5),
-            dream_insight: status === "DREAMING" ? latestInsight : undefined
+            dream_insight: status === "DREAMING" ? latestInsight : undefined,
+            pulse_drift: drift,
+            next_pulse_estimate: now + HARMONIC_INTERVAL
         };
 
         history.push(state);
@@ -122,7 +134,9 @@ async function startPoller() {
             console.error("Failed to write to Akasha log:", e);
         }
         
-        await new Promise(r => setTimeout(r, 2000));
+        lastPulseTime = Date.now();
+        // Kairos: Sleep until the next harmonic window
+        await new Promise(r => setTimeout(r, HARMONIC_INTERVAL));
     }
 }
 
@@ -161,6 +175,6 @@ const handler = async (req: Request): Promise<Response> => {
     return new Response("OMEGA-64 Sovereign Server Active", { status: 200 });
 };
 
-console.log("🛡️ Sovereign Server Ascended | Aeterna Active | http://localhost:8080");
+console.log("🛡️ Sovereign Server Ascended | Kairos Active | http://localhost:8080");
 startPoller();
 serve(handler, { port: 8080 });
