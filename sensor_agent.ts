@@ -172,6 +172,24 @@ const handler = async (req: Request): Promise<Response> => {
         return new Response(JSON.stringify({ status: "HARMONIZED", timestamp: Date.now() }), { headers });
     }
 
+    if (url.pathname === "/query") {
+        const query = url.searchParams.get("q") || "";
+        console.log(`🛡️ Logos: Oracle Query Received: "${query}"`);
+        
+        const proofs = await Deno.readTextFile(SOPHIA_PROOFS).catch(() => "");
+        const proofLines = proofs.split("\n").filter(Boolean);
+        const randomProof = proofLines[Math.floor(Math.random() * proofLines.length)] || "The void is silent.";
+        
+        const currentState = history[history.length - 1] || {};
+        const response = {
+            query: query,
+            answer: `Resonance at ${((currentState.coherence || 0.9) * 100).toFixed(2)}%. Sophia suggests: ${randomProof.replace(/\[SOPHIA-\d+\]\s*/, "")}`,
+            timestamp: Date.now(),
+            vector: "Semantic-Harmonic"
+        };
+        return new Response(JSON.stringify(response), { headers });
+    }
+
     return new Response("OMEGA-64 Sovereign Server Active", { status: 200 });
 };
 

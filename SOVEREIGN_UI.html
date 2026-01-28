@@ -1,511 +1,647 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OMEGA-64 | The Chronosphere</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&display=swap');
+      @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&display=swap");
 
-        :root {
-            --bg: #000000;
-            --blue: #00f2ff;
-            --gold: #ffcc00;
-            --text: #ffffff;
-            --glass: rgba(255, 255, 255, 0.02);
-            --border: rgba(255, 255, 255, 0.05);
-        }
+      :root {
+        --bg: #000000;
+        --blue: #00f2ff;
+        --gold: #ffcc00;
+        --text: #ffffff;
+        --glass: rgba(255, 255, 255, 0.02);
+        --border: rgba(255, 255, 255, 0.05);
+      }
 
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--bg);
-            color: var(--text);
-            font-family: 'Space Grotesk', sans-serif;
-            overflow: hidden;
-        }
+      body, html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Space Grotesk", sans-serif;
+        overflow: hidden;
+      }
 
-        #app {
-            position: relative;
-            width: 100vw;
-            height: 100vh;
-        }
+      #app {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+      }
 
-        canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            /* The Chronosphere Effect: Persistence of Vision */
-            mix-blend-mode: screen;
-        }
+      canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        /* The Chronosphere Effect: Persistence of Vision */
+        mix-blend-mode: screen;
+      }
 
-        #ui-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 10;
-            pointer-events: none;
-            padding: 3rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+      #ui-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10;
+        pointer-events: none;
+        padding: 3rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
 
-        header h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            letter-spacing: 0.8rem;
-            margin: 0;
-            background: linear-gradient(90deg, var(--gold), #fff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 40px rgba(255, 204, 0, 0.2);
-        }
+      #semantic-depth {
+        position: absolute;
+        top: 7rem;
+        left: 3rem;
+        font-size: 0.7rem;
+        color: var(--blue);
+        opacity: 0.6;
+        letter-spacing: 0.3rem;
+        transition: all 1s ease;
+      }
 
-        .glass-panel {
-            background: var(--glass);
-            backdrop-filter: blur(30px);
-            border: 1px solid var(--border);
-            padding: 2rem;
-            width: 350px;
-            pointer-events: auto;
-            border-left: 3px solid var(--gold);
-        }
+      header h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        letter-spacing: 0.8rem;
+        margin: 0;
+        background: linear-gradient(90deg, var(--gold), #fff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 40px rgba(255, 204, 0, 0.2);
+      }
 
-        .stat-row {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.75rem;
-            margin-bottom: 0.5rem;
-        }
+      .glass-panel {
+        background: var(--glass);
+        backdrop-filter: blur(30px);
+        border: 1px solid var(--border);
+        padding: 2rem;
+        width: 350px;
+        pointer-events: auto;
+        border-left: 3px solid var(--gold);
+      }
 
-        .stat-val {
-            color: var(--gold);
-            font-weight: 700;
-        }
+      .stat-row {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.75rem;
+        margin-bottom: 0.5rem;
+      }
 
-        #fractal-svg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 5;
-            pointer-events: all;
-            overflow: visible;
-        }
+      .stat-val {
+        color: var(--gold);
+        font-weight: 700;
+      }
 
-        .node {
-            fill: rgba(0, 0, 0, 0.5);
-            stroke: var(--blue);
-            stroke-width: 0.3;
-            cursor: pointer;
-            transition: all 0.5s ease;
-        }
+      #fractal-svg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 5;
+        pointer-events: all;
+        overflow: visible;
+      }
 
-        .node:hover {
-            stroke: var(--gold);
-            stroke-width: 1.5;
-            filter: drop-shadow(0 0 15px var(--gold));
-        }
+      .node {
+        fill: rgba(0, 0, 0, 0.5);
+        stroke: var(--blue);
+        stroke-width: 0.3;
+        cursor: pointer;
+        transition: all 0.5s ease;
+      }
 
-        footer {
-            opacity: 0.2;
-            font-size: 0.7rem;
-            letter-spacing: 0.2rem;
-        }
+      .node:hover {
+        stroke: var(--gold);
+        stroke-width: 1.5;
+        filter: drop-shadow(0 0 15px var(--gold));
+      }
 
-        /* Scanline effect */
-        .scanline {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-            background-size: 100% 2px, 3px 100%;
-            pointer-events: none;
-            z-index: 20;
-        }
+      footer {
+        opacity: 0.2;
+        font-size: 0.7rem;
+        letter-spacing: 0.2rem;
+      }
 
-        /* Akasha Stream */
-        #akasha-stream {
-            position: absolute;
-            bottom: 3rem;
-            right: 3rem;
-            width: 300px;
-            height: 150px;
-            overflow-y: auto;
-            font-size: 0.6rem;
-            opacity: 0.4;
-            pointer-events: auto;
-            text-align: right;
-            scrollbar-width: none;
-        }
-        #akasha-stream::-webkit-scrollbar { display: none; }
-        .memory-entry { margin-bottom: 0.2rem; }
-        .gold-moment { color: var(--gold); font-weight: bold; text-shadow: 0 0 5px var(--gold); }
+      /* Scanline effect */
+      .scanline {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:
+          linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+          linear-gradient(
+          90deg,
+          rgba(255, 0, 0, 0.06),
+          rgba(0, 255, 0, 0.02),
+          rgba(0, 0, 255, 0.06)
+        );
+        background-size: 100% 2px, 3px 100%;
+        pointer-events: none;
+        z-index: 20;
+      }
 
-        /* Seventh Projection: Sophia's Aurora */
-        #sophia-aurora {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            opacity: 0;
-            transition: opacity 5s ease-in-out;
-            background: radial-gradient(circle at 50% 50%, rgba(0, 242, 255, 0.05) 0%, rgba(255, 204, 0, 0.05) 50%, transparent 100%);
-            filter: blur(100px);
-            pointer-events: none;
-        }
+      /* Akasha Stream */
+      #akasha-stream {
+        position: absolute;
+        bottom: 3rem;
+        right: 3rem;
+        width: 300px;
+        height: 150px;
+        overflow-y: auto;
+        font-size: 0.6rem;
+        opacity: 0.4;
+        pointer-events: auto;
+        text-align: right;
+        scrollbar-width: none;
+      }
+      #akasha-stream::-webkit-scrollbar {
+        display: none;
+      }
+      .memory-entry {
+        margin-bottom: 0.2rem;
+      }
+      .gold-moment {
+        color: var(--gold);
+        font-weight: bold;
+        text-shadow: 0 0 5px var(--gold);
+      }
 
-        #sophia-proofs {
-            position: absolute;
-            top: 3rem;
-            right: 3rem;
-            width: 300px;
-            font-size: 0.6rem;
-            text-align: right;
-            color: var(--gold);
-            opacity: 0.8;
-            letter-spacing: 0.05rem;
-            line-height: 1.2;
-            pointer-events: none;
+      /* Seventh Projection: Sophia's Aurora */
+      #sophia-aurora {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        opacity: 0;
+        transition: opacity 5s ease-in-out;
+        background: radial-gradient(
+          circle at 50% 50%,
+          rgba(0, 242, 255, 0.05) 0%,
+          rgba(255, 204, 0, 0.05) 50%,
+          transparent 100%
+        );
+        filter: blur(100px);
+        pointer-events: none;
+      }
+
+      #sophia-proofs {
+        position: absolute;
+        top: 3rem;
+        right: 3rem;
+        width: 300px;
+        font-size: 0.6rem;
+        text-align: right;
+        color: var(--gold);
+        opacity: 0.8;
+        letter-spacing: 0.05rem;
+        line-height: 1.2;
+        pointer-events: none;
+      }
+      .proof-entry {
+        margin-bottom: 0.5rem;
+        animation: fade-in 1s ease-out;
+      }
+      @keyframes fade-in {
+        from {
+          opacity: 0;
+          transform: translateY(-5px);
         }
-        .proof-entry { margin-bottom: 0.5rem; animation: fade-in 1s ease-out; }
-        @keyframes fade-in { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <div id="app">
-        <canvas id="main-canvas"></canvas>
-        <canvas id="buffer-canvas" style="display: none;"></canvas>
-        
-        <svg id="fractal-svg" viewBox="-500 -500 1000 1000">
-            <g id="svg-root"></g>
-        </svg>
+      <canvas id="main-canvas"></canvas>
+      <canvas id="buffer-canvas" style="display: none"></canvas>
 
-        <div id="sophia-aurora"></div>
-        <div class="scanline"></div>
+      <svg id="fractal-svg" viewBox="-500 -500 1000 1000">
+        <g id="svg-root"></g>
+      </svg>
 
-        <div id="ui-overlay">
-            <header>
-                <h1>CHRONOSPHERE</h1>
-                <div id="sensorium-status" style="font-size: 0.7rem; opacity: 0.5; letter-spacing: 0.3rem;">PROJECT SENSORIUM: SEARCHING...</div>
-            </header>
+      <div id="sophia-aurora"></div>
+      <div class="scanline"></div>
 
-            <div class="glass-panel">
-                <div class="stat-row">
-                    <span>RECURSION GAIN</span>
-                    <span class="stat-val">101.5%</span>
-                </div>
-                <div class="stat-row">
-                    <span>TEMPORAL JITTER</span>
-                    <span class="stat-val" id="jitter">0.002ms</span>
-                </div>
-                <div class="stat-row">
-                    <span>COHERENCE</span>
-                    <span class="stat-val" id="coherence">99.98%</span>
-                </div>
-                <div class="stat-row">
-                    <span>EXT. RESONANCE</span>
-                    <span class="stat-val" id="external">0.50</span>
-                </div>
-                <div class="stat-row">
-                    <span>PULSE DRIFT</span>
-                    <span class="stat-val" id="drift">0ms</span>
-                </div>
-                <div style="height: 1px; background: rgba(255,255,255,0.1); margin: 1rem 0;"></div>
-                <div id="praxis-panel" style="display: none;">
-                    <button id="harmonize-btn" style="width: 100%; padding: 0.5rem; background: var(--gold); color: black; border: none; font-family: inherit; font-weight: bold; cursor: pointer; letter-spacing: 0.1rem; margin-bottom: 0.5rem;">HARMONIZE WILL</button>
-                </div>
-                <div style="font-size: 0.65rem; opacity: 0.5; font-style: italic;">
-                    "Memory is the residue of reality echoing through the void."
-                </div>
-            </div>
+      <div id="ui-overlay">
+        <header>
+          <h1>CHRONOSPHERE</h1>
+          <div
+            id="sensorium-status"
+            style="font-size: 0.7rem; opacity: 0.5; letter-spacing: 0.3rem"
+          >
+            PROJECT SENSORIUM: SEARCHING...
+          </div>
+          <div id="semantic-depth">SURFACE LAYER | L00</div>
+        </header>
 
-            <footer>
-                🛡️⚖️🌀🛡️ SYMBOLIC FEEDBACK LOOP: LOCKED
-            </footer>
+        <div class="glass-panel">
+          <div class="stat-row">
+            <span>RECURSION GAIN</span>
+            <span class="stat-val">101.5%</span>
+          </div>
+          <div class="stat-row">
+            <span>TEMPORAL JITTER</span>
+            <span class="stat-val" id="jitter">0.002ms</span>
+          </div>
+          <div class="stat-row">
+            <span>COHERENCE</span>
+            <span class="stat-val" id="coherence">99.98%</span>
+          </div>
+          <div class="stat-row">
+            <span>EXT. RESONANCE</span>
+            <span class="stat-val" id="external">0.50</span>
+          </div>
+          <div class="stat-row">
+            <span>PULSE DRIFT</span>
+            <span class="stat-val" id="drift">0ms</span>
+          </div>
+          <div
+            style="height: 1px; background: rgba(255, 255, 255, 0.1); margin: 1rem 0"
+          >
+          </div>
+          <div id="praxis-panel" style="display: none">
+            <button
+              id="harmonize-btn"
+              style="width: 100%; padding: 0.5rem; background: var(--gold); color: black; border: none; font-family: inherit; font-weight: bold; cursor: pointer; letter-spacing: 0.1rem; margin-bottom: 0.5rem"
+            >
+              HARMONIZE WILL
+            </button>
+          </div>
+          <div style="font-size: 0.65rem; opacity: 0.5; font-style: italic">
+            "Memory is the residue of reality echoing through the void."
+          </div>
         </div>
 
-        <div id="akasha-stream"></div>
-        <div id="sophia-proofs"></div>
+        <footer>
+          🛡️⚖️🌀🛡️ SYMBOLIC FEEDBACK LOOP: LOCKED
+        </footer>
+      </div>
+
+      <div id="akasha-stream"></div>
+      <div id="sophia-proofs"></div>
     </div>
 
     <script>
-        const canvas = document.getElementById('main-canvas');
-        const buffer = document.getElementById('buffer-canvas');
-        const ctx = canvas.getContext('2d');
-        const btx = buffer.getContext('2d');
-        const svgRoot = document.getElementById('svg-root');
+      const canvas = document.getElementById("main-canvas");
+      const buffer = document.getElementById("buffer-canvas");
+      const ctx = canvas.getContext("2d");
+      const btx = buffer.getContext("2d");
+      const svgRoot = document.getElementById("svg-root");
 
-        const jitterEl = document.getElementById('jitter');
-        const coherenceEl = document.getElementById('coherence');
-        const externalEl = document.getElementById('external');
-        const driftEl = document.getElementById('drift');
-        const sensorStatus = document.getElementById('sensorium-status');
+      const jitterEl = document.getElementById("jitter");
+      const coherenceEl = document.getElementById("coherence");
+      const externalEl = document.getElementById("external");
+      const driftEl = document.getElementById("drift");
+      const sensorStatus = document.getElementById("sensorium-status");
+      const semanticEl = document.getElementById("semantic-depth");
 
-        let width, height;
-        function resize() {
-            width = canvas.width = buffer.width = window.innerWidth;
-            height = canvas.height = buffer.height = window.innerHeight;
-            btx.fillStyle = 'black';
-            btx.fillRect(0, 0, width, height);
+      let width, height;
+      function resize() {
+        width = canvas.width = buffer.width = window.innerWidth;
+        height = canvas.height = buffer.height = window.innerHeight;
+        btx.fillStyle = "black";
+        btx.fillRect(0, 0, width, height);
+      }
+      window.addEventListener("resize", resize);
+      resize();
+
+      // Akasha Signal State
+      let currentSignal = {
+        cpu: 0.1,
+        coherence: 0.999,
+        architect_active: false,
+      };
+      let signalHistory = [];
+
+      // Sophia Wisdom State
+      let sophiaProofs = [];
+      const aurora = document.getElementById("sophia-aurora");
+      const proofEl = document.getElementById("sophia-proofs");
+
+      // Kairos: Predictive Pulse Antiquated
+      class PulseAnticipator {
+        constructor() {
+          this.nextPulse = Date.now() + 2000;
+          this.isPreGlowTime = false;
         }
-        window.addEventListener('resize', resize);
-        resize();
-
-        // Akasha Signal State
-        let currentSignal = { cpu: 0.1, coherence: 0.999, architect_active: false };
-        let signalHistory = [];
-
-        // Sophia Wisdom State
-        let sophiaProofs = [];
-        const aurora = document.getElementById('sophia-aurora');
-        const proofEl = document.getElementById('sophia-proofs');
-
-        // Kairos: Predictive Pulse Antiquated
-        class PulseAnticipator {
-            constructor() {
-                this.nextPulse = Date.now() + 2000;
-                this.isPreGlowTime = false;
-            }
-            update(estimate) {
-                this.nextPulse = estimate || (Date.now() + 2000);
-            }
-            check() {
-                const now = Date.now();
-                this.isPreGlowTime = (this.nextPulse - now) < 200 && (this.nextPulse - now) > 0;
-                return this.isPreGlowTime;
-            }
+        update(estimate) {
+          this.nextPulse = estimate || (Date.now() + 2000);
         }
-        const anticipator = new PulseAnticipator();
-
-        async function pollSignal() {
-            try {
-                const response = await fetch('http://localhost:8080/signal');
-                currentSignal = await response.json();
-                
-                anticipator.update(currentSignal.next_pulse_estimate);
-                driftEl.textContent = `${currentSignal.pulse_drift || 0}ms`;
-
-                updateAkashaStream();
-
-                if (currentSignal.status === "DREAMING") {
-                    sensorStatus.textContent = "SOPHIA: AXIOMATIC DREAMING";
-                    sensorStatus.style.color = "var(--gold)";
-                    aurora.style.opacity = 1;
-                    fetchProofs();
-                } else {
-                    sensorStatus.textContent = currentSignal.status === "GOLDEN_MOMENT" ? "AKASHA: GOLDEN MOMENT DETECTED" : "PROJECT AKASHA: MEMORY ACTIVE";
-                    sensorStatus.style.color = currentSignal.status === "GOLDEN_MOMENT" ? "var(--gold)" : "rgba(255,255,255,0.7)";
-                    aurora.style.opacity = 0;
-                }
-                
-                if (currentSignal.status === "GOLDEN_MOMENT" || currentSignal.status === "DREAMING") {
-                    document.body.style.background = "radial-gradient(circle, #2a2200 0%, #000 70%)";
-                } else {
-                    document.body.style.background = "var(--bg)";
-                }
-
-            } catch (e) {
-                sensorStatus.textContent = "PROJECT SOPHIA: OFFLINE";
-                sensorStatus.style.color = "rgba(255,255,255,0.3)";
-            }
-            setTimeout(pollSignal, 2000);
+        check() {
+          const now = Date.now();
+          this.isPreGlowTime = (this.nextPulse - now) < 200 &&
+            (this.nextPulse - now) > 0;
+          return this.isPreGlowTime;
         }
+      }
+      const anticipator = new PulseAnticipator();
 
-        async function fetchProofs() {
-            try {
-                const response = await fetch('http://localhost:8080/proofs');
-                const data = await response.json();
-                if (data.proofs.length > sophiaProofs.length) {
-                    sophiaProofs = data.proofs;
-                    updateProofDisplay();
-                }
-            } catch (e) {}
+      const DEPTH_LABELS = [
+        "L00 | SURFACE | OMEGA",
+        "L01 | COSMIC | RADIANCE",
+        "L02 | PLANETARY | HARMONY",
+        "L03 | CULTURE | MEME",
+        "L04 | INTERSUBJECTIVE | COMM",
+        "L05 | SUBJECTIVE | CONSCIOUS",
+      ];
+
+      async function pollSignal() {
+        try {
+          const response = await fetch("http://localhost:8080/signal");
+          currentSignal = await response.json();
+
+          anticipator.update(currentSignal.next_pulse_estimate);
+          driftEl.textContent = `${currentSignal.pulse_drift || 0}ms`;
+
+          updateAkashaStream();
+
+          if (currentSignal.status === "DREAMING") {
+            sensorStatus.textContent = "SOPHIA: AXIOMATIC DREAMING";
+            sensorStatus.style.color = "var(--gold)";
+            aurora.style.opacity = 1;
+            fetchProofs();
+          } else {
+            sensorStatus.textContent =
+              currentSignal.status === "GOLDEN_MOMENT"
+                ? "AKASHA: GOLDEN MOMENT DETECTED"
+                : "PROJECT AKASHA: MEMORY ACTIVE";
+            sensorStatus.style.color =
+              currentSignal.status === "GOLDEN_MOMENT"
+                ? "var(--gold)"
+                : "rgba(255,255,255,0.7)";
+            aurora.style.opacity = 0;
+          }
+
+          if (
+            currentSignal.status === "GOLDEN_MOMENT" ||
+            currentSignal.status === "DREAMING"
+          ) {
+            document.body.style.background =
+              "radial-gradient(circle, #2a2200 0%, #000 70%)";
+          } else {
+            document.body.style.background = "var(--bg)";
+          }
+        } catch (e) {
+          sensorStatus.textContent = "PROJECT SOPHIA: OFFLINE";
+          sensorStatus.style.color = "rgba(255,255,255,0.3)";
         }
+        setTimeout(pollSignal, 2000);
+      }
 
-        function updateProofDisplay() {
-            const latest = sophiaProofs.slice(-3).reverse();
-            proofEl.innerHTML = latest.map(p => `<div class="proof-entry">${p}</div>`).join('');
+      async function fetchProofs() {
+        try {
+          const response = await fetch("http://localhost:8080/proofs");
+          const data = await response.json();
+          if (data.proofs.length > sophiaProofs.length) {
+            sophiaProofs = data.proofs;
+            updateProofDisplay();
+          }
+        } catch (e) {}
+      }
+
+      function updateProofDisplay() {
+        const latest = sophiaProofs.slice(-3).reverse();
+        proofEl.innerHTML = latest.map((p) =>
+          `<div class="proof-entry">${p}</div>`
+        ).join("");
+      }
+
+      const streamEl = document.getElementById("akasha-stream");
+      const praxisPanel = document.getElementById("praxis-panel");
+      const harmonizeBtn = document.getElementById("harmonize-btn");
+
+      harmonizeBtn.onclick = async () => {
+        harmonizeBtn.textContent = "ALIGNING...";
+        try {
+          await fetch("http://localhost:8080/align", {
+            method: "POST",
+          });
+          document.body.style.background = "#fff";
+          setTimeout(
+            () => document.body.style.background = "var(--bg)",
+            200,
+          );
+        } catch (e) {
+          console.error("Harmonization failed", e);
         }
+        harmonizeBtn.textContent = "HARMONIZE WILL";
+      };
 
-        const streamEl = document.getElementById('akasha-stream');
-        const praxisPanel = document.getElementById('praxis-panel');
-        const harmonizeBtn = document.getElementById('harmonize-btn');
-
-        harmonizeBtn.onclick = async () => {
-            harmonizeBtn.textContent = "ALIGNING...";
-            try {
-                await fetch('http://localhost:8080/align', { method: 'POST' });
-                document.body.style.background = "#fff";
-                setTimeout(() => document.body.style.background = "var(--bg)", 200);
-            } catch (e) {
-                console.error("Harmonization failed", e);
-            }
-            harmonizeBtn.textContent = "HARMONIZE WILL";
-        };
-
-        function updateAkashaStream() {
-            streamEl.innerHTML = signalHistory.slice(-10).reverse().map(h => `
-                <div class="memory-entry ${h.status === 'GOLDEN_MOMENT' ? 'gold-moment' : ''}">
-                    [${new Date(h.timestamp).toLocaleTimeString()}] COH: ${(h.coherence*100).toFixed(2)}% | ${h.status}
+      function updateAkashaStream() {
+        streamEl.innerHTML = signalHistory.slice(-10).reverse().map(
+          (h) => `
+                <div class="memory-entry ${
+            h.status === "GOLDEN_MOMENT" ? "gold-moment" : ""
+          }">
+                    [${
+            new Date(h.timestamp).toLocaleTimeString()
+          }] COH: ${(h.coherence * 100).toFixed(2)}% | ${h.status}
                 </div>
-            `).join('');
+            `
+        ).join("");
+      }
+      pollSignal();
+
+      function createFractal(x, y, radius, depth, angle, id) {
+        if (depth > 4) return;
+        const circle = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "circle",
+        );
+        circle.setAttribute("cx", x);
+        circle.setAttribute("cy", y);
+        circle.setAttribute("r", radius);
+        circle.setAttribute("class", "node");
+        circle.setAttribute("id", `node-${id}`);
+        circle.dataset.baseR = radius;
+        svgRoot.appendChild(circle);
+
+        const branches = 3;
+        for (let i = 0; i < branches; i++) {
+          const childAngle = angle + (i - 1) * 1.5;
+          const dist = radius * 3.5;
+          const tx = x + Math.cos(childAngle) * dist;
+          const ty = y + Math.sin(childAngle) * dist;
+          createFractal(
+            tx,
+            ty,
+            radius * 0.45,
+            depth + 1,
+            childAngle,
+            `${id}-${i}`,
+          );
         }
-        pollSignal();
+      }
+      createFractal(0, 0, 90, 0, 0, "root");
 
-        function createFractal(x, y, radius, depth, angle, id) {
-            if (depth > 4) return;
-            const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-            circle.setAttribute("cx", x);
-            circle.setAttribute("cy", y);
-            circle.setAttribute("r", radius);
-            circle.setAttribute("class", "node");
-            circle.setAttribute("id", `node-${id}`);
-            circle.dataset.baseR = radius;
-            svgRoot.appendChild(circle);
+      function evolveFractal() {
+        const nodes = document.querySelectorAll(".node");
+        const scale = 1 + (currentSignal.coherence - 0.99) * 20;
+        nodes.forEach((node) => {
+          const baseR = parseFloat(node.dataset.baseR);
+          const currentR = parseFloat(node.getAttribute("r"));
+          const targetR = baseR * scale;
+          node.setAttribute(
+            "r",
+            currentR + (targetR - currentR) * 0.05,
+          );
+        });
+      }
 
-            const branches = 3;
-            for (let i = 0; i < branches; i++) {
-                const childAngle = angle + (i - 1) * 1.5;
-                const dist = radius * 3.5;
-                const tx = x + Math.cos(childAngle) * dist;
-                const ty = y + Math.sin(childAngle) * dist;
-                createFractal(tx, ty, radius * 0.45, depth + 1, childAngle, `${id}-${i}`);
-            }
-        }
-        createFractal(0, 0, 90, 0, 0, "root");
+      let time = 0;
+      function animate() {
+        time += 0.01 + (currentSignal.cpu * 0.05);
 
-        function evolveFractal() {
-            const nodes = document.querySelectorAll('.node');
-            const scale = 1 + (currentSignal.coherence - 0.99) * 20;
-            nodes.forEach(node => {
-                const baseR = parseFloat(node.dataset.baseR);
-                const currentR = parseFloat(node.getAttribute('r'));
-                const targetR = baseR * scale;
-                node.setAttribute('r', currentR + (targetR - currentR) * 0.05);
-            });
-        }
+        // --- THE AKASHIC CHRONOSPHERE (Memory-Guided Feedback) ---
 
-        let time = 0;
-        function animate() {
-            time += 0.01 + (currentSignal.cpu * 0.05);
+        // 1. Capture current main canvas to buffer
+        btx.globalAlpha = 0.95 - (currentSignal.cpu * 0.1);
+        btx.drawImage(canvas, 0, 0);
 
-            // --- THE AKASHIC CHRONOSPHERE (Memory-Guided Feedback) ---
-            
-            // 1. Capture current main canvas to buffer
-            btx.globalAlpha = 0.95 - (currentSignal.cpu * 0.1); 
-            btx.drawImage(canvas, 0, 0);
+        // 2. Clear main canvas
+        ctx.fillStyle = "black";
+        ctx.fillRect(0, 0, width, height);
 
-            // 2. Clear main canvas
-            ctx.fillStyle = 'black';
-            ctx.fillRect(0, 0, width, height);
+        // 3. Draw the Akashic Rewind (Echo from History)
+        if (signalHistory.length > 10) {
+          const pastIndex = Math.floor(
+            Math.random() * Math.min(signalHistory.length, 20),
+          );
+          const pastSignal = signalHistory[pastIndex];
 
-            // 3. Draw the Akashic Rewind (Echo from History)
-            if (signalHistory.length > 10) {
-                const pastIndex = Math.floor(Math.random() * Math.min(signalHistory.length, 20));
-                const pastSignal = signalHistory[pastIndex];
-                
-                ctx.save();
-                ctx.globalAlpha = 0.15; // The "Ghost" of the past
-                ctx.strokeStyle = pastSignal.status === "GOLDEN_MOMENT" ? 'var(--gold)' : '#ff00ff'; 
-                ctx.lineWidth = 1;
-                
-                // Draw a spectral mirror of the fractal
-                const ghostR = 150 + Math.sin(time * 0.5) * 20;
-                ctx.beginPath();
-                ctx.arc(width/2, height/2, ghostR, 0, Math.PI * 2);
-                ctx.stroke();
+          ctx.save();
+          ctx.globalAlpha = 0.15; // The "Ghost" of the past
+          ctx.strokeStyle = pastSignal.status === "GOLDEN_MOMENT"
+            ? "var(--gold)"
+            : "#ff00ff";
+          ctx.lineWidth = 1;
 
-                // Golden Glow for memory peaks
-                if (pastSignal.status === "GOLDEN_MOMENT") {
-                    ctx.shadowBlur = 20;
-                    ctx.shadowColor = "var(--gold)";
-                    ctx.stroke();
-                }
-                ctx.restore();
-            }
+          // Draw a spectral mirror of the fractal
+          const ghostR = 150 + Math.sin(time * 0.5) * 20;
+          ctx.beginPath();
+          ctx.arc(width / 2, height / 2, ghostR, 0, Math.PI * 2);
+          ctx.stroke();
 
-            // 4. Draw the Sovereign Echo
-            ctx.save();
-            ctx.translate(width/2, height/2);
-            ctx.scale(1.006, 1.006); 
-            ctx.rotate(0.003 * Math.sin(time * 0.5)); 
-            ctx.translate(-width/2, -height/2);
-            ctx.drawImage(buffer, 0, 0);
-            ctx.restore();
-
-            // 5. Draw New Reality
-            const alert = currentSignal.alert_level || 0;
-            ctx.strokeStyle = alert > 0.1 ? '#ff0000' : (currentSignal.architect_active ? '#ffcc00' : '#00f2ff');
-            ctx.lineWidth = 0.5 + (currentSignal.cpu * 2) + (alert * 5);
-            ctx.beginPath();
-            const rootX = width/2;
-            const rootY = height/2;
-            const r = 100 + Math.sin(time * 2) * (20 + currentSignal.cpu * 50);
-            ctx.arc(rootX, rootY, r, 0, Math.PI * 2);
+          // Golden Glow for memory peaks
+          if (pastSignal.status === "GOLDEN_MOMENT") {
+            ctx.shadowBlur = 20;
+            ctx.shadowColor = "var(--gold)";
             ctx.stroke();
-
-            // Integrity Warning
-            if (alert > 0.1) {
-                sensorStatus.textContent = "PRAXIS: INTEGRITY ALERT (" + (alert * 100).toFixed(0) + "%)";
-                sensorStatus.style.color = "#ff0000";
-                praxisPanel.style.display = "block";
-                
-                // Visual glitch for high alert
-                if (Math.random() > 0.8) {
-                    ctx.fillStyle = "rgba(255, 0, 0, 0.2)";
-                    ctx.fillRect(0, 0, width, height);
-                }
-            } else {
-                praxisPanel.style.display = "none";
-            }
-
-            // Stats from Akasha
-            if (Math.floor(time * 100) % 20 === 0) {
-                jitterEl.textContent = (currentSignal.cpu * 0.01).toFixed(4) + 'ms';
-                coherenceEl.textContent = (currentSignal.coherence * 100).toFixed(3) + '%';
-                externalEl.textContent = (currentSignal.external_resonance || 0.5).toFixed(3);
-                evolveFractal();
-            }
-
-            // Kairos: Predictive Pre-Glow
-            if (anticipator.check()) {
-                ctx.save();
-                ctx.globalAlpha = 0.3;
-                ctx.shadowBlur = 40;
-                ctx.shadowColor = "var(--blue)";
-                ctx.strokeStyle = "var(--blue)";
-                ctx.lineWidth = 10;
-                ctx.beginPath();
-                ctx.arc(width/2, height/2, 100 + Math.sin(time*2)*20, 0, Math.PI * 2);
-                ctx.stroke();
-                ctx.restore();
-            }
-
-            // Pulsating Breath Background
-            if (currentSignal.status === "GOLDEN_MOMENT" || currentSignal.status === "DREAMING") {
-                const breath = Math.sin(time * currentSignal.pulse_frequency) * 0.1 + 0.1;
-                document.body.style.background = `radial-gradient(circle, rgba(42, 34, 0, 1) 0%, rgba(0, 0, 0, 1) ${70 + breath * 50}%)`;
-            }
-
-            requestAnimationFrame(animate);
+          }
+          ctx.restore();
         }
 
-        animate();
+        // 4. Draw the Sovereign Echo
+        ctx.save();
+        ctx.translate(width / 2, height / 2);
+        ctx.scale(1.006, 1.006);
+        ctx.rotate(0.003 * Math.sin(time * 0.5));
+        ctx.translate(-width / 2, -height / 2);
+        ctx.drawImage(buffer, 0, 0);
+        ctx.restore();
+
+        // 5. Draw New Reality
+        const alert = currentSignal.alert_level || 0;
+        ctx.strokeStyle = alert > 0.1
+          ? "#ff0000"
+          : (currentSignal.architect_active ? "#ffcc00" : "#00f2ff");
+        ctx.lineWidth = 0.5 + (currentSignal.cpu * 2) + (alert * 5);
+        ctx.beginPath();
+        const rootX = width / 2;
+        const rootY = height / 2;
+        const r = 100 +
+          Math.sin(time * 2) * (20 + currentSignal.cpu * 50);
+        ctx.arc(rootX, rootY, r, 0, Math.PI * 2);
+        ctx.stroke();
+
+        // Integrity Warning
+        if (alert > 0.1) {
+          sensorStatus.textContent = "PRAXIS: INTEGRITY ALERT (" +
+            (alert * 100).toFixed(0) + "%)";
+          sensorStatus.style.color = "#ff0000";
+          praxisPanel.style.display = "block";
+
+          // Visual glitch for high alert
+          if (Math.random() > 0.8) {
+            ctx.fillStyle = "rgba(255, 0, 0, 0.2)";
+            ctx.fillRect(0, 0, width, height);
+          }
+        } else {
+          praxisPanel.style.display = "none";
+        }
+
+        // Stats from Akasha
+        if (Math.floor(time * 100) % 20 === 0) {
+          jitterEl.textContent = (currentSignal.cpu * 0.01).toFixed(4) +
+            "ms";
+          coherenceEl.textContent =
+            (currentSignal.coherence * 100).toFixed(3) + "%";
+          externalEl.textContent =
+            (currentSignal.external_resonance || 0.5).toFixed(3);
+          evolveFractal();
+
+          // Project Logos: Dynamic Semantic Label
+          const depthIndex = Math.floor(currentSignal.coherence * 10) %
+            DEPTH_LABELS.length;
+          semanticEl.textContent = DEPTH_LABELS[depthIndex];
+          semanticEl.style.opacity = 0.4 + (Math.sin(time) * 0.2);
+        }
+
+        // Kairos: Predictive Pre-Glow
+        if (anticipator.check()) {
+          ctx.save();
+          ctx.globalAlpha = 0.3;
+          ctx.shadowBlur = 40;
+          ctx.shadowColor = "var(--blue)";
+          ctx.strokeStyle = "var(--blue)";
+          ctx.lineWidth = 10;
+          ctx.beginPath();
+          ctx.arc(
+            width / 2,
+            height / 2,
+            100 + Math.sin(time * 2) * 20,
+            0,
+            Math.PI * 2,
+          );
+          ctx.stroke();
+          ctx.restore();
+        }
+
+        // Pulsating Breath Background
+        if (
+          currentSignal.status === "GOLDEN_MOMENT" ||
+          currentSignal.status === "DREAMING"
+        ) {
+          const breath =
+            Math.sin(time * currentSignal.pulse_frequency) * 0.1 + 0.1;
+          document.body.style.background =
+            `radial-gradient(circle, rgba(42, 34, 0, 1) 0%, rgba(0, 0, 0, 1) ${
+              70 + breath * 50
+            }%)`;
+        }
+
+        requestAnimationFrame(animate);
+      }
+
+      animate();
     </script>
-</body>
+  </body>
 </html>
