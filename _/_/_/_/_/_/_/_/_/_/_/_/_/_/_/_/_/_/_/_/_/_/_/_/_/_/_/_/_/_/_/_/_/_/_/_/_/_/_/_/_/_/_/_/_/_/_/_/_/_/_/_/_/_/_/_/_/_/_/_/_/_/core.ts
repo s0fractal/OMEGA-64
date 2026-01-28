@@ -1,6 +1,4 @@
-// 🛡️ Level 1 Logic
-import { identity } from "./i.ts";
-// 🛡️ Level 62 Logic
+// 🛡️ Level 62 Logic (Identity)
 
 /** Axiom I: The Identity Combinator (The Mirror) */
 export const I = <T>(x: T): T => x;

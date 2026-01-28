@@ -1,4 +1,4 @@
-// 🛡️ Level 61 Logic
+// 🛡️ Level 61 Logic (Recursion)
 
 /** Axiom Y: The Fixed-point Combinator (The Recursion Anchor) */
 // deno-lint-ignore no-explicit-any

@@ -1,6 +1,5 @@
-// 🛡️ Level 60 Logic
-import { identity } from "./i.ts";
-import { Y, φ } from "./_/index.ts"; // Recursive Harbor access
+// 🛡️ Level 60 Logic (Validation)
+import { Y, φ } from "./_/index.ts"; // Recursive access to Genesis DNA
 
 /** Axiom Σ: Arithmetic Summation (Validation of the Chain) */
 export const Σ = (l: number[]) => {

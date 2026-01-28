@@ -1,3 +1,3 @@
--- 🛡️ L60 Lean Logic
-def level : Nat := 60
-def witness : String := "W_PLACEHOLDER"
+import OMEGA._._._.Sub.Core
+-- 🛡️ L3 Lean Logic
+def level : Nat := 3
