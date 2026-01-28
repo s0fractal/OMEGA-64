@@ -200,20 +200,25 @@
         window.addEventListener('resize', resize);
         resize();
 
-        // Sensorium Signal State
+        // Akasha Signal State
         let currentSignal = { cpu: 0.1, coherence: 0.999, architect_active: false };
+        let signalHistory = [];
 
         async function pollSignal() {
             try {
-                const response = await fetch('signal.json');
+                const response = await fetch('http://localhost:8080/signal');
                 currentSignal = await response.json();
-                sensorStatus.textContent = "PROJECT SENSORIUM: RESONANCE ACTIVE";
+                
+                const histResponse = await fetch('http://localhost:8080/history');
+                signalHistory = await histResponse.json();
+
+                sensorStatus.textContent = "PROJECT AKASHA: MEMORY ACTIVE";
                 sensorStatus.style.color = "var(--gold)";
             } catch (e) {
-                sensorStatus.textContent = "PROJECT SENSORIUM: OFFLINE";
+                sensorStatus.textContent = "PROJECT AKASHA: OFFLINE";
                 sensorStatus.style.color = "rgba(255,255,255,0.3)";
             }
-            setTimeout(pollSignal, 1000);
+            setTimeout(pollSignal, 2000);
         }
         pollSignal();
 
@@ -239,28 +244,40 @@
 
         let time = 0;
         function animate() {
-            time += 0.01 + (currentSignal.cpu * 0.05); // Speed influenced by CPU
+            time += 0.01 + (currentSignal.cpu * 0.05);
 
-            // --- THE CHRONOSPHERE CORE (Recursive Mirror) ---
+            // --- THE AKASHIC CHRONOSPHERE (Memory-Guided Feedback) ---
             
             // 1. Capture current main canvas to buffer
-            btx.globalAlpha = 0.95 - (currentSignal.cpu * 0.1); // Decay influenced by load
+            btx.globalAlpha = 0.95 - (currentSignal.cpu * 0.1); 
             btx.drawImage(canvas, 0, 0);
 
             // 2. Clear main canvas
             ctx.fillStyle = 'black';
             ctx.fillRect(0, 0, width, height);
 
-            // 3. Draw the Echo (The "Correct" Feedback)
+            // 3. Draw the Akashic Rewind (Echo from History)
+            if (signalHistory.length > 10) {
+                ctx.save();
+                ctx.globalAlpha = 0.2; // The "Ghost" of the past
+                const pastSignal = signalHistory[Math.floor(Math.random() * 5)]; // Pick early history
+                ctx.strokeStyle = '#ff00ff'; // Spectral Purple
+                ctx.beginPath();
+                ctx.arc(width/2, height/2, 120 + Math.sin(time) * 40, 0, Math.PI * 2);
+                ctx.stroke();
+                ctx.restore();
+            }
+
+            // 4. Draw the Sovereign Echo
             ctx.save();
             ctx.translate(width/2, height/2);
-            ctx.scale(1.005, 1.005); 
-            ctx.rotate(0.002 + Math.sin(time) * 0.002); 
+            ctx.scale(1.006, 1.006); 
+            ctx.rotate(0.003 * Math.sin(time * 0.5)); 
             ctx.translate(-width/2, -height/2);
             ctx.drawImage(buffer, 0, 0);
             ctx.restore();
 
-            // 4. Draw New Reality (Current Moment)
+            // 5. Draw New Reality
             ctx.strokeStyle = currentSignal.architect_active ? '#ffcc00' : '#00f2ff';
             ctx.lineWidth = 0.5 + (currentSignal.cpu * 2);
             ctx.beginPath();
@@ -270,16 +287,10 @@
             ctx.arc(rootX, rootY, r, 0, Math.PI * 2);
             ctx.stroke();
 
-            // Intermittent "Glitch" Sparks 
-            if (Math.random() > 0.98 - (currentSignal.cpu * 0.05)) {
-                ctx.fillStyle = Math.random() > 0.5 ? '#00f2ff' : '#ffcc00';
-                ctx.fillRect(Math.random() * width, Math.random() * height, 1, 30);
-            }
-
-            // Update UI Stats from real signal
-            if (Math.floor(time * 100) % 30 === 0) {
+            // Stats from Akasha
+            if (Math.floor(time * 100) % 20 === 0) {
                 jitterEl.textContent = (currentSignal.cpu * 0.01).toFixed(4) + 'ms';
-                coherenceEl.textContent = (currentSignal.coherence * 100).toFixed(2) + '%';
+                coherenceEl.textContent = (currentSignal.coherence * 100).toFixed(3) + '%';
             }
 
             requestAnimationFrame(animate);
