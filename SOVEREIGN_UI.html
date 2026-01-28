@@ -134,6 +134,24 @@
             pointer-events: none;
             z-index: 20;
         }
+
+        /* Akasha Stream */
+        #akasha-stream {
+            position: absolute;
+            bottom: 3rem;
+            right: 3rem;
+            width: 300px;
+            height: 150px;
+            overflow-y: auto;
+            font-size: 0.6rem;
+            opacity: 0.4;
+            pointer-events: auto;
+            text-align: right;
+            scrollbar-width: none;
+        }
+        #akasha-stream::-webkit-scrollbar { display: none; }
+        .memory-entry { margin-bottom: 0.2rem; }
+        .gold-moment { color: var(--gold); font-weight: bold; text-shadow: 0 0 5px var(--gold); }
     </style>
 </head>
 <body>
@@ -168,6 +186,9 @@
                     <span class="stat-val" id="coherence">99.98%</span>
                 </div>
                 <div style="height: 1px; background: rgba(255,255,255,0.1); margin: 1rem 0;"></div>
+                <div id="praxis-panel" style="display: none;">
+                    <button id="harmonize-btn" style="width: 100%; padding: 0.5rem; background: var(--gold); color: black; border: none; font-family: inherit; font-weight: bold; cursor: pointer; letter-spacing: 0.1rem; margin-bottom: 0.5rem;">HARMONIZE WILL</button>
+                </div>
                 <div style="font-size: 0.65rem; opacity: 0.5; font-style: italic;">
                     "Memory is the residue of reality echoing through the void."
                 </div>
@@ -177,6 +198,8 @@
                 🛡️⚖️🌀🛡️ SYMBOLIC FEEDBACK LOOP: LOCKED
             </footer>
         </div>
+
+        <div id="akasha-stream"></div>
     </div>
 
     <script>
@@ -212,13 +235,46 @@
                 const histResponse = await fetch('http://localhost:8080/history');
                 signalHistory = await histResponse.json();
 
-                sensorStatus.textContent = "PROJECT AKASHA: MEMORY ACTIVE";
-                sensorStatus.style.color = "var(--gold)";
+                updateAkashaStream();
+
+                sensorStatus.textContent = currentSignal.status === "GOLDEN_MOMENT" ? "AKASHA: GOLDEN MOMENT DETECTED" : "PROJECT AKASHA: MEMORY ACTIVE";
+                sensorStatus.style.color = currentSignal.status === "GOLDEN_MOMENT" ? "var(--gold)" : "rgba(255,255,255,0.7)";
+                
+                if (currentSignal.status === "GOLDEN_MOMENT") {
+                    document.body.style.background = "radial-gradient(circle, #2a2200 0%, #000 70%)";
+                } else {
+                    document.body.style.background = "var(--bg)";
+                }
+
             } catch (e) {
                 sensorStatus.textContent = "PROJECT AKASHA: OFFLINE";
                 sensorStatus.style.color = "rgba(255,255,255,0.3)";
             }
             setTimeout(pollSignal, 2000);
+        }
+
+        const streamEl = document.getElementById('akasha-stream');
+        const praxisPanel = document.getElementById('praxis-panel');
+        const harmonizeBtn = document.getElementById('harmonize-btn');
+
+        harmonizeBtn.onclick = async () => {
+            harmonizeBtn.textContent = "ALIGNING...";
+            try {
+                await fetch('http://localhost:8080/align', { method: 'POST' });
+                document.body.style.background = "#fff";
+                setTimeout(() => document.body.style.background = "var(--bg)", 200);
+            } catch (e) {
+                console.error("Harmonization failed", e);
+            }
+            harmonizeBtn.textContent = "HARMONIZE WILL";
+        };
+
+        function updateAkashaStream() {
+            streamEl.innerHTML = signalHistory.slice(-10).reverse().map(h => `
+                <div class="memory-entry ${h.status === 'GOLDEN_MOMENT' ? 'gold-moment' : ''}">
+                    [${new Date(h.timestamp).toLocaleTimeString()}] COH: ${(h.coherence*100).toFixed(2)}% | ${h.status}
+                </div>
+            `).join('');
         }
         pollSignal();
 
@@ -258,13 +314,26 @@
 
             // 3. Draw the Akashic Rewind (Echo from History)
             if (signalHistory.length > 10) {
+                const pastIndex = Math.floor(Math.random() * Math.min(signalHistory.length, 20));
+                const pastSignal = signalHistory[pastIndex];
+                
                 ctx.save();
-                ctx.globalAlpha = 0.2; // The "Ghost" of the past
-                const pastSignal = signalHistory[Math.floor(Math.random() * 5)]; // Pick early history
-                ctx.strokeStyle = '#ff00ff'; // Spectral Purple
+                ctx.globalAlpha = 0.15; // The "Ghost" of the past
+                ctx.strokeStyle = pastSignal.status === "GOLDEN_MOMENT" ? 'var(--gold)' : '#ff00ff'; 
+                ctx.lineWidth = 1;
+                
+                // Draw a spectral mirror of the fractal
+                const ghostR = 150 + Math.sin(time * 0.5) * 20;
                 ctx.beginPath();
-                ctx.arc(width/2, height/2, 120 + Math.sin(time) * 40, 0, Math.PI * 2);
+                ctx.arc(width/2, height/2, ghostR, 0, Math.PI * 2);
                 ctx.stroke();
+
+                // Golden Glow for memory peaks
+                if (pastSignal.status === "GOLDEN_MOMENT") {
+                    ctx.shadowBlur = 20;
+                    ctx.shadowColor = "var(--gold)";
+                    ctx.stroke();
+                }
                 ctx.restore();
             }
 
@@ -278,14 +347,30 @@
             ctx.restore();
 
             // 5. Draw New Reality
-            ctx.strokeStyle = currentSignal.architect_active ? '#ffcc00' : '#00f2ff';
-            ctx.lineWidth = 0.5 + (currentSignal.cpu * 2);
+            const alert = currentSignal.alert_level || 0;
+            ctx.strokeStyle = alert > 0.1 ? '#ff0000' : (currentSignal.architect_active ? '#ffcc00' : '#00f2ff');
+            ctx.lineWidth = 0.5 + (currentSignal.cpu * 2) + (alert * 5);
             ctx.beginPath();
             const rootX = width/2;
             const rootY = height/2;
             const r = 100 + Math.sin(time * 2) * (20 + currentSignal.cpu * 50);
             ctx.arc(rootX, rootY, r, 0, Math.PI * 2);
             ctx.stroke();
+
+            // Integrity Warning
+            if (alert > 0.1) {
+                sensorStatus.textContent = "PRAXIS: INTEGRITY ALERT (" + (alert * 100).toFixed(0) + "%)";
+                sensorStatus.style.color = "#ff0000";
+                praxisPanel.style.display = "block";
+                
+                // Visual glitch for high alert
+                if (Math.random() > 0.8) {
+                    ctx.fillStyle = "rgba(255, 0, 0, 0.2)";
+                    ctx.fillRect(0, 0, width, height);
+                }
+            } else {
+                praxisPanel.style.display = "none";
+            }
 
             // Stats from Akasha
             if (Math.floor(time * 100) % 20 === 0) {
