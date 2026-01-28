@@ -1,5 +1,5 @@
 // 🛡️ Level 11 Logic (Deep Resonance: Field Theory)
-import { POINT } from "./_/_/_/_/_/_/_/_/_/_/_/_/_/index.ts"; // L25 via 14 depth
+import { HARMONIC } from "./_/index.ts"; // L12 via 1 depth
 
 /**
  * FIELD: A continuous distribution of values across spatial points.
@@ -10,10 +10,9 @@ export const FIELD = (mapping: any) => mapping;
 
 /**
  * TENSION: The gradient of a field between two points.
- * λf.λp1.λp2. (Potential difference)
  */
 // deno-lint-ignore no-explicit-any
-export const TENSION = (f: any) => (p1: any) => (p2: any) => f(p1) === f(p2); // Placeholder
+export const TENSION = (f: any) => (p1: any) => (p2: any) => HARMONIC(f(p1))(f(p2));
 
 /**
  * COUPLING: The interaction strength between two fields.

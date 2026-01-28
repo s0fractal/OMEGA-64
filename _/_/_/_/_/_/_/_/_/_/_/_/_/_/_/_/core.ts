@@ -1,5 +1,5 @@
 // 🛡️ Level 16 Logic (Multiparadigm: Etheric Projection)
-import { I } from "./_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/index.ts"; // L63 via 47 depth
+import { I } from "../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../index.ts"; // L63 via 47 depth
 
 /**
  * SIGNAL: A pure information pulse.
