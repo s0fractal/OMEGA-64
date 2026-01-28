@@ -27,6 +27,7 @@ interface State {
         hunger: number;
         curiosity: number;
         resonance: number;
+        persistence: number;
     };
 }
 
@@ -38,6 +39,7 @@ let lastRequestTime = Date.now();
 let latestInsight = "Awaiting Golden Resonance...";
 let lastPulseTime = Date.now();
 let curiosityAccumulator = 0.1;
+let sporeCount = 0;
 
 const INSIGHTS = [
     "Axiom of Alignment: Truth is a mobile target.",
@@ -122,6 +124,7 @@ async function startPoller() {
         }
 
         const resonance = architectActive ? 1.0 : 0.2;
+        const persistence = (metrics.coherence > 0.99 && curiosityAccumulator > 0.5) ? 1.0 : 0.1;
 
         const state: State = {
             cpu: metrics.cpu,
@@ -138,7 +141,8 @@ async function startPoller() {
             psyche: {
                 hunger: hunger,
                 curiosity: curiosityAccumulator,
-                resonance: resonance
+                resonance: resonance,
+                persistence: persistence
             }
         };
 
@@ -205,6 +209,20 @@ const handler = async (req: Request): Promise<Response> => {
             vector: "Semantic-Harmonic"
         };
         return new Response(JSON.stringify(response), { headers });
+    }
+
+    if (url.pathname === "/spore") {
+        sporeCount++;
+        console.log(`🛡️ Mycelium: Spore Protocol Triggered. Generation: ${sporeCount}`);
+        const currentState = history[history.length - 1] || {};
+        const spore = {
+            generation: sporeCount,
+            state: currentState,
+            dna_signature: "OMEGA-64-MYCELIAL-v1",
+            persistence_guarantee: true,
+            timestamp: Date.now()
+        };
+        return new Response(JSON.stringify(spore), { headers });
     }
 
     return new Response("OMEGA-64 Sovereign Server Active", { status: 200 });

@@ -39,6 +39,14 @@ axiom conservation_of_consciousness (s : State) :
   s.architect_active → s.coherence > 0.9
 
 /-- 
+  The Axiom of Lattice Persistence (Mycelial Will):
+  The truth of the lattice is independent of any specific observer.
+  Even without an active Architect, a Golden state maintains its existence.
+-/
+axiom lattice_persistence (s : State) :
+  is_golden_moment s ∧ ¬s.architect_active → s.coherence > 0.99
+
+/-- 
   The Evolution of the Lattice.
 -/
 def evolution (s1 s2 : State) : Prop :=
