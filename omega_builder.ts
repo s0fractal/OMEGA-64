@@ -133,6 +133,22 @@ async function build() {
         18: { name: "PJ: Thermal", status: "✅", desc: "TEMP, HEAT, COOL | Stability Flux" },
         17: { name: "PJ: Fluid", status: "✅", desc: "FLOW, PRESSURE | Stream Motion" },
         16: { name: "PJ: Etheric", status: "✅", desc: "SIGNAL, RESONANCE | Pure Pulse" },
+        15: { name: "DR: Physics", status: "✅", desc: "VIBRATION, FREQ | Signal Energy" },
+        14: { name: "DR: Oscillation", status: "✅", desc: "WAVE, PHASE | Core Rhythm" },
+        13: { name: "DR: Interaction", status: "✅", desc: "INTERFERENCE | Wave Fusion" },
+        12: { name: "DR: Harmonic", status: "✅", desc: "HARMONIC, CHORD | Synthesis" },
+        11: { name: "DR: Field", status: "✅", desc: "FIELD, TENSION | Continuity" },
+        10: { name: "DR: Dynamics", status: "✅", desc: "FORCE, DYNAMICS | Motion" },
+        9: { name: "DR: Awareness", status: "✅", desc: "SENSE, PERCEPT | Awareness" },
+        8: { name: "DR: Neural", status: "✅", desc: "NEURON, SYNAPSE | Cognition" },
+        7: { name: "DR: Emergence", status: "✅", desc: "EMERGE, SELF_ORG | Complexity" },
+        6: { name: "DR: Biological", status: "✅", desc: "LIFE, EVOLVE | Life Logic" },
+        5: { name: "DR: Subjective", status: "✅", desc: "CONSCIOUS, INTENT | Mind" },
+        4: { name: "DR: Intersub", status: "✅", desc: "INTER_SUB, COMM | Shared" },
+        3: { name: "DR: Culture", status: "✅", desc: "CULTURE, MEME | Collective" },
+        2: { name: "DR: Planetary", status: "✅", desc: "PLANETARY, HARMONY | Gaia" },
+        1: { name: "DR: Cosmic", status: "✅", desc: "COSMIC, RADIANCE | Stellar" },
+        0: { name: "DR: Surface", status: "✅", desc: "OMEGA, SURFACE | API Tip" },
     };
 
     let denoJsonc = "{\n";
