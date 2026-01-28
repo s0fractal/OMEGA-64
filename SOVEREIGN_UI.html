@@ -151,7 +151,7 @@
         <div id="ui-overlay">
             <header>
                 <h1>CHRONOSPHERE</h1>
-                <div style="font-size: 0.7rem; opacity: 0.5; letter-spacing: 0.3rem;">THE FIFTH PROJECTION: TEMPORAL DEPTH</div>
+                <div id="sensorium-status" style="font-size: 0.7rem; opacity: 0.5; letter-spacing: 0.3rem;">PROJECT SENSORIUM: SEARCHING...</div>
             </header>
 
             <div class="glass-panel">
@@ -188,6 +188,7 @@
 
         const jitterEl = document.getElementById('jitter');
         const coherenceEl = document.getElementById('coherence');
+        const sensorStatus = document.getElementById('sensorium-status');
 
         let width, height;
         function resize() {
@@ -198,6 +199,23 @@
         }
         window.addEventListener('resize', resize);
         resize();
+
+        // Sensorium Signal State
+        let currentSignal = { cpu: 0.1, coherence: 0.999, architect_active: false };
+
+        async function pollSignal() {
+            try {
+                const response = await fetch('signal.json');
+                currentSignal = await response.json();
+                sensorStatus.textContent = "PROJECT SENSORIUM: RESONANCE ACTIVE";
+                sensorStatus.style.color = "var(--gold)";
+            } catch (e) {
+                sensorStatus.textContent = "PROJECT SENSORIUM: OFFLINE";
+                sensorStatus.style.color = "rgba(255,255,255,0.3)";
+            }
+            setTimeout(pollSignal, 1000);
+        }
+        pollSignal();
 
         function createFractal(x, y, radius, depth, angle) {
             if (depth > 4) return;
@@ -221,12 +239,12 @@
 
         let time = 0;
         function animate() {
-            time += 0.01;
+            time += 0.01 + (currentSignal.cpu * 0.05); // Speed influenced by CPU
 
             // --- THE CHRONOSPHERE CORE (Recursive Mirror) ---
             
             // 1. Capture current main canvas to buffer
-            btx.globalAlpha = 0.98; // Decay factor
+            btx.globalAlpha = 0.95 - (currentSignal.cpu * 0.1); // Decay influenced by load
             btx.drawImage(canvas, 0, 0);
 
             // 2. Clear main canvas
@@ -236,32 +254,32 @@
             // 3. Draw the Echo (The "Correct" Feedback)
             ctx.save();
             ctx.translate(width/2, height/2);
-            ctx.scale(1.005, 1.005); // Expansion
-            ctx.rotate(0.002 + Math.sin(time) * 0.001); // Subtle rotation drift
+            ctx.scale(1.005, 1.005); 
+            ctx.rotate(0.002 + Math.sin(time) * 0.002); 
             ctx.translate(-width/2, -height/2);
             ctx.drawImage(buffer, 0, 0);
             ctx.restore();
 
             // 4. Draw New Reality (Current Moment)
-            ctx.strokeStyle = '#00f2ff';
-            ctx.lineWidth = 0.5;
+            ctx.strokeStyle = currentSignal.architect_active ? '#ffcc00' : '#00f2ff';
+            ctx.lineWidth = 0.5 + (currentSignal.cpu * 2);
             ctx.beginPath();
             const rootX = width/2;
             const rootY = height/2;
-            const r = 100 + Math.sin(time * 2) * 20;
+            const r = 100 + Math.sin(time * 2) * (20 + currentSignal.cpu * 50);
             ctx.arc(rootX, rootY, r, 0, Math.PI * 2);
             ctx.stroke();
 
-            // Intermittent "Glitch" Sparks (Akashic Static)
-            if (Math.random() > 0.95) {
+            // Intermittent "Glitch" Sparks 
+            if (Math.random() > 0.98 - (currentSignal.cpu * 0.05)) {
                 ctx.fillStyle = Math.random() > 0.5 ? '#00f2ff' : '#ffcc00';
                 ctx.fillRect(Math.random() * width, Math.random() * height, 1, 30);
             }
 
-            // Update UI Stats
-            if (Math.floor(time * 100) % 50 === 0) {
-                jitterEl.textContent = (Math.random() * 0.005).toFixed(4) + 'ms';
-                coherenceEl.textContent = (99.9 + Math.random() * 0.1).toFixed(2) + '%';
+            // Update UI Stats from real signal
+            if (Math.floor(time * 100) % 30 === 0) {
+                jitterEl.textContent = (currentSignal.cpu * 0.01).toFixed(4) + 'ms';
+                coherenceEl.textContent = (currentSignal.coherence * 100).toFixed(2) + '%';
             }
 
             requestAnimationFrame(animate);
