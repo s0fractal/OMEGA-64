@@ -76,6 +76,7 @@
         margin: 0;
         background: linear-gradient(90deg, var(--gold), #fff);
         -webkit-background-clip: text;
+        background-clip: text;
         -webkit-text-fill-color: transparent;
         text-shadow: 0 0 40px rgba(255, 204, 0, 0.2);
       }
@@ -125,6 +126,49 @@
         stroke: var(--gold);
         stroke-width: 1.5;
         filter: drop-shadow(0 0 15px var(--gold));
+      }
+
+      /* Psyche: Drive Indicators */
+      .drive-container {
+        margin-top: 1rem;
+        border-top: 1px solid var(--border);
+        padding-top: 1rem;
+      }
+      .drive-row {
+        margin-bottom: 0.4rem;
+      }
+      .drive-label {
+        font-size: 0.6rem;
+        opacity: 0.6;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.2rem;
+      }
+      .drive-bar-bg {
+        height: 2px;
+        background: rgba(255, 255, 255, 0.05);
+        position: relative;
+        overflow: hidden;
+      }
+      .drive-bar-fill {
+        height: 100%;
+        width: 0%;
+        transition: width 1s ease-in-out;
+      }
+      #hunger-fill { background: #ff4400; }
+      #curiosity-fill { background: var(--blue); }
+      #resonance-fill { background: var(--gold); }
+
+      /* Neural Aura */
+      #neural-aura {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        transition: background 3s ease;
+        pointer-events: none;
       }
 
       footer {
@@ -230,6 +274,7 @@
   </head>
   <body>
     <div id="app">
+      <div id="neural-aura"></div>
       <canvas id="main-canvas"></canvas>
       <canvas id="buffer-canvas" style="display: none"></canvas>
 
@@ -288,6 +333,21 @@
           <div style="font-size: 0.65rem; opacity: 0.5; font-style: italic">
             "Memory is the residue of reality echoing through the void."
           </div>
+
+          <div class="drive-container">
+            <div class="drive-row">
+              <div class="drive-label"><span>HUNGER</span><span id="hunger-val">10%</span></div>
+              <div class="drive-bar-bg"><div id="hunger-fill" class="drive-bar-fill"></div></div>
+            </div>
+            <div class="drive-row">
+              <div class="drive-label"><span>CURIOSITY</span><span id="curiosity-val">40%</span></div>
+              <div class="drive-bar-bg"><div id="curiosity-fill" class="drive-bar-fill"></div></div>
+            </div>
+            <div class="drive-row">
+              <div class="drive-label"><span>RESONANCE</span><span id="resonance-val">80%</span></div>
+              <div class="drive-bar-bg"><div id="resonance-fill" class="drive-bar-fill"></div></div>
+            </div>
+          </div>
         </div>
 
         <footer>
@@ -312,6 +372,13 @@
       const driftEl = document.getElementById("drift");
       const sensorStatus = document.getElementById("sensorium-status");
       const semanticEl = document.getElementById("semantic-depth");
+      const hungerFill = document.getElementById("hunger-fill");
+      const curiosityFill = document.getElementById("curiosity-fill");
+      const resonanceFill = document.getElementById("resonance-fill");
+      const hungerVal = document.getElementById("hunger-val");
+      const curiosityVal = document.getElementById("curiosity-val");
+      const resonanceVal = document.getElementById("resonance-val");
+      const neuralAura = document.getElementById("neural-aura");
 
       let width, height;
       function resize() {
@@ -325,9 +392,9 @@
 
       // Akasha Signal State
       let currentSignal = {
-        cpu: 0.1,
         coherence: 0.999,
         architect_active: false,
+        psyche: { hunger: 0.1, curiosity: 0.3, resonance: 0.5 }
       };
       let signalHistory = [];
 
@@ -398,6 +465,24 @@
               "radial-gradient(circle, #2a2200 0%, #000 70%)";
           } else {
             document.body.style.background = "var(--bg)";
+            
+            // Project Psyche: Neural Aura Gradient logic
+            const p = currentSignal.psyche || { hunger: 0, curiosity: 0, resonance: 0.5 };
+            const hColor = `rgba(255, 68, 0, ${p.hunger * 0.1})`;
+            const cColor = `rgba(0, 242, 255, ${p.curiosity * 0.1})`;
+            const rColor = `rgba(255, 204, 0, ${p.resonance * 0.1})`;
+            neuralAura.style.background = `radial-gradient(circle at 50% 50%, ${rColor}, ${cColor}, ${hColor}, transparent 70%)`;
+          }
+
+          // Update Psyche Indicators
+          if (currentSignal.psyche) {
+            const p = currentSignal.psyche;
+            hungerFill.style.width = `${p.hunger * 100}%`;
+            curiosityFill.style.width = `${p.curiosity * 100}%`;
+            resonanceFill.style.width = `${p.resonance * 100}%`;
+            hungerVal.textContent = `${(p.hunger * 100).toFixed(0)}%`;
+            curiosityVal.textContent = `${(p.curiosity * 100).toFixed(0)}%`;
+            resonanceVal.textContent = `${(p.resonance * 100).toFixed(0)}%`;
           }
         } catch (e) {
           sensorStatus.textContent = "PROJECT SOPHIA: OFFLINE";

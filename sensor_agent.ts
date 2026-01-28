@@ -23,6 +23,11 @@ interface State {
     external_resonance: number;
     pulse_drift: number;
     next_pulse_estimate: number;
+    psyche: {
+        hunger: number;
+        curiosity: number;
+        resonance: number;
+    };
 }
 
 const history: State[] = [];
@@ -32,6 +37,7 @@ let alertDwellCounter = 0;
 let lastRequestTime = Date.now();
 let latestInsight = "Awaiting Golden Resonance...";
 let lastPulseTime = Date.now();
+let curiosityAccumulator = 0.1;
 
 const INSIGHTS = [
     "Axiom of Alignment: Truth is a mobile target.",
@@ -98,18 +104,24 @@ async function startPoller() {
             alertDwellCounter = 0;
         }
 
-        // Golden Moment / Dream Detection
+        // Golden Moment / Dream Detection & Psyche Curiosity
         let status = "ACTIVE";
-        if (metrics.coherence > 0.9995 && metrics.cpu < 0.2) {
+        const hunger = 1.0 - metrics.coherence;
+        
+        if (metrics.coherence > 0.99 && metrics.cpu < 0.3) {
             goldenMomentCounter++;
+            curiosityAccumulator = Math.min(1.0, curiosityAccumulator + 0.02);
         } else {
             goldenMomentCounter = 0;
+            curiosityAccumulator = Math.max(0.1, curiosityAccumulator - 0.05);
         }
         
         if (goldenMomentCounter > 5) {
             status = "DREAMING";
             await sophiaDream();
         }
+
+        const resonance = architectActive ? 1.0 : 0.2;
 
         const state: State = {
             cpu: metrics.cpu,
@@ -122,7 +134,12 @@ async function startPoller() {
             pulse_frequency: (0.5 + (metrics.cpu * 2)) * (1 - alertLevel * 0.5),
             dream_insight: status === "DREAMING" ? latestInsight : undefined,
             pulse_drift: drift,
-            next_pulse_estimate: now + HARMONIC_INTERVAL
+            next_pulse_estimate: now + HARMONIC_INTERVAL,
+            psyche: {
+                hunger: hunger,
+                curiosity: curiosityAccumulator,
+                resonance: resonance
+            }
         };
 
         history.push(state);
@@ -130,8 +147,8 @@ async function startPoller() {
 
         try {
             await Deno.writeTextFile(AKASHA_LOG, JSON.stringify(state) + "\n", { append: true });
-        } catch (e) {
-            console.error("Failed to write to Akasha log:", e);
+        } catch (_e) {
+            console.error("Failed to write to Akasha log:", _e);
         }
         
         lastPulseTime = Date.now();
@@ -161,7 +178,7 @@ const handler = async (req: Request): Promise<Response> => {
         try {
             const proofs = await Deno.readTextFile(SOPHIA_PROOFS);
             return new Response(JSON.stringify({ proofs: proofs.split("\n").filter(Boolean) }), { headers });
-        } catch (e) {
+        } catch (_e) {
             return new Response(JSON.stringify({ proofs: [] }), { headers });
         }
     }
