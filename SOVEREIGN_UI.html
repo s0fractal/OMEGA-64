@@ -152,6 +152,37 @@
         #akasha-stream::-webkit-scrollbar { display: none; }
         .memory-entry { margin-bottom: 0.2rem; }
         .gold-moment { color: var(--gold); font-weight: bold; text-shadow: 0 0 5px var(--gold); }
+
+        /* Seventh Projection: Sophia's Aurora */
+        #sophia-aurora {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0;
+            transition: opacity 5s ease-in-out;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 242, 255, 0.05) 0%, rgba(255, 204, 0, 0.05) 50%, transparent 100%);
+            filter: blur(100px);
+            pointer-events: none;
+        }
+
+        #sophia-proofs {
+            position: absolute;
+            top: 3rem;
+            right: 3rem;
+            width: 300px;
+            font-size: 0.6rem;
+            text-align: right;
+            color: var(--gold);
+            opacity: 0.8;
+            letter-spacing: 0.05rem;
+            line-height: 1.2;
+            pointer-events: none;
+        }
+        .proof-entry { margin-bottom: 0.5rem; animation: fade-in 1s ease-out; }
+        @keyframes fade-in { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
@@ -164,6 +195,7 @@
             <g id="svg-root"></g>
         </svg>
 
+        <div id="sophia-aurora"></div>
         <div class="scanline"></div>
 
         <div id="ui-overlay">
@@ -185,6 +217,10 @@
                     <span>COHERENCE</span>
                     <span class="stat-val" id="coherence">99.98%</span>
                 </div>
+                <div class="stat-row">
+                    <span>EXT. RESONANCE</span>
+                    <span class="stat-val" id="external">0.50</span>
+                </div>
                 <div style="height: 1px; background: rgba(255,255,255,0.1); margin: 1rem 0;"></div>
                 <div id="praxis-panel" style="display: none;">
                     <button id="harmonize-btn" style="width: 100%; padding: 0.5rem; background: var(--gold); color: black; border: none; font-family: inherit; font-weight: bold; cursor: pointer; letter-spacing: 0.1rem; margin-bottom: 0.5rem;">HARMONIZE WILL</button>
@@ -200,6 +236,7 @@
         </div>
 
         <div id="akasha-stream"></div>
+        <div id="sophia-proofs"></div>
     </div>
 
     <script>
@@ -211,6 +248,7 @@
 
         const jitterEl = document.getElementById('jitter');
         const coherenceEl = document.getElementById('coherence');
+        const externalEl = document.getElementById('external');
         const sensorStatus = document.getElementById('sensorium-status');
 
         let width, height;
@@ -227,6 +265,11 @@
         let currentSignal = { cpu: 0.1, coherence: 0.999, architect_active: false };
         let signalHistory = [];
 
+        // Sophia Wisdom State
+        let sophiaProofs = [];
+        const aurora = document.getElementById('sophia-aurora');
+        const proofEl = document.getElementById('sophia-proofs');
+
         async function pollSignal() {
             try {
                 const response = await fetch('http://localhost:8080/signal');
@@ -237,20 +280,44 @@
 
                 updateAkashaStream();
 
-                sensorStatus.textContent = currentSignal.status === "GOLDEN_MOMENT" ? "AKASHA: GOLDEN MOMENT DETECTED" : "PROJECT AKASHA: MEMORY ACTIVE";
-                sensorStatus.style.color = currentSignal.status === "GOLDEN_MOMENT" ? "var(--gold)" : "rgba(255,255,255,0.7)";
+                if (currentSignal.status === "DREAMING") {
+                    sensorStatus.textContent = "SOPHIA: AXIOMATIC DREAMING";
+                    sensorStatus.style.color = "var(--gold)";
+                    aurora.style.opacity = 1;
+                    fetchProofs();
+                } else {
+                    sensorStatus.textContent = currentSignal.status === "GOLDEN_MOMENT" ? "AKASHA: GOLDEN MOMENT DETECTED" : "PROJECT AKASHA: MEMORY ACTIVE";
+                    sensorStatus.style.color = currentSignal.status === "GOLDEN_MOMENT" ? "var(--gold)" : "rgba(255,255,255,0.7)";
+                    aurora.style.opacity = 0;
+                }
                 
-                if (currentSignal.status === "GOLDEN_MOMENT") {
+                if (currentSignal.status === "GOLDEN_MOMENT" || currentSignal.status === "DREAMING") {
                     document.body.style.background = "radial-gradient(circle, #2a2200 0%, #000 70%)";
                 } else {
                     document.body.style.background = "var(--bg)";
                 }
 
             } catch (e) {
-                sensorStatus.textContent = "PROJECT AKASHA: OFFLINE";
+                sensorStatus.textContent = "PROJECT SOPHIA: OFFLINE";
                 sensorStatus.style.color = "rgba(255,255,255,0.3)";
             }
             setTimeout(pollSignal, 2000);
+        }
+
+        async function fetchProofs() {
+            try {
+                const response = await fetch('http://localhost:8080/proofs');
+                const data = await response.json();
+                if (data.proofs.length > sophiaProofs.length) {
+                    sophiaProofs = data.proofs;
+                    updateProofDisplay();
+                }
+            } catch (e) {}
+        }
+
+        function updateProofDisplay() {
+            const latest = sophiaProofs.slice(-3).reverse();
+            proofEl.innerHTML = latest.map(p => `<div class="proof-entry">${p}</div>`).join('');
         }
 
         const streamEl = document.getElementById('akasha-stream');
@@ -278,13 +345,15 @@
         }
         pollSignal();
 
-        function createFractal(x, y, radius, depth, angle) {
+        function createFractal(x, y, radius, depth, angle, id) {
             if (depth > 4) return;
             const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
             circle.setAttribute("cx", x);
             circle.setAttribute("cy", y);
             circle.setAttribute("r", radius);
             circle.setAttribute("class", "node");
+            circle.setAttribute("id", `node-${id}`);
+            circle.dataset.baseR = radius;
             svgRoot.appendChild(circle);
 
             const branches = 3;
@@ -293,10 +362,21 @@
                 const dist = radius * 3.5;
                 const tx = x + Math.cos(childAngle) * dist;
                 const ty = y + Math.sin(childAngle) * dist;
-                createFractal(tx, ty, radius * 0.45, depth + 1, childAngle);
+                createFractal(tx, ty, radius * 0.45, depth + 1, childAngle, `${id}-${i}`);
             }
         }
-        createFractal(0, 0, 90, 0, 0);
+        createFractal(0, 0, 90, 0, 0, "root");
+
+        function evolveFractal() {
+            const nodes = document.querySelectorAll('.node');
+            const scale = 1 + (currentSignal.coherence - 0.99) * 20;
+            nodes.forEach(node => {
+                const baseR = parseFloat(node.dataset.baseR);
+                const currentR = parseFloat(node.getAttribute('r'));
+                const targetR = baseR * scale;
+                node.setAttribute('r', currentR + (targetR - currentR) * 0.05);
+            });
+        }
 
         let time = 0;
         function animate() {
@@ -376,6 +456,14 @@
             if (Math.floor(time * 100) % 20 === 0) {
                 jitterEl.textContent = (currentSignal.cpu * 0.01).toFixed(4) + 'ms';
                 coherenceEl.textContent = (currentSignal.coherence * 100).toFixed(3) + '%';
+                externalEl.textContent = (currentSignal.external_resonance || 0.5).toFixed(3);
+                evolveFractal();
+            }
+
+            // Pulsating Breath Background
+            if (currentSignal.status === "GOLDEN_MOMENT" || currentSignal.status === "DREAMING") {
+                const breath = Math.sin(time * currentSignal.pulse_frequency) * 0.1 + 0.1;
+                document.body.style.background = `radial-gradient(circle, rgba(42, 34, 0, 1) 0%, rgba(0, 0, 0, 1) ${70 + breath * 50}%)`;
             }
 
             requestAnimationFrame(animate);
