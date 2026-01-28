@@ -1,3 +1,9 @@
-import OMEGA._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.Sub.Core
--- 🛡️ L32 Lean Logic
-def level : Nat := 32
+-- 🛡️ Level 30 Logic (Formal: Multiparadigm Projections)
+
+structure Observable (α : Type) where
+  subscribe : (α -> Unit) -> Unit
+
+structure Flux (α : Type) where
+  stream : Observable α
+
+-- Atoms for this level are transfused. (lvl: 30)
