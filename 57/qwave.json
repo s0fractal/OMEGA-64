@@ -1,8 +1,6 @@
 {
-  "meta": "OP: Gates",
-  "status": "✅",
-  "description": "NAND, XOR, MUX | Switching Logic",
-  "level": "57",
-  "entropy": 26525,
-  "qwave": "Awaiting Phase Resonance..."
+  "meta": "L57",
+  "status": "⏳",
+  "description": "",
+  "level": "57"
 }

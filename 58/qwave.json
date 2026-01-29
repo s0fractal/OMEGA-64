@@ -1,8 +1,6 @@
 {
-  "meta": "OP: Numerals",
-  "status": "✅",
-  "description": "N0-N3, SUCC, ADD | Ordinal Quantity",
-  "level": "58",
-  "entropy": 27565,
-  "qwave": "Awaiting Phase Resonance..."
+  "meta": "L58",
+  "status": "⏳",
+  "description": "",
+  "level": "58"
 }

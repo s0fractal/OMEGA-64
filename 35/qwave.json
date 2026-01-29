@@ -1,8 +1,6 @@
 {
-  "meta": "FL: Equality",
-  "status": "✅",
-  "description": "IS_ISO, REFL | Logical Sameness",
-  "level": "35",
-  "entropy": 3640,
-  "qwave": "Awaiting Phase Resonance..."
+  "meta": "L35",
+  "status": "⏳",
+  "description": "",
+  "level": "35"
 }

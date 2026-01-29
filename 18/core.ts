@@ -1,5 +1,4 @@
-// 🛡️ Level 18 Logic
-// [✅] PJ: Thermal
-// TEMP, HEAT, COOL | Stability Flux
+// 🛡️ Level 45 Logic
+import { identity } from "./i.ts";
 
-export const level = 18;
+// Atoms for this level will be transfused here. (lvl: ${identity.level})

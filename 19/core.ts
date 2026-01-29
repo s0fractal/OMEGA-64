@@ -1,5 +1,4 @@
-// 🛡️ Level 19 Logic
-// [✅] PJ: Energetic
-// ENERGY, BOOST | Work Budget
+// 🛡️ Level 44 Logic
+import { identity } from "./i.ts";
 
-export const level = 19;
+// Atoms for this level will be transfused here. (lvl: ${identity.level})

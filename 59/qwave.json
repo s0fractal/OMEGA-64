@@ -1,8 +1,6 @@
 {
-  "meta": "OP: Booleans",
-  "status": "✅",
-  "description": "T, F, AND, OR, NOT | Choice Physics",
-  "level": "59",
-  "entropy": 28606,
-  "qwave": "Awaiting Phase Resonance..."
+  "meta": "L59",
+  "status": "⏳",
+  "description": "",
+  "level": "59"
 }

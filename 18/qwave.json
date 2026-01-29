@@ -1,8 +1,6 @@
 {
-  "meta": "PJ: Thermal",
-  "status": "✅",
-  "description": "TEMP, HEAT, COOL | Stability Flux",
-  "level": "18",
-  "entropy": -14044,
-  "qwave": "Awaiting Phase Resonance..."
+  "meta": "L18",
+  "status": "⏳",
+  "description": "",
+  "level": "18"
 }

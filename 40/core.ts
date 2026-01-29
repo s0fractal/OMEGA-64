@@ -1,5 +1,4 @@
-// 🛡️ Level 40 Logic
-// [✅] FL: Parallelism
-// FORK, JOIN | Strand Sync
+// 🛡️ Level 23 Logic
+import { identity } from "./i.ts";
 
-export const level = 40;
+// Atoms for this level will be transfused here. (lvl: ${identity.level})

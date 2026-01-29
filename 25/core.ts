@@ -1,5 +1,4 @@
-// 🛡️ Level 25 Logic
-// [✅] PJ: Spatial
-// POINT, COORD | Geometric Logic
+// 🛡️ Level 38 Logic
+import { identity } from "./i.ts";
 
-export const level = 25;
+// Atoms for this level will be transfused here. (lvl: ${identity.level})

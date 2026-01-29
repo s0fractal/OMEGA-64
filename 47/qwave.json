@@ -1,8 +1,6 @@
 {
-  "meta": "FL: Branching",
-  "status": "✅",
-  "description": "IF_ELSE, MUX | Decision Gates",
-  "level": "47",
-  "entropy": 16123,
-  "qwave": "Awaiting Phase Resonance..."
+  "meta": "L47",
+  "status": "⏳",
+  "description": "",
+  "level": "47"
 }
