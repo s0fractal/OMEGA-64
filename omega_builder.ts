@@ -114,18 +114,21 @@ async function build() {
         const coreContent = `// 🛡️ Level ${level} Logic\n\n// Atoms for this level will be transfused here. (lvl: ${level})\n`;
         await writeSafe(corePathTS, coreContent);
 
+        const backsteps = Array(depth).fill("..").join("/") || ".";
+        const relTemplatePath = (depth === 0) ? "./00" : `${backsteps}/00`;
+
         const indexPathTS = `${currentPath}/index.ts`;
         try {
             await Deno.remove(indexPathTS);
-        } catch (_) {}
-        await Deno.symlink(`${ROOT_DIR}/00/index.ts`, indexPathTS);
+        } catch (_) { /* 🛡️ */ }
+        await Deno.symlink(`${relTemplatePath}/index.ts`, indexPathTS);
 
         // --- RS Dimension ---
         const modPathRS = `${currentPath}/mod.rs`;
         try {
             await Deno.remove(modPathRS);
-        } catch (_) {}
-        await Deno.symlink(`${ROOT_DIR}/00/mod.rs`, modPathRS);
+        } catch (_) { /* 🛡️ */ }
+        await Deno.symlink(`${relTemplatePath}/mod.rs`, modPathRS);
         
         const corePathRS = `${currentPath}/core.rs`;
         const rsCoreContent = `// 🛡️ Level ${level} RS Logic\n// Axiomatic resonance materialized. (lvl: ${level})\n`;
@@ -184,7 +187,7 @@ async function build() {
     const rootFiles = ["mod.rs", "index.ts"];
     for (const file of rootFiles) {
         try { await Deno.remove(`${ROOT_DIR}/${file}`); } catch (_) { /* 🛡️ */ }
-        await Deno.symlink(`${ROOT_DIR}/00/${file}`, `${ROOT_DIR}/${file}`);
+        await Deno.symlink(`./00/${file}`, `${ROOT_DIR}/${file}`);
     }
 
     await Deno.writeTextFile(`${ROOT_DIR}/Cargo.toml`, `[package]\nname = "omega-64"\nversion = "0.1.0"\nedition = "2021"\n\n[lib]\npath = "mod.rs"\n`);
