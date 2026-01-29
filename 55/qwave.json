@@ -1,1 +1,8 @@
-{"level": "55", "entropy": 24445, "qwave": "Awaiting Phase Resonance..."}
+{
+  "meta": "OP: Advanced",
+  "status": "✅",
+  "description": "PRED, SUB, LEQ | Recursive Depth",
+  "level": "55",
+  "entropy": 24445,
+  "qwave": "Awaiting Phase Resonance..."
+}

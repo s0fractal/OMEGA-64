@@ -1,1 +1,8 @@
-{"level": "42", "entropy": 10922, "qwave": "Awaiting Phase Resonance..."}
+{
+  "meta": "FL: Continuations",
+  "status": "✅",
+  "description": "CONT, CALL_CC | Temporal Folding",
+  "level": "42",
+  "entropy": 10922,
+  "qwave": "Awaiting Phase Resonance..."
+}

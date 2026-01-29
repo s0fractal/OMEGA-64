@@ -1,1 +1,8 @@
-{"level": "10", "entropy": -22366, "qwave": "Awaiting Phase Resonance..."}
+{
+  "meta": "DR: Dynamics",
+  "status": "✅",
+  "description": "FORCE, DYNAMICS | Motion",
+  "level": "10",
+  "entropy": -22366,
+  "qwave": "Awaiting Phase Resonance..."
+}

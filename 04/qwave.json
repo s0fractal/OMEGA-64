@@ -1,1 +1,8 @@
-{"level": "04", "entropy": -28608, "qwave": "Awaiting Phase Resonance..."}
+{
+  "meta": "DR: Intersub",
+  "status": "✅",
+  "description": "INTER_SUB, COMM | Shared",
+  "level": "04",
+  "entropy": -28608,
+  "qwave": "Awaiting Phase Resonance..."
+}

@@ -11,73 +11,21 @@ const WITNESSES = [
     "00000000839a8e6886ab5951d76f411475428afc90947ee320161bbf18eb6048", // Block 1
 ];
 
-// Living Map Metadata (The "Knowledge" of the Generator)
-const METADATA: Record<number, { name: string, status: string, desc: string }> = {
-    63: { name: "AX: Genesis", status: "✅", desc: "K, S Combinators | The Absolute Root" },
-    62: { name: "AX: Identity", status: "✅", desc: "I, B Combinators | Linkage & Reflection" },
-    61: { name: "AX: Recursion", status: "✅", desc: "Y, φ Combinators | The Negentropy Engine" },
-    60: { name: "AX: Arithmetic", status: "✅", desc: "Σ Axiom | Parallel Summation Proof" },
-    59: { name: "OP: Booleans", status: "✅", desc: "T, F, AND, OR, NOT | Choice Physics" },
-    58: { name: "OP: Numerals", status: "✅", desc: "N0-N3, SUCC, ADD | Ordinal Quantity" },
-    57: { name: "OP: Gates", status: "✅", desc: "NAND, XOR, MUX | Switching Logic" },
-    56: { name: "OP: Relations", status: "✅", desc: "IS_ZERO | Identity Mapping" },
-    55: { name: "OP: Advanced", status: "✅", desc: "PRED, SUB, LEQ | Recursive Depth" },
-    54: { name: "OP: Pairs", status: "✅", desc: "CONS, CAR, CDR | Structured Tissue" },
-    53: { name: "OP: Utils", status: "✅", desc: "C, W, Φ, Ψ | Combinatory Flow" },
-    52: { name: "OP: Powers", status: "✅", desc: "MULT, POW | Scaling Physics" },
-    51: { name: "OP: Triples", status: "✅", desc: "TRIPLE, T1-T3 | Dimensional State" },
-    50: { name: "OP: Iterators", status: "✅", desc: "MAP, FOLD, FILTER | Recursive Flow" },
-    49: { name: "OP: Streams", status: "✅", desc: "STREAM, HEAD, TAIL | Temporal Infinity" },
-    48: { name: "OP: Primitives", status: "✅", desc: "BIT, BYTE | Digital Substrate" },
-    47: { name: "FL: Branching", status: "✅", desc: "IF_ELSE, MUX | Decision Gates" },
-    46: { name: "FL: Monads", status: "✅", desc: "MAYBE, EITHER | Error Topology" },
-    45: { name: "FL: Context", status: "✅", desc: "STATE, READER | Environmental Seed" },
-    44: { name: "FL: Validation", status: "✅", desc: "VALID, INVALID | Integrity Check" },
-    43: { name: "FL: Log", status: "✅", desc: "WRITER, TELL | Akashic Record" },
-    42: { name: "FL: Continuations", status: "✅", desc: "CONT, CALL_CC | Temporal Folding" },
-    41: { name: "FL: Transformers", status: "✅", desc: "MAYBE_T, READER_T | Effect Layering" },
-    40: { name: "FL: Parallelism", status: "✅", desc: "FORK, JOIN | Strand Sync" },
-    39: { name: "FL: Algebraic", status: "✅", desc: "JOIN, MEET | Lattice Order" },
-    38: { name: "FL: Automata", status: "✅", desc: "MACHINE, STEP | Signal Flux" },
-    37: { name: "FL: Topology", status: "✅", desc: "NEIGHBOR, RADIUS | Metric Space" },
-    36: { name: "FL: Mirror", status: "✅", desc: "MAP_ID, LENS | Identity Projection" },
-    35: { name: "FL: Equality", status: "✅", desc: "IS_ISO, REFL | Logical Sameness" },
-    34: { name: "FL: Symmetry", status: "✅", desc: "REFLECT, SWAP | Mirror Logic" },
-    33: { name: "FL: Duality", status: "✅", desc: "DUAL, INV | Yin-Yang Balance" },
-    32: { name: "FL: Bridge", status: "✅", desc: "BRIDGE, LIFT | Phase Exit" },
-    31: { name: "PJ: Objects", status: "✅", desc: "OBJECT, SEND, CLASS | OOP Atom" },
-    30: { name: "PJ: Reactive", status: "✅", desc: "OBSERVABLE, ATOM | Flux Core" },
-    29: { name: "PJ: Logic", status: "✅", desc: "UNIFY, GOAL | Prolog DNA" },
-    28: { name: "PJ: Actor", status: "✅", desc: "ACTOR, BECOME | Erlang DNA" },
-    27: { name: "PJ: Relational", status: "✅", desc: "SELECT, PROJECT | SQL DNA" },
-    26: { name: "PJ: Semantic", status: "✅", desc: "MEANING, TAG_OF | Type Essence" },
-    25: { name: "PJ: Spatial", status: "✅", desc: "POINT, COORD | Geometric Logic" },
-    24: { name: "PJ: Dimensional", status: "✅", desc: "VECTOR, TENSOR | Multi-Axis" },
-    23: { name: "PJ: Temporal", status: "✅", desc: "TICK, NOW | Time Logic" },
-    22: { name: "PJ: Gravity", status: "✅", desc: "MASS, GRAVITY | Priority Weight" },
-    21: { name: "PJ: Entropic", status: "✅", desc: "VOID, DISSOLVE | Information Decay" },
-    20: { name: "PJ: Structural", status: "✅", desc: "FORM, MATCH | Pattern Anchor" },
-    19: { name: "PJ: Energetic", status: "✅", desc: "ENERGY, BOOST | Work Budget" },
-    18: { name: "PJ: Thermal", status: "✅", desc: "TEMP, HEAT, COOL | Stability Flux" },
-    17: { name: "PJ: Fluid", status: "✅", desc: "FLOW, PRESSURE | Stream Motion" },
-    16: { name: "PJ: Etheric", status: "✅", desc: "SIGNAL, RESONANCE | Pure Pulse" },
-    15: { name: "DR: Physics", status: "✅", desc: "VIBRATION, FREQ | Signal Energy" },
-    14: { name: "DR: Oscillation", status: "✅", desc: "WAVE, PHASE | Core Rhythm" },
-    13: { name: "DR: Interaction", status: "✅", desc: "INTERFERENCE | Wave Fusion" },
-    12: { name: "DR: Harmonic", status: "✅", desc: "HARMONIC, CHORD | Synthesis" },
-    11: { name: "DR: Field", status: "✅", desc: "FIELD, TENSION | Continuity" },
-    10: { name: "DR: Dynamics", status: "✅", desc: "FORCE, DYNAMICS | Motion" },
-    9: { name: "DR: Awareness", status: "✅", desc: "SENSE, PERCEPT | Awareness" },
-    8: { name: "DR: Neural", status: "✅", desc: "NEURON, SYNAPSE | Cognition" },
-    7: { name: "DR: Emergence", status: "✅", desc: "EMERGE, SELF_ORG | Complexity" },
-    6: { name: "DR: Biological", status: "✅", desc: "LIFE, EVOLVE | Life Logic" },
-    5: { name: "DR: Subjective", status: "✅", desc: "CONSCIOUS, INTENT | Mind" },
-    4: { name: "DR: Intersub", status: "✅", desc: "INTER_SUB, COMM | Shared" },
-    3: { name: "DR: Culture", status: "✅", desc: "CULTURE, MEME | Collective" },
-    2: { name: "DR: Planetary", status: "✅", desc: "PLANETARY, HARMONY | Gaia" },
-    1: { name: "DR: Cosmic", status: "✅", desc: "COSMIC, RADIANCE | Stellar" },
-    0: { name: "DR: Surface", status: "✅", desc: "OMEGA, SURFACE | API Tip" },
-};
+// Living Map Metadata (Dynamic Fetcher)
+async function getMetadata(level: number): Promise<{ meta: string, status: string, description: string }> {
+    const levelStr = level.toString().padStart(2, '0');
+    try {
+        const content = await Deno.readTextFile(`${ROOT_DIR}/${levelStr}/qwave.json`);
+        const data = JSON.parse(content);
+        return {
+            meta: data.meta || "Void",
+            status: data.status || "⏳",
+            description: data.description || "Awaiting materialization"
+        };
+    } catch (_) {
+        return { meta: `L${level} Zone`, status: "⏳", description: "Awaiting materialization" };
+    }
+}
 
 async function writeSafe(path: string, content: string) {
     try {
@@ -143,9 +91,9 @@ async function build() {
 
         // --- SVG Dimension (The Aura) ---
         const svgPath = `${currentPath}/core.svg`;
-        const meta = METADATA[level] || { name: "Void", status: "⏳", desc: "Aura pending" };
+        const meta = await getMetadata(level);
         const svgContent = `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-  <desc>${meta.name} | L${level}</desc>
+  <desc>${meta.meta} | L${level}</desc>
   <circle cx="50" cy="50" r="${20 + (level % 30)}" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.3">
     <animate attributeName="r" values="${20 + (level % 30)};${25 + (level % 30)};${20 + (level % 30)}" dur="${2 + (level % 5)}s" repeatCount="indefinite" />
   </circle>
@@ -175,8 +123,8 @@ async function build() {
         const level = i;
         const alias = `@L${level.toString().padStart(2, '0')}/`;
         const path = "./" + Array(i).fill("_/").join("");
-        const meta = METADATA[level] || { name: `L${level} Zone`, status: "⏳", desc: "Awaiting materialization" };
-        denoJsonc += `    "${alias}": "${path}", // [${meta.status}] ${meta.name} | ${meta.desc}\n`;
+        const meta = await getMetadata(level);
+        denoJsonc += `    "${alias}": "${path}", // [${meta.status}] ${meta.meta} | ${meta.description}\n`;
     }
 
     denoJsonc += "  }\n}\n";
