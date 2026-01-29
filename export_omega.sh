@@ -17,7 +17,7 @@ echo "🛡️ Packaging OMEGA-64 Lattice for external resonance..."
 
   # We include the core logic files and the md wisdom archive
   # We exclude the large logs and binary assets
-  find . -maxdepth 5 -type f | grep -v "$EXCLUDE_DIRS" | grep -v "$EXCLUDE_EXTS" | while read -r file; do
+  find . -type f | grep -v "$EXCLUDE_DIRS" | grep -v "$EXCLUDE_EXTS" | while read -r file; do
       # Skip current output file
       if [[ "$file" == "./$OUTPUT" ]]; then continue; fi
       
