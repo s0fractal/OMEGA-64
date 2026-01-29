@@ -1,2 +1,1 @@
-pub mod core;
-pub mod _;
+/Users/s0fractal/OMEGA/00/mod.rs

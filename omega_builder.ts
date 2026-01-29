@@ -115,15 +115,17 @@ async function build() {
         await writeSafe(corePathTS, coreContent);
 
         const indexPathTS = `${currentPath}/index.ts`;
-        const indexContent = `// 🛡️ Level ${level} Harbor\nexport * from "./core.ts";\n${depth < MAX_DEPTH - 1 ? 'export * from "./_/index.ts";' : ""}\n`;
-        await writeSafe(indexPathTS, indexContent);
+        try {
+            await Deno.remove(indexPathTS);
+        } catch (_) {}
+        await Deno.symlink(`${ROOT_DIR}/00/index.ts`, indexPathTS);
 
         // --- RS Dimension ---
         const modPathRS = `${currentPath}/mod.rs`;
-        const rsModContent = depth === MAX_DEPTH - 1
-            ? `pub mod core;\n// 🛡️ L63 Identity Anchor\n`
-            : `pub mod core;\npub mod _;\n`;
-        await Deno.writeTextFile(modPathRS, rsModContent);
+        try {
+            await Deno.remove(modPathRS);
+        } catch (_) {}
+        await Deno.symlink(`${ROOT_DIR}/00/mod.rs`, modPathRS);
         
         const corePathRS = `${currentPath}/core.rs`;
         const rsCoreContent = `// 🛡️ Level ${level} RS Logic\n// Axiomatic resonance materialized. (lvl: ${level})\n`;
@@ -149,6 +151,15 @@ async function build() {
         await writeSafe(svgPath, svgContent);
 
         if (depth % 10 === 0 || depth === MAX_DEPTH - 1) console.log(`✅ L${level.toString().padStart(2, '0')} OK`);
+        
+        // Ensure the NEXT level's folder exists even for the last depth to satisfy 'pub mod _'
+        const nextVoid = `${currentPath}/_`;
+        await Deno.mkdir(nextVoid, { recursive: true }).catch(() => {});
+        
+        // Terminate TS export chain at the very end
+        if (depth === MAX_DEPTH - 1) {
+            await Deno.writeTextFile(`${nextVoid}/index.ts`, "// 🛡️ Void Harbor\n");
+        }
     }
 
     // --- Root Manifests ---
@@ -168,6 +179,14 @@ async function build() {
     denoJsonc += "  }\n}\n";
 
     await Deno.writeTextFile(`${ROOT_DIR}/deno.jsonc`, denoJsonc);
+    
+    // Root manifests as symlinks
+    const rootFiles = ["mod.rs", "index.ts"];
+    for (const file of rootFiles) {
+        try { await Deno.remove(`${ROOT_DIR}/${file}`); } catch (_) { /* 🛡️ */ }
+        await Deno.symlink(`${ROOT_DIR}/00/${file}`, `${ROOT_DIR}/${file}`);
+    }
+
     await Deno.writeTextFile(`${ROOT_DIR}/Cargo.toml`, `[package]\nname = "omega-64"\nversion = "0.1.0"\nedition = "2021"\n\n[lib]\npath = "mod.rs"\n`);
     await Deno.writeTextFile(`${ROOT_DIR}/lakefile.lean`, `import Lake\nopen Lake DSL\npackage omega where\n  root := "Core"\n`);
 
