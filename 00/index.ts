@@ -1,2 +1,1 @@
-export * from "./core.ts";
-export * from "./_/index.ts";
+export * from "@L00/index.ts";

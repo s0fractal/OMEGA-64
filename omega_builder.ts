@@ -1,6 +1,7 @@
-// 🛡️ OMEGA-64 | Multilingual Sovereign Builder
+// 🛡️ OMEGA-64 | Hardened Sovereign Builder (Folding Edition)
 // Dimensions: TypeScript (Deno), Rust (Cargo), Lean (Lake), SVG (Aura)
-// Pattern: Middle-Way (Logical Accumulation + Isolated Identity)
+// Topology: Sequential Linkage (Folding 00 -> 01 -> 02 ...)
+// Result: Root _ is a link to 01, 01/_ is a link to 02, etc.
 
 const MAX_DEPTH = 64;
 const ROOT_DIR = "/Users/s0fractal/OMEGA";
@@ -27,71 +28,58 @@ async function getMetadata(level: number): Promise<{ meta: string, status: strin
     }
 }
 
-async function writeSafe(path: string, content: string) {
-    try {
-        await Deno.stat(path);
-    } catch (e) {
-        if (e instanceof Deno.errors.NotFound) {
-            await Deno.writeTextFile(path, content);
-        } else {
-            throw e;
-        }
-    }
-}
-
 async function build() {
-    console.log("🌀 Realigning Multilingual OMEGA-64 (Root=L00, Depth=L63) at:", ROOT_DIR);
-    
-    for (let depth = 0; depth < MAX_DEPTH; depth++) {
-        const level = depth;
-        const relativePath = Array(depth).fill("_").join("/");
-        const currentPath = relativePath === "" ? ROOT_DIR : `${ROOT_DIR}/${relativePath}`;
-        
+    console.log("🌀 Hardening OMEGA-64 | Topological Folding (Mirror-Mapping)...");
+
+    // 1. Cleanup old physical _ tree if it exists and isn't a symlink
+    try {
+        const rootVoidStat = await Deno.lstat(`${ROOT_DIR}/_`);
+        if (!rootVoidStat.isSymlink) {
+            console.log("⚠️ Physical _ tree detected. Purging for Hardening...");
+            await Deno.remove(`${ROOT_DIR}/_`, { recursive: true });
+        }
+    } catch (_) {}
+
+    for (let level = 0; level < MAX_DEPTH; level++) {
+        const levelStr = level.toString().padStart(2, '0');
+        const currentPath = `${ROOT_DIR}/${levelStr}`;
         await Deno.mkdir(currentPath, { recursive: true }).catch(() => {});
 
         const witness = WITNESSES[63 - level] || "W_PLACEHOLDER";
+        const meta = await getMetadata(level);
 
-        // --- TS Dimension ---
+        // Recursion uses @L aliases to bypass OS symlink limits (MAXSYMLINKS=32)
         const iPathTS = `${currentPath}/i.ts`;
-        const iContentTS = depth === MAX_DEPTH - 1
+        const nextLevelStr = (level + 1).toString().padStart(2, '0');
+        const iContentTS = level === MAX_DEPTH - 1
             ? `// 🛡️ L63 Identity (Anchor)\nexport const identity = { depth: 0, level: 63, author: "cosmos:addr1_genesis", witness: "${witness}" };\n`
-            : `// 🛡️ L${level} Identity (Successor)\nimport * as inner from "./_/i.ts";\nexport const identity = { depth: inner.identity.depth + 1, level: 63 - (inner.identity.depth + 1), parent: inner.identity, author: "cosmos:addr1_sovereign", witness: "${witness}" };\n`;
-        await writeSafe(iPathTS, iContentTS);
+            : `// 🛡️ L${level} Identity (Successor)\nimport * as inner from "@L${nextLevelStr}/i.ts";\nexport const identity = { depth: inner.identity.depth + 1, level: ${level}, parent: inner.identity, author: "cosmos:addr1_sovereign", witness: "${witness}" };\n`;
+        await Deno.writeTextFile(iPathTS, iContentTS);
 
+        // --- 🧠 Logic (core.ts) ---
         const corePathTS = `${currentPath}/core.ts`;
-        const coreContent = `// 🛡️ Level ${level} Logic\n\n// Atoms for this level will be transfused here. (lvl: ${level})\n`;
-        await writeSafe(corePathTS, coreContent);
+        const coreContent = `// 🛡️ Level ${level} Logic\n// [${meta.status}] ${meta.meta}\n// ${meta.description}\n\nexport const level = ${level};\n`;
+        await Deno.writeTextFile(corePathTS, coreContent);
 
-        const backsteps = Array(depth).fill("..").join("/") || ".";
-        const relTemplatePath = (depth === 0) ? "./00" : `${backsteps}/00`;
+        // --- ⚓ Logos (.logos) ---
+        const logosPath = `${currentPath}/.logos`;
+        const logosContent = `LAYER: L${levelStr} | ${meta.meta.toUpperCase()} | ${meta.description.toUpperCase()}\n`;
+        await Deno.writeTextFile(logosPath, logosContent);
 
-        const indexPathTS = `${currentPath}/index.ts`;
-        try {
-            await Deno.remove(indexPathTS);
-        } catch (_) { /* 🛡️ */ }
-        await Deno.symlink(`${relTemplatePath}/index.ts`, indexPathTS);
-
-        // --- RS Dimension ---
-        const modPathRS = `${currentPath}/mod.rs`;
-        try {
-            await Deno.remove(modPathRS);
-        } catch (_) { /* 🛡️ */ }
-        await Deno.symlink(`${relTemplatePath}/mod.rs`, modPathRS);
-        
+        // --- 🦀 RS Dimension (core.rs) ---
         const corePathRS = `${currentPath}/core.rs`;
-        const rsCoreContent = `// 🛡️ Level ${level} RS Logic\n// Axiomatic resonance materialized. (lvl: ${level})\n`;
-        await writeSafe(corePathRS, rsCoreContent);
+        const rsCoreContent = `// 🛡️ Level ${level} RS Logic\n// ${meta.meta}\n// Axiomatic resonance materialized.\n`;
+        await Deno.writeTextFile(corePathRS, rsCoreContent);
 
-        // --- LEAN Dimension ---
+        // --- 📑 Lean Dimension (Core.lean) ---
         const leanPath = `${currentPath}/Core.lean`;
-        const leanContent = depth === MAX_DEPTH - 1
+        const leanContent = level === MAX_DEPTH - 1
             ? `-- 🛡️ L63 Lean Logic\ndef level : Nat := 63\ndef witness : String := "${witness}"\n`
-            : `import OMEGA.${(relativePath === "" ? "" : relativePath.replaceAll("/", ".") + ".")}Sub.Core\n-- 🛡️ L${level} Lean Logic\ndef level : Nat := ${level}\n`;
+            : `import OMEGA.${(level + 1).toString().padStart(2, '0')}.Core\n-- 🛡️ L${level} Lean Logic\ndef level : Nat := ${level}\n`;
         await Deno.writeTextFile(leanPath, leanContent);
 
-        // --- SVG Dimension (The Aura) ---
+        // --- 🎨 SVG Dimension (core.svg) ---
         const svgPath = `${currentPath}/core.svg`;
-        const meta = await getMetadata(level);
         const svgContent = `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
   <desc>${meta.meta} | L${level}</desc>
   <circle cx="50" cy="50" r="${20 + (level % 30)}" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.3">
@@ -99,50 +87,59 @@ async function build() {
   </circle>
   <path d="M 50 10 L 90 90 L 10 90 Z" fill="none" stroke="currentColor" stroke-width="0.2" opacity="0.1" transform="rotate(${level * 5.625} 50 50)" />
 </svg>`;
-        await writeSafe(svgPath, svgContent);
+        await Deno.writeTextFile(svgPath, svgContent);
 
-        if (depth % 10 === 0 || depth === MAX_DEPTH - 1) console.log(`✅ L${level.toString().padStart(2, '0')} OK`);
+        // --- ⛓️ Sequential Linkage (_) ---
+        const linkPath = `${currentPath}/_`;
+        try { await Deno.remove(linkPath, { recursive: true }); } catch (_) {}
         
-        // Ensure the NEXT level's folder exists even for the last depth to satisfy 'pub mod _'
-        const nextVoid = `${currentPath}/_`;
-        await Deno.mkdir(nextVoid, { recursive: true }).catch(() => {});
-        
-        // Terminate TS export chain at the very end
-        if (depth === MAX_DEPTH - 1) {
-            await Deno.writeTextFile(`${nextVoid}/index.ts`, "// 🛡️ Void Harbor\n");
+        if (level < MAX_DEPTH - 1) {
+            const nextLevelStr = (level + 1).toString().padStart(2, '0');
+            await Deno.symlink(`../${nextLevelStr}`, linkPath);
+        } else {
+            // L63 Void Harbor (End of chain)
+            await Deno.mkdir(linkPath, { recursive: true });
+            await Deno.writeTextFile(`${linkPath}/index.ts`, "// 🛡️ Void Harbor\n");
+            await Deno.writeTextFile(`${linkPath}/i.ts`, "export const identity = { depth: -1, level: -1 };\n");
         }
+
+        // --- 🧬 Explicit Recursion (index.ts / mod.rs) ---
+        const indexPathTS = `${currentPath}/index.ts`;
+        const modPathRS = `${currentPath}/mod.rs`;
+        
+        if (level === MAX_DEPTH - 1) {
+            await Deno.writeTextFile(indexPathTS, `export * from "./core.ts";\n// 🛡️ Void Harbor\n`);
+            await Deno.writeTextFile(modPathRS, `pub mod core;\n// 🛡️ Void Harbor\n`);
+        } else {
+            const nextLevelStr = (level + 1).toString().padStart(2, '0');
+            await Deno.writeTextFile(indexPathTS, `export * from "./core.ts";\nexport * from "@L${nextLevelStr}/index.ts";\n`);
+            await Deno.writeTextFile(modPathRS, `pub mod core;\n#[path = "../${nextLevelStr}/mod.rs"]\npub mod _;\n`);
+        }
+
+        if (level % 10 === 0 || level === MAX_DEPTH - 1) console.log(`✅ L${levelStr} Isomorphized`);
     }
 
-    // --- Root Manifests ---
-    let denoJsonc = "{\n";
-    denoJsonc += "  // 🛡️ OMEGA-64 LIVING MAP | Holographic Configuration\n";
-    denoJsonc += "  \"compilerOptions\": { \"lib\": [\"deno.window\"], \"strict\": true },\n";
-    denoJsonc += "  \"imports\": {\n";
+    // 🛡️ Root Entry Point Invariants
+    await Deno.writeTextFile(`${ROOT_DIR}/index.ts`, `export * from "@L00/index.ts";\n`);
+    await Deno.writeTextFile(`${ROOT_DIR}/mod.rs`, `#[path = "00/mod.rs"]\npub mod _;\n`);
 
+    try { await Deno.remove(`${ROOT_DIR}/_`); } catch (_) {}
+    await Deno.symlink(`./01`, `${ROOT_DIR}/_`);
+
+    // --- 📄 Manifests ---
+    let denoJsonc = "{\n  \"compilerOptions\": { \"lib\": [\"deno.window\"], \"strict\": true },\n  \"imports\": {\n";
     for (let i = 0; i < MAX_DEPTH; i++) {
-        const level = i;
-        const alias = `@L${level.toString().padStart(2, '0')}/`;
-        const path = "./" + Array(i).fill("_/").join("");
-        const meta = await getMetadata(level);
-        denoJsonc += `    "${alias}": "${path}", // [${meta.status}] ${meta.meta} | ${meta.description}\n`;
+        const levelStr = i.toString().padStart(2, '0');
+        const meta = await getMetadata(i);
+        denoJsonc += `    "@L${levelStr}/": "./${levelStr}/", // [${meta.status}] ${meta.meta}\n`;
     }
-
     denoJsonc += "  }\n}\n";
-
     await Deno.writeTextFile(`${ROOT_DIR}/deno.jsonc`, denoJsonc);
     
-    // Root manifests as symlinks
-    const rootFiles = ["mod.rs", "index.ts"];
-    for (const file of rootFiles) {
-        try { await Deno.remove(`${ROOT_DIR}/${file}`); } catch (_) { /* 🛡️ */ }
-        await Deno.symlink(`./00/${file}`, `${ROOT_DIR}/${file}`);
-    }
-
     await Deno.writeTextFile(`${ROOT_DIR}/Cargo.toml`, `[package]\nname = "omega-64"\nversion = "0.1.0"\nedition = "2021"\n\n[lib]\npath = "mod.rs"\n`);
     await Deno.writeTextFile(`${ROOT_DIR}/lakefile.lean`, `import Lake\nopen Lake DSL\npackage omega where\n  root := "Core"\n`);
 
-    try { await Deno.remove(`${ROOT_DIR}/deno.json`); } catch (_) { /* ignore */ }
-    console.log("🏁 Living Map (deno.jsonc) Materialized.");
+    console.log("🏁 Topological Folding Complete. The Lattice is now Isomorphic.");
 }
 
 await build();
