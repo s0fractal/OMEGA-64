@@ -1,0 +1,1 @@
+export const COMM = (is: any) => (m: any) => is((s1: any) => (s2: any) => m);

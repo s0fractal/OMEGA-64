@@ -1,0 +1,1 @@
+export const STATE = (a: any) => (s: any) => (pair: any) => pair(a)(s);

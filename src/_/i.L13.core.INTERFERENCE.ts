@@ -1,0 +1,1 @@
+export const INTERFERENCE = (w1: any) => (w2: any) => (p: any) => p(w1)(w2);

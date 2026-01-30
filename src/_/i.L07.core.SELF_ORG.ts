@@ -1,0 +1,1 @@
+import { NEURON } from "./i.L08.core.NEURON.ts"; export const SELF_ORG = (s: any) => (a: any) => NEURON(s)(a);

@@ -1,0 +1,1 @@
+[IS_NIL]: IS_NIL: Checks if a list is empty

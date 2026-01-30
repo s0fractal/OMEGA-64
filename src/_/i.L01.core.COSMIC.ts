@@ -1,0 +1,1 @@
+export const COSMIC = (p: any) => p;

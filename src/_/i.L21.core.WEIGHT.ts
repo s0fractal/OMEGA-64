@@ -1,0 +1,2 @@
+import { GRAVITY } from "./i.L21.core.GRAVITY.ts";
+export const WEIGHT = GRAVITY;

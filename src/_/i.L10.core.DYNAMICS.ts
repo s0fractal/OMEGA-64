@@ -1,0 +1,1 @@
+export const DYNAMICS = (s: any) => (f: any) => f(s);

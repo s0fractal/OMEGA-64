@@ -1,0 +1,1 @@
+export const ACTOR = (state: any) => (behavior: any) => (msg: any) => behavior(state)(msg);

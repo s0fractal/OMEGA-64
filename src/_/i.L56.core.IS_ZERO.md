@@ -1,0 +1,1 @@
+[IS_ZERO]: IS_ZERO: Returns T if n is N0, else F. | IS_ZERO n = n (λx.F) T

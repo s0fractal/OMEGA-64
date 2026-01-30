@@ -1,0 +1,1 @@
+[S]: Invariant (Auto-generated)

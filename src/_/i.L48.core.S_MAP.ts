@@ -1,0 +1,1 @@
+export const S_MAP = (f: any) => { const Y_local = (g: any) => ((x: any) => g((v: any) => x(x)(v)))((x: any) => g((v: any) => x(x)(v)));

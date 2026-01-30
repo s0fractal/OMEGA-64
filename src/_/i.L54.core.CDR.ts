@@ -1,0 +1,1 @@
+import { F } from "./i.L59.core.F.ts"; export const CDR = (p: any) => p(F);

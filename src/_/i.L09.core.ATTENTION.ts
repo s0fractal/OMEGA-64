@@ -1,0 +1,1 @@
+import { FORCE } from "./i.L10.core.FORCE.ts"; export const ATTENTION = (f: any) => (filter: any) => (p: any) => filter(p) ? f(p) : FORCE(p);

@@ -1,0 +1,1 @@
+[DYNAMICS]: DYNAMICS: The evolution of systemic state under forces. | λstate.λforce. (Next state)

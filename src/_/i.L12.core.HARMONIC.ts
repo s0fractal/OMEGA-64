@@ -1,0 +1,1 @@
+export const HARMONIC = (f: any) => (m: any) => f;

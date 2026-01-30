@@ -1,0 +1,1 @@
+export const NOW = (t: any) => t;

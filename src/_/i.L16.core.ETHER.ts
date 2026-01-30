@@ -1,0 +1,2 @@
+import { SIGNAL } from "./i.L16.core.SIGNAL.ts";
+export const ETHER = (f: any) => f(SIGNAL);

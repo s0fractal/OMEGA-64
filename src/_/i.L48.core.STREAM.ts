@@ -1,0 +1,1 @@
+import { CONS } from "./i.L54.core.CONS.ts"; export const STREAM = (head: any) => (tailThunk: any) => CONS(head)(tailThunk);

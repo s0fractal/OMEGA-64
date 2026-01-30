@@ -1,0 +1,1 @@
+export const SYNAPSE = (n1: any) => (n2: any) => (w: any) => (p: any) => p(n1)(n2)(w);

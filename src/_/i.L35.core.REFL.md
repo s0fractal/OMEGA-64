@@ -1,0 +1,1 @@
+[REFL]: REFL: Reflexivity axiom. | λa.λb. (Logic for checking if a is equivalent to b)

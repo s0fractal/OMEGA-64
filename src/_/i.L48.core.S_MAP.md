@@ -1,0 +1,1 @@
+[S_MAP]: S_MAP: Lazy Map over a stream

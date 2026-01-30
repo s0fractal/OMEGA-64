@@ -1,0 +1,1 @@
+import { identity } from "./_/mod.ts"; export const BRIDGE = identity;

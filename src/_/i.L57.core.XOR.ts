@@ -1,0 +1,1 @@
+import { NOT } from "./i.L59.core.NOT.ts"; export const XOR = (p: any) => (q: any) => p(NOT(q))(q);

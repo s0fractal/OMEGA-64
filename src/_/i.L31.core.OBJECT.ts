@@ -1,0 +1,1 @@
+export const OBJECT = (methods: any) => (msg: any) => msg(methods);

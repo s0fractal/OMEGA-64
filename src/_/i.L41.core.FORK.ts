@@ -1,0 +1,1 @@
+import { CONS } from "./i.L54.core.CONS.ts"; export const FORK = (x: any) => (f: any) => (g: any) => CONS(f(x))(g(x));

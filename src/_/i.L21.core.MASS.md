@@ -1,0 +1,1 @@
+[MASS]: MASS: A measure of logical priority. | λm. (Numeral representing mass)

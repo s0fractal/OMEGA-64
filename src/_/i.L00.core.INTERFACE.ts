@@ -1,0 +1,1 @@
+import { identity } from "./i.L00.i.ts"; export const INTERFACE = identity;

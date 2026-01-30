@@ -1,0 +1,2 @@
+import { VECTOR } from "./i.L23.core.VECTOR.ts";
+export const TENSOR = (dims: any) => (values: any) => VECTOR(dims)(values);

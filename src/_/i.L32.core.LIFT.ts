@@ -1,0 +1,1 @@
+export const LIFT = (f: any) => (x: any) => f(x);

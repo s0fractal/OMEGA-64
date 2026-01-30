@@ -1,0 +1,1 @@
+[DISSOLVE]: DISSOLVE: Reduces a structure to VOID regardless of content. | λx. VOID
