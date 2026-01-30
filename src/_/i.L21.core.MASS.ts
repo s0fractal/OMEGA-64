@@ -1,1 +1,1 @@
-export const MASS = (m: any) => m;
+export const MASS = (q: any) => 32767 - q.evt;

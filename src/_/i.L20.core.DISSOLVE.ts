@@ -1,2 +1,1 @@
-import { VOID } from "./i.L20.core.VOID.ts";
-import { K } from "./i.L63.core.K.ts"; export const DISSOLVE = K(VOID);
+import { NIL } from "./i.L54.core.NIL.ts"; export const DISSOLVE = (x: any) => NIL;

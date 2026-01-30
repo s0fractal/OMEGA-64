@@ -1,3 +1,1 @@
-import { SUCC } from "./i.L58.core.SUCC.ts";
-import { N2 } from "./i.L58.core.N2.ts";
-export const N3 = SUCC(N2);
+import { SUCC } from "./i.L58.core.SUCC.ts"; import { N2 } from "./i.L58.core.N2.ts"; export const N3 = SUCC(N2);

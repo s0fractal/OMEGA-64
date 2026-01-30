@@ -1,2 +1,1 @@
-import { SIGNAL } from "./i.L16.core.SIGNAL.ts";
-export const RESONANCE = (a: any) => (b: any) => (a === b ? SIGNAL(a) : SIGNAL(b));
+import { SIGNAL } from "./i.L16.core.SIGNAL.ts"; export const RESONANCE = (a: any) => (b: any) => (a === b ? SIGNAL(a) : SIGNAL(b));

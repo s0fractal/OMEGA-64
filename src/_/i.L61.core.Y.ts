@@ -1,2 +1,1 @@
-import { T } from "./i.L59.core.T.ts";
-export const Y = (f: any): any => ((g: any) => g(g))((g: any) => f((x: any) => g(g)(x))), φ = <T, R>(f: (a: R) => (b: R) => R) => (i: (x: T) => R) => (e: R) => Y((r: any) => (a: T[]): R => (a.length === 0) ? e : (a.length === 1) ? i(a[0]) : f(r(a.slice(0, Math.floor(a.length / 2))))(r(a.slice(Math.floor(a.length / 2)))));
+import { T } from "./i.L59.core.T.ts"; export const Y = (f: any): any => ((g: any) => g(g))((g: any) => f((x: any) => g(g)(x))), φ = <T, R>(f: (a: R) => (b: R) => R) => (i: (x: T) => R) => (e: R) => Y((r: any) => (a: T[]): R => (a.length === 0) ? e : (a.length === 1) ? i(a[0]) : f(r(a.slice(0, Math.floor(a.length / 2))))(r(a.slice(Math.floor(a.length / 2)))));

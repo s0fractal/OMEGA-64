@@ -1,2 +1,1 @@
-import { MEANING } from "./i.L26.core.MEANING.ts";
-export const SEM_WRAP = MEANING;
+import { CONS } from "./i.L54.core.CONS.ts"; export const SEM_WRAP = (val: any) => (tag: any) => CONS(val)(tag);

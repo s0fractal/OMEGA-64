@@ -1,1 +1,1 @@
-export const DYNAMICS = (s: any) => (f: any) => f(s);
+export const DYNAMICS = (force: any) => (mass: any) => force / (mass + 1);

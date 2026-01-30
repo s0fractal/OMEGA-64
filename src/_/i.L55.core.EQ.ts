@@ -1,2 +1,1 @@
-import { LEQ } from "./i.L55.core.LEQ.ts";
-import { F } from "./i.L59.core.F.ts"; export const EQ = (m: any) => (n: any) => { return LEQ(m)(n)(LEQ(n)(m))(F);
+import { LEQ } from "./i.L55.core.LEQ.ts"; import { F } from "./i.L59.core.F.ts"; export const EQ = (m: any) => (n: any) => LEQ(m)(n)(LEQ(n)(m))(F);

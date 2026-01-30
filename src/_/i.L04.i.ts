@@ -1,4 +1,1 @@
-// 🛡️ L04 (Flow)
-import * as inner from "@L05/i.ts";
-import { q } from "./i.L04.q.ts";
-export const identity = { depth: inner.identity.depth + 1, level: 4, parent: inner.identity, witness: "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f", entropy: q.avg_entropy, phase: q.phase };
+export const i = { witness: "i.L05.i", ref: "i.L04.i" };

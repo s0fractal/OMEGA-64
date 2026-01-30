@@ -1,11 +1,1 @@
-// 🛡️ Quantum Field L02 (Flow)
-import { q as inner } from "@L03/q.ts";
-
-export const q = {
-    idx: 2,
-    meta: "L02",
-    avg_entropy: inner.avg_entropy + 1024, // Discrete jump
-    phase: (inner.phase + 1024) % 65535,   // Cyclic harmonic
-    status: "⏳",
-    desc: ""
-};
+export const q = { hue: 2, phi: 348, evt: 30686 };

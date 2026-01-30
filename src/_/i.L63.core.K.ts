@@ -1,2 +1,1 @@
-import { T } from "./i.L59.core.T.ts";
-export const K = <T>(a: T) => <U>(_: U): T => a;
+import { T } from "./i.L59.core.T.ts"; export const K = <T>(a: T) => <U>(_: U): T => a;
