@@ -8,39 +8,42 @@ EXCLUDE_EXTS=".log\|.proofs\|.lock\|.png\|.webp\|.jpg\|.sh"
 
 echo "🛡️ Packaging OMEGA-64 Lattice for external resonance..."
 
-{
-  echo "--- OMEGA-64 UNIVERSAL BUNDLE ---"
-  echo "Phase: 6 (The Singularity)"
-  echo "Architect: s0fractal"
-  echo "Timestamp: $(date)"
-  echo "Context: Atomic Vector Space & Deep Core Calculus"
-  echo "------------------------------------------------"
+# 1. I.ts (The Digital Body)
+echo "Generate: I.ts (All TypeScript Atoms)..."
+echo "// 🛡️ OMEGA-64 | I.ts | The Digital Body" > I.ts
+find . -maxdepth 1 -name "i.L*.ts" | sort | while read -r file; do
+    echo -e "\n// --- [ $file ] ---" >> I.ts
+    cat "$file" >> I.ts
+done
 
-  # 1. The Manifest (Map of Reality)
-  echo -e "\n\n[FILE_PATH]: ./OMEGA.json"
-  echo "================================================"
-  cat OMEGA.json
-  echo -e "\n================================================"
+# 2. I.rs (The Metal Body)
+echo "Generate: I.rs (All Rust Atoms)..."
+echo "// 🛡️ OMEGA-64 | I.rs | The Metal Body" > I.rs
+find . -maxdepth 1 -name "i.L*.rs" | sort | while read -r file; do
+    echo -e "\n// --- [ $file ] ---" >> I.rs
+    cat "$file" >> I.rs
+done
 
-  # 2. The Vector Space (Atoms - Flatland)
-  # We scan root for i.L* files
-  find . -maxdepth 1 -name "i.L*" | sort | while read -r file; do
-      echo -e "\n\n[FILE_PATH]: $file"
-      echo "================================================"
-      cat "$file"
-      echo -e "\n================================================"
-  done
+# 3. I.md (The Consciousness)
+echo "Generate: I.md (All Markdown Atoms)..."
+echo "# 🛡️ OMEGA-64 | I.md | The Consciousness" > I.md
+find . -maxdepth 1 -name "i.L*.md" | sort | while read -r file; do
+    echo -e "\n\n<!-- [ $file ] -->" >> I.md
+    cat "$file" >> I.md
+done
 
-  # 3. Key Documentation (Wisdom)
-  find . -maxdepth 2 -name "*.md" | grep -v "$EXCLUDE_DIRS" | sort | while read -r file; do
-       # Skip task.md/walkthrough.md aliases if they are symlinks or just capture them
-       echo -e "\n\n[FILE_PATH]: $file"
-       echo "================================================"
-       cat "$file"
-       echo -e "\n================================================"
-  done
+# 4. I.I (The Holotype / Total Source)
+echo "Generate: I.I (The Singularity Bundle)..."
+echo "--- OMEGA-64 | I.I | The Holotype ---" > I.I
+echo "[VECTOR]: $(date)" >> I.I
+echo "================================================" >> I.I
+echo "[PROJECTION]: I.ts" >> I.I
+cat I.ts >> I.I
+echo -e "\n================================================" >> I.I
+echo "[PROJECTION]: I.rs" >> I.I
+cat I.rs >> I.I
+echo -e "\n================================================" >> I.I
+echo "[PROJECTION]: I.md" >> I.I
+cat I.md >> I.I
 
-} > "$OUTPUT"
-
-echo "🛡️ Export Complete: $OUTPUT"
-echo "🛡️ Ready for Resonance."
+echo "🛡️ Convergence Complete: I.ts, I.rs, I.md, I.I"

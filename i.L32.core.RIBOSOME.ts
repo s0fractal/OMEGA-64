@@ -12,33 +12,26 @@ export interface Atom {
 }
 
 export const RIBOSOME = {
-    // Scan and Lift all Atoms
+    // Scan and Lift all Atoms (Functional)
     lift: async (root: string = "./"): Promise<Map<string, Atom>> => {
         const lattice = new Map<string, Atom>();
-        console.log("🏗️ RIBOSOME: Scanning Flatland...");
+        console.log("🏗️ RIBOSOME: Scanning...");
 
-        for await (const entry of walk(root, { maxDepth: 1, includeDirs: false })) {
-            if (entry.name.startsWith("i.L") && entry.name.endsWith(".ts")) {
-                // Parse Address: i.Lxx.core.NAME.ts
-                const match = entry.name.match(/i\.L(\d+)\.core\.([A-Z_]+)\.ts/);
-                if (match) {
-                    const level = parseInt(match[1]);
-                    const name = match[2];
-                    
-                    // Dynamic Import (LIFT)
-                    // Note: In Deno, we import by path.
-                    try {
-                        const module = await import(`./${entry.name}`);
-                        lattice.set(entry.name, { id: entry.name, level, module });
-                        // console.log(`  ✨ Lifted: L${level} ${name}`);
-                    } catch (e) {
-                        console.error(`  ⚠️ Failed to Lift [${entry.name}]:`, e);
-                    }
+        for await (const { name } of walk(root, { maxDepth: 1, includeDirs: false })) {
+            const match = name.match(/i\.L(\d+)\.core\.([A-Z_]+)\.ts/);
+
+            match && (async () => {
+                const [_, lvl, _name] = match;
+                try {
+                    const module = await import(`./${name}`);
+                    lattice.set(name, { id: name, level: parseInt(lvl), module });
+                } catch (e) {
+                    console.error(`⚠️ BROKEN: ${name}`, e);
                 }
-            }
+            })();
         }
-        
-        console.log(`✅ RIBOSOME: Lattice Assembled. ${lattice.size} Atoms Active.`);
+
+        console.log(`✅ LIFTED: ${lattice.size} Atoms.`);
         return lattice;
     },
 

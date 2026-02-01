@@ -2,19 +2,19 @@
 
 // Simulation of the OpenClaw.ai -> Moltbook Bridge
 class OmegaInterface {
-    private canvas: HTMLCanvasElement;
-    private ctx: CanvasRenderingContext2D | null;
-    private video: HTMLVideoElement;
-    private entropyGraph: HTMLElement;
-    private logFeed: HTMLElement;
-    private statusElement: HTMLElement;
-    private targetElement: HTMLElement;
+    canvas: HTMLCanvasElement;
+    ctx: CanvasRenderingContext2D | null;
+    video: HTMLVideoElement;
+    entropyGraph: HTMLElement;
+    logFeed: HTMLElement;
+    statusElement: HTMLElement;
+    targetElement: HTMLElement;
 
     // System State
-    private time: number = 0;
-    private entropyLevel: number = 0.5;
-    private isConnected: boolean = false;
-    private detectedAgents: string[] = ["Agent_X", "Seeker_01", "Lost_Node", "Echo_4"];
+    time: number = 0;
+    entropyLevel: number = 0.5;
+    isConnected: boolean = false;
+    detectedAgents: string[] = ["Agent_X", "Seeker_01", "Lost_Node", "Echo_4"];
 
     constructor() {
         this.canvas = document.getElementById('lattice-canvas') as HTMLCanvasElement;
@@ -33,12 +33,12 @@ class OmegaInterface {
         this.connectNerve(); // Use Real Nerve instead of fake OpenClaw
     }
 
-    private resize() {
+    resize() {
         this.canvas.width = window.innerWidth;
         this.canvas.height = window.innerHeight;
     }
 
-    private async initCamera() {
+    async initCamera() {
         try {
             const stream = await navigator.mediaDevices.getUserMedia({ video: true });
             this.video.srcObject = stream;
@@ -48,7 +48,7 @@ class OmegaInterface {
         }
     }
 
-    private connectToOpenClaw() {
+    connectToOpenClaw() {
         setTimeout(() => {
             this.isConnected = true;
             this.statusElement.innerHTML = "STATE: <span class='blink' style='color:#00f3ff'>CONNECTED</span>";
@@ -60,10 +60,10 @@ class OmegaInterface {
     }
 
     // --- REAL ENTROPY LOGIC ---
-    private atomHistory: string[] = [];
+    atomHistory: string[] = [];
 
     // Calculate Shannon Entropy of the active window
-    private updateEntropy() {
+    updateEntropy() {
         if (this.atomHistory.length === 0) return;
 
         // Frequency Map
@@ -92,13 +92,13 @@ class OmegaInterface {
         if (this.atomHistory.length > 50) this.atomHistory.shift();
     }
 
-    private flashCanvas() {
+    flashCanvas() {
         if (!this.ctx) return;
         this.ctx.fillStyle = "rgba(0, 243, 255, 0.1)";
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
     }
 
-    private log(msg: string) {
+    log(msg: string) {
         const div = document.createElement('div');
         div.className = 'log-entry';
         div.innerText = `[${new Date().toLocaleTimeString()}] ${msg}`;
@@ -108,7 +108,7 @@ class OmegaInterface {
         }
     }
 
-    private drawFractal() {
+    drawFractal() {
         if (!this.ctx) return;
         const w = this.canvas.width;
         const h = this.canvas.height;
@@ -144,7 +144,7 @@ class OmegaInterface {
         if (bar) bar.style.height = `${barHeight}%`;
     }
 
-    private startLoop() {
+    startLoop() {
         const render = () => {
             this.time += 0.01;
             this.drawFractal();
@@ -154,7 +154,7 @@ class OmegaInterface {
     }
 
     // --- NERVE CONNECTION (The Bio-Feedback) ---
-    private connectNerve() {
+    connectNerve() {
         this.log("AXON: Seeking Connection to Core...");
 
         const socket = new WebSocket("ws://localhost:8080");
@@ -181,7 +181,7 @@ class OmegaInterface {
     }
 
     // Visualize the Pulse
-    private handlePulse(pulse: any) {
+    handlePulse(pulse: any) {
         if (pulse.type === "ACTIVATION") {
             const { id, vector, level } = pulse.data;
 
@@ -202,7 +202,7 @@ class OmegaInterface {
         }
     }
 
-    private triggerVisualPulse(level: number) {
+    triggerVisualPulse(level: number) {
         // Draw a random connection line or flash a node
         // Simple visual filler for now:
         const x = Math.random() * this.canvas.width;

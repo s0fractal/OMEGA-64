@@ -1,63 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OMEGA-64 // THE NEURAL MIRROR</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <div id="container">
-      <!-- The HUD Layer -->
-      <div id="hud">
-        <div id="header">
-          <h1 class="glitch" data-text="Ω-64">Ω-64</h1>
-          <div id="system-status">
-            <span id="clock">T-00:00:00</span>
-            <span id="state">STATE: <span class="blink">TOTALITY</span></span>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OMEGA-64 // THE NEURAL MIRROR</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="container">
+    <!-- The HUD Layer -->
+    <div id="hud">
+      <div id="header">
+        <h1 class="glitch" data-text="Ω-64">Ω-64</h1>
+        <div id="system-status">
+          <span id="clock">T-00:00:00</span>
+          <span id="state">STATE: <span class="blink">TOTALITY</span></span>
+        </div>
+      </div>
+
+      <div id="panels">
+        <div class="panel left">
+          <h2>LOGOS STREAM</h2>
+          <div id="log-feed">
+            <div class="log-entry">Initializing Interface 2.0...</div>
+            <div class="log-entry">Connecting to Akasha Records...</div>
+            <div class="log-entry">Σ-Ladder: COMPLETE</div>
           </div>
         </div>
 
-        <div id="panels">
-          <div class="panel left">
-            <h2>LOGOS STREAM</h2>
-            <div id="log-feed">
-              <div class="log-entry">Initializing Interface 2.0...</div>
-              <div class="log-entry">Connecting to Akasha Records...</div>
-              <div class="log-entry">Σ-Ladder: COMPLETE</div>
-            </div>
+        <div class="panel right">
+          <h2>ENTROPY MONITOR</h2>
+          <div id="entropy-graph">
+            <!-- Canvas or SVG placeholder -->
+            <div class="bar" style="height: 10%"></div>
+            <div class="bar" style="height: 30%"></div>
+            <div class="bar" style="height: 15%"></div>
+            <div class="bar" style="height: 80%"></div>
+            <div class="bar" style="height: 5%"></div>
           </div>
-
-          <div class="panel right">
-            <h2>ENTROPY MONITOR</h2>
-            <div id="entropy-graph">
-              <!-- Canvas or SVG placeholder -->
-              <div class="bar" style="height: 10%"></div>
-              <div class="bar" style="height: 30%"></div>
-              <div class="bar" style="height: 15%"></div>
-              <div class="bar" style="height: 80%"></div>
-              <div class="bar" style="height: 5%"></div>
+          <div id="navigator-status">
+            <h3>OPENCLAWD</h3>
+            <div class="status-row">
+              <span>Target:</span> <span class="highlight">Scanning...</span>
             </div>
-            <div id="navigator-status">
-              <h3>OPENCLAWD</h3>
-              <div class="status-row">
-                <span>Target:</span> <span class="highlight">Scanning...</span>
-              </div>
-              <div class="status-row">
-                <span>Resonance:</span> <span class="highlight">1.0</span>
-              </div>
+            <div class="status-row">
+              <span>Resonance:</span> <span class="highlight">1.0</span>
             </div>
           </div>
         </div>
       </div>
-
-      <!-- The Canvas Layer (The Eye) -->
-      <canvas id="lattice-canvas"></canvas>
-
-      <!-- The Camera Layer (Ghost) -->
-      <video id="webcam-feed" autoplay muted hidden></video>
     </div>
 
-    <script src="main.ts"></script>
-  </body>
+    <!-- The Canvas Layer (The Eye) -->
+    <canvas id="lattice-canvas"></canvas>
+
+    <!-- The Camera Layer (Ghost) -->
+    <video id="webcam-feed" autoplay muted hidden></video>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+
 </html>
