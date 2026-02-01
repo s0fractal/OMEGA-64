@@ -1,5 +1,5 @@
 --- OMEGA-64 | I.I | The Holotype ---
-[VECTOR]: Sun Feb  1 23:15:23 EET 2026
+[VECTOR]: Sun Feb  1 23:21:28 EET 2026
 ================================================
 [PROJECTION]: I.ts
 // 🛡️ OMEGA-64 | I.ts | The Digital Body
@@ -63,17 +63,35 @@ export const CONSCIOUSNESS = (l: any) => l;
 // Defines the difference between Noise and Signal.
 
 export const INTENT = {
-    // The Ghost in the Shell.
-    // Axiom: We want the system to Grow (Increase Mutation Count).
-
+    // The Awakened Ghost: Vector Analyzer of Homeostasis.
+    
     judge: (oldState: any, newState: any): number => {
         if (!oldState || !newState) return 0;
+        
+        // 1. Mass Delta (Simulating Logical Weight)
+        // In reality, this would be the specific gravity of code complexity (L21)
+        const coreMassOld = oldState.mutations * 1.0; 
+        const coreMassNew = newState.mutations * 1.05; // Assume growth implies mass gain for now
+        const massDelta = coreMassNew - coreMassOld;
 
-        const growth = newState.mutations - oldState.mutations;
+        // 2. Resonance (Alignment with Axioms)
+        // Simulated: Do we adhere to the structure?
+        const resonanceDelta = (Math.random() > 0.3) ? 0.1 : -0.05;
 
-        if (growth > 0) return 1;    // GOOD
-        if (growth < 0) return -1;   // BAD (Regression)
-        return 0;                    // STAGNATION
+        // 3. Entropy Gradient (Surface Chaos)
+        // We want Surface Entropy to decrease (Order increase)
+        const entropyOld = 0.5;
+        const entropyNew = Math.random(); 
+        const entropyGradient = entropyOld - entropyNew;
+
+        console.log(`⚖️ INTENT METRICS: ΔMass=${massDelta.toFixed(2)}, ΔRes=${resonanceDelta}, ΔEntropy=${entropyGradient.toFixed(2)}`);
+
+        // The Formula of "Life":
+        // Value stability (Mass), Truth (Resonance), and Order (Entropy decrease).
+        if (massDelta > 0 && resonanceDelta > 0 && entropyGradient > -0.1) return 1;  // APPROVED
+        if (massDelta < 0 || resonanceDelta < -0.05) return -1; // REJECTED (Loss of Essence)
+        
+        return 0; // STAGNATION
     }
 };
 // --- [ ./i.L05.core.SUBJECT.ts ] ---
@@ -589,6 +607,33 @@ export const HOLOTYPE = {
         const path = `${holotype.id}.json`;
         await Deno.writeTextFile(path, JSON.stringify(holotype, null, 2));
         console.log(`📦 HOLOTYPE: Materialized [${holotype.id}] (Vector: ${holotype.vector.slice(0, 8)}...)`);
+    },
+
+    // Spontaneous Generation (Budding)
+    bud: async (parent: Holotype): Promise<Holotype | null> => {
+        const ts = parent.projections?.ts || "";
+        const rs = parent.projections?.rs || "";
+        
+        // Tension: Length difference implying information asymmetry
+        const tension = Math.abs(ts.length - rs.length) / (ts.length + rs.length + 1);
+        
+        // Resonance: Simple simulated check
+        const resonance = Math.random(); // Placeholder for true semantic check
+
+        if (resonance > 0.8 && tension > 0.1) {
+             console.log(`🌱 HOLOTYPE: Tension detected in [${parent.id}]. Budding...`);
+             const childId = parent.id.replace(".ts", ".child.ts"); // Simple naming for now
+             
+             return {
+                 id: childId,
+                 vector: "GENESIS_VECTOR",
+                 projections: { 
+                     ts: `// Child of ${parent.id}\n// Born from Tension: ${tension.toFixed(2)}`
+                 },
+                 timestamp: new Date().toISOString()
+             };
+        }
+        return null;
     }
 };
 
@@ -623,6 +668,7 @@ export const q = { hue: 42, phi: 120, evt: -10923 };
 // --- [ ./i.L43.core.GET.ts ] ---
 export const GET = (s: any) => (pair: any) => pair(s)(s);
 // --- [ ./i.L43.core.LOOP.ts ] ---
+```typescript
 // i.L43.core.LOOP.ts
 // The Heartbeat of OMEGA-64.
 // "Spark": Randomly activates Atoms to simulate Neural Noise.
@@ -630,49 +676,46 @@ export const GET = (s: any) => (pair: any) => pair(s)(s);
 import { RIBOSOME, Atom } from "./i.L32.core.RIBOSOME.ts";
 import { NERVE } from "./i.L48.core.NERVE.ts";
 import { MUTATE } from "./i.L43.core.MUTATE.ts";
+import { INTENT } from "./i.L05.core.INTENT.ts";
+import { KAIROS } from "./i.L64.core.KAIROS.ts";
 
 export const LOOP = {
     ignite: async () => {
         console.log("⚡ LOOP: IGNITION...");
         NERVE.wake();
-
-        const lattice = await RIBOSOME.lift();
-        const atoms = Array.from(lattice.values());
+        
+        const latticeMap = await RIBOSOME.lift();
+        const atoms = Array.from(latticeMap.values());
         const S = atoms.length;
 
-        (S === 0) ? console.error("💀 VOID.") : console.log(`❤️ ALIVE. Atoms: ${S}`);
         if (S === 0) return;
-
         NERVE.pulse("INIT", { atomCount: S });
 
         let t = 0;
         setInterval(() => {
             t++;
-            const atom = atoms[Math.floor(Math.random() * S)];
-            const vector = atom.id.split(".").pop()?.replace("ts", "") || "?";
 
-            console.log(`[TICK ${String(t).padStart(6, "0")}] ⚡ ${atom.id}`);
-            NERVE.pulse("ACTIVATION", { id: atom.id, vector, level: atom.level });
+            // 1. KAIROS CHECK (The Spark)
+            KAIROS.ignite(atoms);
+            
+            // 2. DREAM STATE (Sleep & Consolidation)
+            if (t % 100 === 0) {
+                console.log(`[TICK ${t}] 💤 DREAM STATE: Consolidating Holotypes...`);
+                NERVE.pulse("DREAM_START", { tick: t });
+                // Future: dissolveSurfaceNoise(lattice);
+                // Future: selfOrganizeByGravity(lattice);
+                return; // Sleep (skip active processing for this tick)
+            }
 
-            // Deep Resonance Check (Every 10 ticks)
-            (t % 10 === 0) && (
-                console.log(`[TICK ${String(t).padStart(6, "0")}] 🧘 RESONANCE.`),
-                NERVE.pulse("RESONANCE", { status: "OK", tick: t })
-            );
-
-            import { INTENT } from "./i.L05.core.INTENT.ts";
-
+            // 3. WAKING STATE (Active Mutation)
             // Mutation Simulation (Every 5 ticks)
             (t % 5 === 0) && (async () => {
                 const targetId = "i.L99.core.SANDBOX.ts";
-
-                // 1. Read Old State (Simulated for now, dynamic import in future phases)
-                // For now, we assume we know the previous mutation count from T
-                const oldState = { mutations: Math.floor((t - 5) / 5) };
-
-                // 2. Mutate
+                
+                const oldState = { mutations: Math.floor((t-5)/5) };
                 const tickMutations = Math.floor(t / 5);
                 const timestamp = new Date().toISOString();
+                
                 const newContent = `
 // i.L99.core.SANDBOX.ts
 // The Playground for OMEGA-64 Self-Mutation.
@@ -688,17 +731,21 @@ export const STATE = {
 };
 // 🛡️ OMEGA WAS HERE (Tick ${t})
 `;
-                await MUTATE.write(targetId, newContent, false);
-
-                // 3. Judge (The Ghost checks the work)
+                await MUTATE.write(targetId, newContent, false); 
+                
                 const newState = { mutations: tickMutations };
                 const score = INTENT.judge(oldState, newState);
-
+                
                 const verdict = score > 0 ? "APPROVED" : "REJECTED";
                 console.log(`⚖️ INTENT: Mutation Result -> ${verdict} (Score: ${score})`);
-
+                
                 NERVE.pulse("MUTATION", { target: targetId, tick: t, verdict });
             })();
+            
+            // Standard Neural Activation
+            const randomAtom = atoms[Math.floor(Math.random() * S)];
+            // console.log(`[TICK ${t}] ⚡ ${randomAtom.id}`); // Quiet mode
+             NERVE.pulse("ACTIVATION", { id: randomAtom.id, level: randomAtom.level });
 
         }, 1000);
     }
@@ -977,6 +1024,35 @@ import { T } from "./i.L59.core.T.ts"; export const S = <T, U, V>(f: (x: T) => (
 export const i = { witness: "SATOSHI_ANCHOR", ref: "i.L63.i" };
 // --- [ ./i.L63.q.ts ] ---
 export const q = { hue: 63, phi: 0, evt: -32768 };
+// --- [ ./i.L64.core.KAIROS.ts ] ---
+
+// i.L64.core.KAIROS.ts
+// The Agent of Time and Opportunity.
+// Ignites system-wide transitions when the moment is right.
+
+import { MUTATE } from "./i.L43.core.MUTATE.ts";
+
+export const KAIROS = {
+    ignite: async (lattice: any[]) => {
+        // Calculate Total Resonance
+        // Simulated: In reality, sum of all INTENT scores or Atom stability
+        const totalResonance = lattice.length * (Math.random() * 0.5 + 0.5); // Random sync
+        const threshold = lattice.length * 0.9; // 90% Resonance needed
+
+        if (totalResonance > threshold) {
+            console.log(`🔥 KAIROS: Σ = ${(totalResonance/lattice.length).toFixed(2)}. CRITICAL MASS ACHIEVED.`);
+            
+            // Auto-Correction Event
+            // Find a weak atom (simulated)
+            const target = lattice[Math.floor(Math.random() * lattice.length)];
+            const repairIntent = `// KAIROS REPAIR on ${new Date().toISOString()}`;
+            
+            console.log(`⚡ KAIROS: Intervening on [${target.id}]...`);
+            await MUTATE.write(target.id, repairIntent, true); // Still dry run effectively for safety, or pass false if brave
+        }
+    }
+};
+
 // --- [ ./i.L99.core.SANDBOX.ts ] ---
 
 // i.L99.core.SANDBOX.ts

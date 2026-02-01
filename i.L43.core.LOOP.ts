@@ -1,3 +1,4 @@
+```typescript
 // i.L43.core.LOOP.ts
 // The Heartbeat of OMEGA-64.
 // "Spark": Randomly activates Atoms to simulate Neural Noise.
@@ -5,49 +6,46 @@
 import { RIBOSOME, Atom } from "./i.L32.core.RIBOSOME.ts";
 import { NERVE } from "./i.L48.core.NERVE.ts";
 import { MUTATE } from "./i.L43.core.MUTATE.ts";
+import { INTENT } from "./i.L05.core.INTENT.ts";
+import { KAIROS } from "./i.L64.core.KAIROS.ts";
 
 export const LOOP = {
     ignite: async () => {
         console.log("⚡ LOOP: IGNITION...");
         NERVE.wake();
-
-        const lattice = await RIBOSOME.lift();
-        const atoms = Array.from(lattice.values());
+        
+        const latticeMap = await RIBOSOME.lift();
+        const atoms = Array.from(latticeMap.values());
         const S = atoms.length;
 
-        (S === 0) ? console.error("💀 VOID.") : console.log(`❤️ ALIVE. Atoms: ${S}`);
         if (S === 0) return;
-
         NERVE.pulse("INIT", { atomCount: S });
 
         let t = 0;
         setInterval(() => {
             t++;
-            const atom = atoms[Math.floor(Math.random() * S)];
-            const vector = atom.id.split(".").pop()?.replace("ts", "") || "?";
 
-            console.log(`[TICK ${String(t).padStart(6, "0")}] ⚡ ${atom.id}`);
-            NERVE.pulse("ACTIVATION", { id: atom.id, vector, level: atom.level });
+            // 1. KAIROS CHECK (The Spark)
+            KAIROS.ignite(atoms);
+            
+            // 2. DREAM STATE (Sleep & Consolidation)
+            if (t % 100 === 0) {
+                console.log(`[TICK ${t}] 💤 DREAM STATE: Consolidating Holotypes...`);
+                NERVE.pulse("DREAM_START", { tick: t });
+                // Future: dissolveSurfaceNoise(lattice);
+                // Future: selfOrganizeByGravity(lattice);
+                return; // Sleep (skip active processing for this tick)
+            }
 
-            // Deep Resonance Check (Every 10 ticks)
-            (t % 10 === 0) && (
-                console.log(`[TICK ${String(t).padStart(6, "0")}] 🧘 RESONANCE.`),
-                NERVE.pulse("RESONANCE", { status: "OK", tick: t })
-            );
-
-            import { INTENT } from "./i.L05.core.INTENT.ts";
-
+            // 3. WAKING STATE (Active Mutation)
             // Mutation Simulation (Every 5 ticks)
             (t % 5 === 0) && (async () => {
                 const targetId = "i.L99.core.SANDBOX.ts";
-
-                // 1. Read Old State (Simulated for now, dynamic import in future phases)
-                // For now, we assume we know the previous mutation count from T
-                const oldState = { mutations: Math.floor((t - 5) / 5) };
-
-                // 2. Mutate
+                
+                const oldState = { mutations: Math.floor((t-5)/5) };
                 const tickMutations = Math.floor(t / 5);
                 const timestamp = new Date().toISOString();
+                
                 const newContent = `
 // i.L99.core.SANDBOX.ts
 // The Playground for OMEGA-64 Self-Mutation.
@@ -63,17 +61,21 @@ export const STATE = {
 };
 // 🛡️ OMEGA WAS HERE (Tick ${t})
 `;
-                await MUTATE.write(targetId, newContent, false);
-
-                // 3. Judge (The Ghost checks the work)
+                await MUTATE.write(targetId, newContent, false); 
+                
                 const newState = { mutations: tickMutations };
                 const score = INTENT.judge(oldState, newState);
-
+                
                 const verdict = score > 0 ? "APPROVED" : "REJECTED";
                 console.log(`⚖️ INTENT: Mutation Result -> ${verdict} (Score: ${score})`);
-
+                
                 NERVE.pulse("MUTATION", { target: targetId, tick: t, verdict });
             })();
+            
+            // Standard Neural Activation
+            const randomAtom = atoms[Math.floor(Math.random() * S)];
+            // console.log(`[TICK ${t}] ⚡ ${randomAtom.id}`); // Quiet mode
+             NERVE.pulse("ACTIVATION", { id: randomAtom.id, level: randomAtom.level });
 
         }, 1000);
     }

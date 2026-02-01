@@ -56,6 +56,33 @@ export const HOLOTYPE = {
         const path = `${holotype.id}.json`;
         await Deno.writeTextFile(path, JSON.stringify(holotype, null, 2));
         console.log(`📦 HOLOTYPE: Materialized [${holotype.id}] (Vector: ${holotype.vector.slice(0, 8)}...)`);
+    },
+
+    // Spontaneous Generation (Budding)
+    bud: async (parent: Holotype): Promise<Holotype | null> => {
+        const ts = parent.projections?.ts || "";
+        const rs = parent.projections?.rs || "";
+        
+        // Tension: Length difference implying information asymmetry
+        const tension = Math.abs(ts.length - rs.length) / (ts.length + rs.length + 1);
+        
+        // Resonance: Simple simulated check
+        const resonance = Math.random(); // Placeholder for true semantic check
+
+        if (resonance > 0.8 && tension > 0.1) {
+             console.log(`🌱 HOLOTYPE: Tension detected in [${parent.id}]. Budding...`);
+             const childId = parent.id.replace(".ts", ".child.ts"); // Simple naming for now
+             
+             return {
+                 id: childId,
+                 vector: "GENESIS_VECTOR",
+                 projections: { 
+                     ts: `// Child of ${parent.id}\n// Born from Tension: ${tension.toFixed(2)}`
+                 },
+                 timestamp: new Date().toISOString()
+             };
+        }
+        return null;
     }
 };
 
