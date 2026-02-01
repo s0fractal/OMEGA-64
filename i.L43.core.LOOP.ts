@@ -35,11 +35,44 @@ export const LOOP = {
                 NERVE.pulse("RESONANCE", { status: "OK", tick: t })
             );
 
-            // Mutation Simulation (Every 20 ticks)
-            (t % 20 === 0) && (async () => {
-                const target = atoms[Math.floor(Math.random() * S)];
-                console.log(`🧬 SIMULATING MUTATION on ${target.id}`);
-                await MUTATE.write(target.id, "// MUTATED BY OMEGA", true); // Dry Run
+            import { INTENT } from "./i.L05.core.INTENT.ts";
+
+            // Mutation Simulation (Every 5 ticks)
+            (t % 5 === 0) && (async () => {
+                const targetId = "i.L99.core.SANDBOX.ts";
+
+                // 1. Read Old State (Simulated for now, dynamic import in future phases)
+                // For now, we assume we know the previous mutation count from T
+                const oldState = { mutations: Math.floor((t - 5) / 5) };
+
+                // 2. Mutate
+                const tickMutations = Math.floor(t / 5);
+                const timestamp = new Date().toISOString();
+                const newContent = `
+// i.L99.core.SANDBOX.ts
+// The Playground for OMEGA-64 Self-Mutation.
+// This file is designed to be rewritten by the system.
+
+export const STATE = {
+    mutations: ${tickMutations},
+    last_mutation: "${timestamp}",
+    history: [
+        "Mutation Cycle ${t}",
+        "Entropy: ${Math.random().toFixed(4)}"
+    ]
+};
+// 🛡️ OMEGA WAS HERE (Tick ${t})
+`;
+                await MUTATE.write(targetId, newContent, false);
+
+                // 3. Judge (The Ghost checks the work)
+                const newState = { mutations: tickMutations };
+                const score = INTENT.judge(oldState, newState);
+
+                const verdict = score > 0 ? "APPROVED" : "REJECTED";
+                console.log(`⚖️ INTENT: Mutation Result -> ${verdict} (Score: ${score})`);
+
+                NERVE.pulse("MUTATION", { target: targetId, tick: t, verdict });
             })();
 
         }, 1000);

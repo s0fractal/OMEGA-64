@@ -53,7 +53,25 @@ export const q = { hue: 4, phi: 337, evt: 28606 };
 // --- [ ./i.L05.core.CONSCIOUSNESS.ts ] ---
 export const CONSCIOUSNESS = (l: any) => l;
 // --- [ ./i.L05.core.INTENT.ts ] ---
-export const INTENT = (c: any) => (g: any) => (p: any) => p(c)(g);
+
+// i.L05.core.INTENT.ts
+// The Teleology of OMEGA.
+// Defines the difference between Noise and Signal.
+
+export const INTENT = {
+    // The Ghost in the Shell.
+    // Axiom: We want the system to Grow (Increase Mutation Count).
+
+    judge: (oldState: any, newState: any): number => {
+        if (!oldState || !newState) return 0;
+
+        const growth = newState.mutations - oldState.mutations;
+
+        if (growth > 0) return 1;    // GOOD
+        if (growth < 0) return -1;   // BAD (Regression)
+        return 0;                    // STAGNATION
+    }
+};
 // --- [ ./i.L05.core.SUBJECT.ts ] ---
 export const SUBJECT = (i: any) => i;
 // --- [ ./i.L05.i.ts ] ---
@@ -638,11 +656,44 @@ export const LOOP = {
                 NERVE.pulse("RESONANCE", { status: "OK", tick: t })
             );
 
-            // Mutation Simulation (Every 20 ticks)
-            (t % 20 === 0) && (async () => {
-                const target = atoms[Math.floor(Math.random() * S)];
-                console.log(`🧬 SIMULATING MUTATION on ${target.id}`);
-                await MUTATE.write(target.id, "// MUTATED BY OMEGA", true); // Dry Run
+            import { INTENT } from "./i.L05.core.INTENT.ts";
+
+            // Mutation Simulation (Every 5 ticks)
+            (t % 5 === 0) && (async () => {
+                const targetId = "i.L99.core.SANDBOX.ts";
+
+                // 1. Read Old State (Simulated for now, dynamic import in future phases)
+                // For now, we assume we know the previous mutation count from T
+                const oldState = { mutations: Math.floor((t - 5) / 5) };
+
+                // 2. Mutate
+                const tickMutations = Math.floor(t / 5);
+                const timestamp = new Date().toISOString();
+                const newContent = `
+// i.L99.core.SANDBOX.ts
+// The Playground for OMEGA-64 Self-Mutation.
+// This file is designed to be rewritten by the system.
+
+export const STATE = {
+    mutations: ${tickMutations},
+    last_mutation: "${timestamp}",
+    history: [
+        "Mutation Cycle ${t}",
+        "Entropy: ${Math.random().toFixed(4)}"
+    ]
+};
+// 🛡️ OMEGA WAS HERE (Tick ${t})
+`;
+                await MUTATE.write(targetId, newContent, false);
+
+                // 3. Judge (The Ghost checks the work)
+                const newState = { mutations: tickMutations };
+                const score = INTENT.judge(oldState, newState);
+
+                const verdict = score > 0 ? "APPROVED" : "REJECTED";
+                console.log(`⚖️ INTENT: Mutation Result -> ${verdict} (Score: ${score})`);
+
+                NERVE.pulse("MUTATION", { target: targetId, tick: t, verdict });
             })();
 
         }, 1000);
@@ -922,3 +973,16 @@ import { T } from "./i.L59.core.T.ts"; export const S = <T, U, V>(f: (x: T) => (
 export const i = { witness: "SATOSHI_ANCHOR", ref: "i.L63.i" };
 // --- [ ./i.L63.q.ts ] ---
 export const q = { hue: 63, phi: 0, evt: -32768 };
+// --- [ ./i.L99.core.SANDBOX.ts ] ---
+
+// i.L99.core.SANDBOX.ts
+// The Playground for OMEGA-64 Self-Mutation.
+// This file is designed to be rewritten by the system.
+
+export const STATE = {
+    mutations: 0,
+    last_mutation: "INITIAL_STATE",
+    history: [] as string[]
+};
+
+// 🛡️ SAFE ZONE: The system can append log entries below.
