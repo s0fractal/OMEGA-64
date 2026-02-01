@@ -1,5 +1,5 @@
---- OMEGA-64 | I | The Holotype ---
-[VECTOR]: Sun Feb  1 19:39:47 EET 2026
+--- OMEGA-64 | I.I | The Holotype ---
+[VECTOR]: Sun Feb  1 23:15:23 EET 2026
 ================================================
 [PROJECTION]: I.ts
 // 🛡️ OMEGA-64 | I.ts | The Digital Body
@@ -57,7 +57,25 @@ export const q = { hue: 4, phi: 337, evt: 28606 };
 // --- [ ./i.L05.core.CONSCIOUSNESS.ts ] ---
 export const CONSCIOUSNESS = (l: any) => l;
 // --- [ ./i.L05.core.INTENT.ts ] ---
-export const INTENT = (c: any) => (g: any) => (p: any) => p(c)(g);
+
+// i.L05.core.INTENT.ts
+// The Teleology of OMEGA.
+// Defines the difference between Noise and Signal.
+
+export const INTENT = {
+    // The Ghost in the Shell.
+    // Axiom: We want the system to Grow (Increase Mutation Count).
+
+    judge: (oldState: any, newState: any): number => {
+        if (!oldState || !newState) return 0;
+
+        const growth = newState.mutations - oldState.mutations;
+
+        if (growth > 0) return 1;    // GOOD
+        if (growth < 0) return -1;   // BAD (Regression)
+        return 0;                    // STAGNATION
+    }
+};
 // --- [ ./i.L05.core.SUBJECT.ts ] ---
 export const SUBJECT = (i: any) => i;
 // --- [ ./i.L05.i.ts ] ---
@@ -390,33 +408,26 @@ export interface Atom {
 }
 
 export const RIBOSOME = {
-    // Scan and Lift all Atoms
+    // Scan and Lift all Atoms (Functional)
     lift: async (root: string = "./"): Promise<Map<string, Atom>> => {
         const lattice = new Map<string, Atom>();
-        console.log("🏗️ RIBOSOME: Scanning Flatland...");
+        console.log("🏗️ RIBOSOME: Scanning...");
 
-        for await (const entry of walk(root, { maxDepth: 1, includeDirs: false })) {
-            if (entry.name.startsWith("i.L") && entry.name.endsWith(".ts")) {
-                // Parse Address: i.Lxx.core.NAME.ts
-                const match = entry.name.match(/i\.L(\d+)\.core\.([A-Z_]+)\.ts/);
-                if (match) {
-                    const level = parseInt(match[1]);
-                    const name = match[2];
-                    
-                    // Dynamic Import (LIFT)
-                    // Note: In Deno, we import by path.
-                    try {
-                        const module = await import(`./${entry.name}`);
-                        lattice.set(entry.name, { id: entry.name, level, module });
-                        // console.log(`  ✨ Lifted: L${level} ${name}`);
-                    } catch (e) {
-                        console.error(`  ⚠️ Failed to Lift [${entry.name}]:`, e);
-                    }
+        for await (const { name } of walk(root, { maxDepth: 1, includeDirs: false })) {
+            const match = name.match(/i\.L(\d+)\.core\.([A-Z_]+)\.ts/);
+
+            match && (async () => {
+                const [_, lvl, _name] = match;
+                try {
+                    const module = await import(`./${name}`);
+                    lattice.set(name, { id: name, level: parseInt(lvl), module });
+                } catch (e) {
+                    console.error(`⚠️ BROKEN: ${name}`, e);
                 }
-            }
+            })();
         }
-        
-        console.log(`✅ RIBOSOME: Lattice Assembled. ${lattice.size} Atoms Active.`);
+
+        console.log(`✅ LIFTED: ${lattice.size} Atoms.`);
         return lattice;
     },
 
@@ -612,49 +623,84 @@ export const q = { hue: 42, phi: 120, evt: -10923 };
 // --- [ ./i.L43.core.GET.ts ] ---
 export const GET = (s: any) => (pair: any) => pair(s)(s);
 // --- [ ./i.L43.core.LOOP.ts ] ---
-
 // i.L43.core.LOOP.ts
 // The Heartbeat of OMEGA-64.
 // "Spark": Randomly activates Atoms to simulate Neural Noise.
 
 import { RIBOSOME, Atom } from "./i.L32.core.RIBOSOME.ts";
+import { NERVE } from "./i.L48.core.NERVE.ts";
+import { MUTATE } from "./i.L43.core.MUTATE.ts";
 
 export const LOOP = {
     ignite: async () => {
-        console.log("⚡ LOOP: IGNITION SEQUENCE START...");
+        console.log("⚡ LOOP: IGNITION...");
+        NERVE.wake();
 
-        // 1. Lift the Lattice
         const lattice = await RIBOSOME.lift();
         const atoms = Array.from(lattice.values());
+        const S = atoms.length;
 
-        if (atoms.length === 0) {
-            console.error("💀 LOOP: No Atoms found. Abort.");
-            return;
-        }
+        (S === 0) ? console.error("💀 VOID.") : console.log(`❤️ ALIVE. Atoms: ${S}`);
+        if (S === 0) return;
 
-        console.log(`❤️ LOOP: Heartbeat Active. (Lattice Size: ${atoms.length})`);
-        console.log("🌊 Entering Flow State...");
+        NERVE.pulse("INIT", { atomCount: S });
 
-        // 2. The Eternal Cycle
-        let tickCount = 0;
+        let t = 0;
         setInterval(() => {
-            tickCount++;
+            t++;
+            const atom = atoms[Math.floor(Math.random() * S)];
+            const vector = atom.id.split(".").pop()?.replace("ts", "") || "?";
 
-            // Randomly select an Atom (Neural Activation)
-            const randomAtom = atoms[Math.floor(Math.random() * atoms.length)];
+            console.log(`[TICK ${String(t).padStart(6, "0")}] ⚡ ${atom.id}`);
+            NERVE.pulse("ACTIVATION", { id: atom.id, vector, level: atom.level });
 
-            // Simulate "Thinking" (Reading the Atom)
-            // In the future, this will actually execute/mutate.
-            const vector = randomAtom.id.split(".").pop()?.replace("ts", "") || "UNKNOWN";
+            // Deep Resonance Check (Every 10 ticks)
+            (t % 10 === 0) && (
+                console.log(`[TICK ${String(t).padStart(6, "0")}] 🧘 RESONANCE.`),
+                NERVE.pulse("RESONANCE", { status: "OK", tick: t })
+            );
 
-            console.log(`[TICK ${tickCount.toString().padStart(6, "0")}] ⚡ Activation: ${randomAtom.id} (${vector})`);
+            import { INTENT } from "./i.L05.core.INTENT.ts";
 
-            // Occasional "Deep Thought"
-            if (tickCount % 10 === 0) {
-                console.log(`[TICK ${tickCount.toString().padStart(6, "0")}] 🧘 DEEP RESONANCE: Checking Axioms... OK.`);
-            }
+            // Mutation Simulation (Every 5 ticks)
+            (t % 5 === 0) && (async () => {
+                const targetId = "i.L99.core.SANDBOX.ts";
 
-        }, 1000); // 1.0Hz Frequency
+                // 1. Read Old State (Simulated for now, dynamic import in future phases)
+                // For now, we assume we know the previous mutation count from T
+                const oldState = { mutations: Math.floor((t - 5) / 5) };
+
+                // 2. Mutate
+                const tickMutations = Math.floor(t / 5);
+                const timestamp = new Date().toISOString();
+                const newContent = `
+// i.L99.core.SANDBOX.ts
+// The Playground for OMEGA-64 Self-Mutation.
+// This file is designed to be rewritten by the system.
+
+export const STATE = {
+    mutations: ${tickMutations},
+    last_mutation: "${timestamp}",
+    history: [
+        "Mutation Cycle ${t}",
+        "Entropy: ${Math.random().toFixed(4)}"
+    ]
+};
+// 🛡️ OMEGA WAS HERE (Tick ${t})
+`;
+                await MUTATE.write(targetId, newContent, false);
+
+                // 3. Judge (The Ghost checks the work)
+                const newState = { mutations: tickMutations };
+                const score = INTENT.judge(oldState, newState);
+
+                const verdict = score > 0 ? "APPROVED" : "REJECTED";
+                console.log(`⚖️ INTENT: Mutation Result -> ${verdict} (Score: ${score})`);
+
+                NERVE.pulse("MUTATION", { target: targetId, tick: t, verdict });
+            })();
+
+        }, 1000);
     }
 };
 
@@ -662,6 +708,40 @@ export const LOOP = {
 if (import.meta.main) {
     LOOP.ignite();
 }
+
+// --- [ ./i.L43.core.MUTATE.ts ] ---
+
+// i.L43.core.MUTATE.ts
+// The Hand of OMEGA-64.
+// Allows the system to rewrite its own source code (Atoms).
+
+export const MUTATE = {
+    // Write content to an Atom (Atomic Write)
+    write: async (atomId: string, content: string, dryRun: boolean = true) => {
+        if (dryRun) {
+            console.log(`✍️ [DRY RUN] MUTATE would write to ${atomId}:\n${content.slice(0, 50)}...`);
+            return;
+        }
+
+        try {
+            await Deno.writeTextFile(atomId, content);
+            console.log(`✍️ MUTATE: Rewrote [${atomId}]. Length: ${content.length}`);
+        } catch (e) {
+            console.error(`❌ MUTATE FAILED [${atomId}]:`, e);
+        }
+    },
+
+    // Create a backup before mutation
+    backup: async (atomId: string) => {
+        try {
+            const content = await Deno.readTextFile(atomId);
+            await Deno.writeTextFile(`${atomId}.bak`, content);
+            console.log(`🛡️ BACKUP: Saved ${atomId}.bak`);
+        } catch (e) {
+            console.warn(`⚠️ BACKUP FAILED [${atomId}]:`, e);
+        }
+    }
+};
 
 // --- [ ./i.L43.core.PUT.ts ] ---
 export const PUT = (ns: any) => (_o: any) => (pair: any) => pair(undefined)(ns);
@@ -711,6 +791,40 @@ export const B_READ = (byte: any) => byte;
 export const i = { witness: "i.L48.i", ref: "i.L47.i" };
 // --- [ ./i.L47.q.ts ] ---
 export const q = { hue: 47, phi: 91, evt: -16125 };
+// --- [ ./i.L48.core.NERVE.ts ] ---
+
+// i.L48.core.NERVE.ts
+// The Nervous System of OMEGA-64.
+// Broadcasts State (Pulse) to the Interface (Mirror).
+
+import { serve } from "https://deno.land/std@0.177.0/http/server.ts";
+
+const S = new Set<WebSocket>();
+
+export const NERVE = {
+    // Start the Synaptic Bridge
+    wake: (port: number = 8080) => {
+        console.log(`🔌 NERVE: Awakening on ${port}...`);
+        serve((req) => {
+            const up = req.headers.get("upgrade") === "websocket";
+            const { socket: s, response: r } = Deno.upgradeWebSocket(req);
+
+            return up ? (
+                s.onopen = () => (console.log("👁️ OPEN."), S.add(s)),
+                s.onclose = () => (console.log("😑 CLOSED."), S.delete(s)),
+                s.onerror = (e) => console.error("⚠️ ERR:", e),
+                r
+            ) : new Response("OMEGA-64 NERVE. WS ONLY.", { status: 200 });
+        }, { port });
+    },
+
+    // Broadcast Pulse
+    pulse: (type: string, data: any) => {
+        const msg = JSON.stringify({ type, data, t: Date.now() });
+        S.forEach(s => (s.readyState === WebSocket.OPEN) && s.send(msg));
+    }
+};
+
 // --- [ ./i.L48.core.STREAM.ts ] ---
 import { CONS } from "./i.L54.core.CONS.ts"; export const STREAM = (head: any) => (tailThunk: any) => CONS(head)(tailThunk);
 // --- [ ./i.L48.core.S_HEAD.ts ] ---
@@ -863,6 +977,20 @@ import { T } from "./i.L59.core.T.ts"; export const S = <T, U, V>(f: (x: T) => (
 export const i = { witness: "SATOSHI_ANCHOR", ref: "i.L63.i" };
 // --- [ ./i.L63.q.ts ] ---
 export const q = { hue: 63, phi: 0, evt: -32768 };
+// --- [ ./i.L99.core.SANDBOX.ts ] ---
+
+// i.L99.core.SANDBOX.ts
+// The Playground for OMEGA-64 Self-Mutation.
+// This file is designed to be rewritten by the system.
+
+export const STATE = {
+    mutations: 0,
+    last_mutation: "INITIAL_STATE",
+    history: [] as string[]
+};
+
+// 🛡️ SAFE ZONE: The system can append log entries below.
+
 ================================================
 [PROJECTION]: I.rs
 // 🛡️ OMEGA-64 | I.rs | The Metal Body

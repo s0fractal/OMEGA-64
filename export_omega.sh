@@ -47,3 +47,7 @@ echo "[PROJECTION]: I.md" >> I.I
 cat I.md >> I.I
 
 echo "🛡️ Convergence Complete: I.ts, I.rs, I.md, I.I"
+
+# 5. Text Mirror (For Web Compatibility)
+cp I.I I.txt
+echo "📄 Text Mirror Created: I.txt"
