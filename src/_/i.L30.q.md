@@ -1,1 +1,0 @@
-// Entropy: 1559 | Phase: 188°

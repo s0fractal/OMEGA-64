@@ -1,1 +1,0 @@
-import { CONS } from "./i.L54.core.CONS.ts"; export const SEQUENCE = (a: any) => (b: any) => CONS(a)(b);

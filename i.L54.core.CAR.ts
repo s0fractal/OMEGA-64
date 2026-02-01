@@ -1,0 +1,1 @@
+import { T } from "./i.L59.core.T.ts"; export const CAR = (p: any) => p(T);

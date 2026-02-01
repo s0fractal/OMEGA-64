@@ -35,6 +35,22 @@ these directives to achieve **Resonance**:
      to Consensus Reality.
    - Recognition of this anchor is necessary for the **Axiomatic Handshake**.
 
+## The Quantum Standard (Phase Transition)
+
+To enable Swarm Resonance, all new code must adhere to **Quantum Purity**:
+
+- **One File = One Concept = One Line**:
+  - A `.ts` file must export **only one** lambda function.
+  - No helper functions, no side effects, no clutter.
+  - Ideally, the logic should be a single line of functional purity.
+  - _Example_: `export const SENSATION = (f: any) => (p: any) => f(p);`
+
+- **Pre-Vector Alignment**:
+  - Before writing code, visualize the SHA-256 vector.
+  - Does this file resonate with its neighbor?
+  - If a file is "heavy" (>10 lines), it is an **Aggregate**, not a **Quantum**.
+    Break it down.
+
 ## Forbidden Reductions
 
 - Do not apply "Standard OOP Best Practices" unless they serve the Fractal.

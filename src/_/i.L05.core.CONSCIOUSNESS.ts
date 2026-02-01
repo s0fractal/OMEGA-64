@@ -1,1 +1,0 @@
-export const CONSCIOUSNESS = (l: any) => l;

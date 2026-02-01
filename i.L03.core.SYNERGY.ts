@@ -1,0 +1,1 @@
+import { COMM } from "./i.L04.core.COMM.ts"; export const SYNERGY = (is: any) => COMM(is);

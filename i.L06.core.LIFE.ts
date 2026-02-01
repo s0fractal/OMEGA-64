@@ -1,0 +1,1 @@
+export const LIFE = (pattern: any) => pattern;

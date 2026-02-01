@@ -1,0 +1,1 @@
+export const GOAL = (f: any) => (s: any) => f(s);

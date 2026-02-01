@@ -1,0 +1,1 @@
+import { B } from "./i.L62.core.B.ts"; export const MULT = B;

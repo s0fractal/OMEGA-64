@@ -1,1 +1,0 @@
-export const INTENT = (c: any) => (g: any) => (p: any) => p(c)(g);

@@ -1,0 +1,1 @@
+export const OMEGA = (l: any) => l;

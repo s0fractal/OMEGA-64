@@ -1,1 +1,0 @@
-export const GET = (s: any) => (pair: any) => pair(s)(s);

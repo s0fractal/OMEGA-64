@@ -1,0 +1,1 @@
+import { T } from "./i.L59.core.T.ts"; import { F } from "./i.L59.core.F.ts"; export const IS_NIL = (l: any) => l((h: any) => (t: any) => F)(T);

@@ -1,1 +1,0 @@
-import { CONS } from "./i.L54.core.CONS.ts"; export const VECTOR = (dim: any) => (values: any) => CONS(dim)(values);

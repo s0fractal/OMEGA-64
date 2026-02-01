@@ -1,1 +1,0 @@
-export const SUCC = (n: any) => (f: any) => (x: any) => f(n(f)(x));

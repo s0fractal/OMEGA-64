@@ -22,9 +22,9 @@ echo "🛡️ Packaging OMEGA-64 Lattice for external resonance..."
   cat OMEGA.json
   echo -e "\n================================================"
 
-  # 2. The Vector Space (Atoms)
-  # We scan src/_/ for all i.*.ts and i.*.md
-  find src/_ -type f | sort | while read -r file; do
+  # 2. The Vector Space (Atoms - Flatland)
+  # We scan root for i.L* files
+  find . -maxdepth 1 -name "i.L*" | sort | while read -r file; do
       echo -e "\n\n[FILE_PATH]: $file"
       echo "================================================"
       cat "$file"

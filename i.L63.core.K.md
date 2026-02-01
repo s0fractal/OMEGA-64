@@ -1,0 +1,1 @@
+[K]: Invariant (Auto-generated)

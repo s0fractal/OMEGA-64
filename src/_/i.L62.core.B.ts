@@ -1,1 +1,0 @@
-export const B = (f: any) => (g: any) => (x: any) => f(g(x));

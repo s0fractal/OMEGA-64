@@ -1,1 +1,0 @@
-export const WAVE = (v: any) => (f: any) => (p: any) => p(v)(f);

@@ -1,0 +1,1 @@
+export const NEXT = (val: any) => (obs: any) => obs(val);

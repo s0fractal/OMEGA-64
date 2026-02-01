@@ -1,1 +1,0 @@
-export const JOIN = (p: any) => (h: any) => p(h);

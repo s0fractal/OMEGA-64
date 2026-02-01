@@ -1,0 +1,1 @@
+import { SWAP } from "./i.L34.core.SWAP.ts"; export const DUAL = SWAP;

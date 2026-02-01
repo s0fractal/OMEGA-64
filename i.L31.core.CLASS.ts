@@ -1,0 +1,1 @@
+import { OBJECT } from "./i.L31.core.OBJECT.ts"; export const CLASS = (factory: any) => (init: any) => OBJECT(factory(init));

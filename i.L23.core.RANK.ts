@@ -1,0 +1,1 @@
+export const RANK = (t: any) => t((d: any) => (_v: any) => d);

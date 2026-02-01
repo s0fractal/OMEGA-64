@@ -1,1 +1,0 @@
-export const q = { hue: 44, phi: 108, evt: -13004 };

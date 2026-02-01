@@ -1,0 +1,1 @@
+import { FILTER } from "./i.L49.core.FILTER.ts"; export const SELECT = (rel: any) => (pred: any) => FILTER(pred)(rel);

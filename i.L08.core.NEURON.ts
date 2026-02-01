@@ -1,0 +1,1 @@
+export const NEURON = (inputs: any) => (weights: any) => (threshold: any) => inputs;

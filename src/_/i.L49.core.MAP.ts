@@ -1,1 +1,0 @@
-import { Y } from "./i.L61.core.Y.ts"; import { IS_NIL } from "./i.L54.core.IS_NIL.ts"; import { CAR } from "./i.L54.core.CAR.ts"; import { CDR } from "./i.L54.core.CDR.ts"; import { CONS } from "./i.L54.core.CONS.ts"; import { NIL } from "./i.L54.core.NIL.ts"; export const MAP = Y((r: any) => (f: any) => (l: any) => IS_NIL(l)(NIL)(CONS(f(CAR(l)))(r(f)(CDR(l)))));

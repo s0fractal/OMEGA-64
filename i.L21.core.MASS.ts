@@ -1,0 +1,1 @@
+export const MASS = (q: any) => 32767 - q.evt;

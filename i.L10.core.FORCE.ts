@@ -1,0 +1,1 @@
+export const FORCE = (t: any) => t;

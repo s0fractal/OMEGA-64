@@ -1,1 +1,0 @@
-export const LISTEN = (writer: any) => (pair: any) => writer((a: any) => (w: any) => pair(a)(w));

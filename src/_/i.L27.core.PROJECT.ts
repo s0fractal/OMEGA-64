@@ -1,1 +1,0 @@
-import { MAP } from "./i.L49.core.MAP.ts"; export const PROJECT = (rel: any) => (transform: any) => MAP(transform)(rel);

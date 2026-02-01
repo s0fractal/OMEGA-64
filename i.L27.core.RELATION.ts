@@ -1,0 +1,1 @@
+export const RELATION = (tuples: any) => tuples;

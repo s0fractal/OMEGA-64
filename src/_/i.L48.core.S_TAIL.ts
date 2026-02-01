@@ -1,1 +1,0 @@
-import { CDR } from "./i.L54.core.CDR.ts"; export const S_TAIL = (s: any) => CDR(s)(undefined);

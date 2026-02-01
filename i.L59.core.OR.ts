@@ -1,0 +1,1 @@
+export const OR = (p: any) => (q: any) => p(p)(q);

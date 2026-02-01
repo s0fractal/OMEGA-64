@@ -1,0 +1,1 @@
+export const SWAP = (p: any) => p((a: any) => (b: any) => (pair: any) => pair(b)(a));

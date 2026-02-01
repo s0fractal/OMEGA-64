@@ -1,0 +1,1 @@
+export const HALT = (s: any) => (_i: any) => s;

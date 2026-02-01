@@ -1,1 +1,0 @@
-import { NOT } from "./i.L59.core.NOT.ts"; export const INV = NOT;

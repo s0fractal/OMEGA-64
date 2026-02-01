@@ -1,1 +1,0 @@
-import { SUCC } from "./i.L58.core.SUCC.ts"; export const TICK = (t: any) => SUCC(t);

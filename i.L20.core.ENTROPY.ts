@@ -1,0 +1,1 @@
+export const ENTROPY = (level: any) => (val: any) => (pair: any) => pair(level)(val);

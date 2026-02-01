@@ -1,1 +1,0 @@
-export const STELLAR = (c: any) => c;

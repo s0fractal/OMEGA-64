@@ -1,1 +1,0 @@
-import { T1 } from "./i.L51.core.T1.ts"; export const COORD_X = T1;

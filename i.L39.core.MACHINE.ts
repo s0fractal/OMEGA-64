@@ -1,0 +1,1 @@
+export const MACHINE = (transition: any) => (state: any) => (pair: any) => pair(transition)(state);

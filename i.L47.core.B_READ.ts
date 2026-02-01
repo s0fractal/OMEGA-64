@@ -1,0 +1,1 @@
+export const B_READ = (byte: any) => byte;

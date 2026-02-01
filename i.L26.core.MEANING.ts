@@ -1,0 +1,1 @@
+import { CONS } from "./i.L54.core.CONS.ts"; export const MEANING = (tag: any) => (val: any) => CONS(tag)(val);

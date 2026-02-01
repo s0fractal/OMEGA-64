@@ -1,0 +1,1 @@
+export const NOTHING = (n: any) => (_j: any) => n;

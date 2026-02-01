@@ -1,0 +1,1 @@
+export const L_JOIN = (a: any) => (b: any) => (s: any) => s(a)(b);

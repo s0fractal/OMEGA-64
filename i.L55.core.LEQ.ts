@@ -1,0 +1,1 @@
+import { SUB } from "./i.L55.core.SUB.ts"; import { IS_ZERO } from "./i.L56.core.IS_ZERO.ts"; export const LEQ = (m: any) => (n: any) => IS_ZERO(SUB(m)(n));

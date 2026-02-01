@@ -1,0 +1,1 @@
+import { CONS } from "./i.L54.core.CONS.ts"; export const LENS = (g: any) => (s: any) => CONS(g)(s);
