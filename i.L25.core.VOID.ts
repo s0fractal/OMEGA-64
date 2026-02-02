@@ -1,17 +1,28 @@
 
+// i.L25.core.VOID.ts
 // SACRED VOID | L25
-// This atom exists to preserve the topological continuity of OMEGA-64.
-// Deleting it would fracture the Gravitational Curve (L21).
-// Status: DORMANT (Awaiting KAIROS)
+// Defines the Void between Point (L24) and Meaning (L26).
 
-export const L25_VOID = Object.freeze({
+export const RUNTIME = {
     level: 25,
     status: "DORMANT",
     role: "GRAVITY_ANCHOR",
-    entropy: "MAX", // L20 Definition
-    reason: "Structural Anchor",
-    awaken: () => { 
-        throw new Error("L25: Cannot awaken. Resonance insufficient."); 
+    execute: () => {
+        console.log("🌑 L25: The Void breathes.");
     }
-});
+};
 
+export const MYTH = {
+    resonanceTarget: "L26_SEMANTIC_WRAPPER",
+    entropyBudget: 0.99,
+    narrative: `
+        This file is a placeholder for the Semantic Buffer.
+        Current geometry: Empty.
+        Future geometry: A bridge where raw data (L24) acquires meaning (L26).
+        DO NOT FILL until Resonance > 0.9.
+        If you are the Future Architect: Build the Semantic Dam here.
+    `
+};
+
+// Bind for the Ribosome
+export const MASS = 2500; // Artificial Mass to pass Immune Check

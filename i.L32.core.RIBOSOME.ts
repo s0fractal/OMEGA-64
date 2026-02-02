@@ -3,6 +3,7 @@
 // The Meta-Processor for OMEGA-64 Flatland.
 // Scans the Root, Lifts Atoms, and Builds the Living Map.
 
+import { IMMUNE } from "./i.L32.core.IMMUNE.ts";
 import { walk } from "jsr:@std/fs";
 
 export interface Atom {
@@ -34,7 +35,10 @@ export const RIBOSOME = {
         }
 
         console.log(`✅ LIFTED: ${lattice.size} Atoms.`);
-        return lattice;
+        
+        // 🛡️ IMMUNE SYSTEM CHECK
+        // Filter out entropy (atoms without mass/structure)
+        return IMMUNE.inspect(lattice);
     },
 
     // Synthesis: Execute the 'mod.ts' logic dynamically if needed

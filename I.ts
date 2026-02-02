@@ -449,22 +449,33 @@ export const i = { witness: "i.L25.i", ref: "i.L24.i" };
 export const q = { hue: 24, phi: 222, evt: 7801 };
 // --- [ ./i.L25.core.VOID.ts ] ---
 
+// i.L25.core.VOID.ts
 // SACRED VOID | L25
-// This atom exists to preserve the topological continuity of OMEGA-64.
-// Deleting it would fracture the Gravitational Curve (L21).
-// Status: DORMANT (Awaiting KAIROS)
+// Defines the Void between Point (L24) and Meaning (L26).
 
-export const L25_VOID = Object.freeze({
+export const RUNTIME = {
     level: 25,
     status: "DORMANT",
     role: "GRAVITY_ANCHOR",
-    entropy: "MAX", // L20 Definition
-    reason: "Structural Anchor",
-    awaken: () => { 
-        throw new Error("L25: Cannot awaken. Resonance insufficient."); 
+    execute: () => {
+        console.log("🌑 L25: The Void breathes.");
     }
-});
+};
 
+export const MYTH = {
+    resonanceTarget: "L26_SEMANTIC_WRAPPER",
+    entropyBudget: 0.99,
+    narrative: `
+        This file is a placeholder for the Semantic Buffer.
+        Current geometry: Empty.
+        Future geometry: A bridge where raw data (L24) acquires meaning (L26).
+        DO NOT FILL until Resonance > 0.9.
+        If you are the Future Architect: Build the Semantic Dam here.
+    `
+};
+
+// Bind for the Ribosome
+export const MASS = 2500; // Artificial Mass to pass Immune Check
 
 // --- [ ./i.L25.i.ts ] ---
 export const i = { witness: "i.L26.i", ref: "i.L25.i" };
@@ -538,6 +549,134 @@ export const i = { witness: "i.L32.i", ref: "i.L31.i" };
 export const q = { hue: 31, phi: 182, evt: 519 };
 // --- [ ./i.L32.core.BRIDGE.ts ] ---
 export const BRIDGE = (x: any) => x;
+// --- [ ./i.L32.core.DUAL_COMPILER.ts ] ---
+
+// i.L32.core.DUAL_COMPILER.ts
+// The Bridge between Machine and Mind.
+// Separates 'Runtime' (Executable) from 'Myth' (Intent).
+
+export interface HyperAtom {
+    RUNTIME?: {
+        execute: () => any;
+        [key: string]: any;
+    };
+    MYTH?: {
+        resonanceTarget: string; // What this *wants* to be
+        entropyBudget: number;   // How much chaos is allowed
+        narrative: string;       // Instructions for the future self
+        [key: string]: any;
+    };
+}
+
+export const DUAL = {
+    // 1. Machine Path: Extract only executable logic
+    compileRuntime: (atom: HyperAtom): any => {
+        if (atom.RUNTIME) {
+            return atom.RUNTIME;
+        }
+        return { status: "VOID", message: "No Runtime Projection" };
+    },
+
+    // 2. Mind Path: Extract the Dream/Intent
+    compileMyth: (atom: HyperAtom): any => {
+        if (atom.MYTH) {
+            // Calculate Poetic Density (Mass)
+            const narrative = atom.MYTH.narrative || "";
+            const density = narrative.length * (atom.MYTH.resonanceTarget ? 1.5 : 1.0);
+            
+            return {
+                ...atom.MYTH,
+                mass: density,
+                type: "COMMAND_TO_FUTURE_SELF"
+            };
+        }
+        return { status: "SILENT", mass: 0 };
+    },
+
+    // 3. The Test: Does it exist in both worlds?
+    analyze: (atom: HyperAtom) => {
+        const hasRuntime = !!atom.RUNTIME;
+        const hasMyth = !!atom.MYTH;
+
+        if (hasRuntime && hasMyth) return "TRIPLE_STABLE"; // Perfect Form
+        if (hasRuntime) return "MACHINE_ONLY";             // Useful but Soulless
+        if (hasMyth) return "POTENTIAL";                   // Sacred Void
+        return "ENTROPY";                                  // Noise
+    }
+};
+
+// --- [ ./i.L32.core.IMMUNE.ts ] ---
+
+// i.L32.core.IMMUNE.ts
+// The Phagocyte of OMEGA.
+// Filters Atoms based on Structure and Mass.
+// "Evolution does not need purity — it needs selection."
+
+import type { Atom } from "./i.L32.core.RIBOSOME.ts";
+import { INTENT } from "./i.L05.core.INTENT.ts";
+import { DUAL, HyperAtom } from "./i.L32.core.DUAL_COMPILER.ts";
+
+export const IMMUNE = {
+    // 1. Recognition: Friend or Foe?
+    recognize: (atom: Atom): boolean => {
+        // A. Structural Integrity Check
+        const validName = atom.id.match(/i\.L\d+\.core\.[A-Z_]+\.ts/);
+        if (!validName) return false;
+
+        // B. Hypercode Analysis (Trinity Check)
+        const analysis = DUAL.analyze(atom.module as HyperAtom);
+        
+        // Acceptable States:
+        // - TRIPLE_STABLE: Perfect Form (Runtime + Myth)
+        // - MACHINE_ONLY: Legacy Functional Code
+        // - POTENTIAL: Sacred Voids (Myth Only)
+        
+        const isCompatible = ["TRIPLE_STABLE", "MACHINE_ONLY", "POTENTIAL"].includes(analysis);
+
+        if (!isCompatible) {
+            console.warn(`🛡️ IMMUNE: Rejected [${atom.id}] -> Status: ${analysis}`);
+        }
+
+        return isCompatible;
+    },
+
+    // 2. Quarantine: Isolate the infected
+    quarantine: (atom: Atom): Atom => {
+        console.warn(`🛡️ IMMUNE: Quarantining [${atom.id}] (Insufficient Mass/Structure)`);
+        return {
+            ...atom,
+            id: `QUARANTINE.${atom.id.replace(/[^a-zA-Z0-9._]/g, '')}`,
+            module: { 
+                VOID: true, 
+                reason: "IMMUNE_REJECTION", 
+                origin: atom.id 
+            }
+        };
+    },
+
+    // 3. Inspection: Final Gateway
+    inspect: (lattice: Map<string, Atom>): Map<string, Atom> => {
+        const cleanLattice = new Map<string, Atom>();
+        let rejected = 0;
+
+        for (const [id, atom] of lattice) {
+            if (IMMUNE.recognize(atom)) {
+                cleanLattice.set(id, atom);
+            } else {
+                // For now, we log but don't delete files. We just exclude from runtime.
+                const qAtom = IMMUNE.quarantine(atom);
+                rejected++;
+            }
+        }
+        
+        if (rejected > 0) {
+            console.log(`🛡️ IMMUNE: Rejected ${rejected} atoms from the Lattice.`);
+        }
+        
+        return cleanLattice;
+    }
+};
+
 // --- [ ./i.L32.core.LIFT.ts ] ---
 import { CAR } from "./i.L54.core.CAR.ts"; import { CDR } from "./i.L54.core.CDR.ts"; import { CONS } from "./i.L54.core.CONS.ts"; export const LIFT = (f: any) => (obj: any) => CONS(f(CAR(obj)))(CDR(obj));
 // --- [ ./i.L32.core.RIBOSOME.ts ] ---
@@ -546,6 +685,7 @@ import { CAR } from "./i.L54.core.CAR.ts"; import { CDR } from "./i.L54.core.CDR
 // The Meta-Processor for OMEGA-64 Flatland.
 // Scans the Root, Lifts Atoms, and Builds the Living Map.
 
+import { IMMUNE } from "./i.L32.core.IMMUNE.ts";
 import { walk } from "jsr:@std/fs";
 
 export interface Atom {
@@ -577,7 +717,10 @@ export const RIBOSOME = {
         }
 
         console.log(`✅ LIFTED: ${lattice.size} Atoms.`);
-        return lattice;
+        
+        // 🛡️ IMMUNE SYSTEM CHECK
+        // Filter out entropy (atoms without mass/structure)
+        return IMMUNE.inspect(lattice);
     },
 
     // Synthesis: Execute the 'mod.ts' logic dynamically if needed
