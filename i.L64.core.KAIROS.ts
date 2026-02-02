@@ -4,9 +4,10 @@
 // Ignites system-wide transitions when the moment is right.
 
 import { MUTATE } from "./i.L43.core.MUTATE.ts";
+import type { Atom } from "./i.L32.core.RIBOSOME.ts";
 
 export const KAIROS = {
-    ignite: async (lattice: any[]) => {
+    ignite: async (lattice: Atom[]) => {
         // Calculate Total Resonance
         // Simulated: In reality, sum of all INTENT scores or Atom stability
         const totalResonance = lattice.length * (Math.random() * 0.5 + 0.5); // Random sync

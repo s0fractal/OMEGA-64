@@ -1,146 +1,141 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&display=swap");
+
 :root {
-  --void: #000000;
-  --neon-blue: #00f3ff;
-  --neon-purple: #bc13fe;
-  --glass: rgba(255, 255, 255, 0.05);
-  --text-main: #e0e0e0;
+  --bg-color: #000000;
+  --accent-blue: #00f2ff;
+  --accent-gold: #ffcc00;
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --text-color: #ffffff;
 }
 
-body, html {
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-family: "Space Grotesk", sans-serif;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+
+#app {
+  position: relative;
   width: 100%;
   height: 100%;
-  background-color: var(--void);
-  color: var(--text-main);
-  font-family: "Courier New", Courier, monospace;
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  filter: blur(1px) contrast(1.2);
+}
+
+#overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem;
+  pointer-events: none;
+  z-index: 10;
+}
+
+header h1 {
+  font-size: 3.5rem;
+  letter-spacing: 0.5rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, var(--accent-blue), #fff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 20px rgba(0, 242, 255, 0.5);
+}
+
+.subtitle {
+  font-size: 1rem;
+  opacity: 0.6;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+}
+
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(15px);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+#metadata {
+  width: 300px;
+  position: absolute;
+  bottom: 5rem;
+  right: 2rem;
+  pointer-events: auto;
+}
+
+.level-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.label {
+  opacity: 0.5;
+}
+
+.resonance-gauge {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
   overflow: hidden;
 }
 
-#container {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-}
-
-#lattice-canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+#gauge-bar {
+  width: 64%;
   height: 100%;
-  z-index: 1;
+  background: var(--accent-blue);
+  box-shadow: 0 0 10px var(--accent-blue);
+  transition: width 0.3s ease;
 }
 
-#hud {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-  pointer-events: none; /* Let clicks pass to canvas */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background: radial-gradient(circle, transparent 60%, rgba(0, 0, 0, 0.8) 100%);
-}
-
-#header {
-  padding: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  border-bottom: 1px solid var(--glass);
-}
-
-h1 {
-  font-size: 3em;
-  margin: 0;
-  text-shadow: 0 0 10px var(--neon-blue);
-}
-
-.glitch {
-  position: relative;
-}
-
-#panels {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
-  flex-grow: 1;
-  align-items: center;
-}
-
-.panel {
-  background: var(--glass);
-  border: 1px solid var(--neon-blue);
-  padding: 15px;
-  width: 300px;
-  height: 400px;
-  backdrop-filter: blur(5px);
-  pointer-events: auto;
-  display: flex;
-  flex-direction: column;
-}
-
-.panel h2 {
-  border-bottom: 1px solid var(--neon-purple);
-  padding-bottom: 10px;
-  margin-top: 0;
-  font-size: 1.2em;
-  text-align: center;
-}
-
-#log-feed {
-  font-size: 0.8em;
-  overflow-y: auto;
-  flex-grow: 1;
-  font-family: monospace;
-}
-
-.log-entry {
-  margin-bottom: 5px;
-  border-left: 2px solid var(--neon-blue);
-  padding-left: 5px;
-}
-
-#entropy-graph {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-around;
-  height: 100px;
-  margin-bottom: 20px;
-  border: 1px dashed var(--text-main);
-  padding: 5px;
-}
-
-.bar {
-  width: 10%;
-  background-color: var(--neon-purple);
-  animation: pulse 1s infinite alternate;
+footer {
+  text-align: left;
+  opacity: 0.4;
+  font-size: 0.8rem;
+  letter-spacing: 0.1rem;
 }
 
 @keyframes pulse {
-  from {
-    opacity: 0.5;
+  0% {
+    opacity: 0.4;
+    text-shadow: 0 0 5px var(--accent-blue);
   }
-  to {
-    opacity: 1.0;
-  }
-}
-
-.blink {
-  animation: blinker 2s linear infinite;
-}
-
-@keyframes blinker {
   50% {
-    opacity: 0;
+    opacity: 0.8;
+    text-shadow: 0 0 20px var(--accent-blue);
+  }
+  100% {
+    opacity: 0.4;
+    text-shadow: 0 0 5px var(--accent-blue);
   }
 }
 
-.highlight {
-  color: var(--neon-blue);
-  font-weight: bold;
+footer p {
+  animation: pulse 4s infinite;
 }

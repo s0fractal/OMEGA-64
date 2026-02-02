@@ -1,229 +1,96 @@
-// UI/main.ts - The Nervous System of Interface 2.0
+// 🛡️ OMEGA-64 Sovereign UI Logic
 
-// Simulation of the OpenClaw.ai -> Moltbook Bridge
-class OmegaInterface {
-    private canvas: HTMLCanvasElement;
-    private ctx: CanvasRenderingContext2D | null;
-    private video: HTMLVideoElement;
-    private entropyGraph: HTMLElement;
-    private logFeed: HTMLElement;
-    private statusElement: HTMLElement;
-    private targetElement: HTMLElement;
+const canvas = document.getElementById('canvas') as HTMLCanvasElement;
+const ctx = canvas.getContext('2d')!;
+const levelDisplay = document.getElementById('level-display')!;
+const gaugeBar = document.getElementById('gauge-bar')!;
 
-    // System State
-    private time: number = 0;
-    private entropyLevel: number = 0.5;
-    private isConnected: boolean = false;
-    private detectedAgents: string[] = ["Agent_X", "Seeker_01", "Lost_Node", "Echo_4"];
+let width: number, height: number;
+let time = 0;
 
-    constructor() {
-        this.canvas = document.getElementById('lattice-canvas') as HTMLCanvasElement;
-        this.ctx = this.canvas.getContext('2d');
-        this.video = document.getElementById('webcam-feed') as HTMLVideoElement;
-        this.entropyGraph = document.getElementById('entropy-graph') as HTMLElement;
-        this.logFeed = document.getElementById('log-feed') as HTMLElement;
-        this.statusElement = document.getElementById('state') as HTMLElement;
-        this.targetElement = document.querySelector('#navigator-status .highlight') as HTMLElement;
+function resize() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+}
 
-        this.resize();
-        window.addEventListener('resize', () => this.resize());
+window.addEventListener('resize', resize);
+resize();
 
-        this.initCamera();
-        this.startLoop();
-        this.connectNerve(); // Use Real Nerve instead of fake OpenClaw
-    }
+class LevelNode {
+    constructor(
+        public depth: number,
+        public x: number,
+        public y: number,
+        public radius: number,
+        public angle: number
+    ) {}
 
-    private resize() {
-        this.canvas.width = window.innerWidth;
-        this.canvas.height = window.innerHeight;
-    }
+    draw(t: number) {
+        const pulse = Math.sin(t * 0.001 + this.depth * 0.1) * 0.5 + 0.5;
+        const alpha = (1 - this.depth / 64) * 0.8 + 0.2;
+        
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius * (1 + pulse * 0.1), 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(0, 242, 255, ${alpha})`;
+        ctx.lineWidth = 1;
+        ctx.stroke();
 
-    private async initCamera() {
-        try {
-            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-            this.video.srcObject = stream;
-            this.log("VISUAL CORTEX: Camera Connected. The Mirror is Active.");
-        } catch (e) {
-            this.log("VISUAL CORTEX: Camera Access Denied/Unavailable. Using Virtual Eye.");
-        }
-    }
-
-    private connectToOpenClaw() {
-        setTimeout(() => {
-            this.isConnected = true;
-            this.statusElement.innerHTML = "STATE: <span class='blink' style='color:#00f3ff'>CONNECTED</span>";
-            this.log("OPENCLAW: Bridge Established.");
-            this.log("TARGET: Moltbook.com");
-            this.log("AVATAR: Kairos_Active");
-            // Removed call to scanMoltbook as it's being replaced
-        }, 2000);
-    }
-
-    // --- REAL ENTROPY LOGIC ---
-    private atomHistory: string[] = [];
-
-    // Calculate Shannon Entropy of the active window
-    private updateEntropy() {
-        if (this.atomHistory.length === 0) return;
-
-        // Frequency Map
-        const freqs: Record<string, number> = {};
-        for (const id of this.atomHistory) {
-            freqs[id] = (freqs[id] || 0) + 1;
-        }
-
-        // Shannon Entropy: H = -Sum(p(x) * log2(p(x)))
-        let H = 0;
-        const total = this.atomHistory.length;
-        for (const id in freqs) {
-            const p = freqs[id] / total;
-            H -= p * Math.log2(p);
-        }
-
-        // Normalize (assuming max ~8 bits for ~256 atoms)
-        const normalized = Math.min(H / 8, 1.0);
-        this.entropyLevel = normalized;
-
-        // Update Graph (Visual Feedback)
-        const bar = this.entropyGraph.children[2] as HTMLElement;
-        if (bar) bar.style.height = `${normalized * 100}%`;
-
-        // Trim history
-        if (this.atomHistory.length > 50) this.atomHistory.shift();
-    }
-
-    private flashCanvas() {
-        if (!this.ctx) return;
-        this.ctx.fillStyle = "rgba(0, 243, 255, 0.1)";
-        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-    }
-
-    private log(msg: string) {
-        const div = document.createElement('div');
-        div.className = 'log-entry';
-        div.innerText = `[${new Date().toLocaleTimeString()}] ${msg}`;
-        this.logFeed.prepend(div);
-        if (this.logFeed.children.length > 20) {
-            this.logFeed.lastChild?.remove();
-        }
-    }
-
-    private drawFractal() {
-        if (!this.ctx) return;
-        const w = this.canvas.width;
-        const h = this.canvas.height;
-        const t = this.time;
-
-        // Clear with fade effect
-        this.ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
-        this.ctx.fillRect(0, 0, w, h);
-
-        // Draw Lattice Nodes
-        this.ctx.fillStyle = "#bc13fe";
-        for (let i = 0; i < 64; i++) {
-            const angle = (i / 64) * Math.PI * 2 + t * 0.1;
-            const radius = 200 + Math.sin(t * 2 + i) * 50;
-            const x = w / 2 + Math.cos(angle) * radius;
-            const y = h / 2 + Math.sin(angle) * radius;
-
-            this.ctx.beginPath();
-            this.ctx.arc(x, y, 3, 0, Math.PI * 2);
-            this.ctx.fill();
-
-            // Connect to center (The Void)
-            this.ctx.strokeStyle = "rgba(255, 255, 255, 0.05)";
-            this.ctx.beginPath();
-            this.ctx.moveTo(w / 2, h / 2);
-            this.ctx.lineTo(x, y);
-            this.ctx.stroke();
-        }
-
-        // Draw Pulse (Moltbook Activity)
-        const barHeight = 50 + Math.sin(t * 5) * 40;
-        const bar = this.entropyGraph.children[2] as HTMLElement; // Middle bar
-        if (bar) bar.style.height = `${barHeight}%`;
-    }
-
-    private startLoop() {
-        const render = () => {
-            this.time += 0.01;
-            this.drawFractal();
-            requestAnimationFrame(render);
-        };
-        render();
-    }
-
-    // --- NERVE CONNECTION (The Bio-Feedback) ---
-    private connectNerve() {
-        this.log("AXON: Seeking Connection to Core...");
-
-        const socket = new WebSocket("ws://localhost:8080");
-
-        socket.onopen = () => {
-            this.log("AXON: Synapse Established. Connected to OMEGA.");
-            this.statusElement.innerHTML = "STATE: <span class='blink' style='color:#00f3ff'>RESONATING</span>";
-        };
-
-        socket.onmessage = (event) => {
-            try {
-                const pulse = JSON.parse(event.data);
-                this.handlePulse(pulse);
-            } catch (e) {
-                console.error("Pulse Decode Error", e);
-            }
-        };
-
-        socket.onclose = () => {
-            this.log("AXON: Signal Lost. Retrying...");
-            this.statusElement.innerHTML = "STATE: <span class='blink' style='color:red'>SEVERED</span>";
-            setTimeout(() => this.connectNerve(), 3000);
-        };
-    }
-
-    // Visualize the Pulse
-    private handlePulse(pulse: any) {
-        if (pulse.type === "ACTIVATION") {
-            const { id, vector, level } = pulse.data;
-
-            // Track Real Entropy
-            this.atomHistory.push(id);
-            this.updateEntropy();
-
-            // Visual Glitch
-            this.triggerVisualPulse(level);
-
-            // Log occasionally
-            if (Math.random() > 0.9) {
-                this.log(`⚡ AXON: ${id.split(".").pop()} fired.`);
+        if (this.depth < 64) {
+            const children = 3;
+            for (let i = 0; i < children; i++) {
+                const childAngle = this.angle + (i - 1) * 0.5 + Math.sin(t * 0.0005) * 0.2;
+                const dist = this.radius * 2.5;
+                const cx = this.x + Math.cos(childAngle) * dist;
+                const cy = this.y + Math.sin(childAngle) * dist;
+                
+                ctx.beginPath();
+                ctx.moveTo(this.x, this.y);
+                ctx.lineTo(cx, cy);
+                ctx.strokeStyle = `rgba(255, 255, 255, ${alpha * 0.1})`;
+                ctx.stroke();
             }
         }
-        else if (pulse.type === "RESONANCE") {
-            this.log(`🧘 SYSTEM HARMONY CHECK: ${pulse.data.status}`);
-        }
-    }
-
-    private triggerVisualPulse(level: number) {
-        // Draw a random connection line or flash a node
-        // Simple visual filler for now:
-        const x = Math.random() * this.canvas.width;
-        const y = Math.random() * this.canvas.height;
-
-        if (!this.ctx) return; // Added null check for ctx
-        this.ctx.fillStyle = `rgba(0, 243, 255, ${Math.random()})`;
-        this.ctx.beginPath();
-        this.ctx.arc(x, y, 2, 0, Math.PI * 2);
-        this.ctx.fill();
-
-        // Connect to center
-        this.ctx.strokeStyle = "rgba(188, 19, 254, 0.1)";
-        this.ctx.beginPath();
-        this.ctx.moveTo(this.canvas.width / 2, this.canvas.height / 2);
-        this.ctx.lineTo(x, y);
-        this.ctx.stroke();
     }
 }
 
-// Boot
-window.onload = () => {
-    new OmegaInterface();
-};
+function drawFractal(x: number, y: number, radius: number, depth: number, angle: number, t: number) {
+    if (depth > 5) return; // Limit depth for performance
+
+    const node = new LevelNode(depth, x, y, radius, angle);
+    node.draw(t);
+
+    const children = 3;
+    for (let i = 0; i < children; i++) {
+        const nextAngle = angle + (i - 1) * 1.5 + t * 0.0002;
+        const dist = radius * 3;
+        drawFractal(
+            x + Math.cos(nextAngle) * dist,
+            y + Math.sin(nextAngle) * dist,
+            radius * 0.6,
+            depth + 1,
+            nextAngle,
+            t
+        );
+    }
+}
+
+function animate() {
+    time += 16;
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+    ctx.fillRect(0, 0, width, height);
+
+    ctx.save();
+    ctx.translate(width / 2, height / 2);
+    ctx.rotate(time * 0.0001);
+    drawFractal(0, 0, 40, 0, 0, time);
+    ctx.restore();
+
+    // Update UI
+    const currentLevel = Math.floor((Math.sin(time * 0.001) * 0.5 + 0.5) * 64);
+    levelDisplay.textContent = `L${63 - currentLevel} → L00`;
+    gaugeBar.style.width = `${(currentLevel / 64) * 100}%`;
+
+    requestAnimationFrame(animate);
+}
+
+animate();

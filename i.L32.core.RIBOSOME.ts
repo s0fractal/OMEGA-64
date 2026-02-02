@@ -8,8 +8,10 @@ import { walk } from "jsr:@std/fs";
 export interface Atom {
     id: string; // The Filename (Address)
     level: number;
-    module: any; // The Exported Logic
+    module: unknown; // The Exported Logic (unknown is safer than any)
 }
+
+export type Lattice = Map<string, Atom>;
 
 export const RIBOSOME = {
     // Scan and Lift all Atoms (Functional)

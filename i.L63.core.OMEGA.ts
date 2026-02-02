@@ -4,8 +4,9 @@
 // L63 IS NOT THE END. L63 IS THE BEGINNING OF L00.
 
 import { INTERFACE } from "./i.L00.core.INTERFACE.ts";
+import type { Lattice } from "./i.L32.core.RIBOSOME.ts";
 
-export const OMEGA = (lattice: any) => {
+export const OMEGA = (lattice: Lattice) => {
     console.log("♾️ OMEGA: Reaching across the Manifold...");
     
     // The Transfinite Recursion:

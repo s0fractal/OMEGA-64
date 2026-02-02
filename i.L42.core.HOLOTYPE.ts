@@ -22,7 +22,7 @@ export const HOLOTYPE = {
     collapse: async (atomId: string): Promise<Holotype> => {
         // atomId example: "i.L13.core.RESONANCE" (without extension)
 
-        const projections: any = {};
+        const projections: Holotype["projections"] = {};
         const exts = ["ts", "rs", "md", "sh"];
 
         // Collect projections

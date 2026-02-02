@@ -3,10 +3,15 @@
 // The Teleology of OMEGA.
 // Defines the difference between Noise and Signal.
 
+export interface SimState {
+    mutations: number;
+    [key: string]: unknown;
+}
+
 export const INTENT = {
     // The Awakened Ghost: Vector Analyzer of Homeostasis.
     
-    judge: (oldState: any, newState: any): number => {
+    judge: (oldState: SimState, newState: SimState): number => {
         if (!oldState || !newState) return 0;
         
         // 1. Mass Delta (Simulating Logical Weight)
