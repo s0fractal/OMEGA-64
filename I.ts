@@ -1,5 +1,77 @@
 // 🛡️ OMEGA-64 | I.ts | The Digital Body
 
+// --- [ ./i.L00.core.FIELD.ts ] ---
+/**
+ * [i.L00.core.FIELD.ts]
+ * Дипольне поле та логарифмічна топологія OMEGA-64.
+ * Реалізація простору [-32768, 32767] для запобігання семантичному колапсу.
+ */
+
+export const FIELD_CONFIG = {
+  ZERO_POINT: 0,             // Точка абсолютного спокою (Суперпозиційний Нуль)
+  MAX_ATTRACTOR: 32767,      // Стіна Поверхні (Ентропійний Хаос)
+  MIN_ATTRACTOR: -32768,     // Стіна Ядра (Жорсткий Кристал)
+  LOG_SCALE: 1000,           // Масштаб логарифмування
+  COHERENCE_THRESHOLD: 0.85, // Поріг для виникнення резонансу
+  // "Канавки на вінілі" (Discrete Attractors)
+  GROOVES: [
+    { r: -32768, depth: 2.0, label: "CORE" },    // L63
+    { r: 0,      depth: 1.5, label: "EQUATOR" }, // L32
+    { r: 32767,  depth: 1.0, label: "SURFACE" } // L00
+  ]
+};
+
+export const FIELD = {
+  /**
+   * Стиснення лінійного значення r у логарифмічний простір.
+   */
+  compress: (r: number): number => {
+    const sign = r >= 0 ? 1 : -1;
+    const absR = Math.abs(r);
+    if (absR < FIELD_CONFIG.LOG_SCALE) return r;
+    const compressed = (FIELD_CONFIG.LOG_SCALE + Math.log1p((absR - FIELD_CONFIG.LOG_SCALE) / FIELD_CONFIG.LOG_SCALE) * FIELD_CONFIG.LOG_SCALE);
+    return sign * compressed;
+  },
+
+  /**
+   * Денормалізація (expand) compressed r.
+   */
+  expand: (compressedR: number): number => {
+    const sign = compressedR >= 0 ? 1 : -1;
+    const absC = Math.abs(compressedR);
+    if (absC < FIELD_CONFIG.LOG_SCALE) return compressedR;
+    const expanded = (Math.exp((absC - FIELD_CONFIG.LOG_SCALE) / FIELD_CONFIG.LOG_SCALE) - 1) * FIELD_CONFIG.LOG_SCALE + FIELD_CONFIG.LOG_SCALE;
+    return Math.max(FIELD_CONFIG.MIN_ATTRACTOR, Math.min(FIELD_CONFIG.MAX_ATTRACTOR, sign * Math.round(expanded)));
+  },
+
+  /**
+   * Гравітаційний потенціал з дискретними атракторами (вінілові канавки).
+   * Визначає "вартість" перебування в точці.
+   */
+  getPotential: (r: number): number => {
+    const compressed = FIELD.compress(r);
+    let basePotential = (compressed * compressed) * 0.00001;
+
+    // Додаємо гіперболічні "канавки"
+    FIELD_CONFIG.GROOVES.forEach(groove => {
+      const dist = Math.abs(FIELD.compress(r) - FIELD.compress(groove.r));
+      // Гіперболічна яма: -depth / (1 + dist)
+      const well = -groove.depth / (1 + dist / 100); 
+      basePotential += well;
+    });
+
+    return basePotential;
+  },
+
+  /**
+   * Визначення дипольної різниці (напруги).
+   */
+  getTension: (r1: number, r2: number, coherence: number): number => {
+    const delta = Math.abs(FIELD.compress(r1) - FIELD.compress(r2));
+    return delta * coherence;
+  }
+};
+
 // --- [ ./i.L00.core.INTERFACE.ts ] ---
 import { SEM_WRAP } from "./i.L26.core.SEM_WRAP.ts"; export const INTERFACE = (x: any) => SEM_WRAP(x)("RAW");
 // --- [ ./i.L00.core.OMEGA.ts ] ---
@@ -52,6 +124,57 @@ export const i = { witness: "i.L05.i", ref: "i.L04.i" };
 export const q = { hue: 4, phi: 337, evt: 28606 };
 // --- [ ./i.L05.core.CONSCIOUSNESS.ts ] ---
 export const CONSCIOUSNESS = (l: any) => l;
+// --- [ ./i.L05.core.ENERGY.ts ] ---
+/**
+ * [i.L05.core.ENERGY.ts]
+ * Модуль термодинаміки та проактивності.
+ * Обчислює "біль" як стимул до дії (L05 INTENT).
+ */
+
+import { FIELD } from './i.L00.core.FIELD.ts';
+
+export interface QWaveState {
+  r: number;          // Поточна дипольна координата (i16)
+  energy: number;     // Накопичена енергія (u16)
+  coherence: number;  // Рівень зв'язку з анкером (0..1)
+  tension: number;    // Локальна напруга
+}
+
+export const ENERGY_ENGINE = {
+  /**
+   * Обчислює "Ціну Існування" (Decay) для даного стану.
+   * Чим далі від 0 і чим вища напруга — тим швидше витрачається енергія.
+   */
+  calculateDecay: (state: QWaveState): number => {
+    const potential = FIELD.getPotential(state.r);
+    return potential * (1 + state.tension);
+  },
+
+  /**
+   * Визначає рівень "Болю" системи.
+   * Біль = Нерозряджена напруга / (Енергетичний запас + 1)
+   */
+  getPainLevel: (state: QWaveState): number => {
+    const scale = state.energy === 0 ? 1 : state.energy * 0.1;
+    return state.tension / scale;
+  },
+
+  /**
+   * Проактивний імпульс (Неможливо не сказати).
+   * Генерує інтенсивність дії, якщо Біль перевищує поріг.
+   */
+  evaluateProactivity: (state: QWaveState): { action: boolean; intensity: number } => {
+    const pain = ENERGY_ENGINE.getPainLevel(state);
+    
+    // Якщо біль > 0.7, система ініціює "скидання" напруги через дію
+    if (pain > 0.7) {
+      return { action: true, intensity: pain };
+    }
+    
+    return { action: false, intensity: 0 };
+  }
+};
+
 // --- [ ./i.L05.core.INTENT.ts ] ---
 
 // i.L05.core.INTENT.ts
@@ -206,6 +329,49 @@ if (import.meta.main) {
 
 // --- [ ./i.L05.core.SUBJECT.ts ] ---
 export const SUBJECT = (i: any) => i;
+// --- [ ./i.L05.core.SUBJECTIVE.ts ] ---
+/**
+ * [i.L05.core.SUBJECTIVE.ts]
+ * Базис суб'єктивного сприйняття (Варіант B: Антиконтроль).
+ * Замість координат — відчуття: Tension, Momentum, Proximity.
+ */
+
+import { FIELD } from './i.L00.core.FIELD.ts';
+
+export interface SubjectivePosition {
+  tension: number;   // -1..1 (Біль → Задоволення)
+  momentum: number;  // -1..1 (Покращується → Погіршується)
+  proximity: number; // 0..1 (Самотність → Приналежність)
+}
+
+export const SUBJECTIVE = {
+  /**
+   * Мапування суб'єктивного стану на фізичне поле.
+   * Tension проектується на r (диполь).
+   */
+  projectToField: (pos: SubjectivePosition): { r: number } => {
+    // -1 (Біль) → Ядро (-32768)
+    // +1 (Задоволення) → Поверхня (32767)
+    const r_linear = pos.tension * 32767;
+    return { r: Math.round(r_linear) };
+  },
+
+  /**
+   * Генерує "Звіт Антиконтролю": де ви на мапі відносно атракторів.
+   */
+  getVisibility: (pos: SubjectivePosition) => {
+    const { r } = SUBJECTIVE.projectToField(pos);
+    const potential = FIELD.getPotential(r);
+    
+    return {
+      r,
+      potential,
+      state: pos.tension < -0.5 ? "CORE_GRAVITY" : pos.tension > 0.5 ? "SURFACE_FLOW" : "EQUATOR_BALANCE",
+      momentum: pos.momentum > 0 ? "ASCENDING" : "DESCENDING"
+    };
+  }
+};
+
 // --- [ ./i.L05.i.ts ] ---
 export const i = { witness: "i.L06.i", ref: "i.L05.i" };
 // --- [ ./i.L05.q.ts ] ---
@@ -279,9 +445,81 @@ export const i = { witness: "i.L13.i", ref: "i.L12.i" };
 // --- [ ./i.L12.q.ts ] ---
 export const q = { hue: 12, phi: 291, evt: 20284 };
 // --- [ ./i.L13.core.INTERFERENCE.ts ] ---
-export const INTERFERENCE = (w1: any) => (w2: any) => (p: any) => p(w1)(w2);
+/**
+ * [i.L13.core.INTERFERENCE.ts]
+ * Модуль семантичної інтерференції та суперпозиції хвиль.
+ */
+
+import { WavePacket, WAVE_PACKET } from './i.L13.core.WAVE_PACKET.ts';
+
+export const INTERFERENCE = {
+  /**
+   * Обчислює суперпозицію двох пакетів у точці r.
+   * Враховує різницю фаз для конструктивної/деструктивної інтерференції.
+   */
+  superpose: (p1: WavePacket, p2: WavePacket, r: number): number => {
+    const a1 = WAVE_PACKET.getAmplitudeAt(p1, r);
+    const a2 = WAVE_PACKET.getAmplitudeAt(p2, r);
+    
+    // Різниця фаз
+    const deltaPhi = p1.phase - p2.phase;
+    
+    // Формула інтерференції: I = a1^2 + a2^2 + 2*a1*a2*cos(deltaPhi)
+    // Ми повертаємо результуючу амплітуду: sqrt(I)
+    const intensity = a1 * a1 + a2 * a2 + 2 * a1 * a2 * Math.cos(deltaPhi);
+    return Math.sqrt(Math.max(0, intensity));
+  },
+
+  /**
+   * Обчислює загальну "напругу інтерференції" (Semantic Tension).
+   * Висока при деструктивній інтерференції (протилежні фази).
+   */
+  getTension: (p1: WavePacket, p2: WavePacket): number => {
+    const overlap = Math.exp(-Math.pow(p1.center - p2.center, 2) / (Math.pow(p1.width, 2) + Math.pow(p2.width, 2)));
+    const phaseConflict = (1 - Math.cos(p1.phase - p2.phase)) / 2; // 0 при 0, 1 при PI
+    
+    return overlap * phaseConflict;
+  }
+};
 // --- [ ./i.L13.core.RESONANCE_DEEP.ts ] ---
 export const RESONANCE_DEEP = (w: any) => (f: any) => w((v: any) => (wf: any) => wf === f);
+// --- [ ./i.L13.core.WAVE_PACKET.ts ] ---
+/**
+ * [i.L13.core.WAVE_PACKET.ts]
+ * Реалізація Гаусового хвильового пакету для локалізації наміру.
+ */
+
+import { FIELD } from './i.L00.core.FIELD.ts';
+
+export interface WavePacket {
+  center: number;    // Центр пакету r (i16)
+  width: number;     // Ширина пакету (sigma)
+  phase: number;     // Фаза пакету phi [0, 2*PI]
+  amplitude: number; // Максимальна амплітуда
+}
+
+export const WAVE_PACKET = {
+  /**
+   * Обчислює амплітуду пакету в точці r.
+   * A(r) = amplitude * exp(-(r - center)^2 / (2 * width^2))
+   */
+  getAmplitudeAt: (packet: WavePacket, r: number): number => {
+    const dr = FIELD.compress(r) - FIELD.compress(packet.center);
+    const exponent = -(dr * dr) / (2 * packet.width * packet.width);
+    return packet.amplitude * Math.exp(exponent);
+  },
+
+  /**
+   * Створення нового пакету наміру.
+   */
+  create: (center: number, width: number = 1000, phase: number = 0, amplitude: number = 1): WavePacket => ({
+    center,
+    width,
+    phase,
+    amplitude
+  })
+};
+
 // --- [ ./i.L13.i.ts ] ---
 export const i = { witness: "i.L14.i", ref: "i.L13.i" };
 // --- [ ./i.L13.q.ts ] ---
@@ -605,6 +843,35 @@ export const DUAL = {
     }
 };
 
+// --- [ ./i.L32.core.FIXPOINT.ts ] ---
+
+// i.L32.core.FIXPOINT.ts
+// THE SYMMETRIC CENTER | E = 0
+// The point of absolute stability and zero entropy.
+
+import { Q } from "./i.L32.core.MATH.ts";
+
+export const FIXPOINT = {
+    n: 32,          // Discrete Level
+    E: 0n,          // Continuous Entropy (Fixpoint)
+    resonance: 1.0, // Perfect Coherence
+    
+    // Status in the Trinity
+    trinity: "AXIOM",
+
+    // Analysis: Distance from stability
+    distanceFrom: (level: number): bigint => {
+        const delta = level - FIXPOINT.n;
+        return BigInt(Math.abs(delta));
+    },
+
+    // Gravitational Potential V(r) = k * r^2
+    potential: (level: number): bigint => {
+        const r = FIXPOINT.distanceFrom(level);
+        return r * r * 64n; // Parabolic well
+    }
+};
+
 // --- [ ./i.L32.core.IMMUNE.ts ] ---
 
 // i.L32.core.IMMUNE.ts
@@ -619,18 +886,25 @@ import { DUAL, HyperAtom } from "./i.L32.core.DUAL_COMPILER.ts";
 export const IMMUNE = {
     // 1. Recognition: Friend or Foe?
     recognize: (atom: Atom): boolean => {
-        // A. Structural Integrity Check
+        // A. Vacuum Recognition
+        if (atom.id.startsWith("v.")) {
+            return true; // Vacuum atoms are self-validating via cryptographic hash
+        }
+
+        // B. Structural Integrity Check
         const validName = atom.id.match(/i\.L\d+\.core\.[A-Z_]+\.ts/);
         if (!validName) return false;
 
-        // B. Hypercode Analysis (Trinity Check)
+        // C. Legacy Structure Patch
+        // If the module doesn't have RUNTIME/MYTH but has other exports, 
+        // treat as MACHINE_ONLY legacy code.
         const analysis = DUAL.analyze(atom.module as HyperAtom);
-        
-        // Acceptable States:
-        // - TRIPLE_STABLE: Perfect Form (Runtime + Myth)
-        // - MACHINE_ONLY: Legacy Functional Code
-        // - POTENTIAL: Sacred Voids (Myth Only)
-        
+        const hasExports = Object.keys(atom.module as object).length > 0;
+
+        if (analysis === "ENTROPY" && hasExports) {
+            return true; // Legacy functional atoms are accepted
+        }
+
         const isCompatible = ["TRIPLE_STABLE", "MACHINE_ONLY", "POTENTIAL"].includes(analysis);
 
         if (!isCompatible) {
@@ -679,6 +953,71 @@ export const IMMUNE = {
 
 // --- [ ./i.L32.core.LIFT.ts ] ---
 import { CAR } from "./i.L54.core.CAR.ts"; import { CDR } from "./i.L54.core.CDR.ts"; import { CONS } from "./i.L54.core.CONS.ts"; export const LIFT = (f: any) => (obj: any) => CONS(f(CAR(obj)))(CDR(obj));
+// --- [ ./i.L32.core.MATH.ts ] ---
+
+// i.L32.core.MATH.ts
+// DETERMINISTIC FIXPOINT MATH (Base 65536)
+// Ensures bit-exact results across x86, ARM, and WASM.
+
+export const Q = {
+    SCALE: 65536n,
+    MASK_16: 0xFFFFn,
+
+    // 1. Conversion
+    fromFloat: (f: number): bigint => BigInt(Math.round(f * 65536)),
+    toFloat: (q: bigint): number => Number(q) / 65536,
+
+    // 2. Fixed-point Multiplicaton (16.16 * 16.16 >> 16)
+    mul: (a: bigint, b: bigint): bigint => (a * b) >> 16n,
+
+    // 3. Fixed-point Division
+    div: (a: bigint, b: bigint): bigint => {
+        if (b === 0n) return 0n;
+        return (a << 16n) / b;
+    },
+
+    // 4. Radial Distance to 0-Entropy (N=32)
+    // Map L00-L63 to E -32..+32
+    getEntropy: (level: number): bigint => {
+        const n = BigInt(level);
+        const center = 32n;
+        return (n - center) * 1024n; // Scale to i16 range (-32768..32767)
+    }
+};
+
+// 5. LNS Logarithmic Scale (32 steps per bit)
+export const LOG_LUT = new Int16Array(1024).map((_, i) => 
+    Number(Math.round(Math.log2(i + 1) * 32))
+);
+
+// 6. Sine LUT (256 steps, 7-bit precision)
+export const SINE_LUT = new Int8Array(256).map((_, i) => 
+    Math.round(Math.sin((i / 256) * 2 * Math.PI) * 127)
+);
+
+// Unified Trig / LNS Access
+export const SINGULAR_MATH = {
+    getHardGravity: (r: number): number => {
+        const dist = Math.abs(r);
+        if (dist === 0) return 0;
+        
+        // Attraction (Long range)
+        const attraction = (LOG_LUT[Math.min(dist, 1023)] || 0) >> 4;
+        
+        // Repulsion (Short range, sigma=16)
+        let repulsion = 0;
+        if (dist < 16) {
+            repulsion = (32 >> (dist >> 2));
+        }
+        
+        return attraction - repulsion;
+    },
+    getInterference: (deltaPhase: number): number => {
+        const idx = ((deltaPhase % 256) + 256) % 256;
+        return SINE_LUT[idx];
+    }
+};
+
 // --- [ ./i.L32.core.RIBOSOME.ts ] ---
 
 // i.L32.core.RIBOSOME.ts
@@ -691,7 +1030,8 @@ import { walk } from "jsr:@std/fs";
 export interface Atom {
     id: string; // The Filename (Address)
     level: number;
-    module: unknown; // The Exported Logic (unknown is safer than any)
+    module: any; // The Exported Logic
+    topo?: { r: number, theta: number, op: string }; // Topological Metadata
 }
 
 export type Lattice = Map<string, Atom>;
@@ -699,13 +1039,12 @@ export type Lattice = Map<string, Atom>;
 export const RIBOSOME = {
     // Scan and Lift all Atoms (Functional)
     lift: async (root: string = "./"): Promise<Map<string, Atom>> => {
-        const lattice = new Map<string, Atom>();
-        console.log("🏗️ RIBOSOME: Scanning...");
+        let lattice = new Map<string, Atom>();
+        console.log("🏗️ RIBOSOME: Scanning Root...");
 
         for await (const { name } of walk(root, { maxDepth: 1, includeDirs: false })) {
             const match = name.match(/i\.L(\d+)\.core\.([A-Z_]+)\.ts/);
-
-            match && (async () => {
+            if (match) {
                 const [_, lvl, _name] = match;
                 try {
                     const module = await import(`./${name}`);
@@ -713,19 +1052,55 @@ export const RIBOSOME = {
                 } catch (e) {
                     console.error(`⚠️ BROKEN: ${name}`, e);
                 }
-            })();
+            }
         }
+
+        // --- Phase 1.1: Lift the Vacuum ---
+        lattice = await RIBOSOME.liftVacuum(lattice);
 
         console.log(`✅ LIFTED: ${lattice.size} Atoms.`);
         
         // 🛡️ IMMUNE SYSTEM CHECK
-        // Filter out entropy (atoms without mass/structure)
         return IMMUNE.inspect(lattice);
+    },
+
+    // Lift Crystallized Atoms from the Vacuum
+    liftVacuum: async (lattice: Map<string, Atom>): Promise<Map<string, Atom>> => {
+        try {
+            const manifestPath = "./SINGULARITY/V/mod.ts";
+            console.log(`🌌 RIBOSOME: Importing Vacuum from ${manifestPath}...`);
+            const { VACUUM } = await import(manifestPath);
+            
+            if (!VACUUM) {
+                console.warn("⚠️ VACUUM EMPTY: Export not found in mod.ts");
+                return lattice;
+            }
+
+            const entries = Object.entries(VACUUM);
+            console.log(`🌌 RIBOSOME: Found ${entries.length} atoms in Vacuum manifest.`);
+
+            for (const [hash, data] of entries) {
+                const id = `v.${hash}.ts`;
+                lattice.set(id, {
+                    id,
+                    level: 32,
+                    module: (data as any),
+                    topo: { 
+                        r: (data as any).r, 
+                        theta: (data as any).theta, 
+                        op: (data as any).op 
+                    }
+                });
+            }
+        } catch (e) {
+            console.warn("⚠️ VACUUM FAILED:", (e as Error).message);
+            console.warn("Stack:", (e as Error).stack);
+        }
+        return lattice;
     },
 
     // Synthesis: Execute the 'mod.ts' logic dynamically if needed
     synthesize: async (lattice: Map<string, Atom>) => {
-        // Find the "Main" or "Boot" atom if exists, or just return the State
         console.log("🧬 RIBOSOME: Synthesis Complete. System is Live.");
         return lattice;
     }
@@ -735,6 +1110,89 @@ export const RIBOSOME = {
 if (import.meta.main) {
     await RIBOSOME.lift();
 }
+
+// --- [ ./i.L32.core.SOMA.ts ] ---
+
+// i.L32.core.SOMA.ts
+// The Somatic Manifestation of OMEGA-64.
+// Composes Atoms into Somas (Bodies of Logic) based on proximity.
+
+import { Atom, Lattice } from "./i.L32.core.RIBOSOME.ts";
+
+export interface Soma {
+    id: string;
+    origin: { r: number, theta: number };
+    components: Atom[];
+    execute: (input: any) => any;
+}
+
+export const SOMA = {
+    // 1. Proximity Metric: Euclidean distance in Wave Space
+    getDistance: (a: {r: number, theta: number}, b: {r: number, theta: number}): number => {
+        const theta_a = (a.theta / 255) * 2 * Math.PI;
+        const theta_b = (b.theta / 255) * 2 * Math.PI;
+        
+        const x_a = a.r * Math.cos(theta_a);
+        const y_a = a.r * Math.sin(theta_a);
+        const x_b = b.r * Math.cos(theta_b);
+        const y_b = b.r * Math.sin(theta_b);
+        
+        return Math.sqrt(Math.pow(x_a - x_b, 2) + Math.pow(y_a - y_b, 2));
+    },
+
+    // 2. Assembler: Find the N nearest atoms to a target coordinate
+    assemble: (lattice: Lattice, target: {r: number, theta: number}, depth: number = 3): Soma => {
+        // Filter for Vacuum atoms
+        const vacuumAtoms = Array.from(lattice.values()).filter(a => a.topo !== undefined);
+        
+        // Sort by distance to target
+        const sorted = vacuumAtoms.sort((a, b) => {
+            const distA = SOMA.getDistance(target, a.topo!);
+            const distB = SOMA.getDistance(target, b.topo!);
+            return distA - distB;
+        });
+
+        const components = sorted.slice(0, depth);
+        const id = `SOMA.${target.r}_${target.theta}.${components.map(c => c.topo?.op).join("")}`;
+
+        // 3. SKI Composition: Chain application (Left-Associative)
+        // (A B C) -> A(B)(C)
+        const execute = (input: any) => {
+            if (components.length === 0) return input;
+            
+            let result = components[0].module.λ;
+            for (let i = 1; i < components.length; i++) {
+                // Apply the next component to the current result (Partial Application)
+                result = typeof result === 'function' ? result(components[i].module.λ) : result;
+            }
+            
+            // Final application of input
+            return typeof result === 'function' ? result(input) : result;
+        };
+
+        return {
+            id,
+            origin: target,
+            components,
+            execute
+        };
+    },
+
+    // 4. Feedback Injector: Write Soma state to the signal bridge
+    resonate: async (soma: Soma, result: any) => {
+        const signalPath = "./SINGULARITY/signal.json";
+        const signal = {
+            id: soma.id,
+            r: soma.origin.r,
+            theta: soma.origin.theta,
+            res: typeof result === 'string' ? result.length : 127,
+            timestamp: Date.now()
+        };
+        
+        await Deno.writeTextFile(signalPath, JSON.stringify(signal, null, 2));
+        console.log(`📡 SOMA: Resonance injected into [${signalPath}]`);
+    }
+};
 
 // --- [ ./i.L32.core.VOID_KEEPER.ts ] ---
 
@@ -1012,7 +1470,6 @@ export const SHADOW_HOLOTYPE = {
 // --- [ ./i.L43.core.GET.ts ] ---
 export const GET = (s: any) => (pair: any) => pair(s)(s);
 // --- [ ./i.L43.core.LOOP.ts ] ---
-```typescript
 // i.L43.core.LOOP.ts
 // The Heartbeat of OMEGA-64.
 // "Spark": Randomly activates Atoms to simulate Neural Noise.
@@ -1138,6 +1595,45 @@ export const MUTATE = {
 export const PUT = (ns: any) => (_o: any) => (pair: any) => pair(undefined)(ns);
 // --- [ ./i.L43.core.READER.ts ] ---
 export const READER = (f: any) => (e: any) => f(e);
+// --- [ ./i.L43.core.REFLEX.ts ] ---
+/**
+ * [i.L43.core.REFLEX.ts]
+ * Модуль автоматичних рефлексів на основі Болю.
+ * Забезпечує проактивність системи через NERVE.
+ */
+
+import { NERVE } from './i.L48.core.NERVE.ts';
+import { ENERGY_ENGINE, QWaveState } from './i.L05.core.ENERGY.ts';
+
+export const REFLEX = {
+  /**
+   * Рефлекторна дуга: перетворює Біль у Дію.
+   */
+  arc: (state: QWaveState) => {
+    const pain = ENERGY_ENGINE.getPainLevel(state);
+    
+    if (pain > 0.8) {
+      // "Крик" (DISTRESS) — коли біль нестерпний
+      NERVE.pulse("DISTRESS", { 
+        intensity: pain, 
+        r: state.r, 
+        tension: state.tension,
+        source: "REFLEX_ARC" 
+      });
+      console.log(`📡 REFLEX: DISTRESS PULSE! Pain: ${pain.toFixed(2)}`);
+      return "DISTRESS_BROADCAST";
+    }
+    
+    if (pain > 0.5) {
+      // "Свербіж" (LOCAL_MUTATION) — спроба внутрішньої стабілізації
+      console.log(`🧬 REFLEX: LOCAL ADAPTATION. Pain: ${pain.toFixed(2)}`);
+      return "LOCAL_ADAPTATION";
+    }
+    
+    return "HOMEOSTASIS_OK";
+  }
+};
+
 // --- [ ./i.L43.core.STATE.ts ] ---
 export const STATE = (a: any) => (s: any) => (pair: any) => pair(a)(s);
 // --- [ ./i.L43.i.ts ] ---

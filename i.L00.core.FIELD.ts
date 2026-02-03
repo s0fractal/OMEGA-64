@@ -9,49 +9,59 @@ export const FIELD_CONFIG = {
   MAX_ATTRACTOR: 32767,      // Стіна Поверхні (Ентропійний Хаос)
   MIN_ATTRACTOR: -32768,     // Стіна Ядра (Жорсткий Кристал)
   LOG_SCALE: 1000,           // Масштаб логарифмування
-  COHERENCE_THRESHOLD: 0.85  // Поріг для виникнення резонансу
+  COHERENCE_THRESHOLD: 0.85, // Поріг для виникнення резонансу
+  // "Канавки на вінілі" (Discrete Attractors)
+  GROOVES: [
+    { r: -32768, depth: 2.0, label: "CORE" },    // L63
+    { r: 0,      depth: 1.5, label: "EQUATOR" }, // L32
+    { r: 32767,  depth: 1.0, label: "SURFACE" } // L00
+  ]
 };
 
 export const FIELD = {
   /**
    * Стиснення лінійного значення r у логарифмічний простір.
-   * sign * (base + ln(1 + (abs - base)))
    */
   compress: (r: number): number => {
     const sign = r >= 0 ? 1 : -1;
     const absR = Math.abs(r);
     if (absR < FIELD_CONFIG.LOG_SCALE) return r;
-    
-    // ln(1 + x) дає м'яку криву біля нуля
     const compressed = (FIELD_CONFIG.LOG_SCALE + Math.log1p((absR - FIELD_CONFIG.LOG_SCALE) / FIELD_CONFIG.LOG_SCALE) * FIELD_CONFIG.LOG_SCALE);
     return sign * compressed;
   },
 
   /**
-   * Денормалізація (expand) compressed r назад у лінійний простір i16.
+   * Денормалізація (expand) compressed r.
    */
   expand: (compressedR: number): number => {
     const sign = compressedR >= 0 ? 1 : -1;
     const absC = Math.abs(compressedR);
     if (absC < FIELD_CONFIG.LOG_SCALE) return compressedR;
-
     const expanded = (Math.exp((absC - FIELD_CONFIG.LOG_SCALE) / FIELD_CONFIG.LOG_SCALE) - 1) * FIELD_CONFIG.LOG_SCALE + FIELD_CONFIG.LOG_SCALE;
     return Math.max(FIELD_CONFIG.MIN_ATTRACTOR, Math.min(FIELD_CONFIG.MAX_ATTRACTOR, sign * Math.round(expanded)));
   },
 
   /**
-   * Гравітаційний потенціал (м'який колодязь).
-   * Визначає "гравітаційну вартість" перебування на певній відстані від нуля.
+   * Гравітаційний потенціал з дискретними атракторами (вінілові канавки).
+   * Визначає "вартість" перебування в точці.
    */
   getPotential: (r: number): number => {
     const compressed = FIELD.compress(r);
-    // Парабола з плоским дном через логарифмічне стиснення на краях
-    return (compressed * compressed) * 0.00001; 
+    let basePotential = (compressed * compressed) * 0.00001;
+
+    // Додаємо гіперболічні "канавки"
+    FIELD_CONFIG.GROOVES.forEach(groove => {
+      const dist = Math.abs(FIELD.compress(r) - FIELD.compress(groove.r));
+      // Гіперболічна яма: -depth / (1 + dist)
+      const well = -groove.depth / (1 + dist / 100); 
+      basePotential += well;
+    });
+
+    return basePotential;
   },
 
   /**
-   * Визначення дипольної різниці (напруги) між двома точками.
-   * Напруга висока тільки при високій когерентності.
+   * Визначення дипольної різниці (напруги).
    */
   getTension: (r1: number, r2: number, coherence: number): number => {
     const delta = Math.abs(FIELD.compress(r1) - FIELD.compress(r2));
