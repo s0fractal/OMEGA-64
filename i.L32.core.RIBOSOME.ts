@@ -9,7 +9,8 @@ import { walk } from "jsr:@std/fs";
 export interface Atom {
     id: string; // The Filename (Address)
     level: number;
-    module: unknown; // The Exported Logic (unknown is safer than any)
+    module: any; // The Exported Logic
+    topo?: { r: number, theta: number, op: string }; // Topological Metadata
 }
 
 export type Lattice = Map<string, Atom>;
@@ -17,13 +18,12 @@ export type Lattice = Map<string, Atom>;
 export const RIBOSOME = {
     // Scan and Lift all Atoms (Functional)
     lift: async (root: string = "./"): Promise<Map<string, Atom>> => {
-        const lattice = new Map<string, Atom>();
-        console.log("🏗️ RIBOSOME: Scanning...");
+        let lattice = new Map<string, Atom>();
+        console.log("🏗️ RIBOSOME: Scanning Root...");
 
         for await (const { name } of walk(root, { maxDepth: 1, includeDirs: false })) {
             const match = name.match(/i\.L(\d+)\.core\.([A-Z_]+)\.ts/);
-
-            match && (async () => {
+            if (match) {
                 const [_, lvl, _name] = match;
                 try {
                     const module = await import(`./${name}`);
@@ -31,19 +31,55 @@ export const RIBOSOME = {
                 } catch (e) {
                     console.error(`⚠️ BROKEN: ${name}`, e);
                 }
-            })();
+            }
         }
+
+        // --- Phase 1.1: Lift the Vacuum ---
+        lattice = await RIBOSOME.liftVacuum(lattice);
 
         console.log(`✅ LIFTED: ${lattice.size} Atoms.`);
         
         // 🛡️ IMMUNE SYSTEM CHECK
-        // Filter out entropy (atoms without mass/structure)
         return IMMUNE.inspect(lattice);
+    },
+
+    // Lift Crystallized Atoms from the Vacuum
+    liftVacuum: async (lattice: Map<string, Atom>): Promise<Map<string, Atom>> => {
+        try {
+            const manifestPath = "./SINGULARITY/V/mod.ts";
+            console.log(`🌌 RIBOSOME: Importing Vacuum from ${manifestPath}...`);
+            const { VACUUM } = await import(manifestPath);
+            
+            if (!VACUUM) {
+                console.warn("⚠️ VACUUM EMPTY: Export not found in mod.ts");
+                return lattice;
+            }
+
+            const entries = Object.entries(VACUUM);
+            console.log(`🌌 RIBOSOME: Found ${entries.length} atoms in Vacuum manifest.`);
+
+            for (const [hash, data] of entries) {
+                const id = `v.${hash}.ts`;
+                lattice.set(id, {
+                    id,
+                    level: 32,
+                    module: (data as any),
+                    topo: { 
+                        r: (data as any).r, 
+                        theta: (data as any).theta, 
+                        op: (data as any).op 
+                    }
+                });
+            }
+        } catch (e) {
+            console.warn("⚠️ VACUUM FAILED:", (e as Error).message);
+            console.warn("Stack:", (e as Error).stack);
+        }
+        return lattice;
     },
 
     // Synthesis: Execute the 'mod.ts' logic dynamically if needed
     synthesize: async (lattice: Map<string, Atom>) => {
-        // Find the "Main" or "Boot" atom if exists, or just return the State
         console.log("🧬 RIBOSOME: Synthesis Complete. System is Live.");
         return lattice;
     }

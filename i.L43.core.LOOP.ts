@@ -1,4 +1,3 @@
-```typescript
 // i.L43.core.LOOP.ts
 // The Heartbeat of OMEGA-64.
 // "Spark": Randomly activates Atoms to simulate Neural Noise.
