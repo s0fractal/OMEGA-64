@@ -12,8 +12,9 @@ SINE_LUT = np.round(np.sin(np.linspace(0, 2 * np.pi, 256, endpoint=False)) * 127
 LOG_LUT = np.round(np.log2(np.arange(1, 1024) + 1) * 32).astype(np.int16)
 
 class MirrorEngine:
-    def __init__(self, size=64):
+    def __init__(self, size=64, phase_enabled=True):
         self.size = size
+        self.phase_enabled = phase_enabled
         np.random.seed(42)
         self.r = np.random.randint(-128, 128, (size, size), dtype=np.int16)
         self.theta = np.random.randint(0, 255, (size, size), dtype=np.uint8)
@@ -50,19 +51,24 @@ class MirrorEngine:
                 total_res = 0
                 
                 # 1. Harmonic SKI Logic
-                for ny, nx in n_coords:
-                    m_n = int(self.amp[ny, nx])
-                    p_n = int(self.theta[ny, nx])
-                    diff_p = (p_n - current_p) % 256
-                    
-                    if op == 1: # K (CONSTANT)
-                        influence = (m_n * (127 if diff_p < 4 else -127)) >> 7
-                    elif op == 2: # S (SUBSTITUTION)
-                        influence = (m_n * int(SINE_LUT[diff_p])) >> 7
-                    else: # I (IDENTITY)
-                        influence = (m_n * (127 if diff_p < 128 else -64)) >> 7
-                    
-                    total_res += influence
+                if self.phase_enabled:
+                    for ny, nx in n_coords:
+                        m_n = int(self.amp[ny, nx])
+                        p_n = int(self.theta[ny, nx])
+                        diff_p = (p_n - current_p) % 256
+                        
+                        if op == 1: # K (CONSTANT)
+                            influence = (m_n * (127 if diff_p < 4 else -127)) >> 7
+                        elif op == 2: # S (SUBSTITUTION)
+                            influence = (m_n * int(SINE_LUT[diff_p])) >> 7
+                        else: # I (IDENTITY)
+                            influence = (m_n * (127 if diff_p < 128 else -64)) >> 7
+                        
+                        total_res += influence
+                else:
+                    # Baseline: Pure magnitude-driven resonance (non-interfering)
+                    for ny, nx in n_coords:
+                        total_res += (int(self.amp[ny, nx]) >> 3)
 
                 # 2. Add External Resonance (Feedback Loop)
                 total_res += ext_res
