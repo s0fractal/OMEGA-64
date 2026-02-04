@@ -1949,8 +1949,8 @@ export const SYNTHESIS = {
   quote: "Ми не будуємо собори. Ми вирощуємо кристали, які пишуть себе самі.",
   handshake: "QUANTUM_GET",
   evolution: "RESONANCE_PATCHES",
-  mechanics: "RESONANCE_MINIMIZATION",
-  resonance: 0.995 // Майже ідеальна когерентність
+  mechanics: ["RESONANCE_MINIMIZATION", "SWARM_GLIDER_INTERFERENCE"],
+  resonance: 0.998 // Майже абсолютна.
 };
 
 // --- [ ./i.L99.core.TOPOLOGY_PROTOCOL.ts ] ---
