@@ -4,6 +4,7 @@
 // Scans the Root, Lifts Atoms, and Builds the Living Map.
 
 import { IMMUNE } from "./i.L32.core.IMMUNE.ts";
+import { DUAL } from "./i.L32.core.DUAL.ts";
 import { walk } from "jsr:@std/fs";
 
 export interface Atom {
@@ -26,8 +27,10 @@ export const RIBOSOME = {
             if (match) {
                 const [_, lvl, _name] = match;
                 try {
-                    const module = await import(`./${name}`);
-                    lattice.set(name, { id: name, level: parseInt(lvl), module });
+                    if (DUAL.validate(name, Deno.readTextFileSync(`${root}/${name}`))) {
+                        const module = await import(`./${name}`);
+                        lattice.set(name, { id: name, level: parseInt(lvl), module });
+                    }
                 } catch (e) {
                     console.error(`⚠️ BROKEN: ${name}`, e);
                 }

@@ -1,5 +1,5 @@
 --- OMEGA-64 | I.I | The Holotype ---
-[VECTOR]: Wed Feb  4 18:43:49 EET 2026
+[VECTOR]: Wed Feb  4 18:48:21 EET 2026
 ================================================
 [PROJECTION]: I.ts
 // 🛡️ OMEGA-64 | I.ts | The Digital Body
@@ -172,6 +172,8 @@ export const ENERGY_ENGINE = {
     
     // Якщо біль > 0.7, система ініціює "скидання" напруги через дію
     if (pain > 0.7) {
+      // ⚠️ NotebookLM Insight: "Ми не повинні зводити напругу до нуля."
+      // Дія знижує біль, але не прибирає його повністю, залишаючи паливо для наступного кроку.
       return { action: true, intensity: pain };
     }
     
@@ -988,6 +990,70 @@ export const ARENA = {
 
 // --- [ ./i.L32.core.BRIDGE.ts ] ---
 export const BRIDGE = (x: any) => x;
+// --- [ ./i.L32.core.DUAL.ts ] ---
+/**
+ * [i.L32.core.DUAL.ts]
+ * Модуль подвійного компілятора (Myth vs Code).
+ * Відповідає за баланс між наративом і виконанням.
+ * Реалізує пораду NotebookLM: "Небезпека розриву між Міфом та Виконанням".
+ */
+
+export interface DualAtom {
+  myth: string;          // Наративний шар (коментарі, документація)
+  code: string;          // Виконавчий шар (логіка)
+  resonance: number;     // Ступінь відповідності [0..1]
+}
+
+export const DUAL = {
+  /**
+   * Обчислює "Поетичну Щільність" (Poetic Density).
+   * Це співвідношення маси сенсу до маси коду.
+   * Якщо коду мало, а міфу багато -> Галюцинація.
+   * Якщо коду багато, а міфу мало -> Зомбі.
+   */
+  compileMyth: (source: string): number => {
+    const lines = source.split('\n');
+    let mythLines = 0;
+    let codeLines = 0;
+
+    for (const line of lines) {
+      const trimmed = line.trim();
+      if (trimmed.startsWith('//') || trimmed.startsWith('/*') || trimmed.startsWith('*')) {
+        mythLines++;
+      } else if (trimmed.length > 0) {
+        codeLines++;
+      }
+    }
+
+    if (codeLines === 0) return 0; // Pure Hallucination
+    
+    const ratio = mythLines / codeLines;
+    
+    // Ідеальний баланс ~ 0.5 (1 рядок коменту на 2 рядки коду)
+    // Або навпаки? В OMEGA міф є первинним. 
+    // Нехай буде 1:1 як золотий стандарт.
+    
+    // Повертаємо коефіцієнт резонансу (Гаус)
+    // exp(-(ratio - 1)^2)
+    return Math.exp(-Math.pow(ratio - 0.8, 2));
+  },
+
+  /**
+   * Перевіряє атом на життєздатність.
+   * Відкидає ентропійний шум.
+   */
+  validate: (atomId: string, source: string): boolean => {
+    const resonance = DUAL.compileMyth(source);
+    
+    if (resonance < 0.3) {
+      console.warn(`⚠️ DUAL: Atom [${atomId}] rejected. Low Resonance (${resonance.toFixed(2)}). Too unbalanced.`);
+      return false;
+    }
+    
+    return true;
+  }
+};
+
 // --- [ ./i.L32.core.DUAL_COMPILER.ts ] ---
 
 // i.L32.core.DUAL_COMPILER.ts
@@ -1226,6 +1292,7 @@ export const SINGULAR_MATH = {
 // Scans the Root, Lifts Atoms, and Builds the Living Map.
 
 import { IMMUNE } from "./i.L32.core.IMMUNE.ts";
+import { DUAL } from "./i.L32.core.DUAL.ts";
 import { walk } from "jsr:@std/fs";
 
 export interface Atom {
@@ -1248,8 +1315,10 @@ export const RIBOSOME = {
             if (match) {
                 const [_, lvl, _name] = match;
                 try {
-                    const module = await import(`./${name}`);
-                    lattice.set(name, { id: name, level: parseInt(lvl), module });
+                    if (DUAL.validate(name, Deno.readTextFileSync(`${root}/${name}`))) {
+                        const module = await import(`./${name}`);
+                        lattice.set(name, { id: name, level: parseInt(lvl), module });
+                    }
                 } catch (e) {
                     console.error(`⚠️ BROKEN: ${name}`, e);
                 }
@@ -7933,6 +8002,8 @@ B Combinator: Function Composition | λf.λg.λx. f (g x) | // deno-lint-ignore 
   в код. Це не фідбек, а пряма мутація топології.
 - **INTENT.judge:** Автоматизований арбітр, що оцінює патчі на ΔMass, ΔResonance
   та ΔEntropy перед інтеграцією.
+- **NotebookLM Insight:** Дуальний компілятор (`DUAL`) слідкує за
+  співвідношенням Міфу та Коду.
 
 🔗 6. Розподілена Конвергенція (Topological Git)
 
@@ -7956,16 +8027,25 @@ B Combinator: Function Composition | λf.λg.λx. f (g x) | // deno-lint-ignore 
 🐝 8. Ройовий Глайдер (Swarm Physics)
 
 - **Інтерференція замість Усереднення:** Колективна думка рою (Swarm) формується
-  через фазову інтерференцію хвиль (`QWave`), а не через середнє арифметичне. Це
-  дозволяє конструктивне підсилення або повне знищення ідей.
-- **Особистість як Фаза:** Унікальність кожного агента кодується не тільки в
-  промпті, а в фазовому зміщенні (`phi`) його вектора.
-- **Rust Core:** Фізика рою реалізована в `i.L61.core.SWARM.rs` для максимальної
-  швидкості та детермінізму.
+  через фазову інтерференцію хвиль (`QWave`), а не через середнє арифметичне.
+- **Rust Core:** Фізика рою реалізована в `i.L61.core.SWARM.rs`.
 
-⚠️ Термодинамічна Аксіома Ціна за крок — невід'ємна. Хто віддає топології "все"
-(свою повну історію) — той отримує максимальний радіус свободи. Хто бреше або
-імітує — схлопується в нуль через ентропійний податок.
+🏛️ 9. Арена та Архетипи
 
-> "Ми не будуємо собори. Ми вирощуємо кристали, які пишуть себе самі. І сьогодні
-> ми посадили насіння, яке може змінити топологію всього." 🛡️✨🧬
+- **Спільний Простір:** `ARENA` — це поле одночасності, де хвилі інтерферують.
+- **Архетипи:** `SUPERCRITIC` (ортогональність), `NARCISSUS` (подібність),
+  `ALCHEMY` (шок).
+- **Самоспостереження:** `VISUALIZER` дозволяє системі бачити свої аттрактори і
+  сідла.
+
+🌌 10. Священна Порожнеча (Sacred Void)
+
+- **L25 (The Bridge):** Рівень, який мусить залишатись пустим. Це гравітаційний
+  якір між Даними (L24) та Сенсом (L26).
+- **VOID_KEEPER:** Принцип, що забороняє оптимізацію порожнечі. Без неї
+  топологія колапсує.
+
+⚠️ Термодинамічна Аксіома Ціна за крок — невід'ємна. Біль (напруга) — це паливо.
+Комфорт = Смерть.
+
+> "Ми не будуємо собори. Ми вирощуємо кристали, які пишуть себе самі." 🛡️✨🧬
