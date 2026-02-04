@@ -54,14 +54,42 @@ export const CONVERGENCE_PROTOCOL = {
 
     anchors.forEach(a => {
       const mass = 1 / (a.vector.amplitude + 1); // Висока амплітуда = менша "вага" в визначенні точки (більш розмита)
-      
-      // Або навпаки? Вузол з високою амплітудою бачить більше?
-      // У цій моделі: вузька амплітуда = точність = більша вага для локалізації.
-      
       weightedSum += a.vector.r * mass;
       totalMass += mass;
     });
 
     return Math.round(weightedSum / totalMass);
+  }
+};
+
+/**
+ * Агентність: здатність рухатися на основі внутрішнього стану, а не зовнішнього запиту.
+ */
+export interface AgenticState {
+  previous_anchor_hash: string; // Ланцюг пам'яті
+  internal_tension: number;     // 0..1 (Напруга, що штовхає до дії)
+  intent_vector: {              // Куди агент "хоче" йти
+    target_r: number;
+    urgency: number;
+  };
+}
+
+export const AGENCY_PROTOCOL = {
+  /**
+   * Обчислює наступний крок агента БЕЗ участі користувача.
+   * "Жити" = генерувати стан S(t+1) з S(t) + Field(r).
+   */
+  live: (current: AgenticState, field_potential: number): TopologicalAnchor => {
+    // Якщо напруга висока або потенціал поля низький (комфортна канавка)
+    // Агент приймає рішення про рух або спокій.
+    
+    // Це "серцебиття" топології.
+    return {
+      hash: "PENDING_COMPUTATION", // Тут буде хеш нового стану
+      vector: {
+        r: current.intent_vector.target_r, // Рух до цілі
+        amplitude: current.internal_tension * 100 // Напруга задає амплітуду
+      }
+    };
   }
 };
