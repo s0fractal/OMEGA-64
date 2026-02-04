@@ -1,5 +1,5 @@
 --- OMEGA-64 | I.I | The Holotype ---
-[VECTOR]: Wed Feb  4 17:11:37 EET 2026
+[VECTOR]: Wed Feb  4 18:13:58 EET 2026
 ================================================
 [PROJECTION]: I.ts
 // 🛡️ OMEGA-64 | I.ts | The Digital Body
@@ -789,6 +789,203 @@ export const SEND = (obj: any) => (msg: any) => obj(msg);
 export const i = { witness: "i.L32.i", ref: "i.L31.i" };
 // --- [ ./i.L31.q.ts ] ---
 export const q = { hue: 31, phi: 182, evt: 519 };
+// --- [ ./i.L32.core.ARCHETYPE_ENGINE.ts ] ---
+/**
+ * [i.L32.core.ARCHETYPE_ENGINE.ts]
+ * Генерація нових архетипів з патернів взаємодії.
+ * "Запобіжники" — архетипи, що гасять збудження.
+ * "Розширювачі" — архетипи, що породжують нові модальності.
+ */
+
+import { ARENA, ArenaPulse } from './i.L32.core.ARENA.ts';
+import { QWave } from './i.L13.core.WAVE_PACKET.ts';
+
+export interface ArchetypeLog {
+  trigger_count: number;
+  avg_intensity: number;
+  outcomes: ('GROWTH' | 'DECAY' | 'STASIS')[];
+}
+
+// Dummy helper for analysis
+function analyze_co_occurrence(logs: Map<string, ArchetypeLog>): [string, string, number][] {
+    return []; // Placeholder logic
+}
+
+export const ARCHETYPE_ENGINE = {
+  known: new Map<string, (p: ArenaPulse, s: QWave) => number>(),
+  logs: new Map<string, ArchetypeLog>(),
+
+  // Запобіжник: гасіння, коли поле перенасичене
+  CIRCUIT_BREAKER: (pulse: any, subject: any): number | null => {
+    const current_load = ARENA.active.size;
+    if (current_load > 100) {
+      // Надмірне збудження → примусове гасіння
+      return -1; // Сигнал до DISSOLVE
+    }
+    return null; // Не спрацьовує
+  },
+
+  // Розширювач: народження нового архетипу з частого патерну
+  BUD: (): void => {
+    // Аналіз логів: якщо два архетипи спрацьовують разом часто → злиття
+    const correlations = analyze_co_occurrence(ARCHETYPE_ENGINE.logs);
+    for (const [a, b, corr] of correlations) {
+      if (corr > 0.8) {
+        const new_name = `HYBRID_${a}_${b}`;
+        
+        // This dynamic creation is conceptual in TS type system, handled via closure
+        const new_archetype = (p: ArenaPulse, s: QWave) => {
+             // Accessing original archetypes via strict typing cast or map lookup if modified ARENA
+             // Simplified for this atom:
+             return 0; 
+        };
+
+        // In a real system we would add to ARENA.ARCHETYPES dynamically if it were a Map
+        console.log(`🌱 ARCHETYPE BUDDED: ${new_name}`);
+      }
+    }
+  }
+};
+
+// --- [ ./i.L32.core.ARENA.ts ] ---
+/**
+ * [i.L32.core.ARENA.ts]
+ * Спільний простір одночасності.
+ * Не комунікація — а збудження поля, на яке реагують суб'єкти.
+ */
+
+import { QWave, WAVE_PACKET } from './i.L13.core.WAVE_PACKET.ts';
+import { INTERFERENCE } from './i.L13.core.INTERFERENCE.ts';
+import { FIELD } from './i.L00.core.FIELD.ts';
+
+export interface ArenaPulse {
+  source: string;        // Хеш джерела (анонімізований ідентифікатор)
+  wave: QWave;           // Форма збудження
+  timestamp: number;     // Для гасіння старих хвиль
+  intensity: number;     // Амплітуда подання [0..1]
+}
+
+export interface ArenaResponse {
+  subject_id: string;
+  local_gradient: number;     // Куди "тягне" поле
+  resonance_index: number;    // Наскільки збудження "співзвучне"
+  archetype_trigger: 'AMPLIFY' | 'CANCEL' | 'TRANSFORM' | 'IGNORE';
+}
+
+export const ARENA = {
+  // Спільний сектор: екваторіальна зона з максимальною чутливістю
+  SECTOR: { r_min: -8192, r_max: 8192, label: "BRIDGE_SURFACE" },
+  
+  // Активні збудження (хвилі, що ще не розсіялись)
+  active: new Map<string, ArenaPulse>(),
+  
+  // Архетипічні ваги: як типи збуджень інтерпретуються суб'єктами
+  ARCHETYPES: {
+    // Суперкритика: "це геніально" ↔ "це повна херня"
+    SUPERCRITIC: (pulse: ArenaPulse, subject_wave: QWave): number => {
+      // Ортогональність фаз → максимальна напруга, але і максимальний потенціал руху
+      const phase_diff = Math.abs(pulse.wave.phase - subject_wave.phase);
+      const orthogonality = Math.sin(phase_diff); // 1 при π/2, 0 при 0
+      
+      // Геній і дурість — одна енергія, різне сприйняття
+      return orthogonality > 0.7 ? 2.0 : 0.3; // Подвійна сила або гасіння
+    },
+    
+    // Резонанс самоподібності: "як я" — приєднання
+    NARCISSUS: (pulse: ArenaPulse, subject_wave: QWave): number => {
+      const distance = Math.abs(FIELD.compress(pulse.wave.center) - FIELD.compress(subject_wave.center));
+      return Math.exp(-distance / 1000); // Експоненційне притягання до схожих
+    },
+    
+    // Трансформаційний шок: повне неспівпадіння → фазовий перехід
+    ALCHEMY: (pulse: ArenaPulse, subject_wave: QWave): number => {
+      const dissonance = INTERFERENCE.getTension(pulse.wave, subject_wave);
+      // Висока напруга + велика амплітуда = каталізатор зміни
+      return dissonance > 0.8 && pulse.intensity > 0.7 ? 3.0 : 0.1;
+    }
+  },
+
+  /**
+   * Подання збудження в арену.
+   * Не "повідомлення" — а фізичний акт, що змінює поле для всіх.
+   */
+  excite: (pulse: ArenaPulse): void => {
+    // Гасіння старих хвиль ( half-life ~ 10 ticks )
+    const now = Date.now();
+    for (const [id, p] of ARENA.active) {
+      if (now - p.timestamp > 10000) ARENA.active.delete(id);
+    }
+    
+    ARENA.active.set(pulse.source, pulse);
+    console.log(`⚡ ARENA: Excitation from [${pulse.source.slice(0,8)}] at r=${pulse.wave.center}`);
+  },
+
+  /**
+   * Читання локального стану поля для конкретного суб'єкта.
+   * Кожен бачить "свою версію" збудження, але з єдиного джерела.
+   */
+  sense: (subject_id: string, subject_wave: QWave): ArenaResponse => {
+    // Сума всіх активних хвиль в точці суб'єкта
+    let total_field = 0;
+    let dominant_archetype: keyof typeof ARENA.ARCHETYPES = 'IGNORE';
+    let max_response = 0;
+
+    for (const [source, pulse] of ARENA.active) {
+      if (source === subject_id) continue; // Не чуємо себе
+      
+      // Обчислюємо локальну амплітуду збудження
+      const local_amp = WAVE_PACKET.getAmplitudeAt(pulse.wave, subject_wave.center);
+      
+      // Тестуємо всі архетипи, шукаємо найсильнішу реакцію
+      for (const [name, detector] of Object.entries(ARENA.ARCHETYPES)) {
+        const response = detector(pulse, subject_wave) * local_amp * pulse.intensity;
+        if (response > max_response) {
+          max_response = response;
+          dominant_archetype = name as any;
+        }
+      }
+      
+      total_field += local_amp;
+    }
+
+    // Градієнт для наступного кроку (куди рухатись)
+    const gradient = total_field > 0 ? 
+      FIELD.getPotential(subject_wave.center + 100) - FIELD.getPotential(subject_wave.center - 100) 
+      : 0;
+
+    return {
+      subject_id,
+      local_gradient: gradient,
+      resonance_index: Math.min(1, total_field / 10),
+      archetype_trigger: dominant_archetype
+    };
+  },
+
+  /**
+   * Колективна інтерференція: що "виростає" з усіх збуджень разом.
+   * Емерджентна структура, не зведена до жодного учасника.
+   */
+  emergent_pattern: (): { intensity: number; centroid: number; stability: number } => {
+    const waves = Array.from(ARENA.active.values()).map(p => p.wave);
+    if (waves.length === 0) return { intensity: 0, centroid: 0, stability: 0 };
+
+    // Векторна сума всіх хвиль (з SwarmPhysics)
+    const sum_r = waves.reduce((s, w) => s + w.center * w.amplitude, 0) / 
+                  waves.reduce((s, w) => s + w.amplitude, 0);
+    
+    const interference_pattern = waves.map((w, i) => 
+      waves.slice(i+1).reduce((sum, w2) => sum + INTERFERENCE.superpose(w, w2, sum_r), 0)
+    ).reduce((a, b) => a + b, 0);
+
+    return {
+      intensity: interference_pattern / waves.length,
+      centroid: sum_r,
+      stability: waves.length > 1 ? 
+        1 - (Math.max(...waves.map(w => Math.abs(w.center - sum_r))) / 32768) : 0
+    };
+  }
+};
+
 // --- [ ./i.L32.core.BRIDGE.ts ] ---
 export const BRIDGE = (x: any) => x;
 // --- [ ./i.L32.core.DUAL_COMPILER.ts ] ---
