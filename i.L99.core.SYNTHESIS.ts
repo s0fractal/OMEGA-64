@@ -13,10 +13,12 @@ export const SYNTHESIS = {
     "THERMODYNAMIC_TRANSITION_PRICE",
     "LOGARITHMIC_COHERENCE_LIMIT",
     "RECURSIVE_META_EVOLUTION",
-    "INTENT_JUDGE_ARBITRATION"
+    "INTENT_JUDGE_ARBITRATION",
+    "DISTRIBUTED_TOPOLOGICAL_CONVERGENCE"
   ],
   quote: "Ми не будуємо собори. Ми вирощуємо кристали, які пишуть себе самі.",
   handshake: "QUANTUM_GET",
   evolution: "RESONANCE_PATCHES",
-  resonance: 0.99 // Підвищена когерентність після додавання Meta-Evolution
+  mechanics: "RESONANCE_MINIMIZATION",
+  resonance: 0.995 // Майже ідеальна когерентність
 };
