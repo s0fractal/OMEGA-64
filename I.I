@@ -1,5 +1,5 @@
 --- OMEGA-64 | I.I | The Holotype ---
-[VECTOR]: Wed Feb  4 18:43:10 EET 2026
+[VECTOR]: Wed Feb  4 18:43:49 EET 2026
 ================================================
 [PROJECTION]: I.ts
 // 🛡️ OMEGA-64 | I.ts | The Digital Body
@@ -1888,6 +1888,8 @@ import { NERVE } from "./i.L48.core.NERVE.ts";
 import { MUTATE } from "./i.L43.core.MUTATE.ts";
 import { INTENT } from "./i.L05.core.INTENT.ts";
 import { KAIROS } from "./i.L64.core.KAIROS.ts";
+import { VISUALIZER } from "./i.L32.core.VISUALIZER.ts";
+import { ARENA } from "./i.L32.core.ARENA.ts";
 
 export const LOOP = {
     ignite: async () => {
@@ -1917,9 +1919,27 @@ export const LOOP = {
                 return; // Sleep (skip active processing for this tick)
             }
 
-            // 3. WAKING STATE (Active Mutation)
-            // Mutation Simulation (Every 5 ticks)
-            (t % 5 === 0) && (async () => {
+// 4. VISUALIZER (Self-Observation)
+            if (t % 5 === 0) {
+                const heatmap = VISUALIZER.render();
+                const features = VISUALIZER.extract_features(heatmap);
+                
+                // Vortex Detection
+                const vortices = features.filter(f => f.type === 'VORTEX');
+                if (vortices.length > 3) {
+                    console.log("🌪️ CRITICAL: Multiple vortices detected. Field restructuring imminent.");
+                }
+
+                // Propose trajectories for active agents
+                for (const [id, pulse] of ARENA.active) {
+                    const suggestions = VISUALIZER.suggest_trajectories(features, pulse.wave.center);
+                    NERVE.pulse("TOPOLOGY", { agent: id, suggestions: suggestions.slice(0, 3) });
+                }
+            }
+
+            // 5. WAKING STATE (Active Mutation)
+            // Mutation Simulation (Every 10 ticks)
+            (t % 10 === 0) && (async () => {
                 const targetId = "i.L99.core.SANDBOX.ts";
                 
                 const oldState = { mutations: Math.floor((t-5)/5) };
