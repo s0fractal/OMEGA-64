@@ -517,7 +517,7 @@ export const WAVE_PACKET = {
   create: (center: number, width: number = 1000, phase: number = 0, amplitude: number = 1): WavePacket => ({
     center,
     width,
-    phase,
+    phase: phase % (2 * Math.PI), // Canonicalize to [0, 2π)
     amplitude
   })
 };
