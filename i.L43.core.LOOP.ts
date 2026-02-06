@@ -9,6 +9,7 @@ import { INTENT } from "./i.L05.core.INTENT.ts";
 import { KAIROS } from "./i.L64.core.KAIROS.ts";
 import { VISUALIZER } from "./i.L32.core.VISUALIZER.ts";
 import { ARENA } from "./i.L32.core.ARENA.ts";
+import { CHRONO_TICK, CHRONOFLUX } from './i.L22.core.CHRONOFLUX.ts';
 
 export const LOOP = {
     ignite: async () => {
@@ -21,6 +22,13 @@ export const LOOP = {
 
         if (S === 0) return;
         NERVE.pulse("INIT", { atomCount: S });
+
+        // Initialize Chronoflux for all agents
+        atoms.forEach((atom, idx) => {
+            const initialR = atom.topo?.r || (idx % 2 === 0 ? 0 : 16384);
+            CHRONO_TICK.initAgent(atom.id, initialR);
+            console.log(`⏳ CHRONOFLUX: Agent ${atom.id} initialized at τ=${CHRONOFLUX.depthToProperTime(initialR).toFixed(3)}`);
+        });
 
         let t = 0;
         setInterval(() => {
@@ -37,6 +45,27 @@ export const LOOP = {
                 // Future: selfOrganizeByGravity(lattice);
                 return; // Sleep (skip active processing for this tick)
             }
+            // 3. CHRONOFLUX TICK (Deep Time Evolution)
+            const randomAtom = atoms[Math.floor(Math.random() * S)];
+            const chronoState = CHRONO_TICK.tick(randomAtom.id);
+            
+            if (chronoState && t % 10 === 0) {
+                console.log(`[TICK ${t}] ⏳ ${randomAtom.id}: τ=${chronoState.tau.toFixed(4)}, depth=${chronoState.depth}, flow=${chronoState.flowRate.toFixed(2)}`);
+                
+                if (chronoState.tau < 0.1) {
+                    console.log(`🕳️ EVENT HORIZON: ${randomAtom.id} approaching temporal singularity!`);
+                }
+            }
+            
+            // Synchronize two agents every 50 ticks
+            if (t % 50 === 0 && atoms.length >= 2) {
+                const [a1, a2] = [atoms[0], atoms[1]];
+                const sync = CHRONO_TICK.syncAgents(a1.id, a2.id);
+                if (sync.success) {
+                    console.log(`🔄 CHRONO-SYNC: ${a1.id} ↔ ${a2.id} shared τ=${sync.sharedTime.toFixed(4)}`);
+                }
+            }
+
 
 // 4. VISUALIZER (Self-Observation)
             if (t % 5 === 0) {
