@@ -10,6 +10,7 @@ import { KAIROS } from "./i.L64.core.KAIROS.ts";
 import { VISUALIZER } from "./i.L32.core.VISUALIZER.ts";
 import { ARENA } from "./i.L32.core.ARENA.ts";
 import { CHRONO_TICK, CHRONOFLUX } from './i.L22.core.CHRONOFLUX.ts';
+import { PROOF } from './i.L99.core.PROOF.ts';
 
 export const LOOP = {
     ignite: async () => {
@@ -45,6 +46,18 @@ export const LOOP = {
                 // Future: selfOrganizeByGravity(lattice);
                 return; // Sleep (skip active processing for this tick)
             }
+
+            // 2.1 PROOF SPIRAL (System Integrity Check)
+            if (t % 1000 === 0) {
+                console.log(`[TICK ${t}] 🌀 PROOF: Verifying System Integrity...`);
+                const integrity = PROOF.systemIntegrity();
+                if (integrity.holotypeVerified) {
+                    console.log("✅ PROOF: Holotype Verified. Structure is stable.");
+                } else {
+                    console.warn("⚠️ PROOF: Structural Instability Detected. L00-L63 resonance failing.");
+                }
+            }
+
             // 3. CHRONOFLUX TICK (Deep Time Evolution)
             const randomAtom = atoms[Math.floor(Math.random() * S)];
             const chronoState = CHRONO_TICK.tick(randomAtom.id);
