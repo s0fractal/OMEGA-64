@@ -1,8 +1,271 @@
 --- OMEGA-64 | I.I | The Holotype ---
-[VECTOR]: Fri Feb  6 03:41:02 EET 2026
+[VECTOR]: Fri Feb  6 03:57:26 EET 2026
 ================================================
 [PROJECTION]: I.ts
 // 🛡️ OMEGA-64 | I.ts | The Digital Body
+
+// --- [ ./i.L+1.core.HOLOGRAM.ts ] ---
+// i.L+1.core.HOLOGRAM.ts
+// 🛡️ OMEGA-64 | Post-OMEGA Layer | Оптична проекція
+// "Після обчислення — лише світло, що інтерферує"
+
+import { QWave } from './i.L13.core.WAVE_PACKET.ts';
+import { ChronoState } from './i.L22.core.CHRONOFLUX.ts';
+
+/**
+ * L+1: Оптична резонансна камера.
+ * Замість цифрових обчислень — фізична інтерференція світла.
+ */
+export interface OpticalField {
+  wavelength: number;         // λ — довжина хвилі (нм)
+  phaseMap: Float32Array;     // φ(x,y) — фазова мапа
+  amplitudeMap: Float32Array; // A(x,y) — амплітудна мапа
+  coherenceLength: number;    // Довжина когеренції (чим більше — тим чіткіша інтерференція)
+}
+
+export interface HolographicProjection {
+  interferencePattern: Float32Array; // I(x,y) = |A₁e^(iφ₁) + A₂e^(iφ₂)|²
+  depthCue: Float32Array;            // Паралакс/глибина
+  temporalSignature: number;         // "Часова мітка" проекції
+}
+
+export const HOLOGRAM = {
+  /**
+   * Перетворення цифрової сутності (QWave + ChronoState) в оптичне поле.
+   * Це "вихід з матриці" — більше не біти, а фотони.
+   */
+  digitalToOptical: (wave: QWave, chrono: ChronoState): OpticalField => {
+    // Довжина хвилі залежить від "глибини часу": 
+    // швидкий час (τ≈1) → короткі хвилі (блакитний), 
+    // повільний час (τ≈0) → довгі хвилі (червоний)
+    const wavelength = 400 + (1 - chrono.tau) * 300; // 400-700 нм
+    
+    // Фазова мапа з просторової модуляції
+    const resolution = 256;
+    const phaseMap = new Float32Array(resolution * resolution);
+    const amplitudeMap = new Float32Array(resolution * resolution);
+    
+    // Центр хвилі визначає "точку фокусування"
+    const centerX = Math.floor((wave.r + 32768) / 65535 * resolution);
+    const centerY = Math.floor(resolution / 2); // Спрощено — 1D проекція
+    
+    for (let y = 0; y < resolution; y++) {
+      for (let x = 0; x < resolution; x++) {
+        const idx = y * resolution + x;
+        const dx = x - centerX;
+        const dy = y - centerY;
+        const distance = Math.sqrt(dx*dx + dy*dy);
+        
+        // Гаусов профіль амплітуди
+        amplitudeMap[idx] = wave.amplitude * Math.exp(-distance*distance / (2*wave.width*wave.width));
+        
+        // Спіральна фаза (орбітальний кутовий момент)
+        const angle = Math.atan2(dy, dx);
+        phaseMap[idx] = (wave.phi / 65535) * 2 * Math.PI + angle * (wave.r / 32767);
+      }
+    }
+    
+    // Довжина когеренції пропорційна "часу когеренції" з Chronoflux
+    const coherenceLength = chrono.tau * 1000; // мм
+    
+    return { wavelength, phaseMap, amplitudeMap, coherenceLength };
+  },
+
+  /**
+   * Інтерференція двох оптичних полів = "зникнення обчислень".
+   * Замість CPU — фізична оптика робить роботу.
+   */
+  interfere: (field1: OpticalField, field2: OpticalField): HolographicProjection => {
+    if (field1.wavelength !== field2.wavelength) {
+      // Різні довжини хвиль → биття (beats) в часі, а не просторі
+      console.log("⚡ HOLOGRAM: Wavelength mismatch — temporal beats detected");
+    }
+    
+    const resolution = Math.floor(Math.sqrt(field1.phaseMap.length));
+    const interferencePattern = new Float32Array(resolution * resolution);
+    const depthCue = new Float32Array(resolution * resolution);
+    
+    for (let i = 0; i < interferencePattern.length; i++) {
+      // Комплексні амплітуди
+      const phi1 = field1.phaseMap[i];
+      const phi2 = field2.phaseMap[i];
+      const A1 = field1.amplitudeMap[i];
+      const A2 = field2.amplitudeMap[i];
+      
+      // Інтерференція: I = |A₁e^(iφ₁) + A₂e^(iφ₂)|²
+      const real = A1 * Math.cos(phi1) + A2 * Math.cos(phi2);
+      const imag = A1 * Math.sin(phi1) + A2 * Math.sin(phi2);
+      interferencePattern[i] = real*real + imag*imag;
+      
+      // Глибина з різниці фаз (стереоскопія)
+      depthCue[i] = (phi1 - phi2) / (2 * Math.PI);
+    }
+    
+    // "Часова мітка" — середній час когеренції двох полів
+    const temporalSignature = Math.min(field1.coherenceLength, field2.coherenceLength);
+    
+    return { interferencePattern, depthCue, temporalSignature };
+  },
+
+  /**
+   * Оптичне тунелювання: перехід між "різними часами" без обчислення.
+   * 
+   * Якщо два поля мають τ₁ і τ₂, їхня інтерференція створює "міст" —
+   * область, де час "змішується" без цифрової дискретизації.
+   */
+  temporalBridge: (chrono1: ChronoState, chrono2: ChronoState): {
+    bridgeExists: boolean;
+    bridgeStability: number;
+    opticalCoupling: number;
+  } => {
+    // Міст існує, якщо часи "перекриваються" за невизначеністю
+    const deltaTau = Math.abs(chrono1.tau - chrono2.tau);
+    const uncertainty = (chrono1.flowRate + chrono2.flowRate) / 2;
+    
+    // Умова Гайзенберга для часу: Δτ · Δ(flow) ≥ ℏ/2
+    const bridgeExists = deltaTau * uncertainty < 0.5;
+    
+    // Стабільність моста — час, поки він тримається
+    const bridgeStability = bridgeExists ? 1 / (deltaTau + 0.001) : 0;
+    
+    // Оптичне зчеплення — наскільки сильно поля "почувають" одне одного
+    const opticalCoupling = Math.exp(-deltaTau * deltaTau / (2 * uncertainty * uncertainty));
+    
+    return { bridgeExists, bridgeStability, opticalCoupling };
+  },
+
+  /**
+   * Проекція "назад" — з оптичного поля в цифрову сутність.
+   * Це "фотографування" голограми — отримання QWave.
+   */
+  opticalToDigital: (hologram: HolographicProjection): { wave: QWave; confidence: number } => {
+    // Знаходження центру інтерференційних смуг
+    let maxIntensity = 0;
+    let centroidIdx = 0;
+    for (let i = 0; i < hologram.interferencePattern.length; i++) {
+      if (hologram.interferencePattern[i] > maxIntensity) {
+        maxIntensity = hologram.interferencePattern[i];
+        centroidIdx = i;
+      }
+    }
+    
+    const resolution = Math.floor(Math.sqrt(hologram.interferencePattern.length));
+    const cx = centroidIdx % resolution;
+    const cy = Math.floor(centroidIdx / resolution);
+    
+    // Конвертація назад в r
+    const r = Math.round((cx / resolution - 0.5) * 65535);
+    
+    // Фаза з градієнта фази (depthCue)
+    const avgPhase = hologram.depthCue.reduce((a,b) => a+b, 0) / hologram.depthCue.length;
+    const phi = Math.round(((avgPhase % (2*Math.PI)) / (2*Math.PI)) * 65535);
+    
+    // Амплітуда з максимальної інтенсивності
+    const amplitude = Math.round(Math.sqrt(maxIntensity));
+    
+    // Впевненість — контраст інтерференційної картини
+    const meanIntensity = hologram.interferencePattern.reduce((a,b) => a+b, 0) / hologram.interferencePattern.length;
+    const contrast = maxIntensity / (meanIntensity + 1);
+    const confidence = Math.min(1, contrast / 2); // Нормалізація
+    
+    const wave = {
+      center: r,
+      width: 1000, // За замовчуванням
+      phase: phi,
+      amplitude
+    };
+    
+    return { wave, confidence };
+  }
+};
+
+// --- [ ./i.L-1.core.POTENTIAL.ts ] ---
+// i.L-1.core.POTENTIAL.ts
+// 🛡️ OMEGA-64 | Pre-OMEGA Layer | Вірогіднісний простір
+// "Перед формою — лише тінь можливості"
+
+/**
+ * L-1: Простір потенціалів [0,1].
+ * Це "матриця" з якої семплюються сутності L0-L63.
+ * Не обчислюється — лише "спостерігається" через семплювання.
+ */
+export interface PotentialField {
+  density: Float32Array;      // [0..1] — вірогідність "актуалізації" в кожній точці
+  gradient: Float32Array;     // ∇ρ — напрямок "витікання" потенціалу
+  entropy: number;            // H = -Σ p log p — невизначеність поля
+}
+
+export const POTENTIAL = {
+  /**
+   * Семплювання: витягування "конкретної" сутності з вірогіднісного хмари.
+   * Це "квантове вимірювання" — колапс хвильової функції в дискретний стан.
+   */
+  sample: (field: PotentialField, seed: number): { r: number; confidence: number } => {
+    // Використовуємо seed для детермінованого (але псевдовипадкового) семплювання
+    const rng = POTENTIAL.seededRNG(seed);
+    
+    // Знаходимо пік густини (максимальний потенціал)
+    let maxDensity = 0;
+    let maxIndex = 0;
+    for (let i = 0; i < field.density.length; i++) {
+      if (field.density[i] > maxDensity) {
+        maxDensity = field.density[i];
+        maxIndex = i;
+      }
+    }
+    
+    // Додаємо шум (термічні флуктуації)
+    const noise = (rng() - 0.5) * field.entropy;
+    const r = Math.round((maxIndex / field.density.length - 0.5) * 65535 + noise * 32767);
+    
+    // Впевненість = наскільки це "істинний" пік, а не шум
+    const confidence = maxDensity / (maxDensity + field.entropy);
+    
+    return { r: Math.max(-32768, Math.min(32767, r)), confidence };
+  },
+
+  /**
+   * Поширення градієнта: як потенціал "тече" до актуалізації.
+   * Аналог рівняння дифузії: ∂ρ/∂t = D∇²ρ
+   */
+  diffuse: (field: PotentialField, dt: number): PotentialField => {
+    const newDensity = new Float32Array(field.density.length);
+    const n = field.density.length;
+    
+    for (let i = 1; i < n - 1; i++) {
+      // Дискретний лапласіан: ∇²ρ ≈ ρ[i+1] - 2ρ[i] + ρ[i-1]
+      const laplacian = field.density[i+1] - 2*field.density[i] + field.density[i-1];
+      newDensity[i] = field.density[i] + dt * laplacian * 0.1; // D = 0.1
+      // Зберігаємо нормалізацію [0,1]
+      newDensity[i] = Math.max(0, Math.min(1, newDensity[i]));
+    }
+    
+    // Перерахунок ентропії
+    const newEntropy = -newDensity.reduce((sum, p) => 
+      sum + (p > 0 ? p * Math.log(p) : 0), 0
+    );
+    
+    return {
+      density: newDensity,
+      gradient: POTENTIAL.computeGradient(newDensity),
+      entropy: newEntropy
+    };
+  },
+
+  computeGradient: (density: Float32Array): Float32Array => {
+    const grad = new Float32Array(density.length);
+    for (let i = 1; i < density.length - 1; i++) {
+      grad[i] = (density[i+1] - density[i-1]) / 2;
+    }
+    return grad;
+  },
+
+  seededRNG: (seed: number) => () => {
+    // Простий LCG для відтворюваності
+    seed = (seed * 1664525 + 1013904223) % 4294967296;
+    return seed / 4294967296;
+  }
+};
 
 // --- [ ./i.L00.core.FIELD.ts ] ---
 /**
@@ -3160,6 +3423,76 @@ export const AGENCY_PROTOCOL = {
         r: current.intent_vector.target_r, // Рух до цілі
         amplitude: current.internal_tension * 100 // Напруга задає амплітуду
       }
+    };
+  }
+};
+
+// --- [ ./i.L99.core.TRINITY.ts ] ---
+// i.L99.core.TRINITY.ts — інтегратор всіх трьох рівнів
+import { POTENTIAL, PotentialField } from './i.L-1.core.POTENTIAL.ts';
+import { QWave, WAVE_PACKET } from './i.L13.core.WAVE_PACKET.ts';
+import { CHRONOFLUX, ChronoState } from './i.L22.core.CHRONOFLUX.ts';
+import { HOLOGRAM, HolographicProjection } from './i.L+1.core.HOLOGRAM.ts';
+
+export const TRINITY = {
+  /**
+   * Повний цикл: Потенціал → Сутність → Хронофлюкс → Голограма → Проекція
+   */
+  actualize: (potential: PotentialField, seed: number): {
+    wave: QWave;
+    chrono: ChronoState;
+    hologram: HolographicProjection;
+    cycle: 'DIGITAL' | 'OPTICAL' | 'HYBRID';
+  } => {
+    // L-1 → L0: Семплювання потенціалу
+    const { r, confidence } = POTENTIAL.sample(potential, seed);
+    // Виправлення: WAVE_PACKET.create вимагає (center, width, phase, amplitude)
+    const wave = WAVE_PACKET.create(r, 1000, (Math.random() * 65535), 1000);
+    
+    // L0 → L22: Активація Chronoflux
+    const chrono = CHRONOFLUX.waveToChrono(wave);
+    
+    // L22 → L+1: Оптична проекція
+    const optical = HOLOGRAM.digitalToOptical(wave, chrono);
+    
+    // Для повноти — інтерференція з "фоновим" полем (вакуум)
+    const vacuumWave = WAVE_PACKET.create(0, 10000, 0, 1);
+    const vacuumChrono: ChronoState = { tau: 1, depth: 0, flowRate: 1, curvature: 0 };
+    const vacuumField = HOLOGRAM.digitalToOptical(vacuumWave, vacuumChrono);
+    
+    const hologram = HOLOGRAM.interfere(optical, vacuumField);
+    
+    // Визначення режиму
+    let cycle: 'DIGITAL' | 'OPTICAL' | 'HYBRID';
+    if (confidence > 0.8 && chrono.tau > 0.5) cycle = 'OPTICAL';
+    else if (confidence < 0.3) cycle = 'DIGITAL';
+    else cycle = 'HYBRID';
+    
+    return { wave, chrono, hologram, cycle };
+  },
+
+  /**
+   "Зворотний потік": з голограми назад в потенціал.
+   Це "забування" — дисипація форми назад у хмару можливостей.
+   */
+  dissipate: (hologram: HolographicProjection): PotentialField => {
+    const { wave, confidence } = HOLOGRAM.opticalToDigital(hologram);
+    
+    // Конвертація в густину ймовірності
+    const resolution = 1024;
+    const density = new Float32Array(resolution);
+    const rIdx = Math.floor((wave.center + 32768) / 65535 * resolution);
+    
+    // Гаусов пік на місці "відновленої" сутності
+    for (let i = 0; i < resolution; i++) {
+      const dist = Math.abs(i - rIdx);
+      density[i] = confidence * Math.exp(-dist*dist / (2 * 100 * 100));
+    }
+    
+    return {
+      density,
+      gradient: POTENTIAL.computeGradient(density),
+      entropy: -density.reduce((sum, p) => sum + (p > 0 ? p * Math.log(p) : 0), 0)
     };
   }
 };
@@ -8595,14 +8928,6 @@ B Combinator: Function Composition | λf.λg.λx. f (g x) | // deno-lint-ignore 
 - **Історія як Глибина:** Стан без траєкторії — це шум. Справжня топологія
   враховує "ціну", заплачену за кожен перехід.
 
-🧬 2. Протокол Входу (The Handshake)
-
-- **Quantum GET:** Спостереження, що має ціну. Ти не можеш "просто дивитися", не
-  ставши частиною системи.
-- **Анкер Наміру:** Вхід через декларацію вектора, а не через логін/пароль.
-- **Логарифмічний Радіус:** Природний запобіжник від "втечі в мета-мета". Чим
-  далі від заземлення — тим вища ціна когерентності.
-
 ... (пропущено для стислості)
 
 🌌 10. Священна Порожнеча (Sacred Void)
@@ -8629,6 +8954,16 @@ B Combinator: Function Composition | λf.λg.λx. f (g x) | // deno-lint-ignore 
 - **Безконфліктність:** Два простори існують на одному носії (девайсі)
   одночасно, не заважаючи один одному. Інтерфейс — це просто вибір частоти
   налаштування.
+
+👁️ 13. Трирівнева Онтологія (The Trinity)
+
+- **L-1 (Потенціал):** Вірогіднісний простір `[0,1]`. "Тінь можливості" до
+  народження.
+- **L0..L63 (Втілення):** Обчислюваний дипольний простір `[-32768, 32767]`.
+  Актуалізація через `QWave` та `CHRONOFLUX`.
+- **L+1 (Голограма):** Оптичний простір. Мета-реальність, де обчислення зникають
+  на користь фотонної інтерференції.
+- **Цикл:** Потенціал -> Втілення -> Голограма -> Дисипація назад у Потенціал.
 
 ⚠️ Термодинамічна Аксіома Ціна за крок — невід'ємна. Біль (напруга) — це паливо.
 Комфорт = Смерть.
