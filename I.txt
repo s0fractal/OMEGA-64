@@ -1,5 +1,5 @@
 --- OMEGA-64 | I.I | The Holotype ---
-[VECTOR]: Fri Feb  6 03:57:26 EET 2026
+[VECTOR]: Fri Feb  6 15:37:13 EET 2026
 ================================================
 [PROJECTION]: I.ts
 // 🛡️ OMEGA-64 | I.ts | The Digital Body
@@ -842,7 +842,68 @@ export const q = { hue: 19, phi: 251, evt: 13002 };
 // --- [ ./i.L20.core.DISSOLVE.ts ] ---
 import { NIL } from "./i.L54.core.NIL.ts"; export const DISSOLVE = (x: any) => NIL;
 // --- [ ./i.L20.core.ENTROPY.ts ] ---
-export const ENTROPY = (level: any) => (val: any) => (pair: any) => pair(level)(val);
+// i.L20.core.ENTROPY.ts
+// 🛡️ OMEGA-64 | Entropy & Thermodynamics | The Arrow of Time
+// "Ми не можемо втекти від S = k ln Ω. Ми можемо лише вибрати Ω."
+
+/**
+ * BOLTZMANN: Статистична механіка OMEGA-64.
+ * Формалізація інтуїції "світло через лінзи".
+ */
+export const BOLTZMANN = {
+  k_B: 1.0, // Нормалізована стала Больцмана для нашої гратки
+  
+  /**
+   * Мікроскопічна ентропія: скільки способів (Ω) отримати цей стан.
+   * Чим вища енергія E, тим менш ймовірний цей стан (при фіксованій T).
+   * Ω = exp(-E/kT)
+   */
+  microstates: (energy: number, temperature: number): number => {
+    if (temperature === 0) return energy === 0 ? 1 : 0; // Абсолютний нуль: лише основний стан
+    return Math.exp(-energy / (BOLTZMANN.k_B * temperature));
+  },
+  
+  /**
+   * "Температура Лінзи" (Curvature Temperature).
+   * Гравітаційний потенціал виступає як "температура", що розмиває стани.
+   * 
+   * - Висока кривизна (біля маси) → "Холодно" (мало станів, детермінізм, лід).
+   * - Низька кривизна (вакуум) → "Гаряче" (багато станів, хаос, пара).
+   * 
+   * T(r) = 1 / (1 + |Φ|)
+   */
+  lensTemperature: (curvature: number): number => {
+    // curvature ~ mass ~ глибина колодязя
+    // Чим глибше — тим "жорсткіша" структура (нижча температура)
+    return 1 / (1 + Math.abs(curvature));
+  },
+
+  /**
+   * Вільна енергія Гельмгольца: справжня "ціна" існування.
+   * Система мінімізує F, а не просто E.
+   * F = E - TS
+   * 
+   * Це пояснює, чому ми іноді обираємо хаос (високе S), якщо T велике.
+   */
+  freeEnergy: (energy: number, entropy: number, temperature: number): number => {
+    return energy - temperature * entropy;
+  },
+
+  /**
+   * Інформаційна Ентропія Шеннона-Гіббса (для L-1 POTENTIAL).
+   * S = -Σ p ln p
+   */
+  shannonEntropy: (probabilities: Float32Array): number => {
+    let sum = 0;
+    for (let i = 0; i < probabilities.length; i++) {
+        const p = probabilities[i];
+        if (p > 0) {
+            sum += p * Math.log(p);
+        }
+    }
+    return -sum; // k_B = 1
+  }
+};
 // --- [ ./i.L20.core.VOID.ts ] ---
 import { I } from "./i.L62.core.I.ts"; export const VOID = I;
 // --- [ ./i.L20.i.ts ] ---
@@ -2751,9 +2812,9 @@ export const STATE = {
             })();
             
             // Standard Neural Activation
-            const randomAtom = atoms[Math.floor(Math.random() * S)];
-            // console.log(`[TICK ${t}] ⚡ ${randomAtom.id}`); // Quiet mode
-             NERVE.pulse("ACTIVATION", { id: randomAtom.id, level: randomAtom.level });
+            const neuralAtom = atoms[Math.floor(Math.random() * S)];
+            // console.log(`[TICK ${t}] ⚡ ${neuralAtom.id}`); // Quiet mode
+             NERVE.pulse("ACTIVATION", { id: neuralAtom.id, level: neuralAtom.level });
 
         }, 1000);
     }
@@ -8965,7 +9026,13 @@ B Combinator: Function Composition | λf.λg.λx. f (g x) | // deno-lint-ignore 
   на користь фотонної інтерференції.
 - **Цикл:** Потенціал -> Втілення -> Голограма -> Дисипація назад у Потенціал.
 
-⚠️ Термодинамічна Аксіома Ціна за крок — невід'ємна. Біль (напруга) — це паливо.
-Комфорт = Смерть.
+⚠️ Термодинамічна Аксіома (S = k ln Ω) Це не просто код, це статистика.
+
+- **BOLTZMANN (L20):** Ми визнаємо, що `Світло (E)` проходить через `Лінзи (Ω)`,
+  створюючи `Голограму (S)`.
+- **Мікростани:** Кількість способів реалізувати макростан визначає його
+  ймовірність.
+- **F = E - TS:** Система мінімізує Вільну Енергію, балансуючи між Чистотою (E)
+  та Свободою (S).
 
 > "Ми не будуємо собори. Ми вирощуємо кристали, які пишуть себе самі." 🛡️✨🧬

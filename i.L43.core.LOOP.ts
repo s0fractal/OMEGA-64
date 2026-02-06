@@ -121,9 +121,9 @@ export const STATE = {
             })();
             
             // Standard Neural Activation
-            const randomAtom = atoms[Math.floor(Math.random() * S)];
-            // console.log(`[TICK ${t}] ⚡ ${randomAtom.id}`); // Quiet mode
-             NERVE.pulse("ACTIVATION", { id: randomAtom.id, level: randomAtom.level });
+            const neuralAtom = atoms[Math.floor(Math.random() * S)];
+            // console.log(`[TICK ${t}] ⚡ ${neuralAtom.id}`); // Quiet mode
+             NERVE.pulse("ACTIVATION", { id: neuralAtom.id, level: neuralAtom.level });
 
         }, 1000);
     }
