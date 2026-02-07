@@ -1,5 +1,5 @@
 --- OMEGA-64 | I.I | The Holotype ---
-[VECTOR]: Sat Feb  7 02:30:14 EET 2026
+[VECTOR]: Sat Feb  7 02:35:15 EET 2026
 ================================================
 [PROJECTION]: I.ts
 // 🛡️ OMEGA-64 | I.ts | The Digital Body
@@ -1270,10 +1270,11 @@ export const RESONANCE_DEEP = (w: any) => (f: any) => w((v: any) => (wf: any) =>
 
 import { FIELD } from './i.L00.core.FIELD.ts';
 
-export interface WavePacket {
+// Renamed to QWave for consistency with Color Topology
+export interface QWave {
   center: number;    // Центр пакету r (i16)
   width: number;     // Ширина пакету (sigma)
-  phase: number;     // Фаза пакету phi [0, 2*PI]
+  phase: number;     // Фаза пакету phi [0, 65535]
   amplitude: number; // Максимальна амплітуда
 }
 
@@ -1282,7 +1283,7 @@ export const WAVE_PACKET = {
    * Обчислює амплітуду пакету в точці r.
    * A(r) = amplitude * exp(-(r - center)^2 / (2 * width^2))
    */
-  getAmplitudeAt: (packet: WavePacket, r: number): number => {
+  getAmplitudeAt: (packet: QWave, r: number): number => {
     const dr = FIELD.compress(r) - FIELD.compress(packet.center);
     const exponent = -(dr * dr) / (2 * packet.width * packet.width);
     return packet.amplitude * Math.exp(exponent);
@@ -1291,10 +1292,10 @@ export const WAVE_PACKET = {
   /**
    * Створення нового пакету наміру.
    */
-  create: (center: number, width: number = 1000, phase: number = 0, amplitude: number = 1): WavePacket => ({
+  create: (center: number, width: number = 1000, phase: number = 0, amplitude: number = 1): QWave => ({
     center,
     width,
-    phase: phase % (2 * Math.PI), // Canonicalize to [0, 2π)
+    phase: Math.round(phase * 65535 / (2 * Math.PI)) % 65535, // Convert rad to u16 phase
     amplitude
   })
 };
