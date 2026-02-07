@@ -81,7 +81,7 @@ export const CHROMO_STATE = {
         if (matchScore > 0.5) {
           // Піксель активний — кодуємо інформацію
           const intensity = Math.round(matchScore * 255);
-          const tempColor = CHROMO_STATE.depthToTemperature(state.wave.r);
+          const tempColor = CHROMO_STATE.depthToTemperature(state.wave.center);
           
           setPixel(canvas, x, y, 
             tempColor.r * intensity / 255,
@@ -219,7 +219,7 @@ export const CHROMO_STATE = {
     const tauMatch = 1 - Math.abs(layer.tau - state.chrono.tau);
     const phiDiff = Math.abs(layer.phi - state.wave.phase);
     const phiMatch = 1 - (phiDiff > 32767 ? 65535 - phiDiff : phiDiff) / 32767;
-    const rMatch = 1 - Math.abs(layer.r - state.wave.r) / 65535;
+    const rMatch = 1 - Math.abs(layer.r - state.wave.center) / 65535;
     
     // Вагова сума
     return tauMatch * 0.4 + phiMatch * 0.4 + rMatch * 0.2;

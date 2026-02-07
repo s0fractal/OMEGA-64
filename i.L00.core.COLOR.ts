@@ -38,11 +38,11 @@ export const CHROMO = {
   waveToHsv: (wave: QWave): HSV => {
     // Hue: фаза → кут
     // phi ∈ [0, 65535] → h ∈ [0, 360]
-    const h = (wave.phi / 65535) * 360;
+    const h = (wave.phase / 65535) * 360;
     
     // Saturation: відстань від центру (r=0)
     // |r| ∈ [0, 32767] → s ∈ [0, 1]
-    const s = Math.abs(wave.r) / FIELD_CONFIG.MAX_ATTRACTOR;
+    const s = Math.abs(wave.center) / FIELD_CONFIG.MAX_ATTRACTOR;
     
     // Value: амплітуда нормалізована
     // amplitude ∈ [0, 65535] → v ∈ [0, 1]

@@ -347,7 +347,7 @@ export const CHROMO_STATE = {
         if (matchScore > 0.5) {
           // Піксель активний — кодуємо інформацію
           const intensity = Math.round(matchScore * 255);
-          const tempColor = CHROMO_STATE.depthToTemperature(state.wave.r);
+          const tempColor = CHROMO_STATE.depthToTemperature(state.wave.center);
           
           setPixel(canvas, x, y, 
             tempColor.r * intensity / 255,
@@ -485,7 +485,7 @@ export const CHROMO_STATE = {
     const tauMatch = 1 - Math.abs(layer.tau - state.chrono.tau);
     const phiDiff = Math.abs(layer.phi - state.wave.phase);
     const phiMatch = 1 - (phiDiff > 32767 ? 65535 - phiDiff : phiDiff) / 32767;
-    const rMatch = 1 - Math.abs(layer.r - state.wave.r) / 65535;
+    const rMatch = 1 - Math.abs(layer.r - state.wave.center) / 65535;
     
     // Вагова сума
     return tauMatch * 0.4 + phiMatch * 0.4 + rMatch * 0.2;
@@ -574,11 +574,11 @@ export const CHROMO = {
   waveToHsv: (wave: QWave): HSV => {
     // Hue: фаза → кут
     // phi ∈ [0, 65535] → h ∈ [0, 360]
-    const h = (wave.phi / 65535) * 360;
+    const h = (wave.phase / 65535) * 360;
     
     // Saturation: відстань від центру (r=0)
     // |r| ∈ [0, 32767] → s ∈ [0, 1]
-    const s = Math.abs(wave.r) / FIELD_CONFIG.MAX_ATTRACTOR;
+    const s = Math.abs(wave.center) / FIELD_CONFIG.MAX_ATTRACTOR;
     
     // Value: амплітуда нормалізована
     // amplitude ∈ [0, 65535] → v ∈ [0, 1]
