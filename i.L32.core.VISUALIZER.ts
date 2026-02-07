@@ -6,6 +6,8 @@
 
 import { FIELD, FIELD_CONFIG } from './i.L00.core.FIELD.ts';
 import { ARENA } from './i.L32.core.ARENA.ts';
+import { TOPO_COLOR_MAP, CHROMO, RGB } from './i.L00.core.COLOR.ts';
+import { QWave, WAVE_PACKET } from './i.L13.core.WAVE_PACKET.ts';
 
 export interface HeatCell {
   r: number;           // Позиція в полі
