@@ -1,5 +1,5 @@
 --- OMEGA-64 | I.I | The Holotype ---
-[VECTOR]: Sat Feb  7 02:44:41 EET 2026
+[VECTOR]: Mon Feb  9 00:52:57 EET 2026
 ================================================
 [PROJECTION]: I.ts
 // 🛡️ OMEGA-64 | I.ts | The Digital Body
@@ -437,7 +437,6 @@ export const CHROMO_STATE = {
     
     return {
       wave: {
-        id: "",
         center: Math.round(estimatedR),
         width: 1000, // Стандартна невизначеність
         phase: Math.round(avgPhi),

@@ -167,7 +167,6 @@ export const CHROMO_STATE = {
     
     return {
       wave: {
-        id: "",
         center: Math.round(estimatedR),
         width: 1000, // Стандартна невизначеність
         phase: Math.round(avgPhi),
