@@ -1,0 +1,1 @@
+export const ACCESS_BY_RESONANCE = (o: any) => (n: any) => { const d = Math.abs((o?.phi ?? 0) - (n?.phi ?? 0)); const p = (d > 32767 ? 65535 - d : d) / 32767; const r = (1 - p) * (o?.stability ?? 1) * (n?.stability ?? 1); return r > 0.9 ? "MERGE" : r > 0.7 ? "WRITE" : r > 0.4 ? "INTERACT" : "READ"; };
