@@ -9,11 +9,11 @@ let width: number, height: number;
 let time = 0;
 
 function resize() {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
+    width = canvas.width = globalThis.innerWidth;
+    height = canvas.height = globalThis.innerHeight;
 }
 
-window.addEventListener('resize', resize);
+globalThis.addEventListener('resize', resize);
 resize();
 
 class LevelNode {
