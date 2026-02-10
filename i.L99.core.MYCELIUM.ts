@@ -2,9 +2,9 @@
 // 🛡️ OMEGA-64 | Life Act | The Mycelium Loop
 // "Життя — це не стан. Це дія по зменшенню локальної ентропії."
 
-import { FIELD } from '../i.L00.core.FIELD.ts';
+import { FIELD } from './i.L00.core.FIELD.ts';
 import { LOAD, LoadInput } from './i.L99.core.LOAD.ts';
-import { QWave } from '../i.L13.core.WAVE_PACKET.ts';
+import { QWave } from './i.L13.core.WAVE_PACKET.ts';
 
 export interface MyceliumAgent {
   id: string;

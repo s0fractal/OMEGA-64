@@ -2,7 +2,7 @@
 // 🛡️ OMEGA-64 | Entropy Dynamics | Hybrid Load Model
 // "Тягар — це не вага. Тягар — це тертя."
 
-import { AccessLevel } from '../i.L00.core.ACCESS_BY_RESONANCE.ts';
+import { AccessLevel } from './i.L00.core.ACCESS_BY_RESONANCE.ts';
 
 export interface LoadInput {
   entropy: number;       // Ентропія (-32768..32767)
