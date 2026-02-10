@@ -1,1 +1,70 @@
-export const ACCESS_BY_RESONANCE = (o: any) => (n: any) => { const d = Math.abs((o?.phi ?? 0) - (n?.phi ?? 0)); const p = (d > 32767 ? 65535 - d : d) / 32767; const r = (1 - p) * (o?.stability ?? 1) * (n?.stability ?? 1); return r > 0.9 ? "MERGE" : r > 0.7 ? "WRITE" : r > 0.4 ? "INTERACT" : "READ"; };
+// i.L00.core.ACCESS_BY_RESONANCE.ts
+// 🛡️ OMEGA-64 | Social Physics | Access by Resonance
+// "Право голосу визначається не статусом, а здатністю співати в унісон."
+
+export interface ResonanceProfile {
+  phase: number;      // Фаза агента [0, 65535]
+  stability: number;  // Стабільність агента [0, 1]
+}
+
+export type AccessLevel = "READ" | "INTERACT" | "WRITE" | "MERGE" | "NULL";
+
+/**
+ * Фізика доступу.
+ * Замість ACL списків — перевірка резонансу.
+ */
+export const ACCESS_BY_RESONANCE = {
+  /**
+   * Обчислює рівень доступу на основі різниці фаз та стабільності.
+   * 
+   * @param object - Сутність, до якої звертаються (Target)
+   * @param agent - Агент, що звертається (Source)
+   */
+  check: (object: Partial<ResonanceProfile>, agent: Partial<ResonanceProfile>): AccessLevel => {
+    // 1. Різниця фаз (Phase Mismatch)
+    const phi1 = object.phase ?? 0;
+    const phi2 = agent.phase ?? 0;
+    
+    let dPhi = Math.abs(phi1 - phi2);
+    if (dPhi > 32767) {
+      dPhi = 65535 - dPhi; // Найкоротший шлях по колу
+    }
+    
+    // Нормалізований дисонанс [0, 1] (0 = резонанс, 1 = протифаза)
+    const dissonance = dPhi / 32767;
+    const resonance = 1 - dissonance;
+
+    // 2. Врахування стабільності (якщо хтось нестабільний — зв'язок слабшає)
+    const stabilityFactor = (object.stability ?? 1) * (agent.stability ?? 1);
+    
+    // 3. Ефективний коефіцієнт зв'язку (Coupling Coefficient)
+    const coupling = resonance * stabilityFactor;
+
+    // 4. Квантування доступу (Thresholds)
+    if (coupling > 0.9) return "MERGE";    // Повне злиття / Канонізація
+    if (coupling > 0.7) return "WRITE";    // Вплив / Мутація
+    if (coupling > 0.4) return "INTERACT"; // Взаємодія / Сигнал
+    if (coupling > 0.1) return "READ";     // Спостереження
+    
+    return "NULL"; // Шум, немає зв'язку
+  },
+
+  /**
+   * Обчислює енергетичну вартість дії для даного рівня резонансу.
+   * Чим менший резонанс, тим дорожче діяти.
+   */
+  cost: (level: AccessLevel, coupling: number): number => {
+    const baseCost = 10;
+    // Опір середовища обернено пропорційний резонансу
+    // Cost ~ 1 / coupling^2
+    const resistance = coupling > 0.01 ? 1 / (coupling * coupling) : 1000;
+    
+    switch (level) {
+      case "MERGE": return baseCost * resistance * 10; // Найдорожче, бо змінює структуру
+      case "WRITE": return baseCost * resistance * 5;
+      case "INTERACT": return baseCost * resistance * 2;
+      case "READ": return baseCost * resistance;
+      default: return Infinity;
+    }
+  }
+};

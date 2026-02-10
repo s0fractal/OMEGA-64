@@ -11,6 +11,8 @@ import { VISUALIZER } from "./i.L32.core.VISUALIZER.ts";
 import { ARENA } from "./i.L32.core.ARENA.ts";
 import { CHRONO_TICK, CHRONOFLUX } from './i.L22.core.CHRONOFLUX.ts';
 import { PROOF } from './i.L99.core.PROOF.ts';
+import { MYCELIUM, MyceliumAgent } from './i.L99.core.MYCELIUM.ts';
+import { WAVE_PACKET } from './i.L13.core.WAVE_PACKET.ts';
 
 export const LOOP = {
     ignite: async () => {
@@ -56,6 +58,20 @@ export const LOOP = {
                 } else {
                     console.warn("⚠️ PROOF: Structural Instability Detected. L00-L63 resonance failing.");
                 }
+            }
+
+            // 2.2 MYCELIUM LOOP (Life Act)
+            if (t % 100 === 0) {
+                 // Create a transient agent for simulation
+                 const seedAgent: MyceliumAgent = {
+                     id: `mycelium-${t}`,
+                     wave: WAVE_PACKET.create(Math.floor(Math.random() * 60000) - 30000, 1000, Math.floor(Math.random()*65535), 10000),
+                     stamina: 100
+                 };
+                 
+                 // Live one cycle
+                 const result = MYCELIUM.live(seedAgent, []); // No neighbours in this simple test
+                 // console.log(`[TICK ${t}] 🍄 MYCELIUM: ${result.action} (Cost: ${result.cost.toFixed(2)})`);
             }
 
             // 3. CHRONOFLUX TICK (Deep Time Evolution)

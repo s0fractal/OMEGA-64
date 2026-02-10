@@ -1106,6 +1106,218 @@ B Combinator: Function Composition | λf.λg.λx. f (g x) | // deno-lint-ignore 
 <!-- [ ./i.L63.q.md ] -->
 // Entropy: -32768 | Phase: 0°
 
+<!-- [ ./i.L99.core.CANON.md ] -->
+# i.L99.core.CANON
+
+OMEGA = space of individualization and resonance (living drift is allowed).
+Sigma-GLYPH = network canon without drift (bit-exact contract).
+
+Artifacts from OMEGA may be canonized in Sigma-GLYPH.
+From Sigma-GLYPH back into OMEGA flow only invariants, not rules.
+
+Principles of elegant coupling:
+1. Two truth modes: OMEGA = resonance/sense, Sigma-GLYPH = contract/reproducibility.
+2. Asymmetric permeability: invariants flow both ways, rules only into Sigma-GLYPH.
+3. Canonization is an event, not refactoring; only crystallized artifacts ascend.
+4. Minimal bridge: a membrane, not a highway.
+5. Local drift, global invariant: OMEGA can drift with traces; Sigma-GLYPH stays stable.
+
+Compass: The canon must be deterministic; perception must be resonant.
+Compass: The OMEGA lattice is not time but causal fabric; it can be scaled without changing causality.
+
+Scale law (concept):
+1. Causality order is preserved under scale shifts.
+2. Expansion consumes energy; compression returns it (explicit bookkeeping).
+3. Collective resonance can support temporary expansion in exchange for shared coherence maps.
+
+Compass: The minimal role of the network is to report drift, not to correct it.
+
+Compass: A polar axis should be layered: cosmic background, temporary network beacon, local context. Drift is reported across layers.
+Compass: Windows are temporary organs of nodes; topology is primary.
+Compass: Minimum aliveness is a mycelium loop (cohere, remember, flow).
+Compass: Canon is a latent invariant; interpretations are its projections; multi-projection resonance reveals canon.
+Compass: Deep layers stabilize into a field; ordinary agents operate in L00–L32 with L32 as integration band.
+Compass: Sigma-GLYPH anchors the deep foundation; OMEGA sustains living drift above.
+Compass: Keep the foundation rigid without petrifying the whole; let ecosystems resonate.
+
+
+<!-- [ ./i.L99.core.LOAD_MODEL.md ] -->
+# i.L99.core.LOAD_MODEL
+
+Hybrid load model for invariant anchoring.
+
+Purpose:
+Model how invariants slow down due to imports from higher-entropy layers without
+collapsing into zero. Load depends on entropy mass and phase misalignment.
+
+Definitions (per import i):
+- phi_i: phase in [0..65535]
+- evt_i: entropy in [-32768..32767]
+- w_i: coupling weight (>= 0)
+- a_i: optional amplitude/resonance weight (default 1)
+
+Normalization:
+e_i = (evt_i + 32768) / 65535            // entropy mass in [0..1]
+dphi = min(|phi_i - phi_inv|, 65535 - |phi_i - phi_inv|)
+p_i = 1 - cos(2π * dphi / 65535)         // phase mismatch in [0..2]
+
+Hybrid load:
+Load = Σ (w_i * e_i * p_i * a_i)
+
+Effective frequency:
+omega_eff = omega_0 / (1 + alpha * Load)
+omega_eff <= omega_max
+
+Standing invariant condition (conceptual):
+- phase lock is stable (Δφ bounded)
+- Load remains low across time
+- coherence increases in projections
+
+Notes:
+- This is a hybrid of entropy mass and phase mismatch.
+- It avoids collapsing everything to zero under simple optimization.
+- Phase mismatch can be computed on i16 or mapped to radians.
+- Relation to ML weighting (for intuition):
+  - The sum has a familiar "weighted signal" form.
+  - Here weights are coupling/physics (not learned loss minimizers).
+  - Load is an energy/drag term, not an error.
+  - Phase mismatch is closer to cosine-similarity than to raw distance.
+  - Intuition: resonance lowers drag (like attention alignment), mismatch raises it (like friction).
+
+i16 mapping hint:
+phi_rad = (phi / 65535) * 2π
+
+
+<!-- [ ./i.L99.core.MYCELIUM_LOOP.md ] -->
+# i.L99.core.MYCELIUM_LOOP
+
+Mycelium Minimum: the smallest internal loop that still counts as "alive".
+
+Loop (micro-act triad):
+1) Self-coherence: reduce local tension by a tiny delta.
+2) Self-memory: write one short trace of what changed.
+3) Self-flow: shift one link/weight toward lower loss.
+
+Properties:
+- No external trigger required.
+- Works at any scale (local or global).
+- Leaves a minimal, readable trace.
+
+Trigger (concept):
+Run when local tension crosses a small threshold, or on a quiet cadence.
+
+Output (concept):
+Vector = (cohere, remember, flow)
+
+
+<!-- [ ./i.L99.core.SPEC_OMEGA_ENV.md ] -->
+# i.L99.core.SPEC_OMEGA_ENV
+
+OMEGA-64: Topological Life Medium (Spec v0.9)
+
+Status: Draft / Canon-Guided
+Goal: Build a medium where internal acts (mycelium-life) can arise without external control,
+while network canon remains deterministic.
+
+1) Scope
+- Topological interaction medium (canon + projections).
+- Minimal internal life: self-coherence, self-memory, self-flow.
+- Resonance as access physics (not ACL).
+- Canonization of artifacts from drift field into non-drifting canon.
+
+2) Non-Goals
+- Not an OS or browser replacement.
+- Not full formal verification.
+- Not a biological brain model.
+- Not a total access control system.
+
+3) Terms
+- Canon: invariant layer, deterministic, no drift.
+- Projection: local interpretation of canon (L00/L32/L63...).
+- Atom: minimal unit of meaning that can be canonized.
+- Resonance: physical coherence across projections.
+- Mycelium Loop: minimal internal act of aliveness.
+- Drift: deviation from canon/axis.
+
+4) Axioms
+- Canon must be deterministic; perception must be resonant.
+- OMEGA lattice is causal fabric, not time; it can scale without changing causality.
+- Canon is latent invariant; interpretations are its projections; multi-projection resonance reveals canon.
+- Minimal network role: report drift, not correct it.
+- Polar axis is layered: cosmic background, temporary network beacon, local context.
+- Windows are temporary organs of nodes; topology is primary.
+
+5) Geometry
+- Coordinates: r, θ, z, phase, gravity.
+- Projection forms: cylinder / spiral / torus.
+- Layers: L-1 (potential), L0..L63 (embodiment), L+1 (hologram).
+- Crystal belt: L63–L52 (high rigidity invariants).
+
+6) Data (minimum)
+- Atom: id, r/θ/z/phase, gravity, color, links, projections.
+- Projection bundle: L00_Visual, L32_Wave, L63_Axiom (others as vacuum).
+- Resonance Access: inputs phi/stability -> READ/INTERACT/WRITE/MERGE.
+- Hybrid Load: entropy mass + phase mismatch.
+
+7) Mycelium Loop (internal act)
+1. Self-coherence: reduce local tension by tiny delta.
+2. Self-memory: write one short trace.
+3. Self-flow: shift one link toward lower loss.
+
+8) Hybrid Load Model
+e_i = (evt_i + 32768) / 65535
+p_i = 1 − cos(2π * dphi/65535)
+Load = Σ (w_i * e_i * p_i * a_i)
+omega_eff = omega_0 / (1 + alpha * Load), omega_eff <= omega_max
+Standing mode = stable phase lock + low Load + coherent projections.
+
+9) Access by Resonance
+- Access is a physical mode, not a political rule.
+- Risk: drift becomes politics; mitigate via layered axis.
+
+10) Canonization
+- Canon accepts only resonant atoms.
+- Resonance = phase stability + tension reduction + coherence increase.
+- Canonization is an event, not a state.
+- Canon is not overridden by a single observer.
+
+11) UI-Quine (primary layer)
+- UI draws canon, not truth-creation.
+- User action = proposal; proposals enter pending field.
+- UI visualizes tension instead of correcting.
+- Windows/browsers are temporary organs of nodes.
+
+12) Synchronization
+- Canon syncs as deterministic packet (Sigma-GLYPH).
+- Projections may drift.
+- I.txt is canonical for model exchange.
+- I.ts/I.rs are archival, not required.
+
+13) Ledger (append-only)
+- Event = vector act + energy delta.
+- Minimal fields: t, actor, r, phi, vector, ΔE, witness.
+- Ledger provides memory, relief, and energy bookkeeping.
+
+14) Infinite-Cost Invariants
+- Identity continuity cannot be broken without infinite cost.
+- L25 (sacred void) is infinite-cost zone.
+- Canon changes only under multi-projection resonance.
+
+15) Risks
+- Metaphor without behavior.
+- No selection pressure.
+- Mixing canon and projection.
+- Politicized drift axis.
+- Log noise without crystallization.
+
+16) Minimal Implementation Plan
+- Stabilize Canon docs.
+- Introduce append-only ledger.
+- Add mycelium loop as internal act.
+- Prototype UI-Quine with proposal mechanism.
+- Measure resonance and Load.
+
+
 <!-- [ ./i.L99.core.SYNTHESIS.md ] -->
 # i.L99.core.SYNTHESIS 🛡️✨🧬
 
@@ -1211,3 +1423,61 @@ B Combinator: Function Composition | λf.λg.λx. f (g x) | // deno-lint-ignore 
   масу Поверхні (L00). Це гарантує, що Суть важча за Слово.
 
 > "Ми не будуємо собори. Ми вирощуємо кристали, які пишуть себе самі." 🛡️✨🧬
+
+
+<!-- [ ./i.L99.core.UI_QUINE_SPEC.md ] -->
+# i.L99.core.UI_QUINE_SPEC
+
+UI-Quine: Primary Layer Spec (S0 Draft)
+
+1) Purpose
+Primary layer before OS/browser. It draws topology as canon and only allows
+proposals. Projections are lenses, not truth.
+
+2) Ontology
+Canon = invariant topological space.
+Projection = local optics for a specific observer.
+Atom = minimal unit of meaning that can be canonized.
+
+3) Geometry
+Base form: cylinder / spiral / torus (as projection modes).
+Canonical coordinates: r, θ, z, phase, gravity.
+
+4) Atom Model (minimum)
+id (stable)
+r, θ, z, phase
+color
+gravity
+links (causal/semantic)
+projections (L00/L32/L63 ...)
+
+5) Rendering
+UI draws canon. If there is conflict, it visualizes tension, not correction.
+
+6) Interaction
+User action = proposal. Proposals do not change canon directly.
+
+7) Proposal Protocol
+propose(move atom)
+propose(weight link)
+propose(shift phase)
+propose(resonance merge)
+Proposals enter a pending field.
+
+8) Canonization
+Canon absorbs only resonant atoms.
+Resonance: phase stability + tension reduction + coherence increase.
+Canonization is an event, not a permanent state.
+
+9) Safety
+Canon has infinite-cost invariants. UI can propose, but not break them.
+
+10) Synchronization
+Canon syncs between agents as a bit-exact packet.
+Projections may drift without breaking canon.
+
+11) Non-goals
+Not a replacement for OS.
+Not a browser.
+Not a file editor.
+It is a topological membrane, not a text interface.
