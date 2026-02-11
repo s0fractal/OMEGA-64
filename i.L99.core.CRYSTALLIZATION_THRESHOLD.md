@@ -23,6 +23,8 @@ All must be true:
 1. Replay Green:
 100% deterministic replay match on 3 independent runs.
 Projection replay report MUST have `failCount = 0` for the same window.
+Projection drift gate MUST pass:
+`max(driftByLevelP95) <= projectionDriftMaxP95`.
 
 2. Critical Safety:
 `CRITICAL VIOLATION_EVENT = 0` in stability window.

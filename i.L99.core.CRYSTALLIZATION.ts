@@ -12,6 +12,7 @@ import {
 } from "./i.L99.core.STATE_SNAPSHOT.ts";
 import { REPLAY_AUDIT, ReplayAuditResult, ReplayGenesis } from "./i.L99.core.REPLAY_AUDIT.ts";
 import { PROJECTION_REPLAY_REPORT, ProjectionReplayReport } from "./i.L99.core.PROJECTION_REPLAY_REPORT.ts";
+import { PROJECTION_DRIFT_ANALYTICS, ProjectionDriftAnalyticsReport } from "./i.L99.core.PROJECTION_DRIFT_ANALYTICS.ts";
 import { CHECKPOINT } from "./i.L99.core.CHECKPOINT.ts";
 
 const stableStringify = (value: unknown): string => {
@@ -79,6 +80,8 @@ interface EvaluateOptions {
 interface EvaluateWithAuditOptions extends EvaluateOptions {
     replayRuns?: number;
     replayStartTick?: number;
+    projectionDriftMaxP95?: number;
+    projectionDriftTopLevels?: number;
 }
 
 interface EnforceOptions {
@@ -148,7 +151,13 @@ export const CRYSTALLIZATION = {
         stateHash: string,
         replayGenesis: ReplayGenesis,
         options: EvaluateWithAuditOptions = {}
-    ): Promise<{ crystallized: boolean; audit: ReplayAuditResult; projectionReport: ProjectionReplayReport }> => {
+    ): Promise<{
+        crystallized: boolean;
+        audit: ReplayAuditResult;
+        projectionReport: ProjectionReplayReport;
+        driftReport: ProjectionDriftAnalyticsReport;
+        projectionDriftGatePass: boolean;
+    }> => {
         const requiredWindows = options.requiredWindows ?? CRYSTALLIZATION.DEFAULT_REQUIRED_WINDOWS;
         const windowSize = options.windowSize ?? CRYSTALLIZATION.WINDOW;
         const replayStartTick = options.replayStartTick ?? Math.max(
@@ -166,6 +175,18 @@ export const CRYSTALLIZATION = {
             endTick: currentTick,
             verifyTopologicalSignatures: true
         });
+        const driftReport = await PROJECTION_DRIFT_ANALYTICS.analyze(replayGenesis, {
+            startTick: replayStartTick,
+            endTick: currentTick,
+            requireReplayGreen: true,
+            verifyTopologicalSignatures: true,
+            topLevels: options.projectionDriftTopLevels ?? 8
+        });
+        const projectionDriftMaxP95 = options.projectionDriftMaxP95 ?? 1024;
+        const projectionDriftP95 = driftReport.driftByLevelP95.length > 0
+            ? Math.max(...driftReport.driftByLevelP95)
+            : 0;
+        const projectionDriftGatePass = driftReport.ok && projectionDriftP95 <= projectionDriftMaxP95;
         const projectionHardGatePass = projectionReport.failCount === 0;
 
         const crystallized = await CRYSTALLIZATION.evaluate(
@@ -174,14 +195,14 @@ export const CRYSTALLIZATION = {
             stateHash,
             {
                 // Hard gate: projection replay must be clean.
-                replayGreen: audit.replayGreen && projectionHardGatePass,
+                replayGreen: audit.replayGreen && projectionHardGatePass && projectionDriftGatePass,
                 requiredWindows,
                 windowSize,
                 witness: options.witness
             }
         );
 
-        return { crystallized, audit, projectionReport };
+        return { crystallized, audit, projectionReport, driftReport, projectionDriftGatePass };
     },
 
     enforcePostCrystal: async (
