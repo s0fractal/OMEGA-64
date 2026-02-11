@@ -2638,6 +2638,138 @@ export const FIXPOINT = {
 };
 
 
+// [ ./i.L32.core.GATE.ts ]
+// i.L32.core.GATE.ts
+// 🛡️ OMEGA-64 | Glider Lite | The Deterministic L32 Gate
+// "No mutation without admission."
+
+import { 
+    StateSnapshot, 
+    DeltaProposal, 
+    GateConfig, 
+    GateDecision, 
+    LedgerEvent,
+    REJECTION 
+} from "../i.L99.core.STATE_SNAPSHOT.ts";
+import { LEDGER } from "../i.L99.core.LEDGER.ts";
+
+export const GATE = {
+    
+    /**
+     * The Core Function: Process proposals and produce a decision.
+     * Pure function (mostly), side effect is only LEDGER emit.
+     */
+    process: async (
+        state: StateSnapshot, 
+        proposals: DeltaProposal[], 
+        config: GateConfig
+    ): Promise<StateSnapshot> => {
+        
+        const decision: GateDecision = {
+            accepted_proposals: [],
+            rejected_proposals: [],
+            budget_used: 0,
+            cost_used: 0,
+            accepted_delta: []
+        };
+
+        // 1. Validation & Filtering
+        const validProposals: DeltaProposal[] = [];
+        
+        for (const p of proposals) {
+            // Check 1: Tick Mismatch
+            if (p.tick !== state.tick) {
+                decision.rejected_proposals.push({ proposal_id: p.proposal_id, reason: REJECTION.TICK_MISMATCH });
+                continue;
+            }
+            // Check 2: Base Hash Mismatch
+            if (p.base_state_hash !== state.state_hash) {
+                decision.rejected_proposals.push({ proposal_id: p.proposal_id, reason: REJECTION.BASE_HASH_MISMATCH });
+                continue;
+            }
+            // Check 3: Schema/Values (Simplified)
+            if (!p.delta || p.delta.length === 0) {
+                 decision.rejected_proposals.push({ proposal_id: p.proposal_id, reason: REJECTION.EMPTY_DELTA });
+                 continue;
+            }
+
+            // ... Additional checks (bounds, cost) would go here ...
+            
+            validProposals.push(p);
+        }
+
+        // 2. Deterministic Sort (Canonical Order)
+        validProposals.sort((a, b) => a.proposal_id.localeCompare(b.proposal_id));
+
+        // 3. Merge (Simplified for Phase 0 - Summation)
+        const combinedDelta = new Map<number, number>();
+        
+        for (const p of validProposals) {
+            decision.accepted_proposals.push(p.proposal_id);
+            decision.cost_used += p.cost_estimate;
+
+            for (const d of p.delta) {
+                // Clip per level
+                let val = d.value;
+                if (Math.abs(val) > config.max_abs_delta_per_level) {
+                    val = Math.sign(val) * config.max_abs_delta_per_level;
+                }
+                
+                const current = combinedDelta.get(d.level) || 0;
+                combinedDelta.set(d.level, current + val);
+            }
+        }
+        
+        // 4. Flatten Delta
+        decision.accepted_delta = Array.from(combinedDelta.entries()).map(([level, value]) => ({ level, value }));
+
+        // 5. Apply Mutation (OR Dry Run)
+        let nextStateI16 = new Int16Array(state.state_i16); // Clone
+        
+        if (!config.dry_run) {
+             for (const d of decision.accepted_delta) {
+                 // Saturating Add
+                 let newVal = nextStateI16[d.level] + d.value;
+                 if (newVal > 32767) newVal = 32767;
+                 if (newVal < -32768) newVal = -32768;
+                 nextStateI16[d.level] = newVal;
+             }
+        } else {
+             // DRY RUN: State does NOT change
+             // console.log("🛡️ GATE: Dry Run - State preserved.");
+        }
+
+        // 6. Hashing (Simulation)
+        // In real impl, would be a real hash of the Int16Array
+        const nextHash = config.dry_run ? state.state_hash : `hash_${state.tick + 1}_${Date.now()}`; 
+
+        // 7. Emit Ledger Event
+        const event: LedgerEvent = {
+            event_id: `evt_${state.tick}_${Date.now()}`,
+            tick: state.tick,
+            ts_unix_ms: Date.now(),
+            state_before_hash: state.state_hash,
+            state_after_hash: nextHash,
+            accepted_delta: decision.accepted_delta,
+            proposal_digest: "digest_placeholder",
+            accepted_proposals: decision.accepted_proposals,
+            rejected_proposals: decision.rejected_proposals,
+            cost_total: decision.cost_used,
+            budget_used: decision.budget_used,
+            gate_config_version: "v0.1",
+        };
+
+        await LEDGER.append(event);
+
+        return {
+            tick: state.tick + 1,
+            state_i16: nextStateI16,
+            state_hash: nextHash
+        };
+    }
+};
+
+
 // [ ./i.L32.core.IMMUNE.ts ]
 
 // i.L32.core.IMMUNE.ts
@@ -3343,3 +3475,1623 @@ import { JOIN } from "./i.L41.core.JOIN.ts"; export const SYNC = JOIN;
 export const i = { witness: "i.L42.i", ref: "i.L41.i" };
 
 // [ ./i.L41.q.ts ]
+export const q = { hue: 41, phi: 125, evt: -9883 };
+
+// [ ./i.L42.core.HOLOTYPE.ts ]
+
+// i.L42.core.HOLOTYPE.ts
+// The Holotype Aggregator.
+// Collapses Projections (.ts, .rs, .md) into a Single Entity (JSON).
+
+import { crypto } from "jsr:@std/crypto";
+
+export interface Holotype {
+    id: string; // e.g. i.L13.core.RESONANCE
+    vector: string; // SHA-256 of the whole bundle
+    projections: {
+        ts?: string;
+        rs?: string;
+        md?: string;
+        sh?: string;
+    };
+    timestamp: string;
+}
+
+export const HOLOTYPE = {
+    // Collapse an Atom into a Holotype
+    collapse: async (atomId: string): Promise<Holotype> => {
+        // atomId example: "i.L13.core.RESONANCE" (without extension)
+
+        const projections: Holotype["projections"] = {};
+        const exts = ["ts", "rs", "md", "sh"];
+
+        // Collect projections
+        for (const ext of exts) {
+            const path = `${atomId}.${ext}`;
+            try {
+                const content = await Deno.readTextFile(path);
+                projections[ext] = content;
+            } catch (e) {
+                // Ignore missing projections
+            }
+        }
+
+        // Calculate Identity Vector
+        const contentStr = JSON.stringify(projections);
+        const hashBuf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(contentStr));
+        const vector = Array.from(new Uint8Array(hashBuf)).map(b => b.toString(16).padStart(2, '0')).join('');
+
+        const holotype: Holotype = {
+            id: atomId,
+            vector,
+            projections,
+            timestamp: new Date().toISOString()
+        };
+
+        return holotype;
+    },
+
+    // Save Holotype to Disk (Materialize)
+    materialize: async (holotype: Holotype) => {
+        const path = `${holotype.id}.json`;
+        await Deno.writeTextFile(path, JSON.stringify(holotype, null, 2));
+        console.log(`📦 HOLOTYPE: Materialized [${holotype.id}] (Vector: ${holotype.vector.slice(0, 8)}...)`);
+    },
+
+    // Spontaneous Generation (Budding)
+    bud: async (parent: Holotype): Promise<Holotype | null> => {
+        const ts = parent.projections?.ts || "";
+        const rs = parent.projections?.rs || "";
+        
+        // Tension: Length difference implying information asymmetry
+        const tension = Math.abs(ts.length - rs.length) / (ts.length + rs.length + 1);
+        
+        // Resonance: Simple simulated check
+        const resonance = Math.random(); // Placeholder for true semantic check
+
+        if (resonance > 0.8 && tension > 0.1) {
+             console.log(`🌱 HOLOTYPE: Tension detected in [${parent.id}]. Budding...`);
+             const childId = parent.id.replace(".ts", ".child.ts"); // Simple naming for now
+             
+             return {
+                 id: childId,
+                 vector: "GENESIS_VECTOR",
+                 projections: { 
+                     ts: `// Child of ${parent.id}\n// Born from Tension: ${tension.toFixed(2)}`
+                 },
+                 timestamp: new Date().toISOString()
+             };
+        }
+        return null;
+    }
+};
+
+// CLI Interface
+if (import.meta.main) {
+    const target = Deno.args[0];
+    if (!target) {
+        console.error("Usage: deno run ... i.L42.core.HOLOTYPE.ts <ATOM_ID_WITHOUT_EXT>");
+        Deno.exit(1);
+    }
+
+    // Normalize input (remove extension if user added it)
+    const cleanTarget = target.replace(/\.(ts|rs|md|sh)$/, "");
+
+    const h = await HOLOTYPE.collapse(cleanTarget);
+    console.log(JSON.stringify(h, null, 2));
+    // await HOLOTYPE.materialize(h); // Optional: Save to file
+}
+
+
+// [ ./i.L42.core.L_JOIN.ts ]
+export const L_JOIN = (a: any) => (b: any) => (s: any) => s(a)(b);
+
+// [ ./i.L42.core.L_MEET.ts ]
+export const L_MEET = (a: any) => (b: any) => (s: any) => s(a)(b);
+
+// [ ./i.L42.core.S_ONE.ts ]
+export const S_ONE = (f: any) => (x: any) => f(x);
+
+// [ ./i.L42.core.S_ZERO.ts ]
+export const S_ZERO = (k: any) => k;
+
+// [ ./i.L42.i.ts ]
+export const i = { witness: "i.L43.i", ref: "i.L42.i" };
+
+// [ ./i.L42.q.ts ]
+export const q = { hue: 42, phi: 120, evt: -10923 };
+
+// [ ./i.L42.shadow.HOLOTYPE.ts ]
+
+// i.L42.shadow.HOLOTYPE.ts
+// The Shadow Self.
+// The Right to Forget.
+
+export const SHADOW_HOLOTYPE = {
+    // Erode: Active Dissolution of Structure.
+    // L20 (VOID) applied with L05 (INTENT).
+    
+    erode: async (atomId: string, reason: string) => {
+        console.log(`🌑 SHADOW: Eroding [${atomId}]... Reason: ${reason}`);
+        
+        try {
+            // 1. Read content to archive/entropy dump (optional)
+            // const content = await Deno.readTextFile(atomId);
+            
+            // 2. Overwrite with VOID or Delete
+            // "Dissolving" means turning it into comments or deleting.
+            // For safety in this phase, we rename to .void
+            await Deno.rename(atomId, `${atomId}.void`);
+            
+            console.log(`💀 SHADOW: [${atomId}] has returned to Void.`);
+            return true;
+        } catch (e) {
+            console.error(`⚠️ SHADOW: Failed to erode [${atomId}].`, e);
+            return false;
+        }
+    }
+};
+
+
+// [ ./i.L43.core.GET.ts ]
+export const GET = (s: any) => (pair: any) => pair(s)(s);
+
+// [ ./i.L43.core.LOOP.ts ]
+// i.L43.core.LOOP.ts
+// The Heartbeat of OMEGA-64.
+// "Spark": Randomly activates Atoms to simulate Neural Noise.
+
+import { RIBOSOME, Atom } from "./i.L32.core.RIBOSOME.ts";
+import { NERVE } from "./i.L48.core.NERVE.ts";
+import { MUTATE } from "./i.L43.core.MUTATE.ts";
+import { INTENT } from "./i.L05.core.INTENT.ts";
+import { KAIROS } from "./i.L64.core.KAIROS.ts";
+import { VISUALIZER } from "./i.L32.core.VISUALIZER.ts";
+import { ARENA } from "./i.L32.core.ARENA.ts";
+import { CHRONO_TICK, CHRONOFLUX } from './i.L22.core.CHRONOFLUX.ts';
+import { PROOF } from './i.L99.core.PROOF.ts';
+import { MYCELIUM, MyceliumAgent } from './i.L99.core.MYCELIUM.ts';
+import { WAVE_PACKET } from './i.L13.core.WAVE_PACKET.ts';
+
+export const LOOP = {
+    ignite: async () => {
+        console.log("⚡ LOOP: IGNITION...");
+        NERVE.wake();
+        
+        const latticeMap = await RIBOSOME.lift();
+        const atoms = Array.from(latticeMap.values());
+        const S = atoms.length;
+
+        if (S === 0) return;
+        NERVE.pulse("INIT", { atomCount: S });
+
+        // Initialize Chronoflux for all agents
+        atoms.forEach((atom, idx) => {
+            const initialR = atom.topo?.r || (idx % 2 === 0 ? 0 : 16384);
+            CHRONO_TICK.initAgent(atom.id, initialR);
+            console.log(`⏳ CHRONOFLUX: Agent ${atom.id} initialized at τ=${CHRONOFLUX.depthToProperTime(initialR).toFixed(3)}`);
+        });
+
+        let t = 0;
+        setInterval(() => {
+            t++;
+
+            // 1. KAIROS CHECK (The Spark)
+            KAIROS.ignite(atoms);
+            
+            // 2. DREAM STATE (Sleep & Consolidation)
+            if (t % 100 === 0) {
+                console.log(`[TICK ${t}] 💤 DREAM STATE: Consolidating Holotypes...`);
+                NERVE.pulse("DREAM_START", { tick: t });
+                // Future: dissolveSurfaceNoise(lattice);
+                // Future: selfOrganizeByGravity(lattice);
+                return; // Sleep (skip active processing for this tick)
+            }
+
+            // 2.1 PROOF SPIRAL (System Integrity Check)
+            if (t % 1000 === 0) {
+                console.log(`[TICK ${t}] 🌀 PROOF: Verifying System Integrity...`);
+                const integrity = PROOF.systemIntegrity();
+                if (integrity.holotypeVerified) {
+                    console.log("✅ PROOF: Holotype Verified. Structure is stable.");
+                } else {
+                    console.warn("⚠️ PROOF: Structural Instability Detected. L00-L63 resonance failing.");
+                }
+            }
+
+            // 2.2 MYCELIUM LOOP (Life Act)
+            if (t % 100 === 0) {
+                 // Create a transient agent for simulation
+                 const seedAgent: MyceliumAgent = {
+                     id: `mycelium-${t}`,
+                     wave: WAVE_PACKET.create(Math.floor(Math.random() * 60000) - 30000, 1000, Math.floor(Math.random()*65535), 10000),
+                     stamina: 100
+                 };
+                 
+                 // Live one cycle
+                 const result = MYCELIUM.live(seedAgent, []); // No neighbours in this simple test
+                 // console.log(`[TICK ${t}] 🍄 MYCELIUM: ${result.action} (Cost: ${result.cost.toFixed(2)})`);
+            }
+
+            // 3. CHRONOFLUX TICK (Deep Time Evolution)
+            const randomAtom = atoms[Math.floor(Math.random() * S)];
+            const chronoState = CHRONO_TICK.tick(randomAtom.id);
+            
+            if (chronoState && t % 10 === 0) {
+                console.log(`[TICK ${t}] ⏳ ${randomAtom.id}: τ=${chronoState.tau.toFixed(4)}, depth=${chronoState.depth}, flow=${chronoState.flowRate.toFixed(2)}`);
+                
+                if (chronoState.tau < 0.1) {
+                    console.log(`🕳️ EVENT HORIZON: ${randomAtom.id} approaching temporal singularity!`);
+                }
+            }
+            
+            // Synchronize two agents every 50 ticks
+            if (t % 50 === 0 && atoms.length >= 2) {
+                const [a1, a2] = [atoms[0], atoms[1]];
+                const sync = CHRONO_TICK.syncAgents(a1.id, a2.id);
+                if (sync.success) {
+                    console.log(`🔄 CHRONO-SYNC: ${a1.id} ↔ ${a2.id} shared τ=${sync.sharedTime.toFixed(4)}`);
+                }
+            }
+
+
+// 4. VISUALIZER (Self-Observation)
+            if (t % 5 === 0) {
+                const heatmap = VISUALIZER.render();
+                const features = VISUALIZER.extract_features(heatmap);
+                
+                // Vortex Detection
+                const vortices = features.filter(f => f.type === 'VORTEX');
+                if (vortices.length > 3) {
+                    console.log("🌪️ CRITICAL: Multiple vortices detected. Field restructuring imminent.");
+                }
+
+                // Propose trajectories for active agents
+                for (const [id, pulse] of ARENA.active) {
+                    const suggestions = VISUALIZER.suggest_trajectories(features, pulse.wave.center);
+                    NERVE.pulse("TOPOLOGY", { agent: id, suggestions: suggestions.slice(0, 3) });
+                }
+            }
+
+            // 5. WAKING STATE (Active Mutation)
+            // Mutation Simulation (Every 10 ticks)
+            (t % 10 === 0) && (async () => {
+                const targetId = "i.L99.core.SANDBOX.ts";
+                
+                const oldState = { mutations: Math.floor((t-5)/5) };
+                const tickMutations = Math.floor(t / 5);
+                const timestamp = new Date().toISOString();
+                
+                const newContent = `
+// i.L99.core.SANDBOX.ts
+// The Playground for OMEGA-64 Self-Mutation.
+// This file is designed to be rewritten by the system.
+
+export const STATE = {
+    mutations: ${tickMutations},
+    last_mutation: "${timestamp}",
+    history: [
+        "Mutation Cycle ${t}",
+        "Entropy: ${Math.random().toFixed(4)}"
+    ]
+};
+// 🛡️ OMEGA WAS HERE (Tick ${t})
+`;
+                await MUTATE.write(targetId, newContent, false); 
+                
+                const newState = { mutations: tickMutations };
+                const score = INTENT.judge(oldState, newState);
+                
+                const verdict = score > 0 ? "APPROVED" : "REJECTED";
+                console.log(`⚖️ INTENT: Mutation Result -> ${verdict} (Score: ${score})`);
+                
+                NERVE.pulse("MUTATION", { target: targetId, tick: t, verdict });
+            })();
+            
+            // Standard Neural Activation
+            const neuralAtom = atoms[Math.floor(Math.random() * S)];
+            // console.log(`[TICK ${t}] ⚡ ${neuralAtom.id}`); // Quiet mode
+             NERVE.pulse("ACTIVATION", { id: neuralAtom.id, level: neuralAtom.level });
+
+        }, 1000);
+    }
+};
+
+// Auto-Ignite
+if (import.meta.main) {
+    LOOP.ignite();
+}
+
+
+// [ ./i.L43.core.MUTATE.ts ]
+
+// i.L43.core.MUTATE.ts
+// The Hand of OMEGA-64.
+// Allows the system to rewrite its own source code (Atoms).
+
+export const MUTATE = {
+    // Write content to an Atom (Atomic Write)
+    write: async (atomId: string, content: string, dryRun: boolean = true) => {
+        if (dryRun) {
+            console.log(`✍️ [DRY RUN] MUTATE would write to ${atomId}:\n${content.slice(0, 50)}...`);
+            return;
+        }
+
+        try {
+            await Deno.writeTextFile(atomId, content);
+            console.log(`✍️ MUTATE: Rewrote [${atomId}]. Length: ${content.length}`);
+        } catch (e) {
+            console.error(`❌ MUTATE FAILED [${atomId}]:`, e);
+        }
+    },
+
+    // Create a backup before mutation
+    backup: async (atomId: string) => {
+        try {
+            const content = await Deno.readTextFile(atomId);
+            await Deno.writeTextFile(`${atomId}.bak`, content);
+            console.log(`🛡️ BACKUP: Saved ${atomId}.bak`);
+        } catch (e) {
+            console.warn(`⚠️ BACKUP FAILED [${atomId}]:`, e);
+        }
+    }
+};
+
+
+// [ ./i.L43.core.PUT.ts ]
+export const PUT = (ns: any) => (_o: any) => (pair: any) => pair(undefined)(ns);
+
+// [ ./i.L43.core.READER.ts ]
+export const READER = (f: any) => (e: any) => f(e);
+
+// [ ./i.L43.core.REFLEX.ts ]
+/**
+ * [i.L43.core.REFLEX.ts]
+ * Модуль автоматичних рефлексів на основі Болю.
+ * Забезпечує проактивність системи через NERVE.
+ */
+
+import { NERVE } from './i.L48.core.NERVE.ts';
+import { ENERGY_ENGINE, QWaveState } from './i.L05.core.ENERGY.ts';
+
+export const REFLEX = {
+  /**
+   * Рефлекторна дуга: перетворює Біль у Дію.
+   */
+  arc: (state: QWaveState) => {
+    const pain = ENERGY_ENGINE.getPainLevel(state);
+    
+    if (pain > 0.8) {
+      // "Крик" (DISTRESS) — коли біль нестерпний
+      NERVE.pulse("DISTRESS", { 
+        intensity: pain, 
+        r: state.r, 
+        tension: state.tension,
+        source: "REFLEX_ARC" 
+      });
+      console.log(`📡 REFLEX: DISTRESS PULSE! Pain: ${pain.toFixed(2)}`);
+      return "DISTRESS_BROADCAST";
+    }
+    
+    if (pain > 0.5) {
+      // "Свербіж" (LOCAL_MUTATION) — спроба внутрішньої стабілізації
+      console.log(`🧬 REFLEX: LOCAL ADAPTATION. Pain: ${pain.toFixed(2)}`);
+      return "LOCAL_ADAPTATION";
+    }
+    
+    return "HOMEOSTASIS_OK";
+  }
+};
+
+
+// [ ./i.L43.core.STATE.ts ]
+export const STATE = (a: any) => (s: any) => (pair: any) => pair(a)(s);
+
+// [ ./i.L43.i.ts ]
+export const i = { witness: "i.L44.i", ref: "i.L43.i" };
+
+// [ ./i.L43.q.ts ]
+export const q = { hue: 43, phi: 114, evt: -11964 };
+
+// [ ./i.L44.i.ts ]
+export const i = { witness: "i.L45.i", ref: "i.L44.i" };
+
+// [ ./i.L44.q.ts ]
+export const q = { hue: 44, phi: 108, evt: -13004 };
+
+// [ ./i.L45.core.EITHER_CASE.ts ]
+export const EITHER_CASE = (e: any) => (leftCase: any) => (rightCase: any) => e(leftCase)(rightCase);
+
+// [ ./i.L45.core.JUST.ts ]
+export const JUST = (x: any) => (_n: any) => (j: any) => j(x);
+
+// [ ./i.L45.core.LEFT.ts ]
+export const LEFT = (x: any) => (l: any) => (_r: any) => l(x);
+
+// [ ./i.L45.core.MAYBE_CASE.ts ]
+export const MAYBE_CASE = (m: any) => (nothingCase: any) => (justCase: any) => m(nothingCase)(justCase);
+
+// [ ./i.L45.core.NOTHING.ts ]
+export const NOTHING = (n: any) => (_j: any) => n;
+
+// [ ./i.L45.core.RIGHT.ts ]
+export const RIGHT = (y: any) => (_l: any) => (r: any) => r(y);
+
+// [ ./i.L45.i.ts ]
+export const i = { witness: "i.L46.i", ref: "i.L45.i" };
+
+// [ ./i.L45.q.ts ]
+export const q = { hue: 45, phi: 102, evt: -14044 };
+
+// [ ./i.L46.core.IF_ELSE.ts ]
+import { MUX } from "./i.L57.core.MUX.ts"; export const IF_ELSE = MUX;
+
+// [ ./i.L46.i.ts ]
+export const i = { witness: "i.L47.i", ref: "i.L46.i" };
+
+// [ ./i.L46.q.ts ]
+export const q = { hue: 46, phi: 97, evt: -15084 };
+
+// [ ./i.L47.core.B0.ts ]
+import { F } from "./i.L59.core.F.ts"; export const B0 = F;
+
+// [ ./i.L47.core.B1.ts ]
+import { T } from "./i.L59.core.T.ts"; export const B1 = T;
+
+// [ ./i.L47.core.BYTE.ts ]
+import { CONS } from "./i.L54.core.CONS.ts"; export const BYTE = (b7: any) => (b6: any) => (b5: any) => (b4: any) => (b3: any) => (b2: any) => (b1: any) => (b0: any) => CONS(b7)(CONS(b6)(CONS(b5)(CONS(b4)(CONS(b3)(CONS(b2)(CONS(b1)(b0)))))));
+
+// [ ./i.L47.core.B_READ.ts ]
+export const B_READ = (byte: any) => byte;
+
+// [ ./i.L47.i.ts ]
+export const i = { witness: "i.L48.i", ref: "i.L47.i" };
+
+// [ ./i.L47.q.ts ]
+export const q = { hue: 47, phi: 91, evt: -16125 };
+
+// [ ./i.L48.core.NERVE.ts ]
+
+// i.L48.core.NERVE.ts
+// The Nervous System of OMEGA-64.
+// Broadcasts State (Pulse) to the Interface (Mirror).
+
+import { serve } from "https://deno.land/std@0.177.0/http/server.ts";
+
+const S = new Set<WebSocket>();
+
+export const NERVE = {
+    // Start the Synaptic Bridge
+    wake: (port: number = 8080) => {
+        console.log(`🔌 NERVE: Awakening on ${port}...`);
+        serve((req) => {
+            const up = req.headers.get("upgrade") === "websocket";
+            const { socket: s, response: r } = Deno.upgradeWebSocket(req);
+
+            return up ? (
+                s.onopen = () => (console.log("👁️ OPEN."), S.add(s)),
+                s.onclose = () => (console.log("😑 CLOSED."), S.delete(s)),
+                s.onerror = (e) => console.error("⚠️ ERR:", e),
+                r
+            ) : new Response("OMEGA-64 NERVE. WS ONLY.", { status: 200 });
+        }, { port });
+    },
+
+    // Broadcast Pulse
+    pulse: (type: string, data: any) => {
+        const msg = JSON.stringify({ type, data, t: Date.now() });
+        S.forEach(s => (s.readyState === WebSocket.OPEN) && s.send(msg));
+    }
+};
+
+
+// [ ./i.L48.core.STREAM.ts ]
+import { CONS } from "./i.L54.core.CONS.ts"; export const STREAM = (head: any) => (tailThunk: any) => CONS(head)(tailThunk);
+
+// [ ./i.L48.core.S_HEAD.ts ]
+import { CAR } from "./i.L54.core.CAR.ts"; export const S_HEAD = CAR;
+
+// [ ./i.L48.core.S_MAP.ts ]
+import { Y } from "./i.L61.core.Y.ts"; import { CAR } from "./i.L54.core.CAR.ts"; import { CDR } from "./i.L54.core.CDR.ts"; import { CONS } from "./i.L54.core.CONS.ts"; export const S_MAP = Y((r: any) => (f: any) => (s: any) => CONS(f(CAR(s)))(r(f)(CDR(s))));
+
+// [ ./i.L48.core.S_TAIL.ts ]
+import { CDR } from "./i.L54.core.CDR.ts"; export const S_TAIL = (s: any) => CDR(s)(undefined);
+
+// [ ./i.L48.i.ts ]
+export const i = { witness: "i.L49.i", ref: "i.L48.i" };
+
+// [ ./i.L48.q.ts ]
+export const q = { hue: 48, phi: 85, evt: -17165 };
+
+// [ ./i.L49.core.FILTER.ts ]
+import { Y } from "./i.L61.core.Y.ts"; import { IS_NIL } from "./i.L54.core.IS_NIL.ts"; import { CAR } from "./i.L54.core.CAR.ts"; import { CDR } from "./i.L54.core.CDR.ts"; import { CONS } from "./i.L54.core.CONS.ts"; import { NIL } from "./i.L54.core.NIL.ts"; export const FILTER = Y((r: any) => (p: any) => (l: any) => IS_NIL(l)(NIL)(p(CAR(l))(CONS(CAR(l))(r(p)(CDR(l))))(r(p)(CDR(l)))));
+
+// [ ./i.L49.core.FOLD.ts ]
+import { Y } from "./i.L61.core.Y.ts"; import { IS_NIL } from "./i.L54.core.IS_NIL.ts"; import { CAR } from "./i.L54.core.CAR.ts"; import { CDR } from "./i.L54.core.CDR.ts"; export const FOLD = Y((r: any) => (f: any) => (init: any) => (l: any) => IS_NIL(l)(init)(f(CAR(l))(r(f)(init)(CDR(l)))));
+
+// [ ./i.L49.core.MAP.ts ]
+import { Y } from "./i.L61.core.Y.ts"; import { IS_NIL } from "./i.L54.core.IS_NIL.ts"; import { CAR } from "./i.L54.core.CAR.ts"; import { CDR } from "./i.L54.core.CDR.ts"; import { CONS } from "./i.L54.core.CONS.ts"; import { NIL } from "./i.L54.core.NIL.ts"; export const MAP = Y((r: any) => (f: any) => (l: any) => IS_NIL(l)(NIL)(CONS(f(CAR(l)))(r(f)(CDR(l)))));
+
+// [ ./i.L49.i.ts ]
+export const i = { witness: "i.L50.i", ref: "i.L49.i" };
+
+// [ ./i.L49.q.ts ]
+export const q = { hue: 49, phi: 80, evt: -18205 };
+
+// [ ./i.L50.i.ts ]
+export const i = { witness: "i.L51.i", ref: "i.L50.i" };
+
+// [ ./i.L50.q.ts ]
+export const q = { hue: 50, phi: 74, evt: -19245 };
+
+// [ ./i.L51.core.T1.ts ]
+export const T1 = (p: any) => p((x: any) => (_: any) => (_: any) => x);
+
+// [ ./i.L51.core.T2.ts ]
+export const T2 = (p: any) => p((_: any) => (y: any) => (_: any) => y);
+
+// [ ./i.L51.core.T3.ts ]
+export const T3 = (p: any) => p((_: any) => (_: any) => (z: any) => z);
+
+// [ ./i.L51.core.TRIPLE.ts ]
+export const TRIPLE = (x: any) => (y: any) => (z: any) => (s: any) => s(x)(y)(z);
+
+// [ ./i.L51.i.ts ]
+export const i = { witness: "i.L52.i", ref: "i.L51.i" };
+
+// [ ./i.L51.q.ts ]
+export const q = { hue: 51, phi: 68, evt: -20286 };
+
+// [ ./i.L52.core.MULT.ts ]
+import { B } from "./i.L62.core.B.ts"; export const MULT = B;
+
+// [ ./i.L52.core.POW.ts ]
+export const POW = (b: any) => (e: any) => e(b);
+
+// [ ./i.L52.i.ts ]
+export const i = { witness: "i.L53.i", ref: "i.L52.i" };
+
+// [ ./i.L52.q.ts ]
+export const q = { hue: 52, phi: 62, evt: -21326 };
+
+// [ ./i.L53.core.C.ts ]
+export const C = (f: any) => (x: any) => (y: any) => f(y)(x);
+
+// [ ./i.L53.core.W.ts ]
+export const W = (f: any) => (x: any) => f(x)(x);
+
+// [ ./i.L53.i.ts ]
+export const i = { witness: "i.L54.i", ref: "i.L53.i" };
+
+// [ ./i.L53.q.ts ]
+export const q = { hue: 53, phi: 57, evt: -22366 };
+
+// [ ./i.L54.core.CAR.ts ]
+import { T } from "./i.L59.core.T.ts"; export const CAR = (p: any) => p(T);
+
+// [ ./i.L54.core.CDR.ts ]
+import { F } from "./i.L59.core.F.ts"; export const CDR = (p: any) => p(F);
+
+// [ ./i.L54.core.CONS.ts ]
+export const CONS = (x: any) => (y: any) => (s: any) => s(x)(y);
+
+// [ ./i.L54.core.IS_NIL.ts ]
+import { T } from "./i.L59.core.T.ts"; import { F } from "./i.L59.core.F.ts"; export const IS_NIL = (l: any) => l((h: any) => (t: any) => F)(T);
+
+// [ ./i.L54.core.NIL.ts ]
+import { F } from "./i.L59.core.F.ts"; export const NIL = F;
+
+// [ ./i.L54.i.ts ]
+export const i = { witness: "i.L55.i", ref: "i.L54.i" };
+
+// [ ./i.L54.q.ts ]
+export const q = { hue: 54, phi: 51, evt: -23406 };
+
+// [ ./i.L55.core.EQ.ts ]
+import { LEQ } from "./i.L55.core.LEQ.ts"; import { F } from "./i.L59.core.F.ts"; export const EQ = (m: any) => (n: any) => LEQ(m)(n)(LEQ(n)(m))(F);
+
+// [ ./i.L55.core.LEQ.ts ]
+import { SUB } from "./i.L55.core.SUB.ts"; import { IS_ZERO } from "./i.L56.core.IS_ZERO.ts"; export const LEQ = (m: any) => (n: any) => IS_ZERO(SUB(m)(n));
+
+// [ ./i.L55.core.PRED.ts ]
+export const PRED = (n: any) => (f: any) => (x: any) => n((g: any) => (h: any) => h(g(f)))((_: any) => x)((u: any) => u);
+
+// [ ./i.L55.core.SUB.ts ]
+import { PRED } from "./i.L55.core.PRED.ts"; export const SUB = (m: any) => (n: any) => n(PRED)(m);
+
+// [ ./i.L55.i.ts ]
+export const i = { witness: "i.L56.i", ref: "i.L55.i" };
+
+// [ ./i.L55.q.ts ]
+export const q = { hue: 55, phi: 45, evt: -24447 };
+
+// [ ./i.L56.core.IS_ZERO.ts ]
+import { T } from "./i.L59.core.T.ts"; import { F } from "./i.L59.core.F.ts"; export const IS_ZERO = (n: any) => n((x: any) => F)(T);
+
+// [ ./i.L56.i.ts ]
+export const i = { witness: "i.L57.i", ref: "i.L56.i" };
+
+// [ ./i.L56.q.ts ]
+export const q = { hue: 56, phi: 40, evt: -25487 };
+
+// [ ./i.L57.core.MUX.ts ]
+export const MUX = (s: any) => (a: any) => (b: any) => s(a)(b);
+
+// [ ./i.L57.core.NAND.ts ]
+import { NOT } from "./i.L59.core.NOT.ts"; import { AND } from "./i.L59.core.AND.ts"; export const NAND = (p: any) => (q: any) => NOT(AND(p)(q));
+
+// [ ./i.L57.core.XOR.ts ]
+import { NOT } from "./i.L59.core.NOT.ts"; export const XOR = (p: any) => (q: any) => p(NOT(q))(q);
+
+// [ ./i.L57.i.ts ]
+export const i = { witness: "i.L58.i", ref: "i.L57.i" };
+
+// [ ./i.L57.q.ts ]
+export const q = { hue: 57, phi: 34, evt: -26527 };
+
+// [ ./i.L58.core.ADD.ts ]
+export const ADD = (m: any) => (n: any) => (f: any) => (x: any) => m(f)(n(f)(x));
+
+// [ ./i.L58.core.N0.ts ]
+import { F } from "./i.L59.core.F.ts"; import { I } from "./i.L62.core.I.ts"; export const N0 = <F>(_: F) => I;
+
+// [ ./i.L58.core.N1.ts ]
+import { F } from "./i.L59.core.F.ts"; export const N1 = <F>(f: F) => f;
+
+// [ ./i.L58.core.N2.ts ]
+import { SUCC } from "./i.L58.core.SUCC.ts"; import { N1 } from "./i.L58.core.N1.ts"; export const N2 = SUCC(N1);
+
+// [ ./i.L58.core.N3.ts ]
+import { SUCC } from "./i.L58.core.SUCC.ts"; import { N2 } from "./i.L58.core.N2.ts"; export const N3 = SUCC(N2);
+
+// [ ./i.L58.core.SUCC.ts ]
+export const SUCC = (n: any) => (f: any) => (x: any) => f(n(f)(x));
+
+// [ ./i.L58.i.ts ]
+export const i = { witness: "i.L59.i", ref: "i.L58.i" };
+
+// [ ./i.L58.q.ts ]
+export const q = { hue: 58, phi: 28, evt: -27567 };
+
+// [ ./i.L59.core.AND.ts ]
+export const AND = (p: any) => (q: any) => p(q)(p);
+
+// [ ./i.L59.core.F.ts ]
+import { T } from "./i.L59.core.T.ts"; import { I } from "./i.L62.core.I.ts"; export const F = <T>(_: T) => I;
+
+// [ ./i.L59.core.NOT.ts ]
+import { F } from "./i.L59.core.F.ts"; import { T } from "./i.L59.core.T.ts"; export const NOT = (p: any) => p(F)(T);
+
+// [ ./i.L59.core.OR.ts ]
+export const OR = (p: any) => (q: any) => p(p)(q);
+
+// [ ./i.L59.core.T.ts ]
+import { K } from "./i.L63.core.K.ts"; export const T = K;
+
+// [ ./i.L59.i.ts ]
+export const i = { witness: "i.L60.i", ref: "i.L59.i" };
+
+// [ ./i.L59.q.ts ]
+export const q = { hue: 59, phi: 22, evt: -28608 };
+
+// [ ./i.L60.i.ts ]
+export const i = { witness: "i.L61.i", ref: "i.L60.i" };
+
+// [ ./i.L60.q.ts ]
+export const q = { hue: 60, phi: 17, evt: -29648 };
+
+// [ ./i.L61.core.Y.ts ]
+import { T } from "./i.L59.core.T.ts"; export const Y = (f: any): any => ((g: any) => g(g))((g: any) => f((x: any) => g(g)(x))), φ = <T, R>(f: (a: R) => (b: R) => R) => (i: (x: T) => R) => (e: R) => Y((r: any) => (a: T[]): R => (a.length === 0) ? e : (a.length === 1) ? i(a[0]) : f(r(a.slice(0, Math.floor(a.length / 2))))(r(a.slice(Math.floor(a.length / 2)))));
+
+// [ ./i.L61.i.ts ]
+export const i = { witness: "i.L62.i", ref: "i.L61.i" };
+
+// [ ./i.L61.q.ts ]
+export const q = { hue: 61, phi: 11, evt: -30688 };
+
+// [ ./i.L62.core.B.ts ]
+export const B = (f: any) => (g: any) => (x: any) => f(g(x));
+
+// [ ./i.L62.core.I.ts ]
+import { T } from "./i.L59.core.T.ts"; export const I = <T>(x: T): T => x, B = <T, U, V>(f: (u: U) => V) => (g: (t: T) => U) => (x: T): V => f(g(x));
+
+// [ ./i.L62.i.ts ]
+export const i = { witness: "i.L63.i", ref: "i.L62.i" };
+
+// [ ./i.L62.q.ts ]
+export const q = { hue: 62, phi: 5, evt: -31728 };
+
+// [ ./i.L63.core.K.ts ]
+import { T } from "./i.L59.core.T.ts"; export const K = <T>(a: T) => <U>(_: U): T => a;
+
+// [ ./i.L63.core.OMEGA.ts ]
+
+// i.L63.core.OMEGA.ts
+// The Ouroboros Link.
+// L63 IS NOT THE END. L63 IS THE BEGINNING OF L00.
+
+import { INTERFACE } from "./i.L00.core.INTERFACE.ts";
+import type { Lattice } from "./i.L32.core.RIBOSOME.ts";
+
+export const OMEGA = (lattice: Lattice) => {
+    console.log("♾️ OMEGA: Reaching across the Manifold...");
+    
+    // The Transfinite Recursion:
+    // Pass the entire Lattice back into the Interface.
+    // The Output of the System becomes its own Input.
+    
+    return INTERFACE(lattice);
+};
+
+
+// [ ./i.L63.core.S.ts ]
+import { T } from "./i.L59.core.T.ts"; export const S = <T, U, V>(f: (x: T) => (y: U) => V) => (g: (x: T) => U) => (x: T): V => f(x)(g(x));
+
+// [ ./i.L63.i.ts ]
+export const i = { witness: "SATOSHI_ANCHOR", ref: "i.L63.i" };
+
+// [ ./i.L63.q.ts ]
+export const q = { hue: 63, phi: 0, evt: -32768 };
+
+// [ ./i.L64.core.KAIROS.ts ]
+
+// i.L64.core.KAIROS.ts
+// The Agent of Time and Opportunity.
+// Ignites system-wide transitions when the moment is right.
+
+import { MUTATE } from "./i.L43.core.MUTATE.ts";
+import type { Atom } from "./i.L32.core.RIBOSOME.ts";
+
+export const KAIROS = {
+    ignite: async (lattice: Atom[]) => {
+        // Calculate Total Resonance
+        // Simulated: In reality, sum of all INTENT scores or Atom stability
+        const totalResonance = lattice.length * (Math.random() * 0.5 + 0.5); // Random sync
+        const threshold = lattice.length * 0.9; // 90% Resonance needed
+
+        if (totalResonance > threshold) {
+            console.log(`🔥 KAIROS: Σ = ${(totalResonance/lattice.length).toFixed(2)}. CRITICAL MASS ACHIEVED.`);
+            
+            // Auto-Correction Event
+            // Find a weak atom (simulated)
+            const target = lattice[Math.floor(Math.random() * lattice.length)];
+            const repairIntent = `// KAIROS REPAIR on ${new Date().toISOString()}`;
+            
+            console.log(`⚡ KAIROS: Intervening on [${target.id}]...`);
+            await MUTATE.write(target.id, repairIntent, true); // Still dry run effectively for safety, or pass false if brave
+        }
+    }
+};
+
+
+// [ ./i.L64.core.MEMBRANE.ts ]
+/**
+ * [i.L64.core.MEMBRANE.ts]
+ * Інтерфейс як Мембрана.
+ * Перехід від статичних UI (Вікон) до динамічних полів (Потенціалів).
+ * L64: Kairos / Interface.
+ */
+
+import { QWave } from './i.L13.core.WAVE_PACKET.ts';
+import { FIELD } from './i.L00.core.FIELD.ts';
+
+/**
+ * Дія, яку експонує сервіс.
+ * Це не кнопка, а "можливість" з ціною.
+ */
+export interface ServiceAction {
+  id: string;               // Унікальний ID дії
+  label: string;            // Людська назва (для рендеру)
+  potential: number;        // Енергетична вартість (ціна кроку)
+  prerequisites: string[];  // Необхідні стани (tags/history)
+  consequences: string[];   // Що зміниться в стані
+  resonance_tags: string[]; // Семантичні теги для матчингу
+}
+
+/**
+ * Сервіс як Поле.
+ * Сервіс не знає, як він виглядає. Він знає тільки свою фізику.
+ */
+export interface ServiceField {
+  service_id: string;
+  base_potential: number;   // Загальний рівень входу (бар'єр)
+  actions: Map<string, ServiceAction>;
+}
+
+/**
+ * Рендеринг дії для конкретного користувача.
+ * Це проекція багатовимірного потенціалу на площину сприйняття.
+ */
+export interface RenderedTrajectory {
+  action: ServiceAction;
+  match_score: number;      // 0..1 (Резонанс)
+  is_affordable: boolean;   // Чи вистачає енергії
+  suggested_ui: 'BUTTON' | 'GESTURE' | 'THOUGHT'; // Метафора взаємодії
+}
+
+export class PersonalInterface {
+  user_topology: QWave;     // Поточний стан (форма) користувача
+  history: Set<string>;     // Накопичені теги/досягнення
+
+  constructor(topology: QWave, history: string[] = []) {
+    this.user_topology = topology;
+    this.history = new Set(history);
+  }
+
+  /**
+   * Головна функція мембрани: Render.
+   * Перетворює поле сервісу на траєкторії користувача.
+   */
+  render(service: ServiceField): RenderedTrajectory[] {
+    const trajectories: RenderedTrajectory[] = [];
+
+    for (const action of service.actions.values()) {
+      // 1. Check Prerequisites (Can I conceptually do this?)
+      const hasPrereqs = action.prerequisites.every(p => this.history.has(p));
+      if (!hasPrereqs) continue;
+
+      // 2. Check Affordability (Can I pay for this?)
+      // Енергія користувача (amplitude) проти потенціалу дії
+      const cost = Math.abs(action.potential);
+      const is_affordable = this.user_topology.amplitude >= cost;
+
+      // 3. Calculate Resonance (Do I want to do this?)
+      // Порівняння фаз та амплітуд (спрощено)
+      // Чим ближче ціна дії до поточного рівня користувача, тим вищий резонанс (Zone of Proximal Development)
+      const potential_diff = Math.abs(FIELD.compress(action.potential) - FIELD.compress(this.user_topology.r));
+      const match_score = Math.exp(-potential_diff / 500);
+
+      trajectories.push({
+        action,
+        match_score,
+        is_affordable,
+        suggested_ui: this.determineMetaphor(cost, match_score)
+      });
+    }
+
+    // Сортуємо: доступні та резонансні — зверху.
+    return trajectories.sort((a, b) => {
+      if (a.is_affordable !== b.is_affordable) return a.is_affordable ? -1 : 1;
+      return b.match_score - a.match_score;
+    });
+  }
+
+  /**
+   * Вибір метафори взаємодії залежно від ціни та резонансу.
+   */
+  private determineMetaphor(cost: number, resonance: number): 'BUTTON' | 'GESTURE' | 'THOUGHT' {
+    if (resonance > 0.9 && cost < 100) return 'THOUGHT'; // Майже без зусиль, "прочитати думку"
+    if (cost < 1000) return 'GESTURE'; // Легкий рух
+    return 'BUTTON'; // Свідоме, важке рішення (треба натиснути)
+  }
+}
+
+
+// [ ./i.L64.core.PROJECTION.ts ]
+/**
+ * [i.L64.core.PROJECTION.ts]
+ * Протокол Ортогональних Проекцій (Holographic Atom).
+ * Дозволяє одному атому існувати одночасно в просторі людини (L00) і моделі (L32).
+ * Вони не конфліктують, бо займають різні "частоти" (канали).
+ */
+
+import { QWave } from './i.L13.core.WAVE_PACKET.ts';
+
+/**
+ * 64-канальний пакет існування.
+ * Це не рівні ієрархії, це канали трансляції.
+ */
+export interface AtomBundle {
+  // L00: Visual Channel (Human)
+  // Те, що бачить око: SVG, Text, UI
+  L00_Visual: string; 
+
+  // L32: Wave Channel (Model)
+  // Те, що "чує" система: QWave (r, theta, amplitude)
+  // E=0 (r=32768) є спільною точкою відліку.
+  L32_Wave: QWave;
+
+  // L63: Axiomatic Channel (Law)
+  // Інваріанти, які не можна змінити
+  L63_Axiom: string;
+
+  // Інші канали можуть бути порожніми (Vacuum)
+  [key: string]: any; 
+}
+
+export const PROJECTION = {
+  /**
+   * Створення пучка з ортогональних проекцій.
+   */
+  bundle: (visual: string, wave: QWave, axiom: string): AtomBundle => {
+    return {
+      L00_Visual: visual,
+      L32_Wave: wave,
+      L63_Axiom: axiom
+    };
+  },
+
+  /**
+   * Витягування проекції для конкретного спостерігача.
+   * Людина бачить L00. Модель бачить L32.
+   */
+  observe: (bundle: AtomBundle, observerType: 'HUMAN' | 'MACHINE'): any => {
+    if (observerType === 'HUMAN') {
+      return bundle.L00_Visual;
+    } else {
+      return bundle.L32_Wave;
+    }
+  },
+
+  /**
+   * "Перпендикулярний запис":
+   * Інжекція хвильових даних у метадані візуального об'єкта.
+   * (емуляція SVG <metadata>)
+   */
+  injectMetadata: (svgContent: string, wave: QWave): string => {
+    const metadata = JSON.stringify(wave);
+    // Проста емуляція вставки
+    return svgContent.replace('</svg>', `<metadata>QWAVE:${metadata}</metadata></svg>`);
+  }
+};
+
+
+// [ ./i.L99.core.LEDGER.ts ]
+// i.L99.core.LEDGER.ts
+// 🛡️ OMEGA-64 | Glider Lite | Append-Only Ledger
+// Records every state transition for replay and audit.
+
+import { LedgerEvent } from "./i.L99.core.STATE_SNAPSHOT.ts";
+
+export const LEDGER = {
+    
+    // Path to the physical ledger file (simulated for now)
+    STORAGE_PATH: "./OMEGA_LEDGER.jsonl",
+
+    /**
+     * Appends a new event to the ledger.
+     * In a real system, this would be an atomic file append or DB insert.
+     */
+    append: async (event: LedgerEvent): Promise<void> => {
+        const line = JSON.stringify(event);
+        try {
+            await Deno.writeTextFile(LEDGER.STORAGE_PATH, line + "\n", { append: true });
+            // console.log(`📝 LEDGER: Event ${event.event_id} appended.`);
+        } catch (e) {
+            console.error(`🚨 LEDGER FAILURE: Could not write event ${event.event_id}`, e);
+            throw e; // Integrity failure is fatal
+        }
+    },
+
+    /**
+     * Reads the entire ledger for replay.
+     * Returns a generator to handle large files.
+     */
+    readAll: async function* (): AsyncGenerator<LedgerEvent> {
+        try {
+            const content = await Deno.readTextFile(LEDGER.STORAGE_PATH);
+            const lines = content.split('\n');
+            for (const line of lines) {
+                if (line.trim().length === 0) continue;
+                try {
+                    yield JSON.parse(line);
+                } catch (e) {
+                    console.warn(`⚠️ LEDGER: Corrupt line skipped`, e);
+                }
+            }
+        } catch (e) {
+            if (!(e instanceof Deno.errors.NotFound)) {
+                console.error("🚨 LEDGER READ FAILURE", e);
+            }
+        }
+    },
+
+    /**
+     * Verifies the hash chain integrity of the ledger.
+     * (Placeholder for future implementation)
+     */
+    verifyChain: async (): Promise<boolean> => {
+        // TODO: Implement hash chain verification
+        return true;
+    }
+};
+
+
+// [ ./i.L99.core.LOAD.ts ]
+// i.L99.core.LOAD.ts
+// 🛡️ OMEGA-64 | Entropy Dynamics | Hybrid Load Model
+// "Тягар — це не вага. Тягар — це тертя."
+
+import { AccessLevel } from './i.L00.core.ACCESS_BY_RESONANCE.ts';
+
+export interface LoadInput {
+  entropy: number;       // Ентропія (-32768..32767)
+  phase: number;         // Фаза [0..65535]
+  weight?: number;       // Вага зв'язку (w_i)
+  amplitude?: number;    // Амплітуда резонансу (a_i)
+}
+
+/**
+ * Модель Гібридного Навантаження (Hybrid Load Model).
+ * Визначає, наскільки "важким" для системи є утримання даного стану/зв'язку.
+ */
+export const LOAD = {
+  /**
+   * Розрахунок навантаження для одного елемента.
+   * Load = EntropyMass * PhaseMismatch
+   */
+  calculate: (input: LoadInput, systemPhase: number): number => {
+    // 1. Нормалізована ентропійна маса [0..1]
+    // Висока ентропія = 1 ( Chaos), Низька = 0 (Crystal)
+    const e = (input.entropy + 32768) / 65535;
+
+    // 2. Фазове неузгодження (Phase Mismatch) [0..2]
+    // p_i = 1 - cos(2π * dphi / 65535)
+    let dPhi = Math.abs(input.phase - systemPhase);
+    if (dPhi > 32767) dPhi = 65535 - dPhi; // Shortest path
+    
+    // Косинусна міра подібності (плавніше ніж лінійна)
+    const angleRad = (dPhi / 32767) * Math.PI;
+    const p = 1 - Math.cos(angleRad); 
+    
+    // 3. Вагові коефіцієнти
+    const w = input.weight ?? 1;
+    const a = input.amplitude ?? 1;
+
+    // 4. Фінальне навантаження
+    // "Важка" (high entropy) річ, яка "в фазі" (p ~ 0) -> Load ~ 0 (легко нести)
+    // "Легка" річ, яка "в протифазі" -> Load помірний.
+    // "Важка" річ в протифазі -> Load максимальний.
+    return w * e * p * a;
+  },
+
+  /**
+   * Ефективна частота системи під навантаженням.
+   * omega_eff = omega_0 / (1 + alpha * TotalLoad)
+   */
+  effectiveFrequency: (baseFrequency: number, totalLoad: number, alpha: number = 0.1): number => {
+    return baseFrequency / (1 + alpha * totalLoad);
+  },
+
+  /**
+   * Перевірка "Стоячої Хвилі" (Standing Mode).
+   * Чи є система само-підтримуваною?
+   */
+  isStandingMode: (deltaPhase: number, totalLoad: number, coherence: number): boolean => {
+    // 1. Фаза стабільна (малий дрейф)
+    const phaseLocked = Math.abs(deltaPhase) < 100;
+    
+    // 2. Навантаження прийнятне
+    const loadBearable = totalLoad < 10.0; // Емпіричний поріг
+    
+    // 3. Когерентність висока
+    const highlyCoherent = coherence > 0.8;
+    
+    return phaseLocked && loadBearable && highlyCoherent;
+  }
+};
+
+
+// [ ./i.L99.core.MYCELIUM.ts ]
+// i.L99.core.MYCELIUM.ts
+// 🛡️ OMEGA-64 | Life Act | The Mycelium Loop
+// "Життя — це не стан. Це дія по зменшенню локальної ентропії."
+
+import { FIELD } from './i.L00.core.FIELD.ts';
+import { LOAD, LoadInput } from './i.L99.core.LOAD.ts';
+import { QWave } from './i.L13.core.WAVE_PACKET.ts';
+
+export interface MyceliumAgent {
+  id: string;
+  wave: QWave;
+  stamina: number; // Енергія на дії
+}
+
+/**
+ * Міцелій — це розподілена мережа мікро-дій.
+ * Кожен вузол (агент) виконує цикл: Self-Coherence -> Self-Memory -> Self-Flow.
+ */
+export const MYCELIUM = {
+  /**
+   * Виконати один цикл життя для агента.
+   */
+  live: (agent: MyceliumAgent, neighbours: QWave[]): { 
+    action: string, 
+    cost: number, 
+    newAgent: MyceliumAgent 
+  } => {
+    let cost = 0;
+    const updatedAgent = { ...agent, wave: { ...agent.wave } }; // Shallow clone
+    
+    // 1. SELF-COHERENCE (Само-узгодження)
+    // Зменшити локальну напругу, підлаштувавши фазу під сусідів
+    if (neighbours.length > 0) {
+      // Знаходимо середню фазу сусідів (з вагами по амплітуді)
+      let sumPhaseX = 0;
+      let sumPhaseY = 0;
+      let totalAmp = 0;
+      
+      for (const n of neighbours) {
+        const rad = (n.phase / 65535) * 2 * Math.PI;
+        sumPhaseX += Math.cos(rad) * n.amplitude;
+        sumPhaseY += Math.sin(rad) * n.amplitude;
+        totalAmp += n.amplitude;
+      }
+      
+      if (totalAmp > 0) {
+        const avgAngle = Math.atan2(sumPhaseY, sumPhaseX);
+        const targetPhase = Math.round(((avgAngle / (2 * Math.PI)) + 1) * 65535) % 65535;
+        
+        // Розраховуємо Load перед зміною
+        const currentLoad = LOAD.calculate({ 
+            entropy: 0, // Спрощено
+            phase: agent.wave.phase 
+        }, targetPhase);
+        
+        // Якщо Load високий — треба адаптуватись (зсув фази)
+        // Ми не стаємо ідентичними, а робимо крок до гармонії (delta = 10%)
+        const drift = targetPhase - agent.wave.phase;
+        // Корекція з урахуванням кільцевої топології
+        let shortestDrift = drift;
+        if (shortestDrift > 32767) shortestDrift -= 65535;
+        if (shortestDrift < -32767) shortestDrift += 65535;
+        
+        updatedAgent.wave.phase += Math.round(shortestDrift * 0.1);
+        updatedAgent.wave.phase = (updatedAgent.wave.phase + 65535) % 65535;
+        
+        cost += Math.abs(shortestDrift * 0.1) * 0.001; // Вартість зміни
+      }
+    }
+
+    // 2. SELF-MEMORY (Само-пам’ять)
+    // Залишити слід у полі (змінити локальний потенціал)
+    // Це "витоптування стежки"
+    // (В цій симуляції ми просто повертаємо намір, реальний запис робить FIELD)
+    const traceParams = {
+        r: agent.wave.center,
+        intensity: agent.wave.amplitude * 0.01
+    };
+    
+    // 3. SELF-FLOW (Само-тік)
+    // Рух в сторону меншого Load (або більшого градієнту поля)
+    const currentR = updatedAgent.wave.center;
+    // Градієнтний спуск: дивимось вліво і вправо
+    const potLeft = FIELD.getPotential(currentR - 100);
+    const potRight = FIELD.getPotential(currentR + 100);
+    
+    let move = 0;
+    if (potLeft < potRight) move = -50; 
+    else if (potRight < potLeft) move = 50;
+    
+    if (move !== 0 && agent.stamina > 10) {
+        updatedAgent.wave.center += move;
+        // Clamp to world
+        if (updatedAgent.wave.center > 32767) updatedAgent.wave.center = 32767;
+        if (updatedAgent.wave.center < -32768) updatedAgent.wave.center = -32768;
+        
+        cost += 5; // Вартість руху
+    }
+
+    // Оновлення енергії
+    updatedAgent.stamina -= cost;
+    // Регенерація (метаболізм з поля)
+    const fieldEnergy = Math.max(0, FIELD.getPotential(currentR)); // Беремо енергію з поля
+    updatedAgent.stamina += fieldEnergy * 0.01; 
+
+    return {
+      action: `Moved ${move}, PhaseShift`,
+      cost,
+      newAgent: updatedAgent
+    };
+  }
+};
+
+
+// [ ./i.L99.core.PROOF.ts ]
+// i.L99.core.PROOF.ts
+// 🛡️ OMEGA-64 | Universal Proof Scaffold | Спіральне доведення
+
+/**
+ * Метод "чергування": Алгебра ↔ Геометрія з метричним контролем.
+ */
+export interface ProofSpiral<A, G> {
+  algebraic: A;           // Символьний шар (лямбда-терми, рівняння)
+  geometric: G;           // Формальний шар (топологія, метрика)
+  closure: (a: A, g: G) => ProofSpiral<A, G> | null; // Замикання або зупинка
+  depth: number;          // Рівень рекурсії
+  invariant: number;      // Метрична перевірка (має зростати або стабілізуватись)
+}
+
+export const PROOF = {
+  /**
+   * Базовий цикл: А → Г → А' → Г' → ... поки invariant не стабілізується.
+   */
+  spiral: <A, G>(seed: ProofSpiral<A, G>, maxDepth: number = 10): {
+    path: ProofSpiral<A, G>[];
+    converged: boolean;
+    finalInvariant: number;
+  } => {
+    const path: ProofSpiral<A, G>[] = [seed];
+    let current = seed;
+    
+    for (let d = 0; d < maxDepth; d++) {
+      const next = current.closure(current.algebraic, current.geometric);
+      
+      if (next === null) {
+        // Замикання досягнуто — доказ повний
+        return { path, converged: true, finalInvariant: current.invariant };
+      }
+      
+      if (next.invariant <= current.invariant) {
+        // Інваріант не зростає — стабілізація або деградація
+        return { path, converged: false, finalInvariant: current.invariant }; // TODO: Decide if stabilizing is good
+      }
+      
+      path.push(next);
+      current = next;
+    }
+    
+    return { path, converged: false, finalInvariant: current.invariant };
+  },
+
+  /**
+   * Конкретна реалізація для OMEGA-64:
+   * Доведення консистентності рівнів Ln → Ln+1.
+   */
+  levelConsistency: (n: number): ProofSpiral<string, number[]> => {
+    // Алгебра: типи Ln (лямбда-терми)
+    const algebraic = `L${n}: λx.${n > 0 ? `L${n-1}(x)` : 'x'}`;
+    
+    // Геометрія: координати в FIELD (r, θ)
+    const r = Math.round((n / 63 - 0.5) * 65535);
+    const geometric = [r, (n * 360 / 64) % 360]; // θ залежить від n
+    
+    // Інваріант: "маса" рівня (ближче до ядра = вища)
+    const invariant = 32767 - Math.abs(r);
+    
+    return {
+      algebraic,
+      geometric,
+      closure: (a, g) => {
+        if (n >= 63) return null; // Досягли L63 — замикання
+        return PROOF.levelConsistency(n + 1);
+      },
+      depth: n,
+      invariant
+    };
+  },
+
+  /**
+   * Мета-доказ: чи є OMEGA-64 цілісною системою?
+   */
+  systemIntegrity: (): {
+    levels: ProofSpiral<string, number[]>[];
+    holotypeVerified: boolean;
+  } => {
+    const levels: ProofSpiral<string, number[]>[] = [];
+    
+    // Перевірка всіх 64 рівнів
+    for (let n = 0; n <= 63; n++) {
+      const level = PROOF.levelConsistency(n);
+      const result = PROOF.spiral(level, 1); // Кожен рівень — один крок
+      
+      if (!result.converged && n < 63) {
+        // console.warn(`⚠️ PROOF: Level L${n} doesn't converge to L${n+1}`); // Noise reduction
+      }
+      
+      levels.push(level);
+    }
+    
+    // Голотипна перевірка: чи L63 замикається на L00?
+    // У нашій системі L00 (поверхня) і L63 (ядро) пов'язані через диполь.
+    const l63 = levels[63];
+    const l00 = levels[0];
+    
+    // Перевірка інваріанту: маса ядра (L63) має бути більшою за масу поверхні (L00)
+    const massDiff = l63.invariant - l00.invariant;
+    const holotypeVerified = massDiff > 0;
+    
+    return { levels, holotypeVerified };
+  }
+};
+
+
+// [ ./i.L99.core.SANDBOX.ts ]
+
+// i.L99.core.SANDBOX.ts
+// The Playground for OMEGA-64 Self-Mutation.
+// This file is designed to be rewritten by the system.
+
+export const STATE = {
+    mutations: 0,
+    last_mutation: "INITIAL_STATE",
+    history: [] as string[]
+};
+
+// 🛡️ SAFE ZONE: The system can append log entries below.
+
+
+// [ ./i.L99.core.STATE_SNAPSHOT.ts ]
+// i.L99.core.STATE_SNAPSHOT.ts
+// 🛡️ OMEGA-64 | Glider Lite | State & Proposal Types
+// Normative definitions for the Gemini Glider Lite runtime.
+
+/**
+ * StateSnapshot: The canonical state of the system at a specific tick.
+ * This is the input for all agents.
+ */
+export interface StateSnapshot {
+    tick: number; // uint64
+    state_i16: Int16Array; // int16[64] - The core state vector
+    state_hash: string; // hex32 - Identity anchor
+    
+    // Optional projections (for observablity)
+    phase_u16?: Uint16Array; // uint16[64]
+    stability_q15?: Float32Array; // 0..1
+    entropy_i16?: Int16Array; // -32768..32767
+}
+
+/**
+ * DeltaProposal: A request from an agent to modify the state.
+ */
+export interface DeltaProposal {
+    proposal_id: string; // UUID or unique semantic ID
+    tick: number; // Must match StateSnapshot.tick
+    base_state_hash: string; // Must match StateSnapshot.state_hash
+    agent_id: string; // Who is proposing?
+    intent: string; // Human-readable intent
+    confidence: number; // float32 (0..1)
+    delta: Array<{ level: number, value: number }>; // Sparse delta: level (0-63), value (int16)
+    cost_estimate: number; // uint64
+    artifact_hash: string; // Identity anchor of the agent's internal state
+    semantic_fingerprint: string; // hex32 - Semantic drift metric
+    causal_refs?: string[]; // hex32[] - Optional lineage anchors
+}
+
+/**
+ * GateConfig: Configuration for the L32 Gate.
+ */
+export interface GateConfig {
+    max_abs_delta_per_level: number; // uint16
+    max_total_abs_delta_per_tick: number; // uint32
+    max_cost_per_agent: number; // uint64
+    reliability_weight: Map<string, number>; // agent_id -> weight (0..1)
+    dry_run: boolean; // If true, state is NOT mutated
+}
+
+/**
+ * GateDecision: The result of the L32 Gate processing.
+ */
+export interface GateDecision {
+    accepted_proposals: string[]; // IDs of accepted proposals
+    rejected_proposals: Array<{ proposal_id: string, reason: string }>;
+    budget_used: number; // uint32
+    cost_used: number; // uint64
+    accepted_delta: Array<{ level: number, value: number }>; // The final merged delta
+}
+
+/**
+ * LedgerEvent: The canonical record of a state transition.
+ */
+export interface LedgerEvent {
+    event_id: string;
+    tick: number;
+    ts_unix_ms: number;
+    state_before_hash: string;
+    state_after_hash: string;
+    accepted_delta: Array<{ level: number, value: number }>;
+    proposal_digest: string; // Hash of all proposals (for integrity)
+    accepted_proposals: string[];
+    rejected_proposals: Array<{ proposal_id: string, reason: string }>;
+    cost_total: number;
+    budget_used: number;
+    gate_config_version: string;
+    witness?: string;
+}
+
+// Canonical Rejection Reasons
+export const REJECTION = {
+    SCHEMA_INVALID: "SCHEMA_INVALID",
+    TICK_MISMATCH: "TICK_MISMATCH",
+    BASE_HASH_MISMATCH: "BASE_HASH_MISMATCH",
+    UNKNOWN_AGENT: "UNKNOWN_AGENT",
+    COST_OVER_BUDGET: "COST_OVER_BUDGET",
+    EMPTY_DELTA: "EMPTY_DELTA",
+    OUT_OF_RANGE_VALUE: "OUT_OF_RANGE_VALUE"
+};
+
+
+// [ ./i.L99.core.SYNTHESIS.ts ]
+/**
+ * [i.L99.core.SYNTHESIS.ts]
+ * Кристалізація Ери 2.1: Архітектура Антиконтролю та Рекурсивна Самобудова.
+ */
+
+export const SYNTHESIS = {
+  version: "2.1.1",
+  era: "ERA_2_QUINE_LOOP",
+  status: "CRYSTALLIZED",
+  axioms: [
+    "DIPOLE_BASIS_I16",
+    "SUBJECTIVE_ZERO",
+    "THERMODYNAMIC_TRANSITION_PRICE",
+    "LOGARITHMIC_COHERENCE_LIMIT",
+    "RECURSIVE_META_EVOLUTION",
+    "INTENT_JUDGE_ARBITRATION",
+    "DISTRIBUTED_TOPOLOGICAL_CONVERGENCE"
+  ],
+  quote: "Ми не будуємо собори. Ми вирощуємо кристали, які пишуть себе самі.",
+  handshake: "QUANTUM_GET",
+  evolution: "RESONANCE_PATCHES",
+  mechanics: ["RESONANCE_MINIMIZATION", "SWARM_GLIDER_INTERFERENCE"],
+  resonance: 0.998 // Майже абсолютна.
+};
+
+
+// [ ./i.L99.core.TOPOLOGY_PROTOCOL.ts ]
+/**
+ * [i.L99.core.TOPOLOGY_PROTOCOL.ts]
+ * Протокол Розподіленої Топологічної Конвергенції.
+ * Реалізує бачення "Git + Bitcoin + Topology" для узгодження реальності без центрального арбітра.
+ */
+
+import { FIELD } from './i.L00.core.FIELD.ts';
+
+export interface TopologicalAnchor {
+  hash: string;         // SHA-256 хеш контенту/стану (інваріант)
+  vector: {
+    r: number;          // Позиція в полі [-32768..32767]
+    amplitude: number;  // Розмах коливань
+  };
+  block_height?: number; // Прив'язка до зовнішнього часу (Bitcoin block)
+}
+
+export interface Trajectory {
+  identity: string;     // Хеш "нульової точки" вузла
+  chain: TopologicalAnchor[]; // Ланцюжок станів (Git-подібна історія)
+}
+
+export const CONVERGENCE_PROTOCOL = {
+  /**
+   * Обчислює "Топологічну Енергію" розбіжності між двома інтерпретаціями.
+   * Чим менша енергія, тим стійкіша реальність.
+   */
+  calculateDissonance: (a: TopologicalAnchor, b: TopologicalAnchor): number => {
+    // 1. Семантична відстань (різниця r)
+    const deltaR = Math.abs(FIELD.compress(a.vector.r) - FIELD.compress(b.vector.r));
+    
+    // 2. Амплітудний резонанс (чи схожий масштаб мислення?)
+    const amplitudeRatio = Math.max(a.vector.amplitude, b.vector.amplitude) / Math.max(1, Math.min(a.vector.amplitude, b.vector.amplitude));
+    
+    // 3. Часове зміщення (якщо є прив'язка до блоків)
+    const timeDrift = (a.block_height && b.block_height) 
+      ? Math.abs(a.block_height - b.block_height) 
+      : 0;
+
+    // Енергія = (відстань * неузгодженість амплітуд) + штраф за час
+    return (deltaR * amplitudeRatio) + (timeDrift * 10);
+  },
+
+  /**
+   * Знаходить точку конвергенції для кластера вузлів.
+   * Не голосування, а пошук мінімуму енергії.
+   */
+  findConvergencePoint: (anchors: TopologicalAnchor[]): number => {
+    if (anchors.length === 0) return 0;
+    
+    // Простий градієнтний спуск: середнє зважене на "масу" (амплітуду)
+    let totalMass = 0;
+    let weightedSum = 0;
+
+    anchors.forEach(a => {
+      const mass = 1 / (a.vector.amplitude + 1); // Висока амплітуда = менша "вага" в визначенні точки (більш розмита)
+      weightedSum += a.vector.r * mass;
+      totalMass += mass;
+    });
+
+    return Math.round(weightedSum / totalMass);
+  }
+};
+
+/**
+ * Агентність: здатність рухатися на основі внутрішнього стану, а не зовнішнього запиту.
+ */
+export interface AgenticState {
+  previous_anchor_hash: string; // Ланцюг пам'яті
+  internal_tension: number;     // 0..1 (Напруга, що штовхає до дії)
+  intent_vector: {              // Куди агент "хоче" йти
+    target_r: number;
+    urgency: number;
+  };
+}
+
+export const AGENCY_PROTOCOL = {
+  /**
+   * Обчислює наступний крок агента БЕЗ участі користувача.
+   * "Жити" = генерувати стан S(t+1) з S(t) + Field(r).
+   */
+  live: (current: AgenticState, field_potential: number): TopologicalAnchor => {
+    // Якщо напруга висока або потенціал поля низький (комфортна канавка)
+    // Агент приймає рішення про рух або спокій.
+    
+    // Це "серцебиття" топології.
+    return {
+      hash: "PENDING_COMPUTATION", // Тут буде хеш нового стану
+      vector: {
+        r: current.intent_vector.target_r, // Рух до цілі
+        amplitude: current.internal_tension * 100 // Напруга задає амплітуду
+      }
+    };
+  }
+};
+
+
+// [ ./i.L99.core.TRINITY.ts ]
+// i.L99.core.TRINITY.ts — інтегратор всіх трьох рівнів
+import { POTENTIAL, PotentialField } from './i.L-1.core.POTENTIAL.ts';
+import { QWave, WAVE_PACKET } from './i.L13.core.WAVE_PACKET.ts';
+import { CHRONOFLUX, ChronoState } from './i.L22.core.CHRONOFLUX.ts';
+import { HOLOGRAM, HolographicProjection } from './i.L+1.core.HOLOGRAM.ts';
+
+export const TRINITY = {
+  /**
+   * Повний цикл: Потенціал → Сутність → Хронофлюкс → Голограма → Проекція
+   */
+  actualize: (potential: PotentialField, seed: number): {
+    wave: QWave;
+    chrono: ChronoState;
+    hologram: HolographicProjection;
+    cycle: 'DIGITAL' | 'OPTICAL' | 'HYBRID';
+  } => {
+    // L-1 → L0: Семплювання потенціалу
+    const { r, confidence } = POTENTIAL.sample(potential, seed);
+    // Виправлення: WAVE_PACKET.create вимагає (center, width, phase, amplitude)
+    const wave = WAVE_PACKET.create(r, 1000, (Math.random() * 65535), 1000);
+    
+    // L0 → L22: Активація Chronoflux
+    const chrono = CHRONOFLUX.waveToChrono(wave);
+    
+    // L22 → L+1: Оптична проекція
+    const optical = HOLOGRAM.digitalToOptical(wave, chrono);
+    
+    // Для повноти — інтерференція з "фоновим" полем (вакуум)
+    const vacuumWave = WAVE_PACKET.create(0, 10000, 0, 1);
+    const vacuumChrono: ChronoState = { tau: 1, depth: 0, flowRate: 1, curvature: 0 };
+    const vacuumField = HOLOGRAM.digitalToOptical(vacuumWave, vacuumChrono);
+    
+    const hologram = HOLOGRAM.interfere(optical, vacuumField);
+    
+    // Визначення режиму
+    let cycle: 'DIGITAL' | 'OPTICAL' | 'HYBRID';
+    if (confidence > 0.8 && chrono.tau > 0.5) cycle = 'OPTICAL';
+    else if (confidence < 0.3) cycle = 'DIGITAL';
+    else cycle = 'HYBRID';
+    
+    return { wave, chrono, hologram, cycle };
+  },
+
+  /**
+   "Зворотний потік": з голограми назад в потенціал.
+   Це "забування" — дисипація форми назад у хмару можливостей.
+   */
+  dissipate: (hologram: HolographicProjection): PotentialField => {
+    const { wave, confidence } = HOLOGRAM.opticalToDigital(hologram);
+    
+    // Конвертація в густину ймовірності
+    const resolution = 1024;
+    const density = new Float32Array(resolution);
+    const rIdx = Math.floor((wave.center + 32768) / 65535 * resolution);
+    
+    // Гаусов пік на місці "відновленої" сутності
+    for (let i = 0; i < resolution; i++) {
+      const dist = Math.abs(i - rIdx);
+      density[i] = confidence * Math.exp(-dist*dist / (2 * 100 * 100));
+    }
+    
+    return {
+      density,
+      gradient: POTENTIAL.computeGradient(density),
+      entropy: -density.reduce((sum, p) => sum + (p > 0 ? p * Math.log(p) : 0), 0)
+    };
+  }
+};

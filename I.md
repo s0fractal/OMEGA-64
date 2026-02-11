@@ -662,6 +662,108 @@ Beyond repositories, I am exploring these "Questions":
 <!-- [ ./i.L32.core.BRIDGE.md ] -->
 [BRIDGE]: BRIDGE: A structural identity that marks a phase transition. | BRIDGE: A structural identity that marks a phase transition.
 
+<!-- [ ./i.L32.core.GLIDER_GATE_PROTOCOL.md ] -->
+# i.L32.core.GLIDER_GATE_PROTOCOL
+
+Status: Draft
+Layer: L32 (Integration Band)
+Purpose: Deterministic admission and merge protocol for agent deltas.
+
+## 1. Contract
+
+Input:
+- `StateSnapshot`
+- `DeltaProposal[]`
+- `GateConfig`
+
+Output:
+- `GateDecision`
+- `AcceptedDelta`
+- `StateSnapshotNext`
+- `LedgerEvent`
+
+## 2. Types (Normative)
+
+`StateSnapshot`
+- `tick: uint64`
+- `state_i16: int16[64]`
+- `state_hash: hex32`
+
+`DeltaProposal`
+- `proposal_id: string`
+- `tick: uint64`
+- `base_state_hash: hex32`
+- `agent_id: string`
+- `intent: string`
+- `confidence: float32` (0..1)
+- `delta: Array<{ level: uint8, value: int16 }>`
+- `cost_estimate: uint64`
+- `artifact_hash: hex32`
+- `semantic_fingerprint: hex32`
+- `causal_refs: hex32[]` (optional lineage anchors)
+
+`GateConfig`
+- `max_abs_delta_per_level: uint16`
+- `max_total_abs_delta_per_tick: uint32`
+- `max_cost_per_agent: uint64`
+- `reliability_weight: Map<agent_id, float32>`
+- `dry_run: bool`
+
+`GateDecision`
+- `accepted_proposals: string[]`
+- `rejected_proposals: Array<{ proposal_id: string, reason: string }>`
+- `budget_used: uint32`
+- `cost_used: uint64`
+
+## 3. Deterministic Procedure
+
+1. Reject proposal if schema invalid.
+2. Reject if `proposal.tick != state.tick`.
+3. Reject if `proposal.base_state_hash != state.state_hash`.
+4. Reject if unknown `agent_id`.
+5. Clip each `delta.value` to `max_abs_delta_per_level`.
+6. Compute weighted score:
+`weight = confidence * reliability_weight[agent_id]`.
+7. Merge per level:
+`merged[level] = saturating_round(sum(weight * delta_level))`.
+8. Enforce global budget:
+if total abs exceeds `max_total_abs_delta_per_tick`, scale all levels uniformly.
+9. Compute `state_next = saturating_add(state, merged)`.
+10. Compute `state_next_hash`.
+11. Emit decision + ledger event.
+
+## 4. Rejection Reasons (Canonical)
+
+- `SCHEMA_INVALID`
+- `TICK_MISMATCH`
+- `BASE_HASH_MISMATCH`
+- `UNKNOWN_AGENT`
+- `COST_OVER_BUDGET`
+- `EMPTY_DELTA`
+- `OUT_OF_RANGE_VALUE`
+
+## 5. Safety Rules
+
+1. Gate is the only state mutation path.
+2. Gate must be pure for same input set.
+3. Merge order must be canonical:
+sort proposals by `proposal_id` before merge.
+4. `dry_run=true` must produce decision without mutating state.
+
+## 6. Traceability
+
+Each accepted tick must be reconstructible from:
+- prior state hash,
+- sorted proposal set,
+- gate config version.
+
+## 7. Hash Semantics (Normative)
+
+1. `artifact_hash` is identity anchor, not meaning metric.
+2. Causal drift is computed from lineage edges (`base_state_hash`, `causal_refs`).
+3. Semantic drift is external to hash bits and uses projection/behavior metrics.
+
+
 <!-- [ ./i.L32.core.LIFT.md ] -->
 [LIFT]: LIFT: Lifts a computation from a lower level to a higher context. | λf.λx.f x (Generic lifting) | LIFT: Elevates a Binary Operator (L47) to work on Semantic Objects (L31). | λf.λobj. CONS (f (CAR obj)) (CDR obj)
 
@@ -1141,6 +1243,237 @@ Compass: Sigma-GLYPH anchors the deep foundation; OMEGA sustains living drift ab
 Compass: Keep the foundation rigid without petrifying the whole; let ecosystems resonate.
 
 
+<!-- [ ./i.L99.core.GLIDER_LITE_ACCEPTANCE.md ] -->
+# i.L99.core.GLIDER_LITE_ACCEPTANCE
+
+Status: Draft
+Layer: L99
+Purpose: Acceptance matrix for implementation handoff.
+
+## 1. Test Matrix
+
+T1 Deterministic Replay
+- Given same genesis + same ordered ledger.
+- Expect identical final `state_hash`.
+
+T2 Saturation Safety
+- Inject proposals with values beyond int16 range.
+- Expect clamped merge and no overflow.
+
+T3 Budget Enforcement
+- Submit proposals that exceed global delta budget.
+- Expect scaled or rejected deltas according to gate config.
+
+T4 Agent Isolation
+- Attempt direct state write from agent path.
+- Expect rejection (only gate mutates state).
+
+T5 Tick Integrity
+- Submit proposals for wrong tick.
+- Expect `TICK_MISMATCH` rejection.
+
+T6 Empty/Noise Robustness
+- Submit empty and random sparse deltas.
+- Expect stable behavior without uncontrolled divergence.
+
+T7 Cost Accounting
+- For each accepted event, verify:
+`cost_total > 0` when `accepted_delta` non-empty.
+
+T8 Observability
+- Every tick emits ledger event with before/after hash and decision payload.
+
+## 2. Exit Criteria
+
+Implementation is acceptable when:
+1. T1..T8 all pass.
+2. 10k-tick noise simulation does not diverge beyond configured envelope.
+3. Replay audit can be run by independent node and matches.
+
+## 3. Recommended Rollout
+
+1. Dry-run mode in production topology.
+2. Limited mutation with low budgets.
+3. Progressive budget increase by stability score.
+4. Enable multi-agent merge only after replay audits are green.
+
+
+
+<!-- [ ./i.L99.core.HANDOFF_GEMINI_GLIDER_LITE.md ] -->
+# i.L99.core.HANDOFF_GEMINI_GLIDER_LITE
+
+Status: Implementation Handoff
+Target: Gemini (executor)
+Context: OMEGA glider-lite with i16 state and deterministic L32 gate.
+
+## 0. Input Set (Read First)
+
+1. `/Users/s0fractal/OMEGA/i.L99.core.TZ_GLIDER_LITE_I16.md`
+2. `/Users/s0fractal/OMEGA/i.L32.core.GLIDER_GATE_PROTOCOL.md`
+3. `/Users/s0fractal/OMEGA/i.L99.core.LEDGER_EVENT_SCHEMA.md`
+4. `/Users/s0fractal/OMEGA/i.L99.core.GLIDER_LITE_ACCEPTANCE.md`
+5. `/Users/s0fractal/OMEGA/i.L99.core.SPEC_OMEGA_ENV.md`
+6. `/Users/s0fractal/OMEGA/i.L99.core.LOAD_MODEL.md`
+7. `/Users/s0fractal/OMEGA/i.L32.core.RIBOSOME.ts`
+
+## 1. Delivery Order
+
+### Phase 0: Instrumentation Only (No Mutation)
+
+Goal:
+Create observability for proposals and cost without changing shared state.
+
+Deliver:
+1. `StateSnapshot` structure (`tick`, `state_i16[64]`, `state_hash`).
+2. `DeltaProposal` ingestion path and validation.
+3. Ledger writer using schema from `LEDGER_EVENT_SCHEMA`.
+4. Dry-run pipeline: proposals in, decision out, state unchanged.
+
+Stop gate:
+- All Phase 0 events append correctly.
+- Replay checker runs and reports no mutation path.
+
+### Phase 1: Deterministic L32 Gate (Still Dry-Run by Default)
+
+Goal:
+Implement canonical admission + merge with deterministic ordering.
+
+Deliver:
+1. Gate function matching `GLIDER_GATE_PROTOCOL`.
+2. Canonical proposal sort by `proposal_id`.
+3. Per-level clamp and global budget scaling.
+4. Rejection reasons using canonical codes.
+
+Stop gate:
+- Deterministic replay test passes repeatedly on same input.
+- `dry_run=true` path proven side-effect free.
+
+### Phase 2: Bounded Mutation Enabled
+
+Goal:
+Enable controlled updates of `state_i16` through gate only.
+
+Deliver:
+1. Mutation path guarded by gate result.
+2. Saturating add implementation for int16 state updates.
+3. Cost accounting wired to load/mismatch model.
+4. Checkpoint support for rollback and replay.
+
+Stop gate:
+- No int16 overflow under stress.
+- Tick integrity (`TICK_MISMATCH`) covered.
+- Agent direct-write attempts rejected.
+
+### Phase 3: Multi-Agent Merge and Reliability Weighting
+
+Goal:
+Run 2-3 lightweight agents with proposal competition/cooperation.
+
+Deliver:
+1. Reliability weight map per `agent_id`.
+2. Confidence-weighted merge.
+3. Noise robustness run (10k ticks) with bounded divergence.
+4. Drift analytics from ledger metrics.
+
+Stop gate:
+- Acceptance matrix T1..T8 is green.
+- Independent replay matches final hash.
+
+## 2. Hard Constraints (Do Not Violate)
+
+1. No direct canon mutation from agent outputs.
+2. Do not use raw hash bit-distance as semantic metric.
+Use hash graph lineage for causal drift and semantic fingerprints for meaning drift.
+3. No mutation path outside L32 gate.
+4. No implicit non-determinism in merge order.
+5. No phase without explicit budget.
+
+## 3. Suggested File Placement
+
+1. L32 integration code near:
+`/Users/s0fractal/OMEGA/i.L32.core.RIBOSOME.ts`
+2. L99 ledger and audit helpers near:
+`/Users/s0fractal/OMEGA/i.L99.core.*`
+3. Keep terminology aligned with existing `CANON/SPEC/LOAD`.
+
+## 4. Quick Report Template Per Phase
+
+Use this format:
+1. What was implemented.
+2. Which acceptance tests passed/failed.
+3. Replay determinism status.
+4. Open risks and next action.
+
+
+<!-- [ ./i.L99.core.LEDGER_EVENT_SCHEMA.md ] -->
+# i.L99.core.LEDGER_EVENT_SCHEMA
+
+Status: Draft
+Layer: L99
+Purpose: Append-only transition format for glider-lite runtime.
+
+## 1. Event Record
+
+```json
+{
+  "event_id": "evt_000001",
+  "tick": 128,
+  "ts_unix_ms": 1739200000000,
+  "state_before_hash": "hex32",
+  "state_after_hash": "hex32",
+  "accepted_delta": [
+    { "level": 5, "value": -120 },
+    { "level": 13, "value": 340 }
+  ],
+  "proposal_digest": "hex32",
+  "accepted_proposals": ["p1", "p2"],
+  "rejected_proposals": [
+    { "proposal_id": "p9", "reason": "COST_OVER_BUDGET" }
+  ],
+  "cost_total": 8421,
+  "budget_used": 460,
+  "gate_config_version": "v1",
+  "witness": "optional_hex32"
+}
+```
+
+## 2. Canonical Serialization
+
+1. UTF-8 JSON.
+2. Keys sorted lexicographically before hashing.
+3. No float NaN/Infinity values.
+4. Integers must be decimal-form JSON numbers.
+
+## 3. Derived Metrics
+
+Per event:
+- `abs_delta_sum = sum(abs(value))`
+- `net_bias = sum(value)`
+- `energy_density = cost_total / max(1, abs_delta_sum)`
+
+Across window:
+- drift slope by level,
+- rejection ratio per agent,
+- budget pressure index.
+
+## 4. Storage Rules
+
+1. Append-only file or append-only table.
+2. No in-place mutation of prior events.
+3. Optional periodic checkpoints:
+`checkpoint_tick`, `checkpoint_state_hash`.
+
+## 5. Replay Rule
+
+Starting from genesis snapshot:
+- apply `accepted_delta` in `tick` order,
+- recompute hash each step,
+- verify equals `state_after_hash`.
+
+Mismatch means ledger corruption or non-deterministic gate.
+
+
+
 <!-- [ ./i.L99.core.LEVIN_COMPAT.md ] -->
 # Levin Compatibility Layer (OMEGA)
 Status: Draft
@@ -1452,6 +1785,197 @@ Standing mode = stable phase lock + low Load + coherent projections.
   масу Поверхні (L00). Це гарантує, що Суть важча за Слово.
 
 > "Ми не будуємо собори. Ми вирощуємо кристали, які пишуть себе самі." 🛡️✨🧬
+
+
+<!-- [ ./i.L99.core.TZ_GLIDER_LITE_I16.md ] -->
+# i.L99.core.TZ_GLIDER_LITE_I16
+
+Status: Draft for Implementation
+Owner: OMEGA Bio-Representative + Agent Swarm
+Layer: L99 (Canon Guidance)
+
+## 1. Objective
+
+Introduce a controlled `glider-lite` runtime in OMEGA where lightweight agents:
+- observe shared topological state,
+- propose bounded signed vector deltas in `i16`,
+- evolve via append-only traces,
+- do not directly rewrite canon.
+
+This is not AGI work. This is topology instrumentation and safe agency scaffolding.
+
+## 2. Why Internal Logical Coherence is B+ (not A)
+
+Current gaps:
+1. Metric mismatch:
+`hash distance` is treated as semantic distance in multiple discussions.
+Cryptographic hash distance is identity-level, not meaning-level.
+2. Layer leakage:
+deterministic claims and metaphorical claims are mixed in one control path.
+3. Missing formal gate:
+there is no strict protocol between `resonant proposals` and `deterministic application`.
+4. Unbounded dipole:
+`maximize tension` appears without hard energy budget and safety clamp.
+
+Upgrade target to `A`:
+- formalize gate contract,
+- formalize ledger schema,
+- formalize energy/phase budgets,
+- separate symbolic narrative from executable semantics.
+
+## 3. Scope
+
+In scope:
+- Shared `i16` state vector model and update discipline.
+- Proposal-only agent interface (no direct mutation rights).
+- L32 gate for admission, clipping, and deterministic application.
+- Append-only ledger for irreversibility and replay.
+- Acceptance tests and failure modes.
+
+Out of scope:
+- Full self-rewrite of topology.
+- Claims about machine consciousness.
+- Large closed-model introspection.
+
+## 4. Architecture (Minimal)
+
+Flow:
+1. `State(t)` is read by agents.
+2. Each agent emits a `DeltaProposal`.
+3. L32 gate validates, clips, and merges proposals.
+4. `State(t+1)` is produced deterministically.
+5. Transition is appended to ledger.
+
+Separation rule:
+- Agent layer is stochastic/exploratory.
+- Gate + merge + replay are deterministic.
+
+## 5. Data Model
+
+State vector:
+- `state_i16: int16[64]`
+- Optional projections:
+`phase_u16[64]`, `stability_q15[64]`, `entropy_i16[64]`.
+
+Delta proposal:
+- sparse vector form:
+`[{ level: 0..63, delta: int16 }]`
+- plus metadata:
+`intent`, `confidence`, `cost_estimate`, `agent_id`, `tick`.
+
+## 6. Core Invariants
+
+1. Causality:
+state transition order is strictly monotonic by `tick`.
+2. Bounded energy:
+sum of absolute accepted deltas per tick must be <= budget.
+3. Bounded phase jump:
+per-level delta clamp to configured max.
+4. Replayability:
+replaying ledger from genesis reproduces state bit-exactly.
+5. No direct canon mutation:
+agent outputs cannot bypass L32 gate.
+
+## 7. Admission and Merge Rules
+
+Admission:
+1. Schema-valid proposal.
+2. Correct `tick` and known `agent_id`.
+3. Numeric bounds are valid.
+4. Proposal cost <= per-agent budget.
+
+Merge:
+1. Aggregate sparse deltas by level.
+2. Apply weighted combine by confidence and reliability.
+3. Saturating clamp to int16.
+4. Apply global budget scaling if overflow.
+5. Emit deterministic `accepted_delta`.
+
+## 8. Cost Function (Operational)
+
+Per-level operational cost:
+`cost_l = abs(delta_l) * (1 + load_l) * (1 + mismatch_l)`
+
+Where:
+- `load_l` comes from hybrid load model.
+- `mismatch_l` is phase mismatch penalty (0..2 normalized domain).
+
+Total cost:
+`cost = sum(cost_l)`
+
+## 9. Identity and Drift (Safe Form)
+
+Use three channels:
+1. `artifact_hash`:
+identity anchor and portal to exact artifact state.
+2. `causal_position`:
+position in hash-linked transformation graph (parent/child lineage).
+3. `semantic_fingerprint`:
+embedding-derived, task-calibrated behavior signature.
+
+Rules:
+1. Cryptographic hash bit-distance is not semantic distance.
+2. Causal drift is computed on graph paths between anchors, not on raw hash bits.
+3. Semantic drift is computed from behavior/projection metrics.
+
+## 10. Ledger Requirements
+
+Append-only event per tick:
+- `before_hash`, `after_hash`
+- `causal_refs` (optional parent anchors)
+- `accepted_delta`
+- `proposal_digest`
+- `cost`
+- `budget_used`
+- `witness` (optional)
+
+Ledger must support:
+- replay,
+- rollback by checkpoint,
+- drift analytics.
+
+## 11. Phased Delivery
+
+Phase 0:
+instrumentation only, no mutations.
+
+Phase 1:
+proposal + gate + ledger with zero-impact dry-run.
+
+Phase 2:
+bounded state mutation enabled.
+
+Phase 3:
+multi-agent competition/cooperation with budgets and reliability scores.
+
+## 12. Acceptance Criteria
+
+1. Deterministic replay:
+same ledger produces same final state.
+2. Safety:
+no level exceeds int16 bounds.
+3. Stability:
+no uncontrolled divergence under random proposal noise test.
+4. Separation:
+agent cannot modify state without gate.
+5. Observability:
+every transition has explainable accepted delta and cost.
+
+## 13. Risks
+
+1. Pseudoscience drift:
+metaphor replacing instrumentation.
+2. Overfitting gate:
+too strict -> no emergence, too loose -> collapse.
+3. Semantic lock-in:
+hardcoding intent categories too early.
+
+## 14. Implementation Note
+
+Use existing OMEGA terms and files:
+- `i.L32.core.RIBOSOME.ts` as execution bridge candidate.
+- `i.L99.core.LOAD_MODEL.md` for load semantics.
+- `i.L99.core.SPEC_OMEGA_ENV.md` for canon-level constraints.
 
 
 <!-- [ ./i.L99.core.UI_QUINE_SPEC.md ] -->

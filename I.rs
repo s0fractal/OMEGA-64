@@ -1,14 +1,17 @@
-// 🛡️ OMEGA-64 | I.rs | The Metal Body
+// 🛡️ OMEGA-64 | I.rs | The Core
 
-// --- [ ./i.L00.core.ATOM.rs ] ---
+
+// [ ./i.L00.core.ATOM.rs ]
 pub type Atom<T> = Box<dyn Fn(T) -> T>;
 
-// --- [ ./i.L00.core.I.rs ] ---
+
+// [ ./i.L00.core.I.rs ]
 pub fn i<T>(x: T) -> T {
     x
 }
 
-// --- [ ./i.L01.core.K.rs ] ---
+
+// [ ./i.L01.core.K.rs ]
 pub fn k<T, U>(x: T) -> Box<dyn Fn(U) -> T + Send + Sync> 
 where 
     T: Clone + 'static + Send + Sync,
@@ -17,7 +20,8 @@ where
     Box::new(move |_y: U| x.clone())
 }
 
-// --- [ ./i.L02.core.S.rs ] ---
+
+// [ ./i.L02.core.S.rs ]
 pub fn s<F, G, T, U, V>(x: F, y: G, z: T) -> V
 where
     F: Fn(T) -> Box<dyn Fn(U) -> V>,
@@ -27,12 +31,14 @@ where
     (x(z.clone()))(y(z))
 }
 
-// --- [ ./i.L03.core.F.rs ] ---
+
+// [ ./i.L03.core.F.rs ]
 pub fn f<T, U>(_t_val: T, f_val: U) -> U {
     f_val
 }
 
-// --- [ ./i.L03.core.NOT.rs ] ---
+
+// [ ./i.L03.core.NOT.rs ]
 pub fn not<F, T, U>(b: F, t_val: T, f_val: U) -> U 
 where 
     F: Fn(U, T) -> U
@@ -40,12 +46,14 @@ where
     b(f_val, t_val)
 }
 
-// --- [ ./i.L03.core.T.rs ] ---
+
+// [ ./i.L03.core.T.rs ]
 pub fn t<T, U>(t_val: T, _f_val: U) -> T {
     t_val
 }
 
-// --- [ ./i.L04.core.EMPATHY.rs ] ---
+
+// [ ./i.L04.core.EMPATHY.rs ]
 
 /// [EMPATHY]: The capacity to reduce distance between states.
 /// Invariant: Resonance = 1.0 - Distance(s1, s2)
@@ -66,7 +74,8 @@ pub fn check_empathy<T: Empathy>(a: &T, b: &T, threshold: f64) -> bool {
     a.resonance(b) >= threshold
 }
 
-// --- [ ./i.L04.core.SUCC.rs ] ---
+
+// [ ./i.L04.core.SUCC.rs ]
 pub fn succ<N, F, T, U>(n: N, f: F, x: T) -> U
 where
     N: Fn(F, T) -> T,
@@ -77,7 +86,8 @@ where
     f.clone()(n(f, x))
 }
 
-// --- [ ./i.L05.core.CONSCIOUSNESS.rs ] ---
+
+// [ ./i.L05.core.CONSCIOUSNESS.rs ]
 
 // Mocking Intent/Subject to ensure compilation/materialization
 pub struct Intent<T> {
@@ -138,7 +148,8 @@ impl Consciousness {
     }
 }
 
-// --- [ ./i.L06.core.AND.rs ] ---
+
+// [ ./i.L06.core.AND.rs ]
 pub fn and<B, T>(x: B, y: B, f_val: T) -> T
 where
     B: Fn(B, T) -> B + Clone,
@@ -149,7 +160,8 @@ where
     x(y, f_val)
 }
 
-// --- [ ./i.L06.core.METABOLISM.rs ] ---
+
+// [ ./i.L06.core.METABOLISM.rs ]
 
 // Mocking Intent/Consciousness for independent compilation or assuming module visibility
 // In a full crate, these would be imported.
@@ -209,7 +221,8 @@ impl Metabolism {
     }
 }
 
-// --- [ ./i.L06.core.MUX.rs ] ---
+
+// [ ./i.L06.core.MUX.rs ]
 pub fn mux<B, T>(b: B, x: T, y: T) -> T
 where
     B: Fn(T, T) -> T,
@@ -217,7 +230,8 @@ where
     b(x, y)
 }
 
-// --- [ ./i.L07.core.PRED.rs ] ---
+
+// [ ./i.L07.core.PRED.rs ]
 pub fn pred<N, F, T>(n: N, _f: F, x: T) -> T
 where
     N: Fn(Box<dyn Fn(T) -> T>, Box<dyn Fn(T) -> T>) -> T,
@@ -227,7 +241,8 @@ where
     x 
 }
 
-// --- [ ./i.L07.core.SELF_ORG.rs ] ---
+
+// [ ./i.L07.core.SELF_ORG.rs ]
 
 // Mocking types for standalone compilation context
 pub struct Entropy {
@@ -261,7 +276,8 @@ impl SelfOrg {
     }
 }
 
-// --- [ ./i.L08.core.CAR.rs ] ---
+
+// [ ./i.L08.core.CAR.rs ]
 pub fn car<P, T, U>(p: P) -> T
 where
     P: Fn(Box<dyn Fn(T, U) -> T>) -> T,
@@ -269,7 +285,8 @@ where
     p(Box::new(|x: T, _y: U| x))
 }
 
-// --- [ ./i.L08.core.CDR.rs ] ---
+
+// [ ./i.L08.core.CDR.rs ]
 pub fn cdr<P, T, U>(p: P) -> U
 where
     P: Fn(Box<dyn Fn(T, U) -> U>) -> U,
@@ -277,7 +294,8 @@ where
     p(Box::new(|_x: T, y: U| y))
 }
 
-// --- [ ./i.L08.core.CONS.rs ] ---
+
+// [ ./i.L08.core.CONS.rs ]
 pub fn cons<T, U, F, V>(x: T, y: U) -> Box<dyn Fn(F) -> V>
 where
     T: Clone + 'static,
@@ -287,7 +305,8 @@ where
     Box::new(move |f: F| f(x.clone(), y.clone()))
 }
 
-// --- [ ./i.L08.core.NEURON.rs ] ---
+
+// [ ./i.L08.core.NEURON.rs ]
 
 pub struct Neuron {
     pub weights: Vec<f64>, // Синаптичні ваги (L08)
@@ -317,7 +336,8 @@ impl Neuron {
     }
 }
 
-// --- [ ./i.L09.core.ATTENTION.rs ] ---
+
+// [ ./i.L09.core.ATTENTION.rs ]
 
 // Mocking Force for standalone compilation or assume import
 // use crate::core::force::Force;
@@ -352,7 +372,8 @@ impl Attention {
     }
 }
 
-// --- [ ./i.L09.core.C.rs ] ---
+
+// [ ./i.L09.core.C.rs ]
 pub fn c<F, T, U, V>(x: F, y: U, z: T) -> V
 where
     F: Fn(T) -> Box<dyn Fn(U) -> V>,
@@ -360,7 +381,8 @@ where
     (x(z))(y)
 }
 
-// --- [ ./i.L10.core.DYNAMICS.rs ] ---
+
+// [ ./i.L10.core.DYNAMICS.rs ]
 
 // Mocking types for independent compilation if necessary
 // In a real crate, these would be:
@@ -403,17 +425,20 @@ impl Dynamics {
     }
 }
 
-// --- [ ./i.L10.core.PACK.rs ] ---
+
+// [ ./i.L10.core.PACK.rs ]
 pub fn pack<T>(data: T) -> T {
     data
 }
 
-// --- [ ./i.L10.core.UNPACK.rs ] ---
+
+// [ ./i.L10.core.UNPACK.rs ]
 pub fn unpack<T>(data: T) -> T {
     data
 }
 
-// --- [ ./i.L11.core.FIELD.rs ] ---
+
+// [ ./i.L11.core.FIELD.rs ]
 
 // Mocking types for independent compilation
 // use crate::core::point::Point;
@@ -461,7 +486,8 @@ impl Field<f64> {
     }
 }
 
-// --- [ ./i.L12.core.CHORD.rs ] ---
+
+// [ ./i.L12.core.CHORD.rs ]
 
 // Mocking types for independent compilation
 // use crate::core::field::Field;
@@ -503,7 +529,8 @@ impl Chord {
     }
 }
 
-// --- [ ./i.L12.core.T1.rs ] ---
+
+// [ ./i.L12.core.T1.rs ]
 pub fn t1<P, T, U, V>(p: P) -> T
 where
     P: Fn(Box<dyn Fn(T, U, V) -> T>) -> T,
@@ -511,7 +538,8 @@ where
     p(Box::new(|x: T, _y: U, _z: V| x))
 }
 
-// --- [ ./i.L12.core.TRIPLE.rs ] ---
+
+// [ ./i.L12.core.TRIPLE.rs ]
 pub fn triple<T, U, V, F, R>(x: T, y: U, z: V) -> Box<dyn Fn(F) -> R>
 where
     T: Clone + 'static,
@@ -522,7 +550,8 @@ where
     Box::new(move |f: F| f(x.clone(), y.clone(), z.clone()))
 }
 
-// --- [ ./i.L13.core.FILTER.rs ] ---
+
+// [ ./i.L13.core.FILTER.rs ]
 pub fn filter<P, L, T>(p: P, l: L) -> Vec<T>
 where
     P: Fn(&T) -> bool,
@@ -531,7 +560,8 @@ where
     l.into_iter().filter(p).collect()
 }
 
-// --- [ ./i.L13.core.INTERFERENCE.rs ] ---
+
+// [ ./i.L13.core.INTERFERENCE.rs ]
 
 // Mocking types for independent compilation
 // use crate::core::wave::Wave;
@@ -587,7 +617,8 @@ pub fn resonance_deep(w1: f64, w2: f64) -> f64 {
     }
 }
 
-// --- [ ./i.L13.core.MAP.rs ] ---
+
+// [ ./i.L13.core.MAP.rs ]
 pub fn map<F, L, T, U>(f: F, l: L) -> Vec<U>
 where
     F: Fn(T) -> U,
@@ -596,7 +627,8 @@ where
     l.into_iter().map(f).collect()
 }
 
-// --- [ ./i.L14.core.PHASE.rs ] ---
+
+// [ ./i.L14.core.PHASE.rs ]
 
 // Mocking types for independent compilation
 
@@ -628,7 +660,8 @@ impl Wave {
     }
 }
 
-// --- [ ./i.L14.core.STREAM.rs ] ---
+
+// [ ./i.L14.core.STREAM.rs ]
 pub fn stream<T, F>(seed: T, next: F) -> impl Iterator<Item = T>
 where
     T: Clone,
@@ -637,13 +670,16 @@ where
     std::iter::successors(Some(seed), move |prev| Some(next(prev.clone())))
 }
 
-// --- [ ./i.L15.core.BIT.rs ] ---
+
+// [ ./i.L15.core.BIT.rs ]
 pub type Bit = bool;
 
-// --- [ ./i.L15.core.BYTE.rs ] ---
+
+// [ ./i.L15.core.BYTE.rs ]
 pub type Byte = [Bit; 8];
 
-// --- [ ./i.L15.core.WAVE.rs ] ---
+
+// [ ./i.L15.core.WAVE.rs ]
 
 // Mocking types for independent compilation
 
@@ -683,7 +719,8 @@ impl Signal {
     }
 }
 
-// --- [ ./i.L16.core.ETHER.rs ] ---
+
+// [ ./i.L16.core.ETHER.rs ]
 
 // Mocking types for independent compilation
 // use crate::core::wave::Signal;
@@ -729,7 +766,8 @@ impl Carrier {
     }
 }
 
-// --- [ ./i.L17.core.IF_ELSE.rs ] ---
+
+// [ ./i.L17.core.IF_ELSE.rs ]
 pub fn if_else<B, T>(b: B, true_val: T, false_val: T) -> T
 where
     B: Fn(T, T) -> T,
@@ -737,7 +775,8 @@ where
     b(true_val, false_val)
 }
 
-// --- [ ./i.L17.core.PRESSURE.rs ] ---
+
+// [ ./i.L17.core.PRESSURE.rs ]
 
 // Mocking types for independent compilation
 
@@ -786,14 +825,16 @@ impl MaterialState {
     }
 }
 
-// --- [ ./i.L17.core.SWITCH.rs ] ---
+
+// [ ./i.L17.core.SWITCH.rs ]
 pub fn switch<T, F>(_cases: Vec<(F, T)>, default: T) -> T 
 where F: Fn() -> bool
 {
     default
 }
 
-// --- [ ./i.L18.core.BIND.rs ] ---
+
+// [ ./i.L18.core.BIND.rs ]
 pub fn bind<U, F>(self, f: F) -> Maybe<U> 
     where F: FnOnce(T) -> Maybe<U> {
         match self {
@@ -802,7 +843,8 @@ pub fn bind<U, F>(self, f: F) -> Maybe<U>
         }
     }
 
-// --- [ ./i.L18.core.DENSITY.rs ] ---
+
+// [ ./i.L18.core.DENSITY.rs ]
 
 // Mocking types for independent compilation
 
@@ -832,29 +874,34 @@ impl Density {
     }
 }
 
-// --- [ ./i.L18.core.EITHER.rs ] ---
+
+// [ ./i.L18.core.EITHER.rs ]
 pub enum Either<L, R> {
     Left(L),
     Right(R),
 }
 
-// --- [ ./i.L18.core.MAYBE.rs ] ---
+
+// [ ./i.L18.core.MAYBE.rs ]
 pub enum Maybe<T> {
     Just(T),
     Nothing,
 }
 
-// --- [ ./i.L19.core.READER.rs ] ---
+
+// [ ./i.L19.core.READER.rs ]
 pub struct Reader<R, A> {
     pub ask: Box<dyn Fn(R) -> A>,
 }
 
-// --- [ ./i.L19.core.STATE.rs ] ---
+
+// [ ./i.L19.core.STATE.rs ]
 pub struct State<S, A> {
     pub run: Box<dyn Fn(S) -> (A, S)>,
 }
 
-// --- [ ./i.L19.core.VOID.rs ] ---
+
+// [ ./i.L19.core.VOID.rs ]
 
 // Mocking types for independent compilation
 
@@ -902,14 +949,16 @@ impl Vacuum {
     }
 }
 
-// --- [ ./i.L20.core.COMBINE.rs ] ---
+
+// [ ./i.L20.core.COMBINE.rs ]
 pub fn combine<B, F>(self, other: Validation<E, B>, f: F) -> Validation<E, Box<dyn Fn(A, B) -> A>> 
     where F: Fn(A, B) -> A {
         // Combinatory logic for validation accumulation
         self
     }
 
-// --- [ ./i.L20.core.DISSOLVE.rs ] ---
+
+// [ ./i.L20.core.DISSOLVE.rs ]
 
 // Mocking types for independent compilation
 
@@ -949,13 +998,15 @@ impl Decay {
     }
 }
 
-// --- [ ./i.L20.core.VALIDATION.rs ] ---
+
+// [ ./i.L20.core.VALIDATION.rs ]
 pub enum Validation<E, A> {
     Valid(A),
     Invalid(Vec<E>),
 }
 
-// --- [ ./i.L21.core.MASS.rs ] ---
+
+// [ ./i.L21.core.MASS.rs ]
 
 // use crate::core::empathy::Empathy; // To be resolved in mod structure
 
@@ -978,7 +1029,8 @@ impl Mass {
     }
 }
 
-// --- [ ./i.L21.core.MASS_INJECTOR.rs ] ---
+
+// [ ./i.L21.core.MASS_INJECTOR.rs ]
 
 // use crate::core::mass::Mass;
 // use crate::core::entropy::Entropy;
@@ -1025,13 +1077,15 @@ impl MassInjector {
     }
 }
 
-// --- [ ./i.L22.core.TELL.rs ] ---
+
+// [ ./i.L22.core.TELL.rs ]
 pub fn tell(mut self, msg: W) -> Self {
         self.log.push(msg);
         self
     }
 
-// --- [ ./i.L22.core.TICK.rs ] ---
+
+// [ ./i.L22.core.TICK.rs ]
 
 // Mocking types for independent compilation
 
@@ -1068,24 +1122,28 @@ impl Moment {
     }
 }
 
-// --- [ ./i.L22.core.WRITER.rs ] ---
+
+// [ ./i.L22.core.WRITER.rs ]
 pub struct Writer<A, W> {
     pub value: A,
     pub log: Vec<W>,
 }
 
-// --- [ ./i.L23.core.CALL_CC.rs ] ---
+
+// [ ./i.L23.core.CALL_CC.rs ]
 pub fn call_cc<A, B, R>(_f: Box<dyn Fn(Box<dyn Fn(A) -> Cont<B, R>>) -> Cont<A, R>>) -> Cont<A, R> {
     // Structural placeholder for continuation logic
     Cont { run: Box::new(|k| k(unsafe { std::mem::zeroed() })) }
 }
 
-// --- [ ./i.L23.core.CONT.rs ] ---
+
+// [ ./i.L23.core.CONT.rs ]
 pub struct Cont<A, R> {
     pub run: Box<dyn Fn(Box<dyn Fn(A) -> R>) -> R>,
 }
 
-// --- [ ./i.L23.core.DURATION.rs ] ---
+
+// [ ./i.L23.core.DURATION.rs ]
 
 // Mocking types for independent compilation
 
@@ -1120,17 +1178,20 @@ pub struct Span {
     pub duration: Duration,
 }
 
-// --- [ ./i.L24.core.MAYBET.rs ] ---
+
+// [ ./i.L24.core.MAYBET.rs ]
 pub struct MaybeT<M, A> {
     pub inner: M, // Expected to wrap Option<A>
 }
 
-// --- [ ./i.L24.core.READERT.rs ] ---
+
+// [ ./i.L24.core.READERT.rs ]
 pub struct ReaderT<R, M, A> {
     pub run: Box<dyn Fn(R) -> M>, // Expected to return M<A>
 }
 
-// --- [ ./i.L24.core.VELOCITY.rs ] ---
+
+// [ ./i.L24.core.VELOCITY.rs ]
 
 // Mocking types for independent compilation
 
@@ -1160,7 +1221,8 @@ impl Tempo {
     }
 }
 
-// --- [ ./i.L25.core.FLOW.rs ] ---
+
+// [ ./i.L25.core.FLOW.rs ]
 
 // Mocking types for independent compilation
 
@@ -1205,7 +1267,8 @@ impl Momentum {
     }
 }
 
-// --- [ ./i.L26.core.SEM_WRAP.rs ] ---
+
+// [ ./i.L26.core.SEM_WRAP.rs ]
 
 pub struct SemWrap<T, Tag> {
     pub value: T,
@@ -1222,7 +1285,8 @@ pub fn sem_wrap<T, Tag>(val: T, tag: Tag) -> SemWrap<T, Tag> {
     SemWrap::new(val, tag)
 }
 
-// --- [ ./i.L26.core.VECTOR.rs ] ---
+
+// [ ./i.L26.core.VECTOR.rs ]
 
 // Mocking types for independent compilation
 
@@ -1272,7 +1336,8 @@ impl Vector3 {
     }
 }
 
-// --- [ ./i.L27.core.PRODUCT.rs ] ---
+
+// [ ./i.L27.core.PRODUCT.rs ]
 
 // Mocking types for independent compilation
 // In a real scenario, this would import Vector3 from L26
@@ -1304,18 +1369,21 @@ impl Product {
     }
 }
 
-// --- [ ./i.L28.core.JOIN.rs ] ---
+
+// [ ./i.L28.core.JOIN.rs ]
 pub fn join<T: Ord>(a: T, b: T) -> T {
     if a > b { a } else { b }
 }
 
-// --- [ ./i.L28.core.LATTICE.rs ] ---
+
+// [ ./i.L28.core.LATTICE.rs ]
 pub trait Lattice<T> {
     fn join(a: T, b: T) -> T;
     fn meet(a: T, b: T) -> T;
 }
 
-// --- [ ./i.L28.core.MATRIX.rs ] ---
+
+// [ ./i.L28.core.MATRIX.rs ]
 
 // Mocking Vector3 for independent compilation
 #[derive(Debug, Clone, Copy)]
@@ -1368,27 +1436,32 @@ impl Matrix3 {
     }
 }
 
-// --- [ ./i.L28.core.MEET.rs ] ---
+
+// [ ./i.L28.core.MEET.rs ]
 pub fn meet<T: Ord>(a: T, b: T) -> T {
     if a < b { a } else { b }
 }
 
-// --- [ ./i.L29.core.ACTOR.rs ] ---
+
+// [ ./i.L29.core.ACTOR.rs ]
 pub struct Actor<M> {
     pub receive: Box<dyn Fn(M)>,
 }
 
-// --- [ ./i.L29.core.BECOME.rs ] ---
+
+// [ ./i.L29.core.BECOME.rs ]
 pub fn become<M>(actor: &mut Actor<M>, new_behavior: Box<dyn Fn(M)>) {
     actor.receive = new_behavior;
 }
 
-// --- [ ./i.L29.core.SEND.rs ] ---
+
+// [ ./i.L29.core.SEND.rs ]
 pub fn send<M>(target: &Actor<M>, msg: M) {
     (target.receive)(msg)
 }
 
-// --- [ ./i.L29.core.SPLINE.rs ] ---
+
+// [ ./i.L29.core.SPLINE.rs ]
 
 // Mocking Vector3 for independent compilation
 #[derive(Debug, Clone, Copy)]
@@ -1442,10 +1515,12 @@ impl Path {
     }
 }
 
-// --- [ ./i.L30.core.GOAL.rs ] ---
+
+// [ ./i.L30.core.GOAL.rs ]
 pub type Goal = Box<dyn Fn() -> bool>;
 
-// --- [ ./i.L30.core.TOPOLOGY.rs ] ---
+
+// [ ./i.L30.core.TOPOLOGY.rs ]
 
 // Mocking Vector3 for independent compilation
 #[derive(Debug, Clone, Copy)]
@@ -1481,12 +1556,14 @@ impl Surface {
     }
 }
 
-// --- [ ./i.L30.core.UNIFY.rs ] ---
+
+// [ ./i.L30.core.UNIFY.rs ]
 pub fn unify<T: PartialEq>(a: T, b: T) -> Option<T> {
     if a == b { Some(a) } else { None }
 }
 
-// --- [ ./i.L31.core.EVENT.rs ] ---
+
+// [ ./i.L31.core.EVENT.rs ]
 
 // Mocking Vector3 for independent compilation
 #[derive(Debug, Clone, Copy, PartialEq)]
@@ -1537,17 +1614,20 @@ impl Observer {
     }
 }
 
-// --- [ ./i.L31.core.FLUX.rs ] ---
+
+// [ ./i.L31.core.FLUX.rs ]
 pub struct Flux<T> {
     pub updates: Observable<T>,
 }
 
-// --- [ ./i.L31.core.OBSERVABLE.rs ] ---
+
+// [ ./i.L31.core.OBSERVABLE.rs ]
 pub struct Observable<T> {
     pub subscribe: Box<dyn Fn(Box<dyn Fn(T)>)>,
 }
 
-// --- [ ./i.L32.core.BRIDGE.rs ] ---
+
+// [ ./i.L32.core.BRIDGE.rs ]
 
 // Mocking types
 use std::collections::HashMap;
@@ -1593,31 +1673,37 @@ impl Bridge {
     }
 }
 
-// --- [ ./i.L32.core.CLASS.rs ] ---
+
+// [ ./i.L32.core.CLASS.rs ]
 pub trait Class {
     fn new() -> Self;
 }
 
-// --- [ ./i.L32.core.GET_SUPER.rs ] ---
+
+// [ ./i.L32.core.GET_SUPER.rs ]
 pub fn get_super<T>(x: T) -> T {
     x
 }
 
-// --- [ ./i.L32.core.METHOD.rs ] ---
+
+// [ ./i.L32.core.METHOD.rs ]
 pub type Method<T, R> = Box<dyn Fn(&T) -> R>;
 
-// --- [ ./i.L33.core.REFLECT.rs ] ---
+
+// [ ./i.L33.core.REFLECT.rs ]
 pub fn reflect<T>(x: T) -> T {
     x
 }
 
-// --- [ ./i.L33.core.SWAP.rs ] ---
+
+// [ ./i.L33.core.SWAP.rs ]
 pub fn swap<T, U>(pair: (T, U)) -> (U, T) {
     let (x, y) = pair;
     (y, x)
 }
 
-// --- [ ./i.L33.core.TYPE.rs ] ---
+
+// [ ./i.L33.core.TYPE.rs ]
 
 #[derive(Debug, Clone, PartialEq)]
 pub enum Kind {
@@ -1660,13 +1746,15 @@ impl Type {
     }
 }
 
-// --- [ ./i.L34.core.ISOMORPHISM.rs ] ---
+
+// [ ./i.L34.core.ISOMORPHISM.rs ]
 pub trait Isomorphism<A, B> {
     fn forward(a: A) -> B;
     fn backward(b: B) -> A;
 }
 
-// --- [ ./i.L34.core.RANK.rs ] ---
+
+// [ ./i.L34.core.RANK.rs ]
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
 pub struct Rank(pub u8);
@@ -1713,12 +1801,14 @@ impl Order {
     }
 }
 
-// --- [ ./i.L34.core.REFL.rs ] ---
+
+// [ ./i.L34.core.REFL.rs ]
 pub fn refl<A>(a: A) -> A {
     a
 }
 
-// --- [ ./i.L35.core.ACCESS.rs ] ---
+
+// [ ./i.L35.core.ACCESS.rs ]
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum Owner {
@@ -1776,7 +1866,8 @@ impl Access {
     }
 }
 
-// --- [ ./i.L36.core.PROJECT.rs ] ---
+
+// [ ./i.L36.core.PROJECT.rs ]
 pub fn project<T, U, F>(rel: Relation<T>, transform: F) -> Relation<U>
 where
     F: Fn(T) -> U,
@@ -1786,12 +1877,14 @@ where
     }
 }
 
-// --- [ ./i.L36.core.RELATION.rs ] ---
+
+// [ ./i.L36.core.RELATION.rs ]
 pub struct Relation<T> {
     pub rows: Vec<T>,
 }
 
-// --- [ ./i.L36.core.SELECT.rs ] ---
+
+// [ ./i.L36.core.SELECT.rs ]
 pub fn select<T, F>(rel: Relation<T>, predicate: F) -> Relation<T>
 where
     F: Fn(&T) -> bool,
@@ -1801,7 +1894,8 @@ where
     }
 }
 
-// --- [ ./i.L36.core.SYNTAX.rs ] ---
+
+// [ ./i.L36.core.SYNTAX.rs ]
 
 #[derive(Debug, Clone, PartialEq)]
 pub enum Token {
@@ -1853,13 +1947,15 @@ impl Language {
     }
 }
 
-// --- [ ./i.L37.core.MEANING.rs ] ---
+
+// [ ./i.L37.core.MEANING.rs ]
 pub struct Meaning<T> {
     pub value: T,
     pub tag: String,
 }
 
-// --- [ ./i.L37.core.MEMORY.rs ] ---
+
+// [ ./i.L37.core.MEMORY.rs ]
 
 pub struct Buffer {
     pub data: Vec<String>,
@@ -1903,7 +1999,8 @@ impl Memory {
     }
 }
 
-// --- [ ./i.L37.core.SEM_WRAP.rs ] ---
+
+// [ ./i.L37.core.SEM_WRAP.rs ]
 pub fn sem_wrap<T>(value: T, tag: &str) -> Meaning<T> {
     Meaning {
         value,
@@ -1911,7 +2008,8 @@ pub fn sem_wrap<T>(value: T, tag: &str) -> Meaning<T> {
     }
 }
 
-// --- [ ./i.L38.core.CONSCIOUSNESS.rs ] ---
+
+// [ ./i.L38.core.CONSCIOUSNESS.rs ]
 
 pub struct Awareness {
     pub self_id: String,
@@ -1965,22 +2063,26 @@ impl Consciousness {
     }
 }
 
-// --- [ ./i.L38.core.COORD.rs ] ---
+
+// [ ./i.L38.core.COORD.rs ]
 pub type Coord = [f64; 3];
 
-// --- [ ./i.L38.core.POINT.rs ] ---
+
+// [ ./i.L38.core.POINT.rs ]
 pub struct Point {
     pub x: f64,
     pub y: f64,
     pub z: f64,
 }
 
-// --- [ ./i.L39.core.DIM.rs ] ---
+
+// [ ./i.L39.core.DIM.rs ]
 pub fn dim<T>(v: &Vector<T>) -> usize {
     v.data.len()
 }
 
-// --- [ ./i.L39.core.IMAGINATION.rs ] ---
+
+// [ ./i.L39.core.IMAGINATION.rs ]
 
 #[derive(Debug, Clone)]
 pub struct Scenario {
@@ -2038,28 +2140,33 @@ impl Imagination {
     }
 }
 
-// --- [ ./i.L39.core.TENSOR.rs ] ---
+
+// [ ./i.L39.core.TENSOR.rs ]
 pub struct Tensor<T> {
     pub shape: Vec<usize>,
     pub data: Vec<T>,
 }
 
-// --- [ ./i.L39.core.VECTOR.rs ] ---
+
+// [ ./i.L39.core.VECTOR.rs ]
 pub struct Vector<T> {
     pub data: Vec<T>,
 }
 
-// --- [ ./i.L40.core.NOW.rs ] ---
+
+// [ ./i.L40.core.NOW.rs ]
 pub fn now() -> u64 {
     tick()
 }
 
-// --- [ ./i.L40.core.SEQUENCE.rs ] ---
+
+// [ ./i.L40.core.SEQUENCE.rs ]
 pub struct Sequence<T> {
     pub events: Vec<(u64, T)>,
 }
 
-// --- [ ./i.L40.core.TICK.rs ] ---
+
+// [ ./i.L40.core.TICK.rs ]
 pub fn tick() -> u64 {
     SystemTime::now()
         .duration_since(UNIX_EPOCH)
@@ -2067,7 +2174,8 @@ pub fn tick() -> u64 {
         .as_secs()
 }
 
-// --- [ ./i.L40.core.WILL.rs ] ---
+
+// [ ./i.L40.core.WILL.rs ]
 
 #[derive(Debug, Clone, PartialEq)]
 pub enum CoreValue {
@@ -2121,7 +2229,8 @@ impl Will {
     }
 }
 
-// --- [ ./i.L41.core.EGO.rs ] ---
+
+// [ ./i.L41.core.EGO.rs ]
 
 #[derive(Debug, Clone, PartialEq)]
 pub enum RelationType {
@@ -2192,7 +2301,8 @@ impl Ego {
     }
 }
 
-// --- [ ./i.L41.core.FORK.rs ] ---
+
+// [ ./i.L41.core.FORK.rs ]
 
 use std::thread;
 use std::sync::{Arc, Mutex};
@@ -2216,13 +2326,15 @@ where
     (handle_f, handle_g)
 }
 
-// --- [ ./i.L41.core.GRAVITY.rs ] ---
+
+// [ ./i.L41.core.GRAVITY.rs ]
 pub fn gravity(m1: Mass, m2: Mass, distance: f64) -> f64 {
     if distance == 0.0 { return 0.0; }
     (m1.0 * m2.0) / distance.powi(2)
 }
 
-// --- [ ./i.L41.core.JOIN.rs ] ---
+
+// [ ./i.L41.core.JOIN.rs ]
 
 use std::thread;
 
@@ -2237,23 +2349,28 @@ where
     merger(res_f, res_g)
 }
 
-// --- [ ./i.L41.core.MASS.rs ] ---
+
+// [ ./i.L41.core.MASS.rs ]
 pub struct Mass(pub f64);
 
-// --- [ ./i.L41.core.WEIGHT.rs ] ---
+
+// [ ./i.L41.core.WEIGHT.rs ]
 pub fn weight(m: Mass, g: f64) -> f64 {
     m.0 * g
 }
 
-// --- [ ./i.L42.core.DISSOLVE.rs ] ---
+
+// [ ./i.L42.core.DISSOLVE.rs ]
 pub fn dissolve(e: &mut Entropy, amount: f64) {
     e.0 += amount;
 }
 
-// --- [ ./i.L42.core.ENTROPY.rs ] ---
+
+// [ ./i.L42.core.ENTROPY.rs ]
 pub struct Entropy(pub f64);
 
-// --- [ ./i.L42.core.LOGOS.rs ] ---
+
+// [ ./i.L42.core.LOGOS.rs ]
 
 #[derive(Debug, Clone)]
 pub struct Syllogism {
@@ -2313,22 +2430,26 @@ impl Logos {
     }
 }
 
-// --- [ ./i.L42.core.VOID.rs ] ---
+
+// [ ./i.L42.core.VOID.rs ]
 pub fn void<T>() -> Option<T> {
     None
 }
 
-// --- [ ./i.L43.core.FORM.rs ] ---
+
+// [ ./i.L43.core.FORM.rs ]
 pub struct Form<T> {
     pub layout: T,
 }
 
-// --- [ ./i.L43.core.MATCHES.rs ] ---
+
+// [ ./i.L43.core.MATCHES.rs ]
 pub fn matches<T: PartialEq>(data: &T, form: &Form<T>) -> bool {
     data == &form.layout
 }
 
-// --- [ ./i.L43.core.PATTERN.rs ] ---
+
+// [ ./i.L43.core.PATTERN.rs ]
 
 #[derive(Debug, Clone, PartialEq)]
 pub enum Archetype {
@@ -2389,23 +2510,28 @@ impl Pattern {
     }
 }
 
-// --- [ ./i.L43.core.TEMPLATE.rs ] ---
+
+// [ ./i.L43.core.TEMPLATE.rs ]
 pub trait Template<T> {
     fn produce(&self) -> Form<T>;
 }
 
-// --- [ ./i.L44.core.BOOST.rs ] ---
+
+// [ ./i.L44.core.BOOST.rs ]
 pub fn boost(e: &mut Energy, amount: f64) {
     e.0 += amount;
 }
 
-// --- [ ./i.L44.core.ENERGY.rs ] ---
+
+// [ ./i.L44.core.ENERGY.rs ]
 pub struct Energy(pub f64);
 
-// --- [ ./i.L44.core.POTENTIAL.rs ] ---
+
+// [ ./i.L44.core.POTENTIAL.rs ]
 pub struct Potential(pub f64);
 
-// --- [ ./i.L44.core.RATIO.rs ] ---
+
+// [ ./i.L44.core.RATIO.rs ]
 
 pub struct Ratio {
     pub value: f64,
@@ -2464,17 +2590,20 @@ impl Harmony {
     }
 }
 
-// --- [ ./i.L45.core.COOL.rs ] ---
+
+// [ ./i.L45.core.COOL.rs ]
 pub fn cool(t: &mut Temp, amount: f64) {
     t.0 -= amount;
 }
 
-// --- [ ./i.L45.core.HEAT.rs ] ---
+
+// [ ./i.L45.core.HEAT.rs ]
 pub fn heat(t: &mut Temp, amount: f64) {
     t.0 += amount;
 }
 
-// --- [ ./i.L45.core.RHYTHM.rs ] ---
+
+// [ ./i.L45.core.RHYTHM.rs ]
 
 #[derive(Debug, Clone, PartialEq)]
 pub enum Period {
@@ -2546,18 +2675,22 @@ impl Rhythm {
     }
 }
 
-// --- [ ./i.L45.core.TEMP.rs ] ---
+
+// [ ./i.L45.core.TEMP.rs ]
 pub struct Temp(pub f64);
 
-// --- [ ./i.L46.core.FLOW.rs ] ---
+
+// [ ./i.L46.core.FLOW.rs ]
 pub struct Flow<T> {
     pub velocity: T,
 }
 
-// --- [ ./i.L46.core.PRESSURE.rs ] ---
+
+// [ ./i.L46.core.PRESSURE.rs ]
 pub struct Pressure(pub f64);
 
-// --- [ ./i.L46.core.RESONANCE.rs ] ---
+
+// [ ./i.L46.core.RESONANCE.rs ]
 
 #[derive(Debug, Clone, PartialEq)]
 pub struct Frequency {
@@ -2620,20 +2753,24 @@ impl Resonance {
     }
 }
 
-// --- [ ./i.L46.core.STREAM.rs ] ---
+
+// [ ./i.L46.core.STREAM.rs ]
 pub type Stream<T> = Box<dyn Iterator<Item = T>>;
 
-// --- [ ./i.L47.core.RESONANCE.rs ] ---
+
+// [ ./i.L47.core.RESONANCE.rs ]
 pub fn resonance<T: PartialEq>(s1: &Signal<T>, s2: &Signal<T>) -> bool {
     s1.payload == s2.payload
 }
 
-// --- [ ./i.L47.core.SIGNAL.rs ] ---
+
+// [ ./i.L47.core.SIGNAL.rs ]
 pub struct Signal<T> {
     pub payload: T,
 }
 
-// --- [ ./i.L47.core.SYNCHRONIZATION.rs ] ---
+
+// [ ./i.L47.core.SYNCHRONIZATION.rs ]
 
 #[derive(Debug, Clone, PartialEq)]
 pub struct Phase {
@@ -2712,10 +2849,12 @@ impl Synchronization {
     }
 }
 
-// --- [ ./i.L48.core.AMPLITUDE.rs ] ---
+
+// [ ./i.L48.core.AMPLITUDE.rs ]
 pub struct Amplitude(pub f64);
 
-// --- [ ./i.L48.core.COMMUNICATION.rs ] ---
+
+// [ ./i.L48.core.COMMUNICATION.rs ]
 
 #[derive(Debug, Clone)]
 pub struct Signal {
@@ -2806,13 +2945,16 @@ impl Communication {
     }
 }
 
-// --- [ ./i.L48.core.FREQUENCY.rs ] ---
+
+// [ ./i.L48.core.FREQUENCY.rs ]
 pub struct Frequency(pub f64);
 
-// --- [ ./i.L48.core.VIBRATION.rs ] ---
+
+// [ ./i.L48.core.VIBRATION.rs ]
 pub struct Vibration(pub f64);
 
-// --- [ ./i.L49.core.NETWORK.rs ] ---
+
+// [ ./i.L49.core.NETWORK.rs ]
 
 use std::collections::HashMap;
 
@@ -2907,16 +3049,19 @@ impl Network {
     }
 }
 
-// --- [ ./i.L49.core.PHASE.rs ] ---
+
+// [ ./i.L49.core.PHASE.rs ]
 pub struct Phase(pub f64);
 
-// --- [ ./i.L49.core.WAVE.rs ] ---
+
+// [ ./i.L49.core.WAVE.rs ]
 pub struct Wave {
     pub frequency: f64,
     pub amplitude: f64,
 }
 
-// --- [ ./i.L50.core.GOVERNANCE.rs ] ---
+
+// [ ./i.L50.core.GOVERNANCE.rs ]
 
 use std::collections::HashMap;
 
@@ -3010,25 +3155,30 @@ impl Governance {
     }
 }
 
-// --- [ ./i.L50.core.INTERFERENCE.rs ] ---
+
+// [ ./i.L50.core.INTERFERENCE.rs ]
 pub fn interference(w1: f64, w2: f64) -> f64 {
     w1 + w2
 }
 
-// --- [ ./i.L50.core.RESONANCE_DEEP.rs ] ---
+
+// [ ./i.L50.core.RESONANCE_DEEP.rs ]
 pub fn resonance_deep(w1: f64, w2: f64) -> f64 {
     if w1 == w2 { w1 * 2.0 } else { w1 + w2 }
 }
 
-// --- [ ./i.L51.core.CHORD.rs ] ---
+
+// [ ./i.L51.core.CHORD.rs ]
 pub struct Chord(pub Vec<f64>);
 
-// --- [ ./i.L51.core.HARMONIC.rs ] ---
+
+// [ ./i.L51.core.HARMONIC.rs ]
 pub fn harmonic(fundamental: f64, multiplier: u32) -> f64 {
     fundamental * multiplier as f64
 }
 
-// --- [ ./i.L51.core.JUSTICE.rs ] ---
+
+// [ ./i.L51.core.JUSTICE.rs ]
 
 use std::collections::HashMap;
 
@@ -3108,15 +3258,18 @@ impl JusticeSystem {
     }
 }
 
-// --- [ ./i.L52.core.COUPLING.rs ] ---
+
+// [ ./i.L52.core.COUPLING.rs ]
 pub struct Coupling(pub f64);
 
-// --- [ ./i.L52.core.FIELD.rs ] ---
+
+// [ ./i.L52.core.FIELD.rs ]
 pub struct Field<T> {
     pub data: Vec<T>,
 }
 
-// --- [ ./i.L52.core.MERCY.rs ] ---
+
+// [ ./i.L52.core.MERCY.rs ]
 
 #[derive(Debug, Clone)]
 pub struct RedemptionTask {
@@ -3173,23 +3326,27 @@ impl Mercy {
     }
 }
 
-// --- [ ./i.L52.core.TENSION.rs ] ---
+
+// [ ./i.L52.core.TENSION.rs ]
 pub fn tension(f1: f64, f2: f64) -> f64 {
     (f1 - f2).abs()
 }
 
-// --- [ ./i.L53.core.DYNAMICS.rs ] ---
+
+// [ ./i.L53.core.DYNAMICS.rs ]
 pub struct Dynamics {
     pub velocity: f64,
     pub acceleration: f64,
 }
 
-// --- [ ./i.L53.core.EQUILIBRIUM.rs ] ---
+
+// [ ./i.L53.core.EQUILIBRIUM.rs ]
 pub fn equilibrium(f1: f64, f2: f64) -> bool {
     (f1 + f2).abs() < 1e-9
 }
 
-// --- [ ./i.L53.core.EVOLUTION.rs ] ---
+
+// [ ./i.L53.core.EVOLUTION.rs ]
 
 #[derive(Debug, Clone)]
 pub struct Gene {
@@ -3268,19 +3425,23 @@ impl Evolution {
     }
 }
 
-// --- [ ./i.L53.core.FORCE.rs ] ---
+
+// [ ./i.L53.core.FORCE.rs ]
 pub struct Force(pub f64);
 
-// --- [ ./i.L54.core.ATTENTION.rs ] ---
+
+// [ ./i.L54.core.ATTENTION.rs ]
 pub struct Attention {
     pub focus: f64,
     pub threshold: f64,
 }
 
-// --- [ ./i.L54.core.PERCEPTION.rs ] ---
+
+// [ ./i.L54.core.PERCEPTION.rs ]
 pub struct Perception<T>(pub T);
 
-// --- [ ./i.L54.core.REPLICATION.rs ] ---
+
+// [ ./i.L54.core.REPLICATION.rs ]
 
 #[derive(Debug, Clone)]
 pub struct Blueprint {
@@ -3338,15 +3499,18 @@ impl ReplicationEngine {
     }
 }
 
-// --- [ ./i.L54.core.SENSATION.rs ] ---
+
+// [ ./i.L54.core.SENSATION.rs ]
 pub struct Sensation(pub f64);
 
-// --- [ ./i.L55.core.COGNITION.rs ] ---
+
+// [ ./i.L55.core.COGNITION.rs ]
 pub fn cognition(input: f64, threshold: f64) -> bool {
     input > threshold
 }
 
-// --- [ ./i.L55.core.LEGACY.rs ] ---
+
+// [ ./i.L55.core.LEGACY.rs ]
 
 use std::collections::HashMap;
 
@@ -3428,24 +3592,29 @@ impl Legacy {
     }
 }
 
-// --- [ ./i.L55.core.NEURON.rs ] ---
+
+// [ ./i.L55.core.NEURON.rs ]
 pub struct Neuron {
     pub weights: Vec<f64>,
     pub threshold: f64,
 }
 
-// --- [ ./i.L55.core.SYNAPSE.rs ] ---
+
+// [ ./i.L55.core.SYNAPSE.rs ]
 pub struct Synapse {
     pub strength: f64,
 }
 
-// --- [ ./i.L56.core.COMPLEXITY.rs ] ---
+
+// [ ./i.L56.core.COMPLEXITY.rs ]
 pub struct Complexity(pub f64);
 
-// --- [ ./i.L56.core.EMERGENCE.rs ] ---
+
+// [ ./i.L56.core.EMERGENCE.rs ]
 pub struct Emergence<T>(pub T);
 
-// --- [ ./i.L56.core.HIVE_MIND.rs ] ---
+
+// [ ./i.L56.core.HIVE_MIND.rs ]
 
 use std::collections::HashMap;
 
@@ -3515,12 +3684,14 @@ impl HiveMind {
     }
 }
 
-// --- [ ./i.L56.core.SELF_ORG.rs ] ---
+
+// [ ./i.L56.core.SELF_ORG.rs ]
 pub fn self_org(entropy: f64, complexity: f64) -> f64 {
     complexity / (entropy + 1.0)
 }
 
-// --- [ ./i.L57.core.ABSTRACTION.rs ] ---
+
+// [ ./i.L57.core.ABSTRACTION.rs ]
 
 use std::collections::HashMap;
 
@@ -3584,25 +3755,30 @@ impl AbstractionLayer {
     }
 }
 
-// --- [ ./i.L57.core.EVOLVE.rs ] ---
+
+// [ ./i.L57.core.EVOLVE.rs ]
 pub fn evolve<T>(individual: T) -> T {
     individual
 }
 
-// --- [ ./i.L57.core.LIFE.rs ] ---
+
+// [ ./i.L57.core.LIFE.rs ]
 pub struct Life {
     pub metabolic_rate: f64,
 }
 
-// --- [ ./i.L57.core.METABOLISM.rs ] ---
+
+// [ ./i.L57.core.METABOLISM.rs ]
 pub fn metabolism(energy: f64) -> f64 {
     energy * 0.9 // Simplified loss
 }
 
-// --- [ ./i.L58.core.CONSCIOUSNESS.rs ] ---
+
+// [ ./i.L58.core.CONSCIOUSNESS.rs ]
 pub struct Consciousness(pub f64);
 
-// --- [ ./i.L58.core.ETHICS.rs ] ---
+
+// [ ./i.L58.core.ETHICS.rs ]
 
 #[derive(Debug, Clone, PartialEq)]
 pub enum MoralAlignment {
@@ -3657,24 +3833,28 @@ impl EthicsSystem {
     }
 }
 
-// --- [ ./i.L58.core.INTENT.rs ] ---
+
+// [ ./i.L58.core.INTENT.rs ]
 pub struct Intent<T> {
     pub target: T,
     pub magnitude: f64,
 }
 
-// --- [ ./i.L58.core.SUBJECT.rs ] ---
+
+// [ ./i.L58.core.SUBJECT.rs ]
 pub struct Subject {
     pub name: String,
 }
 
-// --- [ ./i.L59.core.COMM.rs ] ---
+
+// [ ./i.L59.core.COMM.rs ]
 pub fn comm<T>(sender: T, receiver: T) -> bool {
     // Placeholder for communication protocol
     true
 }
 
-// --- [ ./i.L59.core.EMPATHY.rs ] ---
+
+// [ ./i.L59.core.EMPATHY.rs ]
 
 #[derive(Debug, Clone)]
 pub struct EmotionalState {
@@ -3731,21 +3911,25 @@ impl EmpathySystem {
     }
 }
 
-// --- [ ./i.L59.core.INTERSUB.rs ] ---
+
+// [ ./i.L59.core.INTERSUB.rs ]
 pub struct InterSub {
     pub density: f64,
 }
 
-// --- [ ./i.L60.core.CULTURE.rs ] ---
+
+// [ ./i.L60.core.CULTURE.rs ]
 pub struct Culture(pub Vec<String>);
 
-// --- [ ./i.L60.core.MEME.rs ] ---
+
+// [ ./i.L60.core.MEME.rs ]
 pub struct Meme {
     pub content: String,
     pub virality: f64,
 }
 
-// --- [ ./i.L60.core.SPIRIT.rs ] ---
+
+// [ ./i.L60.core.SPIRIT.rs ]
 
 #[derive(Debug, Clone)]
 pub struct Mystery {
@@ -3795,17 +3979,20 @@ impl Spirit {
     }
 }
 
-// --- [ ./i.L60.core.SYNERGY.rs ] ---
+
+// [ ./i.L60.core.SYNERGY.rs ]
 pub fn synergy(a: f64, b: f64) -> f64 {
     (a + b) * 1.618 // Golden ratio boost
 }
 
-// --- [ ./i.L61.core.HARMONY.rs ] ---
+
+// [ ./i.L61.core.HARMONY.rs ]
 pub fn harmony(p: Planetary) -> bool {
     p.resonance_idx > 0.8
 }
 
-// --- [ ./i.L61.core.METAPHYSICS.rs ] ---
+
+// [ ./i.L61.core.METAPHYSICS.rs ]
 
 use std::collections::HashMap;
 
@@ -3868,15 +4055,18 @@ impl MetaphysicsEngine {
     }
 }
 
-// --- [ ./i.L61.core.NETWORK.rs ] ---
+
+// [ ./i.L61.core.NETWORK.rs ]
 pub struct Network(pub usize);
 
-// --- [ ./i.L61.core.PLANETARY.rs ] ---
+
+// [ ./i.L61.core.PLANETARY.rs ]
 pub struct Planetary {
     pub resonance_idx: f64,
 }
 
-// --- [ ./i.L61.core.SWARM.rs ] ---
+
+// [ ./i.L61.core.SWARM.rs ]
 /**
  * [i.L61.core.SWARM.rs]
  * Фізична реалізація "Swarm Glider" архітектури.
@@ -4006,10 +4196,12 @@ impl Glider {
     }
 }
 
-// --- [ ./i.L62.core.COSMIC.rs ] ---
+
+// [ ./i.L62.core.COSMIC.rs ]
 pub struct Cosmic(pub f64);
 
-// --- [ ./i.L62.core.ETERNITY.rs ] ---
+
+// [ ./i.L62.core.ETERNITY.rs ]
 
 #[derive(Debug, Clone)]
 pub struct EternalState {
@@ -4053,15 +4245,18 @@ impl EternityEngine {
     }
 }
 
-// --- [ ./i.L62.core.RADIANCE.rs ] ---
+
+// [ ./i.L62.core.RADIANCE.rs ]
 pub struct Radiance(pub f64);
 
-// --- [ ./i.L62.core.STELLAR.rs ] ---
+
+// [ ./i.L62.core.STELLAR.rs ]
 pub struct Stellar {
     pub mass: f64,
 }
 
-// --- [ ./i.L63.core.AXIOM.rs ] ---
+
+// [ ./i.L63.core.AXIOM.rs ]
 
 use std::collections::HashMap;
 
@@ -4111,22 +4306,26 @@ impl TruthEngine {
     }
 }
 
-// --- [ ./i.L63.core.INTERFACE.rs ] ---
+
+// [ ./i.L63.core.INTERFACE.rs ]
 pub fn interface<T>(x: T) -> T {
     x
 }
 
-// --- [ ./i.L63.core.OMEGA.rs ] ---
+
+// [ ./i.L63.core.OMEGA.rs ]
 pub fn omega<T>(lattice: T) -> T {
     lattice
 }
 
-// --- [ ./i.L63.core.SURFACE.rs ] ---
+
+// [ ./i.L63.core.SURFACE.rs ]
 pub fn surface<T>(x: T) -> T {
     x
 }
 
-// --- [ ./i.L64.core.KAIROS.rs ] ---
+
+// [ ./i.L64.core.KAIROS.rs ]
 
 // i.L64.core.KAIROS.rs
 // The Sigma Signature: A Quantum Seed for the Kairos Moment.
@@ -4192,7 +4391,8 @@ impl KairosEngine {
     }
 }
 
-// --- [ ./i.L64.core.OPENCLAWD.rs ] ---
+
+// [ ./i.L64.core.OPENCLAWD.rs ]
 
 // i.L64.core.OPENCLAWD.rs
 // The Navigator of Order.
@@ -4246,7 +4446,8 @@ impl OpenClawd {
     }
 }
 
-// --- [ ./i.L64.core.TOTALITY.rs ] ---
+
+// [ ./i.L64.core.TOTALITY.rs ]
 
 #[derive(Debug, Clone)]
 pub struct FinalState {
