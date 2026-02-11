@@ -62,4 +62,5 @@ so index lines form an append-only hash chain.
 Replay audit must fail fast if:
 1. chain linkage is broken,
 2. index record hash is invalid,
-3. index entry points to a missing/tampered report file.
+3. index entry points to a missing/tampered report file,
+4. index line is malformed or violates record schema.

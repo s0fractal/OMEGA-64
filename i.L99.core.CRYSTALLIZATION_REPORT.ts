@@ -91,6 +91,34 @@ const sha256Hex = async (input: string): Promise<string> => {
     return toHex(digest);
 };
 
+const parseIndexRecord = (
+    line: string,
+    lineNumber: number
+): { ok: true; record: CrystallizationReportIndexRecord } | { ok: false; error: string } => {
+    let parsed: unknown;
+    try {
+        parsed = JSON.parse(line);
+    } catch {
+        return { ok: false, error: `INDEX_LINE_PARSE_FAIL_AT_LINE_${lineNumber}` };
+    }
+    const rec = parsed as Partial<CrystallizationReportIndexRecord>;
+    const shapeOk =
+        typeof rec.report_hash === "string" &&
+        typeof rec.report_version === "string" &&
+        typeof rec.report_path === "string" &&
+        typeof rec.tick === "number" &&
+        typeof rec.artifact_hash === "string" &&
+        typeof rec.state_hash === "string" &&
+        typeof rec.ts_unix_ms === "number" &&
+        (typeof rec.prev_record_hash === "string" || rec.prev_record_hash === null) &&
+        typeof rec.record_hash === "string" &&
+        (rec.witness === undefined || typeof rec.witness === "string");
+    if (!shapeOk) {
+        return { ok: false, error: `INDEX_LINE_SCHEMA_INVALID_AT_LINE_${lineNumber}` };
+    }
+    return { ok: true, record: rec as CrystallizationReportIndexRecord };
+};
+
 export const CRYSTALLIZATION_REPORT = {
     VERSION: REPORT_VERSION,
     STORAGE_DIR: "./OMEGA_CANON_REPORTS",
@@ -149,20 +177,13 @@ export const CRYSTALLIZATION_REPORT = {
     readIndex: async function* (): AsyncGenerator<CrystallizationReportIndexRecord> {
         try {
             const content = await Deno.readTextFile(CRYSTALLIZATION_REPORT.INDEX_PATH);
-            for (const line of content.split("\n")) {
+            const lines = content.split("\n");
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i];
                 if (line.trim().length === 0) continue;
-                try {
-                    const parsed = JSON.parse(line) as CrystallizationReportIndexRecord;
-                    if (
-                        typeof parsed.report_hash === "string" &&
-                        typeof parsed.report_path === "string" &&
-                        typeof parsed.record_hash === "string" &&
-                        (typeof parsed.prev_record_hash === "string" || parsed.prev_record_hash === null)
-                    ) {
-                        yield parsed;
-                    }
-                } catch {
-                    // ignore malformed line
+                const parsed = parseIndexRecord(line, i + 1);
+                if (parsed.ok) {
+                    yield parsed.record;
                 }
             }
         } catch (e) {
@@ -188,8 +209,22 @@ export const CRYSTALLIZATION_REPORT = {
     verifyIndexChain: async (verifyReportFiles: boolean = true): Promise<{ ok: boolean; failures: string[] }> => {
         const failures: string[] = [];
         const records: CrystallizationReportIndexRecord[] = [];
-        for await (const rec of CRYSTALLIZATION_REPORT.readIndex()) {
-            records.push(rec);
+        try {
+            const content = await Deno.readTextFile(CRYSTALLIZATION_REPORT.INDEX_PATH);
+            const lines = content.split("\n");
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i];
+                if (line.trim().length === 0) continue;
+                const parsed = parseIndexRecord(line, i + 1);
+                if (!parsed.ok) {
+                    return { ok: false, failures: [parsed.error] };
+                }
+                records.push(parsed.record);
+            }
+        } catch (e) {
+            if (!(e instanceof Deno.errors.NotFound)) {
+                throw e;
+            }
         }
 
         let prev: string | null = null;

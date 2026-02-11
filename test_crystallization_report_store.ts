@@ -228,3 +228,30 @@ Deno.test("crystallization report index chain detects tamper", async () => {
         CRYSTALLIZATION_REPORT.INDEX_PATH = originalIndex;
     }
 });
+
+Deno.test("crystallization report index chain rejects malformed lines", async () => {
+    const originalDir = CRYSTALLIZATION_REPORT.STORAGE_DIR;
+    const originalIndex = CRYSTALLIZATION_REPORT.INDEX_PATH;
+    const tempDir = await Deno.makeTempDir({ prefix: "omega-cr-report-store-malformed-" });
+    CRYSTALLIZATION_REPORT.STORAGE_DIR = tempDir;
+    CRYSTALLIZATION_REPORT.INDEX_PATH = `${tempDir}/index.jsonl`;
+
+    try {
+        await Deno.writeTextFile(CRYSTALLIZATION_REPORT.INDEX_PATH, "{not-json}\n");
+        const chain = await CRYSTALLIZATION_REPORT.verifyIndexChain(false);
+        if (chain.ok) {
+            throw new Error("index chain should fail on malformed line");
+        }
+        if (!chain.failures.some((x) => x.includes("INDEX_LINE_PARSE_FAIL"))) {
+            throw new Error(`unexpected failures: ${chain.failures.join(",")}`);
+        }
+    } finally {
+        try {
+            await Deno.remove(tempDir, { recursive: true });
+        } catch {
+            // ignore cleanup
+        }
+        CRYSTALLIZATION_REPORT.STORAGE_DIR = originalDir;
+        CRYSTALLIZATION_REPORT.INDEX_PATH = originalIndex;
+    }
+});
