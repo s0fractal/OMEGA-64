@@ -11,6 +11,7 @@ import {
     ViolationEvent
 } from "./i.L99.core.STATE_SNAPSHOT.ts";
 import { REPLAY_AUDIT, ReplayAuditResult, ReplayGenesis } from "./i.L99.core.REPLAY_AUDIT.ts";
+import { CHECKPOINT } from "./i.L99.core.CHECKPOINT.ts";
 
 const stableStringify = (value: unknown): string => {
     if (Array.isArray(value)) {
@@ -202,12 +203,16 @@ export const CRYSTALLIZATION = {
         }
 
         const reason = CRYSTALLIZATION.describeHardFailure(entries, startTick, currentTick);
+        const rollbackCheckpoint =
+            (await CHECKPOINT.loadExact(rollbackTick)) ??
+            (await CHECKPOINT.loadNearestAtOrBefore(rollbackTick));
         const decrystalEvent: DecrystallizationEvent = {
             event_type: "DECRYSTALLIZATION_EVENT",
             tick: currentTick,
             artifact_hash: artifactHash,
             reason,
             rollback_to_checkpoint: rollbackTick,
+            rollback_state_hash: rollbackCheckpoint?.state_hash,
             hard_gate_failure: reason,
             witness: options.witness
         };

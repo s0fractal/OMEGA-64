@@ -4,17 +4,25 @@
 import { CRYSTALLIZATION } from "./i.L99.core.CRYSTALLIZATION.ts";
 import { LEDGER } from "./i.L99.core.LEDGER.ts";
 import { CanonizationEvent, LedgerEvent, ViolationEvent } from "./i.L99.core.STATE_SNAPSHOT.ts";
+import { CHECKPOINT } from "./i.L99.core.CHECKPOINT.ts";
 
 export async function runTest() {
     console.log("🧪 TESTING: Decrystallization Enforcement");
 
     const originalPath = LEDGER.STORAGE_PATH;
+    const originalCheckpointPath = CHECKPOINT.STORAGE_PATH;
     const tempPath = await Deno.makeTempFile({
         prefix: "omega-ledger-decrystal-",
         suffix: ".jsonl"
     });
+    const tempCheckpointPath = await Deno.makeTempFile({
+        prefix: "omega-checkpoint-decrystal-",
+        suffix: ".jsonl"
+    });
     LEDGER.STORAGE_PATH = tempPath;
+    CHECKPOINT.STORAGE_PATH = tempCheckpointPath;
     await Deno.writeTextFile(LEDGER.STORAGE_PATH, "");
+    await Deno.writeTextFile(CHECKPOINT.STORAGE_PATH, "");
 
     try {
         const canonEvent: CanonizationEvent = {
@@ -29,6 +37,10 @@ export async function runTest() {
             witness: "test"
         };
         await LEDGER.append(canonEvent);
+        await CHECKPOINT.save(
+            { tick: 100, state_hash: "state_100", state_i16: new Int16Array(64).fill(100) },
+            "TEST_CANON"
+        );
 
         const e101: LedgerEvent = {
             event_id: "evt_101",
@@ -77,6 +89,9 @@ export async function runTest() {
         let found = false;
         for await (const entry of LEDGER.readAllRaw()) {
             if ("event_type" in entry && entry.event_type === "DECRYSTALLIZATION_EVENT") {
+                if (entry.rollback_state_hash !== "state_100") {
+                    throw new Error(`Expected rollback_state_hash=state_100, got ${entry.rollback_state_hash}`);
+                }
                 found = true;
                 break;
             }
@@ -90,7 +105,13 @@ export async function runTest() {
         } catch {
             // ignore cleanup errors
         }
+        try {
+            await Deno.remove(CHECKPOINT.STORAGE_PATH);
+        } catch {
+            // ignore cleanup errors
+        }
         LEDGER.STORAGE_PATH = originalPath;
+        CHECKPOINT.STORAGE_PATH = originalCheckpointPath;
     }
 }
 

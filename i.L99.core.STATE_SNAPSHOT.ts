@@ -113,11 +113,25 @@ export interface DecrystallizationEvent {
     artifact_hash: string;
     reason: string;
     rollback_to_checkpoint: number;
+    rollback_state_hash?: string;
     hard_gate_failure: string;
     witness?: string;
 }
 
 export type TopologyEvent = LedgerEvent | ViolationEvent | CanonizationEvent | DecrystallizationEvent;
+
+/**
+ * CheckpointRecord: Persistent state snapshot for rollback/replay acceleration.
+ */
+export interface CheckpointRecord {
+    checkpoint_id: string;
+    tick: number;
+    state_hash: string;
+    state_i16: number[]; // serialized Int16Array
+    ts_unix_ms: number;
+    reason: string;
+    witness?: string;
+}
 
 // Canonical Rejection Reasons
 export const REJECTION = {

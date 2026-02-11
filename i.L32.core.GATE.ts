@@ -13,8 +13,10 @@ import {
 import { LEDGER } from "./i.L99.core.LEDGER.ts";
 import { LOAD } from "./i.L99.core.LOAD.ts";
 import { ACCESS_BY_RESONANCE } from "./i.L00.core.ACCESS_BY_RESONANCE.ts";
+import { CHECKPOINT } from "./i.L99.core.CHECKPOINT.ts";
 
 const GATE_VERSION = "v0.2";
+const AUTO_CHECKPOINT_INTERVAL = 128;
 
 const stableStringify = (value: unknown): string => {
     if (Array.isArray(value)) {
@@ -269,8 +271,25 @@ export const GATE = {
 
         await LEDGER.append(event);
 
+        const nextTick = state.tick + 1;
+        if (!config.dry_run && nextTick % AUTO_CHECKPOINT_INTERVAL === 0) {
+            try {
+                await CHECKPOINT.save(
+                    {
+                        tick: nextTick,
+                        state_hash: nextHash,
+                        state_i16: nextStateI16
+                    },
+                    "AUTO_INTERVAL"
+                );
+            } catch (e) {
+                // Checkpoints are safety accelerators, not mutation authority.
+                console.warn("⚠️ CHECKPOINT SAVE FAILED", e);
+            }
+        }
+
         return {
-            tick: state.tick + 1,
+            tick: nextTick,
             state_i16: nextStateI16,
             state_hash: nextHash
         };
