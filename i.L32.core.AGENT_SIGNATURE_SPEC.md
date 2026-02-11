@@ -3,6 +3,19 @@
 Status: Draft Layer: L32 Intent: Deterministic proposal signing and verification
 for agent admission.
 
+## 0. Normative References
+
+1. `/Users/s0fractal/OMEGA/i.L99.core.STATE_SNAPSHOT.ts` (signature-related type
+   fields).
+2. `/Users/s0fractal/OMEGA/i.L32.core.GLIDER_GATE_PROTOCOL.md` (gate admission
+   flow and rejection taxonomy).
+
+Conflict rule:
+
+1. This spec governs canonicalization/sign/verify/envelope hashing.
+2. Gate execution ordering and policy application are governed by
+   `GLIDER_GATE_PROTOCOL`.
+
 ## 1. Scope
 
 This spec defines:

@@ -3,6 +3,18 @@
 Status: Draft Layer: L32 (Integration Band) Purpose: Deterministic admission and
 merge protocol for agent deltas.
 
+## 0. Normative References
+
+1. `/Users/s0fractal/OMEGA/i.L99.core.STATE_SNAPSHOT.ts` (type authority).
+2. `/Users/s0fractal/OMEGA/i.L32.core.AGENT_SIGNATURE_SPEC.md` (signature and
+   envelope authority).
+
+Conflict rule:
+
+1. Procedure and admission ordering are governed by this document.
+2. Signature payload/envelope canonicalization is governed by
+   `AGENT_SIGNATURE_SPEC`.
+
 ## 1. Contract
 
 Input:
