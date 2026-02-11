@@ -11,6 +11,8 @@ import {
     REJECTION 
 } from "./i.L99.core.STATE_SNAPSHOT.ts";
 import { LEDGER } from "./i.L99.core.LEDGER.ts";
+import { LOAD } from "./i.L99.core.LOAD.ts";
+import { ACCESS_BY_RESONANCE } from "./i.L00.core.ACCESS_BY_RESONANCE.ts";
 
 export const GATE = {
     
@@ -65,14 +67,52 @@ export const GATE = {
         let currentTotalAbsDelta = 0;
 
         for (const p of validProposals) {
-            // Check cost budget per agent
-            if (p.cost_estimate > (config.max_cost_per_agent || Infinity)) {
+            // Calculate Physical Cost using LOAD model
+            let physicalCost = 0;
+            const agentPhase = 0; // TODO: Get agent phase from state or proposal metadata if available. using 0 for now as placeholder or need to extend StateSnapshot
+            // Actually, we can assume state.phase_u16 exists or use default 0 if not tracked yet.
+            // For Glider Lite i16, we might not have explicit phase yet per agent, but let's check StateSnapshot.
+            
+            // Re-evaluating: StateSnapshot has `phase_u16?: Uint16Array`.
+            // But the proposal doesn't explicitly carry the AGENT's current phase, except maybe implicitly in `delta`.
+            // The Handoff says: "cost_l = abs(delta_l) * (1 + load_l) * (1 + mismatch_l)"
+            // "load_l" comes from Hybrid Load Model (Entropy + Phase).
+            
+            // Let's implement a simplified version for Phase 2 that assumes some default entropy/phase if missing
+            for (const d of p.delta) {
+                // Get current level properties from state (if available)
+                const levelPhase = state.phase_u16 ? state.phase_u16[d.level] : 0;
+                const levelEntropy = state.entropy_i16 ? state.entropy_i16[d.level] : 0;
+                
+                // Calculate Load of this specific mutation
+                // We treat the delta value as a "weight" or "force"
+                const load = LOAD.calculate({
+                    entropy: levelEntropy,
+                    phase: levelPhase, 
+                    weight: Math.abs(d.value)
+                }, levelPhase); // System phase vs Local phase? Or Agent vs Level?
+                
+                // Simplified Cost: Base Cost + Load Penalty
+                // cost = |delta| + Load
+                physicalCost += Math.abs(d.value) + load;
+            }
+            
+            // Update decision cost with calculated physical cost (or keep estimate if we trust agent?)
+            // The constraint checks `p.cost_estimate`. Let's enforce that physicalCost <= p.cost_estimate (Anti-Spam)
+            // If actual cost > estimate, we reject? Or just charge the actual? 
+            // "Max cost per agent" usually refers to the CHARGED cost.
+            
+            // Let's use the physical cost as the authoritative cost.
+            const finalCost = Math.round(physicalCost);
+            
+             // Check cost budget per agent RE-CHECK with verified cost
+            if (finalCost > (config.max_cost_per_agent || Infinity)) {
                 decision.rejected_proposals.push({ proposal_id: p.proposal_id, reason: REJECTION.COST_OVER_BUDGET });
                 continue;
             }
 
             decision.accepted_proposals.push(p.proposal_id);
-            decision.cost_used += p.cost_estimate;
+            decision.cost_used += finalCost;
 
             for (const d of p.delta) {
                 // Clip per level

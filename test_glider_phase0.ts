@@ -44,11 +44,19 @@ async function runTest() {
         tick: 99 // Wrong tick
     };
 
+    const proposalC_Massive: DeltaProposal = {
+        ...proposalA,
+        proposal_id: "prop_C_massive",
+        // Total abs delta = 5000 (exceeds 1000 budget)
+        delta: [{ level: 10, value: 50 }, { level: 20, value: 5000 }], 
+        cost_estimate: 20
+    };
+
     // 4. Run Gate
     console.log("➡️ Processing Tick 100...");
     const nextState = await GATE.process(
         genesisState, 
-        [proposalA, proposalB_BadTick], 
+        [proposalA, proposalB_BadTick, proposalC_Massive], 
         config
     );
 
