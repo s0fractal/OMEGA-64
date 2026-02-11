@@ -114,6 +114,11 @@ export const GATE = {
             decision.accepted_proposals.push(p.proposal_id);
             decision.cost_used += finalCost;
 
+            // 4. Weighted Merge Logic
+            // Weight = Confidence (0..1) * Reliability (0..1)
+            const agentReliability = config.reliability_weight.get(p.agent_id) ?? 1.0;
+            const weight = p.confidence * agentReliability;
+
             for (const d of p.delta) {
                 // Clip per level
                 let val = d.value;
@@ -121,16 +126,18 @@ export const GATE = {
                     val = Math.sign(val) * config.max_abs_delta_per_level;
                 }
                 
+                // Accumulate Weighted Delta (Float)
+                const weightedVal = val * weight;
                 const current = combinedDelta.get(d.level) || 0;
-                combinedDelta.set(d.level, current + val);
+                combinedDelta.set(d.level, current + weightedVal);
             }
         }
         
-        // 4. Global Budget Enforcement & Scaling
-        // Calculate total absolute delta of the merged vector
+        // 5. Global Budget Enforcement & Scaling
+        // Calculate total absolute delta of the merged vector (using rounded values for check)
         let totalAbsDelta = 0;
         for (const val of combinedDelta.values()) {
-            totalAbsDelta += Math.abs(val);
+            totalAbsDelta += Math.abs(Math.round(val));
         }
         decision.budget_used = totalAbsDelta;
 
@@ -140,10 +147,10 @@ export const GATE = {
             // console.warn(`⚖️ GATE: Scaling deltas by ${scaleFactor.toFixed(4)} (Budget Exceeded)`);
         }
 
-        // 5. Flatten & Scale Delta
+        // 6. Flatten & Scale & Round Delta
         decision.accepted_delta = Array.from(combinedDelta.entries()).map(([level, value]) => ({ 
             level, 
-            value: Math.round(value * scaleFactor) // Integer rounding after scaling
+            value: Math.round(value * scaleFactor) // Final Integer Rounding
         }));
 
         // 5. Apply Mutation (OR Dry Run)
