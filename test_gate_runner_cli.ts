@@ -245,3 +245,52 @@ Deno.test("gate runner cli emits invariant packet in packet mode", async () => {
         try { await Deno.remove(tempDir, { recursive: true }); } catch { /* ignore */ }
     }
 });
+
+Deno.test("gate runner cli verifies invariant packet", async () => {
+    const tempDir = await Deno.makeTempDir({ prefix: "omega-gate-runner-cli-" });
+    const inputPath = `${tempDir}/input.json`;
+    const outputPath = `${tempDir}/output.json`;
+
+    try {
+        const packet = await INVARIANT_PACKET.seal({
+            tick_anchor: 1,
+            canon_index_chain_checked: true,
+            canon_index_chain_ok: true,
+            gate_admission_index_chain_checked: true,
+            gate_admission_index_chain_ok: true,
+            ledger_chain_checked: true,
+            ledger_chain_ok: true,
+            witness: "cli-test"
+        });
+        await Deno.writeTextFile(inputPath, JSON.stringify(packet, null, 2));
+
+        const cmd = new Deno.Command("deno", {
+            args: [
+                "run",
+                "-A",
+                "./i.L32.core.GATE_RUNNER_CLI.ts",
+                "--verify-packet",
+                "--input",
+                inputPath,
+                "--output",
+                outputPath,
+                "--pretty"
+            ],
+            cwd: "/Users/s0fractal/OMEGA"
+        });
+
+        const res = await cmd.output();
+        if (!res.success) {
+            const stderr = new TextDecoder().decode(res.stderr);
+            throw new Error(`CLI failed: ${stderr}`);
+        }
+
+        const outputRaw = await Deno.readTextFile(outputPath);
+        const output = JSON.parse(outputRaw);
+        if (!output.ok) {
+            throw new Error(`expected verify ok, got: ${outputRaw}`);
+        }
+    } finally {
+        try { await Deno.remove(tempDir, { recursive: true }); } catch { /* ignore */ }
+    }
+});

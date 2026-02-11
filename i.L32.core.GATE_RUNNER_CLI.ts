@@ -68,6 +68,13 @@ interface CliInvariantPacketInput {
   witness?: string;
 }
 
+interface CliInvariantPacketVerifyOutput {
+  ok: boolean;
+  expected?: string;
+  actual?: string;
+  reasons: string[];
+}
+
 interface CliOutput {
   nextState: {
     tick: number;
@@ -85,6 +92,7 @@ const usage = (): string =>
     "Usage:",
     "  deno run -A i.L32.core.GATE_RUNNER_CLI.ts --input <input.json> [--output <output.json>] [--ledger <ledger.jsonl>] [--pretty]",
     "  deno run -A i.L32.core.GATE_RUNNER_CLI.ts --packet --input <input.json> [--output <output.json>] [--pretty]",
+    "  deno run -A i.L32.core.GATE_RUNNER_CLI.ts --verify-packet --input <packet.json> [--output <output.json>] [--pretty]",
     "",
     "Notes:",
     "  - input.json must match CliInput schema (state_i16 as number[]).",
@@ -93,6 +101,7 @@ const usage = (): string =>
     "  - replayAuditOptions may include verifyLedgerChain/invariantOnly.",
     "  - invariantPacket can replace invariantReport (hash-verified).",
     "  - --packet emits a sealed invariant packet from invariantReport.",
+    "  - --verify-packet validates packet hash and schema.",
   ].join("\n");
 
 const clampI16 = (x: number): number => {
@@ -159,6 +168,7 @@ const parseArgs = (
   pretty: boolean;
   help: boolean;
   packet: boolean;
+  verifyPacket: boolean;
 } => {
   const out: {
     input?: string;
@@ -167,10 +177,12 @@ const parseArgs = (
     pretty: boolean;
     help: boolean;
     packet: boolean;
+    verifyPacket: boolean;
   } = {
     pretty: false,
     help: false,
     packet: false,
+    verifyPacket: false,
   };
   for (let i = 0; i < args.length; i++) {
     const a = args[i];
@@ -180,6 +192,10 @@ const parseArgs = (
     }
     if (a === "--packet") {
       out.packet = true;
+      continue;
+    }
+    if (a === "--verify-packet") {
+      out.verifyPacket = true;
       continue;
     }
     if (a === "--pretty") {
@@ -212,6 +228,9 @@ const run = async (): Promise<void> => {
   if (!parsed.input) {
     throw new Error(`Missing --input\n\n${usage()}`);
   }
+  if (parsed.packet && parsed.verifyPacket) {
+    throw new Error(`--packet and --verify-packet are mutually exclusive\n\n${usage()}`);
+  }
 
   if (parsed.ledger) {
     LEDGER.STORAGE_PATH = parsed.ledger;
@@ -231,6 +250,23 @@ const run = async (): Promise<void> => {
       },
     );
     const body = JSON.stringify(packet, null, parsed.pretty ? 2 : undefined);
+    if (parsed.output) {
+      await Deno.writeTextFile(parsed.output, body);
+    } else {
+      console.log(body);
+    }
+    return;
+  }
+  if (parsed.verifyPacket) {
+    const packet = JSON.parse(raw) as InvariantPacket;
+    const verified = await INVARIANT_PACKET.verify(packet);
+    const output: CliInvariantPacketVerifyOutput = {
+      ok: verified.ok,
+      expected: verified.expected,
+      actual: verified.actual,
+      reasons: verified.reasons,
+    };
+    const body = JSON.stringify(output, null, parsed.pretty ? 2 : undefined);
     if (parsed.output) {
       await Deno.writeTextFile(parsed.output, body);
     } else {
