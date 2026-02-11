@@ -114,3 +114,6 @@ Runtime entrypoint:
 APIs:
 1. `processWithReplayContext(...)` (auto bridge context from replay),
 2. `processWithInvariantContext(...)` (explicit invariant snapshot).
+
+Minimal runtime wrapper:
+1. `/Users/s0fractal/OMEGA/i.L32.core.GATE_RUNNER.ts` via `GATE_RUNNER.step(...)`.
