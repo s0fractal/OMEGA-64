@@ -15,12 +15,15 @@ Method:
 CLI wrapper:
 1. `/Users/s0fractal/OMEGA/i.L32.core.GATE_RUNNER_CLI.ts`
 2. `deno run -A i.L32.core.GATE_RUNNER_CLI.ts --input <input.json> [--output <output.json>] [--ledger <ledger.jsonl>] [--pretty]`
+3. `deno run -A i.L32.core.GATE_RUNNER_CLI.ts --packet --input <input.json> [--output <output.json>] [--pretty]`
 
 Examples:
 1. Invariant-context input:
 `/Users/s0fractal/OMEGA/i.L32.core.GATE_RUNNER_CLI.example.invariant.json`
 2. Replay-context input:
 `/Users/s0fractal/OMEGA/i.L32.core.GATE_RUNNER_CLI.example.replay.json`
+3. Invariant packet input (emit):
+`/Users/s0fractal/OMEGA/i.L32.core.GATE_RUNNER_CLI.example.packet.json`
 
 Modes:
 1. `REPLAY_CONTEXT` (auto context from replay audit)

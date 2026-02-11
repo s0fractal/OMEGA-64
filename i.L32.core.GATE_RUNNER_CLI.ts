@@ -62,6 +62,12 @@ interface CliInput {
   witness?: string;
 }
 
+interface CliInvariantPacketInput {
+  invariantReport: ReplayInvariantReport;
+  tick_anchor?: number;
+  witness?: string;
+}
+
 interface CliOutput {
   nextState: {
     tick: number;
@@ -78,6 +84,7 @@ const usage = (): string =>
   [
     "Usage:",
     "  deno run -A i.L32.core.GATE_RUNNER_CLI.ts --input <input.json> [--output <output.json>] [--ledger <ledger.jsonl>] [--pretty]",
+    "  deno run -A i.L32.core.GATE_RUNNER_CLI.ts --packet --input <input.json> [--output <output.json>] [--pretty]",
     "",
     "Notes:",
     "  - input.json must match CliInput schema (state_i16 as number[]).",
@@ -85,6 +92,7 @@ const usage = (): string =>
     "  - if --ledger is provided, LEDGER.STORAGE_PATH is redirected.",
     "  - replayAuditOptions may include verifyLedgerChain/invariantOnly.",
     "  - invariantPacket can replace invariantReport (hash-verified).",
+    "  - --packet emits a sealed invariant packet from invariantReport.",
   ].join("\n");
 
 const clampI16 = (x: number): number => {
@@ -150,6 +158,7 @@ const parseArgs = (
   ledger?: string;
   pretty: boolean;
   help: boolean;
+  packet: boolean;
 } => {
   const out: {
     input?: string;
@@ -157,14 +166,20 @@ const parseArgs = (
     ledger?: string;
     pretty: boolean;
     help: boolean;
+    packet: boolean;
   } = {
     pretty: false,
     help: false,
+    packet: false,
   };
   for (let i = 0; i < args.length; i++) {
     const a = args[i];
     if (a === "--help" || a === "-h") {
       out.help = true;
+      continue;
+    }
+    if (a === "--packet") {
+      out.packet = true;
       continue;
     }
     if (a === "--pretty") {
@@ -203,6 +218,27 @@ const run = async (): Promise<void> => {
   }
 
   const raw = await Deno.readTextFile(parsed.input);
+  if (parsed.packet) {
+    const packetInput = JSON.parse(raw) as CliInvariantPacketInput;
+    if (!packetInput.invariantReport) {
+      throw new Error("Missing invariantReport for --packet mode");
+    }
+    const packet = await INVARIANT_PACKET.fromInvariantReport(
+      packetInput.invariantReport,
+      {
+        tick_anchor: packetInput.tick_anchor ?? 0,
+        witness: packetInput.witness,
+      },
+    );
+    const body = JSON.stringify(packet, null, parsed.pretty ? 2 : undefined);
+    if (parsed.output) {
+      await Deno.writeTextFile(parsed.output, body);
+    } else {
+      console.log(body);
+    }
+    return;
+  }
+
   const input = JSON.parse(raw) as CliInput;
   let invariantReport = input.invariantReport;
   if (!invariantReport && input.invariantPacket) {

@@ -189,3 +189,59 @@ Deno.test("gate runner cli derives invariant packet from invariant report", asyn
         try { await Deno.remove(tempDir, { recursive: true }); } catch { /* ignore */ }
     }
 });
+
+Deno.test("gate runner cli emits invariant packet in packet mode", async () => {
+    const tempDir = await Deno.makeTempDir({ prefix: "omega-gate-runner-cli-" });
+    const inputPath = `${tempDir}/input.json`;
+    const outputPath = `${tempDir}/output.json`;
+
+    try {
+        const input = {
+            invariantReport: {
+                index_chain_checked: true,
+                index_chain_ok: true,
+                index_chain_checked_records: 1,
+                index_chain_failures: [],
+                gate_admission_index_chain_checked: true,
+                gate_admission_index_chain_ok: true,
+                gate_admission_index_chain_checked_records: 1,
+                gate_admission_index_chain_failures: []
+            },
+            tick_anchor: 1,
+            witness: "cli-test"
+        };
+        await Deno.writeTextFile(inputPath, JSON.stringify(input, null, 2));
+
+        const cmd = new Deno.Command("deno", {
+            args: [
+                "run",
+                "-A",
+                "./i.L32.core.GATE_RUNNER_CLI.ts",
+                "--packet",
+                "--input",
+                inputPath,
+                "--output",
+                outputPath,
+                "--pretty"
+            ],
+            cwd: "/Users/s0fractal/OMEGA"
+        });
+
+        const res = await cmd.output();
+        if (!res.success) {
+            const stderr = new TextDecoder().decode(res.stderr);
+            throw new Error(`CLI failed: ${stderr}`);
+        }
+
+        const outputRaw = await Deno.readTextFile(outputPath);
+        const output = JSON.parse(outputRaw);
+        if (output.version !== "invariant-packet/v1") {
+            throw new Error(`expected invariant packet version, got ${output.version}`);
+        }
+        if (!output.packet_hash) {
+            throw new Error("expected packet_hash in invariant packet output");
+        }
+    } finally {
+        try { await Deno.remove(tempDir, { recursive: true }); } catch { /* ignore */ }
+    }
+});
