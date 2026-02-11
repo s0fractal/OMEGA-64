@@ -21,7 +21,9 @@
       "cost_estimate": 100,
       "artifact_hash": "a1",
       "semantic_fingerprint": "s1",
-      "target_path": "LOCAL"
+      "target_path": "LOCAL",
+      "signature_scheme": "hmac-sha256/v1",
+      "agent_signature": "6e8ca1d1b75d860008b017a822b41bf4032c60933b85b31749225c44d4b1f6d8"
     },
     {
       "proposal_id": "p_canon",
@@ -34,7 +36,9 @@
       "cost_estimate": 100,
       "artifact_hash": "a1",
       "semantic_fingerprint": "s1",
-      "target_path": "CANON"
+      "target_path": "CANON",
+      "signature_scheme": "hmac-sha256/v1",
+      "agent_signature": "ecd3cbc98d6997c98cca45eae4f2f6dee43080ef97d6d558c46f152ea4cc34ba"
     }
   ],
   "config": {
@@ -44,7 +48,14 @@
     "reliability_weight": {
       "agent_sync": 1
     },
-    "dry_run": false
+    "dry_run": false,
+    "signature_policy": "REQUIRED",
+    "agent_signature_keys": {
+      "agent_sync": {
+        "scheme": "hmac-sha256/v1",
+        "secret": "example_shared_secret_v1"
+      }
+    }
   },
   "mode": "INVARIANT_CONTEXT",
   "invariantReport": {

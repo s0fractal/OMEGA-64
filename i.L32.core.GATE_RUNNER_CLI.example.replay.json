@@ -21,7 +21,9 @@
       "cost_estimate": 100,
       "artifact_hash": "a1",
       "semantic_fingerprint": "s1",
-      "target_path": "LOCAL"
+      "target_path": "LOCAL",
+      "signature_scheme": "hmac-sha256/v1",
+      "agent_signature": "66e66a59cd9196449847a9b95894364c9d630e4efa67ea8dba33a5bfe7d6946d"
     },
     {
       "proposal_id": "p_canon_replay",
@@ -34,7 +36,9 @@
       "cost_estimate": 100,
       "artifact_hash": "a1",
       "semantic_fingerprint": "s1",
-      "target_path": "CANON"
+      "target_path": "CANON",
+      "signature_scheme": "hmac-sha256/v1",
+      "agent_signature": "df9c250c02ef8578e2c4652c01a156adfc0aafb52f1aacf16e6d6761ed445d99"
     }
   ],
   "config": {
@@ -44,7 +48,14 @@
     "reliability_weight": {
       "agent_sync": 1
     },
-    "dry_run": false
+    "dry_run": false,
+    "signature_policy": "REQUIRED",
+    "agent_signature_keys": {
+      "agent_sync": {
+        "scheme": "hmac-sha256/v1",
+        "secret": "example_shared_secret_v1"
+      }
+    }
   },
   "mode": "REPLAY_CONTEXT",
   "replayAuditOptions": {
