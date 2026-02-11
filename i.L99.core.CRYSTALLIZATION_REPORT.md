@@ -13,7 +13,8 @@ The report binds:
 2. projection replay report,
 3. projection drift analytics,
 4. policy anchor (`policy_version`, `policy_hash`),
-5. thresholds used for the decision.
+5. thresholds used for the decision,
+6. compact `verification_summary` for fast gate inspection.
 
 ## 2. Runtime
 

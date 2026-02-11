@@ -30,6 +30,12 @@ Deno.test("crystallization report materialization is idempotent by hash", async 
                 default_required_windows: CRYSTALLIZATION_CONFIG.defaultRequiredWindows,
                 projection_drift_max_p95: CRYSTALLIZATION_CONFIG.projectionDriftMaxP95
             },
+            verification_summary: {
+                replay_green: true,
+                projection_checks: 0,
+                policy_checks: 0,
+                canon_report_checks: 0
+            },
             replay_audit: {
                 replayGreen: true,
                 runs: 1,

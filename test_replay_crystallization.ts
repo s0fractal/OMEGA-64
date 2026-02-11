@@ -118,6 +118,12 @@ export async function runTest() {
         if (crystallizationReport.replay_audit.policyTickReport.length === 0) {
             throw new Error("crystallization report must include policyTickReport");
         }
+        if (!crystallizationReport.verification_summary.replay_green) {
+            throw new Error("crystallization report verification_summary.replay_green must be true");
+        }
+        if (crystallizationReport.verification_summary.policy_checks < 1) {
+            throw new Error("crystallization report must include at least one policy check");
+        }
 
         const raw = await Deno.readTextFile(LEDGER.STORAGE_PATH);
         const lines = raw.split("\n").filter((x) => x.trim().length > 0);

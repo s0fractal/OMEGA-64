@@ -36,6 +36,12 @@ export interface CrystallizationReport {
         default_required_windows: number;
         projection_drift_max_p95: number;
     };
+    verification_summary: {
+        replay_green: boolean;
+        projection_checks: number;
+        policy_checks: number;
+        canon_report_checks: number;
+    };
     replay_audit: ReplayAuditResult;
     projection_report: ProjectionReplayReport;
     drift_report: ProjectionDriftAnalyticsReport;
@@ -106,6 +112,12 @@ export const CRYSTALLIZATION_REPORT = {
                 min_soft_passes: CRYSTALLIZATION_CONFIG.minSoftPasses,
                 default_required_windows: CRYSTALLIZATION_CONFIG.defaultRequiredWindows,
                 projection_drift_max_p95: input.projection_drift_max_p95
+            },
+            verification_summary: {
+                replay_green: input.replay_audit.replayGreen,
+                projection_checks: input.replay_audit.checkedProjectionEvents,
+                policy_checks: input.replay_audit.checkedPolicyEvents,
+                canon_report_checks: input.replay_audit.checkedCanonReports
             },
             replay_audit: input.replay_audit,
             projection_report: input.projection_report,
