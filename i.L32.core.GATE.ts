@@ -9,8 +9,8 @@ import {
     GateDecision, 
     LedgerEvent,
     REJECTION 
-} from "../i.L99.core.STATE_SNAPSHOT.ts";
-import { LEDGER } from "../i.L99.core.LEDGER.ts";
+} from "./i.L99.core.STATE_SNAPSHOT.ts";
+import { LEDGER } from "./i.L99.core.LEDGER.ts";
 
 export const GATE = {
     
