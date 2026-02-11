@@ -1,33 +1,22 @@
 // test_gate_agent_signature.ts
-// Validates L32 signature policy admission behavior.
+// Validates L32 signature policy admission behavior (Ed25519 primary, HMAC legacy).
 
-import { AGENT_SIGNATURE } from "./i.L32.core.AGENT_SIGNATURE.ts";
+import {
+  AGENT_SIGNATURE,
+  type AgentSigningKey,
+} from "./i.L32.core.AGENT_SIGNATURE.ts";
 import { GATE } from "./i.L32.core.GATE.ts";
 import { LEDGER } from "./i.L99.core.LEDGER.ts";
 import {
-  DeltaProposal,
-  GateConfig,
-  LedgerEvent,
+  type AgentSignatureKey,
+  type DeltaProposal,
+  type GateConfig,
+  type LedgerEvent,
   REJECTION,
-  StateSnapshot,
+  type StateSnapshot,
 } from "./i.L99.core.STATE_SNAPSHOT.ts";
 
-const key = {
-  scheme: "hmac-sha256/v1" as const,
-  secret: "agent_sync_secret_v1",
-};
-
-const baseConfig = (): GateConfig => ({
-  max_abs_delta_per_level: 1000,
-  max_total_abs_delta_per_tick: 5000,
-  max_cost_per_agent: 10000,
-  reliability_weight: new Map([["agent_sync", 1.0]]),
-  dry_run: false,
-  signature_policy: "REQUIRED",
-  agent_signature_keys: new Map([["agent_sync", key]]),
-});
-
-const proposal = (
+const baseProposal = (
   id: string,
   tick: number,
   baseStateHash: string,
@@ -45,6 +34,16 @@ const proposal = (
   semantic_fingerprint: "semantic_sync_v1",
 });
 
+const baseConfig = (key: AgentSignatureKey): GateConfig => ({
+  max_abs_delta_per_level: 1000,
+  max_total_abs_delta_per_tick: 5000,
+  max_cost_per_agent: 10000,
+  reliability_weight: new Map([["agent_sync", 1.0]]),
+  dry_run: false,
+  signature_policy: "REQUIRED",
+  agent_signature_keys: new Map([["agent_sync", key]]),
+});
+
 const latestLedgerEvent = async (): Promise<LedgerEvent> => {
   const events: LedgerEvent[] = [];
   for await (const evt of LEDGER.readAllRaw()) {
@@ -58,60 +57,81 @@ const latestLedgerEvent = async (): Promise<LedgerEvent> => {
   return events[events.length - 1];
 };
 
-Deno.test("required signature accepts valid signed proposal", async () => {
+const withTempLedger = async (
+  name: string,
+  fn: () => Promise<void>,
+): Promise<void> => {
   const originalPath = LEDGER.STORAGE_PATH;
   const tempPath = await Deno.makeTempFile({
-    prefix: "omega-ledger-sig-valid-",
+    prefix: `omega-ledger-${name}-`,
     suffix: ".jsonl",
   });
   LEDGER.STORAGE_PATH = tempPath;
   await Deno.writeTextFile(tempPath, "");
-
   try {
+    await fn();
+  } finally {
+    LEDGER.STORAGE_PATH = originalPath;
+    try {
+      await Deno.remove(tempPath);
+    } catch {
+      // ignore
+    }
+  }
+};
+
+const createEd25519Material = async (): Promise<{
+  verification: AgentSignatureKey;
+  signing: AgentSigningKey;
+}> => {
+  const pair = await AGENT_SIGNATURE.generateEd25519KeyPair();
+  return {
+    verification: {
+      scheme: "ed25519/v1",
+      public_key_b64: pair.public_key_b64,
+    },
+    signing: {
+      scheme: "ed25519/v1",
+      private_key_pkcs8_b64: pair.private_key_pkcs8_b64,
+    },
+  };
+};
+
+Deno.test("required signature accepts valid ed25519 signed proposal", async () => {
+  await withTempLedger("sig-valid-ed25519", async () => {
+    const key = await createEd25519Material();
     const genesis: StateSnapshot = {
       tick: 1,
       state_i16: new Int16Array(64).fill(0),
       state_hash: "state_sig_1",
     };
-    const p = proposal("p_sig_ok", 1, "state_sig_1", 12);
-    p.signature_scheme = "hmac-sha256/v1";
-    p.agent_signature = await AGENT_SIGNATURE.signProposal(p, key);
+    const p = baseProposal("p_sig_ok_ed", 1, "state_sig_1", 12);
+    p.signature_scheme = "ed25519/v1";
+    p.agent_signature = await AGENT_SIGNATURE.signProposal(p, key.signing);
 
-    const next = await GATE.process(genesis, [p], baseConfig());
+    const next = await GATE.process(genesis, [p], baseConfig(key.verification));
     const evt = await latestLedgerEvent();
 
-    if (!evt.accepted_proposals.includes("p_sig_ok")) {
+    if (!evt.accepted_proposals.includes("p_sig_ok_ed")) {
       throw new Error("expected signed proposal to be accepted");
     }
     if (next.state_i16[5] <= 0) {
       throw new Error("expected signed proposal to mutate state");
     }
-  } finally {
-    LEDGER.STORAGE_PATH = originalPath;
-    try {
-      await Deno.remove(tempPath);
-    } catch { /* ignore */ }
-  }
+  });
 });
 
 Deno.test("required signature rejects missing signature", async () => {
-  const originalPath = LEDGER.STORAGE_PATH;
-  const tempPath = await Deno.makeTempFile({
-    prefix: "omega-ledger-sig-missing-",
-    suffix: ".jsonl",
-  });
-  LEDGER.STORAGE_PATH = tempPath;
-  await Deno.writeTextFile(tempPath, "");
-
-  try {
+  await withTempLedger("sig-missing", async () => {
+    const key = await createEd25519Material();
     const genesis: StateSnapshot = {
       tick: 2,
       state_i16: new Int16Array(64).fill(0),
       state_hash: "state_sig_2",
     };
-    const p = proposal("p_sig_missing", 2, "state_sig_2", 12);
+    const p = baseProposal("p_sig_missing", 2, "state_sig_2", 12);
 
-    const next = await GATE.process(genesis, [p], baseConfig());
+    const next = await GATE.process(genesis, [p], baseConfig(key.verification));
     const evt = await latestLedgerEvent();
 
     const rejection = evt.rejected_proposals.find((r) =>
@@ -128,34 +148,22 @@ Deno.test("required signature rejects missing signature", async () => {
     if (next.state_i16[5] !== 0) {
       throw new Error("state must not mutate for missing signature");
     }
-  } finally {
-    LEDGER.STORAGE_PATH = originalPath;
-    try {
-      await Deno.remove(tempPath);
-    } catch { /* ignore */ }
-  }
+  });
 });
 
-Deno.test("required signature rejects invalid signature", async () => {
-  const originalPath = LEDGER.STORAGE_PATH;
-  const tempPath = await Deno.makeTempFile({
-    prefix: "omega-ledger-sig-invalid-",
-    suffix: ".jsonl",
-  });
-  LEDGER.STORAGE_PATH = tempPath;
-  await Deno.writeTextFile(tempPath, "");
-
-  try {
+Deno.test("required signature rejects invalid ed25519 signature", async () => {
+  await withTempLedger("sig-invalid", async () => {
+    const key = await createEd25519Material();
     const genesis: StateSnapshot = {
       tick: 3,
       state_i16: new Int16Array(64).fill(0),
       state_hash: "state_sig_3",
     };
-    const p = proposal("p_sig_invalid", 3, "state_sig_3", 12);
-    p.signature_scheme = "hmac-sha256/v1";
+    const p = baseProposal("p_sig_invalid", 3, "state_sig_3", 12);
+    p.signature_scheme = "ed25519/v1";
     p.agent_signature = "00deadbeef";
 
-    const next = await GATE.process(genesis, [p], baseConfig());
+    const next = await GATE.process(genesis, [p], baseConfig(key.verification));
     const evt = await latestLedgerEvent();
 
     const rejection = evt.rejected_proposals.find((r) =>
@@ -172,36 +180,25 @@ Deno.test("required signature rejects invalid signature", async () => {
     if (next.state_i16[5] !== 0) {
       throw new Error("state must not mutate for invalid signature");
     }
-  } finally {
-    LEDGER.STORAGE_PATH = originalPath;
-    try {
-      await Deno.remove(tempPath);
-    } catch { /* ignore */ }
-  }
+  });
 });
 
 Deno.test("optional signature rejects signed proposal when key missing", async () => {
-  const originalPath = LEDGER.STORAGE_PATH;
-  const tempPath = await Deno.makeTempFile({
-    prefix: "omega-ledger-sig-key-missing-",
-    suffix: ".jsonl",
-  });
-  LEDGER.STORAGE_PATH = tempPath;
-  await Deno.writeTextFile(tempPath, "");
-
-  try {
+  await withTempLedger("sig-key-missing", async () => {
     const genesis: StateSnapshot = {
       tick: 4,
       state_i16: new Int16Array(64).fill(0),
       state_hash: "state_sig_4",
     };
-    const p = proposal("p_sig_key_missing", 4, "state_sig_4", 12);
-    p.signature_scheme = "hmac-sha256/v1";
+    const p = baseProposal("p_sig_key_missing", 4, "state_sig_4", 12);
+    p.signature_scheme = "ed25519/v1";
     p.agent_signature = "abcd";
 
-    const config = baseConfig();
-    config.signature_policy = "OPTIONAL";
-    config.agent_signature_keys = new Map();
+    const config: GateConfig = {
+      ...baseConfig({ scheme: "ed25519/v1", public_key_b64: "unused" }),
+      signature_policy: "OPTIONAL",
+      agent_signature_keys: new Map(),
+    };
 
     await GATE.process(genesis, [p], config);
     const evt = await latestLedgerEvent();
@@ -217,34 +214,22 @@ Deno.test("optional signature rejects signed proposal when key missing", async (
         `expected ${REJECTION.SIGNATURE_KEY_MISSING}, got ${rejection.reason}`,
       );
     }
-  } finally {
-    LEDGER.STORAGE_PATH = originalPath;
-    try {
-      await Deno.remove(tempPath);
-    } catch { /* ignore */ }
-  }
+  });
 });
 
 Deno.test("required signature rejects unsupported signature scheme", async () => {
-  const originalPath = LEDGER.STORAGE_PATH;
-  const tempPath = await Deno.makeTempFile({
-    prefix: "omega-ledger-sig-scheme-",
-    suffix: ".jsonl",
-  });
-  LEDGER.STORAGE_PATH = tempPath;
-  await Deno.writeTextFile(tempPath, "");
-
-  try {
+  await withTempLedger("sig-scheme", async () => {
+    const key = await createEd25519Material();
     const genesis: StateSnapshot = {
       tick: 5,
       state_i16: new Int16Array(64).fill(0),
       state_hash: "state_sig_5",
     };
-    const p = proposal("p_sig_scheme", 5, "state_sig_5", 12);
-    p.signature_scheme = "ed25519/v1" as unknown as "hmac-sha256/v1";
+    const p = baseProposal("p_sig_scheme", 5, "state_sig_5", 12);
+    p.signature_scheme = "hmac-sha256/v1";
     p.agent_signature = "abcd";
 
-    await GATE.process(genesis, [p], baseConfig());
+    await GATE.process(genesis, [p], baseConfig(key.verification));
     const evt = await latestLedgerEvent();
 
     const rejection = evt.rejected_proposals.find((r) =>
@@ -258,10 +243,36 @@ Deno.test("required signature rejects unsupported signature scheme", async () =>
         `expected ${REJECTION.SIGNATURE_SCHEME_UNSUPPORTED}, got ${rejection.reason}`,
       );
     }
-  } finally {
-    LEDGER.STORAGE_PATH = originalPath;
-    try {
-      await Deno.remove(tempPath);
-    } catch { /* ignore */ }
-  }
+  });
+});
+
+Deno.test("legacy hmac signature remains supported", async () => {
+  await withTempLedger("sig-hmac-legacy", async () => {
+    const verification: AgentSignatureKey = {
+      scheme: "hmac-sha256/v1",
+      secret: "agent_sync_secret_v1",
+    };
+    const signing: AgentSigningKey = {
+      scheme: "hmac-sha256/v1",
+      secret: "agent_sync_secret_v1",
+    };
+    const genesis: StateSnapshot = {
+      tick: 6,
+      state_i16: new Int16Array(64).fill(0),
+      state_hash: "state_sig_6",
+    };
+    const p = baseProposal("p_sig_hmac_ok", 6, "state_sig_6", 8);
+    p.signature_scheme = "hmac-sha256/v1";
+    p.agent_signature = await AGENT_SIGNATURE.signProposal(p, signing);
+
+    const next = await GATE.process(genesis, [p], baseConfig(verification));
+    const evt = await latestLedgerEvent();
+
+    if (!evt.accepted_proposals.includes("p_sig_hmac_ok")) {
+      throw new Error("expected legacy hmac proposal to be accepted");
+    }
+    if (next.state_i16[5] <= 0) {
+      throw new Error("expected legacy hmac proposal to mutate state");
+    }
+  });
 });

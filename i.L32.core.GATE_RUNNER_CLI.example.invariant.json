@@ -3,10 +3,70 @@
     "tick": 1,
     "state_hash": "state_1",
     "state_i16": [
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
     ]
   },
   "proposals": [
@@ -17,13 +77,18 @@
       "agent_id": "agent_sync",
       "intent": "local_shift",
       "confidence": 1,
-      "delta": [{ "level": 2, "value": 9 }],
+      "delta": [
+        {
+          "level": 2,
+          "value": 9
+        }
+      ],
       "cost_estimate": 100,
       "artifact_hash": "a1",
       "semantic_fingerprint": "s1",
       "target_path": "LOCAL",
-      "signature_scheme": "hmac-sha256/v1",
-      "agent_signature": "6e8ca1d1b75d860008b017a822b41bf4032c60933b85b31749225c44d4b1f6d8"
+      "signature_scheme": "ed25519/v1",
+      "agent_signature": "2809afb367c072de2d8a5392b50287928dc438329e7e8431510a070b02d335cf312773b7ff8788632640d8278d7cfa42ee2e226f5c71ef50502e82ae1820d202"
     },
     {
       "proposal_id": "p_canon",
@@ -32,13 +97,18 @@
       "agent_id": "agent_sync",
       "intent": "canon_shift",
       "confidence": 1,
-      "delta": [{ "level": 3, "value": 11 }],
+      "delta": [
+        {
+          "level": 3,
+          "value": 11
+        }
+      ],
       "cost_estimate": 100,
       "artifact_hash": "a1",
       "semantic_fingerprint": "s1",
       "target_path": "CANON",
-      "signature_scheme": "hmac-sha256/v1",
-      "agent_signature": "ecd3cbc98d6997c98cca45eae4f2f6dee43080ef97d6d558c46f152ea4cc34ba"
+      "signature_scheme": "ed25519/v1",
+      "agent_signature": "302496e8f2775559a854767fbaa7c97b8a0c21fe04098edbb7c6a1e51d5ce87b3fdfa926949a9ca84b3c6d44bc7b9e07072bbf120190297bc9310439093ae50d"
     }
   ],
   "config": {
@@ -52,8 +122,8 @@
     "signature_policy": "REQUIRED",
     "agent_signature_keys": {
       "agent_sync": {
-        "scheme": "hmac-sha256/v1",
-        "secret": "example_shared_secret_v1"
+        "scheme": "ed25519/v1",
+        "public_key_b64": "WkjZtogfRh6UxCLSNcv3gMOQtc2s5KItP82GPZefLNY="
       }
     }
   },

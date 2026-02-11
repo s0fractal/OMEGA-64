@@ -1,7 +1,8 @@
 # i.L32.core.GLIDER_GATE_PROTOCOL
 
-Status: Draft Layer: L32 (Integration Band) Purpose: Deterministic admission and
-merge protocol for agent deltas.
+Status: Draft
+Layer: L32 (Integration Band)
+Purpose: Deterministic admission and merge protocol for agent deltas.
 
 ## 1. Contract
 
@@ -40,7 +41,7 @@ Output:
 - `semantic_fingerprint: hex32`
 - `causal_refs: hex32[]` (optional lineage anchors)
 - `target_path: "LOCAL" | "CANON"` (optional; default `LOCAL`)
-- `signature_scheme: "hmac-sha256/v1"` (optional)
+- `signature_scheme: "ed25519/v1" | "hmac-sha256/v1"` (optional)
 - `agent_signature: hex` (optional)
 
 `GateConfig`
@@ -52,7 +53,9 @@ Output:
 - `dry_run: bool`
 - `signature_policy: "DISABLED" | "OPTIONAL" | "REQUIRED"` (optional; default
   `DISABLED`)
-- `agent_signature_keys: Map<agent_id, { scheme, secret }>` (optional)
+- `agent_signature_keys: Map<agent_id, key>` (optional)
+  - `ed25519/v1`: `{ scheme, public_key_b64 }`
+  - `hmac-sha256/v1` (legacy): `{ scheme, secret }`
 
 `GateDecision`
 
@@ -66,21 +69,22 @@ Output:
 1. Reject proposal if schema invalid.
 2. Reject if `proposal.tick != state.tick`.
 3. Reject if `proposal.base_state_hash != state.state_hash`.
-4. Reject if unknown `agent_id`. 4.1 If `target_path == CANON`, reject unless
-   bridge mode is `GREEN`. 4.2 If signature policy enabled: 4.2.1 Resolve key by
-   `agent_id` from `agent_signature_keys`. 4.2.2 `REQUIRED`: reject without
-   signature. 4.2.3 `OPTIONAL`: verify signature only when present. 4.2.4 Reject
-   unsupported scheme, missing key (when required/present), or invalid
-   signature.
-5. Clip each `delta.value` to `max_abs_delta_per_level`.
-6. Compute weighted score: `weight = confidence * reliability_weight[agent_id]`.
-7. Merge per level:
+4. Reject if unknown `agent_id`.
+5. If `target_path == CANON`, reject unless bridge mode is `GREEN`.
+6. If signature policy enabled:
+7. Resolve key by `agent_id` from `agent_signature_keys`.
+8. `REQUIRED`: reject without signature.
+9. `OPTIONAL`: verify signature only when present.
+10. Reject unsupported scheme, missing key (when required/present), or invalid signature.
+11. Clip each `delta.value` to `max_abs_delta_per_level`.
+12. Compute weighted score: `weight = confidence * reliability_weight[agent_id]`.
+13. Merge per level:
    `merged[level] = saturating_round(sum(weight * delta_level))`.
-8. Enforce global budget: if total abs exceeds `max_total_abs_delta_per_tick`,
+14. Enforce global budget: if total abs exceeds `max_total_abs_delta_per_tick`,
    scale all levels uniformly.
-9. Compute `state_next = saturating_add(state, merged)`.
-10. Compute `state_next_hash`.
-11. Emit decision + ledger event.
+15. Compute `state_next = saturating_add(state, merged)`.
+16. Compute `state_next_hash`.
+17. Emit decision + ledger event.
 
 ## 4. Rejection Reasons (Canonical)
 

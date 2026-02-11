@@ -1,10 +1,20 @@
 // i.L32.core.AGENT_SIGNATURE.ts
-// OMEGA-64 | Agent proposal signature helper (shared-secret HMAC v1).
+// OMEGA-64 | Agent proposal signature helper (Ed25519 v1 + legacy HMAC v1).
 
 import type {
   AgentSignatureKey,
+  AgentSignatureScheme,
   DeltaProposal,
 } from "./i.L99.core.STATE_SNAPSHOT.ts";
+
+export type AgentSigningKey =
+  | { scheme: "ed25519/v1"; private_key_pkcs8_b64: string }
+  | { scheme: "hmac-sha256/v1"; secret: string };
+
+export interface Ed25519KeyPairMaterial {
+  public_key_b64: string;
+  private_key_pkcs8_b64: string;
+}
 
 const stableStringify = (value: unknown): string => {
   if (Array.isArray(value)) {
@@ -26,10 +36,43 @@ const toHex = (buffer: ArrayBuffer): string =>
   Array.from(new Uint8Array(buffer)).map((b) => b.toString(16).padStart(2, "0"))
     .join("");
 
-const signHmacSha256Hex = async (
+const fromHex = (hex: string): Uint8Array => {
+  const clean = hex.trim().toLowerCase();
+  if (clean.length === 0 || clean.length % 2 !== 0 || /[^0-9a-f]/.test(clean)) {
+    throw new Error("INVALID_HEX");
+  }
+  const out = new Uint8Array(clean.length / 2);
+  for (let i = 0; i < out.length; i++) {
+    out[i] = parseInt(clean.slice(i * 2, i * 2 + 2), 16);
+  }
+  return out;
+};
+
+const toBase64 = (buffer: ArrayBuffer): string => {
+  const bytes = new Uint8Array(buffer);
+  let binary = "";
+  for (const b of bytes) {
+    binary += String.fromCharCode(b);
+  }
+  return btoa(binary);
+};
+
+const fromBase64 = (b64: string): Uint8Array => {
+  const binary = atob(b64);
+  const out = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) {
+    out[i] = binary.charCodeAt(i);
+  }
+  return out;
+};
+
+const asArrayBuffer = (bytes: Uint8Array): ArrayBuffer =>
+  Uint8Array.from(bytes).buffer;
+
+const signHmacSha256 = async (
   secret: string,
-  payload: string,
-): Promise<string> => {
+  payload: Uint8Array,
+): Promise<ArrayBuffer> => {
   const key = await crypto.subtle.importKey(
     "raw",
     new TextEncoder().encode(secret),
@@ -37,12 +80,63 @@ const signHmacSha256Hex = async (
     false,
     ["sign"],
   );
-  const digest = await crypto.subtle.sign(
+  return await crypto.subtle.sign("HMAC", key, asArrayBuffer(payload));
+};
+
+const verifyHmacSha256 = async (
+  secret: string,
+  signatureHex: string,
+  payload: Uint8Array,
+): Promise<boolean> => {
+  const signature = fromHex(signatureHex);
+  const key = await crypto.subtle.importKey(
+    "raw",
+    new TextEncoder().encode(secret),
+    { name: "HMAC", hash: "SHA-256" },
+    false,
+    ["verify"],
+  );
+  return await crypto.subtle.verify(
     "HMAC",
     key,
-    new TextEncoder().encode(payload),
+    asArrayBuffer(signature),
+    asArrayBuffer(payload),
   );
-  return toHex(digest);
+};
+
+const signEd25519 = async (
+  privateKeyPkcs8B64: string,
+  payload: Uint8Array,
+): Promise<ArrayBuffer> => {
+  const privateKey = await crypto.subtle.importKey(
+    "pkcs8",
+    asArrayBuffer(fromBase64(privateKeyPkcs8B64)),
+    { name: "Ed25519" },
+    false,
+    ["sign"],
+  );
+  return await crypto.subtle.sign("Ed25519", privateKey, asArrayBuffer(payload));
+};
+
+const verifyEd25519 = async (
+  publicKeyB64: string,
+  signatureHex: string,
+  payload: Uint8Array,
+): Promise<boolean> => {
+  const signature = fromHex(signatureHex);
+  const publicKey = await crypto.subtle.importKey(
+    "raw",
+    asArrayBuffer(fromBase64(publicKeyB64)),
+    { name: "Ed25519" },
+    false,
+    ["verify"],
+  );
+  return await crypto.subtle.verify(
+    "Ed25519",
+    publicKey,
+    asArrayBuffer(signature),
+    asArrayBuffer(payload),
+  );
 };
 
 const canonicalProposalPayload = (proposal: DeltaProposal): string =>
@@ -63,47 +157,91 @@ const canonicalProposalPayload = (proposal: DeltaProposal): string =>
     target_path: proposal.target_path ?? "LOCAL",
   });
 
+const envelopeBytes = (
+  scheme: AgentSignatureScheme,
+  proposal: DeltaProposal,
+): Uint8Array =>
+  new TextEncoder().encode(
+    `scheme=${scheme}|payload=${canonicalProposalPayload(proposal)}`,
+  );
+
+type VerifyResult = {
+  ok: boolean;
+  reason?:
+    | "SIGNATURE_SCHEME_UNSUPPORTED"
+    | "SIGNATURE_REQUIRED"
+    | "SIGNATURE_INVALID";
+};
+
 export const AGENT_SIGNATURE = {
   canonicalProposalPayload,
 
+  generateEd25519KeyPair: async (): Promise<Ed25519KeyPairMaterial> => {
+    const pair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, [
+      "sign",
+      "verify",
+    ]);
+    if (!("publicKey" in pair) || !("privateKey" in pair)) {
+      throw new Error("ED25519_KEYPAIR_GENERATION_FAILED");
+    }
+    return {
+      public_key_b64: toBase64(
+        await crypto.subtle.exportKey("raw", pair.publicKey),
+      ),
+      private_key_pkcs8_b64: toBase64(
+        await crypto.subtle.exportKey("pkcs8", pair.privateKey),
+      ),
+    };
+  },
+
   signProposal: async (
     proposal: DeltaProposal,
-    key: AgentSignatureKey,
+    key: AgentSigningKey,
   ): Promise<string> => {
-    if (key.scheme !== "hmac-sha256/v1") {
-      throw new Error(`UNSUPPORTED_SIGNATURE_SCHEME:${key.scheme}`);
+    const payload = envelopeBytes(key.scheme, proposal);
+    if (key.scheme === "ed25519/v1") {
+      return toHex(await signEd25519(key.private_key_pkcs8_b64, payload));
     }
-    const payload = canonicalProposalPayload(proposal);
-    return await signHmacSha256Hex(
-      key.secret,
-      `scheme=${key.scheme}|payload=${payload}`,
-    );
+    if (key.scheme === "hmac-sha256/v1") {
+      return toHex(await signHmacSha256(key.secret, payload));
+    }
+    throw new Error("UNSUPPORTED_SIGNATURE_SCHEME");
   },
 
   verifyProposal: async (
     proposal: DeltaProposal,
     key: AgentSignatureKey,
-  ): Promise<{
-    ok: boolean;
-    reason?:
-      | "SIGNATURE_SCHEME_UNSUPPORTED"
-      | "SIGNATURE_REQUIRED"
-      | "SIGNATURE_INVALID";
-  }> => {
-    if (key.scheme !== "hmac-sha256/v1") {
-      return { ok: false, reason: "SIGNATURE_SCHEME_UNSUPPORTED" };
-    }
+  ): Promise<VerifyResult> => {
     const scheme = proposal.signature_scheme ?? key.scheme;
-    if (scheme !== key.scheme) {
-      return { ok: false, reason: "SIGNATURE_SCHEME_UNSUPPORTED" };
-    }
     if (!proposal.agent_signature) {
       return { ok: false, reason: "SIGNATURE_REQUIRED" };
     }
-    const expected = await AGENT_SIGNATURE.signProposal(proposal, key);
-    if (proposal.agent_signature !== expected) {
+    if (scheme !== key.scheme) {
+      return { ok: false, reason: "SIGNATURE_SCHEME_UNSUPPORTED" };
+    }
+    const payload = envelopeBytes(scheme, proposal);
+    try {
+      if (scheme === "ed25519/v1" && key.scheme === "ed25519/v1") {
+        return (await verifyEd25519(
+            key.public_key_b64,
+            proposal.agent_signature,
+            payload,
+          ))
+          ? { ok: true }
+          : { ok: false, reason: "SIGNATURE_INVALID" };
+      }
+      if (scheme === "hmac-sha256/v1" && key.scheme === "hmac-sha256/v1") {
+        return (await verifyHmacSha256(
+            key.secret,
+            proposal.agent_signature,
+            payload,
+          ))
+          ? { ok: true }
+          : { ok: false, reason: "SIGNATURE_INVALID" };
+      }
+      return { ok: false, reason: "SIGNATURE_SCHEME_UNSUPPORTED" };
+    } catch {
       return { ok: false, reason: "SIGNATURE_INVALID" };
     }
-    return { ok: true };
   },
 };
