@@ -139,6 +139,51 @@ Deno.test("replay fails when canonization report file is tampered", async () => 
     }
 });
 
+Deno.test("replay fails when gate admission report file is tampered", async () => {
+    const origLedger = LEDGER.STORAGE_PATH;
+    const origDir = CRYSTALLIZATION_REPORT.STORAGE_DIR;
+    const origIndex = CRYSTALLIZATION_REPORT.INDEX_PATH;
+    const origGateAdmissionDir = GATE_ADMISSION_REPORT.STORAGE_DIR;
+    const origGateAdmissionIndex = GATE_ADMISSION_REPORT.INDEX_PATH;
+    const tempLedger = await Deno.makeTempFile({ prefix: "omega-ledger-gate-admission-verify-", suffix: ".jsonl" });
+    const tempDir = await Deno.makeTempDir({ prefix: "omega-canon-report-verify-" });
+    const tempGateAdmissionDir = await Deno.makeTempDir({ prefix: "omega-gate-admission-verify-" });
+
+    try {
+        const genesis = await prepareCrystallized(tempLedger, tempDir, tempGateAdmissionDir);
+
+        const raw = await Deno.readTextFile(LEDGER.STORAGE_PATH);
+        const lines = raw.split("\n").filter((x) => x.trim().length > 0);
+        const canon = JSON.parse(lines.find((l) => l.includes("\"event_type\":\"CANONIZATION_EVENT\""))!);
+        const reportPath = canon.gate_admission_report_uri as string;
+
+        const report = JSON.parse(await Deno.readTextFile(reportPath));
+        report.weightMean = (report.weightMean ?? 0) + 0.5; // tamper without hash update
+        await Deno.writeTextFile(reportPath, JSON.stringify(report, null, 2));
+
+        const audit = await REPLAY_AUDIT.audit(
+            { tick: 1, state_i16: genesis.state_i16, state_hash: "state_1" },
+            { runs: 1, startTick: 1, endTick: 2 }
+        );
+
+        if (audit.replayGreen) {
+            throw new Error("replay must fail when gate admission report file is tampered");
+        }
+        if (!audit.failures.some((f) => f.includes("gate admission report hash mismatch"))) {
+            throw new Error(`missing expected failure, got: ${audit.failures.join(",")}`);
+        }
+    } finally {
+        LEDGER.STORAGE_PATH = origLedger;
+        CRYSTALLIZATION_REPORT.STORAGE_DIR = origDir;
+        CRYSTALLIZATION_REPORT.INDEX_PATH = origIndex;
+        GATE_ADMISSION_REPORT.STORAGE_DIR = origGateAdmissionDir;
+        GATE_ADMISSION_REPORT.INDEX_PATH = origGateAdmissionIndex;
+        try { await Deno.remove(tempLedger); } catch { /* ignore */ }
+        try { await Deno.remove(tempDir, { recursive: true }); } catch { /* ignore */ }
+        try { await Deno.remove(tempGateAdmissionDir, { recursive: true }); } catch { /* ignore */ }
+    }
+});
+
 Deno.test("replay fails when canonization report file is missing", async () => {
     const origLedger = LEDGER.STORAGE_PATH;
     const origDir = CRYSTALLIZATION_REPORT.STORAGE_DIR;

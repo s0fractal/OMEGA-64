@@ -7,6 +7,7 @@ import { LedgerEvent, PolicyTransitionEvent, TopologyEvent } from "./i.L99.core.
 import { TOPOLOGICAL_SIGNATURE, TopologicalSignature } from "./i.L99.core.TOPOLOGICAL_SIGNATURE.ts";
 import { CRYSTALLIZATION_CONFIG, CRYSTALLIZATION_POLICY } from "./i.L99.core.CRYSTALLIZATION_CONFIG.ts";
 import { CRYSTALLIZATION_REPORT } from "./i.L99.core.CRYSTALLIZATION_REPORT.ts";
+import { GATE_ADMISSION_REPORT } from "./i.L99.core.GATE_ADMISSION_REPORT.ts";
 
 export interface ReplayGenesis {
     tick: number;
@@ -36,6 +37,9 @@ export interface ReplayAuditResult {
     checkedCanonReports: number;
     skippedCanonReports: number;
     canonReportTickReport: CanonReportTickReport[];
+    checkedGateAdmissionReports: number;
+    skippedGateAdmissionReports: number;
+    gateAdmissionReportTickReport: GateAdmissionReportTickReport[];
     invariantReport: ReplayInvariantReport;
     finalHashes: string[];
     failures: string[];
@@ -56,6 +60,14 @@ export interface PolicyTickReport {
 }
 
 export interface CanonReportTickReport {
+    tick: number;
+    status: "PASS" | "FAIL" | "SKIP";
+    reason: string;
+    report_hash?: string;
+    report_uri?: string;
+}
+
+export interface GateAdmissionReportTickReport {
     tick: number;
     status: "PASS" | "FAIL" | "SKIP";
     reason: string;
@@ -135,6 +147,8 @@ const isCanonizationEvent = (entry: TopologyEvent): entry is TopologyEvent & {
     checkpoint_tick: number;
     crystallization_report_hash?: string;
     crystallization_report_uri?: string;
+    gate_admission_report_hash?: string;
+    gate_admission_report_uri?: string;
 } =>
     "event_type" in entry && entry.event_type === "CANONIZATION_EVENT";
 
@@ -220,6 +234,9 @@ export const REPLAY_AUDIT = {
         let checkedCanonReports = 0;
         let skippedCanonReports = 0;
         const canonReportTickReport: CanonReportTickReport[] = [];
+        let checkedGateAdmissionReports = 0;
+        let skippedGateAdmissionReports = 0;
+        const gateAdmissionReportTickReport: GateAdmissionReportTickReport[] = [];
         const invariantReport: ReplayInvariantReport = {
             index_chain_checked: false,
             index_chain_ok: true,
@@ -255,6 +272,9 @@ export const REPLAY_AUDIT = {
                     checkedCanonReports,
                     skippedCanonReports,
                     canonReportTickReport,
+                    checkedGateAdmissionReports,
+                    skippedGateAdmissionReports,
+                    gateAdmissionReportTickReport,
                     invariantReport,
                     finalHashes,
                     failures: ledgerChain.failures.map((x) => `ledger_chain:${x}`)
@@ -283,6 +303,9 @@ export const REPLAY_AUDIT = {
                     checkedCanonReports,
                     skippedCanonReports,
                     canonReportTickReport,
+                    checkedGateAdmissionReports,
+                    skippedGateAdmissionReports,
+                    gateAdmissionReportTickReport,
                     invariantReport,
                     finalHashes,
                     failures: indexChain.failures.map((x) => `index_chain:${x}`)
@@ -445,6 +468,8 @@ export const REPLAY_AUDIT = {
                     const canon = canonEvents[canonEvents.length - 1] as {
                         crystallization_report_hash?: string;
                         crystallization_report_uri?: string;
+                        gate_admission_report_hash?: string;
+                        gate_admission_report_uri?: string;
                     };
                     const reportHash = canon.crystallization_report_hash;
                     const reportUri = canon.crystallization_report_uri;
@@ -517,9 +542,87 @@ export const REPLAY_AUDIT = {
                         }
                         break;
                     }
+
+                    const gateReportHash = canon.gate_admission_report_hash;
+                    const gateReportUri = canon.gate_admission_report_uri;
+
+                    if (!gateReportHash || !gateReportUri) {
+                        failures.push(`run=${run} missing gate admission report anchor at tick ${evt.tick}`);
+                        if (run === 0) {
+                            gateAdmissionReportTickReport.push({
+                                tick: evt.tick,
+                                status: "FAIL",
+                                reason: "MISSING_GATE_ADMISSION_REPORT_ANCHOR",
+                                report_hash: gateReportHash,
+                                report_uri: gateReportUri
+                            });
+                        }
+                        break;
+                    }
+
+                    try {
+                        const body = await Deno.readTextFile(gateReportUri);
+                        const parsed = JSON.parse(body);
+                        const computed = await GATE_ADMISSION_REPORT.hash(parsed);
+                        if (computed !== gateReportHash) {
+                            failures.push(`run=${run} gate admission report hash mismatch at tick ${evt.tick}`);
+                            if (run === 0) {
+                                gateAdmissionReportTickReport.push({
+                                    tick: evt.tick,
+                                    status: "FAIL",
+                                    reason: "GATE_ADMISSION_REPORT_HASH_MISMATCH",
+                                    report_hash: gateReportHash,
+                                    report_uri: gateReportUri
+                                });
+                            }
+                            break;
+                        }
+                        const indexRecord = await GATE_ADMISSION_REPORT.findIndexRecord(gateReportHash, gateReportUri);
+                        if (!indexRecord) {
+                            failures.push(`run=${run} gate admission report index missing/mismatch at tick ${evt.tick}`);
+                            if (run === 0) {
+                                gateAdmissionReportTickReport.push({
+                                    tick: evt.tick,
+                                    status: "FAIL",
+                                    reason: "GATE_ADMISSION_REPORT_INDEX_MISSING_OR_MISMATCH",
+                                    report_hash: gateReportHash,
+                                    report_uri: gateReportUri
+                                });
+                            }
+                            break;
+                        }
+                        if (run === 0) {
+                            checkedGateAdmissionReports++;
+                            gateAdmissionReportTickReport.push({
+                                tick: evt.tick,
+                                status: "PASS",
+                                reason: "GATE_ADMISSION_REPORT_MATCH",
+                                report_hash: gateReportHash,
+                                report_uri: gateReportUri
+                            });
+                        }
+                    } catch {
+                        failures.push(`run=${run} gate admission report missing/unreadable at tick ${evt.tick}`);
+                        if (run === 0) {
+                            gateAdmissionReportTickReport.push({
+                                tick: evt.tick,
+                                status: "FAIL",
+                                reason: "GATE_ADMISSION_REPORT_MISSING_OR_UNREADABLE",
+                                report_hash: gateReportHash,
+                                report_uri: gateReportUri
+                            });
+                        }
+                        break;
+                    }
                 } else if (run === 0) {
                     skippedCanonReports++;
                     canonReportTickReport.push({
+                        tick: evt.tick,
+                        status: "SKIP",
+                        reason: "NO_CANONIZATION_EVENT"
+                    });
+                    skippedGateAdmissionReports++;
+                    gateAdmissionReportTickReport.push({
                         tick: evt.tick,
                         status: "SKIP",
                         reason: "NO_CANONIZATION_EVENT"
@@ -666,6 +769,9 @@ export const REPLAY_AUDIT = {
             checkedCanonReports,
             skippedCanonReports,
             canonReportTickReport,
+            checkedGateAdmissionReports,
+            skippedGateAdmissionReports,
+            gateAdmissionReportTickReport,
             invariantReport,
             finalHashes,
             failures

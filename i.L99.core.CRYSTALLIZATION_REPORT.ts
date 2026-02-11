@@ -53,6 +53,7 @@ export interface CrystallizationReport {
     projection_checks: number;
     policy_checks: number;
     canon_report_checks: number;
+    gate_admission_report_checks: number;
   };
   replay_audit: ReplayAuditResult;
   projection_report: ProjectionReplayReport;
@@ -189,6 +190,7 @@ export const CRYSTALLIZATION_REPORT = {
         projection_checks: input.replay_audit.checkedProjectionEvents,
         policy_checks: input.replay_audit.checkedPolicyEvents,
         canon_report_checks: input.replay_audit.checkedCanonReports,
+        gate_admission_report_checks: input.replay_audit.checkedGateAdmissionReports,
       },
       replay_audit: input.replay_audit,
       projection_report: input.projection_report,

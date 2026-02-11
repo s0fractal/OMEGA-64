@@ -34,7 +34,8 @@ Deno.test("crystallization report materialization is idempotent by hash", async 
                 replay_green: true,
                 projection_checks: 0,
                 policy_checks: 0,
-                canon_report_checks: 0
+                canon_report_checks: 0,
+                gate_admission_report_checks: 0
             },
             replay_audit: {
                 replayGreen: true,
@@ -50,6 +51,9 @@ Deno.test("crystallization report materialization is idempotent by hash", async 
                 checkedCanonReports: 0,
                 skippedCanonReports: 0,
                 canonReportTickReport: [],
+                checkedGateAdmissionReports: 0,
+                skippedGateAdmissionReports: 0,
+                gateAdmissionReportTickReport: [],
                 invariantReport: {
                     index_chain_checked: false,
                     index_chain_ok: true,
@@ -158,7 +162,8 @@ Deno.test("crystallization report index chain detects tamper", async () => {
                 replay_green: true,
                 projection_checks: 0,
                 policy_checks: 0,
-                canon_report_checks: 0
+                canon_report_checks: 0,
+                gate_admission_report_checks: 0
             },
             replay_audit: {
                 replayGreen: true,
@@ -174,6 +179,9 @@ Deno.test("crystallization report index chain detects tamper", async () => {
                 checkedCanonReports: 0,
                 skippedCanonReports: 0,
                 canonReportTickReport: [],
+                checkedGateAdmissionReports: 0,
+                skippedGateAdmissionReports: 0,
+                gateAdmissionReportTickReport: [],
                 invariantReport: {
                     index_chain_checked: false,
                     index_chain_ok: true,
@@ -298,7 +306,8 @@ Deno.test("crystallization report index chain enforces monotonic tick causality"
                 replay_green: true,
                 projection_checks: 0,
                 policy_checks: 0,
-                canon_report_checks: 0
+                canon_report_checks: 0,
+                gate_admission_report_checks: 0
             },
             replay_audit: {
                 replayGreen: true,
@@ -314,6 +323,9 @@ Deno.test("crystallization report index chain enforces monotonic tick causality"
                 checkedCanonReports: 0,
                 skippedCanonReports: 0,
                 canonReportTickReport: [],
+                checkedGateAdmissionReports: 0,
+                skippedGateAdmissionReports: 0,
+                gateAdmissionReportTickReport: [],
                 invariantReport: {
                     index_chain_checked: false,
                     index_chain_ok: true,

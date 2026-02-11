@@ -177,6 +177,14 @@ export async function runTest() {
         "crystallization report must include at least one policy check",
       );
     }
+    if (
+      typeof crystallizationReport.verification_summary
+          .gate_admission_report_checks !== "number"
+    ) {
+      throw new Error(
+        "crystallization report must expose gate admission report checks",
+      );
+    }
 
     const raw = await Deno.readTextFile(LEDGER.STORAGE_PATH);
     const lines = raw.split("\n").filter((x) => x.trim().length > 0);
@@ -278,6 +286,11 @@ export async function runTest() {
     if (postAudit.checkedCanonReports < 1) {
       throw new Error(
         `expected checkedCanonReports >= 1, got ${postAudit.checkedCanonReports}`,
+      );
+    }
+    if (postAudit.checkedGateAdmissionReports < 1) {
+      throw new Error(
+        `expected checkedGateAdmissionReports >= 1, got ${postAudit.checkedGateAdmissionReports}`,
       );
     }
   } finally {
