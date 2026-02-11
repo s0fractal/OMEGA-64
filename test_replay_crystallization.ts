@@ -7,6 +7,7 @@ import { LEDGER } from "./i.L99.core.LEDGER.ts";
 import { DeltaProposal, GateConfig, StateSnapshot } from "./i.L99.core.STATE_SNAPSHOT.ts";
 import { CRYSTALLIZATION_CONFIG, CRYSTALLIZATION_POLICY } from "./i.L99.core.CRYSTALLIZATION_CONFIG.ts";
 import { CRYSTALLIZATION_REPORT } from "./i.L99.core.CRYSTALLIZATION_REPORT.ts";
+import { REPLAY_AUDIT } from "./i.L99.core.REPLAY_AUDIT.ts";
 
 export async function runTest() {
     console.log("🧪 TESTING: Replay Audit + Crystallization Coupling");
@@ -158,6 +159,21 @@ export async function runTest() {
         const indexLines = indexRaw.split("\n").filter((x) => x.trim().length > 0);
         if (indexLines.length < 1) {
             throw new Error("missing crystallization report index records");
+        }
+
+        const postAudit = await REPLAY_AUDIT.audit(
+            {
+                tick: 1,
+                state_i16: genesisState.state_i16,
+                state_hash: "state_1"
+            },
+            { runs: 1, startTick: 1, endTick: 2 }
+        );
+        if (!postAudit.replayGreen) {
+            throw new Error(`post-audit should be green: ${postAudit.failures.join(",")}`);
+        }
+        if (postAudit.checkedCanonReports < 1) {
+            throw new Error(`expected checkedCanonReports >= 1, got ${postAudit.checkedCanonReports}`);
         }
     } finally {
         try {

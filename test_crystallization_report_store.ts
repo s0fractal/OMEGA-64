@@ -41,6 +41,9 @@ Deno.test("crystallization report materialization is idempotent by hash", async 
                 checkedPolicyEvents: 0,
                 skippedPolicyEvents: 0,
                 policyTickReport: [],
+                checkedCanonReports: 0,
+                skippedCanonReports: 0,
+                canonReportTickReport: [],
                 finalHashes: [],
                 failures: []
             },
@@ -108,4 +111,3 @@ Deno.test("crystallization report materialization is idempotent by hash", async 
         CRYSTALLIZATION_REPORT.INDEX_PATH = originalIndex;
     }
 });
-

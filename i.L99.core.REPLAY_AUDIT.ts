@@ -6,6 +6,7 @@ import { LEDGER } from "./i.L99.core.LEDGER.ts";
 import { LedgerEvent, PolicyTransitionEvent, TopologyEvent } from "./i.L99.core.STATE_SNAPSHOT.ts";
 import { TOPOLOGICAL_SIGNATURE, TopologicalSignature } from "./i.L99.core.TOPOLOGICAL_SIGNATURE.ts";
 import { CRYSTALLIZATION_CONFIG, CRYSTALLIZATION_POLICY } from "./i.L99.core.CRYSTALLIZATION_CONFIG.ts";
+import { CRYSTALLIZATION_REPORT } from "./i.L99.core.CRYSTALLIZATION_REPORT.ts";
 
 export interface ReplayGenesis {
     tick: number;
@@ -31,6 +32,9 @@ export interface ReplayAuditResult {
     checkedPolicyEvents: number;
     skippedPolicyEvents: number;
     policyTickReport: PolicyTickReport[];
+    checkedCanonReports: number;
+    skippedCanonReports: number;
+    canonReportTickReport: CanonReportTickReport[];
     finalHashes: string[];
     failures: string[];
 }
@@ -47,6 +51,14 @@ export interface PolicyTickReport {
     reason: string;
     policy_version?: string;
     policy_hash?: string;
+}
+
+export interface CanonReportTickReport {
+    tick: number;
+    status: "PASS" | "FAIL" | "SKIP";
+    reason: string;
+    report_hash?: string;
+    report_uri?: string;
 }
 
 const stableStringify = (value: unknown): string => {
@@ -103,6 +115,14 @@ const expectedStateHash = async (
 const isPolicyTransitionEvent = (entry: TopologyEvent): entry is PolicyTransitionEvent =>
     "event_type" in entry && entry.event_type === "POLICY_TRANSITION_EVENT";
 
+const isCanonizationEvent = (entry: TopologyEvent): entry is TopologyEvent & {
+    event_type: "CANONIZATION_EVENT";
+    checkpoint_tick: number;
+    crystallization_report_hash?: string;
+    crystallization_report_uri?: string;
+} =>
+    "event_type" in entry && entry.event_type === "CANONIZATION_EVENT";
+
 const isLedgerEvent = (entry: TopologyEvent): entry is LedgerEvent =>
     !("event_type" in entry) &&
     typeof entry.tick === "number" &&
@@ -116,10 +136,12 @@ const collectLedgerEvents = async (
 ): Promise<{
     events: LedgerEvent[];
     transitionsByTick: Map<number, PolicyTransitionEvent[]>;
+    canonByCheckpointTick: Map<number, TopologyEvent[]>;
     skipped: number;
 }> => {
     const byTick = new Map<number, LedgerEvent>();
     const transitionsByTick = new Map<number, PolicyTransitionEvent[]>();
+    const canonByCheckpointTick = new Map<number, TopologyEvent[]>();
     let skipped = 0;
 
     for await (const entry of LEDGER.readAllRaw()) {
@@ -130,6 +152,15 @@ const collectLedgerEvents = async (
             const current = transitionsByTick.get(entry.tick) ?? [];
             current.push(entry);
             transitionsByTick.set(entry.tick, current);
+            continue;
+        }
+        if (isCanonizationEvent(entry)) {
+            const inStart = startTick === undefined || entry.checkpoint_tick >= startTick;
+            const inEnd = endTick === undefined || entry.checkpoint_tick <= endTick;
+            if (!inStart || !inEnd) continue;
+            const current = canonByCheckpointTick.get(entry.checkpoint_tick) ?? [];
+            current.push(entry);
+            canonByCheckpointTick.set(entry.checkpoint_tick, current);
             continue;
         }
         if (!isLedgerEvent(entry)) {
@@ -152,6 +183,7 @@ const collectLedgerEvents = async (
     return {
         events: Array.from(byTick.values()).sort((a, b) => a.tick - b.tick),
         transitionsByTick,
+        canonByCheckpointTick,
         skipped
     };
 };
@@ -160,7 +192,7 @@ export const REPLAY_AUDIT = {
     audit: async (genesis: ReplayGenesis, options: ReplayAuditOptions = {}): Promise<ReplayAuditResult> => {
         const runs = options.runs ?? 3;
         const verifyTopologicalSignatures = options.verifyTopologicalSignatures ?? true;
-        const { events, transitionsByTick, skipped } = await collectLedgerEvents(options.startTick, options.endTick);
+        const { events, transitionsByTick, canonByCheckpointTick, skipped } = await collectLedgerEvents(options.startTick, options.endTick);
         const localPolicyHash = await CRYSTALLIZATION_POLICY.hash();
         const finalHashes: string[] = [];
         const failures: string[] = [];
@@ -170,6 +202,9 @@ export const REPLAY_AUDIT = {
         let checkedPolicyEvents = 0;
         let skippedPolicyEvents = 0;
         const policyTickReport: PolicyTickReport[] = [];
+        let checkedCanonReports = 0;
+        let skippedCanonReports = 0;
+        const canonReportTickReport: CanonReportTickReport[] = [];
 
         for (let run = 0; run < runs; run++) {
             let tick = genesis.tick;
@@ -321,6 +356,78 @@ export const REPLAY_AUDIT = {
                     });
                 }
 
+                const canonEvents = canonByCheckpointTick.get(nextTick) ?? [];
+                if (canonEvents.length > 0) {
+                    const canon = canonEvents[canonEvents.length - 1] as {
+                        crystallization_report_hash?: string;
+                        crystallization_report_uri?: string;
+                    };
+                    const reportHash = canon.crystallization_report_hash;
+                    const reportUri = canon.crystallization_report_uri;
+
+                    if (!reportHash || !reportUri) {
+                        failures.push(`run=${run} missing canon report anchor at tick ${evt.tick}`);
+                        if (run === 0) {
+                            canonReportTickReport.push({
+                                tick: evt.tick,
+                                status: "FAIL",
+                                reason: "MISSING_CANON_REPORT_ANCHOR",
+                                report_hash: reportHash,
+                                report_uri: reportUri
+                            });
+                        }
+                        break;
+                    }
+
+                    try {
+                        const body = await Deno.readTextFile(reportUri);
+                        const parsed = JSON.parse(body);
+                        const computed = await CRYSTALLIZATION_REPORT.hash(parsed);
+                        if (computed !== reportHash) {
+                            failures.push(`run=${run} canon report hash mismatch at tick ${evt.tick}`);
+                            if (run === 0) {
+                                canonReportTickReport.push({
+                                    tick: evt.tick,
+                                    status: "FAIL",
+                                    reason: "CANON_REPORT_HASH_MISMATCH",
+                                    report_hash: reportHash,
+                                    report_uri: reportUri
+                                });
+                            }
+                            break;
+                        }
+                        if (run === 0) {
+                            checkedCanonReports++;
+                            canonReportTickReport.push({
+                                tick: evt.tick,
+                                status: "PASS",
+                                reason: "CANON_REPORT_MATCH",
+                                report_hash: reportHash,
+                                report_uri: reportUri
+                            });
+                        }
+                    } catch (e) {
+                        failures.push(`run=${run} canon report missing/unreadable at tick ${evt.tick}`);
+                        if (run === 0) {
+                            canonReportTickReport.push({
+                                tick: evt.tick,
+                                status: "FAIL",
+                                reason: "CANON_REPORT_MISSING_OR_UNREADABLE",
+                                report_hash: reportHash,
+                                report_uri: reportUri
+                            });
+                        }
+                        break;
+                    }
+                } else if (run === 0) {
+                    skippedCanonReports++;
+                    canonReportTickReport.push({
+                        tick: evt.tick,
+                        status: "SKIP",
+                        reason: "NO_CANONIZATION_EVENT"
+                    });
+                }
+
                 if (verifyTopologicalSignatures) {
                     const hasProjectionData = Boolean(
                         evt.projection_2d_hash ||
@@ -458,6 +565,9 @@ export const REPLAY_AUDIT = {
             checkedPolicyEvents,
             skippedPolicyEvents,
             policyTickReport,
+            checkedCanonReports,
+            skippedCanonReports,
+            canonReportTickReport,
             finalHashes,
             failures
         };
