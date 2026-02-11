@@ -22,6 +22,7 @@ All must be true:
 
 1. Replay Green:
 100% deterministic replay match on 3 independent runs.
+Projection replay report MUST have `failCount = 0` for the same window.
 
 2. Critical Safety:
 `CRITICAL VIOLATION_EVENT = 0` in stability window.
@@ -102,4 +103,3 @@ If any Hard Gate fails after crystallization:
 1. This policy evaluates operational stability, not metaphysical truth.
 2. Hash acts as identity anchor and causal coordinate.
 3. Semantic evaluation remains projection-based and separate from raw hash bit distance.
-

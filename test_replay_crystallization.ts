@@ -62,7 +62,7 @@ export async function runTest() {
 
         const s3 = await GATE.process(s2, [p2], config);
 
-        const { crystallized, audit } = await CRYSTALLIZATION.evaluateWithAudit(
+        const { crystallized, audit, projectionReport } = await CRYSTALLIZATION.evaluateWithAudit(
             2,
             "artifact_demo",
             s3.state_hash,
@@ -81,6 +81,7 @@ export async function runTest() {
 
         console.log(`✅ replayGreen: ${audit.replayGreen}`);
         console.log(`✅ checkedEvents: ${audit.checkedEvents}`);
+        console.log(`✅ projectionPass: ${projectionReport.passCount}`);
         console.log(`✅ crystallized: ${crystallized}`);
 
         if (!audit.replayGreen) {
@@ -88,6 +89,9 @@ export async function runTest() {
         }
         if (!crystallized) {
             throw new Error("Crystallization should pass in this controlled window.");
+        }
+        if (projectionReport.failCount !== 0) {
+            throw new Error(`Projection replay report has failures: ${projectionReport.failures.join(",")}`);
         }
     } finally {
         try {

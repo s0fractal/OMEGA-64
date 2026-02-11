@@ -26,8 +26,15 @@ export interface ReplayAuditResult {
     skippedEvents: number;
     checkedProjectionEvents: number;
     skippedProjectionEvents: number;
+    projectionTickReport: ProjectionTickReport[];
     finalHashes: string[];
     failures: string[];
+}
+
+export interface ProjectionTickReport {
+    tick: number;
+    status: "PASS" | "FAIL" | "SKIP";
+    reason: string;
 }
 
 const stableStringify = (value: unknown): string => {
@@ -115,6 +122,7 @@ export const REPLAY_AUDIT = {
         const failures: string[] = [];
         let checkedProjectionEvents = 0;
         let skippedProjectionEvents = 0;
+        const projectionTickReport: ProjectionTickReport[] = [];
 
         for (let run = 0; run < runs; run++) {
             let tick = genesis.tick;
@@ -159,18 +167,46 @@ export const REPLAY_AUDIT = {
                     if (hasProjectionData) {
                         if (!evt.projection_2d_hash || !evt.thread_1d_hash || !evt.projection_version) {
                             failures.push(`run=${run} incomplete projection fields at tick ${evt.tick}`);
+                            if (run === 0) {
+                                projectionTickReport.push({
+                                    tick: evt.tick,
+                                    status: "FAIL",
+                                    reason: "INCOMPLETE_PROJECTION_FIELDS"
+                                });
+                            }
                             break;
                         }
                         if (evt.projection_version !== TOPOLOGICAL_SIGNATURE.PROJECTION_VERSION) {
                             failures.push(`run=${run} unsupported projection version at tick ${evt.tick}`);
+                            if (run === 0) {
+                                projectionTickReport.push({
+                                    tick: evt.tick,
+                                    status: "FAIL",
+                                    reason: "UNSUPPORTED_PROJECTION_VERSION"
+                                });
+                            }
                             break;
                         }
                         if (evt.signature_tick !== undefined && evt.signature_tick !== nextTick) {
                             failures.push(`run=${run} signature_tick mismatch at tick ${evt.tick}`);
+                            if (run === 0) {
+                                projectionTickReport.push({
+                                    tick: evt.tick,
+                                    status: "FAIL",
+                                    reason: "SIGNATURE_TICK_MISMATCH"
+                                });
+                            }
                             break;
                         }
                         if (evt.signature_artifact_hash !== undefined && evt.signature_artifact_hash !== evt.proposal_digest) {
                             failures.push(`run=${run} signature_artifact_hash mismatch at tick ${evt.tick}`);
+                            if (run === 0) {
+                                projectionTickReport.push({
+                                    tick: evt.tick,
+                                    status: "FAIL",
+                                    reason: "SIGNATURE_ARTIFACT_HASH_MISMATCH"
+                                });
+                            }
                             break;
                         }
 
@@ -196,13 +232,41 @@ export const REPLAY_AUDIT = {
                             failures.push(
                                 `run=${run} projection mismatch at tick ${evt.tick}: ${verifyResult.reasons.join("|")}`
                             );
+                            if (run === 0) {
+                                projectionTickReport.push({
+                                    tick: evt.tick,
+                                    status: "FAIL",
+                                    reason: `PROJECTION_MISMATCH:${verifyResult.reasons.join("|")}`
+                                });
+                            }
                             break;
                         }
 
-                        if (run === 0) checkedProjectionEvents++;
+                        if (run === 0) {
+                            checkedProjectionEvents++;
+                            projectionTickReport.push({
+                                tick: evt.tick,
+                                status: "PASS",
+                                reason: "PROJECTION_MATCH"
+                            });
+                        }
                     } else {
-                        if (run === 0) skippedProjectionEvents++;
+                        if (run === 0) {
+                            skippedProjectionEvents++;
+                            projectionTickReport.push({
+                                tick: evt.tick,
+                                status: "SKIP",
+                                reason: "NO_PROJECTION_FIELDS"
+                            });
+                        }
                     }
+                } else if (run === 0) {
+                    skippedProjectionEvents++;
+                    projectionTickReport.push({
+                        tick: evt.tick,
+                        status: "SKIP",
+                        reason: "VERIFY_DISABLED"
+                    });
                 }
 
                 tick = nextTick;
@@ -223,6 +287,7 @@ export const REPLAY_AUDIT = {
             skippedEvents: skipped,
             checkedProjectionEvents,
             skippedProjectionEvents,
+            projectionTickReport,
             finalHashes,
             failures
         };

@@ -11,6 +11,7 @@ import {
     ViolationEvent
 } from "./i.L99.core.STATE_SNAPSHOT.ts";
 import { REPLAY_AUDIT, ReplayAuditResult, ReplayGenesis } from "./i.L99.core.REPLAY_AUDIT.ts";
+import { PROJECTION_REPLAY_REPORT, ProjectionReplayReport } from "./i.L99.core.PROJECTION_REPLAY_REPORT.ts";
 import { CHECKPOINT } from "./i.L99.core.CHECKPOINT.ts";
 
 const stableStringify = (value: unknown): string => {
@@ -147,7 +148,7 @@ export const CRYSTALLIZATION = {
         stateHash: string,
         replayGenesis: ReplayGenesis,
         options: EvaluateWithAuditOptions = {}
-    ): Promise<{ crystallized: boolean; audit: ReplayAuditResult }> => {
+    ): Promise<{ crystallized: boolean; audit: ReplayAuditResult; projectionReport: ProjectionReplayReport }> => {
         const requiredWindows = options.requiredWindows ?? CRYSTALLIZATION.DEFAULT_REQUIRED_WINDOWS;
         const windowSize = options.windowSize ?? CRYSTALLIZATION.WINDOW;
         const replayStartTick = options.replayStartTick ?? Math.max(
@@ -159,6 +160,11 @@ export const CRYSTALLIZATION = {
             runs: options.replayRuns ?? 3,
             startTick: replayStartTick,
             endTick: currentTick
+        });
+        const projectionReport = await PROJECTION_REPLAY_REPORT.generate(replayGenesis, {
+            startTick: replayStartTick,
+            endTick: currentTick,
+            verifyTopologicalSignatures: true
         });
 
         const crystallized = await CRYSTALLIZATION.evaluate(
@@ -173,7 +179,7 @@ export const CRYSTALLIZATION = {
             }
         );
 
-        return { crystallized, audit };
+        return { crystallized, audit, projectionReport };
     },
 
     enforcePostCrystal: async (
