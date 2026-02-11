@@ -14,12 +14,18 @@ export interface BridgeModeResolution {
 export const CANON_CAUSAL_BRIDGE = {
     resolveMode: (invariant?: ReplayInvariantReport): BridgeModeResolution => {
         if (!invariant || !invariant.index_chain_checked) {
-            return { mode: "AMBER", reason: "INDEX_CHAIN_UNCHECKED" };
+            return { mode: "AMBER", reason: "CANON_CHAIN_UNCHECKED" };
         }
-        if (invariant.index_chain_ok) {
-            return { mode: "GREEN", reason: "INDEX_CHAIN_GREEN" };
+        if (!invariant.gate_admission_index_chain_checked) {
+            return { mode: "AMBER", reason: "GATE_ADMISSION_CHAIN_UNCHECKED" };
         }
-        return { mode: "RED", reason: "INDEX_CHAIN_RED" };
+        if (!invariant.index_chain_ok) {
+            return { mode: "RED", reason: "CANON_CHAIN_RED" };
+        }
+        if (!invariant.gate_admission_index_chain_ok) {
+            return { mode: "RED", reason: "GATE_ADMISSION_CHAIN_RED" };
+        }
+        return { mode: "GREEN", reason: "INDEX_CHAIN_GREEN" };
     },
 
     isCanonBound: (proposal: DeltaProposal): boolean =>

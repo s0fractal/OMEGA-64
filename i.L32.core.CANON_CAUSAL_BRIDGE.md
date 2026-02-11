@@ -15,6 +15,8 @@ Payload:
 2. `index_chain_ok: boolean`
 3. `index_chain_checked_records: number`
 4. `index_chain_failures: string[]`
+5. `gate_admission_index_chain_checked: boolean`
+6. `gate_admission_index_chain_ok: boolean`
 
 Proposal routing:
 1. `target_path=LOCAL` (default drift path)
@@ -23,9 +25,9 @@ Proposal routing:
 ## 2. L32 Interpretation
 
 L32 maps invariant state to one bridge mode:
-1. `GREEN`: `index_chain_checked=true` and `index_chain_ok=true`
-2. `AMBER`: `index_chain_checked=false` (no canon evidence in replay window)
-3. `RED`: `index_chain_checked=true` and `index_chain_ok=false`
+1. `GREEN`: canon + gate admission chains checked and ok
+2. `AMBER`: any required chain unchecked
+3. `RED`: any required chain checked but failing
 
 ## 3. Required Runtime Behavior
 
@@ -58,6 +60,7 @@ Examples:
 2. `index_chain:INDEX_RECORD_HASH_MISMATCH_AT_LINE_N`
 3. `index_chain:INDEX_TICK_NON_MONOTONIC_AT_LINE_N`
 4. `index_chain:INDEX_DUPLICATE_REPORT_HASH_AT_LINE_N`
+5. `gate_admission_index_chain:INDEX_RECORD_HASH_MISMATCH_AT_LINE_N`
 
 ## 6. Bridge Principle
 
