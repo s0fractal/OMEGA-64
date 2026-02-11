@@ -1,8 +1,7 @@
 # i.L99.core.LEDGER_EVENT_SCHEMA
 
-Status: Draft
-Layer: L99
-Purpose: Append-only transition format for glider-lite runtime.
+Status: Draft Layer: L99 Purpose: Append-only transition format for glider-lite
+runtime.
 
 ## 1. Event Record
 
@@ -72,6 +71,9 @@ Purpose: Append-only transition format for glider-lite runtime.
   "crystallization_report_version": "crystallization-report/v1",
   "crystallization_report_hash": "hex32",
   "crystallization_report_uri": "./OMEGA_CANON_REPORTS/hex32.json",
+  "gate_admission_report_version": "gate-admission-report/v1",
+  "gate_admission_report_hash": "hex32",
+  "gate_admission_report_uri": "./OMEGA_GATE_ADMISSION_REPORTS/hex32.json",
   "witness": "optional_hex32"
 }
 ```
@@ -86,11 +88,13 @@ Purpose: Append-only transition format for glider-lite runtime.
 ## 3. Derived Metrics
 
 Per event:
+
 - `abs_delta_sum = sum(abs(value))`
 - `net_bias = sum(value)`
 - `energy_density = cost_total / max(1, abs_delta_sum)`
 
 Across window:
+
 - drift slope by level,
 - rejection ratio per agent,
 - budget pressure index.
@@ -100,14 +104,14 @@ Across window:
 
 1. Append-only file or append-only table.
 2. No in-place mutation of prior events.
-3. Optional periodic checkpoints:
-`checkpoint_tick`, `checkpoint_state_hash`.
-4. Each appended line carries chain anchors:
-`chain_version`, `prev_event_hash`, `event_hash`.
+3. Optional periodic checkpoints: `checkpoint_tick`, `checkpoint_state_hash`.
+4. Each appended line carries chain anchors: `chain_version`, `prev_event_hash`,
+   `event_hash`.
 
 ## 5. Replay Rule
 
 Starting from genesis snapshot:
+
 - apply `accepted_delta` in `tick` order,
 - recompute hash each step,
 - verify equals `state_after_hash`.
@@ -115,4 +119,6 @@ Starting from genesis snapshot:
 Mismatch means ledger corruption or non-deterministic gate.
 
 Optional strict mode:
-- replay can fail-fast on ledger hash-chain corruption (`verifyLedgerChain=true`).
+
+- replay can fail-fast on ledger hash-chain corruption
+  (`verifyLedgerChain=true`).

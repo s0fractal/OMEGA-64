@@ -4,6 +4,7 @@
 import { GATE_PIPELINE } from "./i.L32.core.GATE_PIPELINE.ts";
 import { CRYSTALLIZATION } from "./i.L99.core.CRYSTALLIZATION.ts";
 import { CRYSTALLIZATION_REPORT } from "./i.L99.core.CRYSTALLIZATION_REPORT.ts";
+import { GATE_ADMISSION_REPORT } from "./i.L99.core.GATE_ADMISSION_REPORT.ts";
 import { LEDGER } from "./i.L99.core.LEDGER.ts";
 import type {
   DeltaProposal,
@@ -32,6 +33,13 @@ Deno.test("crystallization rejects when gate admission pressure exceeds threshol
   });
   CRYSTALLIZATION_REPORT.STORAGE_DIR = tempReportDir;
   CRYSTALLIZATION_REPORT.INDEX_PATH = `${tempReportDir}/index.jsonl`;
+  const originalGateAdmissionDir = GATE_ADMISSION_REPORT.STORAGE_DIR;
+  const originalGateAdmissionIndex = GATE_ADMISSION_REPORT.INDEX_PATH;
+  const tempGateAdmissionDir = await Deno.makeTempDir({
+    prefix: "omega-gate-admission-report-",
+  });
+  GATE_ADMISSION_REPORT.STORAGE_DIR = tempGateAdmissionDir;
+  GATE_ADMISSION_REPORT.INDEX_PATH = `${tempGateAdmissionDir}/index.jsonl`;
   LEDGER.STORAGE_PATH = tempPath;
   await Deno.writeTextFile(LEDGER.STORAGE_PATH, "");
 
@@ -145,8 +153,15 @@ Deno.test("crystallization rejects when gate admission pressure exceeds threshol
     } catch {
       // ignore cleanup
     }
+    try {
+      await Deno.remove(tempGateAdmissionDir, { recursive: true });
+    } catch {
+      // ignore cleanup
+    }
     CRYSTALLIZATION_REPORT.STORAGE_DIR = originalReportDir;
     CRYSTALLIZATION_REPORT.INDEX_PATH = originalReportIndex;
+    GATE_ADMISSION_REPORT.STORAGE_DIR = originalGateAdmissionDir;
+    GATE_ADMISSION_REPORT.INDEX_PATH = originalGateAdmissionIndex;
     LEDGER.STORAGE_PATH = originalPath;
   }
 });

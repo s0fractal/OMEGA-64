@@ -4,6 +4,7 @@
 import { GATE_PIPELINE } from "./i.L32.core.GATE_PIPELINE.ts";
 import { CRYSTALLIZATION } from "./i.L99.core.CRYSTALLIZATION.ts";
 import { CRYSTALLIZATION_REPORT } from "./i.L99.core.CRYSTALLIZATION_REPORT.ts";
+import { GATE_ADMISSION_REPORT } from "./i.L99.core.GATE_ADMISSION_REPORT.ts";
 import { LEDGER } from "./i.L99.core.LEDGER.ts";
 import { REPLAY_AUDIT } from "./i.L99.core.REPLAY_AUDIT.ts";
 import { DeltaProposal, GateConfig, StateSnapshot } from "./i.L99.core.STATE_SNAPSHOT.ts";
@@ -23,12 +24,18 @@ const processLocal = async (
 ): Promise<StateSnapshot> =>
     (await GATE_PIPELINE.processWithInvariantContext(state, proposals, config)).nextState;
 
-async function prepareCrystallized(tempLedger: string, tempReportDir: string) {
+async function prepareCrystallized(
+    tempLedger: string,
+    tempReportDir: string,
+    tempGateAdmissionDir: string
+) {
     LEDGER.STORAGE_PATH = tempLedger;
     await Deno.writeTextFile(LEDGER.STORAGE_PATH, "");
 
     CRYSTALLIZATION_REPORT.STORAGE_DIR = tempReportDir;
     CRYSTALLIZATION_REPORT.INDEX_PATH = `${tempReportDir}/index.jsonl`;
+    GATE_ADMISSION_REPORT.STORAGE_DIR = tempGateAdmissionDir;
+    GATE_ADMISSION_REPORT.INDEX_PATH = `${tempGateAdmissionDir}/index.jsonl`;
 
     const genesis: StateSnapshot = {
         tick: 1,
@@ -88,11 +95,14 @@ Deno.test("replay fails when canonization report file is tampered", async () => 
     const origLedger = LEDGER.STORAGE_PATH;
     const origDir = CRYSTALLIZATION_REPORT.STORAGE_DIR;
     const origIndex = CRYSTALLIZATION_REPORT.INDEX_PATH;
+    const origGateAdmissionDir = GATE_ADMISSION_REPORT.STORAGE_DIR;
+    const origGateAdmissionIndex = GATE_ADMISSION_REPORT.INDEX_PATH;
     const tempLedger = await Deno.makeTempFile({ prefix: "omega-ledger-canon-verify-", suffix: ".jsonl" });
     const tempDir = await Deno.makeTempDir({ prefix: "omega-canon-report-verify-" });
+    const tempGateAdmissionDir = await Deno.makeTempDir({ prefix: "omega-gate-admission-verify-" });
 
     try {
-        const genesis = await prepareCrystallized(tempLedger, tempDir);
+        const genesis = await prepareCrystallized(tempLedger, tempDir, tempGateAdmissionDir);
 
         const raw = await Deno.readTextFile(LEDGER.STORAGE_PATH);
         const lines = raw.split("\n").filter((x) => x.trim().length > 0);
@@ -121,8 +131,11 @@ Deno.test("replay fails when canonization report file is tampered", async () => 
         LEDGER.STORAGE_PATH = origLedger;
         CRYSTALLIZATION_REPORT.STORAGE_DIR = origDir;
         CRYSTALLIZATION_REPORT.INDEX_PATH = origIndex;
+        GATE_ADMISSION_REPORT.STORAGE_DIR = origGateAdmissionDir;
+        GATE_ADMISSION_REPORT.INDEX_PATH = origGateAdmissionIndex;
         try { await Deno.remove(tempLedger); } catch { /* ignore */ }
         try { await Deno.remove(tempDir, { recursive: true }); } catch { /* ignore */ }
+        try { await Deno.remove(tempGateAdmissionDir, { recursive: true }); } catch { /* ignore */ }
     }
 });
 
@@ -130,11 +143,14 @@ Deno.test("replay fails when canonization report file is missing", async () => {
     const origLedger = LEDGER.STORAGE_PATH;
     const origDir = CRYSTALLIZATION_REPORT.STORAGE_DIR;
     const origIndex = CRYSTALLIZATION_REPORT.INDEX_PATH;
+    const origGateAdmissionDir = GATE_ADMISSION_REPORT.STORAGE_DIR;
+    const origGateAdmissionIndex = GATE_ADMISSION_REPORT.INDEX_PATH;
     const tempLedger = await Deno.makeTempFile({ prefix: "omega-ledger-canon-verify-", suffix: ".jsonl" });
     const tempDir = await Deno.makeTempDir({ prefix: "omega-canon-report-verify-" });
+    const tempGateAdmissionDir = await Deno.makeTempDir({ prefix: "omega-gate-admission-verify-" });
 
     try {
-        const genesis = await prepareCrystallized(tempLedger, tempDir);
+        const genesis = await prepareCrystallized(tempLedger, tempDir, tempGateAdmissionDir);
 
         const raw = await Deno.readTextFile(LEDGER.STORAGE_PATH);
         const lines = raw.split("\n").filter((x) => x.trim().length > 0);
@@ -160,8 +176,11 @@ Deno.test("replay fails when canonization report file is missing", async () => {
         LEDGER.STORAGE_PATH = origLedger;
         CRYSTALLIZATION_REPORT.STORAGE_DIR = origDir;
         CRYSTALLIZATION_REPORT.INDEX_PATH = origIndex;
+        GATE_ADMISSION_REPORT.STORAGE_DIR = origGateAdmissionDir;
+        GATE_ADMISSION_REPORT.INDEX_PATH = origGateAdmissionIndex;
         try { await Deno.remove(tempLedger); } catch { /* ignore */ }
         try { await Deno.remove(tempDir, { recursive: true }); } catch { /* ignore */ }
+        try { await Deno.remove(tempGateAdmissionDir, { recursive: true }); } catch { /* ignore */ }
     }
 });
 
@@ -169,11 +188,14 @@ Deno.test("replay fails when canonization report index chain is tampered", async
     const origLedger = LEDGER.STORAGE_PATH;
     const origDir = CRYSTALLIZATION_REPORT.STORAGE_DIR;
     const origIndex = CRYSTALLIZATION_REPORT.INDEX_PATH;
+    const origGateAdmissionDir = GATE_ADMISSION_REPORT.STORAGE_DIR;
+    const origGateAdmissionIndex = GATE_ADMISSION_REPORT.INDEX_PATH;
     const tempLedger = await Deno.makeTempFile({ prefix: "omega-ledger-canon-verify-", suffix: ".jsonl" });
     const tempDir = await Deno.makeTempDir({ prefix: "omega-canon-report-verify-" });
+    const tempGateAdmissionDir = await Deno.makeTempDir({ prefix: "omega-gate-admission-verify-" });
 
     try {
-        const genesis = await prepareCrystallized(tempLedger, tempDir);
+        const genesis = await prepareCrystallized(tempLedger, tempDir, tempGateAdmissionDir);
 
         const rawIndex = await Deno.readTextFile(CRYSTALLIZATION_REPORT.INDEX_PATH);
         const lines = rawIndex.split("\n").filter((x) => x.trim().length > 0);
@@ -202,7 +224,10 @@ Deno.test("replay fails when canonization report index chain is tampered", async
         LEDGER.STORAGE_PATH = origLedger;
         CRYSTALLIZATION_REPORT.STORAGE_DIR = origDir;
         CRYSTALLIZATION_REPORT.INDEX_PATH = origIndex;
+        GATE_ADMISSION_REPORT.STORAGE_DIR = origGateAdmissionDir;
+        GATE_ADMISSION_REPORT.INDEX_PATH = origGateAdmissionIndex;
         try { await Deno.remove(tempLedger); } catch { /* ignore */ }
         try { await Deno.remove(tempDir, { recursive: true }); } catch { /* ignore */ }
+        try { await Deno.remove(tempGateAdmissionDir, { recursive: true }); } catch { /* ignore */ }
     }
 });

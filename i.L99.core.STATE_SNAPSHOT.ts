@@ -150,6 +150,9 @@ export interface CanonizationEvent {
   crystallization_report_version?: string; // report schema version
   crystallization_report_hash?: string; // SHA-256 of canonical crystallization report payload
   crystallization_report_uri?: string; // materialized report path (content-addressed)
+  gate_admission_report_version?: string; // gate admission report schema version
+  gate_admission_report_hash?: string; // SHA-256 of gate admission report payload
+  gate_admission_report_uri?: string; // materialized report path (content-addressed)
   chain_version?: string;
   prev_event_hash?: string | null;
   event_hash?: string;
