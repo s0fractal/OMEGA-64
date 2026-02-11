@@ -192,6 +192,7 @@ export interface BridgeModeEvent {
   gate_admission_index_chain_ok?: boolean;
   gate_admission_index_chain_checked_records?: number;
   gate_admission_index_chain_failures?: string[];
+  invariant_packet_hash?: string;
   canon_bound_proposals: string[];
   blocked_canon_proposals: string[];
   reason: string;

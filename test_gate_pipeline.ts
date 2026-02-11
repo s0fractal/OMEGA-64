@@ -90,6 +90,9 @@ Deno.test("pipeline replay-context defaults to AMBER and blocks canon-bound prop
         if ((bridge as BridgeModeEvent).mode !== "AMBER") {
             throw new Error("bridge event mode mismatch");
         }
+        if (!(bridge as BridgeModeEvent).invariant_packet_hash) {
+            throw new Error("bridge event must include invariant_packet_hash");
+        }
         if (!(ledger as LedgerEvent).rejected_proposals.some((r) => r.proposal_id === "p_canon")) {
             throw new Error("expected canon proposal rejection in ledger event");
         }
@@ -134,6 +137,11 @@ Deno.test("pipeline invariant-context GREEN allows canon-bound proposal", async 
 
         if (result.bridge_mode !== "GREEN") {
             throw new Error(`expected GREEN, got ${result.bridge_mode}`);
+        }
+        const events = await collectRaw();
+        const bridge = events.find((x) => "event_type" in x && x.event_type === "BRIDGE_MODE_EVENT");
+        if (!bridge || !(bridge as BridgeModeEvent).invariant_packet_hash) {
+            throw new Error("bridge event must include invariant_packet_hash");
         }
         if (result.nextState.state_i16[4] === 0) {
             throw new Error("canon-bound mutation should be accepted in GREEN");

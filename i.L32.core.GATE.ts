@@ -24,6 +24,7 @@ import type { ReplayInvariantReport } from "./i.L99.core.REPLAY_AUDIT.ts";
 import { CANON_CAUSAL_BRIDGE } from "./i.L32.core.CANON_CAUSAL_BRIDGE.ts";
 import { AGENT_SIGNATURE } from "./i.L32.core.AGENT_SIGNATURE.ts";
 import { PROPOSAL_ENVELOPE_INDEX } from "./i.L99.core.PROPOSAL_ENVELOPE_INDEX.ts";
+import { INVARIANT_PACKET } from "./i.L32.core.INVARIANT_PACKET.ts";
 
 const GATE_VERSION = "v0.2";
 const AUTO_CHECKPOINT_INTERVAL = 128;
@@ -530,6 +531,14 @@ export const GATE = {
         ...(runtime.bridge_invariant_report
           ?.gate_admission_index_chain_failures ?? []),
       ],
+      invariant_packet_hash: runtime.bridge_invariant_report
+        ? (await INVARIANT_PACKET.hash(
+          await INVARIANT_PACKET.fromInvariantReport(
+            runtime.bridge_invariant_report,
+            { tick_anchor: state.tick, witness: runtime.witness },
+          ),
+        ))
+        : undefined,
       canon_bound_proposals: [...canonBoundProposals].sort(),
       blocked_canon_proposals: [...blockedCanonProposals].sort(),
       reason: bridgeResolution.reason,

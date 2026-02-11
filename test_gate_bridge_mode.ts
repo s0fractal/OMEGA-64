@@ -103,6 +103,9 @@ Deno.test("bridge RED blocks canon-bound proposals and keeps local drift", async
         if (bridge.mode !== "RED") {
             throw new Error(`expected RED bridge mode, got ${bridge.mode}`);
         }
+        if (!bridge.invariant_packet_hash) {
+            throw new Error("expected invariant_packet_hash in bridge event");
+        }
         if (!bridge.blocked_canon_proposals.includes("p_canon")) {
             throw new Error("expected p_canon in blocked_canon_proposals");
         }
@@ -171,6 +174,9 @@ Deno.test("bridge AMBER blocks canon-bound proposals without chain evidence", as
         if (bridge.mode !== "AMBER") {
             throw new Error(`expected AMBER bridge mode, got ${bridge.mode}`);
         }
+        if (!bridge.invariant_packet_hash) {
+            throw new Error("expected invariant_packet_hash in bridge event");
+        }
         if (!ledger.rejected_proposals.some((r) => r.proposal_id === "p_canon_only")) {
             throw new Error("canon proposal must be rejected in AMBER mode");
         }
@@ -224,6 +230,9 @@ Deno.test("bridge GREEN allows canon-bound proposals", async () => {
         const { bridge, ledger } = await readBridgeAndLedger();
         if (bridge.mode !== "GREEN") {
             throw new Error(`expected GREEN bridge mode, got ${bridge.mode}`);
+        }
+        if (!bridge.invariant_packet_hash) {
+            throw new Error("expected invariant_packet_hash in bridge event");
         }
         if (bridge.blocked_canon_proposals.length !== 0) {
             throw new Error("GREEN mode must not block canon proposals");
