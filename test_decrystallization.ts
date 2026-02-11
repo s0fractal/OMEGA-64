@@ -5,86 +5,99 @@ import { CRYSTALLIZATION } from "./i.L99.core.CRYSTALLIZATION.ts";
 import { LEDGER } from "./i.L99.core.LEDGER.ts";
 import { CanonizationEvent, LedgerEvent, ViolationEvent } from "./i.L99.core.STATE_SNAPSHOT.ts";
 
-async function runTest() {
+export async function runTest() {
     console.log("🧪 TESTING: Decrystallization Enforcement");
 
     const originalPath = LEDGER.STORAGE_PATH;
-    LEDGER.STORAGE_PATH = "./OMEGA_LEDGER.test_decrystallization.jsonl";
+    const tempPath = await Deno.makeTempFile({
+        prefix: "omega-ledger-decrystal-",
+        suffix: ".jsonl"
+    });
+    LEDGER.STORAGE_PATH = tempPath;
     await Deno.writeTextFile(LEDGER.STORAGE_PATH, "");
 
-    const canonEvent: CanonizationEvent = {
-        event_type: "CANONIZATION_EVENT",
-        artifact_hash: "artifact_demo",
-        state_hash: "state_100",
-        proposal_digest: "digest_100",
-        checkpoint_tick: 100,
-        window: 4,
-        hard_gates: "PASS",
-        soft_gates_passed: 6,
-        witness: "test"
-    };
-    await LEDGER.append(canonEvent);
+    try {
+        const canonEvent: CanonizationEvent = {
+            event_type: "CANONIZATION_EVENT",
+            artifact_hash: "artifact_demo",
+            state_hash: "state_100",
+            proposal_digest: "digest_100",
+            checkpoint_tick: 100,
+            window: 4,
+            hard_gates: "PASS",
+            soft_gates_passed: 6,
+            witness: "test"
+        };
+        await LEDGER.append(canonEvent);
 
-    const e101: LedgerEvent = {
-        event_id: "evt_101",
-        tick: 101,
-        ts_unix_ms: Date.now(),
-        state_before_hash: "state_100",
-        state_after_hash: "state_101",
-        accepted_delta: [{ level: 1, value: 1 }],
-        proposal_digest: "digest_101",
-        accepted_proposals: ["p101"],
-        rejected_proposals: [],
-        cost_total: 1,
-        budget_used: 1,
-        budget_limit: 10,
-        gate_config_version: "v0.2"
-    };
-    await LEDGER.append(e101);
+        const e101: LedgerEvent = {
+            event_id: "evt_101",
+            tick: 101,
+            ts_unix_ms: Date.now(),
+            state_before_hash: "state_100",
+            state_after_hash: "state_101",
+            accepted_delta: [{ level: 1, value: 1 }],
+            proposal_digest: "digest_101",
+            accepted_proposals: ["p101"],
+            rejected_proposals: [],
+            cost_total: 1,
+            budget_used: 1,
+            budget_limit: 10,
+            gate_config_version: "v0.2"
+        };
+        await LEDGER.append(e101);
 
-    const critical: ViolationEvent = {
-        event_type: "VIOLATION_EVENT",
-        tick: 104,
-        rule_id: "NO_BYPASS",
-        severity: "CRITICAL",
-        state_hash: "state_104",
-        details: "manual violation for test",
-        action_taken: "HALT_AND_QUARANTINE"
-    };
-    await LEDGER.append(critical);
+        const critical: ViolationEvent = {
+            event_type: "VIOLATION_EVENT",
+            tick: 104,
+            rule_id: "NO_BYPASS",
+            severity: "CRITICAL",
+            state_hash: "state_104",
+            details: "manual violation for test",
+            action_taken: "HALT_AND_QUARANTINE"
+        };
+        await LEDGER.append(critical);
 
-    const result = await CRYSTALLIZATION.enforcePostCrystal(104, "artifact_demo", {
-        windowSize: 4,
-        witness: "test"
-    });
+        const result = await CRYSTALLIZATION.enforcePostCrystal(104, "artifact_demo", {
+            windowSize: 4,
+            witness: "test"
+        });
 
-    console.log(`✅ decrystallized: ${result.decrystallized}`);
-    console.log(`✅ rollbackTick: ${result.rollbackTick}`);
-    console.log(`✅ reason: ${result.reason}`);
+        console.log(`✅ decrystallized: ${result.decrystallized}`);
+        console.log(`✅ rollbackTick: ${result.rollbackTick}`);
+        console.log(`✅ reason: ${result.reason}`);
 
-    if (!result.decrystallized) {
-        throw new Error("Expected decrystallization on critical violation.");
-    }
-    if (result.rollbackTick !== 100) {
-        throw new Error(`Expected rollback checkpoint 100, got ${result.rollbackTick}`);
-    }
-
-    let found = false;
-    for await (const entry of LEDGER.readAllRaw()) {
-        if ("event_type" in entry && entry.event_type === "DECRYSTALLIZATION_EVENT") {
-            found = true;
-            break;
+        if (!result.decrystallized) {
+            throw new Error("Expected decrystallization on critical violation.");
         }
-    }
-    if (!found) {
-        throw new Error("DECRYSTALLIZATION_EVENT was not emitted.");
-    }
+        if (result.rollbackTick !== 100) {
+            throw new Error(`Expected rollback checkpoint 100, got ${result.rollbackTick}`);
+        }
 
-    await Deno.remove(LEDGER.STORAGE_PATH);
-    LEDGER.STORAGE_PATH = originalPath;
+        let found = false;
+        for await (const entry of LEDGER.readAllRaw()) {
+            if ("event_type" in entry && entry.event_type === "DECRYSTALLIZATION_EVENT") {
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            throw new Error("DECRYSTALLIZATION_EVENT was not emitted.");
+        }
+    } finally {
+        try {
+            await Deno.remove(LEDGER.STORAGE_PATH);
+        } catch {
+            // ignore cleanup errors
+        }
+        LEDGER.STORAGE_PATH = originalPath;
+    }
 }
+
+Deno.test("decrystallization emits event and rollback hint", async () => {
+    await runTest();
+});
 
 if (import.meta.main) {
-    runTest();
+    await runTest();
 }
-
