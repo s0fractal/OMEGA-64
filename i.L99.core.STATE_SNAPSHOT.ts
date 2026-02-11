@@ -75,6 +75,19 @@ export interface LedgerEvent {
     witness?: string;
 }
 
+/**
+ * ViolationEvent: Logic Halt signal when Red Lines are crossed.
+ */
+export interface ViolationEvent {
+    event_type: "VIOLATION_EVENT";
+    tick: number;
+    rule_id: string; // e.g., "NO_BYPASS"
+    severity: "CRITICAL" | "WARNING";
+    state_hash: string;
+    details: string;
+    action_taken: "HALT_AND_QUARANTINE" | "LOG_ONLY";
+}
+
 // Canonical Rejection Reasons
 export const REJECTION = {
     SCHEMA_INVALID: "SCHEMA_INVALID",

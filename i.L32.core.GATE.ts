@@ -189,6 +189,22 @@ export const GATE = {
             gate_config_version: "v0.1",
         };
 
+        // 🛡️ Final Red Line Verification
+        // "Trust but Verify" - Check if we accidentally mutated state in dry_run or exceeded limits
+        if (config.dry_run && nextStateI16.some((v, i) => v !== state.state_i16[i])) {
+             const violation = {
+                event_type: "VIOLATION_EVENT" as const,
+                tick: state.tick,
+                rule_id: "DRY_RUN_PURITY",
+                severity: "CRITICAL" as const,
+                state_hash: state.state_hash,
+                details: "State mutation detected during dry_run",
+                action_taken: "HALT_AND_QUARANTINE" as const
+             };
+             await LEDGER.append(violation);
+             throw new Error("🔴 RED LINE VIOLATION: DRY_RUN_PURITY. System Halted.");
+        }
+
         await LEDGER.append(event);
 
         return {
