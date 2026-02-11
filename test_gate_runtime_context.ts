@@ -62,7 +62,11 @@ Deno.test("gate runtime context resolves RED from failing invariant report", () 
         index_chain_checked: true,
         index_chain_ok: false,
         index_chain_checked_records: 2,
-        index_chain_failures: ["INDEX_CHAIN_PREV_MISMATCH_AT_LINE_2"]
+        index_chain_failures: ["INDEX_CHAIN_PREV_MISMATCH_AT_LINE_2"],
+        gate_admission_index_chain_checked: true,
+        gate_admission_index_chain_ok: true,
+        gate_admission_index_chain_checked_records: 1,
+        gate_admission_index_chain_failures: []
     };
     const out = GATE_RUNTIME_CONTEXT.fromInvariantReport(invariant);
     if (out.bridge_mode !== "RED") {
@@ -97,6 +101,9 @@ Deno.test("gate runtime context can be derived from replay audit", async () => {
         }
         if (out.replay_audit.invariantReport.index_chain_checked) {
             throw new Error("index chain should be unchecked without canon events");
+        }
+        if (out.replay_audit.invariantReport.gate_admission_index_chain_checked) {
+            throw new Error("gate admission chain should be unchecked without canon events");
         }
         if (out.bridge_mode !== "AMBER") {
             throw new Error(`expected AMBER for unchecked chain, got ${out.bridge_mode}`);

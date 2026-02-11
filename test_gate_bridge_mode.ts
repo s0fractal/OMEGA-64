@@ -89,7 +89,11 @@ Deno.test("bridge RED blocks canon-bound proposals and keeps local drift", async
                     index_chain_checked: true,
                     index_chain_ok: false,
                     index_chain_checked_records: 3,
-                    index_chain_failures: ["INDEX_CHAIN_PREV_MISMATCH_AT_LINE_2"]
+                    index_chain_failures: ["INDEX_CHAIN_PREV_MISMATCH_AT_LINE_2"],
+                    gate_admission_index_chain_checked: true,
+                    gate_admission_index_chain_ok: true,
+                    gate_admission_index_chain_checked_records: 1,
+                    gate_admission_index_chain_failures: []
                 },
                 witness: "test"
             }
@@ -154,7 +158,11 @@ Deno.test("bridge AMBER blocks canon-bound proposals without chain evidence", as
                     index_chain_checked: false,
                     index_chain_ok: true,
                     index_chain_checked_records: 0,
-                    index_chain_failures: []
+                    index_chain_failures: [],
+                    gate_admission_index_chain_checked: false,
+                    gate_admission_index_chain_ok: true,
+                    gate_admission_index_chain_checked_records: 0,
+                    gate_admission_index_chain_failures: []
                 }
             }
         );
@@ -204,7 +212,11 @@ Deno.test("bridge GREEN allows canon-bound proposals", async () => {
                     index_chain_checked: true,
                     index_chain_ok: true,
                     index_chain_checked_records: 5,
-                    index_chain_failures: []
+                    index_chain_failures: [],
+                    gate_admission_index_chain_checked: true,
+                    gate_admission_index_chain_ok: true,
+                    gate_admission_index_chain_checked_records: 2,
+                    gate_admission_index_chain_failures: []
                 }
             }
         );

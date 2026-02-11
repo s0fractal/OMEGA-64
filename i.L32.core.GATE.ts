@@ -518,6 +518,18 @@ export const GATE = {
       index_chain_failures: [
         ...(runtime.bridge_invariant_report?.index_chain_failures ?? []),
       ],
+      gate_admission_index_chain_checked:
+        runtime.bridge_invariant_report?.gate_admission_index_chain_checked ??
+          false,
+      gate_admission_index_chain_ok:
+        runtime.bridge_invariant_report?.gate_admission_index_chain_ok ?? true,
+      gate_admission_index_chain_checked_records:
+        runtime.bridge_invariant_report
+          ?.gate_admission_index_chain_checked_records ?? 0,
+      gate_admission_index_chain_failures: [
+        ...(runtime.bridge_invariant_report
+          ?.gate_admission_index_chain_failures ?? []),
+      ],
       canon_bound_proposals: [...canonBoundProposals].sort(),
       blocked_canon_proposals: [...blockedCanonProposals].sort(),
       reason: bridgeResolution.reason,
