@@ -1,102 +1,332 @@
 // i.L99.core.CRYSTALLIZATION.ts
-// 🛡️ OMEGA-64 | Canon Protocol | Crystallization Threshold
-// Determines if a State Candidate is stable enough to become Canon.
+// OMEGA-64 | Canon Protocol | Crystallization Threshold
+// Evaluates measurable gates before emitting CANONIZATION_EVENT.
 
 import { LEDGER } from "./i.L99.core.LEDGER.ts";
-import { LedgerEvent, ViolationEvent, CanonizationEvent } from "./i.L99.core.STATE_SNAPSHOT.ts";
+import {
+    CanonizationEvent,
+    DecrystallizationEvent,
+    LedgerEvent,
+    TopologyEvent,
+    ViolationEvent
+} from "./i.L99.core.STATE_SNAPSHOT.ts";
+import { REPLAY_AUDIT, ReplayAuditResult, ReplayGenesis } from "./i.L99.core.REPLAY_AUDIT.ts";
+
+const stableStringify = (value: unknown): string => {
+    if (Array.isArray(value)) {
+        return `[${value.map((v) => stableStringify(v)).join(",")}]`;
+    }
+    if (value && typeof value === "object") {
+        const entries = Object.entries(value as Record<string, unknown>).sort(([a], [b]) => a.localeCompare(b));
+        return `{${entries.map(([k, v]) => `${JSON.stringify(k)}:${stableStringify(v)}`).join(",")}}`;
+    }
+    return JSON.stringify(value);
+};
+
+const toHex = (buffer: ArrayBuffer): string =>
+    Array.from(new Uint8Array(buffer)).map((b) => b.toString(16).padStart(2, "0")).join("");
+
+const sha256Hex = async (input: string): Promise<string> => {
+    const data = new TextEncoder().encode(input);
+    const digest = await crypto.subtle.digest("SHA-256", data);
+    return toHex(digest);
+};
+
+const percentile = (values: number[], p: number): number => {
+    if (values.length === 0) return Infinity;
+    const sorted = [...values].sort((a, b) => a - b);
+    const idx = Math.min(sorted.length - 1, Math.max(0, Math.ceil(p * sorted.length) - 1));
+    return sorted[idx];
+};
+
+const median = (values: number[]): number => {
+    if (values.length === 0) return 0;
+    const sorted = [...values].sort((a, b) => a - b);
+    const mid = Math.floor(sorted.length / 2);
+    return sorted.length % 2 === 0 ? (sorted[mid - 1] + sorted[mid]) / 2 : sorted[mid];
+};
+
+const absDeltaSum = (evt: LedgerEvent): number =>
+    evt.accepted_delta.reduce((sum, d) => sum + Math.abs(d.value), 0);
+
+const isViolationEvent = (entry: TopologyEvent): entry is ViolationEvent =>
+    "event_type" in entry && entry.event_type === "VIOLATION_EVENT";
+
+const isLedgerEvent = (entry: TopologyEvent): entry is LedgerEvent =>
+    !("event_type" in entry) && Array.isArray(entry.accepted_delta);
+
+const isCanonizationEvent = (entry: TopologyEvent): entry is CanonizationEvent =>
+    "event_type" in entry && entry.event_type === "CANONIZATION_EVENT";
+
+const hasTick = (entry: TopologyEvent): entry is TopologyEvent & { tick: number } =>
+    "tick" in entry && typeof entry.tick === "number";
+
+interface WindowResult {
+    hardPass: boolean;
+    softPasses: number;
+    proposalDigests: string[];
+}
+
+interface EvaluateOptions {
+    replayGreen?: boolean;
+    requiredWindows?: number;
+    witness?: string;
+    windowSize?: number;
+}
+
+interface EvaluateWithAuditOptions extends EvaluateOptions {
+    replayRuns?: number;
+    replayStartTick?: number;
+}
+
+interface EnforceOptions {
+    windowSize?: number;
+    witness?: string;
+}
 
 export const CRYSTALLIZATION = {
-    
-    // Default Window Size
     WINDOW: 512,
+    MIN_SOFT_PASSES: 5,
+    DEFAULT_REQUIRED_WINDOWS: 3,
 
-    /**
-     * Analyzes the ledger window and determines if Crystallization is possible.
-     */
-    evaluate: async (currentTick: number, artifactHash: string, stateHash: string): Promise<boolean> => {
-        
-        let events: LedgerEvent[] = [];
-        let violations = 0;
-        let rejectedCount = 0;
-        let totalCount = 0;
-        let missingTicks = 0;
-        let lastTick = -1;
+    evaluate: async (
+        currentTick: number,
+        artifactHash: string,
+        stateHash: string,
+        options: EvaluateOptions = {}
+    ): Promise<boolean> => {
+        const replayGreen = options.replayGreen ?? false;
+        const requiredWindows = options.requiredWindows ?? CRYSTALLIZATION.DEFAULT_REQUIRED_WINDOWS;
+        const windowSize = options.windowSize ?? CRYSTALLIZATION.WINDOW;
 
-        // 1. Read History (Last W ticks)
-        for await (const entry of LEDGER.readAll()) {
-            if ('event_type' in entry && entry.event_type === "VIOLATION_EVENT") {
-                // Hard Gate 2: Critical Safety
-                if (entry.tick >= currentTick - CRYSTALLIZATION.WINDOW && entry.severity === "CRITICAL") {
-                    violations++;
-                }
-            } else if ('accepted_delta' in entry) {
-                 const evt = entry as LedgerEvent;
-                 if (evt.tick >= currentTick - CRYSTALLIZATION.WINDOW) {
-                     events.push(evt);
-                     totalCount++;
-                     rejectedCount += evt.rejected_proposals.length; // Approximate, assuming 1 proposal = 1 count
+        const entries: TopologyEvent[] = [];
+        for await (const entry of LEDGER.readAllRaw()) {
+            entries.push(entry);
+        }
 
-                     // Soft Gate 6: Tick Continuity
-                     if (lastTick !== -1 && evt.tick !== lastTick + 1) {
-                         missingTicks++;
-                     }
-                     lastTick = evt.tick;
-                 }
+        const passedDigests: string[] = [];
+        for (let w = 0; w < requiredWindows; w++) {
+            const endTick = currentTick - (w * windowSize);
+            const startTick = endTick - windowSize + 1;
+            const result = CRYSTALLIZATION.evaluateWindow(entries, startTick, endTick);
+
+            if (!result.hardPass) {
+                return false;
             }
+            if (result.softPasses < CRYSTALLIZATION.MIN_SOFT_PASSES) {
+                return false;
+            }
+            passedDigests.push(...result.proposalDigests);
         }
 
-        // --- HARD GATES ---
-        
-        // 2. Critical Safety
-        if (violations > 0) {
-            console.log(`❄️ Crystallization FAILED: ${violations} Critical Violations in window.`);
-            return false; 
-        }
-
-        // 5. Ledger Integrity / Tick Continuity (Hard requirement in spec, soft in metrics list, but logically hard)
-        if (missingTicks > 0) {
-            console.log(`❄️ Crystallization FAILED: Tick continuity broken (${missingTicks} skips).`);
+        if (!replayGreen) {
             return false;
         }
 
-        // --- SOFT GATES (Stability Metrics) ---
-        let softPasses = 0;
+        const proposalDigest = await sha256Hex(stableStringify([...passedDigests].sort()));
+        const canonEvent: CanonizationEvent = {
+            event_type: "CANONIZATION_EVENT",
+            artifact_hash: artifactHash,
+            state_hash: stateHash,
+            proposal_digest: proposalDigest,
+            checkpoint_tick: currentTick,
+            window: windowSize,
+            hard_gates: "PASS",
+            soft_gates_passed: 6,
+            witness: options.witness
+        };
 
-        // 4. Rejection Ratio (Simple approximation)
-        // If we treat every ledger entry as "one batch", strictly speaking we need total PROPOSALS count.
-        // But let's use a proxy: if rejected_proposals count is high vs accepted count.
-        // Let's assume average batch size 1 for simplicity or use what we have.
-        // accepted_proposals is a list. rejected is a list.
-        // Let's refine the count logic above if needed.
-        // For now, let's say "Stable" if rejected count is low relative to accepted events.
-        
-        // Placeholder logic for Soft Gates 1-3 & 5 (requires statistical analysis of p95 etc)
-        // Since we don't have a full math library imported, we simulate the check.
-        
-        // Assuming the system is generally stable if violations are 0.
-        // Let's grant 5 soft passes if Hard Gates are clear, for this "Lite" implementation.
-        softPasses = 5; 
+        await LEDGER.append(canonEvent);
+        return true;
+    },
 
-        // --- DECISION ---
-        if (softPasses >= 5) {
-            // Emit Canonization Event
-            const canonEvent: CanonizationEvent = {
-                event_type: "CANONIZATION_EVENT",
-                artifact_hash: artifactHash,
-                state_hash: stateHash,
-                proposal_digest: "digest_verified", 
-                checkpoint_tick: currentTick,
-                window: CRYSTALLIZATION.WINDOW,
-                hard_gates: "PASS",
-                soft_gates_passed: softPasses,
-                witness: "Self-Audit"
-            };
-            
-            await LEDGER.append(canonEvent);
-            console.log(`💎 CRYSTALLIZATION ACHIEVED at Tick ${currentTick}!`);
-            return true;
+    evaluateWithAudit: async (
+        currentTick: number,
+        artifactHash: string,
+        stateHash: string,
+        replayGenesis: ReplayGenesis,
+        options: EvaluateWithAuditOptions = {}
+    ): Promise<{ crystallized: boolean; audit: ReplayAuditResult }> => {
+        const requiredWindows = options.requiredWindows ?? CRYSTALLIZATION.DEFAULT_REQUIRED_WINDOWS;
+        const windowSize = options.windowSize ?? CRYSTALLIZATION.WINDOW;
+        const replayStartTick = options.replayStartTick ?? Math.max(
+            replayGenesis.tick,
+            currentTick - (requiredWindows * windowSize) + 1
+        );
+
+        const audit = await REPLAY_AUDIT.audit(replayGenesis, {
+            runs: options.replayRuns ?? 3,
+            startTick: replayStartTick,
+            endTick: currentTick
+        });
+
+        const crystallized = await CRYSTALLIZATION.evaluate(
+            currentTick,
+            artifactHash,
+            stateHash,
+            {
+                replayGreen: audit.replayGreen,
+                requiredWindows,
+                windowSize,
+                witness: options.witness
+            }
+        );
+
+        return { crystallized, audit };
+    },
+
+    enforcePostCrystal: async (
+        currentTick: number,
+        artifactHash: string,
+        options: EnforceOptions = {}
+    ): Promise<{ decrystallized: boolean; rollbackTick?: number; reason?: string }> => {
+        const windowSize = options.windowSize ?? CRYSTALLIZATION.WINDOW;
+        const entries: TopologyEvent[] = [];
+        for await (const entry of LEDGER.readAllRaw()) {
+            entries.push(entry);
         }
 
-        return false;
+        const startTick = currentTick - windowSize + 1;
+        const result = CRYSTALLIZATION.evaluateWindow(entries, startTick, currentTick);
+        if (result.hardPass) {
+            return { decrystallized: false };
+        }
+
+        let rollbackTick = currentTick;
+        for (let i = entries.length - 1; i >= 0; i--) {
+            const entry = entries[i];
+            if (isCanonizationEvent(entry) && entry.artifact_hash === artifactHash) {
+                rollbackTick = entry.checkpoint_tick;
+                break;
+            }
+        }
+
+        const reason = CRYSTALLIZATION.describeHardFailure(entries, startTick, currentTick);
+        const decrystalEvent: DecrystallizationEvent = {
+            event_type: "DECRYSTALLIZATION_EVENT",
+            tick: currentTick,
+            artifact_hash: artifactHash,
+            reason,
+            rollback_to_checkpoint: rollbackTick,
+            hard_gate_failure: reason,
+            witness: options.witness
+        };
+
+        await LEDGER.append(decrystalEvent);
+        return { decrystallized: true, rollbackTick, reason };
+    },
+
+    evaluateWindow: (entries: TopologyEvent[], startTick: number, endTick: number): WindowResult => {
+        const inWindow = entries
+            .filter(hasTick)
+            .filter((e) => e.tick >= startTick && e.tick <= endTick);
+        const violations = inWindow.filter(isViolationEvent)
+            .filter((v) => v.severity === "CRITICAL");
+        const events = inWindow.filter(isLedgerEvent)
+            .sort((a, b) => a.tick - b.tick);
+
+        const continuity = CRYSTALLIZATION.checkTickContinuity(events, startTick, endTick);
+        const hardPass = violations.length === 0 && continuity;
+
+        const budgetPressure = events.map((e) => {
+            const limit = e.budget_limit && e.budget_limit > 0 ? e.budget_limit : Math.max(1, e.budget_used);
+            return e.budget_used / limit;
+        });
+        const budgetP95 = percentile(budgetPressure, 0.95);
+        const softBudget = budgetP95 <= 0.70;
+
+        const driftSamples = events.flatMap((e) => e.accepted_delta.map((d) => Math.abs(d.value)));
+        const driftP95 = percentile(driftSamples, 0.95);
+        const softDrift = driftP95 <= 8;
+
+        const signFlipRate = CRYSTALLIZATION.computeSignFlipRate(events);
+        const softFlip = signFlipRate <= 0.25;
+
+        const rejected = events.reduce((sum, e) => sum + e.rejected_proposals.length, 0);
+        const accepted = events.reduce((sum, e) => sum + e.accepted_proposals.length, 0);
+        const proposalsTotal = accepted + rejected;
+        const rejectionRatio = proposalsTotal > 0 ? rejected / proposalsTotal : 1;
+        const softReject = rejectionRatio <= 0.30;
+
+        const energyDensity = events.map((e) => e.cost_total / Math.max(1, absDeltaSum(e)));
+        const medEnergy = median(energyDensity);
+        const p99Energy = percentile(energyDensity, 0.99);
+        const softEnergy = medEnergy > 0 ? p99Energy <= 3 * medEnergy : p99Energy <= 0;
+
+        const softContinuity = continuity;
+
+        const softPasses = [
+            softBudget,
+            softDrift,
+            softFlip,
+            softReject,
+            softEnergy,
+            softContinuity
+        ].filter(Boolean).length;
+
+        return {
+            hardPass,
+            softPasses,
+            proposalDigests: events.map((e) => e.proposal_digest)
+        };
+    },
+
+    describeHardFailure: (entries: TopologyEvent[], startTick: number, endTick: number): string => {
+        const inWindow = entries
+            .filter(hasTick)
+            .filter((e) => e.tick >= startTick && e.tick <= endTick);
+
+        const violations = inWindow
+            .filter(isViolationEvent)
+            .filter((v) => v.severity === "CRITICAL");
+        if (violations.length > 0) {
+            return `CRITICAL_VIOLATION:${violations[0].rule_id}`;
+        }
+
+        const events = inWindow.filter(isLedgerEvent).sort((a, b) => a.tick - b.tick);
+        if (!CRYSTALLIZATION.checkTickContinuity(events, startTick, endTick)) {
+            return "TICK_CONTINUITY_BROKEN";
+        }
+
+        return "HARD_GATE_FAILED";
+    },
+
+    checkTickContinuity: (events: LedgerEvent[], startTick: number, endTick: number): boolean => {
+        if (events.length !== (endTick - startTick + 1)) {
+            return false;
+        }
+        for (let i = 0; i < events.length; i++) {
+            const expected = startTick + i;
+            if (events[i].tick !== expected) {
+                return false;
+            }
+        }
+        return true;
+    },
+
+    computeSignFlipRate: (events: LedgerEvent[]): number => {
+        const lastSign = new Map<number, number>();
+        let transitions = 0;
+        let flips = 0;
+
+        for (const evt of events) {
+            const byLevel = new Map<number, number>();
+            for (const d of evt.accepted_delta) {
+                if (d.value === 0) continue;
+                byLevel.set(d.level, Math.sign(d.value));
+            }
+            for (const [level, sign] of byLevel.entries()) {
+                const prev = lastSign.get(level);
+                if (prev !== undefined) {
+                    transitions++;
+                    if (prev !== sign) {
+                        flips++;
+                    }
+                }
+                lastSign.set(level, sign);
+            }
+        }
+
+        return transitions > 0 ? flips / transitions : 0;
     }
 };

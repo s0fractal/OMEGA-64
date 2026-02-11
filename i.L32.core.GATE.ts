@@ -14,6 +14,32 @@ import { LEDGER } from "./i.L99.core.LEDGER.ts";
 import { LOAD } from "./i.L99.core.LOAD.ts";
 import { ACCESS_BY_RESONANCE } from "./i.L00.core.ACCESS_BY_RESONANCE.ts";
 
+const GATE_VERSION = "v0.2";
+
+const stableStringify = (value: unknown): string => {
+    if (Array.isArray(value)) {
+        return `[${value.map((v) => stableStringify(v)).join(",")}]`;
+    }
+    if (value && typeof value === "object") {
+        const entries = Object.entries(value as Record<string, unknown>)
+            .sort(([a], [b]) => a.localeCompare(b));
+        const body = entries
+            .map(([k, v]) => `${JSON.stringify(k)}:${stableStringify(v)}`)
+            .join(",");
+        return `{${body}}`;
+    }
+    return JSON.stringify(value);
+};
+
+const toHex = (buffer: ArrayBuffer): string =>
+    Array.from(new Uint8Array(buffer)).map((b) => b.toString(16).padStart(2, "0")).join("");
+
+const sha256Hex = async (input: string): Promise<string> => {
+    const data = new TextEncoder().encode(input);
+    const digest = await crypto.subtle.digest("SHA-256", data);
+    return toHex(digest);
+};
+
 export const GATE = {
     
     /**
@@ -34,6 +60,23 @@ export const GATE = {
             accepted_delta: []
         };
 
+        const canonicalProposalList = proposals
+            .map((p) => ({
+                proposal_id: p.proposal_id,
+                tick: p.tick,
+                base_state_hash: p.base_state_hash,
+                agent_id: p.agent_id,
+                intent: p.intent,
+                confidence: p.confidence,
+                delta: [...p.delta].sort((a, b) => a.level - b.level).map((d) => ({ level: d.level, value: d.value })),
+                cost_estimate: p.cost_estimate,
+                artifact_hash: p.artifact_hash,
+                semantic_fingerprint: p.semantic_fingerprint,
+                causal_refs: [...(p.causal_refs ?? [])].sort()
+            }))
+            .sort((a, b) => a.proposal_id.localeCompare(b.proposal_id));
+        const proposalDigest = await sha256Hex(stableStringify(canonicalProposalList));
+
         // 1. Validation & Filtering
         const validProposals: DeltaProposal[] = [];
         
@@ -52,6 +95,17 @@ export const GATE = {
             if (!p.delta || p.delta.length === 0) {
                  decision.rejected_proposals.push({ proposal_id: p.proposal_id, reason: REJECTION.EMPTY_DELTA });
                  continue;
+            }
+            if (
+                p.delta.some((d) =>
+                    !Number.isInteger(d.level) ||
+                    d.level < 0 ||
+                    d.level > 63 ||
+                    !Number.isFinite(d.value)
+                )
+            ) {
+                decision.rejected_proposals.push({ proposal_id: p.proposal_id, reason: REJECTION.OUT_OF_RANGE_VALUE });
+                continue;
             }
 
             // ... Additional checks (bounds, cost) would go here ...
@@ -169,24 +223,32 @@ export const GATE = {
              // console.log("🛡️ GATE: Dry Run - State preserved.");
         }
 
-        // 6. Hashing (Simulation)
-        // In real impl, would be a real hash of the Int16Array
-        const nextHash = config.dry_run ? state.state_hash : `hash_${state.tick + 1}_${Date.now()}`; 
+        // 6. Deterministic Hashing
+        const nextHash = config.dry_run
+            ? state.state_hash
+            : await sha256Hex(stableStringify({
+                state_i16: Array.from(nextStateI16),
+                tick: state.tick + 1,
+                gate_config_version: GATE_VERSION,
+                proposal_digest: proposalDigest
+            }));
+        const eventId = `evt_${(await sha256Hex(`${state.tick}|${state.state_hash}|${proposalDigest}|${nextHash}`)).slice(0, 16)}`;
 
         // 7. Emit Ledger Event
         const event: LedgerEvent = {
-            event_id: `evt_${state.tick}_${Date.now()}`,
+            event_id: eventId,
             tick: state.tick,
             ts_unix_ms: Date.now(),
             state_before_hash: state.state_hash,
             state_after_hash: nextHash,
             accepted_delta: decision.accepted_delta,
-            proposal_digest: "digest_placeholder",
+            proposal_digest: proposalDigest,
             accepted_proposals: decision.accepted_proposals,
             rejected_proposals: decision.rejected_proposals,
             cost_total: decision.cost_used,
             budget_used: decision.budget_used,
-            gate_config_version: "v0.1",
+            budget_limit: config.max_total_abs_delta_per_tick,
+            gate_config_version: GATE_VERSION,
         };
 
         // 🛡️ Final Red Line Verification

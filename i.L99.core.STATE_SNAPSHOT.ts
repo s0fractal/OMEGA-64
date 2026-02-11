@@ -71,6 +71,7 @@ export interface LedgerEvent {
     rejected_proposals: Array<{ proposal_id: string, reason: string }>;
     cost_total: number;
     budget_used: number;
+    budget_limit?: number; // max_total_abs_delta_per_tick used by the gate
     gate_config_version: string;
     witness?: string;
 }
@@ -102,6 +103,21 @@ export interface CanonizationEvent {
     soft_gates_passed: number; // 0..6
     witness?: string;
 }
+
+/**
+ * DecrystallizationEvent: Emitted when a crystallized artifact loses hard-gate stability.
+ */
+export interface DecrystallizationEvent {
+    event_type: "DECRYSTALLIZATION_EVENT";
+    tick: number;
+    artifact_hash: string;
+    reason: string;
+    rollback_to_checkpoint: number;
+    hard_gate_failure: string;
+    witness?: string;
+}
+
+export type TopologyEvent = LedgerEvent | ViolationEvent | CanonizationEvent | DecrystallizationEvent;
 
 // Canonical Rejection Reasons
 export const REJECTION = {
