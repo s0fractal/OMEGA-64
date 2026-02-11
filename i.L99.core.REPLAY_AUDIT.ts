@@ -21,6 +21,7 @@ export interface ReplayAuditOptions {
     endTick?: number;
     verifyTopologicalSignatures?: boolean;
     verifyLedgerChain?: boolean;
+    invariantOnly?: boolean;
 }
 
 export interface ReplayAuditResult {
@@ -347,6 +348,29 @@ export const REPLAY_AUDIT = {
                     failures: gateIndexChain.failures.map((x) => `gate_admission_index_chain:${x}`)
                 };
             }
+        }
+        if (options.invariantOnly) {
+            return {
+                replayGreen: true,
+                runs,
+                checkedEvents: 0,
+                skippedEvents: events.length + skipped,
+                checkedProjectionEvents,
+                skippedProjectionEvents,
+                projectionTickReport,
+                checkedPolicyEvents,
+                skippedPolicyEvents,
+                policyTickReport,
+                checkedCanonReports,
+                skippedCanonReports,
+                canonReportTickReport,
+                checkedGateAdmissionReports,
+                skippedGateAdmissionReports,
+                gateAdmissionReportTickReport,
+                invariantReport,
+                finalHashes: [genesis.state_hash],
+                failures
+            };
         }
 
         for (let run = 0; run < runs; run++) {

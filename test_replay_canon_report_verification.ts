@@ -324,3 +324,45 @@ Deno.test("replay fails when gate admission report index chain is tampered", asy
         try { await Deno.remove(tempGateAdmissionDir, { recursive: true }); } catch { /* ignore */ }
     }
 });
+
+Deno.test("replay invariant-only mode reports index chain status", async () => {
+    const origLedger = LEDGER.STORAGE_PATH;
+    const origDir = CRYSTALLIZATION_REPORT.STORAGE_DIR;
+    const origIndex = CRYSTALLIZATION_REPORT.INDEX_PATH;
+    const origGateAdmissionDir = GATE_ADMISSION_REPORT.STORAGE_DIR;
+    const origGateAdmissionIndex = GATE_ADMISSION_REPORT.INDEX_PATH;
+    const tempLedger = await Deno.makeTempFile({ prefix: "omega-ledger-invariant-only-", suffix: ".jsonl" });
+    const tempDir = await Deno.makeTempDir({ prefix: "omega-canon-report-verify-" });
+    const tempGateAdmissionDir = await Deno.makeTempDir({ prefix: "omega-gate-admission-verify-" });
+
+    try {
+        const genesis = await prepareCrystallized(tempLedger, tempDir, tempGateAdmissionDir);
+
+        const audit = await REPLAY_AUDIT.audit(
+            { tick: 1, state_i16: genesis.state_i16, state_hash: "state_1" },
+            { runs: 1, startTick: 1, endTick: 2, verifyLedgerChain: true, invariantOnly: true }
+        );
+
+        if (!audit.replayGreen) {
+            throw new Error(`expected invariant-only replay green, got: ${audit.failures.join(",")}`);
+        }
+        if (!audit.invariantReport.index_chain_checked || !audit.invariantReport.index_chain_ok) {
+            throw new Error("expected canon index chain to be checked and ok");
+        }
+        if (
+            !audit.invariantReport.gate_admission_index_chain_checked ||
+            !audit.invariantReport.gate_admission_index_chain_ok
+        ) {
+            throw new Error("expected gate admission index chain to be checked and ok");
+        }
+    } finally {
+        LEDGER.STORAGE_PATH = origLedger;
+        CRYSTALLIZATION_REPORT.STORAGE_DIR = origDir;
+        CRYSTALLIZATION_REPORT.INDEX_PATH = origIndex;
+        GATE_ADMISSION_REPORT.STORAGE_DIR = origGateAdmissionDir;
+        GATE_ADMISSION_REPORT.INDEX_PATH = origGateAdmissionIndex;
+        try { await Deno.remove(tempLedger); } catch { /* ignore */ }
+        try { await Deno.remove(tempDir, { recursive: true }); } catch { /* ignore */ }
+        try { await Deno.remove(tempGateAdmissionDir, { recursive: true }); } catch { /* ignore */ }
+    }
+});
