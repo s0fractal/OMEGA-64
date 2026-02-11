@@ -36,6 +36,7 @@ Output:
 - `artifact_hash: hex32`
 - `semantic_fingerprint: hex32`
 - `causal_refs: hex32[]` (optional lineage anchors)
+- `target_path: "LOCAL" | "CANON"` (optional; default `LOCAL`)
 
 `GateConfig`
 - `max_abs_delta_per_level: uint16`
@@ -56,6 +57,7 @@ Output:
 2. Reject if `proposal.tick != state.tick`.
 3. Reject if `proposal.base_state_hash != state.state_hash`.
 4. Reject if unknown `agent_id`.
+4.1 If `target_path == CANON`, reject unless bridge mode is `GREEN`.
 5. Clip each `delta.value` to `max_abs_delta_per_level`.
 6. Compute weighted score:
 `weight = confidence * reliability_weight[agent_id]`.
@@ -73,6 +75,7 @@ if total abs exceeds `max_total_abs_delta_per_tick`, scale all levels uniformly.
 - `TICK_MISMATCH`
 - `BASE_HASH_MISMATCH`
 - `UNKNOWN_AGENT`
+- `CANON_PATH_REQUIRES_GREEN_BRIDGE`
 - `COST_OVER_BUDGET`
 - `EMPTY_DELTA`
 - `OUT_OF_RANGE_VALUE`
@@ -91,6 +94,11 @@ Each accepted tick must be reconstructible from:
 - prior state hash,
 - sorted proposal set,
 - gate config version.
+
+L32 MUST emit `BRIDGE_MODE_EVENT` every tick with:
+1. resolved mode (`GREEN|AMBER|RED`),
+2. source invariant snapshot (`index_chain_*`),
+3. canon-bound and blocked proposal IDs.
 
 ## 7. Hash Semantics (Normative)
 

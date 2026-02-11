@@ -16,6 +16,10 @@ Payload:
 3. `index_chain_checked_records: number`
 4. `index_chain_failures: string[]`
 
+Proposal routing:
+1. `target_path=LOCAL` (default drift path)
+2. `target_path=CANON` (canon-bound path)
+
 ## 2. L32 Interpretation
 
 L32 maps invariant state to one bridge mode:
@@ -30,9 +34,9 @@ L32 maps invariant state to one bridge mode:
    - permit merge paths that can emit canon anchors.
 2. In `AMBER` mode:
    - permit local drift and simulation.
-   - deny canonization attempts until replay provides chain evidence.
+   - deny canon-bound proposals until replay provides chain evidence.
 3. In `RED` mode:
-   - block canonization and cross-agent merge to canon path.
+   - block canon-bound proposals and cross-agent merge to canon path.
    - treat system as causally unsafe until replay is green.
 
 ## 4. Deterministic Guard (Normative)

@@ -96,12 +96,14 @@ Deno.test("replay audit fails when projection hashes are tampered", async () => 
 
         const raw = await Deno.readTextFile(LEDGER.STORAGE_PATH);
         const lines = raw.split("\n").filter((x) => x.trim().length > 0);
-        if (lines.length !== 1) {
-            throw new Error(`expected 1 ledger line, got ${lines.length}`);
+        const ledgerIdx = lines.findIndex((line) => !line.includes("\"event_type\":"));
+        if (ledgerIdx < 0) {
+            throw new Error(`expected at least 1 ledger line, got ${lines.length}`);
         }
-        const evt = JSON.parse(lines[0]);
+        const evt = JSON.parse(lines[ledgerIdx]);
         evt.projection_2d_hash = "f".repeat(64);
-        await Deno.writeTextFile(LEDGER.STORAGE_PATH, JSON.stringify(evt) + "\n");
+        lines[ledgerIdx] = JSON.stringify(evt);
+        await Deno.writeTextFile(LEDGER.STORAGE_PATH, lines.join("\n") + "\n");
 
         const result = await REPLAY_AUDIT.audit(
             {
@@ -125,4 +127,3 @@ Deno.test("replay audit fails when projection hashes are tampered", async () => 
         }
     });
 });
-

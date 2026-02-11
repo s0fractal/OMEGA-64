@@ -268,12 +268,13 @@ export async function runProjectionHardGateTest() {
         // Tamper projection hash of first ledger event.
         const raw = await Deno.readTextFile(LEDGER.STORAGE_PATH);
         const lines = raw.split("\n").filter((x) => x.trim().length > 0);
-        if (lines.length < 2) {
-            throw new Error(`expected at least 2 ledger events, got ${lines.length}`);
+        const firstLedgerIdx = lines.findIndex((line) => !line.includes("\"event_type\":"));
+        if (firstLedgerIdx < 0) {
+            throw new Error("missing ledger event line");
         }
-        const e1 = JSON.parse(lines[0]);
+        const e1 = JSON.parse(lines[firstLedgerIdx]);
         e1.projection_2d_hash = "f".repeat(64);
-        lines[0] = JSON.stringify(e1);
+        lines[firstLedgerIdx] = JSON.stringify(e1);
         await Deno.writeTextFile(LEDGER.STORAGE_PATH, lines.join("\n") + "\n");
 
         const { crystallized, audit, projectionReport, projectionDriftGatePass } = await CRYSTALLIZATION.evaluateWithAudit(

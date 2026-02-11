@@ -8,6 +8,7 @@ import {
     GateConfig, 
     GateDecision, 
     LedgerEvent,
+    BridgeModeEvent,
     REJECTION 
 } from "./i.L99.core.STATE_SNAPSHOT.ts";
 import { LEDGER } from "./i.L99.core.LEDGER.ts";
@@ -16,9 +17,16 @@ import { ACCESS_BY_RESONANCE } from "./i.L00.core.ACCESS_BY_RESONANCE.ts";
 import { CHECKPOINT } from "./i.L99.core.CHECKPOINT.ts";
 import { TOPOLOGICAL_SIGNATURE } from "./i.L99.core.TOPOLOGICAL_SIGNATURE.ts";
 import { CRYSTALLIZATION_CONFIG, CRYSTALLIZATION_POLICY } from "./i.L99.core.CRYSTALLIZATION_CONFIG.ts";
+import type { ReplayInvariantReport } from "./i.L99.core.REPLAY_AUDIT.ts";
+import { CANON_CAUSAL_BRIDGE } from "./i.L32.core.CANON_CAUSAL_BRIDGE.ts";
 
 const GATE_VERSION = "v0.2";
 const AUTO_CHECKPOINT_INTERVAL = 128;
+
+export interface GateRuntimeContext {
+    bridge_invariant_report?: ReplayInvariantReport;
+    witness?: string;
+}
 
 const stableStringify = (value: unknown): string => {
     if (Array.isArray(value)) {
@@ -53,7 +61,8 @@ export const GATE = {
     process: async (
         state: StateSnapshot, 
         proposals: DeltaProposal[], 
-        config: GateConfig
+        config: GateConfig,
+        runtime: GateRuntimeContext = {}
     ): Promise<StateSnapshot> => {
         
         const decision: GateDecision = {
@@ -64,6 +73,9 @@ export const GATE = {
             accepted_delta: []
         };
         const proposalById = new Map(proposals.map((p) => [p.proposal_id, p]));
+        const bridgeResolution = CANON_CAUSAL_BRIDGE.resolveMode(runtime.bridge_invariant_report);
+        const canonBoundProposals: string[] = [];
+        const blockedCanonProposals: string[] = [];
 
         const canonicalProposalList = proposals
             .map((p) => ({
@@ -77,7 +89,8 @@ export const GATE = {
                 cost_estimate: p.cost_estimate,
                 artifact_hash: p.artifact_hash,
                 semantic_fingerprint: p.semantic_fingerprint,
-                causal_refs: [...(p.causal_refs ?? [])].sort()
+                causal_refs: [...(p.causal_refs ?? [])].sort(),
+                target_path: p.target_path ?? "LOCAL"
             }))
             .sort((a, b) => a.proposal_id.localeCompare(b.proposal_id));
         const proposalDigest = await sha256Hex(stableStringify(canonicalProposalList));
@@ -86,6 +99,17 @@ export const GATE = {
         const validProposals: DeltaProposal[] = [];
         
         for (const p of proposals) {
+            if (CANON_CAUSAL_BRIDGE.isCanonBound(p)) {
+                canonBoundProposals.push(p.proposal_id);
+                if (bridgeResolution.mode !== "GREEN") {
+                    blockedCanonProposals.push(p.proposal_id);
+                    decision.rejected_proposals.push({
+                        proposal_id: p.proposal_id,
+                        reason: REJECTION.CANON_PATH_REQUIRES_GREEN_BRIDGE
+                    });
+                    continue;
+                }
+            }
             // Check 1: Tick Mismatch
             if (p.tick !== state.tick) {
                 decision.rejected_proposals.push({ proposal_id: p.proposal_id, reason: REJECTION.TICK_MISMATCH });
@@ -299,6 +323,21 @@ export const GATE = {
             policy_hash: policyHash,
         };
 
+        const bridgeEvent: BridgeModeEvent = {
+            event_type: "BRIDGE_MODE_EVENT",
+            tick: state.tick,
+            state_hash: state.state_hash,
+            mode: bridgeResolution.mode,
+            index_chain_checked: runtime.bridge_invariant_report?.index_chain_checked ?? false,
+            index_chain_ok: runtime.bridge_invariant_report?.index_chain_ok ?? true,
+            index_chain_checked_records: runtime.bridge_invariant_report?.index_chain_checked_records ?? 0,
+            index_chain_failures: [...(runtime.bridge_invariant_report?.index_chain_failures ?? [])],
+            canon_bound_proposals: [...canonBoundProposals].sort(),
+            blocked_canon_proposals: [...blockedCanonProposals].sort(),
+            reason: bridgeResolution.reason,
+            witness: runtime.witness
+        };
+
         // 🛡️ Final Red Line Verification
         // "Trust but Verify" - Check if we accidentally mutated state in dry_run or exceeded limits
         if (config.dry_run && nextStateI16.some((v, i) => v !== state.state_i16[i])) {
@@ -315,6 +354,7 @@ export const GATE = {
              throw new Error("🔴 RED LINE VIOLATION: DRY_RUN_PURITY. System Halted.");
         }
 
+        await LEDGER.append(bridgeEvent);
         await LEDGER.append(event);
 
         if (!config.dry_run && nextTick % AUTO_CHECKPOINT_INTERVAL === 0) {

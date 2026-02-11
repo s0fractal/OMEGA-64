@@ -76,9 +76,14 @@ Deno.test("replay fails on local policy hash mismatch", async () => {
 
         const raw = await Deno.readTextFile(LEDGER.STORAGE_PATH);
         const lines = raw.split("\n").filter((x) => x.trim().length > 0);
-        const evt = JSON.parse(lines[0]);
+        const ledgerIdx = lines.findIndex((line) => !line.includes("\"event_type\":"));
+        if (ledgerIdx < 0) {
+            throw new Error("missing ledger event line");
+        }
+        const evt = JSON.parse(lines[ledgerIdx]);
         evt.policy_hash = "f".repeat(64); // keep current version, break hash
-        await Deno.writeTextFile(LEDGER.STORAGE_PATH, JSON.stringify(evt) + "\n");
+        lines[ledgerIdx] = JSON.stringify(evt);
+        await Deno.writeTextFile(LEDGER.STORAGE_PATH, lines.join("\n") + "\n");
 
         const audit = await REPLAY_AUDIT.audit(
             {
@@ -103,10 +108,18 @@ Deno.test("replay fails when policy changes without transition event", async () 
         const genesis = await buildTwoTicks();
         const raw = await Deno.readTextFile(LEDGER.STORAGE_PATH);
         const lines = raw.split("\n").filter((x) => x.trim().length > 0);
-        const e2 = JSON.parse(lines[1]);
+        const ledgerIndices = lines
+            .map((line, idx) => ({ line, idx }))
+            .filter((x) => !x.line.includes("\"event_type\":"))
+            .map((x) => x.idx);
+        if (ledgerIndices.length < 2) {
+            throw new Error(`expected at least 2 ledger events, got ${ledgerIndices.length}`);
+        }
+        const secondLedgerIdx = ledgerIndices[1];
+        const e2 = JSON.parse(lines[secondLedgerIdx]);
         e2.policy_version = "crystallization/v2";
         e2.policy_hash = "2".repeat(64);
-        lines[1] = JSON.stringify(e2);
+        lines[secondLedgerIdx] = JSON.stringify(e2);
         await Deno.writeTextFile(LEDGER.STORAGE_PATH, lines.join("\n") + "\n");
 
         const audit = await REPLAY_AUDIT.audit(
@@ -134,10 +147,18 @@ Deno.test("replay accepts policy transition when explicit event is present", asy
 
         const raw = await Deno.readTextFile(LEDGER.STORAGE_PATH);
         const lines = raw.split("\n").filter((x) => x.trim().length > 0);
-        const e2 = JSON.parse(lines[1]);
+        const ledgerIndices = lines
+            .map((line, idx) => ({ line, idx }))
+            .filter((x) => !x.line.includes("\"event_type\":"))
+            .map((x) => x.idx);
+        if (ledgerIndices.length < 2) {
+            throw new Error(`expected at least 2 ledger events, got ${ledgerIndices.length}`);
+        }
+        const secondLedgerIdx = ledgerIndices[1];
+        const e2 = JSON.parse(lines[secondLedgerIdx]);
         e2.policy_version = "crystallization/v2";
         e2.policy_hash = "2".repeat(64);
-        lines[1] = JSON.stringify(e2);
+        lines[secondLedgerIdx] = JSON.stringify(e2);
         await Deno.writeTextFile(LEDGER.STORAGE_PATH, lines.join("\n") + "\n");
 
         const transition = await POLICY_TRANSITION.emit({
@@ -169,4 +190,3 @@ Deno.test("replay accepts policy transition when explicit event is present", asy
         }
     });
 });
-

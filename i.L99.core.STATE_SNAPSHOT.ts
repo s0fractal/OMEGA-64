@@ -32,6 +32,7 @@ export interface DeltaProposal {
     artifact_hash: string; // Identity anchor of the agent's internal state
     semantic_fingerprint: string; // hex32 - Semantic drift metric
     causal_refs?: string[]; // hex32[] - Optional lineage anchors
+    target_path?: "LOCAL" | "CANON"; // optional routing hint for L32 membrane
 }
 
 /**
@@ -132,6 +133,24 @@ export interface PolicyTransitionEvent {
 }
 
 /**
+ * BridgeModeEvent: L32 membrane trace for canon causal integrity mode.
+ */
+export interface BridgeModeEvent {
+    event_type: "BRIDGE_MODE_EVENT";
+    tick: number;
+    state_hash: string;
+    mode: "GREEN" | "AMBER" | "RED";
+    index_chain_checked: boolean;
+    index_chain_ok: boolean;
+    index_chain_checked_records: number;
+    index_chain_failures: string[];
+    canon_bound_proposals: string[];
+    blocked_canon_proposals: string[];
+    reason: string;
+    witness?: string;
+}
+
+/**
  * DecrystallizationEvent: Emitted when a crystallized artifact loses hard-gate stability.
  */
 export interface DecrystallizationEvent {
@@ -150,7 +169,8 @@ export type TopologyEvent =
     | ViolationEvent
     | CanonizationEvent
     | DecrystallizationEvent
-    | PolicyTransitionEvent;
+    | PolicyTransitionEvent
+    | BridgeModeEvent;
 
 /**
  * CheckpointRecord: Persistent state snapshot for rollback/replay acceleration.
@@ -173,5 +193,6 @@ export const REJECTION = {
     UNKNOWN_AGENT: "UNKNOWN_AGENT",
     COST_OVER_BUDGET: "COST_OVER_BUDGET",
     EMPTY_DELTA: "EMPTY_DELTA",
-    OUT_OF_RANGE_VALUE: "OUT_OF_RANGE_VALUE"
+    OUT_OF_RANGE_VALUE: "OUT_OF_RANGE_VALUE",
+    CANON_PATH_REQUIRES_GREEN_BRIDGE: "CANON_PATH_REQUIRES_GREEN_BRIDGE"
 };

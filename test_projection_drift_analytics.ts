@@ -122,9 +122,14 @@ Deno.test("projection drift analytics fails when replay audit is not green", asy
         // Tamper projection hash in ledger.
         const raw = await Deno.readTextFile(LEDGER.STORAGE_PATH);
         const lines = raw.split("\n").filter((x) => x.trim().length > 0);
-        const evt = JSON.parse(lines[0]);
+        const ledgerIdx = lines.findIndex((line) => !line.includes("\"event_type\":"));
+        if (ledgerIdx < 0) {
+            throw new Error("missing ledger event line");
+        }
+        const evt = JSON.parse(lines[ledgerIdx]);
         evt.projection_2d_hash = "f".repeat(64);
-        await Deno.writeTextFile(LEDGER.STORAGE_PATH, JSON.stringify(evt) + "\n");
+        lines[ledgerIdx] = JSON.stringify(evt);
+        await Deno.writeTextFile(LEDGER.STORAGE_PATH, lines.join("\n") + "\n");
 
         const report = await PROJECTION_DRIFT_ANALYTICS.analyze(
             {
@@ -143,4 +148,3 @@ Deno.test("projection drift analytics fails when replay audit is not green", asy
         }
     });
 });
-
