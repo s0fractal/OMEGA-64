@@ -60,10 +60,17 @@ export const GATE = {
         // 2. Deterministic Sort (Canonical Order)
         validProposals.sort((a, b) => a.proposal_id.localeCompare(b.proposal_id));
 
-        // 3. Merge (Simplified for Phase 0 - Summation)
+        // 3. Merge with Budget Enforcement
         const combinedDelta = new Map<number, number>();
-        
+        let currentTotalAbsDelta = 0;
+
         for (const p of validProposals) {
+            // Check cost budget per agent
+            if (p.cost_estimate > (config.max_cost_per_agent || Infinity)) {
+                decision.rejected_proposals.push({ proposal_id: p.proposal_id, reason: REJECTION.COST_OVER_BUDGET });
+                continue;
+            }
+
             decision.accepted_proposals.push(p.proposal_id);
             decision.cost_used += p.cost_estimate;
 
@@ -79,8 +86,25 @@ export const GATE = {
             }
         }
         
-        // 4. Flatten Delta
-        decision.accepted_delta = Array.from(combinedDelta.entries()).map(([level, value]) => ({ level, value }));
+        // 4. Global Budget Enforcement & Scaling
+        // Calculate total absolute delta of the merged vector
+        let totalAbsDelta = 0;
+        for (const val of combinedDelta.values()) {
+            totalAbsDelta += Math.abs(val);
+        }
+        decision.budget_used = totalAbsDelta;
+
+        let scaleFactor = 1.0;
+        if (totalAbsDelta > config.max_total_abs_delta_per_tick) {
+            scaleFactor = config.max_total_abs_delta_per_tick / totalAbsDelta;
+            // console.warn(`⚖️ GATE: Scaling deltas by ${scaleFactor.toFixed(4)} (Budget Exceeded)`);
+        }
+
+        // 5. Flatten & Scale Delta
+        decision.accepted_delta = Array.from(combinedDelta.entries()).map(([level, value]) => ({ 
+            level, 
+            value: Math.round(value * scaleFactor) // Integer rounding after scaling
+        }));
 
         // 5. Apply Mutation (OR Dry Run)
         let nextStateI16 = new Int16Array(state.state_i16); // Clone
