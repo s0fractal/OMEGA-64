@@ -14,6 +14,7 @@ import { LEDGER } from "./i.L99.core.LEDGER.ts";
 import { LOAD } from "./i.L99.core.LOAD.ts";
 import { ACCESS_BY_RESONANCE } from "./i.L00.core.ACCESS_BY_RESONANCE.ts";
 import { CHECKPOINT } from "./i.L99.core.CHECKPOINT.ts";
+import { TOPOLOGICAL_SIGNATURE } from "./i.L99.core.TOPOLOGICAL_SIGNATURE.ts";
 
 const GATE_VERSION = "v0.2";
 const AUTO_CHECKPOINT_INTERVAL = 128;
@@ -61,6 +62,7 @@ export const GATE = {
             cost_used: 0,
             accepted_delta: []
         };
+        const proposalById = new Map(proposals.map((p) => [p.proposal_id, p]));
 
         const canonicalProposalList = proposals
             .map((p) => ({
@@ -237,6 +239,43 @@ export const GATE = {
         const eventId = `evt_${(await sha256Hex(`${state.tick}|${state.state_hash}|${proposalDigest}|${nextHash}`)).slice(0, 16)}`;
 
         // 7. Emit Ledger Event
+        const nextTick = state.tick + 1;
+
+        let projection2DHash: string | undefined;
+        let thread1DHash: string | undefined;
+        let projectionVersion: string | undefined;
+        let signatureArtifactHash: string | undefined;
+        let signatureTick: number | undefined;
+        let signatureCausalRefs: string[] | undefined;
+
+        if (!config.dry_run && TOPOLOGICAL_SIGNATURE.validateHash(nextHash)) {
+            const acceptedCausalRefs = decision.accepted_proposals.flatMap((id) =>
+                proposalById.get(id)?.causal_refs ?? []
+            );
+            const causalRefs = Array.from(new Set([state.state_hash, ...acceptedCausalRefs]));
+
+            const topoSignature = await TOPOLOGICAL_SIGNATURE.build({
+                artifact_hash: proposalDigest,
+                state_hash: nextHash,
+                tick: nextTick,
+                state: TOPOLOGICAL_SIGNATURE.snapshotToOrganismState({
+                    state_hash: nextHash,
+                    state_i16: nextStateI16,
+                    phase_u16: state.phase_u16,
+                    stability_q15: state.stability_q15,
+                    entropy_i16: state.entropy_i16
+                }),
+                causal_refs: causalRefs
+            });
+
+            projection2DHash = topoSignature.projection_2d_hash;
+            thread1DHash = topoSignature.thread_1d_hash;
+            projectionVersion = topoSignature.projection_version;
+            signatureArtifactHash = topoSignature.artifact_hash;
+            signatureTick = topoSignature.tick;
+            signatureCausalRefs = topoSignature.causal_refs;
+        }
+
         const event: LedgerEvent = {
             event_id: eventId,
             tick: state.tick,
@@ -251,6 +290,12 @@ export const GATE = {
             budget_used: decision.budget_used,
             budget_limit: config.max_total_abs_delta_per_tick,
             gate_config_version: GATE_VERSION,
+            signature_artifact_hash: signatureArtifactHash,
+            signature_tick: signatureTick,
+            signature_causal_refs: signatureCausalRefs,
+            projection_2d_hash: projection2DHash,
+            thread_1d_hash: thread1DHash,
+            projection_version: projectionVersion,
         };
 
         // 🛡️ Final Red Line Verification
@@ -271,7 +316,6 @@ export const GATE = {
 
         await LEDGER.append(event);
 
-        const nextTick = state.tick + 1;
         if (!config.dry_run && nextTick % AUTO_CHECKPOINT_INTERVAL === 0) {
             try {
                 await CHECKPOINT.save(

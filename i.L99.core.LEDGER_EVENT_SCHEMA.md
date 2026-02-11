@@ -24,6 +24,12 @@ Purpose: Append-only transition format for glider-lite runtime.
   ],
   "cost_total": 8421,
   "budget_used": 460,
+  "signature_artifact_hash": "hex32",
+  "signature_tick": 129,
+  "signature_causal_refs": ["hex32", "hex32"],
+  "projection_2d_hash": "hex32",
+  "thread_1d_hash": "hex32",
+  "projection_version": "topo-signature/v1",
   "gate_config_version": "v1",
   "witness": "optional_hex32"
 }
@@ -47,6 +53,7 @@ Across window:
 - drift slope by level,
 - rejection ratio per agent,
 - budget pressure index.
+- projection drift via `projection_2d_hash` / `thread_1d_hash`.
 
 ## 4. Storage Rules
 
@@ -63,4 +70,3 @@ Starting from genesis snapshot:
 - verify equals `state_after_hash`.
 
 Mismatch means ledger corruption or non-deterministic gate.
-

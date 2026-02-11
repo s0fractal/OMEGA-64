@@ -7,6 +7,7 @@ import {
     ChromoEncodeOptions,
     OrganismState
 } from "./i.L00.core.CHROMO_STATE.ts";
+import type { StateSnapshot } from "./i.L99.core.STATE_SNAPSHOT.ts";
 
 export interface TopologicalSignature {
     artifact_hash: string;
@@ -31,6 +32,12 @@ export interface TopologicalSignatureInput {
 export interface ThreadProjectionConfig {
     radial_bins: number;
     angular_bins: number;
+}
+
+export interface SignatureStateSnapshotLike extends Pick<StateSnapshot, "state_hash" | "state_i16"> {
+    phase_u16?: Uint16Array;
+    stability_q15?: Float32Array;
+    entropy_i16?: Int16Array;
 }
 
 const PROJECTION_VERSION = "topo-signature/v1";
@@ -66,6 +73,14 @@ const clampI16 = (x: number): number => {
     if (x < -32768) return -32768;
     return x;
 };
+
+const clamp01 = (x: number): number => {
+    if (x > 1) return 1;
+    if (x < 0) return 0;
+    return x;
+};
+
+const normalizeI16 = (x: number): number => (clampI16(x) + 32768) / 65535;
 
 const serializeInt16Be = (arr: Int16Array): Uint8Array => {
     const out = new Uint8Array(arr.length * 2);
@@ -104,6 +119,73 @@ export const TOPOLOGICAL_SIGNATURE = {
     hash2D: async (state: OrganismState, options: ChromoEncodeOptions = CANONICAL_2D_OPTIONS): Promise<string> => {
         const bytes = TOPOLOGICAL_SIGNATURE.project2D(state, options);
         return await sha256HexBytes(bytes);
+    },
+
+    snapshotToOrganismState: (
+        snapshot: SignatureStateSnapshotLike,
+        identity: string = snapshot.state_hash
+    ): OrganismState => {
+        const vec = snapshot.state_i16;
+        const n = vec.length > 0 ? vec.length : 1;
+        const level = (idx: number): number => (idx >= 0 && idx < vec.length ? vec[idx] : 0);
+
+        let sumAbs = 0;
+        for (let i = 0; i < vec.length; i++) {
+            sumAbs += Math.abs(vec[i]);
+        }
+        const absMean = sumAbs / n;
+        const absMeanNorm = clamp01(absMean / 32767);
+
+        const center = level(32);
+        const width = Math.max(1, Math.min(32767, Math.abs(level(24)) + 1));
+        const phase = snapshot.phase_u16
+            ? snapshot.phase_u16[13] ?? 0
+            : Math.round(normalizeI16(level(13)) * 65535) & 0xffff;
+        const amplitude = Math.min(65535, Math.max(0, Math.round(absMeanNorm * 65535)));
+
+        let stabilityMean = 1 - absMeanNorm;
+        if (snapshot.stability_q15 && snapshot.stability_q15.length > 0) {
+            let s = 0;
+            for (let i = 0; i < snapshot.stability_q15.length; i++) {
+                s += snapshot.stability_q15[i];
+            }
+            stabilityMean = clamp01(s / snapshot.stability_q15.length);
+        }
+
+        let entropyMean = absMean;
+        if (snapshot.entropy_i16 && snapshot.entropy_i16.length > 0) {
+            let e = 0;
+            for (let i = 0; i < snapshot.entropy_i16.length; i++) {
+                e += Math.abs(snapshot.entropy_i16[i]);
+            }
+            entropyMean = e / snapshot.entropy_i16.length;
+        }
+        const entropyNorm = clamp01(entropyMean / 32767);
+        const coherence = clamp01(stabilityMean * (1 - entropyNorm));
+        const metabolism = clamp01(normalizeI16(level(19)));
+        const tau = clamp01(normalizeI16(level(22)));
+        const flowRate = clamp01(Math.abs(level(10)) / 32767);
+        const curvature = Math.abs(center) < 1
+            ? Math.abs(level(21))
+            : (Math.abs(level(21)) / 1000) * (1 / Math.log1p(Math.abs(center)));
+
+        return {
+            identity,
+            wave: {
+                center,
+                width,
+                phase,
+                amplitude
+            },
+            chrono: {
+                tau,
+                depth: center,
+                flowRate,
+                curvature
+            },
+            metabolism,
+            coherence
+        };
     },
 
     projectThread1D: (

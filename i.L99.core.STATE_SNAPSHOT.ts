@@ -73,6 +73,12 @@ export interface LedgerEvent {
     budget_used: number;
     budget_limit?: number; // max_total_abs_delta_per_tick used by the gate
     gate_config_version: string;
+    signature_artifact_hash?: string; // hash anchor of transition artifact (usually proposal_digest)
+    signature_tick?: number; // tick used by topological signature builder
+    signature_causal_refs?: string[]; // canonical sorted causal refs
+    projection_2d_hash?: string; // deterministic 2D projection hash
+    thread_1d_hash?: string; // deterministic 1D thread hash
+    projection_version?: string; // signature projection version
     witness?: string;
 }
 
