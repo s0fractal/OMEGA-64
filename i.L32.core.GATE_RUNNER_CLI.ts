@@ -21,8 +21,9 @@ interface CliReplayGenesis {
 interface CliInput {
     state: CliStateSnapshot;
     proposals: DeltaProposal[];
-    config: Omit<GateConfig, "reliability_weight"> & {
+    config: Omit<GateConfig, "reliability_weight" | "agent_signature_keys"> & {
         reliability_weight: Record<string, number> | Array<[string, number]>;
+        agent_signature_keys?: Record<string, { scheme: "hmac-sha256/v1"; secret: string }> | Array<[string, { scheme: "hmac-sha256/v1"; secret: string }]>;
     };
     mode?: "REPLAY_CONTEXT" | "INVARIANT_CONTEXT";
     replayGenesis?: CliReplayGenesis;
@@ -83,12 +84,19 @@ const toConfig = (src: CliInput["config"]): GateConfig => {
     const rw = Array.isArray(src.reliability_weight)
         ? new Map<string, number>(src.reliability_weight)
         : new Map<string, number>(Object.entries(src.reliability_weight));
+    const ask = src.agent_signature_keys
+        ? (Array.isArray(src.agent_signature_keys)
+            ? new Map<string, { scheme: "hmac-sha256/v1"; secret: string }>(src.agent_signature_keys)
+            : new Map<string, { scheme: "hmac-sha256/v1"; secret: string }>(Object.entries(src.agent_signature_keys)))
+        : undefined;
     return {
         max_abs_delta_per_level: src.max_abs_delta_per_level,
         max_total_abs_delta_per_tick: src.max_total_abs_delta_per_tick,
         max_cost_per_agent: src.max_cost_per_agent,
         reliability_weight: rw,
-        dry_run: src.dry_run
+        dry_run: src.dry_run,
+        signature_policy: src.signature_policy,
+        agent_signature_keys: ask
     };
 };
 

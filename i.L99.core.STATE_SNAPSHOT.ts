@@ -33,6 +33,8 @@ export interface DeltaProposal {
     semantic_fingerprint: string; // hex32 - Semantic drift metric
     causal_refs?: string[]; // hex32[] - Optional lineage anchors
     target_path?: "LOCAL" | "CANON"; // optional routing hint for L32 membrane
+    signature_scheme?: AgentSignatureScheme; // optional signature scheme marker
+    agent_signature?: string; // optional signed envelope for proposal integrity/authenticity
 }
 
 /**
@@ -44,6 +46,16 @@ export interface GateConfig {
     max_cost_per_agent: number; // uint64
     reliability_weight: Map<string, number>; // agent_id -> weight (0..1)
     dry_run: boolean; // If true, state is NOT mutated
+    signature_policy?: SignaturePolicy; // DISABLED (default), OPTIONAL, REQUIRED
+    agent_signature_keys?: Map<string, AgentSignatureKey>; // agent_id -> shared verification key
+}
+
+export type AgentSignatureScheme = "hmac-sha256/v1";
+export type SignaturePolicy = "DISABLED" | "OPTIONAL" | "REQUIRED";
+
+export interface AgentSignatureKey {
+    scheme: AgentSignatureScheme;
+    secret: string;
 }
 
 /**
@@ -212,5 +224,9 @@ export const REJECTION = {
     COST_OVER_BUDGET: "COST_OVER_BUDGET",
     EMPTY_DELTA: "EMPTY_DELTA",
     OUT_OF_RANGE_VALUE: "OUT_OF_RANGE_VALUE",
-    CANON_PATH_REQUIRES_GREEN_BRIDGE: "CANON_PATH_REQUIRES_GREEN_BRIDGE"
+    CANON_PATH_REQUIRES_GREEN_BRIDGE: "CANON_PATH_REQUIRES_GREEN_BRIDGE",
+    SIGNATURE_REQUIRED: "SIGNATURE_REQUIRED",
+    SIGNATURE_INVALID: "SIGNATURE_INVALID",
+    SIGNATURE_KEY_MISSING: "SIGNATURE_KEY_MISSING",
+    SIGNATURE_SCHEME_UNSUPPORTED: "SIGNATURE_SCHEME_UNSUPPORTED"
 };

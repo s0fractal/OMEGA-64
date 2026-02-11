@@ -19,6 +19,7 @@ import { TOPOLOGICAL_SIGNATURE } from "./i.L99.core.TOPOLOGICAL_SIGNATURE.ts";
 import { CRYSTALLIZATION_CONFIG, CRYSTALLIZATION_POLICY } from "./i.L99.core.CRYSTALLIZATION_CONFIG.ts";
 import type { ReplayInvariantReport } from "./i.L99.core.REPLAY_AUDIT.ts";
 import { CANON_CAUSAL_BRIDGE } from "./i.L32.core.CANON_CAUSAL_BRIDGE.ts";
+import { AGENT_SIGNATURE } from "./i.L32.core.AGENT_SIGNATURE.ts";
 
 const GATE_VERSION = "v0.2";
 const AUTO_CHECKPOINT_INTERVAL = 128;
@@ -76,6 +77,8 @@ export const GATE = {
         const bridgeResolution = CANON_CAUSAL_BRIDGE.resolveMode(runtime.bridge_invariant_report);
         const canonBoundProposals: string[] = [];
         const blockedCanonProposals: string[] = [];
+        const signaturePolicy = config.signature_policy ?? "DISABLED";
+        const signatureKeys = config.agent_signature_keys;
 
         const canonicalProposalList = proposals
             .map((p) => ({
@@ -108,6 +111,37 @@ export const GATE = {
                         reason: REJECTION.CANON_PATH_REQUIRES_GREEN_BRIDGE
                     });
                     continue;
+                }
+            }
+            if (signaturePolicy !== "DISABLED") {
+                const key = signatureKeys?.get(p.agent_id);
+                if (!key) {
+                    if (signaturePolicy === "REQUIRED" || p.agent_signature || p.signature_scheme) {
+                        decision.rejected_proposals.push({
+                            proposal_id: p.proposal_id,
+                            reason: REJECTION.SIGNATURE_KEY_MISSING
+                        });
+                        continue;
+                    }
+                } else {
+                    if (!p.agent_signature) {
+                        if (signaturePolicy === "REQUIRED") {
+                            decision.rejected_proposals.push({
+                                proposal_id: p.proposal_id,
+                                reason: REJECTION.SIGNATURE_REQUIRED
+                            });
+                            continue;
+                        }
+                    } else {
+                        const verify = await AGENT_SIGNATURE.verifyProposal(p, key);
+                        if (!verify.ok) {
+                            decision.rejected_proposals.push({
+                                proposal_id: p.proposal_id,
+                                reason: verify.reason ?? REJECTION.SIGNATURE_INVALID
+                            });
+                            continue;
+                        }
+                    }
                 }
             }
             // Check 1: Tick Mismatch
