@@ -54,6 +54,10 @@ export interface CrystallizationReport {
     policy_checks: number;
     canon_report_checks: number;
     gate_admission_report_checks: number;
+    canon_index_chain_checked: boolean;
+    canon_index_chain_ok: boolean;
+    gate_admission_index_chain_checked: boolean;
+    gate_admission_index_chain_ok: boolean;
   };
   replay_audit: ReplayAuditResult;
   projection_report: ProjectionReplayReport;
@@ -191,6 +195,12 @@ export const CRYSTALLIZATION_REPORT = {
         policy_checks: input.replay_audit.checkedPolicyEvents,
         canon_report_checks: input.replay_audit.checkedCanonReports,
         gate_admission_report_checks: input.replay_audit.checkedGateAdmissionReports,
+        canon_index_chain_checked: input.replay_audit.invariantReport.index_chain_checked,
+        canon_index_chain_ok: input.replay_audit.invariantReport.index_chain_ok,
+        gate_admission_index_chain_checked:
+          input.replay_audit.invariantReport.gate_admission_index_chain_checked,
+        gate_admission_index_chain_ok:
+          input.replay_audit.invariantReport.gate_admission_index_chain_ok,
       },
       replay_audit: input.replay_audit,
       projection_report: input.projection_report,

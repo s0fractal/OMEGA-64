@@ -35,7 +35,11 @@ Deno.test("crystallization report materialization is idempotent by hash", async 
                 projection_checks: 0,
                 policy_checks: 0,
                 canon_report_checks: 0,
-                gate_admission_report_checks: 0
+                gate_admission_report_checks: 0,
+                canon_index_chain_checked: false,
+                canon_index_chain_ok: true,
+                gate_admission_index_chain_checked: false,
+                gate_admission_index_chain_ok: true
             },
             replay_audit: {
                 replayGreen: true,
@@ -167,7 +171,11 @@ Deno.test("crystallization report index chain detects tamper", async () => {
                 projection_checks: 0,
                 policy_checks: 0,
                 canon_report_checks: 0,
-                gate_admission_report_checks: 0
+                gate_admission_report_checks: 0,
+                canon_index_chain_checked: false,
+                canon_index_chain_ok: true,
+                gate_admission_index_chain_checked: false,
+                gate_admission_index_chain_ok: true
             },
             replay_audit: {
                 replayGreen: true,
@@ -315,7 +323,11 @@ Deno.test("crystallization report index chain enforces monotonic tick causality"
                 projection_checks: 0,
                 policy_checks: 0,
                 canon_report_checks: 0,
-                gate_admission_report_checks: 0
+                gate_admission_report_checks: 0,
+                canon_index_chain_checked: false,
+                canon_index_chain_ok: true,
+                gate_admission_index_chain_checked: false,
+                gate_admission_index_chain_ok: true
             },
             replay_audit: {
                 replayGreen: true,

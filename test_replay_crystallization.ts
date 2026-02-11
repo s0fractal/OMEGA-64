@@ -185,6 +185,20 @@ export async function runTest() {
         "crystallization report must expose gate admission report checks",
       );
     }
+    if (
+      typeof crystallizationReport.verification_summary
+          .canon_index_chain_checked !== "boolean" ||
+      typeof crystallizationReport.verification_summary
+          .canon_index_chain_ok !== "boolean" ||
+      typeof crystallizationReport.verification_summary
+          .gate_admission_index_chain_checked !== "boolean" ||
+      typeof crystallizationReport.verification_summary
+          .gate_admission_index_chain_ok !== "boolean"
+    ) {
+      throw new Error(
+        "crystallization report must expose index chain summary flags",
+      );
+    }
 
     const raw = await Deno.readTextFile(LEDGER.STORAGE_PATH);
     const lines = raw.split("\n").filter((x) => x.trim().length > 0);
