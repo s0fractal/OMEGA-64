@@ -149,3 +149,60 @@ Deno.test("gate rejects invalid agent_phase_u16 range", async () => {
     } catch { /* ignore */ }
   }
 });
+
+Deno.test("phase coherence mode attenuates out-of-phase reliability weight", async () => {
+  const originalPath = LEDGER.STORAGE_PATH;
+  const tempPath = await Deno.makeTempFile({
+    prefix: "omega-ledger-gate-phase-coherence-",
+    suffix: ".jsonl",
+  });
+  const indexPath = PROPOSAL_ENVELOPE_INDEX.pathForLedger(tempPath);
+  LEDGER.STORAGE_PATH = tempPath;
+  PROPOSAL_ENVELOPE_INDEX.resetCacheForTests(indexPath);
+  await Deno.writeTextFile(tempPath, "");
+
+  try {
+    const state: StateSnapshot = {
+      tick: 30,
+      state_hash: "state_phase_30",
+      state_i16: new Int16Array(64).fill(0),
+      phase_u16: new Uint16Array(64).fill(0),
+      entropy_i16: new Int16Array(64).fill(0),
+    };
+
+    const config: GateConfig = {
+      ...baseConfig(),
+      max_cost_per_agent: 1000,
+      reliability_mode: "PHASE_COHERENCE",
+      reliability_floor: 0,
+    };
+
+    const next = await GATE.process(
+      state,
+      [
+        {
+          ...proposal("p_in", 30, "state_phase_30", 0),
+          delta: [{ level: 7, value: 100 }],
+        },
+        {
+          ...proposal("p_out", 30, "state_phase_30", 32768),
+          delta: [{ level: 7, value: 100 }],
+        },
+      ],
+      config,
+    );
+
+    if (next.state_i16[7] !== 100) {
+      throw new Error(`expected merged value 100, got ${next.state_i16[7]}`);
+    }
+  } finally {
+    LEDGER.STORAGE_PATH = originalPath;
+    PROPOSAL_ENVELOPE_INDEX.resetCacheForTests(indexPath);
+    try {
+      await Deno.remove(tempPath);
+    } catch { /* ignore */ }
+    try {
+      await Deno.remove(indexPath);
+    } catch { /* ignore */ }
+  }
+});

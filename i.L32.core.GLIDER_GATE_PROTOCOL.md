@@ -64,6 +64,9 @@ Output:
 - `max_total_abs_delta_per_tick: uint32`
 - `max_cost_per_agent: uint64`
 - `reliability_weight: Map<agent_id, float32>`
+- `reliability_mode: "STATIC" | "PHASE_COHERENCE"` (optional; default `STATIC`)
+- `reliability_floor: float32` (optional; `[0..1]`, coherence floor when
+  `PHASE_COHERENCE` is active)
 - `dry_run: bool`
 - `signature_policy: "DISABLED" | "OPTIONAL" | "REQUIRED"` (optional; default
   `DISABLED`)
@@ -97,17 +100,20 @@ Output:
 13. If anti-replay window enabled, reject when same envelope hash exists in
     recent accepted history or current tick batch.
 14. Clip each `delta.value` to `max_abs_delta_per_level`.
-15. Compute weighted score:
-    `weight = confidence * reliability_weight[agent_id]`.
-16. Compute physical mutation cost using entropy + phase mismatch
+15. Compute weighted score: `weight = confidence * effective_reliability`.
+16. `effective_reliability`:
+    - `STATIC`: `reliability_weight[agent_id]`.
+    - `PHASE_COHERENCE`: multiply base reliability by phase coherence between
+      `agent_phase_u16` and touched level phases (with optional floor).
+17. Compute physical mutation cost using entropy + phase mismatch
     (`agent_phase_u16` vs level phase) and reject on `COST_OVER_BUDGET`.
-17. Merge per level:
+18. Merge per level:
     `merged[level] = saturating_round(sum(weight * delta_level))`.
-18. Enforce global budget: if total abs exceeds `max_total_abs_delta_per_tick`,
+19. Enforce global budget: if total abs exceeds `max_total_abs_delta_per_tick`,
     scale all levels uniformly.
-19. Compute `state_next = saturating_add(state, merged)`.
-20. Compute `state_next_hash`.
-21. Emit decision + ledger event.
+20. Compute `state_next = saturating_add(state, merged)`.
+21. Compute `state_next_hash`.
+22. Emit decision + ledger event.
 
 ## 4. Rejection Reasons (Canonical)
 

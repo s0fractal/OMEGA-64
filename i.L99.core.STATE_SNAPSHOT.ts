@@ -47,6 +47,8 @@ export interface GateConfig {
   max_total_abs_delta_per_tick: number; // uint32
   max_cost_per_agent: number; // uint64
   reliability_weight: Map<string, number>; // agent_id -> weight (0..1)
+  reliability_mode?: "STATIC" | "PHASE_COHERENCE"; // optional admission weighting mode
+  reliability_floor?: number; // optional [0..1] floor when PHASE_COHERENCE is active
   dry_run: boolean; // If true, state is NOT mutated
   signature_policy?: SignaturePolicy; // DISABLED (default), OPTIONAL, REQUIRED
   agent_signature_keys?: Map<string, AgentSignatureKey>; // agent_id -> shared verification key
