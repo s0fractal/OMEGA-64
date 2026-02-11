@@ -12,6 +12,10 @@ Source:
 Method:
 1. `GATE_RUNNER.step(input)`
 
+CLI wrapper:
+1. `/Users/s0fractal/OMEGA/i.L32.core.GATE_RUNNER_CLI.ts`
+2. `deno run -A i.L32.core.GATE_RUNNER_CLI.ts --input <input.json> [--output <output.json>] [--ledger <ledger.jsonl>] [--pretty]`
+
 Modes:
 1. `REPLAY_CONTEXT` (auto context from replay audit)
 2. `INVARIANT_CONTEXT` (explicit invariant snapshot)
