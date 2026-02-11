@@ -25,6 +25,7 @@ export interface DeltaProposal {
   tick: number; // Must match StateSnapshot.tick
   base_state_hash: string; // Must match StateSnapshot.state_hash
   agent_id: string; // Who is proposing?
+  agent_phase_u16?: number; // Optional agent phase anchor [0..65535] for LOAD mismatch cost
   intent: string; // Human-readable intent
   confidence: number; // float32 (0..1)
   delta: Array<{ level: number; value: number }>; // Sparse delta: level (0-63), value (int16)

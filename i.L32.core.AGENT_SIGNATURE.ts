@@ -154,6 +154,7 @@ const canonicalProposalPayload = (proposal: DeltaProposal): string =>
     tick: proposal.tick,
     base_state_hash: proposal.base_state_hash,
     agent_id: proposal.agent_id,
+    agent_phase_u16: proposal.agent_phase_u16,
     intent: proposal.intent,
     confidence: proposal.confidence,
     delta: [...proposal.delta]

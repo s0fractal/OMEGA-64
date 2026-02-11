@@ -55,7 +55,8 @@ Rules:
 2. `delta` entries are sorted by `level`.
 3. `causal_refs` are sorted lexicographically.
 4. `target_path` defaults to `"LOCAL"` when absent.
-5. `undefined` fields are excluded.
+5. `agent_phase_u16` is included when present and MUST be integer `[0..65535]`.
+6. `undefined` fields are excluded.
 
 Envelope message bytes for signing:
 

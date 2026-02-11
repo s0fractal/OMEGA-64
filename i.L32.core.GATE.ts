@@ -98,6 +98,7 @@ export const GATE = {
                 tick: p.tick,
                 base_state_hash: p.base_state_hash,
                 agent_id: p.agent_id,
+                agent_phase_u16: Number.isInteger(p.agent_phase_u16) ? p.agent_phase_u16 : null,
                 intent: p.intent,
                 confidence: p.confidence,
                 delta: [...p.delta].sort((a, b) => a.level - b.level).map((d) => ({ level: d.level, value: d.value })),
@@ -201,6 +202,17 @@ export const GATE = {
                 decision.rejected_proposals.push({ proposal_id: p.proposal_id, reason: REJECTION.OUT_OF_RANGE_VALUE });
                 continue;
             }
+            if (
+                p.agent_phase_u16 !== undefined &&
+                (
+                    !Number.isInteger(p.agent_phase_u16) ||
+                    p.agent_phase_u16 < 0 ||
+                    p.agent_phase_u16 > 65535
+                )
+            ) {
+                decision.rejected_proposals.push({ proposal_id: p.proposal_id, reason: REJECTION.OUT_OF_RANGE_VALUE });
+                continue;
+            }
 
             // ... Additional checks (bounds, cost) would go here ...
             
@@ -212,48 +224,32 @@ export const GATE = {
 
         // 3. Merge with Budget Enforcement
         const combinedDelta = new Map<number, number>();
-        let currentTotalAbsDelta = 0;
 
         for (const p of validProposals) {
             // Calculate Physical Cost using LOAD model
             let physicalCost = 0;
-            const agentPhase = 0; // TODO: Get agent phase from state or proposal metadata if available. using 0 for now as placeholder or need to extend StateSnapshot
-            // Actually, we can assume state.phase_u16 exists or use default 0 if not tracked yet.
-            // For Glider Lite i16, we might not have explicit phase yet per agent, but let's check StateSnapshot.
-            
-            // Re-evaluating: StateSnapshot has `phase_u16?: Uint16Array`.
-            // But the proposal doesn't explicitly carry the AGENT's current phase, except maybe implicitly in `delta`.
-            // The Handoff says: "cost_l = abs(delta_l) * (1 + load_l) * (1 + mismatch_l)"
-            // "load_l" comes from Hybrid Load Model (Entropy + Phase).
-            
-            // Let's implement a simplified version for Phase 2 that assumes some default entropy/phase if missing
+            const agentPhase = p.agent_phase_u16 ?? 0;
             for (const d of p.delta) {
                 // Get current level properties from state (if available)
                 const levelPhase = state.phase_u16 ? state.phase_u16[d.level] : 0;
                 const levelEntropy = state.entropy_i16 ? state.entropy_i16[d.level] : 0;
                 
                 // Calculate Load of this specific mutation
-                // We treat the delta value as a "weight" or "force"
+                // Agent phase is proposal-local; level phase is substrate-local.
                 const load = LOAD.calculate({
                     entropy: levelEntropy,
-                    phase: levelPhase, 
+                    phase: agentPhase,
                     weight: Math.abs(d.value)
-                }, levelPhase); // System phase vs Local phase? Or Agent vs Level?
+                }, levelPhase);
                 
                 // Simplified Cost: Base Cost + Load Penalty
                 // cost = |delta| + Load
                 physicalCost += Math.abs(d.value) + load;
             }
             
-            // Update decision cost with calculated physical cost (or keep estimate if we trust agent?)
-            // The constraint checks `p.cost_estimate`. Let's enforce that physicalCost <= p.cost_estimate (Anti-Spam)
-            // If actual cost > estimate, we reject? Or just charge the actual? 
-            // "Max cost per agent" usually refers to the CHARGED cost.
-            
-            // Let's use the physical cost as the authoritative cost.
             const finalCost = Math.round(physicalCost);
             
-             // Check cost budget per agent RE-CHECK with verified cost
+            // Check cost budget per agent with measured physical cost.
             if (finalCost > (config.max_cost_per_agent || Infinity)) {
                 decision.rejected_proposals.push({ proposal_id: p.proposal_id, reason: REJECTION.COST_OVER_BUDGET });
                 continue;

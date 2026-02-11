@@ -46,6 +46,7 @@ Output:
 - `tick: uint64`
 - `base_state_hash: hex32`
 - `agent_id: string`
+- `agent_phase_u16: uint16` (optional; `[0..65535]`, defaults to `0`)
 - `intent: string`
 - `confidence: float32` (0..1)
 - `delta: Array<{ level: uint8, value: int16 }>`
@@ -98,13 +99,15 @@ Output:
 14. Clip each `delta.value` to `max_abs_delta_per_level`.
 15. Compute weighted score:
     `weight = confidence * reliability_weight[agent_id]`.
-16. Merge per level:
+16. Compute physical mutation cost using entropy + phase mismatch
+    (`agent_phase_u16` vs level phase) and reject on `COST_OVER_BUDGET`.
+17. Merge per level:
     `merged[level] = saturating_round(sum(weight * delta_level))`.
-17. Enforce global budget: if total abs exceeds `max_total_abs_delta_per_tick`,
+18. Enforce global budget: if total abs exceeds `max_total_abs_delta_per_tick`,
     scale all levels uniformly.
-18. Compute `state_next = saturating_add(state, merged)`.
-19. Compute `state_next_hash`.
-20. Emit decision + ledger event.
+19. Compute `state_next = saturating_add(state, merged)`.
+20. Compute `state_next_hash`.
+21. Emit decision + ledger event.
 
 ## 4. Rejection Reasons (Canonical)
 
