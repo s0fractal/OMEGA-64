@@ -5,6 +5,7 @@ import { ProjectionDriftAnalyticsReport } from "./i.L99.core.PROJECTION_DRIFT_AN
 import { ProjectionReplayReport } from "./i.L99.core.PROJECTION_REPLAY_REPORT.ts";
 import { ReplayAuditResult } from "./i.L99.core.REPLAY_AUDIT.ts";
 import { CRYSTALLIZATION_CONFIG, CRYSTALLIZATION_POLICY } from "./i.L99.core.CRYSTALLIZATION_CONFIG.ts";
+import type { GateAdmissionReport } from "./i.L99.core.GATE_ADMISSION_REPORT.ts";
 
 export interface CrystallizationReportInput {
     artifact_hash: string;
@@ -17,6 +18,10 @@ export interface CrystallizationReportInput {
     drift_report: ProjectionDriftAnalyticsReport;
     projection_drift_gate_pass: boolean;
     projection_drift_max_p95: number;
+    gate_admission_report?: GateAdmissionReport;
+    gate_admission_gate_pass?: boolean;
+    gate_admission_out_of_phase_pressure_max_mean?: number;
+    gate_admission_min_coherence_coverage?: number;
 }
 
 export interface CrystallizationReport {
@@ -35,6 +40,8 @@ export interface CrystallizationReport {
         min_soft_passes: number;
         default_required_windows: number;
         projection_drift_max_p95: number;
+        gate_admission_out_of_phase_pressure_max_mean?: number;
+        gate_admission_min_coherence_coverage?: number;
     };
     verification_summary: {
         replay_green: boolean;
@@ -46,6 +53,8 @@ export interface CrystallizationReport {
     projection_report: ProjectionReplayReport;
     drift_report: ProjectionDriftAnalyticsReport;
     projection_drift_gate_pass: boolean;
+    gate_admission_report?: GateAdmissionReport;
+    gate_admission_gate_pass?: boolean;
 }
 
 export interface CrystallizationReportMaterializeMeta {
@@ -76,6 +85,7 @@ const stableStringify = (value: unknown): string => {
     }
     if (value && typeof value === "object") {
         const entries = Object.entries(value as Record<string, unknown>)
+            .filter(([, v]) => typeof v !== "undefined")
             .sort(([a], [b]) => a.localeCompare(b));
         return `{${entries.map(([k, v]) => `${JSON.stringify(k)}:${stableStringify(v)}`).join(",")}}`;
     }
@@ -149,7 +159,11 @@ export const CRYSTALLIZATION_REPORT = {
                 window: CRYSTALLIZATION_CONFIG.window,
                 min_soft_passes: CRYSTALLIZATION_CONFIG.minSoftPasses,
                 default_required_windows: CRYSTALLIZATION_CONFIG.defaultRequiredWindows,
-                projection_drift_max_p95: input.projection_drift_max_p95
+                projection_drift_max_p95: input.projection_drift_max_p95,
+                gate_admission_out_of_phase_pressure_max_mean:
+                    input.gate_admission_out_of_phase_pressure_max_mean,
+                gate_admission_min_coherence_coverage:
+                    input.gate_admission_min_coherence_coverage
             },
             verification_summary: {
                 replay_green: input.replay_audit.replayGreen,
@@ -160,7 +174,9 @@ export const CRYSTALLIZATION_REPORT = {
             replay_audit: input.replay_audit,
             projection_report: input.projection_report,
             drift_report: input.drift_report,
-            projection_drift_gate_pass: input.projection_drift_gate_pass
+            projection_drift_gate_pass: input.projection_drift_gate_pass,
+            gate_admission_report: input.gate_admission_report,
+            gate_admission_gate_pass: input.gate_admission_gate_pass
         };
     },
 

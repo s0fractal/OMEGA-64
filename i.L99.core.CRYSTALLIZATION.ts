@@ -13,6 +13,7 @@ import {
 import { REPLAY_AUDIT, ReplayAuditResult, ReplayGenesis } from "./i.L99.core.REPLAY_AUDIT.ts";
 import { PROJECTION_REPLAY_REPORT, ProjectionReplayReport } from "./i.L99.core.PROJECTION_REPLAY_REPORT.ts";
 import { PROJECTION_DRIFT_ANALYTICS, ProjectionDriftAnalyticsReport } from "./i.L99.core.PROJECTION_DRIFT_ANALYTICS.ts";
+import { GATE_ADMISSION_REPORT, GateAdmissionReport } from "./i.L99.core.GATE_ADMISSION_REPORT.ts";
 import { CHECKPOINT } from "./i.L99.core.CHECKPOINT.ts";
 import { CRYSTALLIZATION_CONFIG, CRYSTALLIZATION_POLICY } from "./i.L99.core.CRYSTALLIZATION_CONFIG.ts";
 import { CRYSTALLIZATION_REPORT, CrystallizationReport } from "./i.L99.core.CRYSTALLIZATION_REPORT.ts";
@@ -87,6 +88,9 @@ interface EvaluateWithAuditOptions extends EvaluateOptions {
     replayStartTick?: number;
     projectionDriftMaxP95?: number;
     projectionDriftTopLevels?: number;
+    gateAdmissionOutOfPhasePressureMaxMean?: number;
+    gateAdmissionMinCoherenceCoverage?: number;
+    gateAdmissionTopAgents?: number;
 }
 
 interface EnforceOptions {
@@ -168,6 +172,8 @@ export const CRYSTALLIZATION = {
         projectionReport: ProjectionReplayReport;
         driftReport: ProjectionDriftAnalyticsReport;
         projectionDriftGatePass: boolean;
+        gateAdmissionReport: GateAdmissionReport;
+        gateAdmissionGatePass: boolean;
         crystallizationReport: CrystallizationReport;
         crystallizationReportHash: string;
         crystallizationReportUri: string;
@@ -202,6 +208,21 @@ export const CRYSTALLIZATION = {
             ? Math.max(...driftReport.driftByLevelP95)
             : 0;
         const projectionDriftGatePass = driftReport.ok && projectionDriftP95 <= projectionDriftMaxP95;
+        const gateAdmissionOutOfPhasePressureMaxMean = options.gateAdmissionOutOfPhasePressureMaxMean ??
+            CRYSTALLIZATION_CONFIG.gateAdmissionOutOfPhasePressureMaxMean;
+        const gateAdmissionMinCoherenceCoverage = options.gateAdmissionMinCoherenceCoverage ??
+            CRYSTALLIZATION_CONFIG.gateAdmissionMinCoherenceCoverage;
+        const gateAdmissionReport = await GATE_ADMISSION_REPORT.generate({
+            startTick: replayStartTick,
+            endTick: currentTick,
+            topAgents: options.gateAdmissionTopAgents ?? CRYSTALLIZATION_CONFIG.gateAdmissionTopAgents
+        });
+        const gateAdmissionGatePass = gateAdmissionReport.ok &&
+            gateAdmissionReport.coherenceCoverage >= gateAdmissionMinCoherenceCoverage &&
+            (
+                gateAdmissionReport.outOfPhasePressureMean === undefined ||
+                gateAdmissionReport.outOfPhasePressureMean <= gateAdmissionOutOfPhasePressureMaxMean
+            );
         const projectionHardGatePass = projectionReport.failCount === 0;
         const { report: crystallizationReport, reportHash: crystallizationReportHash } =
             await CRYSTALLIZATION_REPORT.buildWithHash({
@@ -214,7 +235,11 @@ export const CRYSTALLIZATION = {
                 projection_report: projectionReport,
                 drift_report: driftReport,
                 projection_drift_gate_pass: projectionDriftGatePass,
-                projection_drift_max_p95: projectionDriftMaxP95
+                projection_drift_max_p95: projectionDriftMaxP95,
+                gate_admission_report: gateAdmissionReport,
+                gate_admission_gate_pass: gateAdmissionGatePass,
+                gate_admission_out_of_phase_pressure_max_mean: gateAdmissionOutOfPhasePressureMaxMean,
+                gate_admission_min_coherence_coverage: gateAdmissionMinCoherenceCoverage
             });
         const materialized = await CRYSTALLIZATION_REPORT.materialize(
             crystallizationReport,
@@ -234,7 +259,10 @@ export const CRYSTALLIZATION = {
             stateHash,
             {
                 // Hard gate: projection replay must be clean.
-                replayGreen: audit.replayGreen && projectionHardGatePass && projectionDriftGatePass,
+                replayGreen: audit.replayGreen &&
+                    projectionHardGatePass &&
+                    projectionDriftGatePass &&
+                    gateAdmissionGatePass,
                 requiredWindows,
                 windowSize,
                 crystallizationReportVersion: CRYSTALLIZATION_REPORT.VERSION,
@@ -250,6 +278,8 @@ export const CRYSTALLIZATION = {
             projectionReport,
             driftReport,
             projectionDriftGatePass,
+            gateAdmissionReport,
+            gateAdmissionGatePass,
             crystallizationReport,
             crystallizationReportHash,
             crystallizationReportUri

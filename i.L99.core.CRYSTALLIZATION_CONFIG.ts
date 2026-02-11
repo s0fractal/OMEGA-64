@@ -8,6 +8,9 @@ export interface CrystallizationConfig {
     defaultRequiredWindows: number;
     projectionDriftMaxP95: number;
     projectionDriftTopLevels: number;
+    gateAdmissionOutOfPhasePressureMaxMean: number;
+    gateAdmissionMinCoherenceCoverage: number;
+    gateAdmissionTopAgents: number;
     verifyLedgerChain: boolean;
 }
 
@@ -18,6 +21,9 @@ export const CRYSTALLIZATION_CONFIG: CrystallizationConfig = {
     defaultRequiredWindows: 3,
     projectionDriftMaxP95: 1024,
     projectionDriftTopLevels: 8,
+    gateAdmissionOutOfPhasePressureMaxMean: 1.0,
+    gateAdmissionMinCoherenceCoverage: 0.0,
+    gateAdmissionTopAgents: 8,
     verifyLedgerChain: true
 };
 
@@ -51,6 +57,9 @@ export const CRYSTALLIZATION_POLICY = {
             defaultRequiredWindows: CRYSTALLIZATION_CONFIG.defaultRequiredWindows,
             projectionDriftMaxP95: CRYSTALLIZATION_CONFIG.projectionDriftMaxP95,
             projectionDriftTopLevels: CRYSTALLIZATION_CONFIG.projectionDriftTopLevels,
+            gateAdmissionOutOfPhasePressureMaxMean: CRYSTALLIZATION_CONFIG.gateAdmissionOutOfPhasePressureMaxMean,
+            gateAdmissionMinCoherenceCoverage: CRYSTALLIZATION_CONFIG.gateAdmissionMinCoherenceCoverage,
+            gateAdmissionTopAgents: CRYSTALLIZATION_CONFIG.gateAdmissionTopAgents,
             verifyLedgerChain: CRYSTALLIZATION_CONFIG.verifyLedgerChain
         }),
 
