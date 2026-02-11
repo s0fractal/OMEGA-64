@@ -1,0 +1,57 @@
+{
+  "state": {
+    "tick": 1,
+    "state_hash": "state_1",
+    "state_i16": [
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+    ]
+  },
+  "proposals": [
+    {
+      "proposal_id": "p_local_replay",
+      "tick": 1,
+      "base_state_hash": "state_1",
+      "agent_id": "agent_sync",
+      "intent": "local_shift_replay",
+      "confidence": 1,
+      "delta": [{ "level": 4, "value": 5 }],
+      "cost_estimate": 100,
+      "artifact_hash": "a1",
+      "semantic_fingerprint": "s1",
+      "target_path": "LOCAL"
+    },
+    {
+      "proposal_id": "p_canon_replay",
+      "tick": 1,
+      "base_state_hash": "state_1",
+      "agent_id": "agent_sync",
+      "intent": "canon_shift_replay",
+      "confidence": 1,
+      "delta": [{ "level": 5, "value": 7 }],
+      "cost_estimate": 100,
+      "artifact_hash": "a1",
+      "semantic_fingerprint": "s1",
+      "target_path": "CANON"
+    }
+  ],
+  "config": {
+    "max_abs_delta_per_level": 1000,
+    "max_total_abs_delta_per_tick": 5000,
+    "max_cost_per_agent": 10000,
+    "reliability_weight": {
+      "agent_sync": 1
+    },
+    "dry_run": false
+  },
+  "mode": "REPLAY_CONTEXT",
+  "replayAuditOptions": {
+    "runs": 1,
+    "startTick": 1,
+    "endTick": 1,
+    "verifyTopologicalSignatures": true
+  },
+  "witness": "example"
+}
