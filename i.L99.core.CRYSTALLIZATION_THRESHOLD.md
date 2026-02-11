@@ -27,6 +27,7 @@ Projection drift gate MUST pass:
 `max(driftByLevelP95) <= projectionDriftMaxP95`.
 Default runtime values are defined in:
 `i.L99.core.CRYSTALLIZATION_CONFIG.ts`.
+Policy version MUST be persisted in emitted events as `policy_version`.
 
 2. Critical Safety:
 `CRITICAL VIOLATION_EVENT = 0` in stability window.

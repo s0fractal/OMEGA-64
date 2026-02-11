@@ -30,6 +30,7 @@ Purpose: Append-only transition format for glider-lite runtime.
   "projection_2d_hash": "hex32",
   "thread_1d_hash": "hex32",
   "projection_version": "topo-signature/v1",
+  "policy_version": "crystallization/v1",
   "gate_config_version": "v1",
   "witness": "optional_hex32"
 }

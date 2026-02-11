@@ -5,6 +5,7 @@ import { GATE } from "./i.L32.core.GATE.ts";
 import { CRYSTALLIZATION } from "./i.L99.core.CRYSTALLIZATION.ts";
 import { LEDGER } from "./i.L99.core.LEDGER.ts";
 import { DeltaProposal, GateConfig, StateSnapshot } from "./i.L99.core.STATE_SNAPSHOT.ts";
+import { CRYSTALLIZATION_CONFIG } from "./i.L99.core.CRYSTALLIZATION_CONFIG.ts";
 
 export async function runTest() {
     console.log("🧪 TESTING: Replay Audit + Crystallization Coupling");
@@ -96,6 +97,17 @@ export async function runTest() {
         }
         if (!projectionDriftGatePass) {
             throw new Error(`Projection drift gate should pass: ${driftReport.failures.join(",")}`);
+        }
+
+        const raw = await Deno.readTextFile(LEDGER.STORAGE_PATH);
+        const lines = raw.split("\n").filter((x) => x.trim().length > 0);
+        const canonLine = lines.find((line) => line.includes("\"event_type\":\"CANONIZATION_EVENT\""));
+        if (!canonLine) {
+            throw new Error("missing CANONIZATION_EVENT");
+        }
+        const canon = JSON.parse(canonLine);
+        if (canon.policy_version !== CRYSTALLIZATION_CONFIG.policyVersion) {
+            throw new Error(`unexpected canon policy_version: ${canon.policy_version}`);
         }
     } finally {
         try {

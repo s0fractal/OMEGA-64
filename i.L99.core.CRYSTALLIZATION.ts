@@ -139,6 +139,7 @@ export const CRYSTALLIZATION = {
             window: windowSize,
             hard_gates: "PASS",
             soft_gates_passed: 6,
+            policy_version: CRYSTALLIZATION_CONFIG.policyVersion,
             witness: options.witness
         };
 

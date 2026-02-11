@@ -5,6 +5,7 @@ import { GATE } from "./i.L32.core.GATE.ts";
 import { LEDGER } from "./i.L99.core.LEDGER.ts";
 import { GateConfig, DeltaProposal, StateSnapshot } from "./i.L99.core.STATE_SNAPSHOT.ts";
 import { TOPOLOGICAL_SIGNATURE, TopologicalSignature } from "./i.L99.core.TOPOLOGICAL_SIGNATURE.ts";
+import { CRYSTALLIZATION_CONFIG } from "./i.L99.core.CRYSTALLIZATION_CONFIG.ts";
 
 const HEX_64 = /^[a-f0-9]{64}$/;
 
@@ -76,6 +77,9 @@ Deno.test("gate emits topological signature fields in ledger", async () => {
         if (evt.signature_tick !== next.tick) {
             throw new Error(`signature_tick mismatch: got ${evt.signature_tick}, expected ${next.tick}`);
         }
+        if (evt.policy_version !== CRYSTALLIZATION_CONFIG.policyVersion) {
+            throw new Error(`unexpected policy_version: ${evt.policy_version}`);
+        }
 
         const signature: TopologicalSignature = {
             artifact_hash: evt.signature_artifact_hash!,
@@ -135,6 +139,9 @@ Deno.test("gate does not emit topological signature fields in dry run", async ()
         if (evt.projection_2d_hash || evt.thread_1d_hash || evt.projection_version) {
             throw new Error("dry run must not emit projection hashes");
         }
+        if (evt.policy_version !== CRYSTALLIZATION_CONFIG.policyVersion) {
+            throw new Error(`unexpected policy_version in dry run: ${evt.policy_version}`);
+        }
     } finally {
         try {
             await Deno.remove(LEDGER.STORAGE_PATH);
@@ -144,4 +151,3 @@ Deno.test("gate does not emit topological signature fields in dry run", async ()
         LEDGER.STORAGE_PATH = originalPath;
     }
 });
-

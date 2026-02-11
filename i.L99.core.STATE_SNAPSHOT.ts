@@ -79,6 +79,7 @@ export interface LedgerEvent {
     projection_2d_hash?: string; // deterministic 2D projection hash
     thread_1d_hash?: string; // deterministic 1D thread hash
     projection_version?: string; // signature projection version
+    policy_version?: string; // crystallization/gate policy version
     witness?: string;
 }
 
@@ -107,6 +108,7 @@ export interface CanonizationEvent {
     window: number; // e.g. 512
     hard_gates: "PASS" | "FAIL";
     soft_gates_passed: number; // 0..6
+    policy_version?: string; // crystallization policy version
     witness?: string;
 }
 

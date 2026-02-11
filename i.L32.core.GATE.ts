@@ -15,6 +15,7 @@ import { LOAD } from "./i.L99.core.LOAD.ts";
 import { ACCESS_BY_RESONANCE } from "./i.L00.core.ACCESS_BY_RESONANCE.ts";
 import { CHECKPOINT } from "./i.L99.core.CHECKPOINT.ts";
 import { TOPOLOGICAL_SIGNATURE } from "./i.L99.core.TOPOLOGICAL_SIGNATURE.ts";
+import { CRYSTALLIZATION_CONFIG } from "./i.L99.core.CRYSTALLIZATION_CONFIG.ts";
 
 const GATE_VERSION = "v0.2";
 const AUTO_CHECKPOINT_INTERVAL = 128;
@@ -293,6 +294,7 @@ export const GATE = {
             projection_2d_hash: projection2DHash,
             thread_1d_hash: thread1DHash,
             projection_version: projectionVersion,
+            policy_version: CRYSTALLIZATION_CONFIG.policyVersion,
         };
 
         // 🛡️ Final Red Line Verification
