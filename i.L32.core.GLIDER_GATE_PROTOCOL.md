@@ -105,3 +105,12 @@ L32 MUST emit `BRIDGE_MODE_EVENT` every tick with:
 1. `artifact_hash` is identity anchor, not meaning metric.
 2. Causal drift is computed from lineage edges (`base_state_hash`, `causal_refs`).
 3. Semantic drift is external to hash bits and uses projection/behavior metrics.
+
+## 8. Pipeline Entry
+
+Runtime entrypoint:
+1. `/Users/s0fractal/OMEGA/i.L32.core.GATE_PIPELINE.ts`
+
+APIs:
+1. `processWithReplayContext(...)` (auto bridge context from replay),
+2. `processWithInvariantContext(...)` (explicit invariant snapshot).
