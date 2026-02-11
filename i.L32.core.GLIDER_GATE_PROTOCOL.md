@@ -8,6 +8,8 @@ merge protocol for agent deltas.
 1. `/Users/s0fractal/OMEGA/i.L99.core.STATE_SNAPSHOT.ts` (type authority).
 2. `/Users/s0fractal/OMEGA/i.L32.core.AGENT_SIGNATURE_SPEC.md` (signature and
    envelope authority).
+3. `/Users/s0fractal/OMEGA/i.L99.core.PROPOSAL_ENVELOPE_INDEX.md` (anti-replay
+   index chain authority).
 
 Conflict rule:
 

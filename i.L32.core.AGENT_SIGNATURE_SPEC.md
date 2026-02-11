@@ -9,6 +9,8 @@ for agent admission.
    fields).
 2. `/Users/s0fractal/OMEGA/i.L32.core.GLIDER_GATE_PROTOCOL.md` (gate admission
    flow and rejection taxonomy).
+3. `/Users/s0fractal/OMEGA/i.L99.core.PROPOSAL_ENVELOPE_INDEX.md` (anti-replay
+   storage and chain semantics).
 
 Conflict rule:
 

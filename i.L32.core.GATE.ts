@@ -20,6 +20,7 @@ import { CRYSTALLIZATION_CONFIG, CRYSTALLIZATION_POLICY } from "./i.L99.core.CRY
 import type { ReplayInvariantReport } from "./i.L99.core.REPLAY_AUDIT.ts";
 import { CANON_CAUSAL_BRIDGE } from "./i.L32.core.CANON_CAUSAL_BRIDGE.ts";
 import { AGENT_SIGNATURE } from "./i.L32.core.AGENT_SIGNATURE.ts";
+import { PROPOSAL_ENVELOPE_INDEX } from "./i.L99.core.PROPOSAL_ENVELOPE_INDEX.ts";
 
 const GATE_VERSION = "v0.2";
 const AUTO_CHECKPOINT_INTERVAL = 128;
@@ -79,24 +80,17 @@ export const GATE = {
         const blockedCanonProposals: string[] = [];
         const signaturePolicy = config.signature_policy ?? "DISABLED";
         const signatureKeys = config.agent_signature_keys;
+        const envelopeIndexPath = PROPOSAL_ENVELOPE_INDEX.pathForLedger(LEDGER.STORAGE_PATH);
         const antiReplayWindow = Math.max(0, Math.floor(config.anti_replay_window_ticks ?? 0));
-        const historicalEnvelopeHashes = new Set<string>();
+        const historicalEnvelopeHashes = antiReplayWindow > 0
+            ? await PROPOSAL_ENVELOPE_INDEX.getRecentEnvelopeHashes(
+                state.tick - antiReplayWindow,
+                state.tick,
+                envelopeIndexPath
+            )
+            : new Set<string>();
         const envelopeHashByProposal = new Map<string, string>();
         const seenEnvelopeHashesInTick = new Set<string>();
-
-        if (antiReplayWindow > 0) {
-            const minTick = state.tick - antiReplayWindow;
-            for await (const evt of LEDGER.readAll()) {
-                if (evt.tick < minTick || evt.tick > state.tick) {
-                    continue;
-                }
-                for (const accepted of evt.accepted_proposal_envelopes ?? []) {
-                    if (typeof accepted?.envelope_hash === "string" && accepted.envelope_hash.length > 0) {
-                        historicalEnvelopeHashes.add(accepted.envelope_hash);
-                    }
-                }
-            }
-        }
 
         const canonicalProposalList = proposals
             .map((p) => ({
@@ -433,6 +427,9 @@ export const GATE = {
 
         await LEDGER.append(bridgeEvent);
         await LEDGER.append(event);
+        if (!config.dry_run) {
+            await PROPOSAL_ENVELOPE_INDEX.appendFromLedgerEvent(event, envelopeIndexPath);
+        }
 
         if (!config.dry_run && nextTick % AUTO_CHECKPOINT_INTERVAL === 0) {
             try {
