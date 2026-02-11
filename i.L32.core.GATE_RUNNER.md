@@ -37,4 +37,4 @@ Replay audit options (CLI):
 1. Runner never applies deltas directly.
 2. Runner always delegates to `GATE_PIPELINE`.
 3. Bridge mode result (`GREEN|AMBER|RED`) is returned with `nextState`.
-4. CLI output includes `invariant_packet` when available (from replay audit or input).
+4. CLI output includes `invariant_packet` when available (from replay audit, input packet, or derived from invariant report).

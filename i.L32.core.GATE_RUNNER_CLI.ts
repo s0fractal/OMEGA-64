@@ -226,6 +226,13 @@ const run = async (): Promise<void> => {
     witness: input.witness,
   });
 
+  const derivedPacket = !input.invariantPacket && input.invariantReport
+    ? await INVARIANT_PACKET.fromInvariantReport(
+      input.invariantReport,
+      { tick_anchor: input.state.tick, witness: input.witness },
+    )
+    : undefined;
+
   const output: CliOutput = {
     nextState: {
       tick: result.nextState.tick,
@@ -235,7 +242,9 @@ const run = async (): Promise<void> => {
     bridge_mode: result.bridge_mode,
     bridge_reason: result.bridge_reason,
     replay_audit: result.replay_audit,
-    invariant_packet: result.replay_audit?.invariantPacket ?? input.invariantPacket,
+    invariant_packet: result.replay_audit?.invariantPacket ??
+      input.invariantPacket ??
+      derivedPacket,
   };
 
   const body = JSON.stringify(output, null, parsed.pretty ? 2 : undefined);
