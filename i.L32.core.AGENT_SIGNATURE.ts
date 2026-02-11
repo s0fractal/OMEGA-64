@@ -69,6 +69,11 @@ const fromBase64 = (b64: string): Uint8Array => {
 const asArrayBuffer = (bytes: Uint8Array): ArrayBuffer =>
   Uint8Array.from(bytes).buffer;
 
+const sha256Hex = async (payload: Uint8Array): Promise<string> => {
+  const digest = await crypto.subtle.digest("SHA-256", asArrayBuffer(payload));
+  return toHex(digest);
+};
+
 const signHmacSha256 = async (
   secret: string,
   payload: Uint8Array,
@@ -115,7 +120,11 @@ const signEd25519 = async (
     false,
     ["sign"],
   );
-  return await crypto.subtle.sign("Ed25519", privateKey, asArrayBuffer(payload));
+  return await crypto.subtle.sign(
+    "Ed25519",
+    privateKey,
+    asArrayBuffer(payload),
+  );
 };
 
 const verifyEd25519 = async (
@@ -165,6 +174,13 @@ const envelopeBytes = (
     `scheme=${scheme}|payload=${canonicalProposalPayload(proposal)}`,
   );
 
+const canonicalProposalEnvelope = (proposal: DeltaProposal): string =>
+  stableStringify({
+    signature_scheme: proposal.signature_scheme ?? null,
+    agent_signature: proposal.agent_signature ?? null,
+    payload: canonicalProposalPayload(proposal),
+  });
+
 type VerifyResult = {
   ok: boolean;
   reason?:
@@ -175,6 +191,7 @@ type VerifyResult = {
 
 export const AGENT_SIGNATURE = {
   canonicalProposalPayload,
+  canonicalProposalEnvelope,
 
   generateEd25519KeyPair: async (): Promise<Ed25519KeyPairMaterial> => {
     const pair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, [
@@ -243,5 +260,10 @@ export const AGENT_SIGNATURE = {
     } catch {
       return { ok: false, reason: "SIGNATURE_INVALID" };
     }
+  },
+
+  proposalEnvelopeHash: async (proposal: DeltaProposal): Promise<string> => {
+    const bytes = new TextEncoder().encode(canonicalProposalEnvelope(proposal));
+    return await sha256Hex(bytes);
   },
 };

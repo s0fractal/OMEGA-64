@@ -42,6 +42,7 @@ const baseConfig = (key: AgentSignatureKey): GateConfig => ({
   dry_run: false,
   signature_policy: "REQUIRED",
   agent_signature_keys: new Map([["agent_sync", key]]),
+  anti_replay_window_ticks: 0,
 });
 
 const latestLedgerEvent = async (): Promise<LedgerEvent> => {
@@ -273,6 +274,78 @@ Deno.test("legacy hmac signature remains supported", async () => {
     }
     if (next.state_i16[5] <= 0) {
       throw new Error("expected legacy hmac proposal to mutate state");
+    }
+  });
+});
+
+Deno.test("rejects proposal when provided envelope hash mismatches", async () => {
+  await withTempLedger("sig-envelope-mismatch", async () => {
+    const key = await createEd25519Material();
+    const genesis: StateSnapshot = {
+      tick: 7,
+      state_i16: new Int16Array(64).fill(0),
+      state_hash: "state_sig_7",
+    };
+    const p = baseProposal("p_sig_env_mismatch", 7, "state_sig_7", 6);
+    p.signature_scheme = "ed25519/v1";
+    p.agent_signature = await AGENT_SIGNATURE.signProposal(p, key.signing);
+    p.proposal_envelope_hash = "deadbeef";
+
+    const next = await GATE.process(genesis, [p], baseConfig(key.verification));
+    const evt = await latestLedgerEvent();
+    const rejection = evt.rejected_proposals.find((r) =>
+      r.proposal_id === "p_sig_env_mismatch"
+    );
+    if (!rejection) {
+      throw new Error("expected envelope mismatch rejection");
+    }
+    if (rejection.reason !== REJECTION.PROPOSAL_ENVELOPE_HASH_MISMATCH) {
+      throw new Error(
+        `expected ${REJECTION.PROPOSAL_ENVELOPE_HASH_MISMATCH}, got ${rejection.reason}`,
+      );
+    }
+    if (next.state_i16[5] !== 0) {
+      throw new Error("state must not mutate for envelope mismatch");
+    }
+  });
+});
+
+Deno.test("anti-replay window rejects duplicate envelope replay", async () => {
+  await withTempLedger("sig-anti-replay", async () => {
+    const key = await createEd25519Material();
+    const config = baseConfig(key.verification);
+    config.anti_replay_window_ticks = 32;
+
+    const genesis: StateSnapshot = {
+      tick: 8,
+      state_i16: new Int16Array(64).fill(0),
+      state_hash: "state_sig_8",
+    };
+    const p = baseProposal("p_sig_replay", 8, "state_sig_8", 5);
+    p.signature_scheme = "ed25519/v1";
+    p.agent_signature = await AGENT_SIGNATURE.signProposal(p, key.signing);
+    p.proposal_envelope_hash = await AGENT_SIGNATURE.proposalEnvelopeHash(p);
+
+    const first = await GATE.process(genesis, [p], config);
+    if (first.state_i16[5] <= 0) {
+      throw new Error("first proposal should mutate state");
+    }
+
+    const second = await GATE.process(genesis, [p], config);
+    const evt = await latestLedgerEvent();
+    const rejection = evt.rejected_proposals.find((r) =>
+      r.proposal_id === "p_sig_replay"
+    );
+    if (!rejection) {
+      throw new Error("expected replay duplicate rejection");
+    }
+    if (rejection.reason !== REJECTION.REPLAY_ENVELOPE_DUPLICATE) {
+      throw new Error(
+        `expected ${REJECTION.REPLAY_ENVELOPE_DUPLICATE}, got ${rejection.reason}`,
+      );
+    }
+    if (second.state_i16[5] !== 0) {
+      throw new Error("replayed proposal must not mutate state");
     }
   });
 });

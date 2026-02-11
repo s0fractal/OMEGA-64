@@ -35,6 +35,7 @@ export interface DeltaProposal {
   target_path?: "LOCAL" | "CANON"; // optional routing hint for L32 membrane
   signature_scheme?: AgentSignatureScheme; // optional signature scheme marker
   agent_signature?: string; // optional signed envelope for proposal integrity/authenticity
+  proposal_envelope_hash?: string; // optional precomputed envelope hash anchor
 }
 
 /**
@@ -48,6 +49,7 @@ export interface GateConfig {
   dry_run: boolean; // If true, state is NOT mutated
   signature_policy?: SignaturePolicy; // DISABLED (default), OPTIONAL, REQUIRED
   agent_signature_keys?: Map<string, AgentSignatureKey>; // agent_id -> shared verification key
+  anti_replay_window_ticks?: number; // reject replays of same proposal envelope within recent window
 }
 
 export type AgentSignatureScheme = "ed25519/v1" | "hmac-sha256/v1";
@@ -79,6 +81,9 @@ export interface LedgerEvent {
   accepted_delta: Array<{ level: number; value: number }>;
   proposal_digest: string; // Hash of all proposals (for integrity)
   accepted_proposals: string[];
+  accepted_proposal_envelopes?: Array<
+    { proposal_id: string; envelope_hash: string }
+  >;
   rejected_proposals: Array<{ proposal_id: string; reason: string }>;
   cost_total: number;
   budget_used: number;
@@ -227,4 +232,6 @@ export const REJECTION = {
   SIGNATURE_INVALID: "SIGNATURE_INVALID",
   SIGNATURE_KEY_MISSING: "SIGNATURE_KEY_MISSING",
   SIGNATURE_SCHEME_UNSUPPORTED: "SIGNATURE_SCHEME_UNSUPPORTED",
+  PROPOSAL_ENVELOPE_HASH_MISMATCH: "PROPOSAL_ENVELOPE_HASH_MISMATCH",
+  REPLAY_ENVELOPE_DUPLICATE: "REPLAY_ENVELOPE_DUPLICATE",
 };

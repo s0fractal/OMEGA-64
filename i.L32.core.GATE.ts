@@ -79,6 +79,24 @@ export const GATE = {
         const blockedCanonProposals: string[] = [];
         const signaturePolicy = config.signature_policy ?? "DISABLED";
         const signatureKeys = config.agent_signature_keys;
+        const antiReplayWindow = Math.max(0, Math.floor(config.anti_replay_window_ticks ?? 0));
+        const historicalEnvelopeHashes = new Set<string>();
+        const envelopeHashByProposal = new Map<string, string>();
+        const seenEnvelopeHashesInTick = new Set<string>();
+
+        if (antiReplayWindow > 0) {
+            const minTick = state.tick - antiReplayWindow;
+            for await (const evt of LEDGER.readAll()) {
+                if (evt.tick < minTick || evt.tick > state.tick) {
+                    continue;
+                }
+                for (const accepted of evt.accepted_proposal_envelopes ?? []) {
+                    if (typeof accepted?.envelope_hash === "string" && accepted.envelope_hash.length > 0) {
+                        historicalEnvelopeHashes.add(accepted.envelope_hash);
+                    }
+                }
+            }
+        }
 
         const canonicalProposalList = proposals
             .map((p) => ({
@@ -102,6 +120,25 @@ export const GATE = {
         const validProposals: DeltaProposal[] = [];
         
         for (const p of proposals) {
+            const envelopeHash = await AGENT_SIGNATURE.proposalEnvelopeHash(p);
+            envelopeHashByProposal.set(p.proposal_id, envelopeHash);
+            if (p.proposal_envelope_hash && p.proposal_envelope_hash !== envelopeHash) {
+                decision.rejected_proposals.push({
+                    proposal_id: p.proposal_id,
+                    reason: REJECTION.PROPOSAL_ENVELOPE_HASH_MISMATCH
+                });
+                continue;
+            }
+            if (antiReplayWindow > 0) {
+                if (seenEnvelopeHashesInTick.has(envelopeHash) || historicalEnvelopeHashes.has(envelopeHash)) {
+                    decision.rejected_proposals.push({
+                        proposal_id: p.proposal_id,
+                        reason: REJECTION.REPLAY_ENVELOPE_DUPLICATE
+                    });
+                    continue;
+                }
+                seenEnvelopeHashesInTick.add(envelopeHash);
+            }
             if (CANON_CAUSAL_BRIDGE.isCanonBound(p)) {
                 canonBoundProposals.push(p.proposal_id);
                 if (bridgeResolution.mode !== "GREEN") {
@@ -342,6 +379,12 @@ export const GATE = {
             accepted_delta: decision.accepted_delta,
             proposal_digest: proposalDigest,
             accepted_proposals: decision.accepted_proposals,
+            accepted_proposal_envelopes: decision.accepted_proposals
+                .map((proposal_id) => ({
+                    proposal_id,
+                    envelope_hash: envelopeHashByProposal.get(proposal_id) ?? ""
+                }))
+                .filter((x) => x.envelope_hash.length > 0),
             rejected_proposals: decision.rejected_proposals,
             cost_total: decision.cost_used,
             budget_used: decision.budget_used,

@@ -1,8 +1,7 @@
 # i.L32.core.GLIDER_GATE_PROTOCOL
 
-Status: Draft
-Layer: L32 (Integration Band)
-Purpose: Deterministic admission and merge protocol for agent deltas.
+Status: Draft Layer: L32 (Integration Band) Purpose: Deterministic admission and
+merge protocol for agent deltas.
 
 ## 1. Contract
 
@@ -56,6 +55,7 @@ Output:
 - `agent_signature_keys: Map<agent_id, key>` (optional)
   - `ed25519/v1`: `{ scheme, public_key_b64 }`
   - `hmac-sha256/v1` (legacy): `{ scheme, secret }`
+- `anti_replay_window_ticks: uint32` (optional; default `0` = disabled)
 
 `GateDecision`
 
@@ -75,16 +75,22 @@ Output:
 7. Resolve key by `agent_id` from `agent_signature_keys`.
 8. `REQUIRED`: reject without signature.
 9. `OPTIONAL`: verify signature only when present.
-10. Reject unsupported scheme, missing key (when required/present), or invalid signature.
-11. Clip each `delta.value` to `max_abs_delta_per_level`.
-12. Compute weighted score: `weight = confidence * reliability_weight[agent_id]`.
-13. Merge per level:
-   `merged[level] = saturating_round(sum(weight * delta_level))`.
-14. Enforce global budget: if total abs exceeds `max_total_abs_delta_per_tick`,
-   scale all levels uniformly.
-15. Compute `state_next = saturating_add(state, merged)`.
-16. Compute `state_next_hash`.
-17. Emit decision + ledger event.
+10. Reject unsupported scheme, missing key (when required/present), or invalid
+    signature.
+11. Compute deterministic `proposal_envelope_hash` (or verify provided one).
+12. Reject if envelope hash mismatches provided pre-hash.
+13. If anti-replay window enabled, reject when same envelope hash exists in
+    recent accepted history or current tick batch.
+14. Clip each `delta.value` to `max_abs_delta_per_level`.
+15. Compute weighted score:
+    `weight = confidence * reliability_weight[agent_id]`.
+16. Merge per level:
+    `merged[level] = saturating_round(sum(weight * delta_level))`.
+17. Enforce global budget: if total abs exceeds `max_total_abs_delta_per_tick`,
+    scale all levels uniformly.
+18. Compute `state_next = saturating_add(state, merged)`.
+19. Compute `state_next_hash`.
+20. Emit decision + ledger event.
 
 ## 4. Rejection Reasons (Canonical)
 
@@ -100,6 +106,8 @@ Output:
 - `SIGNATURE_INVALID`
 - `SIGNATURE_KEY_MISSING`
 - `SIGNATURE_SCHEME_UNSUPPORTED`
+- `PROPOSAL_ENVELOPE_HASH_MISMATCH`
+- `REPLAY_ENVELOPE_DUPLICATE`
 
 ## 5. Safety Rules
 

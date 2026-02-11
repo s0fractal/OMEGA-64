@@ -131,6 +131,7 @@ const toConfig = (src: CliInput["config"]): GateConfig => {
     dry_run: src.dry_run,
     signature_policy: src.signature_policy,
     agent_signature_keys: ask,
+    anti_replay_window_ticks: src.anti_replay_window_ticks,
   };
 };
 

@@ -88,7 +88,8 @@
       "semantic_fingerprint": "s1",
       "target_path": "LOCAL",
       "signature_scheme": "ed25519/v1",
-      "agent_signature": "9dc3dfe475723444dc238cf1bb1f6146c6dea087a368b9978cbeea7e4b68331a4ee9e8f19a4317e9832292fe6942149b7ea50139e3ce1e8153057f0276d1580b"
+      "agent_signature": "9dc3dfe475723444dc238cf1bb1f6146c6dea087a368b9978cbeea7e4b68331a4ee9e8f19a4317e9832292fe6942149b7ea50139e3ce1e8153057f0276d1580b",
+      "proposal_envelope_hash": "4849e809243ff4db08b3509db671ddb7ad5de9f792230999f7728dc9e41def3f"
     },
     {
       "proposal_id": "p_canon_replay",
@@ -108,7 +109,8 @@
       "semantic_fingerprint": "s1",
       "target_path": "CANON",
       "signature_scheme": "ed25519/v1",
-      "agent_signature": "e792ebf67afc03fce3a15a1a57e75e38c0ccc5d15ca5ef6bf394b8aee0566f1207bd18677ba8ef0d66147efb3d4f7ce1367c63b401239bbc8ae248b57611280d"
+      "agent_signature": "e792ebf67afc03fce3a15a1a57e75e38c0ccc5d15ca5ef6bf394b8aee0566f1207bd18677ba8ef0d66147efb3d4f7ce1367c63b401239bbc8ae248b57611280d",
+      "proposal_envelope_hash": "2711c860f71655bc17ab64bd29c1c7f4aadc9cbded2d055878c375ab1d9a1177"
     }
   ],
   "config": {
@@ -125,7 +127,8 @@
         "scheme": "ed25519/v1",
         "public_key_b64": "WkjZtogfRh6UxCLSNcv3gMOQtc2s5KItP82GPZefLNY="
       }
-    }
+    },
+    "anti_replay_window_ticks": 64
   },
   "mode": "REPLAY_CONTEXT",
   "replayAuditOptions": {
