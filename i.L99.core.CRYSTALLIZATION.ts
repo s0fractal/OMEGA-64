@@ -14,6 +14,7 @@ import { REPLAY_AUDIT, ReplayAuditResult, ReplayGenesis } from "./i.L99.core.REP
 import { PROJECTION_REPLAY_REPORT, ProjectionReplayReport } from "./i.L99.core.PROJECTION_REPLAY_REPORT.ts";
 import { PROJECTION_DRIFT_ANALYTICS, ProjectionDriftAnalyticsReport } from "./i.L99.core.PROJECTION_DRIFT_ANALYTICS.ts";
 import { CHECKPOINT } from "./i.L99.core.CHECKPOINT.ts";
+import { CRYSTALLIZATION_CONFIG } from "./i.L99.core.CRYSTALLIZATION_CONFIG.ts";
 
 const stableStringify = (value: unknown): string => {
     if (Array.isArray(value)) {
@@ -90,9 +91,9 @@ interface EnforceOptions {
 }
 
 export const CRYSTALLIZATION = {
-    WINDOW: 512,
-    MIN_SOFT_PASSES: 5,
-    DEFAULT_REQUIRED_WINDOWS: 3,
+    WINDOW: CRYSTALLIZATION_CONFIG.window,
+    MIN_SOFT_PASSES: CRYSTALLIZATION_CONFIG.minSoftPasses,
+    DEFAULT_REQUIRED_WINDOWS: CRYSTALLIZATION_CONFIG.defaultRequiredWindows,
 
     evaluate: async (
         currentTick: number,
@@ -180,9 +181,9 @@ export const CRYSTALLIZATION = {
             endTick: currentTick,
             requireReplayGreen: true,
             verifyTopologicalSignatures: true,
-            topLevels: options.projectionDriftTopLevels ?? 8
+            topLevels: options.projectionDriftTopLevels ?? CRYSTALLIZATION_CONFIG.projectionDriftTopLevels
         });
-        const projectionDriftMaxP95 = options.projectionDriftMaxP95 ?? 1024;
+        const projectionDriftMaxP95 = options.projectionDriftMaxP95 ?? CRYSTALLIZATION_CONFIG.projectionDriftMaxP95;
         const projectionDriftP95 = driftReport.driftByLevelP95.length > 0
             ? Math.max(...driftReport.driftByLevelP95)
             : 0;
