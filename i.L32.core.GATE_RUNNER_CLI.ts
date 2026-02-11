@@ -53,6 +53,8 @@ interface CliInput {
     startTick?: number;
     endTick?: number;
     verifyTopologicalSignatures?: boolean;
+    verifyLedgerChain?: boolean;
+    invariantOnly?: boolean;
   };
   invariantReport?: ReplayInvariantReport;
   witness?: string;
@@ -78,6 +80,7 @@ const usage = (): string =>
     "  - input.json must match CliInput schema (state_i16 as number[]).",
     "  - if --output is omitted, result is printed to stdout.",
     "  - if --ledger is provided, LEDGER.STORAGE_PATH is redirected.",
+    "  - replayAuditOptions may include verifyLedgerChain/invariantOnly.",
   ].join("\n");
 
 const clampI16 = (x: number): number => {

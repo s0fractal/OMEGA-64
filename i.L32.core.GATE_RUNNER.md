@@ -26,6 +26,11 @@ Modes:
 1. `REPLAY_CONTEXT` (auto context from replay audit)
 2. `INVARIANT_CONTEXT` (explicit invariant snapshot)
 
+Replay audit options (CLI):
+1. `verifyTopologicalSignatures` (default: true in report generators)
+2. `verifyLedgerChain` (ledger hash chain)
+3. `invariantOnly` (index-chain only, skips full tick replay)
+
 ## Contract
 
 1. Runner never applies deltas directly.

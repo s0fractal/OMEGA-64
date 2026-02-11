@@ -135,7 +135,9 @@
     "runs": 1,
     "startTick": 1,
     "endTick": 1,
-    "verifyTopologicalSignatures": true
+    "verifyTopologicalSignatures": true,
+    "verifyLedgerChain": true,
+    "invariantOnly": false
   },
   "witness": "example"
 }
