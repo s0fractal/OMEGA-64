@@ -1,7 +1,7 @@
 // test_replay_policy_transition.ts
 // Validates policy hash chain and explicit POLICY_TRANSITION_EVENT behavior.
 
-import { GATE } from "./i.L32.core.GATE.ts";
+import { GATE_PIPELINE } from "./i.L32.core.GATE_PIPELINE.ts";
 import { LEDGER } from "./i.L99.core.LEDGER.ts";
 import { REPLAY_AUDIT } from "./i.L99.core.REPLAY_AUDIT.ts";
 import { POLICY_TRANSITION } from "./i.L99.core.POLICY_TRANSITION.ts";
@@ -15,6 +15,13 @@ const baseConfig = (): GateConfig => ({
     reliability_weight: new Map([["agent_sync", 1.0]]),
     dry_run: false
 });
+
+const processLocal = async (
+    state: StateSnapshot,
+    proposals: DeltaProposal[],
+    config: GateConfig
+): Promise<StateSnapshot> =>
+    (await GATE_PIPELINE.processWithInvariantContext(state, proposals, config)).nextState;
 
 const proposal = (id: string, tick: number, baseHash: string, value: number): DeltaProposal => ({
     proposal_id: id,
@@ -56,8 +63,8 @@ async function buildTwoTicks() {
         state_i16: new Int16Array(64).fill(0),
         state_hash: "state_1"
     };
-    const s2 = await GATE.process(genesis, [proposal("p1", 1, "state_1", 10)], baseConfig());
-    await GATE.process(
+    const s2 = await processLocal(genesis, [proposal("p1", 1, "state_1", 10)], baseConfig());
+    await processLocal(
         { tick: 2, state_i16: s2.state_i16, state_hash: s2.state_hash },
         [proposal("p2", 2, s2.state_hash, -3)],
         baseConfig()
@@ -72,7 +79,7 @@ Deno.test("replay fails on local policy hash mismatch", async () => {
             state_i16: new Int16Array(64).fill(0),
             state_hash: "state_1"
         };
-        await GATE.process(genesis, [proposal("p1", 1, "state_1", 10)], baseConfig());
+        await processLocal(genesis, [proposal("p1", 1, "state_1", 10)], baseConfig());
 
         const raw = await Deno.readTextFile(LEDGER.STORAGE_PATH);
         const lines = raw.split("\n").filter((x) => x.trim().length > 0);

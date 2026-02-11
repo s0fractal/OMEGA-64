@@ -1,7 +1,7 @@
 // test_replay_canon_report_verification.ts
 // Verifies replay-time validation of canonization report hash/uri.
 
-import { GATE } from "./i.L32.core.GATE.ts";
+import { GATE_PIPELINE } from "./i.L32.core.GATE_PIPELINE.ts";
 import { CRYSTALLIZATION } from "./i.L99.core.CRYSTALLIZATION.ts";
 import { CRYSTALLIZATION_REPORT } from "./i.L99.core.CRYSTALLIZATION_REPORT.ts";
 import { LEDGER } from "./i.L99.core.LEDGER.ts";
@@ -15,6 +15,13 @@ const baseConfig = (): GateConfig => ({
     reliability_weight: new Map([["agent_sync", 1.0]]),
     dry_run: false
 });
+
+const processLocal = async (
+    state: StateSnapshot,
+    proposals: DeltaProposal[],
+    config: GateConfig
+): Promise<StateSnapshot> =>
+    (await GATE_PIPELINE.processWithInvariantContext(state, proposals, config)).nextState;
 
 async function prepareCrystallized(tempLedger: string, tempReportDir: string) {
     LEDGER.STORAGE_PATH = tempLedger;
@@ -41,7 +48,7 @@ async function prepareCrystallized(tempLedger: string, tempReportDir: string) {
         artifact_hash: "a1",
         semantic_fingerprint: "s1"
     };
-    const s2 = await GATE.process(genesis, [p1], baseConfig());
+    const s2 = await processLocal(genesis, [p1], baseConfig());
 
     const p2: DeltaProposal = {
         proposal_id: "p2",
@@ -55,7 +62,7 @@ async function prepareCrystallized(tempLedger: string, tempReportDir: string) {
         artifact_hash: "a1",
         semantic_fingerprint: "s1"
     };
-    const s3 = await GATE.process(s2, [p2], baseConfig());
+    const s3 = await processLocal(s2, [p2], baseConfig());
 
     await CRYSTALLIZATION.evaluateWithAudit(
         2,

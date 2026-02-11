@@ -1,13 +1,20 @@
 // test_replay_crystallization.ts
 // Smoke test for deterministic replay audit + crystallization coupling.
 
-import { GATE } from "./i.L32.core.GATE.ts";
+import { GATE_PIPELINE } from "./i.L32.core.GATE_PIPELINE.ts";
 import { CRYSTALLIZATION } from "./i.L99.core.CRYSTALLIZATION.ts";
 import { LEDGER } from "./i.L99.core.LEDGER.ts";
 import { DeltaProposal, GateConfig, StateSnapshot } from "./i.L99.core.STATE_SNAPSHOT.ts";
 import { CRYSTALLIZATION_CONFIG, CRYSTALLIZATION_POLICY } from "./i.L99.core.CRYSTALLIZATION_CONFIG.ts";
 import { CRYSTALLIZATION_REPORT } from "./i.L99.core.CRYSTALLIZATION_REPORT.ts";
 import { REPLAY_AUDIT } from "./i.L99.core.REPLAY_AUDIT.ts";
+
+const processLocal = async (
+    state: StateSnapshot,
+    proposals: DeltaProposal[],
+    config: GateConfig
+): Promise<StateSnapshot> =>
+    (await GATE_PIPELINE.processWithInvariantContext(state, proposals, config)).nextState;
 
 export async function runTest() {
     console.log("🧪 TESTING: Replay Audit + Crystallization Coupling");
@@ -54,7 +61,7 @@ export async function runTest() {
             semantic_fingerprint: "s1"
         };
 
-        const s2 = await GATE.process(genesisState, [p1], config);
+        const s2 = await processLocal(genesisState, [p1], config);
 
         const p2: DeltaProposal = {
             proposal_id: "p2",
@@ -69,7 +76,7 @@ export async function runTest() {
             semantic_fingerprint: "s1"
         };
 
-        const s3 = await GATE.process(s2, [p2], config);
+        const s3 = await processLocal(s2, [p2], config);
 
         const {
             crystallized,
@@ -249,7 +256,7 @@ export async function runProjectionHardGateTest() {
             artifact_hash: "a1",
             semantic_fingerprint: "s1"
         };
-        const s2 = await GATE.process(genesisState, [p1], config);
+        const s2 = await processLocal(genesisState, [p1], config);
 
         const p2: DeltaProposal = {
             proposal_id: "p2",
@@ -263,7 +270,7 @@ export async function runProjectionHardGateTest() {
             artifact_hash: "a1",
             semantic_fingerprint: "s1"
         };
-        const s3 = await GATE.process(s2, [p2], config);
+        const s3 = await processLocal(s2, [p2], config);
 
         // Tamper projection hash of first ledger event.
         const raw = await Deno.readTextFile(LEDGER.STORAGE_PATH);
@@ -366,7 +373,7 @@ export async function runProjectionDriftThresholdTest() {
             artifact_hash: "a1",
             semantic_fingerprint: "s1"
         };
-        const s2 = await GATE.process(genesisState, [p1], config);
+        const s2 = await processLocal(genesisState, [p1], config);
 
         const p2: DeltaProposal = {
             proposal_id: "p2",
@@ -380,7 +387,7 @@ export async function runProjectionDriftThresholdTest() {
             artifact_hash: "a1",
             semantic_fingerprint: "s1"
         };
-        const s3 = await GATE.process(s2, [p2], config);
+        const s3 = await processLocal(s2, [p2], config);
 
         // Use very strict drift threshold to force gate fail.
         const { crystallized, projectionDriftGatePass, audit } = await CRYSTALLIZATION.evaluateWithAudit(
