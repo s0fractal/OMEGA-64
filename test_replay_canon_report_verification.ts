@@ -104,7 +104,7 @@ Deno.test("replay fails when canonization report file is tampered", async () => 
         if (audit.replayGreen) {
             throw new Error("replay must fail when canonization report file is tampered");
         }
-        if (!audit.failures.some((f) => f.includes("canon report hash mismatch"))) {
+        if (!audit.failures.some((f) => f.includes("index_chain:INDEX_REPORT_HASH_MISMATCH"))) {
             throw new Error(`missing expected failure, got: ${audit.failures.join(",")}`);
         }
     } finally {
@@ -140,7 +140,46 @@ Deno.test("replay fails when canonization report file is missing", async () => {
         if (audit.replayGreen) {
             throw new Error("replay must fail when canonization report file is missing");
         }
-        if (!audit.failures.some((f) => f.includes("canon report missing/unreadable"))) {
+        if (!audit.failures.some((f) => f.includes("index_chain:INDEX_REPORT_READ_FAIL"))) {
+            throw new Error(`missing expected failure, got: ${audit.failures.join(",")}`);
+        }
+    } finally {
+        LEDGER.STORAGE_PATH = origLedger;
+        CRYSTALLIZATION_REPORT.STORAGE_DIR = origDir;
+        CRYSTALLIZATION_REPORT.INDEX_PATH = origIndex;
+        try { await Deno.remove(tempLedger); } catch { /* ignore */ }
+        try { await Deno.remove(tempDir, { recursive: true }); } catch { /* ignore */ }
+    }
+});
+
+Deno.test("replay fails when canonization report index chain is tampered", async () => {
+    const origLedger = LEDGER.STORAGE_PATH;
+    const origDir = CRYSTALLIZATION_REPORT.STORAGE_DIR;
+    const origIndex = CRYSTALLIZATION_REPORT.INDEX_PATH;
+    const tempLedger = await Deno.makeTempFile({ prefix: "omega-ledger-canon-verify-", suffix: ".jsonl" });
+    const tempDir = await Deno.makeTempDir({ prefix: "omega-canon-report-verify-" });
+
+    try {
+        const genesis = await prepareCrystallized(tempLedger, tempDir);
+
+        const rawIndex = await Deno.readTextFile(CRYSTALLIZATION_REPORT.INDEX_PATH);
+        const lines = rawIndex.split("\n").filter((x) => x.trim().length > 0);
+        if (lines.length < 1) {
+            throw new Error("missing report index line");
+        }
+        const record = JSON.parse(lines[0]);
+        record.record_hash = "f".repeat(64);
+        await Deno.writeTextFile(CRYSTALLIZATION_REPORT.INDEX_PATH, JSON.stringify(record) + "\n");
+
+        const audit = await REPLAY_AUDIT.audit(
+            { tick: 1, state_i16: genesis.state_i16, state_hash: "state_1" },
+            { runs: 1, startTick: 1, endTick: 2 }
+        );
+
+        if (audit.replayGreen) {
+            throw new Error("replay must fail when canonization report index chain is tampered");
+        }
+        if (!audit.failures.some((f) => f.includes("index_chain:INDEX_RECORD_HASH_MISMATCH"))) {
             throw new Error(`missing expected failure, got: ${audit.failures.join(",")}`);
         }
     } finally {

@@ -63,6 +63,8 @@ export interface CrystallizationReportIndexRecord {
     artifact_hash: string;
     state_hash: string;
     ts_unix_ms: number;
+    prev_record_hash: string | null;
+    record_hash: string;
     witness?: string;
 }
 
@@ -140,6 +142,100 @@ export const CRYSTALLIZATION_REPORT = {
     reportPath: (reportHash: string): string =>
         `${CRYSTALLIZATION_REPORT.STORAGE_DIR}/${reportHash}.json`,
 
+    indexRecordHash: async (
+        record: Omit<CrystallizationReportIndexRecord, "record_hash">
+    ): Promise<string> => await sha256Hex(stableStringify(record)),
+
+    readIndex: async function* (): AsyncGenerator<CrystallizationReportIndexRecord> {
+        try {
+            const content = await Deno.readTextFile(CRYSTALLIZATION_REPORT.INDEX_PATH);
+            for (const line of content.split("\n")) {
+                if (line.trim().length === 0) continue;
+                try {
+                    const parsed = JSON.parse(line) as CrystallizationReportIndexRecord;
+                    if (
+                        typeof parsed.report_hash === "string" &&
+                        typeof parsed.report_path === "string" &&
+                        typeof parsed.record_hash === "string" &&
+                        (typeof parsed.prev_record_hash === "string" || parsed.prev_record_hash === null)
+                    ) {
+                        yield parsed;
+                    }
+                } catch {
+                    // ignore malformed line
+                }
+            }
+        } catch (e) {
+            if (!(e instanceof Deno.errors.NotFound)) {
+                throw e;
+            }
+        }
+    },
+
+    findIndexRecord: async (
+        reportHash: string,
+        reportPath?: string
+    ): Promise<CrystallizationReportIndexRecord | null> => {
+        let found: CrystallizationReportIndexRecord | null = null;
+        for await (const rec of CRYSTALLIZATION_REPORT.readIndex()) {
+            if (rec.report_hash !== reportHash) continue;
+            if (reportPath && rec.report_path !== reportPath) continue;
+            found = rec;
+        }
+        return found;
+    },
+
+    verifyIndexChain: async (verifyReportFiles: boolean = true): Promise<{ ok: boolean; failures: string[] }> => {
+        const failures: string[] = [];
+        const records: CrystallizationReportIndexRecord[] = [];
+        for await (const rec of CRYSTALLIZATION_REPORT.readIndex()) {
+            records.push(rec);
+        }
+
+        let prev: string | null = null;
+        for (let i = 0; i < records.length; i++) {
+            const rec = records[i];
+            if (rec.prev_record_hash !== prev) {
+                failures.push(`INDEX_CHAIN_PREV_MISMATCH_AT_LINE_${i + 1}`);
+                break;
+            }
+            const expected = await CRYSTALLIZATION_REPORT.indexRecordHash({
+                report_hash: rec.report_hash,
+                report_version: rec.report_version,
+                report_path: rec.report_path,
+                tick: rec.tick,
+                artifact_hash: rec.artifact_hash,
+                state_hash: rec.state_hash,
+                ts_unix_ms: rec.ts_unix_ms,
+                prev_record_hash: rec.prev_record_hash,
+                witness: rec.witness
+            });
+            if (expected !== rec.record_hash) {
+                failures.push(`INDEX_RECORD_HASH_MISMATCH_AT_LINE_${i + 1}`);
+                break;
+            }
+
+            if (verifyReportFiles) {
+                try {
+                    const body = await Deno.readTextFile(rec.report_path);
+                    const parsed = JSON.parse(body) as CrystallizationReport;
+                    const computed = await CRYSTALLIZATION_REPORT.hash(parsed);
+                    if (computed !== rec.report_hash) {
+                        failures.push(`INDEX_REPORT_HASH_MISMATCH_AT_LINE_${i + 1}`);
+                        break;
+                    }
+                } catch {
+                    failures.push(`INDEX_REPORT_READ_FAIL_AT_LINE_${i + 1}`);
+                    break;
+                }
+            }
+
+            prev = rec.record_hash;
+        }
+
+        return { ok: failures.length === 0, failures };
+    },
+
     materialize: async (
         report: CrystallizationReport,
         reportHash: string,
@@ -151,7 +247,11 @@ export const CRYSTALLIZATION_REPORT = {
 
         try {
             await Deno.writeTextFile(path, payload, { createNew: true });
-            const indexRecord: CrystallizationReportIndexRecord = {
+            let prevRecordHash: string | null = null;
+            for await (const rec of CRYSTALLIZATION_REPORT.readIndex()) {
+                prevRecordHash = rec.record_hash;
+            }
+            const indexRecordWithoutHash: Omit<CrystallizationReportIndexRecord, "record_hash"> = {
                 report_hash: reportHash,
                 report_version: report.version,
                 report_path: path,
@@ -159,7 +259,13 @@ export const CRYSTALLIZATION_REPORT = {
                 artifact_hash: meta.artifact_hash,
                 state_hash: meta.state_hash,
                 ts_unix_ms: Date.now(),
+                prev_record_hash: prevRecordHash,
                 witness: meta.witness
+            };
+            const recordHash = await CRYSTALLIZATION_REPORT.indexRecordHash(indexRecordWithoutHash);
+            const indexRecord: CrystallizationReportIndexRecord = {
+                ...indexRecordWithoutHash,
+                record_hash: recordHash
             };
             await Deno.writeTextFile(
                 CRYSTALLIZATION_REPORT.INDEX_PATH,

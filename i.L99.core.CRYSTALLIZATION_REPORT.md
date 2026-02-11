@@ -35,6 +35,7 @@ Version:
 `CANONIZATION_EVENT` MUST carry:
 1. `crystallization_report_version`
 2. `crystallization_report_hash`
+3. `crystallization_report_uri`
 
 This hash is the canonical pointer to the decision artifact.
 
@@ -48,3 +49,17 @@ Rules:
 1. report files are content-addressed by hash,
 2. existing hash file is immutable (hash conflict is fatal),
 3. index is append-only.
+
+## 5. Index Chain Integrity
+
+Each `index.jsonl` record carries:
+1. `prev_record_hash`,
+2. `record_hash`.
+
+`record_hash` is SHA-256 over canonical record fields (including `prev_record_hash`),
+so index lines form an append-only hash chain.
+
+Replay audit must fail fast if:
+1. chain linkage is broken,
+2. index record hash is invalid,
+3. index entry points to a missing/tampered report file.

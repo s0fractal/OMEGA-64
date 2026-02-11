@@ -205,6 +205,29 @@ export const REPLAY_AUDIT = {
         let checkedCanonReports = 0;
         let skippedCanonReports = 0;
         const canonReportTickReport: CanonReportTickReport[] = [];
+        const hasCanonEvents = canonByCheckpointTick.size > 0;
+        if (hasCanonEvents) {
+            const indexChain = await CRYSTALLIZATION_REPORT.verifyIndexChain(true);
+            if (!indexChain.ok) {
+                return {
+                    replayGreen: false,
+                    runs,
+                    checkedEvents: events.length,
+                    skippedEvents: skipped,
+                    checkedProjectionEvents,
+                    skippedProjectionEvents,
+                    projectionTickReport,
+                    checkedPolicyEvents,
+                    skippedPolicyEvents,
+                    policyTickReport,
+                    checkedCanonReports,
+                    skippedCanonReports,
+                    canonReportTickReport,
+                    finalHashes,
+                    failures: indexChain.failures.map((x) => `index_chain:${x}`)
+                };
+            }
+        }
 
         for (let run = 0; run < runs; run++) {
             let tick = genesis.tick;
@@ -396,6 +419,20 @@ export const REPLAY_AUDIT = {
                             }
                             break;
                         }
+                        const indexRecord = await CRYSTALLIZATION_REPORT.findIndexRecord(reportHash, reportUri);
+                        if (!indexRecord) {
+                            failures.push(`run=${run} canon report index missing/mismatch at tick ${evt.tick}`);
+                            if (run === 0) {
+                                canonReportTickReport.push({
+                                    tick: evt.tick,
+                                    status: "FAIL",
+                                    reason: "CANON_REPORT_INDEX_MISSING_OR_MISMATCH",
+                                    report_hash: reportHash,
+                                    report_uri: reportUri
+                                });
+                            }
+                            break;
+                        }
                         if (run === 0) {
                             checkedCanonReports++;
                             canonReportTickReport.push({
@@ -406,7 +443,7 @@ export const REPLAY_AUDIT = {
                                 report_uri: reportUri
                             });
                         }
-                    } catch (e) {
+                    } catch {
                         failures.push(`run=${run} canon report missing/unreadable at tick ${evt.tick}`);
                         if (run === 0) {
                             canonReportTickReport.push({
