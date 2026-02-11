@@ -166,13 +166,15 @@ export const CRYSTALLIZATION = {
             endTick: currentTick,
             verifyTopologicalSignatures: true
         });
+        const projectionHardGatePass = projectionReport.failCount === 0;
 
         const crystallized = await CRYSTALLIZATION.evaluate(
             currentTick,
             artifactHash,
             stateHash,
             {
-                replayGreen: audit.replayGreen,
+                // Hard gate: projection replay must be clean.
+                replayGreen: audit.replayGreen && projectionHardGatePass,
                 requiredWindows,
                 windowSize,
                 witness: options.witness
