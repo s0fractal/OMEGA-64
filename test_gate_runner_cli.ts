@@ -82,6 +82,9 @@ Deno.test("gate runner cli processes JSON input and writes output", async () => 
         if (output.bridge_mode !== "GREEN") {
             throw new Error(`expected bridge_mode GREEN, got ${output.bridge_mode}`);
         }
+        if (!output.invariant_packet) {
+            throw new Error("expected invariant_packet in CLI output");
+        }
         if (output.nextState.tick !== 2) {
             throw new Error(`expected next tick 2, got ${output.nextState.tick}`);
         }

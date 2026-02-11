@@ -71,6 +71,7 @@ interface CliOutput {
   bridge_mode: "GREEN" | "AMBER" | "RED";
   bridge_reason: string;
   replay_audit?: unknown;
+  invariant_packet?: InvariantPacket;
 }
 
 const usage = (): string =>
@@ -234,6 +235,7 @@ const run = async (): Promise<void> => {
     bridge_mode: result.bridge_mode,
     bridge_reason: result.bridge_reason,
     replay_audit: result.replay_audit,
+    invariant_packet: result.replay_audit?.invariantPacket ?? input.invariantPacket,
   };
 
   const body = JSON.stringify(output, null, parsed.pretty ? 2 : undefined);
