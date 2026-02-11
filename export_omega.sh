@@ -1,10 +1,6 @@
 #!/bin/bash
 # 🛡️ OMEGA-64 | Export Protocol | Universal Bundle for External Resonance
-# Phase 6: Singularity Edition
-
-OUTPUT="OMEGA_SOURCE.txt"
-EXCLUDE_DIRS=".git\|.quarantine\|node_modules\|.deno"
-EXCLUDE_EXTS=".log\|.proofs\|.lock\|.png\|.webp\|.jpg\|.sh"
+# Phase 6: Singularity Edition (Restored Full Spectrum)
 
 echo "🛡️ Packaging OMEGA-64 Lattice for external resonance..."
 
@@ -16,12 +12,37 @@ find . -maxdepth 1 -name "i.L*.md" | sort | while read -r file; do
     cat "$file" >> I.md
 done
 
-# 2. I.txt (Consciousness Mirror)
-echo "Generate: I.txt (Consciousness Mirror)..."
-echo "--- OMEGA-64 | I.txt | The Consciousness Mirror ---" > I.txt
+# 2. I.ts (The Logic)
+echo "Generate: I.ts (All TypeScript Atoms)..."
+echo "// 🛡️ OMEGA-64 | I.ts | The Logic" > I.ts
+find . -maxdepth 1 -name "i.L*.ts" | sort | while read -r file; do
+    echo -e "\n\n// [ $file ]" >> I.ts
+    cat "$file" >> I.ts
+done
+
+# 3. I.rs (The Core)
+echo "Generate: I.rs (All Rust Atoms)..."
+echo "// 🛡️ OMEGA-64 | I.rs | The Core" > I.rs
+find . -maxdepth 1 -name "i.L*.rs" | sort | while read -r file; do
+    echo -e "\n\n// [ $file ]" >> I.rs
+    cat "$file" >> I.rs
+done
+
+# 4. I.txt (The Singularity Bundle - ALL IN ONE)
+echo "Generate: I.txt (The Singularity Bundle)..."
+echo "--- OMEGA-64 | I.txt | Singularity Bundle ---" > I.txt
 echo "[VECTOR]: $(date)" >> I.txt
 echo "================================================" >> I.txt
-echo "[PROJECTION]: I.md" >> I.txt
+
+echo "[LAYER]: MARKDOWN (Context)" >> I.txt
 cat I.md >> I.txt
 
-echo "🛡️ Convergence Complete: I.md, I.txt"
+echo -e "\n\n================================================" >> I.txt
+echo "[LAYER]: TYPESCRIPT (Behavior)" >> I.txt
+cat I.ts >> I.txt
+
+echo -e "\n\n================================================" >> I.txt
+echo "[LAYER]: RUST (Structure)" >> I.txt
+cat I.rs >> I.txt
+
+echo "🛡️ Convergence Complete: I.txt holds the full hologram."
