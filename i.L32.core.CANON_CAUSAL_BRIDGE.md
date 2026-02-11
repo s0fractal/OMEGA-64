@@ -65,3 +65,12 @@ L32 does not define canon truth.
 L32 only enforces membrane behavior:
 1. local agents can drift,
 2. canon path requires causal integrity.
+
+## 7. Caller Helper
+
+Runtime callers can use:
+1. `/Users/s0fractal/OMEGA/i.L32.core.GATE_RUNTIME_CONTEXT.ts`
+
+APIs:
+1. `fromInvariantReport(...)` for direct invariant injection,
+2. `fromReplayAudit(...)` to derive runtime context from replay automatically.
