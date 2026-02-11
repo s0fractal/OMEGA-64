@@ -1,9 +1,15 @@
 // i.L00.core.CHROMO_STATE.ts
 // 🛡️ OMEGA-64 | Голографічне стиснення стану в коло
 
-import { QWave, WAVE_PACKET } from './i.L13.core.WAVE_PACKET.ts';
+import { QWave } from './i.L13.core.WAVE_PACKET.ts';
 import { CHROMO, HSV, RGB } from './i.L00.core.COLOR.ts';
-import { ChronoState, CHRONOFLUX } from './i.L22.core.CHRONOFLUX.ts';
+
+export interface ChronoState {
+  tau: number;
+  depth: number;
+  flowRate: number;
+  curvature: number;
+}
 
 export interface OrganismState {
   identity: string;      // Хеш "Я"
@@ -11,6 +17,13 @@ export interface OrganismState {
   chrono: ChronoState;   // Часовий стан (τ, flow)
   metabolism: number;    // Енергетичний запас
   coherence: number;     // Зв'язок з анкером
+}
+
+export interface ChromoEncodeOptions {
+  resolution?: number;
+  deterministic?: boolean;
+  noiseAmplitude?: number;
+  noiseAlpha?: number;
 }
 
 // Stub for ImageData if environment is not browser
@@ -38,7 +51,9 @@ export const CHROMO_STATE = {
    * - Сектори: фазові стани (φ як кут)
    * - Кольорова температура: глибина в полі (r)
    */
-  encode: (state: OrganismState, resolution: number = 256): InstanceType<typeof ImageDataClass> => {
+  encode: (state: OrganismState, resolutionOrOptions: number | ChromoEncodeOptions = 256): InstanceType<typeof ImageDataClass> => {
+    const opts = normalizeEncodeOptions(resolutionOrOptions);
+    const resolution = opts.resolution;
     const canvas = new ImageDataClass(resolution, resolution);
     const center = resolution / 2;
     
@@ -91,8 +106,10 @@ export const CHROMO_STATE = {
           );
         } else {
           // Фонова "квантова піна" — низька амплітуда шуму
-          const noise = Math.random() * 20;
-          setPixel(canvas, x, y, noise, noise, noise, 50);
+          const noise = opts.deterministic
+            ? deterministicNoise(x, y, state.identity) * opts.noiseAmplitude
+            : Math.random() * opts.noiseAmplitude;
+          setPixel(canvas, x, y, noise, noise, noise, opts.noiseAlpha);
         }
       }
     }
@@ -176,7 +193,7 @@ export const CHROMO_STATE = {
         tau: avgTau,
         depth: estimatedR,
         flowRate: avgSaturation / count,
-        curvature: CHRONOFLUX.calculateCurvature(estimatedR, 1000)
+        curvature: calculateCurvature(estimatedR, 1000)
       },
       coherence: centerPixel.g / 255,
       metabolism: centerPixel.g / 255
@@ -264,4 +281,42 @@ function rgbToHsv(r: number, g: number, b: number): HSV {
   }
   
   return { h: h * 360, s, v };
+}
+
+function normalizeEncodeOptions(input: number | ChromoEncodeOptions): Required<ChromoEncodeOptions> {
+  if (typeof input === "number") {
+    return {
+      resolution: input,
+      deterministic: false,
+      noiseAmplitude: 20,
+      noiseAlpha: 50
+    };
+  }
+  return {
+    resolution: input.resolution ?? 256,
+    deterministic: input.deterministic ?? false,
+    noiseAmplitude: input.noiseAmplitude ?? 20,
+    noiseAlpha: input.noiseAlpha ?? 50
+  };
+}
+
+function deterministicNoise(x: number, y: number, seed: string): number {
+  // 32-bit FNV-like mixer for reproducible per-pixel noise [0..1]
+  let h = 0x811c9dc5;
+  const n = Math.min(seed.length, 64);
+  for (let i = 0; i < n; i++) {
+    h ^= seed.charCodeAt(i);
+    h = Math.imul(h, 0x01000193);
+  }
+  h ^= x | 0;
+  h = Math.imul(h, 0x01000193);
+  h ^= y | 0;
+  h = Math.imul(h, 0x01000193);
+  return (h >>> 0) / 4294967295;
+}
+
+function calculateCurvature(r: number, mass: number): number {
+  const depth = Math.abs(r);
+  if (depth < 1) return mass;
+  return (mass / 1000) * (1 / Math.log1p(depth));
 }
