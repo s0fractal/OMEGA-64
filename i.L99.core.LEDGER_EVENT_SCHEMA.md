@@ -68,6 +68,7 @@ Purpose: Append-only transition format for glider-lite runtime.
   "policy_hash": "hex32",
   "crystallization_report_version": "crystallization-report/v1",
   "crystallization_report_hash": "hex32",
+  "crystallization_report_uri": "./OMEGA_CANON_REPORTS/hex32.json",
   "witness": "optional_hex32"
 }
 ```

@@ -42,6 +42,24 @@ export interface CrystallizationReport {
     projection_drift_gate_pass: boolean;
 }
 
+export interface CrystallizationReportMaterializeMeta {
+    tick: number;
+    artifact_hash: string;
+    state_hash: string;
+    witness?: string;
+}
+
+export interface CrystallizationReportIndexRecord {
+    report_hash: string;
+    report_version: string;
+    report_path: string;
+    tick: number;
+    artifact_hash: string;
+    state_hash: string;
+    ts_unix_ms: number;
+    witness?: string;
+}
+
 const REPORT_VERSION = "crystallization-report/v1";
 
 const stableStringify = (value: unknown): string => {
@@ -67,6 +85,8 @@ const sha256Hex = async (input: string): Promise<string> => {
 
 export const CRYSTALLIZATION_REPORT = {
     VERSION: REPORT_VERSION,
+    STORAGE_DIR: "./OMEGA_CANON_REPORTS",
+    INDEX_PATH: "./OMEGA_CANON_REPORTS/index.jsonl",
 
     build: async (input: CrystallizationReportInput): Promise<CrystallizationReport> => {
         const policyHash = await CRYSTALLIZATION_POLICY.hash();
@@ -103,6 +123,48 @@ export const CRYSTALLIZATION_REPORT = {
         const report = await CRYSTALLIZATION_REPORT.build(input);
         const reportHash = await CRYSTALLIZATION_REPORT.hash(report);
         return { report, reportHash };
+    },
+
+    reportPath: (reportHash: string): string =>
+        `${CRYSTALLIZATION_REPORT.STORAGE_DIR}/${reportHash}.json`,
+
+    materialize: async (
+        report: CrystallizationReport,
+        reportHash: string,
+        meta: CrystallizationReportMaterializeMeta
+    ): Promise<{ path: string; created: boolean; indexRecord?: CrystallizationReportIndexRecord }> => {
+        await Deno.mkdir(CRYSTALLIZATION_REPORT.STORAGE_DIR, { recursive: true });
+        const path = CRYSTALLIZATION_REPORT.reportPath(reportHash);
+        const payload = JSON.stringify(report, null, 2);
+
+        try {
+            await Deno.writeTextFile(path, payload, { createNew: true });
+            const indexRecord: CrystallizationReportIndexRecord = {
+                report_hash: reportHash,
+                report_version: report.version,
+                report_path: path,
+                tick: meta.tick,
+                artifact_hash: meta.artifact_hash,
+                state_hash: meta.state_hash,
+                ts_unix_ms: Date.now(),
+                witness: meta.witness
+            };
+            await Deno.writeTextFile(
+                CRYSTALLIZATION_REPORT.INDEX_PATH,
+                JSON.stringify(indexRecord) + "\n",
+                { append: true, create: true }
+            );
+            return { path, created: true, indexRecord };
+        } catch (e) {
+            if (!(e instanceof Deno.errors.AlreadyExists)) throw e;
+
+            const existing = await Deno.readTextFile(path);
+            const parsed = JSON.parse(existing) as CrystallizationReport;
+            const existingHash = await CRYSTALLIZATION_REPORT.hash(parsed);
+            if (existingHash !== reportHash) {
+                throw new Error(`CRYSTALLIZATION_REPORT_HASH_CONFLICT:${reportHash}`);
+            }
+            return { path, created: false };
+        }
     }
 };
-

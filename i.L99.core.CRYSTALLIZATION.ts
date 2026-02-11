@@ -79,6 +79,7 @@ interface EvaluateOptions {
     windowSize?: number;
     crystallizationReportVersion?: string;
     crystallizationReportHash?: string;
+    crystallizationReportUri?: string;
 }
 
 interface EvaluateWithAuditOptions extends EvaluateOptions {
@@ -147,6 +148,7 @@ export const CRYSTALLIZATION = {
             policy_hash: policyHash,
             crystallization_report_version: options.crystallizationReportVersion,
             crystallization_report_hash: options.crystallizationReportHash,
+            crystallization_report_uri: options.crystallizationReportUri,
             witness: options.witness
         };
 
@@ -168,6 +170,7 @@ export const CRYSTALLIZATION = {
         projectionDriftGatePass: boolean;
         crystallizationReport: CrystallizationReport;
         crystallizationReportHash: string;
+        crystallizationReportUri: string;
     }> => {
         const requiredWindows = options.requiredWindows ?? CRYSTALLIZATION.DEFAULT_REQUIRED_WINDOWS;
         const windowSize = options.windowSize ?? CRYSTALLIZATION.WINDOW;
@@ -212,6 +215,17 @@ export const CRYSTALLIZATION = {
                 projection_drift_gate_pass: projectionDriftGatePass,
                 projection_drift_max_p95: projectionDriftMaxP95
             });
+        const materialized = await CRYSTALLIZATION_REPORT.materialize(
+            crystallizationReport,
+            crystallizationReportHash,
+            {
+                tick: currentTick,
+                artifact_hash: artifactHash,
+                state_hash: stateHash,
+                witness: options.witness
+            }
+        );
+        const crystallizationReportUri = materialized.path;
 
         const crystallized = await CRYSTALLIZATION.evaluate(
             currentTick,
@@ -224,6 +238,7 @@ export const CRYSTALLIZATION = {
                 windowSize,
                 crystallizationReportVersion: CRYSTALLIZATION_REPORT.VERSION,
                 crystallizationReportHash,
+                crystallizationReportUri,
                 witness: options.witness
             }
         );
@@ -235,7 +250,8 @@ export const CRYSTALLIZATION = {
             driftReport,
             projectionDriftGatePass,
             crystallizationReport,
-            crystallizationReportHash
+            crystallizationReportHash,
+            crystallizationReportUri
         };
     },
 

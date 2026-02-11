@@ -24,6 +24,7 @@ API:
 1. `CRYSTALLIZATION_REPORT.build(input)`
 2. `CRYSTALLIZATION_REPORT.hash(report)`
 3. `CRYSTALLIZATION_REPORT.buildWithHash(input)`
+4. `CRYSTALLIZATION_REPORT.materialize(report, hash, meta)`
 
 Version:
 `crystallization-report/v1`
@@ -36,3 +37,13 @@ Version:
 
 This hash is the canonical pointer to the decision artifact.
 
+## 4. Materialization
+
+Default storage:
+1. `./OMEGA_CANON_REPORTS/<report_hash>.json`
+2. append-only index: `./OMEGA_CANON_REPORTS/index.jsonl`
+
+Rules:
+1. report files are content-addressed by hash,
+2. existing hash file is immutable (hash conflict is fatal),
+3. index is append-only.

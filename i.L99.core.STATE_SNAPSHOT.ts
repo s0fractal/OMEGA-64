@@ -113,6 +113,7 @@ export interface CanonizationEvent {
     policy_hash?: string; // SHA-256 of canonical crystallization policy payload
     crystallization_report_version?: string; // report schema version
     crystallization_report_hash?: string; // SHA-256 of canonical crystallization report payload
+    crystallization_report_uri?: string; // materialized report path (content-addressed)
     witness?: string;
 }
 

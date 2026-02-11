@@ -6,6 +6,7 @@ import { CRYSTALLIZATION } from "./i.L99.core.CRYSTALLIZATION.ts";
 import { LEDGER } from "./i.L99.core.LEDGER.ts";
 import { DeltaProposal, GateConfig, StateSnapshot } from "./i.L99.core.STATE_SNAPSHOT.ts";
 import { CRYSTALLIZATION_CONFIG, CRYSTALLIZATION_POLICY } from "./i.L99.core.CRYSTALLIZATION_CONFIG.ts";
+import { CRYSTALLIZATION_REPORT } from "./i.L99.core.CRYSTALLIZATION_REPORT.ts";
 
 export async function runTest() {
     console.log("🧪 TESTING: Replay Audit + Crystallization Coupling");
@@ -15,6 +16,11 @@ export async function runTest() {
         prefix: "omega-ledger-replay-",
         suffix: ".jsonl"
     });
+    const originalReportDir = CRYSTALLIZATION_REPORT.STORAGE_DIR;
+    const originalReportIndex = CRYSTALLIZATION_REPORT.INDEX_PATH;
+    const tempReportDir = await Deno.makeTempDir({ prefix: "omega-canon-report-" });
+    CRYSTALLIZATION_REPORT.STORAGE_DIR = tempReportDir;
+    CRYSTALLIZATION_REPORT.INDEX_PATH = `${tempReportDir}/index.jsonl`;
     LEDGER.STORAGE_PATH = tempPath;
     await Deno.writeTextFile(LEDGER.STORAGE_PATH, "");
 
@@ -71,7 +77,8 @@ export async function runTest() {
             driftReport,
             projectionDriftGatePass,
             crystallizationReport,
-            crystallizationReportHash
+            crystallizationReportHash,
+            crystallizationReportUri
         } = await CRYSTALLIZATION.evaluateWithAudit(
             2,
             "artifact_demo",
@@ -134,12 +141,37 @@ export async function runTest() {
                 `unexpected canon crystallization_report_version: ${canon.crystallization_report_version}`
             );
         }
+        if (canon.crystallization_report_uri !== crystallizationReportUri) {
+            throw new Error(
+                `unexpected canon crystallization_report_uri: ${canon.crystallization_report_uri}`
+            );
+        }
+
+        const reportContent = await Deno.readTextFile(crystallizationReportUri);
+        const reportJson = JSON.parse(reportContent);
+        const computedReportHash = await CRYSTALLIZATION_REPORT.hash(reportJson);
+        if (computedReportHash !== crystallizationReportHash) {
+            throw new Error("materialized crystallization report hash mismatch");
+        }
+
+        const indexRaw = await Deno.readTextFile(CRYSTALLIZATION_REPORT.INDEX_PATH);
+        const indexLines = indexRaw.split("\n").filter((x) => x.trim().length > 0);
+        if (indexLines.length < 1) {
+            throw new Error("missing crystallization report index records");
+        }
     } finally {
         try {
             await Deno.remove(LEDGER.STORAGE_PATH);
         } catch {
             // ignore cleanup errors
         }
+        try {
+            await Deno.remove(tempReportDir, { recursive: true });
+        } catch {
+            // ignore cleanup errors
+        }
+        CRYSTALLIZATION_REPORT.STORAGE_DIR = originalReportDir;
+        CRYSTALLIZATION_REPORT.INDEX_PATH = originalReportIndex;
         LEDGER.STORAGE_PATH = originalPath;
     }
 }
@@ -152,6 +184,11 @@ export async function runProjectionHardGateTest() {
         prefix: "omega-ledger-replay-projection-gate-",
         suffix: ".jsonl"
     });
+    const originalReportDir = CRYSTALLIZATION_REPORT.STORAGE_DIR;
+    const originalReportIndex = CRYSTALLIZATION_REPORT.INDEX_PATH;
+    const tempReportDir = await Deno.makeTempDir({ prefix: "omega-canon-report-" });
+    CRYSTALLIZATION_REPORT.STORAGE_DIR = tempReportDir;
+    CRYSTALLIZATION_REPORT.INDEX_PATH = `${tempReportDir}/index.jsonl`;
     LEDGER.STORAGE_PATH = tempPath;
     await Deno.writeTextFile(LEDGER.STORAGE_PATH, "");
 
@@ -244,6 +281,13 @@ export async function runProjectionHardGateTest() {
         } catch {
             // ignore cleanup errors
         }
+        try {
+            await Deno.remove(tempReportDir, { recursive: true });
+        } catch {
+            // ignore cleanup errors
+        }
+        CRYSTALLIZATION_REPORT.STORAGE_DIR = originalReportDir;
+        CRYSTALLIZATION_REPORT.INDEX_PATH = originalReportIndex;
         LEDGER.STORAGE_PATH = originalPath;
     }
 }
@@ -256,6 +300,11 @@ export async function runProjectionDriftThresholdTest() {
         prefix: "omega-ledger-replay-projection-threshold-",
         suffix: ".jsonl"
     });
+    const originalReportDir = CRYSTALLIZATION_REPORT.STORAGE_DIR;
+    const originalReportIndex = CRYSTALLIZATION_REPORT.INDEX_PATH;
+    const tempReportDir = await Deno.makeTempDir({ prefix: "omega-canon-report-" });
+    CRYSTALLIZATION_REPORT.STORAGE_DIR = tempReportDir;
+    CRYSTALLIZATION_REPORT.INDEX_PATH = `${tempReportDir}/index.jsonl`;
     LEDGER.STORAGE_PATH = tempPath;
     await Deno.writeTextFile(LEDGER.STORAGE_PATH, "");
 
@@ -336,6 +385,13 @@ export async function runProjectionDriftThresholdTest() {
         } catch {
             // ignore cleanup errors
         }
+        try {
+            await Deno.remove(tempReportDir, { recursive: true });
+        } catch {
+            // ignore cleanup errors
+        }
+        CRYSTALLIZATION_REPORT.STORAGE_DIR = originalReportDir;
+        CRYSTALLIZATION_REPORT.INDEX_PATH = originalReportIndex;
         LEDGER.STORAGE_PATH = originalPath;
     }
 }
