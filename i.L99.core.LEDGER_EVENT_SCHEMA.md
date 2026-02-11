@@ -52,6 +52,26 @@ Purpose: Append-only transition format for glider-lite runtime.
 }
 ```
 
+## 1.2 Canonization Event (Extended)
+
+```json
+{
+  "event_type": "CANONIZATION_EVENT",
+  "artifact_hash": "hex32",
+  "state_hash": "hex32",
+  "proposal_digest": "hex32",
+  "checkpoint_tick": 128,
+  "window": 512,
+  "hard_gates": "PASS",
+  "soft_gates_passed": 6,
+  "policy_version": "crystallization/v1",
+  "policy_hash": "hex32",
+  "crystallization_report_version": "crystallization-report/v1",
+  "crystallization_report_hash": "hex32",
+  "witness": "optional_hex32"
+}
+```
+
 ## 2. Canonical Serialization
 
 1. UTF-8 JSON.

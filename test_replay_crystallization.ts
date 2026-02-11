@@ -64,7 +64,15 @@ export async function runTest() {
 
         const s3 = await GATE.process(s2, [p2], config);
 
-        const { crystallized, audit, projectionReport, driftReport, projectionDriftGatePass } = await CRYSTALLIZATION.evaluateWithAudit(
+        const {
+            crystallized,
+            audit,
+            projectionReport,
+            driftReport,
+            projectionDriftGatePass,
+            crystallizationReport,
+            crystallizationReportHash
+        } = await CRYSTALLIZATION.evaluateWithAudit(
             2,
             "artifact_demo",
             s3.state_hash,
@@ -99,6 +107,9 @@ export async function runTest() {
         if (!projectionDriftGatePass) {
             throw new Error(`Projection drift gate should pass: ${driftReport.failures.join(",")}`);
         }
+        if (crystallizationReport.replay_audit.policyTickReport.length === 0) {
+            throw new Error("crystallization report must include policyTickReport");
+        }
 
         const raw = await Deno.readTextFile(LEDGER.STORAGE_PATH);
         const lines = raw.split("\n").filter((x) => x.trim().length > 0);
@@ -112,6 +123,16 @@ export async function runTest() {
         }
         if (canon.policy_hash !== expectedPolicyHash) {
             throw new Error(`unexpected canon policy_hash: ${canon.policy_hash}`);
+        }
+        if (canon.crystallization_report_hash !== crystallizationReportHash) {
+            throw new Error(
+                `unexpected canon crystallization_report_hash: ${canon.crystallization_report_hash}`
+            );
+        }
+        if (canon.crystallization_report_version !== "crystallization-report/v1") {
+            throw new Error(
+                `unexpected canon crystallization_report_version: ${canon.crystallization_report_version}`
+            );
         }
     } finally {
         try {

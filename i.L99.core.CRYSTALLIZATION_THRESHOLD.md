@@ -30,6 +30,8 @@ Default runtime values are defined in:
 Policy version MUST be persisted in emitted events as `policy_version`.
 Policy hash MUST be persisted in emitted events as `policy_hash`.
 Policy change is valid only via explicit `POLICY_TRANSITION_EVENT`.
+Canonization MUST persist `crystallization_report_hash` and
+`crystallization_report_version`.
 
 2. Critical Safety:
 `CRITICAL VIOLATION_EVENT = 0` in stability window.

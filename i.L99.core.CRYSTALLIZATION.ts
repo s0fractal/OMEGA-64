@@ -15,6 +15,7 @@ import { PROJECTION_REPLAY_REPORT, ProjectionReplayReport } from "./i.L99.core.P
 import { PROJECTION_DRIFT_ANALYTICS, ProjectionDriftAnalyticsReport } from "./i.L99.core.PROJECTION_DRIFT_ANALYTICS.ts";
 import { CHECKPOINT } from "./i.L99.core.CHECKPOINT.ts";
 import { CRYSTALLIZATION_CONFIG, CRYSTALLIZATION_POLICY } from "./i.L99.core.CRYSTALLIZATION_CONFIG.ts";
+import { CRYSTALLIZATION_REPORT, CrystallizationReport } from "./i.L99.core.CRYSTALLIZATION_REPORT.ts";
 
 const stableStringify = (value: unknown): string => {
     if (Array.isArray(value)) {
@@ -76,6 +77,8 @@ interface EvaluateOptions {
     requiredWindows?: number;
     witness?: string;
     windowSize?: number;
+    crystallizationReportVersion?: string;
+    crystallizationReportHash?: string;
 }
 
 interface EvaluateWithAuditOptions extends EvaluateOptions {
@@ -142,6 +145,8 @@ export const CRYSTALLIZATION = {
             soft_gates_passed: 6,
             policy_version: CRYSTALLIZATION_CONFIG.policyVersion,
             policy_hash: policyHash,
+            crystallization_report_version: options.crystallizationReportVersion,
+            crystallization_report_hash: options.crystallizationReportHash,
             witness: options.witness
         };
 
@@ -161,6 +166,8 @@ export const CRYSTALLIZATION = {
         projectionReport: ProjectionReplayReport;
         driftReport: ProjectionDriftAnalyticsReport;
         projectionDriftGatePass: boolean;
+        crystallizationReport: CrystallizationReport;
+        crystallizationReportHash: string;
     }> => {
         const requiredWindows = options.requiredWindows ?? CRYSTALLIZATION.DEFAULT_REQUIRED_WINDOWS;
         const windowSize = options.windowSize ?? CRYSTALLIZATION.WINDOW;
@@ -192,6 +199,19 @@ export const CRYSTALLIZATION = {
             : 0;
         const projectionDriftGatePass = driftReport.ok && projectionDriftP95 <= projectionDriftMaxP95;
         const projectionHardGatePass = projectionReport.failCount === 0;
+        const { report: crystallizationReport, reportHash: crystallizationReportHash } =
+            await CRYSTALLIZATION_REPORT.buildWithHash({
+                artifact_hash: artifactHash,
+                state_hash: stateHash,
+                current_tick: currentTick,
+                replay_start_tick: replayStartTick,
+                replay_end_tick: currentTick,
+                replay_audit: audit,
+                projection_report: projectionReport,
+                drift_report: driftReport,
+                projection_drift_gate_pass: projectionDriftGatePass,
+                projection_drift_max_p95: projectionDriftMaxP95
+            });
 
         const crystallized = await CRYSTALLIZATION.evaluate(
             currentTick,
@@ -202,11 +222,21 @@ export const CRYSTALLIZATION = {
                 replayGreen: audit.replayGreen && projectionHardGatePass && projectionDriftGatePass,
                 requiredWindows,
                 windowSize,
+                crystallizationReportVersion: CRYSTALLIZATION_REPORT.VERSION,
+                crystallizationReportHash,
                 witness: options.witness
             }
         );
 
-        return { crystallized, audit, projectionReport, driftReport, projectionDriftGatePass };
+        return {
+            crystallized,
+            audit,
+            projectionReport,
+            driftReport,
+            projectionDriftGatePass,
+            crystallizationReport,
+            crystallizationReportHash
+        };
     },
 
     enforcePostCrystal: async (

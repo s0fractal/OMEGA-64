@@ -1,0 +1,108 @@
+// i.L99.core.CRYSTALLIZATION_REPORT.ts
+// OMEGA-64 | Canon Protocol | Canonization Report Artifact
+
+import { ProjectionDriftAnalyticsReport } from "./i.L99.core.PROJECTION_DRIFT_ANALYTICS.ts";
+import { ProjectionReplayReport } from "./i.L99.core.PROJECTION_REPLAY_REPORT.ts";
+import { ReplayAuditResult } from "./i.L99.core.REPLAY_AUDIT.ts";
+import { CRYSTALLIZATION_CONFIG, CRYSTALLIZATION_POLICY } from "./i.L99.core.CRYSTALLIZATION_CONFIG.ts";
+
+export interface CrystallizationReportInput {
+    artifact_hash: string;
+    state_hash: string;
+    current_tick: number;
+    replay_start_tick: number;
+    replay_end_tick: number;
+    replay_audit: ReplayAuditResult;
+    projection_report: ProjectionReplayReport;
+    drift_report: ProjectionDriftAnalyticsReport;
+    projection_drift_gate_pass: boolean;
+    projection_drift_max_p95: number;
+}
+
+export interface CrystallizationReport {
+    version: string;
+    artifact_hash: string;
+    state_hash: string;
+    current_tick: number;
+    replay_start_tick: number;
+    replay_end_tick: number;
+    policy: {
+        version: string;
+        hash: string;
+    };
+    thresholds: {
+        window: number;
+        min_soft_passes: number;
+        default_required_windows: number;
+        projection_drift_max_p95: number;
+    };
+    replay_audit: ReplayAuditResult;
+    projection_report: ProjectionReplayReport;
+    drift_report: ProjectionDriftAnalyticsReport;
+    projection_drift_gate_pass: boolean;
+}
+
+const REPORT_VERSION = "crystallization-report/v1";
+
+const stableStringify = (value: unknown): string => {
+    if (Array.isArray(value)) {
+        return `[${value.map((v) => stableStringify(v)).join(",")}]`;
+    }
+    if (value && typeof value === "object") {
+        const entries = Object.entries(value as Record<string, unknown>)
+            .sort(([a], [b]) => a.localeCompare(b));
+        return `{${entries.map(([k, v]) => `${JSON.stringify(k)}:${stableStringify(v)}`).join(",")}}`;
+    }
+    return JSON.stringify(value);
+};
+
+const toHex = (buffer: ArrayBuffer): string =>
+    Array.from(new Uint8Array(buffer)).map((b) => b.toString(16).padStart(2, "0")).join("");
+
+const sha256Hex = async (input: string): Promise<string> => {
+    const data = new TextEncoder().encode(input);
+    const digest = await crypto.subtle.digest("SHA-256", data);
+    return toHex(digest);
+};
+
+export const CRYSTALLIZATION_REPORT = {
+    VERSION: REPORT_VERSION,
+
+    build: async (input: CrystallizationReportInput): Promise<CrystallizationReport> => {
+        const policyHash = await CRYSTALLIZATION_POLICY.hash();
+        return {
+            version: REPORT_VERSION,
+            artifact_hash: input.artifact_hash,
+            state_hash: input.state_hash,
+            current_tick: input.current_tick,
+            replay_start_tick: input.replay_start_tick,
+            replay_end_tick: input.replay_end_tick,
+            policy: {
+                version: CRYSTALLIZATION_CONFIG.policyVersion,
+                hash: policyHash
+            },
+            thresholds: {
+                window: CRYSTALLIZATION_CONFIG.window,
+                min_soft_passes: CRYSTALLIZATION_CONFIG.minSoftPasses,
+                default_required_windows: CRYSTALLIZATION_CONFIG.defaultRequiredWindows,
+                projection_drift_max_p95: input.projection_drift_max_p95
+            },
+            replay_audit: input.replay_audit,
+            projection_report: input.projection_report,
+            drift_report: input.drift_report,
+            projection_drift_gate_pass: input.projection_drift_gate_pass
+        };
+    },
+
+    hash: async (report: CrystallizationReport): Promise<string> =>
+        await sha256Hex(stableStringify(report)),
+
+    buildWithHash: async (
+        input: CrystallizationReportInput
+    ): Promise<{ report: CrystallizationReport; reportHash: string }> => {
+        const report = await CRYSTALLIZATION_REPORT.build(input);
+        const reportHash = await CRYSTALLIZATION_REPORT.hash(report);
+        return { report, reportHash };
+    }
+};
+
