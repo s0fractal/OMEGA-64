@@ -146,6 +146,8 @@ Each accepted tick must be reconstructible from:
 - prior state hash,
 - sorted proposal set,
 - gate config version.
+- `accepted_proposal_metrics` trace (when emitted) for effective admission
+  weight decomposition.
 
 L32 MUST emit `BRIDGE_MODE_EVENT` every tick with:
 

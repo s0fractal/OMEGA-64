@@ -103,6 +103,17 @@ export const GATE = {
       cost_used: 0,
       accepted_delta: [],
     };
+    const acceptedProposalMetrics: Array<{
+      proposal_id: string;
+      agent_id: string;
+      confidence: number;
+      reliability_base: number;
+      reliability_effective: number;
+      phase_coherence?: number;
+      weight: number;
+      physical_cost: number;
+      agent_phase_u16?: number;
+    }> = [];
     const proposalById = new Map(proposals.map((p) => [p.proposal_id, p]));
     const bridgeResolution = CANON_CAUSAL_BRIDGE.resolveMode(
       runtime.bridge_invariant_report,
@@ -331,17 +342,32 @@ export const GATE = {
 
       // 4. Weighted Merge Logic
       // Weight = Confidence (0..1) * Reliability (0..1)
-      let agentReliability = config.reliability_weight.get(p.agent_id) ?? 1.0;
+      const reliabilityBase = clamp01(
+        config.reliability_weight.get(p.agent_id) ?? 1.0,
+      );
+      let phaseCoherenceScore: number | undefined = undefined;
+      let agentReliability = reliabilityBase;
       if (reliabilityMode === "PHASE_COHERENCE") {
-        const coherence = p.agent_phase_u16 === undefined
+        phaseCoherenceScore = p.agent_phase_u16 === undefined
           ? 1
           : phaseCoherence(p.agent_phase_u16, p.delta, state.phase_u16);
         const modulation = reliabilityFloor +
-          (1 - reliabilityFloor) * coherence;
+          (1 - reliabilityFloor) * phaseCoherenceScore;
         agentReliability *= modulation;
       }
       agentReliability = clamp01(agentReliability);
       const weight = p.confidence * agentReliability;
+      acceptedProposalMetrics.push({
+        proposal_id: p.proposal_id,
+        agent_id: p.agent_id,
+        confidence: p.confidence,
+        reliability_base: reliabilityBase,
+        reliability_effective: agentReliability,
+        phase_coherence: phaseCoherenceScore,
+        weight,
+        physical_cost: finalCost,
+        agent_phase_u16: p.agent_phase_u16,
+      });
 
       for (const d of p.delta) {
         // Clip per level
@@ -457,6 +483,7 @@ export const GATE = {
       accepted_delta: decision.accepted_delta,
       proposal_digest: proposalDigest,
       accepted_proposals: decision.accepted_proposals,
+      accepted_proposal_metrics: acceptedProposalMetrics,
       accepted_proposal_envelopes: decision.accepted_proposals
         .map((proposal_id) => ({
           proposal_id,

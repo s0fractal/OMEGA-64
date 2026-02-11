@@ -84,6 +84,17 @@ export interface LedgerEvent {
   accepted_delta: Array<{ level: number; value: number }>;
   proposal_digest: string; // Hash of all proposals (for integrity)
   accepted_proposals: string[];
+  accepted_proposal_metrics?: Array<{
+    proposal_id: string;
+    agent_id: string;
+    confidence: number;
+    reliability_base: number;
+    reliability_effective: number;
+    phase_coherence?: number;
+    weight: number;
+    physical_cost: number;
+    agent_phase_u16?: number;
+  }>;
   accepted_proposal_envelopes?: Array<
     { proposal_id: string; envelope_hash: string }
   >;

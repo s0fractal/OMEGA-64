@@ -195,6 +195,24 @@ Deno.test("phase coherence mode attenuates out-of-phase reliability weight", asy
     if (next.state_i16[7] !== 100) {
       throw new Error(`expected merged value 100, got ${next.state_i16[7]}`);
     }
+
+    const evt = await firstLedgerEvent();
+    if (!evt) throw new Error("expected ledger event");
+    const metrics = evt.accepted_proposal_metrics ?? [];
+    if (metrics.length !== 2) {
+      throw new Error(`expected 2 proposal metrics, got ${metrics.length}`);
+    }
+    const inMetric = metrics.find((m) => m.proposal_id === "p_in");
+    const outMetric = metrics.find((m) => m.proposal_id === "p_out");
+    if (!inMetric || !outMetric) {
+      throw new Error("expected metrics for p_in and p_out");
+    }
+    if (inMetric.reliability_effective <= outMetric.reliability_effective) {
+      throw new Error("expected in-phase reliability to exceed out-of-phase");
+    }
+    if (inMetric.weight <= outMetric.weight) {
+      throw new Error("expected in-phase weight to exceed out-of-phase");
+    }
   } finally {
     LEDGER.STORAGE_PATH = originalPath;
     PROPOSAL_ENVELOPE_INDEX.resetCacheForTests(indexPath);
