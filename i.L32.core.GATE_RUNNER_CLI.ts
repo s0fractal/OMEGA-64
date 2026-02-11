@@ -3,6 +3,7 @@
 
 import { GATE_RUNNER } from "./i.L32.core.GATE_RUNNER.ts";
 import { LEDGER } from "./i.L99.core.LEDGER.ts";
+import { INVARIANT_PACKET, type InvariantPacket } from "./i.L32.core.INVARIANT_PACKET.ts";
 import type {
   DeltaProposal,
   GateConfig,
@@ -57,6 +58,7 @@ interface CliInput {
     invariantOnly?: boolean;
   };
   invariantReport?: ReplayInvariantReport;
+  invariantPacket?: InvariantPacket;
   witness?: string;
 }
 
@@ -81,6 +83,7 @@ const usage = (): string =>
     "  - if --output is omitted, result is printed to stdout.",
     "  - if --ledger is provided, LEDGER.STORAGE_PATH is redirected.",
     "  - replayAuditOptions may include verifyLedgerChain/invariantOnly.",
+    "  - invariantPacket can replace invariantReport (hash-verified).",
   ].join("\n");
 
 const clampI16 = (x: number): number => {
@@ -200,6 +203,16 @@ const run = async (): Promise<void> => {
 
   const raw = await Deno.readTextFile(parsed.input);
   const input = JSON.parse(raw) as CliInput;
+  let invariantReport = input.invariantReport;
+  if (!invariantReport && input.invariantPacket) {
+    const verified = await INVARIANT_PACKET.verify(input.invariantPacket);
+    if (!verified.ok) {
+      throw new Error(
+        `Invalid invariantPacket: ${verified.reasons.join("|")}`,
+      );
+    }
+    invariantReport = INVARIANT_PACKET.toInvariantReport(input.invariantPacket);
+  }
 
   const result = await GATE_RUNNER.step({
     state: toSnapshot(input.state),
@@ -208,7 +221,7 @@ const run = async (): Promise<void> => {
     mode: input.mode,
     replayGenesis: toReplayGenesis(input.replayGenesis),
     replayAuditOptions: input.replayAuditOptions,
-    invariantReport: input.invariantReport,
+    invariantReport,
     witness: input.witness,
   });
 

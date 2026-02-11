@@ -25,6 +25,7 @@ Examples:
 Modes:
 1. `REPLAY_CONTEXT` (auto context from replay audit)
 2. `INVARIANT_CONTEXT` (explicit invariant snapshot)
+3. `INVARIANT_CONTEXT` can accept `invariantPacket` (hash-verified minimal envelope)
 
 Replay audit options (CLI):
 1. `verifyTopologicalSignatures` (default: true in report generators)

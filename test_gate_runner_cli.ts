@@ -1,6 +1,8 @@
 // test_gate_runner_cli.ts
 // Smoke test for CLI wrapper over GATE_RUNNER.
 
+import { INVARIANT_PACKET } from "./i.L32.core.INVARIANT_PACKET.ts";
+
 Deno.test("gate runner cli processes JSON input and writes output", async () => {
     const tempDir = await Deno.makeTempDir({ prefix: "omega-gate-runner-cli-" });
     const inputPath = `${tempDir}/input.json`;
@@ -8,6 +10,17 @@ Deno.test("gate runner cli processes JSON input and writes output", async () => 
     const ledgerPath = `${tempDir}/ledger.jsonl`;
 
     try {
+        const invariantPacket = await INVARIANT_PACKET.seal({
+            tick_anchor: 1,
+            canon_index_chain_checked: true,
+            canon_index_chain_ok: true,
+            gate_admission_index_chain_checked: true,
+            gate_admission_index_chain_ok: true,
+            ledger_chain_checked: true,
+            ledger_chain_ok: true,
+            witness: "cli-test"
+        });
+
         const input = {
             state: {
                 tick: 1,
@@ -37,16 +50,7 @@ Deno.test("gate runner cli processes JSON input and writes output", async () => 
                 dry_run: false
             },
             mode: "INVARIANT_CONTEXT",
-            invariantReport: {
-                index_chain_checked: true,
-                index_chain_ok: true,
-                index_chain_checked_records: 1,
-                index_chain_failures: [],
-                gate_admission_index_chain_checked: true,
-                gate_admission_index_chain_ok: true,
-                gate_admission_index_chain_checked_records: 1,
-                gate_admission_index_chain_failures: []
-            },
+            invariantPacket,
             witness: "cli-test"
         };
         await Deno.writeTextFile(inputPath, JSON.stringify(input, null, 2));

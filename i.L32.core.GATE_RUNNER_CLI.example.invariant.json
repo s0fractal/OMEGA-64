@@ -131,15 +131,17 @@
     "anti_replay_window_ticks": 64
   },
   "mode": "INVARIANT_CONTEXT",
-  "invariantReport": {
-    "index_chain_checked": true,
-    "index_chain_ok": true,
-    "index_chain_checked_records": 1,
-    "index_chain_failures": [],
+  "invariantPacket": {
+    "version": "invariant-packet/v1",
+    "tick_anchor": 1,
+    "canon_index_chain_checked": true,
+    "canon_index_chain_ok": true,
     "gate_admission_index_chain_checked": true,
     "gate_admission_index_chain_ok": true,
-    "gate_admission_index_chain_checked_records": 1,
-    "gate_admission_index_chain_failures": []
+    "ledger_chain_checked": true,
+    "ledger_chain_ok": true,
+    "witness": "example",
+    "packet_hash": "872267fb9b7cffa00d88ad2eb41521069004f249410e300aeec15dedfcf5093d"
   },
   "witness": "example"
 }
