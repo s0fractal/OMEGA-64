@@ -78,6 +78,30 @@ runtime.
 }
 ```
 
+## 1.3 Bridge Mode Event
+
+```json
+{
+  "event_type": "BRIDGE_MODE_EVENT",
+  "tick": 128,
+  "state_hash": "hex32",
+  "mode": "GREEN",
+  "index_chain_checked": true,
+  "index_chain_ok": true,
+  "index_chain_checked_records": 4,
+  "index_chain_failures": [],
+  "gate_admission_index_chain_checked": true,
+  "gate_admission_index_chain_ok": true,
+  "gate_admission_index_chain_checked_records": 2,
+  "gate_admission_index_chain_failures": [],
+  "invariant_packet_hash": "hex32",
+  "canon_bound_proposals": ["p1"],
+  "blocked_canon_proposals": [],
+  "reason": "INDEX_CHAIN_GREEN",
+  "witness": "optional_hex32"
+}
+```
+
 ## 2. Canonical Serialization
 
 1. UTF-8 JSON.

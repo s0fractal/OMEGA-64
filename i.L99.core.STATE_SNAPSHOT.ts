@@ -178,6 +178,7 @@ export interface PolicyTransitionEvent {
 
 /**
  * BridgeModeEvent: L32 membrane trace for canon causal integrity mode.
+ * Includes invariant packet hash for lightweight witness exchange.
  */
 export interface BridgeModeEvent {
   event_type: "BRIDGE_MODE_EVENT";
