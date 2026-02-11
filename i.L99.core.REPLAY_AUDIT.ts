@@ -8,6 +8,8 @@ import { TOPOLOGICAL_SIGNATURE, TopologicalSignature } from "./i.L99.core.TOPOLO
 import { CRYSTALLIZATION_CONFIG, CRYSTALLIZATION_POLICY } from "./i.L99.core.CRYSTALLIZATION_CONFIG.ts";
 import { CRYSTALLIZATION_REPORT } from "./i.L99.core.CRYSTALLIZATION_REPORT.ts";
 import { GATE_ADMISSION_REPORT } from "./i.L99.core.GATE_ADMISSION_REPORT.ts";
+import type { InvariantPacket } from "./i.L32.core.INVARIANT_PACKET.ts";
+import { INVARIANT_PACKET } from "./i.L32.core.INVARIANT_PACKET.ts";
 
 export interface ReplayGenesis {
     tick: number;
@@ -41,6 +43,7 @@ export interface ReplayAuditResult {
     checkedGateAdmissionReports: number;
     skippedGateAdmissionReports: number;
     gateAdmissionReportTickReport: GateAdmissionReportTickReport[];
+    invariantPacket?: InvariantPacket;
     invariantReport: ReplayInvariantReport;
     finalHashes: string[];
     failures: string[];
@@ -350,6 +353,10 @@ export const REPLAY_AUDIT = {
             }
         }
         if (options.invariantOnly) {
+            const packet = await INVARIANT_PACKET.fromInvariantReport(
+                invariantReport,
+                { tick_anchor: options.endTick ?? genesis.tick }
+            );
             return {
                 replayGreen: true,
                 runs,
@@ -367,6 +374,7 @@ export const REPLAY_AUDIT = {
                 checkedGateAdmissionReports,
                 skippedGateAdmissionReports,
                 gateAdmissionReportTickReport,
+                invariantPacket: packet,
                 invariantReport,
                 finalHashes: [genesis.state_hash],
                 failures

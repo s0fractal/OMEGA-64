@@ -346,6 +346,9 @@ Deno.test("replay invariant-only mode reports index chain status", async () => {
         if (!audit.replayGreen) {
             throw new Error(`expected invariant-only replay green, got: ${audit.failures.join(",")}`);
         }
+        if (!audit.invariantPacket) {
+            throw new Error("expected invariant packet in invariant-only mode");
+        }
         if (!audit.invariantReport.index_chain_checked || !audit.invariantReport.index_chain_ok) {
             throw new Error("expected canon index chain to be checked and ok");
         }
