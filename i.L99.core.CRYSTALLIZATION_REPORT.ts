@@ -91,6 +91,8 @@ const sha256Hex = async (input: string): Promise<string> => {
     return toHex(digest);
 };
 
+const HEX_64_RE = /^[0-9a-f]{64}$/;
+
 const parseIndexRecord = (
     line: string,
     lineNumber: number
@@ -104,14 +106,20 @@ const parseIndexRecord = (
     const rec = parsed as Partial<CrystallizationReportIndexRecord>;
     const shapeOk =
         typeof rec.report_hash === "string" &&
+        HEX_64_RE.test(rec.report_hash) &&
         typeof rec.report_version === "string" &&
         typeof rec.report_path === "string" &&
         typeof rec.tick === "number" &&
+        Number.isSafeInteger(rec.tick) &&
+        rec.tick >= 0 &&
         typeof rec.artifact_hash === "string" &&
         typeof rec.state_hash === "string" &&
         typeof rec.ts_unix_ms === "number" &&
+        Number.isSafeInteger(rec.ts_unix_ms) &&
+        rec.ts_unix_ms >= 0 &&
         (typeof rec.prev_record_hash === "string" || rec.prev_record_hash === null) &&
         typeof rec.record_hash === "string" &&
+        HEX_64_RE.test(rec.record_hash) &&
         (rec.witness === undefined || typeof rec.witness === "string");
     if (!shapeOk) {
         return { ok: false, error: `INDEX_LINE_SCHEMA_INVALID_AT_LINE_${lineNumber}` };
@@ -206,7 +214,9 @@ export const CRYSTALLIZATION_REPORT = {
         return found;
     },
 
-    verifyIndexChain: async (verifyReportFiles: boolean = true): Promise<{ ok: boolean; failures: string[] }> => {
+    verifyIndexChain: async (
+        verifyReportFiles: boolean = true
+    ): Promise<{ ok: boolean; failures: string[]; checkedRecords: number }> => {
         const failures: string[] = [];
         const records: CrystallizationReportIndexRecord[] = [];
         try {
@@ -217,7 +227,7 @@ export const CRYSTALLIZATION_REPORT = {
                 if (line.trim().length === 0) continue;
                 const parsed = parseIndexRecord(line, i + 1);
                 if (!parsed.ok) {
-                    return { ok: false, failures: [parsed.error] };
+                    return { ok: false, failures: [parsed.error], checkedRecords: records.length };
                 }
                 records.push(parsed.record);
             }
@@ -228,10 +238,25 @@ export const CRYSTALLIZATION_REPORT = {
         }
 
         let prev: string | null = null;
+        let prevTick = -1;
+        let prevTs = -1;
+        const seenReportHashes = new Set<string>();
         for (let i = 0; i < records.length; i++) {
             const rec = records[i];
             if (rec.prev_record_hash !== prev) {
                 failures.push(`INDEX_CHAIN_PREV_MISMATCH_AT_LINE_${i + 1}`);
+                break;
+            }
+            if (rec.tick < prevTick) {
+                failures.push(`INDEX_TICK_NON_MONOTONIC_AT_LINE_${i + 1}`);
+                break;
+            }
+            if (rec.ts_unix_ms < prevTs) {
+                failures.push(`INDEX_TS_NON_MONOTONIC_AT_LINE_${i + 1}`);
+                break;
+            }
+            if (seenReportHashes.has(rec.report_hash)) {
+                failures.push(`INDEX_DUPLICATE_REPORT_HASH_AT_LINE_${i + 1}`);
                 break;
             }
             const expected = await CRYSTALLIZATION_REPORT.indexRecordHash({
@@ -266,9 +291,12 @@ export const CRYSTALLIZATION_REPORT = {
             }
 
             prev = rec.record_hash;
+            prevTick = rec.tick;
+            prevTs = rec.ts_unix_ms;
+            seenReportHashes.add(rec.report_hash);
         }
 
-        return { ok: failures.length === 0, failures };
+        return { ok: failures.length === 0, failures, checkedRecords: records.length };
     },
 
     materialize: async (

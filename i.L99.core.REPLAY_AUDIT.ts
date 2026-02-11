@@ -35,6 +35,7 @@ export interface ReplayAuditResult {
     checkedCanonReports: number;
     skippedCanonReports: number;
     canonReportTickReport: CanonReportTickReport[];
+    invariantReport: ReplayInvariantReport;
     finalHashes: string[];
     failures: string[];
 }
@@ -59,6 +60,13 @@ export interface CanonReportTickReport {
     reason: string;
     report_hash?: string;
     report_uri?: string;
+}
+
+export interface ReplayInvariantReport {
+    index_chain_checked: boolean;
+    index_chain_ok: boolean;
+    index_chain_checked_records: number;
+    index_chain_failures: string[];
 }
 
 const stableStringify = (value: unknown): string => {
@@ -205,9 +213,19 @@ export const REPLAY_AUDIT = {
         let checkedCanonReports = 0;
         let skippedCanonReports = 0;
         const canonReportTickReport: CanonReportTickReport[] = [];
+        const invariantReport: ReplayInvariantReport = {
+            index_chain_checked: false,
+            index_chain_ok: true,
+            index_chain_checked_records: 0,
+            index_chain_failures: []
+        };
         const hasCanonEvents = canonByCheckpointTick.size > 0;
         if (hasCanonEvents) {
             const indexChain = await CRYSTALLIZATION_REPORT.verifyIndexChain(true);
+            invariantReport.index_chain_checked = true;
+            invariantReport.index_chain_ok = indexChain.ok;
+            invariantReport.index_chain_checked_records = indexChain.checkedRecords;
+            invariantReport.index_chain_failures = [...indexChain.failures];
             if (!indexChain.ok) {
                 return {
                     replayGreen: false,
@@ -223,6 +241,7 @@ export const REPLAY_AUDIT = {
                     checkedCanonReports,
                     skippedCanonReports,
                     canonReportTickReport,
+                    invariantReport,
                     finalHashes,
                     failures: indexChain.failures.map((x) => `index_chain:${x}`)
                 };
@@ -605,6 +624,7 @@ export const REPLAY_AUDIT = {
             checkedCanonReports,
             skippedCanonReports,
             canonReportTickReport,
+            invariantReport,
             finalHashes,
             failures
         };

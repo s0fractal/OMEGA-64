@@ -59,8 +59,15 @@ Each `index.jsonl` record carries:
 `record_hash` is SHA-256 over canonical record fields (including `prev_record_hash`),
 so index lines form an append-only hash chain.
 
+Causality invariants:
+1. `tick` is monotonic (non-decreasing),
+2. `ts_unix_ms` is monotonic (non-decreasing),
+3. `report_hash` is unique in the chain.
+
 Replay audit must fail fast if:
 1. chain linkage is broken,
 2. index record hash is invalid,
 3. index entry points to a missing/tampered report file,
 4. index line is malformed or violates record schema.
+
+Replay returns `invariantReport` to expose index-chain check status and failures at audit level.

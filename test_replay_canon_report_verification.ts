@@ -104,6 +104,9 @@ Deno.test("replay fails when canonization report file is tampered", async () => 
         if (audit.replayGreen) {
             throw new Error("replay must fail when canonization report file is tampered");
         }
+        if (!audit.invariantReport.index_chain_checked) {
+            throw new Error("expected invariantReport index_chain_checked=true");
+        }
         if (!audit.failures.some((f) => f.includes("index_chain:INDEX_REPORT_HASH_MISMATCH"))) {
             throw new Error(`missing expected failure, got: ${audit.failures.join(",")}`);
         }
@@ -139,6 +142,9 @@ Deno.test("replay fails when canonization report file is missing", async () => {
 
         if (audit.replayGreen) {
             throw new Error("replay must fail when canonization report file is missing");
+        }
+        if (!audit.invariantReport.index_chain_checked) {
+            throw new Error("expected invariantReport index_chain_checked=true");
         }
         if (!audit.failures.some((f) => f.includes("index_chain:INDEX_REPORT_READ_FAIL"))) {
             throw new Error(`missing expected failure, got: ${audit.failures.join(",")}`);
@@ -178,6 +184,9 @@ Deno.test("replay fails when canonization report index chain is tampered", async
 
         if (audit.replayGreen) {
             throw new Error("replay must fail when canonization report index chain is tampered");
+        }
+        if (!audit.invariantReport.index_chain_checked) {
+            throw new Error("expected invariantReport index_chain_checked=true");
         }
         if (!audit.failures.some((f) => f.includes("index_chain:INDEX_RECORD_HASH_MISMATCH"))) {
             throw new Error(`missing expected failure, got: ${audit.failures.join(",")}`);
