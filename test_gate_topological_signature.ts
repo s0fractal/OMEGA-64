@@ -5,7 +5,7 @@ import { GATE } from "./i.L32.core.GATE.ts";
 import { LEDGER } from "./i.L99.core.LEDGER.ts";
 import { GateConfig, DeltaProposal, StateSnapshot } from "./i.L99.core.STATE_SNAPSHOT.ts";
 import { TOPOLOGICAL_SIGNATURE, TopologicalSignature } from "./i.L99.core.TOPOLOGICAL_SIGNATURE.ts";
-import { CRYSTALLIZATION_CONFIG } from "./i.L99.core.CRYSTALLIZATION_CONFIG.ts";
+import { CRYSTALLIZATION_CONFIG, CRYSTALLIZATION_POLICY } from "./i.L99.core.CRYSTALLIZATION_CONFIG.ts";
 
 const HEX_64 = /^[a-f0-9]{64}$/;
 
@@ -49,6 +49,7 @@ Deno.test("gate emits topological signature fields in ledger", async () => {
     await Deno.writeTextFile(LEDGER.STORAGE_PATH, "");
 
     try {
+        const expectedPolicyHash = await CRYSTALLIZATION_POLICY.hash();
         const genesis: StateSnapshot = {
             tick: 1,
             state_i16: new Int16Array(64).fill(0),
@@ -79,6 +80,9 @@ Deno.test("gate emits topological signature fields in ledger", async () => {
         }
         if (evt.policy_version !== CRYSTALLIZATION_CONFIG.policyVersion) {
             throw new Error(`unexpected policy_version: ${evt.policy_version}`);
+        }
+        if (evt.policy_hash !== expectedPolicyHash) {
+            throw new Error(`unexpected policy_hash: ${evt.policy_hash}`);
         }
 
         const signature: TopologicalSignature = {
@@ -122,6 +126,7 @@ Deno.test("gate does not emit topological signature fields in dry run", async ()
     await Deno.writeTextFile(LEDGER.STORAGE_PATH, "");
 
     try {
+        const expectedPolicyHash = await CRYSTALLIZATION_POLICY.hash();
         const genesis: StateSnapshot = {
             tick: 3,
             state_i16: new Int16Array(64).fill(0),
@@ -141,6 +146,9 @@ Deno.test("gate does not emit topological signature fields in dry run", async ()
         }
         if (evt.policy_version !== CRYSTALLIZATION_CONFIG.policyVersion) {
             throw new Error(`unexpected policy_version in dry run: ${evt.policy_version}`);
+        }
+        if (evt.policy_hash !== expectedPolicyHash) {
+            throw new Error(`unexpected policy_hash in dry run: ${evt.policy_hash}`);
         }
     } finally {
         try {

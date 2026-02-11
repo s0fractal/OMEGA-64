@@ -80,6 +80,7 @@ export interface LedgerEvent {
     thread_1d_hash?: string; // deterministic 1D thread hash
     projection_version?: string; // signature projection version
     policy_version?: string; // crystallization/gate policy version
+    policy_hash?: string; // SHA-256 of canonical crystallization policy payload
     witness?: string;
 }
 
@@ -109,6 +110,21 @@ export interface CanonizationEvent {
     hard_gates: "PASS" | "FAIL";
     soft_gates_passed: number; // 0..6
     policy_version?: string; // crystallization policy version
+    policy_hash?: string; // SHA-256 of canonical crystallization policy payload
+    witness?: string;
+}
+
+/**
+ * PolicyTransitionEvent: Explicit policy migration in append-only history.
+ */
+export interface PolicyTransitionEvent {
+    event_type: "POLICY_TRANSITION_EVENT";
+    tick: number;
+    from_policy_version?: string;
+    from_policy_hash?: string;
+    to_policy_version: string;
+    to_policy_hash: string;
+    reason: string;
     witness?: string;
 }
 
@@ -126,7 +142,12 @@ export interface DecrystallizationEvent {
     witness?: string;
 }
 
-export type TopologyEvent = LedgerEvent | ViolationEvent | CanonizationEvent | DecrystallizationEvent;
+export type TopologyEvent =
+    | LedgerEvent
+    | ViolationEvent
+    | CanonizationEvent
+    | DecrystallizationEvent
+    | PolicyTransitionEvent;
 
 /**
  * CheckpointRecord: Persistent state snapshot for rollback/replay acceleration.

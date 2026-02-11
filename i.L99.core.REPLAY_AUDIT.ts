@@ -3,8 +3,9 @@
 // Produces a strict replayGreen signal from ledger events.
 
 import { LEDGER } from "./i.L99.core.LEDGER.ts";
-import { LedgerEvent } from "./i.L99.core.STATE_SNAPSHOT.ts";
+import { LedgerEvent, PolicyTransitionEvent, TopologyEvent } from "./i.L99.core.STATE_SNAPSHOT.ts";
 import { TOPOLOGICAL_SIGNATURE, TopologicalSignature } from "./i.L99.core.TOPOLOGICAL_SIGNATURE.ts";
+import { CRYSTALLIZATION_CONFIG, CRYSTALLIZATION_POLICY } from "./i.L99.core.CRYSTALLIZATION_CONFIG.ts";
 
 export interface ReplayGenesis {
     tick: number;
@@ -27,6 +28,9 @@ export interface ReplayAuditResult {
     checkedProjectionEvents: number;
     skippedProjectionEvents: number;
     projectionTickReport: ProjectionTickReport[];
+    checkedPolicyEvents: number;
+    skippedPolicyEvents: number;
+    policyTickReport: PolicyTickReport[];
     finalHashes: string[];
     failures: string[];
 }
@@ -35,6 +39,14 @@ export interface ProjectionTickReport {
     tick: number;
     status: "PASS" | "FAIL" | "SKIP";
     reason: string;
+}
+
+export interface PolicyTickReport {
+    tick: number;
+    status: "PASS" | "FAIL" | "SKIP";
+    reason: string;
+    policy_version?: string;
+    policy_hash?: string;
 }
 
 const stableStringify = (value: unknown): string => {
@@ -88,11 +100,41 @@ const expectedStateHash = async (
         proposal_digest: proposalDigest
     }));
 
-const collectLedgerEvents = async (startTick?: number, endTick?: number): Promise<{ events: LedgerEvent[]; skipped: number }> => {
+const isPolicyTransitionEvent = (entry: TopologyEvent): entry is PolicyTransitionEvent =>
+    "event_type" in entry && entry.event_type === "POLICY_TRANSITION_EVENT";
+
+const isLedgerEvent = (entry: TopologyEvent): entry is LedgerEvent =>
+    !("event_type" in entry) &&
+    typeof entry.tick === "number" &&
+    Array.isArray(entry.accepted_delta) &&
+    typeof entry.state_before_hash === "string" &&
+    typeof entry.state_after_hash === "string";
+
+const collectLedgerEvents = async (
+    startTick?: number,
+    endTick?: number
+): Promise<{
+    events: LedgerEvent[];
+    transitionsByTick: Map<number, PolicyTransitionEvent[]>;
+    skipped: number;
+}> => {
     const byTick = new Map<number, LedgerEvent>();
+    const transitionsByTick = new Map<number, PolicyTransitionEvent[]>();
     let skipped = 0;
 
-    for await (const entry of LEDGER.readAll()) {
+    for await (const entry of LEDGER.readAllRaw()) {
+        if (isPolicyTransitionEvent(entry)) {
+            const inStart = startTick === undefined || entry.tick >= startTick;
+            const inEnd = endTick === undefined || entry.tick <= endTick;
+            if (!inStart || !inEnd) continue;
+            const current = transitionsByTick.get(entry.tick) ?? [];
+            current.push(entry);
+            transitionsByTick.set(entry.tick, current);
+            continue;
+        }
+        if (!isLedgerEvent(entry)) {
+            continue;
+        }
         const inStart = startTick === undefined || entry.tick >= startTick;
         const inEnd = endTick === undefined || entry.tick <= endTick;
         if (!inStart || !inEnd) {
@@ -109,6 +151,7 @@ const collectLedgerEvents = async (startTick?: number, endTick?: number): Promis
 
     return {
         events: Array.from(byTick.values()).sort((a, b) => a.tick - b.tick),
+        transitionsByTick,
         skipped
     };
 };
@@ -117,17 +160,23 @@ export const REPLAY_AUDIT = {
     audit: async (genesis: ReplayGenesis, options: ReplayAuditOptions = {}): Promise<ReplayAuditResult> => {
         const runs = options.runs ?? 3;
         const verifyTopologicalSignatures = options.verifyTopologicalSignatures ?? true;
-        const { events, skipped } = await collectLedgerEvents(options.startTick, options.endTick);
+        const { events, transitionsByTick, skipped } = await collectLedgerEvents(options.startTick, options.endTick);
+        const localPolicyHash = await CRYSTALLIZATION_POLICY.hash();
         const finalHashes: string[] = [];
         const failures: string[] = [];
         let checkedProjectionEvents = 0;
         let skippedProjectionEvents = 0;
         const projectionTickReport: ProjectionTickReport[] = [];
+        let checkedPolicyEvents = 0;
+        let skippedPolicyEvents = 0;
+        const policyTickReport: PolicyTickReport[] = [];
 
         for (let run = 0; run < runs; run++) {
             let tick = genesis.tick;
             let stateHash = genesis.state_hash;
             let state = new Int16Array(genesis.state_i16) as Int16Array;
+            let currentPolicyVersion: string | undefined;
+            let currentPolicyHash: string | undefined;
 
             for (const evt of events) {
                 const expectedTick = tick;
@@ -152,6 +201,124 @@ export const REPLAY_AUDIT = {
                 if (evt.state_after_hash !== expectedHash) {
                     failures.push(`run=${run} state_after_hash mismatch at tick ${evt.tick}`);
                     break;
+                }
+
+                const policyVersion = evt.policy_version;
+                const policyHash = evt.policy_hash;
+                const transitions = transitionsByTick.get(evt.tick) ?? [];
+                if (!policyVersion || !policyHash) {
+                    failures.push(`run=${run} missing policy anchor at tick ${evt.tick}`);
+                    if (run === 0) {
+                        policyTickReport.push({
+                            tick: evt.tick,
+                            status: "FAIL",
+                            reason: "MISSING_POLICY_ANCHOR"
+                        });
+                    }
+                    break;
+                }
+
+                if (
+                    policyVersion === CRYSTALLIZATION_CONFIG.policyVersion &&
+                    policyHash !== localPolicyHash
+                ) {
+                    failures.push(`run=${run} policy hash mismatch with local config at tick ${evt.tick}`);
+                    if (run === 0) {
+                        policyTickReport.push({
+                            tick: evt.tick,
+                            status: "FAIL",
+                            reason: "LOCAL_POLICY_HASH_MISMATCH",
+                            policy_version: policyVersion,
+                            policy_hash: policyHash
+                        });
+                    }
+                    break;
+                }
+
+                if (currentPolicyVersion === undefined || currentPolicyHash === undefined) {
+                    currentPolicyVersion = policyVersion;
+                    currentPolicyHash = policyHash;
+                    if (run === 0) {
+                        checkedPolicyEvents++;
+                        policyTickReport.push({
+                            tick: evt.tick,
+                            status: "PASS",
+                            reason: "POLICY_ANCHOR_SET",
+                            policy_version: policyVersion,
+                            policy_hash: policyHash
+                        });
+                    }
+                } else if (policyVersion !== currentPolicyVersion || policyHash !== currentPolicyHash) {
+                    const transition = transitions.find((t) =>
+                        t.to_policy_version === policyVersion &&
+                        t.to_policy_hash === policyHash
+                    );
+                    if (!transition) {
+                        failures.push(`run=${run} policy change without transition at tick ${evt.tick}`);
+                        if (run === 0) {
+                            policyTickReport.push({
+                                tick: evt.tick,
+                                status: "FAIL",
+                                reason: "POLICY_CHANGE_WITHOUT_TRANSITION",
+                                policy_version: policyVersion,
+                                policy_hash: policyHash
+                            });
+                        }
+                        break;
+                    }
+                    if (
+                        transition.from_policy_version !== undefined &&
+                        transition.from_policy_version !== currentPolicyVersion
+                    ) {
+                        failures.push(`run=${run} transition from_policy_version mismatch at tick ${evt.tick}`);
+                        if (run === 0) {
+                            policyTickReport.push({
+                                tick: evt.tick,
+                                status: "FAIL",
+                                reason: "TRANSITION_FROM_VERSION_MISMATCH",
+                                policy_version: policyVersion,
+                                policy_hash: policyHash
+                            });
+                        }
+                        break;
+                    }
+                    if (
+                        transition.from_policy_hash !== undefined &&
+                        transition.from_policy_hash !== currentPolicyHash
+                    ) {
+                        failures.push(`run=${run} transition from_policy_hash mismatch at tick ${evt.tick}`);
+                        if (run === 0) {
+                            policyTickReport.push({
+                                tick: evt.tick,
+                                status: "FAIL",
+                                reason: "TRANSITION_FROM_HASH_MISMATCH",
+                                policy_version: policyVersion,
+                                policy_hash: policyHash
+                            });
+                        }
+                        break;
+                    }
+                    currentPolicyVersion = policyVersion;
+                    currentPolicyHash = policyHash;
+                    if (run === 0) {
+                        checkedPolicyEvents++;
+                        policyTickReport.push({
+                            tick: evt.tick,
+                            status: "PASS",
+                            reason: "POLICY_TRANSITION_APPLIED",
+                            policy_version: policyVersion,
+                            policy_hash: policyHash
+                        });
+                    }
+                } else if (run === 0) {
+                    checkedPolicyEvents++;
+                    policyTickReport.push({
+                        tick: evt.tick,
+                        status: "PASS",
+                        reason: "POLICY_ANCHOR_STABLE",
+                        policy_version: policyVersion,
+                        policy_hash: policyHash
+                    });
                 }
 
                 if (verifyTopologicalSignatures) {
@@ -288,6 +455,9 @@ export const REPLAY_AUDIT = {
             checkedProjectionEvents,
             skippedProjectionEvents,
             projectionTickReport,
+            checkedPolicyEvents,
+            skippedPolicyEvents,
+            policyTickReport,
             finalHashes,
             failures
         };

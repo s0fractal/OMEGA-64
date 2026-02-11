@@ -15,7 +15,7 @@ import { LOAD } from "./i.L99.core.LOAD.ts";
 import { ACCESS_BY_RESONANCE } from "./i.L00.core.ACCESS_BY_RESONANCE.ts";
 import { CHECKPOINT } from "./i.L99.core.CHECKPOINT.ts";
 import { TOPOLOGICAL_SIGNATURE } from "./i.L99.core.TOPOLOGICAL_SIGNATURE.ts";
-import { CRYSTALLIZATION_CONFIG } from "./i.L99.core.CRYSTALLIZATION_CONFIG.ts";
+import { CRYSTALLIZATION_CONFIG, CRYSTALLIZATION_POLICY } from "./i.L99.core.CRYSTALLIZATION_CONFIG.ts";
 
 const GATE_VERSION = "v0.2";
 const AUTO_CHECKPOINT_INTERVAL = 128;
@@ -248,6 +248,7 @@ export const GATE = {
         let signatureArtifactHash: string | undefined;
         let signatureTick: number | undefined;
         let signatureCausalRefs: string[] | undefined;
+        const policyHash = await CRYSTALLIZATION_POLICY.hash();
 
         if (!config.dry_run && TOPOLOGICAL_SIGNATURE.validateHash(nextHash)) {
             const acceptedCausalRefs = decision.accepted_proposals.flatMap((id) =>
@@ -295,6 +296,7 @@ export const GATE = {
             thread_1d_hash: thread1DHash,
             projection_version: projectionVersion,
             policy_version: CRYSTALLIZATION_CONFIG.policyVersion,
+            policy_hash: policyHash,
         };
 
         // 🛡️ Final Red Line Verification

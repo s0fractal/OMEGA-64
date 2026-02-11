@@ -31,7 +31,23 @@ Purpose: Append-only transition format for glider-lite runtime.
   "thread_1d_hash": "hex32",
   "projection_version": "topo-signature/v1",
   "policy_version": "crystallization/v1",
+  "policy_hash": "hex32",
   "gate_config_version": "v1",
+  "witness": "optional_hex32"
+}
+```
+
+## 1.1 Policy Transition Event
+
+```json
+{
+  "event_type": "POLICY_TRANSITION_EVENT",
+  "tick": 129,
+  "from_policy_version": "crystallization/v1",
+  "from_policy_hash": "hex32",
+  "to_policy_version": "crystallization/v2",
+  "to_policy_hash": "hex32",
+  "reason": "threshold retune",
   "witness": "optional_hex32"
 }
 ```

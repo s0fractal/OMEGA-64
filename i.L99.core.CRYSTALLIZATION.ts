@@ -14,7 +14,7 @@ import { REPLAY_AUDIT, ReplayAuditResult, ReplayGenesis } from "./i.L99.core.REP
 import { PROJECTION_REPLAY_REPORT, ProjectionReplayReport } from "./i.L99.core.PROJECTION_REPLAY_REPORT.ts";
 import { PROJECTION_DRIFT_ANALYTICS, ProjectionDriftAnalyticsReport } from "./i.L99.core.PROJECTION_DRIFT_ANALYTICS.ts";
 import { CHECKPOINT } from "./i.L99.core.CHECKPOINT.ts";
-import { CRYSTALLIZATION_CONFIG } from "./i.L99.core.CRYSTALLIZATION_CONFIG.ts";
+import { CRYSTALLIZATION_CONFIG, CRYSTALLIZATION_POLICY } from "./i.L99.core.CRYSTALLIZATION_CONFIG.ts";
 
 const stableStringify = (value: unknown): string => {
     if (Array.isArray(value)) {
@@ -130,6 +130,7 @@ export const CRYSTALLIZATION = {
         }
 
         const proposalDigest = await sha256Hex(stableStringify([...passedDigests].sort()));
+        const policyHash = await CRYSTALLIZATION_POLICY.hash();
         const canonEvent: CanonizationEvent = {
             event_type: "CANONIZATION_EVENT",
             artifact_hash: artifactHash,
@@ -140,6 +141,7 @@ export const CRYSTALLIZATION = {
             hard_gates: "PASS",
             soft_gates_passed: 6,
             policy_version: CRYSTALLIZATION_CONFIG.policyVersion,
+            policy_hash: policyHash,
             witness: options.witness
         };
 

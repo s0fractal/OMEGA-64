@@ -5,7 +5,7 @@ import { GATE } from "./i.L32.core.GATE.ts";
 import { CRYSTALLIZATION } from "./i.L99.core.CRYSTALLIZATION.ts";
 import { LEDGER } from "./i.L99.core.LEDGER.ts";
 import { DeltaProposal, GateConfig, StateSnapshot } from "./i.L99.core.STATE_SNAPSHOT.ts";
-import { CRYSTALLIZATION_CONFIG } from "./i.L99.core.CRYSTALLIZATION_CONFIG.ts";
+import { CRYSTALLIZATION_CONFIG, CRYSTALLIZATION_POLICY } from "./i.L99.core.CRYSTALLIZATION_CONFIG.ts";
 
 export async function runTest() {
     console.log("🧪 TESTING: Replay Audit + Crystallization Coupling");
@@ -19,6 +19,7 @@ export async function runTest() {
     await Deno.writeTextFile(LEDGER.STORAGE_PATH, "");
 
     try {
+        const expectedPolicyHash = await CRYSTALLIZATION_POLICY.hash();
         const genesisState: StateSnapshot = {
             tick: 1,
             state_i16: new Int16Array(64).fill(0),
@@ -108,6 +109,9 @@ export async function runTest() {
         const canon = JSON.parse(canonLine);
         if (canon.policy_version !== CRYSTALLIZATION_CONFIG.policyVersion) {
             throw new Error(`unexpected canon policy_version: ${canon.policy_version}`);
+        }
+        if (canon.policy_hash !== expectedPolicyHash) {
+            throw new Error(`unexpected canon policy_hash: ${canon.policy_hash}`);
         }
     } finally {
         try {

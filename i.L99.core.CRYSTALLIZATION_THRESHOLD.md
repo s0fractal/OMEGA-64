@@ -28,6 +28,8 @@ Projection drift gate MUST pass:
 Default runtime values are defined in:
 `i.L99.core.CRYSTALLIZATION_CONFIG.ts`.
 Policy version MUST be persisted in emitted events as `policy_version`.
+Policy hash MUST be persisted in emitted events as `policy_hash`.
+Policy change is valid only via explicit `POLICY_TRANSITION_EVENT`.
 
 2. Critical Safety:
 `CRITICAL VIOLATION_EVENT = 0` in stability window.
