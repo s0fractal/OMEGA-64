@@ -2,7 +2,7 @@
 // 🛡️ OMEGA-64 | Glider Lite | Append-Only Ledger
 // Records every state transition for replay and audit.
 
-import { LedgerEvent, ViolationEvent } from "./i.L99.core.STATE_SNAPSHOT.ts";
+import { LedgerEvent, ViolationEvent, CanonizationEvent } from "./i.L99.core.STATE_SNAPSHOT.ts";
 
 export const LEDGER = {
     
@@ -13,7 +13,7 @@ export const LEDGER = {
      * Appends a new event to the ledger.
      * In a real system, this would be an atomic file append or DB insert.
      */
-    append: async (event: LedgerEvent | ViolationEvent): Promise<void> => {
+    append: async (event: LedgerEvent | ViolationEvent | CanonizationEvent): Promise<void> => {
         const line = JSON.stringify(event);
         try {
             await Deno.writeTextFile(LEDGER.STORAGE_PATH, line + "\n", { append: true });

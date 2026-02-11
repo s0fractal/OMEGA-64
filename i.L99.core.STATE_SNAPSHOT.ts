@@ -88,6 +88,21 @@ export interface ViolationEvent {
     action_taken: "HALT_AND_QUARANTINE" | "LOG_ONLY";
 }
 
+/**
+ * CanonizationEvent: Emitted when an artifact becomes Crystal.
+ */
+export interface CanonizationEvent {
+    event_type: "CANONIZATION_EVENT";
+    artifact_hash: string;
+    state_hash: string;
+    proposal_digest: string; // Hash chain proof
+    checkpoint_tick: number;
+    window: number; // e.g. 512
+    hard_gates: "PASS" | "FAIL";
+    soft_gates_passed: number; // 0..6
+    witness?: string;
+}
+
 // Canonical Rejection Reasons
 export const REJECTION = {
     SCHEMA_INVALID: "SCHEMA_INVALID",
