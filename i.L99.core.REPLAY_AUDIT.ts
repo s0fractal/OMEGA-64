@@ -4,6 +4,7 @@
 
 import { LEDGER } from "./i.L99.core.LEDGER.ts";
 import { LedgerEvent } from "./i.L99.core.STATE_SNAPSHOT.ts";
+import { TOPOLOGICAL_SIGNATURE, TopologicalSignature } from "./i.L99.core.TOPOLOGICAL_SIGNATURE.ts";
 
 export interface ReplayGenesis {
     tick: number;
@@ -15,6 +16,7 @@ export interface ReplayAuditOptions {
     runs?: number;
     startTick?: number;
     endTick?: number;
+    verifyTopologicalSignatures?: boolean;
 }
 
 export interface ReplayAuditResult {
@@ -22,6 +24,8 @@ export interface ReplayAuditResult {
     runs: number;
     checkedEvents: number;
     skippedEvents: number;
+    checkedProjectionEvents: number;
+    skippedProjectionEvents: number;
     finalHashes: string[];
     failures: string[];
 }
@@ -105,9 +109,12 @@ const collectLedgerEvents = async (startTick?: number, endTick?: number): Promis
 export const REPLAY_AUDIT = {
     audit: async (genesis: ReplayGenesis, options: ReplayAuditOptions = {}): Promise<ReplayAuditResult> => {
         const runs = options.runs ?? 3;
+        const verifyTopologicalSignatures = options.verifyTopologicalSignatures ?? true;
         const { events, skipped } = await collectLedgerEvents(options.startTick, options.endTick);
         const finalHashes: string[] = [];
         const failures: string[] = [];
+        let checkedProjectionEvents = 0;
+        let skippedProjectionEvents = 0;
 
         for (let run = 0; run < runs; run++) {
             let tick = genesis.tick;
@@ -139,6 +146,65 @@ export const REPLAY_AUDIT = {
                     break;
                 }
 
+                if (verifyTopologicalSignatures) {
+                    const hasProjectionData = Boolean(
+                        evt.projection_2d_hash ||
+                        evt.thread_1d_hash ||
+                        evt.projection_version ||
+                        evt.signature_artifact_hash ||
+                        evt.signature_tick ||
+                        evt.signature_causal_refs
+                    );
+
+                    if (hasProjectionData) {
+                        if (!evt.projection_2d_hash || !evt.thread_1d_hash || !evt.projection_version) {
+                            failures.push(`run=${run} incomplete projection fields at tick ${evt.tick}`);
+                            break;
+                        }
+                        if (evt.projection_version !== TOPOLOGICAL_SIGNATURE.PROJECTION_VERSION) {
+                            failures.push(`run=${run} unsupported projection version at tick ${evt.tick}`);
+                            break;
+                        }
+                        if (evt.signature_tick !== undefined && evt.signature_tick !== nextTick) {
+                            failures.push(`run=${run} signature_tick mismatch at tick ${evt.tick}`);
+                            break;
+                        }
+                        if (evt.signature_artifact_hash !== undefined && evt.signature_artifact_hash !== evt.proposal_digest) {
+                            failures.push(`run=${run} signature_artifact_hash mismatch at tick ${evt.tick}`);
+                            break;
+                        }
+
+                        const signature: TopologicalSignature = {
+                            artifact_hash: evt.signature_artifact_hash ?? evt.proposal_digest,
+                            state_hash: expectedHash,
+                            tick: evt.signature_tick ?? nextTick,
+                            causal_refs: evt.signature_causal_refs ?? [],
+                            projection_2d_hash: evt.projection_2d_hash,
+                            thread_1d_hash: evt.thread_1d_hash,
+                            projection_version: evt.projection_version
+                        };
+
+                        const verifyResult = await TOPOLOGICAL_SIGNATURE.verify(
+                            signature,
+                            TOPOLOGICAL_SIGNATURE.snapshotToOrganismState({
+                                state_hash: expectedHash,
+                                state_i16: nextState
+                            })
+                        );
+
+                        if (!verifyResult.ok) {
+                            failures.push(
+                                `run=${run} projection mismatch at tick ${evt.tick}: ${verifyResult.reasons.join("|")}`
+                            );
+                            break;
+                        }
+
+                        if (run === 0) checkedProjectionEvents++;
+                    } else {
+                        if (run === 0) skippedProjectionEvents++;
+                    }
+                }
+
                 tick = nextTick;
                 state = nextState;
                 stateHash = expectedHash;
@@ -155,6 +221,8 @@ export const REPLAY_AUDIT = {
             runs,
             checkedEvents: events.length,
             skippedEvents: skipped,
+            checkedProjectionEvents,
+            skippedProjectionEvents,
             finalHashes,
             failures
         };

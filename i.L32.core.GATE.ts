@@ -260,10 +260,7 @@ export const GATE = {
                 tick: nextTick,
                 state: TOPOLOGICAL_SIGNATURE.snapshotToOrganismState({
                     state_hash: nextHash,
-                    state_i16: nextStateI16,
-                    phase_u16: state.phase_u16,
-                    stability_q15: state.stability_q15,
-                    entropy_i16: state.entropy_i16
+                    state_i16: nextStateI16
                 }),
                 causal_refs: causalRefs
             });
