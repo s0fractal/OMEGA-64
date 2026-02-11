@@ -169,7 +169,10 @@ Deno.test("replay fails when gate admission report file is tampered", async () =
         if (audit.replayGreen) {
             throw new Error("replay must fail when gate admission report file is tampered");
         }
-        if (!audit.failures.some((f) => f.includes("gate admission report hash mismatch"))) {
+        if (
+            !audit.failures.some((f) => f.includes("gate admission report hash mismatch")) &&
+            !audit.failures.some((f) => f.includes("gate_admission_index_chain:INDEX_REPORT_HASH_MISMATCH"))
+        ) {
             throw new Error(`missing expected failure, got: ${audit.failures.join(",")}`);
         }
     } finally {
@@ -263,6 +266,51 @@ Deno.test("replay fails when canonization report index chain is tampered", async
             throw new Error("expected invariantReport index_chain_checked=true");
         }
         if (!audit.failures.some((f) => f.includes("index_chain:INDEX_RECORD_HASH_MISMATCH"))) {
+            throw new Error(`missing expected failure, got: ${audit.failures.join(",")}`);
+        }
+    } finally {
+        LEDGER.STORAGE_PATH = origLedger;
+        CRYSTALLIZATION_REPORT.STORAGE_DIR = origDir;
+        CRYSTALLIZATION_REPORT.INDEX_PATH = origIndex;
+        GATE_ADMISSION_REPORT.STORAGE_DIR = origGateAdmissionDir;
+        GATE_ADMISSION_REPORT.INDEX_PATH = origGateAdmissionIndex;
+        try { await Deno.remove(tempLedger); } catch { /* ignore */ }
+        try { await Deno.remove(tempDir, { recursive: true }); } catch { /* ignore */ }
+        try { await Deno.remove(tempGateAdmissionDir, { recursive: true }); } catch { /* ignore */ }
+    }
+});
+
+Deno.test("replay fails when gate admission report index chain is tampered", async () => {
+    const origLedger = LEDGER.STORAGE_PATH;
+    const origDir = CRYSTALLIZATION_REPORT.STORAGE_DIR;
+    const origIndex = CRYSTALLIZATION_REPORT.INDEX_PATH;
+    const origGateAdmissionDir = GATE_ADMISSION_REPORT.STORAGE_DIR;
+    const origGateAdmissionIndex = GATE_ADMISSION_REPORT.INDEX_PATH;
+    const tempLedger = await Deno.makeTempFile({ prefix: "omega-ledger-gate-index-verify-", suffix: ".jsonl" });
+    const tempDir = await Deno.makeTempDir({ prefix: "omega-canon-report-verify-" });
+    const tempGateAdmissionDir = await Deno.makeTempDir({ prefix: "omega-gate-admission-verify-" });
+
+    try {
+        const genesis = await prepareCrystallized(tempLedger, tempDir, tempGateAdmissionDir);
+
+        const rawIndex = await Deno.readTextFile(GATE_ADMISSION_REPORT.INDEX_PATH);
+        const lines = rawIndex.split("\n").filter((x) => x.trim().length > 0);
+        if (lines.length < 1) {
+            throw new Error("missing gate admission report index line");
+        }
+        const record = JSON.parse(lines[0]);
+        record.record_hash = "f".repeat(64);
+        await Deno.writeTextFile(GATE_ADMISSION_REPORT.INDEX_PATH, JSON.stringify(record) + "\n");
+
+        const audit = await REPLAY_AUDIT.audit(
+            { tick: 1, state_i16: genesis.state_i16, state_hash: "state_1" },
+            { runs: 1, startTick: 1, endTick: 2 }
+        );
+
+        if (audit.replayGreen) {
+            throw new Error("replay must fail when gate admission index chain is tampered");
+        }
+        if (!audit.failures.some((f) => f.includes("gate_admission_index_chain:INDEX_RECORD_HASH_MISMATCH"))) {
             throw new Error(`missing expected failure, got: ${audit.failures.join(",")}`);
         }
     } finally {

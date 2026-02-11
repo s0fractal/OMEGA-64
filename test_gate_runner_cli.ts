@@ -41,7 +41,11 @@ Deno.test("gate runner cli processes JSON input and writes output", async () => 
                 index_chain_checked: true,
                 index_chain_ok: true,
                 index_chain_checked_records: 1,
-                index_chain_failures: []
+                index_chain_failures: [],
+                gate_admission_index_chain_checked: true,
+                gate_admission_index_chain_ok: true,
+                gate_admission_index_chain_checked_records: 1,
+                gate_admission_index_chain_failures: []
             },
             witness: "cli-test"
         };

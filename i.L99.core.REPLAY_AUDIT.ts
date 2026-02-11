@@ -80,6 +80,10 @@ export interface ReplayInvariantReport {
     index_chain_ok: boolean;
     index_chain_checked_records: number;
     index_chain_failures: string[];
+    gate_admission_index_chain_checked: boolean;
+    gate_admission_index_chain_ok: boolean;
+    gate_admission_index_chain_checked_records: number;
+    gate_admission_index_chain_failures: string[];
     ledger_chain_checked?: boolean;
     ledger_chain_ok?: boolean;
     ledger_chain_checked_events?: number;
@@ -242,6 +246,10 @@ export const REPLAY_AUDIT = {
             index_chain_ok: true,
             index_chain_checked_records: 0,
             index_chain_failures: [],
+            gate_admission_index_chain_checked: false,
+            gate_admission_index_chain_ok: true,
+            gate_admission_index_chain_checked_records: 0,
+            gate_admission_index_chain_failures: [],
             ledger_chain_checked: false,
             ledger_chain_ok: true,
             ledger_chain_checked_events: 0,
@@ -309,6 +317,34 @@ export const REPLAY_AUDIT = {
                     invariantReport,
                     finalHashes,
                     failures: indexChain.failures.map((x) => `index_chain:${x}`)
+                };
+            }
+            const gateIndexChain = await GATE_ADMISSION_REPORT.verifyIndexChain(true);
+            invariantReport.gate_admission_index_chain_checked = true;
+            invariantReport.gate_admission_index_chain_ok = gateIndexChain.ok;
+            invariantReport.gate_admission_index_chain_checked_records = gateIndexChain.checkedRecords;
+            invariantReport.gate_admission_index_chain_failures = [...gateIndexChain.failures];
+            if (!gateIndexChain.ok) {
+                return {
+                    replayGreen: false,
+                    runs,
+                    checkedEvents: events.length,
+                    skippedEvents: skipped,
+                    checkedProjectionEvents,
+                    skippedProjectionEvents,
+                    projectionTickReport,
+                    checkedPolicyEvents,
+                    skippedPolicyEvents,
+                    policyTickReport,
+                    checkedCanonReports,
+                    skippedCanonReports,
+                    canonReportTickReport,
+                    checkedGateAdmissionReports,
+                    skippedGateAdmissionReports,
+                    gateAdmissionReportTickReport,
+                    invariantReport,
+                    finalHashes,
+                    failures: gateIndexChain.failures.map((x) => `gate_admission_index_chain:${x}`)
                 };
             }
         }

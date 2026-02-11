@@ -283,6 +283,16 @@ export async function runTest() {
         }`,
       );
     }
+    if (
+      !postAudit.invariantReport.gate_admission_index_chain_checked ||
+      !postAudit.invariantReport.gate_admission_index_chain_ok
+    ) {
+      throw new Error(
+        `post-audit gate admission index must be green: ${
+          postAudit.invariantReport.gate_admission_index_chain_failures.join(",")
+        }`,
+      );
+    }
     if (postAudit.checkedCanonReports < 1) {
       throw new Error(
         `expected checkedCanonReports >= 1, got ${postAudit.checkedCanonReports}`,
