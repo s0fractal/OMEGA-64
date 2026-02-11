@@ -82,6 +82,9 @@ export interface LedgerEvent {
     projection_version?: string; // signature projection version
     policy_version?: string; // crystallization/gate policy version
     policy_hash?: string; // SHA-256 of canonical crystallization policy payload
+    chain_version?: string; // ledger hash-chain schema version
+    prev_event_hash?: string | null; // hash anchor to previous ledger line
+    event_hash?: string; // hash of this event payload + prev_event_hash
     witness?: string;
 }
 
@@ -96,6 +99,9 @@ export interface ViolationEvent {
     state_hash: string;
     details: string;
     action_taken: "HALT_AND_QUARANTINE" | "LOG_ONLY";
+    chain_version?: string;
+    prev_event_hash?: string | null;
+    event_hash?: string;
 }
 
 /**
@@ -115,6 +121,9 @@ export interface CanonizationEvent {
     crystallization_report_version?: string; // report schema version
     crystallization_report_hash?: string; // SHA-256 of canonical crystallization report payload
     crystallization_report_uri?: string; // materialized report path (content-addressed)
+    chain_version?: string;
+    prev_event_hash?: string | null;
+    event_hash?: string;
     witness?: string;
 }
 
@@ -129,6 +138,9 @@ export interface PolicyTransitionEvent {
     to_policy_version: string;
     to_policy_hash: string;
     reason: string;
+    chain_version?: string;
+    prev_event_hash?: string | null;
+    event_hash?: string;
     witness?: string;
 }
 
@@ -147,6 +159,9 @@ export interface BridgeModeEvent {
     canon_bound_proposals: string[];
     blocked_canon_proposals: string[];
     reason: string;
+    chain_version?: string;
+    prev_event_hash?: string | null;
+    event_hash?: string;
     witness?: string;
 }
 
@@ -161,6 +176,9 @@ export interface DecrystallizationEvent {
     rollback_to_checkpoint: number;
     rollback_state_hash?: string;
     hard_gate_failure: string;
+    chain_version?: string;
+    prev_event_hash?: string | null;
+    event_hash?: string;
     witness?: string;
 }
 

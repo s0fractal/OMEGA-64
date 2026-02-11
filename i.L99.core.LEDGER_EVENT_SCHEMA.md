@@ -32,6 +32,9 @@ Purpose: Append-only transition format for glider-lite runtime.
   "projection_version": "topo-signature/v1",
   "policy_version": "crystallization/v1",
   "policy_hash": "hex32",
+  "chain_version": "ledger-hash/v1",
+  "prev_event_hash": "hex32_or_null",
+  "event_hash": "hex32",
   "gate_config_version": "v1",
   "witness": "optional_hex32"
 }
@@ -99,6 +102,8 @@ Across window:
 2. No in-place mutation of prior events.
 3. Optional periodic checkpoints:
 `checkpoint_tick`, `checkpoint_state_hash`.
+4. Each appended line carries chain anchors:
+`chain_version`, `prev_event_hash`, `event_hash`.
 
 ## 5. Replay Rule
 
@@ -108,3 +113,6 @@ Starting from genesis snapshot:
 - verify equals `state_after_hash`.
 
 Mismatch means ledger corruption or non-deterministic gate.
+
+Optional strict mode:
+- replay can fail-fast on ledger hash-chain corruption (`verifyLedgerChain=true`).

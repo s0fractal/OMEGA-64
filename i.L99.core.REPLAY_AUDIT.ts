@@ -19,6 +19,7 @@ export interface ReplayAuditOptions {
     startTick?: number;
     endTick?: number;
     verifyTopologicalSignatures?: boolean;
+    verifyLedgerChain?: boolean;
 }
 
 export interface ReplayAuditResult {
@@ -67,6 +68,12 @@ export interface ReplayInvariantReport {
     index_chain_ok: boolean;
     index_chain_checked_records: number;
     index_chain_failures: string[];
+    ledger_chain_checked?: boolean;
+    ledger_chain_ok?: boolean;
+    ledger_chain_checked_events?: number;
+    ledger_chain_chain_anchored_events?: number;
+    ledger_chain_legacy_events?: number;
+    ledger_chain_failures?: string[];
 }
 
 const stableStringify = (value: unknown): string => {
@@ -217,8 +224,43 @@ export const REPLAY_AUDIT = {
             index_chain_checked: false,
             index_chain_ok: true,
             index_chain_checked_records: 0,
-            index_chain_failures: []
+            index_chain_failures: [],
+            ledger_chain_checked: false,
+            ledger_chain_ok: true,
+            ledger_chain_checked_events: 0,
+            ledger_chain_chain_anchored_events: 0,
+            ledger_chain_legacy_events: 0,
+            ledger_chain_failures: []
         };
+        if (options.verifyLedgerChain ?? false) {
+            const ledgerChain = await LEDGER.verifyChainDetailed();
+            invariantReport.ledger_chain_checked = true;
+            invariantReport.ledger_chain_ok = ledgerChain.ok;
+            invariantReport.ledger_chain_checked_events = ledgerChain.checkedEvents;
+            invariantReport.ledger_chain_chain_anchored_events = ledgerChain.chainAnchoredEvents;
+            invariantReport.ledger_chain_legacy_events = ledgerChain.legacyEvents;
+            invariantReport.ledger_chain_failures = [...ledgerChain.failures];
+            if (!ledgerChain.ok) {
+                return {
+                    replayGreen: false,
+                    runs,
+                    checkedEvents: events.length,
+                    skippedEvents: skipped,
+                    checkedProjectionEvents,
+                    skippedProjectionEvents,
+                    projectionTickReport,
+                    checkedPolicyEvents,
+                    skippedPolicyEvents,
+                    policyTickReport,
+                    checkedCanonReports,
+                    skippedCanonReports,
+                    canonReportTickReport,
+                    invariantReport,
+                    finalHashes,
+                    failures: ledgerChain.failures.map((x) => `ledger_chain:${x}`)
+                };
+            }
+        }
         const hasCanonEvents = canonByCheckpointTick.size > 0;
         if (hasCanonEvents) {
             const indexChain = await CRYSTALLIZATION_REPORT.verifyIndexChain(true);

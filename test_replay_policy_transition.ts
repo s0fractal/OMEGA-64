@@ -23,6 +23,63 @@ const processLocal = async (
 ): Promise<StateSnapshot> =>
     (await GATE_PIPELINE.processWithInvariantContext(state, proposals, config)).nextState;
 
+const stableStringify = (value: unknown): string => {
+    if (Array.isArray(value)) {
+        return `[${value.map((v) => stableStringify(v)).join(",")}]`;
+    }
+    if (value && typeof value === "object") {
+        const entries = Object.entries(value as Record<string, unknown>)
+            .filter(([, v]) => typeof v !== "undefined")
+            .sort(([a], [b]) => a.localeCompare(b));
+        const body = entries
+            .map(([k, v]) => `${JSON.stringify(k)}:${stableStringify(v)}`)
+            .join(",");
+        return `{${body}}`;
+    }
+    return JSON.stringify(value);
+};
+
+const toHex = (buffer: ArrayBuffer): string =>
+    Array.from(new Uint8Array(buffer)).map((b) => b.toString(16).padStart(2, "0")).join("");
+
+const sha256Hex = async (input: string): Promise<string> => {
+    const data = new TextEncoder().encode(input);
+    const digest = await crypto.subtle.digest("SHA-256", data);
+    return toHex(digest);
+};
+
+const stripChainFields = (event: Record<string, unknown>): Record<string, unknown> => {
+    const clone = { ...event };
+    delete clone.chain_version;
+    delete clone.prev_event_hash;
+    delete clone.event_hash;
+    return clone;
+};
+
+const rechainLines = async (lines: string[]): Promise<string[]> => {
+    let prevHash: string | null = null;
+    const out: string[] = [];
+    for (const line of lines) {
+        const evt = JSON.parse(line) as Record<string, unknown>;
+        const body = stripChainFields(evt);
+        const payload = {
+            chain_version: LEDGER.CHAIN_VERSION,
+            prev_event_hash: prevHash,
+            body
+        };
+        const eventHash = await sha256Hex(stableStringify(payload));
+        const chained = {
+            ...body,
+            chain_version: LEDGER.CHAIN_VERSION,
+            prev_event_hash: prevHash,
+            event_hash: eventHash
+        };
+        out.push(JSON.stringify(chained));
+        prevHash = eventHash;
+    }
+    return out;
+};
+
 const proposal = (id: string, tick: number, baseHash: string, value: number): DeltaProposal => ({
     proposal_id: id,
     tick,
@@ -90,7 +147,8 @@ Deno.test("replay fails on local policy hash mismatch", async () => {
         const evt = JSON.parse(lines[ledgerIdx]);
         evt.policy_hash = "f".repeat(64); // keep current version, break hash
         lines[ledgerIdx] = JSON.stringify(evt);
-        await Deno.writeTextFile(LEDGER.STORAGE_PATH, lines.join("\n") + "\n");
+        const rechained = await rechainLines(lines);
+        await Deno.writeTextFile(LEDGER.STORAGE_PATH, rechained.join("\n") + "\n");
 
         const audit = await REPLAY_AUDIT.audit(
             {
@@ -127,7 +185,8 @@ Deno.test("replay fails when policy changes without transition event", async () 
         e2.policy_version = "crystallization/v2";
         e2.policy_hash = "2".repeat(64);
         lines[secondLedgerIdx] = JSON.stringify(e2);
-        await Deno.writeTextFile(LEDGER.STORAGE_PATH, lines.join("\n") + "\n");
+        const rechained = await rechainLines(lines);
+        await Deno.writeTextFile(LEDGER.STORAGE_PATH, rechained.join("\n") + "\n");
 
         const audit = await REPLAY_AUDIT.audit(
             {
@@ -166,7 +225,8 @@ Deno.test("replay accepts policy transition when explicit event is present", asy
         e2.policy_version = "crystallization/v2";
         e2.policy_hash = "2".repeat(64);
         lines[secondLedgerIdx] = JSON.stringify(e2);
-        await Deno.writeTextFile(LEDGER.STORAGE_PATH, lines.join("\n") + "\n");
+        const rechained = await rechainLines(lines);
+        await Deno.writeTextFile(LEDGER.STORAGE_PATH, rechained.join("\n") + "\n");
 
         const transition = await POLICY_TRANSITION.emit({
             tick: 2,
