@@ -113,6 +113,14 @@ export async function runTest() {
         if (!audit.replayGreen) {
             throw new Error(`Replay audit failed: ${JSON.stringify(audit.failures)}`);
         }
+        if (!audit.invariantReport.ledger_chain_checked || !audit.invariantReport.ledger_chain_ok) {
+            throw new Error(
+                `expected ledger chain green in crystallization audit: ${audit.invariantReport.ledger_chain_failures?.join(",")}`
+            );
+        }
+        if ((audit.invariantReport.ledger_chain_checked_events ?? 0) < 1) {
+            throw new Error("expected ledger_chain_checked_events >= 1 in crystallization audit");
+        }
         if (audit.invariantReport.index_chain_checked) {
             throw new Error("pre-canon replay audit should not check index chain");
         }
@@ -183,10 +191,15 @@ export async function runTest() {
                 state_i16: genesisState.state_i16,
                 state_hash: "state_1"
             },
-            { runs: 1, startTick: 1, endTick: 2 }
+            { runs: 1, startTick: 1, endTick: 2, verifyLedgerChain: true }
         );
         if (!postAudit.replayGreen) {
             throw new Error(`post-audit should be green: ${postAudit.failures.join(",")}`);
+        }
+        if (!postAudit.invariantReport.ledger_chain_checked || !postAudit.invariantReport.ledger_chain_ok) {
+            throw new Error(
+                `post-audit ledger chain must be green: ${postAudit.invariantReport.ledger_chain_failures?.join(",")}`
+            );
         }
         if (!postAudit.invariantReport.index_chain_checked || !postAudit.invariantReport.index_chain_ok) {
             throw new Error(

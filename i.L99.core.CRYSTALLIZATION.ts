@@ -182,7 +182,8 @@ export const CRYSTALLIZATION = {
         const audit = await REPLAY_AUDIT.audit(replayGenesis, {
             runs: options.replayRuns ?? 3,
             startTick: replayStartTick,
-            endTick: currentTick
+            endTick: currentTick,
+            verifyLedgerChain: CRYSTALLIZATION_CONFIG.verifyLedgerChain
         });
         const projectionReport = await PROJECTION_REPLAY_REPORT.generate(replayGenesis, {
             startTick: replayStartTick,

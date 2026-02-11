@@ -27,6 +27,8 @@ Projection drift gate MUST pass:
 `max(driftByLevelP95) <= projectionDriftMaxP95`.
 Default runtime values are defined in:
 `i.L99.core.CRYSTALLIZATION_CONFIG.ts`.
+Ledger hash-chain verification MUST be enabled according to policy
+(`verifyLedgerChain`) during crystallization replay audit.
 Policy version MUST be persisted in emitted events as `policy_version`.
 Policy hash MUST be persisted in emitted events as `policy_hash`.
 Policy change is valid only via explicit `POLICY_TRANSITION_EVENT`.

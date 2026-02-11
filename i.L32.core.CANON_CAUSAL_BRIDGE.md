@@ -74,3 +74,7 @@ Runtime callers can use:
 APIs:
 1. `fromInvariantReport(...)` for direct invariant injection,
 2. `fromReplayAudit(...)` to derive runtime context from replay automatically.
+
+Policy note:
+`fromReplayAudit(...)` defaults `verifyLedgerChain` from crystallization policy
+unless caller overrides it explicitly.

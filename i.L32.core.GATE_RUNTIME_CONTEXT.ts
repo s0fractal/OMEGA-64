@@ -5,6 +5,7 @@ import type { ReplayAuditOptions, ReplayAuditResult, ReplayGenesis, ReplayInvari
 import { REPLAY_AUDIT } from "./i.L99.core.REPLAY_AUDIT.ts";
 import type { GateRuntimeContext } from "./i.L32.core.GATE.ts";
 import { CANON_CAUSAL_BRIDGE, type BridgeMode } from "./i.L32.core.CANON_CAUSAL_BRIDGE.ts";
+import { CRYSTALLIZATION_CONFIG } from "./i.L99.core.CRYSTALLIZATION_CONFIG.ts";
 
 export interface GateRuntimeContextEnvelope {
     runtime: GateRuntimeContext;
@@ -34,7 +35,11 @@ export const GATE_RUNTIME_CONTEXT = {
         options: ReplayAuditOptions = {},
         witness?: string
     ): Promise<GateRuntimeContextEnvelope> => {
-        const audit = await REPLAY_AUDIT.audit(genesis, options);
+        const auditOptions: ReplayAuditOptions = {
+            ...options,
+            verifyLedgerChain: options.verifyLedgerChain ?? CRYSTALLIZATION_CONFIG.verifyLedgerChain
+        };
+        const audit = await REPLAY_AUDIT.audit(genesis, auditOptions);
         const out = GATE_RUNTIME_CONTEXT.fromInvariantReport(audit.invariantReport, witness);
         return {
             ...out,

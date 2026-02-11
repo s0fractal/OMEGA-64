@@ -8,6 +8,7 @@ export interface CrystallizationConfig {
     defaultRequiredWindows: number;
     projectionDriftMaxP95: number;
     projectionDriftTopLevels: number;
+    verifyLedgerChain: boolean;
 }
 
 export const CRYSTALLIZATION_CONFIG: CrystallizationConfig = {
@@ -16,7 +17,8 @@ export const CRYSTALLIZATION_CONFIG: CrystallizationConfig = {
     minSoftPasses: 5,
     defaultRequiredWindows: 3,
     projectionDriftMaxP95: 1024,
-    projectionDriftTopLevels: 8
+    projectionDriftTopLevels: 8,
+    verifyLedgerChain: true
 };
 
 const stableStringify = (value: unknown): string => {
@@ -48,7 +50,8 @@ export const CRYSTALLIZATION_POLICY = {
             minSoftPasses: CRYSTALLIZATION_CONFIG.minSoftPasses,
             defaultRequiredWindows: CRYSTALLIZATION_CONFIG.defaultRequiredWindows,
             projectionDriftMaxP95: CRYSTALLIZATION_CONFIG.projectionDriftMaxP95,
-            projectionDriftTopLevels: CRYSTALLIZATION_CONFIG.projectionDriftTopLevels
+            projectionDriftTopLevels: CRYSTALLIZATION_CONFIG.projectionDriftTopLevels,
+            verifyLedgerChain: CRYSTALLIZATION_CONFIG.verifyLedgerChain
         }),
 
     hash: async (): Promise<string> => await sha256Hex(CRYSTALLIZATION_POLICY.canonicalPayload())
