@@ -4,6 +4,7 @@
 // Ignites system-wide transitions when the moment is right.
 
 import { SIGNAL } from "./i.L64.core.SIGNAL.ts";
+import { VOID } from "./i.L25.core.VOID.ts";
 import type { Atom } from "./i.L32.core.RIBOSOME.ts";
 
 export const KAIROS = {
@@ -17,16 +18,34 @@ export const KAIROS = {
             
             // Generate a Semantic Request
             const target = lattice[Math.floor(Math.random() * lattice.length)];
+            const context = `Entropy fluctuation detected in [${target.id}]. Resonance: ${totalResonance.toFixed(2)}`;
             
-            await SIGNAL.emit("REQUEST", {
-                source: "KAIROS",
-                message: `Entropy fluctuation detected in [${target.id}]. Requesting structural reinforcement.`,
-                context: {
-                    atomId: target.id,
-                    resonance: totalResonance,
-                    suggestion: "Review and refactor if necessary."
-                }
-            });
+            // 🛡️ Era 3.2: Consult the Oracle
+            const judgment = await VOID.ask(context);
+            
+            if (judgment === "PURGE") {
+                console.warn(`🔴 VOID JUDGMENT: PURGE [${target.id}]`);
+                await SIGNAL.emit("REQUEST", {
+                    source: "KAIROS",
+                    message: `Oracle decreas PURGE for [${target.id}]. Structural integrity compromised.`,
+                    context: {
+                        atomId: target.id,
+                        resonance: totalResonance,
+                        judgment: "PURGE"
+                    }
+                });
+            } else {
+                console.log(`🟢 VOID JUDGMENT: ALLOW [${target.id}] (Evolution detected)`);
+                await SIGNAL.emit("INFO", {
+                    source: "KAIROS",
+                    message: `Oracle allows mutation in [${target.id}]. Evolution proceeding.`,
+                    context: {
+                        atomId: target.id,
+                        resonance: totalResonance,
+                        judgment: "ALLOW"
+                    }
+                });
+            }
         }
     }
 };
