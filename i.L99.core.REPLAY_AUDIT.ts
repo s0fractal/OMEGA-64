@@ -844,6 +844,42 @@ export const REPLAY_AUDIT = {
             finalHashes,
             failures
         };
+    },
+
+    /**
+     * Helper for GATE or other components to verify causal integrity of an event.
+     */
+    verifyEventCausalIntegrity: async (
+        event: LedgerEvent,
+        previousState: { tick: number; state_hash: string; state_i16: Int16Array }
+    ): Promise<{ ok: boolean; reason?: string }> => {
+        if (event.tick !== previousState.tick) {
+            return { ok: false, reason: `TICK_MISMATCH: expected ${previousState.tick}, got ${event.tick}` };
+        }
+        if (event.state_before_hash !== previousState.state_hash) {
+            return { ok: false, reason: `BASE_HASH_MISMATCH: expected ${previousState.state_hash}, got ${event.state_before_hash}` };
+        }
+        
+        // saturatingAdd logic from inside REPLAY_AUDIT
+        const nextStateI16 = new Int16Array(previousState.state_i16);
+        for (const d of event.accepted_delta) {
+            let value = nextStateI16[d.level] + d.value;
+            if (value > 32767) value = 32767;
+            if (value < -32768) value = -32768;
+            nextStateI16[d.level] = value;
+        }
+
+        const nextTick = previousState.tick + 1;
+        const expectedHash = await expectedStateHash(
+            nextStateI16,
+            nextTick,
+            event.gate_config_version,
+            event.proposal_digest
+        );
+        if (event.state_after_hash !== expectedHash) {
+            return { ok: false, reason: `STATE_AFTER_HASH_MISMATCH: computed ${expectedHash}, event has ${event.state_after_hash}` };
+        }
+        return { ok: true };
     }
 };
 

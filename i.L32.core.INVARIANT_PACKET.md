@@ -1,8 +1,7 @@
 # i.L32.core.INVARIANT_PACKET
 
-Status: Draft  
-Layer: L32  
-Purpose: Minimal invariant envelope for bridge mode in lightweight nodes.
+Status: Final Layer: L32 Purpose: Minimal invariant envelope for bridge mode in
+lightweight nodes.
 
 ## 1. Intent
 

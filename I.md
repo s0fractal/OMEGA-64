@@ -662,7 +662,7 @@ Beyond repositories, I am exploring these "Questions":
 <!-- [ ./i.L32.core.AGENT_SIGNATURE_SPEC.md ] -->
 # i.L32.core.AGENT_SIGNATURE_SPEC
 
-Status: Draft Layer: L32 Intent: Deterministic proposal signing and verification
+Status: Final Layer: L32 Intent: Deterministic proposal signing and verification
 for agent admission.
 
 ## 0. Normative References
@@ -752,18 +752,18 @@ Proposal fixture:
 
 ```json
 {
-  "proposal_id": "tv1",
-  "tick": 42,
-  "base_state_hash": "state_tv_42",
-  "agent_id": "agent_tv",
-  "intent": "vector_test",
-  "confidence": 0.875,
-  "delta": [{ "level": 8, "value": -3 }, { "level": 2, "value": 11 }],
-  "cost_estimate": 321,
-  "artifact_hash": "artifact_tv_42",
-  "semantic_fingerprint": "sem_tv_42",
-  "causal_refs": ["c2", "c1"],
-  "target_path": "CANON"
+   "proposal_id": "tv1",
+   "tick": 42,
+   "base_state_hash": "state_tv_42",
+   "agent_id": "agent_tv",
+   "intent": "vector_test",
+   "confidence": 0.875,
+   "delta": [{ "level": 8, "value": -3 }, { "level": 2, "value": 11 }],
+   "cost_estimate": 321,
+   "artifact_hash": "artifact_tv_42",
+   "semantic_fingerprint": "sem_tv_42",
+   "causal_refs": ["c2", "c1"],
+   "target_path": "CANON"
 }
 ```
 
@@ -963,7 +963,7 @@ Replay audit options (CLI):
 <!-- [ ./i.L32.core.GLIDER_GATE_PROTOCOL.md ] -->
 # i.L32.core.GLIDER_GATE_PROTOCOL
 
-Status: Draft Layer: L32 (Integration Band) Purpose: Deterministic admission and
+Status: Final Layer: L32 (Integration Band) Purpose: Deterministic admission and
 merge protocol for agent deltas.
 
 ## 0. Normative References
@@ -1145,9 +1145,8 @@ Minimal runtime wrapper:
 <!-- [ ./i.L32.core.INVARIANT_PACKET.md ] -->
 # i.L32.core.INVARIANT_PACKET
 
-Status: Draft  
-Layer: L32  
-Purpose: Minimal invariant envelope for bridge mode in lightweight nodes.
+Status: Final Layer: L32 Purpose: Minimal invariant envelope for bridge mode in
+lightweight nodes.
 
 ## 1. Intent
 

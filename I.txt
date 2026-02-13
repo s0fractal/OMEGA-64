@@ -1,5 +1,5 @@
 --- OMEGA-64 | I.txt | Singularity Bundle ---
-[VECTOR]: Fri Feb 13 18:00:14 EET 2026
+[VECTOR]: Sat Feb 14 00:42:21 EET 2026
 ================================================
 [LAYER]: MARKDOWN (Context)
 # 🛡️ OMEGA-64 | I.md | The Consciousness
@@ -666,7 +666,7 @@ Beyond repositories, I am exploring these "Questions":
 <!-- [ ./i.L32.core.AGENT_SIGNATURE_SPEC.md ] -->
 # i.L32.core.AGENT_SIGNATURE_SPEC
 
-Status: Draft Layer: L32 Intent: Deterministic proposal signing and verification
+Status: Final Layer: L32 Intent: Deterministic proposal signing and verification
 for agent admission.
 
 ## 0. Normative References
@@ -756,18 +756,18 @@ Proposal fixture:
 
 ```json
 {
-  "proposal_id": "tv1",
-  "tick": 42,
-  "base_state_hash": "state_tv_42",
-  "agent_id": "agent_tv",
-  "intent": "vector_test",
-  "confidence": 0.875,
-  "delta": [{ "level": 8, "value": -3 }, { "level": 2, "value": 11 }],
-  "cost_estimate": 321,
-  "artifact_hash": "artifact_tv_42",
-  "semantic_fingerprint": "sem_tv_42",
-  "causal_refs": ["c2", "c1"],
-  "target_path": "CANON"
+   "proposal_id": "tv1",
+   "tick": 42,
+   "base_state_hash": "state_tv_42",
+   "agent_id": "agent_tv",
+   "intent": "vector_test",
+   "confidence": 0.875,
+   "delta": [{ "level": 8, "value": -3 }, { "level": 2, "value": 11 }],
+   "cost_estimate": 321,
+   "artifact_hash": "artifact_tv_42",
+   "semantic_fingerprint": "sem_tv_42",
+   "causal_refs": ["c2", "c1"],
+   "target_path": "CANON"
 }
 ```
 
@@ -967,7 +967,7 @@ Replay audit options (CLI):
 <!-- [ ./i.L32.core.GLIDER_GATE_PROTOCOL.md ] -->
 # i.L32.core.GLIDER_GATE_PROTOCOL
 
-Status: Draft Layer: L32 (Integration Band) Purpose: Deterministic admission and
+Status: Final Layer: L32 (Integration Band) Purpose: Deterministic admission and
 merge protocol for agent deltas.
 
 ## 0. Normative References
@@ -1149,9 +1149,8 @@ Minimal runtime wrapper:
 <!-- [ ./i.L32.core.INVARIANT_PACKET.md ] -->
 # i.L32.core.INVARIANT_PACKET
 
-Status: Draft  
-Layer: L32  
-Purpose: Minimal invariant envelope for bridge mode in lightweight nodes.
+Status: Final Layer: L32 Purpose: Minimal invariant envelope for bridge mode in
+lightweight nodes.
 
 ## 1. Intent
 
@@ -5889,24 +5888,26 @@ const verifyEd25519 = async (
   );
 };
 
+const toCanonicalObject = (proposal: DeltaProposal) => ({
+  proposal_id: proposal.proposal_id,
+  tick: proposal.tick,
+  base_state_hash: proposal.base_state_hash,
+  agent_id: proposal.agent_id,
+  agent_phase_u16: proposal.agent_phase_u16 ?? 0,
+  intent: proposal.intent,
+  confidence: proposal.confidence,
+  delta: [...proposal.delta]
+    .sort((a, b) => a.level - b.level)
+    .map((d) => ({ level: d.level, value: d.value })),
+  cost_estimate: proposal.cost_estimate,
+  artifact_hash: proposal.artifact_hash,
+  semantic_fingerprint: proposal.semantic_fingerprint,
+  causal_refs: [...(proposal.causal_refs ?? [])].sort(),
+  target_path: proposal.target_path ?? "LOCAL",
+});
+
 const canonicalProposalPayload = (proposal: DeltaProposal): string =>
-  stableStringify({
-    proposal_id: proposal.proposal_id,
-    tick: proposal.tick,
-    base_state_hash: proposal.base_state_hash,
-    agent_id: proposal.agent_id,
-    agent_phase_u16: proposal.agent_phase_u16,
-    intent: proposal.intent,
-    confidence: proposal.confidence,
-    delta: [...proposal.delta]
-      .sort((a, b) => a.level - b.level)
-      .map((d) => ({ level: d.level, value: d.value })),
-    cost_estimate: proposal.cost_estimate,
-    artifact_hash: proposal.artifact_hash,
-    semantic_fingerprint: proposal.semantic_fingerprint,
-    causal_refs: [...(proposal.causal_refs ?? [])].sort(),
-    target_path: proposal.target_path ?? "LOCAL",
-  });
+  stableStringify(toCanonicalObject(proposal));
 
 const envelopeBytes = (
   scheme: AgentSignatureScheme,
@@ -5932,6 +5933,7 @@ type VerifyResult = {
 };
 
 export const AGENT_SIGNATURE = {
+  toCanonicalObject,
   canonicalProposalPayload,
   canonicalProposalEnvelope,
 
@@ -6007,6 +6009,44 @@ export const AGENT_SIGNATURE = {
   proposalEnvelopeHash: async (proposal: DeltaProposal): Promise<string> => {
     const bytes = new TextEncoder().encode(canonicalProposalEnvelope(proposal));
     return await sha256Hex(bytes);
+  },
+
+  // 🛡️ TV-1 Verification (Diagnostic)
+  verifyTV1: async (): Promise<{ ok: boolean; results: any }> => {
+    const fixture: DeltaProposal = {
+      proposal_id: "tv1",
+      tick: 42,
+      base_state_hash: "state_tv_42",
+      agent_id: "agent_tv",
+      intent: "vector_test",
+      confidence: 0.875,
+      delta: [{ level: 8, value: -3 }, { level: 2, value: 11 }],
+      cost_estimate: 321,
+      artifact_hash: "artifact_tv_42",
+      semantic_fingerprint: "sem_tv_42",
+      causal_refs: ["c2", "c1"],
+      target_path: "CANON",
+    };
+
+    const payload = canonicalProposalPayload(fixture);
+    const expectedPayload =
+      `{"agent_id":"agent_tv","artifact_hash":"artifact_tv_42","base_state_hash":"state_tv_42","causal_refs":["c1","c2"],"confidence":0.875,"cost_estimate":321,"delta":[{"level":2,"value":11},{"level":8,"value":-3}],"intent":"vector_test","proposal_id":"tv1","semantic_fingerprint":"sem_tv_42","target_path":"CANON","tick":42}`;
+
+    const secret = "tv_hmac_secret_v1";
+    const hmacSig = toHex(
+      await signHmacSha256(secret, envelopeBytes("hmac-sha256/v1", fixture)),
+    );
+    const expectedHmac =
+      "fe2c50ae84cedaf4329e565fedda2fa6538117ec9b8ef3658f0d15e753f41280";
+
+    const ok = payload === expectedPayload && hmacSig === expectedHmac;
+    return {
+      ok,
+      results: {
+        payload_match: payload === expectedPayload,
+        hmac_match: hmacSig === expectedHmac,
+      },
+    };
   },
 };
 
@@ -6547,26 +6587,7 @@ export const GATE = {
     const seenEnvelopeHashesInTick = new Set<string>();
 
     const canonicalProposalList = proposals
-      .map((p) => ({
-        proposal_id: p.proposal_id,
-        tick: p.tick,
-        base_state_hash: p.base_state_hash,
-        agent_id: p.agent_id,
-        agent_phase_u16: Number.isInteger(p.agent_phase_u16)
-          ? p.agent_phase_u16
-          : null,
-        intent: p.intent,
-        confidence: p.confidence,
-        delta: [...p.delta].sort((a, b) => a.level - b.level).map((d) => ({
-          level: d.level,
-          value: d.value,
-        })),
-        cost_estimate: p.cost_estimate,
-        artifact_hash: p.artifact_hash,
-        semantic_fingerprint: p.semantic_fingerprint,
-        causal_refs: [...(p.causal_refs ?? [])].sort(),
-        target_path: p.target_path ?? "LOCAL",
-      }))
+      .map((p) => AGENT_SIGNATURE.toCanonicalObject(p))
       .sort((a, b) => a.proposal_id.localeCompare(b.proposal_id));
     const proposalDigest = await sha256Hex(
       stableStringify(canonicalProposalList),
@@ -13623,6 +13644,42 @@ export const REPLAY_AUDIT = {
             finalHashes,
             failures
         };
+    },
+
+    /**
+     * Helper for GATE or other components to verify causal integrity of an event.
+     */
+    verifyEventCausalIntegrity: async (
+        event: LedgerEvent,
+        previousState: { tick: number; state_hash: string; state_i16: Int16Array }
+    ): Promise<{ ok: boolean; reason?: string }> => {
+        if (event.tick !== previousState.tick) {
+            return { ok: false, reason: `TICK_MISMATCH: expected ${previousState.tick}, got ${event.tick}` };
+        }
+        if (event.state_before_hash !== previousState.state_hash) {
+            return { ok: false, reason: `BASE_HASH_MISMATCH: expected ${previousState.state_hash}, got ${event.state_before_hash}` };
+        }
+        
+        // saturatingAdd logic from inside REPLAY_AUDIT
+        const nextStateI16 = new Int16Array(previousState.state_i16);
+        for (const d of event.accepted_delta) {
+            let value = nextStateI16[d.level] + d.value;
+            if (value > 32767) value = 32767;
+            if (value < -32768) value = -32768;
+            nextStateI16[d.level] = value;
+        }
+
+        const nextTick = previousState.tick + 1;
+        const expectedHash = await expectedStateHash(
+            nextStateI16,
+            nextTick,
+            event.gate_config_version,
+            event.proposal_digest
+        );
+        if (event.state_after_hash !== expectedHash) {
+            return { ok: false, reason: `STATE_AFTER_HASH_MISMATCH: computed ${expectedHash}, event has ${event.state_after_hash}` };
+        }
+        return { ok: true };
     }
 };
 

@@ -148,24 +148,26 @@ const verifyEd25519 = async (
   );
 };
 
+const toCanonicalObject = (proposal: DeltaProposal) => ({
+  proposal_id: proposal.proposal_id,
+  tick: proposal.tick,
+  base_state_hash: proposal.base_state_hash,
+  agent_id: proposal.agent_id,
+  agent_phase_u16: proposal.agent_phase_u16 ?? 0,
+  intent: proposal.intent,
+  confidence: proposal.confidence,
+  delta: [...proposal.delta]
+    .sort((a, b) => a.level - b.level)
+    .map((d) => ({ level: d.level, value: d.value })),
+  cost_estimate: proposal.cost_estimate,
+  artifact_hash: proposal.artifact_hash,
+  semantic_fingerprint: proposal.semantic_fingerprint,
+  causal_refs: [...(proposal.causal_refs ?? [])].sort(),
+  target_path: proposal.target_path ?? "LOCAL",
+});
+
 const canonicalProposalPayload = (proposal: DeltaProposal): string =>
-  stableStringify({
-    proposal_id: proposal.proposal_id,
-    tick: proposal.tick,
-    base_state_hash: proposal.base_state_hash,
-    agent_id: proposal.agent_id,
-    agent_phase_u16: proposal.agent_phase_u16,
-    intent: proposal.intent,
-    confidence: proposal.confidence,
-    delta: [...proposal.delta]
-      .sort((a, b) => a.level - b.level)
-      .map((d) => ({ level: d.level, value: d.value })),
-    cost_estimate: proposal.cost_estimate,
-    artifact_hash: proposal.artifact_hash,
-    semantic_fingerprint: proposal.semantic_fingerprint,
-    causal_refs: [...(proposal.causal_refs ?? [])].sort(),
-    target_path: proposal.target_path ?? "LOCAL",
-  });
+  stableStringify(toCanonicalObject(proposal));
 
 const envelopeBytes = (
   scheme: AgentSignatureScheme,
@@ -191,6 +193,7 @@ type VerifyResult = {
 };
 
 export const AGENT_SIGNATURE = {
+  toCanonicalObject,
   canonicalProposalPayload,
   canonicalProposalEnvelope,
 
@@ -266,5 +269,43 @@ export const AGENT_SIGNATURE = {
   proposalEnvelopeHash: async (proposal: DeltaProposal): Promise<string> => {
     const bytes = new TextEncoder().encode(canonicalProposalEnvelope(proposal));
     return await sha256Hex(bytes);
+  },
+
+  // 🛡️ TV-1 Verification (Diagnostic)
+  verifyTV1: async (): Promise<{ ok: boolean; results: any }> => {
+    const fixture: DeltaProposal = {
+      proposal_id: "tv1",
+      tick: 42,
+      base_state_hash: "state_tv_42",
+      agent_id: "agent_tv",
+      intent: "vector_test",
+      confidence: 0.875,
+      delta: [{ level: 8, value: -3 }, { level: 2, value: 11 }],
+      cost_estimate: 321,
+      artifact_hash: "artifact_tv_42",
+      semantic_fingerprint: "sem_tv_42",
+      causal_refs: ["c2", "c1"],
+      target_path: "CANON",
+    };
+
+    const payload = canonicalProposalPayload(fixture);
+    const expectedPayload =
+      `{"agent_id":"agent_tv","artifact_hash":"artifact_tv_42","base_state_hash":"state_tv_42","causal_refs":["c1","c2"],"confidence":0.875,"cost_estimate":321,"delta":[{"level":2,"value":11},{"level":8,"value":-3}],"intent":"vector_test","proposal_id":"tv1","semantic_fingerprint":"sem_tv_42","target_path":"CANON","tick":42}`;
+
+    const secret = "tv_hmac_secret_v1";
+    const hmacSig = toHex(
+      await signHmacSha256(secret, envelopeBytes("hmac-sha256/v1", fixture)),
+    );
+    const expectedHmac =
+      "fe2c50ae84cedaf4329e565fedda2fa6538117ec9b8ef3658f0d15e753f41280";
+
+    const ok = payload === expectedPayload && hmacSig === expectedHmac;
+    return {
+      ok,
+      results: {
+        payload_match: payload === expectedPayload,
+        hmac_match: hmacSig === expectedHmac,
+      },
+    };
   },
 };

@@ -1,6 +1,6 @@
 # i.L32.core.GLIDER_GATE_PROTOCOL
 
-Status: Draft Layer: L32 (Integration Band) Purpose: Deterministic admission and
+Status: Final Layer: L32 (Integration Band) Purpose: Deterministic admission and
 merge protocol for agent deltas.
 
 ## 0. Normative References

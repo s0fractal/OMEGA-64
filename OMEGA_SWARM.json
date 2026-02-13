@@ -1,18 +1,18 @@
 [
   {
-    "id": "df0a8349-10de-4b91-99b3-c0ad079d4d94",
-    "address": "localhost:8081",
-    "role": "PEER",
-    "tick": 130,
-    "entropy": 0,
-    "lastSeen": 1770994786702
-  },
-  {
-    "id": "19d1b8c2-a7fa-4907-b7d0-72f4608a0482",
+    "id": "b0a0f598-45fa-4bb5-8443-d28a75ae7563",
     "address": "localhost:8082",
     "role": "PEER",
     "tick": 100,
     "entropy": 0,
-    "lastSeen": 1770994786944
+    "lastSeen": 1771022512518
+  },
+  {
+    "id": "c76c6df6-aa83-4022-a17a-4a6a67d763f1",
+    "address": "localhost:8081",
+    "role": "PEER",
+    "tick": 130,
+    "entropy": 0,
+    "lastSeen": 1771022512986
   }
 ]

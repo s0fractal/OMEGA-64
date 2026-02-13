@@ -143,26 +143,7 @@ export const GATE = {
     const seenEnvelopeHashesInTick = new Set<string>();
 
     const canonicalProposalList = proposals
-      .map((p) => ({
-        proposal_id: p.proposal_id,
-        tick: p.tick,
-        base_state_hash: p.base_state_hash,
-        agent_id: p.agent_id,
-        agent_phase_u16: Number.isInteger(p.agent_phase_u16)
-          ? p.agent_phase_u16
-          : null,
-        intent: p.intent,
-        confidence: p.confidence,
-        delta: [...p.delta].sort((a, b) => a.level - b.level).map((d) => ({
-          level: d.level,
-          value: d.value,
-        })),
-        cost_estimate: p.cost_estimate,
-        artifact_hash: p.artifact_hash,
-        semantic_fingerprint: p.semantic_fingerprint,
-        causal_refs: [...(p.causal_refs ?? [])].sort(),
-        target_path: p.target_path ?? "LOCAL",
-      }))
+      .map((p) => AGENT_SIGNATURE.toCanonicalObject(p))
       .sort((a, b) => a.proposal_id.localeCompare(b.proposal_id));
     const proposalDigest = await sha256Hex(
       stableStringify(canonicalProposalList),
