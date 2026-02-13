@@ -214,14 +214,14 @@ export const CHRONOFLUX = {
    * Міст між хвильовою механікою L13 і часовою топологією L22.
    */
   waveToChrono: (wave: QWave): ChronoState => {
-    const depth = wave.r;
+    const depth = wave.center;
     const tau = CHRONOFLUX.depthToProperTime(depth);
     
     // Амплітуда хвилі = енергія = швидкість плину
     const flowRate = CHRONOFLUX.energyToFlowRate(wave.amplitude);
     
     // Фаза хвилі = фаза власного часу
-    const phaseNormalized = wave.phi / 65535; // [0..1]
+    const phaseNormalized = wave.phase / 65535; // [0..1]
     
     return {
       tau: tau * (0.5 + 0.5 * Math.cos(2 * Math.PI * phaseNormalized)), // Модуляція фазою
@@ -412,4 +412,4 @@ export const CHRONO_TICK = {
 // ============================================================================
 
 export type { ChronoState, ChronoEvent, ChronoMetric };
-export { CHRONOFLUX, CHRONO_TICK };
+

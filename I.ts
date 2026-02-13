@@ -343,9 +343,15 @@ export const ACCESS_BY_RESONANCE = {
 // i.L00.core.CHROMO_STATE.ts
 // 🛡️ OMEGA-64 | Голографічне стиснення стану в коло
 
-import { QWave, WAVE_PACKET } from './i.L13.core.WAVE_PACKET.ts';
+import { QWave } from './i.L13.core.WAVE_PACKET.ts';
 import { CHROMO, HSV, RGB } from './i.L00.core.COLOR.ts';
-import { ChronoState, CHRONOFLUX } from './i.L22.core.CHRONOFLUX.ts';
+
+export interface ChronoState {
+  tau: number;
+  depth: number;
+  flowRate: number;
+  curvature: number;
+}
 
 export interface OrganismState {
   identity: string;      // Хеш "Я"
@@ -353,6 +359,13 @@ export interface OrganismState {
   chrono: ChronoState;   // Часовий стан (τ, flow)
   metabolism: number;    // Енергетичний запас
   coherence: number;     // Зв'язок з анкером
+}
+
+export interface ChromoEncodeOptions {
+  resolution?: number;
+  deterministic?: boolean;
+  noiseAmplitude?: number;
+  noiseAlpha?: number;
 }
 
 // Stub for ImageData if environment is not browser
@@ -380,7 +393,9 @@ export const CHROMO_STATE = {
    * - Сектори: фазові стани (φ як кут)
    * - Кольорова температура: глибина в полі (r)
    */
-  encode: (state: OrganismState, resolution: number = 256): InstanceType<typeof ImageDataClass> => {
+  encode: (state: OrganismState, resolutionOrOptions: number | ChromoEncodeOptions = 256): InstanceType<typeof ImageDataClass> => {
+    const opts = normalizeEncodeOptions(resolutionOrOptions);
+    const resolution = opts.resolution;
     const canvas = new ImageDataClass(resolution, resolution);
     const center = resolution / 2;
     
@@ -433,8 +448,10 @@ export const CHROMO_STATE = {
           );
         } else {
           // Фонова "квантова піна" — низька амплітуда шуму
-          const noise = Math.random() * 20;
-          setPixel(canvas, x, y, noise, noise, noise, 50);
+          const noise = opts.deterministic
+            ? deterministicNoise(x, y, state.identity) * opts.noiseAmplitude
+            : Math.random() * opts.noiseAmplitude;
+          setPixel(canvas, x, y, noise, noise, noise, opts.noiseAlpha);
         }
       }
     }
@@ -518,7 +535,7 @@ export const CHROMO_STATE = {
         tau: avgTau,
         depth: estimatedR,
         flowRate: avgSaturation / count,
-        curvature: CHRONOFLUX.calculateCurvature(estimatedR, 1000)
+        curvature: calculateCurvature(estimatedR, 1000)
       },
       coherence: centerPixel.g / 255,
       metabolism: centerPixel.g / 255
@@ -606,6 +623,44 @@ function rgbToHsv(r: number, g: number, b: number): HSV {
   }
   
   return { h: h * 360, s, v };
+}
+
+function normalizeEncodeOptions(input: number | ChromoEncodeOptions): Required<ChromoEncodeOptions> {
+  if (typeof input === "number") {
+    return {
+      resolution: input,
+      deterministic: false,
+      noiseAmplitude: 20,
+      noiseAlpha: 50
+    };
+  }
+  return {
+    resolution: input.resolution ?? 256,
+    deterministic: input.deterministic ?? false,
+    noiseAmplitude: input.noiseAmplitude ?? 20,
+    noiseAlpha: input.noiseAlpha ?? 50
+  };
+}
+
+function deterministicNoise(x: number, y: number, seed: string): number {
+  // 32-bit FNV-like mixer for reproducible per-pixel noise [0..1]
+  let h = 0x811c9dc5;
+  const n = Math.min(seed.length, 64);
+  for (let i = 0; i < n; i++) {
+    h ^= seed.charCodeAt(i);
+    h = Math.imul(h, 0x01000193);
+  }
+  h ^= x | 0;
+  h = Math.imul(h, 0x01000193);
+  h ^= y | 0;
+  h = Math.imul(h, 0x01000193);
+  return (h >>> 0) / 4294967295;
+}
+
+function calculateCurvature(r: number, mass: number): number {
+  const depth = Math.abs(r);
+  if (depth < 1) return mass;
+  return (mass / 1000) * (1 / Math.log1p(depth));
 }
 
 
@@ -2284,6 +2339,279 @@ export const i = { witness: "i.L32.i", ref: "i.L31.i" };
 // [ ./i.L31.q.ts ]
 export const q = { hue: 31, phi: 182, evt: 519 };
 
+// [ ./i.L32.core.AGENT_SIGNATURE.ts ]
+// i.L32.core.AGENT_SIGNATURE.ts
+// OMEGA-64 | Agent proposal signature helper (Ed25519 v1 + legacy HMAC v1).
+
+import type {
+  AgentSignatureKey,
+  AgentSignatureScheme,
+  DeltaProposal,
+} from "./i.L99.core.STATE_SNAPSHOT.ts";
+
+export type AgentSigningKey =
+  | { scheme: "ed25519/v1"; private_key_pkcs8_b64: string }
+  | { scheme: "hmac-sha256/v1"; secret: string };
+
+export interface Ed25519KeyPairMaterial {
+  public_key_b64: string;
+  private_key_pkcs8_b64: string;
+}
+
+const stableStringify = (value: unknown): string => {
+  if (Array.isArray(value)) {
+    return `[${value.map((v) => stableStringify(v)).join(",")}]`;
+  }
+  if (value && typeof value === "object") {
+    const entries = Object.entries(value as Record<string, unknown>)
+      .filter(([, v]) => typeof v !== "undefined")
+      .sort(([a], [b]) => a.localeCompare(b));
+    const body = entries
+      .map(([k, v]) => `${JSON.stringify(k)}:${stableStringify(v)}`)
+      .join(",");
+    return `{${body}}`;
+  }
+  return JSON.stringify(value);
+};
+
+const toHex = (buffer: ArrayBuffer): string =>
+  Array.from(new Uint8Array(buffer)).map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+
+const fromHex = (hex: string): Uint8Array => {
+  const clean = hex.trim().toLowerCase();
+  if (clean.length === 0 || clean.length % 2 !== 0 || /[^0-9a-f]/.test(clean)) {
+    throw new Error("INVALID_HEX");
+  }
+  const out = new Uint8Array(clean.length / 2);
+  for (let i = 0; i < out.length; i++) {
+    out[i] = parseInt(clean.slice(i * 2, i * 2 + 2), 16);
+  }
+  return out;
+};
+
+const toBase64 = (buffer: ArrayBuffer): string => {
+  const bytes = new Uint8Array(buffer);
+  let binary = "";
+  for (const b of bytes) {
+    binary += String.fromCharCode(b);
+  }
+  return btoa(binary);
+};
+
+const fromBase64 = (b64: string): Uint8Array => {
+  const binary = atob(b64);
+  const out = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) {
+    out[i] = binary.charCodeAt(i);
+  }
+  return out;
+};
+
+const asArrayBuffer = (bytes: Uint8Array): ArrayBuffer =>
+  Uint8Array.from(bytes).buffer;
+
+const sha256Hex = async (payload: Uint8Array): Promise<string> => {
+  const digest = await crypto.subtle.digest("SHA-256", asArrayBuffer(payload));
+  return toHex(digest);
+};
+
+const signHmacSha256 = async (
+  secret: string,
+  payload: Uint8Array,
+): Promise<ArrayBuffer> => {
+  const key = await crypto.subtle.importKey(
+    "raw",
+    new TextEncoder().encode(secret),
+    { name: "HMAC", hash: "SHA-256" },
+    false,
+    ["sign"],
+  );
+  return await crypto.subtle.sign("HMAC", key, asArrayBuffer(payload));
+};
+
+const verifyHmacSha256 = async (
+  secret: string,
+  signatureHex: string,
+  payload: Uint8Array,
+): Promise<boolean> => {
+  const signature = fromHex(signatureHex);
+  const key = await crypto.subtle.importKey(
+    "raw",
+    new TextEncoder().encode(secret),
+    { name: "HMAC", hash: "SHA-256" },
+    false,
+    ["verify"],
+  );
+  return await crypto.subtle.verify(
+    "HMAC",
+    key,
+    asArrayBuffer(signature),
+    asArrayBuffer(payload),
+  );
+};
+
+const signEd25519 = async (
+  privateKeyPkcs8B64: string,
+  payload: Uint8Array,
+): Promise<ArrayBuffer> => {
+  const privateKey = await crypto.subtle.importKey(
+    "pkcs8",
+    asArrayBuffer(fromBase64(privateKeyPkcs8B64)),
+    { name: "Ed25519" },
+    false,
+    ["sign"],
+  );
+  return await crypto.subtle.sign(
+    "Ed25519",
+    privateKey,
+    asArrayBuffer(payload),
+  );
+};
+
+const verifyEd25519 = async (
+  publicKeyB64: string,
+  signatureHex: string,
+  payload: Uint8Array,
+): Promise<boolean> => {
+  const signature = fromHex(signatureHex);
+  const publicKey = await crypto.subtle.importKey(
+    "raw",
+    asArrayBuffer(fromBase64(publicKeyB64)),
+    { name: "Ed25519" },
+    false,
+    ["verify"],
+  );
+  return await crypto.subtle.verify(
+    "Ed25519",
+    publicKey,
+    asArrayBuffer(signature),
+    asArrayBuffer(payload),
+  );
+};
+
+const canonicalProposalPayload = (proposal: DeltaProposal): string =>
+  stableStringify({
+    proposal_id: proposal.proposal_id,
+    tick: proposal.tick,
+    base_state_hash: proposal.base_state_hash,
+    agent_id: proposal.agent_id,
+    agent_phase_u16: proposal.agent_phase_u16,
+    intent: proposal.intent,
+    confidence: proposal.confidence,
+    delta: [...proposal.delta]
+      .sort((a, b) => a.level - b.level)
+      .map((d) => ({ level: d.level, value: d.value })),
+    cost_estimate: proposal.cost_estimate,
+    artifact_hash: proposal.artifact_hash,
+    semantic_fingerprint: proposal.semantic_fingerprint,
+    causal_refs: [...(proposal.causal_refs ?? [])].sort(),
+    target_path: proposal.target_path ?? "LOCAL",
+  });
+
+const envelopeBytes = (
+  scheme: AgentSignatureScheme,
+  proposal: DeltaProposal,
+): Uint8Array =>
+  new TextEncoder().encode(
+    `scheme=${scheme}|payload=${canonicalProposalPayload(proposal)}`,
+  );
+
+const canonicalProposalEnvelope = (proposal: DeltaProposal): string =>
+  stableStringify({
+    signature_scheme: proposal.signature_scheme ?? null,
+    agent_signature: proposal.agent_signature ?? null,
+    payload: canonicalProposalPayload(proposal),
+  });
+
+type VerifyResult = {
+  ok: boolean;
+  reason?:
+    | "SIGNATURE_SCHEME_UNSUPPORTED"
+    | "SIGNATURE_REQUIRED"
+    | "SIGNATURE_INVALID";
+};
+
+export const AGENT_SIGNATURE = {
+  canonicalProposalPayload,
+  canonicalProposalEnvelope,
+
+  generateEd25519KeyPair: async (): Promise<Ed25519KeyPairMaterial> => {
+    const pair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, [
+      "sign",
+      "verify",
+    ]);
+    if (!("publicKey" in pair) || !("privateKey" in pair)) {
+      throw new Error("ED25519_KEYPAIR_GENERATION_FAILED");
+    }
+    return {
+      public_key_b64: toBase64(
+        await crypto.subtle.exportKey("raw", pair.publicKey),
+      ),
+      private_key_pkcs8_b64: toBase64(
+        await crypto.subtle.exportKey("pkcs8", pair.privateKey),
+      ),
+    };
+  },
+
+  signProposal: async (
+    proposal: DeltaProposal,
+    key: AgentSigningKey,
+  ): Promise<string> => {
+    const payload = envelopeBytes(key.scheme, proposal);
+    if (key.scheme === "ed25519/v1") {
+      return toHex(await signEd25519(key.private_key_pkcs8_b64, payload));
+    }
+    if (key.scheme === "hmac-sha256/v1") {
+      return toHex(await signHmacSha256(key.secret, payload));
+    }
+    throw new Error("UNSUPPORTED_SIGNATURE_SCHEME");
+  },
+
+  verifyProposal: async (
+    proposal: DeltaProposal,
+    key: AgentSignatureKey,
+  ): Promise<VerifyResult> => {
+    const scheme = proposal.signature_scheme ?? key.scheme;
+    if (!proposal.agent_signature) {
+      return { ok: false, reason: "SIGNATURE_REQUIRED" };
+    }
+    if (scheme !== key.scheme) {
+      return { ok: false, reason: "SIGNATURE_SCHEME_UNSUPPORTED" };
+    }
+    const payload = envelopeBytes(scheme, proposal);
+    try {
+      if (scheme === "ed25519/v1" && key.scheme === "ed25519/v1") {
+        return (await verifyEd25519(
+            key.public_key_b64,
+            proposal.agent_signature,
+            payload,
+          ))
+          ? { ok: true }
+          : { ok: false, reason: "SIGNATURE_INVALID" };
+      }
+      if (scheme === "hmac-sha256/v1" && key.scheme === "hmac-sha256/v1") {
+        return (await verifyHmacSha256(
+            key.secret,
+            proposal.agent_signature,
+            payload,
+          ))
+          ? { ok: true }
+          : { ok: false, reason: "SIGNATURE_INVALID" };
+      }
+      return { ok: false, reason: "SIGNATURE_SCHEME_UNSUPPORTED" };
+    } catch {
+      return { ok: false, reason: "SIGNATURE_INVALID" };
+    }
+  },
+
+  proposalEnvelopeHash: async (proposal: DeltaProposal): Promise<string> => {
+    const bytes = new TextEncoder().encode(canonicalProposalEnvelope(proposal));
+    return await sha256Hex(bytes);
+  },
+};
+
+
 // [ ./i.L32.core.ARCHETYPE_ENGINE.ts ]
 /**
  * [i.L32.core.ARCHETYPE_ENGINE.ts]
@@ -2486,6 +2814,42 @@ export const ARENA = {
 // [ ./i.L32.core.BRIDGE.ts ]
 export const BRIDGE = (x: any) => x;
 
+// [ ./i.L32.core.CANON_CAUSAL_BRIDGE.ts ]
+// i.L32.core.CANON_CAUSAL_BRIDGE.ts
+// OMEGA-64 | L32 membrane runtime mapping for canon causal invariants.
+
+import type { DeltaProposal } from "./i.L99.core.STATE_SNAPSHOT.ts";
+import type { ReplayInvariantReport } from "./i.L99.core.REPLAY_AUDIT.ts";
+
+export type BridgeMode = "GREEN" | "AMBER" | "RED";
+
+export interface BridgeModeResolution {
+    mode: BridgeMode;
+    reason: string;
+}
+
+export const CANON_CAUSAL_BRIDGE = {
+    resolveMode: (invariant?: ReplayInvariantReport): BridgeModeResolution => {
+        if (!invariant || !invariant.index_chain_checked) {
+            return { mode: "AMBER", reason: "CANON_CHAIN_UNCHECKED" };
+        }
+        if (!invariant.gate_admission_index_chain_checked) {
+            return { mode: "AMBER", reason: "GATE_ADMISSION_CHAIN_UNCHECKED" };
+        }
+        if (!invariant.index_chain_ok) {
+            return { mode: "RED", reason: "CANON_CHAIN_RED" };
+        }
+        if (!invariant.gate_admission_index_chain_ok) {
+            return { mode: "RED", reason: "GATE_ADMISSION_CHAIN_RED" };
+        }
+        return { mode: "GREEN", reason: "INDEX_CHAIN_GREEN" };
+    },
+
+    isCanonBound: (proposal: DeltaProposal): boolean =>
+        proposal.target_path === "CANON"
+};
+
+
 // [ ./i.L32.core.DUAL.ts ]
 /**
  * [i.L32.core.DUAL.ts]
@@ -2643,128 +3007,1134 @@ export const FIXPOINT = {
 // 🛡️ OMEGA-64 | Glider Lite | The Deterministic L32 Gate
 // "No mutation without admission."
 
-import { 
-    StateSnapshot, 
-    DeltaProposal, 
-    GateConfig, 
-    GateDecision, 
-    LedgerEvent,
-    REJECTION 
-} from "../i.L99.core.STATE_SNAPSHOT.ts";
-import { LEDGER } from "../i.L99.core.LEDGER.ts";
+import {
+  BridgeModeEvent,
+  DeltaProposal,
+  GateConfig,
+  GateDecision,
+  LedgerEvent,
+  REJECTION,
+  StateSnapshot,
+} from "./i.L99.core.STATE_SNAPSHOT.ts";
+import { LEDGER } from "./i.L99.core.LEDGER.ts";
+import { LOAD } from "./i.L99.core.LOAD.ts";
+import { ACCESS_BY_RESONANCE } from "./i.L00.core.ACCESS_BY_RESONANCE.ts";
+import { CHECKPOINT } from "./i.L99.core.CHECKPOINT.ts";
+import { TOPOLOGICAL_SIGNATURE } from "./i.L99.core.TOPOLOGICAL_SIGNATURE.ts";
+import {
+  CRYSTALLIZATION_CONFIG,
+  CRYSTALLIZATION_POLICY,
+} from "./i.L99.core.CRYSTALLIZATION_CONFIG.ts";
+import type { ReplayInvariantReport } from "./i.L99.core.REPLAY_AUDIT.ts";
+import { CANON_CAUSAL_BRIDGE } from "./i.L32.core.CANON_CAUSAL_BRIDGE.ts";
+import { AGENT_SIGNATURE } from "./i.L32.core.AGENT_SIGNATURE.ts";
+import { PROPOSAL_ENVELOPE_INDEX } from "./i.L99.core.PROPOSAL_ENVELOPE_INDEX.ts";
+import { INVARIANT_PACKET } from "./i.L32.core.INVARIANT_PACKET.ts";
+
+const GATE_VERSION = "v0.2";
+const AUTO_CHECKPOINT_INTERVAL = 128;
+
+export interface GateRuntimeContext {
+  bridge_invariant_report?: ReplayInvariantReport;
+  witness?: string;
+}
+
+const stableStringify = (value: unknown): string => {
+  if (Array.isArray(value)) {
+    return `[${value.map((v) => stableStringify(v)).join(",")}]`;
+  }
+  if (value && typeof value === "object") {
+    const entries = Object.entries(value as Record<string, unknown>)
+      .sort(([a], [b]) => a.localeCompare(b));
+    const body = entries
+      .map(([k, v]) => `${JSON.stringify(k)}:${stableStringify(v)}`)
+      .join(",");
+    return `{${body}}`;
+  }
+  return JSON.stringify(value);
+};
+
+const toHex = (buffer: ArrayBuffer): string =>
+  Array.from(new Uint8Array(buffer)).map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+
+const sha256Hex = async (input: string): Promise<string> => {
+  const data = new TextEncoder().encode(input);
+  const digest = await crypto.subtle.digest("SHA-256", data);
+  return toHex(digest);
+};
+
+const clamp01 = (x: number): number => {
+  if (x < 0) return 0;
+  if (x > 1) return 1;
+  return x;
+};
+
+const phaseCoherence = (
+  agentPhase: number,
+  delta: Array<{ level: number; value: number }>,
+  phase_u16?: Uint16Array,
+): number => {
+  if (delta.length === 0) return 1;
+  let weighted = 0;
+  let weightSum = 0;
+  for (const d of delta) {
+    const levelPhase = phase_u16 ? phase_u16[d.level] : 0;
+    let dPhi = Math.abs(agentPhase - levelPhase);
+    if (dPhi > 32767) dPhi = 65535 - dPhi;
+    const angle = (dPhi / 32767) * Math.PI;
+    const coherence = (1 + Math.cos(angle)) / 2; // [0..1]
+    const w = Math.max(1, Math.abs(d.value));
+    weighted += coherence * w;
+    weightSum += w;
+  }
+  return weightSum > 0 ? clamp01(weighted / weightSum) : 1;
+};
 
 export const GATE = {
-    
-    /**
-     * The Core Function: Process proposals and produce a decision.
-     * Pure function (mostly), side effect is only LEDGER emit.
-     */
-    process: async (
-        state: StateSnapshot, 
-        proposals: DeltaProposal[], 
-        config: GateConfig
-    ): Promise<StateSnapshot> => {
-        
-        const decision: GateDecision = {
-            accepted_proposals: [],
-            rejected_proposals: [],
-            budget_used: 0,
-            cost_used: 0,
-            accepted_delta: []
-        };
+  /**
+   * The Core Function: Process proposals and produce a decision.
+   * Pure function (mostly), side effect is only LEDGER emit.
+   */
+  process: async (
+    state: StateSnapshot,
+    proposals: DeltaProposal[],
+    config: GateConfig,
+    runtime: GateRuntimeContext = {},
+  ): Promise<StateSnapshot> => {
+    const decision: GateDecision = {
+      accepted_proposals: [],
+      rejected_proposals: [],
+      budget_used: 0,
+      cost_used: 0,
+      accepted_delta: [],
+    };
+    const acceptedProposalMetrics: Array<{
+      proposal_id: string;
+      agent_id: string;
+      confidence: number;
+      reliability_base: number;
+      reliability_effective: number;
+      phase_coherence?: number;
+      weight: number;
+      physical_cost: number;
+      agent_phase_u16?: number;
+    }> = [];
+    const proposalById = new Map(proposals.map((p) => [p.proposal_id, p]));
+    const bridgeResolution = CANON_CAUSAL_BRIDGE.resolveMode(
+      runtime.bridge_invariant_report,
+    );
+    const canonBoundProposals: string[] = [];
+    const blockedCanonProposals: string[] = [];
+    const signaturePolicy = config.signature_policy ?? "DISABLED";
+    const signatureKeys = config.agent_signature_keys;
+    const reliabilityMode = config.reliability_mode ?? "STATIC";
+    const reliabilityFloor = clamp01(config.reliability_floor ?? 0);
+    const envelopeIndexPath = PROPOSAL_ENVELOPE_INDEX.pathForLedger(
+      LEDGER.STORAGE_PATH,
+    );
+    const antiReplayWindow = Math.max(
+      0,
+      Math.floor(config.anti_replay_window_ticks ?? 0),
+    );
+    const historicalEnvelopeHashes = antiReplayWindow > 0
+      ? await PROPOSAL_ENVELOPE_INDEX.getRecentEnvelopeHashes(
+        state.tick - antiReplayWindow,
+        state.tick,
+        envelopeIndexPath,
+      )
+      : new Set<string>();
+    const envelopeHashByProposal = new Map<string, string>();
+    const seenEnvelopeHashesInTick = new Set<string>();
 
-        // 1. Validation & Filtering
-        const validProposals: DeltaProposal[] = [];
-        
-        for (const p of proposals) {
-            // Check 1: Tick Mismatch
-            if (p.tick !== state.tick) {
-                decision.rejected_proposals.push({ proposal_id: p.proposal_id, reason: REJECTION.TICK_MISMATCH });
-                continue;
-            }
-            // Check 2: Base Hash Mismatch
-            if (p.base_state_hash !== state.state_hash) {
-                decision.rejected_proposals.push({ proposal_id: p.proposal_id, reason: REJECTION.BASE_HASH_MISMATCH });
-                continue;
-            }
-            // Check 3: Schema/Values (Simplified)
-            if (!p.delta || p.delta.length === 0) {
-                 decision.rejected_proposals.push({ proposal_id: p.proposal_id, reason: REJECTION.EMPTY_DELTA });
-                 continue;
-            }
+    const canonicalProposalList = proposals
+      .map((p) => ({
+        proposal_id: p.proposal_id,
+        tick: p.tick,
+        base_state_hash: p.base_state_hash,
+        agent_id: p.agent_id,
+        agent_phase_u16: Number.isInteger(p.agent_phase_u16)
+          ? p.agent_phase_u16
+          : null,
+        intent: p.intent,
+        confidence: p.confidence,
+        delta: [...p.delta].sort((a, b) => a.level - b.level).map((d) => ({
+          level: d.level,
+          value: d.value,
+        })),
+        cost_estimate: p.cost_estimate,
+        artifact_hash: p.artifact_hash,
+        semantic_fingerprint: p.semantic_fingerprint,
+        causal_refs: [...(p.causal_refs ?? [])].sort(),
+        target_path: p.target_path ?? "LOCAL",
+      }))
+      .sort((a, b) => a.proposal_id.localeCompare(b.proposal_id));
+    const proposalDigest = await sha256Hex(
+      stableStringify(canonicalProposalList),
+    );
 
-            // ... Additional checks (bounds, cost) would go here ...
-            
-            validProposals.push(p);
+    // 1. Validation & Filtering
+    const validProposals: DeltaProposal[] = [];
+
+    for (const p of proposals) {
+      const envelopeHash = await AGENT_SIGNATURE.proposalEnvelopeHash(p);
+      envelopeHashByProposal.set(p.proposal_id, envelopeHash);
+      if (
+        p.proposal_envelope_hash && p.proposal_envelope_hash !== envelopeHash
+      ) {
+        decision.rejected_proposals.push({
+          proposal_id: p.proposal_id,
+          reason: REJECTION.PROPOSAL_ENVELOPE_HASH_MISMATCH,
+        });
+        continue;
+      }
+      if (antiReplayWindow > 0) {
+        if (
+          seenEnvelopeHashesInTick.has(envelopeHash) ||
+          historicalEnvelopeHashes.has(envelopeHash)
+        ) {
+          decision.rejected_proposals.push({
+            proposal_id: p.proposal_id,
+            reason: REJECTION.REPLAY_ENVELOPE_DUPLICATE,
+          });
+          continue;
         }
-
-        // 2. Deterministic Sort (Canonical Order)
-        validProposals.sort((a, b) => a.proposal_id.localeCompare(b.proposal_id));
-
-        // 3. Merge (Simplified for Phase 0 - Summation)
-        const combinedDelta = new Map<number, number>();
-        
-        for (const p of validProposals) {
-            decision.accepted_proposals.push(p.proposal_id);
-            decision.cost_used += p.cost_estimate;
-
-            for (const d of p.delta) {
-                // Clip per level
-                let val = d.value;
-                if (Math.abs(val) > config.max_abs_delta_per_level) {
-                    val = Math.sign(val) * config.max_abs_delta_per_level;
-                }
-                
-                const current = combinedDelta.get(d.level) || 0;
-                combinedDelta.set(d.level, current + val);
-            }
+        seenEnvelopeHashesInTick.add(envelopeHash);
+      }
+      if (CANON_CAUSAL_BRIDGE.isCanonBound(p)) {
+        canonBoundProposals.push(p.proposal_id);
+        if (bridgeResolution.mode !== "GREEN") {
+          blockedCanonProposals.push(p.proposal_id);
+          decision.rejected_proposals.push({
+            proposal_id: p.proposal_id,
+            reason: REJECTION.CANON_PATH_REQUIRES_GREEN_BRIDGE,
+          });
+          continue;
         }
-        
-        // 4. Flatten Delta
-        decision.accepted_delta = Array.from(combinedDelta.entries()).map(([level, value]) => ({ level, value }));
-
-        // 5. Apply Mutation (OR Dry Run)
-        let nextStateI16 = new Int16Array(state.state_i16); // Clone
-        
-        if (!config.dry_run) {
-             for (const d of decision.accepted_delta) {
-                 // Saturating Add
-                 let newVal = nextStateI16[d.level] + d.value;
-                 if (newVal > 32767) newVal = 32767;
-                 if (newVal < -32768) newVal = -32768;
-                 nextStateI16[d.level] = newVal;
-             }
+      }
+      if (signaturePolicy !== "DISABLED") {
+        const key = signatureKeys?.get(p.agent_id);
+        if (!key) {
+          if (
+            signaturePolicy === "REQUIRED" || p.agent_signature ||
+            p.signature_scheme
+          ) {
+            decision.rejected_proposals.push({
+              proposal_id: p.proposal_id,
+              reason: REJECTION.SIGNATURE_KEY_MISSING,
+            });
+            continue;
+          }
         } else {
-             // DRY RUN: State does NOT change
-             // console.log("🛡️ GATE: Dry Run - State preserved.");
+          if (!p.agent_signature) {
+            if (signaturePolicy === "REQUIRED") {
+              decision.rejected_proposals.push({
+                proposal_id: p.proposal_id,
+                reason: REJECTION.SIGNATURE_REQUIRED,
+              });
+              continue;
+            }
+          } else {
+            const verify = await AGENT_SIGNATURE.verifyProposal(p, key);
+            if (!verify.ok) {
+              decision.rejected_proposals.push({
+                proposal_id: p.proposal_id,
+                reason: verify.reason ?? REJECTION.SIGNATURE_INVALID,
+              });
+              continue;
+            }
+          }
+        }
+      }
+      // Check 1: Tick Mismatch
+      if (p.tick !== state.tick) {
+        decision.rejected_proposals.push({
+          proposal_id: p.proposal_id,
+          reason: REJECTION.TICK_MISMATCH,
+        });
+        continue;
+      }
+      // Check 2: Base Hash Mismatch
+      if (p.base_state_hash !== state.state_hash) {
+        decision.rejected_proposals.push({
+          proposal_id: p.proposal_id,
+          reason: REJECTION.BASE_HASH_MISMATCH,
+        });
+        continue;
+      }
+      // Check 3: Schema/Values (Simplified)
+      if (!p.delta || p.delta.length === 0) {
+        decision.rejected_proposals.push({
+          proposal_id: p.proposal_id,
+          reason: REJECTION.EMPTY_DELTA,
+        });
+        continue;
+      }
+      if (
+        p.delta.some((d) =>
+          !Number.isInteger(d.level) ||
+          d.level < 0 ||
+          d.level > 63 ||
+          !Number.isFinite(d.value)
+        )
+      ) {
+        decision.rejected_proposals.push({
+          proposal_id: p.proposal_id,
+          reason: REJECTION.OUT_OF_RANGE_VALUE,
+        });
+        continue;
+      }
+      if (
+        p.agent_phase_u16 !== undefined &&
+        (
+          !Number.isInteger(p.agent_phase_u16) ||
+          p.agent_phase_u16 < 0 ||
+          p.agent_phase_u16 > 65535
+        )
+      ) {
+        decision.rejected_proposals.push({
+          proposal_id: p.proposal_id,
+          reason: REJECTION.OUT_OF_RANGE_VALUE,
+        });
+        continue;
+      }
+
+      // ... Additional checks (bounds, cost) would go here ...
+
+      validProposals.push(p);
+    }
+
+    // 2. Deterministic Sort (Canonical Order)
+    validProposals.sort((a, b) => a.proposal_id.localeCompare(b.proposal_id));
+
+    // 3. Merge with Budget Enforcement
+    const combinedDelta = new Map<number, number>();
+
+    for (const p of validProposals) {
+      // Calculate Physical Cost using LOAD model
+      let physicalCost = 0;
+      const agentPhase = p.agent_phase_u16 ?? 0;
+      for (const d of p.delta) {
+        // Get current level properties from state (if available)
+        const levelPhase = state.phase_u16 ? state.phase_u16[d.level] : 0;
+        const levelEntropy = state.entropy_i16 ? state.entropy_i16[d.level] : 0;
+
+        // Calculate Load of this specific mutation
+        // Agent phase is proposal-local; level phase is substrate-local.
+        const load = LOAD.calculate({
+          entropy: levelEntropy,
+          phase: agentPhase,
+          weight: Math.abs(d.value),
+        }, levelPhase);
+
+        // Simplified Cost: Base Cost + Load Penalty
+        // cost = |delta| + Load
+        physicalCost += Math.abs(d.value) + load;
+      }
+
+      const finalCost = Math.round(physicalCost);
+
+      // Check cost budget per agent with measured physical cost.
+      if (finalCost > (config.max_cost_per_agent || Infinity)) {
+        decision.rejected_proposals.push({
+          proposal_id: p.proposal_id,
+          reason: REJECTION.COST_OVER_BUDGET,
+        });
+        continue;
+      }
+
+      decision.accepted_proposals.push(p.proposal_id);
+      decision.cost_used += finalCost;
+
+      // 4. Weighted Merge Logic
+      // Weight = Confidence (0..1) * Reliability (0..1)
+      const reliabilityBase = clamp01(
+        config.reliability_weight.get(p.agent_id) ?? 1.0,
+      );
+      let phaseCoherenceScore: number | undefined = undefined;
+      let agentReliability = reliabilityBase;
+      if (reliabilityMode === "PHASE_COHERENCE") {
+        phaseCoherenceScore = p.agent_phase_u16 === undefined
+          ? 1
+          : phaseCoherence(p.agent_phase_u16, p.delta, state.phase_u16);
+        const modulation = reliabilityFloor +
+          (1 - reliabilityFloor) * phaseCoherenceScore;
+        agentReliability *= modulation;
+      }
+      agentReliability = clamp01(agentReliability);
+      const weight = p.confidence * agentReliability;
+      acceptedProposalMetrics.push({
+        proposal_id: p.proposal_id,
+        agent_id: p.agent_id,
+        confidence: p.confidence,
+        reliability_base: reliabilityBase,
+        reliability_effective: agentReliability,
+        phase_coherence: phaseCoherenceScore,
+        weight,
+        physical_cost: finalCost,
+        agent_phase_u16: p.agent_phase_u16,
+      });
+
+      for (const d of p.delta) {
+        // Clip per level
+        let val = d.value;
+        if (Math.abs(val) > config.max_abs_delta_per_level) {
+          val = Math.sign(val) * config.max_abs_delta_per_level;
         }
 
-        // 6. Hashing (Simulation)
-        // In real impl, would be a real hash of the Int16Array
-        const nextHash = config.dry_run ? state.state_hash : `hash_${state.tick + 1}_${Date.now()}`; 
+        // Accumulate Weighted Delta (Float)
+        const weightedVal = val * weight;
+        const current = combinedDelta.get(d.level) || 0;
+        combinedDelta.set(d.level, current + weightedVal);
+      }
+    }
 
-        // 7. Emit Ledger Event
-        const event: LedgerEvent = {
-            event_id: `evt_${state.tick}_${Date.now()}`,
+    // 5. Global Budget Enforcement & Scaling
+    // Calculate total absolute delta of the merged vector (using rounded values for check)
+    let totalAbsDelta = 0;
+    for (const val of combinedDelta.values()) {
+      totalAbsDelta += Math.abs(Math.round(val));
+    }
+    decision.budget_used = totalAbsDelta;
+
+    let scaleFactor = 1.0;
+    if (totalAbsDelta > config.max_total_abs_delta_per_tick) {
+      scaleFactor = config.max_total_abs_delta_per_tick / totalAbsDelta;
+      // console.warn(`⚖️ GATE: Scaling deltas by ${scaleFactor.toFixed(4)} (Budget Exceeded)`);
+    }
+
+    // 6. Flatten & Scale & Round Delta
+    decision.accepted_delta = Array.from(combinedDelta.entries()).map((
+      [level, value],
+    ) => ({
+      level,
+      value: Math.round(value * scaleFactor), // Final Integer Rounding
+    }));
+
+    // 5. Apply Mutation (OR Dry Run)
+    let nextStateI16 = new Int16Array(state.state_i16); // Clone
+
+    if (!config.dry_run) {
+      for (const d of decision.accepted_delta) {
+        // Saturating Add
+        let newVal = nextStateI16[d.level] + d.value;
+        if (newVal > 32767) newVal = 32767;
+        if (newVal < -32768) newVal = -32768;
+        nextStateI16[d.level] = newVal;
+      }
+    } else {
+      // DRY RUN: State does NOT change
+      // console.log("🛡️ GATE: Dry Run - State preserved.");
+    }
+
+    // 6. Deterministic Hashing
+    const nextHash = config.dry_run
+      ? state.state_hash
+      : await sha256Hex(stableStringify({
+        state_i16: Array.from(nextStateI16),
+        tick: state.tick + 1,
+        gate_config_version: GATE_VERSION,
+        proposal_digest: proposalDigest,
+      }));
+    const eventId = `evt_${
+      (await sha256Hex(
+        `${state.tick}|${state.state_hash}|${proposalDigest}|${nextHash}`,
+      )).slice(0, 16)
+    }`;
+
+    // 7. Emit Ledger Event
+    const nextTick = state.tick + 1;
+
+    let projection2DHash: string | undefined;
+    let thread1DHash: string | undefined;
+    let projectionVersion: string | undefined;
+    let signatureArtifactHash: string | undefined;
+    let signatureTick: number | undefined;
+    let signatureCausalRefs: string[] | undefined;
+    const policyHash = await CRYSTALLIZATION_POLICY.hash();
+
+    if (!config.dry_run && TOPOLOGICAL_SIGNATURE.validateHash(nextHash)) {
+      const acceptedCausalRefs = decision.accepted_proposals.flatMap((id) =>
+        proposalById.get(id)?.causal_refs ?? []
+      );
+      const causalRefs = Array.from(
+        new Set([state.state_hash, ...acceptedCausalRefs]),
+      );
+
+      const topoSignature = await TOPOLOGICAL_SIGNATURE.build({
+        artifact_hash: proposalDigest,
+        state_hash: nextHash,
+        tick: nextTick,
+        state: TOPOLOGICAL_SIGNATURE.snapshotToOrganismState({
+          state_hash: nextHash,
+          state_i16: nextStateI16,
+        }),
+        causal_refs: causalRefs,
+      });
+
+      projection2DHash = topoSignature.projection_2d_hash;
+      thread1DHash = topoSignature.thread_1d_hash;
+      projectionVersion = topoSignature.projection_version;
+      signatureArtifactHash = topoSignature.artifact_hash;
+      signatureTick = topoSignature.tick;
+      signatureCausalRefs = topoSignature.causal_refs;
+    }
+
+    const event: LedgerEvent = {
+      event_id: eventId,
+      tick: state.tick,
+      ts_unix_ms: Date.now(),
+      state_before_hash: state.state_hash,
+      state_after_hash: nextHash,
+      accepted_delta: decision.accepted_delta,
+      proposal_digest: proposalDigest,
+      accepted_proposals: decision.accepted_proposals,
+      accepted_proposal_metrics: acceptedProposalMetrics,
+      accepted_proposal_envelopes: decision.accepted_proposals
+        .map((proposal_id) => ({
+          proposal_id,
+          envelope_hash: envelopeHashByProposal.get(proposal_id) ?? "",
+        }))
+        .filter((x) => x.envelope_hash.length > 0),
+      rejected_proposals: decision.rejected_proposals,
+      cost_total: decision.cost_used,
+      budget_used: decision.budget_used,
+      budget_limit: config.max_total_abs_delta_per_tick,
+      gate_config_version: GATE_VERSION,
+      signature_artifact_hash: signatureArtifactHash,
+      signature_tick: signatureTick,
+      signature_causal_refs: signatureCausalRefs,
+      projection_2d_hash: projection2DHash,
+      thread_1d_hash: thread1DHash,
+      projection_version: projectionVersion,
+      policy_version: CRYSTALLIZATION_CONFIG.policyVersion,
+      policy_hash: policyHash,
+    };
+
+    const bridgeEvent: BridgeModeEvent = {
+      event_type: "BRIDGE_MODE_EVENT",
+      tick: state.tick,
+      state_hash: state.state_hash,
+      mode: bridgeResolution.mode,
+      index_chain_checked:
+        runtime.bridge_invariant_report?.index_chain_checked ?? false,
+      index_chain_ok: runtime.bridge_invariant_report?.index_chain_ok ?? true,
+      index_chain_checked_records:
+        runtime.bridge_invariant_report?.index_chain_checked_records ?? 0,
+      index_chain_failures: [
+        ...(runtime.bridge_invariant_report?.index_chain_failures ?? []),
+      ],
+      gate_admission_index_chain_checked:
+        runtime.bridge_invariant_report?.gate_admission_index_chain_checked ??
+          false,
+      gate_admission_index_chain_ok:
+        runtime.bridge_invariant_report?.gate_admission_index_chain_ok ?? true,
+      gate_admission_index_chain_checked_records:
+        runtime.bridge_invariant_report
+          ?.gate_admission_index_chain_checked_records ?? 0,
+      gate_admission_index_chain_failures: [
+        ...(runtime.bridge_invariant_report
+          ?.gate_admission_index_chain_failures ?? []),
+      ],
+      invariant_packet_hash: runtime.bridge_invariant_report
+        ? (await INVARIANT_PACKET.hash(
+          await INVARIANT_PACKET.fromInvariantReport(
+            runtime.bridge_invariant_report,
+            { tick_anchor: state.tick, witness: runtime.witness },
+          ),
+        ))
+        : undefined,
+      canon_bound_proposals: [...canonBoundProposals].sort(),
+      blocked_canon_proposals: [...blockedCanonProposals].sort(),
+      reason: bridgeResolution.reason,
+      witness: runtime.witness,
+    };
+
+    // 🛡️ Final Red Line Verification
+    // "Trust but Verify" - Check if we accidentally mutated state in dry_run or exceeded limits
+    if (
+      config.dry_run && nextStateI16.some((v, i) => v !== state.state_i16[i])
+    ) {
+      const violation = {
+        event_type: "VIOLATION_EVENT" as const,
+        tick: state.tick,
+        rule_id: "DRY_RUN_PURITY",
+        severity: "CRITICAL" as const,
+        state_hash: state.state_hash,
+        details: "State mutation detected during dry_run",
+        action_taken: "HALT_AND_QUARANTINE" as const,
+      };
+      await LEDGER.append(violation);
+      throw new Error("🔴 RED LINE VIOLATION: DRY_RUN_PURITY. System Halted.");
+    }
+
+    await LEDGER.append(bridgeEvent);
+    await LEDGER.append(event);
+    if (!config.dry_run) {
+      await PROPOSAL_ENVELOPE_INDEX.appendFromLedgerEvent(
+        event,
+        envelopeIndexPath,
+      );
+    }
+
+    if (!config.dry_run && nextTick % AUTO_CHECKPOINT_INTERVAL === 0) {
+      try {
+        await CHECKPOINT.save(
+          {
+            tick: nextTick,
+            state_hash: nextHash,
+            state_i16: nextStateI16,
+          },
+          "AUTO_INTERVAL",
+        );
+      } catch (e) {
+        // Checkpoints are safety accelerators, not mutation authority.
+        console.warn("⚠️ CHECKPOINT SAVE FAILED", e);
+      }
+    }
+
+    return {
+      tick: nextTick,
+      state_i16: nextStateI16,
+      state_hash: nextHash,
+    };
+  },
+};
+
+
+// [ ./i.L32.core.GATE_PIPELINE.ts ]
+// i.L32.core.GATE_PIPELINE.ts
+// OMEGA-64 | L32 pipeline entrypoint for gate processing with bridge context.
+
+import { GATE } from "./i.L32.core.GATE.ts";
+import { GATE_RUNTIME_CONTEXT } from "./i.L32.core.GATE_RUNTIME_CONTEXT.ts";
+import type { DeltaProposal, GateConfig, StateSnapshot } from "./i.L99.core.STATE_SNAPSHOT.ts";
+import type {
+    ReplayAuditOptions,
+    ReplayAuditResult,
+    ReplayGenesis,
+    ReplayInvariantReport
+} from "./i.L99.core.REPLAY_AUDIT.ts";
+import type { BridgeMode } from "./i.L32.core.CANON_CAUSAL_BRIDGE.ts";
+
+export interface GatePipelineOptions {
+    replayGenesis?: ReplayGenesis;
+    replayAuditOptions?: ReplayAuditOptions;
+    witness?: string;
+}
+
+export interface GatePipelineResult {
+    nextState: StateSnapshot;
+    bridge_mode: BridgeMode;
+    bridge_reason: string;
+    replay_audit?: ReplayAuditResult;
+}
+
+export const GATE_PIPELINE = {
+    processWithReplayContext: async (
+        state: StateSnapshot,
+        proposals: DeltaProposal[],
+        config: GateConfig,
+        options: GatePipelineOptions = {}
+    ): Promise<GatePipelineResult> => {
+        const replayGenesis: ReplayGenesis = options.replayGenesis ?? {
             tick: state.tick,
-            ts_unix_ms: Date.now(),
-            state_before_hash: state.state_hash,
-            state_after_hash: nextHash,
-            accepted_delta: decision.accepted_delta,
-            proposal_digest: "digest_placeholder",
-            accepted_proposals: decision.accepted_proposals,
-            rejected_proposals: decision.rejected_proposals,
-            cost_total: decision.cost_used,
-            budget_used: decision.budget_used,
-            gate_config_version: "v0.1",
+            state_i16: state.state_i16,
+            state_hash: state.state_hash
         };
 
-        await LEDGER.append(event);
+        const replayAuditOptions: ReplayAuditOptions = options.replayAuditOptions ?? {
+            runs: 1,
+            startTick: state.tick,
+            endTick: state.tick
+        };
 
+        const envelope = await GATE_RUNTIME_CONTEXT.fromReplayAudit(
+            replayGenesis,
+            replayAuditOptions,
+            options.witness
+        );
+
+        const nextState = await GATE.process(state, proposals, config, envelope.runtime);
         return {
-            tick: state.tick + 1,
-            state_i16: nextStateI16,
-            state_hash: nextHash
+            nextState,
+            bridge_mode: envelope.bridge_mode,
+            bridge_reason: envelope.bridge_reason,
+            replay_audit: envelope.replay_audit
+        };
+    },
+
+    processWithInvariantContext: async (
+        state: StateSnapshot,
+        proposals: DeltaProposal[],
+        config: GateConfig,
+        invariantReport?: ReplayInvariantReport,
+        witness?: string
+    ): Promise<GatePipelineResult> => {
+        const envelope = GATE_RUNTIME_CONTEXT.fromInvariantReport(invariantReport, witness);
+        const nextState = await GATE.process(state, proposals, config, envelope.runtime);
+        return {
+            nextState,
+            bridge_mode: envelope.bridge_mode,
+            bridge_reason: envelope.bridge_reason
+        };
+    }
+};
+
+
+// [ ./i.L32.core.GATE_RUNNER.ts ]
+// i.L32.core.GATE_RUNNER.ts
+// OMEGA-64 | Minimal runtime runner that routes all gate mutations via GATE_PIPELINE.
+
+import { GATE_PIPELINE } from "./i.L32.core.GATE_PIPELINE.ts";
+import type { BridgeMode } from "./i.L32.core.CANON_CAUSAL_BRIDGE.ts";
+import type { ReplayAuditOptions, ReplayAuditResult, ReplayGenesis, ReplayInvariantReport } from "./i.L99.core.REPLAY_AUDIT.ts";
+import type { DeltaProposal, GateConfig, StateSnapshot } from "./i.L99.core.STATE_SNAPSHOT.ts";
+
+export interface GateRunnerTickInput {
+    state: StateSnapshot;
+    proposals: DeltaProposal[];
+    config: GateConfig;
+    mode?: "REPLAY_CONTEXT" | "INVARIANT_CONTEXT";
+    replayGenesis?: ReplayGenesis;
+    replayAuditOptions?: ReplayAuditOptions;
+    invariantReport?: ReplayInvariantReport;
+    witness?: string;
+}
+
+export interface GateRunnerTickOutput {
+    nextState: StateSnapshot;
+    bridge_mode: BridgeMode;
+    bridge_reason: string;
+    replay_audit?: ReplayAuditResult;
+}
+
+export const GATE_RUNNER = {
+    step: async (input: GateRunnerTickInput): Promise<GateRunnerTickOutput> => {
+        const mode = input.mode ?? (input.invariantReport ? "INVARIANT_CONTEXT" : "REPLAY_CONTEXT");
+        if (mode === "INVARIANT_CONTEXT") {
+            return await GATE_PIPELINE.processWithInvariantContext(
+                input.state,
+                input.proposals,
+                input.config,
+                input.invariantReport,
+                input.witness
+            );
+        }
+
+        return await GATE_PIPELINE.processWithReplayContext(
+            input.state,
+            input.proposals,
+            input.config,
+            {
+                replayGenesis: input.replayGenesis,
+                replayAuditOptions: input.replayAuditOptions,
+                witness: input.witness
+            }
+        );
+    }
+};
+
+if (import.meta.main) {
+    console.log("Usage: import GATE_RUNNER and call step({...}).");
+}
+
+
+// [ ./i.L32.core.GATE_RUNNER_CLI.ts ]
+// i.L32.core.GATE_RUNNER_CLI.ts
+// OMEGA-64 | CLI wrapper for GATE_RUNNER.step(...)
+
+import { GATE_RUNNER } from "./i.L32.core.GATE_RUNNER.ts";
+import { LEDGER } from "./i.L99.core.LEDGER.ts";
+import { INVARIANT_PACKET, type InvariantPacket } from "./i.L32.core.INVARIANT_PACKET.ts";
+import type {
+  DeltaProposal,
+  GateConfig,
+  StateSnapshot,
+} from "./i.L99.core.STATE_SNAPSHOT.ts";
+import type {
+  ReplayGenesis,
+  ReplayInvariantReport,
+} from "./i.L99.core.REPLAY_AUDIT.ts";
+
+interface CliStateSnapshot {
+  tick: number;
+  state_i16: number[];
+  state_hash: string;
+}
+
+interface CliReplayGenesis {
+  tick: number;
+  state_i16: number[];
+  state_hash: string;
+}
+
+interface CliInput {
+  state: CliStateSnapshot;
+  proposals: DeltaProposal[];
+  config: Omit<GateConfig, "reliability_weight" | "agent_signature_keys"> & {
+    reliability_weight: Record<string, number> | Array<[string, number]>;
+    agent_signature_keys?:
+      | Record<
+        string,
+        | { scheme: "ed25519/v1"; public_key_b64: string }
+        | { scheme: "hmac-sha256/v1"; secret: string }
+      >
+      | Array<
+        [
+          string,
+          { scheme: "ed25519/v1"; public_key_b64: string } | {
+            scheme: "hmac-sha256/v1";
+            secret: string;
+          },
+        ]
+      >;
+  };
+  mode?: "REPLAY_CONTEXT" | "INVARIANT_CONTEXT";
+  replayGenesis?: CliReplayGenesis;
+  replayAuditOptions?: {
+    runs?: number;
+    startTick?: number;
+    endTick?: number;
+    verifyTopologicalSignatures?: boolean;
+    verifyLedgerChain?: boolean;
+    invariantOnly?: boolean;
+  };
+  invariantReport?: ReplayInvariantReport;
+  invariantPacket?: InvariantPacket;
+  witness?: string;
+}
+
+interface CliInvariantPacketInput {
+  invariantReport: ReplayInvariantReport;
+  tick_anchor?: number;
+  witness?: string;
+}
+
+interface CliInvariantPacketVerifyOutput {
+  ok: boolean;
+  expected?: string;
+  actual?: string;
+  reasons: string[];
+}
+
+interface CliOutput {
+  nextState: {
+    tick: number;
+    state_hash: string;
+    state_i16: number[];
+  };
+  bridge_mode: "GREEN" | "AMBER" | "RED";
+  bridge_reason: string;
+  replay_audit?: unknown;
+  invariant_packet?: InvariantPacket;
+}
+
+const usage = (): string =>
+  [
+    "Usage:",
+    "  deno run -A i.L32.core.GATE_RUNNER_CLI.ts --input <input.json> [--output <output.json>] [--ledger <ledger.jsonl>] [--pretty]",
+    "  deno run -A i.L32.core.GATE_RUNNER_CLI.ts --packet --input <input.json> [--output <output.json>] [--pretty]",
+    "  deno run -A i.L32.core.GATE_RUNNER_CLI.ts --verify-packet --input <packet.json> [--output <output.json>] [--pretty]",
+    "",
+    "Notes:",
+    "  - input.json must match CliInput schema (state_i16 as number[]).",
+    "  - if --output is omitted, result is printed to stdout.",
+    "  - if --ledger is provided, LEDGER.STORAGE_PATH is redirected.",
+    "  - replayAuditOptions may include verifyLedgerChain/invariantOnly.",
+    "  - invariantPacket can replace invariantReport (hash-verified).",
+    "  - --packet emits a sealed invariant packet from invariantReport.",
+    "  - --verify-packet validates packet hash and schema.",
+  ].join("\n");
+
+const clampI16 = (x: number): number => {
+  if (!Number.isFinite(x)) return 0;
+  if (x > 32767) return 32767;
+  if (x < -32768) return -32768;
+  return Math.round(x);
+};
+
+const toSnapshot = (src: CliStateSnapshot): StateSnapshot => ({
+  tick: src.tick,
+  state_hash: src.state_hash,
+  state_i16: Int16Array.from(src.state_i16.map(clampI16)),
+});
+
+const toReplayGenesis = (src?: CliReplayGenesis): ReplayGenesis | undefined =>
+  src
+    ? {
+      tick: src.tick,
+      state_hash: src.state_hash,
+      state_i16: Int16Array.from(src.state_i16.map(clampI16)),
+    }
+    : undefined;
+
+const toConfig = (src: CliInput["config"]): GateConfig => {
+  const rw = Array.isArray(src.reliability_weight)
+    ? new Map<string, number>(src.reliability_weight)
+    : new Map<string, number>(Object.entries(src.reliability_weight));
+  const ask = src.agent_signature_keys
+    ? (Array.isArray(src.agent_signature_keys)
+      ? new Map<
+        string,
+        { scheme: "ed25519/v1"; public_key_b64: string } | {
+          scheme: "hmac-sha256/v1";
+          secret: string;
+        }
+      >(src.agent_signature_keys)
+      : new Map<
+        string,
+        { scheme: "ed25519/v1"; public_key_b64: string } | {
+          scheme: "hmac-sha256/v1";
+          secret: string;
+        }
+      >(Object.entries(src.agent_signature_keys)))
+    : undefined;
+  return {
+    max_abs_delta_per_level: src.max_abs_delta_per_level,
+    max_total_abs_delta_per_tick: src.max_total_abs_delta_per_tick,
+    max_cost_per_agent: src.max_cost_per_agent,
+    reliability_weight: rw,
+    dry_run: src.dry_run,
+    signature_policy: src.signature_policy,
+    agent_signature_keys: ask,
+    anti_replay_window_ticks: src.anti_replay_window_ticks,
+  };
+};
+
+const parseArgs = (
+  args: string[],
+): {
+  input?: string;
+  output?: string;
+  ledger?: string;
+  pretty: boolean;
+  help: boolean;
+  packet: boolean;
+  verifyPacket: boolean;
+} => {
+  const out: {
+    input?: string;
+    output?: string;
+    ledger?: string;
+    pretty: boolean;
+    help: boolean;
+    packet: boolean;
+    verifyPacket: boolean;
+  } = {
+    pretty: false,
+    help: false,
+    packet: false,
+    verifyPacket: false,
+  };
+  for (let i = 0; i < args.length; i++) {
+    const a = args[i];
+    if (a === "--help" || a === "-h") {
+      out.help = true;
+      continue;
+    }
+    if (a === "--packet") {
+      out.packet = true;
+      continue;
+    }
+    if (a === "--verify-packet") {
+      out.verifyPacket = true;
+      continue;
+    }
+    if (a === "--pretty") {
+      out.pretty = true;
+      continue;
+    }
+    if (a === "--input") {
+      out.input = args[++i];
+      continue;
+    }
+    if (a === "--output") {
+      out.output = args[++i];
+      continue;
+    }
+    if (a === "--ledger") {
+      out.ledger = args[++i];
+      continue;
+    }
+    throw new Error(`Unknown arg: ${a}`);
+  }
+  return out;
+};
+
+const run = async (): Promise<void> => {
+  const parsed = parseArgs(Deno.args);
+  if (parsed.help) {
+    console.log(usage());
+    return;
+  }
+  if (!parsed.input) {
+    throw new Error(`Missing --input\n\n${usage()}`);
+  }
+  if (parsed.packet && parsed.verifyPacket) {
+    throw new Error(`--packet and --verify-packet are mutually exclusive\n\n${usage()}`);
+  }
+
+  if (parsed.ledger) {
+    LEDGER.STORAGE_PATH = parsed.ledger;
+  }
+
+  const raw = await Deno.readTextFile(parsed.input);
+  if (parsed.packet) {
+    const packetInput = JSON.parse(raw) as CliInvariantPacketInput;
+    if (!packetInput.invariantReport) {
+      throw new Error("Missing invariantReport for --packet mode");
+    }
+    const packet = await INVARIANT_PACKET.fromInvariantReport(
+      packetInput.invariantReport,
+      {
+        tick_anchor: packetInput.tick_anchor ?? 0,
+        witness: packetInput.witness,
+      },
+    );
+    const body = JSON.stringify(packet, null, parsed.pretty ? 2 : undefined);
+    if (parsed.output) {
+      await Deno.writeTextFile(parsed.output, body);
+    } else {
+      console.log(body);
+    }
+    return;
+  }
+  if (parsed.verifyPacket) {
+    const packet = JSON.parse(raw) as InvariantPacket;
+    const verified = await INVARIANT_PACKET.verify(packet);
+    const output: CliInvariantPacketVerifyOutput = {
+      ok: verified.ok,
+      expected: verified.expected,
+      actual: verified.actual,
+      reasons: verified.reasons,
+    };
+    const body = JSON.stringify(output, null, parsed.pretty ? 2 : undefined);
+    if (parsed.output) {
+      await Deno.writeTextFile(parsed.output, body);
+    } else {
+      console.log(body);
+    }
+    return;
+  }
+
+  const input = JSON.parse(raw) as CliInput;
+  let invariantReport = input.invariantReport;
+  if (!invariantReport && input.invariantPacket) {
+    const verified = await INVARIANT_PACKET.verify(input.invariantPacket);
+    if (!verified.ok) {
+      throw new Error(
+        `Invalid invariantPacket: ${verified.reasons.join("|")}`,
+      );
+    }
+    invariantReport = INVARIANT_PACKET.toInvariantReport(input.invariantPacket);
+  }
+
+  const result = await GATE_RUNNER.step({
+    state: toSnapshot(input.state),
+    proposals: input.proposals,
+    config: toConfig(input.config),
+    mode: input.mode,
+    replayGenesis: toReplayGenesis(input.replayGenesis),
+    replayAuditOptions: input.replayAuditOptions,
+    invariantReport,
+    witness: input.witness,
+  });
+
+  const derivedPacket = !input.invariantPacket && input.invariantReport
+    ? await INVARIANT_PACKET.fromInvariantReport(
+      input.invariantReport,
+      { tick_anchor: input.state.tick, witness: input.witness },
+    )
+    : undefined;
+
+  const output: CliOutput = {
+    nextState: {
+      tick: result.nextState.tick,
+      state_hash: result.nextState.state_hash,
+      state_i16: Array.from(result.nextState.state_i16),
+    },
+    bridge_mode: result.bridge_mode,
+    bridge_reason: result.bridge_reason,
+    replay_audit: result.replay_audit,
+    invariant_packet: result.replay_audit?.invariantPacket ??
+      input.invariantPacket ??
+      derivedPacket,
+  };
+
+  const body = JSON.stringify(output, null, parsed.pretty ? 2 : undefined);
+  if (parsed.output) {
+    await Deno.writeTextFile(parsed.output, body);
+  } else {
+    console.log(body);
+  }
+};
+
+if (import.meta.main) {
+  await run();
+}
+
+
+// [ ./i.L32.core.GATE_RUNTIME_CONTEXT.ts ]
+// i.L32.core.GATE_RUNTIME_CONTEXT.ts
+// OMEGA-64 | L32 helper to build Gate runtime context from replay invariants.
+
+import type { ReplayAuditOptions, ReplayAuditResult, ReplayGenesis, ReplayInvariantReport } from "./i.L99.core.REPLAY_AUDIT.ts";
+import { REPLAY_AUDIT } from "./i.L99.core.REPLAY_AUDIT.ts";
+import type { GateRuntimeContext } from "./i.L32.core.GATE.ts";
+import { CANON_CAUSAL_BRIDGE, type BridgeMode } from "./i.L32.core.CANON_CAUSAL_BRIDGE.ts";
+import { CRYSTALLIZATION_CONFIG } from "./i.L99.core.CRYSTALLIZATION_CONFIG.ts";
+import { INVARIANT_PACKET, type InvariantPacket } from "./i.L32.core.INVARIANT_PACKET.ts";
+
+export interface GateRuntimeContextEnvelope {
+    runtime: GateRuntimeContext;
+    bridge_mode: BridgeMode;
+    bridge_reason: string;
+    replay_audit?: ReplayAuditResult;
+}
+
+export const GATE_RUNTIME_CONTEXT = {
+    fromInvariantReport: (
+        invariant: ReplayInvariantReport | undefined,
+        witness?: string
+    ): GateRuntimeContextEnvelope => {
+        const mode = CANON_CAUSAL_BRIDGE.resolveMode(invariant);
+        return {
+            runtime: {
+                bridge_invariant_report: invariant,
+                witness
+            },
+            bridge_mode: mode.mode,
+            bridge_reason: mode.reason
+        };
+    },
+
+    fromInvariantPacket: async (
+        packet: InvariantPacket,
+        witness?: string
+    ): Promise<GateRuntimeContextEnvelope> => {
+        const verified = await INVARIANT_PACKET.verify(packet);
+        if (!verified.ok) {
+            throw new Error(`Invalid invariant packet: ${verified.reasons.join("|")}`);
+        }
+        const report = INVARIANT_PACKET.toInvariantReport(packet);
+        return GATE_RUNTIME_CONTEXT.fromInvariantReport(report, witness ?? packet.witness);
+    },
+
+    fromReplayAudit: async (
+        genesis: ReplayGenesis,
+        options: ReplayAuditOptions = {},
+        witness?: string
+    ): Promise<GateRuntimeContextEnvelope> => {
+        const auditOptions: ReplayAuditOptions = {
+            ...options,
+            verifyLedgerChain: options.verifyLedgerChain ?? CRYSTALLIZATION_CONFIG.verifyLedgerChain
+        };
+        const audit = await REPLAY_AUDIT.audit(genesis, auditOptions);
+        const out = GATE_RUNTIME_CONTEXT.fromInvariantReport(audit.invariantReport, witness);
+        return {
+            ...out,
+            replay_audit: audit
         };
     }
 };
@@ -2847,6 +4217,161 @@ export const IMMUNE = {
         
         return cleanLattice;
     }
+};
+
+
+// [ ./i.L32.core.INVARIANT_PACKET.ts ]
+// i.L32.core.INVARIANT_PACKET.ts
+// OMEGA-64 | Minimal invariant packet for lightweight bridge exchange.
+
+import type { ReplayInvariantReport } from "./i.L99.core.REPLAY_AUDIT.ts";
+
+export interface InvariantPacket {
+  version: string;
+  tick_anchor: number;
+  canon_index_chain_checked: boolean;
+  canon_index_chain_ok: boolean;
+  gate_admission_index_chain_checked: boolean;
+  gate_admission_index_chain_ok: boolean;
+  ledger_chain_checked?: boolean;
+  ledger_chain_ok?: boolean;
+  witness?: string;
+  packet_hash?: string;
+}
+
+export interface InvariantPacketVerifyResult {
+  ok: boolean;
+  expected?: string;
+  actual?: string;
+  reasons: string[];
+}
+
+const PACKET_VERSION = "invariant-packet/v1";
+
+const stableStringify = (value: unknown): string => {
+  if (Array.isArray(value)) {
+    return `[${value.map((v) => stableStringify(v)).join(",")}]`;
+  }
+  if (value && typeof value === "object") {
+    const entries = Object.entries(value as Record<string, unknown>)
+      .filter(([, v]) => typeof v !== "undefined")
+      .sort(([a], [b]) => a.localeCompare(b));
+    const body = entries
+      .map(([k, v]) => `${JSON.stringify(k)}:${stableStringify(v)}`)
+      .join(",");
+    return `{${body}}`;
+  }
+  return JSON.stringify(value);
+};
+
+const toHex = (buffer: ArrayBuffer): string =>
+  Array.from(new Uint8Array(buffer)).map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+
+const sha256Hex = async (input: string): Promise<string> => {
+  const data = new TextEncoder().encode(input);
+  const digest = await crypto.subtle.digest("SHA-256", data);
+  return toHex(digest);
+};
+
+const canonicalPayload = (packet: InvariantPacket): string =>
+  stableStringify({
+    version: packet.version,
+    tick_anchor: packet.tick_anchor,
+    canon_index_chain_checked: packet.canon_index_chain_checked,
+    canon_index_chain_ok: packet.canon_index_chain_ok,
+    gate_admission_index_chain_checked: packet.gate_admission_index_chain_checked,
+    gate_admission_index_chain_ok: packet.gate_admission_index_chain_ok,
+    ledger_chain_checked: packet.ledger_chain_checked,
+    ledger_chain_ok: packet.ledger_chain_ok,
+    witness: packet.witness
+  });
+
+const toFailures = (label: string, ok: boolean): string[] =>
+  ok ? [] : [`INVARIANT_PACKET_${label}_FAIL`];
+
+export const INVARIANT_PACKET = {
+  VERSION: PACKET_VERSION,
+
+  hash: async (packet: InvariantPacket): Promise<string> =>
+    await sha256Hex(canonicalPayload(packet)),
+
+  seal: async (
+    packet: Omit<InvariantPacket, "packet_hash" | "version"> & { version?: string }
+  ): Promise<InvariantPacket> => {
+    const versioned: InvariantPacket = { ...packet, version: PACKET_VERSION };
+    const packet_hash = await INVARIANT_PACKET.hash(versioned);
+    return { ...versioned, packet_hash };
+  },
+
+  verify: async (packet: InvariantPacket): Promise<InvariantPacketVerifyResult> => {
+    const reasons: string[] = [];
+    if (packet.version !== PACKET_VERSION) {
+      reasons.push("UNSUPPORTED_VERSION");
+    }
+    if (!Number.isInteger(packet.tick_anchor) || packet.tick_anchor < 0) {
+      reasons.push("INVALID_TICK_ANCHOR");
+    }
+    if (!packet.packet_hash) {
+      reasons.push("MISSING_PACKET_HASH");
+      return { ok: false, reasons };
+    }
+    const expected = await INVARIANT_PACKET.hash(packet);
+    if (expected !== packet.packet_hash) {
+      reasons.push("PACKET_HASH_MISMATCH");
+    }
+    return {
+      ok: reasons.length === 0,
+      expected,
+      actual: packet.packet_hash,
+      reasons
+    };
+  },
+
+  fromInvariantReport: async (
+    invariant: ReplayInvariantReport,
+    meta: { tick_anchor: number; witness?: string }
+  ): Promise<InvariantPacket> => {
+    const packet = {
+      version: PACKET_VERSION,
+      tick_anchor: meta.tick_anchor,
+      canon_index_chain_checked: invariant.index_chain_checked,
+      canon_index_chain_ok: invariant.index_chain_ok,
+      gate_admission_index_chain_checked: invariant.gate_admission_index_chain_checked ?? false,
+      gate_admission_index_chain_ok: invariant.gate_admission_index_chain_ok ?? false,
+      ledger_chain_checked: invariant.ledger_chain_checked,
+      ledger_chain_ok: invariant.ledger_chain_ok,
+      witness: meta.witness
+    };
+    const packet_hash = await INVARIANT_PACKET.hash(packet);
+    return { ...packet, packet_hash };
+  },
+
+  toInvariantReport: (packet: InvariantPacket): ReplayInvariantReport => {
+    const canonFailures = toFailures("CANON", packet.canon_index_chain_ok);
+    const gateFailures = toFailures(
+      "GATE_ADMISSION",
+      packet.gate_admission_index_chain_ok
+    );
+    const report: ReplayInvariantReport = {
+      index_chain_checked: packet.canon_index_chain_checked,
+      index_chain_ok: packet.canon_index_chain_ok,
+      index_chain_checked_records: 0,
+      index_chain_failures: canonFailures,
+      gate_admission_index_chain_checked: packet.gate_admission_index_chain_checked,
+      gate_admission_index_chain_ok: packet.gate_admission_index_chain_ok,
+      gate_admission_index_chain_checked_records: 0,
+      gate_admission_index_chain_failures: gateFailures
+    };
+    if (packet.ledger_chain_checked !== undefined) {
+      report.ledger_chain_checked = packet.ledger_chain_checked;
+      report.ledger_chain_ok = packet.ledger_chain_ok ?? false;
+      report.ledger_chain_failures = packet.ledger_chain_checked
+        ? toFailures("LEDGER", packet.ledger_chain_ok ?? false)
+        : ["INVARIANT_PACKET_LEDGER_UNCHECKED"];
+    }
+    return report;
+  }
 };
 
 
@@ -4436,29 +5961,1808 @@ export const PROJECTION = {
 };
 
 
+// [ ./i.L99.core.CHECKPOINT.ts ]
+// i.L99.core.CHECKPOINT.ts
+// OMEGA-64 | Persistent Checkpoint Store
+// Stores and resolves rollback snapshots.
+
+import { CheckpointRecord, StateSnapshot } from "./i.L99.core.STATE_SNAPSHOT.ts";
+
+const toHex = (buffer: ArrayBuffer): string =>
+    Array.from(new Uint8Array(buffer)).map((b) => b.toString(16).padStart(2, "0")).join("");
+
+const sha256Hex = async (input: string): Promise<string> => {
+    const data = new TextEncoder().encode(input);
+    const digest = await crypto.subtle.digest("SHA-256", data);
+    return toHex(digest);
+};
+
+export const CHECKPOINT = {
+    STORAGE_PATH: "./OMEGA_CHECKPOINTS.jsonl",
+
+    save: async (
+        snapshot: Pick<StateSnapshot, "tick" | "state_hash" | "state_i16">,
+        reason: string,
+        witness?: string
+    ): Promise<CheckpointRecord> => {
+        const checkpointId = `ckp_${(await sha256Hex(`${snapshot.tick}|${snapshot.state_hash}|${reason}`)).slice(0, 16)}`;
+        const record: CheckpointRecord = {
+            checkpoint_id: checkpointId,
+            tick: snapshot.tick,
+            state_hash: snapshot.state_hash,
+            state_i16: Array.from(snapshot.state_i16),
+            ts_unix_ms: Date.now(),
+            reason,
+            witness
+        };
+        await Deno.writeTextFile(CHECKPOINT.STORAGE_PATH, JSON.stringify(record) + "\n", { append: true });
+        return record;
+    },
+
+    readAll: async function* (): AsyncGenerator<CheckpointRecord> {
+        try {
+            const content = await Deno.readTextFile(CHECKPOINT.STORAGE_PATH);
+            for (const line of content.split("\n")) {
+                if (line.trim().length === 0) continue;
+                try {
+                    const parsed = JSON.parse(line) as CheckpointRecord;
+                    if (
+                        typeof parsed.tick === "number" &&
+                        typeof parsed.state_hash === "string" &&
+                        Array.isArray(parsed.state_i16)
+                    ) {
+                        yield parsed;
+                    }
+                } catch {
+                    // ignore malformed line
+                }
+            }
+        } catch (e) {
+            if (!(e instanceof Deno.errors.NotFound)) {
+                console.error("🚨 CHECKPOINT READ FAILURE", e);
+            }
+        }
+    },
+
+    loadExact: async (tick: number): Promise<CheckpointRecord | null> => {
+        let found: CheckpointRecord | null = null;
+        for await (const c of CHECKPOINT.readAll()) {
+            if (c.tick === tick) found = c;
+        }
+        return found;
+    },
+
+    loadNearestAtOrBefore: async (tick: number): Promise<CheckpointRecord | null> => {
+        let best: CheckpointRecord | null = null;
+        for await (const c of CHECKPOINT.readAll()) {
+            if (c.tick <= tick && (!best || c.tick > best.tick)) {
+                best = c;
+            }
+        }
+        return best;
+    }
+};
+
+
+
+// [ ./i.L99.core.CRYSTALLIZATION.ts ]
+// i.L99.core.CRYSTALLIZATION.ts
+// OMEGA-64 | Canon Protocol | Crystallization Threshold
+// Evaluates measurable gates before emitting CANONIZATION_EVENT.
+
+import { LEDGER } from "./i.L99.core.LEDGER.ts";
+import {
+  CanonizationEvent,
+  DecrystallizationEvent,
+  LedgerEvent,
+  TopologyEvent,
+  ViolationEvent,
+} from "./i.L99.core.STATE_SNAPSHOT.ts";
+import {
+  REPLAY_AUDIT,
+  ReplayAuditResult,
+  ReplayGenesis,
+} from "./i.L99.core.REPLAY_AUDIT.ts";
+import {
+  PROJECTION_REPLAY_REPORT,
+  ProjectionReplayReport,
+} from "./i.L99.core.PROJECTION_REPLAY_REPORT.ts";
+import {
+  PROJECTION_DRIFT_ANALYTICS,
+  ProjectionDriftAnalyticsReport,
+} from "./i.L99.core.PROJECTION_DRIFT_ANALYTICS.ts";
+import {
+  GATE_ADMISSION_REPORT,
+  GateAdmissionReport,
+} from "./i.L99.core.GATE_ADMISSION_REPORT.ts";
+import { CHECKPOINT } from "./i.L99.core.CHECKPOINT.ts";
+import {
+  CRYSTALLIZATION_CONFIG,
+  CRYSTALLIZATION_POLICY,
+} from "./i.L99.core.CRYSTALLIZATION_CONFIG.ts";
+import {
+  CRYSTALLIZATION_REPORT,
+  CrystallizationReport,
+} from "./i.L99.core.CRYSTALLIZATION_REPORT.ts";
+
+const stableStringify = (value: unknown): string => {
+  if (Array.isArray(value)) {
+    return `[${value.map((v) => stableStringify(v)).join(",")}]`;
+  }
+  if (value && typeof value === "object") {
+    const entries = Object.entries(value as Record<string, unknown>).sort((
+      [a],
+      [b],
+    ) => a.localeCompare(b));
+    return `{${
+      entries.map(([k, v]) => `${JSON.stringify(k)}:${stableStringify(v)}`)
+        .join(",")
+    }}`;
+  }
+  return JSON.stringify(value);
+};
+
+const toHex = (buffer: ArrayBuffer): string =>
+  Array.from(new Uint8Array(buffer)).map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+
+const sha256Hex = async (input: string): Promise<string> => {
+  const data = new TextEncoder().encode(input);
+  const digest = await crypto.subtle.digest("SHA-256", data);
+  return toHex(digest);
+};
+
+const percentile = (values: number[], p: number): number => {
+  if (values.length === 0) return Infinity;
+  const sorted = [...values].sort((a, b) => a - b);
+  const idx = Math.min(
+    sorted.length - 1,
+    Math.max(0, Math.ceil(p * sorted.length) - 1),
+  );
+  return sorted[idx];
+};
+
+const median = (values: number[]): number => {
+  if (values.length === 0) return 0;
+  const sorted = [...values].sort((a, b) => a - b);
+  const mid = Math.floor(sorted.length / 2);
+  return sorted.length % 2 === 0
+    ? (sorted[mid - 1] + sorted[mid]) / 2
+    : sorted[mid];
+};
+
+const absDeltaSum = (evt: LedgerEvent): number =>
+  evt.accepted_delta.reduce((sum, d) => sum + Math.abs(d.value), 0);
+
+const isViolationEvent = (entry: TopologyEvent): entry is ViolationEvent =>
+  "event_type" in entry && entry.event_type === "VIOLATION_EVENT";
+
+const isLedgerEvent = (entry: TopologyEvent): entry is LedgerEvent =>
+  !("event_type" in entry) && Array.isArray(entry.accepted_delta);
+
+const isCanonizationEvent = (
+  entry: TopologyEvent,
+): entry is CanonizationEvent =>
+  "event_type" in entry && entry.event_type === "CANONIZATION_EVENT";
+
+const hasTick = (
+  entry: TopologyEvent,
+): entry is TopologyEvent & { tick: number } =>
+  "tick" in entry && typeof entry.tick === "number";
+
+interface WindowResult {
+  hardPass: boolean;
+  softPasses: number;
+  proposalDigests: string[];
+}
+
+interface EvaluateOptions {
+  replayGreen?: boolean;
+  requiredWindows?: number;
+  witness?: string;
+  windowSize?: number;
+  crystallizationReportVersion?: string;
+  crystallizationReportHash?: string;
+  crystallizationReportUri?: string;
+  gateAdmissionReportVersion?: string;
+  gateAdmissionReportHash?: string;
+  gateAdmissionReportUri?: string;
+}
+
+interface EvaluateWithAuditOptions extends EvaluateOptions {
+  replayRuns?: number;
+  replayStartTick?: number;
+  projectionDriftMaxP95?: number;
+  projectionDriftTopLevels?: number;
+  gateAdmissionOutOfPhasePressureMaxMean?: number;
+  gateAdmissionMinCoherenceCoverage?: number;
+  gateAdmissionTopAgents?: number;
+}
+
+interface EnforceOptions {
+  windowSize?: number;
+  witness?: string;
+}
+
+export const CRYSTALLIZATION = {
+  WINDOW: CRYSTALLIZATION_CONFIG.window,
+  MIN_SOFT_PASSES: CRYSTALLIZATION_CONFIG.minSoftPasses,
+  DEFAULT_REQUIRED_WINDOWS: CRYSTALLIZATION_CONFIG.defaultRequiredWindows,
+
+  evaluate: async (
+    currentTick: number,
+    artifactHash: string,
+    stateHash: string,
+    options: EvaluateOptions = {},
+  ): Promise<boolean> => {
+    const replayGreen = options.replayGreen ?? false;
+    const requiredWindows = options.requiredWindows ??
+      CRYSTALLIZATION.DEFAULT_REQUIRED_WINDOWS;
+    const windowSize = options.windowSize ?? CRYSTALLIZATION.WINDOW;
+
+    const entries: TopologyEvent[] = [];
+    for await (const entry of LEDGER.readAllRaw()) {
+      entries.push(entry);
+    }
+
+    const passedDigests: string[] = [];
+    for (let w = 0; w < requiredWindows; w++) {
+      const endTick = currentTick - (w * windowSize);
+      const startTick = endTick - windowSize + 1;
+      const result = CRYSTALLIZATION.evaluateWindow(
+        entries,
+        startTick,
+        endTick,
+      );
+
+      if (!result.hardPass) {
+        return false;
+      }
+      if (result.softPasses < CRYSTALLIZATION.MIN_SOFT_PASSES) {
+        return false;
+      }
+      passedDigests.push(...result.proposalDigests);
+    }
+
+    if (!replayGreen) {
+      return false;
+    }
+
+    const proposalDigest = await sha256Hex(
+      stableStringify([...passedDigests].sort()),
+    );
+    const policyHash = await CRYSTALLIZATION_POLICY.hash();
+    const canonEvent: CanonizationEvent = {
+      event_type: "CANONIZATION_EVENT",
+      artifact_hash: artifactHash,
+      state_hash: stateHash,
+      proposal_digest: proposalDigest,
+      checkpoint_tick: currentTick,
+      window: windowSize,
+      hard_gates: "PASS",
+      soft_gates_passed: 6,
+      policy_version: CRYSTALLIZATION_CONFIG.policyVersion,
+      policy_hash: policyHash,
+      crystallization_report_version: options.crystallizationReportVersion,
+      crystallization_report_hash: options.crystallizationReportHash,
+      crystallization_report_uri: options.crystallizationReportUri,
+      gate_admission_report_version: options.gateAdmissionReportVersion,
+      gate_admission_report_hash: options.gateAdmissionReportHash,
+      gate_admission_report_uri: options.gateAdmissionReportUri,
+      witness: options.witness,
+    };
+
+    await LEDGER.append(canonEvent);
+    return true;
+  },
+
+  evaluateWithAudit: async (
+    currentTick: number,
+    artifactHash: string,
+    stateHash: string,
+    replayGenesis: ReplayGenesis,
+    options: EvaluateWithAuditOptions = {},
+  ): Promise<{
+    crystallized: boolean;
+    audit: ReplayAuditResult;
+    projectionReport: ProjectionReplayReport;
+    driftReport: ProjectionDriftAnalyticsReport;
+    projectionDriftGatePass: boolean;
+    gateAdmissionReport: GateAdmissionReport;
+    gateAdmissionGatePass: boolean;
+    gateAdmissionReportHash: string;
+    gateAdmissionReportUri: string;
+    crystallizationReport: CrystallizationReport;
+    crystallizationReportHash: string;
+    crystallizationReportUri: string;
+  }> => {
+    const requiredWindows = options.requiredWindows ??
+      CRYSTALLIZATION.DEFAULT_REQUIRED_WINDOWS;
+    const windowSize = options.windowSize ?? CRYSTALLIZATION.WINDOW;
+    const replayStartTick = options.replayStartTick ?? Math.max(
+      replayGenesis.tick,
+      currentTick - (requiredWindows * windowSize) + 1,
+    );
+
+    const audit = await REPLAY_AUDIT.audit(replayGenesis, {
+      runs: options.replayRuns ?? 3,
+      startTick: replayStartTick,
+      endTick: currentTick,
+      verifyLedgerChain: CRYSTALLIZATION_CONFIG.verifyLedgerChain,
+    });
+    const projectionReport = await PROJECTION_REPLAY_REPORT.generate(
+      replayGenesis,
+      {
+        startTick: replayStartTick,
+        endTick: currentTick,
+        verifyTopologicalSignatures: true,
+      },
+    );
+    const driftReport = await PROJECTION_DRIFT_ANALYTICS.analyze(
+      replayGenesis,
+      {
+        startTick: replayStartTick,
+        endTick: currentTick,
+        requireReplayGreen: true,
+        verifyTopologicalSignatures: true,
+        topLevels: options.projectionDriftTopLevels ??
+          CRYSTALLIZATION_CONFIG.projectionDriftTopLevels,
+      },
+    );
+    const projectionDriftMaxP95 = options.projectionDriftMaxP95 ??
+      CRYSTALLIZATION_CONFIG.projectionDriftMaxP95;
+    const projectionDriftP95 = driftReport.driftByLevelP95.length > 0
+      ? Math.max(...driftReport.driftByLevelP95)
+      : 0;
+    const projectionDriftGatePass = driftReport.ok &&
+      projectionDriftP95 <= projectionDriftMaxP95;
+    const gateAdmissionOutOfPhasePressureMaxMean =
+      options.gateAdmissionOutOfPhasePressureMaxMean ??
+        CRYSTALLIZATION_CONFIG.gateAdmissionOutOfPhasePressureMaxMean;
+    const gateAdmissionMinCoherenceCoverage =
+      options.gateAdmissionMinCoherenceCoverage ??
+        CRYSTALLIZATION_CONFIG.gateAdmissionMinCoherenceCoverage;
+    const { report: gateAdmissionReport, reportHash: gateAdmissionReportHash } =
+      await GATE_ADMISSION_REPORT.generateWithHash({
+        startTick: replayStartTick,
+        endTick: currentTick,
+        topAgents: options.gateAdmissionTopAgents ??
+          CRYSTALLIZATION_CONFIG.gateAdmissionTopAgents,
+      });
+    const gateAdmissionMaterialized = await GATE_ADMISSION_REPORT.materialize(
+      gateAdmissionReport,
+      gateAdmissionReportHash,
+      { tick_anchor: currentTick, witness: options.witness },
+    );
+    const gateAdmissionReportUri = gateAdmissionMaterialized.path;
+    const gateAdmissionGatePass = gateAdmissionReport.ok &&
+      gateAdmissionReport.coherenceCoverage >=
+        gateAdmissionMinCoherenceCoverage &&
+      (
+        gateAdmissionReport.outOfPhasePressureMean === undefined ||
+        gateAdmissionReport.outOfPhasePressureMean <=
+          gateAdmissionOutOfPhasePressureMaxMean
+      );
+    const projectionHardGatePass = projectionReport.failCount === 0;
+    const {
+      report: crystallizationReport,
+      reportHash: crystallizationReportHash,
+    } = await CRYSTALLIZATION_REPORT.buildWithHash({
+      artifact_hash: artifactHash,
+      state_hash: stateHash,
+      current_tick: currentTick,
+      replay_start_tick: replayStartTick,
+      replay_end_tick: currentTick,
+      replay_audit: audit,
+      projection_report: projectionReport,
+      drift_report: driftReport,
+      projection_drift_gate_pass: projectionDriftGatePass,
+      projection_drift_max_p95: projectionDriftMaxP95,
+      gate_admission_report: gateAdmissionReport,
+      gate_admission_gate_pass: gateAdmissionGatePass,
+      gate_admission_report_hash: gateAdmissionReportHash,
+      gate_admission_report_uri: gateAdmissionReportUri,
+      gate_admission_out_of_phase_pressure_max_mean:
+        gateAdmissionOutOfPhasePressureMaxMean,
+      gate_admission_min_coherence_coverage: gateAdmissionMinCoherenceCoverage,
+    });
+    const materialized = await CRYSTALLIZATION_REPORT.materialize(
+      crystallizationReport,
+      crystallizationReportHash,
+      {
+        tick: currentTick,
+        artifact_hash: artifactHash,
+        state_hash: stateHash,
+        witness: options.witness,
+      },
+    );
+    const crystallizationReportUri = materialized.path;
+
+    const crystallized = await CRYSTALLIZATION.evaluate(
+      currentTick,
+      artifactHash,
+      stateHash,
+      {
+        // Hard gate: projection replay must be clean.
+        replayGreen: audit.replayGreen &&
+          projectionHardGatePass &&
+          projectionDriftGatePass &&
+          gateAdmissionGatePass,
+        requiredWindows,
+        windowSize,
+        crystallizationReportVersion: CRYSTALLIZATION_REPORT.VERSION,
+        crystallizationReportHash,
+        crystallizationReportUri,
+        gateAdmissionReportVersion: GATE_ADMISSION_REPORT.VERSION,
+        gateAdmissionReportHash,
+        gateAdmissionReportUri,
+        witness: options.witness,
+      },
+    );
+
+    return {
+      crystallized,
+      audit,
+      projectionReport,
+      driftReport,
+      projectionDriftGatePass,
+      gateAdmissionReport,
+      gateAdmissionGatePass,
+      gateAdmissionReportHash,
+      gateAdmissionReportUri,
+      crystallizationReport,
+      crystallizationReportHash,
+      crystallizationReportUri,
+    };
+  },
+
+  enforcePostCrystal: async (
+    currentTick: number,
+    artifactHash: string,
+    options: EnforceOptions = {},
+  ): Promise<
+    { decrystallized: boolean; rollbackTick?: number; reason?: string }
+  > => {
+    const windowSize = options.windowSize ?? CRYSTALLIZATION.WINDOW;
+    const entries: TopologyEvent[] = [];
+    for await (const entry of LEDGER.readAllRaw()) {
+      entries.push(entry);
+    }
+
+    const startTick = currentTick - windowSize + 1;
+    const result = CRYSTALLIZATION.evaluateWindow(
+      entries,
+      startTick,
+      currentTick,
+    );
+    if (result.hardPass) {
+      return { decrystallized: false };
+    }
+
+    let rollbackTick = currentTick;
+    for (let i = entries.length - 1; i >= 0; i--) {
+      const entry = entries[i];
+      if (isCanonizationEvent(entry) && entry.artifact_hash === artifactHash) {
+        rollbackTick = entry.checkpoint_tick;
+        break;
+      }
+    }
+
+    const reason = CRYSTALLIZATION.describeHardFailure(
+      entries,
+      startTick,
+      currentTick,
+    );
+    const rollbackCheckpoint = (await CHECKPOINT.loadExact(rollbackTick)) ??
+      (await CHECKPOINT.loadNearestAtOrBefore(rollbackTick));
+    const decrystalEvent: DecrystallizationEvent = {
+      event_type: "DECRYSTALLIZATION_EVENT",
+      tick: currentTick,
+      artifact_hash: artifactHash,
+      reason,
+      rollback_to_checkpoint: rollbackTick,
+      rollback_state_hash: rollbackCheckpoint?.state_hash,
+      hard_gate_failure: reason,
+      witness: options.witness,
+    };
+
+    await LEDGER.append(decrystalEvent);
+    return { decrystallized: true, rollbackTick, reason };
+  },
+
+  evaluateWindow: (
+    entries: TopologyEvent[],
+    startTick: number,
+    endTick: number,
+  ): WindowResult => {
+    const inWindow = entries
+      .filter(hasTick)
+      .filter((e) => e.tick >= startTick && e.tick <= endTick);
+    const violations = inWindow.filter(isViolationEvent)
+      .filter((v) => v.severity === "CRITICAL");
+    const events = inWindow.filter(isLedgerEvent)
+      .sort((a, b) => a.tick - b.tick);
+
+    const continuity = CRYSTALLIZATION.checkTickContinuity(
+      events,
+      startTick,
+      endTick,
+    );
+    const hardPass = violations.length === 0 && continuity;
+
+    const budgetPressure = events.map((e) => {
+      const limit = e.budget_limit && e.budget_limit > 0
+        ? e.budget_limit
+        : Math.max(1, e.budget_used);
+      return e.budget_used / limit;
+    });
+    const budgetP95 = percentile(budgetPressure, 0.95);
+    const softBudget = budgetP95 <= 0.70;
+
+    const driftSamples = events.flatMap((e) =>
+      e.accepted_delta.map((d) => Math.abs(d.value))
+    );
+    const driftP95 = percentile(driftSamples, 0.95);
+    const softDrift = driftP95 <= 8;
+
+    const signFlipRate = CRYSTALLIZATION.computeSignFlipRate(events);
+    const softFlip = signFlipRate <= 0.25;
+
+    const rejected = events.reduce(
+      (sum, e) => sum + e.rejected_proposals.length,
+      0,
+    );
+    const accepted = events.reduce(
+      (sum, e) => sum + e.accepted_proposals.length,
+      0,
+    );
+    const proposalsTotal = accepted + rejected;
+    const rejectionRatio = proposalsTotal > 0 ? rejected / proposalsTotal : 1;
+    const softReject = rejectionRatio <= 0.30;
+
+    const energyDensity = events.map((e) =>
+      e.cost_total / Math.max(1, absDeltaSum(e))
+    );
+    const medEnergy = median(energyDensity);
+    const p99Energy = percentile(energyDensity, 0.99);
+    const softEnergy = medEnergy > 0
+      ? p99Energy <= 3 * medEnergy
+      : p99Energy <= 0;
+
+    const softContinuity = continuity;
+
+    const softPasses = [
+      softBudget,
+      softDrift,
+      softFlip,
+      softReject,
+      softEnergy,
+      softContinuity,
+    ].filter(Boolean).length;
+
+    return {
+      hardPass,
+      softPasses,
+      proposalDigests: events.map((e) => e.proposal_digest),
+    };
+  },
+
+  describeHardFailure: (
+    entries: TopologyEvent[],
+    startTick: number,
+    endTick: number,
+  ): string => {
+    const inWindow = entries
+      .filter(hasTick)
+      .filter((e) => e.tick >= startTick && e.tick <= endTick);
+
+    const violations = inWindow
+      .filter(isViolationEvent)
+      .filter((v) => v.severity === "CRITICAL");
+    if (violations.length > 0) {
+      return `CRITICAL_VIOLATION:${violations[0].rule_id}`;
+    }
+
+    const events = inWindow.filter(isLedgerEvent).sort((a, b) =>
+      a.tick - b.tick
+    );
+    if (!CRYSTALLIZATION.checkTickContinuity(events, startTick, endTick)) {
+      return "TICK_CONTINUITY_BROKEN";
+    }
+
+    return "HARD_GATE_FAILED";
+  },
+
+  checkTickContinuity: (
+    events: LedgerEvent[],
+    startTick: number,
+    endTick: number,
+  ): boolean => {
+    if (events.length !== (endTick - startTick + 1)) {
+      return false;
+    }
+    for (let i = 0; i < events.length; i++) {
+      const expected = startTick + i;
+      if (events[i].tick !== expected) {
+        return false;
+      }
+    }
+    return true;
+  },
+
+  computeSignFlipRate: (events: LedgerEvent[]): number => {
+    const lastSign = new Map<number, number>();
+    let transitions = 0;
+    let flips = 0;
+
+    for (const evt of events) {
+      const byLevel = new Map<number, number>();
+      for (const d of evt.accepted_delta) {
+        if (d.value === 0) continue;
+        byLevel.set(d.level, Math.sign(d.value));
+      }
+      for (const [level, sign] of byLevel.entries()) {
+        const prev = lastSign.get(level);
+        if (prev !== undefined) {
+          transitions++;
+          if (prev !== sign) {
+            flips++;
+          }
+        }
+        lastSign.set(level, sign);
+      }
+    }
+
+    return transitions > 0 ? flips / transitions : 0;
+  },
+};
+
+
+// [ ./i.L99.core.CRYSTALLIZATION_CONFIG.ts ]
+// i.L99.core.CRYSTALLIZATION_CONFIG.ts
+// OMEGA-64 | Canon Policy | Crystallization Runtime Defaults
+
+export interface CrystallizationConfig {
+  policyVersion: string;
+  window: number;
+  minSoftPasses: number;
+  defaultRequiredWindows: number;
+  projectionDriftMaxP95: number;
+  projectionDriftTopLevels: number;
+  gateAdmissionOutOfPhasePressureMaxMean: number;
+  gateAdmissionMinCoherenceCoverage: number;
+  gateAdmissionTopAgents: number;
+  verifyLedgerChain: boolean;
+}
+
+export const CRYSTALLIZATION_CONFIG: CrystallizationConfig = {
+  policyVersion: "crystallization/v1",
+  window: 512,
+  minSoftPasses: 5,
+  defaultRequiredWindows: 3,
+  projectionDriftMaxP95: 1024,
+  projectionDriftTopLevels: 8,
+  gateAdmissionOutOfPhasePressureMaxMean: 1.0,
+  gateAdmissionMinCoherenceCoverage: 0.0,
+  gateAdmissionTopAgents: 8,
+  verifyLedgerChain: true,
+};
+
+const stableStringify = (value: unknown): string => {
+  if (Array.isArray(value)) {
+    return `[${value.map((v) => stableStringify(v)).join(",")}]`;
+  }
+  if (value && typeof value === "object") {
+    const entries = Object.entries(value as Record<string, unknown>)
+      .sort(([a], [b]) => a.localeCompare(b));
+    return `{${
+      entries.map(([k, v]) => `${JSON.stringify(k)}:${stableStringify(v)}`)
+        .join(",")
+    }}`;
+  }
+  return JSON.stringify(value);
+};
+
+const toHex = (buffer: ArrayBuffer): string =>
+  Array.from(new Uint8Array(buffer)).map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+
+const sha256Hex = async (input: string): Promise<string> => {
+  const data = new TextEncoder().encode(input);
+  const digest = await crypto.subtle.digest("SHA-256", data);
+  return toHex(digest);
+};
+
+export const CRYSTALLIZATION_POLICY = {
+  canonicalPayload: (): string =>
+    stableStringify({
+      policyVersion: CRYSTALLIZATION_CONFIG.policyVersion,
+      window: CRYSTALLIZATION_CONFIG.window,
+      minSoftPasses: CRYSTALLIZATION_CONFIG.minSoftPasses,
+      defaultRequiredWindows: CRYSTALLIZATION_CONFIG.defaultRequiredWindows,
+      projectionDriftMaxP95: CRYSTALLIZATION_CONFIG.projectionDriftMaxP95,
+      projectionDriftTopLevels: CRYSTALLIZATION_CONFIG.projectionDriftTopLevels,
+      gateAdmissionOutOfPhasePressureMaxMean:
+        CRYSTALLIZATION_CONFIG.gateAdmissionOutOfPhasePressureMaxMean,
+      gateAdmissionMinCoherenceCoverage:
+        CRYSTALLIZATION_CONFIG.gateAdmissionMinCoherenceCoverage,
+      gateAdmissionTopAgents: CRYSTALLIZATION_CONFIG.gateAdmissionTopAgents,
+      verifyLedgerChain: CRYSTALLIZATION_CONFIG.verifyLedgerChain,
+    }),
+
+  hash: async (): Promise<string> =>
+    await sha256Hex(CRYSTALLIZATION_POLICY.canonicalPayload()),
+};
+
+
+// [ ./i.L99.core.CRYSTALLIZATION_REPORT.ts ]
+// i.L99.core.CRYSTALLIZATION_REPORT.ts
+// OMEGA-64 | Canon Protocol | Canonization Report Artifact
+
+import { ProjectionDriftAnalyticsReport } from "./i.L99.core.PROJECTION_DRIFT_ANALYTICS.ts";
+import { ProjectionReplayReport } from "./i.L99.core.PROJECTION_REPLAY_REPORT.ts";
+import { ReplayAuditResult } from "./i.L99.core.REPLAY_AUDIT.ts";
+import {
+  CRYSTALLIZATION_CONFIG,
+  CRYSTALLIZATION_POLICY,
+} from "./i.L99.core.CRYSTALLIZATION_CONFIG.ts";
+import type { GateAdmissionReport } from "./i.L99.core.GATE_ADMISSION_REPORT.ts";
+
+export interface CrystallizationReportInput {
+  artifact_hash: string;
+  state_hash: string;
+  current_tick: number;
+  replay_start_tick: number;
+  replay_end_tick: number;
+  replay_audit: ReplayAuditResult;
+  projection_report: ProjectionReplayReport;
+  drift_report: ProjectionDriftAnalyticsReport;
+  projection_drift_gate_pass: boolean;
+  projection_drift_max_p95: number;
+  gate_admission_report?: GateAdmissionReport;
+  gate_admission_gate_pass?: boolean;
+  gate_admission_report_hash?: string;
+  gate_admission_report_uri?: string;
+  gate_admission_out_of_phase_pressure_max_mean?: number;
+  gate_admission_min_coherence_coverage?: number;
+}
+
+export interface CrystallizationReport {
+  version: string;
+  artifact_hash: string;
+  state_hash: string;
+  current_tick: number;
+  replay_start_tick: number;
+  replay_end_tick: number;
+  policy: {
+    version: string;
+    hash: string;
+  };
+  thresholds: {
+    window: number;
+    min_soft_passes: number;
+    default_required_windows: number;
+    projection_drift_max_p95: number;
+    gate_admission_out_of_phase_pressure_max_mean?: number;
+    gate_admission_min_coherence_coverage?: number;
+  };
+  verification_summary: {
+    replay_green: boolean;
+    projection_checks: number;
+    policy_checks: number;
+    canon_report_checks: number;
+    gate_admission_report_checks: number;
+    canon_index_chain_checked: boolean;
+    canon_index_chain_ok: boolean;
+    gate_admission_index_chain_checked: boolean;
+    gate_admission_index_chain_ok: boolean;
+  };
+  replay_audit: ReplayAuditResult;
+  projection_report: ProjectionReplayReport;
+  drift_report: ProjectionDriftAnalyticsReport;
+  projection_drift_gate_pass: boolean;
+  gate_admission_report?: GateAdmissionReport;
+  gate_admission_gate_pass?: boolean;
+  gate_admission_report_hash?: string;
+  gate_admission_report_uri?: string;
+}
+
+export interface CrystallizationReportMaterializeMeta {
+  tick: number;
+  artifact_hash: string;
+  state_hash: string;
+  witness?: string;
+}
+
+export interface CrystallizationReportIndexRecord {
+  report_hash: string;
+  report_version: string;
+  report_path: string;
+  tick: number;
+  artifact_hash: string;
+  state_hash: string;
+  ts_unix_ms: number;
+  prev_record_hash: string | null;
+  record_hash: string;
+  witness?: string;
+}
+
+const REPORT_VERSION = "crystallization-report/v1";
+
+const stableStringify = (value: unknown): string => {
+  if (Array.isArray(value)) {
+    return `[${value.map((v) => stableStringify(v)).join(",")}]`;
+  }
+  if (value && typeof value === "object") {
+    const entries = Object.entries(value as Record<string, unknown>)
+      .filter(([, v]) => typeof v !== "undefined")
+      .sort(([a], [b]) => a.localeCompare(b));
+    return `{${
+      entries.map(([k, v]) => `${JSON.stringify(k)}:${stableStringify(v)}`)
+        .join(",")
+    }}`;
+  }
+  return JSON.stringify(value);
+};
+
+const toHex = (buffer: ArrayBuffer): string =>
+  Array.from(new Uint8Array(buffer)).map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+
+const sha256Hex = async (input: string): Promise<string> => {
+  const data = new TextEncoder().encode(input);
+  const digest = await crypto.subtle.digest("SHA-256", data);
+  return toHex(digest);
+};
+
+const HEX_64_RE = /^[0-9a-f]{64}$/;
+
+const parseIndexRecord = (
+  line: string,
+  lineNumber: number,
+): { ok: true; record: CrystallizationReportIndexRecord } | {
+  ok: false;
+  error: string;
+} => {
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(line);
+  } catch {
+    return { ok: false, error: `INDEX_LINE_PARSE_FAIL_AT_LINE_${lineNumber}` };
+  }
+  const rec = parsed as Partial<CrystallizationReportIndexRecord>;
+  const shapeOk = typeof rec.report_hash === "string" &&
+    HEX_64_RE.test(rec.report_hash) &&
+    typeof rec.report_version === "string" &&
+    typeof rec.report_path === "string" &&
+    typeof rec.tick === "number" &&
+    Number.isSafeInteger(rec.tick) &&
+    rec.tick >= 0 &&
+    typeof rec.artifact_hash === "string" &&
+    typeof rec.state_hash === "string" &&
+    typeof rec.ts_unix_ms === "number" &&
+    Number.isSafeInteger(rec.ts_unix_ms) &&
+    rec.ts_unix_ms >= 0 &&
+    (typeof rec.prev_record_hash === "string" ||
+      rec.prev_record_hash === null) &&
+    typeof rec.record_hash === "string" &&
+    HEX_64_RE.test(rec.record_hash) &&
+    (rec.witness === undefined || typeof rec.witness === "string");
+  if (!shapeOk) {
+    return {
+      ok: false,
+      error: `INDEX_LINE_SCHEMA_INVALID_AT_LINE_${lineNumber}`,
+    };
+  }
+  return { ok: true, record: rec as CrystallizationReportIndexRecord };
+};
+
+export const CRYSTALLIZATION_REPORT = {
+  VERSION: REPORT_VERSION,
+  STORAGE_DIR: "./OMEGA_CANON_REPORTS",
+  INDEX_PATH: "./OMEGA_CANON_REPORTS/index.jsonl",
+
+  build: async (
+    input: CrystallizationReportInput,
+  ): Promise<CrystallizationReport> => {
+    const policyHash = await CRYSTALLIZATION_POLICY.hash();
+    return {
+      version: REPORT_VERSION,
+      artifact_hash: input.artifact_hash,
+      state_hash: input.state_hash,
+      current_tick: input.current_tick,
+      replay_start_tick: input.replay_start_tick,
+      replay_end_tick: input.replay_end_tick,
+      policy: {
+        version: CRYSTALLIZATION_CONFIG.policyVersion,
+        hash: policyHash,
+      },
+      thresholds: {
+        window: CRYSTALLIZATION_CONFIG.window,
+        min_soft_passes: CRYSTALLIZATION_CONFIG.minSoftPasses,
+        default_required_windows: CRYSTALLIZATION_CONFIG.defaultRequiredWindows,
+        projection_drift_max_p95: input.projection_drift_max_p95,
+        gate_admission_out_of_phase_pressure_max_mean:
+          input.gate_admission_out_of_phase_pressure_max_mean,
+        gate_admission_min_coherence_coverage:
+          input.gate_admission_min_coherence_coverage,
+      },
+      verification_summary: {
+        replay_green: input.replay_audit.replayGreen,
+        projection_checks: input.replay_audit.checkedProjectionEvents,
+        policy_checks: input.replay_audit.checkedPolicyEvents,
+        canon_report_checks: input.replay_audit.checkedCanonReports,
+        gate_admission_report_checks: input.replay_audit.checkedGateAdmissionReports,
+        canon_index_chain_checked: input.replay_audit.invariantReport.index_chain_checked,
+        canon_index_chain_ok: input.replay_audit.invariantReport.index_chain_ok,
+        gate_admission_index_chain_checked:
+          input.replay_audit.invariantReport.gate_admission_index_chain_checked,
+        gate_admission_index_chain_ok:
+          input.replay_audit.invariantReport.gate_admission_index_chain_ok,
+      },
+      replay_audit: input.replay_audit,
+      projection_report: input.projection_report,
+      drift_report: input.drift_report,
+      projection_drift_gate_pass: input.projection_drift_gate_pass,
+      gate_admission_report: input.gate_admission_report,
+      gate_admission_gate_pass: input.gate_admission_gate_pass,
+      gate_admission_report_hash: input.gate_admission_report_hash,
+      gate_admission_report_uri: input.gate_admission_report_uri,
+    };
+  },
+
+  hash: async (report: CrystallizationReport): Promise<string> =>
+    await sha256Hex(stableStringify(report)),
+
+  buildWithHash: async (
+    input: CrystallizationReportInput,
+  ): Promise<{ report: CrystallizationReport; reportHash: string }> => {
+    const report = await CRYSTALLIZATION_REPORT.build(input);
+    const reportHash = await CRYSTALLIZATION_REPORT.hash(report);
+    return { report, reportHash };
+  },
+
+  reportPath: (reportHash: string): string =>
+    `${CRYSTALLIZATION_REPORT.STORAGE_DIR}/${reportHash}.json`,
+
+  indexRecordHash: async (
+    record: Omit<CrystallizationReportIndexRecord, "record_hash">,
+  ): Promise<string> => await sha256Hex(stableStringify(record)),
+
+  readIndex: async function* (): AsyncGenerator<
+    CrystallizationReportIndexRecord
+  > {
+    try {
+      const content = await Deno.readTextFile(
+        CRYSTALLIZATION_REPORT.INDEX_PATH,
+      );
+      const lines = content.split("\n");
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        if (line.trim().length === 0) continue;
+        const parsed = parseIndexRecord(line, i + 1);
+        if (parsed.ok) {
+          yield parsed.record;
+        }
+      }
+    } catch (e) {
+      if (!(e instanceof Deno.errors.NotFound)) {
+        throw e;
+      }
+    }
+  },
+
+  findIndexRecord: async (
+    reportHash: string,
+    reportPath?: string,
+  ): Promise<CrystallizationReportIndexRecord | null> => {
+    let found: CrystallizationReportIndexRecord | null = null;
+    for await (const rec of CRYSTALLIZATION_REPORT.readIndex()) {
+      if (rec.report_hash !== reportHash) continue;
+      if (reportPath && rec.report_path !== reportPath) continue;
+      found = rec;
+    }
+    return found;
+  },
+
+  verifyIndexChain: async (
+    verifyReportFiles: boolean = true,
+  ): Promise<{ ok: boolean; failures: string[]; checkedRecords: number }> => {
+    const failures: string[] = [];
+    const records: CrystallizationReportIndexRecord[] = [];
+    try {
+      const content = await Deno.readTextFile(
+        CRYSTALLIZATION_REPORT.INDEX_PATH,
+      );
+      const lines = content.split("\n");
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        if (line.trim().length === 0) continue;
+        const parsed = parseIndexRecord(line, i + 1);
+        if (!parsed.ok) {
+          return {
+            ok: false,
+            failures: [parsed.error],
+            checkedRecords: records.length,
+          };
+        }
+        records.push(parsed.record);
+      }
+    } catch (e) {
+      if (!(e instanceof Deno.errors.NotFound)) {
+        throw e;
+      }
+    }
+
+    let prev: string | null = null;
+    let prevTick = -1;
+    let prevTs = -1;
+    const seenReportHashes = new Set<string>();
+    for (let i = 0; i < records.length; i++) {
+      const rec = records[i];
+      if (rec.prev_record_hash !== prev) {
+        failures.push(`INDEX_CHAIN_PREV_MISMATCH_AT_LINE_${i + 1}`);
+        break;
+      }
+      if (rec.tick < prevTick) {
+        failures.push(`INDEX_TICK_NON_MONOTONIC_AT_LINE_${i + 1}`);
+        break;
+      }
+      if (rec.ts_unix_ms < prevTs) {
+        failures.push(`INDEX_TS_NON_MONOTONIC_AT_LINE_${i + 1}`);
+        break;
+      }
+      if (seenReportHashes.has(rec.report_hash)) {
+        failures.push(`INDEX_DUPLICATE_REPORT_HASH_AT_LINE_${i + 1}`);
+        break;
+      }
+      const expected = await CRYSTALLIZATION_REPORT.indexRecordHash({
+        report_hash: rec.report_hash,
+        report_version: rec.report_version,
+        report_path: rec.report_path,
+        tick: rec.tick,
+        artifact_hash: rec.artifact_hash,
+        state_hash: rec.state_hash,
+        ts_unix_ms: rec.ts_unix_ms,
+        prev_record_hash: rec.prev_record_hash,
+        witness: rec.witness,
+      });
+      if (expected !== rec.record_hash) {
+        failures.push(`INDEX_RECORD_HASH_MISMATCH_AT_LINE_${i + 1}`);
+        break;
+      }
+
+      if (verifyReportFiles) {
+        try {
+          const body = await Deno.readTextFile(rec.report_path);
+          const parsed = JSON.parse(body) as CrystallizationReport;
+          const computed = await CRYSTALLIZATION_REPORT.hash(parsed);
+          if (computed !== rec.report_hash) {
+            failures.push(`INDEX_REPORT_HASH_MISMATCH_AT_LINE_${i + 1}`);
+            break;
+          }
+        } catch {
+          failures.push(`INDEX_REPORT_READ_FAIL_AT_LINE_${i + 1}`);
+          break;
+        }
+      }
+
+      prev = rec.record_hash;
+      prevTick = rec.tick;
+      prevTs = rec.ts_unix_ms;
+      seenReportHashes.add(rec.report_hash);
+    }
+
+    return {
+      ok: failures.length === 0,
+      failures,
+      checkedRecords: records.length,
+    };
+  },
+
+  materialize: async (
+    report: CrystallizationReport,
+    reportHash: string,
+    meta: CrystallizationReportMaterializeMeta,
+  ): Promise<
+    {
+      path: string;
+      created: boolean;
+      indexRecord?: CrystallizationReportIndexRecord;
+    }
+  > => {
+    await Deno.mkdir(CRYSTALLIZATION_REPORT.STORAGE_DIR, { recursive: true });
+    const path = CRYSTALLIZATION_REPORT.reportPath(reportHash);
+    const payload = JSON.stringify(report, null, 2);
+
+    try {
+      await Deno.writeTextFile(path, payload, { createNew: true });
+      let prevRecordHash: string | null = null;
+      for await (const rec of CRYSTALLIZATION_REPORT.readIndex()) {
+        prevRecordHash = rec.record_hash;
+      }
+      const indexRecordWithoutHash: Omit<
+        CrystallizationReportIndexRecord,
+        "record_hash"
+      > = {
+        report_hash: reportHash,
+        report_version: report.version,
+        report_path: path,
+        tick: meta.tick,
+        artifact_hash: meta.artifact_hash,
+        state_hash: meta.state_hash,
+        ts_unix_ms: Date.now(),
+        prev_record_hash: prevRecordHash,
+        witness: meta.witness,
+      };
+      const recordHash = await CRYSTALLIZATION_REPORT.indexRecordHash(
+        indexRecordWithoutHash,
+      );
+      const indexRecord: CrystallizationReportIndexRecord = {
+        ...indexRecordWithoutHash,
+        record_hash: recordHash,
+      };
+      await Deno.writeTextFile(
+        CRYSTALLIZATION_REPORT.INDEX_PATH,
+        JSON.stringify(indexRecord) + "\n",
+        { append: true, create: true },
+      );
+      return { path, created: true, indexRecord };
+    } catch (e) {
+      if (!(e instanceof Deno.errors.AlreadyExists)) throw e;
+
+      const existing = await Deno.readTextFile(path);
+      const parsed = JSON.parse(existing) as CrystallizationReport;
+      const existingHash = await CRYSTALLIZATION_REPORT.hash(parsed);
+      if (existingHash !== reportHash) {
+        throw new Error(`CRYSTALLIZATION_REPORT_HASH_CONFLICT:${reportHash}`);
+      }
+      return { path, created: false };
+    }
+  },
+};
+
+
+// [ ./i.L99.core.GATE_ADMISSION_REPORT.ts ]
+// i.L99.core.GATE_ADMISSION_REPORT.ts
+// OMEGA-64 | Gate Admission Report
+// Aggregates proposal admission metrics emitted by L32 gate.
+
+import { LEDGER } from "./i.L99.core.LEDGER.ts";
+import type { LedgerEvent } from "./i.L99.core.STATE_SNAPSHOT.ts";
+
+export interface GateAdmissionReportOptions {
+  startTick?: number;
+  endTick?: number;
+  topAgents?: number;
+}
+
+export interface GateAdmissionTimelinePoint {
+  tick: number;
+  proposals: number;
+  mean_weight: number;
+  mean_reliability_effective: number;
+  mean_phase_coherence?: number;
+  mean_physical_cost: number;
+}
+
+export interface GateAdmissionAgentStats {
+  agent_id: string;
+  proposals: number;
+  mean_weight: number;
+  p95_weight: number;
+  mean_reliability_effective: number;
+  mean_phase_coherence?: number;
+  mean_physical_cost: number;
+}
+
+export interface GateAdmissionReport {
+  version: string;
+  ok: boolean;
+  startTick?: number;
+  endTick?: number;
+  eventsAnalyzed: number;
+  eventsWithMetrics: number;
+  proposalsAnalyzed: number;
+  coherenceCoverage: number;
+  weightMean: number;
+  weightP95: number;
+  reliabilityEffectiveMean: number;
+  phaseCoherenceMean?: number;
+  phaseCoherenceP95?: number;
+  outOfPhasePressureMean?: number;
+  topAgents: GateAdmissionAgentStats[];
+  timeline: GateAdmissionTimelinePoint[];
+  failures: string[];
+}
+
+export interface GateAdmissionReportMaterializeMeta {
+  tick_anchor: number;
+  witness?: string;
+}
+
+export interface GateAdmissionReportIndexRecord {
+  report_hash: string;
+  report_version: string;
+  report_path: string;
+  tick_anchor: number;
+  start_tick: number | null;
+  end_tick: number | null;
+  events_analyzed: number;
+  proposals_analyzed: number;
+  ts_unix_ms: number;
+  prev_record_hash: string | null;
+  record_hash: string;
+  witness?: string;
+}
+
+const REPORT_VERSION = "gate-admission-report/v1";
+const HEX_64_RE = /^[0-9a-f]{64}$/;
+
+const stableStringify = (value: unknown): string => {
+  if (Array.isArray(value)) {
+    return `[${value.map((v) => stableStringify(v)).join(",")}]`;
+  }
+  if (value && typeof value === "object") {
+    const entries = Object.entries(value as Record<string, unknown>)
+      .filter(([, v]) => typeof v !== "undefined")
+      .sort(([a], [b]) => a.localeCompare(b));
+    const body = entries
+      .map(([k, v]) => `${JSON.stringify(k)}:${stableStringify(v)}`)
+      .join(",");
+    return `{${body}}`;
+  }
+  return JSON.stringify(value);
+};
+
+const toHex = (buffer: ArrayBuffer): string =>
+  Array.from(new Uint8Array(buffer)).map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+
+const sha256Hex = async (input: string): Promise<string> => {
+  const data = new TextEncoder().encode(input);
+  const digest = await crypto.subtle.digest("SHA-256", data);
+  return toHex(digest);
+};
+
+const percentile = (values: number[], p: number): number => {
+  if (values.length === 0) return 0;
+  const sorted = [...values].sort((a, b) => a - b);
+  const idx = Math.min(
+    sorted.length - 1,
+    Math.max(0, Math.ceil(p * sorted.length) - 1),
+  );
+  return sorted[idx];
+};
+
+const mean = (values: number[]): number =>
+  values.length > 0 ? values.reduce((acc, v) => acc + v, 0) / values.length : 0;
+
+const inWindow = (
+  tick: number,
+  startTick?: number,
+  endTick?: number,
+): boolean => {
+  const inStart = startTick === undefined || tick >= startTick;
+  const inEnd = endTick === undefined || tick <= endTick;
+  return inStart && inEnd;
+};
+
+const isMutationEvent = (evt: LedgerEvent): boolean =>
+  evt.state_after_hash !== evt.state_before_hash;
+
+const parseIndexRecord = (
+  line: string,
+  lineNumber: number,
+): { ok: true; record: GateAdmissionReportIndexRecord } | {
+  ok: false;
+  error: string;
+} => {
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(line);
+  } catch {
+    return { ok: false, error: `INDEX_LINE_PARSE_FAIL_AT_LINE_${lineNumber}` };
+  }
+  const rec = parsed as Partial<GateAdmissionReportIndexRecord>;
+  const shapeOk = typeof rec.report_hash === "string" &&
+    HEX_64_RE.test(rec.report_hash) &&
+    typeof rec.report_version === "string" &&
+    typeof rec.report_path === "string" &&
+    typeof rec.tick_anchor === "number" &&
+    Number.isSafeInteger(rec.tick_anchor) &&
+    rec.tick_anchor >= 0 &&
+    (typeof rec.start_tick === "number" || rec.start_tick === null) &&
+    (typeof rec.end_tick === "number" || rec.end_tick === null) &&
+    typeof rec.events_analyzed === "number" &&
+    Number.isSafeInteger(rec.events_analyzed) &&
+    rec.events_analyzed >= 0 &&
+    typeof rec.proposals_analyzed === "number" &&
+    Number.isSafeInteger(rec.proposals_analyzed) &&
+    rec.proposals_analyzed >= 0 &&
+    typeof rec.ts_unix_ms === "number" &&
+    Number.isSafeInteger(rec.ts_unix_ms) &&
+    rec.ts_unix_ms >= 0 &&
+    (typeof rec.prev_record_hash === "string" ||
+      rec.prev_record_hash === null) &&
+    typeof rec.record_hash === "string" &&
+    HEX_64_RE.test(rec.record_hash) &&
+    (rec.witness === undefined || typeof rec.witness === "string");
+  if (!shapeOk) {
+    return {
+      ok: false,
+      error: `INDEX_LINE_SCHEMA_INVALID_AT_LINE_${lineNumber}`,
+    };
+  }
+  return { ok: true, record: rec as GateAdmissionReportIndexRecord };
+};
+
+export const GATE_ADMISSION_REPORT = {
+  VERSION: REPORT_VERSION,
+  STORAGE_DIR: "./OMEGA_GATE_ADMISSION_REPORTS",
+  INDEX_PATH: "./OMEGA_GATE_ADMISSION_REPORTS/index.jsonl",
+
+  generate: async (
+    options: GateAdmissionReportOptions = {},
+  ): Promise<GateAdmissionReport> => {
+    const failures: string[] = [];
+    const timeline: GateAdmissionTimelinePoint[] = [];
+    const weightSeries: number[] = [];
+    const reliabilitySeries: number[] = [];
+    const coherenceSeries: number[] = [];
+    const outOfPhaseSeries: number[] = [];
+    const agentMap = new Map<
+      string,
+      Array<{
+        weight: number;
+        reliability_effective: number;
+        phase_coherence?: number;
+        physical_cost: number;
+      }>
+    >();
+
+    let eventsAnalyzed = 0;
+    let eventsWithMetrics = 0;
+    let proposalsAnalyzed = 0;
+
+    for await (const evt of LEDGER.readAll()) {
+      if (!inWindow(evt.tick, options.startTick, options.endTick)) continue;
+      if (!isMutationEvent(evt)) continue;
+      eventsAnalyzed++;
+
+      const metrics = evt.accepted_proposal_metrics ?? [];
+      if (metrics.length === 0) {
+        continue;
+      }
+      eventsWithMetrics++;
+      proposalsAnalyzed += metrics.length;
+
+      const tickWeights: number[] = [];
+      const tickReliability: number[] = [];
+      const tickCoherence: number[] = [];
+      const tickCosts: number[] = [];
+
+      for (const m of metrics) {
+        if (typeof m.agent_id !== "string" || m.agent_id.length === 0) {
+          failures.push(`INVALID_AGENT_ID_AT_TICK_${evt.tick}`);
+          continue;
+        }
+        if (
+          !Number.isFinite(m.weight) ||
+          !Number.isFinite(m.reliability_effective)
+        ) {
+          failures.push(`INVALID_METRIC_NUMERIC_FIELD_AT_TICK_${evt.tick}`);
+          continue;
+        }
+        tickWeights.push(m.weight);
+        tickReliability.push(m.reliability_effective);
+        tickCosts.push(m.physical_cost);
+        weightSeries.push(m.weight);
+        reliabilitySeries.push(m.reliability_effective);
+        if (
+          m.phase_coherence !== undefined && Number.isFinite(m.phase_coherence)
+        ) {
+          tickCoherence.push(m.phase_coherence);
+          coherenceSeries.push(m.phase_coherence);
+          outOfPhaseSeries.push(1 - m.phase_coherence);
+        }
+
+        const current = agentMap.get(m.agent_id) ?? [];
+        current.push({
+          weight: m.weight,
+          reliability_effective: m.reliability_effective,
+          phase_coherence: m.phase_coherence,
+          physical_cost: m.physical_cost,
+        });
+        agentMap.set(m.agent_id, current);
+      }
+
+      timeline.push({
+        tick: evt.tick,
+        proposals: tickWeights.length,
+        mean_weight: mean(tickWeights),
+        mean_reliability_effective: mean(tickReliability),
+        mean_phase_coherence: tickCoherence.length > 0
+          ? mean(tickCoherence)
+          : undefined,
+        mean_physical_cost: mean(tickCosts),
+      });
+    }
+
+    const topN = Math.max(1, options.topAgents ?? 8);
+    const topAgents: GateAdmissionAgentStats[] = Array.from(agentMap.entries())
+      .map(([agent_id, values]) => {
+        const weights = values.map((v) => v.weight);
+        const rel = values.map((v) => v.reliability_effective);
+        const coh = values
+          .map((v) => v.phase_coherence)
+          .filter((v): v is number =>
+            typeof v === "number" && Number.isFinite(v)
+          );
+        const costs = values.map((v) => v.physical_cost);
+        return {
+          agent_id,
+          proposals: values.length,
+          mean_weight: mean(weights),
+          p95_weight: percentile(weights, 0.95),
+          mean_reliability_effective: mean(rel),
+          mean_phase_coherence: coh.length > 0 ? mean(coh) : undefined,
+          mean_physical_cost: mean(costs),
+        };
+      })
+      .sort((a, b) => {
+        if (b.proposals !== a.proposals) return b.proposals - a.proposals;
+        if (b.mean_weight !== a.mean_weight) {
+          return b.mean_weight - a.mean_weight;
+        }
+        return a.agent_id.localeCompare(b.agent_id);
+      })
+      .slice(0, topN);
+
+    const coherenceCoverage = proposalsAnalyzed > 0
+      ? coherenceSeries.length / proposalsAnalyzed
+      : 0;
+
+    return {
+      version: REPORT_VERSION,
+      ok: failures.length === 0,
+      startTick: options.startTick,
+      endTick: options.endTick,
+      eventsAnalyzed,
+      eventsWithMetrics,
+      proposalsAnalyzed,
+      coherenceCoverage,
+      weightMean: mean(weightSeries),
+      weightP95: percentile(weightSeries, 0.95),
+      reliabilityEffectiveMean: mean(reliabilitySeries),
+      phaseCoherenceMean: coherenceSeries.length > 0
+        ? mean(coherenceSeries)
+        : undefined,
+      phaseCoherenceP95: coherenceSeries.length > 0
+        ? percentile(coherenceSeries, 0.95)
+        : undefined,
+      outOfPhasePressureMean: outOfPhaseSeries.length > 0
+        ? mean(outOfPhaseSeries)
+        : undefined,
+      topAgents,
+      timeline,
+      failures,
+    };
+  },
+
+  hash: async (report: GateAdmissionReport): Promise<string> =>
+    await sha256Hex(stableStringify(report)),
+
+  generateWithHash: async (
+    options: GateAdmissionReportOptions = {},
+  ): Promise<{ report: GateAdmissionReport; reportHash: string }> => {
+    const report = await GATE_ADMISSION_REPORT.generate(options);
+    const reportHash = await GATE_ADMISSION_REPORT.hash(report);
+    return { report, reportHash };
+  },
+
+  reportPath: (reportHash: string): string =>
+    `${GATE_ADMISSION_REPORT.STORAGE_DIR}/${reportHash}.json`,
+
+  indexRecordHash: async (
+    record: Omit<GateAdmissionReportIndexRecord, "record_hash">,
+  ): Promise<string> => await sha256Hex(stableStringify(record)),
+
+  readIndex: async function* (): AsyncGenerator<
+    GateAdmissionReportIndexRecord
+  > {
+    try {
+      const content = await Deno.readTextFile(GATE_ADMISSION_REPORT.INDEX_PATH);
+      const lines = content.split("\n");
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        if (line.trim().length === 0) continue;
+        const parsed = parseIndexRecord(line, i + 1);
+        if (parsed.ok) {
+          yield parsed.record;
+        }
+      }
+    } catch (e) {
+      if (!(e instanceof Deno.errors.NotFound)) {
+        throw e;
+      }
+    }
+  },
+
+  findIndexRecord: async (
+    reportHash: string,
+    reportPath?: string,
+  ): Promise<GateAdmissionReportIndexRecord | null> => {
+    let found: GateAdmissionReportIndexRecord | null = null;
+    for await (const rec of GATE_ADMISSION_REPORT.readIndex()) {
+      if (rec.report_hash !== reportHash) continue;
+      if (reportPath && rec.report_path !== reportPath) continue;
+      found = rec;
+    }
+    return found;
+  },
+
+  verifyIndexChain: async (
+    verifyReportFiles: boolean = true,
+  ): Promise<{ ok: boolean; failures: string[]; checkedRecords: number }> => {
+    const failures: string[] = [];
+    const records: GateAdmissionReportIndexRecord[] = [];
+    try {
+      const content = await Deno.readTextFile(GATE_ADMISSION_REPORT.INDEX_PATH);
+      const lines = content.split("\n");
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        if (line.trim().length === 0) continue;
+        const parsed = parseIndexRecord(line, i + 1);
+        if (!parsed.ok) {
+          return {
+            ok: false,
+            failures: [parsed.error],
+            checkedRecords: records.length,
+          };
+        }
+        records.push(parsed.record);
+      }
+    } catch (e) {
+      if (!(e instanceof Deno.errors.NotFound)) {
+        throw e;
+      }
+    }
+
+    let prev: string | null = null;
+    let prevTick = -1;
+    let prevTs = -1;
+    const seenReportHashes = new Set<string>();
+    for (let i = 0; i < records.length; i++) {
+      const rec = records[i];
+      if (rec.prev_record_hash !== prev) {
+        failures.push(`INDEX_CHAIN_PREV_MISMATCH_AT_LINE_${i + 1}`);
+        break;
+      }
+      if (rec.tick_anchor < prevTick) {
+        failures.push(`INDEX_TICK_NON_MONOTONIC_AT_LINE_${i + 1}`);
+        break;
+      }
+      if (rec.ts_unix_ms < prevTs) {
+        failures.push(`INDEX_TS_NON_MONOTONIC_AT_LINE_${i + 1}`);
+        break;
+      }
+      if (seenReportHashes.has(rec.report_hash)) {
+        failures.push(`INDEX_DUPLICATE_REPORT_HASH_AT_LINE_${i + 1}`);
+        break;
+      }
+      const expected = await GATE_ADMISSION_REPORT.indexRecordHash({
+        report_hash: rec.report_hash,
+        report_version: rec.report_version,
+        report_path: rec.report_path,
+        tick_anchor: rec.tick_anchor,
+        start_tick: rec.start_tick,
+        end_tick: rec.end_tick,
+        events_analyzed: rec.events_analyzed,
+        proposals_analyzed: rec.proposals_analyzed,
+        ts_unix_ms: rec.ts_unix_ms,
+        prev_record_hash: rec.prev_record_hash,
+        witness: rec.witness,
+      });
+      if (expected !== rec.record_hash) {
+        failures.push(`INDEX_RECORD_HASH_MISMATCH_AT_LINE_${i + 1}`);
+        break;
+      }
+
+      if (verifyReportFiles) {
+        try {
+          const body = await Deno.readTextFile(rec.report_path);
+          const parsed = JSON.parse(body) as GateAdmissionReport;
+          const computed = await GATE_ADMISSION_REPORT.hash(parsed);
+          if (computed !== rec.report_hash) {
+            failures.push(`INDEX_REPORT_HASH_MISMATCH_AT_LINE_${i + 1}`);
+            break;
+          }
+        } catch {
+          failures.push(`INDEX_REPORT_READ_FAIL_AT_LINE_${i + 1}`);
+          break;
+        }
+      }
+
+      prev = rec.record_hash;
+      prevTick = rec.tick_anchor;
+      prevTs = rec.ts_unix_ms;
+      seenReportHashes.add(rec.report_hash);
+    }
+
+    return {
+      ok: failures.length === 0,
+      failures,
+      checkedRecords: records.length,
+    };
+  },
+
+  materialize: async (
+    report: GateAdmissionReport,
+    reportHash: string,
+    meta: GateAdmissionReportMaterializeMeta,
+  ): Promise<
+    {
+      path: string;
+      created: boolean;
+      indexRecord?: GateAdmissionReportIndexRecord;
+    }
+  > => {
+    await Deno.mkdir(GATE_ADMISSION_REPORT.STORAGE_DIR, { recursive: true });
+    const path = GATE_ADMISSION_REPORT.reportPath(reportHash);
+    const payload = JSON.stringify(report, null, 2);
+
+    try {
+      await Deno.writeTextFile(path, payload, { createNew: true });
+      let prevRecordHash: string | null = null;
+      for await (const rec of GATE_ADMISSION_REPORT.readIndex()) {
+        prevRecordHash = rec.record_hash;
+      }
+      const indexRecordWithoutHash: Omit<
+        GateAdmissionReportIndexRecord,
+        "record_hash"
+      > = {
+        report_hash: reportHash,
+        report_version: report.version,
+        report_path: path,
+        tick_anchor: meta.tick_anchor,
+        start_tick: report.startTick ?? null,
+        end_tick: report.endTick ?? null,
+        events_analyzed: report.eventsAnalyzed,
+        proposals_analyzed: report.proposalsAnalyzed,
+        ts_unix_ms: Date.now(),
+        prev_record_hash: prevRecordHash,
+        witness: meta.witness,
+      };
+      const recordHash = await GATE_ADMISSION_REPORT.indexRecordHash(
+        indexRecordWithoutHash,
+      );
+      const indexRecord: GateAdmissionReportIndexRecord = {
+        ...indexRecordWithoutHash,
+        record_hash: recordHash,
+      };
+      await Deno.writeTextFile(
+        GATE_ADMISSION_REPORT.INDEX_PATH,
+        JSON.stringify(indexRecord) + "\n",
+        { append: true, create: true },
+      );
+      return { path, created: true, indexRecord };
+    } catch (e) {
+      if (!(e instanceof Deno.errors.AlreadyExists)) throw e;
+
+      const existing = await Deno.readTextFile(path);
+      const parsed = JSON.parse(existing) as GateAdmissionReport;
+      const existingHash = await GATE_ADMISSION_REPORT.hash(parsed);
+      if (existingHash !== reportHash) {
+        throw new Error(`GATE_ADMISSION_REPORT_HASH_CONFLICT:${reportHash}`);
+      }
+      return { path, created: false };
+    }
+  },
+};
+
+
 // [ ./i.L99.core.LEDGER.ts ]
 // i.L99.core.LEDGER.ts
 // 🛡️ OMEGA-64 | Glider Lite | Append-Only Ledger
 // Records every state transition for replay and audit.
 
-import { LedgerEvent } from "./i.L99.core.STATE_SNAPSHOT.ts";
+import { LedgerEvent, TopologyEvent } from "./i.L99.core.STATE_SNAPSHOT.ts";
+
+const stableStringify = (value: unknown): string => {
+    if (Array.isArray(value)) {
+        return `[${value.map((v) => stableStringify(v)).join(",")}]`;
+    }
+    if (value && typeof value === "object") {
+        const entries = Object.entries(value as Record<string, unknown>)
+            .filter(([, v]) => typeof v !== "undefined")
+            .sort(([a], [b]) => a.localeCompare(b));
+        const body = entries
+            .map(([k, v]) => `${JSON.stringify(k)}:${stableStringify(v)}`)
+            .join(",");
+        return `{${body}}`;
+    }
+    return JSON.stringify(value);
+};
+
+const toHex = (buffer: ArrayBuffer): string =>
+    Array.from(new Uint8Array(buffer)).map((b) => b.toString(16).padStart(2, "0")).join("");
+
+const sha256Hex = async (input: string): Promise<string> => {
+    const data = new TextEncoder().encode(input);
+    const digest = await crypto.subtle.digest("SHA-256", data);
+    return toHex(digest);
+};
+
+const CHAIN_VERSION = "ledger-hash/v1";
+const LEGACY_HASH_VERSION = "legacy-event/v0";
+
+type ChainAwareEvent = TopologyEvent & {
+    chain_version?: string;
+    prev_event_hash?: string | null;
+    event_hash?: string;
+};
+
+const stripChainFields = (event: TopologyEvent): Record<string, unknown> => {
+    const clone = { ...((event as unknown) as Record<string, unknown>) };
+    delete clone.chain_version;
+    delete clone.prev_event_hash;
+    delete clone.event_hash;
+    return clone;
+};
+
+const eventHashPayload = (event: TopologyEvent, prevEventHash: string | null) => ({
+    chain_version: CHAIN_VERSION,
+    prev_event_hash: prevEventHash,
+    body: stripChainFields(event)
+});
+
+const legacyHashPayload = (event: TopologyEvent) => ({
+    chain_version: LEGACY_HASH_VERSION,
+    body: stripChainFields(event)
+});
+
+export interface LedgerChainVerification {
+    ok: boolean;
+    failures: string[];
+    checkedEvents: number;
+    chainAnchoredEvents: number;
+    legacyEvents: number;
+    tailHash: string | null;
+}
 
 export const LEDGER = {
     
     // Path to the physical ledger file (simulated for now)
     STORAGE_PATH: "./OMEGA_LEDGER.jsonl",
+    CHAIN_VERSION,
 
     /**
      * Appends a new event to the ledger.
      * In a real system, this would be an atomic file append or DB insert.
      */
-    append: async (event: LedgerEvent): Promise<void> => {
-        const line = JSON.stringify(event);
+    append: async (event: TopologyEvent): Promise<void> => {
+        const chain = await LEDGER.verifyChainDetailed();
+        if (!chain.ok) {
+            throw new Error(`LEDGER_CHAIN_INVALID:${chain.failures.join(",")}`);
+        }
+
+        const prevEventHash = chain.tailHash;
+        const eventHash = await sha256Hex(stableStringify(eventHashPayload(event, prevEventHash)));
+        const chainEvent: ChainAwareEvent = {
+            ...(event as ChainAwareEvent),
+            chain_version: CHAIN_VERSION,
+            prev_event_hash: prevEventHash,
+            event_hash: eventHash
+        };
+
+        const line = JSON.stringify(chainEvent);
+        const eventRef = "event_id" in event ? event.event_id : event.event_type;
         try {
             await Deno.writeTextFile(LEDGER.STORAGE_PATH, line + "\n", { append: true });
             // console.log(`📝 LEDGER: Event ${event.event_id} appended.`);
         } catch (e) {
-            console.error(`🚨 LEDGER FAILURE: Could not write event ${event.event_id}`, e);
+            console.error(`🚨 LEDGER FAILURE: Could not write event ${eventRef}`, e);
             throw e; // Integrity failure is fatal
         }
     },
@@ -4467,7 +7771,7 @@ export const LEDGER = {
      * Reads the entire ledger for replay.
      * Returns a generator to handle large files.
      */
-    readAll: async function* (): AsyncGenerator<LedgerEvent> {
+    readAllRaw: async function* (): AsyncGenerator<TopologyEvent> {
         try {
             const content = await Deno.readTextFile(LEDGER.STORAGE_PATH);
             const lines = content.split('\n');
@@ -4486,13 +7790,104 @@ export const LEDGER = {
         }
     },
 
+    readAll: async function* (): AsyncGenerator<LedgerEvent> {
+        for await (const entry of LEDGER.readAllRaw()) {
+            if (LEDGER.isLedgerEvent(entry)) {
+                yield entry;
+            }
+        }
+    },
+
+    isLedgerEvent: (entry: unknown): entry is LedgerEvent => {
+        const e = entry as Partial<LedgerEvent> | null;
+        return Boolean(
+            e &&
+            typeof e === "object" &&
+            typeof e.tick === "number" &&
+            Array.isArray(e.accepted_delta) &&
+            typeof e.state_before_hash === "string" &&
+            typeof e.state_after_hash === "string"
+        );
+    },
+
     /**
      * Verifies the hash chain integrity of the ledger.
      * (Placeholder for future implementation)
      */
     verifyChain: async (): Promise<boolean> => {
-        // TODO: Implement hash chain verification
-        return true;
+        const result = await LEDGER.verifyChainDetailed();
+        return result.ok;
+    },
+
+    verifyChainDetailed: async (): Promise<LedgerChainVerification> => {
+        const failures: string[] = [];
+        let checkedEvents = 0;
+        let chainAnchoredEvents = 0;
+        let legacyEvents = 0;
+        let prevHash: string | null = null;
+
+        try {
+            const content = await Deno.readTextFile(LEDGER.STORAGE_PATH);
+            const lines = content.split("\n");
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i];
+                if (line.trim().length === 0) continue;
+                checkedEvents++;
+
+                let parsed: TopologyEvent;
+                try {
+                    parsed = JSON.parse(line) as TopologyEvent;
+                } catch {
+                    failures.push(`LEDGER_LINE_PARSE_FAIL_AT_LINE_${i + 1}`);
+                    break;
+                }
+
+                const e = parsed as ChainAwareEvent;
+                const hasChainFields = typeof e.event_hash === "string" || typeof e.prev_event_hash !== "undefined";
+
+                if (!hasChainFields) {
+                    legacyEvents++;
+                    prevHash = await sha256Hex(stableStringify(legacyHashPayload(parsed)));
+                    continue;
+                }
+
+                chainAnchoredEvents++;
+
+                if (e.chain_version !== CHAIN_VERSION) {
+                    failures.push(`LEDGER_CHAIN_VERSION_MISMATCH_AT_LINE_${i + 1}`);
+                    break;
+                }
+                if (e.prev_event_hash !== prevHash) {
+                    failures.push(`LEDGER_CHAIN_PREV_MISMATCH_AT_LINE_${i + 1}`);
+                    break;
+                }
+                if (typeof e.event_hash !== "string") {
+                    failures.push(`LEDGER_CHAIN_HASH_MISSING_AT_LINE_${i + 1}`);
+                    break;
+                }
+
+                const expectedHash = await sha256Hex(stableStringify(eventHashPayload(parsed, prevHash)));
+                if (expectedHash !== e.event_hash) {
+                    failures.push(`LEDGER_CHAIN_HASH_MISMATCH_AT_LINE_${i + 1}`);
+                    break;
+                }
+
+                prevHash = e.event_hash;
+            }
+        } catch (e) {
+            if (!(e instanceof Deno.errors.NotFound)) {
+                throw e;
+            }
+        }
+
+        return {
+            ok: failures.length === 0,
+            failures,
+            checkedEvents,
+            chainAnchoredEvents,
+            legacyEvents,
+            tailHash: prevHash
+        };
     }
 };
 
@@ -4687,6 +8082,437 @@ export const MYCELIUM = {
 };
 
 
+// [ ./i.L99.core.POLICY_TRANSITION.ts ]
+// i.L99.core.POLICY_TRANSITION.ts
+// OMEGA-64 | Canon Protocol | Policy Migration Events
+
+import { LEDGER } from "./i.L99.core.LEDGER.ts";
+import { CRYSTALLIZATION_CONFIG, CRYSTALLIZATION_POLICY } from "./i.L99.core.CRYSTALLIZATION_CONFIG.ts";
+import { LedgerEvent, PolicyTransitionEvent, TopologyEvent } from "./i.L99.core.STATE_SNAPSHOT.ts";
+
+export interface PolicyTransitionEmitInput {
+    tick: number;
+    to_policy_version: string;
+    to_policy_hash: string;
+    reason: string;
+    witness?: string;
+}
+
+const isPolicyTransitionEvent = (entry: TopologyEvent): entry is PolicyTransitionEvent =>
+    "event_type" in entry && entry.event_type === "POLICY_TRANSITION_EVENT";
+
+const isLedgerEventWithPolicy = (entry: TopologyEvent): entry is LedgerEvent =>
+    !("event_type" in entry) &&
+    typeof entry.tick === "number" &&
+    typeof entry.policy_version === "string" &&
+    typeof entry.policy_hash === "string";
+
+const hasTick = (entry: TopologyEvent): entry is TopologyEvent & { tick: number } =>
+    "tick" in entry && typeof entry.tick === "number";
+
+export const POLICY_TRANSITION = {
+    currentPolicyAnchor: async (): Promise<{ version: string; hash: string }> => ({
+        version: CRYSTALLIZATION_CONFIG.policyVersion,
+        hash: await CRYSTALLIZATION_POLICY.hash()
+    }),
+
+    latestPolicyAnchorAtOrBefore: async (
+        tickInclusive: number
+    ): Promise<{ version?: string; hash?: string; tick?: number }> => {
+        let bestTick = -Infinity;
+        let version: string | undefined;
+        let hash: string | undefined;
+
+        for await (const entry of LEDGER.readAllRaw()) {
+            if (!hasTick(entry)) continue;
+            if (entry.tick > tickInclusive) continue;
+
+            if (isPolicyTransitionEvent(entry)) {
+                if (entry.tick >= bestTick) {
+                    bestTick = entry.tick;
+                    version = entry.to_policy_version;
+                    hash = entry.to_policy_hash;
+                }
+                continue;
+            }
+
+            if (isLedgerEventWithPolicy(entry)) {
+                if (entry.tick >= bestTick) {
+                    bestTick = entry.tick;
+                    version = entry.policy_version;
+                    hash = entry.policy_hash;
+                }
+            }
+        }
+
+        if (version && hash) {
+            return { version, hash, tick: bestTick };
+        }
+        return {};
+    },
+
+    emit: async (input: PolicyTransitionEmitInput): Promise<PolicyTransitionEvent> => {
+        const prev = await POLICY_TRANSITION.latestPolicyAnchorAtOrBefore(input.tick - 1);
+
+        const event: PolicyTransitionEvent = {
+            event_type: "POLICY_TRANSITION_EVENT",
+            tick: input.tick,
+            from_policy_version: prev.version,
+            from_policy_hash: prev.hash,
+            to_policy_version: input.to_policy_version,
+            to_policy_hash: input.to_policy_hash,
+            reason: input.reason,
+            witness: input.witness
+        };
+
+        await LEDGER.append(event);
+        return event;
+    }
+};
+
+
+
+// [ ./i.L99.core.PROJECTION_DRIFT_ANALYTICS.ts ]
+// i.L99.core.PROJECTION_DRIFT_ANALYTICS.ts
+// OMEGA-64 | Projection Drift Analytics
+// Computes per-tick and per-level drift in deterministic projection space.
+
+import { LEDGER } from "./i.L99.core.LEDGER.ts";
+import { LedgerEvent } from "./i.L99.core.STATE_SNAPSHOT.ts";
+import { REPLAY_AUDIT, ReplayAuditResult, ReplayGenesis } from "./i.L99.core.REPLAY_AUDIT.ts";
+import { TOPOLOGICAL_SIGNATURE } from "./i.L99.core.TOPOLOGICAL_SIGNATURE.ts";
+
+export interface ProjectionDriftAnalyticsOptions {
+    startTick?: number;
+    endTick?: number;
+    requireReplayGreen?: boolean;
+    verifyTopologicalSignatures?: boolean;
+    topLevels?: number;
+}
+
+export interface ProjectionDriftTimelinePoint {
+    tick: number;
+    l1_total: number;
+    l1_mean: number;
+    dominant_level: number;
+    dominant_value: number;
+    level_abs_drift: number[];
+}
+
+export interface ProjectionDriftLevelStats {
+    level: number;
+    mean_abs_drift: number;
+    p95_abs_drift: number;
+}
+
+export interface ProjectionDriftAnalyticsReport {
+    ok: boolean;
+    startTick?: number;
+    endTick?: number;
+    eventsAnalyzed: number;
+    levelCount: number;
+    driftByLevelMean: number[];
+    driftByLevelP95: number[];
+    topHotLevels: ProjectionDriftLevelStats[];
+    timeline: ProjectionDriftTimelinePoint[];
+    replayAudit: {
+        replayGreen: boolean;
+        checkedEvents: number;
+        checkedProjectionEvents: number;
+    };
+    failures: string[];
+}
+
+const stableStringify = (value: unknown): string => {
+    if (Array.isArray(value)) {
+        return `[${value.map((v) => stableStringify(v)).join(",")}]`;
+    }
+    if (value && typeof value === "object") {
+        const entries = Object.entries(value as Record<string, unknown>)
+            .sort(([a], [b]) => a.localeCompare(b));
+        const body = entries
+            .map(([k, v]) => `${JSON.stringify(k)}:${stableStringify(v)}`)
+            .join(",");
+        return `{${body}}`;
+    }
+    return JSON.stringify(value);
+};
+
+const toHex = (buffer: ArrayBuffer): string =>
+    Array.from(new Uint8Array(buffer)).map((b) => b.toString(16).padStart(2, "0")).join("");
+
+const sha256Hex = async (input: string): Promise<string> => {
+    const data = new TextEncoder().encode(input);
+    const digest = await crypto.subtle.digest("SHA-256", data);
+    return toHex(digest);
+};
+
+const expectedStateHash = async (
+    nextState: Int16Array,
+    nextTick: number,
+    gateConfigVersion: string,
+    proposalDigest: string
+): Promise<string> =>
+    await sha256Hex(stableStringify({
+        state_i16: Array.from(nextState),
+        tick: nextTick,
+        gate_config_version: gateConfigVersion,
+        proposal_digest: proposalDigest
+    }));
+
+const saturatingAdd = (base: Int16Array, delta: Array<{ level: number; value: number }>): Int16Array => {
+    const next = new Int16Array(base.length);
+    next.set(base);
+    for (const d of delta) {
+        if (!Number.isInteger(d.level) || d.level < 0 || d.level >= next.length) continue;
+        let value = next[d.level] + d.value;
+        if (value > 32767) value = 32767;
+        if (value < -32768) value = -32768;
+        next[d.level] = value;
+    }
+    return next;
+};
+
+const percentile = (values: number[], p: number): number => {
+    if (values.length === 0) return 0;
+    const sorted = [...values].sort((a, b) => a - b);
+    const idx = Math.min(sorted.length - 1, Math.max(0, Math.ceil(p * sorted.length) - 1));
+    return sorted[idx];
+};
+
+const collectLedgerEvents = async (startTick?: number, endTick?: number): Promise<LedgerEvent[]> => {
+    const byTick = new Map<number, LedgerEvent>();
+    for await (const entry of LEDGER.readAll()) {
+        const inStart = startTick === undefined || entry.tick >= startTick;
+        const inEnd = endTick === undefined || entry.tick <= endTick;
+        if (!inStart || !inEnd) continue;
+        if (entry.state_after_hash === entry.state_before_hash) continue;
+        byTick.set(entry.tick, entry);
+    }
+    return Array.from(byTick.values()).sort((a, b) => a.tick - b.tick);
+};
+
+const toThread = (stateHash: string, state_i16: Int16Array): Int16Array => {
+    const organism = TOPOLOGICAL_SIGNATURE.snapshotToOrganismState({
+        state_hash: stateHash,
+        state_i16
+    });
+    const rgba = TOPOLOGICAL_SIGNATURE.project2D(
+        organism,
+        TOPOLOGICAL_SIGNATURE.CANONICAL_2D_OPTIONS
+    );
+    return TOPOLOGICAL_SIGNATURE.projectThread1D(
+        rgba,
+        TOPOLOGICAL_SIGNATURE.CANONICAL_2D_OPTIONS.resolution,
+        TOPOLOGICAL_SIGNATURE.CANONICAL_THREAD_CONFIG
+    );
+};
+
+export const PROJECTION_DRIFT_ANALYTICS = {
+    analyze: async (
+        genesis: ReplayGenesis,
+        options: ProjectionDriftAnalyticsOptions = {}
+    ): Promise<ProjectionDriftAnalyticsReport> => {
+        const failures: string[] = [];
+        const replayAudit: ReplayAuditResult = await REPLAY_AUDIT.audit(genesis, {
+            runs: 1,
+            startTick: options.startTick,
+            endTick: options.endTick,
+            verifyTopologicalSignatures: options.verifyTopologicalSignatures ?? true
+        });
+
+        if ((options.requireReplayGreen ?? true) && !replayAudit.replayGreen) {
+            failures.push("REPLAY_AUDIT_NOT_GREEN");
+            failures.push(...replayAudit.failures);
+            return {
+                ok: false,
+                startTick: options.startTick,
+                endTick: options.endTick,
+                eventsAnalyzed: 0,
+                levelCount: TOPOLOGICAL_SIGNATURE.CANONICAL_THREAD_CONFIG.radial_bins,
+                driftByLevelMean: [],
+                driftByLevelP95: [],
+                topHotLevels: [],
+                timeline: [],
+                replayAudit: {
+                    replayGreen: replayAudit.replayGreen,
+                    checkedEvents: replayAudit.checkedEvents,
+                    checkedProjectionEvents: replayAudit.checkedProjectionEvents
+                },
+                failures
+            };
+        }
+
+        const events = await collectLedgerEvents(options.startTick, options.endTick);
+        const R = TOPOLOGICAL_SIGNATURE.CANONICAL_THREAD_CONFIG.radial_bins;
+        const A = TOPOLOGICAL_SIGNATURE.CANONICAL_THREAD_CONFIG.angular_bins;
+
+        const levelSeries: number[][] = Array.from({ length: R }, () => []);
+        const timeline: ProjectionDriftTimelinePoint[] = [];
+
+        let state: Int16Array = new Int16Array(genesis.state_i16.length);
+        state.set(genesis.state_i16);
+        let stateHash = genesis.state_hash;
+        let tick = genesis.tick;
+        let currentThread: Int16Array = toThread(stateHash, state);
+
+        for (const evt of events) {
+            if (evt.tick !== tick) {
+                failures.push(`TICK_CONTINUITY_MISMATCH: expected ${tick}, got ${evt.tick}`);
+                break;
+            }
+            if (evt.state_before_hash !== stateHash) {
+                failures.push(`STATE_HASH_MISMATCH_AT_TICK_${evt.tick}`);
+                break;
+            }
+
+            const nextState = saturatingAdd(state, evt.accepted_delta);
+            const nextTick = tick + 1;
+            const expectedHash = await expectedStateHash(
+                nextState,
+                nextTick,
+                evt.gate_config_version,
+                evt.proposal_digest
+            );
+            if (evt.state_after_hash !== expectedHash) {
+                failures.push(`STATE_AFTER_HASH_MISMATCH_AT_TICK_${evt.tick}`);
+                break;
+            }
+
+            const nextThread = toThread(expectedHash, nextState);
+            const levelAbs: number[] = new Array(R).fill(0);
+
+            let l1Total = 0;
+            for (let r = 0; r < R; r++) {
+                let sumAbs = 0;
+                for (let a = 0; a < A; a++) {
+                    const idx = r * A + a;
+                    const d = nextThread[idx] - currentThread[idx];
+                    sumAbs += Math.abs(d);
+                }
+                const meanAbs = sumAbs / A;
+                levelAbs[r] = meanAbs;
+                levelSeries[r].push(meanAbs);
+                l1Total += sumAbs;
+            }
+
+            let dominantLevel = 0;
+            let dominantValue = levelAbs[0] ?? 0;
+            for (let r = 1; r < R; r++) {
+                if (levelAbs[r] > dominantValue) {
+                    dominantValue = levelAbs[r];
+                    dominantLevel = r;
+                }
+            }
+
+            timeline.push({
+                tick: evt.tick,
+                l1_total: l1Total,
+                l1_mean: l1Total / (R * A),
+                dominant_level: dominantLevel,
+                dominant_value: dominantValue,
+                level_abs_drift: levelAbs
+            });
+
+            state = nextState;
+            stateHash = expectedHash;
+            tick = nextTick;
+            currentThread = nextThread;
+        }
+
+        const driftByLevelMean = levelSeries.map((s) =>
+            s.length > 0 ? s.reduce((acc, v) => acc + v, 0) / s.length : 0
+        );
+        const driftByLevelP95 = levelSeries.map((s) => percentile(s, 0.95));
+
+        const topN = Math.max(1, options.topLevels ?? 8);
+        const topHotLevels: ProjectionDriftLevelStats[] = driftByLevelMean
+            .map((mean, level) => ({
+                level,
+                mean_abs_drift: mean,
+                p95_abs_drift: driftByLevelP95[level]
+            }))
+            .sort((a, b) => b.mean_abs_drift - a.mean_abs_drift)
+            .slice(0, topN);
+
+        return {
+            ok: failures.length === 0,
+            startTick: options.startTick,
+            endTick: options.endTick,
+            eventsAnalyzed: timeline.length,
+            levelCount: R,
+            driftByLevelMean,
+            driftByLevelP95,
+            topHotLevels,
+            timeline,
+            replayAudit: {
+                replayGreen: replayAudit.replayGreen,
+                checkedEvents: replayAudit.checkedEvents,
+                checkedProjectionEvents: replayAudit.checkedProjectionEvents
+            },
+            failures
+        };
+    }
+};
+
+
+// [ ./i.L99.core.PROJECTION_REPLAY_REPORT.ts ]
+// i.L99.core.PROJECTION_REPLAY_REPORT.ts
+// OMEGA-64 | Projection Replay Report
+// Per-tick projection verification report for crystallization diagnostics.
+
+import { REPLAY_AUDIT, ProjectionTickReport, ReplayGenesis } from "./i.L99.core.REPLAY_AUDIT.ts";
+
+export interface ProjectionReplayReport {
+    ok: boolean;
+    startTick?: number;
+    endTick?: number;
+    totalTicks: number;
+    passCount: number;
+    failCount: number;
+    skipCount: number;
+    ticks: ProjectionTickReport[];
+    failures: string[];
+}
+
+export interface ProjectionReplayReportOptions {
+    startTick?: number;
+    endTick?: number;
+    verifyTopologicalSignatures?: boolean;
+}
+
+export const PROJECTION_REPLAY_REPORT = {
+    generate: async (
+        genesis: ReplayGenesis,
+        options: ProjectionReplayReportOptions = {}
+    ): Promise<ProjectionReplayReport> => {
+        const audit = await REPLAY_AUDIT.audit(genesis, {
+            runs: 1,
+            startTick: options.startTick,
+            endTick: options.endTick,
+            verifyTopologicalSignatures: options.verifyTopologicalSignatures ?? true
+        });
+
+        const passCount = audit.projectionTickReport.filter((x) => x.status === "PASS").length;
+        const failCount = audit.projectionTickReport.filter((x) => x.status === "FAIL").length;
+        const skipCount = audit.projectionTickReport.filter((x) => x.status === "SKIP").length;
+
+        return {
+            ok: failCount === 0,
+            startTick: options.startTick,
+            endTick: options.endTick,
+            totalTicks: audit.projectionTickReport.length,
+            passCount,
+            failCount,
+            skipCount,
+            ticks: audit.projectionTickReport,
+            failures: audit.failures
+        };
+    }
+};
+
+
+
 // [ ./i.L99.core.PROOF.ts ]
 // i.L99.core.PROOF.ts
 // 🛡️ OMEGA-64 | Universal Proof Scaffold | Спіральне доведення
@@ -4796,6 +8622,1180 @@ export const PROOF = {
 };
 
 
+// [ ./i.L99.core.PROPOSAL_ENVELOPE_INDEX.ts ]
+// i.L99.core.PROPOSAL_ENVELOPE_INDEX.ts
+// OMEGA-64 | Append-only envelope replay index for O(1)-style recent duplicate checks.
+
+import type { LedgerEvent } from "./i.L99.core.STATE_SNAPSHOT.ts";
+
+export interface ProposalEnvelopeIndexRecord {
+    chain_version: string;
+    prev_record_hash: string | null;
+    record_hash: string;
+    envelope_hash: string;
+    proposal_id: string;
+    tick: number;
+    event_id: string;
+    state_before_hash: string;
+    state_after_hash: string;
+    ts_unix_ms: number;
+    witness?: string;
+}
+
+export interface ProposalEnvelopeIndexVerification {
+    ok: boolean;
+    failures: string[];
+    checked_records: number;
+    tail_hash: string | null;
+}
+
+const CHAIN_VERSION = "proposal-envelope-index/v1";
+const HEX_64_RE = /^[0-9a-f]{64}$/;
+const DEFAULT_STORAGE_PATH = "./OMEGA_PROPOSAL_ENVELOPE_INDEX.jsonl";
+
+const stableStringify = (value: unknown): string => {
+    if (Array.isArray(value)) {
+        return `[${value.map((v) => stableStringify(v)).join(",")}]`;
+    }
+    if (value && typeof value === "object") {
+        const entries = Object.entries(value as Record<string, unknown>)
+            .filter(([, v]) => typeof v !== "undefined")
+            .sort(([a], [b]) => a.localeCompare(b));
+        const body = entries
+            .map(([k, v]) => `${JSON.stringify(k)}:${stableStringify(v)}`)
+            .join(",");
+        return `{${body}}`;
+    }
+    return JSON.stringify(value);
+};
+
+const toHex = (buffer: ArrayBuffer): string =>
+    Array.from(new Uint8Array(buffer)).map((b) => b.toString(16).padStart(2, "0")).join("");
+
+const sha256Hex = async (input: string): Promise<string> => {
+    const data = new TextEncoder().encode(input);
+    const digest = await crypto.subtle.digest("SHA-256", data);
+    return toHex(digest);
+};
+
+const indexRecordHash = async (
+    record: Omit<ProposalEnvelopeIndexRecord, "record_hash">
+): Promise<string> => await sha256Hex(stableStringify(record));
+
+const parseRecord = (
+    line: string,
+    lineNumber: number
+): { ok: true; record: ProposalEnvelopeIndexRecord } | { ok: false; error: string } => {
+    let parsed: unknown;
+    try {
+        parsed = JSON.parse(line);
+    } catch {
+        return { ok: false, error: `ENVELOPE_INDEX_LINE_PARSE_FAIL_AT_LINE_${lineNumber}` };
+    }
+    const rec = parsed as Partial<ProposalEnvelopeIndexRecord>;
+    const shapeOk =
+        rec.chain_version === CHAIN_VERSION &&
+        (typeof rec.prev_record_hash === "string" || rec.prev_record_hash === null) &&
+        typeof rec.record_hash === "string" &&
+        HEX_64_RE.test(rec.record_hash) &&
+        typeof rec.envelope_hash === "string" &&
+        HEX_64_RE.test(rec.envelope_hash) &&
+        typeof rec.proposal_id === "string" &&
+        typeof rec.tick === "number" &&
+        Number.isSafeInteger(rec.tick) &&
+        rec.tick >= 0 &&
+        typeof rec.event_id === "string" &&
+        typeof rec.state_before_hash === "string" &&
+        typeof rec.state_after_hash === "string" &&
+        typeof rec.ts_unix_ms === "number" &&
+        Number.isSafeInteger(rec.ts_unix_ms) &&
+        rec.ts_unix_ms >= 0 &&
+        (rec.witness === undefined || typeof rec.witness === "string");
+    if (!shapeOk) {
+        return { ok: false, error: `ENVELOPE_INDEX_LINE_SCHEMA_INVALID_AT_LINE_${lineNumber}` };
+    }
+    return { ok: true, record: rec as ProposalEnvelopeIndexRecord };
+};
+
+interface CacheEntry {
+    loaded: boolean;
+    tail_hash: string | null;
+    tick_to_hashes: Map<number, Set<string>>;
+}
+
+const caches = new Map<string, CacheEntry>();
+
+const cacheFor = (storagePath: string): CacheEntry => {
+    const existing = caches.get(storagePath);
+    if (existing) return existing;
+    const created: CacheEntry = {
+        loaded: false,
+        tail_hash: null,
+        tick_to_hashes: new Map()
+    };
+    caches.set(storagePath, created);
+    return created;
+};
+
+const resetCache = (storagePath?: string): void => {
+    if (storagePath) {
+        caches.delete(storagePath);
+        return;
+    }
+    caches.clear();
+};
+
+const pruneBeforeTick = (entry: CacheEntry, minTick: number): void => {
+    for (const tick of entry.tick_to_hashes.keys()) {
+        if (tick < minTick) {
+            entry.tick_to_hashes.delete(tick);
+        }
+    }
+};
+
+const ensureLoaded = async (storagePath: string): Promise<CacheEntry> => {
+    const entry = cacheFor(storagePath);
+    if (entry.loaded) return entry;
+
+    entry.loaded = false;
+    entry.tail_hash = null;
+    entry.tick_to_hashes.clear();
+
+    const verify = await PROPOSAL_ENVELOPE_INDEX.verifyChainDetailed(storagePath);
+    if (!verify.ok) {
+        throw new Error(`ENVELOPE_INDEX_CHAIN_INVALID:${verify.failures.join(",")}`);
+    }
+
+    try {
+        const content = await Deno.readTextFile(storagePath);
+        const lines = content.split("\n");
+        for (let i = 0; i < lines.length; i++) {
+            const line = lines[i];
+            if (line.trim().length === 0) continue;
+            const parsed = parseRecord(line, i + 1);
+            if (!parsed.ok) {
+                throw new Error(parsed.error);
+            }
+            const rec = parsed.record;
+            let set = entry.tick_to_hashes.get(rec.tick);
+            if (!set) {
+                set = new Set<string>();
+                entry.tick_to_hashes.set(rec.tick, set);
+            }
+            set.add(rec.envelope_hash);
+            entry.tail_hash = rec.record_hash;
+        }
+    } catch (e) {
+        if (!(e instanceof Deno.errors.NotFound)) {
+            throw e;
+        }
+    }
+
+    entry.loaded = true;
+    return entry;
+};
+
+export const PROPOSAL_ENVELOPE_INDEX = {
+    CHAIN_VERSION,
+    STORAGE_PATH: DEFAULT_STORAGE_PATH,
+    pathForLedger: (ledgerPath: string): string => `${ledgerPath}.proposal_envelope_index.jsonl`,
+
+    resetCacheForTests: (storagePath?: string): void => resetCache(storagePath),
+
+    verifyChainDetailed: async (
+        storagePath?: string
+    ): Promise<ProposalEnvelopeIndexVerification> => {
+        const path = storagePath ?? PROPOSAL_ENVELOPE_INDEX.STORAGE_PATH;
+        const failures: string[] = [];
+        let checked = 0;
+        let prevHash: string | null = null;
+        let prevTick = -1;
+        let prevTs = -1;
+
+        try {
+            const content = await Deno.readTextFile(path);
+            const lines = content.split("\n");
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i];
+                if (line.trim().length === 0) continue;
+                checked++;
+                const parsed = parseRecord(line, i + 1);
+                if (!parsed.ok) {
+                    failures.push(parsed.error);
+                    break;
+                }
+                const rec = parsed.record;
+                if (rec.prev_record_hash !== prevHash) {
+                    failures.push(`ENVELOPE_INDEX_CHAIN_PREV_MISMATCH_AT_LINE_${i + 1}`);
+                    break;
+                }
+                if (rec.tick < prevTick) {
+                    failures.push(`ENVELOPE_INDEX_TICK_NON_MONOTONIC_AT_LINE_${i + 1}`);
+                    break;
+                }
+                if (rec.ts_unix_ms < prevTs) {
+                    failures.push(`ENVELOPE_INDEX_TS_NON_MONOTONIC_AT_LINE_${i + 1}`);
+                    break;
+                }
+                const expected = await indexRecordHash({
+                    chain_version: rec.chain_version,
+                    prev_record_hash: rec.prev_record_hash,
+                    envelope_hash: rec.envelope_hash,
+                    proposal_id: rec.proposal_id,
+                    tick: rec.tick,
+                    event_id: rec.event_id,
+                    state_before_hash: rec.state_before_hash,
+                    state_after_hash: rec.state_after_hash,
+                    ts_unix_ms: rec.ts_unix_ms,
+                    witness: rec.witness
+                });
+                if (expected !== rec.record_hash) {
+                    failures.push(`ENVELOPE_INDEX_RECORD_HASH_MISMATCH_AT_LINE_${i + 1}`);
+                    break;
+                }
+                prevHash = rec.record_hash;
+                prevTick = rec.tick;
+                prevTs = rec.ts_unix_ms;
+            }
+        } catch (e) {
+            if (!(e instanceof Deno.errors.NotFound)) {
+                throw e;
+            }
+        }
+
+        return {
+            ok: failures.length === 0,
+            failures,
+            checked_records: checked,
+            tail_hash: prevHash
+        };
+    },
+
+    appendFromLedgerEvent: async (
+        event: LedgerEvent,
+        storagePath?: string
+    ): Promise<void> => {
+        const path = storagePath ?? PROPOSAL_ENVELOPE_INDEX.STORAGE_PATH;
+        const accepted = event.accepted_proposal_envelopes ?? [];
+        if (accepted.length === 0) return;
+
+        const entry = await ensureLoaded(path);
+        let prev = entry.tail_hash;
+        const lines: string[] = [];
+        for (const a of accepted) {
+            if (typeof a.envelope_hash !== "string" || !HEX_64_RE.test(a.envelope_hash)) {
+                continue;
+            }
+            const recordWithoutHash: Omit<ProposalEnvelopeIndexRecord, "record_hash"> = {
+                chain_version: CHAIN_VERSION,
+                prev_record_hash: prev,
+                envelope_hash: a.envelope_hash,
+                proposal_id: a.proposal_id,
+                tick: event.tick,
+                event_id: event.event_id,
+                state_before_hash: event.state_before_hash,
+                state_after_hash: event.state_after_hash,
+                ts_unix_ms: event.ts_unix_ms,
+                witness: event.witness
+            };
+            const recHash = await indexRecordHash(recordWithoutHash);
+            const rec: ProposalEnvelopeIndexRecord = {
+                ...recordWithoutHash,
+                record_hash: recHash
+            };
+            lines.push(JSON.stringify(rec));
+            prev = recHash;
+            let set = entry.tick_to_hashes.get(rec.tick);
+            if (!set) {
+                set = new Set<string>();
+                entry.tick_to_hashes.set(rec.tick, set);
+            }
+            set.add(rec.envelope_hash);
+        }
+        if (lines.length > 0) {
+            await Deno.writeTextFile(path, lines.map((x) => `${x}\n`).join(""), {
+                append: true,
+                create: true
+            });
+            entry.tail_hash = prev;
+        }
+    },
+
+    getRecentEnvelopeHashes: async (
+        minTick: number,
+        maxTick: number,
+        storagePath?: string
+    ): Promise<Set<string>> => {
+        const path = storagePath ?? PROPOSAL_ENVELOPE_INDEX.STORAGE_PATH;
+        const entry = await ensureLoaded(path);
+        const out = new Set<string>();
+        pruneBeforeTick(entry, minTick);
+        for (const [tick, hashes] of entry.tick_to_hashes.entries()) {
+            if (tick < minTick || tick > maxTick) continue;
+            for (const hash of hashes) {
+                out.add(hash);
+            }
+        }
+        return out;
+    }
+};
+
+
+// [ ./i.L99.core.REPLAY_AUDIT.ts ]
+// i.L99.core.REPLAY_AUDIT.ts
+// OMEGA-64 | Deterministic Replay Audit
+// Produces a strict replayGreen signal from ledger events.
+
+import { LEDGER } from "./i.L99.core.LEDGER.ts";
+import { LedgerEvent, PolicyTransitionEvent, TopologyEvent } from "./i.L99.core.STATE_SNAPSHOT.ts";
+import { TOPOLOGICAL_SIGNATURE, TopologicalSignature } from "./i.L99.core.TOPOLOGICAL_SIGNATURE.ts";
+import { CRYSTALLIZATION_CONFIG, CRYSTALLIZATION_POLICY } from "./i.L99.core.CRYSTALLIZATION_CONFIG.ts";
+import { CRYSTALLIZATION_REPORT } from "./i.L99.core.CRYSTALLIZATION_REPORT.ts";
+import { GATE_ADMISSION_REPORT } from "./i.L99.core.GATE_ADMISSION_REPORT.ts";
+import type { InvariantPacket } from "./i.L32.core.INVARIANT_PACKET.ts";
+import { INVARIANT_PACKET } from "./i.L32.core.INVARIANT_PACKET.ts";
+
+export interface ReplayGenesis {
+    tick: number;
+    state_i16: Int16Array;
+    state_hash: string;
+}
+
+export interface ReplayAuditOptions {
+    runs?: number;
+    startTick?: number;
+    endTick?: number;
+    verifyTopologicalSignatures?: boolean;
+    verifyLedgerChain?: boolean;
+    invariantOnly?: boolean;
+}
+
+export interface ReplayAuditResult {
+    replayGreen: boolean;
+    runs: number;
+    checkedEvents: number;
+    skippedEvents: number;
+    checkedProjectionEvents: number;
+    skippedProjectionEvents: number;
+    projectionTickReport: ProjectionTickReport[];
+    checkedPolicyEvents: number;
+    skippedPolicyEvents: number;
+    policyTickReport: PolicyTickReport[];
+    checkedCanonReports: number;
+    skippedCanonReports: number;
+    canonReportTickReport: CanonReportTickReport[];
+    checkedGateAdmissionReports: number;
+    skippedGateAdmissionReports: number;
+    gateAdmissionReportTickReport: GateAdmissionReportTickReport[];
+    invariantPacket?: InvariantPacket;
+    invariantReport: ReplayInvariantReport;
+    finalHashes: string[];
+    failures: string[];
+}
+
+export interface ProjectionTickReport {
+    tick: number;
+    status: "PASS" | "FAIL" | "SKIP";
+    reason: string;
+}
+
+export interface PolicyTickReport {
+    tick: number;
+    status: "PASS" | "FAIL" | "SKIP";
+    reason: string;
+    policy_version?: string;
+    policy_hash?: string;
+}
+
+export interface CanonReportTickReport {
+    tick: number;
+    status: "PASS" | "FAIL" | "SKIP";
+    reason: string;
+    report_hash?: string;
+    report_uri?: string;
+}
+
+export interface GateAdmissionReportTickReport {
+    tick: number;
+    status: "PASS" | "FAIL" | "SKIP";
+    reason: string;
+    report_hash?: string;
+    report_uri?: string;
+}
+
+export interface ReplayInvariantReport {
+    index_chain_checked: boolean;
+    index_chain_ok: boolean;
+    index_chain_checked_records: number;
+    index_chain_failures: string[];
+    gate_admission_index_chain_checked: boolean;
+    gate_admission_index_chain_ok: boolean;
+    gate_admission_index_chain_checked_records: number;
+    gate_admission_index_chain_failures: string[];
+    ledger_chain_checked?: boolean;
+    ledger_chain_ok?: boolean;
+    ledger_chain_checked_events?: number;
+    ledger_chain_chain_anchored_events?: number;
+    ledger_chain_legacy_events?: number;
+    ledger_chain_failures?: string[];
+}
+
+const stableStringify = (value: unknown): string => {
+    if (Array.isArray(value)) {
+        return `[${value.map((v) => stableStringify(v)).join(",")}]`;
+    }
+    if (value && typeof value === "object") {
+        const entries = Object.entries(value as Record<string, unknown>)
+            .sort(([a], [b]) => a.localeCompare(b));
+        const body = entries
+            .map(([k, v]) => `${JSON.stringify(k)}:${stableStringify(v)}`)
+            .join(",");
+        return `{${body}}`;
+    }
+    return JSON.stringify(value);
+};
+
+const toHex = (buffer: ArrayBuffer): string =>
+    Array.from(new Uint8Array(buffer)).map((b) => b.toString(16).padStart(2, "0")).join("");
+
+const sha256Hex = async (input: string): Promise<string> => {
+    const data = new TextEncoder().encode(input);
+    const digest = await crypto.subtle.digest("SHA-256", data);
+    return toHex(digest);
+};
+
+const saturatingAdd = (base: Int16Array, delta: Array<{ level: number; value: number }>): Int16Array => {
+    const next = new Int16Array(base) as Int16Array;
+    for (const d of delta) {
+        if (!Number.isInteger(d.level) || d.level < 0 || d.level >= next.length) {
+            continue;
+        }
+        let value = next[d.level] + d.value;
+        if (value > 32767) value = 32767;
+        if (value < -32768) value = -32768;
+        next[d.level] = value;
+    }
+    return next;
+};
+
+const expectedStateHash = async (
+    nextState: Int16Array,
+    nextTick: number,
+    gateConfigVersion: string,
+    proposalDigest: string
+): Promise<string> =>
+    await sha256Hex(stableStringify({
+        state_i16: Array.from(nextState),
+        tick: nextTick,
+        gate_config_version: gateConfigVersion,
+        proposal_digest: proposalDigest
+    }));
+
+const isPolicyTransitionEvent = (entry: TopologyEvent): entry is PolicyTransitionEvent =>
+    "event_type" in entry && entry.event_type === "POLICY_TRANSITION_EVENT";
+
+const isCanonizationEvent = (entry: TopologyEvent): entry is TopologyEvent & {
+    event_type: "CANONIZATION_EVENT";
+    checkpoint_tick: number;
+    crystallization_report_hash?: string;
+    crystallization_report_uri?: string;
+    gate_admission_report_hash?: string;
+    gate_admission_report_uri?: string;
+} =>
+    "event_type" in entry && entry.event_type === "CANONIZATION_EVENT";
+
+const isLedgerEvent = (entry: TopologyEvent): entry is LedgerEvent =>
+    !("event_type" in entry) &&
+    typeof entry.tick === "number" &&
+    Array.isArray(entry.accepted_delta) &&
+    typeof entry.state_before_hash === "string" &&
+    typeof entry.state_after_hash === "string";
+
+const collectLedgerEvents = async (
+    startTick?: number,
+    endTick?: number
+): Promise<{
+    events: LedgerEvent[];
+    transitionsByTick: Map<number, PolicyTransitionEvent[]>;
+    canonByCheckpointTick: Map<number, TopologyEvent[]>;
+    skipped: number;
+}> => {
+    const byTick = new Map<number, LedgerEvent>();
+    const transitionsByTick = new Map<number, PolicyTransitionEvent[]>();
+    const canonByCheckpointTick = new Map<number, TopologyEvent[]>();
+    let skipped = 0;
+
+    for await (const entry of LEDGER.readAllRaw()) {
+        if (isPolicyTransitionEvent(entry)) {
+            const inStart = startTick === undefined || entry.tick >= startTick;
+            const inEnd = endTick === undefined || entry.tick <= endTick;
+            if (!inStart || !inEnd) continue;
+            const current = transitionsByTick.get(entry.tick) ?? [];
+            current.push(entry);
+            transitionsByTick.set(entry.tick, current);
+            continue;
+        }
+        if (isCanonizationEvent(entry)) {
+            const inStart = startTick === undefined || entry.checkpoint_tick >= startTick;
+            const inEnd = endTick === undefined || entry.checkpoint_tick <= endTick;
+            if (!inStart || !inEnd) continue;
+            const current = canonByCheckpointTick.get(entry.checkpoint_tick) ?? [];
+            current.push(entry);
+            canonByCheckpointTick.set(entry.checkpoint_tick, current);
+            continue;
+        }
+        if (!isLedgerEvent(entry)) {
+            continue;
+        }
+        const inStart = startTick === undefined || entry.tick >= startTick;
+        const inEnd = endTick === undefined || entry.tick <= endTick;
+        if (!inStart || !inEnd) {
+            continue;
+        }
+        // Skip non-mutating dry-run style events in replay chain.
+        if (entry.state_after_hash === entry.state_before_hash) {
+            skipped++;
+            continue;
+        }
+        // Last event for same tick wins (append-only correction pattern).
+        byTick.set(entry.tick, entry);
+    }
+
+    return {
+        events: Array.from(byTick.values()).sort((a, b) => a.tick - b.tick),
+        transitionsByTick,
+        canonByCheckpointTick,
+        skipped
+    };
+};
+
+export const REPLAY_AUDIT = {
+    audit: async (genesis: ReplayGenesis, options: ReplayAuditOptions = {}): Promise<ReplayAuditResult> => {
+        const runs = options.runs ?? 3;
+        const verifyTopologicalSignatures = options.verifyTopologicalSignatures ?? true;
+        const { events, transitionsByTick, canonByCheckpointTick, skipped } = await collectLedgerEvents(options.startTick, options.endTick);
+        const localPolicyHash = await CRYSTALLIZATION_POLICY.hash();
+        const finalHashes: string[] = [];
+        const failures: string[] = [];
+        let checkedProjectionEvents = 0;
+        let skippedProjectionEvents = 0;
+        const projectionTickReport: ProjectionTickReport[] = [];
+        let checkedPolicyEvents = 0;
+        let skippedPolicyEvents = 0;
+        const policyTickReport: PolicyTickReport[] = [];
+        let checkedCanonReports = 0;
+        let skippedCanonReports = 0;
+        const canonReportTickReport: CanonReportTickReport[] = [];
+        let checkedGateAdmissionReports = 0;
+        let skippedGateAdmissionReports = 0;
+        const gateAdmissionReportTickReport: GateAdmissionReportTickReport[] = [];
+        const invariantReport: ReplayInvariantReport = {
+            index_chain_checked: false,
+            index_chain_ok: true,
+            index_chain_checked_records: 0,
+            index_chain_failures: [],
+            gate_admission_index_chain_checked: false,
+            gate_admission_index_chain_ok: true,
+            gate_admission_index_chain_checked_records: 0,
+            gate_admission_index_chain_failures: [],
+            ledger_chain_checked: false,
+            ledger_chain_ok: true,
+            ledger_chain_checked_events: 0,
+            ledger_chain_chain_anchored_events: 0,
+            ledger_chain_legacy_events: 0,
+            ledger_chain_failures: []
+        };
+        if (options.verifyLedgerChain ?? false) {
+            const ledgerChain = await LEDGER.verifyChainDetailed();
+            invariantReport.ledger_chain_checked = true;
+            invariantReport.ledger_chain_ok = ledgerChain.ok;
+            invariantReport.ledger_chain_checked_events = ledgerChain.checkedEvents;
+            invariantReport.ledger_chain_chain_anchored_events = ledgerChain.chainAnchoredEvents;
+            invariantReport.ledger_chain_legacy_events = ledgerChain.legacyEvents;
+            invariantReport.ledger_chain_failures = [...ledgerChain.failures];
+            if (!ledgerChain.ok) {
+                return {
+                    replayGreen: false,
+                    runs,
+                    checkedEvents: events.length,
+                    skippedEvents: skipped,
+                    checkedProjectionEvents,
+                    skippedProjectionEvents,
+                    projectionTickReport,
+                    checkedPolicyEvents,
+                    skippedPolicyEvents,
+                    policyTickReport,
+                    checkedCanonReports,
+                    skippedCanonReports,
+                    canonReportTickReport,
+                    checkedGateAdmissionReports,
+                    skippedGateAdmissionReports,
+                    gateAdmissionReportTickReport,
+                    invariantReport,
+                    finalHashes,
+                    failures: ledgerChain.failures.map((x) => `ledger_chain:${x}`)
+                };
+            }
+        }
+        const hasCanonEvents = canonByCheckpointTick.size > 0;
+        if (hasCanonEvents) {
+            const indexChain = await CRYSTALLIZATION_REPORT.verifyIndexChain(true);
+            invariantReport.index_chain_checked = true;
+            invariantReport.index_chain_ok = indexChain.ok;
+            invariantReport.index_chain_checked_records = indexChain.checkedRecords;
+            invariantReport.index_chain_failures = [...indexChain.failures];
+            if (!indexChain.ok) {
+                return {
+                    replayGreen: false,
+                    runs,
+                    checkedEvents: events.length,
+                    skippedEvents: skipped,
+                    checkedProjectionEvents,
+                    skippedProjectionEvents,
+                    projectionTickReport,
+                    checkedPolicyEvents,
+                    skippedPolicyEvents,
+                    policyTickReport,
+                    checkedCanonReports,
+                    skippedCanonReports,
+                    canonReportTickReport,
+                    checkedGateAdmissionReports,
+                    skippedGateAdmissionReports,
+                    gateAdmissionReportTickReport,
+                    invariantReport,
+                    finalHashes,
+                    failures: indexChain.failures.map((x) => `index_chain:${x}`)
+                };
+            }
+            const gateIndexChain = await GATE_ADMISSION_REPORT.verifyIndexChain(true);
+            invariantReport.gate_admission_index_chain_checked = true;
+            invariantReport.gate_admission_index_chain_ok = gateIndexChain.ok;
+            invariantReport.gate_admission_index_chain_checked_records = gateIndexChain.checkedRecords;
+            invariantReport.gate_admission_index_chain_failures = [...gateIndexChain.failures];
+            if (!gateIndexChain.ok) {
+                return {
+                    replayGreen: false,
+                    runs,
+                    checkedEvents: events.length,
+                    skippedEvents: skipped,
+                    checkedProjectionEvents,
+                    skippedProjectionEvents,
+                    projectionTickReport,
+                    checkedPolicyEvents,
+                    skippedPolicyEvents,
+                    policyTickReport,
+                    checkedCanonReports,
+                    skippedCanonReports,
+                    canonReportTickReport,
+                    checkedGateAdmissionReports,
+                    skippedGateAdmissionReports,
+                    gateAdmissionReportTickReport,
+                    invariantReport,
+                    finalHashes,
+                    failures: gateIndexChain.failures.map((x) => `gate_admission_index_chain:${x}`)
+                };
+            }
+        }
+        if (options.invariantOnly) {
+            const packet = await INVARIANT_PACKET.fromInvariantReport(
+                invariantReport,
+                { tick_anchor: options.endTick ?? genesis.tick }
+            );
+            return {
+                replayGreen: true,
+                runs,
+                checkedEvents: 0,
+                skippedEvents: events.length + skipped,
+                checkedProjectionEvents,
+                skippedProjectionEvents,
+                projectionTickReport,
+                checkedPolicyEvents,
+                skippedPolicyEvents,
+                policyTickReport,
+                checkedCanonReports,
+                skippedCanonReports,
+                canonReportTickReport,
+                checkedGateAdmissionReports,
+                skippedGateAdmissionReports,
+                gateAdmissionReportTickReport,
+                invariantPacket: packet,
+                invariantReport,
+                finalHashes: [genesis.state_hash],
+                failures
+            };
+        }
+
+        for (let run = 0; run < runs; run++) {
+            let tick = genesis.tick;
+            let stateHash = genesis.state_hash;
+            let state = new Int16Array(genesis.state_i16) as Int16Array;
+            let currentPolicyVersion: string | undefined;
+            let currentPolicyHash: string | undefined;
+
+            for (const evt of events) {
+                const expectedTick = tick;
+                if (evt.tick !== expectedTick) {
+                    failures.push(`run=${run} tick continuity mismatch: expected ${expectedTick}, got ${evt.tick}`);
+                    break;
+                }
+                if (evt.state_before_hash !== stateHash) {
+                    failures.push(`run=${run} state_before_hash mismatch at tick ${evt.tick}`);
+                    break;
+                }
+
+                const nextState = saturatingAdd(state, evt.accepted_delta);
+                const nextTick = tick + 1;
+                const expectedHash = await expectedStateHash(
+                    nextState,
+                    nextTick,
+                    evt.gate_config_version,
+                    evt.proposal_digest
+                );
+
+                if (evt.state_after_hash !== expectedHash) {
+                    failures.push(`run=${run} state_after_hash mismatch at tick ${evt.tick}`);
+                    break;
+                }
+
+                const policyVersion = evt.policy_version;
+                const policyHash = evt.policy_hash;
+                const transitions = transitionsByTick.get(evt.tick) ?? [];
+                if (!policyVersion || !policyHash) {
+                    failures.push(`run=${run} missing policy anchor at tick ${evt.tick}`);
+                    if (run === 0) {
+                        policyTickReport.push({
+                            tick: evt.tick,
+                            status: "FAIL",
+                            reason: "MISSING_POLICY_ANCHOR"
+                        });
+                    }
+                    break;
+                }
+
+                if (
+                    policyVersion === CRYSTALLIZATION_CONFIG.policyVersion &&
+                    policyHash !== localPolicyHash
+                ) {
+                    failures.push(`run=${run} policy hash mismatch with local config at tick ${evt.tick}`);
+                    if (run === 0) {
+                        policyTickReport.push({
+                            tick: evt.tick,
+                            status: "FAIL",
+                            reason: "LOCAL_POLICY_HASH_MISMATCH",
+                            policy_version: policyVersion,
+                            policy_hash: policyHash
+                        });
+                    }
+                    break;
+                }
+
+                if (currentPolicyVersion === undefined || currentPolicyHash === undefined) {
+                    currentPolicyVersion = policyVersion;
+                    currentPolicyHash = policyHash;
+                    if (run === 0) {
+                        checkedPolicyEvents++;
+                        policyTickReport.push({
+                            tick: evt.tick,
+                            status: "PASS",
+                            reason: "POLICY_ANCHOR_SET",
+                            policy_version: policyVersion,
+                            policy_hash: policyHash
+                        });
+                    }
+                } else if (policyVersion !== currentPolicyVersion || policyHash !== currentPolicyHash) {
+                    const transition = transitions.find((t) =>
+                        t.to_policy_version === policyVersion &&
+                        t.to_policy_hash === policyHash
+                    );
+                    if (!transition) {
+                        failures.push(`run=${run} policy change without transition at tick ${evt.tick}`);
+                        if (run === 0) {
+                            policyTickReport.push({
+                                tick: evt.tick,
+                                status: "FAIL",
+                                reason: "POLICY_CHANGE_WITHOUT_TRANSITION",
+                                policy_version: policyVersion,
+                                policy_hash: policyHash
+                            });
+                        }
+                        break;
+                    }
+                    if (
+                        transition.from_policy_version !== undefined &&
+                        transition.from_policy_version !== currentPolicyVersion
+                    ) {
+                        failures.push(`run=${run} transition from_policy_version mismatch at tick ${evt.tick}`);
+                        if (run === 0) {
+                            policyTickReport.push({
+                                tick: evt.tick,
+                                status: "FAIL",
+                                reason: "TRANSITION_FROM_VERSION_MISMATCH",
+                                policy_version: policyVersion,
+                                policy_hash: policyHash
+                            });
+                        }
+                        break;
+                    }
+                    if (
+                        transition.from_policy_hash !== undefined &&
+                        transition.from_policy_hash !== currentPolicyHash
+                    ) {
+                        failures.push(`run=${run} transition from_policy_hash mismatch at tick ${evt.tick}`);
+                        if (run === 0) {
+                            policyTickReport.push({
+                                tick: evt.tick,
+                                status: "FAIL",
+                                reason: "TRANSITION_FROM_HASH_MISMATCH",
+                                policy_version: policyVersion,
+                                policy_hash: policyHash
+                            });
+                        }
+                        break;
+                    }
+                    currentPolicyVersion = policyVersion;
+                    currentPolicyHash = policyHash;
+                    if (run === 0) {
+                        checkedPolicyEvents++;
+                        policyTickReport.push({
+                            tick: evt.tick,
+                            status: "PASS",
+                            reason: "POLICY_TRANSITION_APPLIED",
+                            policy_version: policyVersion,
+                            policy_hash: policyHash
+                        });
+                    }
+                } else if (run === 0) {
+                    checkedPolicyEvents++;
+                    policyTickReport.push({
+                        tick: evt.tick,
+                        status: "PASS",
+                        reason: "POLICY_ANCHOR_STABLE",
+                        policy_version: policyVersion,
+                        policy_hash: policyHash
+                    });
+                }
+
+                const canonEvents = canonByCheckpointTick.get(nextTick) ?? [];
+                if (canonEvents.length > 0) {
+                    const canon = canonEvents[canonEvents.length - 1] as {
+                        crystallization_report_hash?: string;
+                        crystallization_report_uri?: string;
+                        gate_admission_report_hash?: string;
+                        gate_admission_report_uri?: string;
+                    };
+                    const reportHash = canon.crystallization_report_hash;
+                    const reportUri = canon.crystallization_report_uri;
+
+                    if (!reportHash || !reportUri) {
+                        failures.push(`run=${run} missing canon report anchor at tick ${evt.tick}`);
+                        if (run === 0) {
+                            canonReportTickReport.push({
+                                tick: evt.tick,
+                                status: "FAIL",
+                                reason: "MISSING_CANON_REPORT_ANCHOR",
+                                report_hash: reportHash,
+                                report_uri: reportUri
+                            });
+                        }
+                        break;
+                    }
+
+                    try {
+                        const body = await Deno.readTextFile(reportUri);
+                        const parsed = JSON.parse(body);
+                        const computed = await CRYSTALLIZATION_REPORT.hash(parsed);
+                        if (computed !== reportHash) {
+                            failures.push(`run=${run} canon report hash mismatch at tick ${evt.tick}`);
+                            if (run === 0) {
+                                canonReportTickReport.push({
+                                    tick: evt.tick,
+                                    status: "FAIL",
+                                    reason: "CANON_REPORT_HASH_MISMATCH",
+                                    report_hash: reportHash,
+                                    report_uri: reportUri
+                                });
+                            }
+                            break;
+                        }
+                        const indexRecord = await CRYSTALLIZATION_REPORT.findIndexRecord(reportHash, reportUri);
+                        if (!indexRecord) {
+                            failures.push(`run=${run} canon report index missing/mismatch at tick ${evt.tick}`);
+                            if (run === 0) {
+                                canonReportTickReport.push({
+                                    tick: evt.tick,
+                                    status: "FAIL",
+                                    reason: "CANON_REPORT_INDEX_MISSING_OR_MISMATCH",
+                                    report_hash: reportHash,
+                                    report_uri: reportUri
+                                });
+                            }
+                            break;
+                        }
+                        if (run === 0) {
+                            checkedCanonReports++;
+                            canonReportTickReport.push({
+                                tick: evt.tick,
+                                status: "PASS",
+                                reason: "CANON_REPORT_MATCH",
+                                report_hash: reportHash,
+                                report_uri: reportUri
+                            });
+                        }
+                    } catch {
+                        failures.push(`run=${run} canon report missing/unreadable at tick ${evt.tick}`);
+                        if (run === 0) {
+                            canonReportTickReport.push({
+                                tick: evt.tick,
+                                status: "FAIL",
+                                reason: "CANON_REPORT_MISSING_OR_UNREADABLE",
+                                report_hash: reportHash,
+                                report_uri: reportUri
+                            });
+                        }
+                        break;
+                    }
+
+                    const gateReportHash = canon.gate_admission_report_hash;
+                    const gateReportUri = canon.gate_admission_report_uri;
+
+                    if (!gateReportHash || !gateReportUri) {
+                        failures.push(`run=${run} missing gate admission report anchor at tick ${evt.tick}`);
+                        if (run === 0) {
+                            gateAdmissionReportTickReport.push({
+                                tick: evt.tick,
+                                status: "FAIL",
+                                reason: "MISSING_GATE_ADMISSION_REPORT_ANCHOR",
+                                report_hash: gateReportHash,
+                                report_uri: gateReportUri
+                            });
+                        }
+                        break;
+                    }
+
+                    try {
+                        const body = await Deno.readTextFile(gateReportUri);
+                        const parsed = JSON.parse(body);
+                        const computed = await GATE_ADMISSION_REPORT.hash(parsed);
+                        if (computed !== gateReportHash) {
+                            failures.push(`run=${run} gate admission report hash mismatch at tick ${evt.tick}`);
+                            if (run === 0) {
+                                gateAdmissionReportTickReport.push({
+                                    tick: evt.tick,
+                                    status: "FAIL",
+                                    reason: "GATE_ADMISSION_REPORT_HASH_MISMATCH",
+                                    report_hash: gateReportHash,
+                                    report_uri: gateReportUri
+                                });
+                            }
+                            break;
+                        }
+                        const indexRecord = await GATE_ADMISSION_REPORT.findIndexRecord(gateReportHash, gateReportUri);
+                        if (!indexRecord) {
+                            failures.push(`run=${run} gate admission report index missing/mismatch at tick ${evt.tick}`);
+                            if (run === 0) {
+                                gateAdmissionReportTickReport.push({
+                                    tick: evt.tick,
+                                    status: "FAIL",
+                                    reason: "GATE_ADMISSION_REPORT_INDEX_MISSING_OR_MISMATCH",
+                                    report_hash: gateReportHash,
+                                    report_uri: gateReportUri
+                                });
+                            }
+                            break;
+                        }
+                        if (run === 0) {
+                            checkedGateAdmissionReports++;
+                            gateAdmissionReportTickReport.push({
+                                tick: evt.tick,
+                                status: "PASS",
+                                reason: "GATE_ADMISSION_REPORT_MATCH",
+                                report_hash: gateReportHash,
+                                report_uri: gateReportUri
+                            });
+                        }
+                    } catch {
+                        failures.push(`run=${run} gate admission report missing/unreadable at tick ${evt.tick}`);
+                        if (run === 0) {
+                            gateAdmissionReportTickReport.push({
+                                tick: evt.tick,
+                                status: "FAIL",
+                                reason: "GATE_ADMISSION_REPORT_MISSING_OR_UNREADABLE",
+                                report_hash: gateReportHash,
+                                report_uri: gateReportUri
+                            });
+                        }
+                        break;
+                    }
+                } else if (run === 0) {
+                    skippedCanonReports++;
+                    canonReportTickReport.push({
+                        tick: evt.tick,
+                        status: "SKIP",
+                        reason: "NO_CANONIZATION_EVENT"
+                    });
+                    skippedGateAdmissionReports++;
+                    gateAdmissionReportTickReport.push({
+                        tick: evt.tick,
+                        status: "SKIP",
+                        reason: "NO_CANONIZATION_EVENT"
+                    });
+                }
+
+                if (verifyTopologicalSignatures) {
+                    const hasProjectionData = Boolean(
+                        evt.projection_2d_hash ||
+                        evt.thread_1d_hash ||
+                        evt.projection_version ||
+                        evt.signature_artifact_hash ||
+                        evt.signature_tick ||
+                        evt.signature_causal_refs
+                    );
+
+                    if (hasProjectionData) {
+                        if (!evt.projection_2d_hash || !evt.thread_1d_hash || !evt.projection_version) {
+                            failures.push(`run=${run} incomplete projection fields at tick ${evt.tick}`);
+                            if (run === 0) {
+                                projectionTickReport.push({
+                                    tick: evt.tick,
+                                    status: "FAIL",
+                                    reason: "INCOMPLETE_PROJECTION_FIELDS"
+                                });
+                            }
+                            break;
+                        }
+                        if (evt.projection_version !== TOPOLOGICAL_SIGNATURE.PROJECTION_VERSION) {
+                            failures.push(`run=${run} unsupported projection version at tick ${evt.tick}`);
+                            if (run === 0) {
+                                projectionTickReport.push({
+                                    tick: evt.tick,
+                                    status: "FAIL",
+                                    reason: "UNSUPPORTED_PROJECTION_VERSION"
+                                });
+                            }
+                            break;
+                        }
+                        if (evt.signature_tick !== undefined && evt.signature_tick !== nextTick) {
+                            failures.push(`run=${run} signature_tick mismatch at tick ${evt.tick}`);
+                            if (run === 0) {
+                                projectionTickReport.push({
+                                    tick: evt.tick,
+                                    status: "FAIL",
+                                    reason: "SIGNATURE_TICK_MISMATCH"
+                                });
+                            }
+                            break;
+                        }
+                        if (evt.signature_artifact_hash !== undefined && evt.signature_artifact_hash !== evt.proposal_digest) {
+                            failures.push(`run=${run} signature_artifact_hash mismatch at tick ${evt.tick}`);
+                            if (run === 0) {
+                                projectionTickReport.push({
+                                    tick: evt.tick,
+                                    status: "FAIL",
+                                    reason: "SIGNATURE_ARTIFACT_HASH_MISMATCH"
+                                });
+                            }
+                            break;
+                        }
+
+                        const signature: TopologicalSignature = {
+                            artifact_hash: evt.signature_artifact_hash ?? evt.proposal_digest,
+                            state_hash: expectedHash,
+                            tick: evt.signature_tick ?? nextTick,
+                            causal_refs: evt.signature_causal_refs ?? [],
+                            projection_2d_hash: evt.projection_2d_hash,
+                            thread_1d_hash: evt.thread_1d_hash,
+                            projection_version: evt.projection_version
+                        };
+
+                        const verifyResult = await TOPOLOGICAL_SIGNATURE.verify(
+                            signature,
+                            TOPOLOGICAL_SIGNATURE.snapshotToOrganismState({
+                                state_hash: expectedHash,
+                                state_i16: nextState
+                            })
+                        );
+
+                        if (!verifyResult.ok) {
+                            failures.push(
+                                `run=${run} projection mismatch at tick ${evt.tick}: ${verifyResult.reasons.join("|")}`
+                            );
+                            if (run === 0) {
+                                projectionTickReport.push({
+                                    tick: evt.tick,
+                                    status: "FAIL",
+                                    reason: `PROJECTION_MISMATCH:${verifyResult.reasons.join("|")}`
+                                });
+                            }
+                            break;
+                        }
+
+                        if (run === 0) {
+                            checkedProjectionEvents++;
+                            projectionTickReport.push({
+                                tick: evt.tick,
+                                status: "PASS",
+                                reason: "PROJECTION_MATCH"
+                            });
+                        }
+                    } else {
+                        if (run === 0) {
+                            skippedProjectionEvents++;
+                            projectionTickReport.push({
+                                tick: evt.tick,
+                                status: "SKIP",
+                                reason: "NO_PROJECTION_FIELDS"
+                            });
+                        }
+                    }
+                } else if (run === 0) {
+                    skippedProjectionEvents++;
+                    projectionTickReport.push({
+                        tick: evt.tick,
+                        status: "SKIP",
+                        reason: "VERIFY_DISABLED"
+                    });
+                }
+
+                tick = nextTick;
+                state = nextState;
+                stateHash = expectedHash;
+            }
+
+            finalHashes.push(stateHash);
+        }
+
+        const allEqual = finalHashes.length > 0 && finalHashes.every((h) => h === finalHashes[0]);
+        const replayGreen = failures.length === 0 && allEqual;
+
+        return {
+            replayGreen,
+            runs,
+            checkedEvents: events.length,
+            skippedEvents: skipped,
+            checkedProjectionEvents,
+            skippedProjectionEvents,
+            projectionTickReport,
+            checkedPolicyEvents,
+            skippedPolicyEvents,
+            policyTickReport,
+            checkedCanonReports,
+            skippedCanonReports,
+            canonReportTickReport,
+            checkedGateAdmissionReports,
+            skippedGateAdmissionReports,
+            gateAdmissionReportTickReport,
+            invariantReport,
+            finalHashes,
+            failures
+        };
+    }
+};
+
+if (import.meta.main) {
+    console.log("Usage: import REPLAY_AUDIT and call audit(genesis, options).");
+}
+
+
 // [ ./i.L99.core.SANDBOX.ts ]
 
 // i.L99.core.SANDBOX.ts
@@ -4821,83 +9821,256 @@ export const STATE = {
  * This is the input for all agents.
  */
 export interface StateSnapshot {
-    tick: number; // uint64
-    state_i16: Int16Array; // int16[64] - The core state vector
-    state_hash: string; // hex32 - Identity anchor
-    
-    // Optional projections (for observablity)
-    phase_u16?: Uint16Array; // uint16[64]
-    stability_q15?: Float32Array; // 0..1
-    entropy_i16?: Int16Array; // -32768..32767
+  tick: number; // uint64
+  state_i16: Int16Array; // int16[64] - The core state vector
+  state_hash: string; // hex32 - Identity anchor
+
+  // Optional projections (for observablity)
+  phase_u16?: Uint16Array; // uint16[64]
+  stability_q15?: Float32Array; // 0..1
+  entropy_i16?: Int16Array; // -32768..32767
 }
 
 /**
  * DeltaProposal: A request from an agent to modify the state.
  */
 export interface DeltaProposal {
-    proposal_id: string; // UUID or unique semantic ID
-    tick: number; // Must match StateSnapshot.tick
-    base_state_hash: string; // Must match StateSnapshot.state_hash
-    agent_id: string; // Who is proposing?
-    intent: string; // Human-readable intent
-    confidence: number; // float32 (0..1)
-    delta: Array<{ level: number, value: number }>; // Sparse delta: level (0-63), value (int16)
-    cost_estimate: number; // uint64
-    artifact_hash: string; // Identity anchor of the agent's internal state
-    semantic_fingerprint: string; // hex32 - Semantic drift metric
-    causal_refs?: string[]; // hex32[] - Optional lineage anchors
+  proposal_id: string; // UUID or unique semantic ID
+  tick: number; // Must match StateSnapshot.tick
+  base_state_hash: string; // Must match StateSnapshot.state_hash
+  agent_id: string; // Who is proposing?
+  agent_phase_u16?: number; // Optional agent phase anchor [0..65535] for LOAD mismatch cost
+  intent: string; // Human-readable intent
+  confidence: number; // float32 (0..1)
+  delta: Array<{ level: number; value: number }>; // Sparse delta: level (0-63), value (int16)
+  cost_estimate: number; // uint64
+  artifact_hash: string; // Identity anchor of the agent's internal state
+  semantic_fingerprint: string; // hex32 - Semantic drift metric
+  causal_refs?: string[]; // hex32[] - Optional lineage anchors
+  target_path?: "LOCAL" | "CANON"; // optional routing hint for L32 membrane
+  signature_scheme?: AgentSignatureScheme; // optional signature scheme marker
+  agent_signature?: string; // optional signed envelope for proposal integrity/authenticity
+  proposal_envelope_hash?: string; // optional precomputed envelope hash anchor
 }
 
 /**
  * GateConfig: Configuration for the L32 Gate.
  */
 export interface GateConfig {
-    max_abs_delta_per_level: number; // uint16
-    max_total_abs_delta_per_tick: number; // uint32
-    max_cost_per_agent: number; // uint64
-    reliability_weight: Map<string, number>; // agent_id -> weight (0..1)
-    dry_run: boolean; // If true, state is NOT mutated
+  max_abs_delta_per_level: number; // uint16
+  max_total_abs_delta_per_tick: number; // uint32
+  max_cost_per_agent: number; // uint64
+  reliability_weight: Map<string, number>; // agent_id -> weight (0..1)
+  reliability_mode?: "STATIC" | "PHASE_COHERENCE"; // optional admission weighting mode
+  reliability_floor?: number; // optional [0..1] floor when PHASE_COHERENCE is active
+  dry_run: boolean; // If true, state is NOT mutated
+  signature_policy?: SignaturePolicy; // DISABLED (default), OPTIONAL, REQUIRED
+  agent_signature_keys?: Map<string, AgentSignatureKey>; // agent_id -> shared verification key
+  anti_replay_window_ticks?: number; // reject replays of same proposal envelope within recent window
 }
+
+export type AgentSignatureScheme = "ed25519/v1" | "hmac-sha256/v1";
+export type SignaturePolicy = "DISABLED" | "OPTIONAL" | "REQUIRED";
+export type AgentSignatureKey =
+  | { scheme: "ed25519/v1"; public_key_b64: string }
+  | { scheme: "hmac-sha256/v1"; secret: string };
 
 /**
  * GateDecision: The result of the L32 Gate processing.
  */
 export interface GateDecision {
-    accepted_proposals: string[]; // IDs of accepted proposals
-    rejected_proposals: Array<{ proposal_id: string, reason: string }>;
-    budget_used: number; // uint32
-    cost_used: number; // uint64
-    accepted_delta: Array<{ level: number, value: number }>; // The final merged delta
+  accepted_proposals: string[]; // IDs of accepted proposals
+  rejected_proposals: Array<{ proposal_id: string; reason: string }>;
+  budget_used: number; // uint32
+  cost_used: number; // uint64
+  accepted_delta: Array<{ level: number; value: number }>; // The final merged delta
 }
 
 /**
  * LedgerEvent: The canonical record of a state transition.
  */
 export interface LedgerEvent {
-    event_id: string;
-    tick: number;
-    ts_unix_ms: number;
-    state_before_hash: string;
-    state_after_hash: string;
-    accepted_delta: Array<{ level: number, value: number }>;
-    proposal_digest: string; // Hash of all proposals (for integrity)
-    accepted_proposals: string[];
-    rejected_proposals: Array<{ proposal_id: string, reason: string }>;
-    cost_total: number;
-    budget_used: number;
-    gate_config_version: string;
-    witness?: string;
+  event_id: string;
+  tick: number;
+  ts_unix_ms: number;
+  state_before_hash: string;
+  state_after_hash: string;
+  accepted_delta: Array<{ level: number; value: number }>;
+  proposal_digest: string; // Hash of all proposals (for integrity)
+  accepted_proposals: string[];
+  accepted_proposal_metrics?: Array<{
+    proposal_id: string;
+    agent_id: string;
+    confidence: number;
+    reliability_base: number;
+    reliability_effective: number;
+    phase_coherence?: number;
+    weight: number;
+    physical_cost: number;
+    agent_phase_u16?: number;
+  }>;
+  accepted_proposal_envelopes?: Array<
+    { proposal_id: string; envelope_hash: string }
+  >;
+  rejected_proposals: Array<{ proposal_id: string; reason: string }>;
+  cost_total: number;
+  budget_used: number;
+  budget_limit?: number; // max_total_abs_delta_per_tick used by the gate
+  gate_config_version: string;
+  signature_artifact_hash?: string; // hash anchor of transition artifact (usually proposal_digest)
+  signature_tick?: number; // tick used by topological signature builder
+  signature_causal_refs?: string[]; // canonical sorted causal refs
+  projection_2d_hash?: string; // deterministic 2D projection hash
+  thread_1d_hash?: string; // deterministic 1D thread hash
+  projection_version?: string; // signature projection version
+  policy_version?: string; // crystallization/gate policy version
+  policy_hash?: string; // SHA-256 of canonical crystallization policy payload
+  chain_version?: string; // ledger hash-chain schema version
+  prev_event_hash?: string | null; // hash anchor to previous ledger line
+  event_hash?: string; // hash of this event payload + prev_event_hash
+  witness?: string;
+}
+
+/**
+ * ViolationEvent: Logic Halt signal when Red Lines are crossed.
+ */
+export interface ViolationEvent {
+  event_type: "VIOLATION_EVENT";
+  tick: number;
+  rule_id: string; // e.g., "NO_BYPASS"
+  severity: "CRITICAL" | "WARNING";
+  state_hash: string;
+  details: string;
+  action_taken: "HALT_AND_QUARANTINE" | "LOG_ONLY";
+  chain_version?: string;
+  prev_event_hash?: string | null;
+  event_hash?: string;
+}
+
+/**
+ * CanonizationEvent: Emitted when an artifact becomes Crystal.
+ */
+export interface CanonizationEvent {
+  event_type: "CANONIZATION_EVENT";
+  artifact_hash: string;
+  state_hash: string;
+  proposal_digest: string; // Hash chain proof
+  checkpoint_tick: number;
+  window: number; // e.g. 512
+  hard_gates: "PASS" | "FAIL";
+  soft_gates_passed: number; // 0..6
+  policy_version?: string; // crystallization policy version
+  policy_hash?: string; // SHA-256 of canonical crystallization policy payload
+  crystallization_report_version?: string; // report schema version
+  crystallization_report_hash?: string; // SHA-256 of canonical crystallization report payload
+  crystallization_report_uri?: string; // materialized report path (content-addressed)
+  gate_admission_report_version?: string; // gate admission report schema version
+  gate_admission_report_hash?: string; // SHA-256 of gate admission report payload
+  gate_admission_report_uri?: string; // materialized report path (content-addressed)
+  chain_version?: string;
+  prev_event_hash?: string | null;
+  event_hash?: string;
+  witness?: string;
+}
+
+/**
+ * PolicyTransitionEvent: Explicit policy migration in append-only history.
+ */
+export interface PolicyTransitionEvent {
+  event_type: "POLICY_TRANSITION_EVENT";
+  tick: number;
+  from_policy_version?: string;
+  from_policy_hash?: string;
+  to_policy_version: string;
+  to_policy_hash: string;
+  reason: string;
+  chain_version?: string;
+  prev_event_hash?: string | null;
+  event_hash?: string;
+  witness?: string;
+}
+
+/**
+ * BridgeModeEvent: L32 membrane trace for canon causal integrity mode.
+ * Includes invariant packet hash for lightweight witness exchange.
+ */
+export interface BridgeModeEvent {
+  event_type: "BRIDGE_MODE_EVENT";
+  tick: number;
+  state_hash: string;
+  mode: "GREEN" | "AMBER" | "RED";
+  index_chain_checked: boolean;
+  index_chain_ok: boolean;
+  index_chain_checked_records: number;
+  index_chain_failures: string[];
+  gate_admission_index_chain_checked?: boolean;
+  gate_admission_index_chain_ok?: boolean;
+  gate_admission_index_chain_checked_records?: number;
+  gate_admission_index_chain_failures?: string[];
+  invariant_packet_hash?: string;
+  canon_bound_proposals: string[];
+  blocked_canon_proposals: string[];
+  reason: string;
+  chain_version?: string;
+  prev_event_hash?: string | null;
+  event_hash?: string;
+  witness?: string;
+}
+
+/**
+ * DecrystallizationEvent: Emitted when a crystallized artifact loses hard-gate stability.
+ */
+export interface DecrystallizationEvent {
+  event_type: "DECRYSTALLIZATION_EVENT";
+  tick: number;
+  artifact_hash: string;
+  reason: string;
+  rollback_to_checkpoint: number;
+  rollback_state_hash?: string;
+  hard_gate_failure: string;
+  chain_version?: string;
+  prev_event_hash?: string | null;
+  event_hash?: string;
+  witness?: string;
+}
+
+export type TopologyEvent =
+  | LedgerEvent
+  | ViolationEvent
+  | CanonizationEvent
+  | DecrystallizationEvent
+  | PolicyTransitionEvent
+  | BridgeModeEvent;
+
+/**
+ * CheckpointRecord: Persistent state snapshot for rollback/replay acceleration.
+ */
+export interface CheckpointRecord {
+  checkpoint_id: string;
+  tick: number;
+  state_hash: string;
+  state_i16: number[]; // serialized Int16Array
+  ts_unix_ms: number;
+  reason: string;
+  witness?: string;
 }
 
 // Canonical Rejection Reasons
 export const REJECTION = {
-    SCHEMA_INVALID: "SCHEMA_INVALID",
-    TICK_MISMATCH: "TICK_MISMATCH",
-    BASE_HASH_MISMATCH: "BASE_HASH_MISMATCH",
-    UNKNOWN_AGENT: "UNKNOWN_AGENT",
-    COST_OVER_BUDGET: "COST_OVER_BUDGET",
-    EMPTY_DELTA: "EMPTY_DELTA",
-    OUT_OF_RANGE_VALUE: "OUT_OF_RANGE_VALUE"
+  SCHEMA_INVALID: "SCHEMA_INVALID",
+  TICK_MISMATCH: "TICK_MISMATCH",
+  BASE_HASH_MISMATCH: "BASE_HASH_MISMATCH",
+  UNKNOWN_AGENT: "UNKNOWN_AGENT",
+  COST_OVER_BUDGET: "COST_OVER_BUDGET",
+  EMPTY_DELTA: "EMPTY_DELTA",
+  OUT_OF_RANGE_VALUE: "OUT_OF_RANGE_VALUE",
+  CANON_PATH_REQUIRES_GREEN_BRIDGE: "CANON_PATH_REQUIRES_GREEN_BRIDGE",
+  SIGNATURE_REQUIRED: "SIGNATURE_REQUIRED",
+  SIGNATURE_INVALID: "SIGNATURE_INVALID",
+  SIGNATURE_KEY_MISSING: "SIGNATURE_KEY_MISSING",
+  SIGNATURE_SCHEME_UNSUPPORTED: "SIGNATURE_SCHEME_UNSUPPORTED",
+  PROPOSAL_ENVELOPE_HASH_MISMATCH: "PROPOSAL_ENVELOPE_HASH_MISMATCH",
+  REPLAY_ENVELOPE_DUPLICATE: "REPLAY_ENVELOPE_DUPLICATE",
 };
 
 
@@ -4925,6 +10098,311 @@ export const SYNTHESIS = {
   evolution: "RESONANCE_PATCHES",
   mechanics: ["RESONANCE_MINIMIZATION", "SWARM_GLIDER_INTERFERENCE"],
   resonance: 0.998 // Майже абсолютна.
+};
+
+
+// [ ./i.L99.core.TOPOLOGICAL_SIGNATURE.ts ]
+// i.L99.core.TOPOLOGICAL_SIGNATURE.ts
+// 🛡️ OMEGA-64 | Canon Runtime | Topological Signature
+// Deterministic identity + causal + projection anchors.
+
+import {
+    CHROMO_STATE,
+    ChromoEncodeOptions,
+    OrganismState
+} from "./i.L00.core.CHROMO_STATE.ts";
+import type { StateSnapshot } from "./i.L99.core.STATE_SNAPSHOT.ts";
+
+export interface TopologicalSignature {
+    artifact_hash: string;
+    state_hash: string;
+    tick: number;
+    causal_refs: string[];
+    projection_2d_hash: string;
+    thread_1d_hash: string;
+    projection_version: string;
+    witness?: string;
+}
+
+export interface TopologicalSignatureInput {
+    artifact_hash: string;
+    state_hash: string;
+    tick: number;
+    state: OrganismState;
+    causal_refs?: string[];
+    witness?: string;
+}
+
+export interface ThreadProjectionConfig {
+    radial_bins: number;
+    angular_bins: number;
+}
+
+export interface SignatureStateSnapshotLike extends Pick<StateSnapshot, "state_hash" | "state_i16"> {
+    phase_u16?: Uint16Array;
+    stability_q15?: Float32Array;
+    entropy_i16?: Int16Array;
+}
+
+const PROJECTION_VERSION = "topo-signature/v1";
+
+const CANONICAL_2D_OPTIONS: Required<ChromoEncodeOptions> = {
+    resolution: 256,
+    deterministic: true,
+    noiseAmplitude: 20,
+    noiseAlpha: 50
+};
+
+const CANONICAL_THREAD_CONFIG: ThreadProjectionConfig = {
+    radial_bins: 64,
+    angular_bins: 256
+};
+
+const HEX_64 = /^[a-f0-9]{64}$/;
+
+const toHex = (buffer: ArrayBuffer): string =>
+    Array.from(new Uint8Array(buffer))
+        .map((b) => b.toString(16).padStart(2, "0"))
+        .join("");
+
+const sha256HexBytes = async (bytes: Uint8Array): Promise<string> => {
+    const copy = new Uint8Array(bytes.byteLength);
+    copy.set(bytes);
+    const digest = await crypto.subtle.digest("SHA-256", copy.buffer);
+    return toHex(digest);
+};
+
+const clampI16 = (x: number): number => {
+    if (x > 32767) return 32767;
+    if (x < -32768) return -32768;
+    return x;
+};
+
+const clamp01 = (x: number): number => {
+    if (x > 1) return 1;
+    if (x < 0) return 0;
+    return x;
+};
+
+const normalizeI16 = (x: number): number => (clampI16(x) + 32768) / 65535;
+
+const serializeInt16Be = (arr: Int16Array): Uint8Array => {
+    const out = new Uint8Array(arr.length * 2);
+    for (let i = 0; i < arr.length; i++) {
+        const v = arr[i] < 0 ? arr[i] + 0x10000 : arr[i];
+        out[i * 2] = (v >>> 8) & 0xff;
+        out[i * 2 + 1] = v & 0xff;
+    }
+    return out;
+};
+
+const normalizeAngle = (angle: number): number => {
+    const tau = 2 * Math.PI;
+    let a = angle % tau;
+    if (a < 0) a += tau;
+    return a / tau;
+};
+
+export const TOPOLOGICAL_SIGNATURE = {
+    PROJECTION_VERSION,
+    CANONICAL_2D_OPTIONS,
+    CANONICAL_THREAD_CONFIG,
+
+    validateHash: (hex: string): boolean => HEX_64.test(hex),
+
+    composeHash: async (left_hash: string, right_hash: string, op_id: string): Promise<string> => {
+        const payload = `compose:v1:${left_hash}:${right_hash}:${op_id}`;
+        return await sha256HexBytes(new TextEncoder().encode(payload));
+    },
+
+    project2D: (state: OrganismState, options: ChromoEncodeOptions = CANONICAL_2D_OPTIONS): Uint8Array => {
+        const image = CHROMO_STATE.encode(state, options);
+        return new Uint8Array(image.data);
+    },
+
+    hash2D: async (state: OrganismState, options: ChromoEncodeOptions = CANONICAL_2D_OPTIONS): Promise<string> => {
+        const bytes = TOPOLOGICAL_SIGNATURE.project2D(state, options);
+        return await sha256HexBytes(bytes);
+    },
+
+    snapshotToOrganismState: (
+        snapshot: SignatureStateSnapshotLike,
+        identity: string = snapshot.state_hash
+    ): OrganismState => {
+        const vec = snapshot.state_i16;
+        const n = vec.length > 0 ? vec.length : 1;
+        const level = (idx: number): number => (idx >= 0 && idx < vec.length ? vec[idx] : 0);
+
+        let sumAbs = 0;
+        for (let i = 0; i < vec.length; i++) {
+            sumAbs += Math.abs(vec[i]);
+        }
+        const absMean = sumAbs / n;
+        const absMeanNorm = clamp01(absMean / 32767);
+
+        const center = level(32);
+        const width = Math.max(1, Math.min(32767, Math.abs(level(24)) + 1));
+        const phase = snapshot.phase_u16
+            ? snapshot.phase_u16[13] ?? 0
+            : Math.round(normalizeI16(level(13)) * 65535) & 0xffff;
+        const amplitude = Math.min(65535, Math.max(0, Math.round(absMeanNorm * 65535)));
+
+        let stabilityMean = 1 - absMeanNorm;
+        if (snapshot.stability_q15 && snapshot.stability_q15.length > 0) {
+            let s = 0;
+            for (let i = 0; i < snapshot.stability_q15.length; i++) {
+                s += snapshot.stability_q15[i];
+            }
+            stabilityMean = clamp01(s / snapshot.stability_q15.length);
+        }
+
+        let entropyMean = absMean;
+        if (snapshot.entropy_i16 && snapshot.entropy_i16.length > 0) {
+            let e = 0;
+            for (let i = 0; i < snapshot.entropy_i16.length; i++) {
+                e += Math.abs(snapshot.entropy_i16[i]);
+            }
+            entropyMean = e / snapshot.entropy_i16.length;
+        }
+        const entropyNorm = clamp01(entropyMean / 32767);
+        const coherence = clamp01(stabilityMean * (1 - entropyNorm));
+        const metabolism = clamp01(normalizeI16(level(19)));
+        const tau = clamp01(normalizeI16(level(22)));
+        const flowRate = clamp01(Math.abs(level(10)) / 32767);
+        const curvature = Math.abs(center) < 1
+            ? Math.abs(level(21))
+            : (Math.abs(level(21)) / 1000) * (1 / Math.log1p(Math.abs(center)));
+
+        return {
+            identity,
+            wave: {
+                center,
+                width,
+                phase,
+                amplitude
+            },
+            chrono: {
+                tau,
+                depth: center,
+                flowRate,
+                curvature
+            },
+            metabolism,
+            coherence
+        };
+    },
+
+    projectThread1D: (
+        rgba: Uint8Array,
+        resolution: number,
+        config: ThreadProjectionConfig = CANONICAL_THREAD_CONFIG
+    ): Int16Array => {
+        const R = config.radial_bins;
+        const A = config.angular_bins;
+        const N = R * A;
+        const thread = new Int16Array(N);
+        const center = resolution / 2;
+        const maxDist = center - 2;
+
+        for (let y = 0; y < resolution; y++) {
+            for (let x = 0; x < resolution; x++) {
+                const dx = x - center;
+                const dy = y - center;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist > maxDist) continue;
+
+                const rho = maxDist > 0 ? dist / maxDist : 0;
+                const theta = normalizeAngle(Math.atan2(dy, dx));
+                const rBin = Math.min(R - 1, Math.max(0, Math.floor(rho * (R - 1))));
+                const aBin = Math.min(A - 1, Math.max(0, Math.floor(theta * (A - 1))));
+                const k = rBin * A + aBin;
+
+                const idx = (y * resolution + x) * 4;
+                const r = rgba[idx];
+                const g = rgba[idx + 1];
+                const b = rgba[idx + 2];
+                const luminance = Math.round((r + g + b) / 3 - 127);
+                thread[k] = clampI16(thread[k] + luminance);
+            }
+        }
+
+        return thread;
+    },
+
+    hashThread1D: async (
+        state: OrganismState,
+        options: ChromoEncodeOptions = CANONICAL_2D_OPTIONS,
+        config: ThreadProjectionConfig = CANONICAL_THREAD_CONFIG
+    ): Promise<string> => {
+        const resolution = options.resolution ?? CANONICAL_2D_OPTIONS.resolution;
+        const rgba = TOPOLOGICAL_SIGNATURE.project2D(state, options);
+        const thread = TOPOLOGICAL_SIGNATURE.projectThread1D(rgba, resolution, config);
+        const bytes = serializeInt16Be(thread);
+        return await sha256HexBytes(bytes);
+    },
+
+    build: async (input: TopologicalSignatureInput): Promise<TopologicalSignature> => {
+        if (!TOPOLOGICAL_SIGNATURE.validateHash(input.artifact_hash)) {
+            throw new Error("Invalid artifact_hash: expected 64-char lowercase hex SHA-256");
+        }
+        if (!TOPOLOGICAL_SIGNATURE.validateHash(input.state_hash)) {
+            throw new Error("Invalid state_hash: expected 64-char lowercase hex SHA-256");
+        }
+        if (!Number.isInteger(input.tick) || input.tick < 0) {
+            throw new Error("Invalid tick: expected non-negative integer");
+        }
+
+        const projectionOptions = { ...CANONICAL_2D_OPTIONS };
+        const resolution = projectionOptions.resolution;
+        const rgba = TOPOLOGICAL_SIGNATURE.project2D(input.state, projectionOptions);
+        const projection2DHash = await sha256HexBytes(rgba);
+        const thread = TOPOLOGICAL_SIGNATURE.projectThread1D(rgba, resolution, CANONICAL_THREAD_CONFIG);
+        const thread1DHash = await sha256HexBytes(serializeInt16Be(thread));
+
+        return {
+            artifact_hash: input.artifact_hash,
+            state_hash: input.state_hash,
+            tick: input.tick,
+            causal_refs: [...(input.causal_refs ?? [])].sort(),
+            projection_2d_hash: projection2DHash,
+            thread_1d_hash: thread1DHash,
+            projection_version: PROJECTION_VERSION,
+            witness: input.witness
+        };
+    },
+
+    verify: async (
+        signature: TopologicalSignature,
+        state: OrganismState
+    ): Promise<{ ok: boolean; reasons: string[] }> => {
+        const reasons: string[] = [];
+
+        if (!TOPOLOGICAL_SIGNATURE.validateHash(signature.artifact_hash)) {
+            reasons.push("INVALID_ARTIFACT_HASH");
+        }
+        if (!TOPOLOGICAL_SIGNATURE.validateHash(signature.state_hash)) {
+            reasons.push("INVALID_STATE_HASH");
+        }
+        if (signature.projection_version !== PROJECTION_VERSION) {
+            reasons.push("UNSUPPORTED_PROJECTION_VERSION");
+        }
+
+        const projectionOptions = { ...CANONICAL_2D_OPTIONS };
+        const resolution = projectionOptions.resolution;
+        const rgba = TOPOLOGICAL_SIGNATURE.project2D(state, projectionOptions);
+        const projection2DHash = await sha256HexBytes(rgba);
+        if (projection2DHash !== signature.projection_2d_hash) {
+            reasons.push("PROJECTION_2D_HASH_MISMATCH");
+        }
+
+        const thread = TOPOLOGICAL_SIGNATURE.projectThread1D(rgba, resolution, CANONICAL_THREAD_CONFIG);
+        const thread1DHash = await sha256HexBytes(serializeInt16Be(thread));
+        if (thread1DHash !== signature.thread_1d_hash) {
+            reasons.push("THREAD_1D_HASH_MISMATCH");
+        }
+
+        return { ok: reasons.length === 0, reasons };
+    }
 };
 
 

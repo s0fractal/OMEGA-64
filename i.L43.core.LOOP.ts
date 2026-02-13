@@ -2,6 +2,7 @@
 // The Heartbeat of OMEGA-64.
 // "Spark": Randomly activates Atoms to simulate Neural Noise.
 
+
 import { RIBOSOME, Atom } from "./i.L32.core.RIBOSOME.ts";
 import { NERVE } from "./i.L48.core.NERVE.ts";
 import { MUTATE } from "./i.L43.core.MUTATE.ts";
@@ -14,10 +15,27 @@ import { PROOF } from './i.L99.core.PROOF.ts';
 import { MYCELIUM, MyceliumAgent } from './i.L99.core.MYCELIUM.ts';
 import { WAVE_PACKET } from './i.L13.core.WAVE_PACKET.ts';
 
+// 🛡️ Era 3.0: Hologram
+import { HOLOGRAM } from "./i.L64.core.HOLOGRAM.ts";
+
+// 🛡️ Era 2.6: The Spark Imports
+import { GATE_RUNNER } from "./i.L32.core.GATE_RUNNER.ts";
+import { DeltaProposal, StateSnapshot, GateConfig } from "./i.L99.core.STATE_SNAPSHOT.ts";
+import { LEDGER } from "./i.L99.core.LEDGER.ts";
+
 export const LOOP = {
-    ignite: async () => {
-        console.log("⚡ LOOP: IGNITION...");
-        NERVE.wake();
+    /**
+     * The Spark.
+     * Starts the autonomous cycle of OMEGA-64.
+     */
+    ignite: async (options: { 
+        maxTicks?: number, 
+        config?: Partial<GateConfig>,
+        initialState?: StateSnapshot,
+        port?: number
+    } = {}) => {
+        console.log("⚡ LOOP: IGNITION... (Era 2.6: The Spark)");
+        NERVE.wake(options.port || 8080);
         
         const latticeMap = await RIBOSOME.lift();
         const atoms = Array.from(latticeMap.values());
@@ -26,135 +44,110 @@ export const LOOP = {
         if (S === 0) return;
         NERVE.pulse("INIT", { atomCount: S });
 
-        // Initialize Chronoflux for all agents
+        // Initialize Chronoflux
         atoms.forEach((atom, idx) => {
             const initialR = atom.topo?.r || (idx % 2 === 0 ? 0 : 16384);
             CHRONO_TICK.initAgent(atom.id, initialR);
-            console.log(`⏳ CHRONOFLUX: Agent ${atom.id} initialized at τ=${CHRONOFLUX.depthToProperTime(initialR).toFixed(3)}`);
         });
 
+        // 🛡️ Runtime State Initialization
+        let currentState: StateSnapshot = options.initialState || {
+            tick: 0,
+            state_hash: "genesis_s0",
+            state_i16: new Int16Array(64)
+        };
+        
+        const gateConfig: GateConfig = {
+            max_abs_delta_per_level: 1000,
+            max_total_abs_delta_per_tick: 5000,
+            max_cost_per_agent: 100,
+            reliability_weight: new Map(),
+            dry_run: false,
+            ...(options.config || {})
+        };
+
+        // Persistent Agents (Mycelium)
+        let activeAgents: MyceliumAgent[] = [
+             {
+                 id: "mycelium-alpha",
+                 wave: WAVE_PACKET.create(-10000, 1000, 0, 10000),
+                 stamina: 100
+             },
+             {
+                 id: "mycelium-beta",
+                 wave: WAVE_PACKET.create(10000, 1000, 32000, 10000),
+                 stamina: 100
+             }
+        ];
+
         let t = 0;
-        setInterval(() => {
+        const maxTicks = options.maxTicks || Infinity;
+
+        const intervalId = setInterval(async () => {
+            if (t >= maxTicks) {
+                clearInterval(intervalId);
+                console.log("⚡ LOOP: Shutdown (Max Ticks reached).");
+                return;
+            }
             t++;
 
-            // 1. KAIROS CHECK (The Spark)
+            // 1. KAIROS CHECK
             KAIROS.ignite(atoms);
             
-            // 2. DREAM STATE (Sleep & Consolidation)
-            if (t % 100 === 0) {
-                console.log(`[TICK ${t}] 💤 DREAM STATE: Consolidating Holotypes...`);
-                NERVE.pulse("DREAM_START", { tick: t });
-                // Future: dissolveSurfaceNoise(lattice);
-                // Future: selfOrganizeByGravity(lattice);
-                return; // Sleep (skip active processing for this tick)
-            }
+            // 2. MYCELIUM LIFE ACT & PROPOSAL GENERATION
+            // "The Dream becomes Action"
+            const proposals: DeltaProposal[] = [];
 
-            // 2.1 PROOF SPIRAL (System Integrity Check)
-            if (t % 1000 === 0) {
-                console.log(`[TICK ${t}] 🌀 PROOF: Verifying System Integrity...`);
-                const integrity = PROOF.systemIntegrity();
-                if (integrity.holotypeVerified) {
-                    console.log("✅ PROOF: Holotype Verified. Structure is stable.");
-                } else {
-                    console.warn("⚠️ PROOF: Structural Instability Detected. L00-L63 resonance failing.");
-                }
-            }
-
-            // 2.2 MYCELIUM LOOP (Life Act)
-            if (t % 100 === 0) {
-                 // Create a transient agent for simulation
-                 const seedAgent: MyceliumAgent = {
-                     id: `mycelium-${t}`,
-                     wave: WAVE_PACKET.create(Math.floor(Math.random() * 60000) - 30000, 1000, Math.floor(Math.random()*65535), 10000),
-                     stamina: 100
-                 };
-                 
-                 // Live one cycle
-                 const result = MYCELIUM.live(seedAgent, []); // No neighbours in this simple test
-                 // console.log(`[TICK ${t}] 🍄 MYCELIUM: ${result.action} (Cost: ${result.cost.toFixed(2)})`);
-            }
-
-            // 3. CHRONOFLUX TICK (Deep Time Evolution)
-            const randomAtom = atoms[Math.floor(Math.random() * S)];
-            const chronoState = CHRONO_TICK.tick(randomAtom.id);
-            
-            if (chronoState && t % 10 === 0) {
-                console.log(`[TICK ${t}] ⏳ ${randomAtom.id}: τ=${chronoState.tau.toFixed(4)}, depth=${chronoState.depth}, flow=${chronoState.flowRate.toFixed(2)}`);
+            activeAgents = activeAgents.map(agent => {
+                // Live one step
+                const result = MYCELIUM.live(agent, []); // TODO: Real neighbors
                 
-                if (chronoState.tau < 0.1) {
-                    console.log(`🕳️ EVENT HORIZON: ${randomAtom.id} approaching temporal singularity!`);
+                // Convert to Physical Proposal
+                const proposal = MYCELIUM.toProposal(result.newAgent, result.action, currentState);
+                if (proposal) {
+                     proposals.push(proposal);
+                     // console.log(`🍄 PROPOSAL: ${proposal.proposal_id} (${proposal.intent})`);
                 }
-            }
-            
-            // Synchronize two agents every 50 ticks
-            if (t % 50 === 0 && atoms.length >= 2) {
-                const [a1, a2] = [atoms[0], atoms[1]];
-                const sync = CHRONO_TICK.syncAgents(a1.id, a2.id);
-                if (sync.success) {
-                    console.log(`🔄 CHRONO-SYNC: ${a1.id} ↔ ${a2.id} shared τ=${sync.sharedTime.toFixed(4)}`);
-                }
+                
+                return result.newAgent;
+            });
+
+            // 3. GATE EXECUTION (The Pivot)
+            // Submit proposals to the physical body
+            if (proposals.length > 0) {
+                const output = await GATE_RUNNER.step({
+                    state: currentState,
+                    proposals: proposals,
+                    config: gateConfig
+                });
+
+                // Update Local State
+                currentState = output.nextState;
+                console.log(`[TICK ${currentState.tick}] 🛡️ GATE: Bridge=${output.bridge_mode} | Hash=${currentState.state_hash.slice(0,8)} | Accepted=${proposals.length}`);
+            } else {
+                 // Even with no proposals, we might want to advance tick?
+                 // For now, Glider Lite is event-driven by proposals, but time flows linearly.
+                 // We simulate "Tick with no changes" by creating an Identity Proposal?
+                 // Or just increment local counter.
+                 currentState.tick++;
+                 // console.log(`[TICK ${currentState.tick}] 💤 Idle...`);
             }
 
 
-// 4. VISUALIZER (Self-Observation)
+            // 4. VISUALIZER & HOLOGRAM (The Face)
             if (t % 5 === 0) {
-                const heatmap = VISUALIZER.render();
-                const features = VISUALIZER.extract_features(heatmap);
-                
-                // Vortex Detection
-                const vortices = features.filter(f => f.type === 'VORTEX');
-                if (vortices.length > 3) {
-                    console.log("🌪️ CRITICAL: Multiple vortices detected. Field restructuring imminent.");
-                }
-
-                // Propose trajectories for active agents
-                for (const [id, pulse] of ARENA.active) {
-                    const suggestions = VISUALIZER.suggest_trajectories(features, pulse.wave.center);
-                    NERVE.pulse("TOPOLOGY", { agent: id, suggestions: suggestions.slice(0, 3) });
-                }
+                 // 🛡️ Era 3.0: Holographic Broadcast
+                 const hologram = HOLOGRAM.render(currentState);
+                 NERVE.pulse("HOLOGRAM", hologram);
             }
 
-            // 5. WAKING STATE (Active Mutation)
-            // Mutation Simulation (Every 10 ticks)
-            (t % 10 === 0) && (async () => {
-                const targetId = "i.L99.core.SANDBOX.ts";
-                
-                const oldState = { mutations: Math.floor((t-5)/5) };
-                const tickMutations = Math.floor(t / 5);
-                const timestamp = new Date().toISOString();
-                
-                const newContent = `
-// i.L99.core.SANDBOX.ts
-// The Playground for OMEGA-64 Self-Mutation.
-// This file is designed to be rewritten by the system.
+            // 5. CHRONOFLUX (Time)
+             if (t % 10 === 0) {
+                 const randomAtom = atoms[Math.floor(Math.random() * S)];
+                 const chronoState = CHRONO_TICK.tick(randomAtom.id);
+             }
 
-export const STATE = {
-    mutations: ${tickMutations},
-    last_mutation: "${timestamp}",
-    history: [
-        "Mutation Cycle ${t}",
-        "Entropy: ${Math.random().toFixed(4)}"
-    ]
-};
-// 🛡️ OMEGA WAS HERE (Tick ${t})
-`;
-                await MUTATE.write(targetId, newContent, false); 
-                
-                const newState = { mutations: tickMutations };
-                const score = INTENT.judge(oldState, newState);
-                
-                const verdict = score > 0 ? "APPROVED" : "REJECTED";
-                console.log(`⚖️ INTENT: Mutation Result -> ${verdict} (Score: ${score})`);
-                
-                NERVE.pulse("MUTATION", { target: targetId, tick: t, verdict });
-            })();
-            
-            // Standard Neural Activation
-            const neuralAtom = atoms[Math.floor(Math.random() * S)];
-            // console.log(`[TICK ${t}] ⚡ ${neuralAtom.id}`); // Quiet mode
-             NERVE.pulse("ACTIVATION", { id: neuralAtom.id, level: neuralAtom.level });
-
-        }, 1000);
+        }, 100); // Fast loop for simulation
     }
 };
 

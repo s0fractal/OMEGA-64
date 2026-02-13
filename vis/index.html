@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>OMEGA-64 | Holographic Face</title>
+        <style>
+            body {
+                background: #050505;
+                color: #ccc;
+                font-family: monospace;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+                margin: 0;
+                overflow: hidden;
+            }
+            canvas {
+                box-shadow: 0 0 50px rgba(0, 255, 255, 0.1);
+                border: 1px solid #333;
+                cursor: crosshair;
+            }
+            #status {
+                margin-top: 20px;
+                font-size: 12px;
+                opacity: 0.7;
+            }
+            #legend {
+                position: absolute;
+                bottom: 20px;
+                left: 20px;
+                font-size: 10px;
+                text-align: left;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="omega-canvas" width="512" height="512"></canvas>
+        <div id="status">CONNECTING TO NERVE...</div>
+
+        <div id="legend">
+            [OMEGA-64]<br>
+            Era 3.0: Hologram<br>
+            <span id="tick">T: 0</span>
+        </div>
+
+        <script>
+            const canvas = document.getElementById(
+                "omega-canvas",
+            );
+            const ctx = canvas.getContext("2d");
+            const status = document.getElementById("status");
+            const tickLabel = document.getElementById("tick");
+
+            const WS_URL = "ws://localhost:8080";
+            let ws = null;
+
+            // Grid Config
+            const GRID_SIZE = 8; // 8x8 = 64 cells
+            const CELL_SIZE = canvas.width / GRID_SIZE;
+
+            function connect() {
+                ws = new WebSocket(WS_URL);
+
+                ws.onopen = () => {
+                    status.textContent =
+                        "🟢 SYNAPSE ESTABLISHED";
+                    status.style.color = "#0f0";
+                };
+
+                ws.onclose = () => {
+                    status.textContent =
+                        "🔴 SYNAPSE LOST. RETRYING...";
+                    status.style.color = "#f00";
+                    setTimeout(connect, 1000);
+                };
+
+                ws.onmessage = (event) => {
+                    try {
+                        const msg = JSON.parse(event.data);
+                        if (msg.type === "HOLOGRAM") {
+                            render(msg.data);
+                        }
+                    } catch (e) {
+                        console.error("Decode error", e);
+                    }
+                };
+            }
+
+            function render(frame) {
+                // Clear
+                ctx.fillStyle = "rgba(5, 5, 5, 0.2)"; // Fade effect
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                // Draw Grid (Subtle)
+                ctx.strokeStyle = "#111";
+                ctx.lineWidth = 1;
+                for (let i = 0; i <= GRID_SIZE; i++) {
+                    ctx.beginPath();
+                    ctx.moveTo(i * CELL_SIZE, 0);
+                    ctx.lineTo(i * CELL_SIZE, canvas.height);
+                    ctx.stroke();
+
+                    ctx.beginPath();
+                    ctx.moveTo(0, i * CELL_SIZE);
+                    ctx.lineTo(canvas.width, i * CELL_SIZE);
+                    ctx.stroke();
+                }
+
+                // Draw Cells
+                if (frame.cells) {
+                    frame.cells.forEach((cell) => {
+                        const x = (cell.idx % GRID_SIZE) *
+                            CELL_SIZE;
+                        const y =
+                            Math.floor(cell.idx / GRID_SIZE) *
+                            CELL_SIZE;
+
+                        // Glow
+                        const cx = x + CELL_SIZE / 2;
+                        const cy = y + CELL_SIZE / 2;
+                        const grad = ctx.createRadialGradient(
+                            cx,
+                            cy,
+                            0,
+                            cx,
+                            cy,
+                            CELL_SIZE / 1.5,
+                        );
+                        grad.addColorStop(0, cell.color);
+                        grad.addColorStop(1, "transparent");
+
+                        ctx.fillStyle = grad;
+                        ctx.fillRect(
+                            x,
+                            y,
+                            CELL_SIZE,
+                            CELL_SIZE,
+                        );
+
+                        // Core
+                        ctx.fillStyle = "#fff";
+                        ctx.globalAlpha = cell.intensity * 0.5;
+                        ctx.fillRect(
+                            x + CELL_SIZE * 0.4,
+                            y + CELL_SIZE * 0.4,
+                            CELL_SIZE * 0.2,
+                            CELL_SIZE * 0.2,
+                        );
+                        ctx.globalAlpha = 1.0;
+                    });
+                }
+
+                // Update Meta
+                tickLabel.textContent =
+                    `T: ${frame.tick} | BRIDGE: ${frame.meta.bridge_mode}`;
+            }
+
+            // Interaction: Reverse Touch (Touch -> Signal)
+            canvas.addEventListener("click", (e) => {
+                if (!ws || ws.readyState !== WebSocket.OPEN) {
+                    return;
+                }
+
+                const rect = canvas.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const col = Math.floor(x / CELL_SIZE);
+                const row = Math.floor(y / CELL_SIZE);
+                const idx = row * GRID_SIZE + col;
+
+                // Send Touch Signal
+                ws.send(JSON.stringify({
+                    type: "TOUCH",
+                    payload: {
+                        idx,
+                        x: col,
+                        y: row,
+                        intent: "FOCUS",
+                    },
+                }));
+
+                // Visual Feedback
+                ctx.strokeStyle = "#fff";
+                ctx.lineWidth = 2;
+                ctx.strokeRect(
+                    col * CELL_SIZE,
+                    row * CELL_SIZE,
+                    CELL_SIZE,
+                    CELL_SIZE,
+                );
+            });
+
+            // Start
+            connect();
+        </script>
+    </body>
+</html>
