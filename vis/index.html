@@ -1,200 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>OMEGA-64 | Holographic Face</title>
-        <style>
-            body {
-                background: #050505;
-                color: #ccc;
-                font-family: monospace;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                height: 100vh;
-                margin: 0;
-                overflow: hidden;
+<head>
+    <meta charset="UTF-8">
+    <title>OMEGA-64 | Holographic Trinity</title>
+    <style>
+        body { 
+            margin: 0; 
+            overflow: hidden; 
+            background: #000; 
+            color: #0f0; 
+            font-family: monospace; 
+        }
+        canvas { 
+            display: block; 
+            width: 100vw; 
+            height: 100vh;
+        }
+        #ui {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            pointer-events: none;
+            z-index: 10;
+        }
+        .mode-btn {
+            pointer-events: auto;
+            background: rgba(0, 50, 0, 0.8);
+            border: 1px solid #0f0;
+            color: #0f0;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        .mode-btn:hover { background: #0f0; color: #000; }
+    </style>
+</head>
+<body>
+    <div id="ui">
+        <h1>OMEGA-64: Era 3.3</h1>
+        <div id="status">Connecting to NERVE...</div>
+        <br>
+        <button class="mode-btn" onclick="setMode('CYLINDER')">CYLINDER</button>
+        <button class="mode-btn" onclick="setMode('TORUS')">TORUS</button>
+        <button class="mode-btn" onclick="setMode('ORBIT')">ORBIT</button>
+    </div>
+    <canvas id="stage"></canvas>
+
+    <script>
+        const canvas = document.getElementById('stage');
+        const ctx = canvas.getContext('2d');
+        const statusEl = document.getElementById('status');
+        
+        // State
+        let socket;
+        let points = [];
+        let projectionMode = 'CYLINDER';
+        let camAngle = 0;
+        let camY = 0;
+        let isDragging = false;
+        let lastMouseX = 0;
+        
+        // Resize
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        // Input
+        canvas.addEventListener('mousedown', e => { isDragging = true; lastMouseX = e.clientX; });
+        canvas.addEventListener('mouseup', () => isDragging = false);
+        canvas.addEventListener('mousemove', e => {
+            if(isDragging) {
+                const dx = e.clientX - lastMouseX;
+                camAngle += dx * 0.01;
+                lastMouseX = e.clientX;
             }
-            canvas {
-                box-shadow: 0 0 50px rgba(0, 255, 255, 0.1);
-                border: 1px solid #333;
-                cursor: crosshair;
-            }
-            #status {
-                margin-top: 20px;
-                font-size: 12px;
-                opacity: 0.7;
-            }
-            #legend {
-                position: absolute;
-                bottom: 20px;
-                left: 20px;
-                font-size: 10px;
-                text-align: left;
-            }
-        </style>
-    </head>
-    <body>
-        <canvas id="omega-canvas" width="512" height="512"></canvas>
-        <div id="status">CONNECTING TO NERVE...</div>
+        });
 
-        <div id="legend">
-            [OMEGA-64]<br>
-            Era 3.0: Hologram<br>
-            <span id="tick">T: 0</span>
-        </div>
+        function setMode(m) {
+            projectionMode = m;
+            statusEl.innerText = `Mode: ${m}`;
+        }
 
-        <script>
-            const canvas = document.getElementById(
-                "omega-canvas",
-            );
-            const ctx = canvas.getContext("2d");
-            const status = document.getElementById("status");
-            const tickLabel = document.getElementById("tick");
+        // 3D Projection Logic (Client-Side Mirror of i.L64.core.PROJECTION.ts)
+        function project3D(x, y, z) {
+            // Apply Camera Rotation (around Y axis)
+            const cos = Math.cos(camAngle);
+            const sin = Math.sin(camAngle);
+            
+            // Rotate X, Z
+            const rx = x * cos - z * sin;
+            const rz = x * sin + z * cos;
+            
+            // Perspective
+            const fov = 500;
+            const viewerZ = 800; // Distance from camera to center
+            
+            const scale = fov / (fov + viewerZ + rz); 
+            
+            const screenX = (canvas.width / 2) + (rx * scale);
+            const screenY = (canvas.height / 2) + (y * scale);
+            
+            return { x: screenX, y: screenY, scale, zIndex: rz };
+        }
 
-            const WS_URL = "ws://localhost:8080";
-            let ws = null;
-
-            // Grid Config
-            const GRID_SIZE = 8; // 8x8 = 64 cells
-            const CELL_SIZE = canvas.width / GRID_SIZE;
-
-            function connect() {
-                ws = new WebSocket(WS_URL);
-
-                ws.onopen = () => {
-                    status.textContent =
-                        "🟢 SYNAPSE ESTABLISHED";
-                    status.style.color = "#0f0";
-                };
-
-                ws.onclose = () => {
-                    status.textContent =
-                        "🔴 SYNAPSE LOST. RETRYING...";
-                    status.style.color = "#f00";
-                    setTimeout(connect, 1000);
-                };
-
-                ws.onmessage = (event) => {
-                    try {
-                        const msg = JSON.parse(event.data);
-                        if (msg.type === "HOLOGRAM") {
-                            render(msg.data);
-                        }
-                    } catch (e) {
-                        console.error("Decode error", e);
-                    }
-                };
-            }
-
-            function render(frame) {
-                // Clear
-                ctx.fillStyle = "rgba(5, 5, 5, 0.2)"; // Fade effect
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-                // Draw Grid (Subtle)
-                ctx.strokeStyle = "#111";
-                ctx.lineWidth = 1;
-                for (let i = 0; i <= GRID_SIZE; i++) {
-                    ctx.beginPath();
-                    ctx.moveTo(i * CELL_SIZE, 0);
-                    ctx.lineTo(i * CELL_SIZE, canvas.height);
-                    ctx.stroke();
-
-                    ctx.beginPath();
-                    ctx.moveTo(0, i * CELL_SIZE);
-                    ctx.lineTo(canvas.width, i * CELL_SIZE);
-                    ctx.stroke();
+        // Rendering Loop
+        function draw() {
+            // Fade Trail
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Sort points by Z for Painter's Algorithm
+            const projected = points.map(p => {
+                // Generate geometry on the fly based on mode
+                let x, y, z;
+                
+                // Assuming p has {val, i} or similar raw data.
+                // Actually, NERVE sends raw `state_i16`.
+                // Let's re-calculate logical geometry here because we receive raw state.
+                
+                const norm = p.val / 32768.0;
+                const phase = p.i / 64 * Math.PI * 2 * 2; // 2 windings
+                
+                const RADIUS = 200;
+                
+                if (projectionMode === 'CYLINDER') {
+                    const r = RADIUS + (norm * 50);
+                    x = r * Math.cos(phase);
+                    z = r * Math.sin(phase);
+                    y = (p.i - 32) * 10;
+                } else if (projectionMode === 'TORUS') {
+                    const R = 200, rCheck = 80;
+                    const phi = norm * Math.PI * 2; 
+                    x = (R + rCheck * Math.cos(phi)) * Math.cos(phase);
+                    z = (R + rCheck * Math.cos(phi)) * Math.sin(phase);
+                    y = rCheck * Math.sin(phi);
+                } else {
+                    // ORBIT
+                    const r = RADIUS + Math.random() * 10; // Jitter
+                    x = r * Math.cos(phase + camAngle);
+                    z = r * Math.sin(phase + camAngle);
+                    y = (p.i - 32) * 10;
                 }
-
-                // Draw Cells
-                if (frame.cells) {
-                    frame.cells.forEach((cell) => {
-                        const x = (cell.idx % GRID_SIZE) *
-                            CELL_SIZE;
-                        const y =
-                            Math.floor(cell.idx / GRID_SIZE) *
-                            CELL_SIZE;
-
-                        // Glow
-                        const cx = x + CELL_SIZE / 2;
-                        const cy = y + CELL_SIZE / 2;
-                        const grad = ctx.createRadialGradient(
-                            cx,
-                            cy,
-                            0,
-                            cx,
-                            cy,
-                            CELL_SIZE / 1.5,
-                        );
-                        grad.addColorStop(0, cell.color);
-                        grad.addColorStop(1, "transparent");
-
-                        ctx.fillStyle = grad;
-                        ctx.fillRect(
-                            x,
-                            y,
-                            CELL_SIZE,
-                            CELL_SIZE,
-                        );
-
-                        // Core
-                        ctx.fillStyle = "#fff";
-                        ctx.globalAlpha = cell.intensity * 0.5;
-                        ctx.fillRect(
-                            x + CELL_SIZE * 0.4,
-                            y + CELL_SIZE * 0.4,
-                            CELL_SIZE * 0.2,
-                            CELL_SIZE * 0.2,
-                        );
-                        ctx.globalAlpha = 1.0;
-                    });
-                }
-
-                // Update Meta
-                tickLabel.textContent =
-                    `T: ${frame.tick} | BRIDGE: ${frame.meta.bridge_mode}`;
-            }
-
-            // Interaction: Reverse Touch (Touch -> Signal)
-            canvas.addEventListener("click", (e) => {
-                if (!ws || ws.readyState !== WebSocket.OPEN) {
-                    return;
-                }
-
-                const rect = canvas.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-
-                const col = Math.floor(x / CELL_SIZE);
-                const row = Math.floor(y / CELL_SIZE);
-                const idx = row * GRID_SIZE + col;
-
-                // Send Touch Signal
-                ws.send(JSON.stringify({
-                    type: "TOUCH",
-                    payload: {
-                        idx,
-                        x: col,
-                        y: row,
-                        intent: "FOCUS",
-                    },
-                }));
-
-                // Visual Feedback
-                ctx.strokeStyle = "#fff";
-                ctx.lineWidth = 2;
-                ctx.strokeRect(
-                    col * CELL_SIZE,
-                    row * CELL_SIZE,
-                    CELL_SIZE,
-                    CELL_SIZE,
-                );
+                
+                return { ...project3D(x, y, z), color: p.color, val: p.val };
             });
+            
+            projected.sort((a, b) => b.zIndex - a.zIndex);
+            
+            projected.forEach(p => {
+                if (p.scale < 0) return; // Behind camera clipping
+                
+                ctx.beginPath();
+                const size = Math.max(1, 4 * p.scale + (Math.abs(p.val)/10000));
+                ctx.arc(p.x, p.y, size, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.fill();
+                
+                // Glow
+                if (Math.abs(p.val) > 10000) {
+                    ctx.shadowBlur = 10;
+                    ctx.shadowColor = p.color;
+                } else {
+                    ctx.shadowBlur = 0;
+                }
+            });
+            
+            camAngle += 0.005; // Auto rotate
+            requestAnimationFrame(draw);
+        }
 
-            // Start
-            connect();
-        </script>
-    </body>
+        // Connection
+        function connect() {
+            socket = new WebSocket('ws://localhost:8080'); // Use 8083 if needed
+            
+            socket.onopen = () => {
+                statusEl.innerText = 'ONLINE: Connected to OMEGA-64';
+                statusEl.style.color = '#0f0';
+            };
+            
+            socket.onmessage = (event) => {
+                try {
+                    const data = JSON.parse(event.data);
+                    
+                    if (data.type === 'HOLOGRAM' && data.payload) {
+                        // Convert State Array to Points
+                        // Payload is likely `state_i16` array or similar
+                        // Let's assume the payload IS the state object
+                        
+                        const state = data.payload.state_i16 || []; // Adjust based on actual packet
+                        
+                        points = Object.values(state).map((val, i) => {
+                            // Map value to Color
+                            // Red (Hot) -> Green (Mid) -> Blue (Cold)
+                            let r = 0, g = 255, b = 0;
+                            if (val > 10000) { r = 255; g = 100; b = 100; }
+                            else if (val < -10000) { r = 100; g = 100; b = 255; }
+                            else { r = 0; g = 255; b = 100; }
+                            
+                            return { val, i, color: `rgb(${r},${g},${b})` };
+                        });
+                    }
+                } catch(e) {
+                    console.error('Frame Error:', e);
+                }
+            };
+            
+            socket.onclose = () => {
+                statusEl.innerText = 'OFFLINE: Retrying...';
+                statusEl.style.color = '#f00';
+                setTimeout(connect, 2000);
+            };
+        }
+
+        connect();
+        draw();
+    </script>
+</body>
 </html>
