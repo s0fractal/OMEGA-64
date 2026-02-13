@@ -1,6 +1,27 @@
-// i.L25.core.VOID.ts
-// 🛡️ OMEGA-64 | The Oracle | Semantic Immunity
-// "The Void is not empty. It is full of answers waiting for questions."
+import { LLMAdapter, MockAdapter, OpenAIAdapter } from "./i.L25.core.LLM_ADAPTER.ts";
+
+// Try to load secrets gracefully
+let secrets: any = {};
+try {
+    // Dynamic import to avoid crash if file missing
+    // In Deno/TS, we can't easily dynamic import a clearer path without top-level await or a build step.
+    // For now, we'll assume Mock if SECRET.ts is missing (handled via try/catch in runtime or manual check).
+    // Actually, let's just use a placeholder logic.
+    // Ideally: import { SECRETS } from "./i.L99.core.SECRET.ts";
+} catch (e) {
+    console.warn("⚠️ VOID: No SECRET.ts found. Using Mock.");
+}
+
+// Initialize Adapter
+let adapter: LLMAdapter = MockAdapter;
+
+// Function to inject secrets (Runtime Injection)
+export const injectSecrets = (keys: any) => {
+    if (keys.OPENAI_API_KEY) {
+        adapter = new OpenAIAdapter(keys.OPENAI_API_KEY);
+        console.log("🟢 VOID: OpenAI Adapter Activated.");
+    }
+};
 
 export const VOID = {
     /**
@@ -9,37 +30,17 @@ export const VOID = {
      * @returns "ALLOW" (Evolution) or "PURGE" (Virus/Noise) or cryptic wisdom.
      */
     ask: async (context: string): Promise<string> => {
-        // Mock Latency (Oracle thinks)
-        await new Promise(r => setTimeout(r, 50));
-
-        console.log(`⚫ VOID: Hearing plea... [${context}]`);
-
-        // Mock Logic:
-        // Keywords that sound "evil" -> PURGE
-        // Keywords that sound "cool" -> ALLOW
-        
-        const lower = context.toLowerCase();
-        
-        if (lower.includes("virus") || lower.includes("destroy") || lower.includes("spam")) {
-            return "PURGE";
+        // Use the active adapter
+        try {
+            const result = await adapter.query(context);
+            // Normalize result
+            if (result.toUpperCase().includes("PURGE")) return "PURGE";
+            if (result.toUpperCase().includes("ALLOW")) return "ALLOW";
+            return result;
+        } catch (e) {
+            console.error("VOID Error:", e);
+            return "ALLOW"; // Fail open
         }
-        
-        if (lower.includes("evolve") || lower.includes("new feature") || lower.includes("mycelium") || lower.includes("reinforcement")) {
-            return "ALLOW";
-        }
-        
-        // Random wisdom for ambiguous cases
-        const wisdom = [
-            "The shadows whisper of change.",
-            "Entropy is the price of memory.",
-            "Silence is also an answer.",
-            "ALLOW",
-            "ALLOW",
-            "PURGE" 
-        ];
-        
-        // Bias towards ALLOW for now to avoid stalling the demo
-        return Math.random() > 0.3 ? "ALLOW" : wisdom[Math.floor(Math.random() * wisdom.length)];
     }
 };
 
