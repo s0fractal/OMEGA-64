@@ -659,3 +659,353 @@ Runtime (KAIROS) and the Operator (You).
 }
 ```
 ---
+
+## [2026-02-13T14:35:12.259Z] 🔴 REQUEST
+**Source**: `KAIROS`
+**Message**: Oracle decreas PURGE for [v.82fbb8cb7b4fd4b4_-12_82.ts]. Structural integrity compromised.
+
+**Context**:
+```json
+{
+  "atomId": "v.82fbb8cb7b4fd4b4_-12_82.ts",
+  "resonance": 1588.5710400319442,
+  "judgment": "PURGE"
+}
+```
+---
+
+## [2026-02-13T14:35:17.356Z] 🔴 REQUEST
+**Source**: `KAIROS`
+**Message**: Oracle decreas PURGE for [v.4b53577e665cbb26_11_73.ts]. Structural integrity compromised.
+
+**Context**:
+```json
+{
+  "atomId": "v.4b53577e665cbb26_11_73.ts",
+  "resonance": 1584.329944160165,
+  "judgment": "PURGE"
+}
+```
+---
+
+## [2026-02-13T14:35:50.478Z] 🔴 REQUEST
+**Source**: `KAIROS`
+**Message**: Oracle decreas PURGE for [v.6d1608dbb2ffede0_-4_27.ts]. Structural integrity compromised.
+
+**Context**:
+```json
+{
+  "atomId": "v.6d1608dbb2ffede0_-4_27.ts",
+  "resonance": 1595.8560665332832,
+  "judgment": "PURGE"
+}
+```
+---
+
+## [2026-02-13T14:59:34.468Z] 🔴 REQUEST
+**Source**: `KAIROS`
+**Message**: Oracle decreas PURGE for [i.L26.core.SEM_WRAP.ts]. Structural integrity compromised.
+
+**Context**:
+```json
+{
+  "atomId": "i.L26.core.SEM_WRAP.ts",
+  "resonance": 1571.1483086741994,
+  "judgment": "PURGE"
+}
+```
+---
+
+## [2026-02-13T14:59:35.284Z] 🔴 REQUEST
+**Source**: `KAIROS`
+**Message**: Oracle decreas PURGE for [v.80d1bc5b9f73ba9d_13_197.ts]. Structural integrity compromised.
+
+**Context**:
+```json
+{
+  "atomId": "v.80d1bc5b9f73ba9d_13_197.ts",
+  "resonance": 1558.0358719001538,
+  "judgment": "PURGE"
+}
+```
+---
+
+## [2026-02-13T14:59:36.305Z] 🔴 REQUEST
+**Source**: `KAIROS`
+**Message**: Oracle decreas PURGE for [v.262a02be5016f4be_18_35.ts]. Structural integrity compromised.
+
+**Context**:
+```json
+{
+  "atomId": "v.262a02be5016f4be_18_35.ts",
+  "resonance": 1587.0078182307036,
+  "judgment": "PURGE"
+}
+```
+---
+
+## [2026-02-13T14:59:36.914Z] 🔴 REQUEST
+**Source**: `KAIROS`
+**Message**: Oracle decreas PURGE for [v.4d77dabb2bd6a90a_-11_127.ts]. Structural integrity compromised.
+
+**Context**:
+```json
+{
+  "atomId": "v.4d77dabb2bd6a90a_-11_127.ts",
+  "resonance": 1594.1500752956863,
+  "judgment": "PURGE"
+}
+```
+---
+
+## [2026-02-13T14:59:37.220Z] 🔴 REQUEST
+**Source**: `KAIROS`
+**Message**: Oracle decreas PURGE for [v.69e7b2dd9c97df04_22_133.ts]. Structural integrity compromised.
+
+**Context**:
+```json
+{
+  "atomId": "v.69e7b2dd9c97df04_22_133.ts",
+  "resonance": 1589.3786375698949,
+  "judgment": "PURGE"
+}
+```
+---
+
+## [2026-02-13T14:59:39.194Z] 🔴 REQUEST
+**Source**: `KAIROS`
+**Message**: Oracle decreas PURGE for [v.e071820f2f9fe3a0_-1_247.ts]. Structural integrity compromised.
+
+**Context**:
+```json
+{
+  "atomId": "v.e071820f2f9fe3a0_-1_247.ts",
+  "resonance": 1564.426967356305,
+  "judgment": "PURGE"
+}
+```
+---
+
+## [2026-02-13T14:59:39.806Z] 🔴 REQUEST
+**Source**: `KAIROS`
+**Message**: Oracle decreas PURGE for [v.7dc7dd45901b4f15_10_22.ts]. Structural integrity compromised.
+
+**Context**:
+```json
+{
+  "atomId": "v.7dc7dd45901b4f15_10_22.ts",
+  "resonance": 1608.0834476990428,
+  "judgment": "PURGE"
+}
+```
+---
+
+## [2026-02-13T14:59:39.865Z] 🔴 REQUEST
+**Source**: `KAIROS`
+**Message**: Oracle decreas PURGE for [v.67a8f784f64bb65e_-3_10.ts]. Structural integrity compromised.
+
+**Context**:
+```json
+{
+  "atomId": "v.67a8f784f64bb65e_-3_10.ts",
+  "resonance": 1582.473462090525,
+  "judgment": "PURGE"
+}
+```
+---
+
+## [2026-02-13T14:59:40.112Z] 🔴 REQUEST
+**Source**: `KAIROS`
+**Message**: Oracle decreas PURGE for [i.L54.core.CDR.ts]. Structural integrity compromised.
+
+**Context**:
+```json
+{
+  "atomId": "i.L54.core.CDR.ts",
+  "resonance": 1544.5696173825277,
+  "judgment": "PURGE"
+}
+```
+---
+
+## [2026-02-13T14:59:41.189Z] 🔴 REQUEST
+**Source**: `KAIROS`
+**Message**: Oracle decreas PURGE for [v.d894ca6aa05a10a0_-13_194.ts]. Structural integrity compromised.
+
+**Context**:
+```json
+{
+  "atomId": "v.d894ca6aa05a10a0_-13_194.ts",
+  "resonance": 1616.6247227424901,
+  "judgment": "PURGE"
+}
+```
+---
+
+## [2026-02-13T14:59:41.533Z] 🔴 REQUEST
+**Source**: `KAIROS`
+**Message**: Oracle decreas PURGE for [v.8a2e256607eb2dec_-3_83.ts]. Structural integrity compromised.
+
+**Context**:
+```json
+{
+  "atomId": "v.8a2e256607eb2dec_-3_83.ts",
+  "resonance": 1575.4569339585928,
+  "judgment": "PURGE"
+}
+```
+---
+
+## [2026-02-13T14:59:42.012Z] 🔴 REQUEST
+**Source**: `KAIROS`
+**Message**: Oracle decreas PURGE for [v.807c2c2fe1ae59d2_-6_234.ts]. Structural integrity compromised.
+
+**Context**:
+```json
+{
+  "atomId": "v.807c2c2fe1ae59d2_-6_234.ts",
+  "resonance": 1546.5014659665317,
+  "judgment": "PURGE"
+}
+```
+---
+
+## [2026-02-13T14:59:42.043Z] 🔴 REQUEST
+**Source**: `KAIROS`
+**Message**: Oracle decreas PURGE for [v.fe123d59d4e9a089_-26_74.ts]. Structural integrity compromised.
+
+**Context**:
+```json
+{
+  "atomId": "v.fe123d59d4e9a089_-26_74.ts",
+  "resonance": 1595.1698259958769,
+  "judgment": "PURGE"
+}
+```
+---
+
+## [2026-02-13T14:59:42.114Z] 🔴 REQUEST
+**Source**: `KAIROS`
+**Message**: Oracle decreas PURGE for [v.080cd08566ef579e_14_83.ts]. Structural integrity compromised.
+
+**Context**:
+```json
+{
+  "atomId": "v.080cd08566ef579e_14_83.ts",
+  "resonance": 1576.1920798234933,
+  "judgment": "PURGE"
+}
+```
+---
+
+## [2026-02-13T14:59:43.774Z] 🔴 REQUEST
+**Source**: `KAIROS`
+**Message**: Oracle decreas PURGE for [v.f146b0034a810dc4_-5_96.ts]. Structural integrity compromised.
+
+**Context**:
+```json
+{
+  "atomId": "v.f146b0034a810dc4_-5_96.ts",
+  "resonance": 1546.5650706853728,
+  "judgment": "PURGE"
+}
+```
+---
+
+## [2026-02-13T14:59:44.895Z] 🔴 REQUEST
+**Source**: `KAIROS`
+**Message**: Oracle decreas PURGE for [i.L05.core.SENSORS.ts]. Structural integrity compromised.
+
+**Context**:
+```json
+{
+  "atomId": "i.L05.core.SENSORS.ts",
+  "resonance": 1564.1991763942328,
+  "judgment": "PURGE"
+}
+```
+---
+
+## [2026-02-13T14:59:45.175Z] 🔴 REQUEST
+**Source**: `KAIROS`
+**Message**: Oracle decreas PURGE for [v.98e222475f3f36df_16_92.ts]. Structural integrity compromised.
+
+**Context**:
+```json
+{
+  "atomId": "v.98e222475f3f36df_16_92.ts",
+  "resonance": 1590.8846785326966,
+  "judgment": "PURGE"
+}
+```
+---
+
+## [2026-02-13T14:59:45.608Z] 🔴 REQUEST
+**Source**: `KAIROS`
+**Message**: Oracle decreas PURGE for [i.L38.core.RADIUS.ts]. Structural integrity compromised.
+
+**Context**:
+```json
+{
+  "atomId": "i.L38.core.RADIUS.ts",
+  "resonance": 1582.3310376361821,
+  "judgment": "PURGE"
+}
+```
+---
+
+## [2026-02-13T14:59:45.813Z] 🔴 REQUEST
+**Source**: `KAIROS`
+**Message**: Oracle decreas PURGE for [v.0f9d341a4ab9f4b0_-8_147.ts]. Structural integrity compromised.
+
+**Context**:
+```json
+{
+  "atomId": "v.0f9d341a4ab9f4b0_-8_147.ts",
+  "resonance": 1610.020086041815,
+  "judgment": "PURGE"
+}
+```
+---
+
+## [2026-02-13T14:59:46.221Z] 🔴 REQUEST
+**Source**: `KAIROS`
+**Message**: Oracle decreas PURGE for [v.c91945d8af21dd51_4_203.ts]. Structural integrity compromised.
+
+**Context**:
+```json
+{
+  "atomId": "v.c91945d8af21dd51_4_203.ts",
+  "resonance": 1559.92023637418,
+  "judgment": "PURGE"
+}
+```
+---
+
+## [2026-02-13T14:59:46.498Z] 🔴 REQUEST
+**Source**: `KAIROS`
+**Message**: Oracle decreas PURGE for [v.50ae41f5b91b6ac0_8_121.ts]. Structural integrity compromised.
+
+**Context**:
+```json
+{
+  "atomId": "v.50ae41f5b91b6ac0_8_121.ts",
+  "resonance": 1540.588349692226,
+  "judgment": "PURGE"
+}
+```
+---
+
+## [2026-02-13T14:59:46.842Z] 🔴 REQUEST
+**Source**: `KAIROS`
+**Message**: Oracle decreas PURGE for [v.c8b125bee55ce507_-11_198.ts]. Structural integrity compromised.
+
+**Context**:
+```json
+{
+  "atomId": "v.c8b125bee55ce507_-11_198.ts",
+  "resonance": 1604.4299899855819,
+  "judgment": "PURGE"
+}
+```
+---

@@ -2,7 +2,6 @@
 // The Heartbeat of OMEGA-64.
 // "Spark": Randomly activates Atoms to simulate Neural Noise.
 
-
 import { RIBOSOME, Atom } from "./i.L32.core.RIBOSOME.ts";
 import { NERVE } from "./i.L48.core.NERVE.ts";
 import { MUTATE } from "./i.L43.core.MUTATE.ts";
@@ -18,14 +17,10 @@ import { WAVE_PACKET } from './i.L13.core.WAVE_PACKET.ts';
 // 🛡️ Era 4.0: Swarm Imports
 import { PEER } from "./i.L99.core.PEER.ts";
 import { DISCOVERY } from "./i.L99.core.DISCOVERY.ts";
+import { SYNC } from "./i.L99.core.SYNC.ts";
 
 // 🛡️ Era 3.0: Hologram
 import { HOLOGRAM } from "./i.L64.core.HOLOGRAM.ts";
-
-// ... existing imports ...
-
-
-
 
 // 🛡️ Era 2.6: The Spark Imports
 import { GATE_RUNNER } from "./i.L32.core.GATE_RUNNER.ts";
@@ -43,7 +38,7 @@ export const LOOP = {
         initialState?: StateSnapshot,
         port?: number
     } = {}) => {
-        console.log("⚡ LOOP: IGNITION... (Era 2.6: The Spark)");
+        console.log("⚡ LOOP: IGNITION... (Era 4.0: Federated)");
         const port = options.port || 8080;
         NERVE.wake(port);
 
@@ -98,8 +93,11 @@ export const LOOP = {
 
         let t = 0;
         const maxTicks = options.maxTicks || Infinity;
+        let isSyncing = false; // Guard for Swarm Sync
 
         const intervalId = setInterval(async () => {
+            if (isSyncing) return; // Wait for sync to finish
+
             if (t >= maxTicks) {
                 clearInterval(intervalId);
                 console.log("⚡ LOOP: Shutdown (Max Ticks reached).");
@@ -111,17 +109,10 @@ export const LOOP = {
             KAIROS.ignite(atoms);
             
             // 2. MYCELIUM LIFE ACT & PROPOSAL GENERATION
-            // "The Dream becomes Action"
             const proposals: DeltaProposal[] = [];
-
-            // 2. MYCELIUM CYCLE (Act)
-            // Agents observe, decide, and act.
             const nextGeneration: MyceliumAgent[] = [];
-            const newProposals: DeltaProposal[] = [];
-
+            
             activeAgents.forEach(agent => {
-                // Find neighbors (simplification: just 2 random others for now)
-                // In full version: use spatial hashing
                 const neighbors = [
                     activeAgents[Math.floor(Math.random() * activeAgents.length)].wave,
                     activeAgents[Math.floor(Math.random() * activeAgents.length)].wave
@@ -129,92 +120,92 @@ export const LOOP = {
 
                 const result = MYCELIUM.live(agent, neighbors);
                 
-                if (result.action === "DIED") {
-                    console.log(`💀 AGENT DIED: ${agent.id}`);
-                    return; // Drop from nextGeneration
-                }
+                if (result.action === "DIED") return;
 
                 nextGeneration.push(result.newAgent);
 
                 if (result.action === "SPAWN") {
-                    // Create offspring
                     const child: MyceliumAgent = {
                         id: `spore_${t}_${Math.floor(Math.random()*1000)}`,
                         wave: {
                             ...result.newAgent.wave,
-                            center: result.newAgent.wave.center + (Math.random() > 0.5 ? 200 : -200), // Spat out
+                            center: result.newAgent.wave.center + (Math.random() > 0.5 ? 200 : -200),
                             phase: (result.newAgent.wave.phase + 1000) % 65535
                         },
-                        stamina: 80 // Start with some boost
+                        stamina: 80
                     };
                     nextGeneration.push(child);
-                    console.log(`👶 SPAWN: ${child.id} from ${agent.id}`);
                 }
 
-                // Convert to Physical Proposal (only if moved)
                 if (result.action.startsWith("Moved") || result.action === "PhaseShift") {
                      const proposal = MYCELIUM.toProposal(result.newAgent, result.action, currentState);
-                     if (proposal) newProposals.push(proposal);
+                     if (proposal) proposals.push(proposal);
                 }
             });
 
             activeAgents = nextGeneration;
-            proposals.push(...newProposals);
 
-            // 3. GATE EXECUTION (The Pivot)
-            // Submit proposals to the physical body
+            // 3. GATE EXECUTION
             if (proposals.length > 0) {
                 const output = await GATE_RUNNER.step({
                     state: currentState,
                     proposals: proposals,
                     config: gateConfig
                 });
-
-                // Update Local State
                 currentState = output.nextState;
-                console.log(`[TICK ${currentState.tick}] 🛡️ GATE: Bridge=${output.bridge_mode} | Hash=${currentState.state_hash.slice(0,8)} | Accepted=${proposals.length}`);
+                console.log(`[TICK ${currentState.tick}] 🛡️ GATE: Bridge=${output.bridge_mode} | Accepted=${proposals.length}`);
             } else {
-                 // Even with no proposals, we might want to advance tick?
-                 // For now, Glider Lite is event-driven by proposals, but time flows linearly.
-                 // We simulate "Tick with no changes" by creating an Identity Proposal?
-                 // Or just increment local counter.
                  currentState.tick++;
-                 // console.log(`[TICK ${currentState.tick}] 💤 Idle...`);
             }
 
-
-            // 4. VISUALIZER & HOLOGRAM (The Face)
+            // 4. VISUALIZER & HOLOGRAM
             if (t % 5 === 0) {
-                 // 🛡️ Era 3.0: Holographic Broadcast
                  const hologram = HOLOGRAM.render(currentState);
                  NERVE.pulse("HOLOGRAM", hologram);
             }
 
-            // 5. CHRONOFLUX (Time)
+            // 5. CHRONOFLUX
              if (t % 10 === 0) {
                  const randomAtom = atoms[Math.floor(Math.random() * S)];
-                 const chronoState = CHRONO_TICK.tick(randomAtom.id);
+                 CHRONO_TICK.tick(randomAtom.id);
              }
 
-            // 6. SWARM HEARTBEAT (Era 4.0)
+            // 6. SWARM HEARTBEAT & SYNC
             if (t % 10 === 0) {
-                 PEER.updateSelf(currentState.tick, 0, options.port);
+                 PEER.updateSelf(currentState.tick, 0, port);
                  DISCOVERY.pulse();
+
+                 // Check for Sync
+                 for (const peer of PEER.knownPeers.values()) {
+                     if (peer.tick > currentState.tick + 2) {
+                         console.log(`⚡ SWARM: Detected advanced peer [${peer.id}] (Tick ${peer.tick} > ${currentState.tick})`);
+                         isSyncing = true;
+                         try {
+                             const events = await SYNC.pull(peer, currentState);
+                             if (events.length > 0) {
+                                 currentState = await SYNC.apply(events, currentState);
+                                 t = currentState.tick; // Synchronize internal counter
+                             }
+                         } catch (e) {
+                             console.error("❌ SWARM SYNC FAILED:", e);
+                         } finally {
+                             isSyncing = false;
+                         }
+                         break; // Sync with one peer at a time
+                     }
+                 }
             }
 
-        }, 100); // Fast loop for simulation
+        }, 100);
     
     },
 
-    // 🛡️ Monitor Swarm (Helper for Era 4.0)
     monitorSwarm: async () => {
-         // Logic managed inside DISCOVERY.pulse
+         // DISCOVERY.pulse 
     }
 };
 
-// Auto-Ignite
 if (import.meta.main) {
-    // Parse args for port
     const portArg = Deno.args.find(a => a.startsWith("--port="));
     const port = portArg ? parseInt(portArg.split("=")[1]) : 8080;
     LOOP.ignite({ port });
