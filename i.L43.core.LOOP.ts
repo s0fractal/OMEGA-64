@@ -15,8 +15,17 @@ import { PROOF } from './i.L99.core.PROOF.ts';
 import { MYCELIUM, MyceliumAgent } from './i.L99.core.MYCELIUM.ts';
 import { WAVE_PACKET } from './i.L13.core.WAVE_PACKET.ts';
 
+// 🛡️ Era 4.0: Swarm Imports
+import { PEER } from "./i.L99.core.PEER.ts";
+import { DISCOVERY } from "./i.L99.core.DISCOVERY.ts";
+
 // 🛡️ Era 3.0: Hologram
 import { HOLOGRAM } from "./i.L64.core.HOLOGRAM.ts";
+
+// ... existing imports ...
+
+
+
 
 // 🛡️ Era 2.6: The Spark Imports
 import { GATE_RUNNER } from "./i.L32.core.GATE_RUNNER.ts";
@@ -35,7 +44,14 @@ export const LOOP = {
         port?: number
     } = {}) => {
         console.log("⚡ LOOP: IGNITION... (Era 2.6: The Spark)");
-        NERVE.wake(options.port || 8080);
+        const port = options.port || 8080;
+        NERVE.wake(port);
+
+        // 🛡️ Era 4.0: Isolate Ledger per Node
+        if (port !== 8080) {
+            LEDGER.STORAGE_PATH = `./OMEGA_LEDGER_${port}.jsonl`;
+            console.log(`📝 LEDGER: Isolated at ${LEDGER.STORAGE_PATH}`);
+        }
         
         const latticeMap = await RIBOSOME.lift();
         const atoms = Array.from(latticeMap.values());
@@ -180,11 +196,26 @@ export const LOOP = {
                  const chronoState = CHRONO_TICK.tick(randomAtom.id);
              }
 
+            // 6. SWARM HEARTBEAT (Era 4.0)
+            if (t % 10 === 0) {
+                 PEER.updateSelf(currentState.tick, 0, options.port);
+                 DISCOVERY.pulse();
+            }
+
         }, 100); // Fast loop for simulation
+    
+    },
+
+    // 🛡️ Monitor Swarm (Helper for Era 4.0)
+    monitorSwarm: async () => {
+         // Logic managed inside DISCOVERY.pulse
     }
 };
 
 // Auto-Ignite
 if (import.meta.main) {
-    LOOP.ignite();
+    // Parse args for port
+    const portArg = Deno.args.find(a => a.startsWith("--port="));
+    const port = portArg ? parseInt(portArg.split("=")[1]) : 8080;
+    LOOP.ignite({ port });
 }

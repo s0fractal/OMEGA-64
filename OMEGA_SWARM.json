@@ -1,0 +1,18 @@
+[
+  {
+    "id": "b54f3bde-74a0-431d-bc97-f2549c923538",
+    "address": "localhost:8082",
+    "role": "PEER",
+    "tick": 130,
+    "entropy": 0,
+    "lastSeen": 1770992769136
+  },
+  {
+    "id": "5aa2628b-4457-4447-8c18-a1120562b81c",
+    "address": "localhost:8081",
+    "role": "PEER",
+    "tick": 130,
+    "entropy": 0,
+    "lastSeen": 1770992769151
+  }
+]
