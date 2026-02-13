@@ -1,0 +1,1 @@
+export const EMPATHY = (s1: any) => (s2: any) => s1 === s2;

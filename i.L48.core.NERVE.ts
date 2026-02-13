@@ -9,6 +9,9 @@ import { SIGNAL } from "./i.L64.core.SIGNAL.ts";
 const S = new Set<WebSocket>();
 
 export const NERVE = {
+    // State management for UI preferences
+    projectionMode: "CYLINDER" as "CYLINDER" | "TORUS" | "ORBIT",
+
     // Start the Synaptic Bridge
     wake: (port: number = 8080) => {
         console.log(`🔌 NERVE: Awakening on ${port}...`);
@@ -31,6 +34,10 @@ export const NERVE = {
                                 context: msg.payload
                             });
                         }
+                        if (msg.type === "SET_MODE") {
+                            console.log(`🌐 LENS: Shifting to ${msg.payload}`);
+                            NERVE.projectionMode = msg.payload;
+                        }
                     } catch (err) {
                         console.error("Message Error:", err);
                     }
@@ -39,6 +46,8 @@ export const NERVE = {
             ) : new Response("OMEGA-64 NERVE. WS ONLY.", { status: 200 });
         }, { port });
     },
+
+    getProjectionMode: () => NERVE.projectionMode,
 
     // Broadcast Pulse
     pulse: (type: string, data: any) => {

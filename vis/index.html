@@ -82,6 +82,9 @@
         function setMode(m) {
             projectionMode = m;
             statusEl.innerText = `Mode: ${m}`;
+            if (socket && socket.readyState === WebSocket.OPEN) {
+                socket.send(JSON.stringify({ type: 'SET_MODE', payload: m }));
+            }
         }
 
         // 3D Projection Logic (Client-Side Mirror of i.L64.core.PROJECTION.ts)
@@ -114,7 +117,12 @@
             
             // Sort points by Z for Painter's Algorithm
             const projected = points.map(p => {
-                // Generate geometry on the fly based on mode
+                if (p.x !== undefined && p.y !== undefined && p.z !== undefined) {
+                    // Use server-side coordinates directly
+                    return { ...project3D(p.x, p.y, p.z), color: p.color, val: p.val };
+                }
+                
+                // Fallback: Generate geometry on the fly
                 let x, y, z;
                 
                 // Assuming p has {val, i} or similar raw data.
@@ -185,23 +193,28 @@
                 try {
                     const data = JSON.parse(event.data);
                     
-                    if (data.type === 'HOLOGRAM' && data.payload) {
-                        // Convert State Array to Points
-                        // Payload is likely `state_i16` array or similar
-                        // Let's assume the payload IS the state object
+                    if (data.type === 'HOLOGRAM' && data.data) {
+                        const payload = data.data;
                         
-                        const state = data.payload.state_i16 || []; // Adjust based on actual packet
-                        
-                        points = Object.values(state).map((val, i) => {
-                            // Map value to Color
-                            // Red (Hot) -> Green (Mid) -> Blue (Cold)
-                            let r = 0, g = 255, b = 0;
-                            if (val > 10000) { r = 255; g = 100; b = 100; }
-                            else if (val < -10000) { r = 100; g = 100; b = 255; }
-                            else { r = 0; g = 255; b = 100; }
-                            
-                            return { val, i, color: `rgb(${r},${g},${b})` };
-                        });
+                        if (payload.points) {
+                             // Use Server-Side Normative Coordinates
+                             points = payload.points.map((p, i) => {
+                                 let r = 0, g = 255, b = 0;
+                                 if (p.norm > 0.3) { r = 255; g = 100; b = 100; }
+                                 else if (p.norm < -0.3) { r = 100; g = 100; b = 255; }
+                                 else { r = 0; g = 255; b = 100; }
+                                 return { ...p, val: p.norm * 32768, color: `rgb(${r},${g},${b})` };
+                             });
+                        } else if (payload.state_i16) {
+                            // Fallback to client-side projection
+                            points = Object.values(payload.state_i16).map((val, i) => {
+                                let r = 0, g = 255, b = 0;
+                                if (val > 10000) { r = 255; g = 100; b = 100; }
+                                else if (val < -10000) { r = 100; g = 100; b = 255; }
+                                else { r = 0; g = 255; b = 100; }
+                                return { val, i, color: `rgb(${r},${g},${b})` };
+                            });
+                        }
                     }
                 } catch(e) {
                     console.error('Frame Error:', e);

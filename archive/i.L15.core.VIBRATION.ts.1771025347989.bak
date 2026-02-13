@@ -1,0 +1,1 @@
+import { SIGNAL } from "./i.L16.core.SIGNAL.ts"; export const VIBRATION = SIGNAL;

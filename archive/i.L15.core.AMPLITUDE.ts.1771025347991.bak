@@ -1,0 +1,1 @@
+export const AMPLITUDE = (a: any) => a;

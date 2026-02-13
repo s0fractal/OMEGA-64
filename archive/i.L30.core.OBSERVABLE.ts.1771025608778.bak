@@ -1,0 +1,1 @@
+export const OBSERVABLE = (f: any) => (obs: any) => f(obs);

@@ -1,0 +1,1 @@
+import { CONS } from "./i.L54.core.CONS.ts"; export const SEM_WRAP = (val: any) => (tag: any) => CONS(val)(tag);

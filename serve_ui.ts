@@ -7,7 +7,7 @@ console.log("🪞 MIRROR SERVER: Hosting Interface on http://localhost:8000 ..."
 
 serve((req) => {
     return serveDir(req, {
-        fsRoot: "./UI",
+        fsRoot: "./vis",
         urlRoot: "",
         showDirListing: true,
         enableCors: true,

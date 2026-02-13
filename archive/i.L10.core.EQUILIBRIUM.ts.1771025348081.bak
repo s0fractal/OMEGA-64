@@ -1,0 +1,1 @@
+export const EQUILIBRIUM = (s: any) => s;

@@ -1,0 +1,1 @@
+import { T } from "./i.L59.core.T.ts"; import { I } from "./i.L62.core.I.ts"; export const F = <T>(_: T) => I;

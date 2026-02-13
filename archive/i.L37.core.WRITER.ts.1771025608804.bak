@@ -1,0 +1,1 @@
+export const WRITER = (a: any) => (w: any) => (pair: any) => pair(a)(w);
