@@ -8,10 +8,13 @@ console.log("🔥 TEST SPARK: Initializing...");
 
 // Mock Ledger Storage to avoid cluttering real ledger
 LEDGER.STORAGE_PATH = "./TEST_SPARK_LEDGER.jsonl";
+import { PROPOSAL_ENVELOPE_INDEX } from "./i.L99.core.PROPOSAL_ENVELOPE_INDEX.ts";
+PROPOSAL_ENVELOPE_INDEX.STORAGE_PATH = "./TEST_SPARK_ENVELOPE_INDEX.jsonl";
 
 // Run the Loop for 20 ticks
 await LOOP.ignite({
     maxTicks: 20,
+    port: 8083,
     config: {
         dry_run: false
     }

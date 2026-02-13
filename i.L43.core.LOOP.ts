@@ -98,19 +98,52 @@ export const LOOP = {
             // "The Dream becomes Action"
             const proposals: DeltaProposal[] = [];
 
-            activeAgents = activeAgents.map(agent => {
-                // Live one step
-                const result = MYCELIUM.live(agent, []); // TODO: Real neighbors
+            // 2. MYCELIUM CYCLE (Act)
+            // Agents observe, decide, and act.
+            const nextGeneration: MyceliumAgent[] = [];
+            const newProposals: DeltaProposal[] = [];
+
+            activeAgents.forEach(agent => {
+                // Find neighbors (simplification: just 2 random others for now)
+                // In full version: use spatial hashing
+                const neighbors = [
+                    activeAgents[Math.floor(Math.random() * activeAgents.length)].wave,
+                    activeAgents[Math.floor(Math.random() * activeAgents.length)].wave
+                ];
+
+                const result = MYCELIUM.live(agent, neighbors);
                 
-                // Convert to Physical Proposal
-                const proposal = MYCELIUM.toProposal(result.newAgent, result.action, currentState);
-                if (proposal) {
-                     proposals.push(proposal);
-                     // console.log(`🍄 PROPOSAL: ${proposal.proposal_id} (${proposal.intent})`);
+                if (result.action === "DIED") {
+                    console.log(`💀 AGENT DIED: ${agent.id}`);
+                    return; // Drop from nextGeneration
                 }
-                
-                return result.newAgent;
+
+                nextGeneration.push(result.newAgent);
+
+                if (result.action === "SPAWN") {
+                    // Create offspring
+                    const child: MyceliumAgent = {
+                        id: `spore_${t}_${Math.floor(Math.random()*1000)}`,
+                        wave: {
+                            ...result.newAgent.wave,
+                            center: result.newAgent.wave.center + (Math.random() > 0.5 ? 200 : -200), // Spat out
+                            phase: (result.newAgent.wave.phase + 1000) % 65535
+                        },
+                        stamina: 80 // Start with some boost
+                    };
+                    nextGeneration.push(child);
+                    console.log(`👶 SPAWN: ${child.id} from ${agent.id}`);
+                }
+
+                // Convert to Physical Proposal (only if moved)
+                if (result.action.startsWith("Moved") || result.action === "PhaseShift") {
+                     const proposal = MYCELIUM.toProposal(result.newAgent, result.action, currentState);
+                     if (proposal) newProposals.push(proposal);
+                }
             });
+
+            activeAgents = nextGeneration;
+            proposals.push(...newProposals);
 
             // 3. GATE EXECUTION (The Pivot)
             // Submit proposals to the physical body

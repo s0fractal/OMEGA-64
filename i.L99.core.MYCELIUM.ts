@@ -29,44 +29,73 @@ export const MYCELIUM = {
   } => {
     let cost = 0;
     const updatedAgent = { ...agent, wave: { ...agent.wave } }; // Shallow clone
-    
-    // 1. SELF-COHERENCE (Само-узгодження)
+
+    // 0. METABOLISM (Entropy Tax)
+    // Життя коштує енергії.
+    const ENTROPY_TAX = 1.0;
+    updatedAgent.stamina -= ENTROPY_TAX;
+
+    // Check for Death
+    if (updatedAgent.stamina <= 0) {
+        return { action: "DIED", cost: 0, newAgent: updatedAgent };
+    }
+
+    // Check for Reproduction (Mitosis)
+    // Якщо енергії забагато (> 200), агент ділиться
+    if (updatedAgent.stamina > 200) {
+         updatedAgent.stamina /= 2; // Split energy
+         return { action: "SPAWN", cost: 0, newAgent: updatedAgent };
+         // Note: LOOP will handle creating the SECOND agent based on this signal
+    }
+
+    // 1. SELF-COHERENCE (Само-узгодження) & SOCIAL GRAVITY
     // Зменшити локальну напругу, підлаштувавши фазу під сусідів
     if (neighbours.length > 0) {
       // Знаходимо середню фазу сусідів (з вагами по амплітуді)
       let sumPhaseX = 0;
       let sumPhaseY = 0;
       let totalAmp = 0;
+      let centerOfGravity = 0;
       
       for (const n of neighbours) {
         const rad = (n.phase / 65535) * 2 * Math.PI;
         sumPhaseX += Math.cos(rad) * n.amplitude;
         sumPhaseY += Math.sin(rad) * n.amplitude;
         totalAmp += n.amplitude;
+        centerOfGravity += n.center;
       }
       
       if (totalAmp > 0) {
+        // A. Phase Synchronization
         const avgAngle = Math.atan2(sumPhaseY, sumPhaseX);
         const targetPhase = Math.round(((avgAngle / (2 * Math.PI)) + 1) * 65535) % 65535;
         
-        // Розраховуємо Load перед зміною
-        const currentLoad = LOAD.calculate({ 
-            entropy: 0, // Спрощено
-            phase: agent.wave.phase 
-        }, targetPhase);
-        
-        // Якщо Load високий — треба адаптуватись (зсув фази)
-        // Ми не стаємо ідентичними, а робимо крок до гармонії (delta = 10%)
         const drift = targetPhase - agent.wave.phase;
-        // Корекція з урахуванням кільцевої топології
         let shortestDrift = drift;
         if (shortestDrift > 32767) shortestDrift -= 65535;
         if (shortestDrift < -32767) shortestDrift += 65535;
         
         updatedAgent.wave.phase += Math.round(shortestDrift * 0.1);
         updatedAgent.wave.phase = (updatedAgent.wave.phase + 65535) % 65535;
+        cost += Math.abs(shortestDrift * 0.1) * 0.001;
+
+        // B. Social Gravity (Attraction to Center)
+        const avgCenter = centerOfGravity / neighbours.length;
+        const dist = avgCenter - agent.wave.center;
         
-        cost += Math.abs(shortestDrift * 0.1) * 0.001; // Вартість зміни
+        // Attraction (Pull towards group)
+        if (Math.abs(dist) > 100 && Math.abs(dist) < 5000) {
+             const pull = Math.round(dist * 0.05);
+             updatedAgent.wave.center += pull;
+             cost += Math.abs(pull) * 0.01;
+        }
+        
+        // Repulsion (Push from overcrowding)
+        if (neighbours.length > 5 && Math.abs(dist) < 50) {
+             const push = Math.round(dist * -0.2) || (Math.random() > 0.5 ? 20 : -20);
+             updatedAgent.wave.center += push;
+             cost += Math.abs(push) * 0.02;
+        }
       }
     }
 
@@ -90,23 +119,33 @@ export const MYCELIUM = {
     if (potLeft < potRight) move = -50; 
     else if (potRight < potLeft) move = 50;
     
-    if (move !== 0 && agent.stamina > 10) {
-        updatedAgent.wave.center += move;
+    // Random wiggle (Brownian motion for life)
+    if (move === 0) move = (Math.random() - 0.5) * 20;
+
+    if (Math.abs(move) > 0 && agent.stamina > 10) {
+        updatedAgent.wave.center += Math.round(move);
         // Clamp to world
         if (updatedAgent.wave.center > 32767) updatedAgent.wave.center = 32767;
         if (updatedAgent.wave.center < -32768) updatedAgent.wave.center = -32768;
         
-        cost += 5; // Вартість руху
+        cost += 2; // Вартість руху
     }
 
     // Оновлення енергії
     updatedAgent.stamina -= cost;
     // Регенерація (метаболізм з поля)
-    const fieldEnergy = Math.max(0, FIELD.getPotential(currentR)); // Беремо енергію з поля
-    updatedAgent.stamina += fieldEnergy * 0.01; 
+    // Енергія є тільки в певних зонах (наприклад, біля 0)
+    // Створимо "зону життя" (Goldilocks zone): -5000..5000
+    const inZone = Math.abs(currentR) < 5000;
+    const fieldEnergy = inZone ? Math.max(0, FIELD.getPotential(currentR)) * 2 : 0; 
+    
+    updatedAgent.stamina += fieldEnergy * 0.05; 
+    
+    // Cap stamina
+    if (updatedAgent.stamina > 300) updatedAgent.stamina = 300;
 
     return {
-      action: move !== 0 ? `Moved ${move}` : (cost > 0 ? "PhaseShift" : "Idle"),
+      action: move !== 0 ? `Moved ${Math.round(move)}` : (cost > 0 ? "PhaseShift" : "Idle"),
       cost,
       newAgent: updatedAgent
     };
