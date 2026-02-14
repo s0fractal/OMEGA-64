@@ -31,6 +31,13 @@ Rule: Branching allowed only if deterministic (no RNG, no Date/Time).
 Enforcement: Replay Audit.
 Sanction: Reject (no crystallization).
 
+Law 04b — Canonical Limits (AX/OP/FL)
+Where: L32–L63 (FL/OP/AX band)
+Rule: No direct i16/u16 limit literals (32767, -32768, 65535, 65536, 32768).
+Must use canonical imports (I16_LIMITS / I16_CLAMP).
+Enforcement: Determinism law audit.
+Sanction: Reject (must refactor to canon limits).
+
 IO Boundary:
 - IO (console/logging) is forbidden from L48+ (AX/OP).
 - IO is permitted in FL/PJ/DR as telemetry but must not affect state.

@@ -7,6 +7,9 @@
 import { QWave, WAVE_PACKET } from './i.L13.core.WAVE_PACKET.ts';
 import { INTERFERENCE } from './i.L13.core.INTERFERENCE.ts';
 import { FIELD } from './i.L00.core.FIELD.ts';
+import { I16_LIMITS } from './i.L00.core.I16_LIMITS.ts';
+
+const I16 = I16_LIMITS();
 
 export interface ArenaPulse {
   source: string;        // Хеш джерела (анонімізований ідентифікатор)
@@ -131,7 +134,7 @@ export const ARENA = {
       intensity: interference_pattern / waves.length,
       centroid: sum_r,
       stability: waves.length > 1 ? 
-        1 - (Math.max(...waves.map(w => Math.abs(w.center - sum_r))) / 32768) : 0
+        1 - (Math.max(...waves.map(w => Math.abs(w.center - sum_r))) / I16.abs) : 0
     };
   }
 };

@@ -4,6 +4,7 @@
 import { GATE_RUNNER } from "./i.L32.core.GATE_RUNNER.ts";
 import { LEDGER } from "./i.L99.core.LEDGER.ts";
 import { INVARIANT_PACKET, type InvariantPacket } from "./i.L32.core.INVARIANT_PACKET.ts";
+import { I16_CLAMP } from "./i.L00.core.I16_CLAMP.ts";
 import type {
   DeltaProposal,
   GateConfig,
@@ -106,9 +107,7 @@ const usage = (): string =>
 
 const clampI16 = (x: number): number => {
   if (!Number.isFinite(x)) return 0;
-  if (x > 32767) return 32767;
-  if (x < -32768) return -32768;
-  return Math.round(x);
+  return I16_CLAMP(Math.round(x));
 };
 
 const toSnapshot = (src: CliStateSnapshot): StateSnapshot => ({

@@ -8,6 +8,7 @@ import {
     OrganismState
 } from "./i.L00.core.CHROMO_STATE.ts";
 import type { StateSnapshot } from "./i.L99.core.STATE_SNAPSHOT.ts";
+import { I16_LIMITS } from "./i.L00.core.I16_LIMITS.ts";
 
 export interface TopologicalSignature {
     artifact_hash: string;
@@ -41,6 +42,7 @@ export interface SignatureStateSnapshotLike extends Pick<StateSnapshot, "state_h
 }
 
 const PROJECTION_VERSION = "topo-signature/v1";
+const I16 = I16_LIMITS();
 
 const CANONICAL_2D_OPTIONS: Required<ChromoEncodeOptions> = {
     resolution: 256,
@@ -69,8 +71,8 @@ const sha256HexBytes = async (bytes: Uint8Array): Promise<string> => {
 };
 
 const clampI16 = (x: number): number => {
-    if (x > 32767) return 32767;
-    if (x < -32768) return -32768;
+    if (x > I16.max) return I16.max;
+    if (x < I16.min) return I16.min;
     return x;
 };
 
@@ -80,7 +82,7 @@ const clamp01 = (x: number): number => {
     return x;
 };
 
-const normalizeI16 = (x: number): number => (clampI16(x) + 32768) / 65535;
+const normalizeI16 = (x: number): number => (clampI16(x) - I16.min) / I16.span;
 
 const serializeInt16Be = (arr: Int16Array): Uint8Array => {
     const out = new Uint8Array(arr.length * 2);
@@ -134,14 +136,14 @@ export const TOPOLOGICAL_SIGNATURE = {
             sumAbs += Math.abs(vec[i]);
         }
         const absMean = sumAbs / n;
-        const absMeanNorm = clamp01(absMean / 32767);
+        const absMeanNorm = clamp01(absMean / I16.max);
 
         const center = level(32);
-        const width = Math.max(1, Math.min(32767, Math.abs(level(24)) + 1));
+        const width = Math.max(1, Math.min(I16.max, Math.abs(level(24)) + 1));
         const phase = snapshot.phase_u16
             ? snapshot.phase_u16[13] ?? 0
-            : Math.round(normalizeI16(level(13)) * 65535) & 0xffff;
-        const amplitude = Math.min(65535, Math.max(0, Math.round(absMeanNorm * 65535)));
+            : Math.round(normalizeI16(level(13)) * I16.span) & I16.span;
+        const amplitude = Math.min(I16.span, Math.max(0, Math.round(absMeanNorm * I16.span)));
 
         let stabilityMean = 1 - absMeanNorm;
         if (snapshot.stability_q15 && snapshot.stability_q15.length > 0) {
@@ -160,11 +162,11 @@ export const TOPOLOGICAL_SIGNATURE = {
             }
             entropyMean = e / snapshot.entropy_i16.length;
         }
-        const entropyNorm = clamp01(entropyMean / 32767);
+        const entropyNorm = clamp01(entropyMean / I16.max);
         const coherence = clamp01(stabilityMean * (1 - entropyNorm));
         const metabolism = clamp01(normalizeI16(level(19)));
         const tau = clamp01(normalizeI16(level(22)));
-        const flowRate = clamp01(Math.abs(level(10)) / 32767);
+        const flowRate = clamp01(Math.abs(level(10)) / I16.max);
         const curvature = Math.abs(center) < 1
             ? Math.abs(level(21))
             : (Math.abs(level(21)) / 1000) * (1 / Math.log1p(Math.abs(center)));

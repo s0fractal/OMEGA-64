@@ -8,6 +8,9 @@ import { FIELD, FIELD_CONFIG } from './i.L00.core.FIELD.ts';
 import { ARENA } from './i.L32.core.ARENA.ts';
 import { TOPO_COLOR_MAP, CHROMO, RGB } from './i.L00.core.COLOR.ts';
 import { QWave, WAVE_PACKET } from './i.L13.core.WAVE_PACKET.ts';
+import { I16_LIMITS } from './i.L00.core.I16_LIMITS.ts';
+
+const I16 = I16_LIMITS();
 
 export interface HeatCell {
   r: number;           // Позиція в полі
@@ -56,7 +59,7 @@ export const VISUALIZER = {
         excitation += pulse.intensity * pulse.wave.amplitude * gauss;
         
         // Для когерентності фаз
-        const phase_rad = (pulse.wave.phase / 65536) * 2 * Math.PI;
+        const phase_rad = (pulse.wave.phase / I16.cycle) * 2 * Math.PI;
         phase_sum_x += Math.cos(phase_rad) * gauss;
         phase_sum_y += Math.sin(phase_rad) * gauss;
       }

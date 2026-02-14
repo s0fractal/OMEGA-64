@@ -4,17 +4,21 @@
  * Реалізація простору [-32768, 32767] для запобігання семантичному колапсу.
  */
 
+import { I16_LIMITS } from "./i.L00.core.I16_LIMITS.ts";
+
+const I16 = I16_LIMITS();
+
 export const FIELD_CONFIG = {
   ZERO_POINT: 0,             // Точка абсолютного спокою (Суперпозиційний Нуль)
-  MAX_ATTRACTOR: 32767,      // Стіна Поверхні (Ентропійний Хаос)
-  MIN_ATTRACTOR: -32768,     // Стіна Ядра (Жорсткий Кристал)
+  MAX_ATTRACTOR: I16.max,      // Стіна Поверхні (Ентропійний Хаос)
+  MIN_ATTRACTOR: I16.min,     // Стіна Ядра (Жорсткий Кристал)
   LOG_SCALE: 1000,           // Масштаб логарифмування
   COHERENCE_THRESHOLD: 0.85, // Поріг для виникнення резонансу
   // "Канавки на вінілі" (Discrete Attractors)
   GROOVES: [
-    { r: -32768, depth: 2.0, label: "CORE" },    // L63
+    { r: I16.min, depth: 2.0, label: "CORE" },    // L63
     { r: 0,      depth: 1.5, label: "EQUATOR" }, // L32
-    { r: 32767,  depth: 1.0, label: "SURFACE" } // L00
+    { r: I16.max,  depth: 1.0, label: "SURFACE" } // L00
   ]
 };
 

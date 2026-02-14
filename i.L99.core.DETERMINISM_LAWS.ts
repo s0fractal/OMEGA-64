@@ -41,6 +41,14 @@ const AXOP_FORBIDDEN_TOKENS = [
 ];
 
 const NONCANONICAL_TAG = /@noncanonical|@experimental|non-canonical|noncanonical/i;
+const LIMIT_LITERAL_PATTERNS = [
+    /(^|[^0-9])32767([^0-9]|$)/,
+    /(^|[^0-9])32768([^0-9]|$)/,
+    /(^|[^0-9])65535([^0-9]|$)/,
+    /(^|[^0-9])65536([^0-9]|$)/,
+    /-32768/
+];
+const CANON_LIMIT_IMPORT = /I16_LIMITS|I16_CLAMP/;
 
 const countExports = (content: string): number => {
     const matches = [
@@ -65,6 +73,14 @@ const findToken = (content: string, tokens: string[]): string | null => {
     return null;
 };
 
+const stripComments = (content: string): string =>
+    content
+        .replace(/\/\*[\s\S]*?\*\//g, "")
+        .replace(/\/\/.*$/gm, "");
+
+const hasLimitLiteral = (content: string): boolean =>
+    LIMIT_LITERAL_PATTERNS.some((pattern) => pattern.test(content));
+
 export const DETERMINISM_LAWS = {
     audit: (input: DeterminismAuditInput): DeterminismAuditResult => {
         const level = atomIdToLevel(input.atomId);
@@ -76,6 +92,7 @@ export const DETERMINISM_LAWS = {
         }
 
         const content = input.content;
+        const contentNoComments = stripComments(content);
         if (NONCANONICAL_TAG.test(content)) {
             return { ok: true, level, band, reasons: ["NONCANONICAL_EXEMPT"] };
         }
@@ -92,6 +109,12 @@ export const DETERMINISM_LAWS = {
         if (band === "FL") {
             const forbidden = findToken(content, NON_DETERMINISTIC_TOKENS);
             if (forbidden) reasons.push(`FL_NONDETERMINISM:${forbidden}`);
+        }
+
+        if ((band === "AX" || band === "OP" || band === "FL") && hasLimitLiteral(contentNoComments)) {
+            if (!CANON_LIMIT_IMPORT.test(contentNoComments)) {
+                reasons.push("CANON_LIMITS_DIRECT");
+            }
         }
 
         if (band === "PJ" || band === "DR") {

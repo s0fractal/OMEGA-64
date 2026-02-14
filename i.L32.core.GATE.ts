@@ -26,9 +26,11 @@ import { AGENT_SIGNATURE } from "./i.L32.core.AGENT_SIGNATURE.ts";
 import { PROPOSAL_ENVELOPE_INDEX } from "./i.L99.core.PROPOSAL_ENVELOPE_INDEX.ts";
 import { INVARIANT_PACKET } from "./i.L32.core.INVARIANT_PACKET.ts";
 import { I16_CLAMP } from "./i.L00.core.I16_CLAMP.ts";
+import { I16_LIMITS } from "./i.L00.core.I16_LIMITS.ts";
 
 const GATE_VERSION = "v0.2";
 const AUTO_CHECKPOINT_INTERVAL = 128;
+const I16 = I16_LIMITS();
 
 export interface GateRuntimeContext {
   bridge_invariant_report?: ReplayInvariantReport;
@@ -77,8 +79,8 @@ const phaseCoherence = (
   for (const d of delta) {
     const levelPhase = phase_u16 ? phase_u16[d.level] : 0;
     let dPhi = Math.abs(agentPhase - levelPhase);
-    if (dPhi > 32767) dPhi = 65535 - dPhi;
-    const angle = (dPhi / 32767) * Math.PI;
+    if (dPhi > I16.max) dPhi = I16.span - dPhi;
+    const angle = (dPhi / I16.max) * Math.PI;
     const coherence = (1 + Math.cos(angle)) / 2; // [0..1]
     const w = Math.max(1, Math.abs(d.value));
     weighted += coherence * w;
@@ -266,7 +268,7 @@ export const GATE = {
         (
           !Number.isInteger(p.agent_phase_u16) ||
           p.agent_phase_u16 < 0 ||
-          p.agent_phase_u16 > 65535
+          p.agent_phase_u16 > I16.span
         )
       ) {
         decision.rejected_proposals.push({

@@ -4,6 +4,9 @@
 // Composes Atoms into Somas (Bodies of Logic) based on proximity.
 
 import { Atom, Lattice } from "./i.L32.core.RIBOSOME.ts";
+import { I16_LIMITS } from "./i.L00.core.I16_LIMITS.ts";
+
+const I16 = I16_LIMITS();
 
 export interface Soma {
     id: string;
@@ -72,7 +75,7 @@ export const SOMA = {
             r: soma.origin.r,
             theta: soma.origin.theta,
             res: typeof result === 'string' ? result.length : 127,
-            timestamp: soma.origin.r * 65536 + soma.origin.theta
+            timestamp: soma.origin.r * I16.cycle + soma.origin.theta
         };
         
         await Deno.writeTextFile(signalPath, JSON.stringify(signal, null, 2));

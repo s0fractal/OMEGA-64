@@ -3,13 +3,17 @@
 // DETERMINISTIC FIXPOINT MATH (Base 65536)
 // Ensures bit-exact results across x86, ARM, and WASM.
 
+import { I16_LIMITS } from "./i.L00.core.I16_LIMITS.ts";
+
+const I16 = I16_LIMITS();
+
 export const Q = {
-    SCALE: 65536n,
-    MASK_16: 0xFFFFn,
+    SCALE: BigInt(I16.cycle),
+    MASK_16: BigInt(I16.span),
 
     // 1. Conversion
-    fromFloat: (f: number): bigint => BigInt(Math.round(f * 65536)),
-    toFloat: (q: bigint): number => Number(q) / 65536,
+    fromFloat: (f: number): bigint => BigInt(Math.round(f * I16.cycle)),
+    toFloat: (q: bigint): number => Number(q) / I16.cycle,
 
     // 2. Fixed-point Multiplicaton (16.16 * 16.16 >> 16)
     mul: (a: bigint, b: bigint): bigint => (a * b) >> 16n,
