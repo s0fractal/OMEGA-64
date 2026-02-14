@@ -40,6 +40,14 @@ const AXOP_FORBIDDEN_TOKENS = [
     "console."
 ];
 
+const IO_TOKENS = [
+    "console.",
+    "Deno.",
+    "fetch(",
+    "WebSocket",
+    "BroadcastChannel"
+];
+
 const NONCANONICAL_TAG = /@noncanonical|@experimental|non-canonical|noncanonical/i;
 const LIMIT_LITERAL_PATTERNS = [
     /(^|[^0-9])32767([^0-9]|$)/,
@@ -109,6 +117,11 @@ export const DETERMINISM_LAWS = {
         if (band === "FL") {
             const forbidden = findToken(content, NON_DETERMINISTIC_TOKENS);
             if (forbidden) reasons.push(`FL_NONDETERMINISM:${forbidden}`);
+        }
+
+        if (band === "AX" || band === "OP" || band === "FL") {
+            const io = findToken(content, IO_TOKENS);
+            if (io) reasons.push(`IO_FORBIDDEN:${io}`);
         }
 
         if ((band === "AX" || band === "OP" || band === "FL") && hasLimitLiteral(contentNoComments)) {

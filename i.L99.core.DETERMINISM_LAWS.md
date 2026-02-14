@@ -39,8 +39,8 @@ Enforcement: Determinism law audit.
 Sanction: Reject (must refactor to canon limits).
 
 IO Boundary:
-- IO (console/logging) is forbidden from L48+ (AX/OP).
-- IO is permitted in FL/PJ/DR as telemetry but must not affect state.
+- IO (console/logging, fetch, Deno APIs, sockets) is forbidden from L32+ (FL/OP/AX).
+- IO is permitted in PJ/DR as telemetry but must not mutate canonical state.
 
 Law 05 — Marked Entropy (PJ/DR)
 Where: L00–L31 (PJ/DR band)
