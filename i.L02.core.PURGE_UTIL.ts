@@ -3,6 +3,7 @@
 // "The loop must survive. Only the ephemeral shall pass."
 
 import { SIGNAL } from "./i.L64.core.SIGNAL.ts";
+import { MUTATE } from "./i.L43.core.MUTATE.ts";
 
 export const PURGE_UTIL = {
     PROTECTED_ATOMS: [
@@ -47,10 +48,8 @@ export const PURGE_UTIL = {
             try {
                 // Determine if it's a core file or a virtual atom
                 if (atomId.startsWith("i.")) {
-                    const backupPath = `./archive/${atomId}.${Date.now()}.bak`;
-                    await Deno.mkdir("./archive", { recursive: true });
-                    await Deno.rename(atomId, backupPath);
-                    console.log(`📦 ARCHIVED: ${atomId} -> ${backupPath}`);
+                    const result = await MUTATE.archive(atomId, "CLEANSE");
+                    if (!result.ok) throw new Error(result.reason);
                 } else if (atomId.startsWith("v.")) {
                     await Deno.remove(atomId);
                     console.log(`🔥 PURGED: ${atomId}`);

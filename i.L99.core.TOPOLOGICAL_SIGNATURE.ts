@@ -298,5 +298,25 @@ export const TOPOLOGICAL_SIGNATURE = {
         }
 
         return { ok: reasons.length === 0, reasons };
+    },
+
+    /**
+     * Projects a SHA-256 hash into a 64-dimensional manifold coordinate [Int16Array].
+     * This treats the hash as a geometric "portal" or coordinate.
+     */
+    hashToManifoldPoint: (hash: string): Int16Array => {
+        const point = new Int16Array(64);
+        if (!TOPOLOGICAL_SIGNATURE.validateHash(hash)) return point;
+
+        // Use the hex pairs as 8-bit seed values, distributed across the 64 levels.
+        // Since hash is 64 chars, we have 32 bytes. We'll mirror them to fill 64 slots.
+        for (let i = 0; i < 32; i++) {
+            const byte = parseInt(hash.slice(i * 2, i * 2 + 2), 16);
+            // Map 0..255 to -16384..16384 for a subtle but distinct presence
+            const val = Math.round((byte / 127.5 - 1) * 16384);
+            point[i] = val;
+            point[i + 32] = -val; // Mirror symmetry for balance
+        }
+        return point;
     }
 };

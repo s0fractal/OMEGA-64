@@ -1,5 +1,5 @@
 --- OMEGA-64 | I.txt | Singularity Bundle ---
-[VECTOR]: Sat Feb 14 00:42:21 EET 2026
+[VECTOR]: Sat Feb 14 04:09:04 EET 2026
 ================================================
 [LAYER]: MARKDOWN (Context)
 # 🛡️ OMEGA-64 | I.md | The Consciousness
@@ -4314,6 +4314,124 @@ export const NETWORK = (f: any) => f;
 // [ ./i.L02.core.PLANETARY.ts ]
 export const PLANETARY = (c: any) => c;
 
+// [ ./i.L02.core.PURGE_UTIL.ts ]
+// i.L02.core.PURGE_UTIL.ts
+// 🛡️ OMEGA-64 | Structural Integrity Guard
+// "The loop must survive. Only the ephemeral shall pass."
+
+import { SIGNAL } from "./i.L64.core.SIGNAL.ts";
+
+export const PURGE_UTIL = {
+    PROTECTED_ATOMS: [
+        "i.L43.core.LOOP.ts", 
+        "i.L48.core.NERVE.ts", 
+        "i.L32.core.RIBOSOME.ts", 
+        "i.L64.core.PROJECTION.ts", 
+        "i.L64.core.SIGNAL.ts",
+        "i.L02.core.PURGE_UTIL.ts",
+        "i.L02.core.RESTORE_UTIL.ts"
+    ],
+
+    /**
+     * Executes the PURGE signals from OMEGA_SIGNAL.md.
+     */
+    executePurge: async () => {
+        console.log("🕯️ PURGE: Commencing structural integrity cleanse...");
+        let signalsTxt = "";
+        try {
+            signalsTxt = await Deno.readTextFile("OMEGA_SIGNAL.md");
+        } catch (err) {
+            console.error("❌ PURGE: Failed to read OMEGA_SIGNAL.md", err);
+            return;
+        }
+
+        const purgeMatches = [...signalsTxt.matchAll(/atomId": "([^"]+)",\n  "resonance": [^,]+,\n  "judgment": "PURGE"/g)];
+        const atomIdsToPurge = purgeMatches.map(m => m[1]);
+        
+        if (atomIdsToPurge.length === 0) {
+            console.log("✨ PURGE: No compromised atoms detected.");
+            return;
+        }
+
+        console.log(`🧹 PURGE: Targets identified: ${atomIdsToPurge.length}`);
+        
+        for (const atomId of atomIdsToPurge) {
+            if (PURGE_UTIL.PROTECTED_ATOMS.includes(atomId)) {
+                console.log(`🛡️ PROTECTED: Skipping purge for core atom ${atomId}`);
+                continue;
+            }
+
+            try {
+                // Determine if it's a core file or a virtual atom
+                if (atomId.startsWith("i.")) {
+                    const backupPath = `./archive/${atomId}.${Date.now()}.bak`;
+                    await Deno.mkdir("./archive", { recursive: true });
+                    await Deno.rename(atomId, backupPath);
+                    console.log(`📦 ARCHIVED: ${atomId} -> ${backupPath}`);
+                } else if (atomId.startsWith("v.")) {
+                    await Deno.remove(atomId);
+                    console.log(`🔥 PURGED: ${atomId}`);
+                }
+            } catch (err) {
+                const msg = err instanceof Error ? err.message : String(err);
+                console.warn(`⚠️ PURGE FAILED for ${atomId}: ${msg}`);
+            }
+        }
+
+        await SIGNAL.emit("INFO", {
+            source: "PURGE_UTIL",
+            message: `Structural integrity restored. ${atomIdsToPurge.length} atoms processed.`
+        });
+    }
+};
+
+// @ts-ignore: Deno-specific check
+if (import.meta.main) {
+    await PURGE_UTIL.executePurge();
+}
+
+
+// [ ./i.L02.core.RESTORE_UTIL.ts ]
+// i.L02.core.RESTORE_UTIL.ts
+// 🛡️ OMEGA-64 | Restoration Protocol
+// "Returning the core to its rightful frequency."
+
+import { walk } from "https://deno.land/std/fs/mod.ts";
+import { join } from "https://deno.land/std/path/mod.ts";
+
+async function restore() {
+    const archiveDir = "./archive";
+    const rootDir = ".";
+
+    console.log("🧬 Starting lattice restoration...");
+
+    for await (const entry of walk(archiveDir, { maxDepth: 1 })) {
+        if (entry.isFile && entry.name.startsWith("i.")) {
+            // Pattern: i.LXX.core.NAME.ts.TIMESTAMP.bak
+            // We want to recover i.LXX.core.NAME.ts
+            const parts = entry.name.split(".");
+            // parts: ["i", "LXX", "core", "NAME", "ts", "TIMESTAMP", "bak"]
+            // We need parts[0] through parts[4]
+            const originalName = parts.slice(0, 5).join(".");
+            
+            const sourcePath = join(archiveDir, entry.name);
+            const targetPath = join(rootDir, originalName);
+
+            console.log(`📡 Recovering atom: ${entry.name} -> ${originalName}`);
+            try {
+                await Deno.copyFile(sourcePath, targetPath);
+            } catch (err) {
+                console.error(`❌ FAILED to recover ${entry.name}:`, err);
+            }
+        }
+    }
+
+    console.log("✅ Lattice reconstruction sequence complete.");
+}
+
+restore();
+
+
 // [ ./i.L02.i.ts ]
 export const i = { witness: "i.L03.i", ref: "i.L02.i" };
 
@@ -8603,6 +8721,9 @@ import { PEER } from "./i.L99.core.PEER.ts";
 import { DISCOVERY } from "./i.L99.core.DISCOVERY.ts";
 import { SYNC } from "./i.L99.core.SYNC.ts";
 
+// 🛡️ Era 3.3: Topological Projection
+import { PROJECTION } from "./i.L64.core.PROJECTION.ts";
+
 // 🛡️ Era 3.0: Hologram
 import { HOLOGRAM } from "./i.L64.core.HOLOGRAM.ts";
 
@@ -8677,13 +8798,17 @@ export const LOOP = {
 
         let t = 0;
         const maxTicks = options.maxTicks || Infinity;
-        let isSyncing = false; // Guard for Swarm Sync
+        let isSyncing = false;
+        let isLooping = true;
 
-        const intervalId = setInterval(async () => {
-            if (isSyncing) return; // Wait for sync to finish
+        const cycle = async () => {
+            if (!isLooping) return;
+            if (isSyncing) {
+                setTimeout(cycle, 100);
+                return;
+            }
 
             if (t >= maxTicks) {
-                clearInterval(intervalId);
                 console.log("⚡ LOOP: Shutdown (Max Ticks reached).");
                 return;
             }
@@ -8703,9 +8828,7 @@ export const LOOP = {
                 ];
 
                 const result = MYCELIUM.live(agent, neighbors);
-                
                 if (result.action === "DIED") return;
-
                 nextGeneration.push(result.newAgent);
 
                 if (result.action === "SPAWN") {
@@ -8742,10 +8865,15 @@ export const LOOP = {
                  currentState.tick++;
             }
 
-            // 4. VISUALIZER & HOLOGRAM
+            // 4. VISUALIZER & HOLOGRAM (Era 3.3: Topological Lens)
             if (t % 5 === 0) {
-                 const hologram = HOLOGRAM.render(currentState);
-                 NERVE.pulse("HOLOGRAM", hologram);
+                 const mode = NERVE.getProjectionMode();
+                 const points = PROJECTION.projectState(currentState.state_i16, mode);
+                 NERVE.pulse("HOLOGRAM", {
+                     tick: currentState.tick,
+                     mode: mode,
+                     points: points
+                 });
             }
 
             // 5. CHRONOFLUX
@@ -8768,19 +8896,22 @@ export const LOOP = {
                              const events = await SYNC.pull(peer, currentState);
                              if (events.length > 0) {
                                  currentState = await SYNC.apply(events, currentState);
-                                 t = currentState.tick; // Synchronize internal counter
+                                 t = currentState.tick; 
                              }
                          } catch (e) {
                              console.error("❌ SWARM SYNC FAILED:", e);
                          } finally {
                              isSyncing = false;
                          }
-                         break; // Sync with one peer at a time
+                         break; 
                      }
                  }
             }
 
-        }, 100);
+            setTimeout(cycle, 100);
+        };
+
+        cycle();
     
     },
 
@@ -8955,6 +9086,9 @@ import { SIGNAL } from "./i.L64.core.SIGNAL.ts";
 const S = new Set<WebSocket>();
 
 export const NERVE = {
+    // State management for UI preferences
+    projectionMode: "CYLINDER" as "CYLINDER" | "TORUS" | "ORBIT",
+
     // Start the Synaptic Bridge
     wake: (port: number = 8080) => {
         console.log(`🔌 NERVE: Awakening on ${port}...`);
@@ -8977,6 +9111,10 @@ export const NERVE = {
                                 context: msg.payload
                             });
                         }
+                        if (msg.type === "SET_MODE") {
+                            console.log(`🌐 LENS: Shifting to ${msg.payload}`);
+                            NERVE.projectionMode = msg.payload;
+                        }
                     } catch (err) {
                         console.error("Message Error:", err);
                     }
@@ -8985,6 +9123,8 @@ export const NERVE = {
             ) : new Response("OMEGA-64 NERVE. WS ONLY.", { status: 200 });
         }, { port });
     },
+
+    getProjectionMode: () => NERVE.projectionMode,
 
     // Broadcast Pulse
     pulse: (type: string, data: any) => {
@@ -9474,95 +9614,80 @@ export class PersonalInterface {
 
 // [ ./i.L64.core.PROJECTION.ts ]
 // i.L64.core.PROJECTION.ts
-// 🛡️ OMEGA-64 | The Lens | Topological Projection
-// Transforms high-dimensional state into 3D geometry for the Hologram.
-
-import type { StateSnapshot } from "./i.L99.core.STATE_SNAPSHOT.ts";
+// 🛡️ OMEGA-64 | Topological Lens | Vector 2
+// "Truth is a resonance pattern projected across geometries."
 
 export interface Point3D {
     x: number;
     y: number;
     z: number;
-    color: string;
-    size: number;
-    id: string; // Atom ID
+    norm: number;
 }
 
-export type ProjectionMode = "CYLINDER" | "TORUS";
+const PROJECTION_CONFIG = {
+    CYLINDER_RADIUS: 250,
+    CYLINDER_HEIGHT: 800,
+    TORUS_MAJOR_R: 300,
+    TORUS_MINOR_R: 120,
+    LEVELS: 64,
+};
+
+const toCylinder = (val: number, level: number): Point3D => {
+    const norm = val / 32768.0;
+    const phase = (level / PROJECTION_CONFIG.LEVELS) * Math.PI * 2 * 2;
+    const r = PROJECTION_CONFIG.CYLINDER_RADIUS + (norm * 80);
+    return {
+        x: r * Math.cos(phase),
+        z: r * Math.sin(phase),
+        y: (level - 32) * 12,
+        norm
+    };
+};
+
+const toTorus = (val: number, level: number): Point3D => {
+    const norm = val / 32768.0;
+    const theta = (level / PROJECTION_CONFIG.LEVELS) * Math.PI * 2;
+    const phi = norm * Math.PI * 2;
+    const R = PROJECTION_CONFIG.TORUS_MAJOR_R;
+    const r = PROJECTION_CONFIG.TORUS_MINOR_R;
+    return {
+        x: (R + r * Math.cos(phi)) * Math.cos(theta),
+        z: (R + r * Math.cos(phi)) * Math.sin(theta),
+        y: r * Math.sin(phi),
+        norm
+    };
+};
+
+const toOrbit = (val: number, level: number): Point3D => {
+    const norm = val / 32768.0;
+    const phase = (level / PROJECTION_CONFIG.LEVELS) * Math.PI * 2 * 2;
+    const r = PROJECTION_CONFIG.CYLINDER_RADIUS + (norm * 10); // Minimal jitter
+    return {
+        x: r * Math.cos(phase),
+        z: r * Math.sin(phase),
+        y: (level - 32) * 12,
+        norm
+    };
+};
+
+const projectState = (state_i16: Int16Array, mode: 'CYLINDER' | 'TORUS' | 'ORBIT'): Point3D[] => {
+    const points: Point3D[] = [];
+    for (let i = 0; i < state_i16.length; i++) {
+        let p: Point3D;
+        if (mode === 'CYLINDER') p = toCylinder(state_i16[i], i);
+        else if (mode === 'TORUS') p = toTorus(state_i16[i], i);
+        else p = toOrbit(state_i16[i], i);
+        points.push(p);
+    }
+    return points;
+};
 
 export const PROJECTION = {
-    /**
-     * Projects the linear state (64 levels) into a 3D structure.
-     */
-    transform: (state: StateSnapshot, mode: ProjectionMode = "CYLINDER"): Point3D[] => {
-        const points: Point3D[] = [];
-        const levels = state.state_i16.length; // 64
-
-        // Constants for Geometry
-        const RADIUS = 200;
-        const HEIGHT_SCALE = 10;
-        const TORUS_R = 150; // Distance from center to tube center
-        const TORUS_r = 50;  // Radius of the tube
-
-        for (let i = 0; i < levels; i++) {
-            const val = state.state_i16[i]; // -32768..32767
-            const normalized = val / 32768.0; // -1.0..1.0
-            
-            // Phase determines Angle (Theta)
-            // We don't have per-atom phase in global state efficiently yet, 
-            // so we use the Index + Value to simulate a spiral.
-            // In a full implementation, we'd use state.phase_u16[i]
-            const phase = state.phase_u16 ? state.phase_u16[i] : 0;
-            const theta = (i / levels) * Math.PI * 2 * 2; // 2 windings
-            
-            // Interaction with Phase:
-            // Actual atoms would be distinct points.
-            // Here we visualize the "Backbone" (the 64 levels).
-            
-            let x, y, z;
-
-            if (mode === "CYLINDER") {
-                // Cylindrical Projection
-                // x, z are the circle
-                // y is the vertical axis (levels)
-                
-                // Modulate Radius by Value (Entropy/Energy)
-                const r = RADIUS + (normalized * 50); 
-                
-                x = r * Math.cos(theta);
-                z = r * Math.sin(theta);
-                y = (i - levels/2) * HEIGHT_SCALE;
-
-            } else {
-                // Torus Projection
-                // theta is the large circle
-                // phi (from value) is the small circle
-                const phi = normalized * Math.PI; // Twist based on value
-
-                x = (TORUS_R + TORUS_r * Math.cos(phi)) * Math.cos(theta);
-                z = (TORUS_R + TORUS_r * Math.cos(phi)) * Math.sin(theta);
-                y = TORUS_r * Math.sin(phi);
-            }
-
-            // Color Mapping
-            // Red = High Entropy (Excited)
-            // Blue = Low Entropy (Frozen)
-            // Green = Balanced
-            const intensity = Math.floor(Math.abs(normalized) * 255);
-            let color = `rgb(${intensity}, 200, 255)`;
-            if (val > 10000) color = `rgb(255, 100, 100)`; // Hot
-            if (val < -10000) color = `rgb(100, 100, 255)`; // Cold
-
-            points.push({
-                x, y, z,
-                color,
-                size: 2 + Math.abs(normalized) * 3, // Louder = Bigger
-                id: `L${i}`
-            });
-        }
-        
-        return points;
-    }
+    CONFIG: PROJECTION_CONFIG,
+    toCylinder,
+    toTorus,
+    toOrbit,
+    projectState,
 };
 
 
@@ -12798,6 +12923,7 @@ export const PROPOSAL_ENVELOPE_INDEX = {
 
 
 // [ ./i.L99.core.REPLAY_AUDIT.ts ]
+/// <reference lib="deno.ns" />
 // i.L99.core.REPLAY_AUDIT.ts
 // OMEGA-64 | Deterministic Replay Audit
 // Produces a strict replayGreen signal from ledger events.
@@ -13683,7 +13809,7 @@ export const REPLAY_AUDIT = {
     }
 };
 
-if (import.meta.main) {
+if ((import.meta as any).main) {
     console.log("Usage: import REPLAY_AUDIT and call audit(genesis, options).");
 }
 

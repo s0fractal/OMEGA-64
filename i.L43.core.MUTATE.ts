@@ -1,32 +1,175 @@
-
 // i.L43.core.MUTATE.ts
-// The Hand of OMEGA-64.
-// Allows the system to rewrite its own source code (Atoms).
+// OMEGA-64 | The Hand of Sovereignty
+// Disciplined structural evolution through the Safe Window.
+
+import { MUTATION_LEDGER, MutationEvent } from "./i.L99.core.MUTATION_LEDGER.ts";
+import { CANON_CAUSAL_BRIDGE } from "./i.L32.core.CANON_CAUSAL_BRIDGE.ts";
+import { REPLAY_AUDIT } from "./i.L99.core.REPLAY_AUDIT.ts";
+import { LEDGER } from "./i.L99.core.LEDGER.ts";
+import { PROJECTION_DRIFT_ANALYTICS } from "./i.L99.core.PROJECTION_DRIFT_ANALYTICS.ts";
+
+export interface MutationRequest {
+    atomId: string;
+    content?: string;
+    reason: MutationEvent["reason"];
+    details?: string;
+    dryRun?: boolean;
+    invariant_packet_hash?: string;
+}
 
 export const MUTATE = {
-    // Write content to an Atom (Atomic Write)
-    write: async (atomId: string, content: string, dryRun: boolean = true) => {
+    SAFE_DRIFT_THRESHOLD: 0.05, // 5% mean drift limit for safe window
+
+    /**
+     * Checks if the system is in a Safe Mutation Window.
+     */
+    checkSovereignty: async () => {
+        // 1. Get Genesis for Audit
+        const genesisRecord = await LEDGER.getGenesis();
+        if (!genesisRecord) return { ok: false, reason: "GENESIS_NOT_FOUND" };
+        const genesis = {
+            tick: genesisRecord.tick,
+            state_hash: genesisRecord.state_hash,
+            state_i16: genesisRecord.state_i16
+        };
+
+        // 2. Run Structural Audit
+        const audit = await REPLAY_AUDIT.audit(genesis, { runs: 1, verifyLedgerChain: true });
+        
+        // 3. Resolve Bridge Mode
+        const bridge = CANON_CAUSAL_BRIDGE.resolveMode(audit.invariantReport);
+
+        // 4. Run Drift Analytics
+        const driftReport = await PROJECTION_DRIFT_ANALYTICS.analyze(genesis, {});
+        const meanDrift = driftReport.ok ? 
+            driftReport.driftByLevelMean.reduce((a, b) => a + b, 0) / driftReport.levelCount : 
+            1.0;
+
+        // 5. Threshold Logic
+        const isGreen = bridge.mode === "GREEN";
+        const isReplayGreen = audit.replayGreen;
+        const indexOk = audit.invariantReport.gate_admission_index_chain_ok;
+        const driftOk = meanDrift <= MUTATE.SAFE_DRIFT_THRESHOLD;
+
+        if (!isGreen || !isReplayGreen || !indexOk || !driftOk) {
+            console.warn(`🛑 SOVEREIGNTY GATE CLOSED: drift=${meanDrift.toFixed(4)} (Threshold: ${MUTATE.SAFE_DRIFT_THRESHOLD})`);
+            return { 
+                ok: false, 
+                reason: `WINDOW_CLOSED: bridge=${bridge.mode}, replay=${isReplayGreen}, index=${indexOk}, drift=${meanDrift.toFixed(4)}`
+            };
+        }
+
+        console.log(`🟢 SOVEREIGNTY GATE OPEN: drift=${meanDrift.toFixed(4)}`);
+        return { ok: true, audit, meanDrift };
+    },
+
+    /**
+     * Atomic Write with Ledger and Sovereignty Check.
+     */
+    write: async (req: MutationRequest) => {
+        const { atomId, content, reason, details, dryRun = false, invariant_packet_hash } = req;
+        if (!content) throw new Error("MUTATE: Content required for WRITE action.");
+
+        console.log(`📡 MUTATE: Requesting write for [${atomId}] (Reason: ${reason})`);
+
+        // Structural mutations (TENSION/RESONANCE/EMERGENCE) MUST have an invariant packet
+        if (["TENSION", "RESONANCE", "EMERGENCE"].includes(reason) && !invariant_packet_hash) {
+            console.warn(`🛑 MUTATE REJECTED: Structural mutation requires invariant_packet_hash.`);
+            return { ok: false, reason: "MISSING_INVARIANT_PACKET" };
+        }
+
+        // Check window
+        const window = await MUTATE.checkSovereignty();
+        if (!window.ok) {
+            console.warn(`🛑 MUTATE REJECTED: ${window.reason}`);
+            return { ok: false, reason: window.reason };
+        }
+
         if (dryRun) {
-            console.log(`✍️ [DRY RUN] MUTATE would write to ${atomId}:\n${content.slice(0, 50)}...`);
-            return;
+            console.log(`✍️ [DRY RUN] MUTATE would write to ${atomId}:\n${content.slice(0, 100)}...`);
+            return { ok: true, dryRun: true };
         }
 
         try {
+            const hashBefore = await MUTATE.getHash(atomId);
+            
+            // Backup (Pass sovereigntyVerified: true as we just checked it)
+            await MUTATE.archive(atomId, "PRE_MUTATION", true);
+
+            // Write
             await Deno.writeTextFile(atomId, content);
-            console.log(`✍️ MUTATE: Rewrote [${atomId}]. Length: ${content.length}`);
-        } catch (e) {
-            console.error(`❌ MUTATE FAILED [${atomId}]:`, e);
+            const hashAfter = await MUTATE.getHash(atomId);
+
+            // Record in Mutation Ledger
+            await MUTATION_LEDGER.append({
+                timestamp: new Date().toISOString(),
+                atom_id: atomId,
+                action: "WRITE",
+                hash_before: hashBefore,
+                hash_after: hashAfter,
+                reason,
+                details,
+                invariant_packet_hash
+            });
+
+            console.log(`✅ MUTATE: Successfully evolved [${atomId}]`);
+            return { ok: true };
+        } catch (err) {
+            const msg = err instanceof Error ? err.message : String(err);
+            console.error(`❌ MUTATE FAILED: ${msg}`);
+            return { ok: false, reason: msg };
         }
     },
 
-    // Create a backup before mutation
-    backup: async (atomId: string) => {
+    /**
+     * Archives an Atom.
+     */
+    archive: async (atomId: string, reason: MutationEvent["reason"] = "CLEANSE", sovereigntyVerified = false) => {
         try {
-            const content = await Deno.readTextFile(atomId);
-            await Deno.writeTextFile(`${atomId}.bak`, content);
-            console.log(`🛡️ BACKUP: Saved ${atomId}.bak`);
-        } catch (e) {
-            console.warn(`⚠️ BACKUP FAILED [${atomId}]:`, e);
+            // Check window if not already verified (e.g. by write())
+            if (!sovereigntyVerified) {
+                const window = await MUTATE.checkSovereignty();
+                if (!window.ok) {
+                    console.warn(`🛑 ARCHIVE REJECTED for ${atomId}: ${window.reason}`);
+                    return { ok: false, reason: window.reason };
+                }
+            }
+
+            const hashBefore = await MUTATE.getHash(atomId);
+            const backupPath = `./archive/${atomId}.${Date.now()}.bak`;
+            await Deno.mkdir("./archive", { recursive: true });
+            await Deno.rename(atomId, backupPath);
+
+            await MUTATION_LEDGER.append({
+                timestamp: new Date().toISOString(),
+                atom_id: atomId,
+                action: "ARCHIVE",
+                hash_before: hashBefore,
+                reason,
+                details: `Archived to ${backupPath}`
+            });
+
+            console.log(`📦 ARCHIVED: ${atomId} -> ${backupPath}`);
+            return { ok: true };
+        } catch (err) {
+            const msg = err instanceof Error ? err.message : String(err);
+            console.warn(`⚠️ ARCHIVE FAILED for ${atomId}: ${msg}`);
+            return { ok: false, reason: msg };
+        }
+    },
+
+    /**
+     * Internal: Computes SHA-256 hash of a file.
+     */
+    getHash: async (path: string): Promise<string> => {
+        try {
+            const data = await Deno.readFile(path);
+            const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+            return Array.from(new Uint8Array(hashBuffer))
+                .map(b => b.toString(16).padStart(2, "0"))
+                .join("");
+        } catch {
+            return "NULL_OR_MISSING";
         }
     }
 };

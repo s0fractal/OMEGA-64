@@ -1,8 +1,10 @@
+/// <reference lib="deno.ns" />
 // i.L99.core.LEDGER.ts
 // 🛡️ OMEGA-64 | Glider Lite | Append-Only Ledger
 // Records every state transition for replay and audit.
 
 import { LedgerEvent, TopologyEvent } from "./i.L99.core.STATE_SNAPSHOT.ts";
+import { CHECKPOINT } from "./i.L99.core.CHECKPOINT.ts";
 
 const stableStringify = (value: unknown): string => {
     if (Array.isArray(value)) {
@@ -222,6 +224,68 @@ export const LEDGER = {
             chainAnchoredEvents,
             legacyEvents,
             tailHash: prevHash
+        };
+    },
+
+    /**
+     * Gets the first LedgerEvent or Checkpoint to serve as Genesis for audits.
+     */
+    getGenesis: async (): Promise<{ tick: number; state_hash: string; state_i16: Int16Array } | null> => {
+        // 1. RITUAL PRIORITY: Search for the latest STABILIZATION_RITUAL checkpoint.
+        // This allows the operator to reset the audit anchor and drift awareness.
+        let latestRitual: any = null;
+        for await (const c of CHECKPOINT.readAll()) {
+            if (c.reason === "STABILIZATION_RITUAL") {
+                if (!latestRitual || c.tick > latestRitual.tick) {
+                    latestRitual = c;
+                }
+            }
+        }
+
+        if (latestRitual) {
+            console.log(`🕯️ LEDGER: Anchoring Genesis to Ritual at Tick ${latestRitual.tick}`);
+            return {
+                tick: latestRitual.tick,
+                state_hash: latestRitual.state_hash,
+                state_i16: new Int16Array(latestRitual.state_i16)
+            };
+        }
+
+        // 2. Fallback: Find the first event in history
+        let firstEvent: LedgerEvent | null = null;
+        for await (const entry of LEDGER.readAllRaw()) {
+            if (LEDGER.isLedgerEvent(entry)) {
+                firstEvent = entry;
+                break;
+            }
+        }
+
+        if (!firstEvent) return null;
+
+        // 3. Resolve the snapshot at or before this event
+        const checkpoint = await CHECKPOINT.loadNearestAtOrBefore(firstEvent.tick);
+        if (checkpoint) {
+            return {
+                tick: checkpoint.tick,
+                state_hash: checkpoint.state_hash,
+                state_i16: new Int16Array(checkpoint.state_i16)
+            };
+        }
+
+        // 4. Reconstruction Fallback
+        if (firstEvent.tick === 0) {
+            return {
+                tick: 0,
+                state_hash: firstEvent.state_before_hash,
+                state_i16: new Int16Array(64)
+            };
+        }
+
+        console.warn(`⚠️ LEDGER: Cold Start fallback for tick ${firstEvent.tick}. Audit may drift.`);
+        return {
+            tick: firstEvent.tick,
+            state_hash: firstEvent.state_before_hash,
+            state_i16: new Int16Array(64)
         };
     }
 };

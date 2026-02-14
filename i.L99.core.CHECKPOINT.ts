@@ -76,6 +76,18 @@ export const CHECKPOINT = {
             }
         }
         return best;
+    },
+
+    /**
+     * RITUAL OF STABILIZATION:
+     * Manually requested by the operator to anchor the manifold and reset drift awareness.
+     */
+    witnessedStabilization: async (
+        snapshot: Pick<StateSnapshot, "tick" | "state_hash" | "state_i16">,
+        witness: string
+    ): Promise<CheckpointRecord> => {
+        console.log(`🕯️ CHECKPOINT: Performing Ritual of Stabilization at Tick ${snapshot.tick} (Witness: ${witness})`);
+        return await CHECKPOINT.save(snapshot, "STABILIZATION_RITUAL", witness);
     }
 };
 

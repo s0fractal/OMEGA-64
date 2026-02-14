@@ -3,7 +3,8 @@
 
 import { LEDGER } from "./i.L99.core.LEDGER.ts";
 import { CRYSTALLIZATION_CONFIG, CRYSTALLIZATION_POLICY } from "./i.L99.core.CRYSTALLIZATION_CONFIG.ts";
-import { LedgerEvent, PolicyTransitionEvent, TopologyEvent } from "./i.L99.core.STATE_SNAPSHOT.ts";
+import { LedgerEvent, AutonomyState, PolicyTransitionEvent, TopologyEvent } from "./i.L99.core.STATE_SNAPSHOT.ts";
+import { AUTONOMY_METRIC } from "./i.L99.core.AUTONOMY_METRIC.ts";
 
 export interface PolicyTransitionEmitInput {
     tick: number;
@@ -82,6 +83,20 @@ export const POLICY_TRANSITION = {
 
         await LEDGER.append(event);
         return event;
+    },
+
+    /**
+     * Era 5.0 | Current Autonomy Configuration
+     * 0.0: Manual/Locked
+     * 1.0: Full Sovereignty
+     */
+    /**
+     * Era 5.3 | Current Autonomy Configuration
+     * Proxy for dynamic AUTONOMY_METRIC.
+     */
+    currentAutonomy: async (): Promise<AutonomyState> => {
+        const report = await AUTONOMY_METRIC.compute();
+        return report.levels;
     }
 };
 
