@@ -125,6 +125,7 @@ interface EvaluateWithAuditOptions extends EvaluateOptions {
   replayRuns?: number;
   replayStartTick?: number;
   projectionDriftMaxP95?: number;
+  projectionDriftSlopeMaxP95?: number;
   projectionDriftTopLevels?: number;
   gateAdmissionOutOfPhasePressureMaxMean?: number;
   gateAdmissionMinCoherenceCoverage?: number;
@@ -263,11 +264,17 @@ export const CRYSTALLIZATION = {
     );
     const projectionDriftMaxP95 = options.projectionDriftMaxP95 ??
       CRYSTALLIZATION_CONFIG.projectionDriftMaxP95;
+    const projectionDriftSlopeMaxP95 = options.projectionDriftSlopeMaxP95 ??
+      CRYSTALLIZATION_CONFIG.projectionDriftSlopeMaxP95;
     const projectionDriftP95 = driftReport.driftByLevelP95.length > 0
       ? Math.max(...driftReport.driftByLevelP95)
       : 0;
+    const projectionDriftSlopeP95 = driftReport.driftSlopeByLevelP95.length > 0
+      ? Math.max(...driftReport.driftSlopeByLevelP95)
+      : 0;
     const projectionDriftGatePass = driftReport.ok &&
-      projectionDriftP95 <= projectionDriftMaxP95;
+      projectionDriftP95 <= projectionDriftMaxP95 &&
+      projectionDriftSlopeP95 <= projectionDriftSlopeMaxP95;
     const gateAdmissionOutOfPhasePressureMaxMean =
       options.gateAdmissionOutOfPhasePressureMaxMean ??
         CRYSTALLIZATION_CONFIG.gateAdmissionOutOfPhasePressureMaxMean;
@@ -310,6 +317,7 @@ export const CRYSTALLIZATION = {
       drift_report: driftReport,
       projection_drift_gate_pass: projectionDriftGatePass,
       projection_drift_max_p95: projectionDriftMaxP95,
+      projection_drift_slope_max_p95: projectionDriftSlopeMaxP95,
       gate_admission_report: gateAdmissionReport,
       gate_admission_gate_pass: gateAdmissionGatePass,
       gate_admission_report_hash: gateAdmissionReportHash,

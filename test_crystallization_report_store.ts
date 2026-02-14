@@ -28,7 +28,8 @@ Deno.test("crystallization report materialization is idempotent by hash", async 
                 window: CRYSTALLIZATION_CONFIG.window,
                 min_soft_passes: CRYSTALLIZATION_CONFIG.minSoftPasses,
                 default_required_windows: CRYSTALLIZATION_CONFIG.defaultRequiredWindows,
-                projection_drift_max_p95: CRYSTALLIZATION_CONFIG.projectionDriftMaxP95
+                projection_drift_max_p95: CRYSTALLIZATION_CONFIG.projectionDriftMaxP95,
+                projection_drift_slope_max_p95: CRYSTALLIZATION_CONFIG.projectionDriftSlopeMaxP95
             },
             verification_summary: {
                 replay_green: true,
@@ -166,7 +167,8 @@ Deno.test("crystallization report index chain detects tamper", async () => {
                 window: CRYSTALLIZATION_CONFIG.window,
                 min_soft_passes: CRYSTALLIZATION_CONFIG.minSoftPasses,
                 default_required_windows: CRYSTALLIZATION_CONFIG.defaultRequiredWindows,
-                projection_drift_max_p95: CRYSTALLIZATION_CONFIG.projectionDriftMaxP95
+                projection_drift_max_p95: CRYSTALLIZATION_CONFIG.projectionDriftMaxP95,
+                projection_drift_slope_max_p95: CRYSTALLIZATION_CONFIG.projectionDriftSlopeMaxP95
             },
             verification_summary: {
                 replay_green: true,
@@ -320,7 +322,8 @@ Deno.test("crystallization report index chain enforces monotonic tick causality"
                 window: CRYSTALLIZATION_CONFIG.window,
                 min_soft_passes: CRYSTALLIZATION_CONFIG.minSoftPasses,
                 default_required_windows: CRYSTALLIZATION_CONFIG.defaultRequiredWindows,
-                projection_drift_max_p95: CRYSTALLIZATION_CONFIG.projectionDriftMaxP95
+                projection_drift_max_p95: CRYSTALLIZATION_CONFIG.projectionDriftMaxP95,
+                projection_drift_slope_max_p95: CRYSTALLIZATION_CONFIG.projectionDriftSlopeMaxP95
             },
             verification_summary: {
                 replay_green: true,

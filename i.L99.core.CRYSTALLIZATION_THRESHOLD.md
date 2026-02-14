@@ -24,7 +24,8 @@ All must be true:
 1. Replay Green: 100% deterministic replay match on 3 independent runs.
    Projection replay report MUST have `failCount = 0` for the same window.
    Projection drift gate MUST pass:
-   `max(driftByLevelP95) <= projectionDriftMaxP95`. Default runtime values are
+   `max(driftByLevelP95) <= projectionDriftMaxP95` and
+   `max(driftSlopeByLevelP95) <= projectionDriftSlopeMaxP95`. Default runtime values are
    defined in: `i.L99.core.CRYSTALLIZATION_CONFIG.ts`. Ledger hash-chain
    verification MUST be enabled according to policy (`verifyLedgerChain`) during
    crystallization replay audit. Policy version MUST be persisted in emitted

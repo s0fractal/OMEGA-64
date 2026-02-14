@@ -21,6 +21,7 @@ export interface CrystallizationReportInput {
   drift_report: ProjectionDriftAnalyticsReport;
   projection_drift_gate_pass: boolean;
   projection_drift_max_p95: number;
+  projection_drift_slope_max_p95: number;
   gate_admission_report?: GateAdmissionReport;
   gate_admission_gate_pass?: boolean;
   gate_admission_report_hash?: string;
@@ -45,6 +46,7 @@ export interface CrystallizationReport {
     min_soft_passes: number;
     default_required_windows: number;
     projection_drift_max_p95: number;
+    projection_drift_slope_max_p95: number;
     gate_admission_out_of_phase_pressure_max_mean?: number;
     gate_admission_min_coherence_coverage?: number;
   };
@@ -184,6 +186,7 @@ export const CRYSTALLIZATION_REPORT = {
         min_soft_passes: CRYSTALLIZATION_CONFIG.minSoftPasses,
         default_required_windows: CRYSTALLIZATION_CONFIG.defaultRequiredWindows,
         projection_drift_max_p95: input.projection_drift_max_p95,
+        projection_drift_slope_max_p95: input.projection_drift_slope_max_p95,
         gate_admission_out_of_phase_pressure_max_mean:
           input.gate_admission_out_of_phase_pressure_max_mean,
         gate_admission_min_coherence_coverage:

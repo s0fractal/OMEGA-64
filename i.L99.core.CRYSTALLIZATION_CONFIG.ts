@@ -7,6 +7,7 @@ export interface CrystallizationConfig {
   minSoftPasses: number;
   defaultRequiredWindows: number;
   projectionDriftMaxP95: number;
+  projectionDriftSlopeMaxP95: number;
   projectionDriftTopLevels: number;
   gateAdmissionOutOfPhasePressureMaxMean: number;
   gateAdmissionMinCoherenceCoverage: number;
@@ -20,6 +21,7 @@ export const CRYSTALLIZATION_CONFIG: CrystallizationConfig = {
   minSoftPasses: 5,
   defaultRequiredWindows: 3,
   projectionDriftMaxP95: 1024,
+  projectionDriftSlopeMaxP95: 64,
   projectionDriftTopLevels: 8,
   gateAdmissionOutOfPhasePressureMaxMean: 1.0,
   gateAdmissionMinCoherenceCoverage: 0.0,
@@ -60,6 +62,7 @@ export const CRYSTALLIZATION_POLICY = {
       minSoftPasses: CRYSTALLIZATION_CONFIG.minSoftPasses,
       defaultRequiredWindows: CRYSTALLIZATION_CONFIG.defaultRequiredWindows,
       projectionDriftMaxP95: CRYSTALLIZATION_CONFIG.projectionDriftMaxP95,
+      projectionDriftSlopeMaxP95: CRYSTALLIZATION_CONFIG.projectionDriftSlopeMaxP95,
       projectionDriftTopLevels: CRYSTALLIZATION_CONFIG.projectionDriftTopLevels,
       gateAdmissionOutOfPhasePressureMaxMean:
         CRYSTALLIZATION_CONFIG.gateAdmissionOutOfPhasePressureMaxMean,
