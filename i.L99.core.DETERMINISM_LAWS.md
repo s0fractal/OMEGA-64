@@ -38,6 +38,13 @@ Must use canonical imports (I16_LIMITS / I16_CLAMP / U16_LIMITS).
 Enforcement: Determinism law audit.
 Sanction: Reject (must refactor to canon limits).
 
+Law 04c — Export Identity (AX/OP/FL)
+Where: L32–L63 (FL/OP/AX band)
+Rule: Exported symbol name must match file identity.
+Format: export {NAME} ↔ i.L{n}.{layer}.{NAME}.ts (address = essence).
+Enforcement: Determinism law audit.
+Sanction: Reject (rename export or file; alias allowed only outside canon).
+
 IO Boundary:
 - Side-channel IO (console/logging, fetch, sockets) is forbidden from L32+ (FL/OP/AX).
 - Substrate IO (file operations) is permitted in FL when required by the bridge.

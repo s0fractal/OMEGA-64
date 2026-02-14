@@ -63,6 +63,30 @@ const LIMIT_LITERAL_PATTERNS = [
 ];
 const CANON_LIMIT_IMPORT = /I16_LIMITS|I16_CLAMP|U16_LIMITS/;
 
+const exportNames = (content: string): string[] => {
+    const names: string[] = [];
+    const named = /export\s+(?:const|function|class)\s+([A-Za-z0-9_]+)/g;
+    const defaultNamed = /export\s+default\s+([A-Za-z0-9_]+)/g;
+    const listNamed = /export\s*{\s*([^}]+)\s*}/g;
+    let match: RegExpExecArray | null;
+    while ((match = named.exec(content)) !== null) names.push(match[1]);
+    while ((match = defaultNamed.exec(content)) !== null) names.push(match[1]);
+    while ((match = listNamed.exec(content)) !== null) {
+        const chunk = match[1];
+        chunk
+            .split(",")
+            .map((part) => part.trim().split(/\s+as\s+/i)[0])
+            .filter((part) => part.length > 0)
+            .forEach((part) => names.push(part));
+    }
+    return names;
+};
+
+const expectedExportName = (atomId: string): string | null => {
+    const match = atomId.match(/^i\.L\d{2}\.[^.]+\.(.+)\.ts$/);
+    return match ? match[1] : null;
+};
+
 const countExports = (content: string): number => {
     const matches = [
         content.match(/export\s+const\b/g) ?? [],
@@ -137,6 +161,16 @@ export const DETERMINISM_LAWS = {
         if ((band === "AX" || band === "OP" || band === "FL") && hasLimitLiteral(contentNoComments)) {
             if (!CANON_LIMIT_IMPORT.test(contentNoComments)) {
                 reasons.push("CANON_LIMITS_DIRECT");
+            }
+        }
+
+        if (band === "AX" || band === "OP" || band === "FL") {
+            const expected = expectedExportName(input.atomId);
+            if (expected) {
+                const names = exportNames(contentNoComments);
+                if (!names.includes(expected)) {
+                    reasons.push(`EXPORT_NAME_MISMATCH:${expected}`);
+                }
             }
         }
 
