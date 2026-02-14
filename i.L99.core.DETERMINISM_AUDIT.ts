@@ -6,7 +6,8 @@
 
 import { DETERMINISM_LAWS } from "./i.L99.core.DETERMINISM_LAWS.ts";
 import { atomIdToBand, atomIdToLevel, DeterminismBand } from "./i.L99.core.DETERMINISM_BANDS.ts";
-import { SIGNAL } from "./i.L64.core.SIGNAL.ts";
+import { TELEMETRY } from "./i.L03.core.TELEMETRY.ts";
+import { TELEMETRY_SIGNAL } from "./i.L02.core.TELEMETRY_SIGNAL.ts";
 
 export interface DeterminismAuditRecord {
     atom_id: string;
@@ -102,17 +103,20 @@ if (import.meta.main) {
             atom_id: v.atom_id,
             reasons: v.reasons
         }));
-        await SIGNAL.emit(violations.length === 0 ? "INFO" : "WARNING", {
-            source: "DETERMINISM_AUDIT",
-            message: violations.length === 0
-                ? `Determinism audit OK. Scanned ${report.scanned} atoms.`
-                : `Determinism audit violations: ${violations.length} / ${report.scanned}.`,
-            context: {
-                violations: violations.length,
-                by_band: report.by_band,
-                sample
-            }
-        });
+        await TELEMETRY_SIGNAL(
+            TELEMETRY(
+                "DETERMINISM_AUDIT",
+                violations.length === 0
+                    ? `Determinism audit OK. Scanned ${report.scanned} atoms.`
+                    : `Determinism audit violations: ${violations.length} / ${report.scanned}.`,
+                {
+                    violations: violations.length,
+                    by_band: report.by_band,
+                    sample
+                }
+            ),
+            violations.length === 0 ? "INFO" : "WARNING"
+        );
     }
     console.log(JSON.stringify(report, null, 2));
     if (flags.has("--fail") && report.violations > 0) {

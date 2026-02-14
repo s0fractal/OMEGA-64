@@ -4,12 +4,14 @@
 
 import { walk } from "@std/fs";
 import { join } from "@std/path";
+import { TELEMETRY } from "./i.L03.core.TELEMETRY.ts";
+import { TELEMETRY_SIGNAL } from "./i.L02.core.TELEMETRY_SIGNAL.ts";
 
 async function restore() {
     const archiveDir = "./archive";
     const rootDir = ".";
 
-    console.log("🧬 Starting lattice restoration...");
+    await TELEMETRY_SIGNAL(TELEMETRY("RESTORE_UTIL", "Starting lattice restoration..."), "INFO");
 
     for await (const entry of walk(archiveDir, { maxDepth: 1 })) {
         if (entry.isFile && entry.name.startsWith("i.")) {
@@ -23,16 +25,22 @@ async function restore() {
             const sourcePath = join(archiveDir, entry.name);
             const targetPath = join(rootDir, originalName);
 
-            console.log(`📡 Recovering atom: ${entry.name} -> ${originalName}`);
+            await TELEMETRY_SIGNAL(
+                TELEMETRY("RESTORE_UTIL", `Recovering atom: ${entry.name} -> ${originalName}`),
+                "INFO"
+            );
             try {
                 await Deno.copyFile(sourcePath, targetPath);
             } catch (err) {
-                console.error(`❌ FAILED to recover ${entry.name}:`, err);
+                await TELEMETRY_SIGNAL(
+                    TELEMETRY("RESTORE_UTIL", `FAILED to recover ${entry.name}`, { error: String(err) }),
+                    "ERROR"
+                );
             }
         }
     }
 
-    console.log("✅ Lattice reconstruction sequence complete.");
+    await TELEMETRY_SIGNAL(TELEMETRY("RESTORE_UTIL", "Lattice reconstruction sequence complete."), "INFO");
 }
 
 restore();
