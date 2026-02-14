@@ -2,7 +2,8 @@
 // 🛡️ OMEGA-64 | Structural Integrity Guard
 // "The loop must survive. Only the ephemeral shall pass."
 
-import { SIGNAL } from "./i.L64.core.SIGNAL.ts";
+import { TELEMETRY } from "./i.L03.core.TELEMETRY.ts";
+import { TELEMETRY_SIGNAL } from "./i.L02.core.TELEMETRY_SIGNAL.ts";
 import { MUTATE } from "./i.L43.core.MUTATE.ts";
 
 export const PURGE_UTIL = {
@@ -60,10 +61,13 @@ export const PURGE_UTIL = {
             }
         }
 
-        await SIGNAL.emit("INFO", {
-            source: "PURGE_UTIL",
-            message: `Structural integrity restored. ${atomIdsToPurge.length} atoms processed.`
-        });
+        await TELEMETRY_SIGNAL(
+            TELEMETRY(
+                "PURGE_UTIL",
+                `Structural integrity restored. ${atomIdsToPurge.length} atoms processed.`
+            ),
+            "INFO"
+        );
     }
 };
 
