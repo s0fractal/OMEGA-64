@@ -219,10 +219,12 @@ const parseArgs = (
   return out;
 };
 
+const ENCODER = new TextEncoder();
+
 const run = async (): Promise<void> => {
   const parsed = parseArgs(Deno.args);
   if (parsed.help) {
-    console.log(usage());
+    await Deno.stdout.write(ENCODER.encode(`${usage()}\n`));
     return;
   }
   if (!parsed.input) {
@@ -253,7 +255,7 @@ const run = async (): Promise<void> => {
     if (parsed.output) {
       await Deno.writeTextFile(parsed.output, body);
     } else {
-      console.log(body);
+      await Deno.stdout.write(ENCODER.encode(`${body}\n`));
     }
     return;
   }
@@ -270,7 +272,7 @@ const run = async (): Promise<void> => {
     if (parsed.output) {
       await Deno.writeTextFile(parsed.output, body);
     } else {
-      console.log(body);
+      await Deno.stdout.write(ENCODER.encode(`${body}\n`));
     }
     return;
   }
@@ -323,7 +325,7 @@ const run = async (): Promise<void> => {
   if (parsed.output) {
     await Deno.writeTextFile(parsed.output, body);
   } else {
-    console.log(body);
+    await Deno.stdout.write(ENCODER.encode(`${body}\n`));
   }
 };
 
