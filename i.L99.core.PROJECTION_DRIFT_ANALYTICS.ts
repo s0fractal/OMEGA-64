@@ -6,6 +6,7 @@ import { LEDGER } from "./i.L99.core.LEDGER.ts";
 import { LedgerEvent } from "./i.L99.core.STATE_SNAPSHOT.ts";
 import { REPLAY_AUDIT, ReplayAuditResult, ReplayGenesis } from "./i.L99.core.REPLAY_AUDIT.ts";
 import { TOPOLOGICAL_SIGNATURE } from "./i.L99.core.TOPOLOGICAL_SIGNATURE.ts";
+import { I16_CLAMP } from "./i.L00.core.I16_CLAMP.ts";
 
 export interface ProjectionDriftAnalyticsOptions {
     startTick?: number;
@@ -90,10 +91,8 @@ const saturatingAdd = (base: Int16Array, delta: Array<{ level: number; value: nu
     next.set(base);
     for (const d of delta) {
         if (!Number.isInteger(d.level) || d.level < 0 || d.level >= next.length) continue;
-        let value = next[d.level] + d.value;
-        if (value > 32767) value = 32767;
-        if (value < -32768) value = -32768;
-        next[d.level] = value;
+        const value = next[d.level] + d.value;
+        next[d.level] = I16_CLAMP(value);
     }
     return next;
 };

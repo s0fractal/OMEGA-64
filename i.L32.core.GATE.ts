@@ -25,6 +25,7 @@ import { CANON_CAUSAL_BRIDGE } from "./i.L32.core.CANON_CAUSAL_BRIDGE.ts";
 import { AGENT_SIGNATURE } from "./i.L32.core.AGENT_SIGNATURE.ts";
 import { PROPOSAL_ENVELOPE_INDEX } from "./i.L99.core.PROPOSAL_ENVELOPE_INDEX.ts";
 import { INVARIANT_PACKET } from "./i.L32.core.INVARIANT_PACKET.ts";
+import { I16_CLAMP } from "./i.L00.core.I16_CLAMP.ts";
 
 const GATE_VERSION = "v0.2";
 const AUTO_CHECKPOINT_INTERVAL = 128;
@@ -393,10 +394,8 @@ export const GATE = {
     if (!config.dry_run) {
       for (const d of decision.accepted_delta) {
         // Saturating Add
-        let newVal = nextStateI16[d.level] + d.value;
-        if (newVal > 32767) newVal = 32767;
-        if (newVal < -32768) newVal = -32768;
-        nextStateI16[d.level] = newVal;
+        const newVal = nextStateI16[d.level] + d.value;
+        nextStateI16[d.level] = I16_CLAMP(newVal);
       }
     } else {
       // DRY RUN: State does NOT change

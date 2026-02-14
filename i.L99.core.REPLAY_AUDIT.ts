@@ -11,6 +11,7 @@ import { CRYSTALLIZATION_REPORT } from "./i.L99.core.CRYSTALLIZATION_REPORT.ts";
 import { GATE_ADMISSION_REPORT } from "./i.L99.core.GATE_ADMISSION_REPORT.ts";
 import type { InvariantPacket } from "./i.L32.core.INVARIANT_PACKET.ts";
 import { INVARIANT_PACKET } from "./i.L32.core.INVARIANT_PACKET.ts";
+import { I16_CLAMP } from "./i.L00.core.I16_CLAMP.ts";
 
 export interface ReplayGenesis {
     tick: number;
@@ -127,10 +128,8 @@ const saturatingAdd = (base: Int16Array, delta: Array<{ level: number; value: nu
         if (!Number.isInteger(d.level) || d.level < 0 || d.level >= next.length) {
             continue;
         }
-        let value = next[d.level] + d.value;
-        if (value > 32767) value = 32767;
-        if (value < -32768) value = -32768;
-        next[d.level] = value;
+        const value = next[d.level] + d.value;
+        next[d.level] = I16_CLAMP(value);
     }
     return next;
 };
