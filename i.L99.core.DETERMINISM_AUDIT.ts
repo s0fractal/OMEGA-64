@@ -6,6 +6,7 @@
 
 import { DETERMINISM_LAWS } from "./i.L99.core.DETERMINISM_LAWS.ts";
 import { atomIdToBand, atomIdToLevel, DeterminismBand } from "./i.L99.core.DETERMINISM_BANDS.ts";
+import { SIGNAL } from "./i.L64.core.SIGNAL.ts";
 
 export interface DeterminismAuditRecord {
     atom_id: string;
@@ -92,7 +93,26 @@ export const DETERMINISM_AUDIT = {
 };
 
 if (import.meta.main) {
-    const root = Deno.args[0] ?? DEFAULT_ROOT;
+    const flags = new Set(Deno.args.filter((arg) => arg.startsWith("--")));
+    const root = Deno.args.find((arg) => !arg.startsWith("--")) ?? DEFAULT_ROOT;
     const report = await DETERMINISM_AUDIT.scan(root);
+    if (flags.has("--signal")) {
+        const violations = report.records.filter((r) => !r.ok);
+        const sample = violations.slice(0, 8).map((v) => ({
+            atom_id: v.atom_id,
+            reasons: v.reasons
+        }));
+        await SIGNAL.emit(violations.length === 0 ? "INFO" : "WARNING", {
+            source: "DETERMINISM_AUDIT",
+            message: violations.length === 0
+                ? `Determinism audit OK. Scanned ${report.scanned} atoms.`
+                : `Determinism audit violations: ${violations.length} / ${report.scanned}.`,
+            context: {
+                violations: violations.length,
+                by_band: report.by_band,
+                sample
+            }
+        });
+    }
     console.log(JSON.stringify(report, null, 2));
 }
