@@ -1,5 +1,14 @@
 {
   "compilerOptions": { "lib": ["deno.window"], "strict": true },
+  "tasks": {
+    "lint": "deno lint",
+    "audit:determinism": "deno run -A i.L99.core.DETERMINISM_AUDIT.ts",
+    "audit:determinism:signal": "deno run -A i.L99.core.DETERMINISM_AUDIT.ts --signal",
+    "test:gate-runner": "deno run -A test_gate_runner.ts",
+    "test:replay": "deno run -A test_replay_audit_topological_signature.ts",
+    "test:crystallization": "deno run -A test_replay_crystallization.ts",
+    "check:canon": "deno task lint && deno task audit:determinism && deno task test:replay && deno task test:crystallization && deno task test:gate-runner"
+  },
   "lint": {
     "exclude": ["I.ts", "UI/", "SINGULARITY/"],
     "rules": {
