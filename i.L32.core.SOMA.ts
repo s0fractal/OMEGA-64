@@ -79,6 +79,5 @@ export const SOMA = {
         };
         
         await Deno.writeTextFile(signalPath, JSON.stringify(signal, null, 2));
-        console.log(`📡 SOMA: Resonance injected into [${signalPath}]`);
     }
 };

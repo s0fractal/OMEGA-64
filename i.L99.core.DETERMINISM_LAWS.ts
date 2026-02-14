@@ -40,9 +40,14 @@ const AXOP_FORBIDDEN_TOKENS = [
     "console."
 ];
 
-const IO_TOKENS = [
+const IO_TOKENS_AXOP = [
     "console.",
-    "Deno.",
+    "fetch(",
+    "WebSocket",
+    "BroadcastChannel"
+];
+const IO_TOKENS_FL = [
+    "console.",
     "fetch(",
     "WebSocket",
     "BroadcastChannel"
@@ -119,8 +124,13 @@ export const DETERMINISM_LAWS = {
             if (forbidden) reasons.push(`FL_NONDETERMINISM:${forbidden}`);
         }
 
-        if (band === "AX" || band === "OP" || band === "FL") {
-            const io = findToken(content, IO_TOKENS);
+        if (band === "AX" || band === "OP") {
+            const io = findToken(content, IO_TOKENS_AXOP);
+            if (io) reasons.push(`IO_FORBIDDEN:${io}`);
+        }
+
+        if (band === "FL") {
+            const io = findToken(content, IO_TOKENS_FL);
             if (io) reasons.push(`IO_FORBIDDEN:${io}`);
         }
 

@@ -49,7 +49,3 @@ export const GATE_RUNNER = {
         );
     }
 };
-
-if (import.meta.main) {
-    console.log("Usage: import GATE_RUNNER and call step({...}).");
-}

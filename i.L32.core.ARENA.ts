@@ -70,7 +70,6 @@ export const ARENA = {
     }
     
     ARENA.active.set(pulse.source, pulse);
-    console.log(`⚡ ARENA: Excitation from [${pulse.source.slice(0,8)}] at r=${pulse.wave.center}`);
   },
 
   /**

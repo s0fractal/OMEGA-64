@@ -32,7 +32,7 @@ export const IMMUNE = {
         const isCompatible = ["TRIPLE_STABLE", "MACHINE_ONLY", "POTENTIAL"].includes(analysis);
 
         if (!isCompatible) {
-            console.warn(`🛡️ IMMUNE: Rejected [${atom.id}] -> Status: ${analysis}`);
+            // Telemetry handled outside canonical band
         }
 
         return isCompatible;
@@ -40,7 +40,6 @@ export const IMMUNE = {
 
     // 2. Quarantine: Isolate the infected
     quarantine: (atom: Atom): Atom => {
-        console.warn(`🛡️ IMMUNE: Quarantining [${atom.id}] (Insufficient Mass/Structure)`);
         return {
             ...atom,
             id: `QUARANTINE.${atom.id.replace(/[^a-zA-Z0-9._]/g, '')}`,
@@ -68,7 +67,7 @@ export const IMMUNE = {
         }
         
         if (rejected > 0) {
-            console.log(`🛡️ IMMUNE: Rejected ${rejected} atoms from the Lattice.`);
+            // Telemetry handled outside canonical band
         }
         
         return cleanLattice;

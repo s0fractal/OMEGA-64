@@ -378,7 +378,7 @@ export const GATE = {
     let scaleFactor = 1.0;
     if (totalAbsDelta > config.max_total_abs_delta_per_tick) {
       scaleFactor = config.max_total_abs_delta_per_tick / totalAbsDelta;
-      // console.warn(`⚖️ GATE: Scaling deltas by ${scaleFactor.toFixed(4)} (Budget Exceeded)`);
+      // telemetry: scaling deltas by budget constraint
     }
 
     // 6. Flatten & Scale & Round Delta
@@ -400,7 +400,7 @@ export const GATE = {
       }
     } else {
       // DRY RUN: State does NOT change
-      // console.log("🛡️ GATE: Dry Run - State preserved.");
+      // telemetry: dry run preserves state
     }
 
     // 6. Deterministic Hashing
@@ -565,7 +565,7 @@ export const GATE = {
         );
       } catch (e) {
         // Checkpoints are safety accelerators, not mutation authority.
-        console.warn("⚠️ CHECKPOINT SAVE FAILED", e);
+        // checkpoint save failed (telemetry handled outside canonical band)
       }
     }
 

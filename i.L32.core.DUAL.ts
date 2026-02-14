@@ -53,7 +53,6 @@ export const DUAL = {
     const resonance = DUAL.compileMyth(source);
     
     if (resonance < 0.3) {
-      console.warn(`⚠️ DUAL: Atom [${atomId}] rejected. Low Resonance (${resonance.toFixed(2)}). Too unbalanced.`);
       return false;
     }
     

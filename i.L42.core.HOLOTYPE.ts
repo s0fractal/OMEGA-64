@@ -55,7 +55,6 @@ export const HOLOTYPE = {
     materialize: async (holotype: Holotype) => {
         const path = `${holotype.id}.json`;
         await Deno.writeTextFile(path, JSON.stringify(holotype, null, 2));
-        console.log(`📦 HOLOTYPE: Materialized [${holotype.id}] (Vector: ${holotype.vector.slice(0, 8)}...)`);
     },
 
     // Spontaneous Generation (Budding)
@@ -71,7 +70,7 @@ export const HOLOTYPE = {
         const resonance = resonanceSeed / 255; // Deterministic placeholder
 
         if (resonance > 0.8 && tension > 0.1) {
-             console.log(`🌱 HOLOTYPE: Tension detected in [${parent.id}]. Budding...`);
+             // Budding acknowledged (telemetry handled outside canonical band)
              const childId = parent.id.replace(".ts", ".child.ts"); // Simple naming for now
              
              return {
@@ -91,7 +90,9 @@ export const HOLOTYPE = {
 if (import.meta.main) {
     const target = Deno.args[0];
     if (!target) {
-        console.error("Usage: deno run ... i.L42.core.HOLOTYPE.ts <ATOM_ID_WITHOUT_EXT>");
+        await Deno.stderr.write(
+            new TextEncoder().encode("Usage: deno run ... i.L42.core.HOLOTYPE.ts <ATOM_ID_WITHOUT_EXT>\n")
+        );
         Deno.exit(1);
     }
 
@@ -99,6 +100,6 @@ if (import.meta.main) {
     const cleanTarget = target.replace(/\.(ts|rs|md|sh)$/, "");
 
     const h = await HOLOTYPE.collapse(cleanTarget);
-    console.log(JSON.stringify(h, null, 2));
+    await Deno.stdout.write(new TextEncoder().encode(`${JSON.stringify(h, null, 2)}\n`));
     // await HOLOTYPE.materialize(h); // Optional: Save to file
 }

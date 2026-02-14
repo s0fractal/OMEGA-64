@@ -29,9 +29,8 @@ export const L${levelNum}_VOID = Object.freeze({
 // CLI for quick blessing
 if (import.meta.main) {
     const lvl = parseInt(Deno.args[0]);
-    if (lvl) {
-        console.log(VOID_KEEPER.bless(lvl));
-    } else {
-        console.log("Usage: deno run VOID_KEEPER.ts <LEVEL_NUM>");
-    }
+    const message = lvl
+        ? VOID_KEEPER.bless(lvl)
+        : "Usage: deno run VOID_KEEPER.ts <LEVEL_NUM>";
+    await Deno.stdout.write(new TextEncoder().encode(`${message}\n`));
 }

@@ -59,14 +59,12 @@ export const MUTATE = {
             meanSlope <= MUTATE.SAFE_DRIFT_SLOPE_THRESHOLD;
 
         if (!isGreen || !isReplayGreen || !indexOk || !driftOk) {
-            console.warn(`🛑 SOVEREIGNTY GATE CLOSED: drift=${meanDrift.toFixed(4)} slope=${meanSlope.toFixed(4)} (Thresholds: ${MUTATE.SAFE_DRIFT_THRESHOLD}, ${MUTATE.SAFE_DRIFT_SLOPE_THRESHOLD})`);
             return { 
                 ok: false, 
                 reason: `WINDOW_CLOSED: bridge=${bridge.mode}, replay=${isReplayGreen}, index=${indexOk}, drift=${meanDrift.toFixed(4)}, slope=${meanSlope.toFixed(4)}`
             };
         }
 
-        console.log(`🟢 SOVEREIGNTY GATE OPEN: drift=${meanDrift.toFixed(4)} slope=${meanSlope.toFixed(4)}`);
         return { ok: true, audit, meanDrift, meanSlope };
     },
 
@@ -77,11 +75,9 @@ export const MUTATE = {
         const { atomId, content, reason, details, dryRun = false, invariant_packet_hash, timestamp } = req;
         if (!content) throw new Error("MUTATE: Content required for WRITE action.");
 
-        console.log(`📡 MUTATE: Requesting write for [${atomId}] (Reason: ${reason})`);
 
         // Structural mutations (TENSION/RESONANCE/EMERGENCE) MUST have an invariant packet
         if (["TENSION", "RESONANCE", "EMERGENCE"].includes(reason) && !invariant_packet_hash) {
-            console.warn(`🛑 MUTATE REJECTED: Structural mutation requires invariant_packet_hash.`);
             return { ok: false, reason: "MISSING_INVARIANT_PACKET" };
         }
 
@@ -89,19 +85,16 @@ export const MUTATE = {
         const audit = DETERMINISM_LAWS.audit({ atomId, content });
         if (!audit.ok) {
             const reasonText = audit.reasons.join("|");
-            console.warn(`🛑 MUTATE REJECTED: Determinism law violation (${audit.band}): ${reasonText}`);
             return { ok: false, reason: `DETERMINISM_LAW_VIOLATION:${reasonText}` };
         }
 
         // Check window
         const window = await MUTATE.checkSovereignty();
         if (!window.ok) {
-            console.warn(`🛑 MUTATE REJECTED: ${window.reason}`);
             return { ok: false, reason: window.reason };
         }
 
         if (dryRun) {
-            console.log(`✍️ [DRY RUN] MUTATE would write to ${atomId}:\n${content.slice(0, 100)}...`);
             return { ok: true, dryRun: true };
         }
 
@@ -130,11 +123,9 @@ export const MUTATE = {
                 invariant_packet_hash
             });
 
-            console.log(`✅ MUTATE: Successfully evolved [${atomId}]`);
             return { ok: true };
         } catch (err) {
             const msg = err instanceof Error ? err.message : String(err);
-            console.error(`❌ MUTATE FAILED: ${msg}`);
             return { ok: false, reason: msg };
         }
     },
@@ -153,7 +144,6 @@ export const MUTATE = {
             if (!sovereigntyVerified) {
                 const window = await MUTATE.checkSovereignty();
                 if (!window.ok) {
-                    console.warn(`🛑 ARCHIVE REJECTED for ${atomId}: ${window.reason}`);
                     return { ok: false, reason: window.reason };
                 }
             }
@@ -175,11 +165,9 @@ export const MUTATE = {
                 details: `Archived to ${backupPath}`
             });
 
-            console.log(`📦 ARCHIVED: ${atomId} -> ${backupPath}`);
             return { ok: true };
         } catch (err) {
             const msg = err instanceof Error ? err.message : String(err);
-            console.warn(`⚠️ ARCHIVE FAILED for ${atomId}: ${msg}`);
             return { ok: false, reason: msg };
         }
     },

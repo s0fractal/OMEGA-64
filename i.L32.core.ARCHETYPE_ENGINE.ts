@@ -49,7 +49,6 @@ export const ARCHETYPE_ENGINE = {
         };
 
         // In a real system we would add to ARENA.ARCHETYPES dynamically if it were a Map
-        console.log(`🌱 ARCHETYPE BUDDED: ${new_name}`);
       }
     }
   }

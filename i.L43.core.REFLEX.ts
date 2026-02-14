@@ -22,13 +22,11 @@ export const REFLEX = {
         tension: state.tension,
         source: "REFLEX_ARC" 
       });
-      console.log(`📡 REFLEX: DISTRESS PULSE! Pain: ${pain.toFixed(2)}`);
       return "DISTRESS_BROADCAST";
     }
     
     if (pain > 0.5) {
       // "Свербіж" (LOCAL_MUTATION) — спроба внутрішньої стабілізації
-      console.log(`🧬 REFLEX: LOCAL ADAPTATION. Pain: ${pain.toFixed(2)}`);
       return "LOCAL_ADAPTATION";
     }
     

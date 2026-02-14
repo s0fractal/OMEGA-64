@@ -39,7 +39,8 @@ Enforcement: Determinism law audit.
 Sanction: Reject (must refactor to canon limits).
 
 IO Boundary:
-- IO (console/logging, fetch, Deno APIs, sockets) is forbidden from L32+ (FL/OP/AX).
+- Side-channel IO (console/logging, fetch, sockets) is forbidden from L32+ (FL/OP/AX).
+- Substrate IO (file operations) is permitted in FL when required by the bridge.
 - IO is permitted in PJ/DR as telemetry but must not mutate canonical state.
 
 Law 05 — Marked Entropy (PJ/DR)

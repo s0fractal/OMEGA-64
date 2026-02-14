@@ -1,4 +1,5 @@
 // i.L32.core.GATE_RUNNER_CLI.ts
+// @noncanonical
 // OMEGA-64 | CLI wrapper for GATE_RUNNER.step(...)
 
 import { GATE_RUNNER } from "./i.L32.core.GATE_RUNNER.ts";
