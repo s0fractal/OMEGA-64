@@ -3,7 +3,10 @@
 // "Колір світла та колір буття — одна структура, різні носії"
 
 import { FIELD_CONFIG, FIELD } from './i.L00.core.FIELD.ts';
+import { U16_LIMITS } from "./i.L00.core.U16_LIMITS.ts";
 import { QWave, WAVE_PACKET } from './i.L13.core.WAVE_PACKET.ts';
+
+const U16 = U16_LIMITS();
 
 // ============================================================================
 // [HSV CORE — стандартна модель кольору]
@@ -37,25 +40,25 @@ export const CHROMO = {
   
   waveToHsv: (wave: QWave): HSV => {
     // Hue: фаза → кут
-    // phi ∈ [0, 65535] → h ∈ [0, 360]
-    const h = (wave.phase / 65535) * 360;
+    // phi ∈ [0, U16.span] → h ∈ [0, 360]
+    const h = (wave.phase / U16.span) * 360;
     
     // Saturation: відстань від центру (r=0)
-    // |r| ∈ [0, 32767] → s ∈ [0, 1]
+    // |r| ∈ [0, I16.max] → s ∈ [0, 1]
     const s = Math.abs(wave.center) / FIELD_CONFIG.MAX_ATTRACTOR;
     
     // Value: амплітуда нормалізована
-    // amplitude ∈ [0, 65535] → v ∈ [0, 1]
-    const v = Math.min(1, wave.amplitude / 65535);
+    // amplitude ∈ [0, U16.span] → v ∈ [0, 1]
+    const v = Math.min(1, wave.amplitude / U16.span);
     
     return { h, s, v };
   },
 
   hsvToWave: (hsv: HSV, sign: 1 | -1 = 1): QWave => {
     // Обернене перетворення
-    const phi = Math.round((hsv.h / 360) * 65535) % 65535;
+    const phi = Math.round((hsv.h / 360) * U16.span) % U16.span;
     const r = Math.round(hsv.s * FIELD_CONFIG.MAX_ATTRACTOR) * sign;
-    const amplitude = Math.round(hsv.v * 65535);
+    const amplitude = Math.round(hsv.v * U16.span);
     
     // Ширина залежить від "чіткості" кольору
     // Насичений = вузький пакет (чітка позиція)

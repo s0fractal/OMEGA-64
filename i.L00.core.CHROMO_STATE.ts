@@ -3,6 +3,11 @@
 
 import { QWave } from './i.L13.core.WAVE_PACKET.ts';
 import { CHROMO, HSV, RGB } from './i.L00.core.COLOR.ts';
+import { I16_LIMITS } from "./i.L00.core.I16_LIMITS.ts";
+import { U16_LIMITS } from "./i.L00.core.U16_LIMITS.ts";
+
+const I16 = I16_LIMITS();
+const U16 = U16_LIMITS();
 
 export interface ChronoState {
   tau: number;
@@ -80,7 +85,7 @@ export const CHROMO_STATE = {
         const layerTau = 1 - normalizedR; // Центр = повільний час, край = швидкий
         
         // Сектор відповідає фазі
-        const layerPhi = normalizedPhi * 65535;
+        const layerPhi = normalizedPhi * U16.span;
         
         // Колір температури відповідає глибині r
         const layerR = CHROMO_STATE.temperatureToDepth(
@@ -164,7 +169,7 @@ export const CHROMO_STATE = {
     const avgR = Math.sqrt(dx*dx + dy*dy) / (center - 2);
     const avgTau = 1 - avgR;
     const avgAngle = Math.atan2(dy, dx);
-    const avgPhi = ((avgAngle / Math.PI + 1) / 2 * 65535) % 65535;
+    const avgPhi = ((avgAngle / Math.PI + 1) / 2 * U16.span) % U16.span;
     
     // Домінантний відтінок → глибина
     let dominantHue = 0, maxHueCount = 0;
@@ -185,7 +190,7 @@ export const CHROMO_STATE = {
         center: Math.round(estimatedR),
         width: 1000, // Стандартна невизначеність
         phase: Math.round(avgPhi),
-        amplitude: Math.round((avgValue / count) * 65535)
+        amplitude: Math.round((avgValue / count) * U16.span)
       },
       chrono: {
         tau: avgTau,
@@ -206,10 +211,10 @@ export const CHROMO_STATE = {
   },
 
   temperatureToDepth: (hue: number): number => {
-    // Гарячий (червоний, 0°) → CORE (-32768)
-    // Холодний (синій, 240°) → SURFACE (32767)
+    // Гарячий (червоний, 0°) → CORE (I16.min)
+    // Холодний (синій, 240°) → SURFACE (I16.max)
     const normalized = hue < 240 ? hue / 240 : (360 - hue) / 120;
-    return Math.round((1 - normalized) * 65535 - 32768);
+    return Math.round((1 - normalized) * U16.span - I16.abs);
   },
 
   hueToDepth: (hue: number): number => {
@@ -218,7 +223,7 @@ export const CHROMO_STATE = {
 
   depthToTemperature: (r: number): RGB => {
     const hsv: HSV = {
-      h: ((32767 - r) / 65535) * 240, // -32768→0°, 32767→240°
+      h: ((I16.max - r) / U16.span) * 240, // I16.min→0°, I16.max→240°
       s: 0.8,
       v: 0.9
     };
@@ -232,8 +237,8 @@ export const CHROMO_STATE = {
     // Наскільки піксель відповідає стану
     const tauMatch = 1 - Math.abs(layer.tau - state.chrono.tau);
     const phiDiff = Math.abs(layer.phi - state.wave.phase);
-    const phiMatch = 1 - (phiDiff > 32767 ? 65535 - phiDiff : phiDiff) / 32767;
-    const rMatch = 1 - Math.abs(layer.r - state.wave.center) / 65535;
+    const phiMatch = 1 - (phiDiff > I16.max ? U16.span - phiDiff : phiDiff) / I16.max;
+    const rMatch = 1 - Math.abs(layer.r - state.wave.center) / U16.span;
     
     // Вагова сума
     return tauMatch * 0.4 + phiMatch * 0.4 + rMatch * 0.2;

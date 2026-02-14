@@ -2,8 +2,14 @@
 // 🛡️ OMEGA-64 | Social Physics | Access by Resonance
 // "Право голосу визначається не статусом, а здатністю співати в унісон."
 
+import { I16_LIMITS } from "./i.L00.core.I16_LIMITS.ts";
+import { U16_LIMITS } from "./i.L00.core.U16_LIMITS.ts";
+
+const I16 = I16_LIMITS();
+const U16 = U16_LIMITS();
+
 export interface ResonanceProfile {
-  phase: number;      // Фаза агента [0, 65535]
+  phase: number;      // Фаза агента [0, U16.span]
   stability: number;  // Стабільність агента [0, 1]
 }
 
@@ -26,12 +32,12 @@ export const ACCESS_BY_RESONANCE = {
     const phi2 = agent.phase ?? 0;
     
     let dPhi = Math.abs(phi1 - phi2);
-    if (dPhi > 32767) {
-      dPhi = 65535 - dPhi; // Найкоротший шлях по колу
+    if (dPhi > I16.max) {
+      dPhi = U16.span - dPhi; // Найкоротший шлях по колу
     }
     
     // Нормалізований дисонанс [0, 1] (0 = резонанс, 1 = протифаза)
-    const dissonance = dPhi / 32767;
+    const dissonance = dPhi / I16.max;
     const resonance = 1 - dissonance;
 
     // 2. Врахування стабільності (якщо хтось нестабільний — зв'язок слабшає)
