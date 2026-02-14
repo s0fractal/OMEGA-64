@@ -1,6 +1,6 @@
 
 // i.L32.core.MATH.ts
-// DETERMINISTIC FIXPOINT MATH (Base 65536)
+// DETERMINISTIC FIXPOINT MATH (Base I16.cycle)
 // Ensures bit-exact results across x86, ARM, and WASM.
 
 import { I16_LIMITS } from "./i.L00.core.I16_LIMITS.ts";
@@ -29,7 +29,7 @@ export const Q = {
     getEntropy: (level: number): bigint => {
         const n = BigInt(level);
         const center = 32n;
-        return (n - center) * 1024n; // Scale to i16 range (-32768..32767)
+        return (n - center) * 1024n; // Scale to i16 range (I16.min..I16.max)
     }
 };
 
