@@ -21,7 +21,7 @@ Constraints (Canonical):
 Constraints (Breathing):
 - Drift Budget: allow drift in outer bands, cap drift slope near the core.
 - Windowed Mutation: allow edits only in safe windows; keep dry-run paths open.
-- Telemetry Isolation: IO allowed as observation, not as state mutation.
+- Telemetry Isolation: IO allowed as observation, not as state mutation (use `i.L03.core.TELEMETRY` as the envelope).
 - Ledger Append-Only: reversible staging is allowed, canon remains append-only.
 - Canonical Addressing: atom ids remain stable even as overlays evolve.
 
