@@ -5,6 +5,8 @@
 // Broadcasts State (Pulse) to the Interface (Mirror).
 
 import { serve } from "@std/http/server";
+import { TELEMETRY } from "./i.L03.core.TELEMETRY.ts";
+import { TELEMETRY_SIGNAL } from "./i.L02.core.TELEMETRY_SIGNAL.ts";
 import { SIGNAL } from "./i.L64.core.SIGNAL.ts";
 
 const S = new Set<WebSocket>();
@@ -15,20 +17,23 @@ export const NERVE = {
 
     // Start the Synaptic Bridge
     wake: (port: number = 8080) => {
-        console.log(`🔌 NERVE: Awakening on ${port}...`);
+        TELEMETRY_SIGNAL(TELEMETRY("NERVE", `Awakening on ${port}...`), "INFO");
         serve((req) => {
             const up = req.headers.get("upgrade") === "websocket";
             const { socket: s, response: r } = Deno.upgradeWebSocket(req);
 
             return up ? (
-                s.onopen = () => (console.log("👁️ OPEN."), S.add(s)),
-                s.onclose = () => (console.log("😑 CLOSED."), S.delete(s)),
-                s.onerror = (e) => console.error("⚠️ ERR:", e),
+                s.onopen = () => (TELEMETRY_SIGNAL(TELEMETRY("NERVE", "OPEN."), "INFO"), S.add(s)),
+                s.onclose = () => (TELEMETRY_SIGNAL(TELEMETRY("NERVE", "CLOSED."), "INFO"), S.delete(s)),
+                s.onerror = (e) => TELEMETRY_SIGNAL(TELEMETRY("NERVE", "ERR", { error: String(e) }), "ERROR"),
                 s.onmessage = async (e) => {
                     try {
                         const msg = JSON.parse(e.data);
                         if (msg.type === "TOUCH") {
-                            console.log(`👆 TOUCH: Cell ${msg.payload.idx}`);
+                            await TELEMETRY_SIGNAL(
+                                TELEMETRY("NERVE", `TOUCH: Cell ${msg.payload.idx}`),
+                                "INFO"
+                            );
                             await SIGNAL.emit("REQUEST", {
                                 source: "INTERFACE",
                                 message: `Operator touched Cell ${msg.payload.idx} [${msg.payload.x}, ${msg.payload.y}]`,
@@ -36,11 +41,17 @@ export const NERVE = {
                             });
                         }
                         if (msg.type === "SET_MODE") {
-                            console.log(`🌐 LENS: Shifting to ${msg.payload}`);
+                            await TELEMETRY_SIGNAL(
+                                TELEMETRY("NERVE", `LENS: Shifting to ${msg.payload}`),
+                                "INFO"
+                            );
                             NERVE.projectionMode = msg.payload;
                         }
                     } catch (err) {
-                        console.error("Message Error:", err);
+                        await TELEMETRY_SIGNAL(
+                            TELEMETRY("NERVE", "Message Error", { error: String(err) }),
+                            "ERROR"
+                        );
                     }
                 },
                 r

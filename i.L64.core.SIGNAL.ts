@@ -37,9 +37,8 @@ ${contextBlock}
         
         try {
             await Deno.writeTextFile(SIGNAL_FILE, entry, { append: true });
-            console.log(`📡 SIGNAL SENT: [${type}] ${payload.message}`);
         } catch (e) {
-            console.error("❌ SIGNAL FAILURE:", e);
+            throw e;
         }
     }
 };

@@ -6,6 +6,8 @@ import type { PeerInfo } from "./i.L99.core.PEER.ts";
 import { StateSnapshot, TopologyEvent, LedgerEvent } from "./i.L99.core.STATE_SNAPSHOT.ts";
 import { LEDGER } from "./i.L99.core.LEDGER.ts";
 import { PROPOSAL_ENVELOPE_INDEX } from "./i.L99.core.PROPOSAL_ENVELOPE_INDEX.ts";
+import { TELEMETRY } from "./i.L03.core.TELEMETRY.ts";
+import { TELEMETRY_SIGNAL } from "./i.L02.core.TELEMETRY_SIGNAL.ts";
 
 export const SYNC = {
     
@@ -19,7 +21,10 @@ export const SYNC = {
         if (!peerPort) return [];
         
         const peerLedgerPath = `./OMEGA_LEDGER_${peerPort}.jsonl`;
-        console.log(`🔄 SYNC: Pulling from [${peer.id}] (${peerLedgerPath})...`);
+        await TELEMETRY_SIGNAL(
+            TELEMETRY("SYNC", `Pulling from [${peer.id}] (${peerLedgerPath})...`),
+            "INFO"
+        );
 
         const missingEvents: TopologyEvent[] = [];
 
@@ -45,7 +50,10 @@ export const SYNC = {
                 }
             }
         } catch (e) {
-            console.warn(`⚠️ SYNC: Could not read peer ledger: ${e.message}`);
+            await TELEMETRY_SIGNAL(
+                TELEMETRY("SYNC", "Could not read peer ledger", { error: String(e) }),
+                "WARNING"
+            );
         }
 
         return missingEvents;
@@ -84,7 +92,10 @@ export const SYNC = {
             }
         }
         
-        console.log(`✅ SYNC: Applied ${events.length} events. New Tick: ${state.tick}`);
+        await TELEMETRY_SIGNAL(
+            TELEMETRY("SYNC", `Applied ${events.length} events. New Tick: ${state.tick}`),
+            "INFO"
+        );
         return state;
     }
 };

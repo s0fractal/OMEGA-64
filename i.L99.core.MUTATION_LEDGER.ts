@@ -3,6 +3,8 @@
 // OMEGA-64 | The Hand's Memory
 // Append-only audit trail for structural evolution.
 import { TOPOLOGICAL_SIGNATURE } from "./i.L99.core.TOPOLOGICAL_SIGNATURE.ts";
+import { TELEMETRY } from "./i.L03.core.TELEMETRY.ts";
+import { TELEMETRY_SIGNAL } from "./i.L02.core.TELEMETRY_SIGNAL.ts";
 
 export interface MutationEvent {
     timestamp: string;
@@ -39,9 +41,18 @@ export const MUTATION_LEDGER = {
         const line = JSON.stringify(chainEvent) + "\n";
         try {
             await Deno.writeTextFile(MUTATION_LEDGER_PATH, line, { append: true });
-            console.log(`📜 MUTATION_LEDGER: Recorded ${event.action} on ${event.atom_id} (Chain: ${eventHash.slice(0, 8)})`);
+            await TELEMETRY_SIGNAL(
+                TELEMETRY(
+                    "MUTATION_LEDGER",
+                    `Recorded ${event.action} on ${event.atom_id} (Chain: ${eventHash.slice(0, 8)})`
+                ),
+                "INFO"
+            );
         } catch (err) {
-            console.error("❌ MUTATION_LEDGER FAILURE:", err);
+            await TELEMETRY_SIGNAL(
+                TELEMETRY("MUTATION_LEDGER", "MUTATION_LEDGER FAILURE", { error: String(err) }),
+                "ERROR"
+            );
         }
     },
 

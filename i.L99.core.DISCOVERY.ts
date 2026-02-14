@@ -3,6 +3,8 @@
 // Implements local discovery via Shared File (OMEGA_SWARM.json).
 
 import { PEER, type PeerInfo } from "./i.L99.core.PEER.ts";
+import { TELEMETRY } from "./i.L03.core.TELEMETRY.ts";
+import { TELEMETRY_SIGNAL } from "./i.L02.core.TELEMETRY_SIGNAL.ts";
 
 const DISCOVERY_FILE = "./OMEGA_SWARM.json";
 
@@ -38,9 +40,15 @@ export const DISCOVERY = {
                 }
             });
 
-            console.log(`📡 SWARM: Pulsed. Peers Visible: ${PEER.knownPeers.size}`);
+            await TELEMETRY_SIGNAL(
+                TELEMETRY("DISCOVERY", `SWARM pulsed. Peers visible: ${PEER.knownPeers.size}`),
+                "INFO"
+            );
         } catch (e) {
-            console.error("🔴 SWARM Error:", e);
+            await TELEMETRY_SIGNAL(
+                TELEMETRY("DISCOVERY", "SWARM Error", { error: String(e) }),
+                "ERROR"
+            );
         }
     }
 };

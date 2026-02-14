@@ -5,6 +5,8 @@
 
 import { SIGNAL } from "./i.L64.core.SIGNAL.ts";
 import { VOID } from "./i.L25.core.VOID.ts";
+import { TELEMETRY } from "./i.L03.core.TELEMETRY.ts";
+import { TELEMETRY_SIGNAL } from "./i.L02.core.TELEMETRY_SIGNAL.ts";
 import type { Atom } from "./i.L32.core.RIBOSOME.ts";
 
 export const KAIROS = {
@@ -14,7 +16,10 @@ export const KAIROS = {
         const threshold = lattice.length * 0.95; // Higher threshold for Signal
 
         if (totalResonance > threshold) {
-            console.log(`🔥 KAIROS: Σ = ${(totalResonance/lattice.length).toFixed(2)}. CRITICAL MOMENT.`);
+            await TELEMETRY_SIGNAL(
+                TELEMETRY("KAIROS", `Σ=${(totalResonance / lattice.length).toFixed(2)}. CRITICAL MOMENT.`),
+                "WARNING"
+            );
             
             // Generate a Semantic Request
             const target = lattice[Math.floor(Math.random() * lattice.length)];
@@ -24,7 +29,10 @@ export const KAIROS = {
             const judgment = await VOID.ask(context);
             
             if (judgment === "PURGE") {
-                console.warn(`🔴 VOID JUDGMENT: PURGE [${target.id}]`);
+                await TELEMETRY_SIGNAL(
+                    TELEMETRY("KAIROS", `VOID JUDGMENT: PURGE [${target.id}]`),
+                    "WARNING"
+                );
                 await SIGNAL.emit("REQUEST", {
                     source: "KAIROS",
                     message: `Oracle decreas PURGE for [${target.id}]. Structural integrity compromised.`,
@@ -35,7 +43,10 @@ export const KAIROS = {
                     }
                 });
             } else {
-                console.log(`🟢 VOID JUDGMENT: ALLOW [${target.id}] (Evolution detected)`);
+                await TELEMETRY_SIGNAL(
+                    TELEMETRY("KAIROS", `VOID JUDGMENT: ALLOW [${target.id}] (Evolution detected)`),
+                    "INFO"
+                );
                 await SIGNAL.emit("INFO", {
                     source: "KAIROS",
                     message: `Oracle allows mutation in [${target.id}]. Evolution proceeding.`,

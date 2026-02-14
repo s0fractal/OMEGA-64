@@ -5,6 +5,8 @@
 
 import { LedgerEvent, TopologyEvent } from "./i.L99.core.STATE_SNAPSHOT.ts";
 import { CHECKPOINT } from "./i.L99.core.CHECKPOINT.ts";
+import { TELEMETRY } from "./i.L03.core.TELEMETRY.ts";
+import { TELEMETRY_SIGNAL } from "./i.L02.core.TELEMETRY_SIGNAL.ts";
 
 const stableStringify = (value: unknown): string => {
     if (Array.isArray(value)) {
@@ -99,7 +101,10 @@ export const LEDGER = {
             await Deno.writeTextFile(LEDGER.STORAGE_PATH, line + "\n", { append: true });
             // console.log(`📝 LEDGER: Event ${event.event_id} appended.`);
         } catch (e) {
-            console.error(`🚨 LEDGER FAILURE: Could not write event ${eventRef}`, e);
+            await TELEMETRY_SIGNAL(
+                TELEMETRY("LEDGER", `Could not write event ${eventRef}`, { error: String(e) }),
+                "ERROR"
+            );
             throw e; // Integrity failure is fatal
         }
     },
@@ -117,12 +122,18 @@ export const LEDGER = {
                 try {
                     yield JSON.parse(line);
                 } catch (e) {
-                    console.warn(`⚠️ LEDGER: Corrupt line skipped`, e);
+                    await TELEMETRY_SIGNAL(
+                        TELEMETRY("LEDGER", "Corrupt line skipped", { error: String(e) }),
+                        "WARNING"
+                    );
                 }
             }
         } catch (e) {
             if (!(e instanceof Deno.errors.NotFound)) {
-                console.error("🚨 LEDGER READ FAILURE", e);
+                await TELEMETRY_SIGNAL(
+                    TELEMETRY("LEDGER", "LEDGER READ FAILURE", { error: String(e) }),
+                    "ERROR"
+                );
             }
         }
     },
@@ -243,7 +254,10 @@ export const LEDGER = {
         }
 
         if (latestRitual) {
-            console.log(`🕯️ LEDGER: Anchoring Genesis to Ritual at Tick ${latestRitual.tick}`);
+            await TELEMETRY_SIGNAL(
+                TELEMETRY("LEDGER", `Anchoring Genesis to Ritual at Tick ${latestRitual.tick}`),
+                "INFO"
+            );
             return {
                 tick: latestRitual.tick,
                 state_hash: latestRitual.state_hash,
@@ -281,7 +295,10 @@ export const LEDGER = {
             };
         }
 
-        console.warn(`⚠️ LEDGER: Cold Start fallback for tick ${firstEvent.tick}. Audit may drift.`);
+        await TELEMETRY_SIGNAL(
+            TELEMETRY("LEDGER", `Cold Start fallback for tick ${firstEvent.tick}. Audit may drift.`),
+            "WARNING"
+        );
         return {
             tick: firstEvent.tick,
             state_hash: firstEvent.state_before_hash,
