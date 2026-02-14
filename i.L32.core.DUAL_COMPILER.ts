@@ -52,3 +52,5 @@ export const DUAL = {
         return "ENTROPY";                                  // Noise
     }
 };
+
+export const DUAL_COMPILER = DUAL;

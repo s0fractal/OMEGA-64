@@ -65,3 +65,5 @@ export const SINGULAR_MATH = {
         return SINE_LUT[idx];
     }
 };
+
+export const MATH = { Q, LOG_LUT, SINE_LUT, SINGULAR_MATH };
