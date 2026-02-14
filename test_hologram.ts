@@ -11,7 +11,7 @@ console.log("🎭 TEST HOLOGRAM: Initializing...");
 LOOP.ignite({ maxTicks: 50, port: 8081 });
 
 // 2. Connect as Client (Simulating Browser)
-setTimeout(async () => {
+setTimeout(() => {
     console.log("🔌 CLIENT: Connecting to NERVE...");
     try {
         const ws = new StandardWebSocketClient("ws://localhost:8081");

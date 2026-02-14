@@ -1,7 +1,11 @@
 {
   "compilerOptions": { "lib": ["deno.window"], "strict": true },
   "lint": {
-    "exclude": ["I.ts", "UI/", "SINGULARITY/"]
+    "exclude": ["I.ts", "UI/", "SINGULARITY/"],
+    "rules": {
+      "tags": ["recommended"],
+      "exclude": ["no-explicit-any", "no-unused-vars"]
+    }
   },
   "imports": {
     // 🛡️ OMEGA-64 Singularity Imports

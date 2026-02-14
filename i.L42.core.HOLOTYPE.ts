@@ -59,7 +59,7 @@ export const HOLOTYPE = {
     },
 
     // Spontaneous Generation (Budding)
-    bud: async (parent: Holotype): Promise<Holotype | null> => {
+    bud: (parent: Holotype): Holotype | null => {
         const ts = parent.projections?.ts || "";
         const rs = parent.projections?.rs || "";
         

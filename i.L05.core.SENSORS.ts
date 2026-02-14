@@ -32,20 +32,20 @@ const INSIGHTS = [
     "Spectral Convergence: Multiple paths to a single truth.",
 ];
 
-let alertLevel = 0;
+const alertLevel = 0;
 let goldenMomentCounter = 0;
 let latestInsight = "Awaiting Golden Resonance...";
-let lastRequestTime = Date.now();
+const lastRequestTime = Date.now();
 
 export const SENSORS = {
     // Audit System Integrity
-    audit: async () => {
+    audit: () => {
         // Simulated check. In real version, check file hashes.
         return 0.0;
     },
 
     // Get Vital Signs
-    pulse: async (): Promise<SystemMetrics> => {
+    pulse: (): SystemMetrics => {
         const start = performance.now();
         let count = 0;
         for (let i = 0; i < 1000000; i++) { count += i; } // CPU Load Test

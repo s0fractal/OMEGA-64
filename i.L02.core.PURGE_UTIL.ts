@@ -29,7 +29,7 @@ export const PURGE_UTIL = {
             return;
         }
 
-        const purgeMatches = [...signalsTxt.matchAll(/atomId": "([^"]+)",\n  "resonance": [^,]+,\n  "judgment": "PURGE"/g)];
+        const purgeMatches = [...signalsTxt.matchAll(/atomId": "([^"]+)",\n\s+"resonance": [^,]+,\n\s+"judgment": "PURGE"/g)];
         const atomIdsToPurge = purgeMatches.map(m => m[1]);
         
         if (atomIdsToPurge.length === 0) {

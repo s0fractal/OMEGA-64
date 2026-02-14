@@ -26,7 +26,7 @@ export const identity = <T>(x: T) => x;
 `;
 
 /** 🗺️ Get Quantum Metadata helper */
-async function getQuantumMetadata(level: number) {
+function getQuantumMetadata(level: number) {
     const levelStr = level.toString().padStart(2, '0');
     try {
         // We now rely on dynamic q.ts, but for build labeling we fallback to basics if needed.
@@ -69,7 +69,9 @@ async function build() {
 
         // 3. The Underscore (_) -> Physical & Logical
         const linkPath = join(currentPath, "_");
-        try { await Deno.remove(linkPath, { recursive: true }); } catch (_) {}
+        try { await Deno.remove(linkPath, { recursive: true }); } catch (_) {
+            // Ignore missing link path
+        }
         
         // Physical Symlink (Geometry)
         if (nextLevel !== -1) {
@@ -97,12 +99,16 @@ async function build() {
         
         if (nextLevel !== -1) {
              // Make _ a real directory
-             try { await Deno.remove(linkPath); } catch(_) {} // Remove if symlink
+             try { await Deno.remove(linkPath); } catch(_) {
+                 // Remove if symlink is missing
+             }
              await Deno.mkdir(linkPath, { recursive: true }).catch(() => {});
              
              // Create _/vector symlink
              const vectorPath = join(linkPath, "vector");
-             try { await Deno.remove(vectorPath); } catch(_) {}
+             try { await Deno.remove(vectorPath); } catch(_) {
+                 // Ignore missing vector symlink
+             }
              await Deno.symlink(`../../${nextLevelStr}`, vectorPath);
              
              // Create _/mod.ts (The Algebra)
@@ -115,7 +121,9 @@ export * from "@L${nextLevelStr}/mod.ts";
             await Deno.writeTextFile(join(linkPath, "mod.ts"), algebraContent);
         } else {
             // L32 (Center)
-            try { await Deno.remove(linkPath); } catch(_) {} 
+            try { await Deno.remove(linkPath); } catch(_) {
+                // Ignore missing link path
+            }
             await Deno.mkdir(linkPath, { recursive: true }).catch(() => {});
             // Algebra is purely identity. No export bubbling (it's the end).
             await Deno.writeTextFile(join(linkPath, "mod.ts"), `
@@ -141,17 +149,17 @@ async function exhale(tape: string[]) {
     await build();
 }
 
-async function inhale() {
+function inhale() {
     // ... (Standard logic)
 }
 
-async function sense(tape: string[]) {
+function sense(tape: string[]) {
     // ... (Standard logic)
 }
 
 async function main() {
     const cmd = Deno.args[0];
-    // @ts-ignore
+    // @ts-ignore: RADIANT is injected by build tooling when present.
     const tape = typeof RADIANT !== "undefined" ? RADIANT : [];
     switch (cmd) {
         case "build": await build(); break;

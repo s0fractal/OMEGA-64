@@ -15,7 +15,9 @@ try {
             await Deno.remove(entry.name);
         }
     }
-} catch(e) {}
+} catch(e) {
+    // Ignore cleanup errors
+}
 
 // Launch Alpha (Port 8081) - Runs normally
 console.log("🚀 Launching Alpha (8081)...");
@@ -45,7 +47,9 @@ console.log("🛑 Stopping Clusters...");
 try {
     alpha.kill();
     beta.kill();
-} catch(e) {}
+} catch(e) {
+    // Ignore teardown errors
+}
 
 
 // Verify Ledgers

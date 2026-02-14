@@ -9,7 +9,9 @@ console.log("🌐 TEST SWARM: Initializing Clusters...");
 // Cleanup previous swarm state and ledgers
 try {
     await Deno.remove("./OMEGA_SWARM.json");
-} catch(e) {}
+} catch(e) {
+    // Ignore missing swarm file
+}
 
 try {
     for await (const entry of Deno.readDir(".")) {
@@ -17,7 +19,9 @@ try {
             await Deno.remove(entry.name);
         }
     }
-} catch(e) {}
+} catch(e) {
+    // Ignore cleanup errors
+}
 
 // Launch Alpha (Port 8081)
 console.log("🚀 Launching Alpha Node (8081)...");
@@ -70,5 +74,7 @@ console.log("🛑 Killing nodes...");
 try {
     alpha.kill();
     beta.kill();
-} catch(e) {}
+} catch(e) {
+    // Ignore teardown errors
+}
 console.log("✅ TEST SWARM: Finished.");

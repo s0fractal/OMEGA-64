@@ -8,7 +8,7 @@ import type { Atom } from "./i.L32.core.RIBOSOME.ts";
 console.log("🔮 TEST ORACLE: Initializing...");
 
 // Mock Signal
-SIGNAL.emit = async (type: string, payload: any) => {
+SIGNAL.emit = (type: string, payload: any) => {
     console.log(`📡 SIGNAL MOCKED: [${type}] ${JSON.stringify(payload)}`);
 };
 

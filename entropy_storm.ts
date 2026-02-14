@@ -1,7 +1,7 @@
 
 // OMEGA-64: Entropy Storm Simulator
 
-async function runStressTest() {
+function runStressTest() {
     console.log("🌪️ INITIATING ENTROPY STORM ON L00...");
     
     // Фаза 1: Викид ентропії (Entropy Spike)

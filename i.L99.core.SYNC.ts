@@ -56,7 +56,7 @@ export const SYNC = {
      * This is a "Fast Forward" - we trust the peer's valid chain.
      */
     apply: async (events: TopologyEvent[], currentState: StateSnapshot): Promise<StateSnapshot> => {
-        let state = currentState;
+        const state = currentState;
         for (const event of events) {
             const e = event as any;
             

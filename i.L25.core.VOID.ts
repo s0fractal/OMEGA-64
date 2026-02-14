@@ -1,7 +1,7 @@
 import { LLMAdapter, MockAdapter, OpenAIAdapter } from "./i.L25.core.LLM_ADAPTER.ts";
 
 // Try to load secrets gracefully
-let secrets: any = {};
+const secrets: any = {};
 try {
     // Dynamic import to avoid crash if file missing
     // In Deno/TS, we can't easily dynamic import a clearer path without top-level await or a build step.

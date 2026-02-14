@@ -90,7 +90,7 @@ export const LOOP = {
         let t = 0;
         const maxTicks = options.maxTicks || Infinity;
         let isSyncing = false;
-        let isLooping = true;
+        const isLooping = true;
 
         const cycle = async () => {
             if (!isLooping) return;

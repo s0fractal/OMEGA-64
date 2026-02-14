@@ -390,7 +390,7 @@ export const GATE = {
     }));
 
     // 5. Apply Mutation (OR Dry Run)
-    let nextStateI16 = new Int16Array(state.state_i16); // Clone
+    const nextStateI16 = new Int16Array(state.state_i16); // Clone
 
     if (!config.dry_run) {
       for (const d of decision.accepted_delta) {

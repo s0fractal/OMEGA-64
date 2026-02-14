@@ -133,7 +133,7 @@ export const CHROMO_STATE = {
     
     // Знаходимо "масу" зображення (центроїд)
     let sumX = 0, sumY = 0, totalMass = 0;
-    let hueHistogram = new Map<number, number>();
+    const hueHistogram = new Map<number, number>();
     let avgSaturation = 0, avgValue = 0, count = 0;
     
     for (let y = 0; y < resolution; y++) {

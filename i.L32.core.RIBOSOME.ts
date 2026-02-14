@@ -82,7 +82,7 @@ export const RIBOSOME = {
     },
 
     // Synthesis: Execute the 'mod.ts' logic dynamically if needed
-    synthesize: async (lattice: Map<string, Atom>) => {
+    synthesize: (lattice: Map<string, Atom>) => {
         console.log("🧬 RIBOSOME: Synthesis Complete. System is Live.");
         return lattice;
     }
