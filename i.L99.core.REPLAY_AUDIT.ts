@@ -885,6 +885,8 @@ export const REPLAY_AUDIT = {
 };
 
 if ((import.meta as any).main) {
-    console.log("Usage: import REPLAY_AUDIT and call audit(genesis, options).");
+    await Deno.stdout.write(
+        new TextEncoder().encode("Usage: import REPLAY_AUDIT and call audit(genesis, options).\n")
+    );
 }
 const I16 = I16_LIMITS();

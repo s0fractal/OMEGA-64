@@ -3,6 +3,8 @@
 // Stores and resolves rollback snapshots.
 
 import { CheckpointRecord, StateSnapshot } from "./i.L99.core.STATE_SNAPSHOT.ts";
+import { TELEMETRY } from "./i.L03.core.TELEMETRY.ts";
+import { TELEMETRY_SIGNAL } from "./i.L02.core.TELEMETRY_SIGNAL.ts";
 
 const toHex = (buffer: ArrayBuffer): string =>
     Array.from(new Uint8Array(buffer)).map((b) => b.toString(16).padStart(2, "0")).join("");
@@ -55,7 +57,10 @@ export const CHECKPOINT = {
             }
         } catch (e) {
             if (!(e instanceof Deno.errors.NotFound)) {
-                console.error("🚨 CHECKPOINT READ FAILURE", e);
+                await TELEMETRY_SIGNAL(
+                    TELEMETRY("CHECKPOINT", "CHECKPOINT READ FAILURE", { error: String(e) }),
+                    "ERROR"
+                );
             }
         }
     },
@@ -86,8 +91,10 @@ export const CHECKPOINT = {
         snapshot: Pick<StateSnapshot, "tick" | "state_hash" | "state_i16">,
         witness: string
     ): Promise<CheckpointRecord> => {
-        console.log(`🕯️ CHECKPOINT: Performing Ritual of Stabilization at Tick ${snapshot.tick} (Witness: ${witness})`);
+        await TELEMETRY_SIGNAL(
+            TELEMETRY("CHECKPOINT", `Performing Ritual of Stabilization at Tick ${snapshot.tick} (Witness: ${witness})`),
+            "INFO"
+        );
         return await CHECKPOINT.save(snapshot, "STABILIZATION_RITUAL", witness);
     }
 };
-
