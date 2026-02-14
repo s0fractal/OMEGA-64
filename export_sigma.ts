@@ -6,11 +6,13 @@
 
 const DEFAULT_OUTPUT = "I.sigma.md";
 const DEFAULT_ROOT = ".";
+const DEFAULT_MODE = "entity";
 
 const parseArgs = (args: string[]) => {
-  const out: { root: string; output: string; help: boolean } = {
+  const out: { root: string; output: string; mode: string; help: boolean } = {
     root: DEFAULT_ROOT,
     output: DEFAULT_OUTPUT,
+    mode: DEFAULT_MODE,
     help: false,
   };
   for (let i = 0; i < args.length; i++) {
@@ -29,6 +31,11 @@ const parseArgs = (args: string[]) => {
       i += 1;
       continue;
     }
+    if (arg === "--mode") {
+      out.mode = args[i + 1] ?? DEFAULT_MODE;
+      i += 1;
+      continue;
+    }
   }
   return out;
 };
@@ -36,11 +43,12 @@ const parseArgs = (args: string[]) => {
 const usage = (): string =>
   [
     "Usage:",
-    "  deno run -A export_sigma.ts [--root <dir>] [--output <file>]",
+    "  deno run -A export_sigma.ts [--root <dir>] [--output <file>] [--mode entity|level]",
     "",
     "Defaults:",
     `  root: ${DEFAULT_ROOT}`,
     `  output: ${DEFAULT_OUTPUT}`,
+    `  mode: ${DEFAULT_MODE}`,
   ].join("\n");
 
 const shouldSkipDir = (name: string): boolean =>
@@ -105,6 +113,7 @@ const langFor = (path: string): string => {
 const header = (title: string): string => `# ${title}`;
 const subheader = (title: string): string => `## ${title}`;
 const fileHeader = (title: string): string => `### ${title}`;
+const projectionHeader = (title: string): string => `#### ${title}`;
 
 const main = async () => {
   const args = parseArgs(Deno.args);
@@ -136,19 +145,50 @@ const main = async () => {
   lines.push(`Generated: ${new Date().toISOString()}`);
   lines.push("");
 
+  const mode = args.mode.toLowerCase();
   for (const level of Array.from(byLevel.keys()).sort((a, b) => levelOrder(a) - levelOrder(b) || a.localeCompare(b))) {
     lines.push("");
     lines.push(subheader(level));
-    for (const path of byLevel.get(level) ?? []) {
-      const base = path.startsWith("./") ? path.slice(2) : path;
-      const content = await Deno.readTextFile(path);
-      const lang = langFor(path);
+    const levelFiles = byLevel.get(level) ?? [];
+    if (mode === "level") {
+      for (const path of levelFiles) {
+        const base = path.startsWith("./") ? path.slice(2) : path;
+        const content = await Deno.readTextFile(path);
+        const lang = langFor(path);
+        lines.push("");
+        lines.push(fileHeader(base));
+        lines.push("");
+        lines.push(`\`\`\`${lang}`);
+        lines.push(content.replace(/\s+$/, ""));
+        lines.push("```");
+      }
+      continue;
+    }
+
+    const byEntity = new Map<string, string[]>();
+    for (const path of levelFiles) {
+      const base = path.replace(/\.[^.]+$/, "");
+      const list = byEntity.get(base) ?? [];
+      list.push(path);
+      byEntity.set(base, list);
+    }
+    const entities = Array.from(byEntity.keys()).sort((a, b) => a.localeCompare(b));
+    for (const entity of entities) {
+      const label = entity.startsWith("./") ? entity.slice(2) : entity;
       lines.push("");
-      lines.push(fileHeader(base));
-      lines.push("");
-      lines.push(`\`\`\`${lang}`);
-      lines.push(content.replace(/\s+$/, ""));
-      lines.push("```");
+      lines.push(fileHeader(label));
+      const projections = (byEntity.get(entity) ?? []).sort((a, b) => a.localeCompare(b));
+      for (const path of projections) {
+        const lang = langFor(path);
+        const ext = path.split(".").pop() ?? "";
+        const content = await Deno.readTextFile(path);
+        lines.push("");
+        lines.push(projectionHeader(ext));
+        lines.push("");
+        lines.push(`\`\`\`${lang}`);
+        lines.push(content.replace(/\s+$/, ""));
+        lines.push("```");
+      }
     }
   }
 
