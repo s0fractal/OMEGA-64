@@ -149,6 +149,55 @@ const sha256Hex = async (input: string): Promise<string> => {
   return toHex(digest);
 };
 
+const clamp = (value: number, min: number, max: number): number =>
+  Math.max(min, Math.min(max, value));
+
+const hueFor = (label: string): number => {
+  const table: Record<string, number> = {
+    md: 120,
+    ts: 210,
+    rs: 20,
+    sh: 60,
+    q: 280,
+    i: 190,
+    json: 240,
+    html: 330,
+    svg: 300,
+    lean: 200,
+    txt: 0,
+  };
+  if (label in table) return table[label];
+  let hash = 0;
+  for (const ch of label) hash = (hash * 31 + ch.charCodeAt(0)) % 360;
+  return hash;
+};
+
+const mixHue = (hues: Array<{ hue: number; weight: number }>): number | null => {
+  let x = 0;
+  let y = 0;
+  let total = 0;
+  for (const { hue, weight } of hues) {
+    if (weight <= 0) continue;
+    const radians = (hue / 360) * Math.PI * 2;
+    x += Math.cos(radians) * weight;
+    y += Math.sin(radians) * weight;
+    total += weight;
+  }
+  if (total === 0) return null;
+  const angle = Math.atan2(y, x);
+  const degrees = (angle / (Math.PI * 2)) * 360;
+  return (degrees + 360) % 360;
+};
+
+const entropyFromWeights = (weights: number[]): number => {
+  const sum = weights.reduce((acc, v) => acc + v, 0);
+  if (sum <= 0) return 0;
+  const probs = weights.map((w) => w / sum).filter((p) => p > 0);
+  if (probs.length <= 1) return 0;
+  const entropy = -probs.reduce((acc, p) => acc + p * Math.log2(p), 0);
+  return clamp(entropy / Math.log2(probs.length), 0, 1);
+};
+
 const main = async () => {
   const args = parseArgs(Deno.args);
   if (args.help) {
@@ -178,20 +227,46 @@ const main = async () => {
     for (const entity of level.entities) {
       const projectionMap: Record<string, unknown> = {};
       const present = new Set<string>();
+      const spectralWeights: Array<{ label: string; weight: number; hue: number }> = [];
       for (const proj of entity.projections) {
         present.add(proj.label);
         const payload = proj.codeLines.join("\n").trimEnd();
         const hash = await sha256Hex(payload);
+        const lines = payload.length === 0 ? 0 : payload.split("\n").length;
+        const bytes = new TextEncoder().encode(payload).byteLength;
+        const weight = Math.log2(lines + 1);
+        spectralWeights.push({
+          label: proj.label,
+          weight,
+          hue: hueFor(proj.label),
+        });
         projectionMap[proj.label] = {
           hash,
-          bytes: new TextEncoder().encode(payload).byteLength,
-          lines: payload.length === 0 ? 0 : payload.split("\n").length,
+          bytes,
+          lines,
         };
       }
       const missing = projectionList.filter((label) => !present.has(label));
+      const coverage = projectionList.length === 0 ? 0 : present.size / projectionList.length;
+      const hue = mixHue(spectralWeights.map(({ hue, weight }) => ({ hue, weight })));
+      const entropy = entropyFromWeights(spectralWeights.map((entry) => entry.weight));
+      const saturation = Math.round(clamp(100 - entropy * 50, 0, 100));
+      const lightness = Math.round(clamp(30 + coverage * 40, 0, 100));
+      const spectralMix = hue === null
+        ? null
+        : {
+          hue: Math.round(hue),
+          saturation,
+          lightness,
+          hsl: `hsl(${Math.round(hue)}, ${saturation}%, ${lightness}%)`,
+          coverage,
+          entropy,
+          weights: spectralWeights,
+        };
       entities[entity.id] = {
         projections: projectionMap,
         missing,
+        spectral_mix: spectralMix,
       };
     }
 

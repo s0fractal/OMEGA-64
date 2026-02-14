@@ -5,6 +5,7 @@
     "audit:determinism": "deno run -A i.L99.core.DETERMINISM_AUDIT.ts",
     "audit:determinism:signal": "deno run -A i.L99.core.DETERMINISM_AUDIT.ts --signal",
     "audit:drift": "deno run -A i.L99.core.DRIFT_CONTROLLER_CLI.ts",
+    "audit:noncanonical": "deno run -A i.L99.core.NONCANONICAL_AUDIT.ts --json",
     "export:sigma": "deno run -A export_sigma.ts --mode entity",
     "export:sigma:level": "deno run -A export_sigma.ts --mode level",
     "sigma:roundtrip": "deno run -A sigma_quine.ts --input I.sigma.md --output I.sigma.reassembled.md",
