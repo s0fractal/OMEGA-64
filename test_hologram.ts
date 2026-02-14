@@ -2,7 +2,7 @@
 // Verification of Era 3.0: The Holographic Face
 
 import { LOOP } from "./i.L43.core.LOOP.ts";
-import { StandardWebSocketClient } from "https://deno.land/x/websocket@v0.1.4/mod.ts";
+import { StandardWebSocketClient } from "websocket";
 
 console.log("🎭 TEST HOLOGRAM: Initializing...");
 

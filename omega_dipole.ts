@@ -1,7 +1,7 @@
 // 🛡️ OMEGA-64 | Sovereign CLI - The Prime Radiant (Dipole & Algebra)
 // 🌀 Pattern: Centripetal L32 Convergence / Functional Algebra
 
-import { join } from "https://deno.land/std/path/mod.ts";
+import { join } from "@std/path";
 
 const MAX_DEPTH = 64;
 const ROOT_DIR = Deno.cwd();

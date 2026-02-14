@@ -5,7 +5,7 @@
 
 import { IMMUNE } from "./i.L32.core.IMMUNE.ts";
 import { DUAL } from "./i.L32.core.DUAL.ts";
-import { walk } from "jsr:@std/fs";
+import { walk } from "@std/fs";
 
 export interface Atom {
     id: string; // The Filename (Address)

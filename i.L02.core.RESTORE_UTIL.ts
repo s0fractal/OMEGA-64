@@ -2,8 +2,8 @@
 // 🛡️ OMEGA-64 | Restoration Protocol
 // "Returning the core to its rightful frequency."
 
-import { walk } from "https://deno.land/std/fs/mod.ts";
-import { join } from "https://deno.land/std/path/mod.ts";
+import { walk } from "@std/fs";
+import { join } from "@std/path";
 
 async function restore() {
     const archiveDir = "./archive";

@@ -4,7 +4,7 @@
 // The Nervous System of OMEGA-64.
 // Broadcasts State (Pulse) to the Interface (Mirror).
 
-import { serve } from "https://deno.land/std@0.177.0/http/server.ts";
+import { serve } from "@std/http/server";
 import { SIGNAL } from "./i.L64.core.SIGNAL.ts";
 
 const S = new Set<WebSocket>();

@@ -3,7 +3,7 @@
 // The Holotype Aggregator.
 // Collapses Projections (.ts, .rs, .md) into a Single Entity (JSON).
 
-import { crypto } from "jsr:@std/crypto";
+import { crypto } from "@std/crypto";
 
 export interface Holotype {
     id: string; // e.g. i.L13.core.RESONANCE

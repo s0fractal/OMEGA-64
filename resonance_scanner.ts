@@ -3,9 +3,9 @@
 // The Tuning Fork for OMEGA-64.
 // Scans for Tensions (Broken Symmetries) and Quantum Impurities.
 
-import { crypto } from "jsr:@std/crypto";
-import { encodeHex } from "jsr:@std/encoding/hex";
-import { walk } from "jsr:@std/fs";
+import { crypto } from "@std/crypto";
+import { encodeHex } from "@std/encoding/hex";
+import { walk } from "@std/fs";
 
 const ROOT = "./src/_";
 
