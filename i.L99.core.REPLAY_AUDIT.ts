@@ -12,6 +12,7 @@ import { GATE_ADMISSION_REPORT } from "./i.L99.core.GATE_ADMISSION_REPORT.ts";
 import type { InvariantPacket } from "./i.L32.core.INVARIANT_PACKET.ts";
 import { INVARIANT_PACKET } from "./i.L32.core.INVARIANT_PACKET.ts";
 import { I16_CLAMP } from "./i.L00.core.I16_CLAMP.ts";
+import { I16_LIMITS } from "./i.L00.core.I16_LIMITS.ts";
 
 export interface ReplayGenesis {
     tick: number;
@@ -864,8 +865,8 @@ export const REPLAY_AUDIT = {
         const nextStateI16 = new Int16Array(previousState.state_i16);
         for (const d of event.accepted_delta) {
             let value = nextStateI16[d.level] + d.value;
-            if (value > 32767) value = 32767;
-            if (value < -32768) value = -32768;
+            if (value > I16.max) value = I16.max;
+            if (value < I16.min) value = I16.min;
             nextStateI16[d.level] = value;
         }
 
@@ -886,3 +887,4 @@ export const REPLAY_AUDIT = {
 if ((import.meta as any).main) {
     console.log("Usage: import REPLAY_AUDIT and call audit(genesis, options).");
 }
+const I16 = I16_LIMITS();

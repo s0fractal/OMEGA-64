@@ -9,6 +9,7 @@ import { KAIROS } from "./i.L64.core.KAIROS.ts";
 import { CHRONO_TICK } from './i.L22.core.CHRONOFLUX.ts';
 import { MYCELIUM, MyceliumAgent } from './i.L99.core.MYCELIUM.ts';
 import { WAVE_PACKET } from './i.L13.core.WAVE_PACKET.ts';
+import { U16_LIMITS } from "./i.L00.core.U16_LIMITS.ts";
 
 // 🛡️ Era 4.0: Swarm Imports
 import { PEER } from "./i.L99.core.PEER.ts";
@@ -17,6 +18,8 @@ import { SYNC } from "./i.L99.core.SYNC.ts";
 
 // 🛡️ Era 3.3: Topological Projection
 import { PROJECTION } from "./i.L64.core.PROJECTION.ts";
+
+const U16 = U16_LIMITS();
 
 // 🛡️ Era 2.6: The Spark Imports
 import { GATE_RUNNER } from "./i.L32.core.GATE_RUNNER.ts";
@@ -128,7 +131,7 @@ export const LOOP = {
                         wave: {
                             ...result.newAgent.wave,
                             center: result.newAgent.wave.center + (Math.random() > 0.5 ? 200 : -200),
-                            phase: (result.newAgent.wave.phase + 1000) % 65535
+                            phase: (result.newAgent.wave.phase + 1000) % U16.span
                         },
                         stamina: 80
                     };

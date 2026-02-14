@@ -5,6 +5,9 @@
  */
 
 import { FIELD } from './i.L00.core.FIELD.ts';
+import { I16_LIMITS } from "./i.L00.core.I16_LIMITS.ts";
+
+const I16 = I16_LIMITS();
 
 export interface SubjectivePosition {
   tension: number;   // -1..1 (Біль → Задоволення)
@@ -18,9 +21,9 @@ export const SUBJECTIVE = {
    * Tension проектується на r (диполь).
    */
   projectToField: (pos: SubjectivePosition): { r: number } => {
-    // -1 (Біль) → Ядро (-32768)
-    // +1 (Задоволення) → Поверхня (32767)
-    const r_linear = pos.tension * 32767;
+    // -1 (Біль) → Ядро (I16.min)
+    // +1 (Задоволення) → Поверхня (I16.max)
+    const r_linear = pos.tension * I16.max;
     return { r: Math.round(r_linear) };
   },
 

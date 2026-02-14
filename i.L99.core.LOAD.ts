@@ -9,8 +9,8 @@ const I16 = I16_LIMITS();
 const U16 = U16_LIMITS();
 
 export interface LoadInput {
-  entropy: number;       // Ентропія (-32768..32767)
-  phase: number;         // Фаза [0..65535]
+  entropy: number;       // Ентропія (I16.min..I16.max)
+  phase: number;         // Фаза [0..U16.span]
   weight?: number;       // Вага зв'язку (w_i)
   amplitude?: number;    // Амплітуда резонансу (a_i)
 }
@@ -30,7 +30,7 @@ export const LOAD = {
     const e = (input.entropy - I16.min) / I16.span;
 
     // 2. Фазове неузгодження (Phase Mismatch) [0..2]
-    // p_i = 1 - cos(2π * dphi / 65535)
+    // p_i = 1 - cos(2π * dphi / U16.span)
     let dPhi = Math.abs(input.phase - systemPhase);
     if (dPhi > U16.half) dPhi = U16.span - dPhi; // Shortest path
     

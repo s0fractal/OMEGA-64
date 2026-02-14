@@ -164,10 +164,9 @@ export const MYCELIUM = {
       state: StateSnapshot
   ): DeltaProposal | null => {
       // 1. Map "World Position" to "State Levels"
-      // World: -32768..32767
+      // World: I16.min..I16.max
       // Levels: 0..63
-      // Mapping: 64 levels cover the spectrum. Each level covers ~1024 units?
-      // Or simply: Level = ((center + 32768) / 65536) * 64
+      // Mapping: Level = ((center - I16.min) / I16.cycle) * 64
       
       if (actionLabel === "Idle") return null;
 
