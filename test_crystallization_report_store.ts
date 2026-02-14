@@ -86,6 +86,8 @@ Deno.test("crystallization report materialization is idempotent by hash", async 
                 levelCount: 64,
                 driftByLevelMean: [],
                 driftByLevelP95: [],
+                driftSlopeByLevelMean: [],
+                driftSlopeByLevelP95: [],
                 topHotLevels: [],
                 timeline: [],
                 replayAudit: {
@@ -222,6 +224,8 @@ Deno.test("crystallization report index chain detects tamper", async () => {
                 levelCount: 64,
                 driftByLevelMean: [],
                 driftByLevelP95: [],
+                driftSlopeByLevelMean: [],
+                driftSlopeByLevelP95: [],
                 topHotLevels: [],
                 timeline: [],
                 replayAudit: {
@@ -374,6 +378,8 @@ Deno.test("crystallization report index chain enforces monotonic tick causality"
                 levelCount: 64,
                 driftByLevelMean: [],
                 driftByLevelP95: [],
+                driftSlopeByLevelMean: [],
+                driftSlopeByLevelP95: [],
                 topHotLevels: [],
                 timeline: [],
                 replayAudit: {

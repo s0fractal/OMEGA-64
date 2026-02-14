@@ -42,7 +42,9 @@ If replay is not green, report returns:
 Aggregates:
 1. `driftByLevelMean[64]`,
 2. `driftByLevelP95[64]`,
-3. `topHotLevels`.
+3. `driftSlopeByLevelMean[64]`,
+4. `driftSlopeByLevelP95[64]`,
+5. `topHotLevels`.
 
 ## 5. Canon Use
 
@@ -50,4 +52,3 @@ Recommended use in pre-canon diagnostics:
 1. reject spikes beyond policy thresholds,
 2. identify unstable radial levels,
 3. track whether drift converges before crystallization.
-

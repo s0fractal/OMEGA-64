@@ -56,6 +56,8 @@ Metrics:
 1. Budget pressure: `p95(budget_used / max_total_abs_delta_per_tick) <= 0.70`
 
 2. Drift slope: `p95(abs(delta_level_per_tick)) <= 8` (i16 units/tick)
+   Optional projection slope: `max(driftSlopeByLevelP95) <= driftSlopeMaxP95`
+   from `PROJECTION_DRIFT_ANALYTICS` when policy enables it.
 
 3. Sign-flip rate: for active levels, `flip_rate <= 0.25`
 

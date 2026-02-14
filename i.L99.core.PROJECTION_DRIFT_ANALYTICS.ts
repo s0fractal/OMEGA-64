@@ -39,6 +39,8 @@ export interface ProjectionDriftAnalyticsReport {
     levelCount: number;
     driftByLevelMean: number[];
     driftByLevelP95: number[];
+    driftSlopeByLevelMean: number[];
+    driftSlopeByLevelP95: number[];
     topHotLevels: ProjectionDriftLevelStats[];
     timeline: ProjectionDriftTimelinePoint[];
     replayAudit: {
@@ -156,6 +158,8 @@ export const PROJECTION_DRIFT_ANALYTICS = {
                 levelCount: TOPOLOGICAL_SIGNATURE.CANONICAL_THREAD_CONFIG.radial_bins,
                 driftByLevelMean: [],
                 driftByLevelP95: [],
+                driftSlopeByLevelMean: [],
+                driftSlopeByLevelP95: [],
                 topHotLevels: [],
                 timeline: [],
                 replayAudit: {
@@ -248,6 +252,17 @@ export const PROJECTION_DRIFT_ANALYTICS = {
             s.length > 0 ? s.reduce((acc, v) => acc + v, 0) / s.length : 0
         );
         const driftByLevelP95 = levelSeries.map((s) => percentile(s, 0.95));
+        const driftSlopeSeries = levelSeries.map((series) => {
+            const slopes: number[] = [];
+            for (let i = 1; i < series.length; i++) {
+                slopes.push(Math.abs(series[i] - series[i - 1]));
+            }
+            return slopes;
+        });
+        const driftSlopeByLevelMean = driftSlopeSeries.map((s) =>
+            s.length > 0 ? s.reduce((acc, v) => acc + v, 0) / s.length : 0
+        );
+        const driftSlopeByLevelP95 = driftSlopeSeries.map((s) => percentile(s, 0.95));
 
         const topN = Math.max(1, options.topLevels ?? 8);
         const topHotLevels: ProjectionDriftLevelStats[] = driftByLevelMean
@@ -267,6 +282,8 @@ export const PROJECTION_DRIFT_ANALYTICS = {
             levelCount: R,
             driftByLevelMean,
             driftByLevelP95,
+            driftSlopeByLevelMean,
+            driftSlopeByLevelP95,
             topHotLevels,
             timeline,
             replayAudit: {
