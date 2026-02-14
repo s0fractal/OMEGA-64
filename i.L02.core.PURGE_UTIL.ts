@@ -21,12 +21,18 @@ export const PURGE_UTIL = {
      * Executes the PURGE signals from OMEGA_SIGNAL.md.
      */
     executePurge: async () => {
-        console.log("🕯️ PURGE: Commencing structural integrity cleanse...");
+        await TELEMETRY_SIGNAL(
+            TELEMETRY("PURGE_UTIL", "Commencing structural integrity cleanse..."),
+            "INFO"
+        );
         let signalsTxt = "";
         try {
             signalsTxt = await Deno.readTextFile("OMEGA_SIGNAL.md");
         } catch (err) {
-            console.error("❌ PURGE: Failed to read OMEGA_SIGNAL.md", err);
+            await TELEMETRY_SIGNAL(
+                TELEMETRY("PURGE_UTIL", "Failed to read OMEGA_SIGNAL.md", { error: String(err) }),
+                "ERROR"
+            );
             return;
         }
 
@@ -34,15 +40,24 @@ export const PURGE_UTIL = {
         const atomIdsToPurge = purgeMatches.map(m => m[1]);
         
         if (atomIdsToPurge.length === 0) {
-            console.log("✨ PURGE: No compromised atoms detected.");
+            await TELEMETRY_SIGNAL(
+                TELEMETRY("PURGE_UTIL", "No compromised atoms detected."),
+                "INFO"
+            );
             return;
         }
 
-        console.log(`🧹 PURGE: Targets identified: ${atomIdsToPurge.length}`);
+        await TELEMETRY_SIGNAL(
+            TELEMETRY("PURGE_UTIL", `Targets identified: ${atomIdsToPurge.length}`),
+            "INFO"
+        );
         
         for (const atomId of atomIdsToPurge) {
             if (PURGE_UTIL.PROTECTED_ATOMS.includes(atomId)) {
-                console.log(`🛡️ PROTECTED: Skipping purge for core atom ${atomId}`);
+                await TELEMETRY_SIGNAL(
+                    TELEMETRY("PURGE_UTIL", `Protected: Skipping purge for core atom ${atomId}`),
+                    "INFO"
+                );
                 continue;
             }
 
@@ -53,11 +68,17 @@ export const PURGE_UTIL = {
                     if (!result.ok) throw new Error(result.reason);
                 } else if (atomId.startsWith("v.")) {
                     await Deno.remove(atomId);
-                    console.log(`🔥 PURGED: ${atomId}`);
+                    await TELEMETRY_SIGNAL(
+                        TELEMETRY("PURGE_UTIL", `Purged: ${atomId}`),
+                        "INFO"
+                    );
                 }
             } catch (err) {
                 const msg = err instanceof Error ? err.message : String(err);
-                console.warn(`⚠️ PURGE FAILED for ${atomId}: ${msg}`);
+                await TELEMETRY_SIGNAL(
+                    TELEMETRY("PURGE_UTIL", `Purge failed for ${atomId}: ${msg}`),
+                    "WARNING"
+                );
             }
         }
 

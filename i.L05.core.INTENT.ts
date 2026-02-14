@@ -9,6 +9,9 @@ export interface SimState {
     [key: string]: unknown;
 }
 
+import { TELEMETRY } from "./i.L03.core.TELEMETRY.ts";
+import { TELEMETRY_SIGNAL } from "./i.L02.core.TELEMETRY_SIGNAL.ts";
+
 export const INTENT = {
     // The Awakened Ghost: Vector Analyzer of Homeostasis.
     
@@ -31,7 +34,13 @@ export const INTENT = {
         const entropyNew = Math.random(); 
         const entropyGradient = entropyOld - entropyNew;
 
-        console.log(`⚖️ INTENT METRICS: ΔMass=${massDelta.toFixed(2)}, ΔRes=${resonanceDelta}, ΔEntropy=${entropyGradient.toFixed(2)}`);
+        TELEMETRY_SIGNAL(
+            TELEMETRY(
+                "INTENT",
+                `ΔMass=${massDelta.toFixed(2)}, ΔRes=${resonanceDelta}, ΔEntropy=${entropyGradient.toFixed(2)}`
+            ),
+            "INFO"
+        );
 
         // The Formula of "Life":
         // Value stability (Mass), Truth (Resonance), and Order (Entropy decrease).
