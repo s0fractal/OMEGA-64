@@ -3,6 +3,9 @@
 // 🛡️ OMEGA-64 | The Bridge | Semantic Adapter
 // Connects OMEGA to External Intelligence (OpenAI, Gemini, Ollama).
 
+import { TELEMETRY } from "./i.L03.core.TELEMETRY.ts";
+import { TELEMETRY_SIGNAL } from "./i.L02.core.TELEMETRY_SIGNAL.ts";
+
 export interface LLMAdapter {
     query(prompt: string, context?: any): Promise<string>;
 }
@@ -10,7 +13,10 @@ export interface LLMAdapter {
 // 🎭 Mock Adapter (Default)
 export const MockAdapter: LLMAdapter = {
     query: async (prompt: string, context?: any): Promise<string> => {
-        console.log(`🎭 MOCK_LLM: Processing [${prompt.substring(0, 50)}...]`);
+        await TELEMETRY_SIGNAL(
+            TELEMETRY("LLM_ADAPTER", `MOCK_LLM processing [${prompt.substring(0, 50)}...]`),
+            "INFO"
+        );
         await new Promise(r => setTimeout(r, 100)); // Latency
 
         const lower = prompt.toLowerCase();
@@ -45,11 +51,17 @@ export class OpenAIAdapter implements LLMAdapter {
 
     async query(prompt: string, context?: any): Promise<string> {
         if (!this.apiKey || this.apiKey.includes("YOUR_KEY")) {
-            console.warn("⚠️ OpenAI Adapter: No valid key. Falling back to Mock.");
+            await TELEMETRY_SIGNAL(
+                TELEMETRY("LLM_ADAPTER", "OpenAI Adapter: No valid key. Falling back to Mock."),
+                "WARNING"
+            );
             return MockAdapter.query(prompt, context);
         }
 
-        console.log(`🧠 OPENAI: Querying ${this.model}...`);
+        await TELEMETRY_SIGNAL(
+            TELEMETRY("LLM_ADAPTER", `OPENAI querying ${this.model}...`),
+            "INFO"
+        );
 
         try {
             const response = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -76,7 +88,10 @@ export class OpenAIAdapter implements LLMAdapter {
             const data = await response.json();
             return data.choices[0].message.content.trim();
         } catch (e: any) {
-            console.error(`🔴 OpenAI Error: ${e.message}`);
+            await TELEMETRY_SIGNAL(
+                TELEMETRY("LLM_ADAPTER", `OpenAI Error: ${e.message}`),
+                "ERROR"
+            );
             return "ALLOW (Error Fallback)";
         }
     }

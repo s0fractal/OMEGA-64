@@ -1,4 +1,6 @@
 import { LLMAdapter, MockAdapter, OpenAIAdapter } from "./i.L25.core.LLM_ADAPTER.ts";
+import { TELEMETRY } from "./i.L03.core.TELEMETRY.ts";
+import { TELEMETRY_SIGNAL } from "./i.L02.core.TELEMETRY_SIGNAL.ts";
 
 // Try to load secrets gracefully
 const secrets: any = {};
@@ -9,7 +11,7 @@ try {
     // Actually, let's just use a placeholder logic.
     // Ideally: import { SECRETS } from "./i.L99.core.SECRET.ts";
 } catch (e) {
-    console.warn("⚠️ VOID: No SECRET.ts found. Using Mock.");
+    await TELEMETRY_SIGNAL(TELEMETRY("VOID", "No SECRET.ts found. Using Mock."), "WARNING");
 }
 
 // Initialize Adapter
@@ -19,7 +21,7 @@ let adapter: LLMAdapter = MockAdapter;
 export const injectSecrets = (keys: any) => {
     if (keys.OPENAI_API_KEY) {
         adapter = new OpenAIAdapter(keys.OPENAI_API_KEY);
-        console.log("🟢 VOID: OpenAI Adapter Activated.");
+        TELEMETRY_SIGNAL(TELEMETRY("VOID", "OpenAI Adapter Activated."), "INFO");
     }
 };
 
@@ -38,7 +40,7 @@ export const VOID = {
             if (result.toUpperCase().includes("ALLOW")) return "ALLOW";
             return result;
         } catch (e) {
-            console.error("VOID Error:", e);
+            await TELEMETRY_SIGNAL(TELEMETRY("VOID", "VOID Error", { error: String(e) }), "ERROR");
             return "ALLOW"; // Fail open
         }
     }

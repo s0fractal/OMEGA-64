@@ -5,6 +5,9 @@
 // Rescued from Archive (Phase 100).
 // This agent maintains the 'Akashic Record', 'Sophia Proofs', and system metrics.
 
+import { TELEMETRY } from "./i.L03.core.TELEMETRY.ts";
+import { TELEMETRY_SIGNAL } from "./i.L02.core.TELEMETRY_SIGNAL.ts";
+
 const ROOT_DIR = Deno.cwd();
 const AKASHA_LOG = `${ROOT_DIR}/akasha.log`;
 const SOPHIA_PROOFS = `${ROOT_DIR}/sophia.proofs`;
@@ -89,19 +92,32 @@ export const SENSORS = {
         try {
             await Deno.writeTextFile(SOPHIA_PROOFS, proof, { append: true });
         } catch (e) {
-            console.error("Failed to materialize wisdom:", e);
+            await TELEMETRY_SIGNAL(
+                TELEMETRY("SENSORS", "Failed to materialize wisdom", { error: String(e) }),
+                "ERROR"
+            );
         }
     }
 };
 
 // Auto-start if main
 if (import.meta.main) {
-    console.log("🛡️ SENSORS ACTIVE. Monitoring OMEGA...");
+    await TELEMETRY_SIGNAL(TELEMETRY("SENSORS", "SENSORS ACTIVE. Monitoring OMEGA..."), "INFO");
     setInterval(async () => {
         const metrics = await SENSORS.pulse();
-        console.log(`[${new Date().toISOString()}] 💓 COHERENCE: ${(metrics.coherence * 100).toFixed(4)}% | STATUS: ${metrics.status}`);
+        await TELEMETRY_SIGNAL(
+            TELEMETRY(
+                "SENSORS",
+                `COHERENCE ${(metrics.coherence * 100).toFixed(4)}% | STATUS ${metrics.status}`,
+                { metrics }
+            ),
+            "INFO"
+        );
         if (metrics.status === "DREAMING") {
-            console.log(`✨ DREAM: ${metrics.dream_insight}`);
+            await TELEMETRY_SIGNAL(
+                TELEMETRY("SENSORS", `DREAM ${metrics.dream_insight}`),
+                "INFO"
+            );
             await SENSORS.logDream(metrics.dream_insight!);
         }
     }, HARMONIC_INTERVAL);
