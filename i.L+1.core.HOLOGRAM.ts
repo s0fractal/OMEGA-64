@@ -4,6 +4,11 @@
 
 import { QWave } from './i.L13.core.WAVE_PACKET.ts';
 import { ChronoState } from './i.L22.core.CHRONOFLUX.ts';
+import { I16_LIMITS } from "./i.L00.core.I16_LIMITS.ts";
+import { U16_LIMITS } from "./i.L00.core.U16_LIMITS.ts";
+
+const I16 = I16_LIMITS();
+const U16 = U16_LIMITS();
 
 /**
  * L+1: Оптична резонансна камера.
@@ -39,7 +44,7 @@ export const HOLOGRAM = {
     const amplitudeMap = new Float32Array(resolution * resolution);
     
     // Центр хвилі визначає "точку фокусування"
-    const centerX = Math.floor((wave.r + 32768) / 65535 * resolution);
+    const centerX = Math.floor((wave.r + I16.abs) / U16.span * resolution);
     const centerY = Math.floor(resolution / 2); // Спрощено — 1D проекція
     
     for (let y = 0; y < resolution; y++) {
@@ -54,7 +59,7 @@ export const HOLOGRAM = {
         
         // Спіральна фаза (орбітальний кутовий момент)
         const angle = Math.atan2(dy, dx);
-        phaseMap[idx] = (wave.phi / 65535) * 2 * Math.PI + angle * (wave.r / 32767);
+        phaseMap[idx] = (wave.phi / U16.span) * 2 * Math.PI + angle * (wave.r / I16.max);
       }
     }
     
@@ -71,7 +76,6 @@ export const HOLOGRAM = {
   interfere: (field1: OpticalField, field2: OpticalField): HolographicProjection => {
     if (field1.wavelength !== field2.wavelength) {
       // Різні довжини хвиль → биття (beats) в часі, а не просторі
-      console.log("⚡ HOLOGRAM: Wavelength mismatch — temporal beats detected");
     }
     
     const resolution = Math.floor(Math.sqrt(field1.phaseMap.length));
@@ -147,11 +151,11 @@ export const HOLOGRAM = {
     const cy = Math.floor(centroidIdx / resolution);
     
     // Конвертація назад в r
-    const r = Math.round((cx / resolution - 0.5) * 65535);
+    const r = Math.round((cx / resolution - 0.5) * U16.span);
     
     // Фаза з градієнта фази (depthCue)
     const avgPhase = hologram.depthCue.reduce((a,b) => a+b, 0) / hologram.depthCue.length;
-    const phi = Math.round(((avgPhase % (2*Math.PI)) / (2*Math.PI)) * 65535);
+    const phi = Math.round(((avgPhase % (2*Math.PI)) / (2*Math.PI)) * U16.span);
     
     // Амплітуда з максимальної інтенсивності
     const amplitude = Math.round(Math.sqrt(maxIntensity));

@@ -4,6 +4,9 @@
 
 import { StateSnapshot } from "./i.L99.core.STATE_SNAPSHOT.ts";
 import { CHROMO_STATE } from "./i.L00.core.CHROMO_STATE.ts";
+import { I16_LIMITS } from "./i.L00.core.I16_LIMITS.ts";
+
+const I16 = I16_LIMITS();
 
 export interface HologramFrame {
     tick: number;
@@ -33,7 +36,7 @@ export const HOLOGRAM = {
             const val = state.state_i16[i] || 0;
             if (val === 0) continue;
 
-            const normalized = Math.abs(val) / 32768; // 0..1
+            const normalized = Math.abs(val) / I16.abs; // 0..1
             // Simple mapping: 
             // - Positive = Warm colors (Action)
             // - Negative = Cool colors (Receptivity)

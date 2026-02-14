@@ -2,6 +2,10 @@
 // 🛡️ OMEGA-64 | Topological Lens | Vector 2
 // "Truth is a resonance pattern projected across geometries."
 
+import { I16_LIMITS } from "./i.L00.core.I16_LIMITS.ts";
+
+const I16 = I16_LIMITS();
+
 export interface Point3D {
     x: number;
     y: number;
@@ -18,7 +22,7 @@ const PROJECTION_CONFIG = {
 };
 
 const toCylinder = (val: number, level: number): Point3D => {
-    const norm = val / 32768.0;
+    const norm = val / I16.abs;
     const phase = (level / PROJECTION_CONFIG.LEVELS) * Math.PI * 2 * 2;
     const r = PROJECTION_CONFIG.CYLINDER_RADIUS + (norm * 80);
     return {
@@ -30,7 +34,7 @@ const toCylinder = (val: number, level: number): Point3D => {
 };
 
 const toTorus = (val: number, level: number): Point3D => {
-    const norm = val / 32768.0;
+    const norm = val / I16.abs;
     const theta = (level / PROJECTION_CONFIG.LEVELS) * Math.PI * 2;
     const phi = norm * Math.PI * 2;
     const R = PROJECTION_CONFIG.TORUS_MAJOR_R;
@@ -44,7 +48,7 @@ const toTorus = (val: number, level: number): Point3D => {
 };
 
 const toOrbit = (val: number, level: number): Point3D => {
-    const norm = val / 32768.0;
+    const norm = val / I16.abs;
     const phase = (level / PROJECTION_CONFIG.LEVELS) * Math.PI * 2 * 2;
     const r = PROJECTION_CONFIG.CYLINDER_RADIUS + (norm * 10); // Minimal jitter
     return {
