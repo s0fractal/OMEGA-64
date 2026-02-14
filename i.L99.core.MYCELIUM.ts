@@ -5,8 +5,13 @@
 import { FIELD } from './i.L00.core.FIELD.ts';
 import { LOAD, LoadInput } from './i.L99.core.LOAD.ts';
 import { QWave } from './i.L13.core.WAVE_PACKET.ts';
+import { I16_LIMITS } from './i.L00.core.I16_LIMITS.ts';
+import { U16_LIMITS } from './i.L00.core.U16_LIMITS.ts';
 
 import { DeltaProposal, StateSnapshot } from "./i.L99.core.STATE_SNAPSHOT.ts";
+
+const I16 = I16_LIMITS();
+const U16 = U16_LIMITS();
 
 export interface MyceliumAgent {
   id: string;
@@ -58,7 +63,7 @@ export const MYCELIUM = {
       let centerOfGravity = 0;
       
       for (const n of neighbours) {
-        const rad = (n.phase / 65535) * 2 * Math.PI;
+        const rad = (n.phase / U16.span) * 2 * Math.PI;
         sumPhaseX += Math.cos(rad) * n.amplitude;
         sumPhaseY += Math.sin(rad) * n.amplitude;
         totalAmp += n.amplitude;
@@ -68,15 +73,15 @@ export const MYCELIUM = {
       if (totalAmp > 0) {
         // A. Phase Synchronization
         const avgAngle = Math.atan2(sumPhaseY, sumPhaseX);
-        const targetPhase = Math.round(((avgAngle / (2 * Math.PI)) + 1) * 65535) % 65535;
+        const targetPhase = Math.round(((avgAngle / (2 * Math.PI)) + 1) * U16.span) % U16.span;
         
         const drift = targetPhase - agent.wave.phase;
         let shortestDrift = drift;
-        if (shortestDrift > 32767) shortestDrift -= 65535;
-        if (shortestDrift < -32767) shortestDrift += 65535;
+        if (shortestDrift > U16.half) shortestDrift -= U16.span;
+        if (shortestDrift < -U16.half) shortestDrift += U16.span;
         
         updatedAgent.wave.phase += Math.round(shortestDrift * 0.1);
-        updatedAgent.wave.phase = (updatedAgent.wave.phase + 65535) % 65535;
+        updatedAgent.wave.phase = (updatedAgent.wave.phase + U16.span) % U16.span;
         cost += Math.abs(shortestDrift * 0.1) * 0.001;
 
         // B. Social Gravity (Attraction to Center)
@@ -125,8 +130,8 @@ export const MYCELIUM = {
     if (Math.abs(move) > 0 && agent.stamina > 10) {
         updatedAgent.wave.center += Math.round(move);
         // Clamp to world
-        if (updatedAgent.wave.center > 32767) updatedAgent.wave.center = 32767;
-        if (updatedAgent.wave.center < -32768) updatedAgent.wave.center = -32768;
+        if (updatedAgent.wave.center > I16.max) updatedAgent.wave.center = I16.max;
+        if (updatedAgent.wave.center < I16.min) updatedAgent.wave.center = I16.min;
         
         cost += 2; // Вартість руху
     }
@@ -167,7 +172,7 @@ export const MYCELIUM = {
       
       if (actionLabel === "Idle") return null;
 
-      const normalizedPos = (agent.wave.center + 32768) / 65536; // 0..1
+      const normalizedPos = (agent.wave.center - I16.min) / I16.cycle; // 0..1
       const targetLevel = Math.floor(normalizedPos * 64);
       const level = Math.max(0, Math.min(63, targetLevel));
 

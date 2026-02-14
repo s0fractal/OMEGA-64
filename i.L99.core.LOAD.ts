@@ -3,6 +3,11 @@
 // "Тягар — це не вага. Тягар — це тертя."
 
 import { AccessLevel } from './i.L00.core.ACCESS_BY_RESONANCE.ts';
+import { I16_LIMITS } from './i.L00.core.I16_LIMITS.ts';
+import { U16_LIMITS } from './i.L00.core.U16_LIMITS.ts';
+
+const I16 = I16_LIMITS();
+const U16 = U16_LIMITS();
 
 export interface LoadInput {
   entropy: number;       // Ентропія (-32768..32767)
@@ -23,15 +28,15 @@ export const LOAD = {
   calculate: (input: LoadInput, systemPhase: number): number => {
     // 1. Нормалізована ентропійна маса [0..1]
     // Висока ентропія = 1 ( Chaos), Низька = 0 (Crystal)
-    const e = (input.entropy + 32768) / 65535;
+    const e = (input.entropy - I16.min) / I16.span;
 
     // 2. Фазове неузгодження (Phase Mismatch) [0..2]
     // p_i = 1 - cos(2π * dphi / 65535)
     let dPhi = Math.abs(input.phase - systemPhase);
-    if (dPhi > 32767) dPhi = 65535 - dPhi; // Shortest path
+    if (dPhi > U16.half) dPhi = U16.span - dPhi; // Shortest path
     
     // Косинусна міра подібності (плавніше ніж лінійна)
-    const angleRad = (dPhi / 32767) * Math.PI;
+    const angleRad = (dPhi / U16.half) * Math.PI;
     const p = 1 - Math.cos(angleRad); 
     
     // 3. Вагові коефіцієнти

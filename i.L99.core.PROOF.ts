@@ -12,6 +12,10 @@ export interface ProofSpiral<A, G> {
   invariant: number;      // Метрична перевірка (має зростати або стабілізуватись)
 }
 
+import { I16_LIMITS } from "./i.L00.core.I16_LIMITS.ts";
+
+const I16 = I16_LIMITS();
+
 export const PROOF = {
   /**
    * Базовий цикл: А → Г → А' → Г' → ... поки invariant не стабілізується.
@@ -53,11 +57,11 @@ export const PROOF = {
     const algebraic = `L${n}: λx.${n > 0 ? `L${n-1}(x)` : 'x'}`;
     
     // Геометрія: координати в FIELD (r, θ)
-    const r = Math.round((n / 63 - 0.5) * 65535);
+    const r = Math.round((n / 63 - 0.5) * I16.span);
     const geometric = [r, (n * 360 / 64) % 360]; // θ залежить від n
     
     // Інваріант: "маса" рівня (ближче до ядра = вища)
-    const invariant = 32767 - Math.abs(r);
+    const invariant = I16.max - Math.abs(r);
     
     return {
       algebraic,

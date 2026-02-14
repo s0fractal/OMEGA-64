@@ -48,7 +48,7 @@ const LIMIT_LITERAL_PATTERNS = [
     /(^|[^0-9])65536([^0-9]|$)/,
     /-32768/
 ];
-const CANON_LIMIT_IMPORT = /I16_LIMITS|I16_CLAMP/;
+const CANON_LIMIT_IMPORT = /I16_LIMITS|I16_CLAMP|U16_LIMITS/;
 
 const countExports = (content: string): number => {
     const matches = [
