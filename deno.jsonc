@@ -9,6 +9,7 @@
     "export:sigma:level": "deno run -A export_sigma.ts --mode level",
     "sigma:roundtrip": "deno run -A sigma_quine.ts --input I.sigma.md --output I.sigma.reassembled.md",
     "sigma:verify": "deno run -A sigma_quine.ts --input I.sigma.md --output I.sigma.reassembled.md --verify",
+    "sigma:index": "deno run -A sigma_index.ts --input I.sigma.md --output I.sigma.index.json",
     "test:gate-runner": "deno run -A test_gate_runner.ts",
     "test:replay": "deno run -A test_replay_audit_topological_signature.ts",
     "test:crystallization": "deno run -A test_replay_crystallization.ts",
