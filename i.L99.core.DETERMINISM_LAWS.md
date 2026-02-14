@@ -9,7 +9,7 @@ Scope:
 Law 01 — Deterministic Substrate (AX/OP)
 Where: L48–L63 (AX/OP band)
 Rule: Only fixed-point (i16/u16), LUT, or canonical integer ops.
-Forbidden: Math.*, floats, randomness, system time, I/O.
+Forbidden: Math.*, floats, randomness, system time, I/O (including console.*).
 Enforcement: Gate + Replay Audit.
 Sanction: Reject + ViolationEvent on write.
 
@@ -30,6 +30,10 @@ Where: L32–L47 (FL band)
 Rule: Branching allowed only if deterministic (no RNG, no Date/Time).
 Enforcement: Replay Audit.
 Sanction: Reject (no crystallization).
+
+IO Boundary:
+- IO (console/logging) is forbidden from L48+ (AX/OP).
+- IO is permitted in FL/PJ/DR as telemetry but must not affect state.
 
 Law 05 — Marked Entropy (PJ/DR)
 Where: L00–L31 (PJ/DR band)
