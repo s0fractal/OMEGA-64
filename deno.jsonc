@@ -1,5 +1,8 @@
 {
   "compilerOptions": { "lib": ["deno.window"], "strict": true },
+  "lint": {
+    "exclude": ["I.ts"]
+  },
   "imports": {
     // 🛡️ OMEGA-64 Singularity Imports
     "@std/": "https://deno.land/std@0.224.0/" 

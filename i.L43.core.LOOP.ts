@@ -3,15 +3,10 @@
 // The Heartbeat of OMEGA-64.
 // "Spark": Randomly activates Atoms to simulate Neural Noise.
 
-import { RIBOSOME, Atom } from "./i.L32.core.RIBOSOME.ts";
+import { RIBOSOME } from "./i.L32.core.RIBOSOME.ts";
 import { NERVE } from "./i.L48.core.NERVE.ts";
-import { MUTATE } from "./i.L43.core.MUTATE.ts";
-import { INTENT } from "./i.L05.core.INTENT.ts";
 import { KAIROS } from "./i.L64.core.KAIROS.ts";
-import { VISUALIZER } from "./i.L32.core.VISUALIZER.ts";
-import { ARENA } from "./i.L32.core.ARENA.ts";
-import { CHRONO_TICK, CHRONOFLUX } from './i.L22.core.CHRONOFLUX.ts';
-import { PROOF } from './i.L99.core.PROOF.ts';
+import { CHRONO_TICK } from './i.L22.core.CHRONOFLUX.ts';
 import { MYCELIUM, MyceliumAgent } from './i.L99.core.MYCELIUM.ts';
 import { WAVE_PACKET } from './i.L13.core.WAVE_PACKET.ts';
 
@@ -22,9 +17,6 @@ import { SYNC } from "./i.L99.core.SYNC.ts";
 
 // 🛡️ Era 3.3: Topological Projection
 import { PROJECTION } from "./i.L64.core.PROJECTION.ts";
-
-// 🛡️ Era 3.0: Hologram
-import { HOLOGRAM } from "./i.L64.core.HOLOGRAM.ts";
 
 // 🛡️ Era 2.6: The Spark Imports
 import { GATE_RUNNER } from "./i.L32.core.GATE_RUNNER.ts";

@@ -2,10 +2,8 @@
 // 🛡️ OMEGA-64 | Chronoflux Module | Time as Primary Substance
 // "Маса — це глибина часу. Енергія — швидкість його плину."
 
-import { FIELD, FIELD_CONFIG } from './i.L00.core.FIELD.ts';
-import { QWave, WavePacket, WAVE_PACKET } from './i.L13.core.WAVE_PACKET.ts';
-import { INTERFERENCE } from './i.L13.core.INTERFERENCE.ts';
-import { TICK } from './i.L22.core.TICK.ts';
+import { FIELD_CONFIG } from './i.L00.core.FIELD.ts';
+import { QWave, WAVE_PACKET } from './i.L13.core.WAVE_PACKET.ts';
 
 // ============================================================================
 // [CHRONOFLUX CORE TYPES]
@@ -412,4 +410,3 @@ export const CHRONO_TICK = {
 // ============================================================================
 
 export type { ChronoState, ChronoEvent, ChronoMetric };
-

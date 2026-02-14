@@ -5,7 +5,6 @@
 // "Evolution does not need purity — it needs selection."
 
 import type { Atom } from "./i.L32.core.RIBOSOME.ts";
-import { INTENT } from "./i.L05.core.INTENT.ts";
 import { DUAL, HyperAtom } from "./i.L32.core.DUAL_COMPILER.ts";
 
 export const IMMUNE = {

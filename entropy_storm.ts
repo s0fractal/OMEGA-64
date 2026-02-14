@@ -1,7 +1,5 @@
 
 // OMEGA-64: Entropy Storm Simulator
-import { INTERFACE } from "./src/_/i.L00.core.INTERFACE.ts";
-import { q as Q00 } from "./src/_/i.L00.q.ts";
 
 async function runStressTest() {
     console.log("🌪️ INITIATING ENTROPY STORM ON L00...");

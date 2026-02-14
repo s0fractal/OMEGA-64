@@ -2,7 +2,6 @@
 // 🛡️ OMEGA-64 | Entropy Dynamics | Hybrid Load Model
 // "Тягар — це не вага. Тягар — це тертя."
 
-import { AccessLevel } from './i.L00.core.ACCESS_BY_RESONANCE.ts';
 import { I16_LIMITS } from './i.L00.core.I16_LIMITS.ts';
 import { U16_LIMITS } from './i.L00.core.U16_LIMITS.ts';
 

@@ -13,7 +13,6 @@ import {
 } from "./i.L99.core.STATE_SNAPSHOT.ts";
 import { LEDGER } from "./i.L99.core.LEDGER.ts";
 import { LOAD } from "./i.L99.core.LOAD.ts";
-import { ACCESS_BY_RESONANCE } from "./i.L00.core.ACCESS_BY_RESONANCE.ts";
 import { CHECKPOINT } from "./i.L99.core.CHECKPOINT.ts";
 import { TOPOLOGICAL_SIGNATURE } from "./i.L99.core.TOPOLOGICAL_SIGNATURE.ts";
 import {

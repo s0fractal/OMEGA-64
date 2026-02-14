@@ -2,8 +2,7 @@
 // Verification script for Phase 2: Bounded Mutation & Cost Model
 
 import { GATE } from "./i.L32.core.GATE.ts";
-import { StateSnapshot, DeltaProposal, GateConfig, REJECTION } from "./i.L99.core.STATE_SNAPSHOT.ts";
-import { LEDGER } from "./i.L99.core.LEDGER.ts";
+import { StateSnapshot, DeltaProposal, GateConfig } from "./i.L99.core.STATE_SNAPSHOT.ts";
 
 async function runTest() {
     console.log("🧪 TESTING: Gemini Glider Lite Phase 2 (Bounded Mutation)");

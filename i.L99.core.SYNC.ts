@@ -2,10 +2,9 @@
 // 🛡️ OMEGA-64 | The Swarm | State Sync
 // "To become One, one must remember everything."
 
-import { PEER, type PeerInfo } from "./i.L99.core.PEER.ts";
+import type { PeerInfo } from "./i.L99.core.PEER.ts";
 import { StateSnapshot, TopologyEvent, LedgerEvent } from "./i.L99.core.STATE_SNAPSHOT.ts";
 import { LEDGER } from "./i.L99.core.LEDGER.ts";
-import { GATE_RUNNER } from "./i.L32.core.GATE_RUNNER.ts";
 import { PROPOSAL_ENVELOPE_INDEX } from "./i.L99.core.PROPOSAL_ENVELOPE_INDEX.ts";
 
 export const SYNC = {

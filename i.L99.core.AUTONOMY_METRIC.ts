@@ -2,7 +2,6 @@
 // OMEGA-64 | The Sovereign Score
 // "Measuring the breath of the crystal."
 
-import { POLICY_TRANSITION } from "./i.L99.core.POLICY_TRANSITION.ts";
 import { MUTATE } from "./i.L43.core.MUTATE.ts";
 import { AutonomyState } from "./i.L99.core.STATE_SNAPSHOT.ts";
 

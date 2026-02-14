@@ -2,7 +2,6 @@
 // Verification of Era 3.2: Semantic Immunity
 
 import { KAIROS } from "./i.L64.core.KAIROS.ts";
-import { VOID } from "./i.L25.core.VOID.ts";
 import { SIGNAL } from "./i.L64.core.SIGNAL.ts";
 import type { Atom } from "./i.L32.core.RIBOSOME.ts";
 
