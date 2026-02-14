@@ -115,4 +115,7 @@ if (import.meta.main) {
         });
     }
     console.log(JSON.stringify(report, null, 2));
+    if (flags.has("--fail") && report.violations > 0) {
+        Deno.exit(1);
+    }
 }
