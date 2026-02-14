@@ -7,6 +7,7 @@ import { CANON_CAUSAL_BRIDGE } from "./i.L32.core.CANON_CAUSAL_BRIDGE.ts";
 import { REPLAY_AUDIT } from "./i.L99.core.REPLAY_AUDIT.ts";
 import { LEDGER } from "./i.L99.core.LEDGER.ts";
 import { PROJECTION_DRIFT_ANALYTICS } from "./i.L99.core.PROJECTION_DRIFT_ANALYTICS.ts";
+import { DETERMINISM_LAWS } from "./i.L99.core.DETERMINISM_LAWS.ts";
 
 export interface MutationRequest {
     atomId: string;
@@ -15,6 +16,7 @@ export interface MutationRequest {
     details?: string;
     dryRun?: boolean;
     invariant_packet_hash?: string;
+    timestamp?: string;
 }
 
 export const MUTATE = {
@@ -67,7 +69,7 @@ export const MUTATE = {
      * Atomic Write with Ledger and Sovereignty Check.
      */
     write: async (req: MutationRequest) => {
-        const { atomId, content, reason, details, dryRun = false, invariant_packet_hash } = req;
+        const { atomId, content, reason, details, dryRun = false, invariant_packet_hash, timestamp } = req;
         if (!content) throw new Error("MUTATE: Content required for WRITE action.");
 
         console.log(`📡 MUTATE: Requesting write for [${atomId}] (Reason: ${reason})`);
@@ -76,6 +78,14 @@ export const MUTATE = {
         if (["TENSION", "RESONANCE", "EMERGENCE"].includes(reason) && !invariant_packet_hash) {
             console.warn(`🛑 MUTATE REJECTED: Structural mutation requires invariant_packet_hash.`);
             return { ok: false, reason: "MISSING_INVARIANT_PACKET" };
+        }
+
+        // Determinism Law Audit (Physics Gate)
+        const audit = DETERMINISM_LAWS.audit({ atomId, content });
+        if (!audit.ok) {
+            const reasonText = audit.reasons.join("|");
+            console.warn(`🛑 MUTATE REJECTED: Determinism law violation (${audit.band}): ${reasonText}`);
+            return { ok: false, reason: `DETERMINISM_LAW_VIOLATION:${reasonText}` };
         }
 
         // Check window
@@ -92,9 +102,12 @@ export const MUTATE = {
 
         try {
             const hashBefore = await MUTATE.getHash(atomId);
+            const tail = await MUTATION_LEDGER.getTailHash();
+            const stamp = tail ? tail.slice(0, 12) : "GENESIS";
+            const eventTimestamp = timestamp ?? `T${stamp}`;
             
             // Backup (Pass sovereigntyVerified: true as we just checked it)
-            await MUTATE.archive(atomId, "PRE_MUTATION", true);
+            await MUTATE.archive(atomId, "PRE_MUTATION", true, eventTimestamp);
 
             // Write
             await Deno.writeTextFile(atomId, content);
@@ -102,7 +115,7 @@ export const MUTATE = {
 
             // Record in Mutation Ledger
             await MUTATION_LEDGER.append({
-                timestamp: new Date().toISOString(),
+                timestamp: eventTimestamp,
                 atom_id: atomId,
                 action: "WRITE",
                 hash_before: hashBefore,
@@ -124,7 +137,12 @@ export const MUTATE = {
     /**
      * Archives an Atom.
      */
-    archive: async (atomId: string, reason: MutationEvent["reason"] = "CLEANSE", sovereigntyVerified = false) => {
+    archive: async (
+        atomId: string,
+        reason: MutationEvent["reason"] = "CLEANSE",
+        sovereigntyVerified = false,
+        timestamp?: string
+    ) => {
         try {
             // Check window if not already verified (e.g. by write())
             if (!sovereigntyVerified) {
@@ -136,12 +154,15 @@ export const MUTATE = {
             }
 
             const hashBefore = await MUTATE.getHash(atomId);
-            const backupPath = `./archive/${atomId}.${Date.now()}.bak`;
+            const tail = await MUTATION_LEDGER.getTailHash();
+            const stamp = tail ? tail.slice(0, 12) : "GENESIS";
+            const eventTimestamp = timestamp ?? `T${stamp}`;
+            const backupPath = `./archive/${atomId}.${hashBefore.slice(0, 8)}.${stamp}.bak`;
             await Deno.mkdir("./archive", { recursive: true });
             await Deno.rename(atomId, backupPath);
 
             await MUTATION_LEDGER.append({
-                timestamp: new Date().toISOString(),
+                timestamp: eventTimestamp,
                 atom_id: atomId,
                 action: "ARCHIVE",
                 hash_before: hashBefore,

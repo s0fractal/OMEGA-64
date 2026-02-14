@@ -1,4 +1,5 @@
 // i.L25.core.LLM_ADAPTER.ts
+// @noncanonical
 // 🛡️ OMEGA-64 | The Bridge | Semantic Adapter
 // Connects OMEGA to External Intelligence (OpenAI, Gemini, Ollama).
 

@@ -106,9 +106,7 @@ export const CHROMO_STATE = {
           );
         } else {
           // Фонова "квантова піна" — низька амплітуда шуму
-          const noise = opts.deterministic
-            ? deterministicNoise(x, y, state.identity) * opts.noiseAmplitude
-            : Math.random() * opts.noiseAmplitude;
+          const noise = deterministicNoise(x, y, state.identity) * opts.noiseAmplitude;
           setPixel(canvas, x, y, noise, noise, noise, opts.noiseAlpha);
         }
       }

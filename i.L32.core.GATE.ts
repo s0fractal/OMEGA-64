@@ -459,7 +459,7 @@ export const GATE = {
     const event: LedgerEvent = {
       event_id: eventId,
       tick: state.tick,
-      ts_unix_ms: Date.now(),
+      ts_unix_ms: state.tick * 1000,
       state_before_hash: state.state_hash,
       state_after_hash: nextHash,
       accepted_delta: decision.accepted_delta,

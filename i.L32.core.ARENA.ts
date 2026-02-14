@@ -61,7 +61,7 @@ export const ARENA = {
    */
   excite: (pulse: ArenaPulse): void => {
     // Гасіння старих хвиль ( half-life ~ 10 ticks )
-    const now = Date.now();
+    const now = pulse.timestamp;
     for (const [id, p] of ARENA.active) {
       if (now - p.timestamp > 10000) ARENA.active.delete(id);
     }

@@ -45,7 +45,7 @@ export const HOLOTYPE = {
             id: atomId,
             vector,
             projections,
-            timestamp: new Date().toISOString()
+            timestamp: `T${vector.slice(0, 12)}`
         };
 
         return holotype;
@@ -67,7 +67,8 @@ export const HOLOTYPE = {
         const tension = Math.abs(ts.length - rs.length) / (ts.length + rs.length + 1);
         
         // Resonance: Simple simulated check
-        const resonance = Math.random(); // Placeholder for true semantic check
+        const resonanceSeed = parseInt(parent.vector.slice(0, 2), 16);
+        const resonance = resonanceSeed / 255; // Deterministic placeholder
 
         if (resonance > 0.8 && tension > 0.1) {
              console.log(`🌱 HOLOTYPE: Tension detected in [${parent.id}]. Budding...`);
@@ -79,7 +80,7 @@ export const HOLOTYPE = {
                  projections: { 
                      ts: `// Child of ${parent.id}\n// Born from Tension: ${tension.toFixed(2)}`
                  },
-                 timestamp: new Date().toISOString()
+                 timestamp: `T${parent.vector.slice(0, 12)}C`
              };
         }
         return null;

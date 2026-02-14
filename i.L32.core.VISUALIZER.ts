@@ -196,10 +196,11 @@ export const VISUALIZER = {
   } => {
     const cells = VISUALIZER.render();
     const max_val = Math.max(...cells.map(c => c.potential + c.excitation));
+    const lastPulse = Math.max(0, ...Array.from(ARENA.active.values()).map(p => p.timestamp));
     
     return {
       metadata: {
-        timestamp: Date.now(),
+        timestamp: lastPulse,
         active_sources: ARENA.active.size
       },
       data: cells.map(c => Math.floor(255 * (c.potential + c.excitation) / (max_val + 1)))

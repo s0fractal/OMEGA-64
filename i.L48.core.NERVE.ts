@@ -1,5 +1,6 @@
 
 // i.L48.core.NERVE.ts
+// @noncanonical
 // The Nervous System of OMEGA-64.
 // Broadcasts State (Pulse) to the Interface (Mirror).
 

@@ -7,8 +7,6 @@ import { INTERFACE } from "./i.L00.core.INTERFACE.ts";
 import type { Lattice } from "./i.L32.core.RIBOSOME.ts";
 
 export const OMEGA = (lattice: Lattice) => {
-    console.log("♾️ OMEGA: Reaching across the Manifold...");
-    
     // The Transfinite Recursion:
     // Pass the entire Lattice back into the Interface.
     // The Output of the System becomes its own Input.

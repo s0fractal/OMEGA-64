@@ -1,5 +1,6 @@
 
 // i.L05.core.SENSORS.ts
+// @noncanonical
 // 🛡️ OMEGA-64 | Project Kairos: Temporal Synchronicity
 // Rescued from Archive (Phase 100).
 // This agent maintains the 'Akashic Record', 'Sophia Proofs', and system metrics.

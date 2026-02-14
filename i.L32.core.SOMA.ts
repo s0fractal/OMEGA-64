@@ -72,7 +72,7 @@ export const SOMA = {
             r: soma.origin.r,
             theta: soma.origin.theta,
             res: typeof result === 'string' ? result.length : 127,
-            timestamp: Date.now()
+            timestamp: soma.origin.r * 65536 + soma.origin.theta
         };
         
         await Deno.writeTextFile(signalPath, JSON.stringify(signal, null, 2));

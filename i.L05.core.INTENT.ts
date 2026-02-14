@@ -1,5 +1,6 @@
 
 // i.L05.core.INTENT.ts
+// @noncanonical
 // The Teleology of OMEGA.
 // Defines the difference between Noise and Signal.
 
