@@ -3,7 +3,12 @@
 // "Маса — це глибина часу. Енергія — швидкість його плину."
 
 import { FIELD_CONFIG } from './i.L00.core.FIELD.ts';
+import { I16_LIMITS } from "./i.L00.core.I16_LIMITS.ts";
+import { U16_LIMITS } from "./i.L00.core.U16_LIMITS.ts";
 import { QWave, WAVE_PACKET } from './i.L13.core.WAVE_PACKET.ts';
+
+const I16 = I16_LIMITS();
+const U16 = U16_LIMITS();
 
 // ============================================================================
 // [CHRONOFLUX CORE TYPES]
@@ -47,7 +52,7 @@ export interface ChronoMetric {
 
 export const CHRONOFLUX = {
   // Константи для нормалізації
-  C: 32767,              // "Швидкість світла" у одиницях гратки
+  C: I16.max,              // "Швидкість світла" у одиницях гратки
   TAU_MAX: 1.0,          // Максимальний власний час
   TAU_MIN: 0.0,          // Зупинка часу (гравітаційна сингулярність)
 
@@ -92,13 +97,13 @@ export const CHRONOFLUX = {
    * Маса як "глибина часового колодязя".
    * 
    * Чим більша маса — тим глибше колодязь — тим повільніше час.
-   * M = 32767 - evt (з L21)
+   * M = I16.max - evt (з L21)
    */
   massToDepth: (mass: number): number => {
     // Маса 65535 (max) → r = -32768 (ядро)
     // Маса 0 (min) → r = 32767 (поверхня)
-    const normalizedMass = mass / 65535; // [0..1]
-    return FIELD_CONFIG.MAX_ATTRACTOR - Math.round(normalizedMass * 65535);
+    const normalizedMass = mass / U16.span; // [0..1]
+    return FIELD_CONFIG.MAX_ATTRACTOR - Math.round(normalizedMass * U16.span);
   },
 
   /**
@@ -202,7 +207,7 @@ export const CHRONOFLUX = {
       tau: newTau,
       depth: newDepth,
       flowRate: current.flowRate * (newTau / current.tau), // Збереження "енергії"
-      curvature: CHRONOFLUX.calculateCurvature(newDepth, 32767 - newDepth) // Маса з глибини
+      curvature: CHRONOFLUX.calculateCurvature(newDepth, I16.max - newDepth) // Маса з глибини
     };
   },
 
@@ -219,7 +224,7 @@ export const CHRONOFLUX = {
     const flowRate = CHRONOFLUX.energyToFlowRate(wave.amplitude);
     
     // Фаза хвилі = фаза власного часу
-    const phaseNormalized = wave.phase / 65535; // [0..1]
+    const phaseNormalized = wave.phase / U16.span; // [0..1]
     
     return {
       tau: tau * (0.5 + 0.5 * Math.cos(2 * Math.PI * phaseNormalized)), // Модуляція фазою
@@ -239,7 +244,7 @@ export const CHRONOFLUX = {
     const r = Math.round(chrono.depth);
     
     // Власний час → фаза
-    const phi = Math.round((1 - chrono.tau) * 65535) % 65535;
+    const phi = Math.round((1 - chrono.tau) * U16.span) % U16.span;
     
     // Швидкість плину → амплітуда
     const amplitude = Math.round(chrono.flowRate * 1000);
@@ -296,7 +301,7 @@ export const CHRONOFLUX = {
    */
   eventHorizon: (mass: number): number => {
     // r_s = 2GM/c² → в наших одиницях: глибина, де τ = 0
-    const normalizedMass = mass / 65535;
+    const normalizedMass = mass / U16.span;
     return -Math.round(normalizedMass * FIELD_CONFIG.MAX_ATTRACTOR);
   },
 
