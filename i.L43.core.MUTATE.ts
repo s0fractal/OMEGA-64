@@ -21,6 +21,7 @@ export interface MutationRequest {
 
 export const MUTATE = {
     SAFE_DRIFT_THRESHOLD: 0.05, // 5% mean drift limit for safe window
+    SAFE_DRIFT_SLOPE_THRESHOLD: 0.02, // 2% drift slope limit for safe window
 
     /**
      * Checks if the system is in a Safe Mutation Window.
@@ -46,23 +47,27 @@ export const MUTATE = {
         const meanDrift = driftReport.ok ? 
             driftReport.driftByLevelMean.reduce((a, b) => a + b, 0) / driftReport.levelCount : 
             1.0;
+        const meanSlope = driftReport.ok ?
+            driftReport.driftSlopeByLevelMean.reduce((a, b) => a + b, 0) / driftReport.levelCount :
+            1.0;
 
         // 5. Threshold Logic
         const isGreen = bridge.mode === "GREEN";
         const isReplayGreen = audit.replayGreen;
         const indexOk = audit.invariantReport.gate_admission_index_chain_ok;
-        const driftOk = meanDrift <= MUTATE.SAFE_DRIFT_THRESHOLD;
+        const driftOk = meanDrift <= MUTATE.SAFE_DRIFT_THRESHOLD &&
+            meanSlope <= MUTATE.SAFE_DRIFT_SLOPE_THRESHOLD;
 
         if (!isGreen || !isReplayGreen || !indexOk || !driftOk) {
-            console.warn(`🛑 SOVEREIGNTY GATE CLOSED: drift=${meanDrift.toFixed(4)} (Threshold: ${MUTATE.SAFE_DRIFT_THRESHOLD})`);
+            console.warn(`🛑 SOVEREIGNTY GATE CLOSED: drift=${meanDrift.toFixed(4)} slope=${meanSlope.toFixed(4)} (Thresholds: ${MUTATE.SAFE_DRIFT_THRESHOLD}, ${MUTATE.SAFE_DRIFT_SLOPE_THRESHOLD})`);
             return { 
                 ok: false, 
-                reason: `WINDOW_CLOSED: bridge=${bridge.mode}, replay=${isReplayGreen}, index=${indexOk}, drift=${meanDrift.toFixed(4)}`
+                reason: `WINDOW_CLOSED: bridge=${bridge.mode}, replay=${isReplayGreen}, index=${indexOk}, drift=${meanDrift.toFixed(4)}, slope=${meanSlope.toFixed(4)}`
             };
         }
 
-        console.log(`🟢 SOVEREIGNTY GATE OPEN: drift=${meanDrift.toFixed(4)}`);
-        return { ok: true, audit, meanDrift };
+        console.log(`🟢 SOVEREIGNTY GATE OPEN: drift=${meanDrift.toFixed(4)} slope=${meanSlope.toFixed(4)}`);
+        return { ok: true, audit, meanDrift, meanSlope };
     },
 
     /**
