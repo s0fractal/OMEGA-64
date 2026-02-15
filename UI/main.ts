@@ -4,9 +4,23 @@ const canvas = document.getElementById('canvas') as HTMLCanvasElement;
 const ctx = canvas.getContext('2d')!;
 const levelDisplay = document.getElementById('level-display')!;
 const gaugeBar = document.getElementById('gauge-bar')!;
+const healthSignal = document.getElementById('health-signal')!;
 
 let width: number, height: number;
 let time = 0;
+let lastHealth = 'UNKNOWN';
+
+function setHealthSignal(signal: string) {
+    const normalized = signal.trim().toUpperCase();
+    if (normalized === lastHealth) return;
+    lastHealth = normalized;
+    healthSignal.textContent = normalized;
+    healthSignal.classList.remove('green', 'amber', 'red', 'unknown');
+    if (normalized === 'GREEN') healthSignal.classList.add('green');
+    else if (normalized === 'AMBER') healthSignal.classList.add('amber');
+    else if (normalized === 'RED') healthSignal.classList.add('red');
+    else healthSignal.classList.add('unknown');
+}
 
 function resize() {
     width = canvas.width = globalThis.innerWidth;
@@ -94,3 +108,19 @@ function animate() {
 }
 
 animate();
+
+async function pollHealth() {
+    try {
+        const response = await fetch('health_signal.txt', { cache: 'no-store' });
+        if (!response.ok) return;
+        const text = await response.text();
+        if (text.trim().length === 0) return;
+        setHealthSignal(text);
+    } catch {
+        // ignore network errors
+    }
+}
+
+setHealthSignal('UNKNOWN');
+pollHealth();
+setInterval(pollHealth, 3000);
