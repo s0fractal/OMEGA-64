@@ -10,6 +10,7 @@ Constraints:
 
 Outputs:
 - I.sigma.manifest.json (cells: id, lang, hash, bytes, lines)
+- Optional: mounts projection list (if --mounts provided)
 
 Ritual:
 1) Inhale: parse I.sigma.md
@@ -19,3 +20,4 @@ Ritual:
 Notes:
 - This is a safety-first ignition step.
 - Execution remains gated by GLIDER/L32 and ledger rules.
+- Use --mounts to include dot-fold mount projections.
