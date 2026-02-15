@@ -1,6 +1,7 @@
 
 // Mocking types for independent compilation
 // use crate::core::field::Field;
+// @spectral: CHORD::interference(h1,h2,h3)
 
 #[derive(Clone, Debug, Copy)]
 pub struct Wave {

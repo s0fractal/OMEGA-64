@@ -150,4 +150,27 @@ if (!dynamicsCheck.ok) {
   throw new Error(`DYNAMICS spectral mismatch: ${dynamicsCheck.reason}`);
 }
 
+const chordPaths = [
+  "./i.L12.core.CHORD.ts",
+  "./i.L12.core.CHORD.rs",
+  "./i.L12.core.CHORD.md",
+];
+
+const chordTags = await Promise.all(chordPaths.map((p) => readTag(p)));
+const chordLenses: SpectralLens[] = chordTags.map((tag, idx) => ({
+  id: chordPaths[idx],
+  project: () => tag,
+}));
+
+const chordCheck = SPECTRAL_INVARIANTS({
+  lenses: chordLenses,
+  sample: {},
+  min_lenses: 2,
+  max_delta: 0,
+});
+
+if (!chordCheck.ok) {
+  throw new Error(`CHORD spectral mismatch: ${chordCheck.reason}`);
+}
+
 console.log("✅ spectral invariants: PASS");
