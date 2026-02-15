@@ -6,3 +6,4 @@ Purpose:
 
 Notes:
 - Empty or missing file yields empty stream.
+- Validation and tag policy are enforced by default.
