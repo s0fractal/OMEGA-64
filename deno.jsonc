@@ -13,6 +13,7 @@
     "sigma:index": "deno run -A sigma_index.ts --input I.sigma.md --output I.sigma.index.json",
     "sigma:colorize": "deno run -A sigma_colorize.ts --input I.sigma.md --index I.sigma.index.json --output I.sigma.colored.md",
     "bootstrap:dry": "deno run -A i.L99.core.BOOTSTRAP.ts",
+    "mount:scan": "deno run -A i.L99.core.MOUNT_SCAN.ts",
     "glider:run": "deno run -A i.L99.core.GLIDER_LITE_RUN.ts",
     "io:run": "deno run -A i.L99.core.IO_FLOW_RUN.ts",
     "o:append": "deno run -A i.L99.core.O_STREAM_APPEND_RUN.ts",
