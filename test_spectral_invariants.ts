@@ -173,4 +173,27 @@ if (!chordCheck.ok) {
   throw new Error(`CHORD spectral mismatch: ${chordCheck.reason}`);
 }
 
+const pressurePaths = [
+  "./i.L17.core.PRESSURE.ts",
+  "./i.L17.core.PRESSURE.rs",
+  "./i.L17.core.PRESSURE.md",
+];
+
+const pressureTags = await Promise.all(pressurePaths.map((p) => readTag(p)));
+const pressureLenses: SpectralLens[] = pressureTags.map((tag, idx) => ({
+  id: pressurePaths[idx],
+  project: () => tag,
+}));
+
+const pressureCheck = SPECTRAL_INVARIANTS({
+  lenses: pressureLenses,
+  sample: {},
+  min_lenses: 2,
+  max_delta: 0,
+});
+
+if (!pressureCheck.ok) {
+  throw new Error(`PRESSURE spectral mismatch: ${pressureCheck.reason}`);
+}
+
 console.log("✅ spectral invariants: PASS");

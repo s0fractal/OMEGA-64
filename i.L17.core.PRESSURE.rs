@@ -1,5 +1,6 @@
 
 // Mocking types for independent compilation
+// @spectral: PRESSURE::lambda:p->p
 
 pub struct Pressure {
     pub value: f64, // Extrinsic Force / Area
