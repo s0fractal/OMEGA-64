@@ -17,6 +17,7 @@
     "o:append": "deno run -A i.L99.core.O_STREAM_APPEND_RUN.ts",
     "o:validate": "deno run -A i.L99.core.O_STREAM_VALIDATE_RUN.ts",
     "o:drain": "deno run -A i.L99.core.O_STREAM_DRAIN_RUN.ts",
+    "o:summary": "deno run -A i.L99.core.O_STREAM_SUMMARY_RUN.ts",
     "test:io-flow": "deno run -A test_io_flow_stream.ts",
     "test:gate-runner": "deno run -A test_gate_runner.ts",
     "test:replay": "deno run -A test_replay_audit_topological_signature.ts",
