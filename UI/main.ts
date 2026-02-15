@@ -5,6 +5,9 @@ const ctx = canvas.getContext('2d')!;
 const levelDisplay = document.getElementById('level-display')!;
 const gaugeBar = document.getElementById('gauge-bar')!;
 const healthSignal = document.getElementById('health-signal')!;
+const healthCount = document.getElementById('health-count')!;
+const healthIndex = document.getElementById('health-index')!;
+const healthUpdated = document.getElementById('health-updated')!;
 
 let width: number, height: number;
 let time = 0;
@@ -124,3 +127,21 @@ async function pollHealth() {
 setHealthSignal('UNKNOWN');
 pollHealth();
 setInterval(pollHealth, 3000);
+
+async function pollHealthDetails() {
+    try {
+        const response = await fetch('health.json', { cache: 'no-store' });
+        if (!response.ok) return;
+        const payload = await response.json();
+        const total = payload?.summary?.total ?? 0;
+        const indexOk = payload?.archive_index_exists ? 'OK' : 'MISSING';
+        healthCount.textContent = String(total);
+        healthIndex.textContent = indexOk;
+        healthUpdated.textContent = new Date().toLocaleTimeString();
+    } catch {
+        // ignore network errors
+    }
+}
+
+pollHealthDetails();
+setInterval(pollHealthDetails, 5000);
