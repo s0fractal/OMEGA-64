@@ -62,6 +62,13 @@ Rule: Canonical atoms must have Lean/Rust/UI mirrors or explicit exemption.
 Enforcement: Cross-substrate audit.
 Sanction: Reject from canon until mirrored.
 
+Law 07 — Spectral Concordance (AX/OP/FL)
+Where: L32–L63 (FL/OP/AX band)
+Rule: Canonical atoms must converge across spectral projections.
+Minimum: ≥2 lenses; mismatch beyond threshold fails canon readiness.
+Enforcement: Spectral audit (SPECTRAL_INVARIANTS).
+Sanction: Reject from canon until lenses converge.
+
 Notes:
 - These are physical constraints for canonization, not general development rules.
 - Outside these bands, creativity is permitted but must not claim canon.
