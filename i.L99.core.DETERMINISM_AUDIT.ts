@@ -31,7 +31,9 @@ const DEFAULT_ROOT = ".";
 
 const isCandidate = (path: string): boolean => {
     if (!path.endsWith(".ts")) return false;
-    if (!/i\.L\d{2}\.core\..+\.ts$/.test(path)) return false;
+    const dotForm = /i\.L\d{2}\.core\..+\.ts$/;
+    const slashForm = /i[\\/]+L\d{2}[\\/]+core[\\/]+.+\.ts$/;
+    if (!dotForm.test(path) && !slashForm.test(path)) return false;
     return true;
 };
 
@@ -64,15 +66,18 @@ export const DETERMINISM_AUDIT = {
         const byBand = initBandCounter();
 
         for await (const path of walk(root)) {
-            const atomId = path.split("/").pop() ?? path;
-            const band = atomIdToBand(atomId);
-            const level = atomIdToLevel(atomId);
+            const canonicalId = path.replace(/^\.\//, "")
+                .split(/[\\/]+/)
+                .filter(Boolean)
+                .join(".");
+            const band = atomIdToBand(canonicalId);
+            const level = atomIdToLevel(canonicalId);
             const content = await Deno.readTextFile(path);
-            const result = DETERMINISM_LAWS.audit({ atomId, content });
+            const result = DETERMINISM_LAWS.audit({ atomId: canonicalId, content });
 
             byBand[band] += 1;
             records.push({
-                atom_id: atomId,
+                atom_id: canonicalId,
                 path,
                 band,
                 level,

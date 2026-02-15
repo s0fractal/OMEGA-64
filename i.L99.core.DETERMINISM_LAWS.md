@@ -69,6 +69,14 @@ Minimum: ≥2 lenses; mismatch beyond threshold fails canon readiness.
 Enforcement: Spectral audit (SPECTRAL_INVARIANTS).
 Sanction: Reject from canon until lenses converge.
 
+Law 08 — Topology Folding (AX/OP/FL)
+Where: L32–L63 (FL/OP/AX band)
+Rule: Canonical atom IDs must be valid dot-fold coordinates.
+Requirements: no empty segments, no leading/trailing dots, no double dots.
+Canonical ID = path segments joined by dots (directories are projections only).
+Enforcement: Determinism law audit.
+Sanction: Reject (rename to canonical dot-fold id).
+
 Notes:
 - These are physical constraints for canonization, not general development rules.
 - Outside these bands, creativity is permitted but must not claim canon.

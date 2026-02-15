@@ -82,9 +82,27 @@ const exportNames = (content: string): string[] => {
     return names;
 };
 
+const canonicalId = (atomId: string): string => {
+    const trimmed = atomId.replace(/^\.\//, "");
+    const parts = trimmed.split(/[\\/]+/).filter((part) => part.length > 0);
+    if (parts.length <= 1) return trimmed;
+    return parts.join(".");
+};
+
 const expectedExportName = (atomId: string): string | null => {
-    const match = atomId.match(/^i\.L\d{2}\.[^.]+\.(.+)\.ts$/);
+    const base = canonicalId(atomId);
+    const match = base.match(/^i\.L\d{2}\.[^.]+\.(.+)\.ts$/);
     return match ? match[1] : null;
+};
+
+const isDotFoldValid = (atomId: string): boolean => {
+    const base = canonicalId(atomId);
+    if (!base.includes(".")) return false;
+    if (base.startsWith(".") || base.endsWith(".")) return false;
+    if (base.includes("..")) return false;
+    const parts = base.split(".");
+    if (parts.some((part) => part.trim().length === 0)) return false;
+    return true;
 };
 
 const countExports = (content: string): number => {
@@ -171,6 +189,9 @@ export const DETERMINISM_LAWS = {
                 if (!names.includes(expected)) {
                     reasons.push(`EXPORT_NAME_MISMATCH:${expected}`);
                 }
+            }
+            if (!isDotFoldValid(input.atomId)) {
+                reasons.push("DOT_FOLD_INVALID");
             }
         }
 
