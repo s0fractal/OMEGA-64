@@ -85,7 +85,9 @@ const usage = (): string =>
     "  deno run -A i.L99.core.IO_FLOW_HEALTH_RUN.ts --input <input.json> [--pretty] [--drain]",
   ].join("\n");
 
-export const IO_FLOW_HEALTH_RUN = async (args: string[]): Promise<void> => {
+export const IO_FLOW_HEALTH_RUN = async (
+  args: string[],
+): Promise<JsonOutput> => {
   const parsed = {
     input: undefined as string | undefined,
     pretty: false,
@@ -115,7 +117,12 @@ export const IO_FLOW_HEALTH_RUN = async (args: string[]): Promise<void> => {
 
   if (parsed.help) {
     await Deno.stdout.write(new TextEncoder().encode(`${usage()}\n`));
-    return;
+    return {
+      nextState: { tick: 0, state_hash: "", state_i16: [] },
+      bridge_mode: "AMBER",
+      bridge_reason: "HELP_ONLY",
+      health: await IO_FLOW_HEALTH([], [], "AMBER"),
+    };
   }
 
   if (!parsed.input) {
@@ -226,9 +233,11 @@ export const IO_FLOW_HEALTH_RUN = async (args: string[]): Promise<void> => {
     witness: json.witness,
   });
 
+  let drained: number | undefined;
   if (parsed.drain && json.stream_path) {
     const consumed = outputStream.map((proposal) => proposal.proposal_id);
     await O_STREAM_DRAIN(consumed, json.stream_path);
+    drained = consumed.length;
   }
 
   const afterStream = json.stream_path
@@ -246,6 +255,7 @@ export const IO_FLOW_HEALTH_RUN = async (args: string[]): Promise<void> => {
     bridge_mode: output.bridge_mode,
     bridge_reason: output.bridge_reason,
     replay_audit: output.replay_audit,
+    drained,
     health,
   };
 
@@ -254,6 +264,7 @@ export const IO_FLOW_HEALTH_RUN = async (args: string[]): Promise<void> => {
     : `${JSON.stringify(payload)}\n`;
 
   await Deno.stdout.write(new TextEncoder().encode(body));
+  return payload;
 };
 
 if (import.meta.main) {
