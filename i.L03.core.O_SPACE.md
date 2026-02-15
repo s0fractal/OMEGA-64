@@ -40,3 +40,4 @@ Links:
 - O_NEED defines intent-based selection.
 - O_TAGS defines compatibility descriptors.
 - O_RESONATE defines candidate filtering.
+- O_STRATA defines depth layers for the commons.
