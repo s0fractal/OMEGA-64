@@ -47,3 +47,4 @@ Links:
 - O_PROFILE defines the minimal artifact passport.
 - O_FILTER defines the compatibility gate.
 - O_REPORT defines resonance summaries.
+- O_POLICY defines commons rules and thresholds.
