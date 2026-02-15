@@ -148,11 +148,24 @@ setSafeWindowSignal('UNKNOWN');
 pollHealth();
 setInterval(pollHealth, 3000);
 
+async function fetchHealthPayload(): Promise<any | null> {
+    const candidates = ['health.json', 'health_io.json'];
+    for (const path of candidates) {
+        try {
+            const response = await fetch(path, { cache: 'no-store' });
+            if (!response.ok) continue;
+            return await response.json();
+        } catch {
+            // try next candidate
+        }
+    }
+    return null;
+}
+
 async function pollHealthDetails() {
     try {
-        const response = await fetch('health.json', { cache: 'no-store' });
-        if (!response.ok) return;
-        const payload = await response.json();
+        const payload = await fetchHealthPayload();
+        if (!payload) return;
         const total = payload?.summary?.total ?? payload?.health?.after?.summary?.total ?? 0;
         const indexOk = payload?.archive_index_exists ? 'OK'
           : (payload?.health?.after?.archive_index_exists ? 'OK' : 'MISSING');

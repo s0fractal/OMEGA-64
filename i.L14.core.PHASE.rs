@@ -1,5 +1,6 @@
 
 // Mocking types for independent compilation
+// @spectral: PHASE::lambda:t->t
 
 pub struct Phase {
     pub t: f64, // Temporal offset (Radians)

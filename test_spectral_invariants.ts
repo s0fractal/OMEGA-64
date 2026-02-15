@@ -81,4 +81,27 @@ if (!fieldCheck.ok) {
   throw new Error(`FIELD spectral mismatch: ${fieldCheck.reason}`);
 }
 
+const phasePaths = [
+  "./i.L14.core.PHASE.ts",
+  "./i.L14.core.PHASE.rs",
+  "./i.L14.core.PHASE.md",
+];
+
+const phaseTags = await Promise.all(phasePaths.map((p) => readTag(p)));
+const phaseLenses: SpectralLens[] = phaseTags.map((tag, idx) => ({
+  id: phasePaths[idx],
+  project: () => tag,
+}));
+
+const phaseCheck = SPECTRAL_INVARIANTS({
+  lenses: phaseLenses,
+  sample: {},
+  min_lenses: 2,
+  max_delta: 0,
+});
+
+if (!phaseCheck.ok) {
+  throw new Error(`PHASE spectral mismatch: ${phaseCheck.reason}`);
+}
+
 console.log("✅ spectral invariants: PASS");
