@@ -1,0 +1,39 @@
+# i.L03.core.O_SPACE.md
+# OMEGA-64 | O_SPACE (The Commons)
+# Status: DRAFT
+
+Concept:
+- O is the shared ocean of code, intent, and experiments.
+- I is the canonical self that selectively collapses from O.
+
+Principles:
+- No deletion. O is append-only and historical.
+- Content addressing over filename addressing.
+- Resonance filters replace package installation.
+
+Strata (Depth):
+- Surface: drafts and sketches.
+- Currents: popular libraries and active forks.
+- Deep: stable algorithms that rarely change.
+- Abyssal: axioms and core math.
+- Toxic: malware, broken code, hostile artifacts.
+
+Need operator (conceptual):
+- Declare intent, not file names.
+- Resolve by resonance, trust, and compatibility tags.
+
+Deduplication of thought:
+- Identical hashes collapse to one node.
+- Usage and resonance raise node rank.
+
+Compatibility tags:
+- Context, platform, vibe, physics, trust thresholds.
+
+Hyper-object view:
+- Body: code payload.
+- Soul: semantic vector.
+- Karma: usage, failures, energy cost.
+- Status: draft, stable, canonical.
+
+Links:
+- IO Flow Protocol defines collapse from O to I.
