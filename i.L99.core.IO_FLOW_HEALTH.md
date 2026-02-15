@@ -3,3 +3,7 @@
 
 Purpose:
 - Provide pre/post collapse health snapshots for IO_FLOW.
+
+Includes:
+- before/after health
+- before/after signal
