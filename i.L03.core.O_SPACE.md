@@ -42,3 +42,4 @@ Links:
 - O_RESONATE defines candidate filtering.
 - O_STRATA defines depth layers for the commons.
 - O_COLLAPSE defines the gate from O candidates to I canon.
+- O_RANK defines candidate ordering before collapse.
