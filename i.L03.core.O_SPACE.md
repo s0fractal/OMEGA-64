@@ -39,3 +39,4 @@ Links:
 - IO Flow Protocol defines collapse from O to I.
 - O_NEED defines intent-based selection.
 - O_TAGS defines compatibility descriptors.
+- O_RESONATE defines candidate filtering.
