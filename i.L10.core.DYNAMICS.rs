@@ -3,6 +3,7 @@
 // In a real crate, these would be:
 // use crate::core::force::Force;
 // use crate::core::mass::Mass;
+// @spectral: DYNAMICS::force/(mass+1)
 
 pub struct Force {
     pub magnitude: f64,

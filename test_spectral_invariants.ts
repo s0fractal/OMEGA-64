@@ -127,4 +127,27 @@ if (!interferenceCheck.ok) {
   throw new Error(`INTERFERENCE spectral mismatch: ${interferenceCheck.reason}`);
 }
 
+const dynamicsPaths = [
+  "./i.L10.core.DYNAMICS.ts",
+  "./i.L10.core.DYNAMICS.rs",
+  "./i.L10.core.DYNAMICS.md",
+];
+
+const dynamicsTags = await Promise.all(dynamicsPaths.map((p) => readTag(p)));
+const dynamicsLenses: SpectralLens[] = dynamicsTags.map((tag, idx) => ({
+  id: dynamicsPaths[idx],
+  project: () => tag,
+}));
+
+const dynamicsCheck = SPECTRAL_INVARIANTS({
+  lenses: dynamicsLenses,
+  sample: {},
+  min_lenses: 2,
+  max_delta: 0,
+});
+
+if (!dynamicsCheck.ok) {
+  throw new Error(`DYNAMICS spectral mismatch: ${dynamicsCheck.reason}`);
+}
+
 console.log("✅ spectral invariants: PASS");
