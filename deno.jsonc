@@ -26,6 +26,7 @@
     "o:health": "deno run -A i.L99.core.O_STREAM_HEALTH_RUN.ts",
     "o:health-signal": "deno run -A i.L99.core.O_STREAM_HEALTH_SIGNAL_RUN.ts",
     "o:health-signal:write": "deno run -A i.L99.core.O_STREAM_HEALTH_SIGNAL_WRITE.ts",
+    "o:health-signal:watch": "deno run -A i.L99.core.O_STREAM_SIGNAL_WATCH.ts",
     "io:health": "deno run -A i.L99.core.IO_FLOW_HEALTH_RUN.ts",
     "io:health-signal": "deno run -A i.L99.core.IO_FLOW_HEALTH_SIGNAL_RUN.ts",
     "io:health-signal:write": "deno run -A i.L99.core.IO_FLOW_HEALTH_SIGNAL_WRITE.ts",
