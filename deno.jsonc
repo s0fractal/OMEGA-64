@@ -31,6 +31,7 @@
     "io:health": "deno run -A i.L99.core.IO_FLOW_HEALTH_RUN.ts",
     "io:health-signal": "deno run -A i.L99.core.IO_FLOW_HEALTH_SIGNAL_RUN.ts",
     "io:health-signal:write": "deno run -A i.L99.core.IO_FLOW_HEALTH_SIGNAL_WRITE.ts",
+    "io:health:write": "deno run -A i.L99.core.IO_FLOW_HEALTH_WRITE.ts",
     "io:health-signal:watch": "deno run -A i.L99.core.IO_FLOW_SIGNAL_WATCH.ts",
     "ui:health": "./ui_health.sh",
     "test:io-flow": "deno run -A test_io_flow_stream.ts",
