@@ -43,4 +43,42 @@ if (fail.ok) {
   throw new Error("SPECTRAL_INVARIANTS expected divergence, got OK");
 }
 
+const spectralTag = (content: string): string | null => {
+  const match = content.match(/@spectral:\s*([^\n\r]+)/i)
+    ?? content.match(/SPECTRAL:\s*([^\n\r]+)/i);
+  return match ? match[1].trim() : null;
+};
+
+const readTag = async (path: string): Promise<string> => {
+  const content = await Deno.readTextFile(path);
+  const tag = spectralTag(content);
+  if (!tag) {
+    throw new Error(`Missing spectral tag in ${path}`);
+  }
+  return tag;
+};
+
+const fieldPaths = [
+  "./i.L11.core.FIELD.ts",
+  "./i.L11.core.FIELD.rs",
+  "./i.L11.core.FIELD.md",
+];
+
+const fieldTags = await Promise.all(fieldPaths.map((p) => readTag(p)));
+const fieldLenses: SpectralLens[] = fieldTags.map((tag, idx) => ({
+  id: fieldPaths[idx],
+  project: () => tag,
+}));
+
+const fieldCheck = SPECTRAL_INVARIANTS({
+  lenses: fieldLenses,
+  sample: {},
+  min_lenses: 2,
+  max_delta: 0,
+});
+
+if (!fieldCheck.ok) {
+  throw new Error(`FIELD spectral mismatch: ${fieldCheck.reason}`);
+}
+
 console.log("✅ spectral invariants: PASS");

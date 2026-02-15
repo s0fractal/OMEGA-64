@@ -1,6 +1,7 @@
 
 // Mocking types for independent compilation
 // use crate::core::point::Point;
+// @spectral: FIELD::lambda:p->value
 
 #[derive(Clone, Debug, Copy)]
 pub struct Point {
