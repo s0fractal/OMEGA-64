@@ -48,3 +48,4 @@ Links:
 - O_FILTER defines the compatibility gate.
 - O_REPORT defines resonance summaries.
 - O_POLICY defines commons rules and thresholds.
+- O_QUERY defines commons retrieval.
