@@ -22,6 +22,7 @@
     "o:archive-query": "deno run -A i.L99.core.O_STREAM_ARCHIVE_QUERY_RUN.ts",
     "o:filter-tags": "deno run -A i.L99.core.O_STREAM_FILTER_TAGS_RUN.ts",
     "o:tag-enforce": "deno run -A i.L99.core.O_STREAM_TAG_ENFORCE_RUN.ts",
+    "o:tags-summary": "deno run -A i.L99.core.O_STREAM_TAGS_SUMMARY_RUN.ts",
     "test:io-flow": "deno run -A test_io_flow_stream.ts",
     "test:gate-runner": "deno run -A test_gate_runner.ts",
     "test:replay": "deno run -A test_replay_audit_topological_signature.ts",
