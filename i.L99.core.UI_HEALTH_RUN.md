@@ -7,3 +7,4 @@ Purpose:
 Notes:
 - Noncanonical operator tool.
 - Usage: ./ui_health.sh
+- ENV: MODE=o|io, STREAM=OMEGA_O_STREAM.jsonl, INPUT=input.json, DRAIN=0|1, INTERVAL=3000, PORT=8000
