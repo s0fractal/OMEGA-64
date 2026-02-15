@@ -3,6 +3,8 @@
 // OMEGA-64 | Minimal CLI runner for IO_FLOW.
 
 import { IO_FLOW } from "./i.L99.core.IO_FLOW.ts";
+import { O_STREAM_STORE } from "./i.L99.core.O_STREAM_STORE.ts";
+import { O_STREAM_ADAPTER } from "./i.L99.core.O_STREAM_ADAPTER.ts";
 import { I16_CLAMP } from "./i.L00.core.I16_CLAMP.ts";
 import type { GateRunnerTickOutput } from "./i.L32.core.GATE_RUNNER.ts";
 import type {
@@ -52,7 +54,8 @@ type JsonGateConfig = Omit<GateConfig, "reliability_weight" | "agent_signature_k
 
 type JsonInput = {
   state: JsonStateSnapshot;
-  output_stream: DeltaProposal[];
+  output_stream?: DeltaProposal[];
+  stream_path?: string;
   config: JsonGateConfig;
   mode?: "REPLAY_CONTEXT" | "INVARIANT_CONTEXT";
   replayGenesis?: JsonReplayGenesis;
@@ -77,6 +80,9 @@ const usage = (): string =>
     "Usage:",
     "  deno run -A i.L99.core.IO_FLOW_RUN.ts --input <input.json> [--output <output.json>] [--pretty]",
     "  deno run -A i.L99.core.IO_FLOW_RUN.ts < input.json > output.json",
+    "",
+    "Notes:",
+    "  - If stream_path is provided, output_stream will be read from O_STREAM_STORE.",
   ].join("\n");
 
 export const IO_FLOW_RUN = async (args: string[]): Promise<void> => {
@@ -197,9 +203,13 @@ export const IO_FLOW_RUN = async (args: string[]): Promise<void> => {
       })),
     }));
 
+  const outputStream = json.stream_path
+    ? O_STREAM_ADAPTER(await O_STREAM_STORE.read(json.stream_path))
+    : toStream(json.output_stream ?? []);
+
   const output = await IO_FLOW({
     state: toState(json.state),
-    output_stream: toStream(json.output_stream ?? []),
+    output_stream: outputStream,
     config: toConfig(json.config),
     mode: json.mode,
     replayGenesis: toReplayGenesis(json.replayGenesis),
