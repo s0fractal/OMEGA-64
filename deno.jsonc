@@ -13,6 +13,7 @@
     "sigma:index": "deno run -A sigma_index.ts --input I.sigma.md --output I.sigma.index.json",
     "sigma:colorize": "deno run -A sigma_colorize.ts --input I.sigma.md --index I.sigma.index.json --output I.sigma.colored.md",
     "glider:run": "deno run -A i.L99.core.GLIDER_LITE_RUN.ts",
+    "io:run": "deno run -A i.L99.core.IO_FLOW_RUN.ts",
     "test:gate-runner": "deno run -A test_gate_runner.ts",
     "test:replay": "deno run -A test_replay_audit_topological_signature.ts",
     "test:crystallization": "deno run -A test_replay_crystallization.ts",
