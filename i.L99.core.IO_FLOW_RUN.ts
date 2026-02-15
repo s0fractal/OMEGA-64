@@ -5,6 +5,7 @@
 import { IO_FLOW } from "./i.L99.core.IO_FLOW.ts";
 import { O_STREAM_STORE } from "./i.L99.core.O_STREAM_STORE.ts";
 import { O_STREAM_ADAPTER } from "./i.L99.core.O_STREAM_ADAPTER.ts";
+import { O_STREAM_DRAIN } from "./i.L99.core.O_STREAM_DRAIN.ts";
 import { I16_CLAMP } from "./i.L00.core.I16_CLAMP.ts";
 import type { GateRunnerTickOutput } from "./i.L32.core.GATE_RUNNER.ts";
 import type {
@@ -73,20 +74,28 @@ type JsonOutput = {
   bridge_mode: GateRunnerTickOutput["bridge_mode"];
   bridge_reason: string;
   replay_audit?: GateRunnerTickOutput["replay_audit"];
+  drained?: number;
 };
 
 const usage = (): string =>
   [
     "Usage:",
-    "  deno run -A i.L99.core.IO_FLOW_RUN.ts --input <input.json> [--output <output.json>] [--pretty]",
+    "  deno run -A i.L99.core.IO_FLOW_RUN.ts --input <input.json> [--output <output.json>] [--pretty] [--drain]",
     "  deno run -A i.L99.core.IO_FLOW_RUN.ts < input.json > output.json",
     "",
     "Notes:",
     "  - If stream_path is provided, output_stream will be read from O_STREAM_STORE.",
+    "  - --drain removes accepted proposals from stream_path after collapse.",
   ].join("\n");
 
 export const IO_FLOW_RUN = async (args: string[]): Promise<void> => {
-  const parsed = { input: undefined as string | undefined, output: undefined as string | undefined, pretty: false, help: false };
+  const parsed = {
+    input: undefined as string | undefined,
+    output: undefined as string | undefined,
+    pretty: false,
+    drain: false,
+    help: false,
+  };
   for (let i = 0; i < args.length; i++) {
     const a = args[i];
     if (a === "--help" || a === "-h") {
@@ -95,6 +104,10 @@ export const IO_FLOW_RUN = async (args: string[]): Promise<void> => {
     }
     if (a === "--pretty") {
       parsed.pretty = true;
+      continue;
+    }
+    if (a === "--drain") {
+      parsed.drain = true;
       continue;
     }
     if (a === "--input") {
@@ -228,6 +241,12 @@ export const IO_FLOW_RUN = async (args: string[]): Promise<void> => {
     bridge_reason: output.bridge_reason,
     replay_audit: output.replay_audit,
   };
+
+  if (parsed.drain && json.stream_path) {
+    const consumed = outputStream.map((proposal) => proposal.proposal_id);
+    await O_STREAM_DRAIN(consumed, json.stream_path);
+    payload.drained = consumed.length;
+  }
 
   const body = parsed.pretty
     ? `${JSON.stringify(payload, null, 2)}\n`
