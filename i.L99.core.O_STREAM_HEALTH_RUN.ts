@@ -8,11 +8,11 @@ import { O_STREAM_HEALTH } from "./i.L99.core.O_STREAM_HEALTH.ts";
 const usage = (): string =>
   [
     "Usage:",
-    "  deno run -A i.L99.core.O_STREAM_HEALTH_RUN.ts --input <stream.jsonl> [--pretty]",
+    "  deno run -A i.L99.core.O_STREAM_HEALTH_RUN.ts --input <stream.jsonl> [--pretty] [--safe-window]",
   ].join("\n");
 
 export const O_STREAM_HEALTH_RUN = async (args: string[]): Promise<void> => {
-  const parsed = { input: undefined as string | undefined, pretty: false, help: false };
+  const parsed = { input: undefined as string | undefined, pretty: false, safeWindow: false, help: false };
   for (let i = 0; i < args.length; i++) {
     const a = args[i];
     if (a === "--help" || a === "-h") {
@@ -21,6 +21,10 @@ export const O_STREAM_HEALTH_RUN = async (args: string[]): Promise<void> => {
     }
     if (a === "--pretty") {
       parsed.pretty = true;
+      continue;
+    }
+    if (a === "--safe-window") {
+      parsed.safeWindow = true;
       continue;
     }
     if (a === "--input") {
@@ -40,7 +44,7 @@ export const O_STREAM_HEALTH_RUN = async (args: string[]): Promise<void> => {
   }
 
   const proposals = await O_STREAM_READ(parsed.input);
-  const health = await O_STREAM_HEALTH(proposals);
+  const health = await O_STREAM_HEALTH(proposals, undefined, { include_safe_window: parsed.safeWindow });
   const body = parsed.pretty
     ? `${JSON.stringify(health, null, 2)}\n`
     : `${JSON.stringify(health)}\n`;

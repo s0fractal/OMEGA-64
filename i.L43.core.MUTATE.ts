@@ -61,11 +61,24 @@ export const MUTATE = {
         if (!isGreen || !isReplayGreen || !indexOk || !driftOk) {
             return { 
                 ok: false, 
-                reason: `WINDOW_CLOSED: bridge=${bridge.mode}, replay=${isReplayGreen}, index=${indexOk}, drift=${meanDrift.toFixed(4)}, slope=${meanSlope.toFixed(4)}`
+                reason: `WINDOW_CLOSED: bridge=${bridge.mode}, replay=${isReplayGreen}, index=${indexOk}, drift=${meanDrift.toFixed(4)}, slope=${meanSlope.toFixed(4)}`,
+                bridge_mode: bridge.mode,
+                replay_green: isReplayGreen,
+                index_ok: indexOk,
+                meanDrift,
+                meanSlope
             };
         }
 
-        return { ok: true, audit, meanDrift, meanSlope };
+        return { 
+            ok: true, 
+            audit, 
+            meanDrift, 
+            meanSlope,
+            bridge_mode: bridge.mode,
+            replay_green: isReplayGreen,
+            index_ok: indexOk
+        };
     },
 
     /**

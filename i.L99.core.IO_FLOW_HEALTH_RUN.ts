@@ -82,7 +82,7 @@ type JsonOutput = {
 const usage = (): string =>
   [
     "Usage:",
-    "  deno run -A i.L99.core.IO_FLOW_HEALTH_RUN.ts --input <input.json> [--pretty] [--drain]",
+    "  deno run -A i.L99.core.IO_FLOW_HEALTH_RUN.ts --input <input.json> [--pretty] [--drain] [--safe-window]",
   ].join("\n");
 
 export const IO_FLOW_HEALTH_RUN = async (
@@ -92,6 +92,7 @@ export const IO_FLOW_HEALTH_RUN = async (
     input: undefined as string | undefined,
     pretty: false,
     drain: false,
+    safeWindow: false,
     help: false,
   };
   for (let i = 0; i < args.length; i++) {
@@ -108,6 +109,10 @@ export const IO_FLOW_HEALTH_RUN = async (
       parsed.drain = true;
       continue;
     }
+    if (a === "--safe-window") {
+      parsed.safeWindow = true;
+      continue;
+    }
     if (a === "--input") {
       parsed.input = args[++i];
       continue;
@@ -121,7 +126,7 @@ export const IO_FLOW_HEALTH_RUN = async (
       nextState: { tick: 0, state_hash: "", state_i16: [] },
       bridge_mode: "AMBER",
       bridge_reason: "HELP_ONLY",
-      health: await IO_FLOW_HEALTH([], [], "AMBER"),
+      health: await IO_FLOW_HEALTH([], [], "AMBER", { include_safe_window: parsed.safeWindow }),
     };
   }
 
@@ -196,6 +201,7 @@ export const IO_FLOW_HEALTH_RUN = async (
     return {
       max_abs_delta_per_level: src.max_abs_delta_per_level,
       max_total_abs_delta_per_tick: src.max_total_abs_delta_per_tick,
+      max_total_cost_per_tick: src.max_total_cost_per_tick,
       max_cost_per_agent: src.max_cost_per_agent,
       reliability_weight,
       reliability_mode: src.reliability_mode,
@@ -244,7 +250,7 @@ export const IO_FLOW_HEALTH_RUN = async (
     ? O_STREAM_ADAPTER(await O_STREAM_STORE.read(json.stream_path))
     : [];
 
-  const health = await IO_FLOW_HEALTH(beforeHealth, afterStream, output.bridge_mode);
+  const health = await IO_FLOW_HEALTH(beforeHealth, afterStream, output.bridge_mode, { include_safe_window: parsed.safeWindow });
 
   const payload: JsonOutput = {
     nextState: {

@@ -8,3 +8,4 @@ Includes:
 - summary
 - tags_summary
 - archive index freshness
+- safe_window (optional sovereignty signal)

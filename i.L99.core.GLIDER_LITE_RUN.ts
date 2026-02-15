@@ -67,16 +67,23 @@ type JsonOutput = {
 const usage = (): string =>
   [
     "Usage:",
-    "  deno run -A i.L99.core.GLIDER_LITE_RUN.ts --input <input.json> [--output <output.json>] [--pretty]",
+    "  deno run -A i.L99.core.GLIDER_LITE_RUN.ts --input <input.json> [--output <output.json>] [--state-output <state.json>] [--pretty]",
     "  deno run -A i.L99.core.GLIDER_LITE_RUN.ts < input.json > output.json",
     "",
     "Notes:",
     "  - input.json must match JsonInput schema (state_i16 as number[]).",
     "  - output is JSON (nextState + bridge_mode + replay_audit).",
+    "  - state-output writes the minimal next state snapshot (tick/state_hash/state_i16).",
   ].join("\n");
 
 export const GLIDER_LITE_RUN = async (args: string[]): Promise<void> => {
-  const parsed = { input: undefined as string | undefined, output: undefined as string | undefined, pretty: false, help: false };
+  const parsed = {
+    input: undefined as string | undefined,
+    output: undefined as string | undefined,
+    stateOutput: undefined as string | undefined,
+    pretty: false,
+    help: false,
+  };
   for (let i = 0; i < args.length; i++) {
     const a = args[i];
     if (a === "--help" || a === "-h") {
@@ -93,6 +100,10 @@ export const GLIDER_LITE_RUN = async (args: string[]): Promise<void> => {
     }
     if (a === "--output") {
       parsed.output = args[++i];
+      continue;
+    }
+    if (a === "--state-output") {
+      parsed.stateOutput = args[++i];
       continue;
     }
     throw new Error(`Unknown arg: ${a}`);
@@ -173,6 +184,7 @@ export const GLIDER_LITE_RUN = async (args: string[]): Promise<void> => {
     return {
       max_abs_delta_per_level: src.max_abs_delta_per_level,
       max_total_abs_delta_per_tick: src.max_total_abs_delta_per_tick,
+      max_total_cost_per_tick: src.max_total_cost_per_tick,
       max_cost_per_agent: src.max_cost_per_agent,
       reliability_weight,
       reliability_mode: src.reliability_mode,
@@ -220,6 +232,18 @@ export const GLIDER_LITE_RUN = async (args: string[]): Promise<void> => {
   const body = parsed.pretty
     ? `${JSON.stringify(payload, null, 2)}\n`
     : `${JSON.stringify(payload)}\n`;
+
+  if (parsed.stateOutput) {
+    const statePayload: JsonStateSnapshot = {
+      tick: payload.nextState.tick,
+      state_hash: payload.nextState.state_hash,
+      state_i16: payload.nextState.state_i16,
+    };
+    const stateBody = parsed.pretty
+      ? `${JSON.stringify(statePayload, null, 2)}\n`
+      : `${JSON.stringify(statePayload)}\n`;
+    await Deno.writeTextFile(parsed.stateOutput, stateBody);
+  }
 
   if (parsed.output) {
     await Deno.writeTextFile(parsed.output, body);

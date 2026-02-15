@@ -7,3 +7,4 @@ Purpose:
 Includes:
 - before/after health
 - before/after signal
+- safe_window (optional sovereignty signal)

@@ -9,7 +9,7 @@ const DEFAULT_OUTPUT = "UI/health_io.json";
 const usage = (): string =>
   [
     "Usage:",
-    "  deno run -A i.L99.core.IO_FLOW_HEALTH_WRITE.ts --input <input.json> [--output <path>] [--drain] [--pretty]",
+    "  deno run -A i.L99.core.IO_FLOW_HEALTH_WRITE.ts --input <input.json> [--output <path>] [--drain] [--pretty] [--safe-window]",
   ].join("\n");
 
 export const IO_FLOW_HEALTH_WRITE = async (args: string[]): Promise<void> => {
@@ -18,6 +18,7 @@ export const IO_FLOW_HEALTH_WRITE = async (args: string[]): Promise<void> => {
     output: undefined as string | undefined,
     pretty: false,
     drain: false,
+    safeWindow: false,
     help: false,
   };
   for (let i = 0; i < args.length; i++) {
@@ -32,6 +33,10 @@ export const IO_FLOW_HEALTH_WRITE = async (args: string[]): Promise<void> => {
     }
     if (a === "--drain") {
       parsed.drain = true;
+      continue;
+    }
+    if (a === "--safe-window") {
+      parsed.safeWindow = true;
       continue;
     }
     if (a === "--input") {
@@ -57,6 +62,7 @@ export const IO_FLOW_HEALTH_WRITE = async (args: string[]): Promise<void> => {
   const forward: string[] = ["--input", parsed.input];
   if (parsed.pretty) forward.push("--pretty");
   if (parsed.drain) forward.push("--drain");
+  if (parsed.safeWindow) forward.push("--safe-window");
 
   const payload = await IO_FLOW_HEALTH_RUN(forward);
   const outputPath = parsed.output ?? DEFAULT_OUTPUT;

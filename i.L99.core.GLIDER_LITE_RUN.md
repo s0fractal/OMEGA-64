@@ -9,3 +9,4 @@ Notes:
 - This is an operator tool (noncanonical).
 - Canon changes still flow through GATE + LEDGER.
 - Usage: deno run -A i.L99.core.GLIDER_LITE_RUN.ts --input <input.json> --output <output.json>
+- Optional: persist the minimal next state with --state-output <state.json>

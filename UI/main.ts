@@ -8,10 +8,12 @@ const healthSignal = document.getElementById('health-signal')!;
 const healthCount = document.getElementById('health-count')!;
 const healthIndex = document.getElementById('health-index')!;
 const healthUpdated = document.getElementById('health-updated')!;
+const safeWindow = document.getElementById('safe-window')!;
 
 let width: number, height: number;
 let time = 0;
 let lastHealth = 'UNKNOWN';
+let lastSafeWindow = 'UNKNOWN';
 
 function setHealthSignal(signal: string) {
     const normalized = signal.trim().toUpperCase();
@@ -23,6 +25,23 @@ function setHealthSignal(signal: string) {
     else if (normalized === 'AMBER') healthSignal.classList.add('amber');
     else if (normalized === 'RED') healthSignal.classList.add('red');
     else healthSignal.classList.add('unknown');
+}
+
+function setSafeWindowSignal(signal: string, reason?: string) {
+    const normalized = signal.trim().toUpperCase();
+    if (normalized === lastSafeWindow && !reason) return;
+    lastSafeWindow = normalized;
+    safeWindow.textContent = normalized;
+    if (reason) {
+        safeWindow.title = reason;
+    } else {
+        safeWindow.removeAttribute('title');
+    }
+    safeWindow.classList.remove('green', 'amber', 'red', 'unknown');
+    if (normalized === 'OPEN' || normalized === 'GREEN') safeWindow.classList.add('green');
+    else if (normalized === 'CLOSED' || normalized === 'RED') safeWindow.classList.add('red');
+    else if (normalized === 'AMBER') safeWindow.classList.add('amber');
+    else safeWindow.classList.add('unknown');
 }
 
 function resize() {
@@ -125,6 +144,7 @@ async function pollHealth() {
 }
 
 setHealthSignal('UNKNOWN');
+setSafeWindowSignal('UNKNOWN');
 pollHealth();
 setInterval(pollHealth, 3000);
 
@@ -133,11 +153,20 @@ async function pollHealthDetails() {
         const response = await fetch('health.json', { cache: 'no-store' });
         if (!response.ok) return;
         const payload = await response.json();
-        const total = payload?.summary?.total ?? 0;
-        const indexOk = payload?.archive_index_exists ? 'OK' : 'MISSING';
+        const total = payload?.summary?.total ?? payload?.health?.after?.summary?.total ?? 0;
+        const indexOk = payload?.archive_index_exists ? 'OK'
+          : (payload?.health?.after?.archive_index_exists ? 'OK' : 'MISSING');
         healthCount.textContent = String(total);
         healthIndex.textContent = indexOk;
         healthUpdated.textContent = new Date().toLocaleTimeString();
+        const safe = payload?.safe_window ?? payload?.health?.safe_window ?? payload?.before?.safe_window ?? payload?.health?.before?.safe_window;
+        if (safe && typeof safe === 'object') {
+            const ok = Boolean(safe.ok);
+            const reason = typeof safe.reason === 'string' ? safe.reason : undefined;
+            setSafeWindowSignal(ok ? 'OPEN' : 'CLOSED', reason);
+        } else {
+            setSafeWindowSignal('UNKNOWN');
+        }
     } catch {
         // ignore network errors
     }

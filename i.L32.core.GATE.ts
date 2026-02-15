@@ -127,6 +127,9 @@ export const GATE = {
     const signatureKeys = config.agent_signature_keys;
     const reliabilityMode = config.reliability_mode ?? "STATIC";
     const reliabilityFloor = clamp01(config.reliability_floor ?? 0);
+    const maxTotalCost = Number.isFinite(config.max_total_cost_per_tick ?? Infinity)
+      ? Math.max(0, config.max_total_cost_per_tick ?? Infinity)
+      : Infinity;
     const envelopeIndexPath = PROPOSAL_ENVELOPE_INDEX.pathForLedger(
       LEDGER.STORAGE_PATH,
     );
@@ -321,8 +324,18 @@ export const GATE = {
         continue;
       }
 
+      // Check total cost budget for this tick (energy budget).
+      const nextTotalCost = decision.cost_used + finalCost;
+      if (nextTotalCost > maxTotalCost) {
+        decision.rejected_proposals.push({
+          proposal_id: p.proposal_id,
+          reason: REJECTION.COST_OVER_BUDGET,
+        });
+        continue;
+      }
+
       decision.accepted_proposals.push(p.proposal_id);
-      decision.cost_used += finalCost;
+      decision.cost_used = nextTotalCost;
 
       // 4. Weighted Merge Logic
       // Weight = Confidence (0..1) * Reliability (0..1)
@@ -474,6 +487,7 @@ export const GATE = {
         .filter((x) => x.envelope_hash.length > 0),
       rejected_proposals: decision.rejected_proposals,
       cost_total: decision.cost_used,
+      cost_limit: Number.isFinite(maxTotalCost) ? maxTotalCost : undefined,
       budget_used: decision.budget_used,
       budget_limit: config.max_total_abs_delta_per_tick,
       gate_config_version: GATE_VERSION,

@@ -11,3 +11,4 @@ Notes:
 - Usage: deno run -A i.L99.core.IO_FLOW_RUN.ts --input <input.json> --output <output.json>
 - Optional: provide stream_path to read O_STREAM from disk.
 - Optional: enable drain after collapse with --drain.
+- Optional: persist the minimal next state with --state-output <state.json>

@@ -54,6 +54,7 @@ export interface DeltaProposal {
 export interface GateConfig {
   max_abs_delta_per_level: number; // uint16
   max_total_abs_delta_per_tick: number; // uint32
+  max_total_cost_per_tick?: number; // uint64 (optional global cost cap)
   max_cost_per_agent: number; // uint64
   reliability_weight: Map<string, number>; // agent_id -> weight (0..1)
   reliability_mode?: "STATIC" | "PHASE_COHERENCE"; // optional admission weighting mode
@@ -109,6 +110,7 @@ export interface LedgerEvent {
   >;
   rejected_proposals: Array<{ proposal_id: string; reason: string }>;
   cost_total: number;
+  cost_limit?: number;
   budget_used: number;
   budget_limit?: number; // max_total_abs_delta_per_tick used by the gate
   gate_config_version: string;

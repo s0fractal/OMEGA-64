@@ -6,4 +6,4 @@ Purpose:
 
 Notes:
 - Noncanonical operator tool.
-- Usage: deno run -A i.L99.core.IO_FLOW_HEALTH_WRITE.ts --input <input.json> [--output <path>] [--drain] [--pretty]
+- Usage: deno run -A i.L99.core.IO_FLOW_HEALTH_WRITE.ts --input <input.json> [--output <path>] [--drain] [--pretty] [--safe-window]

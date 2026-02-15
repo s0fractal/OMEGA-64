@@ -12,6 +12,7 @@ DRAIN=${DRAIN:-0}
 HEALTH_JSON=${HEALTH_JSON:-0}
 HEALTH_OUTPUT=${HEALTH_OUTPUT:-UI/health.json}
 HEALTH_IO_OUTPUT=${HEALTH_IO_OUTPUT:-UI/health_io.json}
+SAFE_WINDOW=${SAFE_WINDOW:-1}
 PORT=${PORT:-8000}
 
 log() { printf "[%s] %s\n" "$(date +%H:%M:%S)" "$*"; }
@@ -51,9 +52,17 @@ if [[ "${HEALTH_JSON}" == "1" ]]; then
     (
       while true; do
         if [[ "${DRAIN}" == "1" ]]; then
-          deno task io:health:write -- --input "${INPUT}" --drain --output "${HEALTH_IO_OUTPUT}" --pretty || true
+          if [[ "${SAFE_WINDOW}" == "1" ]]; then
+            deno task io:health:write -- --input "${INPUT}" --drain --output "${HEALTH_IO_OUTPUT}" --pretty --safe-window || true
+          else
+            deno task io:health:write -- --input "${INPUT}" --drain --output "${HEALTH_IO_OUTPUT}" --pretty || true
+          fi
         else
-          deno task io:health:write -- --input "${INPUT}" --output "${HEALTH_IO_OUTPUT}" --pretty || true
+          if [[ "${SAFE_WINDOW}" == "1" ]]; then
+            deno task io:health:write -- --input "${INPUT}" --output "${HEALTH_IO_OUTPUT}" --pretty --safe-window || true
+          else
+            deno task io:health:write -- --input "${INPUT}" --output "${HEALTH_IO_OUTPUT}" --pretty || true
+          fi
         fi
         sleep_interval
       done
@@ -62,7 +71,11 @@ if [[ "${HEALTH_JSON}" == "1" ]]; then
     log "Starting O_STREAM health writer (interval=${INTERVAL}ms, stream=${STREAM})"
     (
       while true; do
-        deno task o:health:write -- --input "${STREAM}" --output "${HEALTH_OUTPUT}" --pretty || true
+        if [[ "${SAFE_WINDOW}" == "1" ]]; then
+          deno task o:health:write -- --input "${STREAM}" --output "${HEALTH_OUTPUT}" --pretty --safe-window || true
+        else
+          deno task o:health:write -- --input "${STREAM}" --output "${HEALTH_OUTPUT}" --pretty || true
+        fi
         sleep_interval
       done
     ) &
