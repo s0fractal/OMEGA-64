@@ -37,3 +37,5 @@ Hyper-object view:
 
 Links:
 - IO Flow Protocol defines collapse from O to I.
+- O_NEED defines intent-based selection.
+- O_TAGS defines compatibility descriptors.
