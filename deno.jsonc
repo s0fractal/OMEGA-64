@@ -34,6 +34,7 @@
     "io:health:write": "deno run -A i.L99.core.IO_FLOW_HEALTH_WRITE.ts",
     "io:health-signal:watch": "deno run -A i.L99.core.IO_FLOW_SIGNAL_WATCH.ts",
     "ui:health": "./ui_health.sh",
+    "audit:genome": "deno run -A i.L99.core.GENOME_AUDIT_RUN.ts --root .",
     "test:io-flow": "deno run -A test_io_flow_stream.ts",
     "test:gate-runner": "deno run -A test_gate_runner.ts",
     "test:replay": "deno run -A test_replay_audit_topological_signature.ts",
