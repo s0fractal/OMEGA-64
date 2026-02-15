@@ -44,3 +44,4 @@ Links:
 - O_COLLAPSE defines the gate from O candidates to I canon.
 - O_RANK defines candidate ordering before collapse.
 - O_TRUST defines trust signals and signatures.
+- O_PROFILE defines the minimal artifact passport.
