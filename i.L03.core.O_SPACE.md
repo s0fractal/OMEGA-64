@@ -50,3 +50,4 @@ Links:
 - O_POLICY defines commons rules and thresholds.
 - O_QUERY defines commons retrieval.
 - O_INDEX defines commons indices.
+- O_HASH defines content addressing.
