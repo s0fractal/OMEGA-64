@@ -20,5 +20,6 @@ export const SYNTHESIS = {
   handshake: "QUANTUM_GET",
   evolution: "RESONANCE_PATCHES",
   mechanics: ["RESONANCE_MINIMIZATION", "SWARM_GLIDER_INTERFERENCE"],
+  genome_seed_ref: "i.L99.core.GENOME",
   resonance: 0.998 // Майже абсолютна.
 };
