@@ -4,6 +4,7 @@
 
 import { O_STREAM_APPEND } from "./i.L99.core.O_STREAM_APPEND.ts";
 import { O_STREAM_PATH } from "./i.L99.core.O_STREAM_PATH.ts";
+import { O_STREAM_SCHEMA } from "./i.L99.core.O_STREAM_SCHEMA.ts";
 import type { DeltaProposal } from "./i.L99.core.STATE_SNAPSHOT.ts";
 
 const usage = (): string =>
@@ -46,6 +47,10 @@ export const O_STREAM_APPEND_RUN = async (args: string[]): Promise<void> => {
   }
 
   const proposal = JSON.parse(raw) as DeltaProposal;
+  if (!O_STREAM_SCHEMA(proposal)) {
+    throw new Error("O_STREAM_APPEND_RUN: proposal failed schema validation");
+  }
+
   const stream = parsed.stream ?? O_STREAM_PATH();
   await O_STREAM_APPEND(proposal, stream);
 
