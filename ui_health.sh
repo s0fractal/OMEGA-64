@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # ui_health.sh
-# Run O stream signal watcher + UI server.
+# Run health signal watcher + UI server.
 
 MODE=${MODE:-o}
 INTERVAL=${INTERVAL:-3000}
@@ -13,7 +13,13 @@ PORT=${PORT:-8000}
 
 log() { printf "[%s] %s\n" "$(date +%H:%M:%S)" "$*"; }
 
-if [[ "${MODE}" == "io" ]]; then
+start_o() {
+  log "Starting O_STREAM signal watcher (interval=${INTERVAL}ms, stream=${STREAM})"
+  deno task o:health-signal:watch -- --interval "${INTERVAL}" --input "${STREAM}" &
+  WATCH_PID=$!
+}
+
+start_io() {
   log "Starting IO_FLOW signal watcher (interval=${INTERVAL}ms, input=${INPUT}, drain=${DRAIN})"
   if [[ "${DRAIN}" == "1" ]]; then
     deno task io:health-signal:watch -- --interval "${INTERVAL}" --input "${INPUT}" --drain &
@@ -21,10 +27,12 @@ if [[ "${MODE}" == "io" ]]; then
     deno task io:health-signal:watch -- --interval "${INTERVAL}" --input "${INPUT}" &
   fi
   WATCH_PID=$!
+}
+
+if [[ "${MODE}" == "io" ]]; then
+  start_io
 else
-  log "Starting O_STREAM signal watcher (interval=${INTERVAL}ms, stream=${STREAM})"
-  deno task o:health-signal:watch -- --interval "${INTERVAL}" --input "${STREAM}" &
-  WATCH_PID=$!
+  start_o
 fi
 
 log "Starting UI server on port ${PORT}"
