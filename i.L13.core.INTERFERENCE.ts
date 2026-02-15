@@ -2,6 +2,7 @@
  * [i.L13.core.INTERFERENCE.ts]
  * Модуль семантичної інтерференції та суперпозиції хвиль.
  */
+// @spectral: INTERFERENCE::superpose+tension
 
 import { WavePacket, WAVE_PACKET } from './i.L13.core.WAVE_PACKET.ts';
 

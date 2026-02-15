@@ -1,6 +1,7 @@
 
 // Mocking types for independent compilation
 // use crate::core::wave::Wave;
+// @spectral: INTERFERENCE::superpose+tension
 
 #[derive(Clone, Debug, Copy)]
 pub struct Wave {

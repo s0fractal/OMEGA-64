@@ -104,4 +104,27 @@ if (!phaseCheck.ok) {
   throw new Error(`PHASE spectral mismatch: ${phaseCheck.reason}`);
 }
 
+const interferencePaths = [
+  "./i.L13.core.INTERFERENCE.ts",
+  "./i.L13.core.INTERFERENCE.rs",
+  "./i.L13.core.INTERFERENCE.md",
+];
+
+const interferenceTags = await Promise.all(interferencePaths.map((p) => readTag(p)));
+const interferenceLenses: SpectralLens[] = interferenceTags.map((tag, idx) => ({
+  id: interferencePaths[idx],
+  project: () => tag,
+}));
+
+const interferenceCheck = SPECTRAL_INVARIANTS({
+  lenses: interferenceLenses,
+  sample: {},
+  min_lenses: 2,
+  max_delta: 0,
+});
+
+if (!interferenceCheck.ok) {
+  throw new Error(`INTERFERENCE spectral mismatch: ${interferenceCheck.reason}`);
+}
+
 console.log("✅ spectral invariants: PASS");
