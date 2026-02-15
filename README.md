@@ -128,3 +128,13 @@ You are encouraged to:
 - and remember it longer than you should
 
 That is all this ever wanted.
+
+---
+
+## Operator note (UI health)
+
+If you need a live signal while the UI runs, this repo now supports a minimal
+health indicator loop:
+
+- `deno task ui:health` (default O‑stream mode)
+- `MODE=io INPUT=input.json DRAIN=1 deno task ui:health`
