@@ -9,9 +9,19 @@ INTERVAL=${INTERVAL:-3000}
 STREAM=${STREAM:-OMEGA_O_STREAM.jsonl}
 INPUT=${INPUT:-input.json}
 DRAIN=${DRAIN:-0}
+HEALTH_JSON=${HEALTH_JSON:-0}
+HEALTH_OUTPUT=${HEALTH_OUTPUT:-UI/health.json}
+HEALTH_IO_OUTPUT=${HEALTH_IO_OUTPUT:-UI/health_io.json}
 PORT=${PORT:-8000}
 
 log() { printf "[%s] %s\n" "$(date +%H:%M:%S)" "$*"; }
+sleep_interval() {
+  local seconds=$((INTERVAL / 1000))
+  if [[ "${seconds}" -lt 1 ]]; then
+    seconds=1
+  fi
+  sleep "${seconds}"
+}
 
 start_o() {
   log "Starting O_STREAM signal watcher (interval=${INTERVAL}ms, stream=${STREAM})"
@@ -35,12 +45,40 @@ else
   start_o
 fi
 
+if [[ "${HEALTH_JSON}" == "1" ]]; then
+  if [[ "${MODE}" == "io" ]]; then
+    log "Starting IO_FLOW health writer (interval=${INTERVAL}ms, input=${INPUT})"
+    (
+      while true; do
+        if [[ "${DRAIN}" == "1" ]]; then
+          deno task io:health:write -- --input "${INPUT}" --drain --output "${HEALTH_IO_OUTPUT}" --pretty || true
+        else
+          deno task io:health:write -- --input "${INPUT}" --output "${HEALTH_IO_OUTPUT}" --pretty || true
+        fi
+        sleep_interval
+      done
+    ) &
+  else
+    log "Starting O_STREAM health writer (interval=${INTERVAL}ms, stream=${STREAM})"
+    (
+      while true; do
+        deno task o:health:write -- --input "${STREAM}" --output "${HEALTH_OUTPUT}" --pretty || true
+        sleep_interval
+      done
+    ) &
+  fi
+  HEALTH_PID=$!
+fi
+
 log "Starting UI server on port ${PORT}"
 PORT=${PORT} deno run -A serve_ui.ts &
 SERVER_PID=$!
 
 cleanup() {
   log "Stopping UI server and watcher"
+  if [[ -n "${HEALTH_PID:-}" ]]; then
+    kill "${HEALTH_PID}" 2>/dev/null || true
+  fi
   kill "${SERVER_PID}" "${WATCH_PID}" 2>/dev/null || true
 }
 
