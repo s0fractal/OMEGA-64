@@ -1,1 +1,2 @@
-export const PRED = (n: any) => (f: any) => (x: any) => n((g: any) => (h: any) => h(g(f)))((_: any) => x)((u: any) => u);
+// @omega.redirect i/PRED.ts
+export { PRED } from "./i/PRED.ts";

@@ -1,1 +1,2 @@
-export const ADD = (m: any) => (n: any) => (f: any) => (x: any) => m(f)(n(f)(x));
+// @omega.redirect i/ADD.ts
+export { ADD } from "./i/ADD.ts";

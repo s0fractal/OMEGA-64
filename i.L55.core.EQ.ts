@@ -1,1 +1,2 @@
-import { LEQ } from "./i.L55.core.LEQ.ts"; import { F } from "./i.L32.core.F.ts"; export const EQ = (m: any) => (n: any) => LEQ(m)(n)(LEQ(n)(m))(F);
+// @omega.redirect i/EQ.ts
+export { EQ } from "./i/EQ.ts";
