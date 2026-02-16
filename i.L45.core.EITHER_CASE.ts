@@ -1,1 +1,2 @@
-export const EITHER_CASE = (e: any) => (leftCase: any) => (rightCase: any) => e(leftCase)(rightCase);
+// @omega.redirect i/EITHER_CASE.ts
+export { EITHER_CASE } from "./i/EITHER_CASE.ts";

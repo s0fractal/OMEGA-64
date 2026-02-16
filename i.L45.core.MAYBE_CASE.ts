@@ -1,1 +1,2 @@
-export const MAYBE_CASE = (m: any) => (nothingCase: any) => (justCase: any) => m(nothingCase)(justCase);
+// @omega.redirect i/MAYBE_CASE.ts
+export { MAYBE_CASE } from "./i/MAYBE_CASE.ts";

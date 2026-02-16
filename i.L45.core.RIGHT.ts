@@ -1,1 +1,2 @@
-export const RIGHT = (y: any) => (_l: any) => (r: any) => r(y);
+// @omega.redirect i/RIGHT.ts
+export { RIGHT } from "./i/RIGHT.ts";

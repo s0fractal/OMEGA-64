@@ -1,1 +1,2 @@
-export const JUST = (x: any) => (_n: any) => (j: any) => j(x);
+// @omega.redirect i/JUST.ts
+export { JUST } from "./i/JUST.ts";
