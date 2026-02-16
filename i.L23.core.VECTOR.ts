@@ -1,1 +1,1 @@
-import { CONS } from "./i.L54.core.CONS.ts"; export const VECTOR = (dim: any) => (values: any) => CONS(dim)(values);
+import { CONS } from "./i.L32.core.CONS.ts"; export const VECTOR = (dim: any) => (values: any) => CONS(dim)(values);

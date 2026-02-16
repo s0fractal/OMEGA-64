@@ -1,1 +1,1 @@
-import { CONS } from "./i.L54.core.CONS.ts"; export const GRAVITY = (m: any) => (body: any) => CONS(m)(body);
+import { CONS } from "./i.L32.core.CONS.ts"; export const GRAVITY = (m: any) => (body: any) => CONS(m)(body);

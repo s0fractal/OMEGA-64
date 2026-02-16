@@ -1,1 +1,1 @@
-import { NOT } from "./i.L59.core.NOT.ts"; export const INV = NOT;
+import { NOT } from "./i.L32.core.NOT.ts"; export const INV = NOT;

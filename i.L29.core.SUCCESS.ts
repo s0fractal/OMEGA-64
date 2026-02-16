@@ -1,1 +1,1 @@
-import { T } from "./i.L59.core.T.ts"; export const SUCCESS = T;
+import { T } from "./i.L32.core.T.ts"; export const SUCCESS = T;

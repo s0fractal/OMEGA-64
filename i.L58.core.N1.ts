@@ -1,1 +1,1 @@
-import { F } from "./i.L59.core.F.ts"; export const N1 = <F>(f: F) => f;
+import { F } from "./i.L32.core.F.ts"; export const N1 = <F>(f: F) => f;

@@ -1,1 +1,1 @@
-import { Y } from "./i.L61.core.Y.ts"; import { CAR } from "./i.L54.core.CAR.ts"; import { CDR } from "./i.L54.core.CDR.ts"; import { CONS } from "./i.L54.core.CONS.ts"; export const S_MAP = Y((r: any) => (f: any) => (s: any) => CONS(f(CAR(s)))(r(f)(CDR(s))));
+import { Y } from "./i.L32.core.Y.ts"; import { CAR } from "./i.L32.core.CAR.ts"; import { CDR } from "./i.L32.core.CDR.ts"; import { CONS } from "./i.L32.core.CONS.ts"; export const S_MAP = Y((r: any) => (f: any) => (s: any) => CONS(f(CAR(s)))(r(f)(CDR(s))));

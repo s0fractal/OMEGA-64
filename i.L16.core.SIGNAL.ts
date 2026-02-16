@@ -1,1 +1,1 @@
-import { I } from "./i.L62.core.I.ts"; export const SIGNAL = I;
+import { I } from "./i.L32.core.I.ts"; export const SIGNAL = I;

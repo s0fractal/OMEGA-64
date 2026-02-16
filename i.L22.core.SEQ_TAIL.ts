@@ -1,1 +1,1 @@
-import { CDR } from "./i.L54.core.CDR.ts"; export const SEQ_TAIL = CDR;
+import { CDR } from "./i.L32.core.CDR.ts"; export const SEQ_TAIL = CDR;
