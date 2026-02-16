@@ -6,6 +6,8 @@
     "audit:determinism:signal": "deno run -A i.L99.core.DETERMINISM_AUDIT.ts --signal",
     "audit:drift": "deno run -A i.L99.core.DRIFT_CONTROLLER_CLI.ts",
     "audit:noncanonical": "deno run -A i.L99.core.NONCANONICAL_AUDIT.ts --json",
+    "audit:dipole": "deno run -A i.L99.core.DIPOLE_IMPORT_AUDIT.ts",
+    "audit:dipole:strict": "deno run -A i.L99.core.DIPOLE_IMPORT_AUDIT.ts --mode FAIL",
     "export:sigma": "deno run -A export_sigma.ts --mode entity",
     "export:sigma:qview": "deno run -A export_sigma.ts --mode entity --include-q-view",
     "export:sigma:qlegacy": "deno run -A export_sigma.ts --mode entity --include-q-legacy",
