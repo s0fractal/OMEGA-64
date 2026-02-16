@@ -29,6 +29,7 @@ const parseArgs = (args: string[]) => {
     ts: Direction;
     mode: Mode;
     includeNoncanonical: boolean;
+    includeIndex: boolean;
     cacheAllow: boolean;
   } = {
     root: DEFAULT_ROOT,
@@ -36,6 +37,7 @@ const parseArgs = (args: string[]) => {
     ts: DEFAULT_TS,
     mode: DEFAULT_MODE,
     includeNoncanonical: false,
+    includeIndex: false,
     cacheAllow: DEFAULT_CACHE_ALLOW,
   };
   for (let i = 0; i < args.length; i++) {
@@ -65,6 +67,10 @@ const parseArgs = (args: string[]) => {
     }
     if (arg === "--include-noncanonical") {
       out.includeNoncanonical = true;
+      continue;
+    }
+    if (arg === "--include-index") {
+      out.includeIndex = true;
       continue;
     }
     if (arg === "--no-cache") {
@@ -166,6 +172,7 @@ const main = async () => {
     const base = path.split("/").pop() ?? path;
     const sourceLevel = levelFromName(base);
     if (!isWithinBand(sourceLevel)) continue;
+    if (!args.includeIndex && base.endsWith(".i.ts")) continue;
 
     const language = base.endsWith(".rs") ? "rs" : "ts";
     const content = await Deno.readTextFile(path);
