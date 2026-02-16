@@ -7,6 +7,7 @@
     "audit:drift": "deno run -A i.L99.core.DRIFT_CONTROLLER_CLI.ts",
     "audit:noncanonical": "deno run -A i.L99.core.NONCANONICAL_AUDIT.ts --json",
     "export:sigma": "deno run -A export_sigma.ts --mode entity",
+    "export:sigma:qview": "deno run -A export_sigma.ts --mode entity --include-q-view",
     "export:sigma:level": "deno run -A export_sigma.ts --mode level",
     "sigma:roundtrip": "deno run -A sigma_quine.ts --input I.sigma.md --output I.sigma.reassembled.md",
     "sigma:verify": "deno run -A sigma_quine.ts --input I.sigma.md --output I.sigma.reassembled.md --verify",

@@ -9,10 +9,17 @@ const DEFAULT_ROOT = ".";
 const DEFAULT_MODE = "entity";
 
 const parseArgs = (args: string[]) => {
-  const out: { root: string; output: string; mode: string; help: boolean } = {
+  const out: {
+    root: string;
+    output: string;
+    mode: string;
+    includeQView: boolean;
+    help: boolean;
+  } = {
     root: DEFAULT_ROOT,
     output: DEFAULT_OUTPUT,
     mode: DEFAULT_MODE,
+    includeQView: false,
     help: false,
   };
   for (let i = 0; i < args.length; i++) {
@@ -36,6 +43,10 @@ const parseArgs = (args: string[]) => {
       i += 1;
       continue;
     }
+    if (arg === "--include-q-view") {
+      out.includeQView = true;
+      continue;
+    }
   }
   return out;
 };
@@ -43,7 +54,7 @@ const parseArgs = (args: string[]) => {
 const usage = (): string =>
   [
     "Usage:",
-    "  deno run -A export_sigma.ts [--root <dir>] [--output <file>] [--mode entity|level]",
+    "  deno run -A export_sigma.ts [--root <dir>] [--output <file>] [--mode entity|level] [--include-q-view]",
     "",
     "Defaults:",
     `  root: ${DEFAULT_ROOT}`,
@@ -63,14 +74,24 @@ const isCandidate = (path: string): boolean => {
   return /^i\.L[0-9+-]+/.test(base) || base === "i.q";
 };
 
-const walk = async function* (root: string): AsyncGenerator<string> {
+const shouldSkipFile = (name: string, includeQView: boolean): boolean => {
+  if (includeQView) return false;
+  return /\.q\.(hue|phi|evt)$/.test(name);
+};
+
+const walk = async function* (
+  root: string,
+  includeQView: boolean,
+): AsyncGenerator<string> {
   for await (const entry of Deno.readDir(root)) {
     const full = `${root}/${entry.name}`;
     if (entry.isDirectory) {
       if (shouldSkipDir(entry.name)) continue;
-      yield* walk(full);
+      yield* walk(full, includeQView);
     } else if (entry.isFile) {
-      if (isCandidate(entry.name)) yield full;
+      if (isCandidate(entry.name) && !shouldSkipFile(entry.name, includeQView)) {
+        yield full;
+      }
     }
   }
 };
@@ -127,7 +148,7 @@ const main = async () => {
   }
 
   const files: { path: string; level: string; order: number }[] = [];
-  for await (const path of walk(args.root)) {
+  for await (const path of walk(args.root, args.includeQView)) {
     const base = path.split("/").pop() ?? path;
     const token = levelToken(base);
     if (!token) continue;
