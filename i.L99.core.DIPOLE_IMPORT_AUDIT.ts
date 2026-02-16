@@ -4,7 +4,7 @@
 
 /// <reference lib="deno.ns" />
 
-type Direction = "ASCEND" | "DESCEND";
+type Direction = "ASCEND" | "DESCEND" | "CONVERGE32";
 type Mode = "WARN" | "FAIL";
 
 type Violation = {
@@ -18,7 +18,7 @@ type Violation = {
 
 const DEFAULT_ROOT = ".";
 const DEFAULT_RS = "ASCEND";
-const DEFAULT_TS = "ASCEND";
+const DEFAULT_TS = "CONVERGE32";
 const DEFAULT_MODE = "WARN";
 const DEFAULT_CACHE_ALLOW = true;
 
@@ -47,13 +47,13 @@ const parseArgs = (args: string[]) => {
     }
     if (arg === "--rs") {
       const next = (args[i + 1] ?? "").toUpperCase() as Direction;
-      if (next === "ASCEND" || next === "DESCEND") out.rs = next;
+      if (next === "ASCEND" || next === "DESCEND" || next === "CONVERGE32") out.rs = next;
       i += 1;
       continue;
     }
     if (arg === "--ts") {
       const next = (args[i + 1] ?? "").toUpperCase() as Direction;
-      if (next === "ASCEND" || next === "DESCEND") out.ts = next;
+      if (next === "ASCEND" || next === "DESCEND" || next === "CONVERGE32") out.ts = next;
       i += 1;
       continue;
     }
@@ -137,7 +137,10 @@ const extractTargets = (content: string): Array<{ level: number; snippet: string
 
 const allows = (direction: Direction, source: number, target: number): boolean => {
   if (direction === "ASCEND") return target >= source;
-  return target <= source;
+  if (direction === "DESCEND") return target <= source;
+  if (source === 32) return true;
+  if (source < 32) return target >= source && target <= 32;
+  return target <= source && target >= 32;
 };
 
 const walk = async function* (root: string): AsyncGenerator<string> {
