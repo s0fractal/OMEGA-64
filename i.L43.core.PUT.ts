@@ -1,1 +1,2 @@
-export const PUT = (ns: any) => (_o: any) => (pair: any) => pair(undefined)(ns);
+// @omega.redirect i/PUT.ts
+export { PUT } from "./i/PUT.ts";

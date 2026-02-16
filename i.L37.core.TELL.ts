@@ -1,1 +1,2 @@
-export const TELL = (w: any) => (pair: any) => pair(undefined)(w);
+// @omega.redirect i/TELL.ts
+export { TELL } from "./i/TELL.ts";

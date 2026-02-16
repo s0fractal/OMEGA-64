@@ -1,1 +1,2 @@
-export const STATE = (a: any) => (s: any) => (pair: any) => pair(a)(s);
+// @omega.redirect i/STATE.ts
+export { STATE } from "./i/STATE.ts";

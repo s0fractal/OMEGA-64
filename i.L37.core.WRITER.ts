@@ -1,1 +1,2 @@
-export const WRITER = (a: any) => (w: any) => (pair: any) => pair(a)(w);
+// @omega.redirect i/WRITER.ts
+export { WRITER } from "./i/WRITER.ts";
