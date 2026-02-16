@@ -1,1 +1,2 @@
-import { PRED } from "./i.L32.core.PRED.ts"; import { SUCC } from "./i.L32.core.SUCC.ts"; import { CONS } from "./i.L32.core.CONS.ts"; export const NEIGHBOR = (n: any) => CONS(PRED(n))(SUCC(n));
+// @omega.redirect i/NEIGHBOR.ts
+export { NEIGHBOR } from "./i/NEIGHBOR.ts";

@@ -1,1 +1,2 @@
-import { CONS } from "./i.L32.core.CONS.ts"; export const MEANING = (tag: any) => (val: any) => CONS(tag)(val);
+// @omega.redirect i/MEANING.ts
+export { MEANING } from "./i/MEANING.ts";

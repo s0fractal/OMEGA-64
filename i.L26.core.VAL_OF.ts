@@ -1,1 +1,2 @@
-export const VAL_OF = (m: any) => m((_t: any) => (v: any) => v);
+// @omega.redirect i/VAL_OF.ts
+export { VAL_OF } from "./i/VAL_OF.ts";

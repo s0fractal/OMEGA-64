@@ -1,1 +1,2 @@
-export const RADIUS = (n: any) => n;
+// @omega.redirect i/RADIUS.ts
+export { RADIUS } from "./i/RADIUS.ts";

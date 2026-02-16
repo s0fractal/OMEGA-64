@@ -1,1 +1,2 @@
-import { CONS } from "./i.L32.core.CONS.ts"; export const SEM_WRAP = (val: any) => (tag: any) => CONS(val)(tag);
+// @omega.redirect i/SEM_WRAP.ts
+export { SEM_WRAP } from "./i/SEM_WRAP.ts";
