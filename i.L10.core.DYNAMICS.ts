@@ -1,2 +1,2 @@
-// @spectral: DYNAMICS::force/(mass+1)
-export const DYNAMICS = (force: any) => (mass: any) => force / (mass + 1);
+// @omega.redirect i/DYNAMICS.ts
+export { DYNAMICS } from "./i/DYNAMICS.ts";
