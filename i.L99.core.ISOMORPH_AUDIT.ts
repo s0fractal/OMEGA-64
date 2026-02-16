@@ -4,42 +4,32 @@
 
 /// <reference lib="deno.ns" />
 
-type CanonEntry = {
-  file: string;
-  vector?: string;
-  origin?: string;
-};
-
 type ProjectionEntry = {
-  base: string;
+  level: number;
+  layer: string;
+  name: string;
   ext: string;
   path: string;
 };
 
 type IsomorphReport = {
   generatedAt: string;
-  canonRoot: string;
   projectionRoots: string[];
-  canon: CanonEntry[];
   projections: Record<string, ProjectionEntry[]>;
   errors: string[];
   notes: string[];
 };
 
-const DEFAULT_CANON_ROOT = "i";
 const DEFAULT_PROJECTION_ROOTS = ["."];
 const DEFAULT_OUT = "o/isomorph_audit.json";
+const MIRROR_CENTER = 63;
 
 const parseArgs = (args: string[]) => {
-  let canonRoot = DEFAULT_CANON_ROOT;
   let out = DEFAULT_OUT;
   let projectionRoots = [...DEFAULT_PROJECTION_ROOTS];
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
-    if (arg === "--canon") {
-      canonRoot = args[i + 1] ?? DEFAULT_CANON_ROOT;
-      i += 1;
-    } else if (arg === "--out") {
+    if (arg === "--out") {
       out = args[i + 1] ?? DEFAULT_OUT;
       i += 1;
     } else if (arg === "--roots") {
@@ -48,16 +38,7 @@ const parseArgs = (args: string[]) => {
       i += 1;
     }
   }
-  return { canonRoot, out, projectionRoots };
-};
-
-const parseCanon = (source: string, file: string): CanonEntry => {
-  const entry: CanonEntry = { file };
-  const vectorMatch = source.match(/@omega\.vector\s+([0-9]+(?:\.[0-9]+){0,2})/);
-  if (vectorMatch) entry.vector = vectorMatch[1];
-  const originMatch = source.match(/@omega\.origin\s+(.+)/);
-  if (originMatch) entry.origin = originMatch[1].trim();
-  return entry;
+  return { out, projectionRoots };
 };
 
 const walk = async function* (root: string): AsyncGenerator<string> {
@@ -75,68 +56,64 @@ const walk = async function* (root: string): AsyncGenerator<string> {
   }
 };
 
-const normalizeBase = (path: string): string => {
-  const trimmed = path.replace(/^\.\//, "");
-  return trimmed.replace(/\.[a-z0-9]+$/i, "");
+const parseProjection = (path: string): ProjectionEntry | null => {
+  const match = path.match(/i\.L(\d{2})\.([^.]+)\.([^.]+)\.([a-z0-9]+)$/i);
+  if (!match) return null;
+  const level = Number(match[1]);
+  const layer = match[2];
+  const name = match[3];
+  const ext = match[4].toLowerCase();
+  return { level, layer, name, ext, path };
 };
-
-const isProjectionFile = (path: string): boolean =>
-  /i\.L\d{2}\.[^.]+\..+\.(ts|rs|md|q)$/i.test(path);
 
 const collectProjections = async (roots: string[]) => {
   const projections: Record<string, ProjectionEntry[]> = {};
   for (const root of roots) {
     for await (const path of walk(root)) {
-      if (!isProjectionFile(path)) continue;
-      const extMatch = path.match(/\.([a-z0-9]+)$/i);
-      const ext = extMatch ? extMatch[1].toLowerCase() : "unknown";
-      const base = normalizeBase(path);
-      if (!projections[base]) projections[base] = [];
-      projections[base].push({ base, ext, path });
+      const entry = parseProjection(path);
+      if (!entry) continue;
+      const key = `${entry.layer}.${entry.name}`;
+      if (!projections[key]) projections[key] = [];
+      projections[key].push(entry);
     }
   }
   return projections;
 };
 
 const main = async () => {
-  const { canonRoot, out, projectionRoots } = parseArgs(Deno.args);
+  const { out, projectionRoots } = parseArgs(Deno.args);
   const report: IsomorphReport = {
     generatedAt: new Date().toISOString(),
-    canonRoot,
     projectionRoots,
-    canon: [],
     projections: {},
     errors: [],
     notes: [],
   };
 
-  for await (const path of walk(canonRoot)) {
-    if (!path.endsWith(".ts")) continue;
-    const source = await Deno.readTextFile(path);
-    report.canon.push(parseCanon(source, path));
-  }
-
   report.projections = await collectProjections(projectionRoots);
 
-  const originMap = new Map<string, CanonEntry[]>();
-  for (const entry of report.canon) {
-    if (!entry.origin) continue;
-    const originBase = normalizeBase(entry.origin);
-    if (!originMap.has(originBase)) originMap.set(originBase, []);
-    originMap.get(originBase)?.push(entry);
-  }
+  for (const [key, entries] of Object.entries(report.projections)) {
+    const tsEntries = entries.filter((entry) => entry.ext === "ts");
+    const rsEntries = entries.filter((entry) => entry.ext === "rs");
+    if (tsEntries.length === 0 && rsEntries.length === 0) continue;
 
-  for (const [originBase, entries] of originMap.entries()) {
-    const vectors = Array.from(new Set(entries.map((e) => e.vector).filter(Boolean)));
-    if (vectors.length > 1) {
-      report.errors.push(`VECTOR_DRIFT ${originBase} -> ${vectors.join(", ")}`);
+    const rsLevels = new Set(rsEntries.map((entry) => entry.level));
+
+    for (const ts of tsEntries) {
+      const expected = MIRROR_CENTER - ts.level;
+      if (!rsLevels.has(expected)) {
+        report.errors.push(
+          `MISSING_MIRROR ${key} ts=L${ts.level.toString().padStart(2, "0")} -> rs=L${expected
+            .toString()
+            .padStart(2, "0")}`,
+        );
+      }
     }
-    const projections = report.projections[originBase];
-    if (!projections || projections.length === 0) {
-      report.errors.push(`MISSING_PROJECTION ${originBase}`);
-    } else {
-      const exts = Array.from(new Set(projections.map((p) => p.ext))).sort();
-      report.notes.push(`PROJECTIONS ${originBase} -> ${exts.join(",")}`);
+
+    if (tsEntries.length > 0 && rsEntries.length > 0) {
+      report.notes.push(
+        `MIRROR_PAIR ${key} ts=${tsEntries.length} rs=${rsEntries.length}`,
+      );
     }
   }
 
