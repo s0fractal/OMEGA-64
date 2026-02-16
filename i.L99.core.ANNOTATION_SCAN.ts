@@ -5,6 +5,8 @@
 /// <reference lib="deno.ns" />
 
 import { RULE_VECTOR_REQUIRED } from "./i/RULE_VECTOR_REQUIRED.ts";
+import { RULE_VECTOR_FORMAT } from "./i/RULE_VECTOR_FORMAT.ts";
+import { RULE_VECTOR_RANGE } from "./i/RULE_VECTOR_RANGE.ts";
 
 type AnnotationEntry = {
   file: string;
@@ -26,7 +28,7 @@ type ScanReport = {
 
 const DEFAULT_ROOT = "i";
 const DEFAULT_OUT = "o/vector_map.json";
-const RULES: Rule[] = [RULE_VECTOR_REQUIRED];
+const RULES: Rule[] = [RULE_VECTOR_REQUIRED, RULE_VECTOR_FORMAT, RULE_VECTOR_RANGE];
 
 const parseArgs = (args: string[]) => {
   let root = DEFAULT_ROOT;

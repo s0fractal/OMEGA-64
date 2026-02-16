@@ -15,6 +15,7 @@ Required Annotation:
   - L: 00..63 (level)
   - D: 00..63 (domain)
   - P: 00..15 (port/variant)
+  - Format: exactly three dot-separated integers (L.D.P)
 
 Optional Annotations:
 - @omega.readonly
