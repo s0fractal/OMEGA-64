@@ -1,1 +1,2 @@
-import { CONS } from "./i.L32.core.CONS.ts"; export const GRAVITY = (m: any) => (body: any) => CONS(m)(body);
+// @omega.redirect i/GRAVITY.ts
+export { GRAVITY } from "./i/GRAVITY.ts";

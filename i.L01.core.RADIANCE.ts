@@ -1,1 +1,2 @@
-export const RADIANCE = (n: any) => (s: any) => n(s);
+// @omega.redirect i/RADIANCE.ts
+export { RADIANCE } from "./i/RADIANCE.ts";

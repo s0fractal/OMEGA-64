@@ -1,1 +1,2 @@
-export const RESONANCE_DEEP = (w: any) => (f: any) => w((v: any) => (wf: any) => wf === f);
+// @omega.redirect i/RESONANCE_DEEP.ts
+export { RESONANCE_DEEP } from "./i/RESONANCE_DEEP.ts";

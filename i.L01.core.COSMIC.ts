@@ -1,1 +1,2 @@
-export const COSMIC = (p: any) => p;
+// @omega.redirect i/COSMIC.ts
+export { COSMIC } from "./i/COSMIC.ts";
