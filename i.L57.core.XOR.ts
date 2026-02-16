@@ -1,1 +1,2 @@
-import { NOT } from "./i.L32.core.NOT.ts"; export const XOR = (p: any) => (q: any) => p(NOT(q))(q);
+// @omega.redirect i/XOR.ts
+export { XOR } from "./i/XOR.ts";

@@ -1,1 +1,2 @@
-export const MUX = (s: any) => (a: any) => (b: any) => s(a)(b);
+// @omega.redirect i/MUX.ts
+export { MUX } from "./i/MUX.ts";
