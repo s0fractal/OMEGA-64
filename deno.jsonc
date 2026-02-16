@@ -23,6 +23,8 @@
     "q:view": "deno run -A i.L99.core.QUANTUM_VIEW.ts",
     "q:view:clean": "deno run -A i.L99.core.QUANTUM_VIEW.ts --clean",
     "glider:run": "deno run -A i.L99.core.GLIDER_LITE_RUN.ts",
+    "glider:breathe": "deno run -A i.L99.core.GLIDER_LITE_BREATHE.ts",
+    "glider:breathe:once": "deno run -A i.L99.core.GLIDER_LITE_BREATHE.ts --once",
     "io:run": "deno run -A i.L99.core.IO_FLOW_RUN.ts",
     "o:append": "deno run -A i.L99.core.O_STREAM_APPEND_RUN.ts",
     "o:validate": "deno run -A i.L99.core.O_STREAM_VALIDATE_RUN.ts",
