@@ -1,1 +1,2 @@
-export const INTER_SUB = (s1: any) => (s2: any) => (p: any) => p(s1)(s2);
+// @omega.redirect i/INTER_SUB.ts
+export { INTER_SUB } from "./i/INTER_SUB.ts";

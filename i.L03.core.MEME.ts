@@ -1,1 +1,2 @@
-export const MEME = (c: any) => c;
+// @omega.redirect i/MEME.ts
+export { MEME } from "./i/MEME.ts";

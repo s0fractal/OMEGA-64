@@ -1,1 +1,2 @@
-import { COMM } from "./i.L04.core.COMM.ts"; export const SYNERGY = (is: any) => COMM(is);
+// @omega.redirect i/SYNERGY.ts
+export { SYNERGY } from "./i/SYNERGY.ts";

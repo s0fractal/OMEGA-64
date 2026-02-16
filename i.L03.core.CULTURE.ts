@@ -1,1 +1,2 @@
-export const CULTURE = (is: any) => is;
+// @omega.redirect i/CULTURE.ts
+export { CULTURE } from "./i/CULTURE.ts";
