@@ -1,1 +1,2 @@
-import { CONS } from "./i.L32.core.CONS.ts"; export const METHOD = (name: any) => (body: any) => CONS(name)(body);
+// @omega.redirect i/METHOD.ts
+export { METHOD } from "./i/METHOD.ts";

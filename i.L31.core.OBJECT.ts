@@ -1,1 +1,2 @@
-export const OBJECT = (methods: any) => (msg: any) => msg(methods);
+// @omega.redirect i/OBJECT.ts
+export { OBJECT } from "./i/OBJECT.ts";
