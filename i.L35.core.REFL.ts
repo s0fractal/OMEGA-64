@@ -1,1 +1,2 @@
-export const REFL = (a: any) => (b: any) => a;
+// @omega.redirect i/REFL.ts
+export { REFL } from "./i/REFL.ts";

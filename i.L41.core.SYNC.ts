@@ -1,1 +1,2 @@
-import { JOIN } from "./i.L41.core.JOIN.ts"; export const SYNC = JOIN;
+// @omega.redirect i/SYNC.ts
+export { SYNC } from "./i/SYNC.ts";

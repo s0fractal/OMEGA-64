@@ -1,1 +1,2 @@
-export const W = (f: any) => (x: any) => f(x)(x);
+// @omega.redirect i/W.ts
+export { W } from "./i/W.ts";

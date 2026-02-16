@@ -1,1 +1,2 @@
-import { REFL } from "./i.L35.core.REFL.ts"; export const IS_ISO = REFL;
+// @omega.redirect i/IS_ISO.ts
+export { IS_ISO } from "./i/IS_ISO.ts";
