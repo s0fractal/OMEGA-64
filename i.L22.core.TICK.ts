@@ -1,1 +1,2 @@
-import { SUCC } from "./i.L32.core.SUCC.ts"; export const TICK = (t: any) => SUCC(t);
+// @omega.redirect i/TICK.ts
+export { TICK } from "./i/TICK.ts";

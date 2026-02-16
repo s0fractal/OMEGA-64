@@ -1,1 +1,2 @@
-export const NOW = (t: any) => t;
+// @omega.redirect i/NOW.ts
+export { NOW } from "./i/NOW.ts";

@@ -1,1 +1,2 @@
-import { CONS } from "./i.L32.core.CONS.ts"; export const SEQUENCE = (a: any) => (b: any) => CONS(a)(b);
+// @omega.redirect i/SEQUENCE.ts
+export { SEQUENCE } from "./i/SEQUENCE.ts";

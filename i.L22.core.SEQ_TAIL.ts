@@ -1,1 +1,2 @@
-import { CDR } from "./i.L32.core.CDR.ts"; export const SEQ_TAIL = CDR;
+// @omega.redirect i/SEQ_TAIL.ts
+export { SEQ_TAIL } from "./i/SEQ_TAIL.ts";
