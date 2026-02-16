@@ -1,1 +1,2 @@
-export const SWAP = (p: any) => p((a: any) => (b: any) => (pair: any) => pair(b)(a));
+// @omega.redirect i/SWAP.ts
+export { SWAP } from "./i/SWAP.ts";

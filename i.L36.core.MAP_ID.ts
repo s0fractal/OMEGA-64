@@ -1,1 +1,2 @@
-import { I } from "./i.L32.core.I.ts"; export const MAP_ID = I;
+// @omega.redirect i/MAP_ID.ts
+export { MAP_ID } from "./i/MAP_ID.ts";

@@ -1,1 +1,2 @@
-import { CONS } from "./i.L32.core.CONS.ts"; export const LENS = (g: any) => (s: any) => CONS(g)(s);
+// @omega.redirect i/LENS.ts
+export { LENS } from "./i/LENS.ts";

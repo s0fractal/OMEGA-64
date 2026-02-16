@@ -1,1 +1,2 @@
-export const VIEW = (l: any) => (struct: any) => l((g: any) => (_s: any) => g(struct));
+// @omega.redirect i/VIEW.ts
+export { VIEW } from "./i/VIEW.ts";

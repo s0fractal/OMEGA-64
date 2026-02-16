@@ -1,1 +1,2 @@
-import { C } from "./i.L53.core.C.ts"; export const REFLECT = C;
+// @omega.redirect i/REFLECT.ts
+export { REFLECT } from "./i/REFLECT.ts";
