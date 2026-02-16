@@ -1,1 +1,2 @@
-import { SUCC } from "./i.L58.core.SUCC.ts"; import { N1 } from "./i.L58.core.N1.ts"; export const N2 = SUCC(N1);
+// @omega.redirect i/N2.ts
+export { N2 } from "./i/N2.ts";

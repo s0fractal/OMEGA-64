@@ -1,1 +1,2 @@
-import { F } from "./i.L32.core.F.ts"; import { I } from "./i.L32.core.I.ts"; export const N0 = <F>(_: F) => I;
+// @omega.redirect i/N0.ts
+export { N0 } from "./i/N0.ts";
