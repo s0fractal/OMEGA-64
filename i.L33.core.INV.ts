@@ -1,1 +1,2 @@
-import { NOT } from "./i.L32.core.NOT.ts"; export const INV = NOT;
+// @omega.redirect i/INV.ts
+export { INV } from "./i/INV.ts";

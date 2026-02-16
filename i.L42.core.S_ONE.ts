@@ -1,1 +1,2 @@
-export const S_ONE = (f: any) => (x: any) => f(x);
+// @omega.redirect i/S_ONE.ts
+export { S_ONE } from "./i/S_ONE.ts";
