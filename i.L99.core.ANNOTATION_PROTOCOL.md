@@ -33,6 +33,7 @@ Validity Rules:
 - @omega.port must be a valid u16.
 - @omega.unfold must be 00..63.
 - @omega.load must be >= 0.
+- Domain phase mapping: domain * (360 / 64) degrees.
 
 Physical Effect Requirement:
 - Each annotation must alter at least one of: LOAD, FIELD, REPLAY.

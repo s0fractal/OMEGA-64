@@ -14,3 +14,4 @@ Rule Modules:
 - Place deterministic lint rules in /i as single-purpose files.
 - Example: RULE_VECTOR_REQUIRED.ts
 - Additional: RULE_VECTOR_FORMAT.ts, RULE_VECTOR_RANGE.ts
+- Phase mapping: RULE_VECTOR_DOMAIN_PHASE.ts

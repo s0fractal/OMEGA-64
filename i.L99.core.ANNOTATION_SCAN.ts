@@ -7,6 +7,7 @@
 import { RULE_VECTOR_REQUIRED } from "./i/RULE_VECTOR_REQUIRED.ts";
 import { RULE_VECTOR_FORMAT } from "./i/RULE_VECTOR_FORMAT.ts";
 import { RULE_VECTOR_RANGE } from "./i/RULE_VECTOR_RANGE.ts";
+import { RULE_VECTOR_DOMAIN_PHASE } from "./i/RULE_VECTOR_DOMAIN_PHASE.ts";
 
 type AnnotationEntry = {
   file: string;
@@ -24,11 +25,12 @@ type ScanReport = {
   generatedAt: string;
   entries: AnnotationEntry[];
   errors: string[];
+  notes: string[];
 };
 
 const DEFAULT_ROOT = "i";
 const DEFAULT_OUT = "o/vector_map.json";
-const RULES: Rule[] = [RULE_VECTOR_REQUIRED, RULE_VECTOR_FORMAT, RULE_VECTOR_RANGE];
+const RULES: Rule[] = [RULE_VECTOR_REQUIRED, RULE_VECTOR_FORMAT, RULE_VECTOR_RANGE, RULE_VECTOR_DOMAIN_PHASE];
 
 const parseArgs = (args: string[]) => {
   let root = DEFAULT_ROOT;
@@ -87,6 +89,7 @@ const main = async () => {
     generatedAt: new Date().toISOString(),
     entries: [],
     errors: [],
+    notes: [],
   };
 
   for await (const path of walk(args.root)) {
@@ -94,7 +97,10 @@ const main = async () => {
     const entry = parseAnnotation(source, path);
     for (const rule of RULES) {
       const err = rule(entry);
-      if (err) report.errors.push(err);
+      if (err) {
+        if (err.startsWith("DOMAIN_PHASE")) report.notes.push(err);
+        else report.errors.push(err);
+      }
     }
     report.entries.push(entry);
   }
