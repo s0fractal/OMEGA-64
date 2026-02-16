@@ -1,1 +1,2 @@
-export const FORCE = (t: any) => t;
+// @omega.redirect i/FORCE.ts
+export { FORCE } from "./i/FORCE.ts";

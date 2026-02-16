@@ -1,1 +1,2 @@
-export const SENSATION = (f: any) => (p: any) => f(p);
+// @omega.redirect i/SENSATION.ts
+export { SENSATION } from "./i/SENSATION.ts";

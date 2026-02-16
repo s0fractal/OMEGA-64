@@ -1,1 +1,2 @@
-export const LISTEN = (writer: any) => (pair: any) => writer((a: any) => (w: any) => pair(a)(w));
+// @omega.redirect i/LISTEN.ts
+export { LISTEN } from "./i/LISTEN.ts";
