@@ -4,6 +4,8 @@
 
 /// <reference lib="deno.ns" />
 
+import { RULE_VECTOR_REQUIRED } from "./i/RULE_VECTOR_REQUIRED.ts";
+
 type AnnotationEntry = {
   file: string;
   vector?: string;
@@ -12,6 +14,8 @@ type AnnotationEntry = {
   unfold?: number;
   load?: number;
 };
+
+type Rule = (entry: AnnotationEntry) => string | null;
 
 type ScanReport = {
   root: string;
@@ -22,6 +26,7 @@ type ScanReport = {
 
 const DEFAULT_ROOT = "i";
 const DEFAULT_OUT = "o/vector_map.json";
+const RULES: Rule[] = [RULE_VECTOR_REQUIRED];
 
 const parseArgs = (args: string[]) => {
   let root = DEFAULT_ROOT;
@@ -85,8 +90,9 @@ const main = async () => {
   for await (const path of walk(args.root)) {
     const source = await Deno.readTextFile(path);
     const entry = parseAnnotation(source, path);
-    if (!entry.vector) {
-      report.errors.push(`Missing @omega.vector: ${path}`);
+    for (const rule of RULES) {
+      const err = rule(entry);
+      if (err) report.errors.push(err);
     }
     report.entries.push(entry);
   }
