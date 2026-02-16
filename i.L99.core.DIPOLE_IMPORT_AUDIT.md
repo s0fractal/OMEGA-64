@@ -7,16 +7,19 @@ Purpose:
 
 Default Policy:
 - RS: ASCEND (L00 → L63)
-- TS: DESCEND (L63 → L00)
+- TS: ASCEND (L00 → L63)
 - Mode: WARN (non-fatal)
+- Cache Allowlist: ON (reads i.L99.core.CACHE_INVARIANTS.md)
 
 Usage:
 - deno run -A i.L99.core.DIPOLE_IMPORT_AUDIT.ts
-- deno run -A i.L99.core.DIPOLE_IMPORT_AUDIT.ts --rs ASCEND --ts DESCEND --mode WARN
+- deno run -A i.L99.core.DIPOLE_IMPORT_AUDIT.ts --rs ASCEND --ts DESCEND --mode WARN --no-cache
 - deno run -A i.L99.core.DIPOLE_IMPORT_AUDIT.ts --mode FAIL
 - deno run -A i.L99.core.DIPOLE_IMPORT_AUDIT.ts --include-noncanonical
+- deno run -A i.L99.core.DIPOLE_IMPORT_AUDIT.ts --no-cache
 
 Notes:
 - Only files named i.Lxx.* are scanned.
 - Lxx must be 00..63 (others ignored).
 - Noncanonical files are skipped unless explicitly included.
+- Cache allowlist matches snippet text against i.L99.core.CACHE_INVARIANTS.md.

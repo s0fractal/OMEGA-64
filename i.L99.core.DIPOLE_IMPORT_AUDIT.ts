@@ -18,8 +18,9 @@ type Violation = {
 
 const DEFAULT_ROOT = ".";
 const DEFAULT_RS = "ASCEND";
-const DEFAULT_TS = "DESCEND";
+const DEFAULT_TS = "ASCEND";
 const DEFAULT_MODE = "WARN";
+const DEFAULT_CACHE_ALLOW = true;
 
 const parseArgs = (args: string[]) => {
   const out: {
@@ -28,12 +29,14 @@ const parseArgs = (args: string[]) => {
     ts: Direction;
     mode: Mode;
     includeNoncanonical: boolean;
+    cacheAllow: boolean;
   } = {
     root: DEFAULT_ROOT,
     rs: DEFAULT_RS,
     ts: DEFAULT_TS,
     mode: DEFAULT_MODE,
     includeNoncanonical: false,
+    cacheAllow: DEFAULT_CACHE_ALLOW,
   };
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
@@ -64,6 +67,10 @@ const parseArgs = (args: string[]) => {
       out.includeNoncanonical = true;
       continue;
     }
+    if (arg === "--no-cache") {
+      out.cacheAllow = false;
+      continue;
+    }
   }
   return out;
 };
@@ -87,6 +94,23 @@ const isWithinBand = (level: number | null): level is number =>
 const isNoncanonical = (content: string): boolean => {
   const head = content.split("\n").slice(0, 12).join("\n");
   return head.includes("@noncanonical");
+};
+
+const loadCacheAllow = async (root: string): Promise<Set<string>> => {
+  const allow = new Set<string>();
+  const path = `${root}/i.L99.core.CACHE_INVARIANTS.md`;
+  try {
+    const raw = await Deno.readTextFile(path);
+    for (const line of raw.split("\n")) {
+      const trimmed = line.trim();
+      if (trimmed.startsWith("- i.")) {
+        allow.add(trimmed.slice(2).trim());
+      }
+    }
+  } catch {
+    // ignore if missing
+  }
+  return allow;
 };
 
 const extractTargets = (content: string): Array<{ level: number; snippet: string }> => {
@@ -133,6 +157,7 @@ const walk = async function* (root: string): AsyncGenerator<string> {
 const main = async () => {
   const args = parseArgs(Deno.args);
   const violations: Violation[] = [];
+  const cacheAllow = args.cacheAllow ? await loadCacheAllow(args.root) : new Set<string>();
 
   for await (const path of walk(args.root)) {
     const base = path.split("/").pop() ?? path;
@@ -148,6 +173,10 @@ const main = async () => {
 
     for (const target of targets) {
       if (!isWithinBand(target.level)) continue;
+      if (cacheAllow.size > 0) {
+        const hit = Array.from(cacheAllow).find((id) => target.snippet.includes(id));
+        if (hit) continue;
+      }
       if (!allows(direction, sourceLevel, target.level)) {
         violations.push({
           file: path,
