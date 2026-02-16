@@ -1,1 +1,2 @@
-export const L_JOIN = (a: any) => (b: any) => (s: any) => s(a)(b);
+// @omega.redirect i/L_JOIN.ts
+export { L_JOIN } from "./i/L_JOIN.ts";

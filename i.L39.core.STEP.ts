@@ -1,1 +1,2 @@
-import { MACHINE } from "./i.L39.core.MACHINE.ts"; export const STEP = (m: any) => (input: any) => m((transition: any) => (state: any) => MACHINE(transition)(transition(state)(input)));
+// @omega.redirect i/STEP.ts
+export { STEP } from "./i/STEP.ts";

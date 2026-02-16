@@ -1,1 +1,2 @@
-export const MACHINE = (transition: any) => (state: any) => (pair: any) => pair(transition)(state);
+// @omega.redirect i/MACHINE.ts
+export { MACHINE } from "./i/MACHINE.ts";

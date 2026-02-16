@@ -1,1 +1,2 @@
-export const L_MEET = (a: any) => (b: any) => (s: any) => s(a)(b);
+// @omega.redirect i/L_MEET.ts
+export { L_MEET } from "./i/L_MEET.ts";
