@@ -1,1 +1,1 @@
-import { TRIPLE } from "./i.L51.core.TRIPLE.ts"; export const POINT = (x: any) => (y: any) => (z: any) => TRIPLE(x)(y)(z);
+import { TRIPLE } from "./i.L32.core.TRIPLE.ts"; export const POINT = (x: any) => (y: any) => (z: any) => TRIPLE(x)(y)(z);

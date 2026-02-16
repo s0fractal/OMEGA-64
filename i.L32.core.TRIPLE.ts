@@ -1,0 +1,1 @@
+export const TRIPLE = (x: any) => (y: any) => (z: any) => (s: any) => s(x)(y)(z);
