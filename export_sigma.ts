@@ -14,12 +14,14 @@ const parseArgs = (args: string[]) => {
     output: string;
     mode: string;
     includeQView: boolean;
+    includeQLegacy: boolean;
     help: boolean;
   } = {
     root: DEFAULT_ROOT,
     output: DEFAULT_OUTPUT,
     mode: DEFAULT_MODE,
     includeQView: false,
+    includeQLegacy: false,
     help: false,
   };
   for (let i = 0; i < args.length; i++) {
@@ -47,6 +49,10 @@ const parseArgs = (args: string[]) => {
       out.includeQView = true;
       continue;
     }
+    if (arg === "--include-q-legacy") {
+      out.includeQLegacy = true;
+      continue;
+    }
   }
   return out;
 };
@@ -54,7 +60,7 @@ const parseArgs = (args: string[]) => {
 const usage = (): string =>
   [
     "Usage:",
-    "  deno run -A export_sigma.ts [--root <dir>] [--output <file>] [--mode entity|level] [--include-q-view]",
+    "  deno run -A export_sigma.ts [--root <dir>] [--output <file>] [--mode entity|level] [--include-q-view] [--include-q-legacy]",
     "",
     "Defaults:",
     `  root: ${DEFAULT_ROOT}`,
@@ -74,22 +80,31 @@ const isCandidate = (path: string): boolean => {
   return /^i\.L[0-9+-]+/.test(base) || base === "i.q";
 };
 
-const shouldSkipFile = (name: string, includeQView: boolean): boolean => {
-  if (includeQView) return false;
-  return /\.q\.(hue|phi|evt)$/.test(name);
+const shouldSkipFile = (
+  name: string,
+  includeQView: boolean,
+  includeQLegacy: boolean,
+): boolean => {
+  if (!includeQView && /\.q\.(hue|phi|evt)$/.test(name)) return true;
+  if (!includeQLegacy && /\.q\.(md|ts)$/.test(name)) return true;
+  return false;
 };
 
 const walk = async function* (
   root: string,
   includeQView: boolean,
+  includeQLegacy: boolean,
 ): AsyncGenerator<string> {
   for await (const entry of Deno.readDir(root)) {
     const full = `${root}/${entry.name}`;
     if (entry.isDirectory) {
       if (shouldSkipDir(entry.name)) continue;
-      yield* walk(full, includeQView);
+      yield* walk(full, includeQView, includeQLegacy);
     } else if (entry.isFile) {
-      if (isCandidate(entry.name) && !shouldSkipFile(entry.name, includeQView)) {
+      if (
+        isCandidate(entry.name) &&
+        !shouldSkipFile(entry.name, includeQView, includeQLegacy)
+      ) {
         yield full;
       }
     }
@@ -148,7 +163,7 @@ const main = async () => {
   }
 
   const files: { path: string; level: string; order: number }[] = [];
-  for await (const path of walk(args.root, args.includeQView)) {
+  for await (const path of walk(args.root, args.includeQView, args.includeQLegacy)) {
     const base = path.split("/").pop() ?? path;
     const token = levelToken(base);
     if (!token) continue;
