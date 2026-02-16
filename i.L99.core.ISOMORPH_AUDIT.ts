@@ -10,6 +10,7 @@ type ProjectionEntry = {
   name: string;
   ext: string;
   path: string;
+  vector?: string;
 };
 
 type IsomorphReport = {
@@ -22,7 +23,6 @@ type IsomorphReport = {
 
 const DEFAULT_PROJECTION_ROOTS = ["."];
 const DEFAULT_OUT = "o/isomorph_audit.json";
-const MIRROR_CENTER = 63;
 
 const parseArgs = (args: string[]) => {
   let out = DEFAULT_OUT;
@@ -56,21 +56,35 @@ const walk = async function* (root: string): AsyncGenerator<string> {
   }
 };
 
-const parseProjection = (path: string): ProjectionEntry | null => {
+const parseVector = (source: string): string | undefined => {
+  const match = source.match(/@omega\.vector\s+([0-9]+(?:\.[0-9]+){0,2})/);
+  return match ? match[1] : undefined;
+};
+
+const parseProjection = async (path: string): Promise<ProjectionEntry | null> => {
   const match = path.match(/i\.L(\d{2})\.([^.]+)\.([^.]+)\.([a-z0-9]+)$/i);
   if (!match) return null;
   const level = Number(match[1]);
   const layer = match[2];
   const name = match[3];
   const ext = match[4].toLowerCase();
-  return { level, layer, name, ext, path };
+  let vector: string | undefined;
+  try {
+    if (path.endsWith(".ts") || path.endsWith(".rs") || path.endsWith(".md") || path.endsWith(".q")) {
+      const source = await Deno.readTextFile(path);
+      vector = parseVector(source);
+    }
+  } catch {
+    // ignore read errors
+  }
+  return { level, layer, name, ext, path, vector };
 };
 
 const collectProjections = async (roots: string[]) => {
   const projections: Record<string, ProjectionEntry[]> = {};
   for (const root of roots) {
     for await (const path of walk(root)) {
-      const entry = parseProjection(path);
+      const entry = await parseProjection(path);
       if (!entry) continue;
       const key = `${entry.layer}.${entry.name}`;
       if (!projections[key]) projections[key] = [];
@@ -93,27 +107,17 @@ const main = async () => {
   report.projections = await collectProjections(projectionRoots);
 
   for (const [key, entries] of Object.entries(report.projections)) {
-    const tsEntries = entries.filter((entry) => entry.ext === "ts");
-    const rsEntries = entries.filter((entry) => entry.ext === "rs");
-    if (tsEntries.length === 0 && rsEntries.length === 0) continue;
-
-    const rsLevels = new Set(rsEntries.map((entry) => entry.level));
-
-    for (const ts of tsEntries) {
-      const expected = MIRROR_CENTER - ts.level;
-      if (!rsLevels.has(expected)) {
-        report.errors.push(
-          `MISSING_MIRROR ${key} ts=L${ts.level.toString().padStart(2, "0")} -> rs=L${expected
-            .toString()
-            .padStart(2, "0")}`,
-        );
-      }
+    const domains = new Set<string>();
+    const vectors = entries.map((entry) => entry.vector).filter(Boolean) as string[];
+    for (const vector of vectors) {
+      const parts = vector.split(".");
+      if (parts.length >= 2) domains.add(parts[1]);
     }
-
-    if (tsEntries.length > 0 && rsEntries.length > 0) {
-      report.notes.push(
-        `MIRROR_PAIR ${key} ts=${tsEntries.length} rs=${rsEntries.length}`,
-      );
+    if (domains.size > 1) {
+      report.errors.push(`DOMAIN_DRIFT ${key} -> ${Array.from(domains).join(", ")}`);
+    }
+    if (vectors.length > 0) {
+      report.notes.push(`VECTOR_DOMAIN ${key} -> ${Array.from(domains).join(", ")}`);
     }
   }
 
