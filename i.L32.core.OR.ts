@@ -1,1 +1,2 @@
-export const OR = (p: any) => (q: any) => p(p)(q);
+// @omega.redirect i/OR.ts
+export { OR } from "./i/OR.ts";

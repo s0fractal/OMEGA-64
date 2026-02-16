@@ -1,1 +1,2 @@
-export const AND = (p: any) => (q: any) => p(q)(p);
+// @omega.redirect i/AND.ts
+export { AND } from "./i/AND.ts";
