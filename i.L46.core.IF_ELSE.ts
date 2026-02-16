@@ -1,1 +1,2 @@
-import { MUX } from "./i.L57.core.MUX.ts"; export const IF_ELSE = MUX;
+// @omega.redirect i/IF_ELSE.ts
+export { IF_ELSE } from "./i/IF_ELSE.ts";
