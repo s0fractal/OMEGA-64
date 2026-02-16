@@ -1,1 +1,2 @@
-export const ATOM = (val: any) => (obs: any) => obs(val);
+// @omega.redirect i/ATOM.ts
+export { ATOM } from "./i/ATOM.ts";

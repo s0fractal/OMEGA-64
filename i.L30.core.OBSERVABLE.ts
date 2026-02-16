@@ -1,1 +1,2 @@
-export const OBSERVABLE = (f: any) => (obs: any) => f(obs);
+// @omega.redirect i/OBSERVABLE.ts
+export { OBSERVABLE } from "./i/OBSERVABLE.ts";

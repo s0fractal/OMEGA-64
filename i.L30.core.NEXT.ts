@@ -1,1 +1,2 @@
-export const NEXT = (val: any) => (obs: any) => obs(val);
+// @omega.redirect i/NEXT.ts
+export { NEXT } from "./i/NEXT.ts";
