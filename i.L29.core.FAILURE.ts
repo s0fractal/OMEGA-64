@@ -1,1 +1,2 @@
-import { F } from "./i.L32.core.F.ts"; export const FAILURE = F;
+// @omega.redirect i/FAILURE.ts
+export { FAILURE } from "./i/FAILURE.ts";

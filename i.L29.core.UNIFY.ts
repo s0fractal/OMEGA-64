@@ -1,1 +1,2 @@
-export const UNIFY = (a: any) => (b: any) => a;
+// @omega.redirect i/UNIFY.ts
+export { UNIFY } from "./i/UNIFY.ts";
