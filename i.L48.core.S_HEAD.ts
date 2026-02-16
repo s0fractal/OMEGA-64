@@ -1,1 +1,2 @@
-import { CAR } from "./i.L32.core.CAR.ts"; export const S_HEAD = CAR;
+// @omega.redirect i/S_HEAD.ts
+export { S_HEAD } from "./i/S_HEAD.ts";

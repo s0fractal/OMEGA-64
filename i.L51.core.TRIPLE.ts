@@ -1,1 +1,2 @@
-export const TRIPLE = (x: any) => (y: any) => (z: any) => (s: any) => s(x)(y)(z);
+// @omega.redirect i/TRIPLE.ts
+export { TRIPLE } from "./i/TRIPLE.ts";

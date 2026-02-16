@@ -1,1 +1,2 @@
-import { Y } from "./i.L32.core.Y.ts"; import { CAR } from "./i.L32.core.CAR.ts"; import { CDR } from "./i.L32.core.CDR.ts"; import { CONS } from "./i.L32.core.CONS.ts"; export const S_MAP = Y((r: any) => (f: any) => (s: any) => CONS(f(CAR(s)))(r(f)(CDR(s))));
+// @omega.redirect i/S_MAP.ts
+export { S_MAP } from "./i/S_MAP.ts";

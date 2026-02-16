@@ -1,1 +1,2 @@
-import { CDR } from "./i.L32.core.CDR.ts"; export const S_TAIL = (s: any) => CDR(s)(undefined);
+// @omega.redirect i/S_TAIL.ts
+export { S_TAIL } from "./i/S_TAIL.ts";

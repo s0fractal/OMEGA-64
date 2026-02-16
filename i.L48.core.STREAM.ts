@@ -1,1 +1,2 @@
-import { CONS } from "./i.L32.core.CONS.ts"; export const STREAM = (head: any) => (tailThunk: any) => CONS(head)(tailThunk);
+// @omega.redirect i/STREAM.ts
+export { STREAM } from "./i/STREAM.ts";
