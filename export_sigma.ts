@@ -60,7 +60,7 @@ const shouldSkipDir = (name: string): boolean =>
 
 const isCandidate = (path: string): boolean => {
   const base = path.split("/").pop() ?? path;
-  return /^i\.L[0-9+-]+/.test(base);
+  return /^i\.L[0-9+-]+/.test(base) || base === "i.q";
 };
 
 const walk = async function* (root: string): AsyncGenerator<string> {
@@ -76,11 +76,13 @@ const walk = async function* (root: string): AsyncGenerator<string> {
 };
 
 const levelToken = (filename: string): string | null => {
+  if (filename === "i.q") return "Q";
   const match = filename.match(/^i\.(L[0-9+-]+)\./);
   return match ? match[1] : null;
 };
 
 const levelOrder = (token: string): number => {
+  if (token === "Q") return -1;
   const raw = token.replace(/^L/, "");
   const n = Number.parseInt(raw, 10);
   return Number.isFinite(n) ? n : 0;
@@ -105,6 +107,8 @@ const langFor = (path: string): string => {
       return "lean";
     case "txt":
       return "txt";
+    case "q":
+      return "q";
     default:
       return "";
   }
@@ -167,7 +171,8 @@ const main = async () => {
 
     const byEntity = new Map<string, string[]>();
     for (const path of levelFiles) {
-      const base = path.replace(/\.[^.]+$/, "");
+      const baseName = path.split("/").pop() ?? path;
+      const base = baseName === "i.q" ? path : path.replace(/\.[^.]+$/, "");
       const list = byEntity.get(base) ?? [];
       list.push(path);
       byEntity.set(base, list);
