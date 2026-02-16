@@ -8,11 +8,13 @@ import { RULE_VECTOR_REQUIRED } from "./i/RULE_VECTOR_REQUIRED.ts";
 import { RULE_VECTOR_FORMAT } from "./i/RULE_VECTOR_FORMAT.ts";
 import { RULE_VECTOR_RANGE } from "./i/RULE_VECTOR_RANGE.ts";
 import { RULE_VECTOR_DOMAIN_PHASE } from "./i/RULE_VECTOR_DOMAIN_PHASE.ts";
+import { RULE_SYMBOL_OPTIONAL } from "./i/RULE_SYMBOL_OPTIONAL.ts";
 
 type AnnotationEntry = {
   file: string;
   vector?: string;
   readonly?: boolean;
+  symbol?: string;
   port?: number;
   unfold?: number;
   load?: number;
@@ -30,7 +32,7 @@ type ScanReport = {
 
 const DEFAULT_ROOT = "i";
 const DEFAULT_OUT = "o/vector_map.json";
-const RULES: Rule[] = [RULE_VECTOR_REQUIRED, RULE_VECTOR_FORMAT, RULE_VECTOR_RANGE, RULE_VECTOR_DOMAIN_PHASE];
+const RULES: Rule[] = [RULE_VECTOR_REQUIRED, RULE_VECTOR_FORMAT, RULE_VECTOR_RANGE, RULE_VECTOR_DOMAIN_PHASE, RULE_SYMBOL_OPTIONAL];
 
 const parseArgs = (args: string[]) => {
   let root = DEFAULT_ROOT;
@@ -54,6 +56,9 @@ const parseAnnotation = (source: string, file: string): AnnotationEntry => {
   if (vectorMatch) entry.vector = vectorMatch[1];
 
   if (/@omega\.readonly/.test(source)) entry.readonly = true;
+
+  const symbolMatch = source.match(/@omega\.symbol\s+(.+)/);
+  if (symbolMatch) entry.symbol = symbolMatch[1].trim();
 
   const portMatch = source.match(/@omega\.port\s+(\d{1,5})/);
   if (portMatch) entry.port = Number(portMatch[1]);
@@ -98,7 +103,7 @@ const main = async () => {
     for (const rule of RULES) {
       const err = rule(entry);
       if (err) {
-        if (err.startsWith("DOMAIN_PHASE")) report.notes.push(err);
+        if (err.startsWith("DOMAIN_PHASE") || err.startsWith("SYMBOL")) report.notes.push(err);
         else report.errors.push(err);
       }
     }

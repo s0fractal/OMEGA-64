@@ -2,6 +2,7 @@
  * @omega.vector 27.18.03
  * @omega.readonly
  * @omega.load 0
+ * @omega.symbol e
  */
 
 export const E_GROWTH = () => 2.718281828459045;
