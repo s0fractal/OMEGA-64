@@ -1,1 +1,2 @@
-export const EMERGENCE = (interaction: any) => interaction;
+// @omega.redirect i/EMERGENCE.ts
+export { EMERGENCE } from "./i/EMERGENCE.ts";

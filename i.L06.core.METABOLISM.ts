@@ -1,1 +1,2 @@
-export const METABOLISM = (l: any) => (e: any) => e(l);
+// @omega.redirect i/METABOLISM.ts
+export { METABOLISM } from "./i/METABOLISM.ts";

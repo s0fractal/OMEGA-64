@@ -1,1 +1,2 @@
-export const LIFE = (pattern: any) => pattern;
+// @omega.redirect i/LIFE.ts
+export { LIFE } from "./i/LIFE.ts";

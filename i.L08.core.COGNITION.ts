@@ -1,1 +1,2 @@
-export const COGNITION = (cluster: any) => cluster;
+// @omega.redirect i/COGNITION.ts
+export { COGNITION } from "./i/COGNITION.ts";

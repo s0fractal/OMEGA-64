@@ -1,1 +1,2 @@
-export const NEURON = (inputs: any) => (weights: any) => (threshold: any) => inputs;
+// @omega.redirect i/NEURON.ts
+export { NEURON } from "./i/NEURON.ts";

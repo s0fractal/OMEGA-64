@@ -1,1 +1,2 @@
-export const EVOLVE = (l: any) => (f: any) => f(l);
+// @omega.redirect i/EVOLVE.ts
+export { EVOLVE } from "./i/EVOLVE.ts";
