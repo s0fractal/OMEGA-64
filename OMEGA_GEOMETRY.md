@@ -15,6 +15,11 @@
 - Overlap between sectors is allowed on outer layers.
 - Overlap near the core implies drift.
 
+## Symmetry (Dipole Law)
+- Every domain has a natural antipode: `D' = (D + 32) mod 64`.
+- Axial stability requires balance between `D` and `D'`.
+- Antipodal resonance passes through the core and yields maximum tension.
+
 ## Interpretation
 - Address is discrete, thickness is geometric.
 - Motion is a trajectory between addresses, not a new address.
