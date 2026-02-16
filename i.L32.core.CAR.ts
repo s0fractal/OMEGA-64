@@ -1,1 +1,2 @@
-import { T } from "./i.L32.core.T.ts"; export const CAR = (p: any) => p(T);
+// @omega.redirect i/CAR.ts
+export { CAR } from "./i/CAR.ts";

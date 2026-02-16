@@ -1,1 +1,2 @@
-import { F } from "./i.L32.core.F.ts"; export const NIL = F;
+// @omega.redirect i/NIL.ts
+export { NIL } from "./i/NIL.ts";

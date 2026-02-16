@@ -1,1 +1,2 @@
-export const K = <T>(a: T) => <U>(_: U): T => a;
+// @omega.redirect i/K.ts
+export { K } from "./i/K.ts";

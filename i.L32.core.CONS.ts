@@ -1,1 +1,2 @@
-export const CONS = (x: any) => (y: any) => (s: any) => s(x)(y);
+// @omega.redirect i/CONS.ts
+export { CONS } from "./i/CONS.ts";

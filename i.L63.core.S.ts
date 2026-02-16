@@ -1,1 +1,2 @@
-export const S = <T, U, V>(f: (x: T) => (y: U) => V) => (g: (x: T) => U) => (x: T): V => f(x)(g(x));
+// @omega.redirect i/S.ts
+export { S } from "./i/S.ts";
