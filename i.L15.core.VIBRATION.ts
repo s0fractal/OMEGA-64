@@ -1,1 +1,2 @@
-import { SIGNAL } from "./i.L16.core.SIGNAL.ts"; export const VIBRATION = SIGNAL;
+// @omega.redirect i/VIBRATION.ts
+export { VIBRATION } from "./i/VIBRATION.ts";

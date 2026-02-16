@@ -1,1 +1,2 @@
-export const AMPLITUDE = (a: any) => a;
+// @omega.redirect i/AMPLITUDE.ts
+export { AMPLITUDE } from "./i/AMPLITUDE.ts";

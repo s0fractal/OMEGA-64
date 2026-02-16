@@ -1,1 +1,2 @@
-export const WAVE = (v: any) => (f: any) => (p: any) => p(v)(f);
+// @omega.redirect i/WAVE.ts
+export { WAVE } from "./i/WAVE.ts";

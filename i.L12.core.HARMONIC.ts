@@ -1,1 +1,2 @@
-export const HARMONIC = (f: any) => (m: any) => f;
+// @omega.redirect i/HARMONIC.ts
+export { HARMONIC } from "./i/HARMONIC.ts";
