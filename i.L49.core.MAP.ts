@@ -1,1 +1,2 @@
-import { Y } from "./i.L32.core.Y.ts"; import { IS_NIL } from "./i.L32.core.IS_NIL.ts"; import { CAR } from "./i.L32.core.CAR.ts"; import { CDR } from "./i.L32.core.CDR.ts"; import { CONS } from "./i.L32.core.CONS.ts"; import { NIL } from "./i.L32.core.NIL.ts"; export const MAP = Y((r: any) => (f: any) => (l: any) => IS_NIL(l)(NIL)(CONS(f(CAR(l)))(r(f)(CDR(l)))));
+// @omega.redirect i/MAP.ts
+export { MAP } from "./i/MAP.ts";

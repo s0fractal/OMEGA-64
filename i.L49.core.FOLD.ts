@@ -1,1 +1,2 @@
-import { Y } from "./i.L32.core.Y.ts"; import { IS_NIL } from "./i.L32.core.IS_NIL.ts"; import { CAR } from "./i.L32.core.CAR.ts"; import { CDR } from "./i.L32.core.CDR.ts"; export const FOLD = Y((r: any) => (f: any) => (init: any) => (l: any) => IS_NIL(l)(init)(f(CAR(l))(r(f)(init)(CDR(l)))));
+// @omega.redirect i/FOLD.ts
+export { FOLD } from "./i/FOLD.ts";

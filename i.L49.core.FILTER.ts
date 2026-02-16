@@ -1,1 +1,2 @@
-import { Y } from "./i.L32.core.Y.ts"; import { IS_NIL } from "./i.L32.core.IS_NIL.ts"; import { CAR } from "./i.L32.core.CAR.ts"; import { CDR } from "./i.L32.core.CDR.ts"; import { CONS } from "./i.L32.core.CONS.ts"; import { NIL } from "./i.L32.core.NIL.ts"; export const FILTER = Y((r: any) => (p: any) => (l: any) => IS_NIL(l)(NIL)(p(CAR(l))(CONS(CAR(l))(r(p)(CDR(l))))(r(p)(CDR(l)))));
+// @omega.redirect i/FILTER.ts
+export { FILTER } from "./i/FILTER.ts";
