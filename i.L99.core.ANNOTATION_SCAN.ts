@@ -9,12 +9,16 @@ import { RULE_VECTOR_FORMAT } from "./i/RULE_VECTOR_FORMAT.ts";
 import { RULE_VECTOR_RANGE } from "./i/RULE_VECTOR_RANGE.ts";
 import { RULE_VECTOR_DOMAIN_PHASE } from "./i/RULE_VECTOR_DOMAIN_PHASE.ts";
 import { RULE_SYMBOL_OPTIONAL } from "./i/RULE_SYMBOL_OPTIONAL.ts";
+import { RULE_ORIGIN_OPTIONAL } from "./i/RULE_ORIGIN_OPTIONAL.ts";
+import { RULE_REDIRECT_OPTIONAL } from "./i/RULE_REDIRECT_OPTIONAL.ts";
 
 type AnnotationEntry = {
   file: string;
   vector?: string;
   readonly?: boolean;
   symbol?: string;
+  origin?: string;
+  redirect?: string;
   port?: number;
   unfold?: number;
   load?: number;
@@ -32,7 +36,15 @@ type ScanReport = {
 
 const DEFAULT_ROOT = "i";
 const DEFAULT_OUT = "o/vector_map.json";
-const RULES: Rule[] = [RULE_VECTOR_REQUIRED, RULE_VECTOR_FORMAT, RULE_VECTOR_RANGE, RULE_VECTOR_DOMAIN_PHASE, RULE_SYMBOL_OPTIONAL];
+const RULES: Rule[] = [
+  RULE_VECTOR_REQUIRED,
+  RULE_VECTOR_FORMAT,
+  RULE_VECTOR_RANGE,
+  RULE_VECTOR_DOMAIN_PHASE,
+  RULE_SYMBOL_OPTIONAL,
+  RULE_ORIGIN_OPTIONAL,
+  RULE_REDIRECT_OPTIONAL,
+];
 
 const parseArgs = (args: string[]) => {
   let root = DEFAULT_ROOT;
@@ -59,6 +71,12 @@ const parseAnnotation = (source: string, file: string): AnnotationEntry => {
 
   const symbolMatch = source.match(/@omega\.symbol\s+(.+)/);
   if (symbolMatch) entry.symbol = symbolMatch[1].trim();
+
+  const originMatch = source.match(/@omega\.origin\s+(.+)/);
+  if (originMatch) entry.origin = originMatch[1].trim();
+
+  const redirectMatch = source.match(/@omega\.redirect\s+(.+)/);
+  if (redirectMatch) entry.redirect = redirectMatch[1].trim();
 
   const portMatch = source.match(/@omega\.port\s+(\d{1,5})/);
   if (portMatch) entry.port = Number(portMatch[1]);
@@ -103,7 +121,7 @@ const main = async () => {
     for (const rule of RULES) {
       const err = rule(entry);
       if (err) {
-        if (err.startsWith("DOMAIN_PHASE") || err.startsWith("SYMBOL")) report.notes.push(err);
+        if (err.startsWith("DOMAIN_PHASE") || err.startsWith("SYMBOL") || err.startsWith("ORIGIN") || err.startsWith("REDIRECT")) report.notes.push(err);
         else report.errors.push(err);
       }
     }

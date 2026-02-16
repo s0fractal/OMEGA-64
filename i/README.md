@@ -16,3 +16,4 @@ Rule Modules:
 - Additional: RULE_VECTOR_FORMAT.ts, RULE_VECTOR_RANGE.ts
 - Phase mapping: RULE_VECTOR_DOMAIN_PHASE.ts
 - Optional symbols: RULE_SYMBOL_OPTIONAL.ts
+- Optional origin/redirect: RULE_ORIGIN_OPTIONAL.ts, RULE_REDIRECT_OPTIONAL.ts

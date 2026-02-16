@@ -27,6 +27,12 @@ Optional Annotations:
   - Declares unfolding target layer.
 - @omega.load <number>
   - Declares load impact (used by LOAD and REPLAY).
+- @omega.symbol <glyph>
+  - Declares a semantic glyph (optional, recorded as note).
+- @omega.origin <path>
+  - Declares migration source path (optional, recorded as note).
+- @omega.redirect <path>
+  - Declares migration redirect target (optional, recorded as note).
 
 Validity Rules:
 - Any file in /i without @omega.vector is invalid.
