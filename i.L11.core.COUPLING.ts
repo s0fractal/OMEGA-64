@@ -1,1 +1,2 @@
-export const COUPLING = (f1: any) => (f2: any) => f1;
+// @omega.redirect i/COUPLING.ts
+export { COUPLING } from "./i/COUPLING.ts";

@@ -1,2 +1,2 @@
-// @spectral: PRESSURE::lambda:p->p
-export const PRESSURE = (p: any) => p;
+// @omega.redirect i/PRESSURE.ts
+export { PRESSURE } from "./i/PRESSURE.ts";

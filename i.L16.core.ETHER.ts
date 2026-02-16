@@ -1,1 +1,2 @@
-import { SIGNAL } from "./i.L16.core.SIGNAL.ts"; export const ETHER = (f: any) => f(SIGNAL);
+// @omega.redirect i/ETHER.ts
+export { ETHER } from "./i/ETHER.ts";

@@ -1,2 +1,2 @@
-// @spectral: FIELD::lambda:p->value
-export const FIELD = (mapping: any) => mapping;
+// @omega.redirect i/FIELD.ts
+export { FIELD } from "./i/FIELD.ts";

@@ -1,1 +1,2 @@
-import { I } from "./i.L32.core.I.ts"; export const SIGNAL = I;
+// @omega.redirect i/SIGNAL.ts
+export { SIGNAL } from "./i/SIGNAL.ts";

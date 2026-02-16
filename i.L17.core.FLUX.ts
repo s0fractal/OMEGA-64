@@ -1,1 +1,2 @@
-export const FLUX = (a: any) => (b: any) => a;
+// @omega.redirect i/FLUX.ts
+export { FLUX } from "./i/FLUX.ts";
