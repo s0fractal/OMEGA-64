@@ -1,1 +1,2 @@
-export const OMEGA = (l: any) => l;
+// @omega.redirect i/OMEGA.ts
+export { OMEGA } from "./i/OMEGA.ts";
