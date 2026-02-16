@@ -3,7 +3,7 @@
 // "Колір світла та колір буття — одна структура, різні носії"
 
 import { FIELD_CONFIG, FIELD } from './i.L00.core.FIELD.ts';
-import { U16_LIMITS } from "./i.L00.core.U16_LIMITS.ts";
+import { U16_LIMITS } from "./i.L32.core.U16_LIMITS.ts";
 import { QWave, WAVE_PACKET } from './i.L13.core.WAVE_PACKET.ts';
 
 const U16 = U16_LIMITS();

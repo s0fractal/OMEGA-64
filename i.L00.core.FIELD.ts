@@ -4,7 +4,7 @@
  * Реалізація простору [-32768, 32767] для запобігання семантичному колапсу.
  */
 
-import { I16_LIMITS } from "./i.L00.core.I16_LIMITS.ts";
+import { I16_LIMITS } from "./i.L32.core.I16_LIMITS.ts";
 
 const I16 = I16_LIMITS();
 

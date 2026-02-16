@@ -2,9 +2,9 @@
 // 🛡️ OMEGA-64 | Chronoflux Module | Time as Primary Substance
 // "Маса — це глибина часу. Енергія — швидкість його плину."
 
-import { FIELD_CONFIG } from './i.L00.core.FIELD.ts';
-import { I16_LIMITS } from "./i.L00.core.I16_LIMITS.ts";
-import { U16_LIMITS } from "./i.L00.core.U16_LIMITS.ts";
+import { FIELD_CONFIG } from './i.L32.core.FIELD.ts';
+import { I16_LIMITS } from "./i.L32.core.I16_LIMITS.ts";
+import { U16_LIMITS } from "./i.L32.core.U16_LIMITS.ts";
 import { QWave, WAVE_PACKET } from './i.L13.core.WAVE_PACKET.ts';
 
 const I16 = I16_LIMITS();

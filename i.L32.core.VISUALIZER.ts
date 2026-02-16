@@ -4,7 +4,7 @@
  * Не для людини — для системи, щоб "побачити" власну інтерференцію.
  */
 
-import { FIELD, FIELD_CONFIG } from './i.L00.core.FIELD.ts';
+import { FIELD, FIELD_CONFIG } from './i.L32.core.FIELD.ts';
 import { ARENA } from './i.L32.core.ARENA.ts';
 import { I16_LIMITS } from './i.L00.core.I16_LIMITS.ts';
 

@@ -3,8 +3,8 @@
  * Реалізація Гаусового хвильового пакету для локалізації наміру.
  */
 
-import { FIELD } from './i.L00.core.FIELD.ts';
-import { U16_LIMITS } from "./i.L00.core.U16_LIMITS.ts";
+import { FIELD } from './i.L32.core.FIELD.ts';
+import { U16_LIMITS } from "./i.L32.core.U16_LIMITS.ts";
 
 const U16 = U16_LIMITS();
 

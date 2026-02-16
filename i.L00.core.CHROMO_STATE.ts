@@ -3,8 +3,8 @@
 
 import { QWave } from './i.L13.core.WAVE_PACKET.ts';
 import { CHROMO, HSV, RGB } from './i.L00.core.COLOR.ts';
-import { I16_LIMITS } from "./i.L00.core.I16_LIMITS.ts";
-import { U16_LIMITS } from "./i.L00.core.U16_LIMITS.ts";
+import { I16_LIMITS } from "./i.L32.core.I16_LIMITS.ts";
+import { U16_LIMITS } from "./i.L32.core.U16_LIMITS.ts";
 
 const I16 = I16_LIMITS();
 const U16 = U16_LIMITS();

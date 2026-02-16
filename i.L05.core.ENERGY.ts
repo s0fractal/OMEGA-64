@@ -4,7 +4,7 @@
  * Обчислює "біль" як стимул до дії (L05 INTENT).
  */
 
-import { FIELD } from './i.L00.core.FIELD.ts';
+import { FIELD } from './i.L32.core.FIELD.ts';
 
 export interface QWaveState {
   r: number;          // Поточна дипольна координата (i16)
