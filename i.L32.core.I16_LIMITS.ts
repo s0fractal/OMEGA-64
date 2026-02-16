@@ -1,1 +1,2 @@
-export const I16_LIMITS = () => ({ min: -32768, max: 32767, span: 65535 });
+// @omega.redirect i/I16_LIMITS.ts
+export { I16_LIMITS } from "./i/I16_LIMITS.ts";

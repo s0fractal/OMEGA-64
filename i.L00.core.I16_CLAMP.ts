@@ -1,5 +1,2 @@
-import { I16_LIMITS } from "./i.L32.core.I16_LIMITS.ts";
-
-const I16 = I16_LIMITS();
-
-export const I16_CLAMP = (x: number) => x > I16.max ? I16.max : (x < I16.min ? I16.min : x);
+// @omega.redirect i/I16_CLAMP.ts
+export { I16_CLAMP } from "./i/I16_CLAMP.ts";
