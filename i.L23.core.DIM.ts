@@ -1,1 +1,2 @@
-export const DIM = (name: any) => name;
+// @omega.redirect i/DIM.ts
+export { DIM } from "./i/DIM.ts";

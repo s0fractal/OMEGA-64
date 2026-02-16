@@ -1,1 +1,2 @@
-import { T3 } from "./i.L32.core.T3.ts"; export const COORD_Z = T3;
+// @omega.redirect i/COORD_Z.ts
+export { COORD_Z } from "./i/COORD_Z.ts";

@@ -1,1 +1,2 @@
-import { TRIPLE } from "./i.L32.core.TRIPLE.ts"; export const POINT = (x: any) => (y: any) => (z: any) => TRIPLE(x)(y)(z);
+// @omega.redirect i/POINT.ts
+export { POINT } from "./i/POINT.ts";

@@ -1,1 +1,2 @@
-import { CONS } from "./i.L32.core.CONS.ts"; export const VECTOR = (dim: any) => (values: any) => CONS(dim)(values);
+// @omega.redirect i/VECTOR.ts
+export { VECTOR } from "./i/VECTOR.ts";
