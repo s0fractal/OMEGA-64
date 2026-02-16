@@ -1,1 +1,2 @@
-export const A_SEND = (actor: any) => (msg: any) => actor(msg);
+// @omega.redirect i/A_SEND.ts
+export { A_SEND } from "./i/A_SEND.ts";

@@ -1,1 +1,2 @@
-export const ACTOR = (state: any) => (behavior: any) => (msg: any) => behavior(state)(msg);
+// @omega.redirect i/ACTOR.ts
+export { ACTOR } from "./i/ACTOR.ts";

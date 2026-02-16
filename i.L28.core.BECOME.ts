@@ -1,1 +1,2 @@
-export const BECOME = (next_behavior: any) => next_behavior;
+// @omega.redirect i/BECOME.ts
+export { BECOME } from "./i/BECOME.ts";
