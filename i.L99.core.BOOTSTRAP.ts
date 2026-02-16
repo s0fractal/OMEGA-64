@@ -8,6 +8,7 @@
 const DEFAULT_INPUT = "I.sigma.md";
 const DEFAULT_OUTPUT = "I.sigma.manifest.json";
 const DEFAULT_MOUNT_LIST = "i.L99.core.MOUNT_LIST.md";
+const DEFAULT_MOUNT_OUTPUT = "OMEGA_MOUNTS.json";
 
 type Cell = {
   id: string;
@@ -232,6 +233,17 @@ const main = async () => {
     cells,
   };
   await Deno.writeTextFile(args.output, JSON.stringify(output, null, 2));
+  if (args.mounts && mounts) {
+    const mountsOutput = {
+      generated_at: output.generated_at,
+      source: args.mounts,
+      mounts,
+    };
+    await Deno.writeTextFile(
+      DEFAULT_MOUNT_OUTPUT,
+      JSON.stringify(mountsOutput, null, 2),
+    );
+  }
   console.log(`Bootstrap manifest written to ${args.output}`);
 };
 

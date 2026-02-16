@@ -11,6 +11,7 @@ Constraints:
 Outputs:
 - I.sigma.manifest.json (cells: id, lang, hash, bytes, lines)
 - Optional: mounts projection list (if --mounts provided)
+- Optional: OMEGA_MOUNTS.json (mirror of mount projections)
 
 Ritual:
 1) Inhale: parse I.sigma.md

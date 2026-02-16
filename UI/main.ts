@@ -9,6 +9,8 @@ const healthCount = document.getElementById('health-count')!;
 const healthIndex = document.getElementById('health-index')!;
 const healthUpdated = document.getElementById('health-updated')!;
 const safeWindow = document.getElementById('safe-window')!;
+const mountCount = document.getElementById('mount-count')!;
+const mountFiles = document.getElementById('mount-files')!;
 
 let width: number, height: number;
 let time = 0;
@@ -187,3 +189,23 @@ async function pollHealthDetails() {
 
 pollHealthDetails();
 setInterval(pollHealthDetails, 5000);
+
+async function pollMounts() {
+    try {
+        const response = await fetch('OMEGA_MOUNTS.json', { cache: 'no-store' });
+        if (!response.ok) return;
+        const payload = await response.json();
+        const mounts = Array.isArray(payload?.mounts) ? payload.mounts : [];
+        const totalFiles = mounts.reduce((acc: number, mount: any) => {
+            if (Array.isArray(mount?.files)) return acc + mount.files.length;
+            return acc;
+        }, 0);
+        mountCount.textContent = String(mounts.length);
+        mountFiles.textContent = String(totalFiles);
+    } catch {
+        // ignore network errors
+    }
+}
+
+pollMounts();
+setInterval(pollMounts, 8000);

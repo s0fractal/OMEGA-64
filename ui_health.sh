@@ -14,6 +14,9 @@ HEALTH_OUTPUT=${HEALTH_OUTPUT:-UI/health.json}
 HEALTH_IO_OUTPUT=${HEALTH_IO_OUTPUT:-UI/health_io.json}
 SAFE_WINDOW=${SAFE_WINDOW:-1}
 PORT=${PORT:-8000}
+MOUNT_SCAN=${MOUNT_SCAN:-1}
+MOUNT_INPUT=${MOUNT_INPUT:-i.L99.core.MOUNT_LIST.md}
+MOUNT_OUTPUT=${MOUNT_OUTPUT:-UI/OMEGA_MOUNTS.json}
 
 log() { printf "[%s] %s\n" "$(date +%H:%M:%S)" "$*"; }
 sleep_interval() {
@@ -64,6 +67,9 @@ if [[ "${HEALTH_JSON}" == "1" ]]; then
             deno task io:health:write -- --input "${INPUT}" --output "${HEALTH_IO_OUTPUT}" --pretty || true
           fi
         fi
+        if [[ "${MOUNT_SCAN}" == "1" ]]; then
+          deno task mount:scan -- --input "${MOUNT_INPUT}" --output "${MOUNT_OUTPUT}" || true
+        fi
         sleep_interval
       done
     ) &
@@ -75,6 +81,9 @@ if [[ "${HEALTH_JSON}" == "1" ]]; then
           deno task o:health:write -- --input "${STREAM}" --output "${HEALTH_OUTPUT}" --pretty --safe-window || true
         else
           deno task o:health:write -- --input "${STREAM}" --output "${HEALTH_OUTPUT}" --pretty || true
+        fi
+        if [[ "${MOUNT_SCAN}" == "1" ]]; then
+          deno task mount:scan -- --input "${MOUNT_INPUT}" --output "${MOUNT_OUTPUT}" || true
         fi
         sleep_interval
       done
