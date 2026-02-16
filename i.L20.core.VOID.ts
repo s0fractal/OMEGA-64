@@ -1,1 +1,2 @@
-import { I } from "./i.L32.core.I.ts"; export const VOID = I;
+// @omega.redirect i/VOID.ts
+export { VOID } from "./i/VOID.ts";

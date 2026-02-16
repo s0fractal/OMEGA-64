@@ -1,1 +1,2 @@
-import { NIL } from "./i.L32.core.NIL.ts"; export const DISSOLVE = (x: any) => NIL;
+// @omega.redirect i/DISSOLVE.ts
+export { DISSOLVE } from "./i/DISSOLVE.ts";
