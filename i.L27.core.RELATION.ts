@@ -1,1 +1,2 @@
-export const RELATION = (tuples: any) => tuples;
+// @omega.redirect i/RELATION.ts
+export { RELATION } from "./i/RELATION.ts";

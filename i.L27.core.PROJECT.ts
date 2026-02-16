@@ -1,1 +1,2 @@
-import { MAP } from "./i.L49.core.MAP.ts"; export const PROJECT = (rel: any) => (transform: any) => MAP(transform)(rel);
+// @omega.redirect i/PROJECT.ts
+export { PROJECT } from "./i/PROJECT.ts";
