@@ -1,0 +1,37 @@
+# i.L99.core.ANNOTATION_PROTOCOL.md
+# OMEGA-64 | Annotation Protocol (Invariant Geometry)
+
+Purpose:
+- Define a minimal, canonical set of annotations used as topological laws.
+- Keep invariants in code bodies stable while geometry lives in metadata.
+
+Scope:
+- Applies to files in /i (canonical invariants).
+- An annotation without a physical effect is treated as noise.
+
+Required Annotation:
+- @omega.vector <L.D.P>
+  - Example: @omega.vector 31.41.6
+  - L: 00..63 (level)
+  - D: 00..63 (domain)
+  - P: 00..15 (port/variant)
+
+Optional Annotations:
+- @omega.readonly
+  - Declares immutable projection (no mutation allowed).
+- @omega.port <0..65535>
+  - Declares explicit network binding.
+- @omega.unfold <Lxx>
+  - Declares unfolding target layer.
+- @omega.load <number>
+  - Declares load impact (used by LOAD and REPLAY).
+
+Validity Rules:
+- Any file in /i without @omega.vector is invalid.
+- @omega.port must be a valid u16.
+- @omega.unfold must be 00..63.
+- @omega.load must be >= 0.
+
+Physical Effect Requirement:
+- Each annotation must alter at least one of: LOAD, FIELD, REPLAY.
+- If no effect exists, the annotation is rejected by IMMUNE.
