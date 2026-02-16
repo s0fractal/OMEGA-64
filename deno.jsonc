@@ -17,6 +17,7 @@
     "mount:scan": "deno run -A i.L99.core.MOUNT_SCAN.ts",
     "q:pack": "deno run -A i.L99.core.QUANTUM_PACK_RUN.ts --write",
     "q:audit": "deno run -A i.L99.core.QUANTUM_AUDIT.ts",
+    "q:audit:view": "deno run -A i.L99.core.QUANTUM_VIEW.ts && deno run -A i.L99.core.QUANTUM_AUDIT.ts",
     "q:view": "deno run -A i.L99.core.QUANTUM_VIEW.ts",
     "q:view:clean": "deno run -A i.L99.core.QUANTUM_VIEW.ts --clean",
     "glider:run": "deno run -A i.L99.core.GLIDER_LITE_RUN.ts",
