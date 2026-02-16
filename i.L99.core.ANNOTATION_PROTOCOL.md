@@ -15,7 +15,8 @@ Required Annotation:
   - L: 00..63 (level)
   - D: 00..63 (domain)
   - P: 00..15 (port/variant)
-  - Format: exactly three dot-separated integers (L.D.P)
+  - Format: exactly three dot-separated 2-digit integers (DD.DD.DD)
+  - Example (padded): @omega.vector 32.05.06
 
 Optional Annotations:
 - @omega.readonly

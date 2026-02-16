@@ -1,11 +1,11 @@
 /**
- * @omega.vector 32.00.0
+ * @omega.vector 32.00.00
  * @omega.readonly
  */
 
 export const RULE_VECTOR_RANGE = (entry: { file: string; vector?: string }) => {
   if (!entry.vector) return null;
-  const match = entry.vector.match(/^(\d{1,2})\.(\d{1,2})\.(\d{1,2})$/);
+  const match = entry.vector.match(/^(\d{2})\.(\d{2})\.(\d{2})$/);
   if (!match) return null;
   const level = Number(match[1]);
   const domain = Number(match[2]);
