@@ -1,4 +1,4 @@
-vector: 6.7.5
+vector: 06.07.05
 symbol: "WAVE_PACKET_AGG"
 desc: "Wave packet aggregator"
 legacy_idx: 9

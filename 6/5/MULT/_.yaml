@@ -1,4 +1,4 @@
-vector: 6.5.7
+vector: 06.05.07
 symbol: "MULT"
 desc: "Numerical multiplication"
 legacy_idx: 10

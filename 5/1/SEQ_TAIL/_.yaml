@@ -1,4 +1,4 @@
-vector: 5.1.4
+vector: 05.01.04
 symbol: "SEQ_TAIL"
 desc: "Sequence access: tail"
 legacy_idx: 22

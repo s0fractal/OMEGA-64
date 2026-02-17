@@ -1,4 +1,4 @@
-vector: 1.7.2
+vector: 01.07.02
 symbol: "S_HEAD"
 desc: "Stream head access"
 legacy_idx: 48

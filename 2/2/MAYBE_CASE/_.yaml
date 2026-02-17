@@ -1,4 +1,4 @@
-vector: 2.2.2
+vector: 02.02.02
 symbol: "MAYBE_CASE"
 desc: "Maybe Monad case analysis"
 legacy_idx: 45

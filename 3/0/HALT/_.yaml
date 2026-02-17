@@ -1,4 +1,4 @@
-vector: 3.0.2
+vector: 03.00.02
 symbol: "HALT"
 desc: "Machine termination state"
 legacy_idx: 39

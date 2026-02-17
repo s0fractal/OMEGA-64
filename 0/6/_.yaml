@@ -1,4 +1,4 @@
-vector: 0.6.0
+vector: 00.06.00
 tag: "OP: Gates"
 desc: "NAND, XOR, MUX | Switching Logic"
 legacy_idx: 57

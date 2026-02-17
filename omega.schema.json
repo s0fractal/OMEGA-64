@@ -16,7 +16,7 @@
     "Vector": {
       "type": "string",
       "description": "Octal vector: major.minor.variant (0..8, 0..7, 0..15).",
-      "pattern": "^(?:[0-8]|0[0-8])\\.(?:[0-7]|0[0-7])\\.(?:[0-9]|0[0-9]|1[0-5])$"
+      "pattern": "^(0[0-8])\\.(0[0-7])\\.(0[0-9]|1[0-5])$"
     },
     "Relations": {
       "type": "object",

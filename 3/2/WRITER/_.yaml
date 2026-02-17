@@ -1,4 +1,4 @@
-vector: 3.2.0
+vector: 03.02.00
 symbol: "WRITER"
 desc: "Writer Monad constructor"
 legacy_idx: 37

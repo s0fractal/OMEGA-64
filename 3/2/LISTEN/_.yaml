@@ -1,4 +1,4 @@
-vector: 3.2.1
+vector: 03.02.01
 symbol: "LISTEN"
 desc: "Writer Monad listen operation"
 legacy_idx: 37

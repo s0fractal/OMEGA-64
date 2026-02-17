@@ -1,4 +1,4 @@
-vector: 7.0.3
+vector: 07.00.03
 symbol: "GRAVITY"
 desc: "Gravitational acceleration"
 legacy_idx: 8

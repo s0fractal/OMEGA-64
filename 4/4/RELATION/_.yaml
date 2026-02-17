@@ -1,4 +1,4 @@
-vector: 4.4.1
+vector: 04.04.01
 symbol: "RELATION"
 desc: "Relational data structure"
 legacy_idx: 27

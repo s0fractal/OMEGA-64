@@ -1,4 +1,4 @@
-vector: 7.7.7
+vector: 07.07.07
 symbol: "I16_CLAMP"
 desc: "16-bit clamping"
 legacy_idx: 0

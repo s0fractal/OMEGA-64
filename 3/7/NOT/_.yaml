@@ -1,4 +1,4 @@
-vector: 3.7.2
+vector: 03.07.02
 symbol: "NOT"
 desc: "Church NOT"
 legacy_idx: 32

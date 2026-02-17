@@ -1,4 +1,4 @@
-vector: 2.2.1
+vector: 02.02.01
 symbol: "NOTHING"
 desc: "Maybe Monad: Empty state"
 legacy_idx: 45

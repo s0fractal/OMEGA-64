@@ -1,4 +1,4 @@
-vector: 2.6.2
+vector: 02.06.02
 symbol: "JOIN"
 desc: "Logical Join Operation"
 legacy_idx: 41

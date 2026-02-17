@@ -1,4 +1,4 @@
-vector: 5.0.1
+vector: 05.00.01
 symbol: "VECTOR"
 desc: "N-dimensional vector"
 legacy_idx: 23

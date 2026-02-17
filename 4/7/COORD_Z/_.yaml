@@ -1,4 +1,4 @@
-vector: 4.7.6
+vector: 04.07.06
 symbol: "COORD_Z"
 desc: "Spatial coordinate Z"
 legacy_idx: 24

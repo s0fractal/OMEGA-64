@@ -1,4 +1,4 @@
-vector: 5.1.1
+vector: 05.01.01
 symbol: "TICK"
 desc: "System clock tick"
 legacy_idx: 22

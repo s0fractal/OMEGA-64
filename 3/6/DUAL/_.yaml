@@ -1,4 +1,4 @@
-vector: 3.6.2
+vector: 03.06.02
 symbol: "DUAL"
 desc: "Dual representation (Pair)"
 legacy_idx: 33

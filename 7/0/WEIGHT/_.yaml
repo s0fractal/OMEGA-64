@@ -1,4 +1,4 @@
-vector: 7.0.2
+vector: 07.00.02
 symbol: "WEIGHT"
 desc: "Gravitational weight force"
 legacy_idx: 8

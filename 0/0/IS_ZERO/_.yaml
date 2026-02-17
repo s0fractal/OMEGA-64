@@ -1,4 +1,4 @@
-vector: 0.0.1
+vector: 00.00.01
 symbol: "IS_ZERO"
 desc: "Church Encoding: IS_ZERO Predicate"
 legacy_idx: 63

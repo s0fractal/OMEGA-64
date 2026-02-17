@@ -1,4 +1,4 @@
-vector: 6.5.6
+vector: 06.05.06
 symbol: "LEQ"
 desc: "Less than or equal comparison"
 legacy_idx: 10

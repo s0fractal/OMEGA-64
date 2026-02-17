@@ -1,4 +1,4 @@
-vector: 2.4.2
+vector: 02.04.02
 symbol: "GET"
 desc: "System State Retrieval (IO)"
 legacy_idx: 43

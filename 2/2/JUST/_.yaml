@@ -1,4 +1,4 @@
-vector: 2.2.0
+vector: 02.02.00
 symbol: "JUST"
 desc: "Maybe Monad: Value state"
 legacy_idx: 45

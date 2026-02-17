@@ -1,4 +1,4 @@
-vector: 7.5.3
+vector: 07.05.03
 symbol: "TELEMETRY_SIGNAL"
 desc: "Combined Telemetry and Signal Emitter"
 legacy_idx: 2

@@ -1,4 +1,4 @@
-vector: 4.5.4
+vector: 04.05.04
 symbol: "IS_NIL"
 desc: "Nil check primitive"
 legacy_idx: 26

@@ -1,4 +1,4 @@
-vector: 6.4.1
+vector: 06.04.01
 symbol: "FLUX"
 desc: "Directional Flux primitive"
 legacy_idx: 11

@@ -1,4 +1,4 @@
-vector: 3.6.3
+vector: 03.06.03
 symbol: "INV"
 desc: "Logical Inverse (NOT)"
 legacy_idx: 33

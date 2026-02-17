@@ -1,4 +1,4 @@
-vector: 4.5.6
+vector: 04.05.06
 symbol: "VAL_OF"
 desc: "Value retrieval from Tag"
 legacy_idx: 26

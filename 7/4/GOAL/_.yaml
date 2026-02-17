@@ -1,4 +1,4 @@
-vector: 7.4.4
+vector: 07.04.04
 symbol: "GOAL"
 desc: "Logic goal solver"
 legacy_idx: 59

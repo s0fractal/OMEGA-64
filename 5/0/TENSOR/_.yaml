@@ -1,4 +1,4 @@
-vector: 5.0.3
+vector: 05.00.03
 symbol: "TENSOR"
 desc: "Tensor constructor"
 legacy_idx: 23

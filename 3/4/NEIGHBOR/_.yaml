@@ -1,4 +1,4 @@
-vector: 3.4.4
+vector: 03.04.04
 symbol: "NEIGHBOR"
 desc: "Network proximity"
 legacy_idx: 35
