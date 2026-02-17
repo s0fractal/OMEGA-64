@@ -1,7 +1,0 @@
-vector: 27.31.1
-origin: i.L27.core.PROJECT.ts
-symbol: PROJECT
-relations:
-  attractor: VOID
-  use: []
-  used: []

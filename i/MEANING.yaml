@@ -1,7 +1,0 @@
-vector: 26.18.3
-origin: i.L26.core.MEANING.ts
-symbol: MEANING
-relations:
-  attractor: VOID
-  use: []
-  used: []

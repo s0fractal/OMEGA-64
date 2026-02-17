@@ -1,0 +1,7 @@
+vector: 3.4.3
+symbol: "NETWORK"
+desc: "Collective neural network"
+legacy_idx: 35
+origin: "./_.ts"
+relations:
+  use: [VECTOR]

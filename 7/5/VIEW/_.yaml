@@ -1,0 +1,5 @@
+vector: 7.5.7
+symbol: "VIEW"
+desc: "Lens viewer"
+legacy_idx: 58
+origin: "./_.ts"

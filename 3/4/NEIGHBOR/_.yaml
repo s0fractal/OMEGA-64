@@ -1,0 +1,5 @@
+vector: 3.4.4
+symbol: "NEIGHBOR"
+desc: "Network proximity"
+legacy_idx: 35
+origin: "./_.ts"

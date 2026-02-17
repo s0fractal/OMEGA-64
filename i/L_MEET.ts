@@ -1,1 +1,0 @@
-export const L_MEET = (a: any) => (b: any) => (s: any) => s(a)(b);

@@ -1,0 +1,5 @@
+vector: 6.7.2
+symbol: "TENSION"
+desc: "Surface/Elastic tension"
+legacy_idx: 9
+origin: "./_.ts"

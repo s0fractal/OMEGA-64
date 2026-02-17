@@ -1,0 +1,5 @@
+vector: 2.1.3
+symbol: "HARMONIC"
+desc: "Harmonic frequency"
+legacy_idx: 38
+origin: "./_.ts"

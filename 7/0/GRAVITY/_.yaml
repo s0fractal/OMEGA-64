@@ -1,0 +1,5 @@
+vector: 7.0.3
+symbol: "GRAVITY"
+desc: "Gravitational acceleration"
+legacy_idx: 8
+origin: "./_.ts"

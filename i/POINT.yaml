@@ -1,7 +1,0 @@
-vector: 24.17.7
-origin: i.L24.core.POINT.ts
-symbol: POINT
-relations:
-  attractor: VOID
-  use: []
-  used: []

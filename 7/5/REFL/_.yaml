@@ -1,0 +1,5 @@
+vector: 7.5.0
+symbol: "REFL"
+desc: "Reflexive Identity"
+legacy_idx: 58
+origin: "./_.ts"

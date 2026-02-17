@@ -1,8 +1,0 @@
-vector: 7.24.5
-origin: i.L07.core.SELF_ORG.ts
-symbol: SELF_ORG
-relations:
-  attractor: VOID
-  use:
-    - NEURON
-  used: []

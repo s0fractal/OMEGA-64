@@ -1,0 +1,5 @@
+vector: 5.2.3
+symbol: "COGNITION"
+desc: "Higher cognitive logic"
+legacy_idx: 21
+origin: "./_.ts"

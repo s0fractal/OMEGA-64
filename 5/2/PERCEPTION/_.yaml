@@ -1,0 +1,5 @@
+vector: 5.2.2
+symbol: "PERCEPTION"
+desc: "Perception layer"
+legacy_idx: 21
+origin: "./_.ts"

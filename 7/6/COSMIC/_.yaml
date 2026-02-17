@@ -1,0 +1,5 @@
+vector: 7.6.4
+symbol: "COSMIC"
+desc: "Cosmological scale factor"
+legacy_idx: 1
+origin: "./_.ts"

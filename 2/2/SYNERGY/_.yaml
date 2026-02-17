@@ -1,0 +1,7 @@
+vector: 2.2.4
+symbol: "SYNERGY"
+desc: "Synergistic communication"
+legacy_idx: 35
+origin: "./_.ts"
+relations:
+  use: [COMM]

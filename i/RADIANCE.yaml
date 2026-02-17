@@ -1,7 +1,0 @@
-vector: 1.22.1
-origin: i.L01.core.RADIANCE.ts
-symbol: RADIANCE
-relations:
-  attractor: VOID
-  use: []
-  used: []

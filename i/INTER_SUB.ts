@@ -1,1 +1,0 @@
-export const INTER_SUB = (s1: any) => (s2: any) => (p: any) => p(s1)(s2);

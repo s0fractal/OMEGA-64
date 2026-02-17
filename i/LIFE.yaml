@@ -1,7 +1,0 @@
-vector: 6.24.1
-origin: i.L06.core.LIFE.ts
-symbol: LIFE
-relations:
-  attractor: VOID
-  use: []
-  used: []

@@ -1,7 +1,0 @@
-vector: 2.23.0
-origin: i.L02.core.HARMONY.ts
-symbol: HARMONY
-relations:
-  attractor: VOID
-  use: []
-  used: []

@@ -1,0 +1,5 @@
+vector: 6.7.5
+symbol: "WAVE_PACKET_AGG"
+desc: "Wave packet aggregator"
+legacy_idx: 9
+origin: "./_.ts"

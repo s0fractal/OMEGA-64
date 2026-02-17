@@ -1,0 +1,5 @@
+vector: 3.4.2
+symbol: "SYNAPSE"
+desc: "Neural connection"
+legacy_idx: 35
+origin: "./_.ts"

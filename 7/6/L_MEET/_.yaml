@@ -1,0 +1,5 @@
+vector: 7.6.2
+symbol: "L_MEET"
+desc: "Lattice Meet"
+legacy_idx: 57
+origin: "./_.ts"

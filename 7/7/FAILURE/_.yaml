@@ -1,0 +1,7 @@
+vector: 7.7.2
+symbol: "FAILURE"
+desc: "System failure state"
+legacy_idx: 63
+origin: "./_.ts"
+relations:
+  use: [F]

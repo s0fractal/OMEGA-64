@@ -1,7 +1,0 @@
-vector: 10.26.0
-origin: i.L10.core.DYNAMICS.ts
-symbol: DYNAMICS
-relations:
-  attractor: VOID
-  use: []
-  used: []

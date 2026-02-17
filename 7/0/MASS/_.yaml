@@ -1,0 +1,5 @@
+vector: 7.0.1
+symbol: "MASS"
+desc: "Physical mass scalar"
+legacy_idx: 8
+origin: "./_.ts"

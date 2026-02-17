@@ -1,0 +1,7 @@
+vector: 5.4.3
+symbol: "CULTURE"
+desc: "Meme repository"
+legacy_idx: 19
+origin: "./_.ts"
+relations:
+  use: [VECTOR]

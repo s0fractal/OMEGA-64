@@ -1,0 +1,5 @@
+vector: 5.5.0
+symbol: "PHI_HARMONY"
+desc: "Golden ratio constant"
+legacy_idx: 17
+origin: "./_.ts"

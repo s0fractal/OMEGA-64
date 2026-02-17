@@ -1,0 +1,5 @@
+vector: 3.4.1
+symbol: "NEURON"
+desc: "Neural processing node"
+legacy_idx: 35
+origin: "./_.ts"

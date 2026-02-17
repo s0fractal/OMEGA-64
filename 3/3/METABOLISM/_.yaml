@@ -1,0 +1,5 @@
+vector: 3.3.5
+symbol: "METABOLISM"
+desc: "Energetic transformation"
+legacy_idx: 36
+origin: "./_.ts"

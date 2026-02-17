@@ -1,1 +1,0 @@
-export const PLANETARY = (c: any) => c;

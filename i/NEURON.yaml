@@ -1,8 +1,0 @@
-vector: 8.24.7
-origin: i.L08.core.NEURON.ts
-symbol: NEURON
-relations:
-  attractor: VOID
-  use: []
-  used:
-    - SELF_ORG

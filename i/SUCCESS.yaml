@@ -1,8 +1,0 @@
-vector: 29.32.2
-origin: i.L29.core.SUCCESS.ts
-symbol: SUCCESS
-relations:
-  attractor: VOID
-  use:
-    - T
-  used: []

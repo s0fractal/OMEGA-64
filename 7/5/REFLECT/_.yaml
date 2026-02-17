@@ -1,0 +1,7 @@
+vector: 7.5.4
+symbol: "REFLECT"
+desc: "Combinatory Reflection"
+legacy_idx: 58
+origin: "./_.ts"
+relations:
+  use: [C]

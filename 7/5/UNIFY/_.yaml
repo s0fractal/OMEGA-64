@@ -1,0 +1,5 @@
+vector: 7.5.3
+symbol: "UNIFY"
+desc: "Unification primitive"
+legacy_idx: 58
+origin: "./_.ts"

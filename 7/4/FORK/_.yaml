@@ -1,0 +1,7 @@
+vector: 7.4.3
+symbol: "FORK"
+desc: "Functional fork"
+legacy_idx: 59
+origin: "./_.ts"
+relations:
+  use: [CONS]

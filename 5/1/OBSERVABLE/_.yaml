@@ -1,0 +1,5 @@
+vector: 5.1.2
+symbol: "OBSERVABLE"
+desc: "Observable state wrapper"
+legacy_idx: 22
+origin: "./_.ts"

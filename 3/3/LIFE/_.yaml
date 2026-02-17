@@ -1,0 +1,5 @@
+vector: 3.3.4
+symbol: "LIFE"
+desc: "Biological life primitive"
+legacy_idx: 36
+origin: "./_.ts"

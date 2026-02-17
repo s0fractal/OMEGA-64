@@ -1,0 +1,5 @@
+vector: 2.1.2
+symbol: "HARMONY"
+desc: "Resonant harmony state"
+legacy_idx: 38
+origin: "./_.ts"

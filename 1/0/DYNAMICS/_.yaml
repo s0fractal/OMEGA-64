@@ -1,0 +1,5 @@
+vector: 1.0.1
+symbol: "DYNAMICS"
+desc: "Physical dynamics primitive"
+legacy_idx: 55
+origin: "./_.ts"

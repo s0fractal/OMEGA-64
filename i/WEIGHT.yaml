@@ -1,8 +1,0 @@
-vector: 21.22.5
-origin: i.L21.core.WEIGHT.ts
-symbol: WEIGHT
-relations:
-  attractor: VOID
-  use:
-    - GRAVITY
-  used: []

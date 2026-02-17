@@ -1,7 +1,0 @@
-vector: 6.24.2
-origin: i.L06.core.METABOLISM.ts
-symbol: METABOLISM
-relations:
-  attractor: VOID
-  use: []
-  used: []

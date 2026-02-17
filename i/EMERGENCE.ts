@@ -1,1 +1,0 @@
-export const EMERGENCE = (interaction: any) => interaction;

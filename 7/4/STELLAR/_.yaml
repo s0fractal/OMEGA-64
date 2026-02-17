@@ -1,0 +1,5 @@
+vector: 7.4.4
+symbol: "STELLAR"
+desc: "Stellar scale factor"
+legacy_idx: 3
+origin: "./_.ts"

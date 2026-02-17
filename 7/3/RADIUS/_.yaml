@@ -1,0 +1,5 @@
+vector: 7.3.2
+symbol: "RADIUS"
+desc: "Geometric radius"
+legacy_idx: 5
+origin: "./_.ts"

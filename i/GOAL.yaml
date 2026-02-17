@@ -1,7 +1,0 @@
-vector: 29.32.1
-origin: i.L29.core.GOAL.ts
-symbol: GOAL
-relations:
-  attractor: VOID
-  use: []
-  used: []

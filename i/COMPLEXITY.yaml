@@ -1,7 +1,0 @@
-vector: 7.24.3
-origin: i.L07.core.COMPLEXITY.ts
-symbol: COMPLEXITY
-relations:
-  attractor: VOID
-  use: []
-  used: []

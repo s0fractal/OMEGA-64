@@ -1,0 +1,5 @@
+vector: 1.1.2
+symbol: "EMERGENCE"
+desc: "System emergence property"
+legacy_idx: 51
+origin: "./_.ts"

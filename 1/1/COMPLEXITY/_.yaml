@@ -1,0 +1,5 @@
+vector: 1.1.3
+symbol: "COMPLEXITY"
+desc: "Structural complexity metric"
+legacy_idx: 51
+origin: "./_.ts"

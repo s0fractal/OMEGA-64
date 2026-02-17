@@ -1,0 +1,5 @@
+vector: 5.1.3
+symbol: "INTER_SUB"
+desc: "Inter-subjective bridge"
+legacy_idx: 22
+origin: "./_.ts"

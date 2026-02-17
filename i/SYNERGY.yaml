@@ -1,7 +1,0 @@
-vector: 3.23.8
-origin: i.L03.core.SYNERGY.ts
-symbol: SYNERGY
-relations:
-  attractor: VOID
-  use: []
-  used: []

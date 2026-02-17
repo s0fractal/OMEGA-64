@@ -1,0 +1,5 @@
+vector: 7.6.1
+symbol: "L_JOIN"
+desc: "Lattice Join"
+legacy_idx: 57
+origin: "./_.ts"

@@ -1,7 +1,0 @@
-vector: 8.24.8
-origin: i.L08.core.SYNAPSE.ts
-symbol: SYNAPSE
-relations:
-  attractor: VOID
-  use: []
-  used: []

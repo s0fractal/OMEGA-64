@@ -1,7 +1,0 @@
-vector: 9.13.1
-origin: i.L09.core.PERCEPTION.ts
-symbol: PERCEPTION
-relations:
-  attractor: VOID
-  use: []
-  used: []

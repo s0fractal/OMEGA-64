@@ -1,7 +1,0 @@
-vector: 5.25.01
-origin: i.L05.core.INTENT.ts
-symbol: INTENT
-relations:
-  attractor: VOID
-  use: []
-  used: []

@@ -1,7 +1,0 @@
-vector: 17.20.8
-origin: i.L17.core.PRESSURE.ts
-symbol: PRESSURE
-relations:
-  attractor: VOID
-  use: []
-  used: []

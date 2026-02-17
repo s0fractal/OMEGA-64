@@ -1,7 +1,0 @@
-vector: 0.27.2
-origin: i.L00.core.SURFACE.ts
-symbol: SURFACE
-relations:
-  attractor: VOID
-  use: []
-  used: []

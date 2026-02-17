@@ -1,0 +1,5 @@
+vector: 5.4.1
+symbol: "MEANING"
+desc: "Semantic meaning"
+legacy_idx: 19
+origin: "./_.ts"

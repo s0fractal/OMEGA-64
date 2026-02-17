@@ -1,7 +1,0 @@
-vector: 7.24.4
-origin: i.L07.core.EMERGENCE.ts
-symbol: EMERGENCE
-relations:
-  attractor: VOID
-  use: []
-  used: []

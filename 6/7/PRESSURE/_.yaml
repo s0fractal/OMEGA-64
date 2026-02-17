@@ -1,0 +1,5 @@
+vector: 6.7.1
+symbol: "PRESSURE"
+desc: "Physical pressure force"
+legacy_idx: 9
+origin: "./_.ts"

@@ -1,7 +1,0 @@
-vector: 45.15.3
-origin: i.L45.core.LEFT.ts
-symbol: LEFT
-relations:
-  attractor: VOID
-  use: []
-  used: []

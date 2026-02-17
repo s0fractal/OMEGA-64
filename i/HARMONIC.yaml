@@ -1,7 +1,0 @@
-vector: 12.21.0
-origin: i.L12.core.HARMONIC.ts
-symbol: HARMONIC
-relations:
-  attractor: VOID
-  use: []
-  used: []
