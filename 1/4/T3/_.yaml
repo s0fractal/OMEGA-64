@@ -1,0 +1,5 @@
+vector: 1.4.3
+symbol: "T3"
+desc: "3D Projective Z"
+legacy_idx: 12
+origin: "./_.ts"

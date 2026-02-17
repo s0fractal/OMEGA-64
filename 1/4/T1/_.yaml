@@ -1,0 +1,5 @@
+vector: 1.4.1
+symbol: "T1"
+desc: "3D Projective X"
+legacy_idx: 12
+origin: "./_.ts"

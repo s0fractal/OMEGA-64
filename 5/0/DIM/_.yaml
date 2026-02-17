@@ -1,0 +1,5 @@
+vector: 5.0.0
+symbol: "DIM"
+desc: "Dimension label"
+legacy_idx: 23
+origin: "./_.ts"

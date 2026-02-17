@@ -1,8 +1,0 @@
-vector: 24.17.6
-origin: i.L24.core.COORD_Z.ts
-symbol: COORD_Z
-relations:
-  attractor: VOID
-  use:
-    - T3
-  used: []

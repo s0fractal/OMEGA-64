@@ -1,1 +1,0 @@
-export const FIELD = (mapping: any) => mapping;

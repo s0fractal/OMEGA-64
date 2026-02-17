@@ -1,8 +1,0 @@
-vector: 23.17.3
-origin: i.L23.core.TENSOR.ts
-symbol: TENSOR
-relations:
-  attractor: VOID
-  use:
-    - VECTOR
-  used: []

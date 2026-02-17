@@ -1,0 +1,5 @@
+vector: 6.4.2
+symbol: "COUPLING"
+desc: "Field Coupling primitive"
+legacy_idx: 11
+origin: "./_.ts"

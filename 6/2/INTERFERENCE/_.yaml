@@ -1,7 +1,7 @@
-vector: 6.2.1
+vector: 6.2.7
 symbol: "INTERFERENCE"
-desc: "Wave Superposition Logic"
+desc: "Wave Interference mechanics"
 legacy_idx: 13
-relations:
-  use: [WAVE_PACKET]
 origin: "./_.ts"
+relations:
+  use: [WAVE_SIGNAL]

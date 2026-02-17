@@ -1,0 +1,5 @@
+vector: 6.4.1
+symbol: "FLUX"
+desc: "Directional Flux primitive"
+legacy_idx: 11
+origin: "./_.ts"

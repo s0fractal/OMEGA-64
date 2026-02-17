@@ -1,0 +1,7 @@
+vector: 4.7.6
+symbol: "COORD_Z"
+desc: "Spatial coordinate Z"
+legacy_idx: 24
+origin: "./_.ts"
+relations:
+  use: [T3]

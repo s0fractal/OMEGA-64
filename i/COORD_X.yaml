@@ -1,7 +1,0 @@
-vector: 24.17.4
-origin: i.L24.core.COORD_X.ts
-symbol: COORD_X
-relations:
-  attractor: VOID
-  use: []
-  used: []

@@ -1,0 +1,5 @@
+vector: 6.4.0
+symbol: "Q"
+desc: "Quantum Fixed-point math"
+legacy_idx: 11
+origin: "./_.ts"
