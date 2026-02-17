@@ -1,7 +1,0 @@
-vector: 58.4.0
-origin: i.L58.core.SUCC.ts
-symbol: SUCC
-relations:
-  attractor: VOID
-  use: []
-  used: []

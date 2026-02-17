@@ -1,0 +1,5 @@
+vector: 0.6.2
+symbol: "MUX"
+desc: "Church MUX (Multiplexer)"
+legacy_idx: 57
+origin: "./_.ts"

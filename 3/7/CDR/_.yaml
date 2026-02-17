@@ -1,0 +1,7 @@
+vector: 3.7.7
+symbol: "CDR"
+desc: "Church CDR (Tail)"
+legacy_idx: 32
+origin: "./_.ts"
+relations:
+  use: [F]

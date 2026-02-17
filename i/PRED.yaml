@@ -1,9 +1,0 @@
-vector: 55.5.3
-origin: i.L55.core.PRED.ts
-symbol: PRED
-relations:
-  attractor: VOID
-  use: []
-  used:
-    - SUB
-    - NEIGHBOR

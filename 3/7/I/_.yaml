@@ -1,0 +1,5 @@
+vector: 3.7.4
+symbol: "I"
+desc: "I Combinator (Identity)"
+legacy_idx: 32
+origin: "./_.ts"

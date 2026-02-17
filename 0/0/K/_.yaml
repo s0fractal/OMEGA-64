@@ -1,0 +1,5 @@
+vector: 0.0.1
+symbol: "K"
+desc: "K Combinator (Constant)"
+legacy_idx: 63
+origin: "./_.ts"

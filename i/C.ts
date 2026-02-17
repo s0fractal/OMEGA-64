@@ -1,1 +1,0 @@
-export const C = (f: any) => (x: any) => (y: any) => f(y)(x);

@@ -1,0 +1,5 @@
+vector: 3.7.5
+symbol: "CONS"
+desc: "Church CONS (Pair)"
+legacy_idx: 32
+origin: "./_.ts"

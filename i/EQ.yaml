@@ -1,9 +1,0 @@
-vector: 55.5.6
-origin: i.L55.core.EQ.ts
-symbol: EQ
-relations:
-  attractor: VOID
-  use:
-    - F
-    - LEQ
-  used: []

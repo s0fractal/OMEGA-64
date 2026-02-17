@@ -1,0 +1,7 @@
+vector: 3.7.8
+symbol: "NIL"
+desc: "Church NIL (Empty List)"
+legacy_idx: 32
+origin: "./_.ts"
+relations:
+  use: [F]

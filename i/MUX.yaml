@@ -1,7 +1,0 @@
-vector: 57.6.2
-origin: i.L57.core.MUX.ts
-symbol: MUX
-relations:
-  attractor: VOID
-  use: []
-  used: []

@@ -1,7 +1,0 @@
-vector: 52.5.2
-origin: i.L52.core.POW.ts
-symbol: POW
-relations:
-  attractor: VOID
-  use: []
-  used: []
