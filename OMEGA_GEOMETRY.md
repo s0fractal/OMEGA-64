@@ -20,6 +20,11 @@
 - Axial stability requires balance between `D` and `D'`.
 - Antipodal resonance passes through the core and yields maximum tension.
 
+## Fundamental Domain (Prime Sector)
+- A minimal sector can serve as a generator for the full domain via symmetry.
+- Mirror projection should create placeholders, not forced implementations.
+- Canon remains local; symmetry is a lens for growth and balance.
+
 ## Interpretation
 - Address is discrete, thickness is geometric.
 - Motion is a trajectory between addresses, not a new address.
