@@ -30,6 +30,16 @@
 - Do not merge entities whose domains are far apart, even if code is identical.
 - The core is asymptotic: approach is allowed, contact is forbidden.
 
+## Triad (SYNTHROPY / ENTROPY / FLOW)
+- SYNTHROPY pulls toward the core (structure, compression, invariants).
+- ENTROPY pushes outward (diversity, differentiation, variants).
+- FLOW orbits the core (execution, kinetics, living motion).
+
+## Zero Point (VOID Anchor)
+- A defined void provides calibration and an absolute reference.
+- Nothing depends on VOID; all measures are relative to it.
+- The core remains a forbidden zone to prevent collapse.
+
 ## Interpretation
 - Address is discrete, thickness is geometric.
 - Motion is a trajectory between addresses, not a new address.
