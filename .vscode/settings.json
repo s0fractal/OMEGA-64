@@ -1,0 +1,5 @@
+{
+    "yaml.schemas": {
+    "./omega.schema.json": "i/*.yaml"
+}
+}

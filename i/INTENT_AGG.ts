@@ -5,8 +5,8 @@ export interface SimState {
   [key: string]: unknown;
 }
 
-import { TELEMETRY } from "../i.L03.core.TELEMETRY.ts";
-import { TELEMETRY_SIGNAL } from "../i.L02.core.TELEMETRY_SIGNAL.ts";
+import { TELEMETRY } from "./i.L03.core.TELEMETRY.ts";
+import { TELEMETRY_SIGNAL } from "./i.L02.core.TELEMETRY_SIGNAL.ts";
 
 export const INTENT = {
   judge: (oldState: SimState, newState: SimState): number => {

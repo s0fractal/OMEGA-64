@@ -3,8 +3,8 @@
 // Exports the Q-Space state to JSON for 3D visualization.
 // NOW READING FROM DECENTRALIZED YAML (RELATIONS).
 
-import { RIBOSOME } from "../i.L32.core.RIBOSOME.ts";
-import { Q_PHYSICS, QAtom } from "../i.L32.core.Q_PHYSICS.ts";
+import { RIBOSOME } from "../i/i.L32.core.RIBOSOME.ts";
+import { Q_PHYSICS, QAtom } from "../i/i.L32.core.Q_PHYSICS.ts";
 import { parse } from "jsr:@std/yaml";
 
 console.log("Scanning Real Q-Space Data (YAML Relations)...");
@@ -222,7 +222,7 @@ console.log(`Mutated ${mutations} atoms in YAML.`);
 
 // 4. Export
 const exportData = {
-    nodes: Array.from(finalText.values()).map(a => ({
+    nodes: Array.from(finalText.values()).map((a: any) => ({
         id: a.id,
         L: a.L, // Visual Radius
         level: (a as any).level, // Semantic Level

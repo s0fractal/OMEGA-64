@@ -1,1 +1,0 @@
-export const i = { witness: "SATOSHI_ANCHOR", ref: "i.L63.i" };

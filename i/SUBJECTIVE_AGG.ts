@@ -1,5 +1,5 @@
-import { FIELD } from "../i.L32.core.FIELD.ts";
-import { I16_LIMITS } from "../i.L00.core.I16_LIMITS.ts";
+import { FIELD } from "./i.L32.core.FIELD.ts";
+import { I16_LIMITS } from "./i.L00.core.I16_LIMITS.ts";
 
 const I16 = I16_LIMITS();
 

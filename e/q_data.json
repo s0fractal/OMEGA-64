@@ -1,15 +1,6 @@
 {
   "nodes": [
     {
-      "id": "i.L56.core.IS_ZERO.ts",
-      "L": 32,
-      "level": 32,
-      "D": 3,
-      "V": 4,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
       "id": "i.L99.core.DRIFT_CONTROLLER.ts",
       "L": 1,
       "level": 99,
@@ -19,43 +10,7 @@
       "isMirror": false
     },
     {
-      "id": "i.L39.core.STEP.ts",
-      "L": 25,
-      "level": 39,
-      "D": 11,
-      "V": 1,
-      "tension": 1,
-      "isMirror": false
-    },
-    {
-      "id": "i.L29.core.UNIFY.ts",
-      "L": 35,
-      "level": 29,
-      "D": 32,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L00.core.SURFACE.ts",
-      "L": 64,
-      "level": 0,
-      "D": 27,
-      "V": 2,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
       "id": "i.L99.core.O_STREAM_TAGS_SUMMARY.ts",
-      "L": 1,
-      "level": 99,
-      "D": 99,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L99.core.IO_FLOW_HEALTH_RUN.ts",
       "L": 1,
       "level": 99,
       "D": 99,
@@ -82,48 +37,12 @@
       "isMirror": false
     },
     {
-      "id": "i.L57.core.XOR.ts",
-      "L": 7,
-      "level": 57,
-      "D": 6,
-      "V": 1,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L32.core.ARENA.ts",
-      "L": 32,
-      "level": 32,
-      "D": 32,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L52.core.MULT.ts",
-      "L": 12,
-      "level": 52,
-      "D": 5,
-      "V": 1,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
       "id": "i.L03.core.O_RESONATE.ts",
       "L": 61,
       "level": 3,
       "D": 3,
       "V": 0,
       "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L36.core.LENS.ts",
-      "L": 28,
-      "level": 36,
-      "D": 14,
-      "V": 3,
-      "tension": 1,
       "isMirror": false
     },
     {
@@ -136,55 +55,10 @@
       "isMirror": false
     },
     {
-      "id": "i.L32.core.NIL.ts",
-      "L": 32,
-      "level": 32,
-      "D": 2,
-      "V": 3,
-      "tension": 1,
-      "isMirror": false
-    },
-    {
-      "id": "i.L99.core.GLIDER_LITE_RUN.ts",
-      "L": 1,
-      "level": 99,
-      "D": 99,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
       "id": "i.L03.core.O_STRATA.ts",
       "L": 61,
       "level": 3,
       "D": 3,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L16.core.RESONANCE.ts",
-      "L": 48,
-      "level": 16,
-      "D": 20,
-      "V": 4,
-      "tension": 1,
-      "isMirror": false
-    },
-    {
-      "id": "i.L24.core.COORD_X.ts",
-      "L": 40,
-      "level": 24,
-      "D": 17,
-      "V": 4,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L99.core.IO_FLOW_HEALTH_WRITE.ts",
-      "L": 1,
-      "level": 99,
-      "D": 99,
       "V": 0,
       "tension": 0,
       "isMirror": false
@@ -217,38 +91,11 @@
       "isMirror": false
     },
     {
-      "id": "i.L17.core.FLUX.ts",
-      "L": 47,
-      "level": 17,
-      "D": 20,
-      "V": 7,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L43.core.PUT.ts",
-      "L": 21,
-      "level": 43,
-      "D": 12,
-      "V": 2,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
       "id": "i.L99.core.O_STREAM_ARCHIVE_INDEX_RUN.ts",
       "L": 1,
       "level": 99,
       "D": 99,
       "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L32.core.F.ts",
-      "L": 32,
-      "level": 32,
-      "D": 1,
-      "V": 1,
       "tension": 0,
       "isMirror": false
     },
@@ -262,56 +109,11 @@
       "isMirror": false
     },
     {
-      "id": "i.L61.core.Y.ts",
-      "L": 32,
-      "level": 32,
-      "D": 1,
-      "V": 5,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L32.core.CDR.ts",
-      "L": 32,
-      "level": 32,
-      "D": 2,
-      "V": 2,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L14.core.WAVE.ts",
-      "L": 50,
-      "level": 14,
-      "D": 21,
-      "V": 2,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L03.core.SYNERGY.ts",
-      "L": 61,
-      "level": 3,
-      "D": 23,
-      "V": 8,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
       "id": "i.L03.core.O_POLICY.ts",
       "L": 61,
       "level": 3,
       "D": 3,
       "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L55.core.PRED.ts",
-      "L": 9,
-      "level": 55,
-      "D": 5,
-      "V": 3,
       "tension": 0,
       "isMirror": false
     },
@@ -334,46 +136,10 @@
       "isMirror": false
     },
     {
-      "id": "i.L64.core.MEMBRANE.ts",
-      "L": 1,
-      "level": 64,
-      "D": 64,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L32.core.MATH.ts",
-      "L": 32,
-      "level": 32,
-      "D": 32,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
       "id": "i.L99.core.DETERMINISM_LAWS.ts",
       "L": 1,
       "level": 99,
       "D": 99,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L57.core.NAND.ts",
-      "L": 7,
-      "level": 57,
-      "D": 6,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L12.core.HARMONIC.ts",
-      "L": 52,
-      "level": 12,
-      "D": 21,
       "V": 0,
       "tension": 0,
       "isMirror": false
@@ -388,84 +154,12 @@
       "isMirror": false
     },
     {
-      "id": "i.L99.core.IO_FLOW_SIGNAL_WATCH.ts",
-      "L": 1,
-      "level": 99,
-      "D": 99,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
       "id": "i.L99.core.PROPOSAL_ENVELOPE_INDEX.ts",
       "L": 1,
       "level": 99,
       "D": 99,
       "V": 0,
       "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L32.core.IS_NIL.ts",
-      "L": 32,
-      "level": 32,
-      "D": 3,
-      "V": 3,
-      "tension": 2,
-      "isMirror": false
-    },
-    {
-      "id": "i.L26.core.TAG_OF.ts",
-      "L": 38,
-      "level": 26,
-      "D": 18,
-      "V": 4,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L32.core.CAR.ts",
-      "L": 32,
-      "level": 32,
-      "D": 2,
-      "V": 1,
-      "tension": 1,
-      "isMirror": false
-    },
-    {
-      "id": "i.L53.core.W.ts",
-      "L": 11,
-      "level": 53,
-      "D": 19,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L99.core.LOAD.ts",
-      "L": 1,
-      "level": 99,
-      "D": 99,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L32.core.NOT.ts",
-      "L": 32,
-      "level": 32,
-      "D": 3,
-      "V": 2,
-      "tension": 2,
-      "isMirror": false
-    },
-    {
-      "id": "i.L48.core.STREAM.ts",
-      "L": 16,
-      "level": 48,
-      "D": 9,
-      "V": 0,
-      "tension": 1,
       "isMirror": false
     },
     {
@@ -487,42 +181,6 @@
       "isMirror": false
     },
     {
-      "id": "i.L33.core.INV.ts",
-      "L": 31,
-      "level": 33,
-      "D": 16,
-      "V": 3,
-      "tension": 1,
-      "isMirror": false
-    },
-    {
-      "id": "i.L41.core.SYNC.ts",
-      "L": 23,
-      "level": 41,
-      "D": 19,
-      "V": 2,
-      "tension": 1,
-      "isMirror": false
-    },
-    {
-      "id": "i.L05.core.ENERGY.ts",
-      "L": 59,
-      "level": 5,
-      "D": 5,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L99.core.CRYSTALLIZATION_REPORT.ts",
-      "L": 1,
-      "level": 99,
-      "D": 99,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
       "id": "i.L05.core.SENSORS.ts",
       "L": 59,
       "level": 5,
@@ -532,65 +190,11 @@
       "isMirror": false
     },
     {
-      "id": "i.L32.core.CONS.ts",
-      "L": 32,
-      "level": 32,
-      "D": 2,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L32.core.GATE_RUNTIME_CONTEXT.ts",
-      "L": 32,
-      "level": 32,
-      "D": 32,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L22.core.SEQ_HEAD.ts",
-      "L": 42,
-      "level": 22,
-      "D": 33,
-      "V": 3,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L32.core.SUCC.ts",
-      "L": 6,
-      "level": 58,
-      "D": 4,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L62.core.B.ts",
-      "L": 2,
-      "level": 62,
-      "D": 4,
-      "V": 5,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
       "id": "i.L99.core.GATE_ADMISSION_REPORT.ts",
       "L": 1,
       "level": 99,
       "D": 99,
       "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L32.core.IS_ZERO.ts",
-      "L": 32,
-      "level": 32,
-      "D": 3,
-      "V": 4,
       "tension": 0,
       "isMirror": false
     },
@@ -622,42 +226,6 @@
       "isMirror": false
     },
     {
-      "id": "i.L32.core.INTERFACE.ts",
-      "L": 32,
-      "level": 32,
-      "D": 27,
-      "V": 1,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L11.core.TENSION.ts",
-      "L": 53,
-      "level": 11,
-      "D": 20,
-      "V": 2,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L24.core.COORD_Y.ts",
-      "L": 40,
-      "level": 24,
-      "D": 17,
-      "V": 5,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L49.core.FOLD.ts",
-      "L": 15,
-      "level": 49,
-      "D": 7,
-      "V": 1,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
       "id": "i.L99.core.O_STREAM_HEALTH_SIGNAL.ts",
       "L": 1,
       "level": 99,
@@ -676,47 +244,11 @@
       "isMirror": false
     },
     {
-      "id": "i.L32.core.ARCHETYPE_ENGINE.ts",
-      "L": 32,
-      "level": 32,
-      "D": 32,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L21.core.WEIGHT.ts",
-      "L": 43,
-      "level": 21,
-      "D": 22,
-      "V": 5,
-      "tension": 1,
-      "isMirror": false
-    },
-    {
-      "id": "i.L00.core.COLOR.ts",
-      "L": 64,
-      "level": 0,
-      "D": 0,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
       "id": "i.L99.core.O_STREAM_TAG_POLICY.ts",
       "L": 1,
       "level": 99,
       "D": 99,
       "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L28.core.A_SEND.ts",
-      "L": 36,
-      "level": 28,
-      "D": 30,
-      "V": 2,
       "tension": 0,
       "isMirror": false
     },
@@ -730,69 +262,6 @@
       "isMirror": false
     },
     {
-      "id": "i.L00.core.INTERFACE.ts",
-      "L": 64,
-      "level": 0,
-      "D": 27,
-      "V": 1,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L63.core.OMEGA.ts",
-      "L": 1,
-      "level": 63,
-      "D": 27,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L35.core.IS_ISO.ts",
-      "L": 29,
-      "level": 35,
-      "D": 19,
-      "V": 4,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L13.core.WAVE_PACKET.ts",
-      "L": 51,
-      "level": 13,
-      "D": 13,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L54.core.CAR.ts",
-      "L": 32,
-      "level": 32,
-      "D": 2,
-      "V": 1,
-      "tension": 1,
-      "isMirror": false
-    },
-    {
-      "id": "i.L48.core.S_MAP.ts",
-      "L": 16,
-      "level": 48,
-      "D": 9,
-      "V": 3,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L11.core.COUPLING.ts",
-      "L": 53,
-      "level": 11,
-      "D": 20,
-      "V": 1,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
       "id": "i.L99.core.CHECKPOINT.ts",
       "L": 1,
       "level": 99,
@@ -802,55 +271,10 @@
       "isMirror": false
     },
     {
-      "id": "i.L99.core.CRYSTALLIZATION.ts",
-      "L": 1,
-      "level": 99,
-      "D": 99,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L32.core.AND.ts",
-      "L": 32,
-      "level": 32,
-      "D": 3,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L45.core.MAYBE_CASE.ts",
-      "L": 19,
-      "level": 45,
-      "D": 15,
-      "V": 2,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
       "id": "i.L99.core.O_STREAM_APPEND.ts",
       "L": 1,
       "level": 99,
       "D": 99,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L14.core.PHASE.ts",
-      "L": 50,
-      "level": 14,
-      "D": 21,
-      "V": 1,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L45.core.JUST.ts",
-      "L": 19,
-      "level": 45,
-      "D": 15,
       "V": 0,
       "tension": 0,
       "isMirror": false
@@ -874,82 +298,10 @@
       "isMirror": false
     },
     {
-      "id": "i.L41.core.JOIN.ts",
-      "L": 23,
-      "level": 41,
-      "D": 10,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L99.core.GLIDER_LITE.ts",
-      "L": 1,
-      "level": 99,
-      "D": 99,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
       "id": "i.L03.core.O_COLLAPSE.ts",
       "L": 61,
       "level": 3,
       "D": 3,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L54.core.IS_NIL.ts",
-      "L": 32,
-      "level": 32,
-      "D": 3,
-      "V": 3,
-      "tension": 2,
-      "isMirror": false
-    },
-    {
-      "id": "i.L34.core.REFLECT.ts",
-      "L": 30,
-      "level": 34,
-      "D": 14,
-      "V": 1,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L05.core.SUBJECT.ts",
-      "L": 59,
-      "level": 5,
-      "D": 25,
-      "V": 2,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L31.core.SEND.ts",
-      "L": 33,
-      "level": 31,
-      "D": 29,
-      "V": 3,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L07.core.COMPLEXITY.ts",
-      "L": 57,
-      "level": 7,
-      "D": 24,
-      "V": 3,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L32.core.T.ts",
-      "L": 32,
-      "level": 32,
-      "D": 1,
       "V": 0,
       "tension": 0,
       "isMirror": false
@@ -964,33 +316,6 @@
       "isMirror": false
     },
     {
-      "id": "i.L99.core.TOPOLOGY_PROTOCOL.ts",
-      "L": 1,
-      "level": 99,
-      "D": 99,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L99.core.SAFE_WINDOW_STATUS.ts",
-      "L": 1,
-      "level": 99,
-      "D": 99,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L02.core.PURGE_UTIL.ts",
-      "L": 62,
-      "level": 2,
-      "D": 2,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
       "id": "i.L99.core.GENOME.ts",
       "L": 1,
       "level": 99,
@@ -1000,55 +325,10 @@
       "isMirror": false
     },
     {
-      "id": "i.L00.core.OMEGA.ts",
-      "L": 64,
-      "level": 0,
-      "D": 27,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L06.core.METABOLISM.ts",
-      "L": 58,
-      "level": 6,
-      "D": 24,
-      "V": 2,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L04.core.EMPATHY.ts",
-      "L": 60,
-      "level": 4,
-      "D": 23,
-      "V": 7,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L48.core.S_HEAD.ts",
-      "L": 16,
-      "level": 48,
-      "D": 9,
-      "V": 1,
-      "tension": 1,
-      "isMirror": false
-    },
-    {
       "id": "i.L99.core.O_STREAM_ADAPTER.ts",
       "L": 1,
       "level": 99,
       "D": 99,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L31.core.OBJECT.ts",
-      "L": 33,
-      "level": 31,
-      "D": 29,
       "V": 0,
       "tension": 0,
       "isMirror": false
@@ -1063,114 +343,6 @@
       "isMirror": false
     },
     {
-      "id": "i.L10.core.FORCE.ts",
-      "L": 54,
-      "level": 10,
-      "D": 13,
-      "V": 3,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L08.core.SYNAPSE.ts",
-      "L": 56,
-      "level": 8,
-      "D": 24,
-      "V": 8,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L00.core.FIELD.ts",
-      "L": 53,
-      "level": 11,
-      "D": 20,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L26.core.SEM_WRAP.ts",
-      "L": 38,
-      "level": 26,
-      "D": 18,
-      "V": 6,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L99.core.QUANTUM_PACK.ts",
-      "L": 1,
-      "level": 99,
-      "D": 99,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L54.core.NIL.ts",
-      "L": 32,
-      "level": 32,
-      "D": 2,
-      "V": 3,
-      "tension": 1,
-      "isMirror": false
-    },
-    {
-      "id": "i.L99.core.POLICY_TRANSITION.ts",
-      "L": 1,
-      "level": 99,
-      "D": 99,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L32.core.OR.ts",
-      "L": 32,
-      "level": 32,
-      "D": 3,
-      "V": 1,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L31.core.CLASS.ts",
-      "L": 33,
-      "level": 31,
-      "D": 29,
-      "V": 2,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L99.core.MYCELIUM.ts",
-      "L": 1,
-      "level": 99,
-      "D": 99,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L55.core.EQ.ts",
-      "L": 9,
-      "level": 55,
-      "D": 5,
-      "V": 6,
-      "tension": 2,
-      "isMirror": false
-    },
-    {
-      "id": "i.L99.core.O_STREAM_SIGNAL_WATCH.ts",
-      "L": 1,
-      "level": 99,
-      "D": 99,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
       "id": "i.L99.core.SPECTRAL_INVARIANTS.ts",
       "L": 1,
       "level": 99,
@@ -1180,25 +352,7 @@
       "isMirror": false
     },
     {
-      "id": "i.L23.core.VECTOR.ts",
-      "L": 41,
-      "level": 23,
-      "D": 17,
-      "V": 2,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
       "id": "i.L32.core.CANON_CAUSAL_BRIDGE.ts",
-      "L": 32,
-      "level": 32,
-      "D": 32,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L32.core.GATE.ts",
       "L": 32,
       "level": 32,
       "D": 32,
@@ -1234,46 +388,10 @@
       "isMirror": false
     },
     {
-      "id": "i.L01.core.STELLAR.ts",
-      "L": 63,
-      "level": 1,
-      "D": 22,
-      "V": 2,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L32.core.I.ts",
-      "L": 32,
-      "level": 32,
-      "D": 1,
-      "V": 2,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
       "id": "i.L99.core.DISCOVERY.ts",
       "L": 1,
       "level": 99,
       "D": 99,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L54.core.CDR.ts",
-      "L": 32,
-      "level": 32,
-      "D": 2,
-      "V": 2,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L00.core.ACCESS_BY_RESONANCE.ts",
-      "L": 64,
-      "level": 0,
-      "D": 0,
       "V": 0,
       "tension": 0,
       "isMirror": false
@@ -1285,15 +403,6 @@
       "D": 99,
       "V": 0,
       "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L41.core.FORK.ts",
-      "L": 23,
-      "level": 41,
-      "D": 19,
-      "V": 1,
-      "tension": 3,
       "isMirror": false
     },
     {
@@ -1315,110 +424,11 @@
       "isMirror": false
     },
     {
-      "id": "i.L28.core.ACTOR.ts",
-      "L": 36,
-      "level": 28,
-      "D": 30,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L99.core.O_STREAM_HEALTH_WRITE.ts",
-      "L": 1,
-      "level": 99,
-      "D": 99,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L36.core.VIEW.ts",
-      "L": 28,
-      "level": 36,
-      "D": 14,
-      "V": 5,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L22.core.TICK.ts",
-      "L": 42,
-      "level": 22,
-      "D": 33,
-      "V": 1,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
       "id": "i.L99.core.O_STREAM_VALIDATE.ts",
       "L": 1,
       "level": 99,
       "D": 99,
       "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L99.core.IO_FLOW_RUN.ts",
-      "L": 1,
-      "level": 99,
-      "D": 99,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L32.core.GATE_RUNNER.ts",
-      "L": 32,
-      "level": 32,
-      "D": 32,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L03.core.CULTURE.ts",
-      "L": 61,
-      "level": 3,
-      "D": 23,
-      "V": 3,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L22.core.SEQ_TAIL.ts",
-      "L": 42,
-      "level": 22,
-      "D": 33,
-      "V": 4,
-      "tension": 1,
-      "isMirror": false
-    },
-    {
-      "id": "i.L05.core.SUBJECTIVE.ts",
-      "L": 59,
-      "level": 5,
-      "D": 5,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L46.core.IF_ELSE.ts",
-      "L": 18,
-      "level": 46,
-      "D": 6,
-      "V": 7,
-      "tension": 1,
-      "isMirror": false
-    },
-    {
-      "id": "i.L17.core.FLOW.ts",
-      "L": 47,
-      "level": 17,
-      "D": 20,
-      "V": 6,
       "tension": 0,
       "isMirror": false
     },
@@ -1441,24 +451,6 @@
       "isMirror": false
     },
     {
-      "id": "i.L42.core.L_JOIN.ts",
-      "L": 22,
-      "level": 42,
-      "D": 10,
-      "V": 1,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L37.core.TELL.ts",
-      "L": 27,
-      "level": 37,
-      "D": 12,
-      "V": 5,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
       "id": "i.L99.core.O_STREAM_APPEND_RUN.ts",
       "L": 1,
       "level": 99,
@@ -1477,37 +469,10 @@
       "isMirror": false
     },
     {
-      "id": "i.L99.core.PROJECTION_REPLAY_REPORT.ts",
-      "L": 1,
-      "level": 99,
-      "D": 99,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
       "id": "i.L98.core.LOGIC.ts",
       "L": 1,
       "level": 98,
       "D": 98,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L64.core.HOLOGRAM.ts",
-      "L": 1,
-      "level": 64,
-      "D": 64,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L01.core.COSMIC.ts",
-      "L": 63,
-      "level": 1,
-      "D": 22,
       "V": 0,
       "tension": 0,
       "isMirror": false
@@ -1522,83 +487,11 @@
       "isMirror": false
     },
     {
-      "id": "i.L99.core.IO_FLOW_HEALTH.ts",
-      "L": 1,
-      "level": 99,
-      "D": 99,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L02.core.NETWORK.ts",
-      "L": 62,
-      "level": 2,
-      "D": 23,
-      "V": 1,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L42.core.L_MEET.ts",
-      "L": 22,
-      "level": 42,
-      "D": 10,
-      "V": 2,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L32.core.GATE_PIPELINE.ts",
-      "L": 32,
-      "level": 32,
-      "D": 32,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L33.core.DUAL.ts",
-      "L": 31,
-      "level": 33,
-      "D": 16,
-      "V": 2,
-      "tension": 1,
-      "isMirror": false
-    },
-    {
-      "id": "i.L17.core.PRESSURE.ts",
-      "L": 47,
-      "level": 17,
-      "D": 20,
-      "V": 8,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L58.core.SUCC.ts",
-      "L": 6,
-      "level": 58,
-      "D": 4,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
       "id": "i.L99.core.O_STREAM_ARCHIVE.ts",
       "L": 1,
       "level": 99,
       "D": 99,
       "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L24.core.POINT.ts",
-      "L": 40,
-      "level": 24,
-      "D": 17,
-      "V": 7,
       "tension": 0,
       "isMirror": false
     },
@@ -1612,145 +505,10 @@
       "isMirror": false
     },
     {
-      "id": "i.L10.core.EQUILIBRIUM.ts",
-      "L": 54,
-      "level": 10,
-      "D": 26,
-      "V": 1,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L35.core.REFL.ts",
-      "L": 29,
-      "level": 35,
-      "D": 19,
-      "V": 3,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L52.core.POW.ts",
-      "L": 12,
-      "level": 52,
-      "D": 5,
-      "V": 2,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L21.core.GRAVITY.ts",
-      "L": 43,
-      "level": 21,
-      "D": 22,
-      "V": 3,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L20.core.ENTROPY.ts",
-      "L": 44,
-      "level": 20,
-      "D": 20,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L20.core.VOID.ts",
-      "L": 44,
-      "level": 20,
-      "D": 34,
-      "V": 0,
-      "tension": 1,
-      "isMirror": false
-    },
-    {
-      "id": "i.L00.core.CHROMO_STATE.ts",
-      "L": 64,
-      "level": 0,
-      "D": 0,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L43.core.READER.ts",
-      "L": 21,
-      "level": 43,
-      "D": 12,
-      "V": 3,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L10.core.DYNAMICS.ts",
-      "L": 54,
-      "level": 10,
-      "D": 26,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L42.core.S_ONE.ts",
-      "L": 22,
-      "level": 42,
-      "D": 16,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L02.core.HARMONY.ts",
-      "L": 62,
-      "level": 2,
-      "D": 23,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L29.core.SUCCESS.ts",
-      "L": 35,
-      "level": 29,
-      "D": 32,
-      "V": 2,
-      "tension": 1,
-      "isMirror": false
-    },
-    {
-      "id": "i.L36.core.MAP_ID.ts",
-      "L": 28,
-      "level": 36,
-      "D": 14,
-      "V": 4,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
       "id": "i.L32.core.IMMUNE.ts",
       "L": 32,
       "level": 32,
       "D": 32,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L99.core.REPLAY_AUDIT.ts",
-      "L": 1,
-      "level": 99,
-      "D": 99,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L02.core.PLANETARY.ts",
-      "L": 62,
-      "level": 2,
-      "D": 2,
       "V": 0,
       "tension": 0,
       "isMirror": false
@@ -1765,84 +523,12 @@
       "isMirror": false
     },
     {
-      "id": "i.L32.core.VISUALIZER.ts",
-      "L": 32,
-      "level": 32,
-      "D": 32,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L99.core.PROOF.ts",
-      "L": 1,
-      "level": 99,
-      "D": 99,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L29.core.GOAL.ts",
-      "L": 35,
-      "level": 29,
-      "D": 32,
-      "V": 1,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L53.core.C.ts",
-      "L": 11,
-      "level": 53,
-      "D": 14,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L24.core.MOVE.ts",
-      "L": 40,
-      "level": 24,
-      "D": 17,
-      "V": 8,
-      "tension": 1,
-      "isMirror": false
-    },
-    {
-      "id": "i.L26.core.MEANING.ts",
-      "L": 38,
-      "level": 26,
-      "D": 18,
-      "V": 3,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
       "id": "i.L59.core.AND.ts",
       "L": 32,
       "level": 32,
       "D": 3,
       "V": 0,
       "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L37.core.LISTEN.ts",
-      "L": 27,
-      "level": 37,
-      "D": 12,
-      "V": 6,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L16.core.SIGNAL.ts",
-      "L": 48,
-      "level": 16,
-      "D": 20,
-      "V": 3,
-      "tension": 1,
       "isMirror": false
     },
     {
@@ -1855,101 +541,11 @@
       "isMirror": false
     },
     {
-      "id": "i.L29.core.FAILURE.ts",
-      "L": 35,
-      "level": 29,
-      "D": 32,
-      "V": 3,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L12.core.CHORD.ts",
-      "L": 52,
-      "level": 12,
-      "D": 21,
-      "V": 8,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L05.core.INTENT.ts",
-      "L": 59,
-      "level": 5,
-      "D": 5,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L07.core.SELF_ORG.ts",
-      "L": 57,
-      "level": 7,
-      "D": 24,
-      "V": 5,
-      "tension": 1,
-      "isMirror": false
-    },
-    {
-      "id": "i.L45.core.RIGHT.ts",
-      "L": 19,
-      "level": 45,
-      "D": 15,
-      "V": 4,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L57.core.MUX.ts",
-      "L": 7,
-      "level": 57,
-      "D": 6,
-      "V": 2,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
       "id": "i.L32.core.DUAL.ts",
       "L": 31,
       "level": 33,
       "D": 16,
       "V": 2,
-      "tension": 1,
-      "isMirror": false
-    },
-    {
-      "id": "i.L01.core.RADIANCE.ts",
-      "L": 63,
-      "level": 1,
-      "D": 22,
-      "V": 1,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L34.core.SWAP.ts",
-      "L": 30,
-      "level": 34,
-      "D": 14,
-      "V": 2,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L43.core.MUTATE.ts",
-      "L": 21,
-      "level": 43,
-      "D": 43,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L13.core.INTERFERENCE.ts",
-      "L": 51,
-      "level": 13,
-      "D": 13,
-      "V": 0,
       "tension": 0,
       "isMirror": false
     },
@@ -1963,15 +559,6 @@
       "isMirror": false
     },
     {
-      "id": "i.L20.core.DISSOLVE.ts",
-      "L": 44,
-      "level": 20,
-      "D": 34,
-      "V": 2,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
       "id": "i.L99.core.O_STREAM_FILTER_TAGS_RUN.ts",
       "L": 1,
       "level": 99,
@@ -1981,55 +568,10 @@
       "isMirror": false
     },
     {
-      "id": "i.L32.core.FIXPOINT.ts",
-      "L": 32,
-      "level": 32,
-      "D": 32,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
       "id": "i.L59.core.T.ts",
       "L": 32,
       "level": 32,
       "D": 1,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L16.core.ETHER.ts",
-      "L": 48,
-      "level": 16,
-      "D": 20,
-      "V": 5,
-      "tension": 1,
-      "isMirror": false
-    },
-    {
-      "id": "i.L15.core.AMPLITUDE.ts",
-      "L": 49,
-      "level": 15,
-      "D": 21,
-      "V": 3,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L99.core.PROJECTION_DRIFT_ANALYTICS.ts",
-      "L": 1,
-      "level": 99,
-      "D": 99,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L32.core.FIELD_CONFIG.ts",
-      "L": 32,
-      "level": 32,
-      "D": 32,
       "V": 0,
       "tension": 0,
       "isMirror": false
@@ -2053,24 +595,6 @@
       "isMirror": false
     },
     {
-      "id": "i.L08.core.COGNITION.ts",
-      "L": 56,
-      "level": 8,
-      "D": 24,
-      "V": 6,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L99.core.O_STREAM_HEALTH_SIGNAL_RUN.ts",
-      "L": 1,
-      "level": 99,
-      "D": 99,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
       "id": "i.L03.core.O_NEED.ts",
       "L": 61,
       "level": 3,
@@ -2080,37 +604,10 @@
       "isMirror": false
     },
     {
-      "id": "i.L27.core.PROJECT.ts",
-      "L": 37,
-      "level": 27,
-      "D": 31,
-      "V": 1,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
       "id": "i.L25.core.LLM_ADAPTER.ts",
       "L": 39,
       "level": 25,
       "D": 25,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L28.core.BECOME.ts",
-      "L": 36,
-      "level": 28,
-      "D": 30,
-      "V": 1,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L11.core.FIELD.ts",
-      "L": 53,
-      "level": 11,
-      "D": 20,
       "V": 0,
       "tension": 0,
       "isMirror": false
@@ -2125,38 +622,11 @@
       "isMirror": false
     },
     {
-      "id": "i.L06.core.LIFE.ts",
-      "L": 58,
-      "level": 6,
-      "D": 24,
-      "V": 1,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L30.core.NEXT.ts",
-      "L": 34,
-      "level": 30,
-      "D": 28,
-      "V": 1,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
       "id": "i.L32.core.AGENT_SIGNATURE.ts",
       "L": 32,
       "level": 32,
       "D": 32,
       "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L45.core.LEFT.ts",
-      "L": 19,
-      "level": 45,
-      "D": 15,
-      "V": 3,
       "tension": 0,
       "isMirror": false
     },
@@ -2170,33 +640,6 @@
       "isMirror": false
     },
     {
-      "id": "i.L27.core.RELATION.ts",
-      "L": 37,
-      "level": 27,
-      "D": 31,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L42.core.S_ZERO.ts",
-      "L": 22,
-      "level": 42,
-      "D": 16,
-      "V": 1,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L03.core.MEME.ts",
-      "L": 61,
-      "level": 3,
-      "D": 23,
-      "V": 4,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
       "id": "i.L32.core.PRED.ts",
       "L": 9,
       "level": 55,
@@ -2206,64 +649,10 @@
       "isMirror": false
     },
     {
-      "id": "i.L99.core.TRINITY.ts",
-      "L": 1,
-      "level": 99,
-      "D": 99,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L99.core.O_STREAM_HEALTH_SIGNAL_WRITE.ts",
-      "L": 1,
-      "level": 99,
-      "D": 99,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L55.core.LEQ.ts",
-      "L": 9,
-      "level": 55,
-      "D": 5,
-      "V": 5,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L38.core.NEIGHBOR.ts",
-      "L": 26,
-      "level": 38,
-      "D": 18,
-      "V": 0,
-      "tension": 3,
-      "isMirror": false
-    },
-    {
-      "id": "i.L99.core.O_STREAM_HEALTH.ts",
-      "L": 1,
-      "level": 99,
-      "D": 99,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
       "id": "i.L99.core.DETERMINISM_AUDIT.ts",
       "L": 1,
       "level": 99,
       "D": 99,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L58.core.ADD.ts",
-      "L": 6,
-      "level": 58,
-      "D": 5,
       "V": 0,
       "tension": 0,
       "isMirror": false
@@ -2287,38 +676,11 @@
       "isMirror": false
     },
     {
-      "id": "i.L99.core.IO_FLOW_HEALTH_SIGNAL_RUN.ts",
-      "L": 1,
-      "level": 99,
-      "D": 99,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L37.core.WRITER.ts",
-      "L": 27,
-      "level": 37,
-      "D": 12,
-      "V": 4,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
       "id": "i.L32.core.TRIPLE.ts",
       "L": 13,
       "level": 51,
       "D": 8,
       "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L26.core.VAL_OF.ts",
-      "L": 38,
-      "level": 26,
-      "D": 18,
-      "V": 5,
       "tension": 0,
       "isMirror": false
     },
@@ -2332,118 +694,10 @@
       "isMirror": false
     },
     {
-      "id": "i.L23.core.TENSOR.ts",
-      "L": 41,
-      "level": 23,
-      "D": 17,
-      "V": 3,
-      "tension": 1,
-      "isMirror": false
-    },
-    {
-      "id": "i.L07.core.EMERGENCE.ts",
-      "L": 57,
-      "level": 7,
-      "D": 24,
-      "V": 4,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L49.core.FILTER.ts",
-      "L": 15,
-      "level": 49,
-      "D": 7,
-      "V": 2,
-      "tension": 6,
-      "isMirror": false
-    },
-    {
-      "id": "i.L38.core.RADIUS.ts",
-      "L": 26,
-      "level": 38,
-      "D": 18,
-      "V": 1,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L63.core.K.ts",
-      "L": 1,
-      "level": 63,
-      "D": 1,
-      "V": 3,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L15.core.VIBRATION.ts",
-      "L": 49,
-      "level": 15,
-      "D": 21,
-      "V": 5,
-      "tension": 1,
-      "isMirror": false
-    },
-    {
-      "id": "i.L48.core.S_TAIL.ts",
-      "L": 16,
-      "level": 48,
-      "D": 9,
-      "V": 2,
-      "tension": 1,
-      "isMirror": false
-    },
-    {
       "id": "i.L32.core.DUAL_COMPILER.ts",
       "L": 32,
       "level": 32,
       "D": 32,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L30.core.OBSERVABLE.ts",
-      "L": 34,
-      "level": 30,
-      "D": 28,
-      "V": 2,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L63.core.S.ts",
-      "L": 1,
-      "level": 63,
-      "D": 1,
-      "V": 4,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L55.core.SUB.ts",
-      "L": 9,
-      "level": 55,
-      "D": 5,
-      "V": 4,
-      "tension": 1,
-      "isMirror": false
-    },
-    {
-      "id": "i.L08.core.NEURON.ts",
-      "L": 56,
-      "level": 8,
-      "D": 24,
-      "V": 7,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L30.core.ATOM.ts",
-      "L": 34,
-      "level": 30,
-      "D": 28,
       "V": 0,
       "tension": 0,
       "isMirror": false
@@ -2467,15 +721,6 @@
       "isMirror": false
     },
     {
-      "id": "i.L51.core.TRIPLE.ts",
-      "L": 13,
-      "level": 51,
-      "D": 8,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
       "id": "i.L99.core.O_STREAM_ARCHIVE_QUERY.ts",
       "L": 1,
       "level": 99,
@@ -2494,83 +739,11 @@
       "isMirror": false
     },
     {
-      "id": "i.L24.core.COORD_Z.ts",
-      "L": 40,
-      "level": 24,
-      "D": 17,
-      "V": 6,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L39.core.HALT.ts",
-      "L": 25,
-      "level": 39,
-      "D": 18,
-      "V": 2,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L64.core.PROJECTION.ts",
-      "L": 1,
-      "level": 64,
-      "D": 64,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L27.core.SELECT.ts",
-      "L": 37,
-      "level": 27,
-      "D": 31,
-      "V": 2,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L05.core.CONSCIOUSNESS.ts",
-      "L": 59,
-      "level": 5,
-      "D": 25,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L45.core.EITHER_CASE.ts",
-      "L": 19,
-      "level": 45,
-      "D": 15,
-      "V": 5,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L13.core.RESONANCE_DEEP.ts",
-      "L": 51,
-      "level": 13,
-      "D": 21,
-      "V": 9,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
       "id": "i.L99.core.O_STREAM_TAGS_SUMMARY_RUN.ts",
       "L": 1,
       "level": 99,
       "D": 99,
       "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L47.core.BYTE.ts",
-      "L": 17,
-      "level": 47,
-      "D": 6,
-      "V": 6,
       "tension": 0,
       "isMirror": false
     },
@@ -2584,66 +757,12 @@
       "isMirror": false
     },
     {
-      "id": "i.L99.core.MUTATION_LEDGER.ts",
-      "L": 1,
-      "level": 99,
-      "D": 99,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L45.core.NOTHING.ts",
-      "L": 19,
-      "level": 45,
-      "D": 15,
-      "V": 1,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L47.core.B_READ.ts",
-      "L": 17,
-      "level": 47,
-      "D": 6,
-      "V": 5,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
       "id": "i.L64.core.SIGNAL.ts",
       "L": 48,
       "level": 16,
       "D": 20,
       "V": 3,
       "tension": 1,
-      "isMirror": false
-    },
-    {
-      "id": "i.L15.core.FREQUENCY.ts",
-      "L": 49,
-      "level": 15,
-      "D": 21,
-      "V": 4,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L32.core.SOMA.ts",
-      "L": 32,
-      "level": 32,
-      "D": 32,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L99.core.IO_FLOW.ts",
-      "L": 1,
-      "level": 99,
-      "D": 99,
-      "V": 0,
-      "tension": 0,
       "isMirror": false
     },
     {
@@ -2656,43 +775,7 @@
       "isMirror": false
     },
     {
-      "id": "i.L22.core.SEQUENCE.ts",
-      "L": 42,
-      "level": 22,
-      "D": 33,
-      "V": 2,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L99.core.TOPOLOGICAL_SIGNATURE.ts",
-      "L": 1,
-      "level": 99,
-      "D": 99,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L31.core.METHOD.ts",
-      "L": 33,
-      "level": 31,
-      "D": 29,
-      "V": 1,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L04.core.INTER_SUB.ts",
-      "L": 60,
-      "level": 4,
-      "D": 23,
-      "V": 6,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L32.core.LIFT.ts",
+      "id": "i.L32.core.SCHEMA.ts",
       "L": 32,
       "level": 32,
       "D": 32,
@@ -2719,52 +802,7 @@
       "isMirror": false
     },
     {
-      "id": "i.L23.core.DIM.ts",
-      "L": 41,
-      "level": 23,
-      "D": 17,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
       "id": "i.L99.core.CRYSTALLIZATION_CONFIG.ts",
-      "L": 1,
-      "level": 99,
-      "D": 99,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L32.core.Y.ts",
-      "L": 32,
-      "level": 32,
-      "D": 1,
-      "V": 5,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L99.core.O_STREAM_HEALTH_RUN.ts",
-      "L": 1,
-      "level": 99,
-      "D": 99,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L22.core.NOW.ts",
-      "L": 42,
-      "level": 22,
-      "D": 33,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L99.core.IO_FLOW_HEALTH_SIGNAL_WRITE.ts",
       "L": 1,
       "level": 99,
       "D": 99,
@@ -2805,132 +843,6 @@
       "level": 41,
       "D": 19,
       "V": 2,
-      "tension": 1,
-      "isMirror": false
-    },
-    {
-      "id": "i.L39.core.MACHINE.ts",
-      "L": 25,
-      "level": 39,
-      "D": 11,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L04.core.COMM.ts",
-      "L": 60,
-      "level": 4,
-      "D": 23,
-      "V": 5,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L99.core.AUTONOMY_METRIC.ts",
-      "L": 1,
-      "level": 99,
-      "D": 99,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L09.core.ATTENTION.ts",
-      "L": 55,
-      "level": 9,
-      "D": 13,
-      "V": 0,
-      "tension": 1,
-      "isMirror": false
-    },
-    {
-      "id": "i.L22.core.CHRONOFLUX.ts",
-      "L": 42,
-      "level": 22,
-      "D": 22,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L32.core.FIELD.ts",
-      "L": 53,
-      "level": 11,
-      "D": 20,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L06.core.EVOLVE.ts",
-      "L": 58,
-      "level": 6,
-      "D": 24,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L09.core.SENSATION.ts",
-      "L": 55,
-      "level": 9,
-      "D": 13,
-      "V": 2,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L49.core.MAP.ts",
-      "L": 15,
-      "level": 49,
-      "D": 7,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L21.core.MASS.ts",
-      "L": 43,
-      "level": 21,
-      "D": 22,
-      "V": 4,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L09.core.PERCEPTION.ts",
-      "L": 55,
-      "level": 9,
-      "D": 13,
-      "V": 1,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L43.core.STATE.ts",
-      "L": 21,
-      "level": 43,
-      "D": 12,
-      "V": 0,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L43.core.GET.ts",
-      "L": 21,
-      "level": 43,
-      "D": 12,
-      "V": 1,
-      "tension": 0,
-      "isMirror": false
-    },
-    {
-      "id": "i.L23.core.RANK.ts",
-      "L": 41,
-      "level": 23,
-      "D": 17,
-      "V": 1,
       "tension": 0,
       "isMirror": false
     },
@@ -15427,14 +13339,6 @@
       "isMirror": false
     },
     {
-      "id": "mirror.i.L56.core.IS_ZERO.ts",
-      "L": 32,
-      "D": 35,
-      "V": 4,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
       "id": "mirror.i.L99.core.DRIFT_CONTROLLER.ts",
       "L": 1,
       "D": 3,
@@ -15443,39 +13347,7 @@
       "isMirror": true
     },
     {
-      "id": "mirror.i.L39.core.STEP.ts",
-      "L": 25,
-      "D": 43,
-      "V": 1,
-      "tension": 1,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L29.core.UNIFY.ts",
-      "L": 35,
-      "D": 0,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L00.core.SURFACE.ts",
-      "L": 64,
-      "D": 59,
-      "V": 2,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
       "id": "mirror.i.L99.core.O_STREAM_TAGS_SUMMARY.ts",
-      "L": 1,
-      "D": 3,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L99.core.IO_FLOW_HEALTH_RUN.ts",
       "L": 1,
       "D": 3,
       "V": 0,
@@ -15499,43 +13371,11 @@
       "isMirror": true
     },
     {
-      "id": "mirror.i.L57.core.XOR.ts",
-      "L": 7,
-      "D": 38,
-      "V": 1,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L32.core.ARENA.ts",
-      "L": 32,
-      "D": 0,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L52.core.MULT.ts",
-      "L": 12,
-      "D": 37,
-      "V": 1,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
       "id": "mirror.i.L03.core.O_RESONATE.ts",
       "L": 61,
       "D": 35,
       "V": 0,
       "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L36.core.LENS.ts",
-      "L": 28,
-      "D": 46,
-      "V": 3,
-      "tension": 1,
       "isMirror": true
     },
     {
@@ -15547,49 +13387,9 @@
       "isMirror": true
     },
     {
-      "id": "mirror.i.L32.core.NIL.ts",
-      "L": 32,
-      "D": 34,
-      "V": 3,
-      "tension": 1,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L99.core.GLIDER_LITE_RUN.ts",
-      "L": 1,
-      "D": 3,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
       "id": "mirror.i.L03.core.O_STRATA.ts",
       "L": 61,
       "D": 35,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L16.core.RESONANCE.ts",
-      "L": 48,
-      "D": 52,
-      "V": 4,
-      "tension": 1,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L24.core.COORD_X.ts",
-      "L": 40,
-      "D": 49,
-      "V": 4,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L99.core.IO_FLOW_HEALTH_WRITE.ts",
-      "L": 1,
-      "D": 3,
       "V": 0,
       "tension": 0,
       "isMirror": true
@@ -15619,34 +13419,10 @@
       "isMirror": true
     },
     {
-      "id": "mirror.i.L17.core.FLUX.ts",
-      "L": 47,
-      "D": 52,
-      "V": 7,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L43.core.PUT.ts",
-      "L": 21,
-      "D": 44,
-      "V": 2,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
       "id": "mirror.i.L99.core.O_STREAM_ARCHIVE_INDEX_RUN.ts",
       "L": 1,
       "D": 3,
       "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L32.core.F.ts",
-      "L": 32,
-      "D": 33,
-      "V": 1,
       "tension": 0,
       "isMirror": true
     },
@@ -15659,50 +13435,10 @@
       "isMirror": true
     },
     {
-      "id": "mirror.i.L61.core.Y.ts",
-      "L": 32,
-      "D": 33,
-      "V": 5,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L32.core.CDR.ts",
-      "L": 32,
-      "D": 34,
-      "V": 2,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L14.core.WAVE.ts",
-      "L": 50,
-      "D": 53,
-      "V": 2,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L03.core.SYNERGY.ts",
-      "L": 61,
-      "D": 55,
-      "V": 8,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
       "id": "mirror.i.L03.core.O_POLICY.ts",
       "L": 61,
       "D": 35,
       "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L55.core.PRED.ts",
-      "L": 9,
-      "D": 37,
-      "V": 3,
       "tension": 0,
       "isMirror": true
     },
@@ -15723,41 +13459,9 @@
       "isMirror": true
     },
     {
-      "id": "mirror.i.L64.core.MEMBRANE.ts",
-      "L": 1,
-      "D": 32,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L32.core.MATH.ts",
-      "L": 32,
-      "D": 0,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
       "id": "mirror.i.L99.core.DETERMINISM_LAWS.ts",
       "L": 1,
       "D": 3,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L57.core.NAND.ts",
-      "L": 7,
-      "D": 38,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L12.core.HARMONIC.ts",
-      "L": 52,
-      "D": 53,
       "V": 0,
       "tension": 0,
       "isMirror": true
@@ -15771,75 +13475,11 @@
       "isMirror": true
     },
     {
-      "id": "mirror.i.L99.core.IO_FLOW_SIGNAL_WATCH.ts",
-      "L": 1,
-      "D": 3,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
       "id": "mirror.i.L99.core.PROPOSAL_ENVELOPE_INDEX.ts",
       "L": 1,
       "D": 3,
       "V": 0,
       "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L32.core.IS_NIL.ts",
-      "L": 32,
-      "D": 35,
-      "V": 3,
-      "tension": 2,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L26.core.TAG_OF.ts",
-      "L": 38,
-      "D": 50,
-      "V": 4,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L32.core.CAR.ts",
-      "L": 32,
-      "D": 34,
-      "V": 1,
-      "tension": 1,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L53.core.W.ts",
-      "L": 11,
-      "D": 51,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L99.core.LOAD.ts",
-      "L": 1,
-      "D": 3,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L32.core.NOT.ts",
-      "L": 32,
-      "D": 35,
-      "V": 2,
-      "tension": 2,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L48.core.STREAM.ts",
-      "L": 16,
-      "D": 41,
-      "V": 0,
-      "tension": 1,
       "isMirror": true
     },
     {
@@ -15859,38 +13499,6 @@
       "isMirror": true
     },
     {
-      "id": "mirror.i.L33.core.INV.ts",
-      "L": 31,
-      "D": 48,
-      "V": 3,
-      "tension": 1,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L41.core.SYNC.ts",
-      "L": 23,
-      "D": 51,
-      "V": 2,
-      "tension": 1,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L05.core.ENERGY.ts",
-      "L": 59,
-      "D": 37,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L99.core.CRYSTALLIZATION_REPORT.ts",
-      "L": 1,
-      "D": 3,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
       "id": "mirror.i.L05.core.SENSORS.ts",
       "L": 59,
       "D": 37,
@@ -15899,58 +13507,10 @@
       "isMirror": true
     },
     {
-      "id": "mirror.i.L32.core.CONS.ts",
-      "L": 32,
-      "D": 34,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L32.core.GATE_RUNTIME_CONTEXT.ts",
-      "L": 32,
-      "D": 0,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L22.core.SEQ_HEAD.ts",
-      "L": 42,
-      "D": 1,
-      "V": 3,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L32.core.SUCC.ts",
-      "L": 6,
-      "D": 36,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L62.core.B.ts",
-      "L": 2,
-      "D": 36,
-      "V": 5,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
       "id": "mirror.i.L99.core.GATE_ADMISSION_REPORT.ts",
       "L": 1,
       "D": 3,
       "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L32.core.IS_ZERO.ts",
-      "L": 32,
-      "D": 35,
-      "V": 4,
       "tension": 0,
       "isMirror": true
     },
@@ -15979,38 +13539,6 @@
       "isMirror": true
     },
     {
-      "id": "mirror.i.L32.core.INTERFACE.ts",
-      "L": 32,
-      "D": 59,
-      "V": 1,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L11.core.TENSION.ts",
-      "L": 53,
-      "D": 52,
-      "V": 2,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L24.core.COORD_Y.ts",
-      "L": 40,
-      "D": 49,
-      "V": 5,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L49.core.FOLD.ts",
-      "L": 15,
-      "D": 39,
-      "V": 1,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
       "id": "mirror.i.L99.core.O_STREAM_HEALTH_SIGNAL.ts",
       "L": 1,
       "D": 3,
@@ -16027,42 +13555,10 @@
       "isMirror": true
     },
     {
-      "id": "mirror.i.L32.core.ARCHETYPE_ENGINE.ts",
-      "L": 32,
-      "D": 0,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L21.core.WEIGHT.ts",
-      "L": 43,
-      "D": 54,
-      "V": 5,
-      "tension": 1,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L00.core.COLOR.ts",
-      "L": 64,
-      "D": 32,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
       "id": "mirror.i.L99.core.O_STREAM_TAG_POLICY.ts",
       "L": 1,
       "D": 3,
       "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L28.core.A_SEND.ts",
-      "L": 36,
-      "D": 62,
-      "V": 2,
       "tension": 0,
       "isMirror": true
     },
@@ -16075,62 +13571,6 @@
       "isMirror": true
     },
     {
-      "id": "mirror.i.L00.core.INTERFACE.ts",
-      "L": 64,
-      "D": 59,
-      "V": 1,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L63.core.OMEGA.ts",
-      "L": 1,
-      "D": 59,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L35.core.IS_ISO.ts",
-      "L": 29,
-      "D": 51,
-      "V": 4,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L13.core.WAVE_PACKET.ts",
-      "L": 51,
-      "D": 45,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L54.core.CAR.ts",
-      "L": 32,
-      "D": 34,
-      "V": 1,
-      "tension": 1,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L48.core.S_MAP.ts",
-      "L": 16,
-      "D": 41,
-      "V": 3,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L11.core.COUPLING.ts",
-      "L": 53,
-      "D": 52,
-      "V": 1,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
       "id": "mirror.i.L99.core.CHECKPOINT.ts",
       "L": 1,
       "D": 3,
@@ -16139,49 +13579,9 @@
       "isMirror": true
     },
     {
-      "id": "mirror.i.L99.core.CRYSTALLIZATION.ts",
-      "L": 1,
-      "D": 3,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L32.core.AND.ts",
-      "L": 32,
-      "D": 35,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L45.core.MAYBE_CASE.ts",
-      "L": 19,
-      "D": 47,
-      "V": 2,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
       "id": "mirror.i.L99.core.O_STREAM_APPEND.ts",
       "L": 1,
       "D": 3,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L14.core.PHASE.ts",
-      "L": 50,
-      "D": 53,
-      "V": 1,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L45.core.JUST.ts",
-      "L": 19,
-      "D": 47,
       "V": 0,
       "tension": 0,
       "isMirror": true
@@ -16203,73 +13603,9 @@
       "isMirror": true
     },
     {
-      "id": "mirror.i.L41.core.JOIN.ts",
-      "L": 23,
-      "D": 42,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L99.core.GLIDER_LITE.ts",
-      "L": 1,
-      "D": 3,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
       "id": "mirror.i.L03.core.O_COLLAPSE.ts",
       "L": 61,
       "D": 35,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L54.core.IS_NIL.ts",
-      "L": 32,
-      "D": 35,
-      "V": 3,
-      "tension": 2,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L34.core.REFLECT.ts",
-      "L": 30,
-      "D": 46,
-      "V": 1,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L05.core.SUBJECT.ts",
-      "L": 59,
-      "D": 57,
-      "V": 2,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L31.core.SEND.ts",
-      "L": 33,
-      "D": 61,
-      "V": 3,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L07.core.COMPLEXITY.ts",
-      "L": 57,
-      "D": 56,
-      "V": 3,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L32.core.T.ts",
-      "L": 32,
-      "D": 33,
       "V": 0,
       "tension": 0,
       "isMirror": true
@@ -16283,30 +13619,6 @@
       "isMirror": true
     },
     {
-      "id": "mirror.i.L99.core.TOPOLOGY_PROTOCOL.ts",
-      "L": 1,
-      "D": 3,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L99.core.SAFE_WINDOW_STATUS.ts",
-      "L": 1,
-      "D": 3,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L02.core.PURGE_UTIL.ts",
-      "L": 62,
-      "D": 34,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
       "id": "mirror.i.L99.core.GENOME.ts",
       "L": 1,
       "D": 3,
@@ -16315,49 +13627,9 @@
       "isMirror": true
     },
     {
-      "id": "mirror.i.L00.core.OMEGA.ts",
-      "L": 64,
-      "D": 59,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L06.core.METABOLISM.ts",
-      "L": 58,
-      "D": 56,
-      "V": 2,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L04.core.EMPATHY.ts",
-      "L": 60,
-      "D": 55,
-      "V": 7,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L48.core.S_HEAD.ts",
-      "L": 16,
-      "D": 41,
-      "V": 1,
-      "tension": 1,
-      "isMirror": true
-    },
-    {
       "id": "mirror.i.L99.core.O_STREAM_ADAPTER.ts",
       "L": 1,
       "D": 3,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L31.core.OBJECT.ts",
-      "L": 33,
-      "D": 61,
       "V": 0,
       "tension": 0,
       "isMirror": true
@@ -16371,102 +13643,6 @@
       "isMirror": true
     },
     {
-      "id": "mirror.i.L10.core.FORCE.ts",
-      "L": 54,
-      "D": 45,
-      "V": 3,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L08.core.SYNAPSE.ts",
-      "L": 56,
-      "D": 56,
-      "V": 8,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L00.core.FIELD.ts",
-      "L": 53,
-      "D": 52,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L26.core.SEM_WRAP.ts",
-      "L": 38,
-      "D": 50,
-      "V": 6,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L99.core.QUANTUM_PACK.ts",
-      "L": 1,
-      "D": 3,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L54.core.NIL.ts",
-      "L": 32,
-      "D": 34,
-      "V": 3,
-      "tension": 1,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L99.core.POLICY_TRANSITION.ts",
-      "L": 1,
-      "D": 3,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L32.core.OR.ts",
-      "L": 32,
-      "D": 35,
-      "V": 1,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L31.core.CLASS.ts",
-      "L": 33,
-      "D": 61,
-      "V": 2,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L99.core.MYCELIUM.ts",
-      "L": 1,
-      "D": 3,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L55.core.EQ.ts",
-      "L": 9,
-      "D": 37,
-      "V": 6,
-      "tension": 2,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L99.core.O_STREAM_SIGNAL_WATCH.ts",
-      "L": 1,
-      "D": 3,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
       "id": "mirror.i.L99.core.SPECTRAL_INVARIANTS.ts",
       "L": 1,
       "D": 3,
@@ -16475,23 +13651,7 @@
       "isMirror": true
     },
     {
-      "id": "mirror.i.L23.core.VECTOR.ts",
-      "L": 41,
-      "D": 49,
-      "V": 2,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
       "id": "mirror.i.L32.core.CANON_CAUSAL_BRIDGE.ts",
-      "L": 32,
-      "D": 0,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L32.core.GATE.ts",
       "L": 32,
       "D": 0,
       "V": 0,
@@ -16523,41 +13683,9 @@
       "isMirror": true
     },
     {
-      "id": "mirror.i.L01.core.STELLAR.ts",
-      "L": 63,
-      "D": 54,
-      "V": 2,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L32.core.I.ts",
-      "L": 32,
-      "D": 33,
-      "V": 2,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
       "id": "mirror.i.L99.core.DISCOVERY.ts",
       "L": 1,
       "D": 3,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L54.core.CDR.ts",
-      "L": 32,
-      "D": 34,
-      "V": 2,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L00.core.ACCESS_BY_RESONANCE.ts",
-      "L": 64,
-      "D": 32,
       "V": 0,
       "tension": 0,
       "isMirror": true
@@ -16568,14 +13696,6 @@
       "D": 3,
       "V": 0,
       "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L41.core.FORK.ts",
-      "L": 23,
-      "D": 51,
-      "V": 1,
-      "tension": 3,
       "isMirror": true
     },
     {
@@ -16595,98 +13715,10 @@
       "isMirror": true
     },
     {
-      "id": "mirror.i.L28.core.ACTOR.ts",
-      "L": 36,
-      "D": 62,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L99.core.O_STREAM_HEALTH_WRITE.ts",
-      "L": 1,
-      "D": 3,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L36.core.VIEW.ts",
-      "L": 28,
-      "D": 46,
-      "V": 5,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L22.core.TICK.ts",
-      "L": 42,
-      "D": 1,
-      "V": 1,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
       "id": "mirror.i.L99.core.O_STREAM_VALIDATE.ts",
       "L": 1,
       "D": 3,
       "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L99.core.IO_FLOW_RUN.ts",
-      "L": 1,
-      "D": 3,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L32.core.GATE_RUNNER.ts",
-      "L": 32,
-      "D": 0,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L03.core.CULTURE.ts",
-      "L": 61,
-      "D": 55,
-      "V": 3,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L22.core.SEQ_TAIL.ts",
-      "L": 42,
-      "D": 1,
-      "V": 4,
-      "tension": 1,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L05.core.SUBJECTIVE.ts",
-      "L": 59,
-      "D": 37,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L46.core.IF_ELSE.ts",
-      "L": 18,
-      "D": 38,
-      "V": 7,
-      "tension": 1,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L17.core.FLOW.ts",
-      "L": 47,
-      "D": 52,
-      "V": 6,
       "tension": 0,
       "isMirror": true
     },
@@ -16707,22 +13739,6 @@
       "isMirror": true
     },
     {
-      "id": "mirror.i.L42.core.L_JOIN.ts",
-      "L": 22,
-      "D": 42,
-      "V": 1,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L37.core.TELL.ts",
-      "L": 27,
-      "D": 44,
-      "V": 5,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
       "id": "mirror.i.L99.core.O_STREAM_APPEND_RUN.ts",
       "L": 1,
       "D": 3,
@@ -16739,33 +13755,9 @@
       "isMirror": true
     },
     {
-      "id": "mirror.i.L99.core.PROJECTION_REPLAY_REPORT.ts",
-      "L": 1,
-      "D": 3,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
       "id": "mirror.i.L98.core.LOGIC.ts",
       "L": 1,
       "D": 2,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L64.core.HOLOGRAM.ts",
-      "L": 1,
-      "D": 32,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L01.core.COSMIC.ts",
-      "L": 63,
-      "D": 54,
       "V": 0,
       "tension": 0,
       "isMirror": true
@@ -16779,74 +13771,10 @@
       "isMirror": true
     },
     {
-      "id": "mirror.i.L99.core.IO_FLOW_HEALTH.ts",
-      "L": 1,
-      "D": 3,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L02.core.NETWORK.ts",
-      "L": 62,
-      "D": 55,
-      "V": 1,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L42.core.L_MEET.ts",
-      "L": 22,
-      "D": 42,
-      "V": 2,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L32.core.GATE_PIPELINE.ts",
-      "L": 32,
-      "D": 0,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L33.core.DUAL.ts",
-      "L": 31,
-      "D": 48,
-      "V": 2,
-      "tension": 1,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L17.core.PRESSURE.ts",
-      "L": 47,
-      "D": 52,
-      "V": 8,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L58.core.SUCC.ts",
-      "L": 6,
-      "D": 36,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
       "id": "mirror.i.L99.core.O_STREAM_ARCHIVE.ts",
       "L": 1,
       "D": 3,
       "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L24.core.POINT.ts",
-      "L": 40,
-      "D": 49,
-      "V": 7,
       "tension": 0,
       "isMirror": true
     },
@@ -16859,129 +13787,9 @@
       "isMirror": true
     },
     {
-      "id": "mirror.i.L10.core.EQUILIBRIUM.ts",
-      "L": 54,
-      "D": 58,
-      "V": 1,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L35.core.REFL.ts",
-      "L": 29,
-      "D": 51,
-      "V": 3,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L52.core.POW.ts",
-      "L": 12,
-      "D": 37,
-      "V": 2,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L21.core.GRAVITY.ts",
-      "L": 43,
-      "D": 54,
-      "V": 3,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L20.core.ENTROPY.ts",
-      "L": 44,
-      "D": 52,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L20.core.VOID.ts",
-      "L": 44,
-      "D": 2,
-      "V": 0,
-      "tension": 1,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L00.core.CHROMO_STATE.ts",
-      "L": 64,
-      "D": 32,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L43.core.READER.ts",
-      "L": 21,
-      "D": 44,
-      "V": 3,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L10.core.DYNAMICS.ts",
-      "L": 54,
-      "D": 58,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L42.core.S_ONE.ts",
-      "L": 22,
-      "D": 48,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L02.core.HARMONY.ts",
-      "L": 62,
-      "D": 55,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L29.core.SUCCESS.ts",
-      "L": 35,
-      "D": 0,
-      "V": 2,
-      "tension": 1,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L36.core.MAP_ID.ts",
-      "L": 28,
-      "D": 46,
-      "V": 4,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
       "id": "mirror.i.L32.core.IMMUNE.ts",
       "L": 32,
       "D": 0,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L99.core.REPLAY_AUDIT.ts",
-      "L": 1,
-      "D": 3,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L02.core.PLANETARY.ts",
-      "L": 62,
-      "D": 34,
       "V": 0,
       "tension": 0,
       "isMirror": true
@@ -16995,75 +13803,11 @@
       "isMirror": true
     },
     {
-      "id": "mirror.i.L32.core.VISUALIZER.ts",
-      "L": 32,
-      "D": 0,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L99.core.PROOF.ts",
-      "L": 1,
-      "D": 3,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L29.core.GOAL.ts",
-      "L": 35,
-      "D": 0,
-      "V": 1,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L53.core.C.ts",
-      "L": 11,
-      "D": 46,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L24.core.MOVE.ts",
-      "L": 40,
-      "D": 49,
-      "V": 8,
-      "tension": 1,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L26.core.MEANING.ts",
-      "L": 38,
-      "D": 50,
-      "V": 3,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
       "id": "mirror.i.L59.core.AND.ts",
       "L": 32,
       "D": 35,
       "V": 0,
       "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L37.core.LISTEN.ts",
-      "L": 27,
-      "D": 44,
-      "V": 6,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L16.core.SIGNAL.ts",
-      "L": 48,
-      "D": 52,
-      "V": 3,
-      "tension": 1,
       "isMirror": true
     },
     {
@@ -17075,90 +13819,10 @@
       "isMirror": true
     },
     {
-      "id": "mirror.i.L29.core.FAILURE.ts",
-      "L": 35,
-      "D": 0,
-      "V": 3,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L12.core.CHORD.ts",
-      "L": 52,
-      "D": 53,
-      "V": 8,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L05.core.INTENT.ts",
-      "L": 59,
-      "D": 37,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L07.core.SELF_ORG.ts",
-      "L": 57,
-      "D": 56,
-      "V": 5,
-      "tension": 1,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L45.core.RIGHT.ts",
-      "L": 19,
-      "D": 47,
-      "V": 4,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L57.core.MUX.ts",
-      "L": 7,
-      "D": 38,
-      "V": 2,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
       "id": "mirror.i.L32.core.DUAL.ts",
       "L": 31,
       "D": 48,
       "V": 2,
-      "tension": 1,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L01.core.RADIANCE.ts",
-      "L": 63,
-      "D": 54,
-      "V": 1,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L34.core.SWAP.ts",
-      "L": 30,
-      "D": 46,
-      "V": 2,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L43.core.MUTATE.ts",
-      "L": 21,
-      "D": 11,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L13.core.INTERFERENCE.ts",
-      "L": 51,
-      "D": 45,
-      "V": 0,
       "tension": 0,
       "isMirror": true
     },
@@ -17171,14 +13835,6 @@
       "isMirror": true
     },
     {
-      "id": "mirror.i.L20.core.DISSOLVE.ts",
-      "L": 44,
-      "D": 2,
-      "V": 2,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
       "id": "mirror.i.L99.core.O_STREAM_FILTER_TAGS_RUN.ts",
       "L": 1,
       "D": 3,
@@ -17187,49 +13843,9 @@
       "isMirror": true
     },
     {
-      "id": "mirror.i.L32.core.FIXPOINT.ts",
-      "L": 32,
-      "D": 0,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
       "id": "mirror.i.L59.core.T.ts",
       "L": 32,
       "D": 33,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L16.core.ETHER.ts",
-      "L": 48,
-      "D": 52,
-      "V": 5,
-      "tension": 1,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L15.core.AMPLITUDE.ts",
-      "L": 49,
-      "D": 53,
-      "V": 3,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L99.core.PROJECTION_DRIFT_ANALYTICS.ts",
-      "L": 1,
-      "D": 3,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L32.core.FIELD_CONFIG.ts",
-      "L": 32,
-      "D": 0,
       "V": 0,
       "tension": 0,
       "isMirror": true
@@ -17251,22 +13867,6 @@
       "isMirror": true
     },
     {
-      "id": "mirror.i.L08.core.COGNITION.ts",
-      "L": 56,
-      "D": 56,
-      "V": 6,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L99.core.O_STREAM_HEALTH_SIGNAL_RUN.ts",
-      "L": 1,
-      "D": 3,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
       "id": "mirror.i.L03.core.O_NEED.ts",
       "L": 61,
       "D": 35,
@@ -17275,33 +13875,9 @@
       "isMirror": true
     },
     {
-      "id": "mirror.i.L27.core.PROJECT.ts",
-      "L": 37,
-      "D": 63,
-      "V": 1,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
       "id": "mirror.i.L25.core.LLM_ADAPTER.ts",
       "L": 39,
       "D": 57,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L28.core.BECOME.ts",
-      "L": 36,
-      "D": 62,
-      "V": 1,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L11.core.FIELD.ts",
-      "L": 53,
-      "D": 52,
       "V": 0,
       "tension": 0,
       "isMirror": true
@@ -17315,34 +13891,10 @@
       "isMirror": true
     },
     {
-      "id": "mirror.i.L06.core.LIFE.ts",
-      "L": 58,
-      "D": 56,
-      "V": 1,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L30.core.NEXT.ts",
-      "L": 34,
-      "D": 60,
-      "V": 1,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
       "id": "mirror.i.L32.core.AGENT_SIGNATURE.ts",
       "L": 32,
       "D": 0,
       "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L45.core.LEFT.ts",
-      "L": 19,
-      "D": 47,
-      "V": 3,
       "tension": 0,
       "isMirror": true
     },
@@ -17355,30 +13907,6 @@
       "isMirror": true
     },
     {
-      "id": "mirror.i.L27.core.RELATION.ts",
-      "L": 37,
-      "D": 63,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L42.core.S_ZERO.ts",
-      "L": 22,
-      "D": 48,
-      "V": 1,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L03.core.MEME.ts",
-      "L": 61,
-      "D": 55,
-      "V": 4,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
       "id": "mirror.i.L32.core.PRED.ts",
       "L": 9,
       "D": 37,
@@ -17387,57 +13915,9 @@
       "isMirror": true
     },
     {
-      "id": "mirror.i.L99.core.TRINITY.ts",
-      "L": 1,
-      "D": 3,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L99.core.O_STREAM_HEALTH_SIGNAL_WRITE.ts",
-      "L": 1,
-      "D": 3,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L55.core.LEQ.ts",
-      "L": 9,
-      "D": 37,
-      "V": 5,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L38.core.NEIGHBOR.ts",
-      "L": 26,
-      "D": 50,
-      "V": 0,
-      "tension": 3,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L99.core.O_STREAM_HEALTH.ts",
-      "L": 1,
-      "D": 3,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
       "id": "mirror.i.L99.core.DETERMINISM_AUDIT.ts",
       "L": 1,
       "D": 3,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L58.core.ADD.ts",
-      "L": 6,
-      "D": 37,
       "V": 0,
       "tension": 0,
       "isMirror": true
@@ -17459,34 +13939,10 @@
       "isMirror": true
     },
     {
-      "id": "mirror.i.L99.core.IO_FLOW_HEALTH_SIGNAL_RUN.ts",
-      "L": 1,
-      "D": 3,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L37.core.WRITER.ts",
-      "L": 27,
-      "D": 44,
-      "V": 4,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
       "id": "mirror.i.L32.core.TRIPLE.ts",
       "L": 13,
       "D": 40,
       "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L26.core.VAL_OF.ts",
-      "L": 38,
-      "D": 50,
-      "V": 5,
       "tension": 0,
       "isMirror": true
     },
@@ -17499,105 +13955,9 @@
       "isMirror": true
     },
     {
-      "id": "mirror.i.L23.core.TENSOR.ts",
-      "L": 41,
-      "D": 49,
-      "V": 3,
-      "tension": 1,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L07.core.EMERGENCE.ts",
-      "L": 57,
-      "D": 56,
-      "V": 4,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L49.core.FILTER.ts",
-      "L": 15,
-      "D": 39,
-      "V": 2,
-      "tension": 6,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L38.core.RADIUS.ts",
-      "L": 26,
-      "D": 50,
-      "V": 1,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L63.core.K.ts",
-      "L": 1,
-      "D": 33,
-      "V": 3,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L15.core.VIBRATION.ts",
-      "L": 49,
-      "D": 53,
-      "V": 5,
-      "tension": 1,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L48.core.S_TAIL.ts",
-      "L": 16,
-      "D": 41,
-      "V": 2,
-      "tension": 1,
-      "isMirror": true
-    },
-    {
       "id": "mirror.i.L32.core.DUAL_COMPILER.ts",
       "L": 32,
       "D": 0,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L30.core.OBSERVABLE.ts",
-      "L": 34,
-      "D": 60,
-      "V": 2,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L63.core.S.ts",
-      "L": 1,
-      "D": 33,
-      "V": 4,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L55.core.SUB.ts",
-      "L": 9,
-      "D": 37,
-      "V": 4,
-      "tension": 1,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L08.core.NEURON.ts",
-      "L": 56,
-      "D": 56,
-      "V": 7,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L30.core.ATOM.ts",
-      "L": 34,
-      "D": 60,
       "V": 0,
       "tension": 0,
       "isMirror": true
@@ -17619,14 +13979,6 @@
       "isMirror": true
     },
     {
-      "id": "mirror.i.L51.core.TRIPLE.ts",
-      "L": 13,
-      "D": 40,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
       "id": "mirror.i.L99.core.O_STREAM_ARCHIVE_QUERY.ts",
       "L": 1,
       "D": 3,
@@ -17643,74 +13995,10 @@
       "isMirror": true
     },
     {
-      "id": "mirror.i.L24.core.COORD_Z.ts",
-      "L": 40,
-      "D": 49,
-      "V": 6,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L39.core.HALT.ts",
-      "L": 25,
-      "D": 50,
-      "V": 2,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L64.core.PROJECTION.ts",
-      "L": 1,
-      "D": 32,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L27.core.SELECT.ts",
-      "L": 37,
-      "D": 63,
-      "V": 2,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L05.core.CONSCIOUSNESS.ts",
-      "L": 59,
-      "D": 57,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L45.core.EITHER_CASE.ts",
-      "L": 19,
-      "D": 47,
-      "V": 5,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L13.core.RESONANCE_DEEP.ts",
-      "L": 51,
-      "D": 53,
-      "V": 9,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
       "id": "mirror.i.L99.core.O_STREAM_TAGS_SUMMARY_RUN.ts",
       "L": 1,
       "D": 3,
       "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L47.core.BYTE.ts",
-      "L": 17,
-      "D": 38,
-      "V": 6,
       "tension": 0,
       "isMirror": true
     },
@@ -17723,59 +14011,11 @@
       "isMirror": true
     },
     {
-      "id": "mirror.i.L99.core.MUTATION_LEDGER.ts",
-      "L": 1,
-      "D": 3,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L45.core.NOTHING.ts",
-      "L": 19,
-      "D": 47,
-      "V": 1,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L47.core.B_READ.ts",
-      "L": 17,
-      "D": 38,
-      "V": 5,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
       "id": "mirror.i.L64.core.SIGNAL.ts",
       "L": 48,
       "D": 52,
       "V": 3,
       "tension": 1,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L15.core.FREQUENCY.ts",
-      "L": 49,
-      "D": 53,
-      "V": 4,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L32.core.SOMA.ts",
-      "L": 32,
-      "D": 0,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L99.core.IO_FLOW.ts",
-      "L": 1,
-      "D": 3,
-      "V": 0,
-      "tension": 0,
       "isMirror": true
     },
     {
@@ -17787,39 +14027,7 @@
       "isMirror": true
     },
     {
-      "id": "mirror.i.L22.core.SEQUENCE.ts",
-      "L": 42,
-      "D": 1,
-      "V": 2,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L99.core.TOPOLOGICAL_SIGNATURE.ts",
-      "L": 1,
-      "D": 3,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L31.core.METHOD.ts",
-      "L": 33,
-      "D": 61,
-      "V": 1,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L04.core.INTER_SUB.ts",
-      "L": 60,
-      "D": 55,
-      "V": 6,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L32.core.LIFT.ts",
+      "id": "mirror.i.L32.core.SCHEMA.ts",
       "L": 32,
       "D": 0,
       "V": 0,
@@ -17843,47 +14051,7 @@
       "isMirror": true
     },
     {
-      "id": "mirror.i.L23.core.DIM.ts",
-      "L": 41,
-      "D": 49,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
       "id": "mirror.i.L99.core.CRYSTALLIZATION_CONFIG.ts",
-      "L": 1,
-      "D": 3,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L32.core.Y.ts",
-      "L": 32,
-      "D": 33,
-      "V": 5,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L99.core.O_STREAM_HEALTH_RUN.ts",
-      "L": 1,
-      "D": 3,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L22.core.NOW.ts",
-      "L": 42,
-      "D": 1,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L99.core.IO_FLOW_HEALTH_SIGNAL_WRITE.ts",
       "L": 1,
       "D": 3,
       "V": 0,
@@ -17919,118 +14087,6 @@
       "L": 23,
       "D": 51,
       "V": 2,
-      "tension": 1,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L39.core.MACHINE.ts",
-      "L": 25,
-      "D": 43,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L04.core.COMM.ts",
-      "L": 60,
-      "D": 55,
-      "V": 5,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L99.core.AUTONOMY_METRIC.ts",
-      "L": 1,
-      "D": 3,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L09.core.ATTENTION.ts",
-      "L": 55,
-      "D": 45,
-      "V": 0,
-      "tension": 1,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L22.core.CHRONOFLUX.ts",
-      "L": 42,
-      "D": 54,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L32.core.FIELD.ts",
-      "L": 53,
-      "D": 52,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L06.core.EVOLVE.ts",
-      "L": 58,
-      "D": 56,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L09.core.SENSATION.ts",
-      "L": 55,
-      "D": 45,
-      "V": 2,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L49.core.MAP.ts",
-      "L": 15,
-      "D": 39,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L21.core.MASS.ts",
-      "L": 43,
-      "D": 54,
-      "V": 4,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L09.core.PERCEPTION.ts",
-      "L": 55,
-      "D": 45,
-      "V": 1,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L43.core.STATE.ts",
-      "L": 21,
-      "D": 44,
-      "V": 0,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L43.core.GET.ts",
-      "L": 21,
-      "D": 44,
-      "V": 1,
-      "tension": 0,
-      "isMirror": true
-    },
-    {
-      "id": "mirror.i.L23.core.RANK.ts",
-      "L": 41,
-      "D": 49,
-      "V": 1,
       "tension": 0,
       "isMirror": true
     },
@@ -29141,212 +25197,20 @@
   ],
   "links": [
     {
-      "source": "i.L39.core.STEP.ts",
-      "target": "i.L39.core.MACHINE.ts"
-    },
-    {
-      "source": "i.L36.core.LENS.ts",
-      "target": "i.L32.core.CONS.ts"
-    },
-    {
-      "source": "i.L32.core.NIL.ts",
-      "target": "i.L32.core.F.ts"
-    },
-    {
-      "source": "i.L16.core.RESONANCE.ts",
-      "target": "i.L16.core.SIGNAL.ts"
-    },
-    {
-      "source": "i.L32.core.IS_NIL.ts",
-      "target": "i.L32.core.F.ts"
-    },
-    {
-      "source": "i.L32.core.IS_NIL.ts",
-      "target": "i.L32.core.T.ts"
-    },
-    {
-      "source": "i.L32.core.CAR.ts",
-      "target": "i.L32.core.T.ts"
-    },
-    {
-      "source": "i.L32.core.NOT.ts",
-      "target": "i.L32.core.F.ts"
-    },
-    {
-      "source": "i.L32.core.NOT.ts",
-      "target": "i.L32.core.T.ts"
-    },
-    {
-      "source": "i.L48.core.STREAM.ts",
-      "target": "i.L32.core.CONS.ts"
-    },
-    {
-      "source": "i.L33.core.INV.ts",
-      "target": "i.L32.core.NOT.ts"
-    },
-    {
-      "source": "i.L41.core.SYNC.ts",
-      "target": "i.L41.core.JOIN.ts"
-    },
-    {
-      "source": "i.L21.core.WEIGHT.ts",
-      "target": "i.L21.core.GRAVITY.ts"
-    },
-    {
-      "source": "i.L54.core.CAR.ts",
-      "target": "i.L32.core.T.ts"
-    },
-    {
-      "source": "i.L54.core.IS_NIL.ts",
-      "target": "i.L32.core.F.ts"
-    },
-    {
-      "source": "i.L54.core.IS_NIL.ts",
-      "target": "i.L32.core.T.ts"
-    },
-    {
-      "source": "i.L48.core.S_HEAD.ts",
-      "target": "i.L32.core.CAR.ts"
-    },
-    {
-      "source": "i.L54.core.NIL.ts",
-      "target": "i.L32.core.F.ts"
-    },
-    {
-      "source": "i.L55.core.EQ.ts",
-      "target": "i.L32.core.F.ts"
-    },
-    {
-      "source": "i.L55.core.EQ.ts",
-      "target": "i.L55.core.LEQ.ts"
-    },
-    {
-      "source": "i.L41.core.FORK.ts",
-      "target": "i.L32.core.CAR.ts"
-    },
-    {
-      "source": "i.L41.core.FORK.ts",
-      "target": "i.L32.core.CDR.ts"
-    },
-    {
-      "source": "i.L41.core.FORK.ts",
-      "target": "i.L32.core.CONS.ts"
-    },
-    {
       "source": "i.L25.core.VOID.ts",
       "target": "i.L62.core.I.ts"
     },
     {
-      "source": "i.L22.core.SEQ_TAIL.ts",
-      "target": "i.L32.core.CDR.ts"
-    },
-    {
-      "source": "i.L46.core.IF_ELSE.ts",
-      "target": "i.L57.core.MUX.ts"
-    },
-    {
-      "source": "i.L33.core.DUAL.ts",
-      "target": "i.L34.core.SWAP.ts"
-    },
-    {
-      "source": "i.L20.core.VOID.ts",
-      "target": "i.L62.core.I.ts"
-    },
-    {
-      "source": "i.L29.core.SUCCESS.ts",
-      "target": "i.L32.core.T.ts"
-    },
-    {
-      "source": "i.L24.core.MOVE.ts",
-      "target": "i.L24.core.POINT.ts"
-    },
-    {
-      "source": "i.L16.core.SIGNAL.ts",
-      "target": "i.L62.core.I.ts"
-    },
-    {
-      "source": "i.L07.core.SELF_ORG.ts",
-      "target": "i.L08.core.NEURON.ts"
-    },
-    {
-      "source": "i.L32.core.DUAL.ts",
-      "target": "i.L34.core.SWAP.ts"
-    },
-    {
-      "source": "i.L16.core.ETHER.ts",
-      "target": "i.L16.core.SIGNAL.ts"
-    },
-    {
-      "source": "i.L38.core.NEIGHBOR.ts",
-      "target": "i.L32.core.CONS.ts"
-    },
-    {
-      "source": "i.L38.core.NEIGHBOR.ts",
-      "target": "i.L55.core.PRED.ts"
-    },
-    {
-      "source": "i.L38.core.NEIGHBOR.ts",
-      "target": "i.L32.core.SUCC.ts"
-    },
-    {
-      "source": "i.L23.core.TENSOR.ts",
-      "target": "i.L23.core.VECTOR.ts"
-    },
-    {
-      "source": "i.L49.core.FILTER.ts",
-      "target": "i.L32.core.CAR.ts"
-    },
-    {
-      "source": "i.L49.core.FILTER.ts",
-      "target": "i.L32.core.CDR.ts"
-    },
-    {
-      "source": "i.L49.core.FILTER.ts",
-      "target": "i.L32.core.CONS.ts"
-    },
-    {
-      "source": "i.L49.core.FILTER.ts",
-      "target": "i.L32.core.IS_NIL.ts"
-    },
-    {
-      "source": "i.L49.core.FILTER.ts",
-      "target": "i.L32.core.NIL.ts"
-    },
-    {
-      "source": "i.L49.core.FILTER.ts",
-      "target": "i.L61.core.Y.ts"
-    },
-    {
-      "source": "i.L15.core.VIBRATION.ts",
-      "target": "i.L16.core.SIGNAL.ts"
-    },
-    {
-      "source": "i.L48.core.S_TAIL.ts",
-      "target": "i.L32.core.CDR.ts"
-    },
-    {
-      "source": "i.L55.core.SUB.ts",
-      "target": "i.L55.core.PRED.ts"
+      "source": "i.L59.core.NOT.ts",
+      "target": "i.L59.core.F.ts"
     },
     {
       "source": "i.L59.core.NOT.ts",
-      "target": "i.L32.core.F.ts"
-    },
-    {
-      "source": "i.L59.core.NOT.ts",
-      "target": "i.L32.core.T.ts"
+      "target": "i.L59.core.T.ts"
     },
     {
       "source": "i.L64.core.SIGNAL.ts",
       "target": "i.L62.core.I.ts"
-    },
-    {
-      "source": "i.L99.core.SYNC.ts",
-      "target": "i.L41.core.JOIN.ts"
-    },
-    {
-      "source": "i.L09.core.ATTENTION.ts",
-      "target": "i.L10.core.FORCE.ts"
     }
   ]
 }

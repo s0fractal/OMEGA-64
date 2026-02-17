@@ -1,0 +1,6 @@
+vector: 0.0.1
+origin: i/0/0/PURE_TEST.ts
+relations:
+  use:
+    - LOG
+    - ADD
