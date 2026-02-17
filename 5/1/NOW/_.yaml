@@ -1,0 +1,5 @@
+vector: 5.1.0
+symbol: "NOW"
+desc: "Instantaneous identity"
+legacy_idx: 22
+origin: "./_.ts"

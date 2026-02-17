@@ -1,7 +1,0 @@
-vector: 27.31.2
-origin: i.L27.core.SELECT.ts
-symbol: SELECT
-relations:
-  attractor: VOID
-  use: []
-  used: []

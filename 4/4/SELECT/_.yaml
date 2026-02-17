@@ -1,0 +1,7 @@
+vector: 4.4.2
+symbol: "SELECT"
+desc: "Relational select operation"
+legacy_idx: 27
+origin: "./_.ts"
+relations:
+  use: [FILTER]

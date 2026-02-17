@@ -1,0 +1,5 @@
+vector: 2.2.2
+symbol: "MAYBE_CASE"
+desc: "Maybe Monad case analysis"
+legacy_idx: 45
+origin: "./_.ts"

@@ -1,7 +1,0 @@
-vector: 45.15.0
-origin: i.L45.core.JUST.ts
-symbol: JUST
-relations:
-  attractor: VOID
-  use: []
-  used: []

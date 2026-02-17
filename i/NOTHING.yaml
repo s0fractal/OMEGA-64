@@ -1,7 +1,0 @@
-vector: 45.15.1
-origin: i.L45.core.NOTHING.ts
-symbol: NOTHING
-relations:
-  attractor: VOID
-  use: []
-  used: []

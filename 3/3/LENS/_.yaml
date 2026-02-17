@@ -1,0 +1,7 @@
+vector: 3.3.3
+symbol: "LENS"
+desc: "Functional Lens constructor"
+legacy_idx: 36
+origin: "./_.ts"
+relations:
+  use: [CONS]

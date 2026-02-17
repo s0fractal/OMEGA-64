@@ -1,0 +1,7 @@
+vector: 5.1.3
+symbol: "SEQ_HEAD"
+desc: "Sequence access: head"
+legacy_idx: 22
+origin: "./_.ts"
+relations:
+  use: [CAR]

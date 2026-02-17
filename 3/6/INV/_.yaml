@@ -1,0 +1,7 @@
+vector: 3.6.3
+symbol: "INV"
+desc: "Logical Inverse (NOT)"
+legacy_idx: 33
+origin: "./_.ts"
+relations:
+  use: [NOT]

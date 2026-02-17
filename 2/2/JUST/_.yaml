@@ -1,0 +1,5 @@
+vector: 2.2.0
+symbol: "JUST"
+desc: "Maybe Monad: Value state"
+legacy_idx: 45
+origin: "./_.ts"

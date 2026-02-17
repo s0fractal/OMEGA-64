@@ -1,1 +1,0 @@
-export const MAYBE_CASE = (m: any) => (nothingCase: any) => (justCase: any) => m(nothingCase)(justCase);
