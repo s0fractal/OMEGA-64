@@ -1,7 +1,0 @@
-vector: 42.16.1
-origin: i.L42.core.S_ZERO.ts
-symbol: S_ZERO
-relations:
-  attractor: VOID
-  use: []
-  used: []

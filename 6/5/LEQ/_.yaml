@@ -1,0 +1,7 @@
+vector: 6.5.6
+symbol: "LEQ"
+desc: "Less than or equal comparison"
+legacy_idx: 10
+origin: "./_.ts"
+relations:
+  use: [IS_ZERO, SUB]

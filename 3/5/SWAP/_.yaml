@@ -1,0 +1,5 @@
+vector: 3.5.2
+symbol: "SWAP"
+desc: "Function argument swap"
+legacy_idx: 34
+origin: "./_.ts"

@@ -1,0 +1,5 @@
+vector: 4.3.0
+symbol: "ACTOR"
+desc: "Actor constructor"
+legacy_idx: 28
+origin: "./_.ts"

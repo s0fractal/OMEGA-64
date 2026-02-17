@@ -1,7 +1,0 @@
-vector: 31.29.1
-origin: i.L31.core.METHOD.ts
-symbol: METHOD
-relations:
-  attractor: VOID
-  use: []
-  used: []

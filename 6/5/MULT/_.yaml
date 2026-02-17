@@ -1,0 +1,7 @@
+vector: 6.5.7
+symbol: "MULT"
+desc: "Numerical multiplication"
+legacy_idx: 10
+origin: "./_.ts"
+relations:
+  use: [B]

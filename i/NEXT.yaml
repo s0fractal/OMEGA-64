@@ -1,7 +1,0 @@
-vector: 30.28.1
-origin: i.L30.core.NEXT.ts
-symbol: NEXT
-relations:
-  attractor: VOID
-  use: []
-  used: []

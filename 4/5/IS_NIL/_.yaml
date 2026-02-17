@@ -1,0 +1,7 @@
+vector: 4.5.4
+symbol: "IS_NIL"
+desc: "Nil check primitive"
+legacy_idx: 26
+origin: "./_.ts"
+relations:
+  use: [T, F]

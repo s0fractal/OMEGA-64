@@ -1,0 +1,5 @@
+vector: 0.5.3
+symbol: "N2"
+desc: "Natural Two representation"
+legacy_idx: 58
+origin: "./_.ts"

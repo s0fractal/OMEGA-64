@@ -1,0 +1,5 @@
+vector: 4.7.0
+symbol: "MOVE"
+desc: "Vector translation"
+legacy_idx: 24
+origin: "./_.ts"

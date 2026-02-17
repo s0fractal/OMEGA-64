@@ -1,1 +1,0 @@
-export const BECOME = (next_behavior: any) => next_behavior;

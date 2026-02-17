@@ -1,0 +1,5 @@
+vector: 4.2.1
+symbol: "METHOD"
+desc: "Object method wrapper"
+legacy_idx: 29
+origin: "./_.ts"

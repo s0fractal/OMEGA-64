@@ -1,0 +1,5 @@
+vector: 2.5.0
+symbol: "S_ZERO"
+desc: "Symbolic Zero (Numerical Tag)"
+legacy_idx: 42
+origin: "./_.ts"

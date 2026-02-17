@@ -1,0 +1,5 @@
+vector: 2.4.3
+symbol: "READER"
+desc: "Reader Monad context retrieval"
+legacy_idx: 43
+origin: "./_.ts"

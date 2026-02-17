@@ -1,0 +1,5 @@
+vector: 0.5.2
+symbol: "N1"
+desc: "Natural One representation"
+legacy_idx: 58
+origin: "./_.ts"

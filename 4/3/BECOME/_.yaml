@@ -1,0 +1,7 @@
+vector: 4.3.2
+symbol: "BECOME"
+desc: "Actor behavior transition"
+legacy_idx: 28
+origin: "./_.ts"
+relations:
+  use: [ACTOR]

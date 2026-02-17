@@ -1,9 +1,0 @@
-vector: 58.04.04
-origin: i.L58.core.N3.ts
-symbol: N3
-relations:
-  attractor: VOID
-  use:
-    - N2
-    - SUCC
-  used: []

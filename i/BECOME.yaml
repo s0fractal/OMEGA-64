@@ -1,7 +1,0 @@
-vector: 28.30.1
-origin: i.L28.core.BECOME.ts
-symbol: BECOME
-relations:
-  attractor: VOID
-  use: []
-  used: []

@@ -1,0 +1,7 @@
+vector: 7.7.7
+symbol: "I16_CLAMP"
+desc: "16-bit clamping"
+legacy_idx: 0
+origin: "./_.ts"
+relations:
+  use: [I16_LIMITS]

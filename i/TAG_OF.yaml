@@ -1,7 +1,0 @@
-vector: 26.18.4
-origin: i.L26.core.TAG_OF.ts
-symbol: TAG_OF
-relations:
-  attractor: VOID
-  use: []
-  used: []

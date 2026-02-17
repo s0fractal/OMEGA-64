@@ -1,0 +1,5 @@
+vector: 7.5.5
+symbol: "NEXT"
+desc: "Observable next step"
+legacy_idx: 2
+origin: "./_.ts"

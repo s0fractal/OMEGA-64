@@ -1,8 +1,0 @@
-vector: 48.9.1
-origin: i.L48.core.S_HEAD.ts
-symbol: S_HEAD
-relations:
-  attractor: VOID
-  use:
-    - CAR
-  used: []

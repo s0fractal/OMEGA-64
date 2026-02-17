@@ -1,0 +1,5 @@
+vector: 0.6.0
+symbol: "NAND"
+desc: "Universal Logic Guard"
+legacy_idx: 57
+origin: "./_.ts"

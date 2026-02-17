@@ -1,0 +1,7 @@
+vector: 3.6.2
+symbol: "DUAL"
+desc: "Dual representation (Pair)"
+legacy_idx: 33
+origin: "./_.ts"
+relations:
+  use: [CONS]

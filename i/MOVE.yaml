@@ -1,8 +1,0 @@
-vector: 24.17.8
-origin: i.L24.core.MOVE.ts
-symbol: MOVE
-relations:
-  attractor: VOID
-  use:
-    - POINT
-  used: []

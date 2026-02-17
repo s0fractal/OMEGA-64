@@ -1,8 +1,0 @@
-vector: 34.14.2
-origin: i.L34.core.SWAP.ts
-symbol: SWAP
-relations:
-  attractor: VOID
-  use: []
-  used:
-    - DUAL

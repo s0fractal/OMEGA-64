@@ -1,0 +1,5 @@
+vector: 7.5.6
+symbol: "RANK"
+desc: "Tensor rank retrieval"
+legacy_idx: 2
+origin: "./_.ts"

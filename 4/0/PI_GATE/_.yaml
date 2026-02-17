@@ -1,0 +1,5 @@
+vector: 4.0.7
+symbol: "PI_GATE"
+desc: "Geometric constant PI"
+legacy_idx: 31
+origin: "./_.ts"

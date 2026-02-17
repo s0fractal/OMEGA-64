@@ -1,0 +1,5 @@
+vector: 1.4.0
+symbol: "TRIPLE"
+desc: "Triple data structure"
+legacy_idx: 51
+origin: "./_.ts"

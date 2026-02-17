@@ -1,1 +1,0 @@
-export const S_ONE = (f: any) => (x: any) => f(x);

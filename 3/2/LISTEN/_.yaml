@@ -1,0 +1,5 @@
+vector: 3.2.1
+symbol: "LISTEN"
+desc: "Writer Monad listen operation"
+legacy_idx: 37
+origin: "./_.ts"
