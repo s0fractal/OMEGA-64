@@ -1,0 +1,7 @@
+vector: 5.7.1
+symbol: "RESONANCE"
+desc: "Wave Resonance dynamics"
+legacy_idx: 16
+origin: "./_.ts"
+relations:
+  use: [WAVE_SIGNAL]

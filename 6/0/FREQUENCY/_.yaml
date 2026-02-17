@@ -1,0 +1,5 @@
+vector: 6.0.2
+symbol: "FREQUENCY"
+desc: "Wave Frequency"
+legacy_idx: 15
+origin: "./_.ts"

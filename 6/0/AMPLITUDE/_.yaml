@@ -1,0 +1,5 @@
+vector: 6.0.1
+symbol: "AMPLITUDE"
+desc: "Wave Amplitude"
+legacy_idx: 15
+origin: "./_.ts"

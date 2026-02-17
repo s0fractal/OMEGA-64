@@ -1,0 +1,7 @@
+vector: 5.7.0
+symbol: "WAVE_SIGNAL"
+desc: "Wave-Space Signal (Inverted L16)"
+legacy_idx: 16
+origin: "./_.ts"
+relations:
+  use: [I]

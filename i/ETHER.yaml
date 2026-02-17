@@ -1,8 +1,0 @@
-vector: 16.20.5
-origin: i.L16.core.ETHER.ts
-symbol: ETHER
-relations:
-  attractor: VOID
-  use:
-    - SIGNAL
-  used: []

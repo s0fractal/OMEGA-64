@@ -1,0 +1,7 @@
+vector: 6.0.0
+symbol: "VIBRATION"
+desc: "Wave Vibration"
+legacy_idx: 15
+origin: "./_.ts"
+relations:
+  use: [WAVE_SIGNAL]

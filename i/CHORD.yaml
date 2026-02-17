@@ -1,8 +1,0 @@
-vector: 12.21.8
-origin: i.L12.core.CHORD.ts
-symbol: CHORD
-relations:
-  attractor: VOID
-  use:
-    - INTERFERENCE_AGG
-  used: []
