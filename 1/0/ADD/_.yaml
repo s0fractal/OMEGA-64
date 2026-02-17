@@ -1,2 +1,6 @@
 vector: 01.00.00
 origin: 1/0/ADD/_.ts
+
+symbol: "ADD"
+desc: "TODO: ADD"
+legacy_idx: -1

@@ -1,6 +1,9 @@
 vector: 04.00.00
 origin: 4/0/RIBOSOME/_.ts
 level: 32
+symbol: "RIBOSOME"
+desc: "TODO: RIBOSOME"
+legacy_idx: -1
 relations:
   use:
     - IMMUNE

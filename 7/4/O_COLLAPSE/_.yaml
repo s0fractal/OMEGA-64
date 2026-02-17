@@ -1,5 +1,6 @@
-vector: 07.04.26
+vector: 07.04.10
 symbol: "O_COLLAPSE"
 desc: "Octal Logic Stub: O_COLLAPSE"
 legacy_idx: 3
 origin: "./_.ts"
+tags: [RAW_V26]

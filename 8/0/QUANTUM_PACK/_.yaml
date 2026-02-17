@@ -2,3 +2,6 @@ vector: 08.00.01
 tag: "QUANTUM_PACK"
 desc: "Experimental L99 Atom: QUANTUM_PACK"
 legacy_idx: 99
+
+symbol: "QUANTUM_PACK"
+origin: "./_.ts"

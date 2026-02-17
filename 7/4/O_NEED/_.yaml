@@ -1,5 +1,6 @@
-vector: 07.04.40
+vector: 07.04.08
 symbol: "O_NEED"
 desc: "Octal Logic Stub: O_NEED"
 legacy_idx: 3
 origin: "./_.ts"
+tags: [RAW_V40]

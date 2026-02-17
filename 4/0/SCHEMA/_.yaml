@@ -1,5 +1,8 @@
 vector: 04.00.00
 origin: 4/0/SCHEMA/_.ts
 level: 32
+symbol: "SCHEMA"
+desc: "TODO: SCHEMA"
+legacy_idx: -1
 relations:
   use: []

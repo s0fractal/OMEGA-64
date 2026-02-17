@@ -1,5 +1,6 @@
-vector: 07.04.37
+vector: 07.04.05
 symbol: "O_FILTER"
 desc: "Octal Logic Stub: O_FILTER"
 legacy_idx: 3
 origin: "./_.ts"
+tags: [RAW_V37]

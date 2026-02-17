@@ -2,3 +2,6 @@ vector: 08.00.02
 tag: "PROPOSAL_ENVELOPE_INDEX"
 desc: "Experimental L99 Atom: PROPOSAL_ENVELOPE_INDEX"
 legacy_idx: 99
+
+symbol: "PROPOSAL_ENVELOPE_INDEX"
+origin: "./_.ts"

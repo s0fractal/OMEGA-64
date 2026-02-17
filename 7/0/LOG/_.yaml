@@ -1,2 +1,6 @@
 vector: 07.00.00
 origin: 7/0/LOG/_.ts
+
+symbol: "LOG"
+desc: "TODO: LOG"
+legacy_idx: -1
