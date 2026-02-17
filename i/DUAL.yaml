@@ -1,0 +1,8 @@
+vector: 32.16.2
+origin: i.L33.core.DUAL.ts
+symbol: DUAL
+relations:
+  attractor: VOID
+  use:
+    - SWAP
+  used: []

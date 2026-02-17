@@ -1,0 +1,14 @@
+vector: 32.7.2
+origin: i.L49.core.FILTER.ts
+symbol: FILTER
+relations:
+  attractor: VOID
+  use:
+    - CAR
+    - CDR
+    - CONS
+    - IS_NIL
+    - NIL
+    - Y
+  used:
+    - SELECT

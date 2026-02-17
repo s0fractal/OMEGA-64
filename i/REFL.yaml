@@ -1,0 +1,8 @@
+vector: 32.19.3
+origin: i.L35.core.REFL.ts
+symbol: REFL
+relations:
+  attractor: VOID
+  use: []
+  used:
+    - IS_ISO

@@ -1,0 +1,7 @@
+vector: 32.8.0
+origin: i.L51.core.TRIPLE.ts
+symbol: TRIPLE
+relations:
+  attractor: VOID
+  use: []
+  used: []

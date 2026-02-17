@@ -1,0 +1,7 @@
+vector: 32.26.1
+origin: i.L10.core.EQUILIBRIUM.ts
+symbol: EQUILIBRIUM
+relations:
+  attractor: VOID
+  use: []
+  used: []

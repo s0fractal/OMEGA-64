@@ -1,0 +1,7 @@
+vector: 32.25.2
+origin: i.L05.core.SUBJECT.ts
+symbol: SUBJECT
+relations:
+  attractor: VOID
+  use: []
+  used: []

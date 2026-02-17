@@ -1,0 +1,7 @@
+vector: 32.12.6
+origin: i.L37.core.LISTEN.ts
+symbol: LISTEN
+relations:
+  attractor: VOID
+  use: []
+  used: []

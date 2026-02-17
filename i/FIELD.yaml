@@ -1,0 +1,7 @@
+vector: 32.20.0
+origin: i.L11.core.FIELD.ts
+symbol: FIELD
+relations:
+  attractor: VOID
+  use: []
+  used: []

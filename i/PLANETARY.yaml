@@ -1,0 +1,6 @@
+symbol: PLANETARY
+dynamic: true
+relations:
+  attractor: VOID
+  use: []
+  used: []

@@ -1,0 +1,7 @@
+vector: 32.24.0
+origin: i.L06.core.EVOLVE.ts
+symbol: EVOLVE
+relations:
+  attractor: VOID
+  use: []
+  used: []

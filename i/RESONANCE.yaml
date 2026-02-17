@@ -1,0 +1,8 @@
+vector: 32.20.4
+origin: i.L16.core.RESONANCE.ts
+symbol: RESONANCE
+relations:
+  attractor: VOID
+  use:
+    - SIGNAL
+  used: []

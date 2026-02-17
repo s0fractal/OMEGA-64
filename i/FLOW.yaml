@@ -1,0 +1,7 @@
+vector: 32.20.6
+origin: i.L17.core.FLOW.ts
+symbol: FLOW
+relations:
+  attractor: VOID
+  use: []
+  used: []

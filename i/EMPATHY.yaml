@@ -1,0 +1,7 @@
+vector: 32.23.7
+origin: i.L04.core.EMPATHY.ts
+symbol: EMPATHY
+relations:
+  attractor: VOID
+  use: []
+  used: []

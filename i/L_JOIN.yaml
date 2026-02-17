@@ -1,0 +1,7 @@
+vector: 32.10.1
+origin: i.L42.core.L_JOIN.ts
+symbol: L_JOIN
+relations:
+  attractor: VOID
+  use: []
+  used: []

@@ -1,11 +1,3 @@
-/**
- * @omega.vector 32.21.06
- * @omega.readonly
- * @omega.load 0
- * @omega.origin i.L13.core.WAVE_PACKET.ts
- * @omega.symbol WAVE_PACKET
- */
-
 import { FIELD } from "../i.L32.core.FIELD.ts";
 import { U16_LIMITS } from "../i.L32.core.U16_LIMITS.ts";
 

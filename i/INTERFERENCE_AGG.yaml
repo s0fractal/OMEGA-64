@@ -1,0 +1,9 @@
+vector: 32.21.07
+origin: i.L13.core.INTERFERENCE.ts
+symbol: INTERFERENCE
+relations:
+  attractor: VOID
+  use:
+    - WAVE_PACKET_AGG
+  used:
+    - CHORD

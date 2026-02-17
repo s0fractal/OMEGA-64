@@ -1,0 +1,7 @@
+vector: 32.33.1
+origin: i.L22.core.TICK.ts
+symbol: TICK
+relations:
+  attractor: VOID
+  use: []
+  used: []

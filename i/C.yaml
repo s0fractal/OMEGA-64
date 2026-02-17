@@ -1,0 +1,7 @@
+vector: 32.14.0
+origin: i.L53.core.C.ts
+symbol: C
+relations:
+  attractor: VOID
+  use: []
+  used: []

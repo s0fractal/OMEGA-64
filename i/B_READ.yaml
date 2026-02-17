@@ -1,0 +1,7 @@
+vector: 32.6.5
+origin: i.L47.core.B_READ.ts
+symbol: B_READ
+relations:
+  attractor: VOID
+  use: []
+  used: []

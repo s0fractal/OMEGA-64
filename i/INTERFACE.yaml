@@ -1,0 +1,7 @@
+vector: 32.27.1
+origin: i.L00.core.INTERFACE.ts
+symbol: INTERFACE
+relations:
+  attractor: VOID
+  use: []
+  used: []

@@ -1,0 +1,7 @@
+vector: 32.22.4
+origin: i.L21.core.MASS.ts
+symbol: MASS
+relations:
+  attractor: VOID
+  use: []
+  used: []

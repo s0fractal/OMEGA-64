@@ -1,11 +1,3 @@
-/**
- * @omega.vector 32.25.01
- * @omega.readonly
- * @omega.load 0
- * @omega.origin i.L05.core.INTENT.ts
- * @omega.symbol INTENT
- */
-
 // @noncanonical
 
 export interface SimState {

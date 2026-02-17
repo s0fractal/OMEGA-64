@@ -1,0 +1,10 @@
+vector: 32.19.1
+origin: i.L41.core.FORK.ts
+symbol: FORK
+relations:
+  attractor: VOID
+  use:
+    - CAR
+    - CDR
+    - CONS
+  used: []

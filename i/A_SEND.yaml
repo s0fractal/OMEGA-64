@@ -1,0 +1,7 @@
+vector: 32.30.2
+origin: i.L28.core.A_SEND.ts
+symbol: A_SEND
+relations:
+  attractor: VOID
+  use: []
+  used: []

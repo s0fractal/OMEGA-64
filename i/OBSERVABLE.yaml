@@ -1,0 +1,7 @@
+vector: 32.28.2
+origin: i.L30.core.OBSERVABLE.ts
+symbol: OBSERVABLE
+relations:
+  attractor: VOID
+  use: []
+  used: []

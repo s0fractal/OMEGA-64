@@ -1,0 +1,7 @@
+vector: 32.23.1
+origin: i.L02.core.NETWORK.ts
+symbol: NETWORK
+relations:
+  attractor: VOID
+  use: []
+  used: []

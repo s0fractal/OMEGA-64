@@ -1,0 +1,8 @@
+vector: 32.13.3
+origin: i.L10.core.FORCE.ts
+symbol: FORCE
+relations:
+  attractor: VOID
+  use: []
+  used:
+    - ATTENTION

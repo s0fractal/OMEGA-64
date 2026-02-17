@@ -1,11 +1,3 @@
-/**
- * @omega.vector 32.25.03
- * @omega.readonly
- * @omega.load 0
- * @omega.origin i.L05.core.SUBJECTIVE.ts
- * @omega.symbol SUBJECTIVE
- */
-
 import { FIELD } from "../i.L32.core.FIELD.ts";
 import { I16_LIMITS } from "../i.L00.core.I16_LIMITS.ts";
 

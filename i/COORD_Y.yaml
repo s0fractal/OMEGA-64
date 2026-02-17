@@ -1,0 +1,7 @@
+vector: 32.17.5
+origin: i.L24.core.COORD_Y.ts
+symbol: COORD_Y
+relations:
+  attractor: VOID
+  use: []
+  used: []

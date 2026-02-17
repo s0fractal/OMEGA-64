@@ -1,0 +1,7 @@
+vector: 32.34.01
+origin: i.L20.core.ENTROPY.ts
+symbol: ENTROPY
+relations:
+  attractor: VOID
+  use: []
+  used: []

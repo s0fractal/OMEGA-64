@@ -1,11 +1,3 @@
-/**
- * @omega.vector 32.21.07
- * @omega.readonly
- * @omega.load 0
- * @omega.origin i.L13.core.INTERFERENCE.ts
- * @omega.symbol INTERFERENCE
- */
-
 import { WavePacket, WAVE_PACKET } from "./WAVE_PACKET_AGG.ts";
 
 export const INTERFERENCE = {

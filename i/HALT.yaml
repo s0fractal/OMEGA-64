@@ -1,0 +1,7 @@
+vector: 32.18.2
+origin: i.L39.core.HALT.ts
+symbol: HALT
+relations:
+  attractor: VOID
+  use: []
+  used: []

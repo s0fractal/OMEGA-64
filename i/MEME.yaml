@@ -1,0 +1,7 @@
+vector: 32.23.4
+origin: i.L03.core.MEME.ts
+symbol: MEME
+relations:
+  attractor: VOID
+  use: []
+  used: []

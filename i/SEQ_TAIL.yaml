@@ -1,0 +1,8 @@
+vector: 32.33.4
+origin: i.L22.core.SEQ_TAIL.ts
+symbol: SEQ_TAIL
+relations:
+  attractor: VOID
+  use:
+    - CDR
+  used: []

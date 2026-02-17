@@ -1,0 +1,7 @@
+vector: 32.24.6
+origin: i.L08.core.COGNITION.ts
+symbol: COGNITION
+relations:
+  attractor: VOID
+  use: []
+  used: []

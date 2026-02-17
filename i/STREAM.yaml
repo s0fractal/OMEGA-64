@@ -1,0 +1,9 @@
+vector: 32.9.0
+origin: i.L48.core.STREAM.ts
+symbol: STREAM
+relations:
+  attractor: VOID
+  use:
+    - CONS
+  used:
+    - FLOW

@@ -1,0 +1,7 @@
+vector: 32.21.06
+origin: i.L13.core.WAVE_PACKET.ts
+symbol: WAVE_PACKET
+relations:
+  attractor: VOID
+  use: []
+  used: []

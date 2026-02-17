@@ -1,0 +1,7 @@
+vector: 32.14.5
+origin: i.L36.core.VIEW.ts
+symbol: VIEW
+relations:
+  attractor: VOID
+  use: []
+  used: []

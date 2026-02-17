@@ -1,0 +1,7 @@
+vector: 32.33.0
+origin: i.L22.core.NOW.ts
+symbol: NOW
+relations:
+  attractor: VOID
+  use: []
+  used: []

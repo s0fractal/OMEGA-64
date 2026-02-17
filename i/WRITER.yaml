@@ -1,0 +1,7 @@
+vector: 32.12.4
+origin: i.L37.core.WRITER.ts
+symbol: WRITER
+relations:
+  attractor: VOID
+  use: []
+  used: []

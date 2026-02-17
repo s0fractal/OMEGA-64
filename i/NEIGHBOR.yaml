@@ -1,0 +1,10 @@
+vector: 32.18.0
+origin: i.L38.core.NEIGHBOR.ts
+symbol: NEIGHBOR
+relations:
+  attractor: VOID
+  use:
+    - CONS
+    - PRED
+    - SUCC
+  used: []

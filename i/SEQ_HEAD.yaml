@@ -1,0 +1,7 @@
+vector: 32.33.3
+origin: i.L22.core.SEQ_HEAD.ts
+symbol: SEQ_HEAD
+relations:
+  attractor: VOID
+  use: []
+  used: []

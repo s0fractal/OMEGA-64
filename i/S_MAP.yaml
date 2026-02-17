@@ -1,0 +1,7 @@
+vector: 32.9.3
+origin: i.L48.core.S_MAP.ts
+symbol: S_MAP
+relations:
+  attractor: VOID
+  use: []
+  used: []

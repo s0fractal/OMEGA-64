@@ -1,0 +1,7 @@
+vector: 32.14.1
+origin: i.L34.core.REFLECT.ts
+symbol: REFLECT
+relations:
+  attractor: VOID
+  use: []
+  used: []

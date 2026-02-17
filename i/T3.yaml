@@ -1,0 +1,7 @@
+vector: 32.08.03
+origin: i.L51.core.T3.ts
+symbol: T3
+relations:
+  attractor: VOID
+  use: []
+  used: []

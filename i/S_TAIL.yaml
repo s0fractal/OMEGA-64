@@ -1,0 +1,8 @@
+vector: 32.9.2
+origin: i.L48.core.S_TAIL.ts
+symbol: S_TAIL
+relations:
+  attractor: VOID
+  use:
+    - CDR
+  used: []

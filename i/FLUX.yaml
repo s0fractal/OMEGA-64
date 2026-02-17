@@ -1,0 +1,7 @@
+vector: 32.20.7
+origin: i.L17.core.FLUX.ts
+symbol: FLUX
+relations:
+  attractor: VOID
+  use: []
+  used: []

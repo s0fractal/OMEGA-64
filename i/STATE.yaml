@@ -1,0 +1,7 @@
+vector: 32.12.0
+origin: i.L43.core.STATE.ts
+symbol: STATE
+relations:
+  attractor: VOID
+  use: []
+  used: []

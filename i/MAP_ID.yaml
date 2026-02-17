@@ -1,0 +1,7 @@
+vector: 32.14.4
+origin: i.L36.core.MAP_ID.ts
+symbol: MAP_ID
+relations:
+  attractor: VOID
+  use: []
+  used: []

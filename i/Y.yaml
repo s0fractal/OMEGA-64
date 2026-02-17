@@ -1,0 +1,11 @@
+vector: 32.1.5
+origin: i.L32.core.Y.ts
+symbol: Y
+relations:
+  attractor: VOID
+  use: []
+  used:
+    - FOLD
+    - S_MAP
+    - FILTER
+    - MAP

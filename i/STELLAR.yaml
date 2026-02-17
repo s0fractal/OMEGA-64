@@ -1,0 +1,7 @@
+vector: 32.22.2
+origin: i.L01.core.STELLAR.ts
+symbol: STELLAR
+relations:
+  attractor: VOID
+  use: []
+  used: []

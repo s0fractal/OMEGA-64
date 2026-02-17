@@ -1,11 +1,3 @@
-/**
- * @omega.vector 32.34.01
- * @omega.readonly
- * @omega.load 0
- * @omega.origin i.L20.core.ENTROPY.ts
- * @omega.symbol ENTROPY
- */
-
 export const BOLTZMANN = {
   k_B: 1.0,
   microstates: (energy: number, temperature: number): number => {

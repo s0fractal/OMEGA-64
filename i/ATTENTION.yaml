@@ -1,0 +1,8 @@
+vector: 32.13.0
+origin: i.L09.core.ATTENTION.ts
+symbol: ATTENTION
+relations:
+  attractor: VOID
+  use:
+    - FORCE
+  used: []

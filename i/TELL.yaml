@@ -1,0 +1,7 @@
+vector: 32.12.5
+origin: i.L37.core.TELL.ts
+symbol: TELL
+relations:
+  attractor: VOID
+  use: []
+  used: []

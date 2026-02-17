@@ -1,11 +1,3 @@
-/**
- * @omega.vector 32.07.00
- * @omega.readonly
- * @omega.load 0
- * @omega.origin i.L49.core.MAP.ts
- * @omega.symbol MAP
- */
-
 import { CAR } from "./CAR.ts";
 import { CDR } from "./CDR.ts";
 import { CONS } from "./CONS.ts";

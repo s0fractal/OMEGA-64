@@ -1,0 +1,5 @@
+vector: format (expected DD.DD.DD): ${entry.file}`;
+relations:
+  attractor: VOID
+  use: []
+  used: []

@@ -1,0 +1,7 @@
+vector: 32.2.2
+origin: i.L32.core.CDR.ts
+symbol: CDR
+relations:
+  attractor: VOID
+  use: []
+  used: []

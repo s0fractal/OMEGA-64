@@ -1,0 +1,8 @@
+vector: 32.11.1
+origin: i.L39.core.STEP.ts
+symbol: STEP
+relations:
+  attractor: VOID
+  use:
+    - MACHINE
+  used: []

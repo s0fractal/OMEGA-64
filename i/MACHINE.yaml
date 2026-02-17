@@ -1,0 +1,7 @@
+vector: 32.11.0
+origin: i.L39.core.MACHINE.ts
+symbol: MACHINE
+relations:
+  attractor: VOID
+  use: []
+  used: []

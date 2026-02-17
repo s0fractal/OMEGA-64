@@ -1,0 +1,7 @@
+vector: 32.21.1
+origin: i.L14.core.PHASE.ts
+symbol: PHASE
+relations:
+  attractor: VOID
+  use: []
+  used: []

@@ -1,0 +1,7 @@
+vector: 32.22.3
+origin: i.L21.core.GRAVITY.ts
+symbol: GRAVITY
+relations:
+  attractor: VOID
+  use: []
+  used: []

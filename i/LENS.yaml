@@ -1,0 +1,8 @@
+vector: 32.14.3
+origin: i.L36.core.LENS.ts
+symbol: LENS
+relations:
+  attractor: VOID
+  use:
+    - CONS
+  used: []

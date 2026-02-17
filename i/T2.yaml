@@ -1,0 +1,7 @@
+vector: 32.08.02
+origin: i.L51.core.T2.ts
+symbol: T2
+relations:
+  attractor: VOID
+  use: []
+  used: []

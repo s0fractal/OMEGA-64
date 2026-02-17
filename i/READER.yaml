@@ -1,0 +1,7 @@
+vector: 32.12.3
+origin: i.L43.core.READER.ts
+symbol: READER
+relations:
+  attractor: VOID
+  use: []
+  used: []

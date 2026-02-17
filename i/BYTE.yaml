@@ -1,0 +1,7 @@
+vector: 32.6.6
+origin: i.L47.core.BYTE.ts
+symbol: BYTE
+relations:
+  attractor: VOID
+  use: []
+  used: []

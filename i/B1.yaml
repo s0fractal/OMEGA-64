@@ -1,0 +1,8 @@
+vector: 32.06.04
+origin: i.L47.core.B1.ts
+symbol: B1
+relations:
+  attractor: VOID
+  use:
+    - T
+  used: []

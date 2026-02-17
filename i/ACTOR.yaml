@@ -1,0 +1,7 @@
+vector: 32.30.0
+origin: i.L28.core.ACTOR.ts
+symbol: ACTOR
+relations:
+  attractor: VOID
+  use: []
+  used: []

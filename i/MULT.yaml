@@ -1,0 +1,7 @@
+vector: 32.5.1
+origin: i.L52.core.MULT.ts
+symbol: MULT
+relations:
+  attractor: VOID
+  use: []
+  used: []

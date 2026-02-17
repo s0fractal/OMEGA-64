@@ -1,0 +1,7 @@
+vector: 32.6.1
+origin: i.L57.core.XOR.ts
+symbol: XOR
+relations:
+  attractor: VOID
+  use: []
+  used: []

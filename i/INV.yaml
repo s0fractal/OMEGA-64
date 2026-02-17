@@ -1,0 +1,8 @@
+vector: 32.16.3
+origin: i.L33.core.INV.ts
+symbol: INV
+relations:
+  attractor: VOID
+  use:
+    - NOT
+  used: []

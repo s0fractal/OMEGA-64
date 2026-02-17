@@ -5,7 +5,8 @@
     "jsr:@std/encoding@*": "1.0.10",
     "jsr:@std/fs@*": "1.0.22",
     "jsr:@std/internal@^1.0.12": "1.0.12",
-    "jsr:@std/path@^1.1.4": "1.1.4"
+    "jsr:@std/path@^1.1.4": "1.1.4",
+    "jsr:@std/yaml@*": "1.0.11"
   },
   "jsr": {
     "@std/crypto@1.0.5": {
@@ -29,6 +30,9 @@
       "dependencies": [
         "jsr:@std/internal"
       ]
+    },
+    "@std/yaml@1.0.11": {
+      "integrity": "bd139ce77f2d06cbed3713c8b26d301d2a2e12ecc7986130a268107e212143ee"
     }
   },
   "redirects": {

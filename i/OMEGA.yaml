@@ -1,0 +1,7 @@
+vector: 32.27.0
+origin: i.L00.core.OMEGA.ts
+symbol: OMEGA
+relations:
+  attractor: VOID
+  use: []
+  used: []

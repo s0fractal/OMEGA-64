@@ -1,0 +1,8 @@
+vector: 32.23.5
+origin: i.L04.core.COMM.ts
+symbol: COMM
+relations:
+  attractor: VOID
+  use: []
+  used:
+    - SYNERGY

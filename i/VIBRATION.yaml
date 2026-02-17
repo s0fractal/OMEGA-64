@@ -1,0 +1,8 @@
+vector: 32.21.5
+origin: i.L15.core.VIBRATION.ts
+symbol: VIBRATION
+relations:
+  attractor: VOID
+  use:
+    - SIGNAL
+  used: []

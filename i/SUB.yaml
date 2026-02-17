@@ -1,0 +1,9 @@
+vector: 32.5.4
+origin: i.L55.core.SUB.ts
+symbol: SUB
+relations:
+  attractor: VOID
+  use:
+    - PRED
+  used:
+    - LEQ

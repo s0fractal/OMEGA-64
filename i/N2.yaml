@@ -1,0 +1,10 @@
+vector: 32.04.03
+origin: i.L58.core.N2.ts
+symbol: N2
+relations:
+  attractor: VOID
+  use:
+    - N1
+    - SUCC
+  used:
+    - N3

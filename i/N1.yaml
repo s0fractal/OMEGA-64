@@ -1,0 +1,7 @@
+vector: 32.04.02
+origin: i.L58.core.N1.ts
+symbol: N1
+relations:
+  attractor: VOID
+  use: []
+  used: []

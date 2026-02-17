@@ -1,0 +1,7 @@
+vector: 32.16.0
+origin: i.L42.core.S_ONE.ts
+symbol: S_ONE
+relations:
+  attractor: VOID
+  use: []
+  used: []
