@@ -4,6 +4,12 @@
  * Inverted from Legacy L-1. Level 64 (Out of bounds, Genesis).
  * Probabilistic space before form.
  */
+export interface PotentialField {
+    density: Float32Array;
+    entropy: number;
+    gradient?: Float32Array;
+}
+
 export const ATOM = () => {
     const seededRNG = (seed: number) => () => {
         seed = (seed * 1664525 + 1013904223) % 4294967296;
@@ -19,7 +25,8 @@ export const ATOM = () => {
     };
 
     return {
-        sample: (field: { density: Float32Array, entropy: number }, seed: number) => {
+        computeGradient,
+        sample: (field: PotentialField, seed: number) => {
             const rng = seededRNG(seed);
             let maxDensity = 0, maxIndex = 0;
             for (let i = 0; i < field.density.length; i++) {

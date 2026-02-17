@@ -1,0 +1,5 @@
+vector: 08.05.10
+symbol: GENOME_AUDIT_RUN
+desc: Legacy import from i.L99.core.GENOME_AUDIT_RUN.ts
+legacy_idx: 99
+origin: i.L99.core.GENOME_AUDIT_RUN.ts

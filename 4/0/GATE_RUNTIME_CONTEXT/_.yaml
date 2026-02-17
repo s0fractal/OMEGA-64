@@ -1,0 +1,5 @@
+vector: 04.00.06
+symbol: GATE_RUNTIME_CONTEXT
+desc: Legacy import from i.L32.core.GATE_RUNTIME_CONTEXT.ts
+legacy_idx: 32
+origin: i.L32.core.GATE_RUNTIME_CONTEXT.ts

@@ -24,6 +24,8 @@
     "q:audit:view": "deno run -A i.L99.core.QUANTUM_VIEW.ts && deno run -A i.L99.core.QUANTUM_AUDIT.ts",
     "q:view": "deno run -A i.L99.core.QUANTUM_VIEW.ts",
     "q:view:clean": "deno run -A i.L99.core.QUANTUM_VIEW.ts --clean",
+    "canon:guard": "deno run -A e/CANON_NAME_GUARD.ts",
+    "migrate:i": "deno run -A e/MIGRATE_I_CORE_TO_OCTAL.ts",
     "glider:run": "deno run -A i.L99.core.GLIDER_LITE_RUN.ts",
     "glider:breathe": "deno run -A i.L99.core.GLIDER_LITE_BREATHE.ts",
     "glider:breathe:once": "deno run -A i.L99.core.GLIDER_LITE_BREATHE.ts --once",

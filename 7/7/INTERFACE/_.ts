@@ -1,6 +1,1 @@
-
-/**
- * [7/7/INTERFACE/_.ts]
- * Loop Interface
- */
-export const ATOM = ({ siblings: { SEM_WRAP } }) => (x: any) => SEM_WRAP(x)("RAW");
+import { SEM_WRAP } from "../../../4/5/SEM_WRAP/_.ts"; export const INTERFACE = (x: any) => SEM_WRAP(x)("RAW");

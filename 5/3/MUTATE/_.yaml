@@ -1,0 +1,6 @@
+vector: 05.03.08
+symbol: "MUTATE"
+desc: "Mirror to canonical 2/4/MUTATE"
+legacy_idx: 43
+origin: "../../2/4/MUTATE/_.ts"
+tags: ["MIRROR"]

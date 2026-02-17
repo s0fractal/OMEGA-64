@@ -1,6 +1,1 @@
-
-/**
- * [0/0/F/_.ts]
- * Church Encoding: FALSE
- */
-export const ATOM = () => (a: any) => (b: any) => b;
+export const F = (_: any) => (b: any) => b;

@@ -1,0 +1,5 @@
+vector: 08.02.00
+symbol: IO_FLOW_SIGNAL_WATCH
+desc: Legacy import from i.L99.core.IO_FLOW_SIGNAL_WATCH.ts
+legacy_idx: 99
+origin: i.L99.core.IO_FLOW_SIGNAL_WATCH.ts

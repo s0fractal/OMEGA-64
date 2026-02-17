@@ -1,6 +1,1 @@
-
-/**
- * [0/0/IS_ZERO/_.ts]
- * Church Encoding: IS_ZERO predicate.
- */
-export const ATOM = ({ siblings: { T, F } }) => (n: any) => n((_: any) => F)(T);
+import { T } from "../T/_.ts"; import { F } from "../F/_.ts"; export const IS_ZERO = (n: any) => n((x: any) => F)(T);

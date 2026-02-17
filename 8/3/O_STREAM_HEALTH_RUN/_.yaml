@@ -1,0 +1,5 @@
+vector: 08.03.11
+symbol: O_STREAM_HEALTH_RUN
+desc: Legacy import from i.L99.core.O_STREAM_HEALTH_RUN.ts
+legacy_idx: 99
+origin: i.L99.core.O_STREAM_HEALTH_RUN.ts

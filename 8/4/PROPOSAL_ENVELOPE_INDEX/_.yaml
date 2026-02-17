@@ -1,0 +1,5 @@
+vector: 08.04.01
+symbol: PROPOSAL_ENVELOPE_INDEX
+desc: Legacy import from i.L99.core.PROPOSAL_ENVELOPE_INDEX.ts
+legacy_idx: 99
+origin: i.L99.core.PROPOSAL_ENVELOPE_INDEX.ts

@@ -1,0 +1,1 @@
+import { CAR } from "../../../6/6/CAR/_.ts"; import { CDR } from "../../../6/6/CDR/_.ts"; import { CONS } from "../../../6/6/CONS/_.ts"; export const LIFT = (f: any) => (obj: any) => CONS(f(CAR(obj)))(CDR(obj));

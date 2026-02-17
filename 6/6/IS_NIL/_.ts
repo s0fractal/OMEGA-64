@@ -1,0 +1,1 @@
+import { T } from "../../../0/0/T/_.ts"; import { F } from "../../../0/0/F/_.ts"; export const IS_NIL = (l: any) => l((h: any) => (t: any) => F)(T);

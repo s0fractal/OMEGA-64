@@ -12,6 +12,15 @@ export const ATOM = ({ siblings: { FIELD, I16_LIMITS, U16_LIMITS, WAVE_PACKET } 
 
   const CHRONOFLUX = {
     C: I16.max,
+    waveToChrono: (wave: { center?: number; r?: number; amplitude?: number }) => {
+      const depth = typeof wave.center === "number" ? wave.center : (wave.r ?? 0);
+      return {
+        tau: CHRONOFLUX.depthToProperTime(depth),
+        depth,
+        flowRate: wave.amplitude ?? 1,
+        curvature: 0
+      };
+    },
     depthToProperTime: (r: number): number => {
       const normalizedR = Math.abs(r) / FIELD.FIELD_CONFIG.MAX_ATTRACTOR;
       return Math.sqrt(Math.max(0, 1 - normalizedR));

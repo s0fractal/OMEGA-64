@@ -1,0 +1,1 @@
+import { F } from "../../../0/0/F/_.ts"; export const CDR = (p: any) => p(F);

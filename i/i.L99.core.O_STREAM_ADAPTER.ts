@@ -1,8 +1,3 @@
-// i.L99.core.O_STREAM_ADAPTER.ts
-// OMEGA-64 | O_STREAM_ADAPTER (O → DeltaProposal[])
-
-import type { DeltaProposal } from "./i.L99.core.STATE_SNAPSHOT.ts";
-
-export type OStream = DeltaProposal[];
-
-export const O_STREAM_ADAPTER = (stream: OStream): DeltaProposal[] => stream.slice();
+// AUTO-SHIM: canonical at 8/2/O_STREAM_ADAPTER/_.ts
+// Legacy: i.L99.core.O_STREAM_ADAPTER.ts
+export * from "../8/2/O_STREAM_ADAPTER/_.ts";

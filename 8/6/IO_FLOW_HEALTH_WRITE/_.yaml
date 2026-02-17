@@ -1,0 +1,5 @@
+vector: 08.06.00
+symbol: IO_FLOW_HEALTH_WRITE
+desc: Legacy import from i.L99.core.IO_FLOW_HEALTH_WRITE.ts
+legacy_idx: 99
+origin: i.L99.core.IO_FLOW_HEALTH_WRITE.ts

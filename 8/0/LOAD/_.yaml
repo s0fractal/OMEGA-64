@@ -1,0 +1,5 @@
+vector: 08.00.06
+symbol: LOAD
+desc: Legacy import from i.L99.core.LOAD.ts
+legacy_idx: 99
+origin: i.L99.core.LOAD.ts

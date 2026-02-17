@@ -1,0 +1,5 @@
+vector: 04.00.11
+symbol: GATE_RUNNER
+desc: Legacy import from i.L32.core.GATE_RUNNER.ts
+legacy_idx: 32
+origin: i.L32.core.GATE_RUNNER.ts

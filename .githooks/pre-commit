@@ -1,0 +1,4 @@
+#!/bin/sh
+set -e
+
+deno run -A e/CANON_NAME_GUARD.ts

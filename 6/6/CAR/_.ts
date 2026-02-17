@@ -1,0 +1,1 @@
+import { T } from "../../../0/0/T/_.ts"; export const CAR = (p: any) => p(T);

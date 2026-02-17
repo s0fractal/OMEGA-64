@@ -1,4 +1,3 @@
-import { GATE_RUNNER } from "./i.L32.core.GATE_RUNNER.ts";
-import type { GateRunnerTickInput, GateRunnerTickOutput } from "./i.L32.core.GATE_RUNNER.ts";
-
-export const GLIDER_LITE = (input: GateRunnerTickInput): Promise<GateRunnerTickOutput> => GATE_RUNNER.step(input);
+// AUTO-SHIM: canonical at 8/4/GLIDER_LITE/_.ts
+// Legacy: i.L99.core.GLIDER_LITE.ts
+export * from "../8/4/GLIDER_LITE/_.ts";

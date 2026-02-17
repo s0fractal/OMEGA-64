@@ -1,0 +1,5 @@
+vector: 08.03.09
+symbol: LEDGER
+desc: Legacy import from i.L99.core.LEDGER.ts
+legacy_idx: 99
+origin: i.L99.core.LEDGER.ts

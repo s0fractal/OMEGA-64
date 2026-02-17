@@ -1,0 +1,5 @@
+vector: 04.00.05
+symbol: INVARIANT_PACKET
+desc: Legacy import from i.L32.core.INVARIANT_PACKET.ts
+legacy_idx: 32
+origin: i.L32.core.INVARIANT_PACKET.ts

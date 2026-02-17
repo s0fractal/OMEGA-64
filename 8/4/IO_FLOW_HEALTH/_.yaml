@@ -1,0 +1,5 @@
+vector: 08.04.10
+symbol: IO_FLOW_HEALTH
+desc: Legacy import from i.L99.core.IO_FLOW_HEALTH.ts
+legacy_idx: 99
+origin: i.L99.core.IO_FLOW_HEALTH.ts

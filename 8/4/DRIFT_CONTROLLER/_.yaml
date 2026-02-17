@@ -1,0 +1,5 @@
+vector: 08.04.00
+symbol: DRIFT_CONTROLLER
+desc: Legacy import from i.L99.core.DRIFT_CONTROLLER.ts
+legacy_idx: 99
+origin: i.L99.core.DRIFT_CONTROLLER.ts

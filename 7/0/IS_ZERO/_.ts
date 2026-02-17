@@ -1,0 +1,1 @@
+import { T } from "../../../0/0/T/_.ts"; import { F } from "../../../0/0/F/_.ts"; export const IS_ZERO = (n: any) => n((x: any) => F)(T);
