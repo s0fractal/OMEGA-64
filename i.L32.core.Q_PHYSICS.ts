@@ -24,7 +24,7 @@ export const Q_PHYSICS = {
 
     // Generator Knowledge Map (Semantic Stratification)
     KNOWLEDGE_MAP: {
-        63: { name: "AX: Genesis", desc: "K, S Combinators | The Absolute Root" },
+        63: { name: "AX: SINGULARITY", desc: "The Source | White Hole | Infinite Density | I AM" },
         62: { name: "AX: Identity", desc: "I, B Combinators | Linkage & Reflection" },
         61: { name: "AX: Recursion", desc: "Y, φ Combinators | The Negentropy Engine" },
         60: { name: "AX: Arithmetic", desc: "Σ Axiom | Parallel Summation Proof" },
@@ -66,7 +66,7 @@ export const Q_PHYSICS = {
         24: { name: "PJ: Dimensional", desc: "VECTOR, TENSOR | Multi-Axis" },
         23: { name: "PJ: Temporal", desc: "TICK, NOW | Time Logic" },
         22: { name: "PJ: Gravity", desc: "MASS, GRAVITY | Priority Weight" },
-        21: { name: "PJ: Entropic", desc: "VOID, DISSOLVE | Information Decay" },
+        21: { name: "PJ: VOID", desc: "The Drain | Entropy Sink | Dissolution" },
         20: { name: "PJ: Structural", desc: "FORM, MATCH | Pattern Anchor" },
         19: { name: "PJ: Energetic", desc: "ENERGY, BOOST | Work Budget" },
         18: { name: "PJ: Thermal", desc: "TEMP, HEAT, COOL | Stability Flux" },

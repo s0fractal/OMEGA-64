@@ -157,7 +157,8 @@
                         }
 
                         tooltip.innerHTML = `<strong>${name}</strong>
-L: <span class="val">${atom.L.toFixed(2)}</span> / Target: <span class="val">${atom.targetL || '?'}</span>
+Level: <span class="val">${(atom.level || (64-atom.L)).toFixed(1)}</span> (Target: ${atom.level ? 'Fixed' : '?'})
+Radius: <span class="val">${atom.L.toFixed(2)}</span>
 D: <span class="val">${atom.D}</span>
 V: <span class="val">${atom.V}</span>
 Mass/Deps: <span class="val">${atom.tension}</span>

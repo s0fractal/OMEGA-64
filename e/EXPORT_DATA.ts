@@ -134,14 +134,25 @@ for (const [id, atom] of lattice) {
         console.error(`Error processing ${id}:`, e);
     }
 
+    // Radial Inversion:
+    // L (Level) 63 = Singularity (Center) = Radius 1
+    // L (Level) 0 = Surface (Edge) = Radius 64
+    // Physics operates on R (Radius).
+    let R = 64 - L; // Inverted Radius for Physics
+    if (R < 1) R = 1; // Singularity limit
+    
     atoms.set(id, {
         id,
-        L, // Current
-        targetL: L, // Intrinsic/Target (Orbital Lock)
+        L: R, // Physics uses L as Radius (Legacy name in QAtom, effectively R now)
+        targetL: 64 - L, // Target Radius is also inverted
+        
+        // Custom Fields for Export/Debug
+        level: L, // Semantic Level (0-63)
+        
         D, V,
         q,
         mass: deps.length
-    } as QAtom);
+    } as any); // Cast to any to allow extra 'level' field
 }
 
 console.log(`Loaded ${atoms.size} atoms. Found ${edges.length} connections.`);
@@ -158,14 +169,19 @@ for (const [id, atom] of finalText) {
     if (atom.id.startsWith("mirror")) continue;
     
     // Check if moved
-    const oldL = atoms.get(id)?.L || 0;
-    const oldD = atoms.get(id)?.D || 0;
+    const oldL = atoms.get(id)?.level || 0; // Compare against original LEVEL
+    
+    // Physics 'L' is actually Radius 'R'. Convert back to Level.
+    const simR = atom.L; 
+    let newLevel = 64 - simR;
+    if (newLevel < 0) newLevel = 0;
+    if (newLevel > 63) newLevel = 63;
     
     // Only write if significant change? 
     // Or just write everything to ensure consistency?
     // User said "spoils so be it". Let's write.
     
-    const newVector = `${Math.round(atom.L)}.${Math.round(atom.D)}.${atom.V}`;
+    const newVector = `${Math.round(newLevel)}.${Math.round(atom.D)}.${atom.V}`;
     
     // Resolve YAML path (same logic as reading)
     let yamlPath = "";
@@ -208,7 +224,8 @@ console.log(`Mutated ${mutations} atoms in YAML.`);
 const exportData = {
     nodes: Array.from(finalText.values()).map(a => ({
         id: a.id,
-        L: a.L,
+        L: a.L, // Visual Radius
+        level: (a as any).level, // Semantic Level
         D: a.D,
         V: a.V,
         tension: a.mass || 0, // Need to separate mass from tension in future
