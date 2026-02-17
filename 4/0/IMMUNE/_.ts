@@ -4,8 +4,8 @@
 // Filters Atoms based on Structure and Mass.
 // "Evolution does not need purity — it needs selection."
 
-import type { Atom } from "./i.L32.core.RIBOSOME.ts";
-import { DUAL, HyperAtom } from "./i.L32.core.DUAL_COMPILER.ts";
+import type { Atom } from "../RIBOSOME/_.ts";
+import { DUAL, HyperAtom } from "../DUAL_COMPILER/_.ts";
 
 export const IMMUNE = {
     // 1. Recognition: Friend or Foe?
@@ -15,7 +15,12 @@ export const IMMUNE = {
             return true; // Vacuum atoms are self-validating via cryptographic hash
         }
 
-        // B. Structural Integrity Check
+        // B. Octal Recognition (Ribosome 2.0)
+        if (atom.id.match(/^\d+\/\d+\/[A-Z0-9_]+$/)) {
+            return true; // Octal atoms are structure-bound
+        }
+
+        // C. Structural Integrity Check (Legacy)
         const validName = atom.id.match(/i\.L\d+\.core\.[A-Z_]+\.ts/);
         if (!validName) return false;
 

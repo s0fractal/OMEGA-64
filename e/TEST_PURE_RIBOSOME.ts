@@ -3,7 +3,7 @@
  * Tests the Real Ribosome (2.0) with Octal Scanning and Injection.
  */
 
-import { RIBOSOME } from "../i/i.L32.core.RIBOSOME.ts";
+import { RIBOSOME } from "../4/0/RIBOSOME/_.ts";
 
 console.log("--- Booting Ribosome 2.0 ---");
 
@@ -19,7 +19,8 @@ if (lattice.has(targetID)) {
     console.log(`   Level: ${atom.level}`);
 } else {
     console.error(`❌ Failed to find ${targetID} in Lattice!`);
-    console.error("Lattice Keys:", Array.from(lattice.keys()));
+    await Deno.writeTextFile("lattice_keys.txt", JSON.stringify(Array.from(lattice.keys()), null, 2));
+    console.error("Lattice Keys written to lattice_keys.txt");
     Deno.exit(1);
 }
 

@@ -1,0 +1,6 @@
+vector: 4.0.0
+origin: 4/0/IMMUNE/_.ts
+level: 32
+relations:
+  use:
+    - RIBOSOME

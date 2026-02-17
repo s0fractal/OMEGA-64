@@ -3,10 +3,10 @@
 // The Meta-Processor for OMEGA-64 Flatland.
 // Scans the Root, Lifts Atoms, and Builds the Living Map.
 
-import { IMMUNE } from "./i.L32.core.IMMUNE.ts";
-import { DUAL } from "./i.L32.core.DUAL.ts";
+import { IMMUNE } from "../IMMUNE/_.ts";
+import { DUAL } from "../DUAL/_.ts";
 import { walk } from "jsr:@std/fs";
-import { Atom as AtomSchema } from "./i.L32.core.SCHEMA.ts";
+import { Atom as AtomSchema } from "../SCHEMA/_.ts";
 import { parse as parseYaml } from "jsr:@std/yaml";
 
 export interface Atom {
@@ -90,7 +90,7 @@ export const RIBOSOME = {
                                 // 1. Verify Existence
                                 await Deno.stat(codePath);
                                 await Deno.stat(metaPath);
-                                // console.log(`    -> Files Verified for ${atomName}`);
+                                console.log(`    -> Files Verified for ${atomName}`);
 
                                 // 2. Calculate Level
                                 const absoluteLevel = M * 8 + m;
@@ -103,6 +103,7 @@ export const RIBOSOME = {
                                 const module = await import(`file://${absCodePath}`);
                                 // console.log(`    -> Imported ${atomName}`);
                                 
+                                // console.log(`    -> Setting Lattice ID: ${id}`);
                                 lattice.set(id, { 
                                     id: id, 
                                     level: absoluteLevel, 
@@ -111,7 +112,7 @@ export const RIBOSOME = {
                                 
                             } catch (e) {
                                 // Not a valid atom (missing _ files), skip silently
-                                console.error(`[RIBOSOME] Skipped ${atomPath}:`, e);
+                                // console.error(`[RIBOSOME] Skipped ${atomPath}:`, e);
                             }
                         }
                     }
@@ -125,13 +126,14 @@ export const RIBOSOME = {
         lattice = await RIBOSOME.liftVacuum(lattice);
 
         // 🛡️ IMMUNE SYSTEM CHECK
+        // console.log(`[RIBOSOME] Lift Complete. Atoms: ${lattice.size}`);
         return IMMUNE.inspect(lattice);
     },
 
     // Lift Crystallized Atoms from the Vacuum
     liftVacuum: async (lattice: Map<string, Atom>): Promise<Map<string, Atom>> => {
         try {
-            const manifestPath = "../SINGULARITY/V/mod.ts";
+            const manifestPath = "../../../SINGULARITY/V/mod.ts";
             const { VACUUM } = await import(manifestPath);
             if (!VACUUM) return lattice;
 
@@ -208,7 +210,7 @@ export const RIBOSOME = {
                          // Only if the dependency IS the function.
                          
                          // If legacy module, it might be an object.
-                         ctx.siblings[depName] = depAtom.module.default || depAtom.module[depName] || depAtom.module;
+                         ctx.siblings[depName] = depAtom.module.ATOM || depAtom.module.default || depAtom.module[depName] || depAtom.module;
                     } else {
                         console.warn(`[Causality Violation] ${target.id} (L${target.level}) tried to access ${depName} (L${depAtom.level})`);
                     }

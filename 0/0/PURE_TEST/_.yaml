@@ -1,5 +1,5 @@
 vector: 0.0.1
-origin: i/0/0/PURE_TEST.ts
+origin: 0/0/PURE_TEST/_.ts
 relations:
   use:
     - LOG

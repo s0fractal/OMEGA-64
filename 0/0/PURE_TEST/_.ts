@@ -1,5 +1,5 @@
 /**
- * [i/0/0/PURE_TEST.ts]
+ * [0/0/PURE_TEST.ts]
  * A Pure Atom. No imports.
  * Receives context (CTX) and returns a value.
  */
