@@ -1,0 +1,5 @@
+vector: 6.6.1
+symbol: "SENSATION"
+desc: "Sensation primitive"
+legacy_idx: 9
+origin: "./_.ts"

@@ -1,0 +1,7 @@
+vector: 4.5.1
+symbol: "SEM_WRAP"
+desc: "Semantic Wrapping"
+legacy_idx: 26
+origin: "./_.ts"
+relations:
+  use: [CONS]

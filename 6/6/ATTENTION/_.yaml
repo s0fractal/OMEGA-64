@@ -1,0 +1,7 @@
+vector: 6.6.2
+symbol: "ATTENTION"
+desc: "Attention (filtered sensation)"
+legacy_idx: 9
+origin: "./_.ts"
+relations:
+  use: [FORCE]

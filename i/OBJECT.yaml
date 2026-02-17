@@ -1,8 +1,0 @@
-vector: 31.29.0
-origin: i.L31.core.OBJECT.ts
-symbol: OBJECT
-relations:
-  attractor: VOID
-  use: []
-  used:
-    - CLASS

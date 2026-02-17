@@ -1,0 +1,5 @@
+vector: 6.5.1
+symbol: "FORCE"
+desc: "FORCE (Identity)"
+legacy_idx: 10
+origin: "./_.ts"

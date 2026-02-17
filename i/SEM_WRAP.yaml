@@ -1,7 +1,0 @@
-vector: 26.18.6
-origin: i.L26.core.SEM_WRAP.ts
-symbol: SEM_WRAP
-relations:
-  attractor: VOID
-  use: []
-  used: []

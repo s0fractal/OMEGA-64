@@ -1,0 +1,5 @@
+vector: 3.7.9
+symbol: "Y"
+desc: "Y Combinator (Fixed Point)"
+legacy_idx: 32
+origin: "./_.ts"

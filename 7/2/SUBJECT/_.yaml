@@ -1,0 +1,5 @@
+vector: 7.2.3
+symbol: "SUBJECT"
+desc: "Subject identity"
+legacy_idx: 5
+origin: "./_.ts"
