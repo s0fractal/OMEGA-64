@@ -1,0 +1,6 @@
+vector: 7.7.0
+origin: 7/7/PURE_TEST/_.ts
+relations:
+  use:
+    - LOG
+    - ADD

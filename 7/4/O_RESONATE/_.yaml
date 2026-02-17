@@ -1,0 +1,5 @@
+vector: 7.4.10
+symbol: "O_RESONATE"
+desc: "Octal Logic Stub: O_RESONATE"
+legacy_idx: 3
+origin: "./_.ts"

@@ -1,4 +1,4 @@
-minor: 7
-level: 7
-note: "Note 7 of Octave 0"
-tags: [L7]
+vector: 0.7.0
+tag: "OP: Relations"
+desc: "IS_ZERO | Identity Mapping"
+legacy_idx: 56

@@ -1,0 +1,5 @@
+vector: 7.4.0
+symbol: "TELEMETRY"
+desc: "System Event Telemetry Constructor"
+legacy_idx: 3
+origin: "./_.ts"

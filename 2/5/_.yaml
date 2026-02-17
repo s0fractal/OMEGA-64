@@ -1,4 +1,4 @@
-minor: 5
-level: 21
-note: "Note 5 of Octave 2"
-tags: [L21]
+vector: 2.5.0
+tag: "FL: Continuations"
+desc: "CONT, CALL_CC | Temporal Folding"
+legacy_idx: 42

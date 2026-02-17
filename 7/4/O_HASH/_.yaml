@@ -1,0 +1,5 @@
+vector: 7.4.30
+symbol: "O_HASH"
+desc: "Octal Logic Stub: O_HASH"
+legacy_idx: 3
+origin: "./_.ts"

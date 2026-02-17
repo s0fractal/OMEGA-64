@@ -1,4 +1,4 @@
-minor: 1
-level: 25
-note: "Note 1 of Octave 3"
-tags: [L25]
+vector: 3.1.0
+tag: "FL: Automata"
+desc: "MACHINE, STEP | Signal Flux"
+legacy_idx: 38

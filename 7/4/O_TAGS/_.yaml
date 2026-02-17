@@ -1,0 +1,5 @@
+vector: 4.7.0
+symbol: "O_TAGS"
+desc: "Inverted Atom: O_TAGS"
+legacy_idx: 3
+origin: "./_.ts"

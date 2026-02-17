@@ -1,0 +1,5 @@
+vector: 6.3.0
+symbol: "VOID"
+desc: "Inverted Atom: VOID"
+legacy_idx: 25
+origin: "./_.ts"

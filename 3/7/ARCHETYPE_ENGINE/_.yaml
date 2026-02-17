@@ -1,0 +1,5 @@
+vector: 7.3.0
+symbol: "ARCHETYPE_ENGINE"
+desc: "Inverted Engine Atom: ARCHETYPE_ENGINE"
+legacy_idx: 32
+origin: "./_.ts"

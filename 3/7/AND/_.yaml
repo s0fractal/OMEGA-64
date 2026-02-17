@@ -1,0 +1,5 @@
+vector: 3.7.1
+symbol: "AND"
+desc: "Church AND"
+legacy_idx: 32
+origin: "./_.ts"

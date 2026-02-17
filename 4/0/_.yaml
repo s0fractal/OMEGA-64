@@ -1,4 +1,4 @@
-minor: 0
-level: 32
-note: "Note 0 of Octave 4"
-tags: [L32]
+vector: 4.0.0
+tag: "PJ: Objects"
+desc: "OBJECT, SEND, CLASS | OOP Atom"
+legacy_idx: 31

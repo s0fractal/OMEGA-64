@@ -1,0 +1,10 @@
+vector: 7.7.4
+symbol: "COLOR"
+desc: "Chromo-Topological Isomorphism"
+legacy_idx: 0
+relations:
+  use:
+    - FIELD
+    - U16_LIMITS
+    - WAVE_PACKET
+origin: "./_.ts"

@@ -1,4 +1,4 @@
-minor: 2
-level: 10
-note: "Note 2 of Octave 1"
-tags: [L10]
+vector: 1.2.0
+tag: "OP: Utils"
+desc: "C, W, Φ, Ψ | Combinatory Flow"
+legacy_idx: 53

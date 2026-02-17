@@ -1,4 +1,4 @@
-minor: 4
-level: 28
-note: "Note 4 of Octave 3"
-tags: [L28]
+vector: 3.4.0
+tag: "FL: Equality"
+desc: "IS_ISO, REFL | Logical Sameness"
+legacy_idx: 35

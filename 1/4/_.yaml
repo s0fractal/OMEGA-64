@@ -1,4 +1,4 @@
-minor: 4
-level: 12
-note: "Note 4 of Octave 1"
-tags: [L12]
+vector: 1.4.0
+tag: "OP: Triples"
+desc: "TRIPLE, T1-T3 | Dimensional State"
+legacy_idx: 51

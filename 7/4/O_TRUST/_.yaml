@@ -1,0 +1,5 @@
+vector: 4.1.0
+symbol: "O_TRUST"
+desc: "Inverted Atom: O_TRUST"
+legacy_idx: 3
+origin: "./_.ts"

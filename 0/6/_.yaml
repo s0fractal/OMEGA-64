@@ -1,4 +1,4 @@
-minor: 6
-level: 6
-note: "Note 6 of Octave 0"
-tags: [L6]
+vector: 0.6.0
+tag: "OP: Gates"
+desc: "NAND, XOR, MUX | Switching Logic"
+legacy_idx: 57

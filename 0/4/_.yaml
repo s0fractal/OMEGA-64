@@ -1,4 +1,4 @@
-minor: 4
-level: 4
-note: "Note 4 of Octave 0"
-tags: [L4]
+vector: 0.4.0
+tag: "OP: Booleans"
+desc: "T, F, AND, OR, NOT | Choice Physics"
+legacy_idx: 59

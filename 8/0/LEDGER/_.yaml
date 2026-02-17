@@ -1,0 +1,5 @@
+vector: 8.0.1
+symbol: "LEDGER"
+desc: "Experimental L99 Atom: LEDGER"
+legacy_idx: 99
+origin: "./_.ts"

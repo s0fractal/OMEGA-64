@@ -1,0 +1,5 @@
+vector: 8.0.2
+symbol: "QUANTUM_VIEW"
+desc: "Experimental L99 Atom: QUANTUM_VIEW"
+legacy_idx: 99
+origin: "./_.ts"

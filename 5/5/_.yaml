@@ -1,4 +1,4 @@
-minor: 5
-level: 45
-note: "Note 5 of Octave 5"
-tags: [L45]
+vector: 5.5.0
+tag: "PJ: Thermal"
+desc: "TEMP, HEAT, COOL | Stability Flux"
+legacy_idx: 18

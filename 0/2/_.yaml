@@ -1,4 +1,4 @@
-minor: 2
-level: 2
-note: "Note 2 of Octave 0"
-tags: [L2]
+vector: 0.2.0
+tag: "AX: Recursion"
+desc: "Y, φ Combinators | The Negentropy Engine"
+legacy_idx: 61

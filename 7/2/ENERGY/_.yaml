@@ -1,0 +1,5 @@
+vector: 2.4.0
+symbol: "ENERGY"
+desc: "Inverted Atom: ENERGY"
+legacy_idx: 5
+origin: "./_.ts"

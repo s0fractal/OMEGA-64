@@ -1,0 +1,7 @@
+vector: 1.0.4
+symbol: "LEQ"
+desc: "Church Less or Equal"
+legacy_idx: 55
+origin: "./_.ts"
+relations:
+  use: [IS_ZERO, SUB]

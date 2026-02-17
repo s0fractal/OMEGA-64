@@ -1,0 +1,7 @@
+vector: 3.7.2
+symbol: "NOT"
+desc: "Church NOT"
+legacy_idx: 32
+origin: "./_.ts"
+relations:
+  use: [T, F]

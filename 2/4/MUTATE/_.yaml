@@ -1,0 +1,7 @@
+vector: 2.4.0
+symbol: "MUTATE"
+desc: "Sovereign Structural Evolution"
+legacy_idx: 43
+relations:
+  use: [SIGNAL, TELEMETRY]
+origin: "./_.ts"

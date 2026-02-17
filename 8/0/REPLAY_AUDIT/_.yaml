@@ -1,0 +1,7 @@
+vector: 8.0.3
+symbol: "REPLAY_AUDIT"
+desc: "Experimental L99 Atom: REPLAY_AUDIT"
+legacy_idx: 99
+origin: "./_.ts"
+relations:
+  use: [I16_CLAMP, LEDGER]

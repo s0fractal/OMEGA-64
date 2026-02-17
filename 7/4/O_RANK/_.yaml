@@ -1,0 +1,5 @@
+vector: 7.4.11
+symbol: "O_RANK"
+desc: "Octal Logic Stub: O_RANK"
+legacy_idx: 3
+origin: "./_.ts"

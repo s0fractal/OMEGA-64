@@ -1,0 +1,5 @@
+vector: 7.4.40
+symbol: "O_NEED"
+desc: "Octal Logic Stub: O_NEED"
+legacy_idx: 3
+origin: "./_.ts"

@@ -11,8 +11,8 @@ console.log("--- Booting Ribosome 2.0 ---");
 const lattice = await RIBOSOME.lift();
 console.log(`Lattice Assembly Complete. Atoms: ${lattice.size}`);
 
-// Verify PURE_TEST is loaded
-const targetID = "0/0/PURE_TEST";
+// Verify PURE_TEST (Moved to Highest Octave for Visibility)
+const targetID = "7/7/PURE_TEST";
 if (lattice.has(targetID)) {
     console.log(`✅ Found Octal Atom: ${targetID}`);
     const atom = lattice.get(targetID)!;

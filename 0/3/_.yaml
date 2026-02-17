@@ -1,4 +1,4 @@
-minor: 3
-level: 3
-note: "Note 3 of Octave 0"
-tags: [L3]
+vector: 0.3.0
+tag: "AX: Arithmetic"
+desc: "Σ Axiom | Parallel Summation Proof"
+legacy_idx: 60

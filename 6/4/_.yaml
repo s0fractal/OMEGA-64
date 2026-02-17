@@ -1,4 +1,4 @@
-minor: 4
-level: 52
-note: "Note 4 of Octave 6"
-tags: [L52]
+vector: 6.4.0
+tag: "DR: Field"
+desc: "FIELD, TENSION | Continuity"
+legacy_idx: 11

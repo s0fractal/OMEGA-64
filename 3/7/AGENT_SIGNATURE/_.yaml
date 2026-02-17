@@ -1,0 +1,5 @@
+vector: 7.3.0
+symbol: "AGENT_SIGNATURE"
+desc: "Inverted Engine Atom: AGENT_SIGNATURE"
+legacy_idx: 32
+origin: "./_.ts"

@@ -1,4 +1,4 @@
-minor: 6
-level: 14
-note: "Note 6 of Octave 1"
-tags: [L14]
+vector: 1.6.0
+tag: "OP: Streams"
+desc: "STREAM, HEAD, TAIL | Temporal Infinity"
+legacy_idx: 49

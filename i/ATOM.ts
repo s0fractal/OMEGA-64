@@ -1,1 +1,0 @@
-export const ATOM = (val: any) => (obs: any) => obs(val);

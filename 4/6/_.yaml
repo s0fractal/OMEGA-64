@@ -1,4 +1,4 @@
-minor: 6
-level: 38
-note: "Note 6 of Octave 4"
-tags: [L38]
+vector: 4.6.0
+tag: "PJ: Spatial"
+desc: "POINT, COORD | Geometric Logic"
+legacy_idx: 25

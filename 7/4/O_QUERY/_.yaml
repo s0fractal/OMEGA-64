@@ -1,0 +1,5 @@
+vector: 7.4.93
+symbol: "O_QUERY"
+desc: "Octal Logic Stub: O_QUERY"
+legacy_idx: 3
+origin: "./_.ts"

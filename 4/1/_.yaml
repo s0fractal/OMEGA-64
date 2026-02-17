@@ -1,4 +1,4 @@
-minor: 1
-level: 33
-note: "Note 1 of Octave 4"
-tags: [L33]
+vector: 4.1.0
+tag: "PJ: Reactive"
+desc: "OBSERVABLE, ATOM | Flux Core"
+legacy_idx: 30

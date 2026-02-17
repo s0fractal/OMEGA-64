@@ -1,0 +1,5 @@
+vector: 7.5.4
+symbol: "SPECTRUM"
+desc: "HSL Visualization Logic"
+legacy_idx: 2
+origin: "./_.ts"

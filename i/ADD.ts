@@ -1,1 +1,0 @@
-export const ADD = (m: any) => (n: any) => (f: any) => (x: any) => m(f)(n(f)(x));

@@ -1,0 +1,8 @@
+vector: 7.7.3
+symbol: "FIELD"
+desc: "Dipole Field and Logarithmic Topology"
+legacy_idx: 0
+relations:
+  use:
+    - I16_LIMITS
+origin: "./_.ts"

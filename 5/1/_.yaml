@@ -1,4 +1,4 @@
-minor: 1
-level: 41
-note: "Note 1 of Octave 5"
-tags: [L41]
+vector: 5.1.0
+tag: "PJ: Gravity"
+desc: "MASS, GRAVITY | Priority Weight"
+legacy_idx: 22

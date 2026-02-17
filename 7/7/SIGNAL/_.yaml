@@ -1,0 +1,5 @@
+vector: 7.7.7
+symbol: "SIGNAL"
+desc: "Semantic Membrane to Outside World"
+legacy_idx: 64
+origin: "./_.ts"

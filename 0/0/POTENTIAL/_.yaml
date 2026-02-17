@@ -1,0 +1,5 @@
+vector: 0.4.0
+symbol: "POTENTIAL"
+desc: "Wave Dynamics Atom: POTENTIAL"
+legacy_idx: -1
+origin: "./_.ts"

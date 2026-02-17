@@ -1,4 +1,4 @@
-minor: 0
-level: 24
-note: "Note 0 of Octave 3"
-tags: [L24]
+vector: 3.0.0
+tag: "FL: Algebraic"
+desc: "JOIN, MEET | Lattice Order"
+legacy_idx: 39

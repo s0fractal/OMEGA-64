@@ -1,4 +1,4 @@
-minor: 7
-level: 15
-note: "Note 7 of Octave 1"
-tags: [L15]
+vector: 1.7.0
+tag: "OP: Primitives"
+desc: "BIT, BYTE | Digital Substrate"
+legacy_idx: 48

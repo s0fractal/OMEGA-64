@@ -1,0 +1,7 @@
+vector: 7.5.3
+symbol: "TELEMETRY_SIGNAL"
+desc: "Combined Telemetry and Signal Emitter"
+legacy_idx: 2
+relations:
+  use: [TELEMETRY, SIGNAL]
+origin: "./_.ts"

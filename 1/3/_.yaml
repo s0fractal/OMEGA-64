@@ -1,4 +1,4 @@
-minor: 3
-level: 11
-note: "Note 3 of Octave 1"
-tags: [L11]
+vector: 1.3.0
+tag: "OP: Powers"
+desc: "MULT, POW | Scaling Physics"
+legacy_idx: 52

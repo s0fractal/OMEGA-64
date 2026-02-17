@@ -1,4 +1,4 @@
-minor: 3
-level: 51
-note: "Note 3 of Octave 6"
-tags: [L51]
+vector: 6.3.0
+tag: "DR: Harmonic"
+desc: "HARMONIC, CHORD | Synthesis"
+legacy_idx: 12

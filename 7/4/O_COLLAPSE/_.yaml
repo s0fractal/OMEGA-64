@@ -1,0 +1,5 @@
+vector: 7.4.26
+symbol: "O_COLLAPSE"
+desc: "Octal Logic Stub: O_COLLAPSE"
+legacy_idx: 3
+origin: "./_.ts"

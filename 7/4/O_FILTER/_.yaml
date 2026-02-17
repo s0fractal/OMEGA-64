@@ -1,0 +1,5 @@
+vector: 7.4.37
+symbol: "O_FILTER"
+desc: "Octal Logic Stub: O_FILTER"
+legacy_idx: 3
+origin: "./_.ts"

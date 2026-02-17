@@ -1,7 +1,0 @@
-vector: 58.5.0
-origin: i.L58.core.ADD.ts
-symbol: ADD
-relations:
-  attractor: VOID
-  use: []
-  used: []

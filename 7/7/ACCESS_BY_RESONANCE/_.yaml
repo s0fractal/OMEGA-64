@@ -1,0 +1,9 @@
+vector: 7.7.5
+symbol: "ACCESS_BY_RESONANCE"
+desc: "Social Physics Access Verification"
+legacy_idx: 0
+relations:
+  use:
+    - I16_LIMITS
+    - U16_LIMITS
+origin: "./_.ts"

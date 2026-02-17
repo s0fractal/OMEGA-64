@@ -1,4 +1,4 @@
-minor: 5
-level: 5
-note: "Note 5 of Octave 0"
-tags: [L5]
+vector: 0.5.0
+tag: "OP: Numerals"
+desc: "N0-N3, SUCC, ADD | Ordinal Quantity"
+legacy_idx: 58
