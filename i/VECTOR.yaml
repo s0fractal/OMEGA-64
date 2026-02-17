@@ -1,7 +1,0 @@
-vector: 23.17.2
-origin: i.L23.core.VECTOR.ts
-symbol: VECTOR
-relations:
-  attractor: VOID
-  use: []
-  used: []

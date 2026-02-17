@@ -1,7 +1,0 @@
-vector: 27.31.0
-origin: i.L27.core.RELATION.ts
-symbol: RELATION
-relations:
-  attractor: VOID
-  use: []
-  used: []

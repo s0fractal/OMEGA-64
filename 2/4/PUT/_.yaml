@@ -1,0 +1,5 @@
+vector: 2.4.1
+symbol: "PUT"
+desc: "System State Update (IO)"
+legacy_idx: 43
+origin: "./_.ts"

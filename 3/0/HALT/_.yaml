@@ -1,0 +1,5 @@
+vector: 3.0.2
+symbol: "HALT"
+desc: "Machine termination state"
+legacy_idx: 39
+origin: "./_.ts"

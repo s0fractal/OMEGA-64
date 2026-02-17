@@ -1,0 +1,5 @@
+vector: 4.0.2
+symbol: "SEND"
+desc: "Synchronous messaging primitive"
+legacy_idx: 31
+origin: "./_.ts"

@@ -1,0 +1,7 @@
+vector: 2.6.1
+symbol: "SYNC"
+desc: "Logic Synchronization"
+legacy_idx: 41
+origin: "./_.ts"
+relations:
+  use: [JOIN]

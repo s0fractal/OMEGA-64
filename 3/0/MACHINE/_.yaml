@@ -1,0 +1,5 @@
+vector: 3.0.3
+symbol: "MACHINE"
+desc: "Atomic State Machine constructor"
+legacy_idx: 39
+origin: "./_.ts"

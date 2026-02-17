@@ -1,0 +1,7 @@
+vector: 6.1.2
+symbol: "MAP"
+desc: "List map operation"
+legacy_idx: 14
+origin: "./_.ts"
+relations:
+  use: [Y, IS_NIL, NIL, CONS, CAR, CDR]

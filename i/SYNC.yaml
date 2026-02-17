@@ -1,8 +1,0 @@
-vector: 41.19.2
-origin: i.L41.core.SYNC.ts
-symbol: SYNC
-relations:
-  attractor: VOID
-  use:
-    - JOIN
-  used: []

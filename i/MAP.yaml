@@ -1,7 +1,0 @@
-vector: 49.7.0
-origin: i.L49.core.MAP.ts
-symbol: MAP
-relations:
-  attractor: VOID
-  use: []
-  used: []

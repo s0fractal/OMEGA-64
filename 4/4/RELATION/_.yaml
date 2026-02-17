@@ -1,0 +1,5 @@
+vector: 4.4.1
+symbol: "RELATION"
+desc: "Relational data structure"
+legacy_idx: 27
+origin: "./_.ts"

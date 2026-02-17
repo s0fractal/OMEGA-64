@@ -1,7 +1,0 @@
-vector: 43.12.1
-origin: i.L43.core.GET.ts
-symbol: GET
-relations:
-  attractor: VOID
-  use: []
-  used: []

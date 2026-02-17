@@ -1,7 +1,0 @@
-vector: 43.12.2
-origin: i.L43.core.PUT.ts
-symbol: PUT
-relations:
-  attractor: VOID
-  use: []
-  used: []

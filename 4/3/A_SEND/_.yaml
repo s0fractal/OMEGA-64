@@ -1,0 +1,5 @@
+vector: 4.3.1
+symbol: "A_SEND"
+desc: "Asynchronous/Actor messaging"
+legacy_idx: 28
+origin: "./_.ts"

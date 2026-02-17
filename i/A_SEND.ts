@@ -1,1 +1,0 @@
-export const A_SEND = (actor: any) => (msg: any) => actor(msg);
