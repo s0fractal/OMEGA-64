@@ -27,15 +27,65 @@ export const QState = z.object({
     evt: z.number().optional()  // Event / Energy
 });
 
+// 4. Forces: Physical fields for self-organization
+export const ForceLink = z.object({
+    kind: z.string().describe("spring|repulsion|attraction|gravity|charge|damping|anchor|orbit"),
+    target: z.string().optional(),
+    strength: z.number().optional(),
+    axis: z.string().optional(),
+    note: z.string().optional()
+});
+
+export const Forces = z.object({
+    self: z.object({
+        mass: z.number().optional(),
+        charge: z.number().optional(),
+        spin: z.number().optional(),
+        gravity: z.number().optional(),
+        damping: z.number().optional(),
+        anchor: z.boolean().optional()
+    }).optional(),
+    links: z.array(ForceLink).optional(),
+    net: z.object({
+        x: z.number(),
+        y: z.number(),
+        z: z.number(),
+        magnitude: z.number()
+    }).optional(),
+    pairs: z.array(z.object({
+        target: z.string(),
+        dx: z.number(),
+        dy: z.number(),
+        dz: z.number(),
+        r: z.number(),
+        gravity: z.number().optional(),
+        charge: z.number().optional(),
+        spin: z.number().optional(),
+        fx: z.number(),
+        fy: z.number(),
+        fz: z.number()
+    })).optional(),
+    tension: z.number().optional()
+});
+
+// 5. Laws: Codex interaction laws (used to derive forces)
+export const Law = z.object({
+    id: z.string(),
+    when: z.string().describe("Trigger condition (e.g. relations.use)"),
+    kind: z.string().describe("spring|repulsion|attraction|gravity|charge|damping|anchor|orbit"),
+    strength: z.number().optional(),
+    note: z.string().optional()
+});
+
 // 4. Firewall Rule: Canon rule blocks (path/extension policies)
 export const FirewallRule = z.object({
     id: z.string(),
-    scope: z.string().describe("Path or vector range scope (projection-aware)"),
-    ext: z.string().describe("File extension or protocol (e.g. ts, rs, md, yaml, *)").optional(),
+    path: z.string().describe("Glob path pattern (canonical path matcher)"),
     action: z.string(),
     status: z.string(),
     reason: z.string().optional(),
-    allow: z.array(z.string()).optional()
+    allow: z.array(z.string()).optional(),
+    deny: z.array(z.string()).optional()
 });
 
 // 4. The Atom: The Fundamental Particle
@@ -45,6 +95,8 @@ export const Atom = z.object({
     symbol: z.string().optional(),
     relations: Relations.optional(),
     q: QState.optional(),
+    forces: Forces.optional(),
+    laws: z.array(Law).optional(),
     rules: z.array(FirewallRule).optional()
 });
 
