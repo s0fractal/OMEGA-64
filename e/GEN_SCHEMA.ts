@@ -6,7 +6,7 @@
 
 import { z } from "npm:zod";
 import { zodToJsonSchema } from "npm:zod-to-json-schema";
-import { Atom } from "../i/i.L32.core.SCHEMA.ts";
+import { Atom } from "../4/0/SCHEMA/_.ts";
 
 const jsonSchema = zodToJsonSchema(Atom, "OmegaAtom");
 
@@ -16,6 +16,16 @@ console.log("Generated omega.schema.json");
 console.log("Add this to .vscode/settings.json:");
 console.log(`
 "yaml.schemas": {
-    "./omega.schema.json": "i/*.yaml"
+    "./omega.schema.json": [
+        "0/*/*/_.yaml",
+        "1/*/*/_.yaml",
+        "2/*/*/_.yaml",
+        "3/*/*/_.yaml",
+        "4/*/*/_.yaml",
+        "5/*/*/_.yaml",
+        "6/*/*/_.yaml",
+        "7/*/*/_.yaml",
+        "8/*/*/_.yaml"
+    ]
 }
 `);

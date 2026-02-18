@@ -2,8 +2,8 @@
 // @noncanonical
 // OMEGA-64 | Aggregate O stream health signals.
 
-import { O_STREAM_READ } from "../../5/O_STREAM_READ/_.ts";
-import { O_STREAM_HEALTH } from "../../7/O_STREAM_HEALTH/_.ts";
+import { O_STREAM_READ_O_STREAM_READ as O_STREAM_READ } from "@omega";
+import { O_STREAM_HEALTH_O_STREAM_HEALTH as O_STREAM_HEALTH } from "@omega";
 
 const usage = (): string =>
   [

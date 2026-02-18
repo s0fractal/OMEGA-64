@@ -1,7 +1,7 @@
 // i.L99.core.PROPOSAL_ENVELOPE_INDEX.ts
 // OMEGA-64 | Append-only envelope replay index for O(1)-style recent duplicate checks.
 
-import type { LedgerEvent } from "../0/STATE_SNAPSHOT/_.ts";
+import type { STATE_SNAPSHOT_LedgerEvent as LedgerEvent } from "@omega";
 
 export interface ProposalEnvelopeIndexRecord {
     chain_version: string;

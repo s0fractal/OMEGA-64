@@ -2,30 +2,19 @@
 // 🛡️ OMEGA-64 | Glider Lite | The Deterministic L32 Gate
 // "No mutation without admission."
 
-import {
-  BridgeModeEvent,
-  DeltaProposal,
-  GateConfig,
-  GateDecision,
-  LedgerEvent,
-  REJECTION,
-  StateSnapshot,
-} from "../../../8/0/STATE_SNAPSHOT/_.ts";
-import { LEDGER } from "../../../8/0/LEDGER/_.ts";
-import { LOAD } from "../../../8/0/LOAD/_.ts";
-import { CHECKPOINT } from "../../../8/0/CHECKPOINT/_.ts";
-import { TOPOLOGICAL_SIGNATURE } from "../../../8/0/TOPOLOGICAL_SIGNATURE/_.ts";
-import {
-  CRYSTALLIZATION_CONFIG,
-  CRYSTALLIZATION_POLICY,
-} from "../../../8/1/CRYSTALLIZATION_CONFIG/_.ts";
-import type { ReplayInvariantReport } from "../../../8/0/REPLAY_AUDIT/_.ts";
-import { CANON_CAUSAL_BRIDGE } from "../../../3/7/CANON_CAUSAL_BRIDGE/_.ts";
-import { AGENT_SIGNATURE } from "../../../3/7/AGENT_SIGNATURE/_.ts";
-import { PROPOSAL_ENVELOPE_INDEX } from "../../../8/0/PROPOSAL_ENVELOPE_INDEX/_.ts";
-import { INVARIANT_PACKET } from "../INVARIANT_PACKET/_.ts";
-import { I16_CLAMP } from "../../../0/0/I16_CLAMP/_.ts";
-import { I16_LIMITS } from "../../../7/7/I16_LIMITS/_.ts";
+import { STATE_SNAPSHOT_BridgeModeEvent as BridgeModeEvent, STATE_SNAPSHOT_DeltaProposal as DeltaProposal, STATE_SNAPSHOT_GateConfig as GateConfig, STATE_SNAPSHOT_GateDecision as GateDecision, STATE_SNAPSHOT_LedgerEvent as LedgerEvent, STATE_SNAPSHOT_REJECTION as REJECTION, STATE_SNAPSHOT_StateSnapshot as StateSnapshot } from "@omega";
+import { LEDGER__08_00_LEDGER as LEDGER } from "@omega";
+import { LOAD_LOAD as LOAD } from "@omega";
+import { CHECKPOINT_CHECKPOINT as CHECKPOINT } from "@omega";
+import { TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE as TOPOLOGICAL_SIGNATURE } from "@omega";
+import { CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_CONFIG as CRYSTALLIZATION_CONFIG, CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_POLICY as CRYSTALLIZATION_POLICY } from "@omega";
+import type { REPLAY_AUDIT__08_00_ReplayInvariantReport as ReplayInvariantReport } from "@omega";
+import { CANON_CAUSAL_BRIDGE } from "@omega";
+import { AGENT_SIGNATURE } from "@omega";
+import { PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX as PROPOSAL_ENVELOPE_INDEX } from "@omega";
+import { INVARIANT_PACKET_INVARIANT_PACKET as INVARIANT_PACKET } from "@omega";
+import { I16_CLAMP__00_00_I16_CLAMP as I16_CLAMP } from "@omega";
+import { I16_LIMITS_I16_LIMITS as I16_LIMITS } from "@omega";
 
 const GATE_VERSION = "v0.2";
 const AUTO_CHECKPOINT_INTERVAL = 128;

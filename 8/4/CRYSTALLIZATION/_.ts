@@ -2,40 +2,15 @@
 // OMEGA-64 | Canon Protocol | Crystallization Threshold
 // Evaluates measurable gates before emitting CANONIZATION_EVENT.
 
-import { LEDGER } from "../0/LEDGER/_.ts";
-import {
-  CanonizationEvent,
-  DecrystallizationEvent,
-  LedgerEvent,
-  TopologyEvent,
-  ViolationEvent,
-} from "../0/STATE_SNAPSHOT/_.ts";
-import {
-  REPLAY_AUDIT,
-  ReplayAuditResult,
-  ReplayGenesis,
-} from "../0/REPLAY_AUDIT/_.ts";
-import {
-  PROJECTION_REPLAY_REPORT,
-  ProjectionReplayReport,
-} from "../4/PROJECTION_REPLAY_REPORT/_.ts";
-import {
-  PROJECTION_DRIFT_ANALYTICS,
-  ProjectionDriftAnalyticsReport,
-} from "../4/PROJECTION_DRIFT_ANALYTICS/_.ts";
-import {
-  GATE_ADMISSION_REPORT,
-  GateAdmissionReport,
-} from "../2/GATE_ADMISSION_REPORT/_.ts";
-import { CHECKPOINT } from "../0/CHECKPOINT/_.ts";
-import {
-  CRYSTALLIZATION_CONFIG,
-  CRYSTALLIZATION_POLICY,
-} from "../1/CRYSTALLIZATION_CONFIG/_.ts";
-import {
-  CRYSTALLIZATION_REPORT,
-  CrystallizationReport,
-} from "../7/CRYSTALLIZATION_REPORT/_.ts";
+import { LEDGER__08_00_LEDGER as LEDGER } from "@omega";
+import { STATE_SNAPSHOT_CanonizationEvent as CanonizationEvent, STATE_SNAPSHOT_DecrystallizationEvent as DecrystallizationEvent, STATE_SNAPSHOT_LedgerEvent as LedgerEvent, STATE_SNAPSHOT_TopologyEvent as TopologyEvent, STATE_SNAPSHOT_ViolationEvent as ViolationEvent } from "@omega";
+import { REPLAY_AUDIT__08_00_REPLAY_AUDIT as REPLAY_AUDIT, REPLAY_AUDIT__08_00_ReplayAuditResult as ReplayAuditResult, REPLAY_AUDIT__08_00_ReplayGenesis as ReplayGenesis } from "@omega";
+import { PROJECTION_REPLAY_REPORT_PROJECTION_REPLAY_REPORT as PROJECTION_REPLAY_REPORT, PROJECTION_REPLAY_REPORT_ProjectionReplayReport as ProjectionReplayReport } from "@omega";
+import { PROJECTION_DRIFT_ANALYTICS_PROJECTION_DRIFT_ANALYTICS as PROJECTION_DRIFT_ANALYTICS, PROJECTION_DRIFT_ANALYTICS_ProjectionDriftAnalyticsReport as ProjectionDriftAnalyticsReport } from "@omega";
+import { GATE_ADMISSION_REPORT_GATE_ADMISSION_REPORT as GATE_ADMISSION_REPORT, GATE_ADMISSION_REPORT_GateAdmissionReport as GateAdmissionReport } from "@omega";
+import { CHECKPOINT_CHECKPOINT as CHECKPOINT } from "@omega";
+import { CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_CONFIG as CRYSTALLIZATION_CONFIG, CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_POLICY as CRYSTALLIZATION_POLICY } from "@omega";
+import { CRYSTALLIZATION_REPORT_CRYSTALLIZATION_REPORT as CRYSTALLIZATION_REPORT, CRYSTALLIZATION_REPORT_CrystallizationReport as CrystallizationReport } from "@omega";
 
 const stableStringify = (value: unknown): string => {
   if (Array.isArray(value)) {

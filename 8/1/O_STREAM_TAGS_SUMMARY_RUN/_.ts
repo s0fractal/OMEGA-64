@@ -2,8 +2,8 @@
 // @noncanonical
 // OMEGA-64 | Summarize tag frequencies from O stream.
 
-import { O_STREAM_READ } from "../5/O_STREAM_READ/_.ts";
-import { O_STREAM_TAGS_SUMMARY } from "../5/O_STREAM_TAGS_SUMMARY/_.ts";
+import { O_STREAM_READ_O_STREAM_READ as O_STREAM_READ } from "@omega";
+import { O_STREAM_TAGS_SUMMARY_O_STREAM_TAGS_SUMMARY as O_STREAM_TAGS_SUMMARY } from "@omega";
 
 const usage = (): string =>
   [

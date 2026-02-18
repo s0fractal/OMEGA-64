@@ -1,1 +1,1 @@
-import { T } from "../../../0/0/T/_.ts"; export const CAR = (p: any) => p(T);
+import { T__00_00_T as T } from "@omega"; export const CAR = (p: any) => p(T);

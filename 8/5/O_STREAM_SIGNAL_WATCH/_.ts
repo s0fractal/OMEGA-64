@@ -2,7 +2,7 @@
 // @noncanonical
 // OMEGA-64 | Periodic refresh for O stream health signal.
 
-import { O_STREAM_HEALTH_SIGNAL_WRITE } from "../6/O_STREAM_HEALTH_SIGNAL_WRITE/_.ts";
+import { O_STREAM_HEALTH_SIGNAL_WRITE_O_STREAM_HEALTH_SIGNAL_WRITE as O_STREAM_HEALTH_SIGNAL_WRITE } from "@omega";
 
 const usage = (): string =>
   [

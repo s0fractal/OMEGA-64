@@ -3,16 +3,16 @@
 // OMEGA-64 | Deterministic Replay Audit
 // Produces a strict replayGreen signal from ledger events.
 
-import { LEDGER } from "../0/LEDGER/_.ts";
-import { LedgerEvent, PolicyTransitionEvent, TopologyEvent } from "../0/STATE_SNAPSHOT/_.ts";
-import { TOPOLOGICAL_SIGNATURE, TopologicalSignature } from "../6/TOPOLOGICAL_SIGNATURE/_.ts";
-import { CRYSTALLIZATION_CONFIG, CRYSTALLIZATION_POLICY } from "../1/CRYSTALLIZATION_CONFIG/_.ts";
-import { CRYSTALLIZATION_REPORT } from "../7/CRYSTALLIZATION_REPORT/_.ts";
-import { GATE_ADMISSION_REPORT } from "../2/GATE_ADMISSION_REPORT/_.ts";
-import type { InvariantPacket } from "../../../4/0/INVARIANT_PACKET/_.ts";
-import { INVARIANT_PACKET } from "../../../4/0/INVARIANT_PACKET/_.ts";
-import { I16_CLAMP } from "../../../0/0/I16_CLAMP/_.ts";
-import { I16_LIMITS } from "../../../7/7/I16_LIMITS/_.ts";
+import { LEDGER__08_00_LEDGER as LEDGER } from "@omega";
+import { STATE_SNAPSHOT_LedgerEvent as LedgerEvent, STATE_SNAPSHOT_PolicyTransitionEvent as PolicyTransitionEvent, STATE_SNAPSHOT_TopologyEvent as TopologyEvent } from "@omega";
+import { TOPOLOGICAL_SIGNATURE__08_06_TOPOLOGICAL_SIGNATURE as TOPOLOGICAL_SIGNATURE, TOPOLOGICAL_SIGNATURE__08_06_TopologicalSignature as TopologicalSignature } from "@omega";
+import { CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_CONFIG as CRYSTALLIZATION_CONFIG, CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_POLICY as CRYSTALLIZATION_POLICY } from "@omega";
+import { CRYSTALLIZATION_REPORT_CRYSTALLIZATION_REPORT as CRYSTALLIZATION_REPORT } from "@omega";
+import { GATE_ADMISSION_REPORT_GATE_ADMISSION_REPORT as GATE_ADMISSION_REPORT } from "@omega";
+import type { INVARIANT_PACKET_InvariantPacket as InvariantPacket } from "@omega";
+import { INVARIANT_PACKET_INVARIANT_PACKET as INVARIANT_PACKET } from "@omega";
+import { I16_CLAMP__00_00_I16_CLAMP as I16_CLAMP } from "@omega";
+import { I16_LIMITS_I16_LIMITS as I16_LIMITS } from "@omega";
 
 export interface ReplayGenesis {
     tick: number;

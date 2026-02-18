@@ -2,12 +2,12 @@
 // OMEGA-64 | The Hand of Sovereignty
 // Disciplined structural evolution through the Safe Window.
 
-import { MUTATION_LEDGER, MutationEvent } from "../../8/0/MUTATION_LEDGER/_.ts";
-import { CANON_CAUSAL_BRIDGE } from "../../3/7/CANON_CAUSAL_BRIDGE/_.ts";
-import { REPLAY_AUDIT } from "../../8/0/REPLAY_AUDIT/_.ts";
-import { LEDGER } from "../../8/0/LEDGER/_.ts";
-import { PROJECTION_DRIFT_ANALYTICS } from "../../8/4/PROJECTION_DRIFT_ANALYTICS/_.ts";
-import { DETERMINISM_LAWS } from "../../0/1/DETERMINISM_LAWS/_.ts";
+import { MUTATION_LEDGER__08_00_MUTATION_LEDGER as MUTATION_LEDGER, MUTATION_LEDGER__08_00_MutationEvent as MutationEvent } from "@omega";
+import { CANON_CAUSAL_BRIDGE } from "@omega";
+import { REPLAY_AUDIT__08_00_REPLAY_AUDIT as REPLAY_AUDIT } from "@omega";
+import { LEDGER__08_00_LEDGER as LEDGER } from "@omega";
+import { PROJECTION_DRIFT_ANALYTICS_PROJECTION_DRIFT_ANALYTICS as PROJECTION_DRIFT_ANALYTICS } from "@omega";
+import { DETERMINISM_LAWS } from "@omega";
 
 export interface MutationRequest {
     atomId: string;

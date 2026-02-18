@@ -3,7 +3,7 @@
 // DETERMINISTIC FIXPOINT MATH (Base I16.cycle)
 // Ensures bit-exact results across x86, ARM, and WASM.
 
-import { I16_LIMITS } from "../../7/7/I16_LIMITS/_.ts";
+import { I16_LIMITS_I16_LIMITS as I16_LIMITS } from "@omega";
 
 const I16 = I16_LIMITS();
 

@@ -1,10 +1,10 @@
 // i.L32.core.GATE_RUNNER.ts
 // OMEGA-64 | Minimal runtime runner that routes all gate mutations via GATE_PIPELINE.
 
-import { GATE_PIPELINE } from "../GATE_PIPELINE/_.ts";
-import type { BridgeMode } from "../../../3/7/CANON_CAUSAL_BRIDGE/_.ts";
-import type { ReplayAuditOptions, ReplayAuditResult, ReplayGenesis, ReplayInvariantReport } from "../../../8/0/REPLAY_AUDIT/_.ts";
-import type { DeltaProposal, GateConfig, StateSnapshot } from "../../../8/0/STATE_SNAPSHOT/_.ts";
+import { GATE_PIPELINE_GATE_PIPELINE as GATE_PIPELINE } from "@omega";
+import type { CANON_CAUSAL_BRIDGE as BridgeMode } from "@omega";
+import type { REPLAY_AUDIT__08_00_ReplayAuditOptions as ReplayAuditOptions, REPLAY_AUDIT__08_00_ReplayAuditResult as ReplayAuditResult, REPLAY_AUDIT__08_00_ReplayGenesis as ReplayGenesis, REPLAY_AUDIT__08_00_ReplayInvariantReport as ReplayInvariantReport } from "@omega";
+import type { STATE_SNAPSHOT_DeltaProposal as DeltaProposal, STATE_SNAPSHOT_GateConfig as GateConfig, STATE_SNAPSHOT_StateSnapshot as StateSnapshot } from "@omega";
 
 export interface GateRunnerTickInput {
     state: StateSnapshot;

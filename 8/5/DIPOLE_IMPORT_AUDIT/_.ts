@@ -1,8 +1,11 @@
 // i.L99.core.DIPOLE_IMPORT_AUDIT.ts
 // @noncanonical
-// OMEGA-64 | Dipole Import Audit
+// OMEGA-64 | Dipole Import Audit (Canon-aware)
 
 /// <reference lib="deno.ns" />
+
+import { resolve, relative, dirname } from "jsr:@std/path";
+import { walk } from "jsr:@std/fs";
 
 type Direction = "ASCEND" | "DESCEND" | "CONVERGE32";
 type Mode = "WARN" | "FAIL";
@@ -20,7 +23,9 @@ const DEFAULT_ROOT = ".";
 const DEFAULT_RS = "ASCEND";
 const DEFAULT_TS = "CONVERGE32";
 const DEFAULT_MODE = "WARN";
-const DEFAULT_CACHE_ALLOW = true;
+const DEFAULT_CACHE_ALLOW = false;
+const DEFAULT_CACHE_PATH = "e/legacy/i.L99.core.CACHE_INVARIANTS.md";
+const MOD_PATH = "mod.ts";
 
 const parseArgs = (args: string[]) => {
   const out: {
@@ -73,6 +78,10 @@ const parseArgs = (args: string[]) => {
       out.includeIndex = true;
       continue;
     }
+    if (arg === "--cache") {
+      out.cacheAllow = true;
+      continue;
+    }
     if (arg === "--no-cache") {
       out.cacheAllow = false;
       continue;
@@ -86,16 +95,9 @@ const shouldSkipDir = (name: string): boolean =>
   name === "archive" ||
   name === "omega_rust_core" ||
   name === "UI" ||
-  name === "SINGULARITY";
-
-const levelFromName = (name: string): number | null => {
-  const match = name.match(/i\.L(\d{2})\./);
-  if (!match) return null;
-  return Number.parseInt(match[1], 10);
-};
-
-const isWithinBand = (level: number | null): level is number =>
-  level !== null && level >= 0 && level <= 63;
+  name === "SINGULARITY" ||
+  name === "tests" ||
+  name === "e";
 
 const isNoncanonical = (content: string): boolean => {
   const head = content.split("\n").slice(0, 12).join("\n");
@@ -104,7 +106,7 @@ const isNoncanonical = (content: string): boolean => {
 
 const loadCacheAllow = async (root: string): Promise<Set<string>> => {
   const allow = new Set<string>();
-  const path = `${root}/i.L99.core.CACHE_INVARIANTS.md`;
+  const path = resolve(root, DEFAULT_CACHE_PATH);
   try {
     const raw = await Deno.readTextFile(path);
     for (const line of raw.split("\n")) {
@@ -119,26 +121,38 @@ const loadCacheAllow = async (root: string): Promise<Set<string>> => {
   return allow;
 };
 
-const extractTargets = (content: string): Array<{ level: number; snippet: string }> => {
-  const results: Array<{ level: number; snippet: string }> = [];
-  const importRegex = /(?:from\s+|import\s+|use\s+)[^'"]*['"]([^'"]+)['"]/g;
-  const inlineRegex = /i\.L(\d{2})\./g;
+const levelFromPath = (path: string): number | null => {
+  const normalized = path.replaceAll("\\", "/");
+  // legacy i.Lxx.* form
+  const legacy = normalized.match(/i\.L(\d{2})\./);
+  if (legacy) return Number.parseInt(legacy[1], 10);
 
-  let match: RegExpExecArray | null;
-  while ((match = importRegex.exec(content)) !== null) {
-    const path = match[1];
-    const levelMatch = path.match(/i\.L(\d{2})\./);
-    if (levelMatch) {
-      results.push({ level: Number.parseInt(levelMatch[1], 10), snippet: match[0] });
-    }
+  // canon octal: /<sector>/<orbit>/<atom>/_.ts
+  const canon = normalized.match(/(?:^|\/)([0-8])\/([0-7])\/[^/]+\/_\.t[rs]$/);
+  if (!canon) return null;
+  const sector = Number.parseInt(canon[1], 10);
+  const orbit = Number.parseInt(canon[2], 10);
+  if (!Number.isFinite(sector) || !Number.isFinite(orbit)) return null;
+  if (sector === 8) return 63;
+  return (sector * 8) + orbit;
+};
+
+const isWithinBand = (level: number | null): level is number =>
+  level !== null && level >= 0 && level <= 63;
+
+const loadAliasMap = (root: string): Map<string, string> => {
+  const map = new Map<string, string>();
+  const modPath = resolve(root, MOD_PATH);
+  const text = Deno.readTextFileSync(modPath);
+  const re =
+    /export\s+\{\s*([A-Za-z0-9_]+)\s+as\s+([A-Za-z0-9_]+)\s*\}\s+from\s+["']\.\/([^"']+)["']\s*;?/g;
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(text))) {
+    const alias = m[2];
+    const relPath = m[3].replaceAll("\\", "/");
+    map.set(alias, relPath);
   }
-
-  while ((match = inlineRegex.exec(content)) !== null) {
-    const level = Number.parseInt(match[1], 10);
-    results.push({ level, snippet: match[0] });
-  }
-
-  return results;
+  return map;
 };
 
 const allows = (direction: Direction, source: number, target: number): boolean => {
@@ -149,15 +163,67 @@ const allows = (direction: Direction, source: number, target: number): boolean =
   return target <= source && target >= 32;
 };
 
-const walk = async function* (root: string): AsyncGenerator<string> {
+const extractTargets = (
+  content: string,
+  fileDir: string,
+  root: string,
+  aliasMap: Map<string, string>,
+): Array<{ level: number; snippet: string }> => {
+  const results: Array<{ level: number; snippet: string }> = [];
+  const omegaImport =
+    /import\s+(type\s+)?\{\s*([^}]+)\s*\}\s+from\s+["']@omega["']\s*;?/g;
+  const genericImport = /import\s+(type\s+)?\{\s*([^}]+)\s*\}\s+from\s+["']([^"']+)["']\s*;?/g;
+  const inlineLegacy = /i\.L(\d{2})\./g;
+
+  let match: RegExpExecArray | null;
+
+  while ((match = omegaImport.exec(content)) !== null) {
+    const specList = match[2];
+    const specs = specList.split(",").map((s) => s.trim()).filter(Boolean);
+    for (const spec of specs) {
+      const raw = spec.replace(/^type\s+/, "");
+      const [leftRaw] = raw.split(/\s+as\s+/i);
+      const alias = (leftRaw ?? "").trim();
+      const rel = aliasMap.get(alias);
+      if (!rel) continue;
+      const level = levelFromPath(rel);
+      if (level === null) continue;
+      results.push({ level, snippet: `@omega:${alias}` });
+    }
+  }
+
+  while ((match = genericImport.exec(content)) !== null) {
+    const modPath = match[3];
+    if (modPath === "@omega") continue;
+    if (!modPath.startsWith(".") && !modPath.startsWith("/")) continue;
+    const abs = resolve(fileDir, modPath);
+    const rel = relative(root, abs).replaceAll("\\", "/");
+    const level = levelFromPath(rel);
+    if (level === null) continue;
+    results.push({ level, snippet: match[0] });
+  }
+
+  while ((match = inlineLegacy.exec(content)) !== null) {
+    const level = Number.parseInt(match[1], 10);
+    if (Number.isFinite(level)) {
+      results.push({ level, snippet: match[0] });
+    }
+  }
+
+  return results;
+};
+
+const walkCanon = async function* (root: string): AsyncGenerator<string> {
   for await (const entry of Deno.readDir(root)) {
     const full = `${root}/${entry.name}`;
     if (entry.isDirectory) {
       if (shouldSkipDir(entry.name)) continue;
-      yield* walk(full);
+      yield* walkCanon(full);
     } else if (entry.isFile) {
       if (entry.name.endsWith(".ts") || entry.name.endsWith(".rs")) {
-        if (entry.name.startsWith("i.L")) yield full;
+        if (full.replaceAll("\\", "/").match(/\/[0-8]\/[0-7]\/[^/]+\/_\.t[rs]$/)) {
+          yield full;
+        }
       }
     }
   }
@@ -167,10 +233,11 @@ const main = async () => {
   const args = parseArgs(Deno.args);
   const violations: Violation[] = [];
   const cacheAllow = args.cacheAllow ? await loadCacheAllow(args.root) : new Set<string>();
+  const aliasMap = loadAliasMap(args.root);
 
-  for await (const path of walk(args.root)) {
+  for await (const path of walkCanon(args.root)) {
     const base = path.split("/").pop() ?? path;
-    const sourceLevel = levelFromName(base);
+    const sourceLevel = levelFromPath(path);
     if (!isWithinBand(sourceLevel)) continue;
     if (!args.includeIndex && base.endsWith(".i.ts")) continue;
 
@@ -179,7 +246,7 @@ const main = async () => {
     if (!args.includeNoncanonical && isNoncanonical(content)) continue;
 
     const direction = language === "rs" ? args.rs : args.ts;
-    const targets = extractTargets(content);
+    const targets = extractTargets(content, dirname(path), args.root, aliasMap);
 
     for (const target of targets) {
       if (!isWithinBand(target.level)) continue;

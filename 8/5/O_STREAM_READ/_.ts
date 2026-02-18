@@ -1,11 +1,11 @@
 // i.L99.core.O_STREAM_READ.ts
 // OMEGA-64 | O_STREAM_READ (Read)
 
-import type { DeltaProposal } from "../0/STATE_SNAPSHOT/_.ts";
-import { O_STREAM_PATH } from "../6/O_STREAM_PATH/_.ts";
-import { O_STREAM_VALIDATE } from "../3/O_STREAM_VALIDATE/_.ts";
-import { O_STREAM_TAG_ENFORCE } from "../6/O_STREAM_TAG_ENFORCE/_.ts";
-import { O_STREAM_TAG_POLICY } from "../4/O_STREAM_TAG_POLICY/_.ts";
+import type { STATE_SNAPSHOT_DeltaProposal as DeltaProposal } from "@omega";
+import { O_STREAM_PATH_O_STREAM_PATH as O_STREAM_PATH } from "@omega";
+import { O_STREAM_VALIDATE_O_STREAM_VALIDATE as O_STREAM_VALIDATE } from "@omega";
+import { O_STREAM_TAG_ENFORCE_O_STREAM_TAG_ENFORCE as O_STREAM_TAG_ENFORCE } from "@omega";
+import { O_STREAM_TAG_POLICY_O_STREAM_TAG_POLICY as O_STREAM_TAG_POLICY } from "@omega";
 
 export const O_STREAM_READ = async (
   path: string = O_STREAM_PATH(),

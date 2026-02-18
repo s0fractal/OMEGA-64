@@ -1,7 +1,7 @@
 // i.L99.core.GENOME_MAP.ts
 // OMEGA-64 | GENOME_MAP (Triplet Map)
 
-import { GENOME } from "../3/GENOME/_.ts";
+import { GENOME_GENOME as GENOME } from "@omega";
 
 export type GenomeMapEntry = {
   level: number;

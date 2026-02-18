@@ -4,7 +4,7 @@
 
 /// <reference lib="deno.ns" />
 
-import { QUANTUM_PACK } from "../1/QUANTUM_PACK/_.ts";
+import { QUANTUM_PACK__08_01_QUANTUM_PACK as QUANTUM_PACK } from "@omega";
 
 type QState = { hue: number; phi: number; evt: number };
 

@@ -2,8 +2,8 @@
 // 🛡️ OMEGA-64 | Entropy Dynamics | Hybrid Load Model
 // "Тягар — це не вага. Тягар — це тертя."
 
-import { I16_LIMITS } from '../../../7/7/I16_LIMITS/_.ts';
-import { U16_LIMITS } from '../../../7/7/U16_LIMITS/_.ts';
+import { I16_LIMITS_I16_LIMITS as I16_LIMITS } from "@omega";
+import { U16_LIMITS_U16_LIMITS as U16_LIMITS } from "@omega";
 
 const I16 = I16_LIMITS();
 const U16 = U16_LIMITS();

@@ -3,8 +3,8 @@
 // The Somatic Manifestation of OMEGA-64.
 // Composes Atoms into Somas (Bodies of Logic) based on proximity.
 
-import { Atom, Lattice } from "../../../4/0/RIBOSOME/_.ts";
-import { I16_LIMITS } from "../../../7/7/I16_LIMITS/_.ts";
+import { RIBOSOME_Atom as Atom, RIBOSOME_Lattice as Lattice } from "@omega";
+import { I16_LIMITS_I16_LIMITS as I16_LIMITS } from "@omega";
 
 const I16 = I16_LIMITS();
 

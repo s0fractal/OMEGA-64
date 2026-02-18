@@ -1,7 +1,7 @@
 // i.L99.core.O_STREAM_SCHEMA.ts
 // OMEGA-64 | O_STREAM_SCHEMA (Minimal)
 
-import type { DeltaProposal } from "../0/STATE_SNAPSHOT/_.ts";
+import type { STATE_SNAPSHOT_DeltaProposal as DeltaProposal } from "@omega";
 
 const isNumber = (value: unknown): value is number =>
   typeof value === "number" && Number.isFinite(value);

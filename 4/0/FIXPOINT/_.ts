@@ -3,7 +3,7 @@
 // THE SYMMETRIC CENTER | E = 0
 // The point of absolute stability and zero entropy.
 
-import { Q } from "../../6/4/Q/_.ts";
+import { Q } from "@omega";
 
 export const FIXPOINT = {
     n: 32,          // Discrete Level

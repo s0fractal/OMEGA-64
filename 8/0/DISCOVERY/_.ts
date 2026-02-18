@@ -2,10 +2,10 @@
 // 🛡️ OMEGA-64 | The Swarm | Network Discovery
 // Implements local discovery via Shared File (OMEGA_SWARM.json).
 
-import { PEER, type PeerInfo } from "../4/PEER/_.ts";
-import { ATOM as TELEMETRY_ATOM } from "../../../7/4/TELEMETRY/_.ts";
-import { ATOM as TELEMETRY_SIGNAL_ATOM } from "../../../7/5/TELEMETRY_SIGNAL/_.ts";
-import { SIGNAL } from "../../../7/7/SIGNAL/_.ts";
+import { PEER_PEER as PEER, type PEER_PeerInfo as PeerInfo } from "@omega";
+import { TELEMETRY as TELEMETRY_ATOM } from "@omega";
+import { TELEMETRY_SIGNAL as TELEMETRY_SIGNAL_ATOM } from "@omega";
+import { SIGNAL__07_07_SIGNAL as SIGNAL } from "@omega";
 
 const TELEMETRY = TELEMETRY_ATOM();
 const TELEMETRY_SIGNAL = TELEMETRY_SIGNAL_ATOM({

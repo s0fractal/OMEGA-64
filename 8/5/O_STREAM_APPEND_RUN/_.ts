@@ -2,10 +2,10 @@
 // @noncanonical
 // OMEGA-64 | Minimal CLI runner for O_STREAM_APPEND.
 
-import { O_STREAM_APPEND } from "../../1/O_STREAM_APPEND/_.ts";
-import { O_STREAM_PATH } from "../../6/O_STREAM_PATH/_.ts";
-import { O_STREAM_SCHEMA } from "../../2/O_STREAM_SCHEMA/_.ts";
-import type { DeltaProposal } from "../../0/STATE_SNAPSHOT/_.ts";
+import { O_STREAM_APPEND_O_STREAM_APPEND as O_STREAM_APPEND } from "@omega";
+import { O_STREAM_PATH_O_STREAM_PATH as O_STREAM_PATH } from "@omega";
+import { O_STREAM_SCHEMA_O_STREAM_SCHEMA as O_STREAM_SCHEMA } from "@omega";
+import type { STATE_SNAPSHOT_DeltaProposal as DeltaProposal } from "@omega";
 
 const usage = (): string =>
   [

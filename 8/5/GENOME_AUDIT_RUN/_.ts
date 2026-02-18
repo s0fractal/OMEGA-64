@@ -2,7 +2,7 @@
 // @noncanonical
 // OMEGA-64 | Run genome audit over repo paths.
 
-import { GENOME_AUDIT } from "../1/GENOME_AUDIT/_.ts";
+import { GENOME_AUDIT_GENOME_AUDIT as GENOME_AUDIT } from "@omega";
 
 const DEFAULT_ROOT = ".";
 

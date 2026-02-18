@@ -1,7 +1,7 @@
 // i.L99.core.SAFE_WINDOW_STATUS.ts
 // OMEGA-64 | SAFE_WINDOW_STATUS (Sovereignty Signal)
 
-import { MUTATE } from "../../2/4/MUTATE/_.ts";
+import { MUTATE__02_04_MUTATE as MUTATE } from "@omega";
 
 export type SafeWindowStatus = {
   ok: boolean;

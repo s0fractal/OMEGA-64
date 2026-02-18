@@ -2,8 +2,8 @@
 // @noncanonical
 // OMEGA-64 | Archive proposals into append-only archive.
 
-import { O_STREAM_ARCHIVE } from "../3/O_STREAM_ARCHIVE/_.ts";
-import type { DeltaProposal } from "../0/STATE_SNAPSHOT/_.ts";
+import { O_STREAM_ARCHIVE_O_STREAM_ARCHIVE as O_STREAM_ARCHIVE } from "@omega";
+import type { STATE_SNAPSHOT_DeltaProposal as DeltaProposal } from "@omega";
 
 const usage = (): string =>
   [

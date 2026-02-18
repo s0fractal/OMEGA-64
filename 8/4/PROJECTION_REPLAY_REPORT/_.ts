@@ -2,7 +2,7 @@
 // OMEGA-64 | Projection Replay Report
 // Per-tick projection verification report for crystallization diagnostics.
 
-import { REPLAY_AUDIT, ProjectionTickReport, ReplayGenesis } from "../0/REPLAY_AUDIT/_.ts";
+import { REPLAY_AUDIT__08_00_REPLAY_AUDIT as REPLAY_AUDIT, REPLAY_AUDIT__08_00_ProjectionTickReport as ProjectionTickReport, REPLAY_AUDIT__08_00_ReplayGenesis as ReplayGenesis } from "@omega";
 
 export interface ProjectionReplayReport {
     ok: boolean;

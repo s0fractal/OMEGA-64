@@ -2,10 +2,10 @@
 // OMEGA-64 | Persistent Checkpoint Store
 // Stores and resolves rollback snapshots.
 
-import { CheckpointRecord, StateSnapshot } from "../STATE_SNAPSHOT/_.ts";
-import { ATOM as TELEMETRY_ATOM } from "../../../7/4/TELEMETRY/_.ts";
-import { ATOM as TELEMETRY_SIGNAL_ATOM } from "../../../7/5/TELEMETRY_SIGNAL/_.ts";
-import { SIGNAL } from "../../../7/7/SIGNAL/_.ts";
+import { STATE_SNAPSHOT_CheckpointRecord as CheckpointRecord, STATE_SNAPSHOT_StateSnapshot as StateSnapshot } from "@omega";
+import { TELEMETRY as TELEMETRY_ATOM } from "@omega";
+import { TELEMETRY_SIGNAL as TELEMETRY_SIGNAL_ATOM } from "@omega";
+import { SIGNAL__07_07_SIGNAL as SIGNAL } from "@omega";
 
 const TELEMETRY = TELEMETRY_ATOM();
 const TELEMETRY_SIGNAL = TELEMETRY_SIGNAL_ATOM({

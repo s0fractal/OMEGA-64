@@ -2,9 +2,9 @@
 // @noncanonical
 // OMEGA-64 | Write O stream health report to file.
 
-import { O_STREAM_READ } from "../5/O_STREAM_READ/_.ts";
-import { O_STREAM_HEALTH } from "../7/O_STREAM_HEALTH/_.ts";
-import { O_STREAM_PATH } from "../6/O_STREAM_PATH/_.ts";
+import { O_STREAM_READ_O_STREAM_READ as O_STREAM_READ } from "@omega";
+import { O_STREAM_HEALTH_O_STREAM_HEALTH as O_STREAM_HEALTH } from "@omega";
+import { O_STREAM_PATH_O_STREAM_PATH as O_STREAM_PATH } from "@omega";
 
 const DEFAULT_OUTPUT = "UI/health.json";
 

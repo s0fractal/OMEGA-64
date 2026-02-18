@@ -27,13 +27,25 @@ export const QState = z.object({
     evt: z.number().optional()  // Event / Energy
 });
 
+// 4. Firewall Rule: Canon rule blocks (path/extension policies)
+export const FirewallRule = z.object({
+    id: z.string(),
+    scope: z.string().describe("Path or vector range scope (projection-aware)"),
+    ext: z.string().describe("File extension or protocol (e.g. ts, rs, md, yaml, *)").optional(),
+    action: z.string(),
+    status: z.string(),
+    reason: z.string().optional(),
+    allow: z.array(z.string()).optional()
+});
+
 // 4. The Atom: The Fundamental Particle
 export const Atom = z.object({
     vector: Vector,
-    origin: z.string().describe("Path to the source code (TS)"),
+    origin: z.string().describe("Path to the source code (TS/RS). Optional for pure-platonic atoms.").optional(),
     symbol: z.string().optional(),
     relations: Relations.optional(),
-    q: QState.optional()
+    q: QState.optional(),
+    rules: z.array(FirewallRule).optional()
 });
 
 // Export Static Type for TypeScript usage

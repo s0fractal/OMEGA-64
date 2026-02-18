@@ -3,11 +3,11 @@
 // The Agent of Time and Opportunity.
 // Ignites system-wide transitions when the moment is right.
 
-import { SIGNAL } from "../../../7/7/SIGNAL/_.ts";
-import { VOID } from "../../6/VOID/_.ts";
-import { ATOM as TELEMETRY_ATOM } from "../../../7/4/TELEMETRY/_.ts";
-import { ATOM as TELEMETRY_SIGNAL_ATOM } from "../../../7/5/TELEMETRY_SIGNAL/_.ts";
-import type { Atom } from "../../../4/0/RIBOSOME/_.ts";
+import { SIGNAL__07_07_SIGNAL as SIGNAL } from "@omega";
+import { VOID__04_06 as VOID } from "@omega";
+import { TELEMETRY as TELEMETRY_ATOM } from "@omega";
+import { TELEMETRY_SIGNAL as TELEMETRY_SIGNAL_ATOM } from "@omega";
+import type { RIBOSOME_Atom as Atom } from "@omega";
 
 const TELEMETRY = TELEMETRY_ATOM();
 const TELEMETRY_SIGNAL = TELEMETRY_SIGNAL_ATOM({

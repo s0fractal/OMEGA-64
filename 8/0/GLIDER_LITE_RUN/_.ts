@@ -2,11 +2,11 @@
 // @noncanonical
 // OMEGA-64 | Minimal CLI runner for GLIDER_LITE.
 
-import { GLIDER_LITE } from "../4/GLIDER_LITE/_.ts";
-import { I16_CLAMP } from "../../../0/0/I16_CLAMP/_.ts";
-import type { GateRunnerTickInput, GateRunnerTickOutput } from "../../../4/0/GATE_RUNNER/_.ts";
-import type { DeltaProposal, GateConfig, StateSnapshot } from "../STATE_SNAPSHOT/_.ts";
-import type { ReplayAuditOptions, ReplayGenesis, ReplayInvariantReport } from "../REPLAY_AUDIT/_.ts";
+import { GLIDER_LITE_GLIDER_LITE as GLIDER_LITE } from "@omega";
+import { I16_CLAMP__00_00_I16_CLAMP as I16_CLAMP } from "@omega";
+import type { GATE_RUNNER_GateRunnerTickInput as GateRunnerTickInput, GATE_RUNNER_GateRunnerTickOutput as GateRunnerTickOutput } from "@omega";
+import type { STATE_SNAPSHOT_DeltaProposal as DeltaProposal, STATE_SNAPSHOT_GateConfig as GateConfig, STATE_SNAPSHOT_StateSnapshot as StateSnapshot } from "@omega";
+import type { REPLAY_AUDIT__08_00_ReplayAuditOptions as ReplayAuditOptions, REPLAY_AUDIT__08_00_ReplayGenesis as ReplayGenesis, REPLAY_AUDIT__08_00_ReplayInvariantReport as ReplayInvariantReport } from "@omega";
 
 type JsonStateSnapshot = {
   tick: number;

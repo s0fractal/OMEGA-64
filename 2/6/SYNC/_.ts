@@ -2,13 +2,13 @@
 // 🛡️ OMEGA-64 | The Swarm | State Sync
 // "To become One, one must remember everything."
 
-import type { PeerInfo } from "../../8/4/PEER/_.ts";
-import { StateSnapshot, TopologyEvent, LedgerEvent } from "../../8/0/STATE_SNAPSHOT/_.ts";
-import { LEDGER } from "../../8/0/LEDGER/_.ts";
-import { PROPOSAL_ENVELOPE_INDEX } from "../../8/0/PROPOSAL_ENVELOPE_INDEX/_.ts";
-import { ATOM as TELEMETRY_ATOM } from "../../7/4/TELEMETRY/_.ts";
-import { ATOM as TELEMETRY_SIGNAL_ATOM } from "../../7/5/TELEMETRY_SIGNAL/_.ts";
-import { SIGNAL } from "../../7/7/SIGNAL/_.ts";
+import type { PEER_PeerInfo as PeerInfo } from "@omega";
+import { STATE_SNAPSHOT_StateSnapshot as StateSnapshot, STATE_SNAPSHOT_TopologyEvent as TopologyEvent, STATE_SNAPSHOT_LedgerEvent as LedgerEvent } from "@omega";
+import { LEDGER__08_00_LEDGER as LEDGER } from "@omega";
+import { PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX as PROPOSAL_ENVELOPE_INDEX } from "@omega";
+import { TELEMETRY as TELEMETRY_ATOM } from "@omega";
+import { TELEMETRY_SIGNAL as TELEMETRY_SIGNAL_ATOM } from "@omega";
+import { SIGNAL__07_07_SIGNAL as SIGNAL } from "@omega";
 
 const TELEMETRY = TELEMETRY_ATOM();
 const TELEMETRY_SIGNAL = TELEMETRY_SIGNAL_ATOM({

@@ -1,0 +1,53 @@
+vector: 08.02.08
+symbol: FIREWALL_RULES
+desc: Canon firewall rules registry (extension as protocol dimension).
+origin: ./_.yaml
+
+rules:
+  - id: CANON_FILENAMES
+    scope: "0-8/**"
+    ext: "*"
+    action: ALLOW_FILENAMES
+    status: ACTIVE
+    allow:
+      - _.ts
+      - _.yaml
+    reason: "Canon atoms allow only underscore files."
+  - id: VECTOR_FORMAT_00
+    scope: "0-8/**"
+    ext: "yaml"
+    action: REQUIRE_VECTOR_00
+    status: ACTIVE
+    reason: "Projection vector format SS.OO.VV (two-digit segments)."
+  - id: VECTOR_MATCH_PATH
+    scope: "0-8/**"
+    ext: "yaml"
+    action: REQUIRE_VECTOR_MATCH_PATH
+    status: ACTIVE
+    reason: "Vector prefix must match sector/orbit path (SS.OO.*)."
+  - id: CORE_TS_NO_COMMENTS
+    scope: "56-63.*"
+    ext: "ts"
+    action: DENY_COMMENTS
+    status: PROPOSED
+    reason: "Deep core is law, not narration."
+  - id: CORE_MD_REQUIRE_LATEX
+    scope: "56-63.*"
+    ext: "md"
+    action: REQUIRE_LATEX
+    status: PROPOSED
+    reason: "Deep core descriptions must be formal." 
+  - id: SURFACE_TS_ALLOW_ANY
+    scope: "00-07.*"
+    ext: "ts"
+    action: ALLOW_ANY
+    status: PROPOSED
+    reason: "Surface permits exploration and iteration." 
+
+# Rule format:
+# - id: <UNIQUE_RULE_ID>
+#   scope: "LL-LL.DD-DD" | "LL-LL.*" | "*.DD" | "*.*" (L.D.V sector ranges)
+#   ext: "ts" | "rs" | "md" | "yaml" | "*"
+#   action: "DENY_COMMENTS" | "REQUIRE_LATEX" | "ALLOW_ANY" | "REQUIRE_VECTOR" | "DENY_IMPORT" | "REQUIRE_ORIGIN"
+#   status: "PROPOSED" | "ACTIVE" | "DEPRECATED"
+#   reason: <WHY_THIS_EXISTS>

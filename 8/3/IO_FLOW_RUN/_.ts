@@ -2,22 +2,14 @@
 // @noncanonical
 // OMEGA-64 | Minimal CLI runner for IO_FLOW.
 
-import { IO_FLOW } from "../../7/IO_FLOW/_.ts";
-import { O_STREAM_STORE } from "../../6/O_STREAM_STORE/_.ts";
-import { O_STREAM_ADAPTER } from "../../2/O_STREAM_ADAPTER/_.ts";
-import { O_STREAM_DRAIN } from "../../7/O_STREAM_DRAIN/_.ts";
-import { I16_CLAMP } from "../../../0/0/I16_CLAMP/_.ts";
-import type { GateRunnerTickOutput } from "../../../4/0/GATE_RUNNER/_.ts";
-import type {
-  DeltaProposal,
-  GateConfig,
-  StateSnapshot,
-} from "../../0/STATE_SNAPSHOT/_.ts";
-import type {
-  ReplayAuditOptions,
-  ReplayGenesis,
-  ReplayInvariantReport,
-} from "../../0/REPLAY_AUDIT/_.ts";
+import { IO_FLOW_IO_FLOW as IO_FLOW } from "@omega";
+import { O_STREAM_STORE_O_STREAM_STORE as O_STREAM_STORE } from "@omega";
+import { O_STREAM_ADAPTER_O_STREAM_ADAPTER as O_STREAM_ADAPTER } from "@omega";
+import { O_STREAM_DRAIN_O_STREAM_DRAIN as O_STREAM_DRAIN } from "@omega";
+import { I16_CLAMP__00_00_I16_CLAMP as I16_CLAMP } from "@omega";
+import type { GATE_RUNNER_GateRunnerTickOutput as GateRunnerTickOutput } from "@omega";
+import type { STATE_SNAPSHOT_DeltaProposal as DeltaProposal, STATE_SNAPSHOT_GateConfig as GateConfig, STATE_SNAPSHOT_StateSnapshot as StateSnapshot } from "@omega";
+import type { REPLAY_AUDIT__08_00_ReplayAuditOptions as ReplayAuditOptions, REPLAY_AUDIT__08_00_ReplayGenesis as ReplayGenesis, REPLAY_AUDIT__08_00_ReplayInvariantReport as ReplayInvariantReport } from "@omega";
 
 type JsonStateSnapshot = {
   tick: number;

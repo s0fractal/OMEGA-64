@@ -1,14 +1,14 @@
 // i.L99.core.CRYSTALLIZATION_REPORT.ts
 // OMEGA-64 | Canon Protocol | Canonization Report Artifact
 
-import { ProjectionDriftAnalyticsReport } from "../4/PROJECTION_DRIFT_ANALYTICS/_.ts";
-import { ProjectionReplayReport } from "../4/PROJECTION_REPLAY_REPORT/_.ts";
-import { ReplayAuditResult } from "../0/REPLAY_AUDIT/_.ts";
+import { PROJECTION_DRIFT_ANALYTICS_ProjectionDriftAnalyticsReport as ProjectionDriftAnalyticsReport } from "@omega";
+import { PROJECTION_REPLAY_REPORT_ProjectionReplayReport as ProjectionReplayReport } from "@omega";
+import { REPLAY_AUDIT__08_00_ReplayAuditResult as ReplayAuditResult } from "@omega";
 import {
-  CRYSTALLIZATION_CONFIG,
-  CRYSTALLIZATION_POLICY,
-} from "./i.L99.core.CRYSTALLIZATION_CONFIG.ts";
-import type { GateAdmissionReport } from "../2/GATE_ADMISSION_REPORT/_.ts";
+  CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_CONFIG as CRYSTALLIZATION_CONFIG,
+  CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_POLICY as CRYSTALLIZATION_POLICY,
+} from "@omega";
+import type { GATE_ADMISSION_REPORT_GateAdmissionReport as GateAdmissionReport } from "@omega";
 
 export interface CrystallizationReportInput {
   artifact_hash: string;

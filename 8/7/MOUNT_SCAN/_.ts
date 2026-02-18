@@ -5,7 +5,7 @@
 
 /// <reference lib="deno.ns" />
 
-const DEFAULT_MOUNT_LIST = "i.L99.core.MOUNT_LIST.md";
+const DEFAULT_MOUNT_LIST = "e/legacy/i.L99.core.MOUNT_LIST.md";
 const DEFAULT_OUTPUT = "OMEGA_MOUNTS.json";
 
 type MountRecord = {
@@ -56,7 +56,7 @@ const parseArgs = (args: string[]) => {
 const usage = (): string =>
   [
     "Usage:",
-    "  deno run -A i.L99.core.MOUNT_SCAN.ts [--input <file>] [--output <file>]",
+    "  deno run -A 8/7/MOUNT_SCAN/_.ts [--input <file>] [--output <file>]",
     "",
     "Defaults:",
     `  input: ${DEFAULT_MOUNT_LIST}`,

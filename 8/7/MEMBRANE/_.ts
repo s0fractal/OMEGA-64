@@ -5,8 +5,8 @@
  * L64: Kairos / Interface.
  */
 
-import { ATOM as FIELD_ATOM } from "../../../7/7/FIELD/_.ts";
-import { I16_LIMITS } from "../../../7/7/I16_LIMITS/_.ts";
+import { FIELD__07_07 as FIELD_ATOM } from "@omega";
+import { I16_LIMITS_I16_LIMITS as I16_LIMITS } from "@omega";
 
 const { FIELD } = FIELD_ATOM({ siblings: { I16_LIMITS } });
 

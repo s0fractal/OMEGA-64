@@ -2,11 +2,11 @@
 // OMEGA-64 | Projection Drift Analytics
 // Computes per-tick and per-level drift in deterministic projection space.
 
-import { LEDGER } from "../0/LEDGER/_.ts";
-import { LedgerEvent } from "../0/STATE_SNAPSHOT/_.ts";
-import { REPLAY_AUDIT, ReplayAuditResult, ReplayGenesis } from "../0/REPLAY_AUDIT/_.ts";
-import { TOPOLOGICAL_SIGNATURE } from "../6/TOPOLOGICAL_SIGNATURE/_.ts";
-import { I16_CLAMP } from "../../../0/0/I16_CLAMP/_.ts";
+import { LEDGER__08_00_LEDGER as LEDGER } from "@omega";
+import { STATE_SNAPSHOT_LedgerEvent as LedgerEvent } from "@omega";
+import { REPLAY_AUDIT__08_00_REPLAY_AUDIT as REPLAY_AUDIT, REPLAY_AUDIT__08_00_ReplayAuditResult as ReplayAuditResult, REPLAY_AUDIT__08_00_ReplayGenesis as ReplayGenesis } from "@omega";
+import { TOPOLOGICAL_SIGNATURE__08_06_TOPOLOGICAL_SIGNATURE as TOPOLOGICAL_SIGNATURE } from "@omega";
+import { I16_CLAMP__00_00_I16_CLAMP as I16_CLAMP } from "@omega";
 
 export interface ProjectionDriftAnalyticsOptions {
     startTick?: number;

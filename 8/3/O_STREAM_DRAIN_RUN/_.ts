@@ -2,8 +2,8 @@
 // @noncanonical
 // OMEGA-64 | Drain O stream by removing consumed proposal IDs.
 
-import { O_STREAM_DRAIN } from "../../7/O_STREAM_DRAIN/_.ts";
-import { O_STREAM_PATH } from "../../6/O_STREAM_PATH/_.ts";
+import { O_STREAM_DRAIN_O_STREAM_DRAIN as O_STREAM_DRAIN } from "@omega";
+import { O_STREAM_PATH_O_STREAM_PATH as O_STREAM_PATH } from "@omega";
 
 const usage = (): string =>
   [

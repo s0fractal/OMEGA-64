@@ -1,16 +1,11 @@
 // i.L32.core.GATE_PIPELINE.ts
 // OMEGA-64 | L32 pipeline entrypoint for gate processing with bridge context.
 
-import { GATE } from "../GATE/_.ts";
-import { GATE_RUNTIME_CONTEXT } from "../GATE_RUNTIME_CONTEXT/_.ts";
-import type { DeltaProposal, GateConfig, StateSnapshot } from "../../../8/0/STATE_SNAPSHOT/_.ts";
-import type {
-    ReplayAuditOptions,
-    ReplayAuditResult,
-    ReplayGenesis,
-    ReplayInvariantReport
-} from "../../../8/0/REPLAY_AUDIT/_.ts";
-import type { BridgeMode } from "../../../3/7/CANON_CAUSAL_BRIDGE/_.ts";
+import { GATE_GATE as GATE } from "@omega";
+import { GATE_RUNTIME_CONTEXT_GATE_RUNTIME_CONTEXT as GATE_RUNTIME_CONTEXT } from "@omega";
+import type { STATE_SNAPSHOT_DeltaProposal as DeltaProposal, STATE_SNAPSHOT_GateConfig as GateConfig, STATE_SNAPSHOT_StateSnapshot as StateSnapshot } from "@omega";
+import type { REPLAY_AUDIT__08_00_ReplayAuditOptions as ReplayAuditOptions, REPLAY_AUDIT__08_00_ReplayAuditResult as ReplayAuditResult, REPLAY_AUDIT__08_00_ReplayGenesis as ReplayGenesis, REPLAY_AUDIT__08_00_ReplayInvariantReport as ReplayInvariantReport } from "@omega";
+import type { CANON_CAUSAL_BRIDGE as BridgeMode } from "@omega";
 
 export interface GatePipelineOptions {
     replayGenesis?: ReplayGenesis;

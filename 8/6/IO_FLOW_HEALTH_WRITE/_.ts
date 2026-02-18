@@ -2,7 +2,7 @@
 // @noncanonical
 // OMEGA-64 | Write IO flow health report to file.
 
-import { IO_FLOW_HEALTH_RUN } from "../../0/IO_FLOW_HEALTH_RUN/_.ts";
+import { IO_FLOW_HEALTH_RUN_IO_FLOW_HEALTH_RUN as IO_FLOW_HEALTH_RUN } from "@omega";
 
 const DEFAULT_OUTPUT = "UI/health_io.json";
 

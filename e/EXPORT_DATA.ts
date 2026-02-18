@@ -1,10 +1,9 @@
-
 // e/EXPORT_DATA.ts
 // Exports the Q-Space state to JSON for 3D visualization.
-// NOW READING FROM DECENTRALIZED YAML (RELATIONS).
+// Canon-aware: reads relations + vectors from 0..8/**/_.yaml.
 
-import { RIBOSOME } from "../i/i.L32.core.RIBOSOME.ts";
-import { Q_PHYSICS, QAtom } from "../i/i.L32.core.Q_PHYSICS.ts";
+import { RIBOSOME_RIBOSOME as RIBOSOME } from "@omega";
+import { Q_PHYSICS, Q_PHYSICS_QAtom as QAtom } from "@omega";
 import { parse } from "jsr:@std/yaml";
 
 console.log("Scanning Real Q-Space Data (YAML Relations)...");
@@ -12,10 +11,19 @@ console.log("Scanning Real Q-Space Data (YAML Relations)...");
 // 1. Lift Real Atoms
 const lattice = await RIBOSOME.lift();
 const atoms = new Map<string, QAtom>();
-const edges: { source: string, target: string }[] = [];
+const edges: { source: string; target: string }[] = [];
 
 // Helper for inline Q state (might still be in TS)
-const RE_Q = /export\s+const\s+q\s+=\s+(\{[^;]+\})/; 
+const RE_Q = /export\s+const\s+q\s+=\s+(\{[^;]+\})/;
+
+const findByName = (name: string): string | null => {
+    for (const key of lattice.keys()) {
+        const parts = key.split("/");
+        const tag = parts[parts.length - 1];
+        if (tag === name) return key;
+    }
+    return null;
+};
 
 for (const [id, atom] of lattice) {
     let L = 0, D = 0, V = 0;
@@ -23,38 +31,17 @@ for (const [id, atom] of lattice) {
     let deps: string[] = [];
 
     try {
-        // 1. Try to resolve YAML sidecar
-        // RIBOSOME lifts full paths: "i.L32.core.RIBOSOME.ts"
-        // But sidecars are flat: "i/RIBOSOME.yaml"
+        // Canon YAML sidecar: <sector>/<orbit>/<ATOM>/_.yaml
+        const yamlPath = `./${id}/_.yaml`;
         let yamlContent = "";
-        const match = id.match(/i\.L(\d+)\.core\.([A-Z0-9_]+)\.ts/); // Added 0-9 to regex just in case
-        
-        if (match) {
-            const shortName = match[2];
-            try {
-                yamlContent = await Deno.readTextFile(`i/${shortName}.yaml`); 
-            } catch (e) {
-                // If not found in i/, try root just in case
-                try {
-                     yamlContent = await Deno.readTextFile(`${shortName}.yaml`);
-                } catch (e2) {}
-            }
-        } else {
-             // Fallback for non-standard IDs
-             try {
-                yamlContent = await Deno.readTextFile(id.replace(/\.ts$/, ".yaml"));
-            } catch (e) {
-                try {
-                     // Try relative i/
-                     yamlContent = await Deno.readTextFile(`i/${id.split('/').pop()?.replace('.ts', '.yaml')}`);
-                } catch (e2) {}
-            }
-        }
+        try {
+            yamlContent = await Deno.readTextFile(yamlPath);
+        } catch {}
 
         if (yamlContent) {
             try {
                 const meta = parse(yamlContent) as any;
-                
+
                 // Parse Vector
                 if (meta.vector) {
                     const parts = String(meta.vector).split('.');
@@ -68,54 +55,45 @@ for (const [id, atom] of lattice) {
                 // Parse Relations (Dependencies)
                 if (meta.relations && meta.relations.use && Array.isArray(meta.relations.use)) {
                     const uses = meta.relations.use;
-                    
+
                     for (const targetName of uses) {
-                        let found = false;
-                        // Find full ID for target basename
-                        for (const key of lattice.keys()) {
-                                // Check if key contains name (e.g. i.L32.core.RIDOSOME.ts contains RIBOSOME)
-                                if (key.includes(`.${targetName}.ts`) || key === `${targetName}.ts` || key.endsWith(`/${targetName}.ts`)) {
-                                    deps.push(key);
-                                    edges.push({ source: id, target: key });
-                                    found = true;
-                                    break;
-                                }
+                        const key = findByName(String(targetName));
+                        if (key) {
+                            deps.push(key);
+                            edges.push({ source: id, target: key });
                         }
-                        // if (!found) console.warn(`Could not resolve dependency ${targetName} for ${id}`);
                     }
+                }
+
+                // Inline Q state from YAML if present
+                if (meta.q) {
+                    if (typeof meta.q.hue === "number") q.hue = meta.q.hue;
+                    if (typeof meta.q.phi === "number") q.phi = meta.q.phi;
+                    if (typeof meta.q.evt === "number") q.evt = meta.q.evt;
                 }
             } catch (e) {
                 console.error(`Error parsing YAML for ${id}`, e);
             }
+        }
 
-            // Fallback L from filename if not in YAML (or if YAML missing)
-            if (L === 0) {
-                 const levelMatch = id.match(/i\.L(\d+)\./);
-                 L = levelMatch ? parseInt(levelMatch[1]) : 0;
-                 if (D === 0) D = L;
+        // Fallback L from canonical id if YAML missing
+        if (L === 0) {
+            const parts = id.split("/");
+            const sector = parseInt(parts[0] ?? "0");
+            const orbit = parseInt(parts[1] ?? "0");
+            if (Number.isFinite(sector) && Number.isFinite(orbit)) {
+                L = sector === 8 ? 63 : (sector * 8 + orbit);
+                if (D === 0) D = L;
             }
-        } else {
-             // Fallback L from filename
-             const levelMatch = id.match(/i\.L(\d+)\./);
-             L = levelMatch ? parseInt(levelMatch[1]) : 0;
-             if (D === 0) D = L; 
         }
 
         // 2. Read TS file ONLY for Q-State (Behavior) if needed
-        // We skip parsing imports from TS now!
         let tsContent = "";
-        // Only read if we suspect inline Q state or if we want to be thorough.
-        // Let's keep reading it for Q-state.
         try {
-            tsContent = await Deno.readTextFile(id);
-        } catch (e) {
-             try {
-                tsContent = await Deno.readTextFile(`i/${id.split('.').pop()}`);
-             } catch (e2) {}
-        }
+            tsContent = await Deno.readTextFile(`./${id}/_.ts`);
+        } catch {}
 
         if (tsContent) {
-             // Parse Q State (if still inline)
             const qMatch = tsContent.match(RE_Q);
             if (qMatch) {
                 try {
@@ -126,7 +104,7 @@ for (const [id, atom] of lattice) {
                     if (phiM) q.phi = parseInt(phiM[1]);
                     if (evtM) q.evt = parseInt(evtM[1]);
                 } catch (e) {}
-            } else {
+            } else if (!yamlContent) {
                 q.hue = L % 6;
             }
         }
@@ -140,15 +118,15 @@ for (const [id, atom] of lattice) {
     // Physics operates on R (Radius).
     let R = 64 - L; // Inverted Radius for Physics
     if (R < 1) R = 1; // Singularity limit
-    
+
     atoms.set(id, {
         id,
         L: R, // Physics uses L as Radius (Legacy name in QAtom, effectively R now)
         targetL: 64 - L, // Target Radius is also inverted
-        
+
         // Custom Fields for Export/Debug
         level: L, // Semantic Level (0-63)
-        
+
         D, V,
         q,
         mass: deps.length
@@ -167,55 +145,28 @@ let mutations = 0;
 
 for (const [id, atom] of finalText) {
     if (atom.id.startsWith("mirror")) continue;
-    
-    // Check if moved
-    const oldL = atoms.get(id)?.level || 0; // Compare against original LEVEL
-    
+
+    // Compare against original LEVEL
+    const oldL = (atoms.get(id) as any)?.level || 0;
+
     // Physics 'L' is actually Radius 'R'. Convert back to Level.
-    const simR = atom.L; 
+    const simR = atom.L;
     let newLevel = 64 - simR;
     if (newLevel < 0) newLevel = 0;
     if (newLevel > 63) newLevel = 63;
-    
-    // Only write if significant change? 
-    // Or just write everything to ensure consistency?
-    // User said "spoils so be it". Let's write.
-    
-    const newVector = `${Math.round(newLevel)}.${Math.round(atom.D)}.${atom.V}`;
-    
-    // Resolve YAML path (same logic as reading)
-    let yamlPath = "";
-     const match = id.match(/i\.L(\d+)\.core\.([A-Z0-9_]+)\.ts/);
-    if (match) {
-        yamlPath = `i/${match[2]}.yaml`;
-    } else {
-        yamlPath = id.replace(/\.ts$/, ".yaml");
-        if (!yamlPath.includes("/")) yamlPath = `i/${yamlPath}`; // Assume flat i/ if no path
-        // Wait, above logic in reading was complex. Let's try checking existence.
-        try { await Deno.stat(yamlPath); } 
-        catch { 
-             try { 
-                 const check = `i/${id.split('/').pop()?.replace('.ts', '.yaml')}`;
-                 await Deno.stat(check);
-                 yamlPath = check;
-             } catch { yamlPath = ""; }
-        }
-    }
 
-    if (yamlPath) {
-        try {
-            const content = await Deno.readTextFile(yamlPath);
-            // Regex replace vector line
-            // Matches "vector: 32.0.0" or "vector: '32.0.0'"
-            const updated = content.replace(/vector:\s*['"]?[\d\.]+['"]?/, `vector: ${newVector}`);
-            
-            if (content !== updated) {
-                await Deno.writeTextFile(yamlPath, updated);
-                mutations++;
-            }
-        } catch (e) {
-            // console.warn(`Failed to mutate ${yamlPath}`);
+    const newVector = `${Math.round(newLevel)}.${Math.round(atom.D)}.${atom.V}`;
+
+    const yamlPath = `./${id}/_.yaml`;
+    try {
+        const content = await Deno.readTextFile(yamlPath);
+        const updated = content.replace(/vector:\s*['"]?[\d\.]+['"]?/, `vector: ${newVector}`);
+        if (content !== updated) {
+            await Deno.writeTextFile(yamlPath, updated);
+            mutations++;
         }
+    } catch (e) {
+        // ignore missing yaml
     }
 }
 console.log(`Mutated ${mutations} atoms in YAML.`);

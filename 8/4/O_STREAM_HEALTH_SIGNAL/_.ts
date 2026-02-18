@@ -1,7 +1,7 @@
 // i.L99.core.O_STREAM_HEALTH_SIGNAL.ts
 // OMEGA-64 | O_STREAM_HEALTH_SIGNAL (UI)
 
-import type { OStreamHealth } from "../../7/O_STREAM_HEALTH/_.ts";
+import type { O_STREAM_HEALTH_OStreamHealth as OStreamHealth } from "@omega";
 
 export type OStreamHealthSignal = "GREEN" | "AMBER" | "RED";
 

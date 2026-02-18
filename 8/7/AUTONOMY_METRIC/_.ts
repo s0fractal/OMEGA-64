@@ -2,8 +2,8 @@
 // OMEGA-64 | The Sovereign Score
 // "Measuring the breath of the crystal."
 
-import { MUTATE } from "../../2/4/MUTATE/_.ts";
-import { AutonomyState } from "../0/STATE_SNAPSHOT/_.ts";
+import { MUTATE__02_04_MUTATE as MUTATE } from "@omega";
+import { STATE_SNAPSHOT_AutonomyState as AutonomyState } from "@omega";
 
 
 export interface AutonomyScoreReport {

@@ -2,8 +2,8 @@
 // @noncanonical
 // OMEGA-64 | Summarize O stream on disk.
 
-import { O_STREAM_READ } from "../../5/O_STREAM_READ/_.ts";
-import { O_STREAM_SUMMARY } from "../../7/O_STREAM_SUMMARY/_.ts";
+import { O_STREAM_READ_O_STREAM_READ as O_STREAM_READ } from "@omega";
+import { O_STREAM_SUMMARY_O_STREAM_SUMMARY as O_STREAM_SUMMARY } from "@omega";
 
 const usage = (): string =>
   [

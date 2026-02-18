@@ -2,7 +2,7 @@
 // @noncanonical
 // OMEGA-64 | Output genome map as JSON.
 
-import { GENOME_MAP } from "../0/GENOME_MAP/_.ts";
+import { GENOME_MAP_GENOME_MAP as GENOME_MAP } from "@omega";
 
 const usage = (): string =>
   [

@@ -2,7 +2,7 @@
 // e/XYZ.ts
 // Experiment: Aligning the Knowledge Map along the X=Y=Z Diagonal.
 
-import { Q_PHYSICS } from "../i/i.L32.core.Q_PHYSICS.ts";
+import { Q_PHYSICS } from "@omega";
 
 const MAP = Q_PHYSICS.KNOWLEDGE_MAP;
 

@@ -1,8 +1,8 @@
 // i.L99.core.O_STREAM_ARCHIVE_QUERY.ts
 // OMEGA-64 | O_STREAM_ARCHIVE_QUERY (Lookup)
 
-import type { DeltaProposal } from "../0/STATE_SNAPSHOT/_.ts";
-import type { OStreamArchiveIndex } from "../2/O_STREAM_ARCHIVE_INDEX/_.ts";
+import type { STATE_SNAPSHOT_DeltaProposal as DeltaProposal } from "@omega";
+import type { O_STREAM_ARCHIVE_INDEX_OStreamArchiveIndex as OStreamArchiveIndex } from "@omega";
 
 export const O_STREAM_ARCHIVE_QUERY = async (
   proposalId: string,

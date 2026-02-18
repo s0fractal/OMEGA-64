@@ -1,0 +1,4 @@
+vector: 04.00.15
+symbol: Q_PHYSICS
+desc: "Canonical quantum physics scaffold"
+origin: i.L32.core.Q_PHYSICS.ts

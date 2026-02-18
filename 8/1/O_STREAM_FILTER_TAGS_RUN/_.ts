@@ -2,8 +2,8 @@
 // @noncanonical
 // OMEGA-64 | Filter O stream proposals by tags.
 
-import { O_STREAM_FILTER_TAGS } from "../5/O_STREAM_FILTER_TAGS/_.ts";
-import type { DeltaProposal } from "../0/STATE_SNAPSHOT/_.ts";
+import { O_STREAM_FILTER_TAGS_O_STREAM_FILTER_TAGS as O_STREAM_FILTER_TAGS } from "@omega";
+import type { STATE_SNAPSHOT_DeltaProposal as DeltaProposal } from "@omega";
 
 const usage = (): string =>
   [

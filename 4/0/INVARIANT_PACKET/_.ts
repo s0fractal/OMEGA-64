@@ -1,7 +1,7 @@
 // i.L32.core.INVARIANT_PACKET.ts
 // OMEGA-64 | Minimal invariant packet for lightweight bridge exchange.
 
-import type { ReplayInvariantReport } from "../../../8/0/REPLAY_AUDIT/_.ts";
+import type { REPLAY_AUDIT__08_00_ReplayInvariantReport as ReplayInvariantReport } from "@omega";
 
 export interface InvariantPacket {
   version: string;

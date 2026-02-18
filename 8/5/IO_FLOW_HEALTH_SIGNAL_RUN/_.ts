@@ -2,8 +2,8 @@
 // @noncanonical
 // OMEGA-64 | Emit health signal from IO_FLOW_HEALTH.
 
-import { IO_FLOW_HEALTH_RUN } from "../../0/IO_FLOW_HEALTH_RUN/_.ts";
-import { IO_FLOW_HEALTH_SIGNAL } from "../../1/IO_FLOW_HEALTH_SIGNAL/_.ts";
+import { IO_FLOW_HEALTH_RUN_IO_FLOW_HEALTH_RUN as IO_FLOW_HEALTH_RUN } from "@omega";
+import { IO_FLOW_HEALTH_SIGNAL_IO_FLOW_HEALTH_SIGNAL as IO_FLOW_HEALTH_SIGNAL } from "@omega";
 
 const usage = (): string =>
   [

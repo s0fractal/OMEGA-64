@@ -5,9 +5,9 @@
 // Broadcasts State (Pulse) to the Interface (Mirror).
 
 import { serve } from "@std/http/server";
-import { ATOM as TELEMETRY_ATOM } from "../../../7/4/TELEMETRY/_.ts";
-import { ATOM as TELEMETRY_SIGNAL_ATOM } from "../../../7/5/TELEMETRY_SIGNAL/_.ts";
-import { SIGNAL } from "../../../7/7/SIGNAL/_.ts";
+import { TELEMETRY as TELEMETRY_ATOM } from "@omega";
+import { TELEMETRY_SIGNAL as TELEMETRY_SIGNAL_ATOM } from "@omega";
+import { SIGNAL__07_07_SIGNAL as SIGNAL } from "@omega";
 
 const TELEMETRY = TELEMETRY_ATOM();
 const TELEMETRY_SIGNAL = TELEMETRY_SIGNAL_ATOM({

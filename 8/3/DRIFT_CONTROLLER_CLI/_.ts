@@ -4,7 +4,7 @@
 
 /// <reference lib="deno.ns" />
 
-import { DRIFT_CONTROLLER } from "../4/DRIFT_CONTROLLER/_.ts";
+import { DRIFT_CONTROLLER_DRIFT_CONTROLLER as DRIFT_CONTROLLER } from "@omega";
 
 const usage = (): string =>
   [

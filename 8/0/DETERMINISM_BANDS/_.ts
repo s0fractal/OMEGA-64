@@ -26,11 +26,24 @@ export const levelToBand = (level: number): DeterminismBand => {
 };
 
 export const atomIdToLevel = (atomId: string): number | null => {
-    const match = atomId.match(/\bL([+-]?\d{1,2})\b/);
-    if (!match) return null;
-    const raw = match[1];
-    const level = Number.parseInt(raw, 10);
-    if (!Number.isFinite(level)) return null;
+    // Legacy i.Lxx form
+    const legacy = atomId.match(/\bL([+-]?\d{1,2})\b/);
+    if (legacy) {
+        const raw = legacy[1];
+        const level = Number.parseInt(raw, 10);
+        if (!Number.isFinite(level)) return null;
+        if (level < 0 || level > 63) return null;
+        return level;
+    }
+
+    // Canon octal path: <sector>/<orbit>/NAME/_.ts -> level = sector*8 + orbit
+    const octal = atomId.match(/(?:^|[./\\])([0-8])(?:[./\\])([0-7])(?:[./\\])/);
+    if (!octal) return null;
+    const sector = Number.parseInt(octal[1], 10);
+    const orbit = Number.parseInt(octal[2], 10);
+    if (!Number.isFinite(sector) || !Number.isFinite(orbit)) return null;
+    if (sector === 8) return 63; // meta/axis sector collapses to AX
+    const level = (sector * 8) + orbit;
     if (level < 0 || level > 63) return null;
     return level;
 };

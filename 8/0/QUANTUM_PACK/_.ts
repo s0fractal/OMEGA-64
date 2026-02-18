@@ -1,8 +1,8 @@
 // i.L99.core.QUANTUM_PACK.ts
 // OMEGA-64 | QUANTUM PACK (Aggregate Helper)
 
-import { I16_LIMITS } from "../../../7/7/I16_LIMITS/_.ts";
-import { U16_LIMITS } from "../../../7/7/U16_LIMITS/_.ts";
+import { I16_LIMITS_I16_LIMITS as I16_LIMITS } from "@omega";
+import { U16_LIMITS_U16_LIMITS as U16_LIMITS } from "@omega";
 
 type QState = { hue: number; phi: number; evt: number };
 

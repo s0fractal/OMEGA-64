@@ -1,11 +1,11 @@
 // i.L99.core.IO_FLOW_HEALTH.ts
 // OMEGA-64 | IO_FLOW_HEALTH (Diagnostics)
 
-import type { GateRunnerTickOutput } from "../../../4/0/GATE_RUNNER/_.ts";
-import { O_STREAM_HEALTH } from "../../7/O_STREAM_HEALTH/_.ts";
-import { O_STREAM_HEALTH_SIGNAL } from "../O_STREAM_HEALTH_SIGNAL/_.ts";
-import type { DeltaProposal } from "../../0/STATE_SNAPSHOT/_.ts";
-import { SAFE_WINDOW_STATUS, type SafeWindowStatus } from "../../1/SAFE_WINDOW_STATUS/_.ts";
+import type { GATE_RUNNER_GateRunnerTickOutput as GateRunnerTickOutput } from "@omega";
+import { O_STREAM_HEALTH_O_STREAM_HEALTH as O_STREAM_HEALTH } from "@omega";
+import { O_STREAM_HEALTH_SIGNAL_O_STREAM_HEALTH_SIGNAL as O_STREAM_HEALTH_SIGNAL } from "@omega";
+import type { STATE_SNAPSHOT_DeltaProposal as DeltaProposal } from "@omega";
+import { SAFE_WINDOW_STATUS_SAFE_WINDOW_STATUS as SAFE_WINDOW_STATUS, type SAFE_WINDOW_STATUS_SafeWindowStatus as SafeWindowStatus } from "@omega";
 
 export type IOFlowHealth = {
   before: Awaited<ReturnType<typeof O_STREAM_HEALTH>>;

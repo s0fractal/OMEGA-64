@@ -1,1 +1,1 @@
-import { T } from "../../../0/0/T/_.ts"; import { F } from "../../../0/0/F/_.ts"; export const IS_ZERO = (n: any) => n((x: any) => F)(T);
+import { T__00_00_T as T } from "@omega"; import { F_F as F } from "@omega"; export const IS_ZERO = (n: any) => n((x: any) => F)(T);

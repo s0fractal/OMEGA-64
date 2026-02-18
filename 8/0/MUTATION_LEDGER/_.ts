@@ -2,10 +2,10 @@
 // i.L99.core.MUTATION_LEDGER.ts
 // OMEGA-64 | The Hand's Memory
 // Append-only audit trail for structural evolution.
-import { TOPOLOGICAL_SIGNATURE } from "../TOPOLOGICAL_SIGNATURE/_.ts";
-import { ATOM as TELEMETRY_ATOM } from "../../../7/4/TELEMETRY/_.ts";
-import { ATOM as TELEMETRY_SIGNAL_ATOM } from "../../../7/5/TELEMETRY_SIGNAL/_.ts";
-import { SIGNAL } from "../../../7/7/SIGNAL/_.ts";
+import { TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE as TOPOLOGICAL_SIGNATURE } from "@omega";
+import { TELEMETRY as TELEMETRY_ATOM } from "@omega";
+import { TELEMETRY_SIGNAL as TELEMETRY_SIGNAL_ATOM } from "@omega";
+import { SIGNAL__07_07_SIGNAL as SIGNAL } from "@omega";
 
 const TELEMETRY = TELEMETRY_ATOM();
 const TELEMETRY_SIGNAL = TELEMETRY_SIGNAL_ATOM({

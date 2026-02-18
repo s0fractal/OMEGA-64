@@ -1,12 +1,12 @@
 // i.L32.core.GATE_RUNTIME_CONTEXT.ts
 // OMEGA-64 | L32 helper to build Gate runtime context from replay invariants.
 
-import type { ReplayAuditOptions, ReplayAuditResult, ReplayGenesis, ReplayInvariantReport } from "../../../8/0/REPLAY_AUDIT/_.ts";
-import { REPLAY_AUDIT } from "../../../8/0/REPLAY_AUDIT/_.ts";
-import type { GateRuntimeContext } from "../GATE/_.ts";
-import { CANON_CAUSAL_BRIDGE, type BridgeMode } from "../../../3/7/CANON_CAUSAL_BRIDGE/_.ts";
-import { CRYSTALLIZATION_CONFIG } from "../../../8/1/CRYSTALLIZATION_CONFIG/_.ts";
-import { INVARIANT_PACKET, type InvariantPacket } from "../INVARIANT_PACKET/_.ts";
+import type { REPLAY_AUDIT__08_00_ReplayAuditOptions as ReplayAuditOptions, REPLAY_AUDIT__08_00_ReplayAuditResult as ReplayAuditResult, REPLAY_AUDIT__08_00_ReplayGenesis as ReplayGenesis, REPLAY_AUDIT__08_00_ReplayInvariantReport as ReplayInvariantReport } from "@omega";
+import { REPLAY_AUDIT__08_00_REPLAY_AUDIT as REPLAY_AUDIT } from "@omega";
+import type { GATE_GateRuntimeContext as GateRuntimeContext } from "@omega";
+import { CANON_CAUSAL_BRIDGE, type CANON_CAUSAL_BRIDGE as BridgeMode } from "@omega";
+import { CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_CONFIG as CRYSTALLIZATION_CONFIG } from "@omega";
+import { INVARIANT_PACKET_INVARIANT_PACKET as INVARIANT_PACKET, type INVARIANT_PACKET_InvariantPacket as InvariantPacket } from "@omega";
 
 export interface GateRuntimeContextEnvelope {
     runtime: GateRuntimeContext;

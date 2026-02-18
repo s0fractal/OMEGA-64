@@ -1,7 +1,7 @@
 // i.L99.core.GENOME_AUDIT.ts
 // OMEGA-64 | GENOME_AUDIT (Soft)
 
-import { GENOME } from "../3/GENOME/_.ts";
+import { GENOME_GENOME as GENOME } from "@omega";
 
 export type GenomeAuditItem = {
   level: number;

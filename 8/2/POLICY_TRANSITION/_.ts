@@ -1,10 +1,10 @@
 // i.L99.core.POLICY_TRANSITION.ts
 // OMEGA-64 | Canon Protocol | Policy Migration Events
 
-import { LEDGER } from "../../../8/0/LEDGER/_.ts";
-import { CRYSTALLIZATION_CONFIG, CRYSTALLIZATION_POLICY } from "../../../8/1/CRYSTALLIZATION_CONFIG/_.ts";
-import { LedgerEvent, AutonomyState, PolicyTransitionEvent, TopologyEvent } from "../../../8/0/STATE_SNAPSHOT/_.ts";
-import { AUTONOMY_METRIC } from "../../../8/7/AUTONOMY_METRIC/_.ts";
+import { LEDGER__08_00_LEDGER as LEDGER } from "@omega";
+import { CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_CONFIG as CRYSTALLIZATION_CONFIG, CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_POLICY as CRYSTALLIZATION_POLICY } from "@omega";
+import { STATE_SNAPSHOT_LedgerEvent as LedgerEvent, STATE_SNAPSHOT_AutonomyState as AutonomyState, STATE_SNAPSHOT_PolicyTransitionEvent as PolicyTransitionEvent, STATE_SNAPSHOT_TopologyEvent as TopologyEvent } from "@omega";
+import { AUTONOMY_METRIC_AUTONOMY_METRIC as AUTONOMY_METRIC } from "@omega";
 
 export interface PolicyTransitionEmitInput {
     tick: number;

@@ -2,13 +2,9 @@
 // 🛡️ OMEGA-64 | Canon Runtime | Topological Signature
 // Deterministic identity + causal + projection anchors.
 
-import {
-    CHROMO_STATE,
-    ChromoEncodeOptions,
-    OrganismState
-} from "./i.L00.core.CHROMO_STATE.ts";
-import type { StateSnapshot } from "../0/STATE_SNAPSHOT/_.ts";
-import { I16_LIMITS } from "../../../7/7/I16_LIMITS/_.ts";
+import { CHROMO_STATE, CHROMO_STATE as ChromoEncodeOptions, CHROMO_STATE as OrganismState } from "@omega";
+import type { STATE_SNAPSHOT_StateSnapshot as StateSnapshot } from "@omega";
+import { I16_LIMITS_I16_LIMITS as I16_LIMITS } from "@omega";
 
 export interface TopologicalSignature {
     artifact_hash: string;

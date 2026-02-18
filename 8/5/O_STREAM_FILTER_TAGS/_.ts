@@ -1,7 +1,7 @@
 // i.L99.core.O_STREAM_FILTER_TAGS.ts
 // OMEGA-64 | O_STREAM_FILTER_TAGS (Filter)
 
-import type { DeltaProposal } from "../0/STATE_SNAPSHOT/_.ts";
+import type { STATE_SNAPSHOT_DeltaProposal as DeltaProposal } from "@omega";
 
 export type OStreamTaggedProposal = DeltaProposal & { tags?: string[] };
 

@@ -2,8 +2,8 @@
 // @noncanonical
 // OMEGA-64 | Build archive index.
 
-import { O_STREAM_ARCHIVE_INDEX } from "../2/O_STREAM_ARCHIVE_INDEX/_.ts";
-import { O_STREAM_ARCHIVE_PATH } from "../7/O_STREAM_ARCHIVE_PATH/_.ts";
+import { O_STREAM_ARCHIVE_INDEX_O_STREAM_ARCHIVE_INDEX as O_STREAM_ARCHIVE_INDEX } from "@omega";
+import { O_STREAM_ARCHIVE_PATH_O_STREAM_ARCHIVE_PATH as O_STREAM_ARCHIVE_PATH } from "@omega";
 
 const usage = (): string =>
   [

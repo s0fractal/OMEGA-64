@@ -1,11 +1,11 @@
 // i.L99.core.TRINITY.ts — інтегратор всіх трьох рівнів
-import { ATOM as POTENTIAL_ATOM, PotentialField } from '../../../0/0/POTENTIAL/_.ts';
-import { ATOM as FIELD_ATOM } from '../../../7/7/FIELD/_.ts';
-import { I16_LIMITS } from '../../../7/7/I16_LIMITS/_.ts';
-import { U16_LIMITS } from '../../../7/7/U16_LIMITS/_.ts';
-import { ATOM as WAVE_PACKET_ATOM } from '../../../6/2/WAVE_PACKET/_.ts';
-import { ATOM as CHRONOFLUX_ATOM } from '../../1/CHRONOFLUX/_.ts';
-import { HOLOGRAM, HolographicProjection } from '../../../7/6/HOLOGRAM/_.ts';
+import { POTENTIAL as POTENTIAL_ATOM, POTENTIAL_PotentialField as PotentialField } from "@omega";
+import { FIELD__07_07 as FIELD_ATOM } from "@omega";
+import { I16_LIMITS_I16_LIMITS as I16_LIMITS } from "@omega";
+import { U16_LIMITS_U16_LIMITS as U16_LIMITS } from "@omega";
+import { WAVE_PACKET as WAVE_PACKET_ATOM } from "@omega";
+import { CHRONOFLUX as CHRONOFLUX_ATOM } from "@omega";
+import { HOLOGRAM__07_06_HOLOGRAM as HOLOGRAM, HOLOGRAM__07_06_HolographicProjection as HolographicProjection } from "@omega";
 
 export interface QWave {
   center: number;

@@ -1,1 +1,1 @@
-import { F } from "../../../0/0/F/_.ts"; export const NIL = F;
+import { F_F as F } from "@omega"; export const NIL = F;

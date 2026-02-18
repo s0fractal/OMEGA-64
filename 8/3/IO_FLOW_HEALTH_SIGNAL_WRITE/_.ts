@@ -2,7 +2,7 @@
 // @noncanonical
 // OMEGA-64 | Emit IO flow health signal into UI file.
 
-import { IO_FLOW_HEALTH_SIGNAL_RUN } from "../../5/IO_FLOW_HEALTH_SIGNAL_RUN/_.ts";
+import { IO_FLOW_HEALTH_SIGNAL_RUN_IO_FLOW_HEALTH_SIGNAL_RUN as IO_FLOW_HEALTH_SIGNAL_RUN } from "@omega";
 
 const DEFAULT_OUTPUT = "UI/health_signal.txt";
 

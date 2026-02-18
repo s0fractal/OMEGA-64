@@ -1,7 +1,7 @@
 // i.L99.core.IO_FLOW_HEALTH_SIGNAL.ts
 // OMEGA-64 | IO_FLOW_HEALTH_SIGNAL (Bridge)
 
-import type { IOFlowHealth } from "../../4/IO_FLOW_HEALTH/_.ts";
+import type { IO_FLOW_HEALTH_IOFlowHealth as IOFlowHealth } from "@omega";
 
 export type IOFlowHealthSignal = "GREEN" | "AMBER" | "RED";
 

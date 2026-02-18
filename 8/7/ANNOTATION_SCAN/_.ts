@@ -4,13 +4,13 @@
 
 /// <reference lib="deno.ns" />
 
-import { RULE_VECTOR_REQUIRED } from "./RULE_VECTOR_REQUIRED.ts";
-import { RULE_VECTOR_FORMAT } from "./RULE_VECTOR_FORMAT.ts";
-import { RULE_VECTOR_RANGE } from "./RULE_VECTOR_RANGE.ts";
-import { RULE_VECTOR_DOMAIN_PHASE } from "./RULE_VECTOR_DOMAIN_PHASE.ts";
-import { RULE_SYMBOL_OPTIONAL } from "./RULE_SYMBOL_OPTIONAL.ts";
-import { RULE_ORIGIN_OPTIONAL } from "./RULE_ORIGIN_OPTIONAL.ts";
-import { RULE_REDIRECT_OPTIONAL } from "./RULE_REDIRECT_OPTIONAL.ts";
+import { RULE_VECTOR_REQUIRED } from "@omega";
+import { RULE_VECTOR_FORMAT } from "@omega";
+import { RULE_VECTOR_RANGE } from "@omega";
+import { RULE_VECTOR_DOMAIN_PHASE } from "@omega";
+import { RULE_SYMBOL_OPTIONAL } from "@omega";
+import { RULE_ORIGIN_OPTIONAL } from "@omega";
+import { RULE_REDIRECT_OPTIONAL } from "@omega";
 
 type AnnotationEntry = {
   file: string;

@@ -7,7 +7,7 @@
 
 const DEFAULT_INPUT = "I.sigma.md";
 const DEFAULT_OUTPUT = "I.sigma.manifest.json";
-const DEFAULT_MOUNT_LIST = "i.L99.core.MOUNT_LIST.md";
+const DEFAULT_MOUNT_LIST = "e/legacy/i.L99.core.MOUNT_LIST.md";
 const DEFAULT_MOUNT_OUTPUT = "OMEGA_MOUNTS.json";
 
 type Cell = {
@@ -77,7 +77,7 @@ const parseArgs = (args: string[]) => {
 const usage = (): string =>
   [
     "Usage:",
-    "  deno run -A i.L99.core.BOOTSTRAP.ts [--input <file>] [--output <file>] [--mounts <file>]",
+    "  deno run -A 8/6/BOOTSTRAP/_.ts [--input <file>] [--output <file>] [--mounts <file>]",
     "",
     "Defaults:",
     `  input: ${DEFAULT_INPUT}`,

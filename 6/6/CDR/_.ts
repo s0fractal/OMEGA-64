@@ -1,1 +1,1 @@
-import { F } from "../../../0/0/F/_.ts"; export const CDR = (p: any) => p(F);
+import { F_F as F } from "@omega"; export const CDR = (p: any) => p(F);

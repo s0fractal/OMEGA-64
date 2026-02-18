@@ -1,12 +1,12 @@
 // i.L99.core.O_STREAM_DRAIN.ts
 // OMEGA-64 | O_STREAM_DRAIN (Prune)
 
-import type { DeltaProposal } from "../0/STATE_SNAPSHOT/_.ts";
-import { O_STREAM_PATH } from "../6/O_STREAM_PATH/_.ts";
-import { O_STREAM_READ } from "../5/O_STREAM_READ/_.ts";
-import { O_STREAM_VALIDATE } from "../3/O_STREAM_VALIDATE/_.ts";
-import { O_STREAM_ARCHIVE } from "../3/O_STREAM_ARCHIVE/_.ts";
-import { O_STREAM_ARCHIVE_PATH } from "../7/O_STREAM_ARCHIVE_PATH/_.ts";
+import type { STATE_SNAPSHOT_DeltaProposal as DeltaProposal } from "@omega";
+import { O_STREAM_PATH_O_STREAM_PATH as O_STREAM_PATH } from "@omega";
+import { O_STREAM_READ_O_STREAM_READ as O_STREAM_READ } from "@omega";
+import { O_STREAM_VALIDATE_O_STREAM_VALIDATE as O_STREAM_VALIDATE } from "@omega";
+import { O_STREAM_ARCHIVE_O_STREAM_ARCHIVE as O_STREAM_ARCHIVE } from "@omega";
+import { O_STREAM_ARCHIVE_PATH_O_STREAM_ARCHIVE_PATH as O_STREAM_ARCHIVE_PATH } from "@omega";
 
 export const O_STREAM_DRAIN = async (
   consumedProposalIds: string[],

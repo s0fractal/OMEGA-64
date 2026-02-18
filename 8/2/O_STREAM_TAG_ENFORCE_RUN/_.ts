@@ -2,9 +2,9 @@
 // @noncanonical
 // OMEGA-64 | Enforce tag policy on O stream proposals.
 
-import { O_STREAM_TAG_POLICY } from "../../4/O_STREAM_TAG_POLICY/_.ts";
-import { O_STREAM_TAG_ENFORCE } from "../../6/O_STREAM_TAG_ENFORCE/_.ts";
-import type { DeltaProposal } from "../../0/STATE_SNAPSHOT/_.ts";
+import { O_STREAM_TAG_POLICY_O_STREAM_TAG_POLICY as O_STREAM_TAG_POLICY } from "@omega";
+import { O_STREAM_TAG_ENFORCE_O_STREAM_TAG_ENFORCE as O_STREAM_TAG_ENFORCE } from "@omega";
+import type { STATE_SNAPSHOT_DeltaProposal as DeltaProposal } from "@omega";
 
 const usage = (): string =>
   [

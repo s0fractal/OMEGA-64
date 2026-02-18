@@ -4,11 +4,11 @@
 
 /// <reference lib="deno.ns" />
 
-import { DETERMINISM_LAWS } from "../../../0/1/DETERMINISM_LAWS/_.ts";
-import { atomIdToBand, atomIdToLevel, DeterminismBand } from "../0/DETERMINISM_BANDS/_.ts";
-import { ATOM as TELEMETRY_ATOM } from "../../../7/4/TELEMETRY/_.ts";
-import { ATOM as TELEMETRY_SIGNAL_ATOM } from "../../../7/5/TELEMETRY_SIGNAL/_.ts";
-import { SIGNAL } from "../../../7/7/SIGNAL/_.ts";
+import { DETERMINISM_LAWS } from "@omega";
+import { DETERMINISM_BANDS_atomIdToBand as atomIdToBand, DETERMINISM_BANDS_atomIdToLevel as atomIdToLevel, DETERMINISM_BANDS_DeterminismBand as DeterminismBand } from "@omega";
+import { TELEMETRY as TELEMETRY_ATOM } from "@omega";
+import { TELEMETRY_SIGNAL as TELEMETRY_SIGNAL_ATOM } from "@omega";
+import { SIGNAL__07_07_SIGNAL as SIGNAL } from "@omega";
 
 const TELEMETRY = TELEMETRY_ATOM();
 const TELEMETRY_SIGNAL = TELEMETRY_SIGNAL_ATOM({
@@ -37,10 +37,11 @@ const DEFAULT_ROOT = ".";
 
 const isCandidate = (path: string): boolean => {
     if (!path.endsWith(".ts")) return false;
-    const dotForm = /i\.L\d{2}\.core\..+\.ts$/;
-    const slashForm = /i[\\/]+L\d{2}[\\/]+core[\\/]+.+\.ts$/;
-    if (!dotForm.test(path) && !slashForm.test(path)) return false;
-    return true;
+    const normalized = path.replaceAll("\\", "/");
+    const canonForm = /(?:^|\/)[0-8]\/[0-7]\/[^/]+\/_\.ts$/;
+    const legacyDot = /i\.L\d{2}\.core\..+\.ts$/;
+    const legacySlash = /i[\\/]+L\d{2}[\\/]+core[\\/]+.+\.ts$/;
+    return canonForm.test(normalized) || legacyDot.test(path) || legacySlash.test(path);
 };
 
 const walk = async function* (root: string): AsyncGenerator<string> {
@@ -50,6 +51,10 @@ const walk = async function* (root: string): AsyncGenerator<string> {
             if (entry.name.startsWith(".")) continue;
             if (entry.name === "archive") continue;
             if (entry.name === "omega_rust_core") continue;
+            if (entry.name === "UI") continue;
+            if (entry.name === "SINGULARITY") continue;
+            if (entry.name === "tests") continue;
+            if (entry.name === "e") continue;
             yield* walk(full);
         } else if (entry.isFile) {
             if (isCandidate(full)) yield full;

@@ -31,6 +31,7 @@ const SKIP_DIRS = new Set([
   "UI",
   "SINGULARITY",
   "vis",
+  "legacy",
 ]);
 
 const parseArgs = (args: string[]) => {
@@ -61,7 +62,7 @@ const parseArgs = (args: string[]) => {
 const usage = (): string =>
   [
     "Usage:",
-    "  deno run -A i.L99.core.NONCANONICAL_AUDIT.ts [--root <dir>] [--json]",
+    "  deno run -A 8/1/NONCANONICAL_AUDIT/_.ts [--root <dir>] [--json]",
     "",
     "Defaults:",
     `  root: ${DEFAULT_ROOT}`,
@@ -69,7 +70,10 @@ const usage = (): string =>
 
 const isSystemFile = (name: string): boolean => SYSTEM_ALLOWLIST.has(name);
 
-const isCoordinateFile = (name: string): boolean => name.startsWith("i.");
+const isCanonicalPath = (path: string): boolean => {
+  const normalized = path.replaceAll("\\", "/");
+  return /(?:^|\/)[0-8]\/[0-7]\/[^/]+\/_\.(ts|yaml)$/.test(normalized);
+};
 
 const walk = async function* (root: string): AsyncGenerator<string> {
   for await (const entry of Deno.readDir(root)) {
@@ -94,7 +98,7 @@ if (import.meta.main) {
   const candidates: string[] = [];
   for await (const path of walk(args.root)) {
     const base = path.split("/").pop() ?? path;
-    if (isCoordinateFile(base)) continue;
+    if (isCanonicalPath(path)) continue;
     if (isSystemFile(base)) {
       system.push(path);
       continue;

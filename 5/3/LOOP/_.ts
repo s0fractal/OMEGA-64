@@ -3,30 +3,30 @@
 // The Heartbeat of OMEGA-64.
 // "Spark": Randomly activates Atoms to simulate Neural Noise.
 
-import { RIBOSOME } from "../../../4/0/RIBOSOME/_.ts";
-import { NERVE } from "../../../6/0/NERVE/_.ts";
-import { KAIROS } from "../../../8/1/KAIROS/_.ts";
-import { ATOM as FIELD_ATOM } from "../../../7/7/FIELD/_.ts";
-import { I16_LIMITS } from "../../../7/7/I16_LIMITS/_.ts";
-import { U16_LIMITS } from "../../../7/7/U16_LIMITS/_.ts";
-import { ATOM as WAVE_PACKET_ATOM } from "../../../6/2/WAVE_PACKET/_.ts";
-import { ATOM as CHRONOFLUX_ATOM } from "../../1/CHRONOFLUX/_.ts";
-import { MYCELIUM, MyceliumAgent } from "../../../8/5/MYCELIUM/_.ts";
+import { RIBOSOME_RIBOSOME as RIBOSOME } from "@omega";
+import { NERVE_NERVE as NERVE } from "@omega";
+import { KAIROS_KAIROS as KAIROS } from "@omega";
+import { FIELD__07_07 as FIELD_ATOM } from "@omega";
+import { I16_LIMITS_I16_LIMITS as I16_LIMITS } from "@omega";
+import { U16_LIMITS_U16_LIMITS as U16_LIMITS } from "@omega";
+import { WAVE_PACKET as WAVE_PACKET_ATOM } from "@omega";
+import { CHRONOFLUX as CHRONOFLUX_ATOM } from "@omega";
+import { MYCELIUM_MYCELIUM as MYCELIUM, MYCELIUM_MyceliumAgent as MyceliumAgent } from "@omega";
 
 // 🛡️ Era 4.0: Swarm Imports
-import { PEER } from "../../../8/4/PEER/_.ts";
-import { DISCOVERY } from "../../../8/0/DISCOVERY/_.ts";
-import { SYNC } from "../../../2/6/SYNC/_.ts";
+import { PEER_PEER as PEER } from "@omega";
+import { DISCOVERY_DISCOVERY as DISCOVERY } from "@omega";
+import { SYNC_SYNC as SYNC } from "@omega";
 
 // 🛡️ Era 3.3: Topological Projection
-import { PROJECTION } from "../../../8/5/PROJECTION/_.ts";
+import { PROJECTION_PROJECTION as PROJECTION } from "@omega";
 
 const U16 = U16_LIMITS();
 
 // 🛡️ Era 2.6: The Spark Imports
-import { GATE_RUNNER } from "../../../4/0/GATE_RUNNER/_.ts";
-import { DeltaProposal, StateSnapshot, GateConfig } from "../../../8/0/STATE_SNAPSHOT/_.ts";
-import { LEDGER } from "../../../8/0/LEDGER/_.ts";
+import { GATE_RUNNER_GATE_RUNNER as GATE_RUNNER } from "@omega";
+import { STATE_SNAPSHOT_DeltaProposal as DeltaProposal, STATE_SNAPSHOT_StateSnapshot as StateSnapshot, STATE_SNAPSHOT_GateConfig as GateConfig } from "@omega";
+import { LEDGER__08_00_LEDGER as LEDGER } from "@omega";
 
 const FIELD = FIELD_ATOM({ siblings: { I16_LIMITS } });
 const WAVE_PACKET_ATOM_RESULT = WAVE_PACKET_ATOM({ siblings: { FIELD, U16_LIMITS } });

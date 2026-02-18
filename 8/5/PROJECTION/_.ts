@@ -2,7 +2,7 @@
 // 🛡️ OMEGA-64 | Topological Lens | Vector 2
 // "Truth is a resonance pattern projected across geometries."
 
-import { I16_LIMITS } from "../../../7/7/I16_LIMITS/_.ts";
+import { I16_LIMITS_I16_LIMITS as I16_LIMITS } from "@omega";
 
 const I16 = I16_LIMITS();
 

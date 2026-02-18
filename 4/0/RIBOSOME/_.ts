@@ -3,10 +3,10 @@
 // The Meta-Processor for OMEGA-64 Flatland.
 // Scans the Root, Lifts Atoms, and Builds the Living Map.
 
-import { IMMUNE } from "../IMMUNE/_.ts";
-import { DUAL } from "../DUAL/_.ts";
+import { IMMUNE_IMMUNE as IMMUNE } from "@omega";
+import { DUAL__04_00_DUAL as DUAL } from "@omega";
 import { walk } from "jsr:@std/fs";
-import { Atom as AtomSchema } from "../SCHEMA/_.ts";
+import { SCHEMA_Atom as AtomSchema } from "@omega";
 import { parse as parseYaml } from "jsr:@std/yaml";
 
 export interface Atom {
@@ -23,69 +23,7 @@ export const RIBOSOME = {
     lift: async (root: string = Deno.cwd()): Promise<Map<string, Atom>> => {
         let lattice = new Map<string, Atom>();
 
-        // --- Helper: Scan a Director for Legacy Atoms ---
-        const scanLegacy = async (dirPath: string) => {
-            try {
-                // console.log(`[RIBOSOME] Scanning Legacy Path: ${dirPath}`);
-                for await (const { name } of walk(dirPath, { maxDepth: 1, includeDirs: false })) {
-                    // 1. Semantic Name (ATOM.ts)
-                    if (name.match(/^[A-Z0-9_]+\.ts$/)) {
-                        let lvl = 0;
-                        try {
-                            const yamlPath = `${dirPath}/${name.replace('.ts', '.yaml')}`;
-                            const yamlText = await Deno.readTextFile(yamlPath);
-                            const raw = parseYaml(yamlText);
-                            const result = AtomSchema.safeParse(raw);
-                            
-                            if (result.success) {
-                                const vectorParts = result.data.vector.split('.');
-                                lvl = parseInt(vectorParts[0]);
-                            } else {
-                                 const originMatch = yamlText.match(/origin:\s*[^L]*L(\d+)/);
-                                 if (originMatch) lvl = parseInt(originMatch[1]);
-                            }
-                        } catch { }
-
-                        try {
-                            // Validate with DUAL
-                            const source = await Deno.readTextFile(`${dirPath}/${name}`);
-                            if (DUAL.validate(name, source)) {
-                                if (name !== "TEST_PURE_RIBOSOME.ts") {
-                                    // console.log(`[RIBOSOME] Lifting Legacy: ${name}`);
-                                    const module = await import(`file://${dirPath}/${name}`);
-                                    lattice.set(name, { id: name, level: lvl, module });
-                                }
-                            }
-                        } catch (e) { }
-                    }
-                    // 2. Legacy Name (i.Lxx.core.ATOM.ts)
-                    else {
-                        const match = name.match(/i\.L(\d+)\.core\.([A-Z_]+)\.ts/);
-                        if (match) {
-                            const [_, lvlStr] = match;
-                            try {
-                                const source = await Deno.readTextFile(`${dirPath}/${name}`);
-                                if (DUAL.validate(name, source)) {
-                                    // console.log(`[RIBOSOME] Lifting Lxx: ${name}`);
-                                    const module = await import(`file://${dirPath}/${name}`);
-                                    lattice.set(name, { id: name, level: parseInt(lvlStr), module });
-                                }
-                            } catch (e) { }
-                        }
-                    }
-                }
-            } catch (e) { 
-                // Directory might not exist, ignore
-            }
-        };
-
-        // --- Phase 1: Legacy Flat Scan (Root) ---
-        // Removed to prevent performance hangs (Legacy atoms should live in i/ or matrix)
-        // await scanLegacy(root);
-
-        // --- Phase 1.5: Legacy Subdirectory Scan (i/) ---
-        console.log("[RIBOSOME] Phase 1.5: i/ Scan");
-        await scanLegacy(`${root}/i`);
+        // Legacy scans removed: canon-only lattice.
 
         // --- Phase 2: Octal Scan (The 8x8 Matrix + Laboratorium) ---
         // Scan i/{0..8}/{0..7}/ATOM/
@@ -176,12 +114,10 @@ export const RIBOSOME = {
         
         if (target.id.match(/^\d+\/\d+\//)) {
             // Octal ID: 0/0/PURE_TEST
-            // ROOT PATH FIX: Remove 'i/' prefix
             yamlPath = `./${target.id}/_.yaml`;
         } else {
-            // Legacy ID: ATOM.ts
-            // Legacy still lives in i/
-            yamlPath = `./i/${target.id.replace('.ts', '.yaml')}`;
+            console.warn(`[RIBOSOME] Legacy injection skipped for ${target.id}`);
+            return null;
         }
 
         try {

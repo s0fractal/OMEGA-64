@@ -2,9 +2,9 @@
 // 🎭 OMEGA-64 | Holographic Projection Driver
 // Prepares internal state for visual consumption (The Face).
 
-import { StateSnapshot } from "../../8/0/STATE_SNAPSHOT/_.ts";
-import { CHROMO_STATE } from "../../7/7/CHROMO_STATE/_.ts";
-import { I16_LIMITS } from "../../7/7/I16_LIMITS/_.ts";
+import { STATE_SNAPSHOT_StateSnapshot as StateSnapshot } from "@omega";
+import { CHROMO_STATE } from "@omega";
+import { I16_LIMITS_I16_LIMITS as I16_LIMITS } from "@omega";
 
 const I16 = I16_LIMITS();
 

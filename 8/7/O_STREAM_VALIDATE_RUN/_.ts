@@ -2,8 +2,8 @@
 // @noncanonical
 // OMEGA-64 | Validate O stream or proposal list.
 
-import { O_STREAM_VALIDATE } from "../../3/O_STREAM_VALIDATE/_.ts";
-import type { DeltaProposal } from "../../0/STATE_SNAPSHOT/_.ts";
+import { O_STREAM_VALIDATE_O_STREAM_VALIDATE as O_STREAM_VALIDATE } from "@omega";
+import type { STATE_SNAPSHOT_DeltaProposal as DeltaProposal } from "@omega";
 
 const usage = (): string =>
   [

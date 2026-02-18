@@ -2,19 +2,12 @@
 // @noncanonical
 // OMEGA-64 | CLI wrapper for GATE_RUNNER.step(...)
 
-import { GATE_RUNNER } from "../GATE_RUNNER/_.ts";
-import { LEDGER } from "../../../8/0/LEDGER/_.ts";
-import { INVARIANT_PACKET, type InvariantPacket } from "../INVARIANT_PACKET/_.ts";
-import { I16_CLAMP } from "../../../0/0/I16_CLAMP/_.ts";
-import type {
-  DeltaProposal,
-  GateConfig,
-  StateSnapshot,
-} from "../../../8/0/STATE_SNAPSHOT/_.ts";
-import type {
-  ReplayGenesis,
-  ReplayInvariantReport,
-} from "../../../8/0/REPLAY_AUDIT/_.ts";
+import { GATE_RUNNER_GATE_RUNNER as GATE_RUNNER } from "@omega";
+import { LEDGER__08_00_LEDGER as LEDGER } from "@omega";
+import { INVARIANT_PACKET_INVARIANT_PACKET as INVARIANT_PACKET, type INVARIANT_PACKET_InvariantPacket as InvariantPacket } from "@omega";
+import { I16_CLAMP__00_00_I16_CLAMP as I16_CLAMP } from "@omega";
+import type { STATE_SNAPSHOT_DeltaProposal as DeltaProposal, STATE_SNAPSHOT_GateConfig as GateConfig, STATE_SNAPSHOT_StateSnapshot as StateSnapshot } from "@omega";
+import type { REPLAY_AUDIT__08_00_ReplayGenesis as ReplayGenesis, REPLAY_AUDIT__08_00_ReplayInvariantReport as ReplayInvariantReport } from "@omega";
 
 interface CliStateSnapshot {
   tick: number;

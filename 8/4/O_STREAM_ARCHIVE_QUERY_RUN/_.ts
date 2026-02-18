@@ -2,8 +2,8 @@
 // @noncanonical
 // OMEGA-64 | Query archived proposals by proposal_id.
 
-import { O_STREAM_ARCHIVE_QUERY } from "../0/O_STREAM_ARCHIVE_QUERY/_.ts";
-import { O_STREAM_ARCHIVE_PATH } from "../7/O_STREAM_ARCHIVE_PATH/_.ts";
+import { O_STREAM_ARCHIVE_QUERY_O_STREAM_ARCHIVE_QUERY as O_STREAM_ARCHIVE_QUERY } from "@omega";
+import { O_STREAM_ARCHIVE_PATH_O_STREAM_ARCHIVE_PATH as O_STREAM_ARCHIVE_PATH } from "@omega";
 
 const usage = (): string =>
   [

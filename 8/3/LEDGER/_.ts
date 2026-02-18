@@ -3,11 +3,11 @@
 // 🛡️ OMEGA-64 | Glider Lite | Append-Only Ledger
 // Records every state transition for replay and audit.
 
-import { LedgerEvent, TopologyEvent } from "../0/STATE_SNAPSHOT/_.ts";
-import { CHECKPOINT } from "../0/CHECKPOINT/_.ts";
-import { ATOM as TELEMETRY_ATOM } from "../../../7/4/TELEMETRY/_.ts";
-import { ATOM as TELEMETRY_SIGNAL_ATOM } from "../../../7/5/TELEMETRY_SIGNAL/_.ts";
-import { SIGNAL } from "../../../7/7/SIGNAL/_.ts";
+import { STATE_SNAPSHOT_LedgerEvent as LedgerEvent, STATE_SNAPSHOT_TopologyEvent as TopologyEvent } from "@omega";
+import { CHECKPOINT_CHECKPOINT as CHECKPOINT } from "@omega";
+import { TELEMETRY as TELEMETRY_ATOM } from "@omega";
+import { TELEMETRY_SIGNAL as TELEMETRY_SIGNAL_ATOM } from "@omega";
+import { SIGNAL__07_07_SIGNAL as SIGNAL } from "@omega";
 
 const TELEMETRY = TELEMETRY_ATOM();
 const TELEMETRY_SIGNAL = TELEMETRY_SIGNAL_ATOM({

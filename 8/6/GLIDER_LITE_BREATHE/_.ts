@@ -4,10 +4,10 @@
 
 /// <reference lib="deno.ns" />
 
-import { GLIDER_LITE } from "../4/GLIDER_LITE/_.ts";
-import { SIGNAL } from "../../../7/7/SIGNAL/_.ts";
-import { I16_CLAMP } from "../../../0/0/I16_CLAMP/_.ts";
-import type { DeltaProposal, GateConfig, StateSnapshot } from "../0/STATE_SNAPSHOT/_.ts";
+import { GLIDER_LITE_GLIDER_LITE as GLIDER_LITE } from "@omega";
+import { SIGNAL__07_07_SIGNAL as SIGNAL } from "@omega";
+import { I16_CLAMP__00_00_I16_CLAMP as I16_CLAMP } from "@omega";
+import type { STATE_SNAPSHOT_DeltaProposal as DeltaProposal, STATE_SNAPSHOT_GateConfig as GateConfig, STATE_SNAPSHOT_StateSnapshot as StateSnapshot } from "@omega";
 
 type PersistedState = {
   tick: number;

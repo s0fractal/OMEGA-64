@@ -4,14 +4,14 @@
  * Не для людини — для системи, щоб "побачити" власну інтерференцію.
  */
 
-import { ATOM as FIELD_ATOM } from "../../../7/7/FIELD/_.ts";
-import { I16_LIMITS } from "../../../7/7/I16_LIMITS/_.ts";
-import { U16_LIMITS } from "../../../7/7/U16_LIMITS/_.ts";
-import { ATOM as WAVE_PACKET_ATOM } from "../../../6/2/WAVE_PACKET/_.ts";
-import { ATOM as INTERFERENCE_ATOM } from "../../../6/2/INTERFERENCE/_.ts";
-import { ATOM as ARENA_ATOM } from "../../../3/7/ARENA/_.ts";
-import { I } from "../../../7/6/I/_.ts";
-import { ATOM as WAVE_SIGNAL_ATOM } from "../../../5/7/WAVE_SIGNAL/_.ts";
+import { FIELD__07_07 as FIELD_ATOM } from "@omega";
+import { I16_LIMITS_I16_LIMITS as I16_LIMITS } from "@omega";
+import { U16_LIMITS_U16_LIMITS as U16_LIMITS } from "@omega";
+import { WAVE_PACKET as WAVE_PACKET_ATOM } from "@omega";
+import { INTERFERENCE as INTERFERENCE_ATOM } from "@omega";
+import { ARENA as ARENA_ATOM } from "@omega";
+import { I__07_06_I as I } from "@omega";
+import { WAVE_SIGNAL as WAVE_SIGNAL_ATOM } from "@omega";
 
 const I16 = I16_LIMITS();
 const FIELD = FIELD_ATOM({ siblings: { I16_LIMITS } });

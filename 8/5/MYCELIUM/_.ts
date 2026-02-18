@@ -2,12 +2,12 @@
 // 🛡️ OMEGA-64 | Life Act | The Mycelium Loop
 // "Життя — це не стан. Це дія по зменшенню локальної ентропії."
 
-import { ATOM as FIELD_ATOM } from "../../../7/7/FIELD/_.ts";
-import { ATOM as WAVE_PACKET_ATOM } from "../../../6/2/WAVE_PACKET/_.ts";
-import { I16_LIMITS } from "../../../7/7/I16_LIMITS/_.ts";
-import { U16_LIMITS } from "../../../7/7/U16_LIMITS/_.ts";
+import { FIELD__07_07 as FIELD_ATOM } from "@omega";
+import { WAVE_PACKET as WAVE_PACKET_ATOM } from "@omega";
+import { I16_LIMITS_I16_LIMITS as I16_LIMITS } from "@omega";
+import { U16_LIMITS_U16_LIMITS as U16_LIMITS } from "@omega";
 
-import { DeltaProposal, StateSnapshot } from "../../../8/0/STATE_SNAPSHOT/_.ts";
+import { STATE_SNAPSHOT_DeltaProposal as DeltaProposal, STATE_SNAPSHOT_StateSnapshot as StateSnapshot } from "@omega";
 
 const FIELD = FIELD_ATOM({ siblings: { I16_LIMITS } });
 const WAVE_PACKET_ATOM_RESULT = WAVE_PACKET_ATOM({ siblings: { FIELD, U16_LIMITS } });

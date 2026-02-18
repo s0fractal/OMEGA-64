@@ -1,10 +1,10 @@
 // i.L99.core.O_STREAM_HEALTH.ts
 // OMEGA-64 | O_STREAM_HEALTH (Diagnostics)
 
-import { O_STREAM_SUMMARY } from "../O_STREAM_SUMMARY/_.ts";
-import { O_STREAM_TAGS_SUMMARY } from "../../5/O_STREAM_TAGS_SUMMARY/_.ts";
-import { O_STREAM_ARCHIVE_PATH } from "../O_STREAM_ARCHIVE_PATH/_.ts";
-import { SAFE_WINDOW_STATUS, type SafeWindowStatus } from "../../1/SAFE_WINDOW_STATUS/_.ts";
+import { O_STREAM_SUMMARY_O_STREAM_SUMMARY as O_STREAM_SUMMARY } from "@omega";
+import { O_STREAM_TAGS_SUMMARY_O_STREAM_TAGS_SUMMARY as O_STREAM_TAGS_SUMMARY } from "@omega";
+import { O_STREAM_ARCHIVE_PATH_O_STREAM_ARCHIVE_PATH as O_STREAM_ARCHIVE_PATH } from "@omega";
+import { SAFE_WINDOW_STATUS_SAFE_WINDOW_STATUS as SAFE_WINDOW_STATUS, type SAFE_WINDOW_STATUS_SafeWindowStatus as SafeWindowStatus } from "@omega";
 
 export type OStreamHealth = {
   summary: ReturnType<typeof O_STREAM_SUMMARY>;

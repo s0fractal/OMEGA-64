@@ -2,8 +2,8 @@
 // OMEGA-64 | Gate Admission Report
 // Aggregates proposal admission metrics emitted by L32 gate.
 
-import { LEDGER } from "../0/LEDGER/_.ts";
-import type { LedgerEvent } from "../0/STATE_SNAPSHOT/_.ts";
+import { LEDGER__08_00_LEDGER as LEDGER } from "@omega";
+import type { STATE_SNAPSHOT_LedgerEvent as LedgerEvent } from "@omega";
 
 export interface GateAdmissionReportOptions {
   startTick?: number;
