@@ -1,4 +1,4 @@
-vector: 07.05.06
+vector: 61.05.06
 symbol: "RANK"
 desc: "Tensor rank retrieval"
 legacy_idx: 2

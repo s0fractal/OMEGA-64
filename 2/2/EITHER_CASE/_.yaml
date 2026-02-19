@@ -1,4 +1,4 @@
-vector: 02.02.05
+vector: 18.02.05
 symbol: "EITHER_CASE"
 desc: "Either Monad case analysis"
 legacy_idx: 45

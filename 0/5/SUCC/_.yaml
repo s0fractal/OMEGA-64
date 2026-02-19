@@ -1,4 +1,4 @@
-vector: 00.05.02
+vector: 05.05.02
 symbol: "SUCC"
 desc: "Church Successor"
 legacy_idx: 58

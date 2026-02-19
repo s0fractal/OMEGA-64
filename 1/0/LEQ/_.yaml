@@ -1,4 +1,4 @@
-vector: 01.00.04
+vector: 08.00.04
 symbol: "LEQ"
 desc: "Church Less or Equal"
 legacy_idx: 55

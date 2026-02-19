@@ -7,7 +7,7 @@ import { CANON_CAUSAL_BRIDGE } from "@omega";
 import { REPLAY_AUDIT__08_00_REPLAY_AUDIT as REPLAY_AUDIT } from "@omega";
 import { LEDGER__08_00_LEDGER as LEDGER } from "@omega";
 import { PROJECTION_DRIFT_ANALYTICS_PROJECTION_DRIFT_ANALYTICS as PROJECTION_DRIFT_ANALYTICS } from "@omega";
-import { DETERMINISM_LAWS } from "@omega";
+import { parse as parseYaml } from "jsr:@std/yaml";
 
 export interface MutationRequest {
     atomId: string;
@@ -94,8 +94,8 @@ export const MUTATE = {
             return { ok: false, reason: "MISSING_INVARIANT_PACKET" };
         }
 
-        // Determinism Law Audit (Physics Gate)
-        const audit = DETERMINISM_LAWS.audit({ atomId, content });
+        // Determinism Law Audit (Firewall token gate)
+        const audit = await auditForbiddenTokens(atomId, content);
         if (!audit.ok) {
             const reasonText = audit.reasons.join("|");
             return { ok: false, reason: `DETERMINISM_LAW_VIOLATION:${reasonText}` };
@@ -199,4 +199,59 @@ export const MUTATE = {
             return "NULL_OR_MISSING";
         }
     }
+};
+
+type FirewallRule = {
+    id: string;
+    scope: string;
+    action: string;
+    status: string;
+    deny?: string[];
+};
+
+const CODEX_PATH = "./8/2/CODEX_RULES/_.yaml";
+let cachedRules: FirewallRule[] | null = null;
+
+const loadFirewallRules = async (): Promise<FirewallRule[]> => {
+    if (cachedRules) return cachedRules;
+    try {
+        const rawText = await Deno.readTextFile(CODEX_PATH);
+        const raw = parseYaml(rawText) as { rules?: FirewallRule[] };
+        cachedRules = Array.isArray(raw?.rules) ? raw.rules : [];
+    } catch {
+        cachedRules = [];
+    }
+    return cachedRules;
+};
+
+const matchScope = (relPath: string, scope: string): boolean => {
+    if (scope.endsWith("/**")) {
+        const prefix = scope.slice(0, -3);
+        const rangeMatch = prefix.match(/^(\d)-(\d)$/);
+        if (rangeMatch) {
+            const min = Number(rangeMatch[1]);
+            const max = Number(rangeMatch[2]);
+            const head = relPath.split("/")[0];
+            const headNum = head ? Number(head) : NaN;
+            return Number.isFinite(headNum) && headNum >= min && headNum <= max;
+        }
+        return relPath.startsWith(prefix + "/") || relPath === prefix;
+    }
+    return false;
+};
+
+const auditForbiddenTokens = async (atomId: string, content: string): Promise<{ ok: boolean; reasons: string[] }> => {
+    const rules = await loadFirewallRules();
+    const relPath = atomId.replace(/^\.\//, "").replaceAll("\\", "/");
+    const reasons: string[] = [];
+    for (const rule of rules) {
+        if (rule.action !== "DENY_TOKENS") continue;
+        if (rule.status !== "ACTIVE") continue;
+        if (!matchScope(relPath, rule.scope)) continue;
+        const deny = Array.isArray(rule.deny) ? rule.deny : [];
+        for (const token of deny) {
+            if (token && content.includes(token)) reasons.push(`FORBIDDEN_TOKEN:${token}`);
+        }
+    }
+    return { ok: reasons.length === 0, reasons };
 };

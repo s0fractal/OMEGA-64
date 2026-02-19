@@ -3,10 +3,10 @@
 // The Meta-Processor for OMEGA-64 Flatland.
 // Scans the Root, Lifts Atoms, and Builds the Living Map.
 
-import { IMMUNE_IMMUNE as IMMUNE } from "@omega";
-import { DUAL__04_00_DUAL as DUAL } from "@omega";
+import { IMMUNE } from "../IMMUNE/_.ts";
+import { DUAL } from "../DUAL/_.ts";
 import { walk } from "jsr:@std/fs";
-import { SCHEMA_Atom as AtomSchema } from "@omega";
+import { Atom as AtomSchema } from "../SCHEMA/_.ts";
 import { parse as parseYaml } from "jsr:@std/yaml";
 
 export interface Atom {

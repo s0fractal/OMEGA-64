@@ -4,8 +4,8 @@
 // Filters Atoms based on Structure and Mass.
 // "Evolution does not need purity — it needs selection."
 
-import type { RIBOSOME_Atom as Atom } from "@omega";
-import { DUAL_COMPILER_DUAL as DUAL, DUAL_COMPILER_HyperAtom as HyperAtom } from "@omega";
+import type { Atom } from "../RIBOSOME/_.ts";
+import { DUAL, HyperAtom } from "../DUAL_COMPILER/_.ts";
 
 export const IMMUNE = {
     // 1. Recognition: Friend or Foe?

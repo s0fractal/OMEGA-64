@@ -10,6 +10,11 @@ export type QAtom = {
   q: { hue: number; phi: number; evt: number };
   anchor?: boolean;
   mass?: number;
+  forces?: {
+    self?: { charge?: number; gravity?: number; damping?: number; anchor?: boolean };
+    links?: Array<{ kind?: string; target?: string; strength?: number; axis?: string }>;
+    tension?: number;
+  };
 };
 
 export type QEdge = { source: string; target: string; weight?: number };

@@ -1,4 +1,4 @@
-vector: 01.07.00
+vector: 15.07.00
 symbol: "STREAM"
 desc: "Lazy stream primitive"
 legacy_idx: 48

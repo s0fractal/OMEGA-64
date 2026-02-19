@@ -1,4 +1,4 @@
-vector: 04.00.02
+vector: 32.00.02
 symbol: "SEND"
 desc: "Synchronous messaging primitive"
 legacy_idx: 31

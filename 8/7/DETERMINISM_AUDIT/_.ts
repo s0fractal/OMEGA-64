@@ -4,11 +4,11 @@
 
 /// <reference lib="deno.ns" />
 
-import { DETERMINISM_LAWS } from "@omega";
 import { DETERMINISM_BANDS_atomIdToBand as atomIdToBand, DETERMINISM_BANDS_atomIdToLevel as atomIdToLevel, DETERMINISM_BANDS_DeterminismBand as DeterminismBand } from "@omega";
 import { TELEMETRY as TELEMETRY_ATOM } from "@omega";
 import { TELEMETRY_SIGNAL as TELEMETRY_SIGNAL_ATOM } from "@omega";
 import { SIGNAL__07_07_SIGNAL as SIGNAL } from "@omega";
+import { parse as parseYaml } from "jsr:@std/yaml";
 
 const TELEMETRY = TELEMETRY_ATOM();
 const TELEMETRY_SIGNAL = TELEMETRY_SIGNAL_ATOM({
@@ -34,6 +34,61 @@ export interface DeterminismAuditReport {
 }
 
 const DEFAULT_ROOT = ".";
+const CODEX_PATH = "./8/2/CODEX_RULES/_.yaml";
+
+type FirewallRule = {
+    id: string;
+    scope: string;
+    action: string;
+    status: string;
+    deny?: string[];
+};
+
+let cachedRules: FirewallRule[] | null = null;
+
+const loadFirewallRules = async (): Promise<FirewallRule[]> => {
+    if (cachedRules) return cachedRules;
+    try {
+        const rawText = await Deno.readTextFile(CODEX_PATH);
+        const raw = parseYaml(rawText) as { rules?: FirewallRule[] };
+        cachedRules = Array.isArray(raw?.rules) ? raw.rules : [];
+    } catch {
+        cachedRules = [];
+    }
+    return cachedRules;
+};
+
+const matchScope = (relPath: string, scope: string): boolean => {
+    if (scope.endsWith("/**")) {
+        const prefix = scope.slice(0, -3);
+        const rangeMatch = prefix.match(/^(\d)-(\d)$/);
+        if (rangeMatch) {
+            const min = Number(rangeMatch[1]);
+            const max = Number(rangeMatch[2]);
+            const head = relPath.split("/")[0];
+            const headNum = head ? Number(head) : NaN;
+            return Number.isFinite(headNum) && headNum >= min && headNum <= max;
+        }
+        return relPath.startsWith(prefix + "/") || relPath === prefix;
+    }
+    return false;
+};
+
+const auditForbiddenTokens = async (atomId: string, content: string): Promise<{ ok: boolean; reasons: string[] }> => {
+    const rules = await loadFirewallRules();
+    const relPath = atomId.replace(/^\.\//, "").replaceAll("\\", "/");
+    const reasons: string[] = [];
+    for (const rule of rules) {
+        if (rule.action !== "DENY_TOKENS") continue;
+        if (rule.status !== "ACTIVE") continue;
+        if (!matchScope(relPath, rule.scope)) continue;
+        const deny = Array.isArray(rule.deny) ? rule.deny : [];
+        for (const token of deny) {
+            if (token && content.includes(token)) reasons.push(`FORBIDDEN_TOKEN:${token}`);
+        }
+    }
+    return { ok: reasons.length === 0, reasons };
+};
 
 const isCandidate = (path: string): boolean => {
     if (!path.endsWith(".ts")) return false;
@@ -84,7 +139,7 @@ export const DETERMINISM_AUDIT = {
             const band = atomIdToBand(canonicalId);
             const level = atomIdToLevel(canonicalId);
             const content = await Deno.readTextFile(path);
-            const result = DETERMINISM_LAWS.audit({ atomId: canonicalId, content });
+            const result = await auditForbiddenTokens(canonicalId, content);
 
             byBand[band] += 1;
             records.push({

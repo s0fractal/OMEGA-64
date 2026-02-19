@@ -1,9 +1,4 @@
 
-/**
- * [0/0/POTENTIAL/_.ts]
- * Inverted from Legacy L-1. Level 64 (Out of bounds, Genesis).
- * Probabilistic space before form.
- */
 export interface PotentialField {
     density: Float32Array;
     entropy: number;

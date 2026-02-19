@@ -1,4 +1,4 @@
-vector: 03.02.02
+vector: 26.02.02
 symbol: "TELL"
 desc: "Writer Monad tell operation"
 legacy_idx: 37

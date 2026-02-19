@@ -2,8 +2,8 @@
 // Exports the Q-Space state to JSON for 3D visualization.
 // Canon-aware: reads relations + vectors from 0..8/**/_.yaml.
 
-import { RIBOSOME_RIBOSOME as RIBOSOME } from "@omega";
-import { Q_PHYSICS, Q_PHYSICS_QAtom as QAtom } from "@omega";
+import { RIBOSOME } from "../4/0/RIBOSOME/_.ts";
+import { Q_PHYSICS, QAtom } from "../4/0/Q_PHYSICS/_.ts";
 import { parse } from "jsr:@std/yaml";
 
 console.log("Scanning Real Q-Space Data (YAML Relations)...");
@@ -27,7 +27,10 @@ const findByName = (name: string): string | null => {
 
 for (const [id, atom] of lattice) {
     let L = 0, D = 0, V = 0;
+    let sector = 0, orbit = 0, variant = 0;
+    let vector = "";
     let q = { hue: 0, phi: 0, evt: 0 };
+    let forces: any = undefined;
     let deps: string[] = [];
 
     try {
@@ -44,11 +47,12 @@ for (const [id, atom] of lattice) {
 
                 // Parse Vector
                 if (meta.vector) {
-                    const parts = String(meta.vector).split('.');
+                    vector = String(meta.vector);
+                    const parts = vector.split('.');
                     if (parts.length === 3) {
-                        L = parseInt(parts[0]);
-                        D = parseInt(parts[1]);
-                        V = parseInt(parts[2]);
+                        sector = parseInt(parts[0]);
+                        orbit = parseInt(parts[1]);
+                        variant = parseInt(parts[2]);
                     }
                 }
 
@@ -71,21 +75,31 @@ for (const [id, atom] of lattice) {
                     if (typeof meta.q.phi === "number") q.phi = meta.q.phi;
                     if (typeof meta.q.evt === "number") q.evt = meta.q.evt;
                 }
+
+                if (meta.forces) {
+                    forces = meta.forces;
+                }
             } catch (e) {
                 console.error(`Error parsing YAML for ${id}`, e);
             }
         }
 
         // Fallback L from canonical id if YAML missing
-        if (L === 0) {
+        if (!vector) {
             const parts = id.split("/");
-            const sector = parseInt(parts[0] ?? "0");
-            const orbit = parseInt(parts[1] ?? "0");
-            if (Number.isFinite(sector) && Number.isFinite(orbit)) {
-                L = sector === 8 ? 63 : (sector * 8 + orbit);
-                if (D === 0) D = L;
+            const s = parseInt(parts[0] ?? "0");
+            const o = parseInt(parts[1] ?? "0");
+            if (Number.isFinite(s) && Number.isFinite(o)) {
+                sector = s;
+                orbit = o;
+                variant = 0;
             }
         }
+
+        // Derive semantic level from octal sector/orbit
+        L = sector === 8 ? 63 : (sector * 8 + orbit);
+        D = orbit;
+        V = variant;
 
         // 2. Read TS file ONLY for Q-State (Behavior) if needed
         let tsContent = "";
@@ -128,8 +142,10 @@ for (const [id, atom] of lattice) {
         level: L, // Semantic Level (0-63)
 
         D, V,
+        sector, orbit, variant, vector,
         q,
-        mass: deps.length
+        mass: deps.length,
+        forces
     } as any); // Cast to any to allow extra 'level' field
 }
 
@@ -155,7 +171,8 @@ for (const [id, atom] of finalText) {
     if (newLevel < 0) newLevel = 0;
     if (newLevel > 63) newLevel = 63;
 
-    const newVector = `${Math.round(newLevel)}.${Math.round(atom.D)}.${atom.V}`;
+    const pad2 = (n: number) => String(Math.round(n)).padStart(2, "0");
+    const newVector = `${pad2(newLevel)}.${pad2(atom.D)}.${pad2(atom.V)}`;
 
     const yamlPath = `./${id}/_.yaml`;
     try {
@@ -179,7 +196,12 @@ const exportData = {
         level: (a as any).level, // Semantic Level
         D: a.D,
         V: a.V,
-        tension: a.mass || 0, // Need to separate mass from tension in future
+        sector: (a as any).sector,
+        orbit: (a as any).orbit,
+        variant: (a as any).variant,
+        vector: (a as any).vector,
+        tension: (a.forces && typeof a.forces.tension === "number") ? a.forces.tension : (a.mass || 0),
+        forces: a.forces,
         isMirror: a.id.startsWith("mirror"),
         debug: a.debug // Force Vectors
     })),

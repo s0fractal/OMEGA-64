@@ -10,7 +10,7 @@ import { relative } from "jsr:@std/path";
 import { Atom as AtomSchema } from "../4/0/SCHEMA/_.ts";
 
 const VECTOR_00 = /^\d{2}\.\d{2}\.\d{2}$/;
-const RULES_PATH = "./8/2/FIREWALL_RULES/_.yaml";
+const RULES_PATH = "./8/2/CODEX_RULES/_.yaml";
 
 type FirewallRule = {
     id: string;

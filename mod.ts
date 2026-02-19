@@ -66,7 +66,6 @@ export { DeterminismBand as DETERMINISM_BANDS_DeterminismBand } from "./8/0/DETE
 export { atomIdToBand as DETERMINISM_BANDS_atomIdToBand } from "./8/0/DETERMINISM_BANDS/_.ts";
 export { atomIdToLevel as DETERMINISM_BANDS_atomIdToLevel } from "./8/0/DETERMINISM_BANDS/_.ts";
 export { levelToBand as DETERMINISM_BANDS_levelToBand } from "./8/0/DETERMINISM_BANDS/_.ts";
-export { ATOM as DETERMINISM_LAWS } from "./0/1/DETERMINISM_LAWS/_.ts";
 export { ATOM as DIM } from "./5/0/DIM/_.ts";
 export { DISCOVERY as DISCOVERY_DISCOVERY } from "./8/0/DISCOVERY/_.ts";
 export { ATOM as DISSOLVE } from "./1/2/DISSOLVE/_.ts";
@@ -431,6 +430,7 @@ export { SAFE_WINDOW_STATUS as SAFE_WINDOW_STATUS_SAFE_WINDOW_STATUS } from "./8
 export { SafeWindowStatus as SAFE_WINDOW_STATUS_SafeWindowStatus } from "./8/1/SAFE_WINDOW_STATUS/_.ts";
 export { STATE as SANDBOX_STATE } from "./8/7/SANDBOX/_.ts";
 export { Atom as SCHEMA_Atom } from "./4/0/SCHEMA/_.ts";
+export { FirewallRule as SCHEMA_FirewallRule } from "./4/0/SCHEMA/_.ts";
 export { IAtom as SCHEMA_IAtom } from "./4/0/SCHEMA/_.ts";
 export { QState as SCHEMA_QState } from "./4/0/SCHEMA/_.ts";
 export { Relations as SCHEMA_Relations } from "./4/0/SCHEMA/_.ts";

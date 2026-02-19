@@ -1,4 +1,4 @@
-vector: 07.04.00
+vector: 60.04.00
 symbol: "TELEMETRY"
 desc: "System Event Telemetry Constructor"
 legacy_idx: 3

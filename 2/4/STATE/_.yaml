@@ -1,4 +1,4 @@
-vector: 02.04.00
+vector: 20.04.00
 symbol: "STATE"
 desc: "Atomic State representation"
 legacy_idx: 43

@@ -10,7 +10,7 @@
     "audit:dipole:strict": "deno run -A 8/5/DIPOLE_IMPORT_AUDIT/_.ts --ts CONVERGE32 --mode FAIL --no-cache",
     "audit:yaml": "deno run -A e/AUDIT_YAML.ts",
     "audit:root": "deno run -A e/AUDIT_ROOT_CANON.ts",
-    "audit:firewall": "deno run -A e/AUDIT_FIREWALL.ts",
+    "audit:codex": "deno run -A e/AUDIT_CODEX.ts",
     "export:sigma": "deno run -A e/EXPORT_SIGMA_CANON.ts --mode entity",
     "export:sigma:qview": "deno run -A e/EXPORT_SIGMA_CANON.ts --mode entity --include-q-view",
     "export:sigma:qlegacy": "deno run -A e/EXPORT_SIGMA_CANON.ts --mode entity --include-q-legacy",

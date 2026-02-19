@@ -1,4 +1,4 @@
-vector: 03.00.03
+vector: 24.00.03
 symbol: "MACHINE"
 desc: "Atomic State Machine constructor"
 legacy_idx: 39
