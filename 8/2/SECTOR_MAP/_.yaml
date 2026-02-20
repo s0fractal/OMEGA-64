@@ -1,0 +1,4 @@
+vector: 08.02.11
+symbol: SECTOR_MAP
+desc: "64 Sector Contexts (00..63) - Red Channel."
+origin: ./_.md
