@@ -17,6 +17,7 @@ const parseArgs = (args: string[]) => {
     mode: string;
     includeQView: boolean;
     includeQLegacy: boolean;
+    segment?: string;
     help: boolean;
   } = {
     root: DEFAULT_ROOT,
@@ -24,6 +25,7 @@ const parseArgs = (args: string[]) => {
     mode: DEFAULT_MODE,
     includeQView: false,
     includeQLegacy: false,
+    segment: undefined as string | undefined,
     help: false,
   };
   for (let i = 0; i < args.length; i++) {
@@ -55,6 +57,11 @@ const parseArgs = (args: string[]) => {
       out.includeQLegacy = true; // legacy no-op
       continue;
     }
+    if (arg === "--segment") {
+      out.segment = args[i + 1];
+      i += 1;
+      continue;
+    }
   }
   return out;
 };
@@ -68,6 +75,7 @@ const usage = (): string =>
     `  root: ${DEFAULT_ROOT}`,
     `  output: ${DEFAULT_OUTPUT}`,
     `  mode: ${DEFAULT_MODE}`,
+    "  --segment <SSOO>: Filter by sector and orbit (e.g. 82 for 8/2)",
   ].join("\n");
 
 const header = (title: string): string => `# ${title}`;
@@ -143,15 +151,20 @@ const projectionSort = (a: Projection, b: Projection): number => {
   return a.path.localeCompare(b.path);
 };
 
-const collectAtoms = async (root: string): Promise<AtomEntry[]> => {
+const collectAtoms = async (root: string, segment?: string): Promise<AtomEntry[]> => {
   const entries: AtomEntry[] = [];
+  const filterSector = segment ? Number.parseInt(segment[0], 10) : null;
+  const filterOrbit = segment ? Number.parseInt(segment[1], 10) : null;
+
   for (let sector = 0; sector <= 8; sector++) {
+    if (filterSector !== null && sector !== filterSector) continue;
     const sectorDir = `${root}/${sector}`;
     try {
       for await (const orbitEntry of Deno.readDir(sectorDir)) {
         if (!orbitEntry.isDirectory) continue;
         if (!/^\d$/.test(orbitEntry.name)) continue;
         const orbit = Number.parseInt(orbitEntry.name, 10);
+        if (filterOrbit !== null && orbit !== filterOrbit) continue;
         const orbitDir = `${sectorDir}/${orbitEntry.name}`;
         for await (const atomEntry of Deno.readDir(orbitDir)) {
           if (!atomEntry.isDirectory) continue;
@@ -217,7 +230,7 @@ const main = async () => {
     return;
   }
 
-  const atoms = await collectAtoms(args.root);
+  const atoms = await collectAtoms(args.root, args.segment);
   atoms.sort((a, b) =>
     a.level - b.level ||
     (a.vector ?? "").localeCompare(b.vector ?? "") ||
@@ -236,6 +249,9 @@ const main = async () => {
   lines.push(header("OMEGA-64 | I.sigma.md | Canon Fold"));
   lines.push("");
   lines.push(`Generated: ${new Date().toISOString()}`);
+  if (args.segment) {
+    lines.push(`Segment: ${args.segment[0]}/${args.segment[1]}`);
+  }
   lines.push("");
 
   const mode = args.mode.toLowerCase();

@@ -15,6 +15,7 @@
     "export:sigma:qview": "deno run -A e/EXPORT_SIGMA_CANON.ts --mode entity --include-q-view",
     "export:sigma:qlegacy": "deno run -A e/EXPORT_SIGMA_CANON.ts --mode entity --include-q-legacy",
     "export:sigma:level": "deno run -A e/EXPORT_SIGMA_CANON.ts --mode level",
+    "export:sigma:82": "deno run -A e/EXPORT_SIGMA_CANON.ts --mode entity --segment 82 --output I.sigma.82.md",
     "sigma:roundtrip": "deno run -A e/legacy/sigma_quine.ts --input I.sigma.md --output I.sigma.reassembled.md",
     "sigma:verify": "deno run -A e/legacy/sigma_quine.ts --input I.sigma.md --output I.sigma.reassembled.md --verify",
     "sigma:index": "deno run -A e/legacy/sigma_index.ts --input I.sigma.md --output I.sigma.index.json",
