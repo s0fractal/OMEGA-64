@@ -46,21 +46,29 @@ async function writeTsModule(atoms: Atom[]): Promise<void> {
   ];
 
   const lines: string[] = [];
+  const exported = new Set<string>();
+
   const sorted = atoms
     .slice()
     .sort((a, b) => a.symbol.localeCompare(b.symbol));
 
   for (const atom of sorted) {
-    // Currently, we don't have a direct way to export logic from .md in TS
-    // But we can export the metadata or a helper to load it.
-    // For now, let's export the symbol pointing to its address.
-    lines.push(`export const ${atom.symbol} = { id: "${atom.rel}", level: ${atom.level}, digest: "${atom.digest}" };`);
+    let exportName = atom.symbol;
+    if (exported.has(exportName)) {
+        // Collision! Append short logic hash (last 4 chars of logic)
+        const logicHash = atom.digest.slice(6, 10); // Take a slice of the logic part
+        exportName = `${atom.symbol}_${logicHash}`;
+    }
+    
+    lines.push(`export const ${exportName} = { id: "${atom.rel}", level: ${atom.level}, digest: "${atom.digest}" };`);
+    exported.add(exportName);
   }
 
   // Also include the core Organs
-  lines.push(`export { RIBOSOME } from "./RIBOSOME.ts";`);
-  lines.push(`export { GATE } from "./GATE.ts";`);
-  lines.push(`export { IMMUNE } from "./IMMUNE.ts";`);
+  const rootOrgans = ["RIBOSOME", "GATE", "IMMUNE", "RIBOSOME_TICK", "PULSE"];
+  for (const organ of rootOrgans) {
+      lines.push(`export { ${organ} } from "./${organ}.ts";`);
+  }
 
   const content = `${header.join("\n")}\n\n${lines.join("\n")}\n`;
   await Deno.writeTextFile(TS_TARGET, content);
@@ -69,4 +77,4 @@ async function writeTsModule(atoms: Atom[]): Promise<void> {
 const atoms = await collectAtoms();
 await writeTsModule(atoms);
 
-console.log(`[OMEGA] mod.ts generated with ${atoms.length} flat atoms and 3 root organs.`);
+console.log(`[OMEGA] mod.ts generated with ${atoms.length} flat atoms and core organs.`);

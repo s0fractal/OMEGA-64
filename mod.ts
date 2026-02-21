@@ -63,7 +63,7 @@ export const I16_CLAMP = { id: "0x9501C74EE881B6C4.I16_CLAMP.md", level: 0, dige
 export const I16_LIMITS = { id: "0x96AA18FB0E3F901A.I16_LIMITS.md", level: 0, digest: "0x96AA18FB0E3F901A" };
 export const IF_ELSE = { id: "0x32C5DC0C6543BB43.IF_ELSE.md", level: 2, digest: "0x32C5DC0C6543BB43" };
 export const INTERFACE = { id: "0x5DE8BD259AB5593E.INTERFACE.md", level: 7, digest: "0x5DE8BD259AB5593E" };
-export const INTERFACE = { id: "0xDC9499F479E91967.INTERFACE.md", level: 0, digest: "0xDC9499F479E91967" };
+export const INTERFACE_99F4 = { id: "0xDC9499F479E91967.INTERFACE.md", level: 0, digest: "0xDC9499F479E91967" };
 export const INTERFERENCE = { id: "0xDAC65AC96E59FBAC.INTERFERENCE.md", level: 6, digest: "0xDAC65AC96E59FBAC" };
 export const IS_ISO = { id: "0x68477B56776A52D1.IS_ISO.md", level: 7, digest: "0x68477B56776A52D1" };
 export const IS_NIL = { id: "0x48AC8997EBD2EFF2.IS_NIL.md", level: 6, digest: "0x48AC8997EBD2EFF2" };
@@ -182,3 +182,5 @@ export const Y = { id: "0x50DC9D1D6840824C.Y.md", level: 3, digest: "0x50DC9D1D6
 export { RIBOSOME } from "./RIBOSOME.ts";
 export { GATE } from "./GATE.ts";
 export { IMMUNE } from "./IMMUNE.ts";
+export { RIBOSOME_TICK } from "./RIBOSOME_TICK.ts";
+export { PULSE } from "./PULSE.ts";

@@ -181,7 +181,7 @@ const collectAtoms = async (root: string, segment?: string): Promise<AtomEntry[]
           sector: 8,
           orbit: 0,
           name: entry.name.replace(".ts", ""),
-          vector: `0xFFFFFFFF${entry.name.length.toString(16).padStart(8, '0')}`, // Synthetic Organs Address
+          vector: `0xFFFFFFFF${entry.name.length.toString(16).padStart(8, '0')}`, // Zone F: Meta (Synthetic)
           symbol: entry.name,
           desc: `Core System Organ: ${entry.name}`,
           level: 63,
@@ -199,7 +199,7 @@ const collectAtoms = async (root: string, segment?: string): Promise<AtomEntry[]
             sector: 8,
             orbit: 1,
             name: script.split("/").pop()!.replace(".ts", ""),
-            vector: `0xEEEEEEEE${script.length.toString(16).padStart(8, '0')}`, // Engine Logic Address
+            vector: `0xEEEEEEEE${script.length.toString(16).padStart(8, '0')}`, // Zone E: Engine Logic
             symbol: script,
             desc: `System Engine Logic: ${script}`,
             level: 63,
@@ -378,7 +378,9 @@ const main = async () => {
       const digest = vectorLabel.startsWith("0x") ? vectorLabel.slice(2) : vectorLabel;
       if (digest.length === 16) {
         const decoded = CRYSTAL.decode64(digest);
-        lines.push(`> **Logic**: \`${decoded.logic}\` | **Spatial**: \`${decoded.spatial}\` | **Quantum**: \`${decoded.quantum}\``);
+        const spatialStr = typeof decoded.spatial === "string" ? decoded.spatial : JSON.stringify(decoded.spatial);
+        const quantumStr = typeof decoded.quantum === "string" ? decoded.quantum : JSON.stringify(decoded.quantum);
+        lines.push(`> **Logic**: \`${decoded.logic}\` | **Spatial**: \`${spatialStr}\` | **Quantum**: \`${quantumStr}\``);
       }
 
       if (atom.desc) {
