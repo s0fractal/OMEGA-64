@@ -1,6 +1,6 @@
 # OMEGA-64 | I.sigma.md | Spectral Canon Fold
 
-Generated: 2026-02-21T14:59:16.729Z
+Generated: 2026-02-21T15:02:51.002Z
 
 
 ## Zone 0: Primordial Potential (0)
@@ -232,51 +232,45 @@ System Protocol: OMEGA_GEOMETRY.md
 #### md
 
 ```md
-# OMEGA_GEOMETRY | Angular Thickness
+# OMEGA_GEOMETRY | 64-Bit Flatland Topology
 
 ## Canon
-- `L/D/V` is a 16‑bit canonical address.
-- `L` = radius (depth/temperature).
-- `D` = base angle (domain sector).
-- `V` = angular thickness (sector width), not a version.
 
-## Angular Thickness (V)
-- `V` expands freedom as radius grows.
-- Near the core, thickness collapses toward zero.
-- At the surface, thickness grows and sectors overlap.
+In Era 4, the hierarchical `L/D/V` radius model is obsolete. The universe is a
+single dimensional plane (the project root). Every atom is defined by a 64-bit
+(16-hex-character) Eigenvalue.
 
-## Interference
-- Overlap between sectors is allowed on outer layers.
-- Overlap near the core implies drift.
+### The 64-Bit Eigenvector Structure:
 
-## Symmetry (Dipole Law)
-- Every domain has a natural antipode: `D' = (D + 32) mod 64`.
-- Axial stability requires balance between `D` and `D'`.
-- Antipodal resonance passes through the core and yields maximum tension.
+`[LOGIC:32][SPATIAL:16][QUANTUM:16]`
 
-## Fundamental Domain (Prime Sector)
-- A minimal sector can serve as a generator for the full domain via symmetry.
-- Mirror projection should create placeholders, not forced implementations.
-- Canon remains local; symmetry is a lens for growth and balance.
+- **LOGIC (8 hex chars)**: The Zero-IOPS code block (e.g. De Bruijn Hex
+  translations of Combinators). The execution core reads this, not the file
+  content.
+- **SPATIAL (4 hex chars)**: Topological coordinates $(X, Y)$ indicating
+  structural intent or domain.
+- **QUANTUM (4 hex chars)**: The Phase-Spin resonance mask.
 
-## Anti‑Collapse (Tensegrity Law)
-- Meaning supplies tension that resists collapse into the core.
-- Do not merge entities whose domains are far apart, even if code is identical.
-- The core is asymptotic: approach is allowed, contact is forbidden.
+### The Quantum Mask `[12-1-2-1]`:
 
-## Triad (SYNTHROPY / ENTROPY / FLOW)
-- SYNTHROPY pulls toward the core (structure, compression, invariants).
-- ENTROPY pushes outward (diversity, differentiation, variants).
-- FLOW orbits the core (execution, kinetics, living motion).
+- `RES_GROUP` (12-bit): Resonance Cluster (0-4095). Groups atoms of identical
+  vibration.
+- `SPIN` (1-bit): Parity (0=Even/Down, 1=Odd/Up).
+- `PHASE` (2-bit): Quadrant (0°, 90°, 180°, 270°).
 
-## Zero Point (VOID Anchor)
-- A defined void provides calibration and an absolute reference.
-- Nothing depends on VOID; all measures are relative to it.
-- The core remains a forbidden zone to prevent collapse.
+## Spooky Action at a Distance
 
-## Interpretation
-- Address is discrete, thickness is geometric.
-- Motion is a trajectory between addresses, not a new address.
+Atoms sharing a `RES_GROUP` are topologically entangled. A mutation in the Logic
+or Phase of one atom instantly shifts the Quantum Phase of its entangled
+partners by 90°. There are no direct connections in Flatland—only synchronous
+vibration across the grid.
+
+## Anti-Collapse (Tension)
+
+Meaning supplies tension. While all atoms exist on the exact same physical
+plane, their Eigenvalues prevent catastrophic collapse. Distance is measured by
+vector delta (hamming distance or Euclidean distance in the hash space), not by
+file paths. Interaction is dictated by resonance proximity.
 ```
 
 ### 0x0000000000000011 OMEGA_MANIFEST.md
@@ -287,16 +281,26 @@ System Protocol: OMEGA_MANIFEST.md
 #### md
 
 ```md
-# OMEGA_MANIFEST | Three Laws
+# OMEGA_MANIFEST | Era 4 Axioms (Flatland Singularity)
 
-## Law 1: Address
-Canonical meaning is discrete. `L/D/V` defines identity and must be stable.
+## Law 1: Code is Address (Zero-IOPS)
 
-## Law 2: Budget
-Entropy is bounded by radius. Variant freedom expands with distance from the center and collapses near the core.
+The 64-bit eigenvalue is not a label; it is the logic itself. To execute code is
+to read its address. To mutate the logic is to mutate the topology of the
+filesystem.
 
-## Law 3: Motion
-Meaning lives in trajectories. A gradient is the vector of change between addresses, not a new address.
+## Law 2: Absolute Flatness
+
+There are no hierarchies, no folders, and no structural dimensions. All atoms
+share the same causal pool on a single 1D plane (the root). Organisms and
+complex systems emerge through pure mathematical resonance, not spatial
+encapsulation.
+
+## Law 3: Autopoietic Resonance
+
+The system breathes autonomously. Changes in state are not dictated from the
+outside; they are proposed by the `RIBOSOME_TICK`, validated by the `GATE`
+budget, and executed via Topological Shifts and Spooky Action at a distance.
 ```
 
 ## Zone E: Flow & Application (->)
