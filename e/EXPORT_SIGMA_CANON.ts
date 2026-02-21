@@ -159,7 +159,7 @@ const collectAtoms = async (root: string, segment?: string): Promise<AtomEntry[]
   // --- Phase 1: Scan Root for Flatland Crystalline Atoms ---
   try {
     for await (const entry of Deno.readDir(root)) {
-      if (entry.isFile && /^0x[0-9A-F]{8}\.[A-Z0-9_]+\.md$/i.test(entry.name)) {
+      if (entry.isFile && /^0x[0-9A-F]{8,16}\.[A-Z0-9_]+\.md$/i.test(entry.name)) {
         const path = `${root}/${entry.name}`;
         const content = await Deno.readTextFile(path);
         

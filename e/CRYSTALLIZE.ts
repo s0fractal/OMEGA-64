@@ -1,7 +1,7 @@
 // OMEGA-64 | CRYSTALLIZE.ts | The Alchemist
 // Reads a pending atom, digests it, and moves it to its Flatland vector.
 
-import { CRYSTAL } from "./e/CRYSTAL_DIGEST.ts";
+import { CRYSTAL } from "./CRYSTAL_DIGEST.ts";
 import { move } from "jsr:@std/fs@^1.0.5";
 
 const atomFile = Deno.args[0];
@@ -15,6 +15,12 @@ try {
     const spectrum = await CRYSTAL.digest(content);
     const newPath = CRYSTAL.proposeVector(spectrum);
     
+    // Check if we are renaming (source != target)
+    if (atomFile === newPath) {
+        console.log(`✨ ${spectrum.alpha.symbol} is already at its terminal vector.`);
+        Deno.exit(0);
+    }
+
     console.log(`💎 Crystallizing ${spectrum.alpha.symbol}...`);
     console.log(`   Color: 0x${spectrum.digest}`);
     console.log(`   Vector: ${newPath}`);
@@ -22,8 +28,9 @@ try {
     await Deno.writeTextFile(newPath, content);
     console.log(`✅ Atom crystallized at ${newPath}`);
     
-    // Optional: remove source if it was a temporary draft
-    // await Deno.remove(atomFile);
+    // Remove source after successful migration
+    await Deno.remove(atomFile);
+    console.log(`🧹 Removed legacy vector: ${atomFile}`);
 } catch (e) {
     console.error("Crystallization failed:", e);
 }

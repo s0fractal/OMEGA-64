@@ -23,35 +23,32 @@ export interface CrystalSpectrum {
 export const CRYSTAL = {
     /**
      * Digest a crystalline markdown file into its ARGB components.
+     * Upgraded to 64-bit (16 hex chars) for OMEGA-64.
      */
     digest: async (content: string): Promise<CrystalSpectrum> => {
-        // 1. Extract Alpha (Frontmatter)
+        // ... (Extraction logic same as before)
         const frontmatterMatch = content.match(/^---\n([\s\S]+?)\n---\n/);
         const alphaRaw = frontmatterMatch ? frontmatterMatch[1] : "";
         const alpha = parseYaml(alphaRaw) as any;
 
-        // 2. Extract Red (Rust code block)
         const redMatch = content.match(/## RED \(R\)\n\n```rust\n([\s\S]+?)\n```/);
         const red = redMatch ? redMatch[1].trim() : "";
 
-        // 3. Extract Blue (TypeScript code block)
         const blueMatch = content.match(/## BLUE \(B\)\n\n```typescript\n([\s\S]+?)\n```/);
         const blue = blueMatch ? blueMatch[1].trim() : "";
 
-        // 4. Extract Green (Markdown intent - everything between --- and sections)
         const greenEndIndex = content.search(/## (RED|BLUE)/);
         const greenStartIndex = frontmatterMatch ? frontmatterMatch[0].length : 0;
         const green = content.slice(greenStartIndex, greenEndIndex !== -1 ? greenEndIndex : content.length).trim();
 
-        // 5. Calculate Eigenvalue (32-bit ARGB Digest)
-        // We hash (Red + Blue + Green) to ensure total isomorphism
+        // 5. Calculate 64-bit Eigenvalue (16 hex chars)
         const cargo = `RED:${red}\nBLUE:${blue}\nGREEN:${green}`;
         const data = new TextEncoder().encode(cargo);
         const hashBuffer = await crypto.subtle.digest("SHA-256", data);
         const fullHash = new Uint8Array(hashBuffer);
         
-        // Take first 4 bytes for a 32-bit "Color" fingerprint
-        const digest = Array.from(fullHash.slice(0, 4))
+        // Take 8 bytes for a 64-bit "Color" fingerprint
+        const digest = Array.from(fullHash.slice(0, 8))
             .map(b => b.toString(16).padStart(2, '0'))
             .join('').toUpperCase();
 
@@ -69,7 +66,6 @@ export const CRYSTAL = {
 
     /**
      * Check if a digest matches a bit-mask attractor.
-     * Example: digest "A88DD1F4" matches pattern "__8DD1F4" or "________"
      */
     matchAttractor: (digest: string, pattern: string): boolean => {
         if (pattern.startsWith("0x")) pattern = pattern.slice(2);
@@ -82,6 +78,60 @@ export const CRYSTAL = {
             if (digest[i].toUpperCase() !== pattern[i].toUpperCase()) return false;
         }
         return true;
+    },
+
+    /**
+     * Decode an Eigenvalue into a symbolic Lambda expression.
+     */
+    decodeEigenvalue: (digest: string): string => {
+        const mapping: Record<string, string> = {
+            '8': 'I', '9': 'K', 'A': 'S', 'B': 'Y',
+            'C': 'ROT', 'D': 'SYNC', 'E': '->', 'F': 'ESC'
+        };
+        
+        return digest.split('')
+            .map(char => mapping[char.toUpperCase()] ?? `[${char}]`)
+            .join(' ');
+    },
+
+    /**
+     * Encode a symbolic Lambda expression into an Eigenvalue prefix.
+     */
+    encodeLambda: (expression: string): string => {
+        const reverseMapping: Record<string, string> = {
+            'I': '8', 'K': '9', 'S': 'A', 'Y': 'B',
+            'ROT': 'C', 'SYNC': 'D', '->': 'E', 'ESC': 'F'
+        };
+        
+        return expression.split(/\s+/)
+            .map(sym => reverseMapping[sym.toUpperCase()] ?? '0')
+            .join('')
+            .padEnd(8, '0')
+            .slice(0, 8);
+    },
+
+    /**
+     * Find entangled partners in a list of digests based on a mask.
+     */
+    findEntangledPartners: (target: string, pool: string[], maskLength: number = 4): string[] => {
+        const mask = target.slice(-maskLength);
+        return pool.filter(d => d !== target && d.endsWith(mask));
+    },
+
+    /**
+     * Decode an Eigenvalue into its 64-bit components.
+     * [LOGIC:8][SPATIAL:4][QUANTUM:4]
+     */
+    decode64: (digest: string) => {
+        const logic = digest.slice(0, 8);
+        const spatial = digest.slice(8, 12);
+        const quantum = digest.slice(12, 16);
+        
+        return {
+            logic: CRYSTAL.decodeEigenvalue(logic),
+            spatial: `0x${spatial}`,
+            quantum: `Mask: 0x${quantum}`
+        };
     }
 };
 
@@ -108,11 +158,17 @@ export const ATOM = () => shift();
 `;
 
     const spectrum = await CRYSTAL.digest(testFile);
-    console.log("💎 CRYSTAL DIGESTED (FLATLAND MODE)");
+    console.log("💎 CRYSTAL DIGESTED (OMEGA-64 MODE)");
     console.log(`Eigenvalue (Color): 0x${spectrum.digest}`);
-    console.log(`Proposed Flat Vector: ${CRYSTAL.proposeVector(spectrum)}`);
+    
+    const decoded = CRYSTAL.decode64(spectrum.digest);
+    console.log(`\n🌀 64-BIT DECODING:`);
+    console.log(`   LOGIC:   ${decoded.logic}`);
+    console.log(`   SPATIAL: ${decoded.spatial}`);
+    console.log(`   QUANTUM: ${decoded.quantum}`);
 
-    const attractor = "0x__8DD1F4.md";
-    const isMatched = CRYSTAL.matchAttractor(spectrum.digest, attractor);
-    console.log(`Matching against ${attractor}: ${isMatched ? "🔥 MATCHED" : "❄️ COLD"}`);
+    const pool = [spectrum.digest, "BAE8D000AAAAF1D4", "DEADBEEF0000F1D4", "1234567890ABCDEF"];
+    const partners = CRYSTAL.findEntangledPartners(spectrum.digest, pool);
+    console.log(`\n✨ Entangled Partners for ${spectrum.digest}:`);
+    partners.forEach(p => console.log(`   - ${p} (Spooky Action!)`));
 }
