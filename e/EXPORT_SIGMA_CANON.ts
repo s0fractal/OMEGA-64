@@ -156,6 +156,58 @@ const collectAtoms = async (root: string, segment?: string): Promise<AtomEntry[]
   const filterSector = segment ? Number.parseInt(segment[0], 10) : null;
   const filterOrbit = segment ? Number.parseInt(segment[1], 10) : null;
 
+  // --- Phase 1: Scan Root for Flatland Crystalline Atoms ---
+  try {
+    for await (const entry of Deno.readDir(root)) {
+      if (entry.isFile && /^0x[0-9A-F]{8}\.[A-Z0-9_]+\.md$/i.test(entry.name)) {
+        const path = `${root}/${entry.name}`;
+        const content = await Deno.readTextFile(path);
+        
+        // Extract Alpha (YAML)
+        const frontmatterMatch = content.match(/^---\n([\s\S]+?)\n---\n/);
+        const alpha = frontmatterMatch ? parseYaml(frontmatterMatch[1]) as any : {};
+        
+        const symbol = entry.name.split(".")[1];
+        const digest = entry.name.split(".")[0].slice(2);
+        
+        const projections: Projection[] = [{
+          path,
+          label: "md",
+          lang: "md"
+        }];
+
+        // Extract Red/Blue blocks as projections if they exist
+        if (content.includes("## RED (R)")) {
+          projections.push({ path, label: "rs", lang: "rs" });
+        }
+        if (content.includes("## BLUE (B)")) {
+          projections.push({ path, label: "ts", lang: "ts" });
+        }
+        if (content.includes("---")) {
+          projections.push({ path, label: "yaml", lang: "yaml" });
+        }
+
+        const sector = alpha?.sector ?? 0;
+        const orbit = alpha?.orbit ?? 0;
+        const level = alpha?.level ?? levelFromSectorOrbit(sector, orbit);
+
+        entries.push({
+          sector,
+          orbit,
+          name: symbol,
+          vector: alpha?.vector ?? `0x${digest}`,
+          symbol: alpha?.symbol ?? symbol,
+          desc: alpha?.desc,
+          level,
+          projections: projections.sort(projectionSort),
+        });
+      }
+    }
+  } catch (e) {
+    console.error(`Error scanning root for Flatland atoms: ${e}`);
+  }
+
+  // --- Phase 2: Scan Legacy Octal Structure ---
   for (let sector = 0; sector <= 8; sector++) {
     if (filterSector !== null && sector !== filterSector) continue;
     const sectorDir = `${root}/${sector}`;

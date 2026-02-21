@@ -1,0 +1,58 @@
+---
+sector: 0
+orbit: 0
+symbol: KAIROS
+desc: "The Paradox-Locked Synchronizer. A Y-combinator based orbit that resolves logical contradictions by shifting them into complex phase dimensions."
+relations:
+  use: [RESONATOR, ROT, LUT]
+  concept: ["Paradox Resolution", "Causal Loop"]
+---
+
+# GREEN (G)
+
+**KAIROS** — це оператор розв'язання парадоксів. Коли система стикається з двома
+взаємовиключними істинами (наприклад, `1` та `-1` в одній точці), виникає
+деструктивна інтерференція, яка загрожує колапсом семантики.
+
+Кайрос діє як ортогональний зсув: він переводить обидві конфліктуючі сутності в
+уявну площину `i`, де вони можуть співіснувати у конструктивному резонансі. Це
+момент "слушного часу", коли протиріччя перетворюються на нову якість.
+
+## RED (R)
+
+```rust
+// Somatic Engine: Kairos Phase Shifter
+// (Placeholder for WASM-optimized phase rotation)
+
+#[no_mangle]
+pub fn shift_to_orthogonal(real: f64) -> (f64, f64) {
+    // Shifting real value to imaginary plane
+    (0.0, real)
+}
+```
+
+## BLUE (B)
+
+```typescript
+import { Y__00_00_RESONATOR as Y } from "@omega";
+import { ROT__00_00_ROT as ROT } from "@omega";
+import { SYNC__00_00_LUT as SYNC } from "@omega";
+
+/**
+ * KAIROS = Y (λk. λa. λb. SYNC (ROT a) (ROT³ b))
+ */
+export const KAIROS_STEP =
+  ({ siblings: { SYNC, ROT } }) => (k: any) => (a: any) => (b: any) => {
+    const rot = ROT();
+    // ROT³ is a 270 degree rotation, or -90.
+    const rot3 = (x: any) => rot(rot(rot(x)));
+
+    // Transform a -> i, and b -> i (if b was -1, ROT³(-1) = i)
+    return SYNC(rot(a))(rot3(b));
+  };
+
+export const ATOM = () => ({
+  KAIROS: (a: any) => (b: any) =>
+    Y()(KAIROS_STEP({ siblings: { SYNC: SYNC(), ROT: ROT() } }))(a)(b),
+});
+```

@@ -1,7 +1,0 @@
-vector: 00.00.15
-symbol: KAIROS
-desc: "The Paradox-Locked Synchronizer. A Y-combinator based orbit that resolves logical contradictions by shifting them into complex phase dimensions."
-origin: "./_.ts"
-relations:
-  use: [RESONATOR, ROT, LUT]
-  concept: ["Paradox Resolution", "Causal Loop"]

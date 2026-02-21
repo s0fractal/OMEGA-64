@@ -2,12 +2,16 @@
   "version": "5",
   "specifiers": {
     "jsr:@std/crypto@*": "1.0.5",
+    "jsr:@std/crypto@^1.0.3": "1.0.5",
     "jsr:@std/encoding@*": "1.0.10",
+    "jsr:@std/encoding@^1.0.5": "1.0.10",
     "jsr:@std/fs@*": "1.0.22",
+    "jsr:@std/fs@^1.0.5": "1.0.22",
     "jsr:@std/internal@^1.0.12": "1.0.12",
     "jsr:@std/path@*": "1.1.4",
     "jsr:@std/path@^1.1.4": "1.1.4",
     "jsr:@std/yaml@*": "1.0.11",
+    "jsr:@std/yaml@^1.0.5": "1.0.11",
     "npm:zod-to-json-schema@*": "3.25.1_zod@4.3.6",
     "npm:zod@*": "4.3.6"
   },
