@@ -1,4 +1,0 @@
-vector: 00.00.13
-symbol: OBSERVER
-desc: "Relational Subjective Projection atom. Implements the LOOK operator for phase-interference viewing."
-origin: "./_.ts"
