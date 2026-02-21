@@ -1,4 +1,5 @@
 ---
+eigenvalue: "0x29AC6A4D7FBF3A7B"
 vector: 00.00.10
 symbol: RESONATOR
 desc: "Active Toroidal Memory Loop. Uses a Y-combinator to create stable resonant orbits for lambda states."

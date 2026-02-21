@@ -1,4 +1,5 @@
 ---
+eigenvalue: "0xCCDC8BFF944015BA"
 sector: 8
 orbit: 2
 symbol: GENESIS_PARADOX

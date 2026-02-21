@@ -1,4 +1,5 @@
 ---
+eigenvalue: "0xB25B9F65BDAA5A9E"
 vector: 00.00.08
 symbol: ROT
 desc: "Complex Rotation Operator (90 degrees). Performs a cyclic shift on a 4-basis state."

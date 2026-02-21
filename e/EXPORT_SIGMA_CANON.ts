@@ -4,7 +4,8 @@
 
 /// <reference lib="deno.ns" />
 
-import { parse as parseYaml } from "jsr:@std/yaml";
+import { parse as parseYaml } from "jsr:@std/yaml@^1.0.5";
+import { CRYSTAL } from "./CRYSTAL_DIGEST.ts";
 
 const DEFAULT_OUTPUT = "I.sigma.md";
 const DEFAULT_ROOT = ".";
@@ -190,12 +191,15 @@ const collectAtoms = async (root: string, segment?: string): Promise<AtomEntry[]
         const sector = alpha?.sector ?? 0;
         const orbit = alpha?.orbit ?? 0;
         const level = alpha?.level ?? levelFromSectorOrbit(sector, orbit);
+        
+        // eigenvalue field is preferred over filename-derived vector
+        const eigenvalue = alpha?.eigenvalue ?? `0x${digest}`;
 
         entries.push({
           sector,
           orbit,
           name: symbol,
-          vector: alpha?.vector ?? `0x${digest}`,
+          vector: eigenvalue,
           symbol: alpha?.symbol ?? symbol,
           desc: alpha?.desc,
           level,
@@ -273,7 +277,31 @@ const collectAtoms = async (root: string, segment?: string): Promise<AtomEntry[]
   return entries;
 };
 
-const levelToken = (level: number): string => `L${String(level).padStart(2, "0")}`;
+const levelToken = (level: number, eigenvalue?: string): string => {
+  if (eigenvalue) {
+    const zone = eigenvalue.slice(2, 3).toUpperCase();
+    const mapping: Record<string, string> = {
+      '0': 'Zone 0: Primordial Potential (0)',
+      '1': 'Zone 1: Singularity & Origin (1)',
+      '2': 'Zone 2: Bilateral Symmetry (2)',
+      '3': 'Zone 3: Trinitary Flux (3)',
+      '4': 'Zone 4: Quaternary Structure (4)',
+      '5': 'Zone 5: Pentatonic Resonance (5)',
+      '6': 'Zone 6: Hexagonal Lattice (6)',
+      '7': 'Zone 7: Septenary Bridge (7)',
+      '8': 'Zone 8: Identity & Perception (I)',
+      '9': 'Zone 9: Constancy & State (K)',
+      'A': 'Zone A: Substitution & Action (S)',
+      'B': 'Zone B: Recursion & Life (Y)',
+      'C': 'Zone C: Rotation & Phase (ROT)',
+      'D': 'Zone D: Synchronization & Consensus (SYNC)',
+      'E': 'Zone E: Flow & Application (->)',
+      'F': 'Zone F: Meta & Escape (ESC)'
+    };
+    return mapping[zone] ?? `Zone ${zone}: Unknown Spectral Band`;
+  }
+  return `L${String(level).padStart(2, "0")}`;
+};
 
 const main = async () => {
   const args = parseArgs(Deno.args);
@@ -283,22 +311,24 @@ const main = async () => {
   }
 
   const atoms = await collectAtoms(args.root, args.segment);
-  atoms.sort((a, b) =>
-    a.level - b.level ||
-    (a.vector ?? "").localeCompare(b.vector ?? "") ||
-    a.name.localeCompare(b.name)
-  );
+  
+  // Sort by Zone (eigenvalue prefix) then by Symbol
+  atoms.sort((a, b) => {
+    const vA = a.vector ?? "";
+    const vB = b.vector ?? "";
+    return vA.localeCompare(vB) || a.name.localeCompare(b.name);
+  });
 
-  const byLevel = new Map<string, AtomEntry[]>();
+  const byGroup = new Map<string, AtomEntry[]>();
   for (const atom of atoms) {
-    const token = levelToken(atom.level);
-    const list = byLevel.get(token) ?? [];
+    const group = levelToken(atom.level, atom.vector?.startsWith("0x") ? atom.vector : undefined);
+    const list = byGroup.get(group) ?? [];
     list.push(atom);
-    byLevel.set(token, list);
+    byGroup.set(group, list);
   }
 
   const lines: string[] = [];
-  lines.push(header("OMEGA-64 | I.sigma.md | Canon Fold"));
+  lines.push(header("OMEGA-64 | I.sigma.md | Spectral Canon Fold"));
   lines.push("");
   lines.push(`Generated: ${new Date().toISOString()}`);
   if (args.segment) {
@@ -307,19 +337,22 @@ const main = async () => {
   lines.push("");
 
   const mode = args.mode.toLowerCase();
-  const levelKeys = Array.from(byLevel.keys()).sort((a, b) => {
-    const na = Number.parseInt(a.replace("L", ""), 10);
-    const nb = Number.parseInt(b.replace("L", ""), 10);
-    return (na - nb) || a.localeCompare(b);
+  
+  // Custom sorting for Spectral Zones
+  const groups = Array.from(byGroup.keys()).sort((a, b) => {
+    if (a.startsWith("Zone") && b.startsWith("Zone")) return a.localeCompare(b);
+    if (a.startsWith("Zone")) return -1;
+    if (b.startsWith("Zone")) return 1;
+    return a.localeCompare(b);
   });
 
-  for (const level of levelKeys) {
+  for (const group of groups) {
     lines.push("");
-    lines.push(subheader(level));
-    const levelAtoms = byLevel.get(level) ?? [];
+    lines.push(subheader(group));
+    const groupAtoms = byGroup.get(group) ?? [];
 
     if (mode === "level") {
-      for (const atom of levelAtoms) {
+      for (const atom of groupAtoms) {
         for (const proj of atom.projections) {
           const label = proj.path.startsWith("./") ? proj.path.slice(2) : proj.path;
           const content = await Deno.readTextFile(proj.path);
@@ -334,26 +367,38 @@ const main = async () => {
       continue;
     }
 
-    for (const atom of levelAtoms) {
-      const vectorLabel = atom.vector ? `${atom.vector}` : `${String(atom.level).padStart(2, "0")}.${String(atom.sector).padStart(2, "0")}.${String(atom.orbit).padStart(2, "0")}`;
-      const entityLabel = atom.symbol
-        ? `${vectorLabel} ${atom.symbol}`
-        : `${vectorLabel} ${atom.name}`;
+    for (const atom of groupAtoms) {
+      const vectorLabel = atom.vector ?? "0x0000000000000000";
+      const entityLabel = `${vectorLabel} ${atom.symbol ?? atom.name}`;
 
       lines.push("");
       lines.push(fileHeader(entityLabel));
+      
+      const digest = vectorLabel.startsWith("0x") ? vectorLabel.slice(2) : vectorLabel;
+      if (digest.length === 16) {
+        const decoded = CRYSTAL.decode64(digest);
+        lines.push(`> **Logic**: \`${decoded.logic}\` | **Spatial**: \`${decoded.spatial}\` | **Quantum**: \`${decoded.quantum}\``);
+      }
+
       if (atom.desc) {
         lines.push("");
         lines.push(atom.desc);
       }
 
+      const projsByPath = new Map<string, string[]>();
       for (const proj of atom.projections) {
-        const ext = proj.label;
-        const content = await Deno.readTextFile(proj.path);
+        const list = projsByPath.get(proj.path) ?? [];
+        list.push(proj.label);
+        projsByPath.set(proj.path, list);
+      }
+
+      for (const [path, labels] of projsByPath.entries()) {
+        const content = await Deno.readTextFile(path);
+        const lang = langFor(path);
         lines.push("");
-        lines.push(projectionHeader(ext));
+        lines.push(projectionHeader(labels.join(", ")));
         lines.push("");
-        lines.push(`\`\`\`${proj.lang}`);
+        lines.push(`\`\`\`${lang}`);
         lines.push(content.replace(/\s+$/, ""));
         lines.push("```");
       }
