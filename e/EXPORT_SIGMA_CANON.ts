@@ -174,7 +174,7 @@ const collectAtoms = async (root: string, segment?: string): Promise<AtomEntry[]
         if (content.includes("## BLUE (B)")) projections.push({ path, label: "ts", lang: "ts" });
         if (content.includes("---")) projections.push({ path, label: "yaml", lang: "yaml" });
 
-      } else if (entry.isFile && ["RIBOSOME.ts", "GATE.ts", "IMMUNE.ts", "RIBOSOME_TICK.ts", "PULSE.ts", "mod.ts"].includes(entry.name)) {
+      } else if (entry.isFile && ["RIBOSOME.ts", "GATE.ts", "IMMUNE.ts", "RIBOSOME_TICK.ts", "PULSE.ts", "mod.ts", "SHIMS.ts", "STATE_SNAPSHOT.ts"].includes(entry.name)) {
         // --- Special Handling for Organs ---
         const path = `${root}/${entry.name}`;
         entries.push({
@@ -187,10 +187,23 @@ const collectAtoms = async (root: string, segment?: string): Promise<AtomEntry[]
           level: 63,
           projections: [{ path, label: "ts", lang: "ts" }],
         });
+      } else if (entry.isFile && ["AGENTS.md", "OMEGA_GEOMETRY.md", "OMEGA_MANIFEST.md", "README.md"].includes(entry.name)) {
+        // --- Special Handling for Protocols (Axioms) ---
+        const path = `${root}/${entry.name}`;
+        entries.push({
+          sector: 0,
+          orbit: 0,
+          name: entry.name.replace(".md", ""),
+          vector: `0x00000000${entry.name.length.toString(16).padStart(8, '0')}`, // Zone 0: Primordial
+          symbol: entry.name,
+          desc: `System Protocol: ${entry.name}`,
+          level: 0,
+          projections: [{ path, label: "md", lang: "md" }],
+        });
       }
     }
     // Phase 1.1: Explicitly include key engine scripts from e/
-    const engineScripts = ["e/CRYSTAL_DIGEST.ts", "e/EXPORT_SIGMA_CANON.ts", "e/GENERATE_MOD_TS.ts"];
+    const engineScripts = ["e/CRYSTAL_DIGEST.ts", "e/EXPORT_SIGMA_CANON.ts", "e/GENERATE_MOD_TS.ts", "e/RIBOSOME_ZERO.ts"];
     for (const script of engineScripts) {
       try {
         const info = await Deno.stat(script);
