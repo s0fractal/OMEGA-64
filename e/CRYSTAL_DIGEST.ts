@@ -120,17 +120,35 @@ export const CRYSTAL = {
 
     /**
      * Decode an Eigenvalue into its 64-bit components.
-     * [LOGIC:8][SPATIAL:4][QUANTUM:4]
+     * [LOGIC:32][SPATIAL:16][QUANTUM:16]
+     * 
+     * Refined QUANTUM Structure: [RES_GROUP:12][SPIN:1][PHASE:2][UNUSED:1]
      */
     decode64: (digest: string) => {
         const logic = digest.slice(0, 8);
         const spatial = digest.slice(8, 12);
-        const quantum = digest.slice(12, 16);
+        const quantumHex = digest.slice(12, 16);
+        const quantumVal = parseInt(quantumHex, 16);
         
+        // Bitmask extraction
+        const resGroup = (quantumVal >> 4) & 0x0FFF;
+        const spin = (quantumVal >> 3) & 0x01;
+        const phase = (quantumVal >> 1) & 0x03;
+        
+        const phaseLabel = ["0°", "90°", "180°", "270°"][phase];
+        const spinLabel = spin === 1 ? "UP (Odd)" : "DOWN (Even)";
+
         return {
             logic: CRYSTAL.decodeEigenvalue(logic),
-            spatial: `0x${spatial}`,
-            quantum: `Mask: 0x${quantum}`
+            spatial: {
+                x: parseInt(spatial.slice(0, 2), 16),
+                y: parseInt(spatial.slice(2, 4), 16)
+            },
+            quantum: {
+                group: `0x${resGroup.toString(16).toUpperCase().padStart(3, '0')}`,
+                spin: spinLabel,
+                phase: phaseLabel
+            }
         };
     }
 };
@@ -164,8 +182,8 @@ export const ATOM = () => shift();
     const decoded = CRYSTAL.decode64(spectrum.digest);
     console.log(`\n🌀 64-BIT DECODING:`);
     console.log(`   LOGIC:   ${decoded.logic}`);
-    console.log(`   SPATIAL: ${decoded.spatial}`);
-    console.log(`   QUANTUM: ${decoded.quantum}`);
+    console.log(`   SPATIAL: ${JSON.stringify(decoded.spatial)}`);
+    console.log(`   QUANTUM: ${JSON.stringify(decoded.quantum)}`);
 
     const pool = [spectrum.digest, "BAE8D000AAAAF1D4", "DEADBEEF0000F1D4", "1234567890ABCDEF"];
     const partners = CRYSTAL.findEntangledPartners(spectrum.digest, pool);
