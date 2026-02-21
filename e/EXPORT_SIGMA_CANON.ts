@@ -174,16 +174,6 @@ const collectAtoms = async (root: string, segment?: string): Promise<AtomEntry[]
         if (content.includes("## BLUE (B)")) projections.push({ path, label: "ts", lang: "ts" });
         if (content.includes("---")) projections.push({ path, label: "yaml", lang: "yaml" });
 
-        entries.push({
-          sector: alpha?.sector ?? 0,
-          orbit: alpha?.orbit ?? 0,
-          name: symbol,
-          vector: alpha?.eigenvalue ?? `0x${digest}`,
-          symbol: alpha?.symbol ?? symbol,
-          desc: alpha?.desc,
-          level: alpha?.level ?? levelFromSectorOrbit(alpha?.sector ?? 0, alpha?.orbit ?? 0),
-          projections: projections.sort(projectionSort),
-        });
       } else if (entry.isFile && ["RIBOSOME.ts", "GATE.ts", "IMMUNE.ts", "RIBOSOME_TICK.ts", "PULSE.ts", "mod.ts"].includes(entry.name)) {
         // --- Special Handling for Organs ---
         const path = `${root}/${entry.name}`;
@@ -198,6 +188,25 @@ const collectAtoms = async (root: string, segment?: string): Promise<AtomEntry[]
           projections: [{ path, label: "ts", lang: "ts" }],
         });
       }
+    }
+    // Phase 1.1: Explicitly include key engine scripts from e/
+    const engineScripts = ["e/CRYSTAL_DIGEST.ts", "e/EXPORT_SIGMA_CANON.ts", "e/GENERATE_MOD_TS.ts"];
+    for (const script of engineScripts) {
+      try {
+        const info = await Deno.stat(script);
+        if (info.isFile) {
+          entries.push({
+            sector: 8,
+            orbit: 1,
+            name: script.split("/").pop()!.replace(".ts", ""),
+            vector: `0xEEEEEEEE${script.length.toString(16).padStart(8, '0')}`, // Engine Logic Address
+            symbol: script,
+            desc: `System Engine Logic: ${script}`,
+            level: 63,
+            projections: [{ path: script, label: "ts", lang: "ts" }],
+          });
+        }
+      } catch { /* ignore if missing */ }
     }
   } catch (e) {
     console.error(`Error scanning root for Flatland atoms: ${e}`);
