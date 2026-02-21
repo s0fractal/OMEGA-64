@@ -1,0 +1,7 @@
+vector: 00.00.12
+symbol: LUT
+desc: "Interference Crystal (Phase Diffraction Grating) for wave-based LUT logic. Includes the ANNEAL operator for resonance training."
+origin: "./_.ts"
+relations:
+  use: [ROT, BASIS]
+  concept: ["Diffraction", "Resonance Training", "LUT"]

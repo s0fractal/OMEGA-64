@@ -1,0 +1,21 @@
+/**
+ * GIFT: Noospheric Phase-State Packet
+ * A "Gift" is a state coupled with a destination phase.
+ * It is used for non-local exchange between resonators.
+ */
+
+export const GIFT = () => (state: any) => (phase: any) => ({
+  state,
+  phase,
+  timestamp: Date.now(),
+});
+
+/**
+ * Unwraps a gift by applying it to a receiver.
+ */
+export const UNWRAP = () => (gift: any) => (receiver: any) => receiver(gift.state)(gift.phase);
+
+export const ATOM = () => ({
+  GIFT,
+  UNWRAP,
+});

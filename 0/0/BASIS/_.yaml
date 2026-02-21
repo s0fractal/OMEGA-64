@@ -1,0 +1,4 @@
+vector: 00.00.09
+symbol: BASIS
+desc: "4-Dimensional Complex Basis states (1, i, -1, -i) for Quad-Logic."
+origin: "./_.ts"

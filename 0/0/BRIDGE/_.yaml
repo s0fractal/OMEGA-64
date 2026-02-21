@@ -1,0 +1,4 @@
+vector: 00.00.14
+symbol: BRIDGE
+desc: "Consensus Bridge for Phase-Locked Loop (PLL) alignment between observers. Allows shared reality viewing."
+origin: "./_.ts"
