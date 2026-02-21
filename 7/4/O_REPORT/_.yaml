@@ -1,6 +1,0 @@
-vector: 60.04.09
-symbol: "O_REPORT"
-desc: "Octal Logic Stub: O_REPORT"
-legacy_idx: 3
-origin: "./_.ts"
-tags: [RAW_V25]

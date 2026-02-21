@@ -1,7 +1,0 @@
-vector: 15.07.01
-symbol: "S_MAP"
-desc: "Stream map operation"
-legacy_idx: 48
-origin: "./_.ts"
-relations:
-  use: [Y, CAR, CDR, CONS]

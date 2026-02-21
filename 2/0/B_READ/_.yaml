@@ -1,5 +1,0 @@
-vector: 16.00.05
-symbol: "B_READ"
-desc: "Bit Read operation"
-legacy_idx: 47
-origin: "./_.ts"

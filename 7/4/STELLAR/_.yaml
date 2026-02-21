@@ -1,5 +1,0 @@
-vector: 60.04.04
-symbol: "STELLAR"
-desc: "Stellar scale factor"
-legacy_idx: 3
-origin: "./_.ts"

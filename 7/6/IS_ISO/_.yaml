@@ -1,7 +1,0 @@
-vector: 62.06.00
-symbol: "IS_ISO"
-desc: "Isomorphism check"
-legacy_idx: 57
-origin: "./_.ts"
-relations:
-  use: [REFL]

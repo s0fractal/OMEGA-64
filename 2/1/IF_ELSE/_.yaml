@@ -1,7 +1,0 @@
-vector: 17.01.01
-symbol: "IF_ELSE"
-desc: "Church IF_ELSE (using MUX)"
-legacy_idx: 46
-origin: "./_.ts"
-relations:
-  use: [MUX]

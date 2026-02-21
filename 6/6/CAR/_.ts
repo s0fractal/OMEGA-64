@@ -1,1 +1,0 @@
-import { T__00_00_T as T } from "@omega"; export const CAR = (p: any) => p(T);

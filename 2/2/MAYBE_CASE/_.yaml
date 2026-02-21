@@ -1,5 +1,0 @@
-vector: 18.02.02
-symbol: "MAYBE_CASE"
-desc: "Maybe Monad case analysis"
-legacy_idx: 45
-origin: "./_.ts"

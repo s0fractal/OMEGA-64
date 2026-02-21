@@ -1,5 +1,0 @@
-vector: 08.00.01
-symbol: "DYNAMICS"
-desc: "Physical dynamics primitive"
-legacy_idx: 55
-origin: "./_.ts"

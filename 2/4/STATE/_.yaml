@@ -1,5 +1,0 @@
-vector: 20.04.00
-symbol: "STATE"
-desc: "Atomic State representation"
-legacy_idx: 43
-origin: "./_.ts"

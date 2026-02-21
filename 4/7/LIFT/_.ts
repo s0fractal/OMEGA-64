@@ -1,1 +1,0 @@
-import { CAR__06_06_CAR as CAR } from "@omega"; import { CDR__06_06_CDR as CDR } from "@omega"; import { CONS__06_06_CONS as CONS } from "@omega"; export const LIFT = (f: any) => (obj: any) => CONS(f(CAR(obj)))(CDR(obj));

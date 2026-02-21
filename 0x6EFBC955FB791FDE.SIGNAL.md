@@ -1,0 +1,55 @@
+---
+eigenvalue: "0x6EFBC955FB791FDE"
+vector: 07.07.00
+symbol: "SIGNAL"
+desc: "The Semantic Membrane. Feedback and Orchestration signals for the Operator."
+---
+
+## GREEN (G)
+
+SIGNAL Operator. A structured mechanism for the system to communicate events,
+warnings, or requests to the Human Operator/Architect. Appends entries to
+`OMEGA_SIGNAL.md`.
+
+## BLUE (B)
+
+```typescript
+// 📡 OMEGA-64 | The Semantic Membrane
+export type SignalType = "INFO" | "WARNING" | "REQUEST" | "ERROR";
+
+export interface SignalPayload {
+  source: string;
+  message: string;
+  context?: Record<string, any>;
+}
+
+const SIGNAL_FILE = "./OMEGA_SIGNAL.md";
+
+export const ATOM = () => ({
+  emit: async (type: SignalType, payload: SignalPayload) => {
+    const timestamp = new Date().toISOString();
+    const icon = type === "INFO"
+      ? "🟢"
+      : type === "WARNING"
+      ? "🟡"
+      : type === "REQUEST"
+      ? "🔴"
+      : "⚫";
+
+    const contextBlock = payload.context
+      ? `\n**Context**:\n\`\`\`json\n${
+        JSON.stringify(payload.context, null, 2)
+      }\n\`\`\``
+      : "";
+
+    const entry =
+      `\n## [${timestamp}] ${icon} ${type}\n**Source**: \`${payload.source}\`\n**Message**: ${payload.message}${contextBlock}\n---\n`;
+
+    try {
+      await Deno.writeTextFile(SIGNAL_FILE, entry, { append: true });
+    } catch (e) {
+      throw e;
+    }
+  },
+});
+```

@@ -1,7 +1,0 @@
-vector: 39.07.06
-symbol: "COORD_Z"
-desc: "Spatial coordinate Z"
-legacy_idx: 24
-origin: "./_.ts"
-relations:
-  use: [T3]

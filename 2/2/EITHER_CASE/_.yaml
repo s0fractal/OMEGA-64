@@ -1,5 +1,0 @@
-vector: 18.02.05
-symbol: "EITHER_CASE"
-desc: "Either Monad case analysis"
-legacy_idx: 45
-origin: "./_.ts"

@@ -1,7 +1,0 @@
-vector: 31.07.06
-symbol: "CAR"
-desc: "Church CAR (Head)"
-legacy_idx: 32
-origin: "./_.ts"
-relations:
-  use: [T]

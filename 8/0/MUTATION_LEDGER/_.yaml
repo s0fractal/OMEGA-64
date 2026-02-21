@@ -1,7 +1,0 @@
-vector: 08.00.01
-symbol: "MUTATION_LEDGER"
-desc: "Experimental L99 Atom: MUTATION_LEDGER"
-legacy_idx: 99
-origin: "./_.ts"
-relations:
-  use: [TOPOLOGICAL_SIGNATURE]

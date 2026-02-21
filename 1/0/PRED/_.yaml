@@ -1,5 +1,0 @@
-vector: 08.00.02
-symbol: "PRED"
-desc: "Church Predecessor"
-legacy_idx: 55
-origin: "./_.ts"

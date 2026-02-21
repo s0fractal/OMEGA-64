@@ -1,5 +1,0 @@
-vector: 20.04.02
-symbol: "GET"
-desc: "System State Retrieval (IO)"
-legacy_idx: 43
-origin: "./_.ts"

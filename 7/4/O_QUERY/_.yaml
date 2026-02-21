@@ -1,6 +1,0 @@
-vector: 60.04.13
-symbol: "O_QUERY"
-desc: "Octal Logic Stub: O_QUERY"
-legacy_idx: 3
-origin: "./_.ts"
-tags: [RAW_V93]

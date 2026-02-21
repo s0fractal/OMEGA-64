@@ -1,7 +1,0 @@
-vector: 41.01.01
-symbol: "TICK"
-desc: "System clock tick"
-legacy_idx: 22
-origin: "./_.ts"
-relations:
-  use: [SUCC]

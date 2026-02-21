@@ -1,5 +1,0 @@
-vector: 22.06.02
-symbol: "JOIN"
-desc: "Logical Join Operation"
-legacy_idx: 41
-origin: "./_.ts"

@@ -1,7 +1,0 @@
-vector: 61.05.01
-symbol: "PURGE"
-desc: "Structural Integrity Cleansing"
-legacy_idx: 2
-relations:
-  use: [TELEMETRY_SIGNAL, TELEMETRY, MUTATE]
-origin: "./_.ts"

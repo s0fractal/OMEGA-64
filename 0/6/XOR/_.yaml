@@ -1,7 +1,0 @@
-vector: 06.06.01
-symbol: "XOR"
-desc: "Church XOR"
-legacy_idx: 57
-origin: "./_.ts"
-relations:
-  use: [NOT]

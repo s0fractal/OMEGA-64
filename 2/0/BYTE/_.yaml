@@ -1,7 +1,0 @@
-vector: 02.00.06
-symbol: "BYTE"
-desc: "Byte constructor (8-bit)"
-legacy_idx: 47
-origin: "./_.ts"
-relations:
-  use: [CONS]

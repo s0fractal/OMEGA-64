@@ -161,49 +161,41 @@ const collectAtoms = async (root: string, segment?: string): Promise<AtomEntry[]
   try {
     for await (const entry of Deno.readDir(root)) {
       if (entry.isFile && /^0x[0-9A-F]{8,16}\.[A-Z0-9_]+\.md$/i.test(entry.name)) {
+        // ... (existing crystal logic)
         const path = `${root}/${entry.name}`;
         const content = await Deno.readTextFile(path);
-        
-        // Extract Alpha (YAML)
         const frontmatterMatch = content.match(/^---\n([\s\S]+?)\n---\n/);
         const alpha = frontmatterMatch ? parseYaml(frontmatterMatch[1]) as any : {};
-        
         const symbol = entry.name.split(".")[1];
         const digest = entry.name.split(".")[0].slice(2);
         
-        const projections: Projection[] = [{
-          path,
-          label: "md",
-          lang: "md"
-        }];
-
-        // Extract Red/Blue blocks as projections if they exist
-        if (content.includes("## RED (R)")) {
-          projections.push({ path, label: "rs", lang: "rs" });
-        }
-        if (content.includes("## BLUE (B)")) {
-          projections.push({ path, label: "ts", lang: "ts" });
-        }
-        if (content.includes("---")) {
-          projections.push({ path, label: "yaml", lang: "yaml" });
-        }
-
-        const sector = alpha?.sector ?? 0;
-        const orbit = alpha?.orbit ?? 0;
-        const level = alpha?.level ?? levelFromSectorOrbit(sector, orbit);
-        
-        // eigenvalue field is preferred over filename-derived vector
-        const eigenvalue = alpha?.eigenvalue ?? `0x${digest}`;
+        const projections: Projection[] = [{ path, label: "md", lang: "md" }];
+        if (content.includes("## RED (R)")) projections.push({ path, label: "rs", lang: "rs" });
+        if (content.includes("## BLUE (B)")) projections.push({ path, label: "ts", lang: "ts" });
+        if (content.includes("---")) projections.push({ path, label: "yaml", lang: "yaml" });
 
         entries.push({
-          sector,
-          orbit,
+          sector: alpha?.sector ?? 0,
+          orbit: alpha?.orbit ?? 0,
           name: symbol,
-          vector: eigenvalue,
+          vector: alpha?.eigenvalue ?? `0x${digest}`,
           symbol: alpha?.symbol ?? symbol,
           desc: alpha?.desc,
-          level,
+          level: alpha?.level ?? levelFromSectorOrbit(alpha?.sector ?? 0, alpha?.orbit ?? 0),
           projections: projections.sort(projectionSort),
+        });
+      } else if (entry.isFile && ["RIBOSOME.ts", "GATE.ts", "IMMUNE.ts", "RIBOSOME_TICK.ts", "PULSE.ts", "mod.ts"].includes(entry.name)) {
+        // --- Special Handling for Organs ---
+        const path = `${root}/${entry.name}`;
+        entries.push({
+          sector: 8,
+          orbit: 0,
+          name: entry.name.replace(".ts", ""),
+          vector: `0xFFFFFFFF${entry.name.length.toString(16).padStart(8, '0')}`, // Synthetic Organs Address
+          symbol: entry.name,
+          desc: `Core System Organ: ${entry.name}`,
+          level: 63,
+          projections: [{ path, label: "ts", lang: "ts" }],
         });
       }
     }

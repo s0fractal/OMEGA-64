@@ -1,7 +1,0 @@
-vector: 41.01.02
-symbol: "SEQUENCE"
-desc: "Immutable sequence constructor"
-legacy_idx: 22
-origin: "./_.ts"
-relations:
-  use: [CONS]

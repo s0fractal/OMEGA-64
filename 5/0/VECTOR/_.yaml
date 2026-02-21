@@ -1,7 +1,0 @@
-vector: 40.00.01
-symbol: "VECTOR"
-desc: "N-dimensional vector"
-legacy_idx: 23
-origin: "./_.ts"
-relations:
-  use: [CONS]

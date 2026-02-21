@@ -1,5 +1,0 @@
-vector: 05.05.02
-symbol: "SUCC"
-desc: "Church Successor"
-legacy_idx: 58
-origin: "./_.ts"

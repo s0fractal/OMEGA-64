@@ -1,7 +1,0 @@
-vector: 15.07.02
-symbol: "S_HEAD"
-desc: "Stream head access"
-legacy_idx: 48
-origin: "./_.ts"
-relations:
-  use: [CAR]

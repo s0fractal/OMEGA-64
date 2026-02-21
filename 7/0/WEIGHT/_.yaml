@@ -1,7 +1,0 @@
-vector: 56.00.02
-symbol: "WEIGHT"
-desc: "Gravitational weight force"
-legacy_idx: 8
-origin: "./_.ts"
-relations:
-  use: [GRAVITY]

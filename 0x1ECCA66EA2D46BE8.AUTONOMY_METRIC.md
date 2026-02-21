@@ -1,0 +1,29 @@
+---
+eigenvalue: "0x1ECCA66EA2D46BE8"
+vector: 08.07.01
+symbol: "AUTONOMY_METRIC"
+desc: "The Sovereign Score. Measures the breath of the crystal [0..1]."
+---
+
+## GREEN (G)
+
+Autonomy Metric. Computes the current Sovereignty Score based on State
+regularity, Governance activity, and Code immutability. `compute() => Report`.
+
+## BLUE (B)
+
+```typescript
+/**
+ * AUTONOMY_METRIC: Sovereign Score
+ */
+export const ATOM = ({ siblings: { MUTATE } }) => ({
+  compute: async (): Promise<any> => {
+    const window = await MUTATE.checkSovereignty();
+    const codeAutonomy = window.ok ? 1.0 : 0.0;
+    const levels = { state: 1.0, gov: 0.5, code: codeAutonomy };
+    const score = (levels.state * 0.3) + (levels.gov * 0.3) +
+      (levels.code * 0.4);
+    return { score, levels, timestamp: Date.now() };
+  },
+});
+```

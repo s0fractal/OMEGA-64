@@ -1,7 +1,0 @@
-vector: 10.02.03
-symbol: "DISSOLVE"
-desc: "Entropy dissolution"
-legacy_idx: 46
-origin: "./_.ts"
-relations:
-  use: [NIL]

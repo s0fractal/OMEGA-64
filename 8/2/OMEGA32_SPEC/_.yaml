@@ -1,4 +1,0 @@
-vector: 08.02.11
-symbol: OMEGA32_SPEC
-desc: "u32 AtomID standard (Flags + Sector + Intent + Depth)."
-origin: ./_.md

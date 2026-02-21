@@ -1,5 +1,0 @@
-vector: 31.07.05
-symbol: "CONS"
-desc: "Church CONS (Pair)"
-legacy_idx: 32
-origin: "./_.ts"

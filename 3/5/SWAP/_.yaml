@@ -1,5 +1,0 @@
-vector: 29.05.02
-symbol: "SWAP"
-desc: "Function argument swap"
-legacy_idx: 34
-origin: "./_.ts"

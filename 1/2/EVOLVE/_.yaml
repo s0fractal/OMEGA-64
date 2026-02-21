@@ -1,5 +1,0 @@
-vector: 10.02.02
-symbol: "EVOLVE"
-desc: "State evolution primitive"
-legacy_idx: 46
-origin: "./_.ts"

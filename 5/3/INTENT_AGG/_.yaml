@@ -1,7 +1,0 @@
-vector: 43.03.05
-symbol: "INTENT_AGG"
-desc: "Intent aggregator"
-legacy_idx: 20
-origin: "./_.ts"
-relations:
-  use: [MAP]

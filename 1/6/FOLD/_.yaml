@@ -1,7 +1,0 @@
-vector: 14.06.01
-symbol: "FOLD"
-desc: "List fold (reduce) operation"
-legacy_idx: 49
-origin: "./_.ts"
-relations:
-  use: [Y, IS_NIL, CAR, CDR]

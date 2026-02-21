@@ -1,5 +1,0 @@
-vector: 61.05.06
-symbol: "RANK"
-desc: "Tensor rank retrieval"
-legacy_idx: 2
-origin: "./_.ts"

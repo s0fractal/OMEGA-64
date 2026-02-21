@@ -1,7 +1,0 @@
-vector: 08.00.03
-symbol: "EQ"
-desc: "Church Equality"
-legacy_idx: 55
-origin: "./_.ts"
-relations:
-  use: [LEQ, T, F]

@@ -1,7 +1,0 @@
-vector: 50.02.07
-symbol: "INTERFERENCE"
-desc: "Wave Interference mechanics"
-legacy_idx: 13
-origin: "./_.ts"
-relations:
-  use: [WAVE_SIGNAL]

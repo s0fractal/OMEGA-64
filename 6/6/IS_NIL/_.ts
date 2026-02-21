@@ -1,1 +1,0 @@
-import { T__00_00_T as T } from "@omega"; import { F_F as F } from "@omega"; export const IS_NIL = (l: any) => l((h: any) => (t: any) => F)(T);

@@ -1,7 +1,0 @@
-vector: 07.07.09
-symbol: "INTERFACE"
-desc: "Loop Interface"
-legacy_idx: 0
-origin: "./_.ts"
-relations:
-  use: [SEM_WRAP]

@@ -1,7 +1,0 @@
-vector: 61.05.02
-symbol: "PROJECT"
-desc: "Relational projection"
-legacy_idx: 58
-origin: "./_.ts"
-relations:
-  use: [MAP]

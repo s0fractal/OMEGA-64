@@ -1,1 +1,0 @@
-import { F_F as F } from "@omega"; export const NIL = F;

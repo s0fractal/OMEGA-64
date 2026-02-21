@@ -1,7 +1,0 @@
-vector: 40.00.03
-symbol: "TENSOR"
-desc: "Tensor constructor"
-legacy_idx: 23
-origin: "./_.ts"
-relations:
-  use: [VECTOR]

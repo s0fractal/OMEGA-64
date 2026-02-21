@@ -1,5 +1,0 @@
-vector: 24.00.02
-symbol: "HALT"
-desc: "Machine termination state"
-legacy_idx: 39
-origin: "./_.ts"

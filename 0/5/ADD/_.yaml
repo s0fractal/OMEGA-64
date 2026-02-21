@@ -1,5 +1,0 @@
-vector: 05.05.01
-symbol: "ADD"
-desc: "Church Addition"
-legacy_idx: 58
-origin: "./_.ts"

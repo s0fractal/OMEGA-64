@@ -1,7 +1,0 @@
-vector: 24.00.01
-symbol: "STEP"
-desc: "Machine state transition step"
-legacy_idx: 39
-origin: "./_.ts"
-relations:
-  use: [MACHINE]

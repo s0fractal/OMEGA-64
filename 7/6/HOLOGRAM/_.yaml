@@ -1,7 +1,0 @@
-vector: 07.06.00
-symbol: "HOLOGRAM"
-desc: "Optical Resonance Projection"
-legacy_idx: 1
-relations:
-  use: [WAVE_PACKET, CHRONOFLUX, I16_LIMITS, U16_LIMITS]
-origin: "./_.ts"

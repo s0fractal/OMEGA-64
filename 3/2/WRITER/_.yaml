@@ -1,5 +1,0 @@
-vector: 26.02.00
-symbol: "WRITER"
-desc: "Writer Monad constructor"
-legacy_idx: 37
-origin: "./_.ts"

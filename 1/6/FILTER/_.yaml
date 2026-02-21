@@ -1,7 +1,0 @@
-vector: 14.06.02
-symbol: "FILTER"
-desc: "List filter operation"
-legacy_idx: 49
-origin: "./_.ts"
-relations:
-  use: [Y, IS_NIL, NIL, CONS, CAR, CDR]

@@ -1,7 +1,0 @@
-vector: 61.05.01
-symbol: "POINT"
-desc: "3D Point"
-legacy_idx: 58
-origin: "./_.ts"
-relations:
-  use: [TRIPLE]

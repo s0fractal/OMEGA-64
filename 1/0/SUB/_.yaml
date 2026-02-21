@@ -1,7 +1,0 @@
-vector: 08.00.01
-symbol: "SUB"
-desc: "Church Subtraction"
-legacy_idx: 55
-origin: "./_.ts"
-relations:
-  use: [PRED]

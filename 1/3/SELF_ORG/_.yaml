@@ -1,7 +1,0 @@
-vector: 11.03.02
-symbol: "SELF_ORG"
-desc: "Self-organization dynamics"
-legacy_idx: 43
-origin: "./_.ts"
-relations:
-  use: [NEURON]

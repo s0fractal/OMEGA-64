@@ -1,4 +1,0 @@
-vector: 08.02.12
-symbol: JETSTREAM_PROTOCOL
-desc: "JetStream as canonical buffer for IO_FLOW and force processing."
-origin: ./_.md

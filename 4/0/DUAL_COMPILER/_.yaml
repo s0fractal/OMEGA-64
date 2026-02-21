@@ -1,8 +1,0 @@
-vector: 32.00.00
-origin: 4/0/DUAL_COMPILER/_.ts
-level: 32
-symbol: "DUAL_COMPILER"
-desc: "TODO: DUAL_COMPILER"
-legacy_idx: -1
-relations:
-  use: []

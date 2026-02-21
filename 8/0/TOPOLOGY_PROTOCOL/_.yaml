@@ -1,7 +1,0 @@
-vector: 08.00.03
-tag: "TOPOLOGY_PROTOCOL"
-desc: "Experimental L99 Atom: TOPOLOGY_PROTOCOL"
-legacy_idx: 99
-
-symbol: "TOPOLOGY_PROTOCOL"
-origin: "./_.ts"

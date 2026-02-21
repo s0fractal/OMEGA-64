@@ -1,7 +1,0 @@
-vector: 47.07.02
-symbol: "ETHER"
-desc: "Wave-Space Medium"
-legacy_idx: 16
-origin: "./_.ts"
-relations:
-  use: [WAVE_SIGNAL]

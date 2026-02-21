@@ -1,9 +1,0 @@
-vector: 50.02.01
-symbol: "WAVE_PACKET"
-desc: "Quantum Wave Packet Representation"
-legacy_idx: 13
-relations:
-  use:
-    - FIELD
-    - U16_LIMITS
-origin: "./_.ts"

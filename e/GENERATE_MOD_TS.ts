@@ -1,173 +1,72 @@
 /// <reference lib="deno.window" />
 import { walk } from "jsr:@std/fs";
+import { parse as parseYaml } from "jsr:@std/yaml";
 
 const ROOT = Deno.cwd();
-const CANON_ROOTS = Array.from({ length: 9 }, (_, i) => `${ROOT}/${i}`);
 const TS_TARGET = `${ROOT}/mod.ts`;
-const RS_TARGET = `${ROOT}/omega.rs`;
 
 type Atom = {
   rel: string;
-  baseName: string;
-  coord: string;
-  exportName: string;
-  exports: Set<string>;
-  hasAtom: boolean;
+  symbol: string;
+  digest: string;
+  level: number;
 };
 
-function pad2(input: string): string {
-  const n = Number(input);
-  if (Number.isFinite(n)) return String(n).padStart(2, "0");
-  return input;
-}
-
-function toIdentifier(raw: string): string {
-  let out = raw.replace(/[^A-Za-z0-9_]/g, "_");
-  if (/^[0-9]/.test(out)) out = `_${out}`;
-  return out;
-}
-
-const EXPORT_DECL = /\bexport\s+(?:const|function|class|interface|type|enum)\s+([A-Za-z0-9_]+)/g;
-const EXPORT_LIST = /\bexport\s*(?:type\s*)?\{([^}]+)\}/g;
-
-function parseExports(source: string): { names: Set<string>; hasAtom: boolean } {
-  const names = new Set<string>();
-  let hasAtom = false;
-
-  for (const match of source.matchAll(EXPORT_DECL)) {
-    const name = match[1];
-    if (!name) continue;
-    names.add(name);
-    if (name === "ATOM") hasAtom = true;
-  }
-
-  for (const match of source.matchAll(EXPORT_LIST)) {
-    const list = match[1] ?? "";
-    for (const raw of list.split(",")) {
-      const part = raw.trim();
-      if (!part) continue;
-      const [left, right] = part.split(/\s+as\s+/i).map((s) => s.trim());
-      const exported = (right || left || "").trim();
-      if (!exported) continue;
-      names.add(exported);
-      if (exported === "ATOM") hasAtom = true;
-    }
-  }
-
-  return { names, hasAtom };
-}
-
-async function collectAtoms(ext: string): Promise<Atom[]> {
+async function collectAtoms(): Promise<Atom[]> {
   const atoms: Atom[] = [];
-  for (const root of CANON_ROOTS) {
-    try {
-      for await (const entry of walk(root, { includeDirs: false })) {
-        if (entry.name !== `_.${ext}`) continue;
-        const rel = entry.path.replace(`${ROOT}/`, "").replaceAll("\\", "/");
-        const parts = rel.split("/");
-        if (parts.length < 3) continue;
-        const baseName = parts[parts.length - 2];
-        const coord = `${pad2(parts[0] ?? "??")}_${pad2(parts[1] ?? "??")}`;
-        const source = await Deno.readTextFile(entry.path);
-        const parsed = parseExports(source);
-        atoms.push({
-          rel,
-          baseName,
-          coord,
-          exportName: "",
-          exports: parsed.names,
-          hasAtom: parsed.hasAtom,
-        });
-      }
-    } catch {
-      // root may not exist
+  for await (const entry of Deno.readDir(ROOT)) {
+    if (entry.isFile && entry.name.startsWith("0x") && entry.name.endsWith(".md")) {
+        try {
+            const content = await Deno.readTextFile(entry.name);
+            const frontmatterMatch = content.match(/^---\n([\s\S]+?)\n---\n/);
+            if (!frontmatterMatch) continue;
+
+            const alpha = parseYaml(frontmatterMatch[1]) as any;
+            const symbol = alpha.symbol ?? entry.name.split('.')[1] ?? "UNKNOWN";
+            const level = alpha.level ?? (alpha.vector ? parseInt(alpha.vector.split('.')[0]) : 0);
+            
+            atoms.push({
+              rel: entry.name,
+              symbol: symbol,
+              digest: entry.name.split('.')[0],
+              level: level
+            });
+        } catch (e) {
+            console.error(`Failed to parse ${entry.name}:`, e);
+        }
     }
   }
   return atoms;
 }
 
-function assignExportNames(atoms: Atom[]): { collisions: string[] } {
-  const byName = new Map<string, Atom[]>();
-  for (const atom of atoms) {
-    const key = toIdentifier(atom.baseName);
-    atom.baseName = key;
-    const list = byName.get(key) ?? [];
-    list.push(atom);
-    byName.set(key, list);
-  }
-
-  const collisions: string[] = [];
-  for (const [name, group] of byName) {
-    if (group.length === 1) {
-      group[0].exportName = name;
-      continue;
-    }
-    collisions.push(name);
-    for (const atom of group) {
-      atom.exportName = toIdentifier(`${name}__${atom.coord}`);
-    }
-  }
-
-  return { collisions };
-}
-
-async function writeTsModule(atoms: Atom[], collisions: string[]): Promise<void> {
+async function writeTsModule(atoms: Atom[]): Promise<void> {
   const header: string[] = [
-    "// AUTO-GENERATED. DO NOT EDIT.",
-    "// Source: canon atoms (0..8/**/_.ts).",
+    "// AUTO-GENERATED (PHASE: FLATLAND). DO NOT EDIT.",
+    "// Source: Flatland root (0x*.md).",
   ];
-  if (collisions.length > 0) {
-    header.push(
-      `// COLLISIONS: ${collisions.sort().join(", ")}`,
-      "// NOTE: collided names are suffixed with __SS_OO (sector/orbit).",
-    );
-  }
 
   const lines: string[] = [];
   const sorted = atoms
     .slice()
-    .sort((a, b) => a.exportName.localeCompare(b.exportName));
+    .sort((a, b) => a.symbol.localeCompare(b.symbol));
 
   for (const atom of sorted) {
-    if (atom.hasAtom) {
-      lines.push(`export { ATOM as ${atom.exportName} } from "./${atom.rel}";`);
-    }
-    const extras = Array.from(atom.exports)
-      .filter((name) => name !== "ATOM")
-      .sort();
-    for (const name of extras) {
-      lines.push(
-        `export { ${name} as ${atom.exportName}_${name} } from "./${atom.rel}";`,
-      );
-    }
+    // Currently, we don't have a direct way to export logic from .md in TS
+    // But we can export the metadata or a helper to load it.
+    // For now, let's export the symbol pointing to its address.
+    lines.push(`export const ${atom.symbol} = { id: "${atom.rel}", level: ${atom.level}, digest: "${atom.digest}" };`);
   }
+
+  // Also include the core Organs
+  lines.push(`export { RIBOSOME } from "./RIBOSOME.ts";`);
+  lines.push(`export { GATE } from "./GATE.ts";`);
+  lines.push(`export { IMMUNE } from "./IMMUNE.ts";`);
 
   const content = `${header.join("\n")}\n\n${lines.join("\n")}\n`;
   await Deno.writeTextFile(TS_TARGET, content);
 }
 
-async function writeRsModule(atoms: Atom[]): Promise<void> {
-  const header: string[] = [
-    "// AUTO-GENERATED. DO NOT EDIT.",
-    "// Source: canon atoms (0..8/**/_.rs).",
-    "// NOTE: Rust atoms are not yet present in canon; this file is a stub.",
-  ];
+const atoms = await collectAtoms();
+await writeTsModule(atoms);
 
-  const content = `${header.join("\n")}\n`;
-  await Deno.writeTextFile(RS_TARGET, content);
-}
-
-const tsAtoms = await collectAtoms("ts");
-const { collisions } = assignExportNames(tsAtoms);
-await writeTsModule(tsAtoms, collisions);
-
-const rsAtoms = await collectAtoms("rs");
-await writeRsModule(rsAtoms);
-
-console.log(
-  `[OMEGA] mod.ts generated with ${tsAtoms.length} exports. ` +
-    `collisions=${collisions.length}.`,
-);
-console.log(
-  `[OMEGA] omega.rs generated (${rsAtoms.length} rust atoms found).`,
-);
+console.log(`[OMEGA] mod.ts generated with ${atoms.length} flat atoms and 3 root organs.`);

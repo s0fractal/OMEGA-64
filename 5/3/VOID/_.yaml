@@ -1,7 +1,0 @@
-vector: 43.03.01
-symbol: "VOID"
-desc: "VOID (Absolute Identity)"
-legacy_idx: 20
-origin: "./_.ts"
-relations:
-  use: [I]

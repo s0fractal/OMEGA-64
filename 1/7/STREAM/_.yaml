@@ -1,7 +1,0 @@
-vector: 15.07.00
-symbol: "STREAM"
-desc: "Lazy stream primitive"
-legacy_idx: 48
-origin: "./_.ts"
-relations:
-  use: [CONS]

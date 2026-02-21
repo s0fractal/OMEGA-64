@@ -1,7 +1,0 @@
-vector: 00.00.09
-symbol: "I16_CLAMP"
-desc: "Foundational Signed 16-bit Clamping"
-legacy_idx: 0
-origin: "./_.ts"
-relations:
-  use: [I16_LIMITS]

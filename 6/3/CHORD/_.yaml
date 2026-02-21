@@ -1,7 +1,0 @@
-vector: 51.03.01
-symbol: "CHORD"
-desc: "Composite Wave Chord"
-legacy_idx: 12
-origin: "./_.ts"
-relations:
-  use: [INTERFERENCE]
