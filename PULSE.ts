@@ -54,8 +54,8 @@ export const PULSE = {
             break;
         }
 
-        const targetFilename = atoms[Math.floor(Math.random() * atoms.length)];
-        const [eigenvalue, symbol] = targetFilename.split(".");
+        let targetFilename = atoms[Math.floor(Math.random() * atoms.length)];
+        let [eigenvalue, symbol] = targetFilename.split(".");
         console.log(`   [TARGET] ${symbol} (${eigenvalue})`);
 
         const is128Bit = eigenvalue.includes("_");
@@ -102,6 +102,76 @@ export const PULSE = {
         x += velX + (Math.random() - 0.5) * 10;
         y += velY + (Math.random() - 0.5) * 10;
 
+        // --- SPRING-MASS PHYSICS (Macro-Molecules) ---
+        // If bonded, apply Hooke's Law to keep them at a strict molecular distance
+        if (bonds.length > 0) {
+            for (const bondedEigen of bonds) {
+                const partnerFile = atoms.find(a => a.includes(bondedEigen));
+                if (partnerFile && partnerFile !== targetFilename) {
+                    try {
+                        const pContent = await Deno.readTextFile(partnerFile);
+                        const pMeta = pContent.match(/^---\n([\s\S]+?)\n---\n/);
+                        if (pMeta) {
+                            const pAlpha = parseYaml(pMeta[1]) as any;
+                            const pX = pAlpha.x !== undefined ? Number(pAlpha.x) : x;
+                            const pY = pAlpha.y !== undefined ? Number(pAlpha.y) : y;
+                            
+                            const dx = pX - x;
+                            const dy = pY - y;
+                            const dist = Math.hypot(dx, dy) || 1; // Prevent div by 0
+                            
+                            // Optimal bond distance is ~50px
+                            if (dist > 60) {
+                                // Too far, attract (Spring pulling)
+                                const force = (dist - 60) * 0.1; // Pull strength
+                                x += (dx / dist) * force;
+                                y += (dy / dist) * force;
+                            } else if (dist < 40) {
+                                // Too close, repel (Electron repulsion)
+                                const force = (40 - dist) * 0.2; // Push strength
+                                x -= (dx / dist) * force;
+                                y -= (dy / dist) * force;
+                            }
+                        }
+                    } catch(e) { /* ignore missing bonds */ }
+                }
+            }
+        }
+        // ---------------------------------------------
+        // --- HIERARCHICAL GRAVITY (Alpha Orbits) ---
+        // If we are a non-alpha atom, check if any Alphas of our species are nearby
+        if (!symbol.startsWith("ALPHA_") && !symbol.includes("DUST")) {
+            const alphaMatch = atoms.find(a => a.includes(`ALPHA_${symbol}`));
+            if (alphaMatch) {
+                try {
+                    const aContent = await Deno.readTextFile(alphaMatch);
+                    const aMeta = aContent.match(/^---\n([\s\S]+?)\n---\n/);
+                    if (aMeta) {
+                        const aAlpha = parseYaml(aMeta[1]) as any;
+                        const aX = aAlpha.x !== undefined ? Number(aAlpha.x) : x;
+                        const aY = aAlpha.y !== undefined ? Number(aAlpha.y) : y;
+                        
+                        const dx = aX - x;
+                        const dy = aY - y;
+                        const dist = Math.hypot(dx, dy) || 1;
+                        
+                        if (dist < 400) {
+                            // Gentle attraction
+                            const pull = 2.0;
+                            x += (dx / dist) * pull;
+                            y += (dy / dist) * pull;
+                            
+                            // Tangential velocity (Orbit)
+                            x += (-dy / dist) * 15; // Swirl around
+                            y += (dx / dist) * 15;
+                            console.log(`   [ORBIT] ${symbol} is dancing around its Alpha parent.`);
+                        }
+                    }
+                } catch(e) { /* ignore */ }
+            }
+        }
+        // -------------------------------------------
+
         // Apply Boundaries
         x = Math.max(50, Math.min(1350, Math.floor(x)));
         y = Math.max(50, Math.min(750, Math.floor(y)));
@@ -140,7 +210,19 @@ export const PULSE = {
         
         alpha.energy = energy; // Save decayed energy
         console.log(`   [METABOLISM] ${symbol} energy is now ${energy}.`);
-        // -----------------------------------------
+
+        // --- ALPHA EVOLUTION ---
+        if (energy > 300 && !symbol.startsWith("ALPHA_") && !["PARASITE", "GRAVITY_WELL", "CHRONOS_MIRROR", "RETRO_PING", "CODE_VECTOR_SINGULARITY"].includes(symbol)) {
+            const newSymbol = `ALPHA_${symbol}`;
+            console.log(`   [EVOLUTION] ⭐ ${symbol} has reached Alpha state! Evolution triggered.`);
+            await logAkasha(`⭐ EVOLUTION: ${symbol} (${eigenvalue}) transcended to ${newSymbol}`);
+            const newFilename = targetFilename.replace(`.${symbol}.md`, `.${newSymbol}.md`);
+            await Deno.rename(targetFilename, newFilename);
+            // Update local state for the rest of the pulse
+            targetFilename = newFilename;
+            symbol = newSymbol;
+        }
+        // -----------------------
 
         // --- ENERGY OSMOSIS (Synaptic Network Sharing) ---
         if (bonds.length > 0 && energy > 0 && !symbol.includes("DUST")) {

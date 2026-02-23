@@ -148,6 +148,17 @@
         box-shadow: 0 0 20px rgba(249, 115, 22, 0.1) inset;
       }
 
+      .atom-card.status-alpha {
+        border-color: rgba(255, 215, 0, 0.6);
+        box-shadow: 0 0 40px rgba(255, 215, 0, 0.3), inset 0 0 20px rgba(255, 215, 0, 0.2);
+        animation: alpha-pulse 4s infinite ease-in-out;
+      }
+
+      @keyframes alpha-pulse {
+        0%, 100% { box-shadow: 0 0 40px rgba(255, 215, 0, 0.3), inset 0 0 20px rgba(255, 215, 0, 0.2); }
+        50% { box-shadow: 0 0 60px rgba(255, 215, 0, 0.5), inset 0 0 30px rgba(255, 215, 0, 0.4); }
+      }
+
       .svg-container {
         width: 200px;
         height: 200px;
@@ -411,7 +422,7 @@
               card = document.createElement("div");
               card.className = `atom-card ${
                 isAlive ? "status-alive" : "status-dust"
-              } ${atom.retroEigen ? "retro-linked" : ""}`;
+              } ${atom.retroEigen ? "retro-linked" : ""} ${atom.symbol.startsWith("ALPHA_") ? "status-alpha" : ""}`;
               card.setAttribute("data-filename", atom.filename);
               card.style.cursor = "pointer";
               card.style.left = `${atom.x}px`;
@@ -445,7 +456,7 @@
               // Update existing card data
               card.className = `atom-card ${
                 isAlive ? "status-alive" : "status-dust"
-              }`;
+              } ${atom.symbol.startsWith("ALPHA_") ? "status-alpha" : ""}`;
 
               // We only update the SVG if the eigenvalue changed (which implies file renamed, so new card usually, but just in case)
               // The energy block is what needs frequent updating
