@@ -129,6 +129,17 @@ async function handler(req: Request): Promise<Response> {
             const body = await req.json();
             const symbol = body.symbol?.toUpperCase().replace(/[^A-Z0-9_]/g, "") || "ANOMALY";
             let logic = body.logic?.toUpperCase().replace(/[^0-9A-F]/g, "").padEnd(8, "0").slice(0, 8) || "88880000";
+            
+            // If word is provided, hash it into logic
+            if (body.word) {
+                const encoder = new TextEncoder();
+                const data = encoder.encode(body.word);
+                const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+                const hashArray = Array.from(new Uint8Array(hashBuffer));
+                logic = hashArray.map(b => b.toString(16).padStart(2, '0')).join('').slice(0, 8).toUpperCase();
+                console.log(`   [WORD_FORGE] '${body.word}' -> ${logic}`);
+            }
+
             const energy = Number(body.energy) || 100;
             
             const eigen = `0x${logic}00000000`;
@@ -138,7 +149,7 @@ async function handler(req: Request): Promise<Response> {
                 args: ["eval", `
                     import { injectHologram } from "./HOLOGRAM_MODULE.ts";
                     import { stringify } from "jsr:@std/yaml@^1.0.5";
-                    const alpha = { eigenvalue: "${eigen}", energy: ${energy}, x: Math.floor(Math.random()*800)+100, y: Math.floor(Math.random()*600)+100, ex: [] };
+                    const alpha = { eigenvalue: "${eigen}", energy: ${energy}, x: Math.floor(Math.random()*800)+100, y: Math.floor(Math.random()*600)+100, ex: [], thought: "BORN" };
                     let content = "---\\n" + stringify(alpha) + "---\\n\\nexport const ATOM = () => (x: any) => x;";
                     console.log(injectHologram(content, "${eigen}", "${symbol}"));
                 `]
@@ -147,7 +158,7 @@ async function handler(req: Request): Promise<Response> {
             const forgedContent = new TextDecoder().decode(out.stdout);
             
             await Deno.writeTextFile(filename, forgedContent);
-            await appendToAkasha(`⚒️ FORGE: Observer materialized new entity ${filename} with ${energy} energy.`);
+            await appendToAkasha(`⚒️ FORGE: Observer materialized '${body.word || symbol}' (${logic}) with ${energy} energy.`);
             
             return new Response(JSON.stringify({ success: true, filename }), {
                 headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
@@ -157,18 +168,20 @@ async function handler(req: Request): Promise<Response> {
         }
     }
 
-    if (req.method === "POST" && url.pathname === "/api/zero-iops") {
+    if (req.method === "POST" && url.pathname === "/api/transmute") {
         try {
+            // Run mass transmutation logic (multiple pulse cycles)
             const process = new Deno.Command("deno", {
-                args: ["run", "--allow-read", "--allow-write", "ZERO_IOPS.ts"],
+                args: ["run", "--allow-read", "--allow-write", "ZERO_IOPS.ts", "mass"],
             });
             await process.output();
+            await appendToAkasha(`🌀 TRANSMUTE: Global Zero-IOPS reduction triggered by Observer.`);
             
             return new Response(JSON.stringify({ success: true }), {
                 headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
             });
         } catch (e) {
-            return new Response("Zero-IOPS execution failed", { status: 500 });
+            return new Response("Transmutation failed", { status: 500 });
         }
     }
 

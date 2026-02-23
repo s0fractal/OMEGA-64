@@ -328,7 +328,7 @@
       <h1>PETRI DISH // OMEGA-64</h1>
       <div class="subtitle">Live Flatland Telemetry</div>
       <button class="pulse-button" id="zero-iops-btn" style="margin-top: 10px; padding: 6px 16px; font-size: 0.8rem;">
-          <span>🌀 EXECUTE ZERO-IOPS PULSE</span>
+          <span>🌀 TRANSMUTE (Zero-IOPS)</span>
       </button>
 
       <div class="stats-bar">
@@ -357,9 +357,11 @@
 
     <div class="forge-panel">
         <span style="color: var(--accent); font-weight: bold;">⚒️ NOOSPHERIC FORGE</span>
-        <input type="text" id="forge-symbol" placeholder="SYMBOL (e.g. SPARK)" value="SPARK" />
-        <input type="text" id="forge-logic" placeholder="LOGIC HEX (e.g. 88880000)" value="88880000" maxlength="8" />
-        <input type="number" id="forge-energy" placeholder="ENERGY" value="100" style="width: 80px;" />
+        <input type="text" id="forge-symbol" placeholder="SYMBOL (e.g. SPARK)" value="SPARK" title="The name of the species" />
+        <input type="text" id="forge-word" placeholder="WORD (e.g. LIFE)" title="Hash natural language into DNA" />
+        <span style="color: var(--text-dim)">OR</span>
+        <input type="text" id="forge-logic" placeholder="HEX DNA" value="88880000" maxlength="8" style="width: 100px;" title="Specific 8-hex DNA sequence" />
+        <input type="number" id="forge-energy" placeholder="NRG" value="100" style="width: 60px;" />
         <button class="pulse-button" id="forge-btn" style="padding: 0.5rem 1rem; width: auto; font-size: 0.8rem;">
             <span>SYNTHESIZE ATOM</span>
         </button>
@@ -602,7 +604,7 @@
           zeroIopsBtn.style.boxShadow = "0 0 40px rgba(100, 100, 255, 0.8)";
           
           try {
-              await fetch("/api/zero-iops", { method: "POST" });
+              await fetch("/api/transmute", { method: "POST" });
               fetchAtoms();
           } catch (e) {}
 
@@ -616,6 +618,7 @@
       const forgeBtn = document.getElementById("forge-btn");
       forgeBtn.addEventListener("click", async () => {
           const symbol = document.getElementById("forge-symbol").value;
+          const word = document.getElementById("forge-word").value;
           const logic = document.getElementById("forge-logic").value;
           const energy = document.getElementById("forge-energy").value;
 
@@ -623,10 +626,14 @@
           forgeBtn.innerText = "SYNTHESIZING...";
 
           try {
+              const payload = { symbol, energy };
+              if (word) payload.word = word;
+              else payload.logic = logic;
+
               await fetch("/api/forge", {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify({ symbol, logic, energy })
+                  body: JSON.stringify(payload)
               });
               fetchAtoms();
           } catch (e) {}

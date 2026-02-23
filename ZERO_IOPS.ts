@@ -106,5 +106,66 @@ async function zeroIopsPulse() {
 
 // Allow calling directly or exporting
 if (import.meta.main) {
-    await zeroIopsPulse();
+    const isMass = Deno.args.includes("mass");
+    if (isMass) {
+        console.log("🌀 MASS TRANSMUTATION INITIATED 🌀");
+        const atoms: string[] = [];
+        for await (const entry of Deno.readDir(ROOT)) {
+            if (entry.isFile && entry.name.startsWith("0x") && entry.name.endsWith(".md")) {
+                atoms.push(entry.name);
+            }
+        }
+        // Run 5 iterations of random pulses or just loop once through all
+        for (let i = 0; i < atoms.length; i++) {
+             // We can just call zeroIopsPulse multiple times but it's random
+             // Better to just loop through atoms
+             const target = atoms[i];
+             await processAtom(target);
+        }
+    } else {
+        await zeroIopsPulse();
+    }
+}
+
+async function processAtom(targetFilename: string) {
+    const parts = targetFilename.split(".");
+    const fullEigenvalue = parts[0];
+    const symbol = parts[1];
+    
+    if (["DUST", "GRAVITY_WELL", "PARASITE", "RETRO_PING", "CHRONOS_MIRROR", "CODE_VECTOR_SINGULARITY", "AKASHA"].some(s => symbol.includes(s))) {
+        return;
+    }
+
+    const logicHex = fullEigenvalue.includes("_") ? fullEigenvalue.split("_")[0].slice(2, 10) : fullEigenvalue.slice(2, 10);
+    const timeCode = fullEigenvalue.includes("_") ? `_${fullEigenvalue.split("_")[1]}` : "";
+    const remainingEigen = fullEigenvalue.includes("_") ? fullEigenvalue.split("_")[0].slice(10) : fullEigenvalue.slice(10);
+    
+    // Parse logic characters into mathematical shifts
+    let modifier = 0;
+    for (let i = 0; i < logicHex.length; i++) {
+        const char = logicHex[i];
+        switch(char) {
+            case '8': modifier += 0; break;
+            case '9': modifier += 1; break;
+            case 'A': modifier += 2; break;
+            case 'B': modifier += 3; break;
+            case 'C': modifier ^= 0xC; break;
+            case 'D': modifier &= 0xD; break;
+            case 'E': modifier |= 0xE; break;
+            case 'F': modifier = ~modifier; break;
+            default: modifier += parseInt(char, 16);
+        }
+    }
+
+    modifier = Math.abs(modifier) % 16;
+    const modHex = modifier.toString(16).toUpperCase();
+    const shiftedLogic = logicHex.slice(1) + modHex;
+    const newEigenvalue = `0x${shiftedLogic}${remainingEigen}${timeCode}`;
+    const newFilename = `${newEigenvalue}.${symbol}.md`;
+
+    if (targetFilename !== newFilename) {
+        try {
+            await Deno.rename(targetFilename, newFilename);
+        } catch { /* ignore */ }
+    }
 }

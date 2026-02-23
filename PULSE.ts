@@ -137,6 +137,47 @@ export const PULSE = {
                 }
             }
         }
+        // --- GEOMETRIC MORPHOGENESIS (Structural Integrity) ---
+        // If the 3rd nibble of DNA is >= 'C' (12), the atom becomes a Structural Anchor.
+        // It pushes partners to maintain geometric angles, forming rigid 'Organs'.
+        const structuralNibble = parseInt(currentLogic[2], 16);
+        if (structuralNibble >= 12 && bonds.length >= 2) {
+            // We need coordinates of at least two partners to calculate an angle
+            const partnerCoords = [];
+            for (const bEigen of bonds) {
+                const pf = atoms.find(a => a.includes(bEigen));
+                if (pf) {
+                    try {
+                        const pfContent = await Deno.readTextFile(pf);
+                        const pfMeta = pfContent.match(/^---\n([\s\S]+?)\n---\n/);
+                        if (pfMeta) {
+                            const pfAlpha = parseYaml(pfMeta[1]) as any;
+                            partnerCoords.push({ x: Number(pfAlpha.x), y: Number(pfAlpha.y), file: pf });
+                        }
+                    } catch { /* skip */ }
+                }
+                if (partnerCoords.length >= 2) break;
+            }
+
+            if (partnerCoords.length >= 2) {
+                // Vector A (Anchor -> Partner 1)
+                const v1x = partnerCoords[0].x - x;
+                const v1y = partnerCoords[0].y - y;
+                // Vector B (Anchor -> Partner 2)
+                const v2x = partnerCoords[1].x - x;
+                const v2y = partnerCoords[1].y - y;
+
+                const angle = Math.abs(Math.atan2(v1y, v1x) - Math.atan2(v2y, v2x));
+                const targetAngle = structuralNibble >= 14 ? Math.PI / 2 : (2 * Math.PI) / 3; // 90 deg or 120 deg
+                
+                if (angle < targetAngle - 0.2) {
+                    // Too close! Push them apart
+                    x -= (v1x + v2x) * 0.05;
+                    y -= (v1y + v2y) * 0.05;
+                    console.log(`   [MORPH] ${symbol} stiffening geometry (${(angle * 180 / Math.PI).toFixed(0)}°)`);
+                }
+            }
+        }
         // ---------------------------------------------
         // --- LIVING LOGIC: INSTRUCTION SET PARSING ---
         const moveNibble = parseInt(currentLogic[0], 16);
