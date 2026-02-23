@@ -84,9 +84,27 @@ export const PULSE = {
         let x = alpha.x !== undefined ? Number(alpha.x) : Math.floor(Math.random() * 800) + 100;
         let y = alpha.y !== undefined ? Number(alpha.y) : Math.floor(Math.random() * 600) + 100;
 
-        // Cartesian Brownian Drift
-        x = Math.max(50, Math.min(1350, Math.floor(x + (Math.random() - 0.5) * 60)));
-        y = Math.max(50, Math.min(750, Math.floor(y + (Math.random() - 0.5) * 60)));
+        // --- SEMANTIC KINESIS (DNA-Driven Movement) ---
+        // Instead of random drift, we derive a velocity vector from the 8-hex logic string.
+        let velX = 0;
+        let velY = 0;
+        
+        for (let i = 0; i < 4; i++) {
+            const charX = parseInt(currentLogic[i], 16);
+            velX += (charX > 7 ? charX - 7 : charX - 8) * 3; // Produces range roughly -24 to +24
+            
+            const charY = parseInt(currentLogic[i + 4], 16);
+            velY += (charY > 7 ? charY - 7 : charY - 8) * 3;
+        }
+
+        // Add 10% randomness for organic jitter, but 90% driven by DNA
+        x += velX + (Math.random() - 0.5) * 10;
+        y += velY + (Math.random() - 0.5) * 10;
+
+        // Apply Boundaries
+        x = Math.max(50, Math.min(1350, Math.floor(x)));
+        y = Math.max(50, Math.min(750, Math.floor(y)));
+        
         alpha.x = x;
         alpha.y = y;
 
@@ -157,6 +175,76 @@ export const PULSE = {
                 alpha.energy = Math.floor(alpha.energy / 2);
                 console.log(`      ⌛ Chronos Mirror sacrificed its mass. Energy drops to ${alpha.energy}.`);
                 await logAkasha(`⏳ CHRONOS_MIRROR: Inverted time and fully healed ${targetAtom}`);
+            }
+        }
+        // -------------------------------------------------------------
+
+        // --- GENETIC RECOMBINATION (Meiosis) ---
+        // Only run for "living" non-anomalous atoms that have enough energy to breed
+        if (energy > 150 && !symbol.includes("DUST") && !["PARASITE", "GRAVITY_WELL", "CHRONOS_MIRROR", "RETRO_PING", "CODE_VECTOR_SINGULARITY"].includes(symbol)) {
+            // Find a mate close by
+            const potentialMates = atoms.filter(a => {
+                const s = a.split(".")[1];
+                return a !== targetFilename && !s.includes("DUST") && !["PARASITE", "GRAVITY_WELL", "CHRONOS_MIRROR", "RETRO_PING"].includes(s);
+            });
+
+            for (const mate of potentialMates) {
+                try {
+                    const mContent = await Deno.readTextFile(mate);
+                    const mMetaMatch = mContent.match(/^---\n([\s\S]+?)\n---\n/);
+                    if (mMetaMatch) {
+                        const mAlpha = parseYaml(mMetaMatch[1]) as any;
+                        const mE = mAlpha.energy !== undefined ? Number(mAlpha.energy) : 0;
+                        const mX = mAlpha.x !== undefined ? Number(mAlpha.x) : 0;
+                        const mY = mAlpha.y !== undefined ? Number(mAlpha.y) : 0;
+                        
+                        const dist = Math.hypot(mX - x, mY - y);
+                        
+                        // If they collide and the mate is also fertile
+                        if (dist < 20 && mE > 150) {
+                            console.log(`   [MEIOSIS] 🧬 Mating Dance initiated between ${symbol} and ${mate.split(".")[1]}`);
+                            
+                            // 1. Expend energy
+                            energy -= 50; 
+                            alpha.energy = energy;
+                            mAlpha.energy = mE - 50;
+                            
+                            // Save mate's drained state
+                            const newMContent = mContent.replace(/^---\n[\s\S]+?\n---\n/, `---\n${stringifyYaml(mAlpha)}---\n`);
+                            await Deno.writeTextFile(mate, newMContent);
+
+                            // 2. Synthesize Child DNA (Bitwise XOR or Interleaving)
+                            const mateLogic = mate.split(".")[0].slice(2, 10);
+                            let childLogic = "";
+                            for (let i = 0; i < 8; i++) {
+                                // 50/50 chance to inherit from A or B
+                                childLogic += Math.random() > 0.5 ? currentLogic[i] : mateLogic[i];
+                            }
+                            
+                            // 3. Mutate (10% chance to flip a hex char)
+                            if (Math.random() < 0.1) {
+                                const mutIdx = Math.floor(Math.random() * 8);
+                                const mutChar = Math.floor(Math.random() * 16).toString(16).toUpperCase();
+                                childLogic = childLogic.substring(0, mutIdx) + mutChar + childLogic.substring(mutIdx + 1);
+                                console.log(`      🧪 Genetic Mutation occurred in child!`);
+                            }
+
+                            const childEigenvalue = `0x${childLogic}00000000`;
+                            const childSymbol = Math.random() > 0.5 ? symbol : mate.split(".")[1]; // Inherit symbol from one parent
+                            const childFilename = `${childEigenvalue}.${childSymbol}.md`;
+                            
+                            console.log(`      👶 Child Born: ${childFilename}`);
+                            await logAkasha(`🧬 MEIOSIS: ${symbol} and ${mate.split(".")[1]} spawned ${childFilename}`);
+                            
+                            const childAlpha = { eigenvalue: childEigenvalue, energy: 100, x: (x + mX) / 2, y: (y + mY) / 2, ex: [eigenvalue, mate.split(".")[0]] };
+                            let childContent = content.replace(/^---\n[\s\S]+?\n---\n/, `---\n${stringifyYaml(childAlpha)}---\n`);
+                            childContent = injectHologram(childContent, childEigenvalue, childSymbol);
+                            await Deno.writeTextFile(childFilename, childContent);
+                            
+                            break; // Breed only once per pulse
+                        }
+                    }
+                } catch { /* ignore */ }
             }
         }
         // -------------------------------------------------------------

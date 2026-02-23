@@ -113,6 +113,12 @@ async function handler(req: Request): Promise<Response> {
         const filename = decodeURIComponent(url.pathname.substring("/api/zap/".length));
         return await modifyEnergy(filename, -50);
     }
+
+    if (req.method === "POST" && url.pathname.startsWith("/api/bless/")) {
+        const filename = decodeURIComponent(url.pathname.substring("/api/bless/".length));
+        await appendToAkasha(`✨ BLESSING: Observer healed ${filename} (+100 Energy)`);
+        return await modifyEnergy(filename, 100);
+    }
     
     if (req.method === "POST" && url.pathname === "/api/forge") {
         try {

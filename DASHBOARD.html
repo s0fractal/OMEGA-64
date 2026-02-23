@@ -477,10 +477,26 @@
         if (!card) return;
         const filename = card.getAttribute("data-filename");
         
-        card.style.transform = "scale(1.1)";
-        setTimeout(() => card.style.transform = "", 200);
-
-        await fetch(`/api/feed/${encodeURIComponent(filename)}`, { method: "POST" });
+        if (e.shiftKey) {
+            // BLESS
+            card.style.transform = "scale(1.2)";
+            card.style.boxShadow = "inset 0 0 50px rgba(16, 185, 129, 0.8), 0 0 50px rgba(16, 185, 129, 0.8)";
+            setTimeout(() => {
+                card.style.transform = "";
+                card.style.boxShadow = "";
+            }, 300);
+            await fetch(`/api/bless/${encodeURIComponent(filename)}`, { method: "POST" });
+        } else {
+            // FEED
+            card.style.transform = "scale(1.1)";
+            card.style.boxShadow = "inset 0 0 30px rgba(255, 255, 255, 0.5)";
+            setTimeout(() => {
+                card.style.transform = "";
+                card.style.boxShadow = "";
+            }, 200);
+            await fetch(`/api/feed/${encodeURIComponent(filename)}`, { method: "POST" });
+        }
+        
         fetchAtoms();
       });
 
