@@ -7,6 +7,13 @@ import { CRYSTAL } from "./e/CRYSTAL_DIGEST.ts";
 import { parse as parseYaml, stringify as stringifyYaml } from "jsr:@std/yaml@^1.0.5";
 import { injectHologram } from "./HOLOGRAM_MODULE.ts";
 
+async function logAkasha(msg: string) {
+    try {
+        const timestamp = new Date().toISOString();
+        await Deno.writeTextFile("AKASHA.log", `[${timestamp}] ${msg}\n`, { append: true });
+    } catch { /* ignore */ }
+}
+
 const SIGNAL_PATH = "./OMEGA_SIGNAL.md";
 const ROOT = Deno.cwd();
 
@@ -57,7 +64,7 @@ export const PULSE = {
         const currentLogic = eigenvalue.slice(2, 10);
         const newLogic = RIBOSOME_TICK.reduce(currentLogic);
 
-        if (newLogic === currentLogic && symbol !== "GRAVITY_WELL" && symbol !== "CHRONOS_MIRROR" && symbol !== "RETRO_PING") {
+        if (newLogic === currentLogic && symbol !== "GRAVITY_WELL" && symbol !== "CHRONOS_MIRROR" && symbol !== "RETRO_PING" && symbol !== "PARASITE") {
             console.log("   [EVOLVE] Logic stable. No mutation needed.");
             continue;
         }
@@ -77,7 +84,7 @@ export const PULSE = {
 
         // 1. Grazing Phase (Feeding on DUST)
         const dustFiles = atoms.filter(a => a.endsWith(".DUST.md"));
-        if (dustFiles.length > 0 && energy < 150) {
+        if (dustFiles.length > 0 && energy < 150 && symbol !== "PARASITE") {
             // Pick a random DUST to consume
             const prey = dustFiles[Math.floor(Math.random() * dustFiles.length)];
             console.log(`   [GRAZING] Atom ${symbol} consumed ${prey} (+50 Energy)`);
@@ -91,6 +98,7 @@ export const PULSE = {
 
         if (energy <= 0) {
             console.log(`   [STARVATION] Atom ${symbol} ran out of energy and turned to DUST.`);
+            await logAkasha(`💀 STARVATION: ${symbol} (${eigenvalue}) decayed into DUST.`);
             alpha.energy = 0;
             alpha.eigenvalue = `0x00000000${eigenvalue.slice(10)}`; // Erase logic
             const dustFilename = `${alpha.eigenvalue}.DUST.md`;
@@ -140,6 +148,57 @@ export const PULSE = {
                 // Chronos Mirror Sacrifice: Halve its own energy
                 alpha.energy = Math.floor(alpha.energy / 2);
                 console.log(`      ⌛ Chronos Mirror sacrificed its mass. Energy drops to ${alpha.energy}.`);
+                await logAkasha(`⏳ CHRONOS_MIRROR: Inverted time and fully healed ${targetAtom}`);
+            }
+        }
+        // -------------------------------------------------------------
+
+        // --- BIOLOGICAL WARFARE (Parasite Anomaly) ---
+        if (symbol === "PARASITE") {
+            const potentialHosts = atoms.filter(a => {
+                const s = a.split(".")[1];
+                return s !== "PARASITE" && s !== "DUST" && s !== "GRAVITY_WELL" && s !== "RETRO_PING";
+            });
+
+            if (potentialHosts.length > 0) {
+                let bestHost = null;
+                let maxE = -1;
+                // Scan the ecosystem to find the fattest prey
+                for (const h of potentialHosts) {
+                    try {
+                        const hContent = await Deno.readTextFile(h);
+                        const hMetaMatch = hContent.match(/^---\n([\s\S]+?)\n---\n/);
+                        if (hMetaMatch) {
+                            const hp = parseYaml(hMetaMatch[1]) as any;
+                            const hE = hp.energy !== undefined ? Number(hp.energy) : 0;
+                            if (hE > maxE) {
+                                maxE = hE;
+                                bestHost = h;
+                            }
+                        }
+                    } catch { /* ignore */ }
+                }
+
+                if (bestHost && maxE > 10) {
+                    console.log(`   [PREDATOR] 🪱 PARASITE latched onto ${bestHost} (Energy: ${maxE})`);
+                    try {
+                        const tContent = await Deno.readTextFile(bestHost);
+                        const tMeta = tContent.match(/^---\n([\s\S]+?)\n---\n/);
+                        if (tMeta) {
+                            const tAlpha = parseYaml(tMeta[1]) as any;
+                            const drainAmount = Math.min(30, tAlpha.energy);
+                            tAlpha.energy -= drainAmount;
+                            
+                            const newTContent = tContent.replace(/^---\n[\s\S]+?\n---\n/, `---\n${stringifyYaml(tAlpha)}---\n`);
+                            await Deno.writeTextFile(bestHost, newTContent);
+                            
+                            alpha.energy += drainAmount;
+                            energy = alpha.energy;
+                            console.log(`      🩸 Siphoned ${drainAmount} energy. Parasite energy is now ${energy}.`);
+                            await logAkasha(`🪱 PREDATOR: PARASITE siphoned ${drainAmount} energy from ${bestHost}`);
+                        }
+                    } catch(e) { /* ignore */ }
+                }
             }
         }
         // -------------------------------------------------------------
@@ -164,7 +223,7 @@ export const PULSE = {
                         if (vAlpha.energy && vAlpha.energy > 5) {
                             vAlpha.energy -= 2; // Suck 2 energy
                             drained += 2;
-                            let newVContent = vContent.replace(/^---\n[\s\S]+?\n---\n/, `---\n${stringifyYaml(vAlpha)}---\n`);
+                            const newVContent = vContent.replace(/^---\n[\s\S]+?\n---\n/, `---\n${stringifyYaml(vAlpha)}---\n`);
                             await Deno.writeTextFile(victim, newVContent);
                         }
                     }
@@ -177,6 +236,7 @@ export const PULSE = {
             // Critical Mass -> Supernova!
             if (alpha.energy > 800) {
                 console.log(`   [SUPERNOVA] 💥 GRAVITY_WELL reached critical mass! EXPLODING!`);
+                await logAkasha(`💥 GRAVITY_WELL: Critical mass reached. SUPERNOVA DETONATED!`);
                 
                 // Spawn 5 random primitive atoms
                 for (let i = 0; i < 5; i++) {
@@ -234,6 +294,7 @@ export const PULSE = {
                         await Deno.writeTextFile(targetAtom, newTContent);
                         await Deno.rename(targetAtom, retroFilename);
                         console.log(`      ⚡ Time-Link Formed! ${targetAtom} is now 128-bit -> ${extendedEigenvalue}`);
+                        await logAkasha(`🔗 FUTURE-LINK: ${targetAtom} received 128-bit retro signature -> ${extendedEigenvalue}`);
                         
                         // Clean up atoms array memory map for this tick
                         atoms = atoms.filter(a => a !== targetAtom);

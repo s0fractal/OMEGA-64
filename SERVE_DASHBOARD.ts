@@ -1,5 +1,5 @@
 import { serve } from "https://deno.land/std@0.177.0/http/server.ts";
-import { parse as parseYaml } from "jsr:@std/yaml@^1.0.5";
+import { parse as parseYaml, stringify as stringifyYaml } from "jsr:@std/yaml@^1.0.5";
 
 const ROOT = Deno.cwd();
 
@@ -55,10 +55,76 @@ async function scanAtoms() {
     return atoms.sort((a, b) => b.energy - a.energy);
 }
 
+async function appendToAkasha(msg: string) {
+    try {
+        const timestamp = new Date().toISOString();
+        await Deno.writeTextFile("AKASHA.log", `[${timestamp}] ${msg}\n`, { append: true });
+    } catch { /* ignore */ }
+}
+
+async function modifyEnergy(filename: string, amount: number): Promise<Response> {
+    try {
+        const content = await Deno.readTextFile(filename);
+        const frontmatterMatch = content.match(/^---\n([\s\S]+?)\n---\n/);
+        
+        if (!frontmatterMatch) {
+            return new Response("Invalid atom format", { status: 400 });
+        }
+        
+        const alpha = parseYaml(frontmatterMatch[1]) as any;
+        const currentEnergy = alpha.energy !== undefined ? Number(alpha.energy) : 100;
+        
+        alpha.energy = Math.max(0, currentEnergy + amount);
+        
+        const newContent = content.replace(/^---\n[\s\S]+?\n---\n/, `---\n${stringifyYaml(alpha)}---\n`);
+        await Deno.writeTextFile(filename, newContent);
+        
+        if (alpha.energy === 0 && amount < 0) {
+            await appendToAkasha(`⚡ HAND_OF_GOD: ${filename} was struck by lightning and disintegrated.`);
+        } else if (amount > 0) {
+            await appendToAkasha(`☀️ HAND_OF_GOD: ${filename} was blessed with +${amount} energy.`);
+        }
+
+        return new Response(JSON.stringify({ success: true, energy: alpha.energy }), {
+            headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
+        });
+    } catch (e) {
+        return new Response("Atom not found or error", { status: 404 });
+    }
+}
+
 async function handler(req: Request): Promise<Response> {
     const url = new URL(req.url);
 
-    if (url.pathname === "/api/atoms") {
+    if (req.method === "OPTIONS") {
+        return new Response(null, { headers: { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Methods": "GET, POST, OPTIONS" } });
+    }
+
+    if (req.method === "POST" && url.pathname.startsWith("/api/feed/")) {
+        const filename = decodeURIComponent(url.pathname.substring("/api/feed/".length));
+        return await modifyEnergy(filename, 50);
+    }
+    
+    if (req.method === "POST" && url.pathname.startsWith("/api/zap/")) {
+        const filename = decodeURIComponent(url.pathname.substring("/api/zap/".length));
+        return await modifyEnergy(filename, -50);
+    }
+
+    if (req.method === "GET" && url.pathname === "/api/akasha") {
+        try {
+            const logContent = await Deno.readTextFile("AKASHA.log");
+            const lines = logContent.trim().split("\n").filter(l => l.length > 0).slice(-10); // last 10 events
+            return new Response(JSON.stringify({ logs: lines }), {
+                headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
+            });
+        } catch {
+            return new Response(JSON.stringify({ logs: [] }), {
+                headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
+            });
+        }
+    }
+
+    if (req.method === "GET" && url.pathname === "/api/atoms") {
         const atoms = await scanAtoms();
         return new Response(JSON.stringify(atoms), {
             headers: {

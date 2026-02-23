@@ -239,6 +239,35 @@
       .atom-card.status-alive {
         animation: pulse-glow 4s infinite ease-in-out;
       }
+
+      .akashic-ticker {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(9, 9, 11, 0.95);
+        border-top: 1px solid rgba(16, 185, 129, 0.3);
+        backdrop-filter: blur(10px);
+        padding: 0.75rem 2rem;
+        display: flex;
+        gap: 2rem;
+        overflow-x: auto;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.8rem;
+        white-space: nowrap;
+        z-index: 1000;
+        scroll-behavior: smooth;
+        color: var(--accent);
+      }
+      .akashic-ticker span {
+        border-right: 1px solid var(--glass-border);
+        padding-right: 2rem;
+      }
+      .akashic-ticker span:last-child {
+        border-right: none;
+      }
+
+      body { padding-bottom: 50px; } /* Room for ticker */
     </style>
   </head>
   <body>
@@ -272,6 +301,10 @@
 
     <div class="grid-container" id="grid">
       <!-- Atoms injected here via JS -->
+    </div>
+
+    <div class="akashic-ticker" id="akasha-log">
+      <span>[AKASHA] Awaiting telemetry...</span>
     </div>
 
     <script>
@@ -340,6 +373,8 @@
               card.className = `atom-card ${
                 isAlive ? "status-alive" : "status-dust"
               } ${atom.retroEigen ? "retro-linked" : ""}`;
+              card.setAttribute("data-filename", atom.filename);
+              card.style.cursor = "pointer";
 
               card.innerHTML = `
                             <div class="svg-container">${
@@ -392,9 +427,54 @@
         }
       }
 
-      // Fetch immediately, then poll every 1 second
+      // Hand of God Interactions
+      grid.addEventListener("click", async (e) => {
+        const card = e.target.closest(".atom-card");
+        if (!card) return;
+        const filename = card.getAttribute("data-filename");
+        
+        card.style.transform = "scale(1.1)";
+        setTimeout(() => card.style.transform = "", 200);
+
+        await fetch(`/api/feed/${encodeURIComponent(filename)}`, { method: "POST" });
+        fetchAtoms();
+      });
+
+      grid.addEventListener("contextmenu", async (e) => {
+        e.preventDefault();
+        const card = e.target.closest(".atom-card");
+        if (!card) return;
+        const filename = card.getAttribute("data-filename");
+        
+        card.style.transform = "scale(0.9)";
+        card.style.boxShadow = "inset 0 0 40px rgba(239,68,68,0.6)";
+        setTimeout(() => {
+            card.style.transform = "";
+            card.style.boxShadow = "";
+        }, 200);
+
+        await fetch(`/api/zap/${encodeURIComponent(filename)}`, { method: "POST" });
+        fetchAtoms();
+      });
+
+      // Fetch Akasha Logs
+      async function fetchAkasha() {
+        try {
+            const res = await fetch("/api/akasha");
+            const data = await res.json();
+            const ticker = document.getElementById("akasha-log");
+            if (data.logs && data.logs.length > 0) {
+                ticker.innerHTML = data.logs.map((log) => `<span>${log}</span>`).join("");
+                ticker.scrollLeft = ticker.scrollWidth;
+            }
+        } catch { }
+      }
+
+      // Fetch immediately, then poll
       fetchAtoms();
+      fetchAkasha();
       setInterval(fetchAtoms, 1000);
+      setInterval(fetchAkasha, 2000);
     </script>
   </body>
 </html>
