@@ -5,6 +5,7 @@ import { RIBOSOME_TICK } from "./RIBOSOME_TICK.ts";
 import { GATE } from "./GATE.ts";
 import { CRYSTAL } from "./e/CRYSTAL_DIGEST.ts";
 import { parse as parseYaml, stringify as stringifyYaml } from "jsr:@std/yaml@^1.0.5";
+import { injectHologram } from "./HOLOGRAM_MODULE.ts";
 
 const SIGNAL_PATH = "./OMEGA_SIGNAL.md";
 const ROOT = Deno.cwd();
@@ -34,7 +35,7 @@ export const PULSE = {
         console.log(`\n💓 Pulse #${p + 1} | ${new Date().toISOString()}`);
 
         // 1. REFLECT (Scan Flatland for a candidate atom)
-        const atoms = [];
+        let atoms: string[] = [];
         for await (const entry of Deno.readDir(ROOT)) {
             if (entry.isFile && entry.name.startsWith("0x") && entry.name.endsWith(".md")) {
                 atoms.push(entry.name);
@@ -62,6 +63,48 @@ export const PULSE = {
         const newEigenvalue = `0x${newLogic}${eigenvalue.slice(10)}`;
         const newFilename = `${newEigenvalue}.${symbol}.md`;
 
+        // --- ECOLOGY: METABOLISM & STARVATION ---
+        const content = await Deno.readTextFile(targetFilename);
+        const frontmatterMatch = content.match(/^---\n([\s\S]+?)\n---\n/);
+        let alpha: any = {};
+        if (frontmatterMatch) {
+            alpha = parseYaml(frontmatterMatch[1]);
+        }
+        
+        let energy = alpha.energy !== undefined ? Number(alpha.energy) : 100;
+
+        // 1. Grazing Phase (Feeding on DUST)
+        const dustFiles = atoms.filter(a => a.endsWith(".DUST.md"));
+        if (dustFiles.length > 0 && energy < 150) {
+            // Pick a random DUST to consume
+            const prey = dustFiles[Math.floor(Math.random() * dustFiles.length)];
+            console.log(`   [GRAZING] Atom ${symbol} consumed ${prey} (+50 Energy)`);
+            energy += 50;
+            atoms = atoms.filter(a => a !== prey); // Remove from local array
+            await Deno.remove(prey); // Physically delete the DUST
+        }
+
+        // 2. Decay Phase
+        energy -= 5; // Base Entropy Cost per pulse
+
+        if (energy <= 0) {
+            console.log(`   [STARVATION] Atom ${symbol} ran out of energy and turned to DUST.`);
+            alpha.energy = 0;
+            alpha.eigenvalue = `0x00000000${eigenvalue.slice(10)}`; // Erase logic
+            const dustFilename = `${alpha.eigenvalue}.DUST.md`;
+            
+            // Rewrite as DUST
+            const deadContent = content.replace(/^---\n[\s\S]+?\n---\n/, `---\n${stringifyYaml(alpha)}---\n`);
+            const finalDeadContent = injectHologram(deadContent, alpha.eigenvalue, "DUST");
+            await Deno.writeTextFile(targetFilename, finalDeadContent);
+            await Deno.rename(targetFilename, dustFilename);
+            continue; // Stop processing this pulse
+        }
+        
+        alpha.energy = energy; // Save decayed energy
+        console.log(`   [METABOLISM] ${symbol} energy is now ${energy}.`);
+        // -----------------------------------------
+
         // 3. PROPOSE (Gate Budget Check)
         const proposal = {
             proposal_id: `prop_${Date.now()}`,
@@ -78,18 +121,34 @@ export const PULSE = {
             // 4. MUTATE (Topological Shift)
             console.log(`   [SHIFT] Relocating Atom: ${targetFilename} -> ${newFilename}`);
             
-            // Read content and update YAML metadata (Alpha Channel)
-            const content = await Deno.readTextFile(targetFilename);
-            const frontmatterMatch = content.match(/^---\n([\s\S]+?)\n---\n/);
-            
             let updatedContent = content;
             if (frontmatterMatch) {
-                const alpha = parseYaml(frontmatterMatch[1]) as any;
                 alpha.eigenvalue = newEigenvalue;
                 alpha.ex = alpha.ex || [];
                 alpha.ex.push(eigenvalue); // Record lineage
                 
+                // 3. Fission Phase (Reproduction)
+                if (alpha.energy >= 150) {
+                    console.log(`   [FISSION] 🦠 Atom ${symbol} reached critical energy! Spawning child.`);
+                    alpha.energy = Math.floor(alpha.energy / 2); // Split energy
+                    
+                    // Create child eigenvalue (flip the spin bit as a fast mutation)
+                    const qHex = newEigenvalue.slice(14, 18);
+                    const qVal = parseInt(qHex, 16);
+                    const childQVal = qVal ^ 0x0008; // Flip spin bit (bit 3)
+                    const childQHex = childQVal.toString(16).toUpperCase().padStart(4, "0");
+                    const childEigenvalue = `${newEigenvalue.slice(0, 14)}${childQHex}`;
+                    const childFilename = `${childEigenvalue}.${symbol}.md`;
+                    
+                    const childAlpha = { ...alpha, eigenvalue: childEigenvalue };
+                    let childContent = content.replace(/^---\n[\s\S]+?\n---\n/, `---\n${stringifyYaml(childAlpha)}---\n`);
+                    childContent = injectHologram(childContent, childEigenvalue, symbol);
+                    await Deno.writeTextFile(childFilename, childContent);
+                    console.log(`      🌱 Child Born: ${childFilename}`);
+                }
+
                 updatedContent = content.replace(/^---\n[\s\S]+?\n---\n/, `---\n${stringifyYaml(alpha)}---\n`);
+                updatedContent = injectHologram(updatedContent, newEigenvalue, symbol);
             }
 
             await Deno.writeTextFile(targetFilename, updatedContent);
@@ -132,7 +191,8 @@ export const PULSE = {
                         pAlpha.eigenvalue = newPartnerEigenvalue;
                         pAlpha.ex = pAlpha.ex || [];
                         pAlpha.ex.push(pFullDigest);
-                        const newPContent = pContent.replace(/^---\n[\s\S]+?\n---\n/, `---\n${stringifyYaml(pAlpha)}---\n`);
+                        let newPContent = pContent.replace(/^---\n[\s\S]+?\n---\n/, `---\n${stringifyYaml(pAlpha)}---\n`);
+                        newPContent = injectHologram(newPContent, newPartnerEigenvalue, pSymbol);
                         await Deno.writeTextFile(partnerFilename, newPContent);
                     }
                     await Deno.rename(partnerFilename, newPartnerFilename);

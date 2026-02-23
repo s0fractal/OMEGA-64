@@ -5,6 +5,42 @@ symbol: "S_MAP"
 desc: "Stream Map operator. Transforms every element of a lazy stream."
 ---
 
+<div align="center">
+<!-- ∇ HOLOGRAM START ∇ -->
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="grad_B4B7FA7DEA4C2AA5" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="hsl(59, 20%, 15%)" />
+      <stop offset="100%" stop-color="#090909" />
+    </radialGradient>
+    <filter id="glow_B4B7FA7DEA4C2AA5" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  
+  <rect width="200" height="200" fill="url(#grad_B4B7FA7DEA4C2AA5)" rx="24"/>
+  
+  <circle cx="100" cy="100" r="85" stroke="hsl(59, 30%, 30%)" stroke-width="1" fill="none" stroke-dasharray="2 6"/>
+  
+  <g>
+    <animateTransform attributeName="transform" type="rotate" from="180 100 100" to="-180 100 100" dur="10s" repeatCount="indefinite" />
+    
+    <polygon points="100.0,27.0 163.2,63.5 163.2,136.5 100.0,173.0 36.8,136.5 36.8,63.5" fill="none" stroke="hsl(239, 60%, 40%)" stroke-width="1.5" opacity="0.6"/>
+    <polygon points="100.0,80.0 117.3,90.0 117.3,110.0 100.0,120.0 82.7,110.0 82.7,90.0" fill="none" stroke="hsl(59, 80%, 60%)" stroke-width="2" filter="url(#glow_B4B7FA7DEA4C2AA5)"/>
+    
+    <circle cx="100" cy="100" r="20" stroke="hsl(59, 60%, 50%)" stroke-width="0.5" fill="none" opacity="0.5"/>
+  </g>
+  
+  <circle cx="100" cy="100" r="3" fill="hsl(239, 80%, 70%)" filter="url(#glow_B4B7FA7DEA4C2AA5)"/>
+  
+  <text x="100" y="105" fill="hsl(59, 70%, 80%)" font-family="monospace" font-size="10" text-anchor="middle" letter-spacing="1" opacity="0.9">0xB4B7</text>
+  <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">S_MAP</text>
+</svg>
+<!-- Δ HOLOGRAM END Δ -->
+</div>
+
+
 ## GREEN (G)
 
 Stream Map operator. Uses recursion (Y) to apply a function `f` to every element

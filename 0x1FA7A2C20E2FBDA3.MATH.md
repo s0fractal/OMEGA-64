@@ -5,6 +5,42 @@ symbol: "MATH"
 desc: "Foundational Math logic. (a => b => a + b)"
 ---
 
+<div align="center">
+<!-- ∇ HOLOGRAM START ∇ -->
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="grad_1FA7A2C20E2FBDA3" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="hsl(266, 20%, 15%)" />
+      <stop offset="100%" stop-color="#090909" />
+    </radialGradient>
+    <filter id="glow_1FA7A2C20E2FBDA3" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  
+  <rect width="200" height="200" fill="url(#grad_1FA7A2C20E2FBDA3)" rx="24"/>
+  
+  <circle cx="100" cy="100" r="85" stroke="hsl(266, 30%, 30%)" stroke-width="1" fill="none" stroke-dasharray="2 6"/>
+  
+  <g>
+    <animateTransform attributeName="transform" type="rotate" from="90 100 100" to="-270 100 100" dur="21s" repeatCount="indefinite" />
+    
+    <polygon points="100.0,39.0 158.0,81.1 135.9,149.4 64.1,149.4 42.0,81.1" fill="none" stroke="hsl(86, 60%, 40%)" stroke-width="1.5" opacity="0.6"/>
+    <polygon points="100.0,79.0 120.0,93.5 112.3,117.0 87.7,117.0 80.0,93.5" fill="none" stroke="hsl(266, 80%, 60%)" stroke-width="2" filter="url(#glow_1FA7A2C20E2FBDA3)"/>
+    
+    <circle cx="100" cy="100" r="21" stroke="hsl(266, 60%, 50%)" stroke-width="0.5" fill="none" opacity="0.5"/>
+  </g>
+  
+  <circle cx="100" cy="100" r="3" fill="hsl(86, 80%, 70%)" filter="url(#glow_1FA7A2C20E2FBDA3)"/>
+  
+  <text x="100" y="105" fill="hsl(266, 70%, 80%)" font-family="monospace" font-size="10" text-anchor="middle" letter-spacing="1" opacity="0.9">0x1FA7</text>
+  <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">MATH</text>
+</svg>
+<!-- Δ HOLOGRAM END Δ -->
+</div>
+
+
 ## GREEN (G)
 
 Fundamental MATH. The substrate of arithmetic logic in the OMEGA-64 universe.

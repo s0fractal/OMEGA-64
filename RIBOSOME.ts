@@ -4,7 +4,6 @@
 // Scans the Root, Lifts Atoms, and Builds the Living Map.
 
 import { IMMUNE } from "./IMMUNE.ts";
-import { DUAL } from "./DUAL.md"; // Using the crystallized logic via import if possible, or dynamic
 import { walk } from "jsr:@std/fs";
 import { parse as parseYaml } from "jsr:@std/yaml";
 
