@@ -61,7 +61,7 @@ export const PULSE = {
         const is128Bit = eigenvalue.includes("_");
         // EVOLVE: Always slice logic correctly from position 2 to 10.
         // E.g. "0x9D18A698CC8523BE" or "0x9D18A698CC8523BE_AABBCCDD00000000"
-        const currentLogic = eigenvalue.slice(2, 10);
+        let currentLogic = eigenvalue.slice(2, 10);
         const newLogic = RIBOSOME_TICK.reduce(currentLogic);
 
         if (newLogic === currentLogic && symbol !== "GRAVITY_WELL" && symbol !== "CHRONOS_MIRROR" && symbol !== "RETRO_PING" && symbol !== "PARASITE" && symbol !== "CODE_VECTOR_SINGULARITY") {
@@ -138,8 +138,25 @@ export const PULSE = {
             }
         }
         // ---------------------------------------------
+        // --- LIVING LOGIC: INSTRUCTION SET PARSING ---
+        const moveNibble = parseInt(currentLogic[0], 16);
+        const socialNibble = parseInt(currentLogic[1], 16);
+        
+        let moveThought = "WANDER";
+        if (moveNibble <= 3) moveThought = "SEEK_ALPHA";
+        else if (moveNibble <= 7) moveThought = "AVOID_PARASITE";
+        else if (moveNibble <= 11) moveThought = "WANDER";
+        else moveThought = "ORBIT";
+        
+        let socialThought = "PASSIVE";
+        if (socialNibble <= 7) socialThought = "PASSIVE";
+        else if (socialNibble <= 11) socialThought = "BONDING";
+        else socialThought = "MATING";
+        
+        alpha.thought = `${moveThought}_${socialThought}`;
+
         // --- HIERARCHICAL GRAVITY (Alpha Orbits) ---
-        // If we are a non-alpha atom, check if any Alphas of our species are nearby
+        // If moveThought is SEEK_ALPHA or ORBIT, and we are not an alpha
         if (!symbol.startsWith("ALPHA_") && !symbol.includes("DUST")) {
             const alphaMatch = atoms.find(a => a.includes(`ALPHA_${symbol}`));
             if (alphaMatch) {
@@ -156,15 +173,44 @@ export const PULSE = {
                         const dist = Math.hypot(dx, dy) || 1;
                         
                         if (dist < 400) {
-                            // Gentle attraction
-                            const pull = 2.0;
-                            x += (dx / dist) * pull;
-                            y += (dy / dist) * pull;
-                            
-                            // Tangential velocity (Orbit)
-                            x += (-dy / dist) * 15; // Swirl around
-                            y += (dx / dist) * 15;
-                            console.log(`   [ORBIT] ${symbol} is dancing around its Alpha parent.`);
+                            if (moveThought === "SEEK_ALPHA") {
+                                // Direct attraction
+                                x += (dx / dist) * 5.0;
+                                y += (dy / dist) * 5.0;
+                                console.log(`   [THOUGHT] ${symbol} is seeking Alpha.`);
+                            } else if (moveThought === "ORBIT") {
+                                // Gentle attraction + Tangential velocity
+                                x += (dx / dist) * 2.0;
+                                y += (dy / dist) * 2.0;
+                                x += (-dy / dist) * 15; 
+                                y += (dx / dist) * 15;
+                                console.log(`   [THOUGHT] ${symbol} is orbiting Alpha.`);
+                            }
+                        }
+                    }
+                } catch(e) { /* ignore */ }
+            }
+        }
+        
+        // AVOID PARASITE Logic
+        if (moveThought === "AVOID_PARASITE") {
+            const parasite = atoms.find(a => a.includes("PARASITE"));
+            if (parasite) {
+                try {
+                    const pContent = await Deno.readTextFile(parasite);
+                    const pMeta = pContent.match(/^---\n([\s\S]+?)\n---\n/);
+                    if (pMeta) {
+                        const pAlpha = parseYaml(pMeta[1]) as any;
+                        const pX = pAlpha.x !== undefined ? Number(pAlpha.x) : x;
+                        const pY = pAlpha.y !== undefined ? Number(pAlpha.y) : y;
+                        const dx = pX - x;
+                        const dy = pY - y;
+                        const dist = Math.hypot(dx, dy) || 1;
+                        if (dist < 300) {
+                            x -= (dx / dist) * 10.0; // Run away!
+                            y -= (dy / dist) * 10.0;
+                            console.log(`   [THOUGHT] ${symbol} is avoiding PARASITE!`);
+                            alpha.thought = "PANIC_AVOID_PARASITE";
                         }
                     }
                 } catch(e) { /* ignore */ }
@@ -357,7 +403,7 @@ export const PULSE = {
                             console.log(`      👶 Child Born: ${childFilename}`);
                             await logAkasha(`🧬 MEIOSIS: ${symbol} and ${mate.split(".")[1]} spawned ${childFilename}`);
                             
-                            const childAlpha = { eigenvalue: childEigenvalue, energy: 100, x: (x + mX) / 2, y: (y + mY) / 2, ex: [eigenvalue, mate.split(".")[0]], bonds: [] };
+                            const childAlpha = { eigenvalue: childEigenvalue, energy: 100, x: (x + mX) / 2, y: (y + mY) / 2, ex: [eigenvalue, mate.split(".")[0]], bonds: [], thought: "BORN" };
                             let childContent = content.replace(/^---\n[\s\S]+?\n---\n/, `---\n${stringifyYaml(childAlpha)}---\n`);
                             childContent = injectHologram(childContent, childEigenvalue, childSymbol);
                             await Deno.writeTextFile(childFilename, childContent);
@@ -369,6 +415,36 @@ export const PULSE = {
             }
         }
         // -------------------------------------------------------------
+
+        // --- CULTURAL CONVERGENCE (DNA Sync) ---
+        if (bonds.length > 0 && !symbol.includes("DUST")) {
+            for (const bondedEigen of bonds) {
+                const partnerFile = atoms.find(a => a.includes(bondedEigen));
+                if (partnerFile) {
+                    try {
+                        const pContent = await Deno.readTextFile(partnerFile);
+                        const pLogic = partnerFile.split(".")[0].slice(2, 10);
+                        // 10% chance to sync one character per pulse
+                        if (Math.random() < 0.1) {
+                            const charIdx = Math.floor(Math.random() * 8);
+                            if (currentLogic[charIdx] !== pLogic[charIdx]) {
+                                console.log(`   [CULTURE] ${symbol} is learning from its partner...`);
+                                // Since logic is in the filename, we'd need to rename.
+                                // But for now, let's just log the intent or actually do it.
+                                const newLogicS = currentLogic.substring(0, charIdx) + pLogic[charIdx] + currentLogic.substring(charIdx+1);
+                                const newE = `0x${newLogicS}${eigenvalue.slice(10)}`;
+                                const newF = `${newE}.${symbol}.md`;
+                                await Deno.rename(targetFilename, newF);
+                                targetFilename = newF;
+                                eigenvalue = newE;
+                                currentLogic = newLogicS;
+                            }
+                        }
+                    } catch(e) { /* ignore */ }
+                }
+            }
+        }
+        // ---------------------------------------
 
         // --- SYNAPTIC BONDING (Mycelial Network Formation) ---
         if (energy > 100 && !symbol.includes("DUST") && !["PARASITE", "GRAVITY_WELL", "CHRONOS_MIRROR", "RETRO_PING", "CODE_VECTOR_SINGULARITY"].includes(symbol)) {

@@ -35,6 +35,7 @@ async function scanAtoms() {
                 const x = alpha.x !== undefined ? Number(alpha.x) : Math.floor(Math.random() * 800) + 100;
                 const y = alpha.y !== undefined ? Number(alpha.y) : Math.floor(Math.random() * 600) + 100;
                 const bonds = alpha.bonds || [];
+                const thought = alpha.thought || "WANDER";
 
                 atoms.push({
                     filename: entry.name,
@@ -49,6 +50,7 @@ async function scanAtoms() {
                     x: x,
                     y: y,
                     bonds: bonds,
+                    thought: thought,
                     svg: svg,
                     isDust: entry.name.includes(".DUST")
                 });

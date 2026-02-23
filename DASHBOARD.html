@@ -159,6 +159,23 @@
         50% { box-shadow: 0 0 60px rgba(255, 215, 0, 0.5), inset 0 0 30px rgba(255, 215, 0, 0.4); }
       }
 
+      .thought-hud {
+        position: absolute;
+        top: -30px;
+        background: rgba(0, 0, 0, 0.8);
+        border: 1px solid var(--accent);
+        color: var(--accent);
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.7rem;
+        padding: 2px 8px;
+        border-radius: 4px;
+        white-space: nowrap;
+        pointer-events: none;
+        opacity: 0.8;
+        box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
+        z-index: 10;
+      }
+
       .svg-container {
         width: 200px;
         height: 200px;
@@ -429,6 +446,7 @@
               card.style.top = `${atom.y}px`;
 
               card.innerHTML = `
+                            <div class="thought-hud">${atom.thought}</div>
                             <div class="svg-container">${
                 atom.svg ||
                 '<div style="color: #444; font-family: monospace;">[NO SVG]</div>'
@@ -461,9 +479,11 @@
               // We only update the SVG if the eigenvalue changed (which implies file renamed, so new card usually, but just in case)
               // The energy block is what needs frequent updating
               const eBar = card.querySelector(".energy-bar");
-              const eText = card.querySelector(".energy-text");
+               const eText = card.querySelector(".energy-text");
+               const thoughtHud = card.querySelector(".thought-hud");
+               if (thoughtHud) thoughtHud.innerText = atom.thought;
 
-              eBar.style.width = `${ePct}%`;
+               eBar.style.width = `${ePct}%`;
               eBar.style.backgroundColor = eColor;
               eText.innerText = `${Math.floor(atom.energy)} NRG`;
               
