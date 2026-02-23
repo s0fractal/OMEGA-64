@@ -19,7 +19,7 @@ export const PULSE = {
         console.log("🛡️ OMEGA-64 | AUTOPOIETIC RESONANCE | HEARTBEAT ACTIVE");
     
     // 0. Initialize System State (Virtual Baseline)
-    let state = {
+    let state: any = {
         tick: Date.now(),
         state_i16: new Int16Array(64).fill(0),
         state_hash: "0xINITIAL_RESONANCE"
@@ -55,7 +55,7 @@ export const PULSE = {
         const currentLogic = eigenvalue.slice(2, 10);
         const newLogic = RIBOSOME_TICK.reduce(currentLogic);
 
-        if (newLogic === currentLogic) {
+        if (newLogic === currentLogic && symbol !== "GRAVITY_WELL" && symbol !== "CHRONOS_MIRROR") {
             console.log("   [EVOLVE] Logic stable. No mutation needed.");
             continue;
         }
@@ -105,6 +105,97 @@ export const PULSE = {
         console.log(`   [METABOLISM] ${symbol} energy is now ${energy}.`);
         // -----------------------------------------
 
+        // --- TEMPORAL ECHO (Acoustic Resonance via Chronos Mirror) ---
+        if (symbol === "CHRONOS_MIRROR") {
+            console.log(`   [CHRONOS] ⏳ Time-reversal anomaly detected around ${symbol}.`);
+            
+            // Find starving atoms in the flatland (excluding itself and dust)
+            const starvingPool = atoms.filter(a => {
+                const parts = a.split(".");
+                const s = parts[1];
+                return s !== "CHRONOS_MIRROR" && s !== "DUST";
+            });
+
+            if (starvingPool.length > 0) {
+                // Select a victim to heal
+                const targetAtom = starvingPool[Math.floor(Math.random() * starvingPool.length)];
+                console.log(`      🌌 Inverting decay for entangled target: ${targetAtom}`);
+                
+                // Heal the target
+                try {
+                    const tContent = await Deno.readTextFile(targetAtom);
+                    const tMeta = tContent.match(/^---\n([\s\S]+?)\n---\n/);
+                    if (tMeta) {
+                        const tAlpha = parseYaml(tMeta[1]) as any;
+                        tAlpha.energy = 150; // Restore energy completely
+                        
+                        let newTContent = tContent.replace(/^---\n[\s\S]+?\n---\n/, `---\n${stringifyYaml(tAlpha)}---\n`);
+                        // Optional: we don't re-inject hologram since it's just energy change, but we could.
+                        await Deno.writeTextFile(targetAtom, newTContent);
+                    }
+                } catch(e) { /* ignore read errors if atom vanished */ }
+
+                // Chronos Mirror Sacrifice: Halve its own energy
+                alpha.energy = Math.floor(alpha.energy / 2);
+                console.log(`      ⌛ Chronos Mirror sacrificed its mass. Energy drops to ${alpha.energy}.`);
+            }
+        }
+        // -------------------------------------------------------------
+
+        // --- GRAVITY WELL (Topological Singularity) ---
+        if (symbol === "GRAVITY_WELL") {
+            console.log(`   [GRAVITY] 🌌 Singularity activated. Draining energy from Flatland.`);
+            
+            // Find all other surviving atoms
+            const victims = atoms.filter(a => {
+                const parts = a.split(".");
+                return parts[1] !== "GRAVITY_WELL";
+            });
+
+            let drained = 0;
+            for (const victim of victims) {
+                try {
+                    const vContent = await Deno.readTextFile(victim);
+                    const vMeta = vContent.match(/^---\n([\s\S]+?)\n---\n/);
+                    if (vMeta) {
+                        const vAlpha = parseYaml(vMeta[1]) as any;
+                        if (vAlpha.energy && vAlpha.energy > 5) {
+                            vAlpha.energy -= 2; // Suck 2 energy
+                            drained += 2;
+                            let newVContent = vContent.replace(/^---\n[\s\S]+?\n---\n/, `---\n${stringifyYaml(vAlpha)}---\n`);
+                            await Deno.writeTextFile(victim, newVContent);
+                        }
+                    }
+                } catch(e) { /* ignore */ }
+            }
+
+            alpha.energy += drained;
+            console.log(`      🌀 Drained ${drained} energy. Mass is now ${alpha.energy}.`);
+
+            // Critical Mass -> Supernova!
+            if (alpha.energy > 800) {
+                console.log(`   [SUPERNOVA] 💥 GRAVITY_WELL reached critical mass! EXPLODING!`);
+                
+                // Spawn 5 random primitive atoms
+                for (let i = 0; i < 5; i++) {
+                    const rndLogic = Math.floor(Math.random() * 0xFFFFFFFF).toString(16).padStart(8, '0').toUpperCase();
+                    const childEigenvalue = `0x${rndLogic}00000000`;
+                    const childSymbol = Math.random() > 0.5 ? "DUST" : "SPARK";
+                    const childFilename = `${childEigenvalue}.${childSymbol}.md`;
+                    console.log(`      ☄️ Ejecting matter: ${childFilename}`);
+                    
+                    const childAlpha = { eigenvalue: childEigenvalue, energy: 100, ex: [eigenvalue] };
+                    let childContent = content.replace(/^---\n[\s\S]+?\n---\n/, `---\n${stringifyYaml(childAlpha)}---\n`);
+                    childContent = injectHologram(childContent, childEigenvalue, childSymbol);
+                    await Deno.writeTextFile(childFilename, childContent);
+                }
+
+                // Gravity Well destroys itself
+                alpha.energy = 0;
+            }
+        }
+        // -------------------------------------------------------------
+
         // 3. PROPOSE (Gate Budget Check)
         const proposal = {
             proposal_id: `prop_${Date.now()}`,
@@ -128,7 +219,7 @@ export const PULSE = {
                 alpha.ex.push(eigenvalue); // Record lineage
                 
                 // 3. Fission Phase (Reproduction)
-                if (alpha.energy >= 150) {
+                if (alpha.energy >= 150 && symbol !== "GRAVITY_WELL") {
                     console.log(`   [FISSION] 🦠 Atom ${symbol} reached critical energy! Spawning child.`);
                     alpha.energy = Math.floor(alpha.energy / 2); // Split energy
                     
@@ -152,7 +243,9 @@ export const PULSE = {
             }
 
             await Deno.writeTextFile(targetFilename, updatedContent);
-            await Deno.rename(targetFilename, newFilename);
+            if (targetFilename !== newFilename) {
+                await Deno.rename(targetFilename, newFilename);
+            }
 
             // 5. RESONATE (Spooky Action)
             const pool = atoms.map(a => a.split(".")[0].slice(2));

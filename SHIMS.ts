@@ -14,6 +14,9 @@ const sha256Hex = async (input: string): Promise<string> => {
   return toHex(digest);
 };
 
+// Types
+export type REPLAY_AUDIT__08_00_ReplayInvariantReport = any;
+
 // I16_LIMITS hybrid
 const I16_DATA = { 
     MIN: -32768, 
@@ -29,7 +32,7 @@ export const I16_CLAMP__00_00_I16_CLAMP = (v: number) => Math.floor(Math.max(-32
 
 // AGENT_SIGNATURE
 export const AGENT_SIGNATURE = {
-    verifyProposal: async (_p: any, _key: any) => true,
+    verifyProposal: async (_p: any, _key: any) => ({ ok: true, reason: undefined }),
     toCanonicalObject: (p: any) => ({
         proposal_id: p.proposal_id,
         tick: p.tick,
@@ -46,7 +49,7 @@ export const AGENT_SIGNATURE = {
 // CANON_CAUSAL_BRIDGE
 export const CANON_CAUSAL_BRIDGE = {
     verify: (_state: any, _proposals: any) => true,
-    resolveMode: (_report: any) => ({ mode: "GREEN" }),
+    resolveMode: (_report: any) => ({ mode: "GREEN" as const, reason: "Shim" }),
     isCanonBound: (_p: any) => false
 };
 
@@ -59,19 +62,26 @@ export const LOAD_LOAD = Object.assign(() => LOAD_DATA, LOAD_DATA);
 
 // CHECKPOINT
 export const CHECKPOINT_CHECKPOINT = {
-    save: async (_state: any) => {},
+    save: async (_state: any, _context?: any) => {},
     loadLatest: async () => null
 };
 
 // LEDGER
 export const LEDGER__08_00_LEDGER = {
-    append: async (_event: any) => {},
+    append: async (..._args: any[]) => {},
     STORAGE_PATH: "OMEGA_LEDGER.jsonl"
 };
 
 // TOPOLOGICAL_SIGNATURE
 export const TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE = {
-    build: async (_state: any) => "0xTOPOLOGICAL_HASH_RESONANCE",
+    build: async (_state: any) => ({
+        projection_2d_hash: "0xPROJ_2D",
+        thread_1d_hash: "0xTHREAD_1D",
+        projection_version: "v1.0",
+        artifact_hash: "0xART_HASH",
+        tick: 0,
+        causal_refs: []
+    }),
     validateHash: (_hash: string) => true,
     snapshotToOrganismState: (s: any) => ({ ...s })
 };
@@ -94,12 +104,12 @@ export const PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX = {
     check: () => false,
     pathForLedger: (_ledgerPath: string) => "OMEGA_LEDGER.jsonl.proposal_envelope_index.jsonl",
     getRecentEnvelopeHashes: async (_start: number, _end: number, _path: string) => new Set<string>(),
-    appendFromLedgerEvent: async (_event: any, _path: string) => {}
+    appendFromLedgerEvent: async (..._args: any[]) => {}
 };
 
 // INVARIANT_PACKET
 export const INVARIANT_PACKET_INVARIANT_PACKET = {
     verify: () => true,
-    fromInvariantReport: (_report: any) => ({}),
+    fromInvariantReport: (_report: any, _opts?: any) => ({}),
     hash: async (_packet: any) => "0xINVARIANT_HASH_RESONANCE"
 };

@@ -184,3 +184,20 @@ export { GATE } from "./GATE.ts";
 export { IMMUNE } from "./IMMUNE.ts";
 export { RIBOSOME_TICK } from "./RIBOSOME_TICK.ts";
 export { PULSE } from "./PULSE.ts";
+export * from "./SHIMS.ts";
+export * from "./STATE_SNAPSHOT.ts";
+export type {
+    StateSnapshot as STATE_SNAPSHOT_StateSnapshot,
+    AutonomyState as STATE_SNAPSHOT_AutonomyState,
+    DeltaProposal as STATE_SNAPSHOT_DeltaProposal,
+    GateConfig as STATE_SNAPSHOT_GateConfig,
+    AgentSignatureScheme as STATE_SNAPSHOT_AgentSignatureScheme,
+    SignaturePolicy as STATE_SNAPSHOT_SignaturePolicy,
+    AgentSignatureKey as STATE_SNAPSHOT_AgentSignatureKey,
+    GateDecision as STATE_SNAPSHOT_GateDecision,
+    LedgerEvent as STATE_SNAPSHOT_LedgerEvent,
+    BridgeModeEvent as STATE_SNAPSHOT_BridgeModeEvent
+} from "./STATE_SNAPSHOT.ts";
+export {
+    REJECTION as STATE_SNAPSHOT_REJECTION
+} from "./STATE_SNAPSHOT.ts";
