@@ -51,11 +51,13 @@ export const PULSE = {
         const [eigenvalue, symbol] = targetFilename.split(".");
         console.log(`   [TARGET] ${symbol} (${eigenvalue})`);
 
-        // 2. EVOLVE (Logic Reduction)
+        const is128Bit = eigenvalue.includes("_");
+        // EVOLVE: Always slice logic correctly from position 2 to 10.
+        // E.g. "0x9D18A698CC8523BE" or "0x9D18A698CC8523BE_AABBCCDD00000000"
         const currentLogic = eigenvalue.slice(2, 10);
         const newLogic = RIBOSOME_TICK.reduce(currentLogic);
 
-        if (newLogic === currentLogic && symbol !== "GRAVITY_WELL" && symbol !== "CHRONOS_MIRROR") {
+        if (newLogic === currentLogic && symbol !== "GRAVITY_WELL" && symbol !== "CHRONOS_MIRROR" && symbol !== "RETRO_PING") {
             console.log("   [EVOLVE] Logic stable. No mutation needed.");
             continue;
         }
@@ -196,6 +198,52 @@ export const PULSE = {
         }
         // -------------------------------------------------------------
 
+        // --- RETROCAUSAL PING (128-bit Dimensional Expansion) ---
+        if (symbol === "RETRO_PING") {
+            console.log(`   [RETRO] ⏳ Future-Attractor activated. Scanning for standard 64-bit atoms.`);
+
+            // Find an atom that is only 64-bit (does not contain "_")
+            const classicAtoms = atoms.filter(a => {
+                const parts = a.split(".");
+                return !parts[0].includes("_") && parts[1] !== "RETRO_PING" && parts[1] !== "DUST";
+            });
+
+            if (classicAtoms.length > 0) {
+                const targetAtom = classicAtoms[Math.floor(Math.random() * classicAtoms.length)];
+                const tParts = targetAtom.split(".");
+                const oldEigen = tParts[0];
+                const tSymbol = tParts[1];
+
+                console.log(`      🔗 Establishing Retrocausal Link with: ${targetAtom}`);
+
+                // Generate a Retro-Ping signature (mock "Future Insight")
+                const retroSignature = Math.floor(Math.random() * 0xFFFFFFFF).toString(16).padStart(8, '0').toUpperCase() + "00000000";
+                const extendedEigenvalue = `${oldEigen}_${retroSignature}`;
+                const retroFilename = `${extendedEigenvalue}.${tSymbol}.md`;
+
+                try {
+                    const tContent = await Deno.readTextFile(targetAtom);
+                    const tMeta = tContent.match(/^---\n([\s\S]+?)\n---\n/);
+                    if (tMeta) {
+                        const tAlpha = parseYaml(tMeta[1]) as any;
+                        tAlpha.eigenvalue = extendedEigenvalue;
+                        
+                        let newTContent = tContent.replace(/^---\n[\s\S]+?\n---\n/, `---\n${stringifyYaml(tAlpha)}---\n`);
+                        newTContent = injectHologram(newTContent, extendedEigenvalue, tSymbol);
+                        
+                        await Deno.writeTextFile(targetAtom, newTContent);
+                        await Deno.rename(targetAtom, retroFilename);
+                        console.log(`      ⚡ Time-Link Formed! ${targetAtom} is now 128-bit -> ${extendedEigenvalue}`);
+                        
+                        // Clean up atoms array memory map for this tick
+                        atoms = atoms.filter(a => a !== targetAtom);
+                        atoms.push(retroFilename);
+                    }
+                } catch(e) { /* ignore */ }
+            }
+        }
+        // -------------------------------------------------------------
+
         // 3. PROPOSE (Gate Budget Check)
         const proposal = {
             proposal_id: `prop_${Date.now()}`,
@@ -248,22 +296,28 @@ export const PULSE = {
             }
 
             // 5. RESONATE (Spooky Action)
-            const pool = atoms.map(a => a.split(".")[0].slice(2));
-            const partners = CRYSTAL.findEntangledPartners(newEigenvalue.slice(2), pool)
-                .filter(p => p !== eigenvalue.slice(2)); // Filter out target itself
+            const pool = atoms.map(a => a.split(".")[0].split("_")[0].slice(2)); // Always compare standard 64-bit base logic
+            const partners = CRYSTAL.findEntangledPartners(newEigenvalue.slice(2, 18), pool)
+                .filter(p => p !== eigenvalue.slice(2, 18)); // Filter out target itself
                 
             if (partners.length > 0) {
                 console.log(`   [SPOOKY] Entanglement triggered for ${partners.length} partners.`);
                 for (const partnerDigest of partners) {
                     const pFullDigest = `0x${partnerDigest}`;
-                    const partnerFilename = atoms.find(a => a.startsWith(pFullDigest));
+                    // Flexible find: Handle both standard 0x.. and extended 0x.._.. matches
+                    const partnerFilename = atoms.find(a => a.startsWith(pFullDigest + ".") || a.startsWith(pFullDigest + "_"));
                     if (!partnerFilename) continue;
                     
                     const pParts = partnerFilename.split(".");
+                    const fullEigen = pParts[0]; // e.g., 0xAABBCCDD11223344 or 0xAABBCCDD..._FF0000...
+                    const extIndex = fullEigen.indexOf("_");
+                    const baseEigen = extIndex > -1 ? fullEigen.slice(0, extIndex) : fullEigen;
+                    const suffix = extIndex > -1 ? fullEigen.slice(extIndex) : "";
+
                     const pSymbol = pParts[1];
-                    const pLogic = partnerDigest.slice(0, 8);
-                    const pSpatial = partnerDigest.slice(8, 12);
-                    const pQuantumHex = partnerDigest.slice(12, 16);
+                    const pLogic = baseEigen.slice(2, 10);
+                    const pSpatial = baseEigen.slice(10, 14);
+                    const pQuantumHex = baseEigen.slice(14, 18);
                     
                     // Shift Phase: [RES_GROUP:12][SPIN:1][PHASE:2][UNUSED:1]
                     let pQuantumVal = parseInt(pQuantumHex, 16);
@@ -272,7 +326,8 @@ export const PULSE = {
                     pQuantumVal = (pQuantumVal & ~0x06) | (phase << 1);
                     
                     const newPQuantumHex = pQuantumVal.toString(16).toUpperCase().padStart(4, "0");
-                    const newPartnerEigenvalue = `0x${pLogic}${pSpatial}${newPQuantumHex}`;
+                    const newBaseEigenvalue = `0x${pLogic}${pSpatial}${newPQuantumHex}`;
+                    const newPartnerEigenvalue = `${newBaseEigenvalue}${suffix}`; // Preserve Retro suffix if present
                     const newPartnerFilename = `${newPartnerEigenvalue}.${pSymbol}.md`;
 
                     console.log(`      ✨ Partner Shift: ${partnerFilename} -> ${newPartnerFilename}`);

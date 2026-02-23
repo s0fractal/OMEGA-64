@@ -17,12 +17,33 @@ async function scanAtoms() {
                     alpha = parseYaml(frontmatterMatch[1]);
                 }
                 
+                const tParts = entry.name.split(".");
+                const fullEigen = tParts[0];
+                const symbol = tParts[1];
+                
+                // For display and classification, separate base and retro components
+                const is128Bit = fullEigen.includes("_");
+                const baseEigen = is128Bit ? fullEigen.split("_")[0] : fullEigen;
+                const retroEigen = is128Bit ? fullEigen.split("_")[1] : null;
+
+                const logic = baseEigen.slice(2, 10);
+                const spatial = baseEigen.slice(10, 14);
+                const quantum = baseEigen.slice(14, 18);
+
+                let svg = svgMatch ? svgMatch[0] : null;
+                let energy = alpha.energy !== undefined ? Number(alpha.energy) : 100;
+
                 atoms.push({
                     filename: entry.name,
-                    eigenvalue: alpha.eigenvalue || entry.name.split(".")[0],
-                    symbol: alpha.symbol || entry.name.split(".")[1],
-                    energy: alpha.energy !== undefined ? Number(alpha.energy) : 100,
-                    svg: svgMatch ? svgMatch[0] : null,
+                    eigenvalue: fullEigen,
+                    baseEigen: baseEigen,
+                    retroEigen: retroEigen,
+                    logic: logic,
+                    spatial: spatial,
+                    quantum: quantum,
+                    symbol: symbol,
+                    energy: energy,
+                    svg: svg,
                     isDust: entry.name.includes(".DUST")
                 });
             } catch (e) {
