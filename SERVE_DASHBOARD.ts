@@ -32,6 +32,8 @@ async function scanAtoms() {
 
                 let svg = svgMatch ? svgMatch[0] : null;
                 let energy = alpha.energy !== undefined ? Number(alpha.energy) : 100;
+                let x = alpha.x !== undefined ? Number(alpha.x) : Math.floor(Math.random() * 800) + 100;
+                let y = alpha.y !== undefined ? Number(alpha.y) : Math.floor(Math.random() * 600) + 100;
 
                 atoms.push({
                     filename: entry.name,
@@ -43,6 +45,8 @@ async function scanAtoms() {
                     quantum: quantum,
                     symbol: symbol,
                     energy: energy,
+                    x: x,
+                    y: y,
                     svg: svg,
                     isDust: entry.name.includes(".DUST")
                 });
@@ -108,6 +112,39 @@ async function handler(req: Request): Promise<Response> {
     if (req.method === "POST" && url.pathname.startsWith("/api/zap/")) {
         const filename = decodeURIComponent(url.pathname.substring("/api/zap/".length));
         return await modifyEnergy(filename, -50);
+    }
+    
+    if (req.method === "POST" && url.pathname === "/api/forge") {
+        try {
+            const body = await req.json();
+            const symbol = body.symbol?.toUpperCase().replace(/[^A-Z0-9_]/g, "") || "ANOMALY";
+            let logic = body.logic?.toUpperCase().replace(/[^0-9A-F]/g, "").padEnd(8, "0").slice(0, 8) || "88880000";
+            const energy = Number(body.energy) || 100;
+            
+            const eigen = `0x${logic}00000000`;
+            const filename = `${eigen}.${symbol}.md`;
+            
+            const p = new Deno.Command("deno", {
+                args: ["eval", `
+                    import { injectHologram } from "./HOLOGRAM_MODULE.ts";
+                    import { stringify } from "jsr:@std/yaml@^1.0.5";
+                    const alpha = { eigenvalue: "${eigen}", energy: ${energy}, x: Math.floor(Math.random()*800)+100, y: Math.floor(Math.random()*600)+100, ex: [] };
+                    let content = "---\\n" + stringify(alpha) + "---\\n\\nexport const ATOM = () => (x: any) => x;";
+                    console.log(injectHologram(content, "${eigen}", "${symbol}"));
+                `]
+            });
+            const out = await p.output();
+            const forgedContent = new TextDecoder().decode(out.stdout);
+            
+            await Deno.writeTextFile(filename, forgedContent);
+            await appendToAkasha(`⚒️ FORGE: Observer materialized new entity ${filename} with ${energy} energy.`);
+            
+            return new Response(JSON.stringify({ success: true, filename }), {
+                headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
+            });
+        } catch (e) {
+            return new Response("Forge failed", { status: 500 });
+        }
     }
 
     if (req.method === "POST" && url.pathname === "/api/zero-iops") {

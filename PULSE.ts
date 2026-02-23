@@ -81,6 +81,14 @@ export const PULSE = {
         }
         
         let energy = alpha.energy !== undefined ? Number(alpha.energy) : 100;
+        let x = alpha.x !== undefined ? Number(alpha.x) : Math.floor(Math.random() * 800) + 100;
+        let y = alpha.y !== undefined ? Number(alpha.y) : Math.floor(Math.random() * 600) + 100;
+
+        // Cartesian Brownian Drift
+        x = Math.max(50, Math.min(1350, Math.floor(x + (Math.random() - 0.5) * 60)));
+        y = Math.max(50, Math.min(750, Math.floor(y + (Math.random() - 0.5) * 60)));
+        alpha.x = x;
+        alpha.y = y;
 
         // 1. Grazing Phase (Feeding on DUST)
         const dustFiles = atoms.filter(a => a.endsWith(".DUST.md"));
@@ -163,7 +171,7 @@ export const PULSE = {
             if (potentialHosts.length > 0) {
                 let bestHost = null;
                 let maxE = -1;
-                // Scan the ecosystem to find the fattest prey
+                // Scan the ecosystem to find the fattest prey within 300px
                 for (const h of potentialHosts) {
                     try {
                         const hContent = await Deno.readTextFile(h);
@@ -171,7 +179,11 @@ export const PULSE = {
                         if (hMetaMatch) {
                             const hp = parseYaml(hMetaMatch[1]) as any;
                             const hE = hp.energy !== undefined ? Number(hp.energy) : 0;
-                            if (hE > maxE) {
+                            const hX = hp.x !== undefined ? Number(hp.x) : 0;
+                            const hY = hp.y !== undefined ? Number(hp.y) : 0;
+                            
+                            const dist = Math.hypot(hX - x, hY - y);
+                            if (dist < 300 && hE > maxE) {
                                 maxE = hE;
                                 bestHost = h;
                             }
@@ -220,7 +232,12 @@ export const PULSE = {
                     const vMeta = vContent.match(/^---\n([\s\S]+?)\n---\n/);
                     if (vMeta) {
                         const vAlpha = parseYaml(vMeta[1]) as any;
-                        if (vAlpha.energy && vAlpha.energy > 5) {
+                        const vX = vAlpha.x !== undefined ? Number(vAlpha.x) : 0;
+                        const vY = vAlpha.y !== undefined ? Number(vAlpha.y) : 0;
+                        
+                        const dist = Math.hypot(vX - x, vY - y);
+                        
+                        if (dist < 400 && vAlpha.energy && vAlpha.energy > 5) {
                             vAlpha.energy -= 2; // Suck 2 energy
                             drained += 2;
                             const newVContent = vContent.replace(/^---\n[\s\S]+?\n---\n/, `---\n${stringifyYaml(vAlpha)}---\n`);
@@ -444,6 +461,40 @@ export const PULSE = {
         await new Promise(resolve => setTimeout(resolve, 500));
     }
     
+    // --- QUANTUM IMMORTALITY ---
+    console.log("\n⏳ Calculating Ecosystem Stability...");
+    let survivingAtoms = 0;
+    let totalEcosystem = 0;
+    for await (const entry of Deno.readDir(ROOT)) {
+        if (entry.isFile && entry.name.endsWith(".md") && entry.name.startsWith("0x")) {
+            totalEcosystem++;
+            if (!entry.name.includes(".DUST")) {
+                survivingAtoms++;
+            }
+        }
+    }
+
+    if (totalEcosystem > 5 && survivingAtoms <= Math.ceil(totalEcosystem * 0.15)) {
+        console.log(`🚨 MASS EXTINCTION DETECTED! Only ${survivingAtoms}/${totalEcosystem} organisms survived.`);
+        console.log(`   [QUANTUM] Initiating Timeline Reversion (Git Reset)...`);
+        await logAkasha(`🚨 MASS EXTINCTION DETECTED. Reverting timeline to last stable Epoch...`);
+        
+        try {
+            const resetCmd = new Deno.Command("git", { args: ["reset", "--hard", "HEAD~1"] });
+            await resetCmd.output();
+            console.log(`   [RESTORED] 🕰️ Timeline successfully reverted.`);
+            await logAkasha(`🕰️ TIMELINE RESTORED. Quantum Immortality sequence successful.`);
+        } catch(e) { /* Git not present or failed */ }
+    } else {
+        console.log(`💾 Saving Epoch State (Surviving: ${survivingAtoms}/${totalEcosystem})...`);
+        try {
+            const addCmd = new Deno.Command("git", { args: ["add", "."] });
+            await addCmd.output();
+            const commitCmd = new Deno.Command("git", { args: ["commit", "-m", `epoch: heartbeat state save (${survivingAtoms}/${totalEcosystem} living)`] });
+            await commitCmd.output();
+        } catch(e) { /* Git not present or failed */ }
+    }
+
     console.log("\n✅ Heartbeat Sequence Complete.");
     }
 };

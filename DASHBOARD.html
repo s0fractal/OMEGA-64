@@ -101,16 +101,20 @@
         color: #fff;
       }
 
-      .grid-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: 2rem;
-        padding: 3rem;
-        max-width: 1600px;
-        margin: 0 auto;
+      .arena-container {
+        position: relative;
+        width: 100%;
+        height: 800px;
+        margin: 20px auto;
+        background: radial-gradient(circle at center, rgba(30, 30, 50, 0.4) 0%, rgba(10, 10, 20, 0.8) 100%);
+        border: 1px solid var(--glass-border);
+        border-radius: 12px;
+        overflow: hidden;
       }
 
       .atom-card {
+        position: absolute;
+        transform: translate(-50%, -50%); /* Centered on X,Y */
         background: var(--glass-bg);
         border: 1px solid var(--glass-border);
         border-radius: 24px;
@@ -119,9 +123,7 @@
         flex-direction: column;
         align-items: center;
         backdrop-filter: blur(16px);
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        position: relative;
-        overflow: hidden;
+        transition: left 0.5s ease-out, top 0.5s ease-out, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       }
 
       .atom-card:hover {
@@ -266,8 +268,31 @@
       .akashic-ticker span:last-child {
         border-right: none;
       }
-
       body { padding-bottom: 50px; } /* Room for ticker */
+
+      .forge-panel {
+          margin: 1rem 2rem;
+          padding: 1rem;
+          background: rgba(10, 15, 30, 0.8);
+          border: 1px solid var(--glass-border);
+          border-radius: 8px;
+          display: flex;
+          gap: 1rem;
+          align-items: center;
+          flex-wrap: wrap;
+      }
+      .forge-panel input {
+          background: rgba(0, 0, 0, 0.5);
+          border: 1px solid var(--glass-border);
+          color: #fff;
+          padding: 0.5rem;
+          border-radius: 4px;
+          font-family: monospace;
+          outline: none;
+      }
+      .forge-panel input:focus {
+          border-color: var(--accent);
+      }
     </style>
   </head>
   <body>
@@ -302,7 +327,17 @@
       </div>
     </header>
 
-    <div class="grid-container" id="grid">
+    <div class="forge-panel">
+        <span style="color: var(--accent); font-weight: bold;">⚒️ NOOSPHERIC FORGE</span>
+        <input type="text" id="forge-symbol" placeholder="SYMBOL (e.g. SPARK)" value="SPARK" />
+        <input type="text" id="forge-logic" placeholder="LOGIC HEX (e.g. 88880000)" value="88880000" maxlength="8" />
+        <input type="number" id="forge-energy" placeholder="ENERGY" value="100" style="width: 80px;" />
+        <button class="pulse-button" id="forge-btn" style="padding: 0.5rem 1rem; width: auto; font-size: 0.8rem;">
+            <span>SYNTHESIZE ATOM</span>
+        </button>
+    </div>
+
+    <div class="arena-container" id="arena">
       <!-- Atoms injected here via JS -->
     </div>
 
@@ -311,7 +346,7 @@
     </div>
 
     <script>
-      const grid = document.getElementById("grid");
+      const arena = document.getElementById("arena");
       const elements = {
         total: document.getElementById("total-count"),
         live: document.getElementById("live-count"),
@@ -378,6 +413,8 @@
               } ${atom.retroEigen ? "retro-linked" : ""}`;
               card.setAttribute("data-filename", atom.filename);
               card.style.cursor = "pointer";
+              card.style.left = `${atom.x}px`;
+              card.style.top = `${atom.y}px`;
 
               card.innerHTML = `
                             <div class="svg-container">${
@@ -401,7 +438,7 @@
                             </div>
                         `;
 
-              grid.appendChild(card);
+              arena.appendChild(card);
               atomNodes.set(atom.filename, card);
             } else {
               // Update existing card data
@@ -417,6 +454,10 @@
               eBar.style.width = `${ePct}%`;
               eBar.style.backgroundColor = eColor;
               eText.innerText = `${Math.floor(atom.energy)} NRG`;
+              
+              // Apply physical position
+              card.style.left = `${atom.x}px`;
+              card.style.top = `${atom.y}px`;
             }
           });
 
@@ -431,7 +472,7 @@
       }
 
       // Hand of God Interactions
-      grid.addEventListener("click", async (e) => {
+      arena.addEventListener("click", async (e) => {
         const card = e.target.closest(".atom-card");
         if (!card) return;
         const filename = card.getAttribute("data-filename");
@@ -443,7 +484,7 @@
         fetchAtoms();
       });
 
-      grid.addEventListener("contextmenu", async (e) => {
+      arena.addEventListener("contextmenu", async (e) => {
         e.preventDefault();
         const card = e.target.closest(".atom-card");
         if (!card) return;
@@ -487,6 +528,31 @@
           setTimeout(() => {
               zeroIopsBtn.style.transform = "";
               zeroIopsBtn.style.boxShadow = "";
+          }, 500);
+      });
+
+      // Noospheric Forge Execution
+      const forgeBtn = document.getElementById("forge-btn");
+      forgeBtn.addEventListener("click", async () => {
+          const symbol = document.getElementById("forge-symbol").value;
+          const logic = document.getElementById("forge-logic").value;
+          const energy = document.getElementById("forge-energy").value;
+
+          forgeBtn.style.transform = "scale(0.95)";
+          forgeBtn.innerText = "SYNTHESIZING...";
+
+          try {
+              await fetch("/api/forge", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ symbol, logic, energy })
+              });
+              fetchAtoms();
+          } catch (e) {}
+
+          setTimeout(() => {
+              forgeBtn.style.transform = "";
+              forgeBtn.innerText = "SYNTHESIZE ATOM";
           }, 500);
       });
 
