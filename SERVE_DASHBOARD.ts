@@ -32,8 +32,9 @@ async function scanAtoms() {
 
                 let svg = svgMatch ? svgMatch[0] : null;
                 let energy = alpha.energy !== undefined ? Number(alpha.energy) : 100;
-                let x = alpha.x !== undefined ? Number(alpha.x) : Math.floor(Math.random() * 800) + 100;
-                let y = alpha.y !== undefined ? Number(alpha.y) : Math.floor(Math.random() * 600) + 100;
+                const x = alpha.x !== undefined ? Number(alpha.x) : Math.floor(Math.random() * 800) + 100;
+                const y = alpha.y !== undefined ? Number(alpha.y) : Math.floor(Math.random() * 600) + 100;
+                const bonds = alpha.bonds || [];
 
                 atoms.push({
                     filename: entry.name,
@@ -47,6 +48,7 @@ async function scanAtoms() {
                     energy: energy,
                     x: x,
                     y: y,
+                    bonds: bonds,
                     svg: svg,
                     isDust: entry.name.includes(".DUST")
                 });

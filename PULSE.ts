@@ -83,6 +83,7 @@ export const PULSE = {
         let energy = alpha.energy !== undefined ? Number(alpha.energy) : 100;
         let x = alpha.x !== undefined ? Number(alpha.x) : Math.floor(Math.random() * 800) + 100;
         let y = alpha.y !== undefined ? Number(alpha.y) : Math.floor(Math.random() * 600) + 100;
+        const bonds: string[] = Array.isArray(alpha.bonds) ? alpha.bonds : [];
 
         // --- SEMANTIC KINESIS (DNA-Driven Movement) ---
         // Instead of random drift, we derive a velocity vector from the 8-hex logic string.
@@ -139,6 +140,44 @@ export const PULSE = {
         
         alpha.energy = energy; // Save decayed energy
         console.log(`   [METABOLISM] ${symbol} energy is now ${energy}.`);
+        // -----------------------------------------
+
+        // --- ENERGY OSMOSIS (Synaptic Network Sharing) ---
+        if (bonds.length > 0 && energy > 0 && !symbol.includes("DUST")) {
+            for (const bondedEigen of bonds) {
+                // Find the connected atom file
+                const partnerFile = atoms.find(a => a.includes(bondedEigen));
+                if (partnerFile && partnerFile !== targetFilename) {
+                    try {
+                        const pContent = await Deno.readTextFile(partnerFile);
+                        const pMeta = pContent.match(/^---\n([\s\S]+?)\n---\n/);
+                        if (pMeta) {
+                            const pAlpha = parseYaml(pMeta[1]) as any;
+                            const pEnergy = pAlpha.energy !== undefined ? Number(pAlpha.energy) : 0;
+                            
+                            // If there's a significant energy delta (> 20), equalize it
+                            const delta = Math.abs(energy - pEnergy);
+                            if (delta > 20) {
+                                const average = Math.floor((energy + pEnergy) / 2);
+                                
+                                console.log(`   [OSMOSIS] 🕸️ Equalizing energy between ${symbol} (${energy}) and partner (${pEnergy}) -> ${average}`);
+                                
+                                // Update self
+                                energy = average;
+                                alpha.energy = energy;
+                                
+                                // Update partner
+                                pAlpha.energy = average;
+                                const newPContent = pContent.replace(/^---\n[\s\S]+?\n---\n/, `---\n${stringifyYaml(pAlpha)}---\n`);
+                                await Deno.writeTextFile(partnerFile, newPContent);
+                            }
+                        }
+                    } catch(e) { 
+                        // If partner is dead/missing, we could prune the bond here, but let's let ghosts remain for now
+                    }
+                }
+            }
+        }
         // -----------------------------------------
 
         // --- TEMPORAL ECHO (Acoustic Resonance via Chronos Mirror) ---
@@ -236,12 +275,58 @@ export const PULSE = {
                             console.log(`      👶 Child Born: ${childFilename}`);
                             await logAkasha(`🧬 MEIOSIS: ${symbol} and ${mate.split(".")[1]} spawned ${childFilename}`);
                             
-                            const childAlpha = { eigenvalue: childEigenvalue, energy: 100, x: (x + mX) / 2, y: (y + mY) / 2, ex: [eigenvalue, mate.split(".")[0]] };
+                            const childAlpha = { eigenvalue: childEigenvalue, energy: 100, x: (x + mX) / 2, y: (y + mY) / 2, ex: [eigenvalue, mate.split(".")[0]], bonds: [] };
                             let childContent = content.replace(/^---\n[\s\S]+?\n---\n/, `---\n${stringifyYaml(childAlpha)}---\n`);
                             childContent = injectHologram(childContent, childEigenvalue, childSymbol);
                             await Deno.writeTextFile(childFilename, childContent);
                             
                             break; // Breed only once per pulse
+                        }
+                    }
+                } catch { /* ignore */ }
+            }
+        }
+        // -------------------------------------------------------------
+
+        // --- SYNAPTIC BONDING (Mycelial Network Formation) ---
+        if (energy > 100 && !symbol.includes("DUST") && !["PARASITE", "GRAVITY_WELL", "CHRONOS_MIRROR", "RETRO_PING", "CODE_VECTOR_SINGULARITY"].includes(symbol)) {
+             const potentialBonds = atoms.filter(a => {
+                const s = a.split(".")[1];
+                return a !== targetFilename && !s.includes("DUST") && !["PARASITE", "GRAVITY_WELL", "CHRONOS_MIRROR", "RETRO_PING"].includes(s);
+            });
+
+            for (const potential of potentialBonds) {
+                try {
+                    const pContent = await Deno.readTextFile(potential);
+                    const pMetaMatch = pContent.match(/^---\n([\s\S]+?)\n---\n/);
+                    if (pMetaMatch) {
+                        const pAlpha = parseYaml(pMetaMatch[1]) as any;
+                        const pE = pAlpha.energy !== undefined ? Number(pAlpha.energy) : 0;
+                        const pX = pAlpha.x !== undefined ? Number(pAlpha.x) : 0;
+                        const pY = pAlpha.y !== undefined ? Number(pAlpha.y) : 0;
+                        const pBonds: string[] = Array.isArray(pAlpha.bonds) ? pAlpha.bonds : [];
+                        const pEigen = potential.split(".")[0];
+                        
+                        const dist = Math.hypot(pX - x, pY - y);
+                        
+                        // If they are close, both have energy, and aren't already bonded
+                        if (dist < 40 && pE > 100 && !bonds.includes(pEigen) && bonds.length < 3 && pBonds.length < 3) {
+                            console.log(`   [SYNAPSE] 🕸️ Neural link formed between ${symbol} and ${potential.split(".")[1]}`);
+                            
+                            // 1. Bond Self
+                            bonds.push(pEigen);
+                            alpha.bonds = bonds;
+                            
+                            // 2. Bond Partner
+                            pBonds.push(eigenvalue); // The self's eigen
+                            pAlpha.bonds = pBonds;
+                            
+                            // Save partner's bonded state
+                            const newPContent = pContent.replace(/^---\n[\s\S]+?\n---\n/, `---\n${stringifyYaml(pAlpha)}---\n`);
+                            await Deno.writeTextFile(potential, newPContent);
+                            
+                            await logAkasha(`🕸️ SYNAPSE: ${symbol} formed a neural bond with ${potential.split(".")[1]}`);
+                            break; // Form one bond per pulse max
                         }
                     }
                 } catch { /* ignore */ }
