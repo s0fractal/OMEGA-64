@@ -64,7 +64,7 @@ export const PULSE = {
         const currentLogic = eigenvalue.slice(2, 10);
         const newLogic = RIBOSOME_TICK.reduce(currentLogic);
 
-        if (newLogic === currentLogic && symbol !== "GRAVITY_WELL" && symbol !== "CHRONOS_MIRROR" && symbol !== "RETRO_PING" && symbol !== "PARASITE") {
+        if (newLogic === currentLogic && symbol !== "GRAVITY_WELL" && symbol !== "CHRONOS_MIRROR" && symbol !== "RETRO_PING" && symbol !== "PARASITE" && symbol !== "CODE_VECTOR_SINGULARITY") {
             console.log("   [EVOLVE] Logic stable. No mutation needed.");
             continue;
         }
@@ -139,7 +139,7 @@ export const PULSE = {
                         const tAlpha = parseYaml(tMeta[1]) as any;
                         tAlpha.energy = 150; // Restore energy completely
                         
-                        let newTContent = tContent.replace(/^---\n[\s\S]+?\n---\n/, `---\n${stringifyYaml(tAlpha)}---\n`);
+                        const newTContent = tContent.replace(/^---\n[\s\S]+?\n---\n/, `---\n${stringifyYaml(tAlpha)}---\n`);
                         // Optional: we don't re-inject hologram since it's just energy change, but we could.
                         await Deno.writeTextFile(targetAtom, newTContent);
                     }
@@ -254,6 +254,30 @@ export const PULSE = {
 
                 // Gravity Well destroys itself
                 alpha.energy = 0;
+            }
+        }
+        // -------------------------------------------------------------
+
+        // --- CODE VECTOR SINGULARITY (Zero-IOPS mathematical seed) ---
+        if (symbol === "CODE_VECTOR_SINGULARITY") {
+            console.log(`   [SINGULARITY] 🌀 Code-Vector Singularity resonated! Spawning pure mathematical primitives.`);
+            await logAkasha(`🌀 SINGULARITY: 0xB710 resonated. Zero-IOPS Mathematical Cascade initiated!`);
+            
+            // It spawns 3 strictly logical atoms (only 8 and 9s)
+            for (let i = 0; i < 3; i++) {
+                let pureLogic = "";
+                for (let j = 0; j < 8; j++) {
+                    pureLogic += Math.random() > 0.5 ? "8" : "9";
+                }
+                const pureEigenvalue = `0x${pureLogic}00000000`;
+                const pureSymbol = "PURE_MATH";
+                const pureFilename = `${pureEigenvalue}.${pureSymbol}.md`;
+                console.log(`      🌌 Spawning mathematical seed: ${pureFilename}`);
+                
+                const pureAlpha = { eigenvalue: pureEigenvalue, energy: 200, ex: [eigenvalue] };
+                let pureContent = content.replace(/^---\n[\s\S]+?\n---\n/, `---\n${stringifyYaml(pureAlpha)}---\n`);
+                pureContent = injectHologram(pureContent, pureEigenvalue, pureSymbol);
+                await Deno.writeTextFile(pureFilename, pureContent);
             }
         }
         // -------------------------------------------------------------

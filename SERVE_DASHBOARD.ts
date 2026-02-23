@@ -110,6 +110,21 @@ async function handler(req: Request): Promise<Response> {
         return await modifyEnergy(filename, -50);
     }
 
+    if (req.method === "POST" && url.pathname === "/api/zero-iops") {
+        try {
+            const process = new Deno.Command("deno", {
+                args: ["run", "--allow-read", "--allow-write", "ZERO_IOPS.ts"],
+            });
+            await process.output();
+            
+            return new Response(JSON.stringify({ success: true }), {
+                headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
+            });
+        } catch (e) {
+            return new Response("Zero-IOPS execution failed", { status: 500 });
+        }
+    }
+
     if (req.method === "GET" && url.pathname === "/api/akasha") {
         try {
             const logContent = await Deno.readTextFile("AKASHA.log");
