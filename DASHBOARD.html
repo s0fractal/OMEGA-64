@@ -275,6 +275,16 @@
           border-color: #fff !important;
           transition: all 0.1s ease-out;
       }
+
+      .resonance-aura {
+          position: absolute;
+          inset: -10px;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(236, 72, 153, 0.2) 0%, transparent 70%);
+          pointer-events: none;
+          z-index: -1;
+          transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+      }
       
       .signal-dot {
           filter: blur(2px);
@@ -482,7 +492,7 @@
                                 </div>
                                 <div class="energy-text">${
                 Math.floor(atom.energy)
-              } NRG</div>
+              } NRG | <span style="color:var(--accent)">RES: ${atom.resonance ? atom.resonance.toFixed(1) : "0"}</span></div>
                             </div>
                         `;
 
@@ -503,7 +513,22 @@
 
                eBar.style.width = `${ePct}%`;
               eBar.style.backgroundColor = eColor;
-              eText.innerText = `${Math.floor(atom.energy)} NRG`;
+              eText.innerHTML = `${Math.floor(atom.energy)} NRG | <span style="color:var(--accent)">RES: ${atom.resonance ? atom.resonance.toFixed(1) : "0"}</span>`;
+              
+              // Handle Resonance Aura
+              let aura = card.querySelector(".resonance-aura");
+              if (!aura && isAlive) {
+                  aura = document.createElement("div");
+                  aura.className = "resonance-aura";
+                  card.appendChild(aura);
+              }
+              if (aura) {
+                  const resScale = 1 + (atom.resonance || 0) / 100;
+                  aura.style.transform = `scale(${resScale})`;
+                  aura.style.opacity = Math.min((atom.resonance || 0) / 50, 0.8);
+                  if (!isAlive) aura.style.display = "none";
+                  else aura.style.display = "block";
+              }
               
               // Apply physical position
               card.style.left = `${atom.x}px`;

@@ -53,7 +53,9 @@ async function scanAtoms() {
                     thought: thought,
                     svg: svg,
                     isDust: entry.name.includes(".DUST"),
-                    signals: alpha.signals || []
+                    signals: alpha.signals || [],
+                    resonance: alpha.resonance || 0,
+                    bondStrengths: alpha.bond_strengths || {}
                 });
             } catch (e) {
                 console.error(`Failed to read atom ${entry.name}:`, e);

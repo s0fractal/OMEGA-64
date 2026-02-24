@@ -19,7 +19,7 @@ const ROOT = Deno.cwd();
 
 // --- Configuration ---
 const PULSE_ID = "0xFFFFFFFF00000008"; // PULSE Organic ID
-const MAX_PULSES = 100; // Increased for verification 
+const MAX_PULSES = 20; // Original heartbeat limit
 
 export const PULSE = {
     run: async () => {
@@ -54,8 +54,7 @@ export const PULSE = {
             break;
         }
 
-        const forcedTarget = Deno.env.get("PULSE_TARGET");
-        let targetFilename = forcedTarget || atoms[Math.floor(Math.random() * atoms.length)];
+        let targetFilename = atoms[Math.floor(Math.random() * atoms.length)];
         let [eigenvalue, symbol] = targetFilename.split(".");
         console.log(`   [TARGET] ${symbol} (${eigenvalue})`);
 
@@ -76,7 +75,6 @@ export const PULSE = {
         const newLogic = RIBOSOME_TICK.reduce(currentLogic);
 
         const hasSignals = (alpha.signals && alpha.signals.length > 0);
-        if (hasSignals) console.log(`   [DEBUG] ${symbol} has ${alpha.signals.length} signals!`);
 
         if (newLogic === currentLogic && !hasSignals && symbol !== "GRAVITY_WELL" && symbol !== "CHRONOS_MIRROR" && symbol !== "RETRO_PING" && symbol !== "PARASITE" && symbol !== "CODE_VECTOR_SINGULARITY") {
             console.log("   [EVOLVE] Logic stable and no signals. Skipping mutation cycle.");
@@ -87,11 +85,20 @@ export const PULSE = {
         const newFilename = `${newEigenvalue}.${symbol}.md`;
 
         // --- ECOLOGY: METABOLISM & STARVATION ---
-        
         let energy = alpha.energy !== undefined ? Number(alpha.energy) : 100;
         let x = alpha.x !== undefined ? Number(alpha.x) : Math.floor(Math.random() * 800) + 100;
         let y = alpha.y !== undefined ? Number(alpha.y) : Math.floor(Math.random() * 600) + 100;
         const bonds: string[] = Array.isArray(alpha.bonds) ? alpha.bonds : [];
+        
+        // --- HEBBIAN PLASTICITY: MEMORY & STRENGTH ---
+        let resonance = alpha.resonance !== undefined ? Number(alpha.resonance) : 0;
+        const bondStrengths = alpha.bond_strengths || {};
+        
+        // Initialize/decay strengths
+        for (const b of bonds) {
+            if (bondStrengths[b] === undefined) bondStrengths[b] = 1.0;
+            bondStrengths[b] *= 0.999; // Passive decay (X-Disuse)
+        }
 
         // --- SEMANTIC KINESIS (DNA-Driven Movement) ---
         // Instead of random drift, we derive a velocity vector from the 8-hex logic string.
@@ -131,7 +138,8 @@ export const PULSE = {
                             // Optimal bond distance is ~50px
                             if (dist > 60) {
                                 // Too far, attract (Spring pulling)
-                                const force = (dist - 60) * 0.1; // Pull strength
+                                const strength = bondStrengths[bondedEigen] || 1.0;
+                                const force = (dist - 60) * 0.1 * strength; // Pull strength
                                 x += (dx / dist) * force;
                                 y += (dy / dist) * force;
                             } else if (dist < 40) {
@@ -313,6 +321,9 @@ export const PULSE = {
         if (incomingSignals.length > 0) {
             console.log(`   [SYNAPSE] ${symbol} processing ${incomingSignals.length} signals.`);
             for (const sig of incomingSignals) {
+                // --- HEBBIAN PLASTICITY ---
+                resonance = Math.min(resonance + sig.power * 0.1, 1000); // Accumulate resonance
+                
                 // Apply effect to self
                 if (sig.type === "ENERGY") {
                     energy += sig.power;
@@ -331,6 +342,14 @@ export const PULSE = {
                 // Propagate to bonds if power remains
                 if (sig.power > 5 && bonds.length > 0) {
                     const targetBond = bonds[Math.floor(Math.random() * bonds.length)];
+                    
+                    // POTENTIATION / DEPRESSION
+                    if (sig.type === "ENERGY") {
+                       bondStrengths[targetBond] = Math.min((bondStrengths[targetBond] || 1.0) + 0.1, 5.0);
+                    } else if (sig.type === "SHOCK") {
+                       bondStrengths[targetBond] = Math.max((bondStrengths[targetBond] || 1.0) - 0.2, 0.1);
+                    }
+
                     outgoingSignals.push({
                         type: sig.type,
                         power: sig.power * 0.7, // 30% loss per hop
@@ -358,6 +377,8 @@ export const PULSE = {
         // Clear self signals after processing
         alpha.signals = []; 
         alpha.energy = energy;
+        alpha.resonance = resonance;
+        alpha.bond_strengths = bondStrengths;
         // -----------------------------------------------
 
         // --- ALPHA EVOLUTION ---
