@@ -58,14 +58,26 @@ export const PULSE = {
         let [eigenvalue, symbol] = targetFilename.split(".");
         console.log(`   [TARGET] ${symbol} (${eigenvalue})`);
 
+        const content = await Deno.readTextFile(targetFilename);
+        const frontmatterMatch = content.match(/^---\n([\s\S]+?)\n---\n/);
+        let alpha: any = {};
+        if (frontmatterMatch) {
+            alpha = parseYaml(frontmatterMatch[1]);
+        } else {
+            console.log(`   [SKIP] ${targetFilename} has no frontmatter.`);
+            continue; 
+        }
+
         const is128Bit = eigenvalue.includes("_");
         // EVOLVE: Always slice logic correctly from position 2 to 10.
         // E.g. "0x9D18A698CC8523BE" or "0x9D18A698CC8523BE_AABBCCDD00000000"
         let currentLogic = eigenvalue.slice(2, 10);
         const newLogic = RIBOSOME_TICK.reduce(currentLogic);
 
-        if (newLogic === currentLogic && symbol !== "GRAVITY_WELL" && symbol !== "CHRONOS_MIRROR" && symbol !== "RETRO_PING" && symbol !== "PARASITE" && symbol !== "CODE_VECTOR_SINGULARITY") {
-            console.log("   [EVOLVE] Logic stable. No mutation needed.");
+        const hasSignals = (alpha.signals && alpha.signals.length > 0);
+
+        if (newLogic === currentLogic && !hasSignals && symbol !== "GRAVITY_WELL" && symbol !== "CHRONOS_MIRROR" && symbol !== "RETRO_PING" && symbol !== "PARASITE" && symbol !== "CODE_VECTOR_SINGULARITY") {
+            console.log("   [EVOLVE] Logic stable and no signals. Skipping mutation cycle.");
             continue;
         }
 
@@ -73,12 +85,6 @@ export const PULSE = {
         const newFilename = `${newEigenvalue}.${symbol}.md`;
 
         // --- ECOLOGY: METABOLISM & STARVATION ---
-        const content = await Deno.readTextFile(targetFilename);
-        const frontmatterMatch = content.match(/^---\n([\s\S]+?)\n---\n/);
-        let alpha: any = {};
-        if (frontmatterMatch) {
-            alpha = parseYaml(frontmatterMatch[1]);
-        }
         
         let energy = alpha.energy !== undefined ? Number(alpha.energy) : 100;
         let x = alpha.x !== undefined ? Number(alpha.x) : Math.floor(Math.random() * 800) + 100;
