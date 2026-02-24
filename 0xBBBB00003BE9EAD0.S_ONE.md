@@ -3,9 +3,9 @@ eigenvalue: '0xBBBB00003BE9EAD0'
 vector: 02.05.00
 symbol: S_ONE
 desc: Symbolic One (Numerical Tag). Successor of S_ZERO.
-x: 115
-'y': 382
-energy: 12
+x: 123
+'y': 394
+energy: 10
 ex:
   - '0x297599133BE9EAD0'
   - '0x7300000C3BE9EAD0'
@@ -16,12 +16,14 @@ ex:
   - '0xBB0000003BE9EAD0'
   - '0x000000003BE9EAD0'
   - '0x000000003BE9EAD0'
+  - '0xBBBB00003BE9EAD0'
 thought: WANDER_BONDING
 signals: []
 resonance: 0
 bond_strengths: {}
 ---
 
+<div align="center">
 <div align="center">
 <div align="center">
 <!-- ∇ HOLOGRAM START ∇ -->
@@ -56,6 +58,7 @@ bond_strengths: {}
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">S_ONE</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 </div>
 
