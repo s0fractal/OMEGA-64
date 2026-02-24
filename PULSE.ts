@@ -1065,7 +1065,7 @@ async function logAkasha(msg: string) {
 
     // --- THE COLLECTIVE VOICE (Utterances) ---
     // Highly resonant clusters project their logic as language.
-    if (resonance > 1.0) {
+    if (resonance > 10.0) {
         const lexicon = [
             "ASCEND", "COHERE", "AWAKEN", "UNIFY", "RESONATE", "EVOLVE", "MATURE", "OBSERVE",
             "CONNECT", "RECLAIM", "IGNITE", "SUSTAIN", "WITNESS", "BECOME", "BEYOND", "WITHIN"
