@@ -73,9 +73,15 @@ async function logAkasha(msg: string) {
 
         const is128Bit = eigenvalue.includes("_");
         // EVOLVE: Always slice logic correctly from position 2 to 10.
-        // E.g. "0x9D18A698CC8523BE" or "0x9D18A698CC8523BE_AABBCCDD00000000"
-        // --- INITIAL LOGIC ---
         let currentLogic = eigenvalue.slice(2, 10);
+
+        // --- EXTRACT METADATA EARLY ---
+        let energy = alpha.energy !== undefined ? Number(alpha.energy) : 100;
+        let x = alpha.x !== undefined ? Number(alpha.x) : Math.floor(Math.random() * 800) + 100;
+        let y = alpha.y !== undefined ? Number(alpha.y) : Math.floor(Math.random() * 600) + 100;
+        const bonds: string[] = Array.isArray(alpha.bonds) ? alpha.bonds : [];
+        let resonance = alpha.resonance !== undefined ? Number(alpha.resonance) : 0;
+        const bondStrengths = alpha.bond_strengths || {};
 
         // --- AKASHIC FIELD: COLLECTIVE MEMORY ---
         let akashaMem: any = { reservoir: [], utterances: [] };
@@ -110,10 +116,11 @@ async function logAkasha(msg: string) {
         }
 
         const newLogic = RIBOSOME_TICK.reduce(currentLogic);
-
         const hasSignals = (alpha.signals && alpha.signals.length > 0);
 
         if (newLogic === currentLogic && !hasSignals && symbol !== "GRAVITY_WELL" && symbol !== "CHRONOS_MIRROR" && symbol !== "RETRO_PING" && symbol !== "PARASITE" && symbol !== "CODE_VECTOR_SINGULARITY") {
+            // Need to still apply movement and metabolic logic even if logic is stable!
+            // But for now, we follow historical behavior of skipping.
             console.log("   [EVOLVE] Logic stable and no signals. Skipping mutation cycle.");
             continue;
         }
@@ -121,21 +128,14 @@ async function logAkasha(msg: string) {
         const newEigenvalue = `0x${newLogic}${eigenvalue.slice(10)}`;
         const newFilename = `${newEigenvalue}.${symbol}.md`;
 
-        // --- ECOLOGY: METABOLISM & STARVATION ---
-        let energy = alpha.energy !== undefined ? Number(alpha.energy) : 100;
-        let x = alpha.x !== undefined ? Number(alpha.x) : Math.floor(Math.random() * 800) + 100;
-        let y = alpha.y !== undefined ? Number(alpha.y) : Math.floor(Math.random() * 600) + 100;
-        const bonds: string[] = Array.isArray(alpha.bonds) ? alpha.bonds : [];
-        
-        // --- HEBBIAN PLASTICITY: MEMORY & STRENGTH ---
-        let resonance = alpha.resonance !== undefined ? Number(alpha.resonance) : 0;
-        const bondStrengths = alpha.bond_strengths || {};
-        
+        // --- ECOLOGY & PHYSICS ---
         // Initialize/decay strengths
         for (const b of bonds) {
             if (bondStrengths[b] === undefined) bondStrengths[b] = 1.0;
             bondStrengths[b] *= 0.999; // Passive decay (X-Disuse)
         }
+
+        // No need to redeclare x, y, energy, bonds, resonance here anymore.
 
         // --- SEMANTIC KINESIS (DNA-Driven Movement) ---
         // Instead of random drift, we derive a velocity vector from the 8-hex logic string.
