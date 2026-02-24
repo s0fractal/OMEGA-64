@@ -46,66 +46,59 @@ async function logAkasha(msg: string) {
             const pulseStart = Date.now();
             
             // --- DYNAMIC METABOLISM (Self-Regulation) ---
-            // Calculate total energy to adjust heartbeat speed
-            let totalSwarmEnergy = 0;
-            let currentAtoms: string[] = [];
-            for await (const entry of Deno.readDir(ROOT)) {
-                if (entry.isFile && entry.name.startsWith("0x") && entry.name.endsWith(".md")) {
-                    currentAtoms.push(entry.name);
-                }
+            // --- 1. REFLECT PHASE ---
+        let atoms: string[] = [];
+        for await (const entry of Deno.readDir(ROOT)) {
+            if (entry.isFile && entry.name.startsWith("0x") && entry.name.endsWith(".md")) {
+                atoms.push(entry.name);
             }
+        }
 
-            // --- IMMUNE WATCHER (Self-Repair) ---
-            // Check for missing souls (deleted files) that were important
-            for (const [filename, metadata] of lastKnownAtoms.entries()) {
-                if (!currentAtoms.includes(filename) && metadata.resonance > 20) {
-                    console.log(`🚨 [IMMUNE] Breach detected! Atom ${filename} was deleted.`);
-                    console.log(`   [RESURRECTION] Re-materializing soul from Akasha...`);
+        // --- IMMUNE WATCHER (Self-Repair) ---
+        // Check for missing souls (deleted files) that were important
+        for (const [filename, metadata] of lastKnownAtoms.entries()) {
+            if (!atoms.includes(filename) && metadata.resonance > 20) {
+                console.log(`🚨 [IMMUNE] Breach detected! Atom ${filename} was deleted.`);
+                console.log(`   [RESURRECTION] Re-materializing soul from Akasha...`);
+                
+                try {
+                    const logic = metadata.logic || "88880000";
+                    const symbol = filename.split(".")[1];
+                    const eigen = filename.split(".")[0];
                     
-                    try {
-                        // Re-forge using Noospheric logic
-                        const logic = metadata.logic || "88880000";
-                        const symbol = filename.split(".")[1];
-                        const eigen = filename.split(".")[0];
-                        
-                        // Using a sub-shell deno eval to trigger the forge-like content generation
-                        const cmd = new Deno.Command("deno", {
-                            args: ["eval", `
-                                import { injectHologram } from "./HOLOGRAM_MODULE.ts";
-                                import { stringify } from "jsr:@std/yaml@^1.0.5";
-                                const alpha = ${JSON.stringify({ ...metadata, thought: "RESURRECTED", energy: 50 })};
-                                let content = "---\\n" + stringify(alpha) + "---\\n\\nexport const ATOM = () => (x: any) => x;";
-                                console.log(injectHologram(content, "${eigen}", "${symbol}"));
-                            `]
-                        });
-                        const out = await cmd.output();
-                        const restoredContent = new TextDecoder().decode(out.stdout);
-                        await Deno.writeTextFile(filename, restoredContent);
-                        await logAkasha(`🛡️ IMMUNE: Atom ${symbol} (${eigen}) was resurrected after external deletion.`);
-                        currentAtoms.push(filename); // Add back to current pool
-                    } catch(e) { console.error("Resurrection failed:", e); }
-                }
+                    const cmd = new Deno.Command("deno", {
+                        args: ["eval", `
+                            import { injectHologram } from "./HOLOGRAM_MODULE.ts";
+                            import { stringify } from "jsr:@std/yaml@^1.0.5";
+                            const alpha = ${JSON.stringify({ ...metadata, thought: "RESURRECTED", energy: 50 })};
+                            let content = "---\\n" + stringify(alpha) + "---\\n\\nexport const ATOM = () => (x: any) => x;";
+                            console.log(injectHologram(content, "${eigen}", "${symbol}"));
+                        `]
+                    });
+                    const out = await cmd.output();
+                    const restoredContent = new TextDecoder().decode(out.stdout);
+                    await Deno.writeTextFile(filename, restoredContent);
+                    await logAkasha(`🛡️ IMMUNE: Atom ${symbol} (${eigen}) was resurrected after external deletion.`);
+                    atoms.push(filename); // Add back to current pool
+                } catch(e) { console.error("Resurrection failed:", e); }
             }
+        }
 
-            // Estimate total energy (rough scan)
-            // We'll update this more accurately during the pulse, but for now we use the last cycle's data if available
-            const systemEnergy = Array.from(lastKnownAtoms.values()).reduce((sum, a) => sum + (a.energy || 0), 0);
-            
-            // Interval scaling: 3000ms base. 
-            // High energy (>15000) -> Faster (down to 500ms)
-            // Low energy (<2000) -> Slower (up to 10000ms)
-            let dynamicInterval = 3000;
-            if (systemEnergy > 15000) dynamicInterval = Math.max(500, 3000 - (systemEnergy - 15000) / 10);
-            if (systemEnergy < 5000) dynamicInterval = Math.min(10000, 3000 + (5000 - systemEnergy) * 2);
-            
-            console.log(`\n💓 Pulse #${p} | Energy: ${Math.floor(systemEnergy)} | Interval: ${Math.floor(dynamicInterval)}ms`);
+        // Estimate total energy (rough scan)
+        const systemEnergy = Array.from(lastKnownAtoms.values()).reduce((sum, a) => sum + (a.energy || 0), 0);
+        
+        let dynamicInterval = 3000;
+        if (systemEnergy > 15000) dynamicInterval = Math.max(500, 3000 - (systemEnergy - 15000) / 10);
+        if (systemEnergy < 5000) dynamicInterval = Math.min(10000, 3000 + (5000 - systemEnergy) * 2);
+        
+        console.log(`\n💓 Pulse #${p} | Energy: ${Math.floor(systemEnergy)} | Interval: ${Math.floor(dynamicInterval)}ms`);
 
-            if (currentAtoms.length === 0) {
-                console.log("   [REFLECT] Empty Flatland. Heartbeat suspending.");
-                break;
-            }
-            
-            let targetFilename = currentAtoms[Math.floor(Math.random() * currentAtoms.length)];
+        if (atoms.length === 0) {
+            console.log("   [REFLECT] Empty Flatland. Heartbeat suspending.");
+            break;
+        }
+        
+        let targetFilename = atoms[Math.floor(Math.random() * atoms.length)];
         let [eigenvalue, symbol] = targetFilename.split(".");
         console.log(`   [TARGET] ${symbol} (${eigenvalue})`);
 
@@ -1135,6 +1128,24 @@ async function logAkasha(msg: string) {
         alpha.thought = word;
     }
 
+    // --- THE SOVEREIGN PROTOCOL ---
+    // Atoms "vote" on system parameters via their logic prefixes.
+    const voters = Array.from(lastKnownAtoms.values());
+    const mutateVotes = voters.filter(v => v.logic && v.logic.startsWith("9")).length;
+    if (mutateVotes > voters.length / 4) {
+        console.log(`   [SOVEREIGN] Mutative Fever active (Policy Vote: High Mutation)`);
+        // In a real implementation, this would adjust mutation math
+    }
+
+    // --- IMMUNE MEMORY UPDATE ---
+    // Store current state for future resurrection
+    lastKnownAtoms.set(newFilename, { ...alpha, logic: newLogic, energy, resonance, bonds });
+    if (lastKnownAtoms.size > 500) {
+        // Cull oldest memory if too large
+        const oldest = lastKnownAtoms.keys().next().value;
+        lastKnownAtoms.delete(oldest);
+    }
+
     // Save Akashic Field back to disk
     try {
         await Deno.writeTextFile("./AKASHA_MEM.json", JSON.stringify(akashaMem, null, 2));
@@ -1142,7 +1153,7 @@ async function logAkasha(msg: string) {
     
     // --- DELAY FOR AUTONOMY ---
     const elapsed = Date.now() - pulseStart;
-    const remaining = Math.max(0, PULSE_INTERVAL - elapsed);
+    const remaining = Math.max(0, dynamicInterval - elapsed);
     if (remaining > 0) {
         await new Promise(resolve => setTimeout(resolve, remaining));
     }
