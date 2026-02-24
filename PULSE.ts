@@ -14,32 +14,35 @@ async function logAkasha(msg: string) {
     } catch { /* ignore */ }
 }
 
-const SIGNAL_PATH = "./OMEGA_SIGNAL.md";
-const ROOT = Deno.cwd();
+    // --- Configuration ---
+    const SIGNAL_PATH = "./OMEGA_SIGNAL.md";
+    const ROOT = Deno.cwd();
+    const PULSE_INTERVAL = 3000; // 3 seconds between pulses for stability
+    const PULSE_ID = "0xFFFFFFFF00000008"; // PULSE Organic ID
 
-// --- Configuration ---
-const PULSE_ID = "0xFFFFFFFF00000008"; // PULSE Organic ID
-const MAX_PULSES = 20; // Original heartbeat limit
+    export const PULSE = {
+        run: async () => {
+            console.log("🛡️ OMEGA-64 | AUTOPOIETIC RESONANCE | HEARTBEAT ACTIVE");
+            console.log(`   [AUTO] Running in continuous background mode (${PULSE_INTERVAL}ms interval).`);
+        
+            // 0. Initialize System State (Virtual Baseline)
+            let state: any = {
+                tick: Date.now(),
+                state_i16: new Int16Array(64).fill(0),
+                state_hash: "0xINITIAL_RESONANCE"
+            };
 
-export const PULSE = {
-    run: async () => {
-        console.log("🛡️ OMEGA-64 | AUTOPOIETIC RESONANCE | HEARTBEAT ACTIVE");
-    
-    // 0. Initialize System State (Virtual Baseline)
-    let state: any = {
-        tick: Date.now(),
-        state_i16: new Int16Array(64).fill(0),
-        state_hash: "0xINITIAL_RESONANCE"
-    };
+            const gateConfig = {
+                max_cost_per_agent: 100,
+                max_total_cost_per_tick: 500,
+                signature_policy: "DISABLED"
+            };
 
-    const gateConfig = {
-        max_cost_per_agent: 100,
-        max_total_cost_per_tick: 500,
-        signature_policy: "DISABLED"
-    };
-
-    for (let p = 0; p < MAX_PULSES; p++) {
-        console.log(`\n💓 Pulse #${p + 1} | ${new Date().toISOString()}`);
+        let p = 0;
+        while (true) {
+            p++;
+            const pulseStart = Date.now();
+            console.log(`\n💓 Pulse #${p} | ${new Date().toISOString()}`);
 
         // 1. REFLECT (Scan Flatland for a candidate atom)
         let atoms: string[] = [];
@@ -54,8 +57,7 @@ export const PULSE = {
             break;
         }
 
-        const forcedTarget = Deno.env.get("PULSE_TARGET");
-        let targetFilename = forcedTarget || atoms[Math.floor(Math.random() * atoms.length)];
+        let targetFilename = atoms[Math.floor(Math.random() * atoms.length)];
         let [eigenvalue, symbol] = targetFilename.split(".");
         console.log(`   [TARGET] ${symbol} (${eigenvalue})`);
 
@@ -114,9 +116,44 @@ export const PULSE = {
             velY += (charY > 7 ? charY - 7 : charY - 8) * 3;
         }
 
-        // Add 10% randomness for organic jitter, but 90% driven by DNA
-        x += velX + (Math.random() - 0.5) * 10;
-        y += velY + (Math.random() - 0.5) * 10;
+        // Add 10% randomness for organic jitter, but 90%        // --- CHEMOGRAPHIC TROPHISM (Scent) ---
+        // Atoms sense nearby energy gradients (Chemotaxis)
+        let trophX = 0;
+        let trophY = 0;
+        const detectionRadius = 150;
+
+        // Note: For efficiency in the flat file structure, we only "smell" 
+        // a random selection of other atoms to approximate a gradient.
+        const potentialTargets = atoms.slice(0, 20); // Sample top 20 for scent
+        
+        for (const otherFile of potentialTargets) {
+            if (otherFile === targetFilename) continue;
+            try {
+                const oContent = await Deno.readTextFile(otherFile);
+                const oMetaMatch = oContent.match(/^---\n([\s\S]+?)\n---\n/);
+                if (oMetaMatch) {
+                    const oAlpha = parseYaml(oMetaMatch[1]) as any;
+                    const oX = Number(oAlpha.x) || 0;
+                    const oY = Number(oAlpha.y) || 0;
+                    const oEnergy = Number(oAlpha.energy) || 0;
+                    
+                    const dx = oX - x;
+                    const dy = oY - y;
+                    const d = Math.hypot(dx, dy) || 1;
+                    
+                    if (d < detectionRadius) {
+                        // Attraction proportional to energy, inversely to distance
+                        const force = (oEnergy / 100) * ( (detectionRadius - d) / detectionRadius ) * 2.0;
+                        trophX += (dx / d) * force;
+                        trophY += (dy / d) * force;
+                    }
+                }
+            } catch { /* ignore */ }
+        }
+
+        // Apply DNA velocity + Trophism
+        x += velX + trophX + (Math.random() - 0.5) * 5;
+        y += velY + trophY + (Math.random() - 0.5) * 5;
 
         // --- SPRING-MASS PHYSICS (Macro-Molecules) ---
         // If bonded, apply Hooke's Law to keep them at a strict molecular distance
@@ -914,8 +951,8 @@ export const PULSE = {
             console.log(`   [GATE] Proposal REJECTED: ${(e as Error).message}`);
         }
 
-        await new Promise(resolve => setTimeout(resolve, 500));
-    }
+        // Intra-pulse delay to prevent IO saturation
+        await new Promise(resolve => setTimeout(resolve, 100));
     
     // --- QUANTUM IMMORTALITY ---
     console.log("\n⏳ Calculating Ecosystem Stability...");
@@ -952,7 +989,15 @@ export const PULSE = {
     }
 
     console.log("\n✅ Heartbeat Sequence Complete.");
+    
+    // --- DELAY FOR AUTONOMY ---
+    const elapsed = Date.now() - pulseStart;
+    const remaining = Math.max(0, PULSE_INTERVAL - elapsed);
+    if (remaining > 0) {
+        await new Promise(resolve => setTimeout(resolve, remaining));
     }
+    } // end while
+    }, // end run
 };
 
 if (import.meta.main) {
