@@ -159,13 +159,6 @@ async function logAkasha(msg: string) {
         const newLogic = RIBOSOME_TICK.reduce(currentLogic);
         const hasSignals = (alpha.signals && alpha.signals.length > 0);
 
-        if (newLogic === currentLogic && !hasSignals && symbol !== "GRAVITY_WELL" && symbol !== "CHRONOS_MIRROR" && symbol !== "RETRO_PING" && symbol !== "PARASITE" && symbol !== "CODE_VECTOR_SINGULARITY") {
-            // Need to still apply movement and metabolic logic even if logic is stable!
-            // But for now, we follow historical behavior of skipping.
-            console.log("   [EVOLVE] Logic stable and no signals. Skipping mutation cycle.");
-            continue;
-        }
-
         const newEigenvalue = `0x${newLogic}${eigenvalue.slice(10)}`;
         const newFilename = `${newEigenvalue}.${symbol}.md`;
 
