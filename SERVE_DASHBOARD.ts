@@ -35,7 +35,16 @@ async function scanAtoms() {
                 const x = alpha.x !== undefined ? Number(alpha.x) : Math.floor(Math.random() * 800) + 100;
                 const y = alpha.y !== undefined ? Number(alpha.y) : Math.floor(Math.random() * 600) + 100;
                 const bonds = alpha.bonds || [];
+                const resonance = alpha.resonance || 0;
                 const thought = alpha.thought || "WANDER";
+
+                // --- CASTE CLASSIFICATION ---
+                let caste = "NEUTRAL";
+                if (resonance > 50) caste = "NUCLEUS";
+                else if (logic.startsWith("1")) caste = "WORKER";
+                else if (logic.startsWith("8")) caste = "GUARDIAN";
+                else if (logic.startsWith("A")) caste = "ARCHIVIST";
+                else if (symbol === "PARASITE") caste = "PARASITE";
 
                 atoms.push({
                     filename: entry.name,
@@ -51,10 +60,11 @@ async function scanAtoms() {
                     y: y,
                     bonds: bonds,
                     thought: thought,
+                    caste: caste,
                     svg: svg,
                     isDust: entry.name.includes(".DUST"),
                     signals: alpha.signals || [],
-                    resonance: alpha.resonance || 0,
+                    resonance: resonance,
                     bondStrengths: alpha.bond_strengths || {}
                 });
             } catch (e) {
