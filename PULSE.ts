@@ -353,15 +353,27 @@ async function logAkasha(msg: string) {
             await Deno.remove(prey); // Physically delete the DUST
         }
 
-        // 2. Decay Phase
-        energy -= 5; // Base Entropy Cost per pulse
+        // --- ECOLOGY: METABOLISM & STARVATION ---
+        let energy = alpha.energy !== undefined ? Number(alpha.energy) : 100;
+        
+        // Passive Metabolic Decay
+        const decay = 2; // Slower decay for autonomous stability
+        energy -= decay;
 
-        if (energy <= 0) {
-            console.log(`   [STARVATION] Atom ${symbol} ran out of energy and turned to DUST.`);
-            await logAkasha(`💀 STARVATION: ${symbol} (${eigenvalue}) decayed into DUST.`);
-            alpha.energy = 0;
-            alpha.eigenvalue = `0x00000000${eigenvalue.slice(10)}`; // Erase logic
-            const dustFilename = `${alpha.eigenvalue}.DUST.md`;
+        // Symbiotic Recovery: Cooperation rewards survival
+        if (bonds.length > 0) {
+            energy += (bonds.length * 1.5); // +1.5 NRG per established bond
+            console.log(`   [METABOLISM] ${symbol} symbiotic recovery (+${(bonds.length * 1.5).toFixed(1)}).`);
+        }
+        
+        alpha.energy = Math.max(0, energy);
+        console.log(`   [METABOLISM] ${symbol} energy is now ${Math.floor(alpha.energy)}.`);
+
+        if (alpha.energy <= 0) {
+            console.log(`   [DEATH] 💀 Atom ${symbol} has starved.`);
+            await logAkasha(`💀 EXTINCTION: ${symbol} has reached 0 energy and turned to DUST.`);
+            // Convert to DUST (rename file)
+            const dustFilename = `${eigenvalue}.${symbol}.DUST.md`;
             
             // Rewrite as DUST
             const deadContent = content.replace(/^---\n[\s\S]+?\n---\n/, `---\n${stringifyYaml(alpha)}---\n`);
