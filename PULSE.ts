@@ -120,19 +120,23 @@ async function logAkasha(msg: string) {
         // Atoms sense nearby energy gradients (Chemotaxis)
         let trophX = 0;
         let trophY = 0;
-        const detectionRadius = 150;
+        const detectionRadius = 250; // Increased range
 
-        // Note: For efficiency in the flat file structure, we only "smell" 
-        // a random selection of other atoms to approximate a gradient.
-        const potentialTargets = atoms.slice(0, 20); // Sample top 20 for scent
+        // Sample a random set of atoms for scent gradient mapping
+        const samplingCount = 30;
+        const samplePool = [];
+        for (let i = 0; i < samplingCount; i++) {
+            samplePool.push(atoms[Math.floor(Math.random() * atoms.length)]);
+        }
         
-        for (const otherFile of potentialTargets) {
-            if (otherFile === targetFilename) continue;
+        for (const otherFile of samplePool) {
+            if (!otherFile || otherFile === targetFilename) continue;
             try {
                 const oContent = await Deno.readTextFile(otherFile);
                 const oMetaMatch = oContent.match(/^---\n([\s\S]+?)\n---\n/);
                 if (oMetaMatch) {
                     const oAlpha = parseYaml(oMetaMatch[1]) as any;
+                    const oSymbol = otherFile.split(".")[1];
                     const oX = Number(oAlpha.x) || 0;
                     const oY = Number(oAlpha.y) || 0;
                     const oEnergy = Number(oAlpha.energy) || 0;
@@ -142,8 +146,15 @@ async function logAkasha(msg: string) {
                     const d = Math.hypot(dx, dy) || 1;
                     
                     if (d < detectionRadius) {
-                        // Attraction proportional to energy, inversely to distance
-                        const force = (oEnergy / 100) * ( (detectionRadius - d) / detectionRadius ) * 2.0;
+                        let multiplier = 1.0;
+                        
+                        // --- Predatory Attraction ---
+                        if (symbol === "PARASITE" && oSymbol !== "PARASITE" && oEnergy > 50) {
+                            multiplier = 5.0; // Parasites hunt high energy non-parasites
+                        }
+                        
+                        // General attraction to energy
+                        const force = (oEnergy / 100) * ( (detectionRadius - d) / detectionRadius ) * (2.0 * multiplier);
                         trophX += (dx / d) * force;
                         trophY += (dy / d) * force;
                     }
@@ -152,8 +163,19 @@ async function logAkasha(msg: string) {
         }
 
         // Apply DNA velocity + Trophism
-        x += velX + trophX + (Math.random() - 0.5) * 5;
-        y += velY + trophY + (Math.random() - 0.5) * 5;
+        const maxStep = 15;
+        const totalVelX = velX + trophX;
+        const totalVelY = velY + trophY;
+        const mag = Math.hypot(totalVelX, totalVelY) || 1;
+        
+        // Clamp speed to prevent "teleporting"
+        if (mag > maxStep) {
+            x += (totalVelX / mag) * maxStep + (Math.random() - 0.5) * 2;
+            y += (totalVelY / mag) * maxStep + (Math.random() - 0.5) * 2;
+        } else {
+            x += totalVelX + (Math.random() - 0.5) * 2;
+            y += totalVelY + (Math.random() - 0.5) * 2;
+        }
 
         // --- SPRING-MASS PHYSICS (Macro-Molecules) ---
         // If bonded, apply Hooke's Law to keep them at a strict molecular distance
