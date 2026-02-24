@@ -194,19 +194,22 @@ async function handler(req: Request): Promise<Response> {
     }
 
     if (req.method === "GET" && url.pathname === "/api/akasha") {
+        let logs: string[] = [];
+        let memory: any = { reservoir: [], utterances: [] };
+        
         try {
             const logContent = await Deno.readTextFile("AKASHA.log");
-            const lines = logContent.trim().split("\n").filter(l => l.length > 0).slice(-10); // last 10 events
-            return new Response(JSON.stringify({ logs: lines }), {
-                headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
-            });
-        } catch {
-            return new Response(JSON.stringify({ logs: [] }), {
-            const mem = await Deno.readTextFile("./AKASHA_MEM.json");
-            return new Response(mem, { headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" } });
-        } catch {
-            return new Response(JSON.stringify({ reservoir: [], utterances: [] }), { headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" } });
-        }
+            logs = logContent.trim().split("\n").slice(-10);
+        } catch { /* ignore */ }
+
+        try {
+            const memContent = await Deno.readTextFile("./AKASHA_MEM.json");
+            memory = JSON.parse(memContent);
+        } catch { /* ignore */ }
+
+        return new Response(JSON.stringify({ logs, ...memory }), {
+            headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
+        });
     }
 
     if (req.method === "GET" && url.pathname === "/api/atoms") {
