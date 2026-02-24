@@ -354,8 +354,6 @@ async function logAkasha(msg: string) {
         }
 
         // --- ECOLOGY: METABOLISM & STARVATION ---
-        let energy = alpha.energy !== undefined ? Number(alpha.energy) : 100;
-        
         // Passive Metabolic Decay
         const decay = 2; // Slower decay for autonomous stability
         energy -= decay;
@@ -382,9 +380,6 @@ async function logAkasha(msg: string) {
             await Deno.rename(targetFilename, dustFilename);
             continue; // Stop processing this pulse
         }
-        
-        alpha.energy = energy; // Save decayed energy
-        console.log(`   [METABOLISM] ${symbol} energy is now ${energy}.`);
 
         // --- NEURO-PULSE PROCESSING (Synaptic Phase) ---
         const incomingSignals = alpha.signals || [];
