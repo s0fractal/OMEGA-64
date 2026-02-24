@@ -41,6 +41,26 @@ async function logAkasha(msg: string) {
         let p = 0;
         let lastKnownAtoms: Map<string, any> = new Map(); // Immune Memory
 
+        // --- COLD START SCAN ---
+        // Populate immune memory immediately to enable dynamic metabolism & resurrection
+        console.log("   [BOOT] Performing Immune Mapping...");
+        for await (const entry of Deno.readDir(ROOT)) {
+            if (entry.isFile && entry.name.startsWith("0x") && entry.name.endsWith(".md")) {
+                try {
+                    const content = await Deno.readTextFile(entry.name);
+                    const fm = content.match(/^---\n([\s\S]+?)\n---\n/);
+                    if (fm) {
+                        const alpha = parseYaml(fm[1]) as any;
+                        const logic = entry.name.split(".")[0].slice(2, 10);
+                        const energy = alpha.energy !== undefined ? Number(alpha.energy) : 100;
+                        const resonance = alpha.resonance !== undefined ? Number(alpha.resonance) : 0;
+                        lastKnownAtoms.set(entry.name, { ...alpha, logic, energy, resonance });
+                    }
+                } catch { /* ignore */ }
+            }
+        }
+        console.log(`   [BOOT] ${lastKnownAtoms.size} atoms mapped to Immune Memory.`);
+
         while (true) {
             p++;
             const pulseStart = Date.now();
