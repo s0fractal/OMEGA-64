@@ -561,8 +561,9 @@
                          // Line path
                          const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
                          path.setAttribute("d", `M ${atom.x} ${atom.y} L ${partner.x} ${partner.y}`);
-                         path.setAttribute("stroke", "rgba(16, 185, 129, 0.2)");
-                         path.setAttribute("stroke-width", "1");
+                         const strength = (atom.bondStrengths && atom.bondStrengths[bondedEigen]) || 1.0;
+                         path.setAttribute("stroke", `rgba(16, 185, 129, ${0.1 + (Math.min(strength, 5) / 10)})`);
+                         path.setAttribute("stroke-width", Math.max(strength, 0.5));
                          path.setAttribute("fill", "none");
                          mycelium.appendChild(path);
                      }
