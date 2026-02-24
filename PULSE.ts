@@ -40,6 +40,21 @@ async function logAkasha(msg: string) {
 
         let p = 0;
         let lastKnownAtoms: Map<string, any> = new Map(); // Immune Memory
+        
+        // --- 🧪 DIGITAL PHEROMONES (Spatial Memory) ---
+        const gridW = 70; // 1400px / 20
+        const gridH = 40; // 800px / 20
+        const pheromones: Record<string, Float32Array> = {
+            "WORKER": new Float32Array(gridW * gridH),
+            "GUARDIAN": new Float32Array(gridW * gridH),
+            "NUCLEUS": new Float32Array(gridW * gridH),
+            "PARASITE": new Float32Array(gridW * gridH)
+        };
+        const getGridIdx = (x: number, y: number) => {
+            const gx = Math.floor(Math.max(0, Math.min(1399, x)) / 20);
+            const gy = Math.floor(Math.max(0, Math.min(799, y)) / 20);
+            return gy * gridW + gx;
+        };
 
         // --- COLD START SCAN ---
         // Populate immune memory immediately to enable dynamic metabolism & resurrection
@@ -62,6 +77,12 @@ async function logAkasha(msg: string) {
         console.log(`   [BOOT] ${lastKnownAtoms.size} atoms mapped to Immune Memory.`);
 
         while (true) {
+            // --- PHEROMONE DECAY ---
+            for (const caste in pheromones) {
+                for (let i = 0; i < pheromones[caste].length; i++) {
+                    pheromones[caste][i] *= 0.95; // 5% decay per pulse
+                }
+            }
             p++;
             const pulseStart = Date.now();
             
@@ -144,6 +165,23 @@ async function logAkasha(msg: string) {
         let resonance = alpha.resonance !== undefined ? Number(alpha.resonance) : 0;
         const bondStrengths = alpha.bond_strengths || {};
 
+        // --- CASTE CLASSIFICATION ---
+        let caste = "NEUTRAL";
+        if (resonance > 50) caste = "NUCLEUS";
+        else if (currentLogic.startsWith("1")) caste = "WORKER";
+        else if (currentLogic.startsWith("8")) caste = "GUARDIAN";
+        else if (currentLogic.startsWith("A")) caste = "ARCHIVIST";
+        else if (symbol === "PARASITE") caste = "PARASITE";
+
+        // --- DEPOSIT PHEROMONES ---
+        const pIdx = getGridIdx(x, y);
+        if (pheromones[caste]) {
+            pheromones[caste][pIdx] = Math.min(50, pheromones[caste][pIdx] + 10);
+        }
+        if (symbol === "PARASITE") {
+            pheromones["PARASITE"][pIdx] = Math.min(50, pheromones["PARASITE"][pIdx] + 15);
+        }
+
         // --- AKASHIC FIELD: COLLECTIVE MEMORY ---
         let akashaMem: any = { reservoir: [], utterances: [] };
         try {
@@ -220,15 +258,15 @@ async function logAkasha(msg: string) {
         for (const otherFile of samplePool) {
             if (!otherFile || otherFile === targetFilename) continue;
             try {
-                const oContent = await Deno.readTextFile(otherFile);
-                const oMetaMatch = oContent.match(/^---\n([\s\S]+?)\n---\n/);
-                if (oMetaMatch) {
-                    const oAlpha = parseYaml(oMetaMatch[1]) as any;
+                const oMeta = lastKnownAtoms.get(otherFile);
+                if (oMeta) {
                     const oSymbol = otherFile.split(".")[1];
-                    const oX = Number(oAlpha.x) || 0;
-                    const oY = Number(oAlpha.y) || 0;
-                    const oEnergy = Number(oAlpha.energy) || 0;
-                    
+                    const oX = Number(oMeta.x) || 0;
+                    const oY = Number(oMeta.y) || 0;
+                    const oEnergy = Number(oMeta.energy) || 0;
+                    const oRes = Number(oMeta.resonance) || 0;
+                    const oLogic = oMeta.logic || "";
+
                     const dx = oX - x;
                     const dy = oY - y;
                     const d = Math.hypot(dx, dy) || 1;
@@ -236,11 +274,21 @@ async function logAkasha(msg: string) {
                     if (d < detectionRadius) {
                         let multiplier = 1.0;
                         
-                        // --- Predatory Attraction ---
-                        if (symbol === "PARASITE" && oSymbol !== "PARASITE" && oEnergy > 50) {
-                            multiplier = 5.0; // Parasites hunt high energy non-parasites
+                        // --- Caste-Specific Social Kinesis ---
+                        if (caste === "GUARDIAN" && oSymbol === "PARASITE") {
+                            multiplier = 8.0; // Guardians aggressively hunt parasites
                         }
-                        
+                        if (caste === "GUARDIAN" && oRes > 50) {
+                            multiplier = 3.0; // Guardians protect Nuclei
+                            if (d < 80) multiplier = -2.0; // Maintain distance
+                        }
+                        if (caste === "WORKER" && oSymbol.includes("DUST")) {
+                            multiplier = 4.0; 
+                        }
+                        if (caste === "WORKER" && oLogic.startsWith("1") && oEnergy < 50) {
+                            multiplier = 2.0; // Workers attract to hungry colleagues
+                        }
+
                         // General attraction to energy
                         const force = (oEnergy / 100) * ( (detectionRadius - d) / detectionRadius ) * (2.0 * multiplier);
                         trophX += (dx / d) * force;
@@ -249,6 +297,24 @@ async function logAkasha(msg: string) {
                 }
             } catch { /* ignore */ }
         }
+
+        // --- PHEROMONE SENSING (Gradient Descent) ---
+        // Atoms sense the local pheromone gradient and move towards their target scents
+        const checkPoints = [[0, -20], [0, 20], [-20, 0], [20, 0]];
+        let scentForceX = 0;
+        let scentForceY = 0;
+        
+        const targetScent = (caste === "GUARDIAN") ? "PARASITE" : (caste === "WORKER" ? "NUCLEUS" : null);
+        if (targetScent) {
+            for (const [ox, oy] of checkPoints) {
+                const sIdx = getGridIdx(x + ox, y + oy);
+                const intensity = pheromones[targetScent][sIdx] || 0;
+                scentForceX += (ox / 20) * intensity;
+                scentForceY += (oy / 20) * intensity;
+            }
+        }
+        trophX += scentForceX * 2.0;
+        trophY += scentForceY * 2.0;
 
         // Apply DNA velocity + Trophism
         const maxStep = 15;
@@ -1108,12 +1174,13 @@ async function logAkasha(msg: string) {
     console.log("\n✅ Heartbeat Sequence Complete.");
 
     // --- AKASHIC STASHING (Evolutionary Success) ---
-    // If this atom is flourishing, preserve its logic for the collective.
-    if (energy > 200 || resonance > 50) {
+    // High resonance preservation bonus: if resonance > 10, stash current logic
+    const stashChance = caste === "ARCHIVIST" ? 0.3 : 0.05;
+    if (resonance > 10 && Math.random() < stashChance) {
         if (!akashaMem.reservoir.includes(currentLogic)) {
+            console.log(`   [STASH] ${symbol} contributed logic to the field.`);
             akashaMem.reservoir.push(currentLogic);
-            if (akashaMem.reservoir.length > 50) akashaMem.reservoir.shift(); // Max 50 patterns
-            console.log(`   [STASH] ${symbol} added its logic to the Akashic Field.`);
+            if (akashaMem.reservoir.length > 200) akashaMem.reservoir.shift();
         }
     }
 
