@@ -5,5 +5,11 @@
     "C0DED00D",
     "BEEFBEEF"
   ],
-  "utterances": []
+  "utterances": [
+    {
+      "origin": "PARASITE",
+      "text": "ASCEND",
+      "tick": 1771937533141
+    }
+  ]
 }
