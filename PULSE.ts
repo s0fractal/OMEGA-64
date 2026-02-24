@@ -74,6 +74,9 @@ async function logAkasha(msg: string) {
         const is128Bit = eigenvalue.includes("_");
         // EVOLVE: Always slice logic correctly from position 2 to 10.
         // E.g. "0x9D18A698CC8523BE" or "0x9D18A698CC8523BE_AABBCCDD00000000"
+        // --- INITIAL LOGIC ---
+        let currentLogic = eigenvalue.slice(2, 10);
+
         // --- AKASHIC FIELD: COLLECTIVE MEMORY ---
         let akashaMem: any = { reservoir: [], utterances: [] };
         try {
@@ -82,13 +85,11 @@ async function logAkasha(msg: string) {
         } catch { /* use default */ }
 
         // --- CULTURAL DRIFT (Bonded Sync) ---
-        // If bonded, we synchronize logic hexes with partners.
         if (bonds.length > 0) {
             const driftTarget = bonds[Math.floor(Math.random() * bonds.length)];
             const partnerFile = atoms.find(a => a.includes(driftTarget));
             if (partnerFile) {
                 const partnerLogic = partnerFile.slice(2, 10);
-                // 25% chance to adopt a hex from the partner
                 if (Math.random() < 0.25) {
                     const hexIdx = Math.floor(Math.random() * 8);
                     const newLogicArray = currentLogic.split("");
@@ -100,7 +101,6 @@ async function logAkasha(msg: string) {
         }
 
         // --- SEMANTIC HARVESTING (Learning) ---
-        // If energy is low, seek wisdom from the Akashic Field.
         if (energy < 50 && akashaMem.reservoir.length > 0) {
             const wisdom = akashaMem.reservoir[Math.floor(Math.random() * akashaMem.reservoir.length)];
             if (Math.random() < 0.5) {
