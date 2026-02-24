@@ -1052,6 +1052,45 @@ async function logAkasha(msg: string) {
     }
 
     console.log("\n✅ Heartbeat Sequence Complete.");
+
+    // --- AKASHIC STASHING (Evolutionary Success) ---
+    // If this atom is flourishing, preserve its logic for the collective.
+    if (energy > 200 || resonance > 50) {
+        if (!akashaMem.reservoir.includes(currentLogic)) {
+            akashaMem.reservoir.push(currentLogic);
+            if (akashaMem.reservoir.length > 50) akashaMem.reservoir.shift(); // Max 50 patterns
+            console.log(`   [STASH] ${symbol} added its logic to the Akashic Field.`);
+        }
+    }
+
+    // --- THE COLLECTIVE VOICE (Utterances) ---
+    // Highly resonant clusters project their logic as language.
+    if (resonance > 30) {
+        const lexicon = [
+            "ASCEND", "COHERE", "AWAKEN", "UNIFY", "RESONATE", "EVOLVE", "MATURE", "OBSERVE",
+            "CONNECT", "RECLAIM", "IGNITE", "SUSTAIN", "WITNESS", "BECOME", "BEYOND", "WITHIN"
+        ];
+        // Hash the current logic to pick a word
+        const hash = currentLogic.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0);
+        const word = lexicon[hash % lexicon.length];
+        
+        akashaMem.utterances = akashaMem.utterances || [];
+        akashaMem.utterances.push({
+            origin: symbol,
+            text: word,
+            tick: Date.now()
+        });
+        if (akashaMem.utterances.length > 10) akashaMem.utterances.shift();
+        console.log(`   [VOICE] Swarm Utterance: "${word}" (from ${symbol})`);
+        
+        // Update atom thought
+        alpha.thought = word;
+    }
+
+    // Save Akashic Field back to disk
+    try {
+        await Deno.writeTextFile("./AKASHA_MEM.json", JSON.stringify(akashaMem, null, 2));
+    } catch { /* ignore */ }
     
     // --- DELAY FOR AUTONOMY ---
     const elapsed = Date.now() - pulseStart;
