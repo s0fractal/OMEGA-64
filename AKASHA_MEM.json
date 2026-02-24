@@ -9,11 +9,6 @@
     {
       "origin": "PARASITE",
       "text": "ASCEND",
-      "tick": 1771939072027
-    },
-    {
-      "origin": "PARASITE",
-      "text": "ASCEND",
       "tick": 1771939074738
     },
     {
@@ -55,6 +50,11 @@
       "origin": "INTERFACE",
       "text": "ASCEND",
       "tick": 1771939340837
+    },
+    {
+      "origin": "PARASITE",
+      "text": "ASCEND",
+      "tick": 1771939502216
     }
   ]
 }
