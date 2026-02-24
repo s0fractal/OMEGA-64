@@ -54,7 +54,8 @@ export const PULSE = {
             break;
         }
 
-        let targetFilename = atoms[Math.floor(Math.random() * atoms.length)];
+        const forcedTarget = Deno.env.get("PULSE_TARGET");
+        let targetFilename = forcedTarget || atoms[Math.floor(Math.random() * atoms.length)];
         let [eigenvalue, symbol] = targetFilename.split(".");
         console.log(`   [TARGET] ${symbol} (${eigenvalue})`);
 
