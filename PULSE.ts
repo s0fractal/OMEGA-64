@@ -75,6 +75,7 @@ export const PULSE = {
         const newLogic = RIBOSOME_TICK.reduce(currentLogic);
 
         const hasSignals = (alpha.signals && alpha.signals.length > 0);
+        if (hasSignals) console.log(`   [DEBUG] ${symbol} has ${alpha.signals.length} signals!`);
 
         if (newLogic === currentLogic && !hasSignals && symbol !== "GRAVITY_WELL" && symbol !== "CHRONOS_MIRROR" && symbol !== "RETRO_PING" && symbol !== "PARASITE" && symbol !== "CODE_VECTOR_SINGULARITY") {
             console.log("   [EVOLVE] Logic stable and no signals. Skipping mutation cycle.");
