@@ -4,9 +4,9 @@ vector: 06.07.01
 symbol: WAVE_PACKET_AGG
 desc: Wave packet aggregator.
 thought: WANDER_BONDING
-x: 188
-'y': 468
-energy: 69
+x: 194
+'y': 454
+energy: 67
 signals: []
 ex:
   - '0x1FC3C4CACD9F3C7E'
@@ -17,10 +17,12 @@ ex:
   - '0xBBBB0000CD9F3C7E'
   - '0x60000000CD9F3C7E'
   - '0xBBBB0000CD9F3C7E'
+  - '0xBBBB0000CD9F3C7E'
 resonance: 0
 bond_strengths: {}
 ---
 
+<div align="center">
 <div align="center">
 <div align="center">
 <!-- ∇ HOLOGRAM START ∇ -->
@@ -55,6 +57,7 @@ bond_strengths: {}
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">WAVE_PACKET_AGG</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 </div>
 
