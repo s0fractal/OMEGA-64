@@ -1,18 +1,19 @@
 ---
-eigenvalue: '0x600000005CBB4BAE'
+eigenvalue: '0xBBBB00005CBB4BAE'
 vector: 00.00.00
 symbol: POTENTIAL
 desc: >-
   Wave Dynamics Atom: POTENTIAL. Implements gradient computation and field
   sampling.
-energy: 15
+energy: 63
 ex:
   - '0x239316A75CBB4BAE'
   - '0x000585785CBB4BAE'
   - '0x000557005CBB4BAE'
-thought: WANDER_MATING
-x: 497
-'y': 376
+  - '0x000000065CBB4BAE'
+thought: WANDER_BONDING
+x: 504
+'y': 388
 signals: []
 resonance: 0
 bond_strengths: {}
@@ -22,32 +23,32 @@ bond_strengths: {}
 <!-- ∇ HOLOGRAM START ∇ -->
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <radialGradient id="grad_600000005CBB4BAE" cx="50%" cy="50%" r="50%">
+    <radialGradient id="grad_BBBB00005CBB4BAE" cx="50%" cy="50%" r="50%">
       <stop offset="0%" stop-color="hsl(106, 20%, 15%)" />
       <stop offset="100%" stop-color="#090909" />
     </radialGradient>
-    <filter id="glow_600000005CBB4BAE" x="-20%" y="-20%" width="140%" height="140%">
+    <filter id="glow_BBBB00005CBB4BAE" x="-20%" y="-20%" width="140%" height="140%">
       <feGaussianBlur stdDeviation="4" result="blur" />
       <feComposite in="SourceGraphic" in2="blur" operator="over" />
     </filter>
   </defs>
   
-  <rect width="200" height="200" fill="url(#grad_600000005CBB4BAE)" rx="24"/>
+  <rect width="200" height="200" fill="url(#grad_BBBB00005CBB4BAE)" rx="24"/>
   
   <circle cx="100" cy="100" r="85" stroke="hsl(106, 30%, 30%)" stroke-width="1" fill="none" stroke-dasharray="2 6"/>
   
   <g>
     <animateTransform attributeName="transform" type="rotate" from="270 100 100" to="630 100 100" dur="29s" repeatCount="indefinite" />
     
-    <polygon points="100.0,42.0 150.2,129.0 49.8,129.0" fill="none" stroke="hsl(286, 60%, 40%)" stroke-width="1.5" opacity="0.6"/>
-    <polygon points="100.0,71.0 125.1,114.5 74.9,114.5" fill="none" stroke="hsl(106, 80%, 60%)" stroke-width="2" filter="url(#glow_600000005CBB4BAE)"/>
+    <polygon points="100.0,42.0 155.2,82.1 134.1,146.9 65.9,146.9 44.8,82.1" fill="none" stroke="hsl(286, 60%, 40%)" stroke-width="1.5" opacity="0.6"/>
+    <polygon points="100.0,71.0 127.6,91.0 117.0,123.5 83.0,123.5 72.4,91.0" fill="none" stroke="hsl(106, 80%, 60%)" stroke-width="2" filter="url(#glow_BBBB00005CBB4BAE)"/>
     
     <circle cx="100" cy="100" r="29" stroke="hsl(106, 60%, 50%)" stroke-width="0.5" fill="none" opacity="0.5"/>
   </g>
   
-  <circle cx="100" cy="100" r="3" fill="hsl(286, 80%, 70%)" filter="url(#glow_600000005CBB4BAE)"/>
+  <circle cx="100" cy="100" r="3" fill="hsl(286, 80%, 70%)" filter="url(#glow_BBBB00005CBB4BAE)"/>
   
-  <text x="100" y="105" fill="hsl(106, 70%, 80%)" font-family="monospace" font-size="10" text-anchor="middle" letter-spacing="1" opacity="0.9">0x6000</text>
+  <text x="100" y="105" fill="hsl(106, 70%, 80%)" font-family="monospace" font-size="10" text-anchor="middle" letter-spacing="1" opacity="0.9">0xBBBB</text>
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">POTENTIAL</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
