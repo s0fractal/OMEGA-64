@@ -19,7 +19,7 @@ const ROOT = Deno.cwd();
 
 // --- Configuration ---
 const PULSE_ID = "0xFFFFFFFF00000008"; // PULSE Organic ID
-const MAX_PULSES = 20; // Limit for this task execution
+const MAX_PULSES = 100; // Increased for verification 
 
 export const PULSE = {
     run: async () => {
