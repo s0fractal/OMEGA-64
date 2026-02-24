@@ -1143,7 +1143,7 @@ async function logAkasha(msg: string) {
     if (lastKnownAtoms.size > 500) {
         // Cull oldest memory if too large
         const oldest = lastKnownAtoms.keys().next().value;
-        lastKnownAtoms.delete(oldest);
+        if (oldest) lastKnownAtoms.delete(oldest);
     }
 
     // Save Akashic Field back to disk
