@@ -202,8 +202,10 @@ async function handler(req: Request): Promise<Response> {
             });
         } catch {
             return new Response(JSON.stringify({ logs: [] }), {
-                headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
-            });
+            const mem = await Deno.readTextFile("./AKASHA_MEM.json");
+            return new Response(mem, { headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" } });
+        } catch {
+            return new Response(JSON.stringify({ reservoir: [], utterances: [] }), { headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" } });
         }
     }
 
