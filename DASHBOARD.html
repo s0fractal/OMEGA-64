@@ -361,6 +361,11 @@
           animation: move-signal 0.5s linear forwards;
       }
 
+      @keyframes aura-expand {
+          0% { transform: scale(1); opacity: 0.8; }
+          100% { transform: scale(3); opacity: 0; }
+      }
+
       @keyframes move-signal {
           from { offset-distance: 0%; }
           to { offset-distance: 100%; }
