@@ -30,8 +30,8 @@ async function scanAtoms() {
                 const spatial = baseEigen.slice(10, 14);
                 const quantum = baseEigen.slice(14, 18);
 
-                let svg = svgMatch ? svgMatch[0] : null;
-                let energy = alpha.energy !== undefined ? Number(alpha.energy) : 100;
+                const svg = svgMatch ? svgMatch[0] : null;
+                const energy = alpha.energy !== undefined ? Number(alpha.energy) : 100;
                 const x = alpha.x !== undefined ? Number(alpha.x) : Math.floor(Math.random() * 800) + 100;
                 const y = alpha.y !== undefined ? Number(alpha.y) : Math.floor(Math.random() * 600) + 100;
                 const bonds = alpha.bonds || [];
@@ -52,7 +52,8 @@ async function scanAtoms() {
                     bonds: bonds,
                     thought: thought,
                     svg: svg,
-                    isDust: entry.name.includes(".DUST")
+                    isDust: entry.name.includes(".DUST"),
+                    signals: alpha.signals || []
                 });
             } catch (e) {
                 console.error(`Failed to read atom ${entry.name}:`, e);
@@ -70,7 +71,7 @@ async function appendToAkasha(msg: string) {
     } catch { /* ignore */ }
 }
 
-async function modifyEnergy(filename: string, amount: number): Promise<Response> {
+async function modifyEnergy(filename: string, amount: number, signalType?: string): Promise<Response> {
     try {
         const content = await Deno.readTextFile(filename);
         const frontmatterMatch = content.match(/^---\n([\s\S]+?)\n---\n/);
@@ -83,6 +84,11 @@ async function modifyEnergy(filename: string, amount: number): Promise<Response>
         const currentEnergy = alpha.energy !== undefined ? Number(alpha.energy) : 100;
         
         alpha.energy = Math.max(0, currentEnergy + amount);
+        
+        if (signalType) {
+            alpha.signals = alpha.signals || [];
+            alpha.signals.push({ type: signalType, power: Math.abs(amount) / 2, origin: "OBSERVER" });
+        }
         
         const newContent = content.replace(/^---\n[\s\S]+?\n---\n/, `---\n${stringifyYaml(alpha)}---\n`);
         await Deno.writeTextFile(filename, newContent);
@@ -110,12 +116,12 @@ async function handler(req: Request): Promise<Response> {
 
     if (req.method === "POST" && url.pathname.startsWith("/api/feed/")) {
         const filename = decodeURIComponent(url.pathname.substring("/api/feed/".length));
-        return await modifyEnergy(filename, 50);
+        return await modifyEnergy(filename, 50, "ENERGY");
     }
     
     if (req.method === "POST" && url.pathname.startsWith("/api/zap/")) {
         const filename = decodeURIComponent(url.pathname.substring("/api/zap/".length));
-        return await modifyEnergy(filename, -50);
+        return await modifyEnergy(filename, -50, "SHOCK");
     }
 
     if (req.method === "POST" && url.pathname.startsWith("/api/bless/")) {

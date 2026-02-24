@@ -298,6 +298,60 @@ export const PULSE = {
         alpha.energy = energy; // Save decayed energy
         console.log(`   [METABOLISM] ${symbol} energy is now ${energy}.`);
 
+        // --- NEURO-PULSE PROCESSING (Synaptic Phase) ---
+        const incomingSignals = alpha.signals || [];
+        const outgoingSignals: any[] = [];
+        
+        if (incomingSignals.length > 0) {
+            console.log(`   [SYNAPSE] ${symbol} processing ${incomingSignals.length} signals.`);
+            for (const sig of incomingSignals) {
+                // Apply effect to self
+                if (sig.type === "ENERGY") {
+                    energy += sig.power;
+                    await logAkasha(`⚡ NEURO: ${symbol} received ENERGY pulse (+${sig.power.toFixed(1)} NRG)`);
+                } else if (sig.type === "SHOCK") {
+                    energy -= sig.power;
+                    await logAkasha(`💥 NEURO: ${symbol} received SHOCK pulse (-${sig.power.toFixed(1)} NRG)`);
+                } else if (sig.type === "LOGIC") {
+                    const prevLogic = currentLogic;
+                    currentLogic = RIBOSOME_TICK.reduce(currentLogic);
+                    if (prevLogic !== currentLogic) {
+                        await logAkasha(`🧬 NEURO: ${symbol} logic mutated via SIGNAL (${prevLogic} -> ${currentLogic})`);
+                    }
+                }
+
+                // Propagate to bonds if power remains
+                if (sig.power > 5 && bonds.length > 0) {
+                    const targetBond = bonds[Math.floor(Math.random() * bonds.length)];
+                    outgoingSignals.push({
+                        type: sig.type,
+                        power: sig.power * 0.7, // 30% loss per hop
+                        origin: eigenvalue
+                    });
+
+                    // Relay to a random partner
+                    const partnerFile = atoms.find(a => a.includes(targetBond));
+                    if (partnerFile) {
+                        try {
+                            const pContent = await Deno.readTextFile(partnerFile);
+                            const pMeta = pContent.match(/^---\n([\s\S]+?)\n---\n/);
+                            if (pMeta) {
+                                const pAlpha = parseYaml(pMeta[1]) as any;
+                                pAlpha.signals = pAlpha.signals || [];
+                                pAlpha.signals.push(outgoingSignals[outgoingSignals.length - 1]);
+                                const newPContent = pContent.replace(/^---\n[\s\S]+?\n---\n/, `---\n${stringifyYaml(pAlpha)}---\n`);
+                                await Deno.writeTextFile(partnerFile, newPContent);
+                            }
+                        } catch { /* skip missing partner */ }
+                    }
+                }
+            }
+        }
+        // Clear self signals after processing
+        alpha.signals = []; 
+        alpha.energy = energy;
+        // -----------------------------------------------
+
         // --- ALPHA EVOLUTION ---
         if (energy > 300 && !symbol.startsWith("ALPHA_") && !["PARASITE", "GRAVITY_WELL", "CHRONOS_MIRROR", "RETRO_PING", "CODE_VECTOR_SINGULARITY"].includes(symbol)) {
             const newSymbol = `ALPHA_${symbol}`;

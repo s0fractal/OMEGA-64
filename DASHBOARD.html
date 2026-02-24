@@ -270,6 +270,22 @@
         animation: pulse-glow 4s infinite ease-in-out;
       }
 
+      .atom-card.status-pulsing {
+          box-shadow: 0 0 50px #fff, inset 0 0 20px #fff !important;
+          border-color: #fff !important;
+          transition: all 0.1s ease-out;
+      }
+      
+      .signal-dot {
+          filter: blur(2px);
+          animation: move-signal 0.5s linear forwards;
+      }
+
+      @keyframes move-signal {
+          from { offset-distance: 0%; }
+          to { offset-distance: 100%; }
+      }
+
       .akashic-ticker {
         position: fixed;
         bottom: 0;
@@ -492,6 +508,12 @@
               // Apply physical position
               card.style.left = `${atom.x}px`;
               card.style.top = `${atom.y}px`;
+
+              // Trigger pulse effect if signals present
+              if (atom.signals && atom.signals.length > 0) {
+                  card.classList.add("status-pulsing");
+                  setTimeout(() => card.classList.remove("status-pulsing"), 300);
+              }
             }
           });
 
@@ -509,24 +531,46 @@
           atoms.forEach(atom => {
              if (atom.bonds && atom.bonds.length > 0) {
                  atom.bonds.forEach(bondedEigen => {
-                     // Find the partner
                      const partner = atoms.find(a => a.filename.includes(bondedEigen));
                      if (partner) {
-                         // Draw line
-                         const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-                         line.setAttribute("x1", atom.x);
-                         line.setAttribute("y1", atom.y);
-                         line.setAttribute("x2", partner.x);
-                         line.setAttribute("y2", partner.y);
+                         // Line path
+                         const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                         path.setAttribute("d", `M ${atom.x} ${atom.y} L ${partner.x} ${partner.y}`);
+                         path.setAttribute("stroke", "rgba(16, 185, 129, 0.2)");
+                         path.setAttribute("stroke-width", "1");
+                         path.setAttribute("fill", "none");
+                         mycelium.appendChild(path);
+                     }
+                 });
+             }
+
+             // Render Neural Pulses
+             if (atom.signals && atom.signals.length > 0) {
+                 atom.signals.forEach(sig => {
+                     const origin = atoms.find(a => a.eigenvalue === sig.origin);
+                     if (origin) {
+                         const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+                         dot.setAttribute("r", "4");
+                         let color = "#fff";
+                         if (sig.type === "ENERGY") color = "#10b981";
+                         else if (sig.type === "SHOCK") color = "#ef4444";
                          
-                         const dist = Math.hypot(partner.x-atom.x, partner.y-atom.y);
+                         dot.setAttribute("fill", color);
+                         dot.classList.add("signal-dot");
                          
-                         // Style line: Thicker = more energy, Brighter = closer
-                         line.setAttribute("stroke", "rgba(16, 185, 129, 0.4)");
-                         line.setAttribute("stroke-width", Math.min(dist / 20, 3));
-                         line.style.transition = "all 0.5s ease-out";
+                         // Animate along the path from origin to current atom
+                         const pathId = `path-${Math.random()}`;
+                         const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                         path.setAttribute("id", pathId);
+                         path.setAttribute("d", `M ${origin.x} ${origin.y} L ${atom.x} ${atom.y}`);
+                         path.style.display = "none";
+                         mycelium.appendChild(path);
                          
-                         mycelium.appendChild(line);
+                         dot.style.offsetPath = `path('M ${origin.x} ${origin.y} L ${atom.x} ${atom.y}')`;
+                         mycelium.appendChild(dot);
+                         
+                         // Cleanup dot after animation
+                         setTimeout(() => dot.remove(), 500);
                      }
                  });
              }

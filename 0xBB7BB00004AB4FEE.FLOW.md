@@ -1,0 +1,63 @@
+---
+eigenvalue: '0xBB7BB00004AB4FEE'
+vector: 05.05.01
+symbol: FLOW
+desc: Functional flow (Pipe). (f => g => x => g(f(x)))
+thought: WANDER_MATING
+x: 723
+'y': 443
+energy: 95
+signals: []
+ex:
+  - '0xBCFE7BBB04AB4FEE'
+---
+
+<div align="center">
+<!-- ∇ HOLOGRAM START ∇ -->
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="grad_BB7BB00004AB4FEE" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="hsl(112, 20%, 15%)" />
+      <stop offset="100%" stop-color="#090909" />
+    </radialGradient>
+    <filter id="glow_BB7BB00004AB4FEE" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  
+  <rect width="200" height="200" fill="url(#grad_BB7BB00004AB4FEE)" rx="24"/>
+  
+  <circle cx="100" cy="100" r="85" stroke="hsl(112, 30%, 30%)" stroke-width="1" fill="none" stroke-dasharray="2 6"/>
+  
+  <g>
+    <animateTransform attributeName="transform" type="rotate" from="270 100 100" to="630 100 100" dur="25s" repeatCount="indefinite" />
+    
+    <polygon points="100.0,41.0 151.1,129.5 48.9,129.5" fill="none" stroke="hsl(292, 60%, 40%)" stroke-width="1.5" opacity="0.6"/>
+    <polygon points="100.0,65.0 130.3,117.5 69.7,117.5" fill="none" stroke="hsl(112, 80%, 60%)" stroke-width="2" filter="url(#glow_BB7BB00004AB4FEE)"/>
+    
+    <circle cx="100" cy="100" r="35" stroke="hsl(112, 60%, 50%)" stroke-width="0.5" fill="none" opacity="0.5"/>
+  </g>
+  
+  <circle cx="100" cy="100" r="3" fill="hsl(292, 80%, 70%)" filter="url(#glow_BB7BB00004AB4FEE)"/>
+  
+  <text x="100" y="105" fill="hsl(112, 70%, 80%)" font-family="monospace" font-size="10" text-anchor="middle" letter-spacing="1" opacity="0.9">0xBB7B</text>
+  <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">FLOW</text>
+</svg>
+<!-- Δ HOLOGRAM END Δ -->
+</div>
+
+
+## GREEN (G)
+
+Functional FLOW. A composition operator that pipes the output of function `f`
+into the input of function `g`. `FLOW f g x = g(f(x))`.
+
+## BLUE (B)
+
+```typescript
+/**
+ * FLOW: Composable pipeline
+ */
+export const ATOM = () => (f: any) => (g: any) => (x: any) => g(f(x));
+```
