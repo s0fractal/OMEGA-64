@@ -679,8 +679,17 @@
             const res = await fetch("/api/akasha");
             const data = await res.json();
             const ticker = document.getElementById("akasha-log");
+            
+            let html = "";
+            if (data.utterances && data.utterances.length > 0) {
+                html += data.utterances.map(u => `<span style="color:var(--accent); font-weight:bold; border-bottom: 1px solid var(--accent);">💬 VOX_${u.origin}: ${u.text}</span>`).join("");
+            }
             if (data.logs && data.logs.length > 0) {
-                ticker.innerHTML = data.logs.map((log) => `<span>${log}</span>`).join("");
+                html += data.logs.map((log) => `<span>${log}</span>`).join("");
+            }
+            
+            if (html) {
+                ticker.innerHTML = html;
                 ticker.scrollLeft = ticker.scrollWidth;
             }
         } catch { }
