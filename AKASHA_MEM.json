@@ -72,12 +72,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE OSMOSIS BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772020928010
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772020928226
@@ -159,6 +153,12 @@
       "text": "SHIELD IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020935040
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING UNIFY STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772020935438
     }
   ]
 }
