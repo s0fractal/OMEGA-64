@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE DECAY SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025595274
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIKE STRIFE SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "REFLECT RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772025599217
+    },
+    {
+      "origin": "REVERSE",
+      "text": "AWAKEN SPARK WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772025599397
     }
   ]
 }
