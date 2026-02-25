@@ -69,12 +69,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON GUARD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772020844248
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772020844484
@@ -156,6 +150,12 @@
       "text": "WATCH SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020848037
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME HUNGER HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020848538
     }
   ]
 }
