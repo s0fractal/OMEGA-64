@@ -80,12 +80,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE HUNGER SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021103840
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE FLOW BLOOM",
       "mood": "HARMONIC",
@@ -168,6 +162,12 @@
       "text": "BREACH DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772021108732
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM BLOOM BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772021108938
     }
   ]
 }
