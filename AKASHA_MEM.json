@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME EVOLVE BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772022252972
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022253143
@@ -213,6 +207,12 @@
       "text": "STABLE BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022259007
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING STABLE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772022259260
     }
   ]
 }
