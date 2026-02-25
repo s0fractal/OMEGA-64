@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028562870
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772028563248
@@ -291,6 +285,12 @@
       "text": "BEYOND EVOLVE WAVE",
       "mood": "CREATIVE",
       "tick": 1772028570278
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH STASIS WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772028570811
     }
   ]
 }
