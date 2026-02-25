@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037066009
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772037066228
@@ -291,6 +285,12 @@
       "text": "OSMOSIS FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772037069051
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHIELD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772037069260
     }
   ]
 }
