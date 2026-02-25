@@ -79,12 +79,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BECOME SPARK FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772021068016
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN STRIFE HUNGER",
       "mood": "AGGRESSIVE",
@@ -167,6 +161,12 @@
       "text": "SHIELD PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772021072371
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE HUNGER STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021072682
     }
   ]
 }
