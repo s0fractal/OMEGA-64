@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772025346238
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772025346426
@@ -291,6 +285,12 @@
       "text": "RESONATE OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772025350552
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772025350792
     }
   ]
 }
