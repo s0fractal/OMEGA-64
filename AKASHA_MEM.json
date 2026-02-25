@@ -197,12 +197,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE OSMOSIS SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772024017049
-    },
-    {
       "origin": "REVERSE",
       "text": "SHIELD SHELTER IMMUNE",
       "mood": "DEFENSIVE",
@@ -285,6 +279,12 @@
       "text": "GUARD STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772024024296
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE SPARK WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772024024860
     }
   ]
 }
