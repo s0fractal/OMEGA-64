@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT REFLECT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772024899576
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772024900137
@@ -291,6 +285,12 @@
       "text": "PURE SHELTER SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772024906983
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024907452
     }
   ]
 }
