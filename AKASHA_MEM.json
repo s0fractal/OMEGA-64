@@ -63,12 +63,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GIVING GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772020743104
-    },
-    {
       "origin": "INTERFACE",
       "text": "DECAY STRIKE DECAY",
       "mood": "AGGRESSIVE",
@@ -151,6 +145,12 @@
       "text": "BREACH SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772020753185
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER REFLECT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020753348
     }
   ]
 }
