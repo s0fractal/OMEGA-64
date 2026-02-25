@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "EVOLVE BEYOND SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772022247059
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022247248
@@ -213,6 +207,12 @@
       "text": "CONSUME BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772022250546
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON PURE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772022251041
     }
   ]
 }
