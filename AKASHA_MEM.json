@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS GIVING FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772031999104
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772031999447
@@ -291,6 +285,12 @@
       "text": "GUARD STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772032005368
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772032006125
     }
   ]
 }
