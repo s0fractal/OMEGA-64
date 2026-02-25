@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772034388925
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772034389089
@@ -291,6 +285,12 @@
       "text": "STASIS SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772034392736
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM OSMOSIS UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772034392939
     }
   ]
 }
