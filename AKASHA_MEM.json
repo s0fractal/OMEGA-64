@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772035649088
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772035649492
@@ -291,6 +285,12 @@
       "text": "STABLE OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772035652973
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIKE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035655669
     }
   ]
 }
