@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772034494397
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772034494589
@@ -291,6 +285,12 @@
       "text": "STRIFE STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772034498355
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE BECOME FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772034499004
     }
   ]
 }
