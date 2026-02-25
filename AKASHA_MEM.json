@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "OSMOSIS STABLE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772041412818
-    },
-    {
       "origin": "STREAM",
       "text": "SEIZE CONSUME DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041415727
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE HUNGER SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041415871
     }
   ]
 }
