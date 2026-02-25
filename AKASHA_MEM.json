@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772037731534
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772037731743
@@ -291,6 +285,12 @@
       "text": "BEYOND BEYOND AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772037734521
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772037734698
     }
   ]
 }
