@@ -160,15 +160,10 @@
     "06666006",
     "60600600",
     "AAAAA0A0",
-    "B0BB0000"
+    "B0BB0000",
+    "66666006"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "FLOW UNIFY BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772023013134
-    },
     {
       "origin": "REVERSE",
       "text": "STRIKE CONSUME STRIFE",
@@ -252,6 +247,12 @@
       "text": "SHIELD SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023020435
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772023020730
     }
   ]
 }
