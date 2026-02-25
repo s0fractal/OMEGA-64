@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE OSMOSIS OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772027214726
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SYNC RESONATE FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SEIZE SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772027222640
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIFE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027223171
     }
   ]
 }
