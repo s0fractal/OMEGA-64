@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WAIT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772025190030
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772025190291
@@ -291,6 +285,12 @@
       "text": "GIVING GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772025197103
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY UNIFY SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772025197463
     }
   ]
 }
