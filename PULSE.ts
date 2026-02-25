@@ -1294,7 +1294,7 @@ async function logAkasha(msg: string) {
 
     // --- 💤 THE LIVING DREAM (Systemic Subconscious) ---
     // If system energy is low, the swarm enters a "Dream" state.
-    if (systemEnergy < 8000 && Math.random() < 0.1) {
+    if (systemEnergy < 30000 && Math.random() < 0.1) {
         const dreamLexicon = VOX_POPULI["CREATIVE"].concat(VOX_POPULI["HARMONIC"]);
         const snippet = dreamLexicon[Math.floor(Math.random() * dreamLexicon.length)];
         const dreamLine = `[DREAM] ${new Date().toISOString()}: ${snippet} for ${currentLogic}\n`;

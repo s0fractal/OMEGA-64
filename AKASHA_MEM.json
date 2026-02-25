@@ -12,11 +12,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "MATURE",
-      "tick": 1772010729585
-    },
-    {
-      "origin": "INTERFACE",
       "text": "OBSERVE",
       "tick": 1772010751000
     },
@@ -93,6 +88,12 @@
       "text": "STRIFE DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772012399990
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772012437365
     }
   ]
 }
