@@ -190,12 +190,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE SYNC COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772023728748
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BLOOM COHERE BLOOM",
       "mood": "HARMONIC",
@@ -278,6 +272,12 @@
       "text": "PURE SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023732424
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772023732639
     }
   ]
 }
