@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT GUARD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772024608296
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772024609652
@@ -291,6 +285,12 @@
       "text": "COHERE HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772024614922
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DECAY HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024615306
     }
   ]
 }
