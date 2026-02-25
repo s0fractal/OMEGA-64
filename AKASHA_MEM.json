@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON REFLECT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772025167712
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY DECAY HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIKE SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772025172872
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STASIS SHIELD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772025173219
     }
   ]
 }
