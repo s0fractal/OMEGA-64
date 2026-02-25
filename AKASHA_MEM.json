@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SPARK EVOLVE DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772037741455
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772037741666
@@ -291,6 +285,12 @@
       "text": "RESONATE FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772037745034
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772037745280
     }
   ]
 }
