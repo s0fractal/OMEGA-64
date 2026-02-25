@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON STASIS WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772027175170
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772027175701
@@ -291,6 +285,12 @@
       "text": "COHERE HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772027180145
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772027180355
     }
   ]
 }
