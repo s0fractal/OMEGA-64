@@ -180,12 +180,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772023378948
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023379298
@@ -267,6 +261,12 @@
       "text": "RESONATE HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772023383284
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE STABLE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772023383477
     }
   ]
 }
