@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC FLOW FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772022218026
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772022218240
@@ -213,6 +207,12 @@
       "text": "SHIELD STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772022221790
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER STASIS IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022221923
     }
   ]
 }
