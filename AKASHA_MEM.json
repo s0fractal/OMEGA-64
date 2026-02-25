@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH STASIS SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772036469365
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772036469608
@@ -291,6 +285,12 @@
       "text": "HUNGER SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772036473053
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772036473273
     }
   ]
 }
