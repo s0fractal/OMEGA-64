@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STABLE UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772025675678
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK CONSUME SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STASIS SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772025680845
+    },
+    {
+      "origin": "REVERSE",
+      "text": "AWAKEN BEYOND WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772025681426
     }
   ]
 }
