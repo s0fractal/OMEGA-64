@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036598268
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772036598481
@@ -291,6 +285,12 @@
       "text": "IMMUNE IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772036607490
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH REFLECT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772036607673
     }
   ]
 }
