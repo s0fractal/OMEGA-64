@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STASIS SHIELD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772041290770
-    },
-    {
       "origin": "INTERFACE",
       "text": "GIVING COHERE SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772041296461
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE COHERE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772041296618
     }
   ]
 }
