@@ -50,12 +50,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIFE HUNGER STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020262849
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE DECAY SHOCK",
       "mood": "AGGRESSIVE",
@@ -138,6 +132,12 @@
       "text": "HEAL RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772020271954
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHIELD RECON IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020272541
     }
   ]
 }
