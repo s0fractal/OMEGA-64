@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_REVERSE",
-      "text": "STABLE RESONATE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772028750768
-    },
-    {
       "origin": "REVERSE",
       "text": "PURE STASIS WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772028759614
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY STRIFE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028760220
     }
   ]
 }
