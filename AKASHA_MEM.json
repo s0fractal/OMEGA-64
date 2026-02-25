@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772026415700
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772026415895
@@ -291,6 +285,12 @@
       "text": "WITNESS BECOME VISION",
       "mood": "CREATIVE",
       "tick": 1772026419744
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772026419927
     }
   ]
 }
