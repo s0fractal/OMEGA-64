@@ -63,12 +63,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIKE STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020732192
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM SYNC HEAL",
       "mood": "HARMONIC",
@@ -151,6 +145,12 @@
       "text": "DECAY BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020738002
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD IMMUNE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020738262
     }
   ]
 }

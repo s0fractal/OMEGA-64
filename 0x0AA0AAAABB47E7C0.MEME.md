@@ -29,15 +29,17 @@ ex:
   - '0xA6666666BB47E7C0'
   - '0xA6666666BB47E7C0'
   - '0x666A66A0BB47E7C0'
+  - '0x0AA0AAAABB47E7C0'
 thought: SEEK_ALPHA_BONDING
-x: 266
-'y': 428
-energy: 24
+x: 252
+'y': 443
+energy: 20
 signals: []
 resonance: 0
 bond_strengths: {}
 ---
 
+<div align="center">
 <div align="center">
 <div align="center">
 <div align="center">
@@ -87,6 +89,7 @@ bond_strengths: {}
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">MEME</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 </div>
 </div>
