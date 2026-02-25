@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772034743337
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772034743531
@@ -291,6 +285,12 @@
       "text": "DRAIN DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772034747171
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SHOCK BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034747378
     }
   ]
 }
