@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BEYOND BECOME AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772024252579
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772024252729
@@ -291,6 +285,12 @@
       "text": "DECAY SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772024255735
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SHOCK STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024255886
     }
   ]
 }
