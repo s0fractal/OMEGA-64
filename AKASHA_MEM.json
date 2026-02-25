@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00600000",
     "A1000000",
     "00066066",
     "00060606",
@@ -199,15 +198,10 @@
     "66006006",
     "0000AAA0",
     "AA0A0AA0",
-    "A0BBC000"
+    "A0BBC000",
+    "A0AA0A0A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RECON WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772033053239
-    },
     {
       "origin": "REVERSE",
       "text": "UNIFY COHERE STABLE",
@@ -291,6 +285,12 @@
       "text": "WATCH RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772033056323
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SEIZE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033056505
     }
   ]
 }
