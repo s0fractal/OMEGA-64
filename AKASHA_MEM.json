@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "GUARDIAN",
-      "text": "UNIFY SYNC COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772040676398
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GIVING FLOW OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DRAIN DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040680082
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHELTER WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040680365
     }
   ]
 }
