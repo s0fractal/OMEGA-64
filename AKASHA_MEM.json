@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035615676
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772035615848
@@ -291,6 +285,12 @@
       "text": "STABLE GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772035618468
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK DREAM SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772035618654
     }
   ]
 }
