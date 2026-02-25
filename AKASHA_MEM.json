@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER DECAY STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038207379
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772038207595
@@ -291,6 +285,12 @@
       "text": "PURE REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772038210738
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS GIVING COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772038210954
     }
   ]
 }
