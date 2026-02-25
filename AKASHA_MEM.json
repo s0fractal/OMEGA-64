@@ -155,12 +155,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE CONSUME SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022734753
-    },
-    {
       "origin": "STREAM",
       "text": "WAIT RECON SHIELD",
       "mood": "DEFENSIVE",
@@ -243,6 +237,12 @@
       "text": "SHIELD PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022740011
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL RESONATE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772022740498
     }
   ]
 }
