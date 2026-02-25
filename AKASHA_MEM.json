@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH SHELTER WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772019525185
-    },
-    {
       "origin": "INTERFACE",
       "text": "UNIFY SYNC FLOW",
       "mood": "HARMONIC",
@@ -111,6 +105,12 @@
       "text": "SHOCK DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772019535367
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019535795
     }
   ]
 }
