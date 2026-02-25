@@ -176,12 +176,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772023270515
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772023270683
@@ -263,6 +257,12 @@
       "text": "STRIKE DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023272992
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023273381
     }
   ]
 }
