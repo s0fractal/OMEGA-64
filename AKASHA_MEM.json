@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "REFLECT SHELTER WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041555744
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GUARD SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041555948
@@ -291,6 +285,12 @@
       "text": "SYNC UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772041560196
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER SHOCK BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041560354
     }
   ]
 }
