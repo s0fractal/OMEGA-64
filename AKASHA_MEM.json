@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027085275
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772027086831
@@ -291,6 +285,12 @@
       "text": "SHOCK HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772027090428
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027090908
     }
   ]
 }
