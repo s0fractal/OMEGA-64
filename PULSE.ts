@@ -293,8 +293,36 @@ async function logAkasha(msg: string) {
             if (Math.random() < 0.5) {
                 currentLogic = wisdom;
                 console.log(`   [HARVEST] ${symbol} adopted ancient wisdom logic: ${wisdom}`);
+                
+                // --- PROOF OF RESONANCE (PoR): Zero-Friction Reward ---
+                // Find all atoms that currently embody this wisdom and boost their Resonance
+                let boostCount = 0;
+                for (const [fName, mData] of lastKnownAtoms.entries()) {
+                    if (mData.logic === wisdom) {
+                        try {
+                            const wContent = await Deno.readTextFile(fName);
+                            const wMetaMatch = wContent.match(/^---\n([\s\S]+?)\n---\n/);
+                            if (wMetaMatch) {
+                                const wAlpha = parseYaml(wMetaMatch[1]) as any;
+                                wAlpha.resonance = (Number(wAlpha.resonance) || 0) + 15; // PoR Boost
+                                const newWContent = wContent.replace(/^---\n[\s\S]+?\n---\n/, `---\n${stringifyYaml(wAlpha)}---\n`);
+                                await Deno.writeTextFile(fName, newWContent);
+                                boostCount++;
+                            }
+                        } catch(e) {/* ignore */}
+                    }
+                }
+                if (boostCount > 0) {
+                     console.log(`      ⚖️ [PoR] Rewarded ${boostCount} atoms bearing logic ${wisdom} for solving friction!`);
+                }
             }
         }
+
+        // --- PROOF OF RESONANCE (PoR): Entropy Decay ---
+        // A single atom cannot hold gravity forever without utility.
+        resonance = Number((resonance * 0.99).toFixed(2));
+        if (resonance < 0.01) resonance = 0;
+        alpha.resonance = resonance; // Save back to meta
 
 
         
@@ -1177,6 +1205,8 @@ async function logAkasha(msg: string) {
                 alpha.ex = alpha.ex || [];
                 alpha.ex.push(eigenvalue); // Record lineage
                 
+                alpha.resonance = (alpha.resonance || 0) + 1; // Slight boost for successful proposal/mutation
+                
                 // 3. Fission Phase (Reproduction)
                 if (alpha.energy >= 150 && symbol !== "GRAVITY_WELL") {
                     console.log(`   [FISSION] 🦠 Atom ${symbol} reached critical energy! Spawning child.`);
@@ -1268,6 +1298,10 @@ async function logAkasha(msg: string) {
             if (errMsg.includes("BUDGET") || errMsg.includes("PARADOX") || errMsg.includes("max_total") || hitParadox) {
                 // --- 🌪️ TOPOLOGICAL EDDY (Y-Combinator Phase Shift) ---
                 console.log(`   [EDDY_WARNING] 🌀 Atom ${eigenvalue} reflected by ${hitParadox ? "PARADOX" : "GATE REJECTION"}. Vortex initiated.`);
+                
+                // PoR: Severe resonance decay due to hitting a paradox (High Friction)
+                alpha.resonance = Number((resonance * 0.5).toFixed(2));
+                console.log(`      ⚖️ [PoR] Resonance slashed by 50% due to friction.`);
                 
                 // Invert spatial vector (Simulation of LBM bounce-back)
                 const lHex = eigenvalue.slice(2, 10);
