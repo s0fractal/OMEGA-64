@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023093235
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023093362
@@ -259,6 +253,12 @@
       "text": "PURE WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023096310
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER HUNGER DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023096429
     }
   ]
 }
