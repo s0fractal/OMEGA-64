@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026904492
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK FORGE FORGE",
       "mood": "CREATIVE",
       "tick": 1772026904711
@@ -291,6 +285,12 @@
       "text": "GUARD STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772026910228
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WATCH IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772026910397
     }
   ]
 }
