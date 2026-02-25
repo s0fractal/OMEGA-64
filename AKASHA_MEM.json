@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER SHELTER REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772025873838
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772025874270
@@ -291,6 +285,12 @@
       "text": "GUARD IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772025882471
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME DECAY HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025882748
     }
   ]
 }
