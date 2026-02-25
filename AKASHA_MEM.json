@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60600600",
     "F00FF000",
     "BB000000",
     "60006600",
@@ -199,15 +198,10 @@
     "00066066",
     "AAAAA0AA",
     "0AA0AA0A",
-    "00006600"
+    "00006600",
+    "60000006"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM HEAL UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772040652202
-    },
     {
       "origin": "REVERSE",
       "text": "REFLECT PURE GUARD",
@@ -291,6 +285,12 @@
       "text": "HEAL HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772040654879
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD GUARD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040655051
     }
   ]
 }
