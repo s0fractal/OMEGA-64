@@ -163,12 +163,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE SHIELD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772022914394
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022914690
@@ -250,6 +244,12 @@
       "text": "REFLECT STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022920762
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS STABLE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772022921997
     }
   ]
 }
