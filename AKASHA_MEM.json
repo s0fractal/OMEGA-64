@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041367862
-    },
-    {
       "origin": "PURE_MATH",
       "text": "WAIT PURE RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STASIS SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041371394
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "FLOW UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772041371575
     }
   ]
 }
