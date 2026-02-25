@@ -24,12 +24,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "GIVING RESONATE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772019577449
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS STRIFE SHOCK",
       "mood": "AGGRESSIVE",
@@ -112,6 +106,12 @@
       "text": "CONSUME SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772019586734
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772019588496
     }
   ]
 }
