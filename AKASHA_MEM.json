@@ -146,12 +146,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022506715
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022506896
@@ -233,6 +227,12 @@
       "text": "RESONATE RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022509687
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WAIT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022509863
     }
   ]
 }
