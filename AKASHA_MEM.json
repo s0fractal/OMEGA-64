@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039918873
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772039919359
@@ -291,6 +285,12 @@
       "text": "STABLE HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772039928413
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME HUNGER STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039928846
     }
   ]
 }
