@@ -159,12 +159,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD REFLECT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022793277
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022793443
@@ -246,6 +240,12 @@
       "text": "FORGE EVOLVE WAVE",
       "mood": "CREATIVE",
       "tick": 1772022797853
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHIELD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772022798022
     }
   ]
 }
