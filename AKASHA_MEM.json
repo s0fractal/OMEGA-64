@@ -167,12 +167,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON SHIELD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023040315
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772023040638
@@ -254,6 +248,12 @@
       "text": "CONSUME SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023044479
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023045435
     }
   ]
 }
