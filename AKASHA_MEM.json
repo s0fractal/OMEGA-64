@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY UNIFY FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772035345141
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772035345362
@@ -291,6 +285,12 @@
       "text": "GIVING HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772035349721
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK CONSUME CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035351555
     }
   ]
 }
