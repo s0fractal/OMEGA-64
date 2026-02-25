@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS VISION VISION",
-      "mood": "CREATIVE",
-      "tick": 1772029141722
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME DREAM EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772029141970
@@ -291,6 +285,12 @@
       "text": "SHELTER REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772029159684
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK STRIKE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029160245
     }
   ]
 }
