@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "BA000000",
     "AAAA00A0",
     "BBBB0000",
     "B0B0000C",
@@ -199,15 +198,10 @@
     "AA00AAA0",
     "A0600606",
     "06060666",
-    "AAAAA00A"
+    "AAAAA00A",
+    "060060A6"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "REFLECT GUARD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772034807206
-    },
     {
       "origin": "REVERSE",
       "text": "FLOW SYNC GIVING",
@@ -291,6 +285,12 @@
       "text": "RESONATE COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772034809870
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING SYNC HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772034810035
     }
   ]
 }
