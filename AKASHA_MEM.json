@@ -72,12 +72,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER DRAIN DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020910388
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020910512
@@ -159,6 +153,12 @@
       "text": "SYNC GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772020916445
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN CONSUME CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020916655
     }
   ]
 }
