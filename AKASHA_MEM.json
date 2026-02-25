@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772030624154
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772030624514
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772030631724
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT IMMUNE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772030633576
     }
   ]
 }
