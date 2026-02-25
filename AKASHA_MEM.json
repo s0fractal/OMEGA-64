@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT WATCH WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041171458
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772041171623
@@ -291,6 +285,12 @@
       "text": "STRIFE HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772041174991
+    },
+    {
+      "origin": "STREAM",
+      "text": "GUARD STASIS RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772041175123
     }
   ]
 }
