@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040350422
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT GUARD IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772040356896
+    },
+    {
+      "origin": "STREAM",
+      "text": "HUNGER CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040357083
     }
   ]
 }
