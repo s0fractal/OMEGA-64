@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS STABLE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772033286288
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772033286444
@@ -291,6 +285,12 @@
       "text": "BREACH HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772033288760
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIKE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033288899
     }
   ]
 }
