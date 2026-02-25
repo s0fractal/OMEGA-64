@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING HEAL FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772041539991
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE PURE STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BREACH BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772041543561
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE SHELTER STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772041543708
     }
   ]
 }
