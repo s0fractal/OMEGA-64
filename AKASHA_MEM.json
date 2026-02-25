@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "FLOW COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772020697395
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE OSMOSIS UNIFY",
       "mood": "HARMONIC",
@@ -150,6 +144,12 @@
       "text": "SEIZE STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020704727
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL GIVING COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772020705100
     }
   ]
 }
