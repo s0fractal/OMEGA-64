@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772040605475
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772040605661
@@ -291,6 +285,12 @@
       "text": "AWAKEN AWAKEN WAVE",
       "mood": "CREATIVE",
       "tick": 1772040608444
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RESONATE BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772040608662
     }
   ]
 }
