@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028561535
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772028562870
@@ -291,6 +285,12 @@
       "text": "HEAL RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772028569803
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND EVOLVE WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772028570278
     }
   ]
 }
