@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY HEAL RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772030154847
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772030155185
@@ -291,6 +285,12 @@
       "text": "STABLE STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772030159757
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030160111
     }
   ]
 }
