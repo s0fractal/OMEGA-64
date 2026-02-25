@@ -71,12 +71,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY COHERE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772020884742
-    },
-    {
-      "origin": "REVERSE",
       "text": "VISION BECOME VISION",
       "mood": "CREATIVE",
       "tick": 1772020885054
@@ -158,6 +152,12 @@
       "text": "FLOW HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772020892411
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER BREACH DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020892602
     }
   ]
 }
