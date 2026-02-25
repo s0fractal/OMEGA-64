@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WAIT SHELTER WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772016172897
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BREACH SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772016180219
@@ -107,6 +101,12 @@
       "text": "SEIZE SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772016292357
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STABLE BLOOM STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772016297072
     }
   ]
 }
