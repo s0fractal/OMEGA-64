@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE UNIFY OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772020431947
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE GUARD STASIS",
       "mood": "DEFENSIVE",
@@ -142,6 +136,12 @@
       "text": "SYNC SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772020440394
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD PURE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020441014
     }
   ]
 }
