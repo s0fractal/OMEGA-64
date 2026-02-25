@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HEAL HEAL OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772033653602
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE SHOCK CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772033656316
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE OSMOSIS BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772033656495
     }
   ]
 }
