@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK STRIFE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020688190
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL COHERE FLOW",
       "mood": "HARMONIC",
@@ -150,6 +144,12 @@
       "text": "IMMUNE WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020694667
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT WAIT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020695514
     }
   ]
 }
