@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772034046204
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772034046423
@@ -291,6 +285,12 @@
       "text": "UNIFY UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772034048901
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN BREACH SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034049087
     }
   ]
 }
