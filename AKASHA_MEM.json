@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON REFLECT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772025222125
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772025222952
@@ -291,6 +285,12 @@
       "text": "WATCH WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772025228598
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SEIZE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025228908
     }
   ]
 }
