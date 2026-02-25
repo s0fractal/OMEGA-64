@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SEIZE STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040940253
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER WAIT STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772040943407
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD STASIS WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772040943623
     }
   ]
 }
