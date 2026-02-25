@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE STABLE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772033183470
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772033183936
@@ -291,6 +285,12 @@
       "text": "STABLE GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772033188105
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHIELD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772033190967
     }
   ]
 }
