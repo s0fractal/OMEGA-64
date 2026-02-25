@@ -178,12 +178,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SICKNESS CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023361432
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN SHOCK STRIFE",
       "mood": "AGGRESSIVE",
@@ -266,6 +260,12 @@
       "text": "HEAL STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772023364400
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE OSMOSIS BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772023364598
     }
   ]
 }
