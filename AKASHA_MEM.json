@@ -191,12 +191,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STABLE COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772023789717
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIFE STRIFE CONSUME",
       "mood": "AGGRESSIVE",
@@ -279,6 +273,12 @@
       "text": "STASIS WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023792936
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023793153
     }
   ]
 }
