@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "SUCC",
-      "text": "SYNC COHERE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772041059293
-    },
-    {
       "origin": "REVERSE",
       "text": "IMMUNE SHIELD STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772041062941
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON SHIELD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041063062
     }
   ]
 }
