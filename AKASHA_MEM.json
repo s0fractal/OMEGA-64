@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE SYNC SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772038091004
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772038091214
@@ -291,6 +285,12 @@
       "text": "OSMOSIS HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772038095925
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038096305
     }
   ]
 }
