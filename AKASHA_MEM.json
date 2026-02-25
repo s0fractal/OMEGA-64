@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020205527
-    },
-    {
       "origin": "STREAM",
       "text": "HEAL HEAL SYNC",
       "mood": "HARMONIC",
@@ -136,6 +130,12 @@
       "text": "SEIZE SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020219554
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT IMMUNE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772020219960
     }
   ]
 }
