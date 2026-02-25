@@ -163,12 +163,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER STRIKE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022919433
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772022919606
@@ -250,6 +244,12 @@
       "text": "CONSUME SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022925070
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772022925518
     }
   ]
 }
