@@ -181,12 +181,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS FLOW FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772023474529
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023475012
@@ -268,6 +262,12 @@
       "text": "REFLECT WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023481545
+    },
+    {
+      "origin": "STREAM",
+      "text": "OSMOSIS UNIFY GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772023481671
     }
   ]
 }
