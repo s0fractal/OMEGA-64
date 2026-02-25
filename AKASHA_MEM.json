@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "OSMOSIS BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041102907
-    },
-    {
       "origin": "STREAM",
       "text": "WATCH GUARD SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772041107448
+    },
+    {
+      "origin": "CAR",
+      "text": "SHOCK SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041107649
     }
   ]
 }
