@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772033936076
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772033936509
@@ -291,6 +285,12 @@
       "text": "STABLE HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772033941029
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME CONSUME HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033941358
     }
   ]
 }
