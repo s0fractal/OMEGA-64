@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HUNGER DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040981922
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME SHOCK SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD PURE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772040985343
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL RESONATE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772040985657
     }
   ]
 }
