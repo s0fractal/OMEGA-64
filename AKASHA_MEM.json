@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS SHOCK DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030927907
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE COHERE COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BREACH SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772030936692
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE REFLECT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772030937271
     }
   ]
 }
