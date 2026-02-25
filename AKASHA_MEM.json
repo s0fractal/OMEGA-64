@@ -163,12 +163,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "FLOW COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772022993632
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER CONSUME BREACH",
       "mood": "AGGRESSIVE",
@@ -251,6 +245,12 @@
       "text": "OSMOSIS RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772022997213
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER STASIS IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022997475
     }
   ]
 }
