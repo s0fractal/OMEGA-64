@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAVE DREAM SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772036023128
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772036023291
@@ -291,6 +285,12 @@
       "text": "FLOW COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772036025772
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772036026024
     }
   ]
 }
