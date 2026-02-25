@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD REFLECT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772031655312
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GUARD REFLECT SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772031667507
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DECAY SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031667915
     }
   ]
 }
