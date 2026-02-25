@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHELTER IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772040495784
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY SEIZE SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040498247
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON REFLECT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772040498384
     }
   ]
 }
