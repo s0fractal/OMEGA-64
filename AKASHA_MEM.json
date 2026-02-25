@@ -12,11 +12,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "ASCEND",
-      "tick": 1772010688557
-    },
-    {
-      "origin": "INTERFACE",
       "text": "RECLAIM",
       "tick": 1772010718622
     },
@@ -91,6 +86,12 @@
       "text": "DECAY SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772012335555
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HUNGER DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772012367482
     }
   ]
 }
