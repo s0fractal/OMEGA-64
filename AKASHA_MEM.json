@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772037459780
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772037459992
@@ -291,6 +285,12 @@
       "text": "COHERE GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772037462717
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037462965
     }
   ]
 }
