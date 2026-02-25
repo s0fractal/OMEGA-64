@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY RESONATE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772040947446
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SPARK BECOME BECOME",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "REFLECT STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772040950110
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772040950250
     }
   ]
 }
