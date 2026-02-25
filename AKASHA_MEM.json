@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GUARD REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772031655937
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL OSMOSIS BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SEIZE DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772031667915
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031668313
     }
   ]
 }
