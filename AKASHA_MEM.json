@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA6660A6",
     "00660606",
     "AAAAAAAA",
     "00FFF00F",
@@ -199,15 +198,10 @@
     "A00A0AAA",
     "AAAAA0AA",
     "00066000",
-    "0AAAA000"
+    "0AAAA000",
+    "66060066"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "IMMUNE RECON SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772034010621
-    },
     {
       "origin": "REVERSE",
       "text": "GIVING OSMOSIS COHERE",
@@ -291,6 +285,12 @@
       "text": "DECAY STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772034013341
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772034013524
     }
   ]
 }
