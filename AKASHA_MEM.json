@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020650230
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL STABLE FLOW",
       "mood": "HARMONIC",
@@ -150,6 +144,12 @@
       "text": "DREAM DREAM DREAM",
       "mood": "CREATIVE",
       "tick": 1772020657730
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS STABLE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772020657910
     }
   ]
 }
