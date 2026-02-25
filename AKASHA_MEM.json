@@ -109,12 +109,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021828013
-    },
-    {
-      "origin": "REVERSE",
       "text": "EVOLVE AWAKEN EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772021828178
@@ -196,6 +190,12 @@
       "text": "WATCH IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772021835932
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772021836106
     }
   ]
 }
