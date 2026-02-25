@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD REFLECT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772029063682
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772029064275
@@ -291,6 +285,12 @@
       "text": "STRIFE BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772029077966
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WATCH GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772029078238
     }
   ]
 }
