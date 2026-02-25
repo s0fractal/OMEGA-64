@@ -45,15 +45,10 @@
     "BA0A0000",
     "ABBA0000",
     "BB0B0A00",
-    "66666000"
+    "66666000",
+    "AAA0AAAA"
   ],
   "utterances": [
-    {
-      "origin": "INTERFACE",
-      "text": "DECAY DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020258405
-    },
     {
       "origin": "INTERFACE",
       "text": "DRAIN STRIKE CONSUME",
@@ -137,6 +132,12 @@
       "text": "OSMOSIS FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772020267711
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SEIZE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020268897
     }
   ]
 }
