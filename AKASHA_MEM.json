@@ -195,12 +195,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HEAL HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772023884248
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT RECON RECON",
       "mood": "DEFENSIVE",
@@ -283,6 +277,12 @@
       "text": "STABLE BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772023892455
+    },
+    {
+      "origin": "STREAM",
+      "text": "STASIS WATCH REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023892629
     }
   ]
 }
