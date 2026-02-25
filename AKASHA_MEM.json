@@ -145,12 +145,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIFE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022504136
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772022504326
@@ -232,6 +226,12 @@
       "text": "GIVING HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772022507694
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS GUARD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772022507869
     }
   ]
 }
