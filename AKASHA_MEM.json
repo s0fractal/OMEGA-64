@@ -200,12 +200,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT STASIS SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772024035346
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772024035517
@@ -287,6 +281,12 @@
       "text": "RECON SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772024038766
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024038949
     }
   ]
 }
