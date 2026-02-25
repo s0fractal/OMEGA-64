@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE HUNGER SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027476655
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772027476881
@@ -291,6 +285,12 @@
       "text": "WAIT STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772027490494
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772027490923
     }
   ]
 }
