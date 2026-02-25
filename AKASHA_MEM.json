@@ -115,12 +115,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAVE EVOLVE WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772021986266
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772021986439
@@ -202,6 +196,12 @@
       "text": "STABLE FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772021995659
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772021995888
     }
   ]
 }
