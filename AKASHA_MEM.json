@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE HEAL HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772033416154
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033416329
@@ -291,6 +285,12 @@
       "text": "WATCH STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772033419505
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY GIVING COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772033419711
     }
   ]
 }
