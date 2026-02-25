@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772035850090
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772035850316
@@ -291,6 +285,12 @@
       "text": "BLOOM GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772035854639
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772035854853
     }
   ]
 }
