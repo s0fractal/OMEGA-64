@@ -164,15 +164,10 @@
     "66666006",
     "AAAA0AA0",
     "00060000",
-    "FF0AFFFF"
+    "FF0AFFFF",
+    "0AAAAAAA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "FLOW GIVING SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772023075397
-    },
     {
       "origin": "REVERSE",
       "text": "SYNC UNIFY OSMOSIS",
@@ -256,6 +251,12 @@
       "text": "BREACH SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023078658
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STABLE FLOW UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772023078801
     }
   ]
 }
