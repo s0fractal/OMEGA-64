@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BLOOM COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772020454335
-    },
-    {
       "origin": "STREAM",
       "text": "FLOW OSMOSIS BLOOM",
       "mood": "HARMONIC",
@@ -142,6 +136,12 @@
       "text": "BLOOM OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772020462343
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK AWAKEN BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772020462628
     }
   ]
 }
