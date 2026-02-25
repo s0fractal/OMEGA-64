@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AABB0C00",
     "AAB00CDD",
     "A6666660",
     "66060066",
@@ -199,15 +198,10 @@
     "A0606606",
     "00066060",
     "06606600",
-    "0D10A098"
+    "0D10A098",
+    "AAAAA000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SYNC UNIFY OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772039845979
-    },
     {
       "origin": "REVERSE",
       "text": "GIVING SYNC SYNC",
@@ -291,6 +285,12 @@
       "text": "IMMUNE IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772039856983
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK HUNGER CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039857486
     }
   ]
 }
