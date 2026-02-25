@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025822677
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772025822911
@@ -291,6 +285,12 @@
       "text": "UNIFY GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772025826974
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SICKNESS DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025827341
     }
   ]
 }
