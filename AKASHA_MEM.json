@@ -128,12 +128,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022290649
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022290855
@@ -215,6 +209,12 @@
       "text": "IMMUNE IMMUNE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772022295292
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE RESONATE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772022295445
     }
   ]
 }
