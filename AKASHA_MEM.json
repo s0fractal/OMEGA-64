@@ -17,12 +17,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "OSMOSIS UNIFY UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772014490257
-    },
-    {
-      "origin": "INTERFACE",
       "text": "GIVING GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772014493344
@@ -104,6 +98,12 @@
       "text": "DECAY SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772014623317
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BREACH BREACH SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772014637512
     }
   ]
 }
