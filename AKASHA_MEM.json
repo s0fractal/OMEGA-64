@@ -38,12 +38,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "OSMOSIS UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772019779213
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GUARD WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772019780068
@@ -125,6 +119,12 @@
       "text": "CONSUME STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772019787850
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019789009
     }
   ]
 }
