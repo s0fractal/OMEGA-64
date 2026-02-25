@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772030627746
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772030628241
@@ -291,6 +285,12 @@
       "text": "HUNGER HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772030636672
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHELTER WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772030640280
     }
   ]
 }
