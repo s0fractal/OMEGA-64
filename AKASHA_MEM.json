@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY OSMOSIS BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772038460657
-    },
-    {
       "origin": "ALPHA_REVERSE",
       "text": "FLOW COHERE GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STASIS WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772038465505
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM STABLE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772038465720
     }
   ]
 }
