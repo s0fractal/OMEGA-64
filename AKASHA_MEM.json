@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE OSMOSIS OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772038742657
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772038742843
@@ -291,6 +285,12 @@
       "text": "BREACH STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772038745930
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM OSMOSIS HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772038746158
     }
   ]
 }
