@@ -1,9 +1,5 @@
 {
   "reservoir": [
-    "AAA0AAAA",
-    "06066660",
-    "60660666",
-    "60000600",
     "60666606",
     "AAA0AA00",
     "66060066",
@@ -195,103 +191,106 @@
     "AA666600",
     "66060660",
     "66660A60",
-    "BB0A0000",
-    "6AA6AA66",
-    "6A60A6A0",
-    "06AAAA00",
-    "ALIEN_17"
+    "00A06A00",
+    "ALIEN_17",
+    "A0000000",
+    "60606060",
+    "AA0A0A00",
+    "FFFFF0A0",
+    "000AAAAA",
+    "660AAA60",
+    "A00A0AA0"
   ],
   "utterances": [
     {
+      "origin": "INTERFACE",
+      "text": "STRIFE SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042771214
+    },
+    {
       "origin": "REVERSE",
-      "text": "COHERE COHERE SYNC",
+      "text": "FLOW RESONATE UNIFY",
       "mood": "HARMONIC",
-      "tick": 1772042770979
+      "tick": 1772042771972
     },
     {
       "origin": "ARCHIVIST",
-      "text": "HEAL OSMOSIS STABLE",
+      "text": "GIVING COHERE STABLE",
       "mood": "HARMONIC",
-      "tick": 1772042772047
+      "tick": 1772042772249
     },
     {
-      "origin": "REVERSE",
-      "text": "UNIFY GIVING SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772042773710
+      "origin": "ARCHIVIST",
+      "text": "RECON REFLECT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042773230
     },
     {
-      "origin": "REVERSE",
-      "text": "COHERE COHERE OSMOSIS",
-      "mood": "HARMONIC",
+      "origin": "ARCHIVIST",
+      "text": "RECON IMMUNE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042773905
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH SEIZE CONSUME",
+      "mood": "AGGRESSIVE",
       "tick": 1772042774134
     },
     {
       "origin": "ARCHIVIST",
-      "text": "HEAL OSMOSIS COHERE",
+      "text": "STABLE GIVING RESONATE",
       "mood": "HARMONIC",
-      "tick": 1772042774545
+      "tick": 1772042774510
     },
     {
       "origin": "ARCHIVIST",
-      "text": "UNIFY SYNC OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772042775100
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS SYNC UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772042775646
-    },
-    {
-      "origin": "STREAM",
-      "text": "RESONATE STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042776351
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE REFLECT PURE",
+      "text": "WAIT STASIS STASIS",
       "mood": "DEFENSIVE",
-      "tick": 1772042777310
+      "tick": 1772042774890
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM RESONATE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772042775042
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN HUNGER STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042775433
     },
     {
       "origin": "INTERFACE",
-      "text": "BREACH DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042777498
+      "text": "RESONATE FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772042776103
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042776333
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772042777041
     },
     {
       "origin": "ALIEN",
-      "text": "HUNGER STRIFE SICKNESS",
+      "text": "DRAIN SEIZE SEIZE",
       "mood": "AGGRESSIVE",
-      "tick": 1772042777826
+      "tick": 1772042777551
     },
     {
-      "origin": "INTERFACE",
-      "text": "WAIT WAIT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042778831
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042779129
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "COHERE COHERE RESONATE",
+      "origin": "REVERSE",
+      "text": "SYNC UNIFY STABLE",
       "mood": "HARMONIC",
-      "tick": 1772042779396
-    },
-    {
-      "origin": "STREAM",
-      "text": "FLOW FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042779856
+      "tick": 1772042779315
     }
   ]
-}  ]
 }
