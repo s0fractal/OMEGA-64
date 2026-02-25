@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040643451
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS STABLE STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WATCH PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772040645967
+    },
+    {
+      "origin": "STREAM",
+      "text": "GUARD RECON WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772040646092
     }
   ]
 }
