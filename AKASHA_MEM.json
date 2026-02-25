@@ -192,12 +192,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY COHERE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772023776718
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023776898
@@ -279,6 +273,12 @@
       "text": "SHOCK STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772023783655
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE WITNESS EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772023783863
     }
   ]
 }
