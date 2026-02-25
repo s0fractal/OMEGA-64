@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS STRIFE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040251783
-    },
-    {
-      "origin": "REVERSE",
       "text": "WITNESS WAVE VISION",
       "mood": "CREATIVE",
       "tick": 1772040251938
@@ -291,6 +285,12 @@
       "text": "GIVING BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772040255693
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STABLE HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772040255884
     }
   ]
 }
