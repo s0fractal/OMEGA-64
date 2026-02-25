@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY STABLE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772036922793
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIKE DECAY STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772036926568
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT PURE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772036926783
     }
   ]
 }
