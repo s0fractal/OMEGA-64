@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK STRIFE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025695557
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC HEAL OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WATCH RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772025699665
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE BLOOM UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772025700519
     }
   ]
 }
