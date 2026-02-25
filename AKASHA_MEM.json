@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS OSMOSIS RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772020234886
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS HUNGER BREACH",
       "mood": "AGGRESSIVE",
@@ -136,6 +130,12 @@
       "text": "STASIS IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772020242277
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HUNGER STRIKE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020242771
     }
   ]
 }
