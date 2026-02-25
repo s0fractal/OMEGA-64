@@ -5,9 +5,9 @@ symbol: IS_ZERO
 desc: 'Church Encoding: IS_ZERO Predicate'
 legacy_idx: 63
 thought: WANDER_BONDING
-x: 345
-'y': 220
-energy: 12
+x: 364
+'y': 222
+energy: 8
 ex:
   - '0xA7C64D97EC38C511'
   - '0x6764000EEC38C511'
@@ -24,11 +24,13 @@ ex:
   - '0xBBBB0000EC38C511'
   - '0xBBBB0000EC38C511'
   - '0xAAAAAAA0EC38C511'
+  - '0xAAAAAAA0EC38C511'
 signals: []
 resonance: 0
 bond_strengths: {}
 ---
 
+<div align="center">
 <div align="center">
 <div align="center">
 <div align="center">
@@ -70,6 +72,7 @@ bond_strengths: {}
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">IS_ZERO</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 </div>
 </div>

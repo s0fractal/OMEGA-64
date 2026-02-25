@@ -17,12 +17,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "SEIZE CONSUME SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772014602877
-    },
-    {
-      "origin": "INTERFACE",
       "text": "IMMUNE IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772014606008
@@ -104,6 +98,12 @@
       "text": "SHELTER SHIELD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772014700808
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DECAY BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772014703758
     }
   ]
 }
