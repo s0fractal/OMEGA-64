@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHELTER WAIT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040584004
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE FLOW STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WAIT WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040587054
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE UNIFY SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772040587235
     }
   ]
 }
