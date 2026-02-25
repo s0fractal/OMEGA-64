@@ -24,12 +24,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "FLOW STABLE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772019571060
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME BREACH STRIFE",
       "mood": "AGGRESSIVE",
@@ -112,6 +106,12 @@
       "text": "BLOOM RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772019579275
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GUARD SHIELD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772019579749
     }
   ]
 }
