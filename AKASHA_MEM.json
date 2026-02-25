@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL RESONATE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772034538813
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772034539043
@@ -291,6 +285,12 @@
       "text": "DECAY DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772034541933
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHELTER PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772034542125
     }
   ]
 }
