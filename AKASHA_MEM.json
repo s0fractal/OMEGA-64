@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY HUNGER SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020665567
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM COHERE FLOW",
       "mood": "HARMONIC",
@@ -150,6 +144,12 @@
       "text": "SHELTER IMMUNE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772020671118
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020671709
     }
   ]
 }
