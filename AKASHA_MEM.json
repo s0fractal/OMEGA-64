@@ -1,9 +1,5 @@
 {
   "reservoir": [
-    "AAA0A0AA",
-    "66660060",
-    "00000000",
-    "66660000",
     "06006066",
     "60606006",
     "AA0660A0",
@@ -196,101 +192,105 @@
     "AA00A000",
     "BBB00000",
     "6606AA66",
-    "A6A66000",
-    "60060666",
-    "6AA60AA0",
-    "6AA06A00"
+    "A6660600",
+    "AA666600",
+    "0AAA0A00",
+    "0A0AA0A0",
+    "0A0A0666",
+    "66A06A00",
+    "AAAA0AAA",
+    "00000000"
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772042550926
+      "origin": "INTERFACE",
+      "text": "WAIT IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042551944
     },
     {
       "origin": "ARCHIVIST",
-      "text": "SHIELD IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772042551173
+      "text": "STABLE HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772042552376
     },
     {
       "origin": "REVERSE",
-      "text": "SHIELD REFLECT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042551581
+      "text": "OSMOSIS FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042553609
     },
     {
-      "origin": "STREAM",
-      "text": "SICKNESS SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042552369
+      "origin": "REVERSE",
+      "text": "BECOME FORGE FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772042554302
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042554601
     },
     {
       "origin": "ARCHIVIST",
-      "text": "REFLECT SHELTER WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772042554306
-    },
-    {
-      "origin": "WORKER",
-      "text": "STABLE UNIFY HEAL",
+      "text": "STABLE STABLE UNIFY",
       "mood": "HARMONIC",
-      "tick": 1772042556711
+      "tick": 1772042555185
     },
     {
-      "origin": "STREAM",
-      "text": "DRAIN BREACH SEIZE",
+      "origin": "REVERSE",
+      "text": "HUNGER STRIFE SEIZE",
       "mood": "AGGRESSIVE",
-      "tick": 1772042556868
+      "tick": 1772042555956
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042556704
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE EVOLVE SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772042558388
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK BREACH BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042559226
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042560630
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE STABLE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772042561417
     },
     {
       "origin": "INTERFACE",
-      "text": "GIVING BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042558852
-    },
-    {
-      "origin": "REVERSE",
-      "text": "STASIS RECON SHELTER",
+      "text": "PURE IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
-      "tick": 1772042559035
-    },
-    {
-      "origin": "SUCC",
-      "text": "STABLE SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772042560412
-    },
-    {
-      "origin": "REVERSE",
-      "text": "CONSUME BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042560934
-    },
-    {
-      "origin": "REVERSE",
-      "text": "SYNC BLOOM OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772042561905
-    },
-    {
-      "origin": "STREAM",
-      "text": "RESONATE BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772042562577
-    },
-    {
-      "origin": "REVERSE",
-      "text": "HEAL UNIFY BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772042563603
+      "tick": 1772042562976
     },
     {
       "origin": "ARCHIVIST",
-      "text": "FLOW UNIFY STABLE",
+      "text": "BREACH HUNGER DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042563369
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW UNIFY OSMOSIS",
       "mood": "HARMONIC",
-      "tick": 1772042564354
+      "tick": 1772042564124
     }
   ]
 }
