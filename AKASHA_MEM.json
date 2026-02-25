@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772034191410
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772034191720
@@ -291,6 +285,12 @@
       "text": "OSMOSIS UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772034195937
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034196166
     }
   ]
 }
