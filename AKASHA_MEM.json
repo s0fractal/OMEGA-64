@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60600006",
     "AAAAAA0A",
     "00006666",
     "0AAAAAAA",
@@ -199,15 +198,10 @@
     "00666060",
     "60066000",
     "66666600",
-    "0A000AAA"
+    "0A000AAA",
+    "606A0600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SEIZE SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038576979
-    },
     {
       "origin": "REVERSE",
       "text": "WAIT PURE STASIS",
@@ -291,6 +285,12 @@
       "text": "SHOCK SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772038580682
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT STASIS SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772038580928
     }
   ]
 }
