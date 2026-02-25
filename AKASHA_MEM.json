@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE HUNGER SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040474499
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772040474692
@@ -291,6 +285,12 @@
       "text": "PURE GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040477026
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE RECON IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040477194
     }
   ]
 }
