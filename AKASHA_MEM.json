@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH WAIT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041314224
-    },
-    {
       "origin": "INTERFACE",
       "text": "UNIFY HEAL FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FLOW GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772041320312
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME DECAY SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041320504
     }
   ]
 }
