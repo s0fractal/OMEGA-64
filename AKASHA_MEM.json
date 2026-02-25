@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "RECON STASIS REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040944685
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON RECON PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772040948868
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BLOOM OSMOSIS RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772040949067
     }
   ]
 }
