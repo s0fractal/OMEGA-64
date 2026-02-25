@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DRAIN SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038054232
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772038054419
@@ -291,6 +285,12 @@
       "text": "WATCH PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772038058508
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIKE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038058726
     }
   ]
 }
