@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SEIZE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028930662
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772028930890
@@ -291,6 +285,12 @@
       "text": "GIVING GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772028934771
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SEIZE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028935035
     }
   ]
 }
