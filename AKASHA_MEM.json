@@ -103,12 +103,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER STRIKE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021639183
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772021639343
@@ -190,6 +184,12 @@
       "text": "GIVING UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772021646641
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SHOCK SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021646829
     }
   ]
 }
