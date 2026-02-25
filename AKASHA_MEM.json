@@ -124,12 +124,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE BREACH HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022174257
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT WAIT STASIS",
       "mood": "DEFENSIVE",
@@ -212,6 +206,12 @@
       "text": "DRAIN STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022184458
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772022184672
     }
   ]
 }
