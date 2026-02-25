@@ -142,12 +142,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE WAIT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022453005
-    },
-    {
-      "origin": "REVERSE",
       "text": "VISION EVOLVE SPARK",
       "mood": "CREATIVE",
       "tick": 1772022453324
@@ -229,6 +223,12 @@
       "text": "DRAIN SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022458936
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHIELD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022459138
     }
   ]
 }
