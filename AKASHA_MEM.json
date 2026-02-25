@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER PURE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772032861929
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772032862102
@@ -291,6 +285,12 @@
       "text": "FLOW SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772032865463
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772032865609
     }
   ]
 }
