@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS PURE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041897061
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772041897291
@@ -291,6 +285,12 @@
       "text": "STRIKE DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772041901878
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772041902316
     }
   ]
 }
