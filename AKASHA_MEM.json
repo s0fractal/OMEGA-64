@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER SEIZE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025476619
-    },
-    {
       "origin": "REVERSE",
       "text": "SHIELD SHELTER GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "WITNESS EVOLVE SPARK",
       "mood": "CREATIVE",
       "tick": 1772025481231
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772025481362
     }
   ]
 }
