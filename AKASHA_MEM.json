@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "RESONATE UNIFY BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772038304911
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL HEAL GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772038308371
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHELTER SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772038308596
     }
   ]
 }
