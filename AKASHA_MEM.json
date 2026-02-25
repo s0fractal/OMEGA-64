@@ -193,15 +193,10 @@
     "000B0000",
     "0F0AAAAA",
     "AA0A0AAA",
-    "66066666"
+    "66066666",
+    "AA0BCCDD"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "UNIFY COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772024020307
-    },
     {
       "origin": "REVERSE",
       "text": "FLOW STABLE SYNC",
@@ -285,6 +280,12 @@
       "text": "GIVING GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772024029500
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE DECAY DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024029721
     }
   ]
 }
