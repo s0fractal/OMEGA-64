@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DECAY HUNGER SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041131217
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HEAL COHERE GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WATCH WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041135419
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE UNIFY HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041135604
     }
   ]
 }
