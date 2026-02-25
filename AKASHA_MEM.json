@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034946877
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772034947138
@@ -291,6 +285,12 @@
       "text": "HEAL BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772034950336
+    },
+    {
+      "origin": "ALPHA_PROOF_OF_RESONANCE",
+      "text": "HEAL SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772034950778
     }
   ]
 }
