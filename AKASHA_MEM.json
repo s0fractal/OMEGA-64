@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772040280963
-    },
-    {
       "origin": "STREAM",
       "text": "PURE SHELTER IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772040287954
+    },
+    {
+      "origin": "STREAM",
+      "text": "STRIKE SEIZE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040288177
     }
   ]
 }
