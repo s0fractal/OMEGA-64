@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772037596080
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772037596375
@@ -291,6 +285,12 @@
       "text": "UNIFY COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772037599349
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS HUNGER STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037599530
     }
   ]
 }
