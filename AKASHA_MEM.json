@@ -19,12 +19,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "OSMOSIS COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772015589503
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STASIS SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772015597239
@@ -106,6 +100,12 @@
       "text": "GUARD SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772015707633
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIKE CONSUME SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772015715268
     }
   ]
 }
