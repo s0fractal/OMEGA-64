@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT IMMUNE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772034556008
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772034556202
@@ -291,6 +285,12 @@
       "text": "AWAKEN WITNESS WAVE",
       "mood": "CREATIVE",
       "tick": 1772034558747
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772034558929
     }
   ]
 }
