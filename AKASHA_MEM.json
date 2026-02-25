@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WAIT WAIT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020670272
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS STRIKE SEIZE",
       "mood": "AGGRESSIVE",
@@ -150,6 +144,12 @@
       "text": "STABLE SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772020677969
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020678710
     }
   ]
 }
