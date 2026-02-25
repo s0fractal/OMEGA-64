@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041044526
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW STABLE GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WAIT SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041048638
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON IMMUNE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041048817
     }
   ]
 }
