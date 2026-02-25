@@ -44,12 +44,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STABLE HEAL OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772020047829
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BREACH STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020048610
@@ -131,6 +125,12 @@
       "text": "BREACH STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020063221
+    },
+    {
+      "origin": "STREAM",
+      "text": "BLOOM RESONATE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772020063826
     }
   ]
 }
