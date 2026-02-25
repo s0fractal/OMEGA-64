@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH PURE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772023993178
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023993574
@@ -284,6 +278,12 @@
       "text": "BREACH SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772023999138
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE DREAM SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772023999557
     }
   ]
 }
