@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035183558
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772035183725
@@ -291,6 +285,12 @@
       "text": "SICKNESS DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772035186372
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION EVOLVE WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772035186540
     }
   ]
 }
