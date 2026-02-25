@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT STASIS RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772037670625
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772037670834
@@ -291,6 +285,12 @@
       "text": "GUARD SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772037673912
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS RESONATE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772037674137
     }
   ]
 }
