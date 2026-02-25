@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772026739327
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS STASIS IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772026748632
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHIELD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772026749058
     }
   ]
 }
