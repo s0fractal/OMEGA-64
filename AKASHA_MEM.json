@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027295560
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772027295924
@@ -291,6 +285,12 @@
       "text": "HEAL OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772027301180
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE DREAM SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772027301416
     }
   ]
 }
