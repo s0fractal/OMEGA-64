@@ -1,7 +1,5 @@
 {
   "reservoir": [
-    "AA000600",
-    "A0AAA000",
     "AAA0A0AA",
     "66660060",
     "00000000",
@@ -199,98 +197,100 @@
     "BBB00000",
     "6606AA66",
     "A6A66000",
-    "60060666"
+    "60060666",
+    "6AA60AA0",
+    "6AA06A00"
   ],
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STABLE RESONATE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042528451
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "COHERE OSMOSIS RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042528856
-    },
-    {
-      "origin": "REVERSE",
-      "text": "GUARD PURE STASIS",
+      "text": "IMMUNE WAIT RECON",
       "mood": "DEFENSIVE",
-      "tick": 1772042529241
+      "tick": 1772042522441
     },
     {
-      "origin": "ARCHIVIST",
-      "text": "STASIS RECON WAIT",
+      "origin": "WORKER",
+      "text": "IMMUNE GUARD RECON",
       "mood": "DEFENSIVE",
-      "tick": 1772042529473
-    },
-    {
-      "origin": "REVERSE",
-      "text": "WAIT IMMUNE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042530326
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STABLE COHERE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772042531056
-    },
-    {
-      "origin": "STREAM",
-      "text": "HUNGER SEIZE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042532684
-    },
-    {
-      "origin": "REVERSE",
-      "text": "SICKNESS STRIKE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042533414
-    },
-    {
-      "origin": "AUTONOMY_METRIC",
-      "text": "OSMOSIS UNIFY FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772042533864
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772042534684
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "HEAL RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772042534933
+      "tick": 1772042523512
     },
     {
       "origin": "INTERFACE",
-      "text": "STRIKE DECAY STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042535356
-    },
-    {
-      "origin": "STREAM",
-      "text": "BLOOM HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042536345
+      "text": "RECON WATCH GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042525260
     },
     {
       "origin": "REVERSE",
-      "text": "STABLE HEAL UNIFY",
+      "text": "OSMOSIS FLOW BLOOM",
       "mood": "HARMONIC",
-      "tick": 1772042537028
+      "tick": 1772042527608
     },
     {
       "origin": "ARCHIVIST",
-      "text": "WAIT REFLECT REFLECT",
+      "text": "SHELTER PURE RECON",
       "mood": "DEFENSIVE",
-      "tick": 1772042537541
+      "tick": 1772042528247
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE UNIFY HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772042528557
+    },
+    {
+      "origin": "STREAM",
+      "text": "FLOW GIVING BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772042528748
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY HEAL RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772042529906
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042533329
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE IMMUNE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042534198
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772042534525
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD SHIELD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042535582
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772042536381
+    },
+    {
+      "origin": "PARADOX",
+      "text": "BREACH STRIKE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042536635
+    },
+    {
+      "origin": "CONSCIOUSNESS",
+      "text": "SHOCK BREACH SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042537669
     }
   ]
 }
