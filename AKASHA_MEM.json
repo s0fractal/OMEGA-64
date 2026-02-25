@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00F0F00F",
     "AA0A00AA",
     "66666600",
     "0A0A000A",
@@ -199,15 +198,10 @@
     "AAAAA000",
     "60606006",
     "FFFFF00F",
-    "00066600"
+    "00066600",
+    "AA00A00A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "COHERE FLOW BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772029002612
-    },
     {
       "origin": "REVERSE",
       "text": "SHIELD STASIS WAIT",
@@ -291,6 +285,12 @@
       "text": "PURE SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772029008975
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029009283
     }
   ]
 }
