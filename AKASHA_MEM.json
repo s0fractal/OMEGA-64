@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "IS_ISO",
-      "text": "STRIKE BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042456249
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS RESONATE SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772042466990
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SYNC RESONATE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772042468567
     }
   ]
 }
