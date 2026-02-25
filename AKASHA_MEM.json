@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHOCK SEIZE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041113406
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SICKNESS SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772041117452
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772041117635
     }
   ]
 }
