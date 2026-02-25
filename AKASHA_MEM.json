@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME DECAY SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772016839868
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SEIZE DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772016842374
@@ -107,6 +101,12 @@
       "text": "UNIFY FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772016926013
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY BREACH STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772016930360
     }
   ]
 }
