@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT SHIELD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041037340
-    },
-    {
       "origin": "INTERFACE",
       "text": "REFLECT SHIELD SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041040736
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE SICKNESS STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041042055
     }
   ]
 }
