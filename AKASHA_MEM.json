@@ -42,15 +42,10 @@
     "600A0A00",
     "66A666A0",
     "A000AA00",
-    "BA0A0000"
+    "BA0A0000",
+    "ABBA0000"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE BREACH SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020119955
-    },
     {
       "origin": "ARCHIVIST",
       "text": "REFLECT RECON SHIELD",
@@ -134,6 +129,12 @@
       "text": "DECAY SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020132407
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK DECAY CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020133130
     }
   ]
 }
