@@ -50,12 +50,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE SHOCK CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020292286
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHIELD STASIS WATCH",
       "mood": "DEFENSIVE",
@@ -138,6 +132,12 @@
       "text": "COHERE SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772020305085
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE COHERE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772020305500
     }
   ]
 }
