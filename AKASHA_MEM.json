@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772033734904
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772033735089
@@ -291,6 +285,12 @@
       "text": "DRAIN HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772033737409
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772033737588
     }
   ]
 }
