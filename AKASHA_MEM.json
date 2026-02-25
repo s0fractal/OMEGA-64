@@ -61,12 +61,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020605143
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH PURE WATCH",
       "mood": "DEFENSIVE",
@@ -149,6 +143,12 @@
       "text": "STABLE HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772020611289
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS PURE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772020611528
     }
   ]
 }
