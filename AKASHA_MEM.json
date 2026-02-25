@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD GUARD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772037797520
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772037797744
@@ -291,6 +285,12 @@
       "text": "FLOW BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772037800533
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHELTER IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772037800754
     }
   ]
 }
