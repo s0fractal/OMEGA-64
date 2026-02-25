@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772040468728
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772040469069
@@ -291,6 +285,12 @@
       "text": "BREACH HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772040471640
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RECON SHIELD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040471802
     }
   ]
 }
