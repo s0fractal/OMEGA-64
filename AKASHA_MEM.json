@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS SHOCK DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035747677
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK STRIKE DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772035751259
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON REFLECT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772035751818
     }
   ]
 }
