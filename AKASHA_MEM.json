@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW STABLE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772023150006
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772023150157
@@ -259,6 +253,12 @@
       "text": "BREACH DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023153442
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023153619
     }
   ]
 }
