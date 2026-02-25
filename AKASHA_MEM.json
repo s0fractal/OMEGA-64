@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE OSMOSIS FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772037078746
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772037078949
@@ -291,6 +285,12 @@
       "text": "SHOCK CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772037081605
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT PURE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772037081828
     }
   ]
 }
