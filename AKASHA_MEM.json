@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "GIVING BLOOM STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772028387080
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME CONSUME DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772028401456
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SEIZE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028402007
     }
   ]
 }
