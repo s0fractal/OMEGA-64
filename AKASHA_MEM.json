@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM OSMOSIS FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772031058051
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772031058658
@@ -291,6 +285,12 @@
       "text": "BLOOM STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772031068925
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER DECAY DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031069771
     }
   ]
 }
