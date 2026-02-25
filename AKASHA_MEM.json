@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BLOOM STABLE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772041167592
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY STABLE FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HUNGER HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772041170908
+    },
+    {
+      "origin": "WORKER",
+      "text": "SYNC STABLE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041171332
     }
   ]
 }
