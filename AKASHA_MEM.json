@@ -142,12 +142,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772022470057
-    },
-    {
       "origin": "REVERSE",
       "text": "GUARD WAIT REFLECT",
       "mood": "DEFENSIVE",
@@ -230,6 +224,12 @@
       "text": "FLOW HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772022475955
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022476271
     }
   ]
 }
