@@ -102,12 +102,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RECON SHIELD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772021637983
-    },
-    {
       "origin": "REVERSE",
       "text": "PURE RECON GUARD",
       "mood": "DEFENSIVE",
@@ -190,6 +184,12 @@
       "text": "FLOW RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772021644453
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021645222
     }
   ]
 }
