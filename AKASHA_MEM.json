@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE WAIT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772037392866
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772037393093
@@ -291,6 +285,12 @@
       "text": "OSMOSIS STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772037401761
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD PURE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772037401971
     }
   ]
 }
