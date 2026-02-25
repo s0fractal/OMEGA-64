@@ -96,12 +96,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772021525687
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772021526142
@@ -183,6 +177,12 @@
       "text": "COHERE GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772021531954
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD REFLECT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772021532236
     }
   ]
 }
