@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS BREACH HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034603087
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034603282
@@ -291,6 +285,12 @@
       "text": "FORGE AWAKEN SPARK",
       "mood": "CREATIVE",
       "tick": 1772034606485
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY STABLE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772034606646
     }
   ]
 }
