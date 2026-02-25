@@ -154,12 +154,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY SEIZE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022659874
-    },
-    {
       "origin": "INTERFACE",
       "text": "STASIS SHELTER STASIS",
       "mood": "DEFENSIVE",
@@ -242,6 +236,12 @@
       "text": "OSMOSIS RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022664464
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022664811
     }
   ]
 }
