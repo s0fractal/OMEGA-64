@@ -200,12 +200,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024041125
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772024041290
@@ -287,6 +281,12 @@
       "text": "CONSUME SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772024044912
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD REFLECT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772024045061
     }
   ]
 }
