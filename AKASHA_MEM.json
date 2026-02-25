@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE STRIKE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038049295
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772038049468
@@ -291,6 +285,12 @@
       "text": "DRAIN DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772038052686
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE SYNC SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772038052916
     }
   ]
 }
