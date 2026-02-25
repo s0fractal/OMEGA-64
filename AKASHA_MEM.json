@@ -202,12 +202,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS FORGE WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772024075806
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772024075983
@@ -289,6 +283,12 @@
       "text": "WAVE BEYOND DREAM",
       "mood": "CREATIVE",
       "tick": 1772024079685
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS RECON WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772024080004
     }
   ]
 }
