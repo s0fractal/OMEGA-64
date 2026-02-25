@@ -10,15 +10,10 @@
     "66666666",
     "BBB0000C",
     "BBBB0000",
-    "60000000"
+    "60000000",
+    "BABB0000"
   ],
   "utterances": [
-    {
-      "origin": "INTERFACE",
-      "text": "SICKNESS BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772013218011
-    },
     {
       "origin": "INTERFACE",
       "text": "SEIZE CONSUME SEIZE",
@@ -102,6 +97,12 @@
       "text": "SYNC OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772014169288
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772014172557
     }
   ]
 }
