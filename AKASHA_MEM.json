@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772029192279
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772029192580
@@ -291,6 +285,12 @@
       "text": "SYNC SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772029201175
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHELTER WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772029201492
     }
   ]
 }
