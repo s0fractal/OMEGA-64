@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "GUARD SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040998815
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE SYNC HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DRAIN DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772041002531
+    },
+    {
+      "origin": "SUCC",
+      "text": "SYNC UNIFY GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041002735
     }
   ]
 }
