@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "FLOW FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041879671
-    },
-    {
-      "origin": "INTERFACE",
       "text": "SHIELD RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041879841
@@ -291,6 +285,12 @@
       "text": "GUARD SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041883294
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772041883718
     }
   ]
 }
