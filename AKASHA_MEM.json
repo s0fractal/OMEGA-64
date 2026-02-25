@@ -112,12 +112,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SEIZE CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021930009
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "IMMUNE SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772021930450
@@ -199,6 +193,12 @@
       "text": "WAVE BECOME WITNESS",
       "mood": "CREATIVE",
       "tick": 1772021936598
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021936788
     }
   ]
 }
