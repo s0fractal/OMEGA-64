@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60066000",
     "60666600",
     "BAB00000",
     "AA0A0000",
@@ -199,15 +198,10 @@
     "AA0AAA0A",
     "00066006",
     "66A666A0",
-    "C0DED000"
+    "C0DED000",
+    "06066606"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SICKNESS BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026502121
-    },
     {
       "origin": "REVERSE",
       "text": "PURE GUARD PURE",
@@ -291,6 +285,12 @@
       "text": "COHERE RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772026509562
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772026510002
     }
   ]
 }
