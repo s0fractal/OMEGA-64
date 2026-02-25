@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SHOCK SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025113181
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772025113734
@@ -291,6 +285,12 @@
       "text": "SYNC COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772025117307
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE UNIFY COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772025117671
     }
   ]
 }
