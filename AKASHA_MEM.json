@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "B0BF000C",
     "AA0AAA00",
     "F00FF00F",
     "AAA00000",
@@ -199,15 +198,10 @@
     "600A66A0",
     "06000666",
     "060060A0",
-    "0AA0AAA0"
+    "0AA0AAA0",
+    "AA6060A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WATCH WATCH WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772033862637
-    },
     {
       "origin": "REVERSE",
       "text": "BLOOM UNIFY RESONATE",
@@ -291,6 +285,12 @@
       "text": "SHIELD STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772033867380
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033867537
     }
   ]
 }
