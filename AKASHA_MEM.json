@@ -120,12 +120,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT WATCH WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022102286
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
@@ -208,6 +202,12 @@
       "text": "STABLE GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772022107183
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE RECON PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022107473
     }
   ]
 }
