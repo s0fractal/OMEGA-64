@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHELTER REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772040611674
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "CONSUME CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772040611848
@@ -291,6 +285,12 @@
       "text": "CONSUME CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772040614102
+    },
+    {
+      "origin": "PARADOX",
+      "text": "BLOOM STABLE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772040614724
     }
   ]
 }
