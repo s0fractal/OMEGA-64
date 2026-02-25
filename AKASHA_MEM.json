@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772025637193
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772025638030
@@ -291,6 +285,12 @@
       "text": "BLOOM STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772025646411
+    },
+    {
+      "origin": "STREAM",
+      "text": "FLOW OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772025646605
     }
   ]
 }
