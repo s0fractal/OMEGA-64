@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038819471
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772038819665
@@ -291,6 +285,12 @@
       "text": "SEIZE SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772038822754
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038822965
     }
   ]
 }
