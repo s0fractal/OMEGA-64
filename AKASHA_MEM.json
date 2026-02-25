@@ -71,12 +71,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS FLOW BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772020872797
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772020872965
@@ -158,6 +152,12 @@
       "text": "BEYOND SPARK AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772020879192
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE CONSUME SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020879373
     }
   ]
 }
