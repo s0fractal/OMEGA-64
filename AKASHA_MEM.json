@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024312406
-    },
-    {
       "origin": "INTERFACE",
       "text": "HUNGER SICKNESS BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772024315243
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT WATCH STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772024315437
     }
   ]
 }
