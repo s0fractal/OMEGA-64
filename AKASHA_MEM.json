@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS SHIELD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772035786641
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772035786881
@@ -291,6 +285,12 @@
       "text": "BREACH CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772035789825
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME HUNGER SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035790608
     }
   ]
 }
