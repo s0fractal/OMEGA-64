@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SHOCK BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030942241
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772030942674
@@ -291,6 +285,12 @@
       "text": "FLOW SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772030947694
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772030948079
     }
   ]
 }
