@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS BREACH HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032710557
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772032710728
@@ -291,6 +285,12 @@
       "text": "SEIZE BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772032715496
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772032715637
     }
   ]
 }
