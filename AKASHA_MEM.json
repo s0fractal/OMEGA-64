@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STASIS STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772040582848
-    },
-    {
       "origin": "STREAM",
       "text": "RESONATE SYNC SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DECAY STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772040585255
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772040585416
     }
   ]
 }
