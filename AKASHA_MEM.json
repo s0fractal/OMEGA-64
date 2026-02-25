@@ -154,12 +154,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH SEIZE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022652062
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT STASIS RECON",
       "mood": "DEFENSIVE",
@@ -242,6 +236,12 @@
       "text": "HEAL HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772022656578
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772022657254
     }
   ]
 }
