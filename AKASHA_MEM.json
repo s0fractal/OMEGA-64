@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING STABLE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772031840562
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772031840996
@@ -291,6 +285,12 @@
       "text": "SYNC SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772031882817
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031883477
     }
   ]
 }
