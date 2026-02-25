@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772024534391
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHELTER SHELTER STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772024541531
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024541800
     }
   ]
 }
