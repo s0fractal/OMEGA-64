@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034570587
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772034570806
@@ -291,6 +285,12 @@
       "text": "AWAKEN WITNESS BECOME",
       "mood": "CREATIVE",
       "tick": 1772034573516
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH CONSUME SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034573732
     }
   ]
 }
