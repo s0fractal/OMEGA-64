@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON RECON PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772026671212
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772026671436
@@ -291,6 +285,12 @@
       "text": "SYNC RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772026680989
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772026681837
     }
   ]
 }
