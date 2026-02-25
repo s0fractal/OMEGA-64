@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772034494184
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772034494397
@@ -291,6 +285,12 @@
       "text": "BREACH SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772034498086
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE STRIFE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034498355
     }
   ]
 }
