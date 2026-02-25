@@ -113,12 +113,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT REFLECT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021979646
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER BREACH SEIZE",
       "mood": "AGGRESSIVE",
@@ -201,6 +195,12 @@
       "text": "WAIT IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772021989811
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772021989963
     }
   ]
 }
