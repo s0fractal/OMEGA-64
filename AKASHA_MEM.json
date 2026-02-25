@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH PURE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772019654628
-    },
-    {
       "origin": "STREAM",
       "text": "RESONATE GIVING STABLE",
       "mood": "HARMONIC",
@@ -114,6 +108,12 @@
       "text": "SYNC UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772019663717
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772019664112
     }
   ]
 }
