@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT WAIT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023150626
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023151175
@@ -259,6 +253,12 @@
       "text": "AWAKEN SPARK WAVE",
       "mood": "CREATIVE",
       "tick": 1772023154471
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHELTER GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023154716
     }
   ]
 }
