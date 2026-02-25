@@ -49,12 +49,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SYNC SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772020143315
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SICKNESS DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020144181
@@ -136,6 +130,12 @@
       "text": "BREACH SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772020151967
+    },
+    {
+      "origin": "STREAM",
+      "text": "STABLE COHERE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772020152870
     }
   ]
 }
