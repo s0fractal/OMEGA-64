@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH RECON WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772035976232
-    },
-    {
       "origin": "INTERFACE",
       "text": "STABLE HEAL UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RECON WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772035979286
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DECAY DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035979523
     }
   ]
 }
