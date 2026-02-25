@@ -87,12 +87,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM STABLE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772021251359
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HEAL GIVING COHERE",
       "mood": "HARMONIC",
@@ -175,6 +169,12 @@
       "text": "DRAIN BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021254634
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SHOCK BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021255335
     }
   ]
 }
