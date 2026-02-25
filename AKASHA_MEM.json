@@ -77,12 +77,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DRAIN SHOCK SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021053429
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS PURE SHELTER",
       "mood": "DEFENSIVE",
@@ -165,6 +159,12 @@
       "text": "PURE GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772021061293
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SICKNESS STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021061894
     }
   ]
 }
