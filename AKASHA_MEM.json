@@ -145,12 +145,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY RESONATE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772022505704
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE DECAY SHOCK",
       "mood": "AGGRESSIVE",
@@ -233,6 +227,12 @@
       "text": "BREACH SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772022509053
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND BEYOND WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772022509544
     }
   ]
 }
