@@ -81,12 +81,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772021097401
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772021097585
@@ -168,6 +162,12 @@
       "text": "HUNGER BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772021105300
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE DREAM BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772021105552
     }
   ]
 }
