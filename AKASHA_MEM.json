@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033481197
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772033481390
@@ -291,6 +285,12 @@
       "text": "PURE PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772033483992
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE SYNC FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772033484193
     }
   ]
 }
