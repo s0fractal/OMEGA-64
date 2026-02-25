@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023741203
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023741378
@@ -278,6 +272,12 @@
       "text": "STABLE STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772023744408
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHIELD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023744599
     }
   ]
 }
