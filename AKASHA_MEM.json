@@ -177,12 +177,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023312336
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023314432
@@ -264,6 +258,12 @@
       "text": "IMMUNE STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023317365
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD REFLECT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023317522
     }
   ]
 }
