@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "STREAM",
-      "text": "STRIKE DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041954768
-    },
-    {
-      "origin": "STREAM",
       "text": "DRAIN SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772041955140
@@ -291,6 +285,12 @@
       "text": "RESONATE RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772041961236
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD SHELTER WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772041961460
     }
   ]
 }
