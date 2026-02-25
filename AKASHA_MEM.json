@@ -103,12 +103,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS GUARD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772021639343
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772021639642
@@ -190,6 +184,12 @@
       "text": "STRIFE SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021646829
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WAIT SHELTER REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772021646999
     }
   ]
 }
