@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772024224612
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772024224981
@@ -291,6 +285,12 @@
       "text": "FLOW GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772024230020
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WATCH STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772024230228
     }
   ]
 }
