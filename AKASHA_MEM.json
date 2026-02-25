@@ -108,12 +108,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS IMMUNE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772021755840
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772021756020
@@ -195,6 +189,12 @@
       "text": "WAIT RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772021761328
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772021761527
     }
   ]
 }
