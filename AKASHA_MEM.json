@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD REFLECT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772026226473
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772026226668
@@ -291,6 +285,12 @@
       "text": "STABLE UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772026231970
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS HUNGER BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026232244
     }
   ]
 }
