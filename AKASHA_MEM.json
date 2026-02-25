@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD SHELTER WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772033241605
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772033241798
@@ -291,6 +285,12 @@
       "text": "GIVING STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772033248471
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN STRIKE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033248828
     }
   ]
 }
