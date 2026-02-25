@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772034155376
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772034155643
@@ -291,6 +285,12 @@
       "text": "SPARK FORGE WITNESS",
       "mood": "CREATIVE",
       "tick": 1772034159605
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHELTER STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772034159751
     }
   ]
 }
