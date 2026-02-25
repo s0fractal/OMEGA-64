@@ -43,12 +43,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHOCK SHOCK SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019982295
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WATCH WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772019983598
@@ -130,6 +124,12 @@
       "text": "COHERE COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772019996269
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT PURE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772019997553
     }
   ]
 }

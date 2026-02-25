@@ -25,15 +25,17 @@ ex:
   - '0x00046B00FA309ECA'
   - '0x00000006FA309ECA'
   - '0x00000006FA309ECA'
+  - '0xAAAAAAA0FA309ECA'
 thought: WANDER_BONDING
-x: 464
+x: 467
 'y': 50
-energy: 33
+energy: 31
 signals: []
 resonance: 0
 bond_strengths: {}
 ---
 
+<div align="center">
 <div align="center">
 <div align="center">
 <div align="center">
@@ -82,6 +84,7 @@ bond_strengths: {}
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">COORD_Y</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 </div>
 </div>
