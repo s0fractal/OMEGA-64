@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041167897
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT WAIT WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772041171458
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772041171623
     }
   ]
 }
