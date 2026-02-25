@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772040595041
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772040595353
@@ -291,6 +285,12 @@
       "text": "SICKNESS DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772040599417
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH IMMUNE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772040599644
     }
   ]
 }
