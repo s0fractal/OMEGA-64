@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS STRIFE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029684952
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772029685584
@@ -291,6 +285,12 @@
       "text": "IMMUNE WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772029694734
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW BLOOM STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772029695431
     }
   ]
 }
