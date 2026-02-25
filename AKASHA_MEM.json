@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60006600",
     "AA0A0000",
     "000A60A0",
     "AABBC00D",
@@ -199,15 +198,10 @@
     "660060A6",
     "60066666",
     "A0AAA0AA",
-    "AAAA0A00"
+    "AAAA0A00",
+    "06006066"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "PURE WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772033390717
-    },
     {
       "origin": "REVERSE",
       "text": "DRAIN STRIFE SICKNESS",
@@ -291,6 +285,12 @@
       "text": "RESONATE SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772033393730
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY HEAL HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772033393909
     }
   ]
 }
