@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE WAIT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040487969
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE COHERE UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIFE SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772040490910
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIFE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040491071
     }
   ]
 }
