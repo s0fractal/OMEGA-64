@@ -171,12 +171,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023153442
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE GUARD PURE",
       "mood": "DEFENSIVE",
@@ -259,6 +253,12 @@
       "text": "IMMUNE GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772023156247
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER IMMUNE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772023156399
     }
   ]
 }
