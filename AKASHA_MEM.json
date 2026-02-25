@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772040688648
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAVE SPARK SPARK",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772040691450
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME DECAY HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040691683
     }
   ]
 }
