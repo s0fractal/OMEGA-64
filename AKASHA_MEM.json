@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034786216
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772034786423
@@ -291,6 +285,12 @@
       "text": "HUNGER HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772034790558
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW OSMOSIS BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772034790775
     }
   ]
 }
