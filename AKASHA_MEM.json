@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772034098911
-    },
-    {
-      "origin": "REVERSE",
       "text": "FORGE AWAKEN BECOME",
       "mood": "CREATIVE",
       "tick": 1772034099134
@@ -291,6 +285,12 @@
       "text": "STRIFE STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772034101698
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034101891
     }
   ]
 }
