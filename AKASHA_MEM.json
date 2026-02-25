@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE PURE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772025455524
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BLOOM OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RECON WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772025459810
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772025460311
     }
   ]
 }
