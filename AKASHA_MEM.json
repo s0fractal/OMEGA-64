@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772024180775
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772024180978
@@ -291,6 +285,12 @@
       "text": "GIVING RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772024183936
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD SHELTER STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772024184776
     }
   ]
 }
