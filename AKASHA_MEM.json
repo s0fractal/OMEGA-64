@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033966787
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS STRIKE SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772033969906
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW HEAL OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772033970142
     }
   ]
 }
