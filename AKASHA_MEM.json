@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "HEAL COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772019563049
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT GUARD GUARD",
       "mood": "DEFENSIVE",
@@ -111,6 +105,12 @@
       "text": "STABLE FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772019574212
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019575613
     }
   ]
 }
