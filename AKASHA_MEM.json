@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME DREAM DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772032761053
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772032761342
@@ -291,6 +285,12 @@
       "text": "DECAY SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772032764183
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772032764363
     }
   ]
 }
