@@ -123,12 +123,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS RECON WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022143696
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772022143856
@@ -210,6 +204,12 @@
       "text": "IMMUNE SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022148014
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022148213
     }
   ]
 }
