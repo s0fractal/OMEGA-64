@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772041499226
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIFE HUNGER DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772041504017
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772041504348
     }
   ]
 }
