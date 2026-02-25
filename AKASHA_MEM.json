@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "CAR",
-      "text": "HEAL OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041525785
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE SHOCK STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041529279
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041529423
     }
   ]
 }
