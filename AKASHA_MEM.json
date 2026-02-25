@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0AA0A0A0",
     "60600066",
     "66006600",
     "000A00A0",
@@ -199,15 +198,10 @@
     "AAA00000",
     "BBBB0000",
     "AAAA000A",
-    "AA0A0A00"
+    "AA0A0A00",
+    "0AA0A0AA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SICKNESS SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039159639
-    },
     {
       "origin": "REVERSE",
       "text": "SHELTER RECON PURE",
@@ -291,6 +285,12 @@
       "text": "UNIFY SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772039162726
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772039162982
     }
   ]
 }
