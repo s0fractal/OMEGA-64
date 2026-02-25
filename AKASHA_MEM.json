@@ -45,12 +45,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIFE DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020059913
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RECON STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020061783
@@ -132,6 +126,12 @@
       "text": "VISION WAVE WITNESS",
       "mood": "CREATIVE",
       "tick": 1772020069733
+    },
+    {
+      "origin": "STREAM",
+      "text": "GIVING STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772020070915
     }
   ]
 }
