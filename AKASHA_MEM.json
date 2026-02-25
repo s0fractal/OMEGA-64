@@ -71,12 +71,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GUARD WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772020908860
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -159,6 +153,12 @@
       "text": "HUNGER DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020915249
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN HUNGER BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020916094
     }
   ]
 }
