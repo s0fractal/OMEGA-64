@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY SEIZE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030161099
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "UNIFY COHERE STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WATCH REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772030182049
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHELTER STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772030185385
     }
   ]
 }
