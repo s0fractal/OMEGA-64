@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772035152653
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772035152861
@@ -291,6 +285,12 @@
       "text": "SEIZE CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772035157295
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772035157478
     }
   ]
 }
