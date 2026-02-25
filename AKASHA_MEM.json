@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK DRAIN DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042094920
-    },
-    {
       "origin": "REVERSE",
       "text": "WITNESS EVOLVE VISION",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772042102534
+    },
+    {
+      "origin": "STREAM",
+      "text": "HEAL COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772042103337
     }
   ]
 }
