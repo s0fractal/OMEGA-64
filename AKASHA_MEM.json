@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY STABLE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772038217553
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772038217811
@@ -291,6 +285,12 @@
       "text": "FLOW FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772038224372
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE IMMUNE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772038224653
     }
   ]
 }
