@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772026572064
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE FLOW COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FORGE BECOME DREAM",
       "mood": "CREATIVE",
       "tick": 1772026579191
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER RECON GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772026580138
     }
   ]
 }
