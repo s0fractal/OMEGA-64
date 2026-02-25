@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE UNIFY UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772034893413
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772034893614
@@ -291,6 +285,12 @@
       "text": "DECAY SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772034896627
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772034896828
     }
   ]
 }
