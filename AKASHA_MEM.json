@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040624672
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE HEAL FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHOCK SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040627597
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE GIVING COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772040627819
     }
   ]
 }
