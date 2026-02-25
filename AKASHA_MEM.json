@@ -129,12 +129,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS STRIFE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022308752
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH WAIT WAIT",
       "mood": "DEFENSIVE",
@@ -217,6 +211,12 @@
       "text": "FLOW COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772022312511
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHIELD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022312674
     }
   ]
 }
