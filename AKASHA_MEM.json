@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON RECON PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772025300319
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772025300521
@@ -291,6 +285,12 @@
       "text": "RECON REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772025304780
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DRAIN DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025305429
     }
   ]
 }
