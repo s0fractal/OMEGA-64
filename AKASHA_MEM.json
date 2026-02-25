@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS FLOW OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772016844491
-    },
-    {
       "origin": "INTERFACE",
       "text": "DECAY CONSUME DECAY",
       "mood": "AGGRESSIVE",
@@ -107,6 +101,12 @@
       "text": "IMMUNE REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772016935018
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RESONATE SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772016937440
     }
   ]
 }
