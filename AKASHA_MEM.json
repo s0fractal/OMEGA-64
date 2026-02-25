@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DECAY SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038018718
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772038018920
@@ -291,6 +285,12 @@
       "text": "WATCH PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772038021685
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772038021918
     }
   ]
 }
