@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE HEAL BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772041307736
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN HUNGER BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SEIZE DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772041311872
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041313827
     }
   ]
 }
