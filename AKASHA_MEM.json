@@ -37,15 +37,10 @@
     "9D18A690",
     "666A66A0",
     "BB0BA000",
-    "AB0A0000"
+    "AB0A0000",
+    "A000A000"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME SEIZE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019890619
-    },
     {
       "origin": "ARCHIVIST",
       "text": "BREACH DECAY SICKNESS",
@@ -129,6 +124,12 @@
       "text": "CONSUME STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772019901702
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN CONSUME SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019902209
     }
   ]
 }
