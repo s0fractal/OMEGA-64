@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS RESONATE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772025966065
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772025966492
@@ -291,6 +285,12 @@
       "text": "WAIT GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772025970427
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING COHERE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772025970983
     }
   ]
 }
