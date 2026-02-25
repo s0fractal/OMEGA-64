@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE HEAL HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772027951590
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772027959586
@@ -291,6 +285,12 @@
       "text": "BLOOM RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772027987462
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772027994404
     }
   ]
 }
