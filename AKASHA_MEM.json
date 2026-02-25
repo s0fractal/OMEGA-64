@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL BLOOM STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772032911673
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772032911848
@@ -291,6 +285,12 @@
       "text": "WATCH STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772032914168
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD PURE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772032914346
     }
   ]
 }
