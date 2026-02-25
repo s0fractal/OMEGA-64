@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SEIZE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035288659
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772035288893
@@ -291,6 +285,12 @@
       "text": "UNIFY FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772035293524
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772035293727
     }
   ]
 }
