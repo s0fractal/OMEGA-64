@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SHOCK DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035559708
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772035559992
@@ -291,6 +285,12 @@
       "text": "HEAL RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772035562862
+    },
+    {
+      "origin": "STREAM",
+      "text": "OSMOSIS HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772035563614
     }
   ]
 }
