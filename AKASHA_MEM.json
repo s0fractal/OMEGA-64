@@ -75,12 +75,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE HEAL BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772020955979
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772020956213
@@ -162,6 +156,12 @@
       "text": "CONSUME STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020962097
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH CONSUME SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020962276
     }
   ]
 }
