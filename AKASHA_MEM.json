@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034958394
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772034958555
@@ -291,6 +285,12 @@
       "text": "WAIT GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772034961183
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH RECON WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772034961346
     }
   ]
 }
