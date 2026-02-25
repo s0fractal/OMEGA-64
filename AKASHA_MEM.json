@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY SHOCK SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037699180
-    },
-    {
       "origin": "ALPHA_REVERSE",
       "text": "OSMOSIS GIVING HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHOCK CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772037702323
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772037702678
     }
   ]
 }
