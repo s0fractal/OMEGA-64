@@ -55,12 +55,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772020478296
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020478733
@@ -142,6 +136,12 @@
       "text": "WAIT PURE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772020485296
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020486018
     }
   ]
 }
