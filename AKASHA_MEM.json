@@ -55,12 +55,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STASIS STASIS WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020536604
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE BREACH SICKNESS",
       "mood": "AGGRESSIVE",
@@ -143,6 +137,12 @@
       "text": "WITNESS BECOME DREAM",
       "mood": "CREATIVE",
       "tick": 1772020544798
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772020545263
     }
   ]
 }
