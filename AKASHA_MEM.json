@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772032709857
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772032710045
@@ -291,6 +285,12 @@
       "text": "CONSUME SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772032714128
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE PURE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772032715004
     }
   ]
 }
