@@ -189,12 +189,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772023688803
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772023688992
@@ -276,6 +270,12 @@
       "text": "BREACH DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023696688
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SHOCK BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023696855
     }
   ]
 }
