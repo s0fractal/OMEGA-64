@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772037263000
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772037263300
@@ -291,6 +285,12 @@
       "text": "STRIKE CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772037269433
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037269621
     }
   ]
 }
