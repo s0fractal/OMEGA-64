@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN SICKNESS SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030190231
-    },
-    {
       "origin": "REVERSE",
       "text": "WAIT RECON SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772030202888
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHELTER GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772030203544
     }
   ]
 }
