@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772040958049
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040958226
@@ -291,6 +285,12 @@
       "text": "SHIELD GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040961336
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE WATCH REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040961651
     }
   ]
 }
