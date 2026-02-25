@@ -19,12 +19,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BLOOM HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772015383051
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHELTER PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772015385783
@@ -106,6 +100,12 @@
       "text": "STRIFE CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772015498685
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "CONSUME DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772015501062
     }
   ]
 }
