@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STABLE RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772041590461
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GUARD PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041591084
@@ -291,6 +285,12 @@
       "text": "REFLECT IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772041595472
+    },
+    {
+      "origin": "STREAM",
+      "text": "PURE SHELTER STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772041595745
     }
   ]
 }
