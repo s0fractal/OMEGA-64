@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772032467624
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772032467979
@@ -291,6 +285,12 @@
       "text": "STASIS RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772032474773
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032475086
     }
   ]
 }
