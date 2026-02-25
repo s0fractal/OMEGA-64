@@ -17,12 +17,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STABLE FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772014660484
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE SHOCK STRIKE",
       "mood": "AGGRESSIVE",
@@ -105,6 +99,12 @@
       "text": "STRIKE DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772014780260
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772014800059
     }
   ]
 }
