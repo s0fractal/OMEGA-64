@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041083172
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHOCK DECAY BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STASIS PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041085997
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL FLOW HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041086190
     }
   ]
 }
