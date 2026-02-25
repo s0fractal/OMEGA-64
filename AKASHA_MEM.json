@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66006006",
     "0000AAA0",
     "AA0A0AA0",
     "A0BBC000",
@@ -199,15 +198,10 @@
     "0B000000",
     "0AAAA0AA",
     "0A660600",
-    "A00A0000"
+    "A00A0000",
+    "AA0AAAAA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RECON SHELTER REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772034490171
-    },
     {
       "origin": "REVERSE",
       "text": "PURE IMMUNE RECON",
@@ -291,6 +285,12 @@
       "text": "FLOW UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772034492970
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034493183
     }
   ]
 }
