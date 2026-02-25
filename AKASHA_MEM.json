@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033164268
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772033164412
@@ -291,6 +285,12 @@
       "text": "CONSUME BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772033167072
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD STASIS WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772033167330
     }
   ]
 }
