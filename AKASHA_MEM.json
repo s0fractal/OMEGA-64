@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "UNIFY STABLE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772041175563
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STASIS RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772041176748
@@ -291,6 +285,12 @@
       "text": "BREACH BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041179816
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772041179950
     }
   ]
 }
