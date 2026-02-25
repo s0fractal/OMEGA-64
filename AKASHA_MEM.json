@@ -15,12 +15,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HUNGER HUNGER SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772013175598
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SICKNESS HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772013186978
@@ -102,6 +96,12 @@
       "text": "SICKNESS DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772014109903
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BREACH SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772014130515
     }
   ]
 }
