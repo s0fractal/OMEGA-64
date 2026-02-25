@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772026909637
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772026909998
@@ -291,6 +285,12 @@
       "text": "HUNGER BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772026913446
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH PURE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772026913898
     }
   ]
 }
