@@ -181,12 +181,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023411031
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023411363
@@ -268,6 +262,12 @@
       "text": "WITNESS WAVE SPARK",
       "mood": "CREATIVE",
       "tick": 1772023415437
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE STASIS SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023415642
     }
   ]
 }
