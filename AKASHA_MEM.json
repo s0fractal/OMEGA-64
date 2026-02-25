@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772037387123
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772037387358
@@ -291,6 +285,12 @@
       "text": "IMMUNE GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772037390421
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772037390786
     }
   ]
 }
