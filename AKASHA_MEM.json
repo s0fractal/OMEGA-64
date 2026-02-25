@@ -157,12 +157,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022767855
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "FLOW GIVING STABLE",
       "mood": "HARMONIC",
@@ -245,6 +239,12 @@
       "text": "HEAL OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772022777887
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE BREACH CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022778597
     }
   ]
 }
