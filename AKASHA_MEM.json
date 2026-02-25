@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAAA0AA0",
     "AA6660A6",
     "A0666006",
     "0AA0AAA0",
@@ -199,15 +198,10 @@
     "A06666A6",
     "00AAA00A",
     "A0A0A0A0",
-    "60606666"
+    "60606666",
+    "AA0066A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GUARD PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772037317268
-    },
     {
       "origin": "REVERSE",
       "text": "HEAL RESONATE HEAL",
@@ -291,6 +285,12 @@
       "text": "WATCH PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772037320504
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SHOCK SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037320709
     }
   ]
 }
