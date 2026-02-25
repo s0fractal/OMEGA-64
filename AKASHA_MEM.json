@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772041402726
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE DRAIN SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041406634
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041407499
     }
   ]
 }
