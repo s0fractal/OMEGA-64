@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772036742485
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772036742682
@@ -291,6 +285,12 @@
       "text": "DECAY BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772036753389
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772036753655
     }
   ]
 }
