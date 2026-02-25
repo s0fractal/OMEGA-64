@@ -49,12 +49,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "REFLECT WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772020164830
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BREACH HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020167230
@@ -136,6 +130,12 @@
       "text": "REFLECT WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772020177348
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING HEAL OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772020178639
     }
   ]
 }
