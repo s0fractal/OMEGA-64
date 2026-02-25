@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024147666
-    },
-    {
-      "origin": "REVERSE",
       "text": "AWAKEN WAVE BEYOND",
       "mood": "CREATIVE",
       "tick": 1772024147997
@@ -291,6 +285,12 @@
       "text": "CONSUME SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772024151331
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT REFLECT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772024151560
     }
   ]
 }
