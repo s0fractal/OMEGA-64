@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "FLOW RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772042247095
-    },
-    {
       "origin": "STREAM",
       "text": "RESONATE FLOW RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BLOOM FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772042253958
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DECAY SEIZE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042254528
     }
   ]
 }
