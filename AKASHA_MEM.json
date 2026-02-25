@@ -204,6 +204,12 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
+      "text": "UNIFY HEAL RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772042529906
+    },
+    {
+      "origin": "ARCHIVIST",
       "text": "SEIZE DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772042533329
@@ -258,39 +264,33 @@
     },
     {
       "origin": "ARCHIVIST",
-      "text": "BLOOM SYNC SYNC",
+      "text": "BLOOM RESONATE HEAL",
       "mood": "HARMONIC",
-      "tick": 1772042542388
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STABLE FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772042543574
-    },
-    {
-      "origin": "ALIEN",
-      "text": "DRAIN SEIZE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042544414
+      "tick": 1772042542478
     },
     {
       "origin": "INTERFACE",
-      "text": "IMMUNE WAIT SHELTER",
+      "text": "RECON RECON IMMUNE",
       "mood": "DEFENSIVE",
-      "tick": 1772042544858
+      "tick": 1772042544795
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE COHERE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772042545013
     },
     {
       "origin": "ARCHIVIST",
-      "text": "RECON IMMUNE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042545322
+      "text": "SHOCK HUNGER STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042545400
     },
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT WAIT WATCH",
+      "origin": "STREAM",
+      "text": "GUARD WATCH SHIELD",
       "mood": "DEFENSIVE",
-      "tick": 1772042545759
+      "tick": 1772042545733
     }
   ]
 }
