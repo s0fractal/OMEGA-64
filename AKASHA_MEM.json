@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772027186050
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772027186262
@@ -291,6 +285,12 @@
       "text": "FORGE BECOME EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772027191380
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772027191557
     }
   ]
 }
