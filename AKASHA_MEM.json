@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772035830971
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772035831302
@@ -291,6 +285,12 @@
       "text": "PURE GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772035838109
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIFE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035838408
     }
   ]
 }
