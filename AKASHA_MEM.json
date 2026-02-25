@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN STRIKE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041242031
-    },
-    {
       "origin": "REVERSE",
       "text": "PURE REFLECT SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "REFLECT WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772041247115
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS WAIT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772041247370
     }
   ]
 }
