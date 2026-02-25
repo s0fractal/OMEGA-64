@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SICKNESS HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027249686
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772027249922
@@ -291,6 +285,12 @@
       "text": "SHIELD PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772027254723
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SEIZE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027254955
     }
   ]
 }
