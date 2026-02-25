@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0D100098",
     "660060A6",
     "66060606",
     "AA6666A6",
@@ -199,15 +198,10 @@
     "000AA0AA",
     "00006600",
     "66060600",
-    "AA0AAAA0"
+    "AA0AAAA0",
+    "BBB00000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "EVOLVE VISION VISION",
-      "mood": "CREATIVE",
-      "tick": 1772030950867
-    },
     {
       "origin": "REVERSE",
       "text": "SHELTER STASIS WAIT",
@@ -291,6 +285,12 @@
       "text": "FLOW FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772030966337
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DRAIN SHOCK BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030968046
     }
   ]
 }
