@@ -95,12 +95,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772021515451
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772021517366
@@ -182,6 +176,12 @@
       "text": "GUARD IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772021526752
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER GUARD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021527312
     }
   ]
 }
