@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE DRAIN SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040683599
-    },
-    {
       "origin": "I16_CLAMP",
       "text": "DECAY HUNGER STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772040688080
+    },
+    {
+      "origin": "STREAM",
+      "text": "STRIKE DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040688327
     }
   ]
 }
