@@ -58,12 +58,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GUARD SHELTER PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020593518
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN HUNGER BREACH",
       "mood": "AGGRESSIVE",
@@ -146,6 +140,12 @@
       "text": "DECAY CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020599240
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS CONSUME SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020599384
     }
   ]
 }
