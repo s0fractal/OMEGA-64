@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772038327622
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772038327829
@@ -291,6 +285,12 @@
       "text": "BREACH STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772038331107
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772038331323
     }
   ]
 }
