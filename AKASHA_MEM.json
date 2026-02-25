@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "OSMOSIS BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772036557102
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN DRAIN BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772036560422
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772036560627
     }
   ]
 }
