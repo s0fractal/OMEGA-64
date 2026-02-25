@@ -7,15 +7,10 @@
     "AAAAAAA0",
     "AAAAAAAA",
     "00000000",
-    "66666666"
+    "66666666",
+    "BBB0000C"
   ],
   "utterances": [
-    {
-      "origin": "INTERFACE",
-      "text": "STRIFE DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772012399990
-    },
     {
       "origin": "INTERFACE",
       "text": "SICKNESS DRAIN SEIZE",
@@ -99,6 +94,12 @@
       "text": "STRIFE SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772013000029
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIFE DRAIN STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772013007449
     }
   ]
 }
