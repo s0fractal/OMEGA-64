@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SICKNESS SEIZE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041613941
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC HEAL OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHELTER SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041617985
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING HEAL GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041618120
     }
   ]
 }
