@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER SHELTER WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041409202
-    },
-    {
       "origin": "VIBRATION",
       "text": "WATCH REFLECT PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041412120
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HEAL SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772041412301
     }
   ]
 }
