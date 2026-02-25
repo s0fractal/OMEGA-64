@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025266938
-    },
-    {
-      "origin": "REVERSE",
       "text": "FORGE BECOME BECOME",
       "mood": "CREATIVE",
       "tick": 1772025267350
@@ -291,6 +285,12 @@
       "text": "STASIS SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772025272114
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BEYOND FORGE BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772025272299
     }
   ]
 }
