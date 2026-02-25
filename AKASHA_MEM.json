@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER STASIS WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772037883822
-    },
-    {
-      "origin": "REVERSE",
       "text": "WITNESS BECOME WITNESS",
       "mood": "CREATIVE",
       "tick": 1772037884023
@@ -291,6 +285,12 @@
       "text": "WATCH WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772037887514
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER HUNGER BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037887679
     }
   ]
 }
