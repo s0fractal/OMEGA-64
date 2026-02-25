@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040692853
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772040693041
@@ -291,6 +285,12 @@
       "text": "REFLECT REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040696119
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SHOCK DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040696411
     }
   ]
 }
