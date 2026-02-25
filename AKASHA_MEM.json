@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027808977
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772027809561
@@ -291,6 +285,12 @@
       "text": "SICKNESS CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772027824575
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHIELD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772027825340
     }
   ]
 }
