@@ -123,12 +123,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "EVOLVE BEYOND FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772022110949
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022111764
@@ -210,6 +204,12 @@
       "text": "FLOW STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022116513
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE FORGE BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772022116772
     }
   ]
 }
