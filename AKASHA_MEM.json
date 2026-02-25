@@ -29,12 +29,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STASIS GUARD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772019679144
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SYNC HEAL UNIFY",
       "mood": "HARMONIC",
@@ -117,6 +111,12 @@
       "text": "WAIT WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772019690049
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON PURE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772019690542
     }
   ]
 }
