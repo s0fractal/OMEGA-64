@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAVE BECOME BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772034806000
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772034806198
@@ -291,6 +285,12 @@
       "text": "STABLE FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772034808783
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK STRIFE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034808952
     }
   ]
 }
