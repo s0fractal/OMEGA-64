@@ -176,12 +176,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW HEAL FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772023274559
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772023274726
@@ -263,6 +257,12 @@
       "text": "WAIT STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772023277174
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHIELD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023277509
     }
   ]
 }
