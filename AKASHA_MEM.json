@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAAA00A0",
     "666006A0",
     "0AAAAAA0",
     "06060600",
@@ -199,15 +198,10 @@
     "00660606",
     "AAAAAAAA",
     "00FFF00F",
-    "A000A000"
+    "A000A000",
+    "A6600606"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STABLE RESONATE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772032834053
-    },
     {
       "origin": "REVERSE",
       "text": "STRIKE SEIZE BREACH",
@@ -291,6 +285,12 @@
       "text": "SHELTER PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772032838185
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SICKNESS HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032838355
     }
   ]
 }
