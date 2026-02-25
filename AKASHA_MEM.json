@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772027108336
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772027108993
@@ -291,6 +285,12 @@
       "text": "SEIZE DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772027113051
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027113566
     }
   ]
 }
