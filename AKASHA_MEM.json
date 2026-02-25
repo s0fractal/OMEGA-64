@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772024454778
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772024454976
@@ -291,6 +285,12 @@
       "text": "REFLECT SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772024467441
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772024467697
     }
   ]
 }
