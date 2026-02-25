@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE PURE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040572737
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040572895
@@ -291,6 +285,12 @@
       "text": "HUNGER CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040575508
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD STASIS RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772040575826
     }
   ]
 }
