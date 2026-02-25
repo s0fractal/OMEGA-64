@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "SOMA",
-      "text": "CONSUME DECAY STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041208304
-    },
-    {
       "origin": "INTERFACE",
       "text": "FLOW BLOOM BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BREACH SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772041212018
+    },
+    {
+      "origin": "STREAM",
+      "text": "HEAL SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041212252
     }
   ]
 }
