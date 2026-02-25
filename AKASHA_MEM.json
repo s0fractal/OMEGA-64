@@ -161,12 +161,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN BREACH SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022822585
-    },
-    {
-      "origin": "REVERSE",
       "text": "WITNESS FORGE FORGE",
       "mood": "CREATIVE",
       "tick": 1772022822797
@@ -248,6 +242,12 @@
       "text": "SHIELD SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022827633
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SEIZE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022827774
     }
   ]
 }
