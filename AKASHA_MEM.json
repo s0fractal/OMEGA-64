@@ -187,12 +187,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SHOCK SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023640538
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772023640849
@@ -274,6 +268,12 @@
       "text": "RECON WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023645089
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023647387
     }
   ]
 }
