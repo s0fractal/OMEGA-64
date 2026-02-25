@@ -63,12 +63,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DECAY BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020736809
-    },
-    {
       "origin": "REVERSE",
       "text": "RECON SHELTER RECON",
       "mood": "DEFENSIVE",
@@ -151,6 +145,12 @@
       "text": "WATCH SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772020741857
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020742661
     }
   ]
 }
