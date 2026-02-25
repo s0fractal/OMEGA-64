@@ -127,12 +127,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON SHELTER RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772022270654
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772022270997
@@ -214,6 +208,12 @@
       "text": "GUARD PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022275532
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE UNIFY OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772022275715
     }
   ]
 }
