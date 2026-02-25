@@ -106,12 +106,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STASIS SHIELD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772021733190
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME HUNGER STRIFE",
       "mood": "AGGRESSIVE",
@@ -194,6 +188,12 @@
       "text": "PURE WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772021737989
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021738151
     }
   ]
 }
