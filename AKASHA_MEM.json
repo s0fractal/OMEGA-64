@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER DRAIN STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023734103
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772023734229
@@ -278,6 +272,12 @@
       "text": "PURE REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023736784
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772023737045
     }
   ]
 }
