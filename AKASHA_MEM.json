@@ -100,12 +100,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD IMMUNE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021590057
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772021590291
@@ -187,6 +181,12 @@
       "text": "SICKNESS SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772021597845
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL OSMOSIS UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772021598068
     }
   ]
 }
