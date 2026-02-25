@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772020346093
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK CONSUME DRAIN",
       "mood": "AGGRESSIVE",
@@ -141,6 +135,12 @@
       "text": "FLOW UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772020355018
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY FLOW UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772020356583
     }
   ]
 }
