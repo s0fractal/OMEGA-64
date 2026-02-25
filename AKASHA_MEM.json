@@ -150,12 +150,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "VISION WITNESS BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772022535294
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022535436
@@ -237,6 +231,12 @@
       "text": "RECON REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022539154
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DRAIN SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022540674
     }
   ]
 }
