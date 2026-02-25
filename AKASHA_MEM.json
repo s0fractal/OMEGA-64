@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH WATCH WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040957870
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL UNIFY STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WAIT IMMUNE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772040961123
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD GUARD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772040961336
     }
   ]
 }
