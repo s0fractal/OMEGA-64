@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE STASIS SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041094206
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "UNIFY RESONATE GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STABLE HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772041097195
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041097392
     }
   ]
 }
