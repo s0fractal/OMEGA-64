@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD IMMUNE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040530378
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772040530766
@@ -291,6 +285,12 @@
       "text": "CONSUME BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772040533888
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE BLOOM STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772040534121
     }
   ]
 }
