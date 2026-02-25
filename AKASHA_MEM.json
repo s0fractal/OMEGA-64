@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SPARK AWAKEN WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772040248471
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL STABLE STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772040251457
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE STASIS SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040251622
     }
   ]
 }
