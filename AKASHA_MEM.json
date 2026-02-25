@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SEIZE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028764664
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772028765311
@@ -291,6 +285,12 @@
       "text": "GUARD SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772028773083
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND EVOLVE BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772028774123
     }
   ]
 }
