@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS SHIELD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772033802677
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772033802884
@@ -291,6 +285,12 @@
       "text": "STASIS GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772033806571
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WATCH SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772033806796
     }
   ]
 }
