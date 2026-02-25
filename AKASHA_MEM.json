@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE REFLECT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772016935018
-    },
-    {
       "origin": "INTERFACE",
       "text": "RESONATE SYNC STABLE",
       "mood": "HARMONIC",
@@ -107,6 +101,12 @@
       "text": "IMMUNE SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772017015905
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY DRAIN DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772017027418
     }
   ]
 }
