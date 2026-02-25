@@ -83,12 +83,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD STASIS STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772021187084
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME DECAY SEIZE",
       "mood": "AGGRESSIVE",
@@ -171,6 +165,12 @@
       "text": "SHELTER WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772021193127
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772021193605
     }
   ]
 }
