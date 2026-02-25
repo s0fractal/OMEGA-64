@@ -40,12 +40,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STASIS WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772019819138
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RESONATE HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772019819630
@@ -127,6 +121,12 @@
       "text": "SICKNESS BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772019830820
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GIVING STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772019831575
     }
   ]
 }
