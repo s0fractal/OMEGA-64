@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032723557
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772032723750
@@ -291,6 +285,12 @@
       "text": "STRIFE HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772032726334
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME BEYOND AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772032726479
     }
   ]
 }
