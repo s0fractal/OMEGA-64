@@ -181,12 +181,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE CONSUME STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023463620
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772023463788
@@ -268,6 +262,12 @@
       "text": "COHERE OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023468761
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT GUARD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772023469344
     }
   ]
 }
