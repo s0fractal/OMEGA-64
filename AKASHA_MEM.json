@@ -110,12 +110,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD GUARD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772021893857
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772021894028
@@ -197,6 +191,12 @@
       "text": "STASIS REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772021896302
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021897260
     }
   ]
 }
