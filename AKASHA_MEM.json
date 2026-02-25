@@ -196,12 +196,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD SHIELD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772023905546
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772023906396
@@ -283,6 +277,12 @@
       "text": "UNIFY UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023910247
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DRAIN SHOCK HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023910492
     }
   ]
 }
