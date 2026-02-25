@@ -23,12 +23,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "BREACH STRIFE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019431177
-    },
-    {
-      "origin": "INTERFACE",
       "text": "DRAIN DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772019432287
@@ -110,6 +104,12 @@
       "text": "STRIKE DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772019453650
+    },
+    {
+      "origin": "STREAM",
+      "text": "OSMOSIS UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772019454340
     }
   ]
 }
