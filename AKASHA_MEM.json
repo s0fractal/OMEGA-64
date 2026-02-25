@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RECON REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772015969686
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHOCK SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772015972304
@@ -107,6 +101,12 @@
       "text": "SHOCK SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772016043667
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS STRIKE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772016055821
     }
   ]
 }
