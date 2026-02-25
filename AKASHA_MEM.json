@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772034292520
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772034292702
@@ -291,6 +285,12 @@
       "text": "STABLE UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772034295007
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE GIVING BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772034295186
     }
   ]
 }
