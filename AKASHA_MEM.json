@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS SYNC FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772029147213
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772029149643
@@ -291,6 +285,12 @@
       "text": "SHELTER WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772029162783
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY BREACH STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029163070
     }
   ]
 }
