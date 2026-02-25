@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT RECON REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041915218
-    },
-    {
       "origin": "POTENTIAL",
       "text": "HUNGER SHOCK BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041921324
+    },
+    {
+      "origin": "STREAM",
+      "text": "BLOOM UNIFY OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772041921779
     }
   ]
 }
