@@ -142,12 +142,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER GUARD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022464104
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772022464265
@@ -229,6 +223,12 @@
       "text": "GUARD WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022467396
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772022467616
     }
   ]
 }
