@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAVE SPARK EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772027057738
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772027057984
@@ -291,6 +285,12 @@
       "text": "HEAL HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772027063222
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY STABLE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772027063523
     }
   ]
 }
