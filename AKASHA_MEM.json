@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE WAIT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772037097969
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772037098202
@@ -291,6 +285,12 @@
       "text": "SHIELD GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772037101143
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DECAY SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037102119
     }
   ]
 }
