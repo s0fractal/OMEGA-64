@@ -43,12 +43,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHOCK CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019919422
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STABLE COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772019920102
@@ -130,6 +124,12 @@
       "text": "BLOOM SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772019933128
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY FLOW UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772019933680
     }
   ]
 }
