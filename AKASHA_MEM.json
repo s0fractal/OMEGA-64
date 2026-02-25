@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037349973
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772037350170
@@ -291,6 +285,12 @@
       "text": "GUARD SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772037353788
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772037355144
     }
   ]
 }
