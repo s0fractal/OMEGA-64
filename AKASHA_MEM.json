@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD WATCH IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772025900681
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772025901084
@@ -291,6 +285,12 @@
       "text": "COHERE STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772025912282
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIFE BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025912701
     }
   ]
 }
