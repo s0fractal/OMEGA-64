@@ -110,12 +110,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHOCK BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021906004
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS SHIELD RECON",
       "mood": "DEFENSIVE",
@@ -198,6 +192,12 @@
       "text": "SHELTER WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772021912995
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SHOCK DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021914083
     }
   ]
 }
