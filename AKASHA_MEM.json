@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0AA0AAA0",
     "0AAAA000",
     "66060066",
     "06066666",
@@ -199,15 +198,10 @@
     "60606666",
     "AA0066A0",
     "AA0BC00F",
-    "600666A0"
+    "600666A0",
+    "AA0AAAAA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHIELD WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772037335643
-    },
     {
       "origin": "REVERSE",
       "text": "WATCH STASIS REFLECT",
@@ -291,6 +285,12 @@
       "text": "IMMUNE IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772037338923
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE STRIKE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037339118
     }
   ]
 }
