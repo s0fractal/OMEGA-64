@@ -1,12 +1,12 @@
 {
-  "activeDecree": "IMMUNE_SHIELD",
-  "regent": "0x0000666000000004",
+  "activeDecree": "VOID_STASIS",
+  "regent": "0xF0F0F000FFFF0004",
   "legitimacy": 1000,
-  "label": "IMMUNE SHIELD",
+  "label": "VOID STASIS",
   "mods": {
-    "decay": 0.3,
-    "speed": 0.7,
-    "mutation": 0.5,
-    "label": "IMMUNE SHIELD"
+    "decay": 0.5,
+    "speed": 0.2,
+    "mutation": 0.1,
+    "label": "VOID STASIS"
   }
 }
