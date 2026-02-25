@@ -109,12 +109,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772021826738
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772021826913
@@ -196,6 +190,12 @@
       "text": "BEYOND SPARK BECOME",
       "mood": "CREATIVE",
       "tick": 1772021833050
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SHOCK BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021833179
     }
   ]
 }
