@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE STRIFE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032942061
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772032942199
@@ -291,6 +285,12 @@
       "text": "RESONATE GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772032944492
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WATCH PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772032944665
     }
   ]
 }
