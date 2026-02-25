@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS REFLECT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772038194911
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772038195115
@@ -291,6 +285,12 @@
       "text": "DECAY HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772038198405
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772038198578
     }
   ]
 }
