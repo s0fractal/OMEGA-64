@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772040503513
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK STRIFE SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SICKNESS SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772040506212
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772040506576
     }
   ]
 }
