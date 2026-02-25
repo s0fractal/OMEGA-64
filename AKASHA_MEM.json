@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD SHELTER PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772026194840
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772026195082
@@ -291,6 +285,12 @@
       "text": "STRIFE STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772026199263
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD STASIS RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772026199457
     }
   ]
 }
