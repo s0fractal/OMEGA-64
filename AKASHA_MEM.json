@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS STASIS SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772034059984
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772034060187
@@ -291,6 +285,12 @@
       "text": "WATCH WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772034065329
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034065635
     }
   ]
 }
