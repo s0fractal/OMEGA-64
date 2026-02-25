@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036662345
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772036662566
@@ -291,6 +285,12 @@
       "text": "STRIKE HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772036666776
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772036666946
     }
   ]
 }
