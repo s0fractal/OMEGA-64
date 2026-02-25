@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "EVOLVE FORGE FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772028521760
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "FORGE AWAKEN EVOLVE",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "RECON SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772028534308
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772028534945
     }
   ]
 }
