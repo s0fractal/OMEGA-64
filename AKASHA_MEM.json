@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040597481
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS WAIT WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772040601984
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING BLOOM STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772040602256
     }
   ]
 }
