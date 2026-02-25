@@ -68,12 +68,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020834493
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIKE STRIFE DECAY",
       "mood": "AGGRESSIVE",
@@ -156,6 +150,12 @@
       "text": "RECON GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772020844248
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772020844484
     }
   ]
 }
