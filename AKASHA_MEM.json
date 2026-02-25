@@ -11,12 +11,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAVE BEYOND VISION",
-      "mood": "CREATIVE",
-      "tick": 1772011022881
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHELTER GUARD REFLECT",
       "mood": "DEFENSIVE",
@@ -99,6 +93,12 @@
       "text": "HUNGER BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772012961825
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN CONSUME STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772012980490
     }
   ]
 }
