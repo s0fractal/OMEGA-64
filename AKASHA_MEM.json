@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT IMMUNE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772031151446
-    },
-    {
       "origin": "ALPHA_REVERSE",
       "text": "UNIFY HEAL BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FLOW RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772031157127
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME WAVE DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772031157476
     }
   ]
 }
