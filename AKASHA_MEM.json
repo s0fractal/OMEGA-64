@@ -102,12 +102,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIKE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021629903
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772021630078
@@ -189,6 +183,12 @@
       "text": "RESONATE BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772021634339
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD SHELTER SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772021635150
     }
   ]
 }
