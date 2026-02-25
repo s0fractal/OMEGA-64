@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SHOCK HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026912645
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772026912884
@@ -291,6 +285,12 @@
       "text": "DECAY HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772026918678
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772026918934
     }
   ]
 }
