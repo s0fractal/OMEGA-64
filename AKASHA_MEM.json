@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE STABLE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772038318971
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772038319184
@@ -291,6 +285,12 @@
       "text": "SICKNESS BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772038322641
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE PURE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772038322886
     }
   ]
 }
