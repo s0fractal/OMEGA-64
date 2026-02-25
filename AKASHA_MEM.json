@@ -179,12 +179,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023345688
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023345877
@@ -266,6 +260,12 @@
       "text": "GIVING COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772023348313
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD IMMUNE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023348641
     }
   ]
 }
