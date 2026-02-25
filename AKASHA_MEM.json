@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BEYOND EVOLVE BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772027772165
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772027772839
@@ -291,6 +285,12 @@
       "text": "IMMUNE WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772027780401
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHELTER SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772027781124
     }
   ]
 }
