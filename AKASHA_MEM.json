@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042007251
-    },
-    {
       "origin": "STREAM",
       "text": "SYNC STABLE SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BLOOM STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772042014486
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042015184
     }
   ]
 }
