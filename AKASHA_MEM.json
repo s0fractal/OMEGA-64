@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "AWAKEN AWAKEN WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772040608444
-    },
-    {
       "origin": "INTERFACE",
       "text": "RESONATE BLOOM COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "CONSUME SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772040611544
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER REFLECT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772040611674
     }
   ]
 }
