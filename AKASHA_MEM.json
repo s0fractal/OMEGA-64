@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034033562
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772034033771
@@ -291,6 +285,12 @@
       "text": "UNIFY STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772034037911
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD PURE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772034038105
     }
   ]
 }
