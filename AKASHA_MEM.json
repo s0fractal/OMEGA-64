@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772041915001
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT RECON REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772041920870
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772041921324
     }
   ]
 }
