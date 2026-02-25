@@ -80,12 +80,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SEIZE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021090280
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME WAVE AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772021090745
@@ -167,6 +161,12 @@
       "text": "SHOCK HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772021097585
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE STASIS SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021098348
     }
   ]
 }
