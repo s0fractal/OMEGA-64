@@ -125,12 +125,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HEAL OSMOSIS SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772022198518
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE STABLE GIVING",
       "mood": "HARMONIC",
@@ -213,6 +207,12 @@
       "text": "STRIFE SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022204589
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD REFLECT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022204920
     }
   ]
 }
