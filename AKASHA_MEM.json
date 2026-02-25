@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WATCH SHIELD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041940796
-    },
-    {
       "origin": "CAR",
       "text": "STABLE COHERE FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "COHERE COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772041946010
+    },
+    {
+      "origin": "STREAM",
+      "text": "SYNC COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772041946603
     }
   ]
 }
