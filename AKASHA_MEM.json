@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SYNC COHERE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772042004307
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS STABLE OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHELTER GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772042012411
+    },
+    {
+      "origin": "STREAM",
+      "text": "WATCH REFLECT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772042012593
     }
   ]
 }
