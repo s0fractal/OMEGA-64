@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0000A000",
     "0A0A000F",
     "06066606",
     "AA0A00A0",
@@ -199,15 +198,10 @@
     "AA0AA0A0",
     "000000A0",
     "00666000",
-    "66660606"
+    "66660606",
+    "06666000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SYNC RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772035093937
-    },
     {
       "origin": "REVERSE",
       "text": "STRIFE BREACH DRAIN",
@@ -291,6 +285,12 @@
       "text": "SHIELD RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772035096889
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772035097077
     }
   ]
 }
