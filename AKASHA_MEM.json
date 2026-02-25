@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772031199108
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE SHIELD STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772031207344
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE FLOW UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772031207904
     }
   ]
 }
