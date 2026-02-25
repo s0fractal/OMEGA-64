@@ -25,12 +25,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "IMMUNE SHELTER GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772019572766
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STABLE FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772019574212
@@ -112,6 +106,12 @@
       "text": "DRAIN DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772019581041
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GUARD REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772019581327
     }
   ]
 }
