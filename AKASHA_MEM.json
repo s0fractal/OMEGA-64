@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772034714849
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772034715064
@@ -291,6 +285,12 @@
       "text": "FLOW BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772034718048
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE DRAIN SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034718264
     }
   ]
 }
