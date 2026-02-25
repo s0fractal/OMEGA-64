@@ -167,12 +167,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SICKNESS SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023020128
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023020435
@@ -254,6 +248,12 @@
       "text": "STRIKE DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023026974
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BLOOM FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772023027176
     }
   ]
 }
