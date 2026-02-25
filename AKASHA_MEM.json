@@ -125,12 +125,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GUARD WAIT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022240164
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN STRIFE CONSUME",
       "mood": "AGGRESSIVE",
@@ -213,6 +207,12 @@
       "text": "PURE REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022245711
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME HUNGER SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022246202
     }
   ]
 }
