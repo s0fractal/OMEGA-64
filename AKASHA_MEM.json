@@ -118,12 +118,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD IMMUNE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022084925
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE SHOCK SEIZE",
       "mood": "AGGRESSIVE",
@@ -206,6 +200,12 @@
       "text": "SHOCK STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022090300
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772022090439
     }
   ]
 }
