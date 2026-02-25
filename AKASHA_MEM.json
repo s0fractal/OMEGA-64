@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FORGE WAVE VISION",
-      "mood": "CREATIVE",
-      "tick": 1772025628673
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772025628896
@@ -291,6 +285,12 @@
       "text": "HEAL COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772025633589
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025633737
     }
   ]
 }
