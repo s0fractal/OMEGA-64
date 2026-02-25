@@ -67,12 +67,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT REFLECT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772020804540
-    },
-    {
       "origin": "INTERFACE",
       "text": "DECAY STRIFE DECAY",
       "mood": "AGGRESSIVE",
@@ -155,6 +149,12 @@
       "text": "DECAY STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020812963
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH STRIKE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020814465
     }
   ]
 }
