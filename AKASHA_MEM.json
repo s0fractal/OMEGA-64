@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN BREACH BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020340074
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHOCK DECAY HUNGER",
       "mood": "AGGRESSIVE",
@@ -141,6 +135,12 @@
       "text": "SEIZE CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020350948
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD IMMUNE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020351621
     }
   ]
 }
