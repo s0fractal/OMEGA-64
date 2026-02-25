@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60660606",
     "60600660",
     "60006600",
     "AA0A0000",
@@ -199,15 +198,10 @@
     "F0FF000F",
     "AAAAAAA0",
     "660060A6",
-    "60066666"
+    "60066666",
+    "A0AAA0AA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHIELD REFLECT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772033384889
-    },
     {
       "origin": "REVERSE",
       "text": "SICKNESS DRAIN SHOCK",
@@ -291,6 +285,12 @@
       "text": "BLOOM FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772033387531
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DRAIN CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033387783
     }
   ]
 }
