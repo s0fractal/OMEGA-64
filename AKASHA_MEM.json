@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SICKNESS SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019548093
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS STABLE FLOW",
       "mood": "HARMONIC",
@@ -111,6 +105,12 @@
       "text": "STABLE HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772019558542
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019559079
     }
   ]
 }
