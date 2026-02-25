@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT GUARD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023976285
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023976478
@@ -284,6 +278,12 @@
       "text": "WAVE WAVE BEYOND",
       "mood": "CREATIVE",
       "tick": 1772023979052
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH REFLECT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023979214
     }
   ]
 }
