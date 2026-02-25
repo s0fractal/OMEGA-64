@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06000600",
     "A06660A0",
     "0AAAAAAA",
     "000A00A0",
@@ -199,15 +198,10 @@
     "AAA00000",
     "0A0A000A",
     "660060A0",
-    "AA666660"
+    "AA666660",
+    "AABBC000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "REFLECT SHIELD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772032697124
-    },
     {
       "origin": "REVERSE",
       "text": "RESONATE BLOOM COHERE",
@@ -291,6 +285,12 @@
       "text": "SYNC STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772032699768
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032700927
     }
   ]
 }
