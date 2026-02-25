@@ -153,12 +153,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT PURE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022626584
-    },
-    {
       "origin": "REVERSE",
       "text": "RECON SHIELD WATCH",
       "mood": "DEFENSIVE",
@@ -241,6 +235,12 @@
       "text": "SEIZE SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022631825
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772022631987
     }
   ]
 }
