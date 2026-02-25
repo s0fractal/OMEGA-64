@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772035566800
-    },
-    {
       "origin": "REVERSE",
       "text": "WAIT SHIELD RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772035572087
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SEIZE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035572396
     }
   ]
 }
