@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE FLOW OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772041297355
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON SHELTER RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041301685
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHELTER REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041302285
     }
   ]
 }
