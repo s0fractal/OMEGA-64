@@ -137,12 +137,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022399544
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022399693
@@ -224,6 +218,12 @@
       "text": "PURE REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022405657
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022407635
     }
   ]
 }
