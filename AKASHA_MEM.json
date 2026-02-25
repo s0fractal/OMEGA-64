@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "DRAIN SHOCK HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035038840
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING BLOOM SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "COHERE RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772035041922
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD PURE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772035042125
     }
   ]
 }
