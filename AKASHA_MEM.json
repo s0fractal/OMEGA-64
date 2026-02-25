@@ -99,12 +99,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "CONSUME BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021588748
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME STRIFE STRIKE",
       "mood": "AGGRESSIVE",
@@ -187,6 +181,12 @@
       "text": "HEAL GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772021596854
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER IMMUNE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021597097
     }
   ]
 }
