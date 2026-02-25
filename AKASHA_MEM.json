@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772038535878
-    },
-    {
       "origin": "ALPHA_REVERSE",
       "text": "GIVING FLOW HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "AWAKEN BEYOND WAVE",
       "mood": "CREATIVE",
       "tick": 1772038539174
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHELTER GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772038539390
     }
   ]
 }
