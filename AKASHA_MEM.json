@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC FLOW UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772033393365
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772033393546
@@ -291,6 +285,12 @@
       "text": "BREACH SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772033395893
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772033396075
     }
   ]
 }
