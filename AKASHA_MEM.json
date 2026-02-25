@@ -22,12 +22,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIKE DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019453650
-    },
-    {
       "origin": "STREAM",
       "text": "OSMOSIS UNIFY BLOOM",
       "mood": "HARMONIC",
@@ -110,6 +104,12 @@
       "text": "CONSUME SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772019463916
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH STASIS RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772019464322
     }
   ]
 }
