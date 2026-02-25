@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "UNIFY SYNC STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041440024
-    },
-    {
       "origin": "WORKER",
       "text": "STRIFE SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772041443281
+    },
+    {
+      "origin": "STREAM",
+      "text": "HUNGER STRIKE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041443443
     }
   ]
 }
