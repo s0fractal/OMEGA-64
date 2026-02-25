@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "CAR",
-      "text": "HEAL RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772042033161
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER SHOCK STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772042041957
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RECON PURE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042043912
     }
   ]
 }
