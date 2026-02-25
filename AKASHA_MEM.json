@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772035615848
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772035616042
@@ -291,6 +285,12 @@
       "text": "SPARK DREAM SPARK",
       "mood": "CREATIVE",
       "tick": 1772035618654
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772035618816
     }
   ]
 }
