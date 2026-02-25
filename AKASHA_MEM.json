@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "STRIKE CONSUME SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772015715268
-    },
-    {
-      "origin": "INTERFACE",
       "text": "OSMOSIS HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772015717927
@@ -107,6 +101,12 @@
       "text": "DRAIN BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772015835947
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DRAIN DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772015840770
     }
   ]
 }
