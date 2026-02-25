@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772026070334
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN DECAY STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772026077681
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHELTER SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772026078112
     }
   ]
 }
