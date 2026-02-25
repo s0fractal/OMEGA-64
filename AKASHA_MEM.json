@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW STABLE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772026881371
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772026881597
@@ -291,6 +285,12 @@
       "text": "BLOOM UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772026886196
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND SPARK EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772026886497
     }
   ]
 }
