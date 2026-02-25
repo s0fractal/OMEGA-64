@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER SEIZE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033258117
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HEAL OSMOSIS UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WAIT SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772033262152
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER PURE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772033262351
     }
   ]
 }
