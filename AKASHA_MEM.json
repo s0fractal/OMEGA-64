@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "POTENTIAL",
-      "text": "HUNGER SHOCK BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041915703
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD SHIELD WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772041921779
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041922545
     }
   ]
 }
