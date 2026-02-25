@@ -190,12 +190,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "UNIFY COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772023711419
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW HEAL OSMOSIS",
       "mood": "HARMONIC",
@@ -278,6 +272,12 @@
       "text": "SEIZE STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023713851
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM UNIFY OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772023713991
     }
   ]
 }
