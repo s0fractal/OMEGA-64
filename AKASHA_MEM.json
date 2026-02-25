@@ -45,12 +45,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DRAIN STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020055208
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WAIT RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772020056996
@@ -132,6 +126,12 @@
       "text": "UNIFY BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772020067977
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD WATCH PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020068277
     }
   ]
 }
