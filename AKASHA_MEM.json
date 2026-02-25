@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034234482
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772034234721
@@ -291,6 +285,12 @@
       "text": "GIVING GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772034237620
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772034237819
     }
   ]
 }
