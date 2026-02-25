@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHIELD SHELTER IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772034733912
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER SEIZE STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772034741233
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE STABLE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772034741533
     }
   ]
 }
