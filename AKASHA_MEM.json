@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772029957624
-    },
-    {
-      "origin": "REVERSE",
       "text": "EVOLVE SPARK AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772029958172
@@ -291,6 +285,12 @@
       "text": "STRIKE BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772029969018
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772029969714
     }
   ]
 }
