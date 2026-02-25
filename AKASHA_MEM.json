@@ -33,12 +33,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER RECON REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772019729373
-    },
-    {
       "origin": "INTERFACE",
       "text": "DRAIN DRAIN SEIZE",
       "mood": "AGGRESSIVE",
@@ -121,6 +115,12 @@
       "text": "STABLE SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772019745736
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER SHELTER PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772019746379
     }
   ]
 }
