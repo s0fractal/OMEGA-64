@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772040822026
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE CONSUME STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WATCH STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772040825732
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS PURE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040825875
     }
   ]
 }
