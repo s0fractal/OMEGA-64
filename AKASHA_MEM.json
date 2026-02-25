@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032898777
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772032899064
@@ -291,6 +285,12 @@
       "text": "RECON SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772032901851
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772032902039
     }
   ]
 }
