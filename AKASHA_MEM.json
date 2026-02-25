@@ -50,12 +50,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH SEIZE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020252714
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GUARD GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772020253263
@@ -137,6 +131,12 @@
       "text": "STRIFE HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772020262849
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE DECAY SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020263224
     }
   ]
 }
