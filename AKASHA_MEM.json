@@ -55,12 +55,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STABLE HEAL OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772020509112
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC STABLE GIVING",
       "mood": "HARMONIC",
@@ -143,6 +137,12 @@
       "text": "BREACH DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772020519248
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON STASIS PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020519439
     }
   ]
 }
