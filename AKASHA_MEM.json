@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER IMMUNE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772035241127
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772035241340
@@ -291,6 +285,12 @@
       "text": "DREAM DREAM WITNESS",
       "mood": "CREATIVE",
       "tick": 1772035244142
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE PURE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772035244310
     }
   ]
 }
