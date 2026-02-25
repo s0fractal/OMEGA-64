@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772038732226
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772038732463
@@ -291,6 +285,12 @@
       "text": "BREACH DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772038735674
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772038735862
     }
   ]
 }
