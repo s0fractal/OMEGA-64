@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HUNGER SHOCK DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041438354
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT PURE RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772041442088
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041442248
     }
   ]
 }
