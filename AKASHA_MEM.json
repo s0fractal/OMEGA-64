@@ -83,12 +83,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN STRIKE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021182523
-    },
-    {
       "origin": "INTERFACE",
       "text": "IMMUNE GUARD STASIS",
       "mood": "DEFENSIVE",
@@ -171,6 +165,12 @@
       "text": "GIVING UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772021189403
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772021189581
     }
   ]
 }
