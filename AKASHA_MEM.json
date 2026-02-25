@@ -176,12 +176,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SHOCK CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023258234
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023258417
@@ -263,6 +257,12 @@
       "text": "STRIKE HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772023261328
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772023261450
     }
   ]
 }
