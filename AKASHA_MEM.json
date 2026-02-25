@@ -44,12 +44,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH STRIFE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020063221
-    },
-    {
       "origin": "STREAM",
       "text": "BLOOM RESONATE OSMOSIS",
       "mood": "HARMONIC",
@@ -132,6 +126,12 @@
       "text": "SHIELD WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020072645
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HEAL STABLE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772020076168
     }
   ]
 }
