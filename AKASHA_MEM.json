@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772036833564
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772036833771
@@ -291,6 +285,12 @@
       "text": "STASIS STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772036836944
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DECAY DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036837149
     }
   ]
 }
