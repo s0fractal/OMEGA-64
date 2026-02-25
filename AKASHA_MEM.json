@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SPARK BECOME EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772040850279
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS STASIS WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772040853120
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE UNIFY OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772040853402
     }
   ]
 }
