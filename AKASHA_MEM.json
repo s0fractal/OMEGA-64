@@ -54,12 +54,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "IMMUNE WATCH STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772020424489
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DRAIN SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020424988
@@ -141,6 +135,12 @@
       "text": "WATCH SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020431106
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM GIVING FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772020431293
     }
   ]
 }
