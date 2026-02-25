@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE HUNGER DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024855603
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772024855832
@@ -291,6 +285,12 @@
       "text": "WATCH PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772024866460
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY BLOOM UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772024866787
     }
   ]
 }
