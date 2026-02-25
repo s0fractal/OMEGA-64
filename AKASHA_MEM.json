@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030160111
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND FORGE SPARK",
       "mood": "CREATIVE",
       "tick": 1772030160672
@@ -291,6 +285,12 @@
       "text": "REFLECT RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772030180835
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772030181147
     }
   ]
 }
