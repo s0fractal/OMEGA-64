@@ -170,12 +170,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023087894
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023088018
@@ -257,6 +251,12 @@
       "text": "BREACH DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023093235
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT RECON GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023093362
     }
   ]
 }
