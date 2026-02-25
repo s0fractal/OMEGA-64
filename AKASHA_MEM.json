@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772040983591
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE WATCH IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772040987045
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DECAY STRIFE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040987436
     }
   ]
 }
