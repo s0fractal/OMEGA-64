@@ -160,12 +160,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT WAIT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772022826036
-    },
-    {
       "origin": "INTERFACE",
       "text": "CONSUME SHOCK BREACH",
       "mood": "AGGRESSIVE",
@@ -248,6 +242,12 @@
       "text": "FLOW RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772022830270
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022830499
     }
   ]
 }
