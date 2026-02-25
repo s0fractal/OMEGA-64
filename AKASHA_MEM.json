@@ -65,15 +65,10 @@
     "F0FFF00F",
     "0AAA000A",
     "06666666",
-    "AA00AAA0"
+    "AA00AAA0",
+    "AA00AAAA"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD IMMUNE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772020858978
-    },
     {
       "origin": "ARCHIVIST",
       "text": "HUNGER SEIZE STRIKE",
@@ -157,6 +152,12 @@
       "text": "SICKNESS BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020868566
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SICKNESS DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020869062
     }
   ]
 }
