@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "OSMOSIS STABLE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041033978
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RECON GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041034229
@@ -291,6 +285,12 @@
       "text": "SHOCK SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772041036875
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "FLOW STABLE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041037205
     }
   ]
 }
