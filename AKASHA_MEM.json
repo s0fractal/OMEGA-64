@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029525893
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772029526928
@@ -291,6 +285,12 @@
       "text": "UNIFY SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772029538781
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE STABLE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772029539644
     }
   ]
 }
