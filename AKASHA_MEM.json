@@ -167,12 +167,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE WATCH REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023026328
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772023026565
@@ -254,6 +248,12 @@
       "text": "WATCH SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023032123
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DRAIN HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023032257
     }
   ]
 }
