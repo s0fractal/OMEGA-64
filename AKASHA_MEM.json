@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772025253126
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK STRIKE STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772025257077
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHIELD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772025258947
     }
   ]
 }
