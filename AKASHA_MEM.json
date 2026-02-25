@@ -156,12 +156,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE PURE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022714566
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022714739
@@ -243,6 +237,12 @@
       "text": "GIVING OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022722475
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD RECON GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022723625
     }
   ]
 }
