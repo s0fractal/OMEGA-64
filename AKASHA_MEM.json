@@ -163,12 +163,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW SYNC SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772022893250
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022894743
@@ -250,6 +244,12 @@
       "text": "DECAY STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022900065
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHELTER STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772022900544
     }
   ]
 }
