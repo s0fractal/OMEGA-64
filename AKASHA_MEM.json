@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772038372083
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772038372272
@@ -291,6 +285,12 @@
       "text": "HEAL FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772038375016
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD RECON IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772038375187
     }
   ]
 }
