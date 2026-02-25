@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY SHOCK CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041001879
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT STASIS SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772041004450
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY HUNGER STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041004582
     }
   ]
 }
