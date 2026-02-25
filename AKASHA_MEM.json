@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE RECON SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772034875725
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772034875938
@@ -291,6 +285,12 @@
       "text": "SYNC SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772034880663
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034880861
     }
   ]
 }
