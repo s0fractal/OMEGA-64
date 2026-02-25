@@ -41,12 +41,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HUNGER SHOCK SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019883643
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME STRIKE HUNGER",
       "mood": "AGGRESSIVE",
@@ -129,6 +123,12 @@
       "text": "AWAKEN BECOME DREAM",
       "mood": "CREATIVE",
       "tick": 1772019894187
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772019894363
     }
   ]
 }
