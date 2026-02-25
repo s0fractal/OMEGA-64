@@ -110,12 +110,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021904169
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS STABLE BLOOM",
       "mood": "HARMONIC",
@@ -198,6 +192,12 @@
       "text": "STASIS STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772021909332
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER BREACH DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021910941
     }
   ]
 }
