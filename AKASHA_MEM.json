@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM OSMOSIS HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772034608813
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772034609025
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772034614177
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WATCH SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772034614423
     }
   ]
 }
