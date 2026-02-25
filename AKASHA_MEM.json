@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY STRIKE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028825873
-    },
-    {
       "origin": "REVERSE",
       "text": "SPARK WAVE EVOLVE",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772028836954
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028837449
     }
   ]
 }
