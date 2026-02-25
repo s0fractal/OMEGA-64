@@ -175,12 +175,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GIVING FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772023278135
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME BREACH SICKNESS",
       "mood": "AGGRESSIVE",
@@ -263,6 +257,12 @@
       "text": "SYNC HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772023282967
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772023283406
     }
   ]
 }
