@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE STABLE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772034587721
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772034587923
@@ -291,6 +285,12 @@
       "text": "FLOW BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772034590981
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK CONSUME CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034591152
     }
   ]
 }
