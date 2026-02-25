@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A0000CDD",
     "00606600",
     "00000000",
     "60006666",
@@ -199,15 +198,10 @@
     "A6666666",
     "60060066",
     "A0AA0AA0",
-    "000A00A0"
+    "000A00A0",
+    "AAAA0AAA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "HEAL UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772039237338
-    },
     {
       "origin": "REVERSE",
       "text": "SHOCK DRAIN HUNGER",
@@ -291,6 +285,12 @@
       "text": "UNIFY UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772039240577
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039240789
     }
   ]
 }
