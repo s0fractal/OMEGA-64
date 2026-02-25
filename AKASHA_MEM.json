@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON SHELTER WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041223722
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM RESONATE UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HUNGER BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772041228877
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041229303
     }
   ]
 }
