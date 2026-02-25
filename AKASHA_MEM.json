@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "CONSUME SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024432923
-    },
-    {
       "origin": "REVERSE",
       "text": "RECON PURE WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772024435535
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE HUNGER STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024435708
     }
   ]
 }
