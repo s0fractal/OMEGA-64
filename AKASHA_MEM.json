@@ -203,18 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHIELD WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772042734053
-    },
-    {
-      "origin": "PARADOX",
-      "text": "REFLECT PURE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772042734364
-    },
-    {
       "origin": "REVERSE",
       "text": "IMMUNE WAIT PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +279,18 @@
       "text": "GUARD IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772042740982
+    },
+    {
+      "origin": "ALIEN",
+      "text": "IMMUNE IMMUNE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042741623
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772042741904
     }
   ]
 }
