@@ -181,12 +181,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "FLOW UNIFY COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772023512288
-    },
-    {
       "origin": "STREAM",
       "text": "FLOW OSMOSIS STABLE",
       "mood": "HARMONIC",
@@ -269,6 +263,12 @@
       "text": "OSMOSIS SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772023516085
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SHOCK HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023516285
     }
   ]
 }
