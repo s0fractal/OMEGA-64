@@ -130,12 +130,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WAIT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022309143
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022309355
@@ -217,6 +211,12 @@
       "text": "RECON SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022312674
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE BLOOM UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772022312820
     }
   ]
 }
