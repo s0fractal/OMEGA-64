@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME WAVE EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772031980616
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772031981013
@@ -291,6 +285,12 @@
       "text": "COHERE COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772031991971
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772031992478
     }
   ]
 }
