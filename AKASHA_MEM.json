@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WAIT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772023736611
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023736784
@@ -278,6 +272,12 @@
       "text": "REFLECT IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023741378
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772023741578
     }
   ]
 }
