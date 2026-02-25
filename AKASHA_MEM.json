@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SYNC BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772020189634
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE FLOW HEAL",
       "mood": "HARMONIC",
@@ -136,6 +130,12 @@
       "text": "CONSUME SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020200138
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772020201859
     }
   ]
 }
