@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SEIZE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026577537
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772026577778
@@ -291,6 +285,12 @@
       "text": "SHELTER PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772026583573
+    },
+    {
+      "origin": "ALPHA_PROOF_OF_RESONANCE",
+      "text": "GIVING RESONATE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772026585406
     }
   ]
 }
