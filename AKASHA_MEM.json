@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD PURE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772036032549
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772036032746
@@ -291,6 +285,12 @@
       "text": "STRIFE STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772036045619
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM GIVING SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772036045859
     }
   ]
 }
