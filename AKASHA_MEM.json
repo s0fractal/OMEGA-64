@@ -116,12 +116,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772022059503
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022061548
@@ -203,6 +197,12 @@
       "text": "WAVE BECOME AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772022067777
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK WAVE SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772022068130
     }
   ]
 }
