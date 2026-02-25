@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "GIVING UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772035346412
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL FLOW FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772035352593
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT PURE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772035352791
     }
   ]
 }
