@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772026056050
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER RECON IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BREACH STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772026064679
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS RECON WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772026065029
     }
   ]
 }
