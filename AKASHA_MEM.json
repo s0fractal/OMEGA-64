@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE DRAIN STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029701967
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772029702448
@@ -291,6 +285,12 @@
       "text": "SHIELD SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772029718702
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING UNIFY SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772029718992
     }
   ]
 }
