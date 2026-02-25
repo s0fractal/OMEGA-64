@@ -96,12 +96,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT STASIS IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021571317
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIKE SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
@@ -184,6 +178,12 @@
       "text": "SPARK BECOME BEYOND",
       "mood": "CREATIVE",
       "tick": 1772021578455
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW RESONATE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772021580183
     }
   ]
 }
