@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772039019746
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772039019939
@@ -291,6 +285,12 @@
       "text": "IMMUNE PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772039023022
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE REFLECT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772039023239
     }
   ]
 }
