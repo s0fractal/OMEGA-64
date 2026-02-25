@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD GUARD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040535826
-    },
-    {
       "origin": "CONSCIOUSNESS",
       "text": "IMMUNE SHELTER WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772040537964
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040538669
     }
   ]
 }
