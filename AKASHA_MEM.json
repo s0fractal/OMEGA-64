@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE UNIFY FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772041659909
-    },
-    {
       "origin": "WAVE_SIGNAL",
       "text": "GIVING RESONATE HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "PURE WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041662616
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER CONSUME STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041662761
     }
   ]
 }
