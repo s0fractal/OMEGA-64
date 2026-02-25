@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SEIZE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037434933
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772037435370
@@ -291,6 +285,12 @@
       "text": "VISION SPARK WITNESS",
       "mood": "CREATIVE",
       "tick": 1772037439224
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772037439402
     }
   ]
 }
