@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772028923836
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772028924038
@@ -291,6 +285,12 @@
       "text": "BLOOM STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772028930890
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE BLOOM BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772028931162
     }
   ]
 }
