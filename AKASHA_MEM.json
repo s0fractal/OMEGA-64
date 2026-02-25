@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BECOME WITNESS BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772040439184
-    },
-    {
       "origin": "STREAM",
       "text": "IMMUNE REFLECT GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIKE HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772040441325
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE BLOOM UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772040441508
     }
   ]
 }
