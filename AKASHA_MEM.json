@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "IMMUNE STASIS SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040899182
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHELTER SHELTER SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040899311
@@ -291,6 +285,12 @@
       "text": "SICKNESS SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772040902903
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772040903074
     }
   ]
 }
