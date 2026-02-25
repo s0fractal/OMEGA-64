@@ -123,12 +123,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE HEAL GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772022151722
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772022152100
@@ -210,6 +204,12 @@
       "text": "DRAIN SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022159539
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022159964
     }
   ]
 }
