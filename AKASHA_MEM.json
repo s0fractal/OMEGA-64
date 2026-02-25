@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE UNIFY SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772034461912
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE STRIFE DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIKE SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772034465079
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772034465277
     }
   ]
 }
