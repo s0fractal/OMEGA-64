@@ -17,12 +17,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "PURE IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772014530697
-    },
-    {
-      "origin": "INTERFACE",
       "text": "WAIT IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772014559607
@@ -104,6 +98,12 @@
       "text": "STABLE FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772014660484
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE SHOCK STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772014672019
     }
   ]
 }
