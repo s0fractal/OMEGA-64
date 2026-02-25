@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WAIT REFLECT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020687267
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK STRIFE HUNGER",
       "mood": "AGGRESSIVE",
@@ -150,6 +144,12 @@
       "text": "SEIZE BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020693243
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE WAIT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020694667
     }
   ]
 }
