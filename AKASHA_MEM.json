@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "BLOOM BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772016661589
-    },
-    {
-      "origin": "INTERFACE",
       "text": "DRAIN BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772016668687
@@ -107,6 +101,12 @@
       "text": "STRIKE SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772016744352
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SEIZE CONSUME STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772016746484
     }
   ]
 }
