@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SHOCK SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038642551
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772038642778
@@ -291,6 +285,12 @@
       "text": "UNIFY GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772038645466
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK BECOME EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772038645663
     }
   ]
 }
