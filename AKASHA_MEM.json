@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772038999867
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772039000098
@@ -291,6 +285,12 @@
       "text": "RECON WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772039003151
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY GIVING SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772039003440
     }
   ]
 }
