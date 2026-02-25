@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A00AAA0A",
     "00A0AAAA",
     "000A06A0",
     "00600660",
@@ -199,15 +198,10 @@
     "0AAA0A00",
     "60666660",
     "06600600",
-    "0D08A090"
+    "0D08A090",
+    "AABBCCDD"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "CONSUME CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029378224
-    },
     {
       "origin": "REVERSE",
       "text": "CONSUME DRAIN SICKNESS",
@@ -291,6 +285,12 @@
       "text": "STRIKE DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772029391778
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029392055
     }
   ]
 }
