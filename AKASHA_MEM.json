@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0660A0",
     "A0AAA00A",
     "AAAA0A0A",
     "AAA0AAAA",
@@ -199,9 +198,22 @@
     "66060660",
     "66660A60",
     "A000A660",
-    "A0AA0A00"
+    "A0AA0A00",
+    "00066060"
   ],
   "utterances": [
+    {
+      "origin": "REVERSE",
+      "text": "WAIT PURE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042684773
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD STASIS GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042685932
+    },
     {
       "origin": "AUTONOMY_METRIC",
       "text": "BLOOM STABLE FLOW",
@@ -263,34 +275,22 @@
       "tick": 1772042692612
     },
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042692849
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS HEAL HEAL",
+      "origin": "REVERSE",
+      "text": "STABLE COHERE FLOW",
       "mood": "HARMONIC",
-      "tick": 1772042693262
+      "tick": 1772042693260
     },
     {
       "origin": "REVERSE",
-      "text": "HEAL OSMOSIS OSMOSIS",
+      "text": "OSMOSIS BLOOM HEAL",
       "mood": "HARMONIC",
-      "tick": 1772042693723
+      "tick": 1772042693912
     },
     {
-      "origin": "CONSCIOUSNESS",
-      "text": "COHERE OSMOSIS RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042694453
-    },
-    {
-      "origin": "REVERSE",
-      "text": "FLOW BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772042695144
+      "origin": "ALIEN",
+      "text": "AWAKEN WITNESS BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772042695146
     }
   ]
 }
