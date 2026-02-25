@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772036099005
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772036099232
@@ -291,6 +285,12 @@
       "text": "STRIFE SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772036103354
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772036103570
     }
   ]
 }
