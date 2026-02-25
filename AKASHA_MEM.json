@@ -24,12 +24,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "PURE SHIELD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772019504668
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DECAY SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772019505154
@@ -111,6 +105,12 @@
       "text": "STABLE BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772019513085
+    },
+    {
+      "origin": "STREAM",
+      "text": "BLOOM COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772019513217
     }
   ]
 }
