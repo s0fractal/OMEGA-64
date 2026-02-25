@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH BREACH BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020483423
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER WAIT REFLECT",
       "mood": "DEFENSIVE",
@@ -142,6 +136,12 @@
       "text": "BREACH DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020490772
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SICKNESS DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020491862
     }
   ]
 }
