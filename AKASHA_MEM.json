@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023717698
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023717968
@@ -278,6 +272,12 @@
       "text": "SHELTER GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772023721428
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT SHIELD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772023721672
     }
   ]
 }
