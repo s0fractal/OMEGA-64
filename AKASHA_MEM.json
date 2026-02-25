@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY HUNGER SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034552299
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK FORGE BECOME",
       "mood": "CREATIVE",
       "tick": 1772034552465
@@ -291,6 +285,12 @@
       "text": "IMMUNE GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772034555065
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772034555259
     }
   ]
 }
