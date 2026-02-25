@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772036949611
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772036949790
@@ -291,6 +285,12 @@
       "text": "SHOCK BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772036952780
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH RECON SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772036952951
     }
   ]
 }
