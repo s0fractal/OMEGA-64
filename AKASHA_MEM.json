@@ -155,12 +155,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "WAVE DREAM WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772022740821
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
@@ -243,6 +237,12 @@
       "text": "SYNC FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022747480
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022747881
     }
   ]
 }
