@@ -44,12 +44,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH STRIKE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020048610
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RECON GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772020050794
@@ -131,6 +125,12 @@
       "text": "BLOOM RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772020063826
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING FLOW HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772020064069
     }
   ]
 }
