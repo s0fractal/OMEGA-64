@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0AA00A",
     "AAAA00A0",
     "A0666666",
     "AA00AAA0",
@@ -199,15 +198,10 @@
     "000A00A0",
     "AAAA0AA0",
     "06666606",
-    "06066060"
+    "06066060",
+    "AA0A0A0A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "HUNGER STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037892316
-    },
     {
       "origin": "REVERSE",
       "text": "DRAIN DECAY HUNGER",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772037895132
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SHOCK BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037895335
     }
   ]
 }
