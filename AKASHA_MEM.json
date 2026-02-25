@@ -182,12 +182,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SHOCK SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023520299
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772023520423
@@ -269,6 +263,12 @@
       "text": "RESONATE RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772023522621
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WAIT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023522783
     }
   ]
 }
