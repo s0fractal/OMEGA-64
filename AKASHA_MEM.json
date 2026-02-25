@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772030090724
-    },
-    {
-      "origin": "REVERSE",
       "text": "AWAKEN EVOLVE WITNESS",
       "mood": "CREATIVE",
       "tick": 1772030092269
@@ -291,6 +285,12 @@
       "text": "COHERE RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772030102689
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER RECON WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772030103417
     }
   ]
 }
