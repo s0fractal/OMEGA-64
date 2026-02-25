@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772036925325
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772036925533
@@ -291,6 +285,12 @@
       "text": "OSMOSIS COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772036928546
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC HEAL HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772036928726
     }
   ]
 }
