@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "UNIFY BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041903391
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DECAY CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041903677
@@ -291,6 +285,12 @@
       "text": "FLOW COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772041907987
+    },
+    {
+      "origin": "WORKER",
+      "text": "SYNC COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772041908705
     }
   ]
 }
