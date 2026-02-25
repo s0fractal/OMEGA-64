@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM UNIFY OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772023713991
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023714166
@@ -278,6 +272,12 @@
       "text": "BREACH SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023716454
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION WITNESS WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772023716600
     }
   ]
 }
