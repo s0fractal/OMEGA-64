@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772025018179
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772025018573
@@ -291,6 +285,12 @@
       "text": "PURE STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772025024996
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772025025201
     }
   ]
 }
