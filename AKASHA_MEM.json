@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK CONSUME SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037081605
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772037081828
@@ -291,6 +285,12 @@
       "text": "DRAIN SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772037084582
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE OSMOSIS RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772037084804
     }
   ]
 }
