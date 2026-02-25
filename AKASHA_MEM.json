@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RECON STASIS SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041156770
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SEIZE DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772041157108
@@ -291,6 +285,12 @@
       "text": "OSMOSIS HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772041160660
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SEIZE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041160842
     }
   ]
 }
