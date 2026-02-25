@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020386356
-    },
-    {
       "origin": "STREAM",
       "text": "RESONATE BLOOM HEAL",
       "mood": "HARMONIC",
@@ -141,6 +135,12 @@
       "text": "REFLECT RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772020395669
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT SHELTER REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020396597
     }
   ]
 }
