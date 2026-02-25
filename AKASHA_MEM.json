@@ -33,12 +33,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GIVING STABLE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772019697849
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "PURE SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772019698455
@@ -120,6 +114,12 @@
       "text": "BREACH STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772019712633
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD SHIELD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772019713177
     }
   ]
 }
