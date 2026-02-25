@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "000AAAA0",
     "66660606",
     "66666606",
     "F0FFF0FF",
@@ -199,15 +198,10 @@
     "00A0A0AA",
     "AAAA0A0A",
     "60000060",
-    "66666060"
+    "66666060",
+    "AAAAAA0A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "HUNGER SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025941276
-    },
     {
       "origin": "REVERSE",
       "text": "FLOW UNIFY RESONATE",
@@ -291,6 +285,12 @@
       "text": "RECON GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772025952176
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SHOCK BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025953215
     }
   ]
 }
