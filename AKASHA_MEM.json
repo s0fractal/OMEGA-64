@@ -88,12 +88,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING OSMOSIS RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772021261992
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY DRAIN SHOCK",
       "mood": "AGGRESSIVE",
@@ -176,6 +170,12 @@
       "text": "HEAL RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772021269063
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE SICKNESS BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021269389
     }
   ]
 }
