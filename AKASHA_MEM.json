@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024395761
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772024395932
@@ -291,6 +285,12 @@
       "text": "VISION BECOME SPARK",
       "mood": "CREATIVE",
       "tick": 1772024399311
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WATCH IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772024399530
     }
   ]
 }
