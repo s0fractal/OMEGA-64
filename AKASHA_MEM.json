@@ -76,12 +76,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021006416
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GIVING GIVING FLOW",
       "mood": "HARMONIC",
@@ -164,6 +158,12 @@
       "text": "SEIZE DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021013668
+    },
+    {
+      "origin": "STREAM",
+      "text": "SYNC HEAL HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772021013968
     }
   ]
 }
