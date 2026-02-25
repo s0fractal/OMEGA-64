@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SICKNESS SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772017043509
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER DECAY HUNGER",
       "mood": "AGGRESSIVE",
@@ -107,6 +101,12 @@
       "text": "OSMOSIS UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772017146700
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH SICKNESS SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772017153778
     }
   ]
 }
