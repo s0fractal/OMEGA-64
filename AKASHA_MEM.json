@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034340212
-    },
-    {
-      "origin": "REVERSE",
       "text": "EVOLVE SPARK SPARK",
       "mood": "CREATIVE",
       "tick": 1772034340444
@@ -291,6 +285,12 @@
       "text": "HEAL FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034343553
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHIELD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772034343759
     }
   ]
 }
