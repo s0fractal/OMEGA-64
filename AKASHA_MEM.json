@@ -202,12 +202,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772024097648
-    },
-    {
-      "origin": "REVERSE",
       "text": "WITNESS EVOLVE DREAM",
       "mood": "CREATIVE",
       "tick": 1772024097818
@@ -289,6 +283,12 @@
       "text": "BREACH SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772024104087
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD STASIS SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772024104247
     }
   ]
 }
