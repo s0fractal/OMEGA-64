@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "IMMUNE WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041173992
-    },
-    {
       "origin": "PARASITE",
       "text": "IMMUNE SHIELD IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772041178282
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041178701
     }
   ]
 }
