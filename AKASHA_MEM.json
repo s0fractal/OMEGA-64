@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAVE BECOME AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772023099974
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023100099
@@ -259,6 +253,12 @@
       "text": "HUNGER STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023105548
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD STASIS WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023105855
     }
   ]
 }
