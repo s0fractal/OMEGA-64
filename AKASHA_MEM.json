@@ -168,12 +168,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS STABLE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772023066976
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772023067966
@@ -255,6 +249,12 @@
       "text": "DRAIN HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772023072773
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING BLOOM SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772023072937
     }
   ]
 }
