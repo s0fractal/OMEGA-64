@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772026594485
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772026594680
@@ -291,6 +285,12 @@
       "text": "SHOCK SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772026603842
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772026604042
     }
   ]
 }
