@@ -144,12 +144,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BEYOND SPARK BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772022486393
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022486520
@@ -231,6 +225,12 @@
       "text": "SHIELD GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022490284
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD PURE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772022490745
     }
   ]
 }
