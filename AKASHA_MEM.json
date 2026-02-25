@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032821680
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772032823343
@@ -291,6 +285,12 @@
       "text": "HEAL STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772032825573
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS SHIELD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772032825744
     }
   ]
 }
