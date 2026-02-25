@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY RESONATE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772036189610
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772036189826
@@ -291,6 +285,12 @@
       "text": "STASIS WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772036192722
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036193154
     }
   ]
 }
