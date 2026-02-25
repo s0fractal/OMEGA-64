@@ -1,11 +1,11 @@
 ---
-eigenvalue: '0xB0B00000FFFF0002'
-energy: 50
-x: 696
-'y': 377
-resonance: 30
-thought: RESURRECTED
-logic: B0B00000
+eigenvalue: '0xAFAA0A0AFFFF0002'
+energy: 58.4
+x: 703
+'y': 391
+resonance: 1000
+thought: WANDER_MATING
+logic: AFAA0A0A
 ex:
   - '0xFFFFFFFF00000000'
   - '0xFFFFFFFF00000002'
@@ -62,73 +62,87 @@ ex:
   - '0xBBBB0000FFFF0004'
   - '0xBBBB0000FFFF0006'
   - '0xBBBB0000FFFF0000'
-  - '0xAA00000000000006'
-  - '0xAA000000FFFF0004'
-  - '0xAA000000FFFF0006'
-  - '0xAA000000FFFF0000'
-  - '0xAA000000FFFF0002'
-  - '0xAA000000FFFF0004'
-  - '0x0BBB000000000002'
-  - '0x0BBB000000000004'
-  - '0xAA000A0000000006'
-  - '0x0066600000000000'
-  - '0x0066600000000002'
-  - '0x0066600000000004'
-  - '0x00666000FFFF0002'
-  - '0x00666000FFFF0004'
-  - '0x00666000FFFF0006'
-  - '0x0066600000000004'
-  - '0x00666000FFFF0002'
-  - '0x0AAAAAAAFFFF0004'
-  - '0x0AAAAAAA00000002'
-  - '0x0AAAAAAA00000004'
-  - '0x0AAAAAAA00000006'
-  - '0x0AAAAAAA00000000'
-  - '0xB0B0000CFFFF0006'
-  - '0xB0B00000FFFF0000'
-  - '0xB0B00000FFFF0002'
-  - '0xB0B00000FFFF0004'
-  - '0xB0B00000FFFF0006'
-  - '0xB0B00000FFFF0000'
-  - '0xB0B00000FFFF0002'
-  - '0xB0B00000FFFF0004'
-  - '0xB0B00000FFFF0006'
-  - '0xB0B00000FFFF0000'
+  - '0xBBBB0000FFFF0002'
+  - '0xBBBB0000FFFF0004'
+  - '0x6666660000000002'
+  - '0x6666660000000004'
+  - '0xAAAA0A0A00000006'
+  - '0xAAAA0A0A00000000'
+  - '0xAAAA0A0A00000002'
+  - '0xAAAA0A0A00000004'
+  - '0xAAAA0A0A00000006'
+  - '0xAAAA0A0A00000000'
+  - '0xAAAA0A0A00000002'
+  - '0xAAAA0A0A00000004'
+  - '0xAAAA0A0A00000006'
+  - '0xAAAA0A0A00000000'
+  - '0xAAAA0A0A00000002'
+  - '0xAAAA0A0AFFFF0000'
+  - '0xAAAA0A0AFFFF0002'
+  - '0xAAAA0A0A00000000'
+  - '0xAAAA0A0A00000002'
+  - '0xAFAA0A0A00000004'
+  - '0xAFAA0A0A00000006'
+  - '0xAFAA0A0A00000000'
+  - '0xAFAA0A0A00000002'
+  - '0xAFAA0A0A00000004'
+  - '0xAFAA0A0A00000006'
+  - '0xAFAA0A0A00000000'
+  - '0xAFAA0A0A00000002'
+  - '0xAFAA0A0A00000004'
+  - '0xAFAA0A0A00000006'
+  - '0xAFAA0A0A00000000'
+  - '0xAFAA0A0A00000002'
+  - '0xAFAA0A0A00000004'
+  - '0xAFAA0A0A00000006'
+  - '0xAFAA0A0A00000000'
+  - '0xAFAA0A0A00000002'
+  - '0xAFAA0A0A00000004'
+  - '0xAFAA0A0A00000006'
+  - '0xAFAA0A0A00000000'
+  - '0xAFAA0A0A00000002'
+  - '0xAFAA0A0A00000004'
+  - '0xAFAA0A0AFFFF0002'
+  - '0xAFAA0A0AFFFF0004'
+  - '0xAFAA0A0AFFFF0006'
+  - '0xAFAA0A0AFFFF0000'
 signals: []
-bond_strengths: {}
-bonds: []
+bond_strengths:
+  '0xFF0FFFFF0000000E': 0.988065780494209
+bonds:
+  - '0xFF0FFFFF0000000E'
 ---
 
 <div align="center">
 <!-- ∇ HOLOGRAM START ∇ -->
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <radialGradient id="grad_B0B00000FFFF0002" cx="50%" cy="50%" r="50%">
+    <radialGradient id="grad_AFAA0A0AFFFF0002" cx="50%" cy="50%" r="50%">
       <stop offset="0%" stop-color="hsl(0, 20%, 15%)" />
       <stop offset="100%" stop-color="#090909" />
     </radialGradient>
-    <filter id="glow_B0B00000FFFF0002" x="-20%" y="-20%" width="140%" height="140%">
+    <filter id="glow_AFAA0A0AFFFF0002" x="-20%" y="-20%" width="140%" height="140%">
       <feGaussianBlur stdDeviation="4" result="blur" />
       <feComposite in="SourceGraphic" in2="blur" operator="over" />
     </filter>
   </defs>
   
-  <rect width="200" height="200" fill="url(#grad_B0B00000FFFF0002)" rx="24"/>
+  <rect width="200" height="200" fill="url(#grad_AFAA0A0AFFFF0002)" rx="24"/>
   
   <circle cx="100" cy="100" r="85" stroke="hsl(0, 30%, 30%)" stroke-width="1" fill="none" stroke-dasharray="2 6"/>
   
   <g>
     <animateTransform attributeName="transform" type="rotate" from="90 100 100" to="-270 100 100" dur="25s" repeatCount="indefinite" />
     
-    <polygon points="100.0,40.0 146.9,62.6 158.5,113.4 126.0,154.1 74.0,154.1 41.5,113.4 53.1,62.6" fill="none" stroke="hsl(180, 60%, 40%)" stroke-width="1.5" opacity="0.6"/>
-    <polygon points="100.0,75.0 119.5,84.4 124.4,105.6 110.8,122.5 89.2,122.5 75.6,105.6 80.5,84.4" fill="none" stroke="hsl(0, 80%, 60%)" stroke-width="2" filter="url(#glow_B0B00000FFFF0002)"/>
+    <polygon points="100.0,40.0 157.1,81.5 135.3,148.5 64.7,148.5 42.9,81.5" fill="none" stroke="hsl(180, 60%, 40%)" stroke-width="1.5" opacity="0.6"/>
+    <polygon points="100.0,75.0 123.8,92.3 114.7,120.2 85.3,120.2 76.2,92.3" fill="none" stroke="hsl(0, 80%, 60%)" stroke-width="2" filter="url(#glow_AFAA0A0AFFFF0002)"/>
     
     <circle cx="100" cy="100" r="25" stroke="hsl(0, 60%, 50%)" stroke-width="0.5" fill="none" opacity="0.5"/>
   </g>
   
-  <circle cx="100" cy="100" r="3" fill="hsl(180, 80%, 70%)" filter="url(#glow_B0B00000FFFF0002)"/>
+  <circle cx="100" cy="100" r="3" fill="hsl(180, 80%, 70%)" filter="url(#glow_AFAA0A0AFFFF0002)"/>
   
-  <text x="100" y="105" fill="hsl(0, 70%, 80%)" font-family="monospace" font-size="10" text-anchor="middle" letter-spacing="1" opacity="0.9">0xB0B0</text>
+  <text x="100" y="105" fill="hsl(0, 70%, 80%)" font-family="monospace" font-size="10" text-anchor="middle" letter-spacing="1" opacity="0.9">0xAFAA</text>
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">REVERSE</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
