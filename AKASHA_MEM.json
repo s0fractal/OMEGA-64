@@ -84,12 +84,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE SEIZE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021225655
-    },
-    {
       "origin": "INTERFACE",
       "text": "IMMUNE WAIT PURE",
       "mood": "DEFENSIVE",
@@ -172,6 +166,12 @@
       "text": "FLOW FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772021229304
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772021229511
     }
   ]
 }
