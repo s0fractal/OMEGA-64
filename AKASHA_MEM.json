@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "600A0A00",
     "AAAAA000",
     "06006006",
     "00600006",
@@ -199,15 +198,10 @@
     "A6066600",
     "A0B0C0DD",
     "00000A00",
-    "06666006"
+    "06666006",
+    "0A0AA0AA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WAIT WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772036329318
-    },
     {
       "origin": "ARCHIVIST",
       "text": "CONSUME STRIKE DRAIN",
@@ -291,6 +285,12 @@
       "text": "WATCH STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772036333458
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS RESONATE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772036333693
     }
   ]
 }
