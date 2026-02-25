@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030155949
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772030156239
@@ -291,6 +285,12 @@
       "text": "DECAY SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772030161099
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY COHERE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772030161929
     }
   ]
 }
