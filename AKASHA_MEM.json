@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER RECON STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772038961945
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME HUNGER SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772038969917
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772038970417
     }
   ]
 }
