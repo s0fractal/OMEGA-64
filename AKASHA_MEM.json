@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME BREACH BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040830049
-    },
-    {
       "origin": "INTERFACE",
       "text": "GIVING OSMOSIS STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SICKNESS CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772040834491
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE OSMOSIS HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772040834620
     }
   ]
 }
