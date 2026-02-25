@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772016301946
-    },
-    {
       "origin": "INTERFACE",
       "text": "RECON SHIELD SHIELD",
       "mood": "DEFENSIVE",
@@ -107,6 +101,12 @@
       "text": "CONSUME STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772016386900
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "CONSUME STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772016396823
     }
   ]
 }
