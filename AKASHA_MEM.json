@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034622807
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT REFLECT STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772034626258
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER REFLECT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772034626460
     }
   ]
 }
