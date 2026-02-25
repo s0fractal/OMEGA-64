@@ -84,12 +84,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD STASIS WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772021201919
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER SHIELD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772021202129
@@ -171,6 +165,12 @@
       "text": "SYNC FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772021206178
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DECAY SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021206348
     }
   ]
 }
