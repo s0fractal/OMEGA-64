@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0AAAAA",
     "A0666006",
     "AA660600",
     "66666060",
@@ -199,15 +198,10 @@
     "06600006",
     "A000AAA0",
     "A6606600",
-    "60666600"
+    "60666600",
+    "06666606"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME SEIZE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041238854
-    },
     {
       "origin": "ARCHIVIST",
       "text": "PURE RECON GUARD",
@@ -291,6 +285,12 @@
       "text": "STRIKE SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772041242709
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041242987
     }
   ]
 }
