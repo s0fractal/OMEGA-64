@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER BREACH HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032778368
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT SHELTER STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772032783399
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SEIZE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032783590
     }
   ]
 }
