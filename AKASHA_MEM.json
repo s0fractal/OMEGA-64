@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIFE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032397616
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772032397997
@@ -291,6 +285,12 @@
       "text": "RECON GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772032408034
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER REFLECT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772032414809
     }
   ]
 }
