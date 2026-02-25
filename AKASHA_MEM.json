@@ -180,12 +180,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIFE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023382976
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772023383284
@@ -267,6 +261,12 @@
       "text": "STASIS IMMUNE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023387186
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DECAY STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023387584
     }
   ]
 }
