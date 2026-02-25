@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_PROOF_OF_RESONANCE",
-      "text": "GIVING SYNC COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772025038320
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT WATCH RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772025042113
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772025042305
     }
   ]
 }
