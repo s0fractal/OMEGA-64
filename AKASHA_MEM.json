@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME SEIZE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040550610
-    },
-    {
       "origin": "INTERFACE",
       "text": "OSMOSIS COHERE OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DECAY CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772040552983
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS STABLE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772040553111
     }
   ]
 }
