@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041310762
-    },
-    {
       "origin": "INTERFACE",
       "text": "IMMUNE STASIS GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIKE HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041316962
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE REFLECT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041317137
     }
   ]
 }
