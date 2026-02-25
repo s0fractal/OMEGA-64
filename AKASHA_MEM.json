@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HEAL COHERE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772042750228
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SICKNESS SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772042750502
@@ -291,6 +285,12 @@
       "text": "WAIT RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772042763282
+    },
+    {
+      "origin": "ALIEN",
+      "text": "DECAY BREACH DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042765769
     }
   ]
 }
