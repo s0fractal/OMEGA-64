@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772016690055
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHOCK SICKNESS DECAY",
       "mood": "AGGRESSIVE",
@@ -107,6 +101,12 @@
       "text": "DRAIN CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772016776933
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772016779462
     }
   ]
 }
