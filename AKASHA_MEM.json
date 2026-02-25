@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DECAY STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033586116
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772033586276
@@ -291,6 +285,12 @@
       "text": "WATCH STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772033589418
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM OSMOSIS OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772033589700
     }
   ]
 }
