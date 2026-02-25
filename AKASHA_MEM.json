@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE DECAY SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039278744
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772039279629
@@ -291,6 +285,12 @@
       "text": "HEAL COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772039687359
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772039687750
     }
   ]
 }
