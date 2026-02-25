@@ -20,12 +20,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHOCK STRIFE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772017269492
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE IMMUNE PURE",
       "mood": "DEFENSIVE",
@@ -108,6 +102,12 @@
       "text": "STRIKE STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772017352932
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772017357338
     }
   ]
 }
