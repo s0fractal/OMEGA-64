@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT IMMUNE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040684891
-    },
-    {
       "origin": "STREAM",
       "text": "DECAY SHOCK SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772040688979
+    },
+    {
+      "origin": "STREAM",
+      "text": "OSMOSIS HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772040689179
     }
   ]
 }
