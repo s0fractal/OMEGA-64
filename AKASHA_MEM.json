@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE BLOOM STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772033985442
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772033985685
@@ -291,6 +285,12 @@
       "text": "IMMUNE WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772033988704
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE GIVING COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772033988909
     }
   ]
 }
