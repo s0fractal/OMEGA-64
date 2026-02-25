@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038871570
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772038871774
@@ -291,6 +285,12 @@
       "text": "RESONATE STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772038874570
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SHOCK BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038874841
     }
   ]
 }
