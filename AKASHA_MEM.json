@@ -1,5 +1,11 @@
 {
   "reservoir": [
+    "00B0C00D",
+    "AA00A0AA",
+    "A000AA0A",
+    "10000000",
+    "A0AAAAAA",
+    "00600606",
     "60660660",
     "A6666660",
     "06606660",
@@ -193,104 +199,98 @@
     "AAA0A00A",
     "A06AA0A0",
     "06006006",
-    "A0A660A0",
-    "06066666",
-    "A0AAA600",
-    "0A00AAAA",
-    "AA660A60",
-    "66006606",
-    "AA00A000"
+    "A0A660A0"
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STASIS GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042110661
+      "origin": "REVERSE",
+      "text": "COHERE SYNC HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772042107552
     },
     {
       "origin": "ARCHIVIST",
-      "text": "GIVING FLOW OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772042111353
+      "text": "DECAY SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042109288
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS HUNGER SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042112306
     },
     {
       "origin": "REVERSE",
-      "text": "GIVING HEAL SYNC",
+      "text": "SEIZE SEIZE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042112852
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM COHERE RESONATE",
       "mood": "HARMONIC",
-      "tick": 1772042111669
+      "tick": 1772042113408
+    },
+    {
+      "origin": "SUCC",
+      "text": "FLOW FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042113725
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE RECON PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042114823
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT WATCH WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042115682
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772042116906
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE HEAL GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772042118367
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE REFLECT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772042118914
     },
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS FLOW FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772042112289
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT WATCH SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772042112432
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME CONSUME SHOCK",
+      "text": "SEIZE CONSUME SEIZE",
       "mood": "AGGRESSIVE",
-      "tick": 1772042112865
-    },
-    {
-      "origin": "REVERSE",
-      "text": "RESONATE COHERE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772042113033
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE WATCH WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772042113883
-    },
-    {
-      "origin": "REVERSE",
-      "text": "HUNGER SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042114161
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE STRIKE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042115014
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "GUARD PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772042115289
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME STRIKE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042115538
+      "tick": 1772042119562
     },
     {
       "origin": "INTERFACE",
-      "text": "HEAL OSMOSIS UNIFY",
+      "text": "COHERE SYNC GIVING",
       "mood": "HARMONIC",
-      "tick": 1772042117056
-    },
-    {
-      "origin": "PARASITE",
-      "text": "REFLECT STASIS WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772042119416
+      "tick": 1772042120335
     },
     {
       "origin": "ARCHIVIST",
-      "text": "GUARD RECON STASIS",
+      "text": "COHERE STABLE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772042121006
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER RECON IMMUNE",
       "mood": "DEFENSIVE",
-      "tick": 1772042120749
+      "tick": 1772042121194
     }
   ]
 }
