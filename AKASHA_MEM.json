@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772024374746
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772024375103
@@ -291,6 +285,12 @@
       "text": "COHERE BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772024382491
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHELTER SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772024382622
     }
   ]
 }
