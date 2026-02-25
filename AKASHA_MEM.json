@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024177709
-    },
-    {
       "origin": "STREAM",
       "text": "PURE IMMUNE WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "WITNESS EVOLVE SPARK",
       "mood": "CREATIVE",
       "tick": 1772024182415
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS GUARD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772024182718
     }
   ]
 }
