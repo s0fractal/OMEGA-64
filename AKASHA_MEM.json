@@ -154,12 +154,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH BREACH HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022613942
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022614080
@@ -241,6 +235,12 @@
       "text": "RECON STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772022619254
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022619505
     }
   ]
 }
