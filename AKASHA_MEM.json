@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020711845
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE PURE SHELTER",
       "mood": "DEFENSIVE",
@@ -150,6 +144,12 @@
       "text": "GUARD WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772020719905
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER WATCH PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020720322
     }
   ]
 }
