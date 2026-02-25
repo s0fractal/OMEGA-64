@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772038438368
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772038438583
@@ -291,6 +285,12 @@
       "text": "IMMUNE STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772038441430
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038441613
     }
   ]
 }
