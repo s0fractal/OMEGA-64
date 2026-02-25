@@ -76,12 +76,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD GUARD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772021014881
-    },
-    {
       "origin": "INTERFACE",
       "text": "COHERE SYNC COHERE",
       "mood": "HARMONIC",
@@ -164,6 +158,12 @@
       "text": "STRIFE SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772021021011
+    },
+    {
+      "origin": "STREAM",
+      "text": "SYNC STABLE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772021021745
     }
   ]
 }
