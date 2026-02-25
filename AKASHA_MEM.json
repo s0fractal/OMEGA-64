@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STASIS SHELTER RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772040476566
-    },
-    {
       "origin": "STREAM",
       "text": "WAIT WATCH PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040479098
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772040479298
     }
   ]
 }
