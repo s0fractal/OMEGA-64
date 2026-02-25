@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "BECOME BEYOND FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772019546842
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE BREACH CONSUME",
       "mood": "AGGRESSIVE",
@@ -111,6 +105,12 @@
       "text": "UNIFY FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772019555880
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH SHOCK HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019556963
     }
   ]
 }
