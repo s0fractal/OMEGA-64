@@ -40,12 +40,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019843369
-    },
-    {
       "origin": "STREAM",
       "text": "BLOOM HEAL COHERE",
       "mood": "HARMONIC",
@@ -128,6 +122,12 @@
       "text": "SHIELD PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772019853556
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SEIZE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019854016
     }
   ]
 }
