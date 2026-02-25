@@ -177,12 +177,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME FORGE DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772023294492
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023294689
@@ -264,6 +258,12 @@
       "text": "WAIT PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023306878
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SICKNESS BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023307751
     }
   ]
 }
