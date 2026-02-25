@@ -80,12 +80,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON PURE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772021120033
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD GUARD SHELTER",
       "mood": "DEFENSIVE",
@@ -168,6 +162,12 @@
       "text": "OSMOSIS UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772021125696
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE SYNC FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772021125888
     }
   ]
 }
