@@ -109,12 +109,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE STASIS GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021865691
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE COHERE COHERE",
       "mood": "HARMONIC",
@@ -197,6 +191,12 @@
       "text": "COHERE SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772021871930
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772021872103
     }
   ]
 }
