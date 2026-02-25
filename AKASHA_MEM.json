@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE SHELTER SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772042610727
-    },
-    {
       "origin": "ALIEN",
       "text": "SEIZE SICKNESS DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772042630601
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY STRIFE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042630885
     }
   ]
 }
