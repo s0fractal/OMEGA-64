@@ -81,12 +81,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE OSMOSIS SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772021130408
-    },
-    {
-      "origin": "REVERSE",
       "text": "FORGE VISION FORGE",
       "mood": "CREATIVE",
       "tick": 1772021130852
@@ -168,6 +162,12 @@
       "text": "SHOCK STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772021136704
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE BREACH SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021136850
     }
   ]
 }
