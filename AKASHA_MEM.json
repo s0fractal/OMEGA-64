@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772035085877
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772035086082
@@ -291,6 +285,12 @@
       "text": "SHOCK BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772035090804
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE BREACH BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035091000
     }
   ]
 }
