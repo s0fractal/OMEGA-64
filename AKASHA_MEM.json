@@ -130,12 +130,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM STABLE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772022306380
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022306531
@@ -217,6 +211,12 @@
       "text": "GIVING FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772022310239
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022310430
     }
   ]
 }
