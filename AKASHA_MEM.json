@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STASIS WATCH IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040919110
-    },
-    {
       "origin": "CONSCIOUSNESS",
       "text": "GIVING HEAL FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772040922036
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY HEAL OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772040922220
     }
   ]
 }
