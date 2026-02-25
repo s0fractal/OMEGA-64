@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027294755
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772027295149
@@ -291,6 +285,12 @@
       "text": "SHELTER RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772027298564
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772027298778
     }
   ]
 }
