@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772027021713
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772027022240
@@ -291,6 +285,12 @@
       "text": "DREAM BECOME AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772027032497
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772027032716
     }
   ]
 }
