@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_REVERSE",
-      "text": "GIVING SYNC SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772036199196
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER SHIELD SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BREACH STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772036202708
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772036202881
     }
   ]
 }
