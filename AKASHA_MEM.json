@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020407688
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE SHOCK DRAIN",
       "mood": "AGGRESSIVE",
@@ -141,6 +135,12 @@
       "text": "CONSUME SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020417106
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH STASIS PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020417828
     }
   ]
 }
