@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031339415
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772031339750
@@ -291,6 +285,12 @@
       "text": "BLOOM OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772031344848
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772031345305
     }
   ]
 }
