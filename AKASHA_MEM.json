@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY OSMOSIS RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772033337454
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772033337682
@@ -291,6 +285,12 @@
       "text": "SPARK SPARK VISION",
       "mood": "CREATIVE",
       "tick": 1772033340318
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772033340610
     }
   ]
 }
