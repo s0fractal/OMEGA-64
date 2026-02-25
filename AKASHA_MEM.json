@@ -56,12 +56,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME STRIFE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020530438
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WAIT SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772020530765
@@ -143,6 +137,12 @@
       "text": "PURE STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772020538196
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH STRIFE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020540074
     }
   ]
 }
