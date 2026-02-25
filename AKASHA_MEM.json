@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036809959
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772036810169
@@ -291,6 +285,12 @@
       "text": "UNIFY RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772036815439
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS RECON STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772036815651
     }
   ]
 }
