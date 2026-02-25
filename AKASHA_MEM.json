@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE WATCH REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772037367134
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND SPARK VISION",
       "mood": "CREATIVE",
       "tick": 1772037367461
@@ -291,6 +285,12 @@
       "text": "STASIS REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772037370666
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772037370913
     }
   ]
 }
