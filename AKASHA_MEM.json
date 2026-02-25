@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS SPARK FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772035757903
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772035758100
@@ -291,6 +285,12 @@
       "text": "RESONATE BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772035760649
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772035760842
     }
   ]
 }
