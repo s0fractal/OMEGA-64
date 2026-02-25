@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772033285037
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772033285228
@@ -291,6 +285,12 @@
       "text": "BLOOM FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772033287597
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE BLOOM SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772033287742
     }
   ]
 }
