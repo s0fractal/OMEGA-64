@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT RECON GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023745369
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023747386
@@ -278,6 +272,12 @@
       "text": "SICKNESS CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772023751116
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023751285
     }
   ]
 }
