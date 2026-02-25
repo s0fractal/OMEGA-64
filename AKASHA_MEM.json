@@ -43,12 +43,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME SHOCK SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019968904
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHOCK BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772019969710
@@ -130,6 +124,12 @@
       "text": "FLOW GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772019979107
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772019979366
     }
   ]
 }
