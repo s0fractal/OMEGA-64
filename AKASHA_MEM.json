@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "CONSUME HUNGER STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042182160
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER STRIKE STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STASIS GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772042196156
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772042196726
     }
   ]
 }
