@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772026952696
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772026952941
@@ -291,6 +285,12 @@
       "text": "REFLECT STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772026958698
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026959048
     }
   ]
 }
