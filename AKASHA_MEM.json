@@ -159,12 +159,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022772367
-    },
-    {
-      "origin": "REVERSE",
       "text": "AWAKEN WITNESS BECOME",
       "mood": "CREATIVE",
       "tick": 1772022772663
@@ -246,6 +240,12 @@
       "text": "WITNESS FORGE WITNESS",
       "mood": "CREATIVE",
       "tick": 1772022780316
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHELTER GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022780474
     }
   ]
 }
