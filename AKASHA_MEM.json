@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY RESONATE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772035565327
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772035565550
@@ -291,6 +285,12 @@
       "text": "RESONATE FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772035570417
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME BECOME FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772035570662
     }
   ]
 }
