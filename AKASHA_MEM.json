@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040616343
-    },
-    {
       "origin": "INTERFACE",
       "text": "RESONATE FLOW OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772040619560
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM FLOW UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772040619712
     }
   ]
 }
