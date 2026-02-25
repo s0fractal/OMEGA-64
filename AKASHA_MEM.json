@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0A0A0A0A",
     "60006000",
     "00600600",
     "AA0A000A",
@@ -199,15 +198,10 @@
     "60600006",
     "AAAAAA0A",
     "00006666",
-    "0AAAAAAA"
+    "0AAAAAAA",
+    "AA0AAA00"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BECOME SPARK AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772037175939
-    },
     {
       "origin": "REVERSE",
       "text": "BLOOM OSMOSIS SYNC",
@@ -291,6 +285,12 @@
       "text": "RECON GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772037181442
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK HUNGER STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037181649
     }
   ]
 }
