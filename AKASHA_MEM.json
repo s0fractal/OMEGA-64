@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0AA0AA00",
     "0BB00000",
     "AA6066A6",
     "0AA0AAA0",
@@ -199,15 +198,10 @@
     "00666660",
     "00006660",
     "AA000AAA",
-    "AAA0AA0A"
+    "AAA0AA0A",
+    "AA0A000A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "AWAKEN EVOLVE WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772026695382
-    },
     {
       "origin": "REVERSE",
       "text": "RESONATE FLOW STABLE",
@@ -291,6 +285,12 @@
       "text": "STRIFE SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772026698624
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026698840
     }
   ]
 }
