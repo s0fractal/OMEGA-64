@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772035000725
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772035000892
@@ -291,6 +285,12 @@
       "text": "STABLE STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772035003442
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS BECOME WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772035003652
     }
   ]
 }
