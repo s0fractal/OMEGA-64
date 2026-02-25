@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "BBBB0000",
     "AAAA000A",
     "AA0A0A00",
     "0AA0A0AA",
@@ -199,15 +198,10 @@
     "00BB0000",
     "6A666600",
     "A6A66660",
-    "66060000"
+    "66060000",
+    "00AAAAA0"
   ],
   "utterances": [
-    {
-      "origin": "NAND",
-      "text": "GIVING HEAL HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772041494159
-    },
     {
       "origin": "ARCHIVIST",
       "text": "IMMUNE WATCH GUARD",
@@ -291,6 +285,12 @@
       "text": "BLOOM SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772041498391
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BLOOM STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041498670
     }
   ]
 }
