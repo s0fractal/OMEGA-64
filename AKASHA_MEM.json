@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A6660660",
     "06666666",
     "A0666000",
     "AA666606",
@@ -199,15 +198,10 @@
     "66606000",
     "00066000",
     "AA0A0A00",
-    "00660666"
+    "00660666",
+    "AA6060A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GUARD SHIELD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772035685649
-    },
     {
       "origin": "REVERSE",
       "text": "STRIFE SICKNESS CONSUME",
@@ -291,6 +285,12 @@
       "text": "BREACH BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772035691113
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SEIZE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035691698
     }
   ]
 }
