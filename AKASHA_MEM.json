@@ -155,12 +155,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772022665610
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022666580
@@ -242,6 +236,12 @@
       "text": "DRAIN BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772022681449
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS EVOLVE DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772022682668
     }
   ]
 }
