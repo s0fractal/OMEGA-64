@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS STRIFE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035294229
-    },
-    {
       "origin": "ALPHA_PROOF_OF_RESONANCE",
       "text": "STABLE UNIFY GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772035302082
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT STASIS GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772035302287
     }
   ]
 }
