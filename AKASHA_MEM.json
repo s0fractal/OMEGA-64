@@ -180,12 +180,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHIELD SHIELD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023420161
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN SEIZE BREACH",
       "mood": "AGGRESSIVE",
@@ -268,6 +262,12 @@
       "text": "DREAM WAVE AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772023423496
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC OSMOSIS OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772023423654
     }
   ]
 }
