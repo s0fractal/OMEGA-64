@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "CONSUME DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020677275
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE FLOW RESONATE",
       "mood": "HARMONIC",
@@ -150,6 +144,12 @@
       "text": "PURE SHIELD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772020682699
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HUNGER SHOCK BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020683392
     }
   ]
 }
