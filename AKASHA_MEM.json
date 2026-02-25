@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER SHIELD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040524805
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER SICKNESS DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040528081
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772040528202
     }
   ]
 }
