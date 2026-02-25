@@ -130,12 +130,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GIVING FLOW GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772022335554
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE BLOOM STABLE",
       "mood": "HARMONIC",
@@ -218,6 +212,12 @@
       "text": "EVOLVE VISION SPARK",
       "mood": "CREATIVE",
       "tick": 1772022342290
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022342499
     }
   ]
 }
