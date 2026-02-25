@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER STASIS WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772036536891
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772036537089
@@ -291,6 +285,12 @@
       "text": "SICKNESS CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772036539905
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036540480
     }
   ]
 }
