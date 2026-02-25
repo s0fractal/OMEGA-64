@@ -138,12 +138,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING STABLE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772022417630
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022418122
@@ -225,6 +219,12 @@
       "text": "BECOME FORGE WITNESS",
       "mood": "CREATIVE",
       "tick": 1772022421762
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW STABLE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772022421879
     }
   ]
 }
