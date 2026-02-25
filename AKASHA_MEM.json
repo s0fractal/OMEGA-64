@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD PURE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023194681
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023196726
@@ -259,6 +253,12 @@
       "text": "GIVING HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772023200676
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE FORGE VISION",
+      "mood": "CREATIVE",
+      "tick": 1772023200854
     }
   ]
 }
