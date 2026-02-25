@@ -116,12 +116,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022026619
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022026877
@@ -203,6 +197,12 @@
       "text": "REFLECT PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022032843
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022033021
     }
   ]
 }
