@@ -174,12 +174,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT WATCH WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772023235901
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772023236088
@@ -261,6 +255,12 @@
       "text": "DECAY DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023243466
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHIELD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023243884
     }
   ]
 }
