@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD STASIS IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772030155185
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772030155577
@@ -291,6 +285,12 @@
       "text": "SICKNESS SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772030160111
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND FORGE SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772030160672
     }
   ]
 }
