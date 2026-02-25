@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DECAY STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037981034
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772037981253
@@ -291,6 +285,12 @@
       "text": "WAIT WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772037984666
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037984895
     }
   ]
 }
