@@ -124,12 +124,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE IMMUNE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022168766
-    },
-    {
       "origin": "REVERSE",
       "text": "DREAM WITNESS FORGE",
       "mood": "CREATIVE",
@@ -212,6 +206,12 @@
       "text": "GUARD WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022177537
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772022178997
     }
   ]
 }
