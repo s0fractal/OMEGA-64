@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STASIS STASIS SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040736165
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "FLOW COHERE GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "CONSUME DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772040739251
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772040739387
     }
   ]
 }
