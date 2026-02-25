@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040456338
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "FLOW FLOW SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "REFLECT PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772040458925
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH WATCH GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040459090
     }
   ]
 }
