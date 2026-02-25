@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "IMMUNE REFLECT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041031345
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE OSMOSIS UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WAIT WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041033854
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS STABLE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041033978
     }
   ]
 }
