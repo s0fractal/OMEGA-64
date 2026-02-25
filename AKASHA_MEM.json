@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022226891
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022227014
@@ -213,6 +207,12 @@
       "text": "RECON REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022230375
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHELTER GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022230744
     }
   ]
 }
