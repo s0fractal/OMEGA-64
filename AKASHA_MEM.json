@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024270052
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIFE SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772024280034
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE UNIFY COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772024280282
     }
   ]
 }
