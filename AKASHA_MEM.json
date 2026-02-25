@@ -125,12 +125,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772022165230
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022165429
@@ -212,6 +206,12 @@
       "text": "DREAM WITNESS FORGE",
       "mood": "CREATIVE",
       "tick": 1772022170993
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM OSMOSIS RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772022171779
     }
   ]
 }
