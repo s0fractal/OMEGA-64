@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT RECON GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772030353515
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772030354029
@@ -291,6 +285,12 @@
       "text": "GUARD REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772030373673
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL RESONATE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772030374078
     }
   ]
 }
