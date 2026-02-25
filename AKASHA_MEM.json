@@ -102,12 +102,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772021634339
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD SHELTER SHELTER",
       "mood": "DEFENSIVE",
@@ -190,6 +184,12 @@
       "text": "DRAIN SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772021639642
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772021641407
     }
   ]
 }
