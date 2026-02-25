@@ -13,12 +13,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "UNIFY RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772012914372
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE SHOCK CONSUME",
       "mood": "AGGRESSIVE",
@@ -101,6 +95,12 @@
       "text": "OSMOSIS RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772013070736
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772013079277
     }
   ]
 }
