@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036028710
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772036028876
@@ -291,6 +285,12 @@
       "text": "SYNC FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772036032322
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD PURE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772036032549
     }
   ]
 }
