@@ -108,12 +108,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHIELD WAIT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021769530
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHIELD SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772021770102
@@ -195,6 +189,12 @@
       "text": "STABLE SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772021773992
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS STABLE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772021774172
     }
   ]
 }
