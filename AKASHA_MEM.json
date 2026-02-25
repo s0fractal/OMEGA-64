@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SICKNESS STRIFE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772016514315
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BREACH DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772016537939
@@ -107,6 +101,12 @@
       "text": "SICKNESS SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772016638000
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "UNIFY OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772016647364
     }
   ]
 }
