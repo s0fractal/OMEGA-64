@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS STABLE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772031975044
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING BLOOM RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "EVOLVE BECOME DREAM",
       "mood": "CREATIVE",
       "tick": 1772031982982
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT RECON RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772031983413
     }
   ]
 }
