@@ -94,12 +94,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772021492966
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772021494803
@@ -181,6 +175,12 @@
       "text": "GUARD SHIELD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772021506022
+    },
+    {
+      "origin": "STREAM",
+      "text": "COHERE RESONATE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772021506154
     }
   ]
 }
