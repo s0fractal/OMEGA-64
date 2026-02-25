@@ -63,12 +63,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE STABLE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772020675161
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020675355
@@ -150,6 +144,12 @@
       "text": "DRAIN SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020681952
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE DECAY CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020682124
     }
   ]
 }
