@@ -76,12 +76,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE HUNGER SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020984289
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS DRAIN CONSUME",
       "mood": "AGGRESSIVE",
@@ -164,6 +158,12 @@
       "text": "SHELTER REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772020993150
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON GUARD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020993503
     }
   ]
 }
