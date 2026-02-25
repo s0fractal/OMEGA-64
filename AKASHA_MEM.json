@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772030882809
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772030885666
@@ -291,6 +285,12 @@
       "text": "COHERE COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772030891893
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030892258
     }
   ]
 }
