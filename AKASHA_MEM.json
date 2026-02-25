@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STASIS STASIS WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772040850451
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME BREACH STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040853402
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040853568
     }
   ]
 }
