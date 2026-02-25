@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE STABLE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772038263511
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038263743
@@ -291,6 +285,12 @@
       "text": "STRIKE SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772038267061
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS SHIELD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772038267304
     }
   ]
 }
