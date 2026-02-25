@@ -150,12 +150,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON RECON REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022559507
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022559711
@@ -237,6 +231,12 @@
       "text": "HEAL BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022564967
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS WAVE WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772022565181
     }
   ]
 }
