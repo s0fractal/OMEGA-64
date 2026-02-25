@@ -1,12 +1,12 @@
 {
-  "activeDecree": "VOID_STASIS",
-  "regent": "0xFF00FF0FFFFF000E",
+  "activeDecree": "MUTATIVE_FEVER",
+  "regent": "0xAB000000FFFF000A",
   "legitimacy": 1000,
-  "label": "VOID STASIS",
+  "label": "MUTATIVE FEVER",
   "mods": {
-    "decay": 0.5,
-    "speed": 0.2,
-    "mutation": 0.1,
-    "label": "VOID STASIS"
+    "decay": 1.5,
+    "speed": 1.3,
+    "mutation": 4,
+    "label": "MUTATIVE FEVER"
   }
 }
