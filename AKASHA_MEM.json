@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "FLOW UNIFY OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772025560703
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772025564407
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH IMMUNE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772025564707
     }
   ]
 }
