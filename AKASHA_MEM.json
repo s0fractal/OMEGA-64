@@ -43,12 +43,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "DREAM AWAKEN WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772020004481
-    },
-    {
       "origin": "INTERFACE",
       "text": "BREACH HUNGER SHOCK",
       "mood": "AGGRESSIVE",
@@ -131,6 +125,12 @@
       "text": "WATCH WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772020017074
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING RESONATE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772020017895
     }
   ]
 }
