@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW STABLE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772034653589
-    },
-    {
-      "origin": "REVERSE",
       "text": "EVOLVE BECOME DREAM",
       "mood": "CREATIVE",
       "tick": 1772034653768
@@ -291,6 +285,12 @@
       "text": "SICKNESS SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772034656436
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772034656637
     }
   ]
 }
