@@ -83,12 +83,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772021165584
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772021165751
@@ -170,6 +164,12 @@
       "text": "RECON STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772021170416
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE HUNGER STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021170829
     }
   ]
 }
