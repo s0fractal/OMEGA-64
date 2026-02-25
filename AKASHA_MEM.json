@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA00A0AA",
     "AA0666A6",
     "00AAA0AA",
     "AB0B0000",
@@ -199,15 +198,10 @@
     "0F0AAAAA",
     "66000060",
     "AA666666",
-    "AAAAA00A"
+    "AAAAA00A",
+    "0B000000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BECOME BECOME VISION",
-      "mood": "CREATIVE",
-      "tick": 1772038468813
-    },
     {
       "origin": "REVERSE",
       "text": "WAIT STASIS WATCH",
@@ -291,6 +285,12 @@
       "text": "HEAL OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772038475540
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC BLOOM STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772038475719
     }
   ]
 }
