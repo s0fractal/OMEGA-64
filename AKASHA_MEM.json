@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM RESONATE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772035728324
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772035728531
@@ -291,6 +285,12 @@
       "text": "FLOW OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772035735832
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035736054
     }
   ]
 }
