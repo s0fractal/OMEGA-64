@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER WAIT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772034992536
-    },
-    {
       "origin": "STREAM",
       "text": "WAIT SHIELD SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772034995751
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW GIVING UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772034996525
     }
   ]
 }
