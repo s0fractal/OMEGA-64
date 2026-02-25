@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60606006",
     "0AA0A000",
     "06600600",
     "AAA00AA0",
@@ -199,15 +198,10 @@
     "AAAAAA00",
     "06060606",
     "66066060",
-    "60600600"
+    "60600600",
+    "B0600000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STRIKE SEIZE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036674804
-    },
     {
       "origin": "REVERSE",
       "text": "SHELTER RECON GUARD",
@@ -291,6 +285,12 @@
       "text": "FLOW SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772036677648
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036677877
     }
   ]
 }
