@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041060215
-    },
-    {
       "origin": "INTERFACE",
       "text": "GIVING GIVING HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "PURE IMMUNE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041064073
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE FLOW UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772041064359
     }
   ]
 }
