@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772034472242
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772034472437
@@ -291,6 +285,12 @@
       "text": "WATCH SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772034474809
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WATCH WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772034475006
     }
   ]
 }
