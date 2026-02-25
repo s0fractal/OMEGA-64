@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772040414864
-    },
-    {
       "origin": "REVERSE",
       "text": "IMMUNE SHIELD SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BREACH HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040418003
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT PURE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040418178
     }
   ]
 }
