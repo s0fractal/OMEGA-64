@@ -44,12 +44,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING FLOW HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772020064069
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE PURE WATCH",
       "mood": "DEFENSIVE",
@@ -132,6 +126,12 @@
       "text": "BREACH DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020077819
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772020081689
     }
   ]
 }
