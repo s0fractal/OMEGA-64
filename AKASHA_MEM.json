@@ -49,12 +49,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RECON GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772020195637
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "PURE RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772020196806
@@ -136,6 +130,12 @@
       "text": "BREACH CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020210071
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH STRIFE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020210449
     }
   ]
 }
