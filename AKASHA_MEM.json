@@ -155,12 +155,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772022749085
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE OSMOSIS HEAL",
       "mood": "HARMONIC",
@@ -243,6 +237,12 @@
       "text": "GUARD REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022760431
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD GUARD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022760616
     }
   ]
 }
