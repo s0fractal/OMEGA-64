@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025250468
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY COHERE OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BLOOM UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772025255236
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WAIT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772025255440
     }
   ]
 }
