@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SEIZE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030230379
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772030230586
@@ -291,6 +285,12 @@
       "text": "SEIZE SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772030244923
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD PURE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772030245620
     }
   ]
 }
