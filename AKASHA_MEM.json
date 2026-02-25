@@ -116,12 +116,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022010983
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022011193
@@ -203,6 +197,12 @@
       "text": "STRIKE SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772022015985
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE GIVING UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772022016175
     }
   ]
 }
