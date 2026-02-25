@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STRIKE SHOCK HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041788647
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE SHELTER IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772041795021
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WAIT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772041795244
     }
   ]
 }
