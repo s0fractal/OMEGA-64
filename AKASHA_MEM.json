@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW RESONATE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772031157127
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME WAVE DREAM",
       "mood": "CREATIVE",
       "tick": 1772031157476
@@ -291,6 +285,12 @@
       "text": "SHIELD GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772031162367
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031163376
     }
   ]
 }
