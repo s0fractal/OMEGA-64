@@ -86,12 +86,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM GIVING HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772021244425
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE SHOCK STRIFE",
       "mood": "AGGRESSIVE",
@@ -174,6 +168,12 @@
       "text": "OSMOSIS SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772021250161
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY STRIFE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021250336
     }
   ]
 }
