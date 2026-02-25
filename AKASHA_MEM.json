@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WAIT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772025228598
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772025228908
@@ -291,6 +285,12 @@
       "text": "HEAL RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772025234733
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772025235005
     }
   ]
 }
