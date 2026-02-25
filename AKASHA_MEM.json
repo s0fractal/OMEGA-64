@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DRAIN HUNGER STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772015798608
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HEAL BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772015803377
@@ -107,6 +101,12 @@
       "text": "WATCH RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772015897847
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT RECON WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772015900593
     }
   ]
 }
