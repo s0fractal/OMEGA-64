@@ -176,12 +176,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023279286
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772023281134
@@ -263,6 +257,12 @@
       "text": "SHOCK BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023283961
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE BECOME DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772023284637
     }
   ]
 }
