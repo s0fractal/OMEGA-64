@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772037079700
-    },
-    {
-      "origin": "REVERSE",
       "text": "EVOLVE BECOME SPARK",
       "mood": "CREATIVE",
       "tick": 1772037079905
@@ -291,6 +285,12 @@
       "text": "SHELTER STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772037082707
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY OSMOSIS UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772037082911
     }
   ]
 }
