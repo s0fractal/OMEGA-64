@@ -19,12 +19,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "SICKNESS STRIFE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772015356561
-    },
-    {
-      "origin": "INTERFACE",
       "text": "RESONATE GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772015369788
@@ -106,6 +100,12 @@
       "text": "DRAIN DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772015473189
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIKE HUNGER STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772015480220
     }
   ]
 }
