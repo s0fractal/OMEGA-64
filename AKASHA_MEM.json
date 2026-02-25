@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034248774
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772034248994
@@ -291,6 +285,12 @@
       "text": "STABLE BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034251545
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WAIT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772034251741
     }
   ]
 }
