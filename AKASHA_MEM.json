@@ -47,12 +47,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE OSMOSIS UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772020116799
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020117112
@@ -134,6 +128,12 @@
       "text": "SHOCK BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020127897
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE SHOCK STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020129238
     }
   ]
 }
