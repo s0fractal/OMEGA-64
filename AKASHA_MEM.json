@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER PURE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772036149797
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772036150024
@@ -291,6 +285,12 @@
       "text": "HUNGER SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772036153394
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772036153703
     }
   ]
 }
