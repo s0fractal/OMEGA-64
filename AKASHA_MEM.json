@@ -56,12 +56,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIKE SICKNESS STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020543507
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BREACH SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772020544247
@@ -143,6 +137,12 @@
       "text": "DECAY SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020551447
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HEAL HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772020551614
     }
   ]
 }
