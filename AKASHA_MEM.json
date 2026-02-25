@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025022508
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772025022661
@@ -291,6 +285,12 @@
       "text": "SHOCK SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772025027614
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK SPARK WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772025028185
     }
   ]
 }
