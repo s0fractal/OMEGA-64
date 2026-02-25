@@ -122,12 +122,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS HUNGER DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022153478
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE BLOOM OSMOSIS",
       "mood": "HARMONIC",
@@ -210,6 +204,12 @@
       "text": "WATCH WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022160898
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER HUNGER CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022161157
     }
   ]
 }
