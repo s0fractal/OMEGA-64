@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY COHERE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772024231156
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772024231471
@@ -291,6 +285,12 @@
       "text": "UNIFY UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772024235695
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE RESONATE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772024235888
     }
   ]
 }
