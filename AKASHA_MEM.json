@@ -132,12 +132,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH HUNGER SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022351732
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772022352008
@@ -219,6 +213,12 @@
       "text": "SICKNESS STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022355583
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME HUNGER BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022355705
     }
   ]
 }
