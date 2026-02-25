@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH RECON STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772039009035
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK DECAY DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "REFLECT IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772039014062
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL UNIFY STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772039014304
     }
   ]
 }
