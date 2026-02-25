@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "RESONATE BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772019555007
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHOCK BREACH SHOCK",
       "mood": "AGGRESSIVE",
@@ -111,6 +105,12 @@
       "text": "DECAY STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772019564855
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK STRIFE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019565898
     }
   ]
 }
