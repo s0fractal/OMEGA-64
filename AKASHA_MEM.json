@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "GIVING OSMOSIS COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772029877138
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY GIVING COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RECON WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772029892151
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772029892808
     }
   ]
 }
