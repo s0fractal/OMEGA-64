@@ -162,12 +162,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022913759
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH CONSUME SHOCK",
       "mood": "AGGRESSIVE",
@@ -250,6 +244,12 @@
       "text": "COHERE OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772022919797
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DECAY SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022920383
     }
   ]
 }
