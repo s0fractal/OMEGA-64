@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STABLE FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041017629
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE RESONATE COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SEIZE SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041021391
+    },
+    {
+      "origin": "I16_CLAMP",
+      "text": "STRIKE STRIKE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041021567
     }
   ]
 }
