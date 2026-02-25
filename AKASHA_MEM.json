@@ -97,12 +97,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "EVOLVE BEYOND WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772021565857
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772021566008
@@ -184,6 +178,12 @@
       "text": "IMMUNE WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772021574594
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD REFLECT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021574893
     }
   ]
 }
