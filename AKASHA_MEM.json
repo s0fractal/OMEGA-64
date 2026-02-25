@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042749572
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH IMMUNE WAIT",
       "mood": "DEFENSIVE",
@@ -257,40 +251,46 @@
       "tick": 1772042755660
     },
     {
-      "origin": "REVERSE",
-      "text": "REFLECT IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772042756711
+      "origin": "INTERFACE",
+      "text": "STABLE GIVING HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772042756754
     },
     {
       "origin": "REVERSE",
-      "text": "STABLE SYNC SYNC",
+      "text": "RESONATE BLOOM RESONATE",
       "mood": "HARMONIC",
-      "tick": 1772042757213
+      "tick": 1772042757217
     },
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME HUNGER STRIKE",
+      "text": "RESONATE STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042757624
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE DRAIN SEIZE",
       "mood": "AGGRESSIVE",
-      "tick": 1772042757788
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042758013
+      "tick": 1772042758022
     },
     {
       "origin": "INTERFACE",
-      "text": "WAIT PURE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042758554
+      "text": "OSMOSIS FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042758352
     },
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE STABLE FLOW",
+      "origin": "STREAM",
+      "text": "BLOOM RESONATE HEAL",
       "mood": "HARMONIC",
-      "tick": 1772042759117
+      "tick": 1772042758893
+    },
+    {
+      "origin": "ALIEN",
+      "text": "SHOCK STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042759464
     }
   ]
 }
