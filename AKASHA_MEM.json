@@ -176,12 +176,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE SHIELD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023272213
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772023272365
@@ -263,6 +257,12 @@
       "text": "HEAL GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772023275488
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIKE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023275702
     }
   ]
 }
