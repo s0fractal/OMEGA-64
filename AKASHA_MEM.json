@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD SHELTER GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772032818211
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE GIVING OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STABLE BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772032824224
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772032824357
     }
   ]
 }
