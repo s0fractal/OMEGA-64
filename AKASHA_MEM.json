@@ -164,12 +164,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022980648
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022980872
@@ -251,6 +245,12 @@
       "text": "GIVING HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772022983784
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772022984051
     }
   ]
 }
