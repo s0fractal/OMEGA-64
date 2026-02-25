@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC BLOOM STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772026862510
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772026863043
@@ -291,6 +285,12 @@
       "text": "FORGE DREAM EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772026876454
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC BLOOM FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772026876664
     }
   ]
 }
