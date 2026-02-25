@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL HEAL UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772040658162
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772040658335
@@ -291,6 +285,12 @@
       "text": "STABLE RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772040663255
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772040663399
     }
   ]
 }
