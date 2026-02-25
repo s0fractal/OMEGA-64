@@ -178,12 +178,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GIVING OSMOSIS OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772023362742
-    },
-    {
       "origin": "REVERSE",
       "text": "BREACH DRAIN BREACH",
       "mood": "AGGRESSIVE",
@@ -266,6 +260,12 @@
       "text": "HEAL STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772023366943
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772023367293
     }
   ]
 }
