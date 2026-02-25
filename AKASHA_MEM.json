@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "GIVING UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772020389853
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER DECAY DRAIN",
       "mood": "AGGRESSIVE",
@@ -141,6 +135,12 @@
       "text": "GUARD REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772020403588
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WAIT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772020404147
     }
   ]
 }
