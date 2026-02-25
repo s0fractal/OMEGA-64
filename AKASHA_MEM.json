@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "IMMUNE WAIT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040666381
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS BLOOM HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STABLE BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772040669036
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772040669169
     }
   ]
 }
