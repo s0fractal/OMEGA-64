@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SICKNESS CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040834491
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE OSMOSIS HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772040837805
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT STASIS STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772040837981
     }
   ]
 }
