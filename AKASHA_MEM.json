@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK HUNGER HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036409245
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772036409454
@@ -291,6 +285,12 @@
       "text": "COHERE STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772036412178
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772036412405
     }
   ]
 }
