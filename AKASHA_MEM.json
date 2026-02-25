@@ -192,12 +192,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER STASIS STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772023819390
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772023819603
@@ -279,6 +273,12 @@
       "text": "STRIKE STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772023825254
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS STABLE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772023825478
     }
   ]
 }
