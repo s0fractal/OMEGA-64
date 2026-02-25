@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAAAAAAA",
     "00000000",
     "66666666",
     "BBB0000C",
@@ -199,15 +198,10 @@
     "06666600",
     "000A0A00",
     "0000AAA0",
-    "AABBCCDD"
+    "AABBCCDD",
+    "AAAAAAA0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SYNC COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772024203244
-    },
     {
       "origin": "REVERSE",
       "text": "STRIKE CONSUME HUNGER",
@@ -291,6 +285,12 @@
       "text": "DREAM WITNESS BECOME",
       "mood": "CREATIVE",
       "tick": 1772024206140
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024206335
     }
   ]
 }
