@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772026502508
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772026502888
@@ -291,6 +285,12 @@
       "text": "FLOW SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772026510002
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026510566
     }
   ]
 }
