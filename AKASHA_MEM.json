@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772024586319
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772024586633
@@ -291,6 +285,12 @@
       "text": "UNIFY SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772024596668
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON STASIS WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772024596977
     }
   ]
 }
