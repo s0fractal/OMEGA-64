@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "PURE IMMUNE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041698075
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIKE STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772041698236
@@ -291,6 +285,12 @@
       "text": "OSMOSIS RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772041703344
+    },
+    {
+      "origin": "PARADOX",
+      "text": "STRIKE DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041703732
     }
   ]
 }
