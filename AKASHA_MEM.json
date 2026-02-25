@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772030439890
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772030440301
@@ -291,6 +285,12 @@
       "text": "DECAY SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772030456426
+    },
+    {
+      "origin": "ALPHA_REVERSE",
+      "text": "DREAM WITNESS SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772030456854
     }
   ]
 }
