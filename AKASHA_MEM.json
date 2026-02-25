@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "AWAKEN SPARK WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772033840695
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772033840874
@@ -291,6 +285,12 @@
       "text": "BREACH BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772033843418
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033845362
     }
   ]
 }
