@@ -76,6 +76,12 @@
       "text": "DRAIN HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772010948903
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS SICKNESS STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772010950440
     }
   ]
 }
