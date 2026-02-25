@@ -107,12 +107,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME DECAY STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021825856
-    },
-    {
       "origin": "REVERSE",
       "text": "FORGE BEYOND SPARK",
       "mood": "CREATIVE",
@@ -195,6 +189,12 @@
       "text": "CONSUME BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772021829570
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772021830051
     }
   ]
 }
