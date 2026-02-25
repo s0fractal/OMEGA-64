@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772020477037
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT RECON WATCH",
       "mood": "DEFENSIVE",
@@ -142,6 +136,12 @@
       "text": "SHELTER WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020483596
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WAIT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020484295
     }
   ]
 }
