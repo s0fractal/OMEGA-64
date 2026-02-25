@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772034465675
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772034465961
@@ -291,6 +285,12 @@
       "text": "DRAIN SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772034469124
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHIELD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772034469354
     }
   ]
 }
