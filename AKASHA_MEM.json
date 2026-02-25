@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772031476491
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS REFLECT REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772031482311
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS BREACH BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031482674
     }
   ]
 }
