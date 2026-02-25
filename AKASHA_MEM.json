@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040592754
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040593146
@@ -291,6 +285,12 @@
       "text": "BLOOM COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772040596266
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE UNIFY HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772040596494
     }
   ]
 }
