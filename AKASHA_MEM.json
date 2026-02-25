@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772033318778
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772033318969
@@ -291,6 +285,12 @@
       "text": "STRIFE STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772033321218
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT RECON STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772033321395
     }
   ]
 }
