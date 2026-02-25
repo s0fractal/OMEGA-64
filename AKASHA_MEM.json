@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY BREACH HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023095003
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAVE BEYOND BEYOND",
       "mood": "CREATIVE",
       "tick": 1772023095176
@@ -259,6 +253,12 @@
       "text": "DRAIN DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023099046
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772023099176
     }
   ]
 }
