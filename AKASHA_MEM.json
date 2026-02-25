@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032985443
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772032985727
@@ -291,6 +285,12 @@
       "text": "WATCH RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772032987863
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772032988044
     }
   ]
 }
