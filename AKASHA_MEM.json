@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD SHELTER IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772038412965
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE SEIZE CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772038417038
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIFE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038417210
     }
   ]
 }
