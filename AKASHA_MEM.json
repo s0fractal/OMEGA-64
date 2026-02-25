@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT RECON STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772025740039
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772025740213
@@ -291,6 +285,12 @@
       "text": "SYNC RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772025750146
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHIELD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772025750392
     }
   ]
 }
