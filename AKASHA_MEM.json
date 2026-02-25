@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035992295
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772035993470
@@ -291,6 +285,12 @@
       "text": "REFLECT IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772035997675
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE OSMOSIS UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772035997995
     }
   ]
 }
