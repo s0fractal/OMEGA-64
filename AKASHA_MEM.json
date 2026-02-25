@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "WORKER",
-      "text": "RESONATE HEAL FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772040727251
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GIVING OSMOSIS UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "REFLECT WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040731409
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040731631
     }
   ]
 }
