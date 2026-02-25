@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06606600",
     "A00AA0A0",
     "0000AA0A",
     "A0AA0AAA",
@@ -199,15 +198,10 @@
     "0A0AA000",
     "AA00A000",
     "FF0AFFFF",
-    "60060666"
+    "60060666",
+    "06600006"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SEIZE SICKNESS HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036806416
-    },
     {
       "origin": "REVERSE",
       "text": "SYNC RESONATE OSMOSIS",
@@ -291,6 +285,12 @@
       "text": "SHELTER STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772036810169
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772036810412
     }
   ]
 }
