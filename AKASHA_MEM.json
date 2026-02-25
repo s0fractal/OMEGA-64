@@ -71,12 +71,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS AWAKEN WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772020903302
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772020903458
@@ -158,6 +152,12 @@
       "text": "BREACH DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020908011
+    },
+    {
+      "origin": "STREAM",
+      "text": "HEAL GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772020908164
     }
   ]
 }
