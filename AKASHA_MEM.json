@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772033197721
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033197905
@@ -291,6 +285,12 @@
       "text": "STRIKE STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772033200288
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772033200472
     }
   ]
 }
