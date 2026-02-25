@@ -171,12 +171,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DREAM BECOME EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772023202771
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE SEIZE SHOCK",
       "mood": "AGGRESSIVE",
@@ -259,6 +253,12 @@
       "text": "SEIZE STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772023207153
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772023207284
     }
   ]
 }
