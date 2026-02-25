@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037601594
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772037601832
@@ -291,6 +285,12 @@
       "text": "STASIS STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772037605979
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772037606250
     }
   ]
 }
