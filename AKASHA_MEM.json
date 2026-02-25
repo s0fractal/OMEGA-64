@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037196036
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772037196230
@@ -291,6 +285,12 @@
       "text": "OSMOSIS STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772037201593
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT RECON GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772037201786
     }
   ]
 }
