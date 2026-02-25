@@ -69,12 +69,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DECAY CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020857264
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS REFLECT IMMUNE",
       "mood": "DEFENSIVE",
@@ -157,6 +151,12 @@
       "text": "HUNGER SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020867311
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE STRIKE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020867592
     }
   ]
 }
