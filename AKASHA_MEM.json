@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028478162
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772028478594
@@ -291,6 +285,12 @@
       "text": "HEAL STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772028485909
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL FLOW UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772028486366
     }
   ]
 }
