@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0066A0",
     "AA0BC00F",
     "600666A0",
     "AA0AAAAA",
@@ -199,15 +198,10 @@
     "AAAAAA0A",
     "AA066000",
     "AAA0A00A",
-    "AAAAAA00"
+    "AAAAAA00",
+    "60606606"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "HUNGER CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038739826
-    },
     {
       "origin": "REVERSE",
       "text": "STRIKE CONSUME SICKNESS",
@@ -291,6 +285,12 @@
       "text": "STABLE OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772038742657
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772038742843
     }
   ]
 }
