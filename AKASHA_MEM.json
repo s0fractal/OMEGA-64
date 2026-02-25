@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0AA0A0A0",
     "60066000",
     "60666600",
     "BAB00000",
@@ -199,15 +198,10 @@
     "00000606",
     "AA0AAA0A",
     "00066006",
-    "66A666A0"
+    "66A666A0",
+    "C0DED000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "CONSUME STRIKE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026452219
-    },
     {
       "origin": "REVERSE",
       "text": "UNIFY OSMOSIS OSMOSIS",
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772026458622
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS SPARK WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772026458840
     }
   ]
 }
