@@ -164,12 +164,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE HUNGER STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022966351
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022966473
@@ -251,6 +245,12 @@
       "text": "REFLECT PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022970484
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON GUARD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772022970678
     }
   ]
 }
