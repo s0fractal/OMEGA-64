@@ -75,12 +75,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020963266
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIFE STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020963908
@@ -162,6 +156,12 @@
       "text": "SHIELD SHIELD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772020969986
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHELTER GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020971376
     }
   ]
 }
