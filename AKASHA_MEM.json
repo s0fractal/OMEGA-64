@@ -50,12 +50,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BREACH HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020283623
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW BLOOM SYNC",
       "mood": "HARMONIC",
@@ -138,6 +132,12 @@
       "text": "WATCH REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772020290735
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772020291251
     }
   ]
 }
