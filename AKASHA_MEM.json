@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD REFLECT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772040972255
-    },
-    {
       "origin": "REVERSE",
       "text": "IMMUNE SHELTER REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHOCK SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772040975690
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIFE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040975826
     }
   ]
 }
