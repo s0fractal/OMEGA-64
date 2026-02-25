@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW COHERE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772022225615
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022225853
@@ -213,6 +207,12 @@
       "text": "DREAM VISION SPARK",
       "mood": "CREATIVE",
       "tick": 1772022229026
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY SYNC HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772022229198
     }
   ]
 }
