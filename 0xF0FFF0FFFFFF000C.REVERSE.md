@@ -1,14 +1,14 @@
 ---
-eigenvalue: '0xAABB000000000008'
-energy: 50
+eigenvalue: '0xF0FFF0FFFFFF000C'
+energy: 45.4
 resonance: 30
-x: 701
-'y': 419
+x: 705
+'y': 417
 symbol: ARCHIVIST
-thought: RESURRECTED
+thought: ORBIT_PASSIVE
 signals: []
 bond_strengths:
-  '0xAAAAAAA000000006': 0.9665550620990835
+  '0xAAAAAAA000000006': 0.9646229185299474
 ex:
   - '0xAAAAAAAA00000000'
   - '0xAAAAAAAA00000008'
