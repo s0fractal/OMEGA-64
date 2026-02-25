@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_REVERSE",
-      "text": "STRIKE DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041702355
-    },
-    {
       "origin": "STREAM",
       "text": "OSMOSIS RESONATE STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "COHERE RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041708180
+    },
+    {
+      "origin": "STREAM",
+      "text": "HUNGER SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041708510
     }
   ]
 }
