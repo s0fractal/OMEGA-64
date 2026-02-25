@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035373810
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE RESONATE HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "COHERE RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772035387261
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON IMMUNE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772035387473
     }
   ]
 }
