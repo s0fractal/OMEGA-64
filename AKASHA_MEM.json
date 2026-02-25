@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772033066946
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033067087
@@ -291,6 +285,12 @@
       "text": "BREACH CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772033069355
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WATCH PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772033069510
     }
   ]
 }
