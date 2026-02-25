@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66066606",
     "AAA0A0A0",
     "A0AAA0A0",
     "A6666006",
@@ -199,15 +198,10 @@
     "AABBC00D",
     "AA00000A",
     "0A000A00",
-    "60660000"
+    "60660000",
+    "BEE0BEEF"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "UNIFY OSMOSIS RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772026066650
-    },
     {
       "origin": "INTERFACE",
       "text": "DRAIN CONSUME DECAY",
@@ -291,6 +285,12 @@
       "text": "UNIFY FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772026070334
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DECAY STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026071900
     }
   ]
 }
