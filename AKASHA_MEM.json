@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772033618319
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772033618542
@@ -291,6 +285,12 @@
       "text": "PURE REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772033621043
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RESONATE BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772033621231
     }
   ]
 }
