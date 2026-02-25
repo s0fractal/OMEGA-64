@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT STASIS GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772036298202
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772036298365
@@ -291,6 +285,12 @@
       "text": "GIVING HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772036301112
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS STRIKE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036301485
     }
   ]
 }
