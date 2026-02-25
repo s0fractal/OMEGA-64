@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772035123679
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772035123882
@@ -291,6 +285,12 @@
       "text": "STASIS WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772035127114
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS STABLE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772035127312
     }
   ]
 }
