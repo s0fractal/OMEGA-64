@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD GUARD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772025114306
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772025114481
@@ -291,6 +285,12 @@
       "text": "SHELTER WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772025118374
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS UNIFY GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772025118516
     }
   ]
 }
