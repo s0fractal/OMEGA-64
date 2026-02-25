@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE BLOOM OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772026558788
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772026559189
@@ -291,6 +285,12 @@
       "text": "GIVING BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772026563780
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WAIT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772026563962
     }
   ]
 }
