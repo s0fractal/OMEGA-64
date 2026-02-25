@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS STRIFE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031667507
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772031667915
@@ -291,6 +285,12 @@
       "text": "STASIS STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772031674704
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE RESONATE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772031680755
     }
   ]
 }
