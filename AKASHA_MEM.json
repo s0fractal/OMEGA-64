@@ -68,12 +68,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772020842473
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
@@ -156,6 +150,12 @@
       "text": "COHERE STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772020847620
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH SICKNESS DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020847777
     }
   ]
 }
