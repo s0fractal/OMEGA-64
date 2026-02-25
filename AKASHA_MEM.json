@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772038912514
-    },
-    {
       "origin": "STREAM",
       "text": "STRIFE STRIFE SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772038915717
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHELTER RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772038915945
     }
   ]
 }
