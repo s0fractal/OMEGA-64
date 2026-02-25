@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "COHERE GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040901950
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772040905117
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040905289
     }
   ]
 }
