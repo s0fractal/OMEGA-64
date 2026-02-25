@@ -27,12 +27,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "BLOOM STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772019666746
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BLOOM RESONATE SYNC",
       "mood": "HARMONIC",
@@ -115,6 +109,12 @@
       "text": "SEIZE SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772019676583
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIKE SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019677274
     }
   ]
 }
