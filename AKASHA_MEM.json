@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE STABLE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772036848597
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772036848777
@@ -291,6 +285,12 @@
       "text": "RECON STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772036854328
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772036854609
     }
   ]
 }
