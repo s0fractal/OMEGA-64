@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RECON REFLECT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772035720280
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK SHOCK CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772035725738
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING UNIFY COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772035725950
     }
   ]
 }
