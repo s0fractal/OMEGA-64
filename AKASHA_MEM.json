@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT PURE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772025408919
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772025409147
@@ -291,6 +285,12 @@
       "text": "WATCH REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772025413625
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025414024
     }
   ]
 }
