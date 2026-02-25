@@ -81,12 +81,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772021108938
-    },
-    {
-      "origin": "REVERSE",
       "text": "VISION WITNESS WITNESS",
       "mood": "CREATIVE",
       "tick": 1772021109248
@@ -168,6 +162,12 @@
       "text": "FORGE AWAKEN EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772021115443
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS SICKNESS SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021115672
     }
   ]
 }
