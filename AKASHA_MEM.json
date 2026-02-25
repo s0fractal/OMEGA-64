@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_PROOF_OF_RESONANCE",
-      "text": "FLOW FLOW UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772030249008
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL RESONATE BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772030254868
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772030255156
     }
   ]
 }
