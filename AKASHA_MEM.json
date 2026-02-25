@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027276309
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON STASIS REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772027283392
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT WATCH GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772027283752
     }
   ]
 }
