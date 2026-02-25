@@ -18,12 +18,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772015558336
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIKE CONSUME BREACH",
       "mood": "AGGRESSIVE",
@@ -106,6 +100,12 @@
       "text": "BREACH BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772015687202
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT SHELTER WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772015692141
     }
   ]
 }
