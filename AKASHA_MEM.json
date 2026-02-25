@@ -72,12 +72,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "EVOLVE WAVE EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772020906184
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772020906355
@@ -159,6 +153,12 @@
       "text": "CONSUME STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020910707
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SEIZE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020911747
     }
   ]
 }
