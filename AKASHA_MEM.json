@@ -171,12 +171,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH WAIT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772023118353
-    },
-    {
       "origin": "INTERFACE",
       "text": "DECAY BREACH STRIKE",
       "mood": "AGGRESSIVE",
@@ -259,6 +253,12 @@
       "text": "OSMOSIS SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772023123488
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772023124253
     }
   ]
 }
