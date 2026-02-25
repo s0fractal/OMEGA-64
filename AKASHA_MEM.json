@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHIELD GUARD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772033564091
-    },
-    {
       "origin": "REVERSE",
       "text": "BEYOND VISION VISION",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772033567301
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS PURE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772033567490
     }
   ]
 }
