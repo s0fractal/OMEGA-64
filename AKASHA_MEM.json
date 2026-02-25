@@ -195,12 +195,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STASIS WATCH REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023892629
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE SYNC STABLE",
       "mood": "HARMONIC",
@@ -283,6 +277,12 @@
       "text": "RESONATE UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772023898329
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772023898902
     }
   ]
 }
