@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772036064838
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772036065048
@@ -291,6 +285,12 @@
       "text": "SHOCK SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772036068050
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772036068232
     }
   ]
 }
