@@ -102,12 +102,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "WAIT SHELTER WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772021648958
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH HUNGER CONSUME",
       "mood": "AGGRESSIVE",
@@ -190,6 +184,12 @@
       "text": "GIVING GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772021654627
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "PURE WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772021654802
     }
   ]
 }
