@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC SYNC SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772033727626
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772033727811
@@ -291,6 +285,12 @@
       "text": "COHERE HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772033730470
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772033730662
     }
   ]
 }
