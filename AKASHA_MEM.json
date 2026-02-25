@@ -86,12 +86,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021229992
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE COHERE STABLE",
       "mood": "HARMONIC",
@@ -174,6 +168,12 @@
       "text": "GUARD SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772021235573
+    },
+    {
+      "origin": "STREAM",
+      "text": "COHERE FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772021236062
     }
   ]
 }
