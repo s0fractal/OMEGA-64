@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT PURE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772033681311
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772033681770
@@ -291,6 +285,12 @@
       "text": "STASIS GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772033689251
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033689518
     }
   ]
 }
