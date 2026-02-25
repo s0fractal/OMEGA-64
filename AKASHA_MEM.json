@@ -19,12 +19,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GIVING RESONATE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772015372691
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BLOOM HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772015383051
@@ -106,6 +100,12 @@
       "text": "GUARD SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772015495874
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE CONSUME SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772015498685
     }
   ]
 }
