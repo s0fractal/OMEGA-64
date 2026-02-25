@@ -155,12 +155,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW SYNC STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772022653596
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772022653714
@@ -242,6 +236,12 @@
       "text": "SHELTER GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772022659683
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY SEIZE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022659874
     }
   ]
 }
