@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE OSMOSIS FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772036318086
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772036318511
@@ -291,6 +285,12 @@
       "text": "EVOLVE FORGE SPARK",
       "mood": "CREATIVE",
       "tick": 1772036321154
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH CONSUME SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036321369
     }
   ]
 }
