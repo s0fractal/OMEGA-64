@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC STABLE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772040887089
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER STRIKE DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772040890101
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIFE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040890291
     }
   ]
 }
