@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GUARD SHELTER IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041265532
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GUARD GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041267417
@@ -291,6 +285,12 @@
       "text": "WATCH PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772041271968
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH HUNGER HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041272191
     }
   ]
 }
