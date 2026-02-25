@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772027688403
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772027689099
@@ -291,6 +285,12 @@
       "text": "GIVING GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772027704741
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE HUNGER BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027705251
     }
   ]
 }
