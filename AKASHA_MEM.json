@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023751669
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023751797
@@ -278,6 +272,12 @@
       "text": "EVOLVE DREAM WITNESS",
       "mood": "CREATIVE",
       "tick": 1772023756032
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING GIVING HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772023756249
     }
   ]
 }
