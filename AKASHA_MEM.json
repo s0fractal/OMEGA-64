@@ -91,12 +91,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER WATCH SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772021281004
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS SHOCK STRIFE",
       "mood": "AGGRESSIVE",
@@ -179,6 +173,12 @@
       "text": "RECON SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772021320879
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE STASIS WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772021325071
     }
   ]
 }
