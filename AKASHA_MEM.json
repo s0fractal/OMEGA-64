@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE PURE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772034667241
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772034667442
@@ -291,6 +285,12 @@
       "text": "BLOOM STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772034672204
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM OSMOSIS RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772034676578
     }
   ]
 }
