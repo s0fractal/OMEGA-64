@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON WAIT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772035573409
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS SYNC SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SICKNESS HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772035579907
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE GIVING COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772035580240
     }
   ]
 }
