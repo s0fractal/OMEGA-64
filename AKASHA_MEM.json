@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD PURE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772024177139
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772024177315
@@ -291,6 +285,12 @@
       "text": "WAVE SPARK EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772024181838
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC OSMOSIS HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772024181982
     }
   ]
 }
