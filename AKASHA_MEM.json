@@ -35,12 +35,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019733142
-    },
-    {
       "origin": "STREAM",
       "text": "BLOOM FLOW GIVING",
       "mood": "HARMONIC",
@@ -123,6 +117,12 @@
       "text": "SEIZE BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772019750469
+    },
+    {
+      "origin": "STREAM",
+      "text": "HEAL SYNC COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772019751431
     }
   ]
 }
