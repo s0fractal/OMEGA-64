@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00060660",
     "A0066000",
     "AA0A0A00",
     "AAB00C0D",
@@ -199,15 +198,10 @@
     "AA0AA00A",
     "600A66A0",
     "0A0A0A00",
-    "66660666"
+    "66660666",
+    "AA666660"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RESONATE UNIFY BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772038695268
-    },
     {
       "origin": "REVERSE",
       "text": "SHOCK STRIFE STRIFE",
@@ -291,6 +285,12 @@
       "text": "RESONATE BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772038698666
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038700574
     }
   ]
 }
