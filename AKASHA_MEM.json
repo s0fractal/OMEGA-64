@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM UNIFY FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772041435846
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE SHELTER GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772041439196
+    },
+    {
+      "origin": "STREAM",
+      "text": "UNIFY SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041440024
     }
   ]
 }
