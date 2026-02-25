@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0000000F",
     "66660000",
     "000AAAAA",
     "ABBB0000",
@@ -199,15 +198,10 @@
     "00660660",
     "00F0F00F",
     "AA0A00AA",
-    "66666600"
+    "66666600",
+    "0A0A000A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "PURE IMMUNE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772025501352
-    },
     {
       "origin": "REVERSE",
       "text": "SEIZE HUNGER DRAIN",
@@ -291,6 +285,12 @@
       "text": "SYNC BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772025504382
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772025504557
     }
   ]
 }
