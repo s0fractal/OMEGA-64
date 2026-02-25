@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT STASIS STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772029042222
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772029042497
@@ -291,6 +285,12 @@
       "text": "FLOW BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772029059510
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029059901
     }
   ]
 }
