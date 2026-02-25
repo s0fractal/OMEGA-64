@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040232769
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW HEAL FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772040241736
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT GUARD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772040242217
     }
   ]
 }
