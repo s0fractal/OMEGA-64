@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER CONSUME SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033683349
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772033683723
@@ -291,6 +285,12 @@
       "text": "HEAL STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772033691720
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033692088
     }
   ]
 }
