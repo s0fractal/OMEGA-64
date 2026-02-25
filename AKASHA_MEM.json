@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE STRIKE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031908255
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772031908866
@@ -291,6 +285,12 @@
       "text": "RECON GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772031917448
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772031921180
     }
   ]
 }
