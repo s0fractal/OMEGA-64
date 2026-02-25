@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RECON PURE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041642712
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GUARD SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041642842
@@ -291,6 +285,12 @@
       "text": "STABLE RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772041646239
+    },
+    {
+      "origin": "ALPHA_PROOF_OF_RESONANCE",
+      "text": "HEAL BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772041646672
     }
   ]
 }
