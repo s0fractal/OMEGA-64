@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH CONSUME STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026156778
-    },
-    {
-      "origin": "REVERSE",
       "text": "EVOLVE BEYOND WITNESS",
       "mood": "CREATIVE",
       "tick": 1772026157069
@@ -291,6 +285,12 @@
       "text": "WAIT STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772026161149
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHIELD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772026161733
     }
   ]
 }
