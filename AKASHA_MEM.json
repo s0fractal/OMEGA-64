@@ -202,12 +202,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024079512
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAVE BEYOND DREAM",
       "mood": "CREATIVE",
       "tick": 1772024079685
@@ -289,6 +283,12 @@
       "text": "RECON WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772024084222
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHELTER RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772024084399
     }
   ]
 }
