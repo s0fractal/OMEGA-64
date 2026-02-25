@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING GIVING FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772037823409
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772037823654
@@ -291,6 +285,12 @@
       "text": "STABLE BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772037826912
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHIELD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772037827116
     }
   ]
 }
