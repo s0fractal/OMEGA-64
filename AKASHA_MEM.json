@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT PURE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772030514742
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772030518445
@@ -291,6 +285,12 @@
       "text": "DRAIN BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772030527918
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHIELD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772030528636
     }
   ]
 }
