@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0AA0A0",
     "60606606",
     "0AAAA0A0",
     "66066A00",
@@ -199,15 +198,10 @@
     "ABBA0000",
     "06606600",
     "A6666000",
-    "60066006"
+    "60066006",
+    "00AA0A0A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SYNC SYNC HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772033257257
-    },
     {
       "origin": "REVERSE",
       "text": "HEAL HEAL UNIFY",
@@ -291,6 +285,12 @@
       "text": "SHOCK SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772033261244
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC STABLE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772033261415
     }
   ]
 }
