@@ -191,12 +191,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING GIVING HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772023756249
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHIELD REFLECT WATCH",
       "mood": "DEFENSIVE",
@@ -279,6 +273,12 @@
       "text": "IMMUNE SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772023761289
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772023761429
     }
   ]
 }
