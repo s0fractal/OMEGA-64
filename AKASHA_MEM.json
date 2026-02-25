@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772034606069
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772034606279
@@ -291,6 +285,12 @@
       "text": "SICKNESS SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772034609200
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WAIT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772034609404
     }
   ]
 }
