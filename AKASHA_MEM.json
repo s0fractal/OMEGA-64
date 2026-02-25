@@ -77,12 +77,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE HUNGER SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021056637
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GUARD IMMUNE SHIELD",
       "mood": "DEFENSIVE",
@@ -165,6 +159,12 @@
       "text": "SEIZE CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772021062864
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS GUARD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021063362
     }
   ]
 }
