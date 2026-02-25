@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY BLOOM OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772041822428
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS OSMOSIS COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FLOW BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772041827822
+    },
+    {
+      "origin": "STREAM",
+      "text": "WATCH IMMUNE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041828029
     }
   ]
 }
