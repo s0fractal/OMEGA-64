@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME FORGE FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772030109546
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772030109996
@@ -291,6 +285,12 @@
       "text": "WITNESS SPARK SPARK",
       "mood": "CREATIVE",
       "tick": 1772030124828
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030125492
     }
   ]
 }
