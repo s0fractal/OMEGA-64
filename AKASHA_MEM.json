@@ -70,12 +70,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SYNC HEAL BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772020894506
-    },
-    {
       "origin": "INTERFACE",
       "text": "CONSUME STRIKE STRIKE",
       "mood": "AGGRESSIVE",
@@ -158,6 +152,12 @@
       "text": "HUNGER STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020900758
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE AWAKEN DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772020901211
     }
   ]
 }
