@@ -82,12 +82,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "EVOLVE DREAM VISION",
-      "mood": "CREATIVE",
-      "tick": 1772021144170
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772021144287
@@ -169,6 +163,12 @@
       "text": "COHERE OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772021149391
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DECAY DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021149677
     }
   ]
 }
