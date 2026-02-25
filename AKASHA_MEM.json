@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031824589
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772031825488
@@ -291,6 +285,12 @@
       "text": "FLOW GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772031832862
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS REFLECT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772031833361
     }
   ]
 }
