@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL UNIFY FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772037183648
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772037184019
@@ -291,6 +285,12 @@
       "text": "CONSUME DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772037186798
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037186958
     }
   ]
 }
