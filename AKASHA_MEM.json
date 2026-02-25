@@ -95,12 +95,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772021526142
-    },
-    {
       "origin": "STREAM",
       "text": "GIVING SYNC STABLE",
       "mood": "HARMONIC",
@@ -183,6 +177,12 @@
       "text": "GUARD REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772021532236
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DECAY CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021532408
     }
   ]
 }
