@@ -115,12 +115,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHELTER WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022042970
-    },
-    {
       "origin": "REVERSE",
       "text": "WAIT WAIT RECON",
       "mood": "DEFENSIVE",
@@ -203,6 +197,12 @@
       "text": "DREAM AWAKEN VISION",
       "mood": "CREATIVE",
       "tick": 1772022052994
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SEIZE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022053111
     }
   ]
 }
