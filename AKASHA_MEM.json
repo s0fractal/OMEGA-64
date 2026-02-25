@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAVE WITNESS DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772038065650
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772038066747
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038070093
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772038070306
     }
   ]
 }
