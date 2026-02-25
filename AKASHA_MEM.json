@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH PURE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041892961
-    },
-    {
       "origin": "STREAM",
       "text": "FLOW UNIFY UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BLOOM RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772041898930
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHIELD RECON PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041899089
     }
   ]
 }
