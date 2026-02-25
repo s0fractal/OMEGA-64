@@ -1,7 +1,5 @@
 {
   "reservoir": [
-    "00B0C00D",
-    "AA00A0AA",
     "A000AA0A",
     "10000000",
     "A0AAAAAA",
@@ -199,98 +197,100 @@
     "AAA0A00A",
     "A06AA0A0",
     "06006006",
-    "A0A660A0"
+    "A0A660A0",
+    "06066666",
+    "A0AAA600"
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "RESONATE SYNC STABLE",
+      "origin": "REVERSE",
+      "text": "PURE IMMUNE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772042077573
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE DECAY SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042077831
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING GIVING COHERE",
       "mood": "HARMONIC",
-      "tick": 1772042067647
+      "tick": 1772042078818
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "COHERE HEAL RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772042079167
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE IMMUNE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772042080129
+    },
+    {
+      "origin": "STREAM",
+      "text": "GUARD WAIT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772042081254
     },
     {
       "origin": "WORKER",
-      "text": "BREACH SEIZE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042068073
+      "text": "STASIS SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042082119
+    },
+    {
+      "origin": "SUCC",
+      "text": "BLOOM COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772042082487
     },
     {
       "origin": "ARCHIVIST",
-      "text": "COHERE HEAL OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772042068869
+      "text": "IMMUNE GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042082997
     },
     {
       "origin": "ARCHIVIST",
-      "text": "RECON WATCH WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042070211
-    },
-    {
-      "origin": "REVERSE",
-      "text": "RESONATE OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042072343
-    },
-    {
-      "origin": "REVERSE",
-      "text": "RECON WATCH STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772042072672
+      "text": "CONSUME SEIZE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042083294
     },
     {
       "origin": "ARCHIVIST",
-      "text": "COHERE GIVING SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772042075052
-    },
-    {
-      "origin": "REVERSE",
-      "text": "GUARD PURE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042075917
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "RECON RECON PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042076678
-    },
-    {
-      "origin": "ALPHA_GUARDIAN",
-      "text": "UNIFY GIVING SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772042078937
-    },
-    {
-      "origin": "REVERSE",
-      "text": "HEAL FLOW FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772042080948
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "OSMOSIS RESONATE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772042081406
+      "text": "STRIFE SICKNESS HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042083565
     },
     {
       "origin": "ARCHIVIST",
-      "text": "SEIZE STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042082254
+      "text": "OSMOSIS HEAL HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772042084130
     },
     {
-      "origin": "INTERFACE",
-      "text": "STRIKE HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042082990
+      "origin": "PARADOX",
+      "text": "GUARD REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772042085074
     },
     {
-      "origin": "PURE_MATH",
-      "text": "DECAY SEIZE STRIKE",
+      "origin": "ARCHIVIST",
+      "text": "CONSUME STRIFE CONSUME",
       "mood": "AGGRESSIVE",
-      "tick": 1772042083988
+      "tick": 1772042085727
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE GUARD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042085984
     }
   ]
 }
