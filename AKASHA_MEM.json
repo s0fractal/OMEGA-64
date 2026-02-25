@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY HUNGER STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036198974
-    },
-    {
       "origin": "ALPHA_REVERSE",
       "text": "GIVING SYNC SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STASIS SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772036202484
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIFE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036202708
     }
   ]
 }
