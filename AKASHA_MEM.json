@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041138799
-    },
-    {
       "origin": "INTERFACE",
       "text": "PURE PURE STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "EVOLVE EVOLVE SPARK",
       "mood": "CREATIVE",
       "tick": 1772041142847
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE STABLE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041143189
     }
   ]
 }
