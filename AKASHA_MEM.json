@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041644853
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772041648738
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041648907
     }
   ]
 }
