@@ -146,12 +146,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772022513977
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022514146
@@ -233,6 +227,12 @@
       "text": "IMMUNE STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022516698
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE AWAKEN DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772022517039
     }
   ]
 }
