@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772037796459
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772037796694
@@ -291,6 +285,12 @@
       "text": "RESONATE GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772037799412
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037799667
     }
   ]
 }
