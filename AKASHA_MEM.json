@@ -19,12 +19,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SICKNESS DECAY SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772015303787
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIFE SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772015322238
@@ -106,6 +100,12 @@
       "text": "DECAY BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772015446114
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIFE STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772015453980
     }
   ]
 }
