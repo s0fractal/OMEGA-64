@@ -89,15 +89,10 @@
     "9D00A098",
     "AAAAA0AA",
     "AABB0CDD",
-    "00AAAAAA"
+    "00AAAAAA",
+    "B0000000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STABLE SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772021497898
-    },
     {
       "origin": "ARCHIVIST",
       "text": "BREACH SEIZE BREACH",
@@ -181,6 +176,12 @@
       "text": "DECAY HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021509204
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021510195
     }
   ]
 }
