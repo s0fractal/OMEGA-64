@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RECON SHIELD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041916237
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHELTER IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041917006
@@ -291,6 +285,12 @@
       "text": "RECON STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041923177
+    },
+    {
+      "origin": "STREAM",
+      "text": "FLOW OSMOSIS BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772041923446
     }
   ]
 }
