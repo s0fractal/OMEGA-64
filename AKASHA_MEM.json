@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHIELD SHELTER STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772040628019
-    },
-    {
       "origin": "CONSCIOUSNESS",
       "text": "BLOOM BLOOM RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GUARD REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772040631329
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040631511
     }
   ]
 }
