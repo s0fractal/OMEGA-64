@@ -1,10 +1,10 @@
 ---
 eigenvalue: '0x000AAAA0FFFF0A0D'
-energy: 50
-x: 719
-'y': 418
+energy: 45.4
+x: 710
+'y': 432
 resonance: 50
-thought: RESURRECTED
+thought: SEEK_ALPHA_PASSIVE
 logic: 000AAAA0
 signals: []
 bond_strengths:
@@ -71,8 +71,8 @@ ex:
   - '0x000AAAA0FFFF0A09'
   - '0x000AAAA0FFFF0A0B'
   - '0x000AAAA0FFFF0A0D'
-  - '0x000AAAA0FFFF0A0F'
-  - '0x000AAAA0FFFF0A09'
+  - '0x000AAAA000000A0B'
+  - '0x000AAAA000000A0D'
   - '0x000AAAA0FFFF0A0B'
 ---
 
