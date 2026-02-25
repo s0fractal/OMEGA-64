@@ -56,12 +56,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772020528419
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020528737
@@ -143,6 +137,12 @@
       "text": "SHELTER IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772020535386
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY DECAY SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020535576
     }
   ]
 }
