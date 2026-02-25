@@ -50,12 +50,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON IMMUNE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020289305
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE RESONATE FLOW",
       "mood": "HARMONIC",
@@ -138,6 +132,12 @@
       "text": "STASIS REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020299409
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020300898
     }
   ]
 }
