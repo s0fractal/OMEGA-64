@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041664540
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BLOOM BLOOM COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772041667620
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY SHOCK DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041667906
     }
   ]
 }
