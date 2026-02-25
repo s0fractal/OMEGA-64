@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040407067
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL UNIFY SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "PURE REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772040409558
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772040409795
     }
   ]
 }
