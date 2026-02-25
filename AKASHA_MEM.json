@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH STRIFE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040517731
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772040517894
@@ -291,6 +285,12 @@
       "text": "FLOW SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772040520140
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON WATCH GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040520399
     }
   ]
 }
