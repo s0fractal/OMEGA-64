@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN HUNGER STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033218811
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772033218988
@@ -291,6 +285,12 @@
       "text": "GIVING OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772033222251
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WAIT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772033222434
     }
   ]
 }
