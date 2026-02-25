@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS EVOLVE SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772025481231
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772025481362
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772025484281
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD RECON STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772025484632
     }
   ]
 }
