@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A0A00A0A",
     "AAA0A0A0",
     "06000660",
     "A6666606",
@@ -199,15 +198,10 @@
     "66666000",
     "A00AAAAA",
     "00606060",
-    "AAAA0AA0"
+    "AAAA0AA0",
+    "00000600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHIELD GUARD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772040421755
-    },
     {
       "origin": "ARCHIVIST",
       "text": "STRIFE DRAIN SICKNESS",
@@ -291,6 +285,12 @@
       "text": "SEIZE SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772040424297
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772040424586
     }
   ]
 }
