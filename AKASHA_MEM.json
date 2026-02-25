@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE SYNC COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041357419
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY UNIFY UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHIELD RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041362198
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM GIVING BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772041362332
     }
   ]
 }
