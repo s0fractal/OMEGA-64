@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WATCH GUARD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772040195363
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RECON SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772040195864
@@ -291,6 +285,12 @@
       "text": "OSMOSIS COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772040202030
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772040202216
     }
   ]
 }
