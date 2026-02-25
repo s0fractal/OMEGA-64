@@ -3,7 +3,7 @@ eigenvalue: '0xAAAAAAAABAC30619'
 vector: 02.04.00
 symbol: GET
 desc: State Retrieval (IO). Returns the current state as the result.
-energy: 22
+energy: 20
 ex:
   - '0xF6BE5DAFBAC30619'
   - '0xB500000EBAC30619'
@@ -33,14 +33,16 @@ ex:
   - '0xBBBB0000BAC30619'
   - '0x00000000BAC30619'
   - '0x00000000BAC30619'
+  - '0xAAAAAAAABAC30619'
 thought: WANDER_BONDING
-x: 798
-'y': 52
+x: 800
+'y': 53
 signals: []
 resonance: 0
 bond_strengths: {}
 ---
 
+<div align="center">
 <div align="center">
 <div align="center">
 <div align="center">
@@ -83,6 +85,7 @@ bond_strengths: {}
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">GET</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 </div>
 </div>
