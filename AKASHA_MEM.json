@@ -80,12 +80,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SYNC GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772021122480
-    },
-    {
       "origin": "REVERSE",
       "text": "WITNESS BEYOND DREAM",
       "mood": "CREATIVE",
@@ -168,6 +162,12 @@
       "text": "STASIS SHIELD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772021127527
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772021127707
     }
   ]
 }
