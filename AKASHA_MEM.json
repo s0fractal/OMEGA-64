@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772030858350
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772030859302
@@ -291,6 +285,12 @@
       "text": "UNIFY UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772030868961
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030869320
     }
   ]
 }
