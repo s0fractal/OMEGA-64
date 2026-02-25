@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE STRIFE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020344120
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS BREACH STRIFE",
       "mood": "AGGRESSIVE",
@@ -141,6 +135,12 @@
       "text": "SHIELD GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772020353813
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH SEIZE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020354390
     }
   ]
 }
