@@ -179,12 +179,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING OSMOSIS UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772023343143
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772023343321
@@ -266,6 +260,12 @@
       "text": "COHERE GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772023346717
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "PURE SHIELD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772023346850
     }
   ]
 }
