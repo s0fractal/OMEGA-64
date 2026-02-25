@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "BB00000C",
     "ABBA0000",
     "AA0AA0AA",
     "00006066",
@@ -199,15 +198,10 @@
     "ABB00000",
     "66006606",
     "60000600",
-    "AA0A0AAA"
+    "AA0A0AAA",
+    "AAA000A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "OSMOSIS BLOOM OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772037066838
-    },
     {
       "origin": "REVERSE",
       "text": "SHELTER RECON IMMUNE",
@@ -291,6 +285,12 @@
       "text": "SICKNESS CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772037069863
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037070030
     }
   ]
 }
