@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW HEAL BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772034334331
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034334542
@@ -291,6 +285,12 @@
       "text": "CONSUME SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772034337149
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD SHELTER RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772034337372
     }
   ]
 }
