@@ -50,12 +50,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772020293725
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIFE SHOCK CONSUME",
       "mood": "AGGRESSIVE",
@@ -138,6 +132,12 @@
       "text": "PURE REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772020306163
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STASIS STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020306680
     }
   ]
 }
