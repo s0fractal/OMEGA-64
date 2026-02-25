@@ -11,12 +11,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DRAIN SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772010916074
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -99,6 +93,12 @@
       "text": "STASIS WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772012806280
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHELTER PURE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772012839191
     }
   ]
 }
