@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "FLOW RESONATE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772020619018
-    },
-    {
       "origin": "REVERSE",
       "text": "IMMUNE SHIELD SHIELD",
       "mood": "DEFENSIVE",
@@ -150,6 +144,12 @@
       "text": "DRAIN STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020624524
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIKE SICKNESS DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020624710
     }
   ]
 }
