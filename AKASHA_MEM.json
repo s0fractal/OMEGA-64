@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772035155537
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772035155773
@@ -291,6 +285,12 @@
       "text": "STRIFE SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772035158478
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING STABLE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772035158645
     }
   ]
 }
