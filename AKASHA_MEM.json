@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030750562
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING BLOOM BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772030760926
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030767478
     }
   ]
 }
