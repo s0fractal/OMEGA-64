@@ -125,12 +125,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS SICKNESS DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022250375
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME BREACH HUNGER",
       "mood": "AGGRESSIVE",
@@ -213,6 +207,12 @@
       "text": "STASIS WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022254844
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SICKNESS STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022255094
     }
   ]
 }
