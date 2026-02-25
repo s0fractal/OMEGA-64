@@ -159,12 +159,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE GIVING FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772022779311
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772022779854
@@ -246,6 +240,12 @@
       "text": "WATCH PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022786866
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD PURE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772022787150
     }
   ]
 }
