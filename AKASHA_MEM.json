@@ -63,12 +63,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WATCH SHELTER REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020701603
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIKE DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020702673
@@ -150,6 +144,12 @@
       "text": "RECON RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020709823
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE AWAKEN WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772020710288
     }
   ]
 }
