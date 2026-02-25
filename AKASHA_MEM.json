@@ -46,12 +46,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HEAL GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772020107840
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK STRIKE STRIKE",
       "mood": "AGGRESSIVE",
@@ -134,6 +128,12 @@
       "text": "STASIS STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772020117505
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT PURE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020118228
     }
   ]
 }
