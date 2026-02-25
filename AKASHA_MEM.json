@@ -81,12 +81,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK SEIZE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021104841
-    },
-    {
-      "origin": "REVERSE",
       "text": "WITNESS WAVE DREAM",
       "mood": "CREATIVE",
       "tick": 1772021105040
@@ -168,6 +162,12 @@
       "text": "SHIELD SHIELD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772021109759
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT IMMUNE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021110665
     }
   ]
 }
