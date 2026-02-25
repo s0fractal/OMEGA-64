@@ -144,12 +144,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHIELD GUARD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022490284
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GUARD PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772022490745
@@ -231,6 +225,12 @@
       "text": "EVOLVE FORGE BECOME",
       "mood": "CREATIVE",
       "tick": 1772022494352
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD SHIELD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022494532
     }
   ]
 }
