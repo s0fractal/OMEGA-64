@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037150613
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772037151168
@@ -291,6 +285,12 @@
       "text": "SHELTER WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772037154905
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772037155202
     }
   ]
 }
