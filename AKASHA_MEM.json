@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035099487
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772035099675
@@ -291,6 +285,12 @@
       "text": "DRAIN BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772035102317
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC COHERE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772035102485
     }
   ]
 }
