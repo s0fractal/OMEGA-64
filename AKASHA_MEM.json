@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SEIZE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036167666
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772036167928
@@ -291,6 +285,12 @@
       "text": "GUARD RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772036173558
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW STABLE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772036173766
     }
   ]
 }
