@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE RECON WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041379044
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041379223
@@ -291,6 +285,12 @@
       "text": "STRIFE HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772041381800
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041381931
     }
   ]
 }
