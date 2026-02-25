@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "COHERE OSMOSIS BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772040446240
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS HEAL HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WATCH SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772040451223
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE RESONATE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772040451512
     }
   ]
 }
