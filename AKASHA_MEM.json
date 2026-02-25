@@ -87,15 +87,10 @@
     "ABA00000",
     "06666660",
     "9D00A098",
-    "AAAAA0AA"
+    "AAAAA0AA",
+    "AABB0CDD"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "CONSUME SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021332108
-    },
     {
       "origin": "REVERSE",
       "text": "HEAL UNIFY STABLE",
@@ -179,6 +174,12 @@
       "text": "SHELTER GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772021373598
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE CONSUME HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021374758
     }
   ]
 }
