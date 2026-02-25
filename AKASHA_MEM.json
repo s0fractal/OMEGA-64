@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SEIZE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038745203
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772038745432
@@ -291,6 +285,12 @@
       "text": "SEIZE HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772038748809
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH GUARD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772038748997
     }
   ]
 }
