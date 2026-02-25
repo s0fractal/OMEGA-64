@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772023137620
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772023137795
@@ -259,6 +253,12 @@
       "text": "DECAY DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023141090
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHIELD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023141393
     }
   ]
 }
