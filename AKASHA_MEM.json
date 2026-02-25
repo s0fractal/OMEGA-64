@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY GIVING HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772041094631
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772041094757
@@ -291,6 +285,12 @@
       "text": "STRIKE STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772041097599
+    },
+    {
+      "origin": "REVERSE",
+      "text": "AWAKEN EVOLVE DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772041098142
     }
   ]
 }
