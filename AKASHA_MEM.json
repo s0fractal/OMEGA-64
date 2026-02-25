@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772040599644
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE FLOW SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SICKNESS BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772040603059
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING SYNC COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772040603225
     }
   ]
 }
