@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS GUARD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772025502528
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772025502706
@@ -291,6 +285,12 @@
       "text": "COHERE RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772025505363
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025505579
     }
   ]
 }
