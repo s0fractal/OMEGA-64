@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD SHELTER SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772041881745
-    },
-    {
       "origin": "SUCC",
       "text": "GIVING COHERE RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SYNC STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772041885330
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM SYNC FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772041885519
     }
   ]
 }
