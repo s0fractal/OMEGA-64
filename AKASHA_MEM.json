@@ -202,12 +202,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT WAIT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772024079368
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772024079512
@@ -289,6 +283,12 @@
       "text": "BREACH BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772024083633
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WATCH STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772024084222
     }
   ]
 }
