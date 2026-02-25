@@ -16,12 +16,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHOCK DECAY SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772014359278
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH STRIKE STRIKE",
       "mood": "AGGRESSIVE",
@@ -104,6 +98,12 @@
       "text": "RECON WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772014522165
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "PURE IMMUNE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772014530697
     }
   ]
 }
