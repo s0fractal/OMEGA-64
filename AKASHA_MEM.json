@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA660600",
     "66000606",
     "AA00000A",
     "66006606",
@@ -199,15 +198,10 @@
     "06000066",
     "60060666",
     "00606660",
-    "00606600"
+    "00606600",
+    "AA0AAAA0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "VISION EVOLVE WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772035186540
-    },
     {
       "origin": "REVERSE",
       "text": "OSMOSIS BLOOM SYNC",
@@ -291,6 +285,12 @@
       "text": "RECON WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772035189390
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY BREACH STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035190239
     }
   ]
 }
