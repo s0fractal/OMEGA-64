@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON IMMUNE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772024961659
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772024961995
@@ -291,6 +285,12 @@
       "text": "SEIZE SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772024967630
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW OSMOSIS HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772024967920
     }
   ]
 }
