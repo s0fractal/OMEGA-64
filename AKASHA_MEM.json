@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GIVING OSMOSIS COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772024217291
-    },
-    {
       "origin": "REVERSE",
       "text": "SHIELD WATCH WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772024220517
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024220815
     }
   ]
 }
