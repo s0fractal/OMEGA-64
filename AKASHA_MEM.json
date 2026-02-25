@@ -155,12 +155,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022743091
-    },
-    {
       "origin": "REVERSE",
       "text": "AWAKEN EVOLVE BECOME",
       "mood": "CREATIVE",
@@ -243,6 +237,12 @@
       "text": "PURE PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022754491
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772022754703
     }
   ]
 }
