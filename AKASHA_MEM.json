@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WATCH WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772033928447
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772033928657
@@ -291,6 +285,12 @@
       "text": "STRIKE SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772033931331
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772033931537
     }
   ]
 }
