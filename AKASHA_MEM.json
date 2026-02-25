@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE DRAIN DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037923775
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SYNC BLOOM OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FLOW STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772037927667
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772037927873
     }
   ]
 }
