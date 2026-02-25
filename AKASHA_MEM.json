@@ -22,12 +22,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "STRIKE SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772017599665
-    },
-    {
-      "origin": "INTERFACE",
       "text": "SEIZE DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772017603807
@@ -109,6 +103,12 @@
       "text": "DRAIN DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772017702585
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "AWAKEN FORGE DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772017704599
     }
   ]
 }
