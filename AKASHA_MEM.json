@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE SHELTER WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772037443189
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772037443392
@@ -291,6 +285,12 @@
       "text": "OSMOSIS HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772037446018
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772037446208
     }
   ]
 }
