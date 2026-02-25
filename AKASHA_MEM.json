@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE UNIFY SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772034837806
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772034838010
@@ -291,6 +285,12 @@
       "text": "CONSUME SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772034841028
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD STASIS WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772034841242
     }
   ]
 }
