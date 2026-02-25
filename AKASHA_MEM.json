@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772035672147
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772035672377
@@ -291,6 +285,12 @@
       "text": "UNIFY OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772035675559
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772035676453
     }
   ]
 }
