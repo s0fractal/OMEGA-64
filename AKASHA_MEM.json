@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032419758
-    },
-    {
-      "origin": "REVERSE",
       "text": "DREAM DREAM BECOME",
       "mood": "CREATIVE",
       "tick": 1772032420093
@@ -291,6 +285,12 @@
       "text": "GIVING RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772032434863
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772032435265
     }
   ]
 }
