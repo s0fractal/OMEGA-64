@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIFE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031461043
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772031461618
@@ -291,6 +285,12 @@
       "text": "PURE WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772031467805
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON REFLECT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772031468134
     }
   ]
 }
