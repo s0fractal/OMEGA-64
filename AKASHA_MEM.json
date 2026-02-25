@@ -196,12 +196,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "FLOW FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772023962916
-    },
-    {
       "origin": "REVERSE",
       "text": "GUARD SHIELD WATCH",
       "mood": "DEFENSIVE",
@@ -284,6 +278,12 @@
       "text": "COHERE BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772023967260
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772023967465
     }
   ]
 }
