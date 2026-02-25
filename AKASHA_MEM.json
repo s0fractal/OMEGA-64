@@ -94,12 +94,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIFE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021432671
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772021433454
@@ -181,6 +175,12 @@
       "text": "BREACH HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772021462782
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH PURE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772021468714
     }
   ]
 }
