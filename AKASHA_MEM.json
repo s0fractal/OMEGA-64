@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD GUARD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772037410313
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772037410576
@@ -291,6 +285,12 @@
       "text": "STRIFE SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772037413360
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772037413569
     }
   ]
 }
