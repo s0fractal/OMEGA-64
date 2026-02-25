@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772033997160
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SYNC FLOW BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STASIS WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772034000841
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE WITNESS FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772034001035
     }
   ]
 }
