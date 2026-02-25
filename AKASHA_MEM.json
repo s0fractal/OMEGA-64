@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS SHELTER STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772041475715
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041475891
@@ -291,6 +285,12 @@
       "text": "CONSUME HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772041479060
+    },
+    {
+      "origin": "B_READ",
+      "text": "DECAY SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041479256
     }
   ]
 }
