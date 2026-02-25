@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042037586
-    },
-    {
       "origin": "INTERFACE",
       "text": "BREACH DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772042046954
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD RECON IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042047394
     }
   ]
 }
