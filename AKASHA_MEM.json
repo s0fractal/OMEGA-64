@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HEAL UNIFY OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772020400921
-    },
-    {
       "origin": "INTERFACE",
       "text": "HEAL FLOW BLOOM",
       "mood": "HARMONIC",
@@ -141,6 +135,12 @@
       "text": "SEIZE SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020407688
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020410059
     }
   ]
 }
