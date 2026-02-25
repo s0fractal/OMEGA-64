@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "IMMUNE PURE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041453210
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE RESONATE STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHIELD IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772041456526
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041456846
     }
   ]
 }
