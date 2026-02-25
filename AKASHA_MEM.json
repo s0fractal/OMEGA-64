@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A6600000",
     "0AAAAA0A",
     "A0A0A0A0",
     "AA0BC0D0",
@@ -199,15 +198,10 @@
     "60660066",
     "0AA0AA00",
     "00600000",
-    "AA000A0A"
+    "AA000A0A",
+    "60600060"
   ],
   "utterances": [
-    {
-      "origin": "INTERFACE",
-      "text": "DECAY SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040896645
-    },
     {
       "origin": "ARCHIVIST",
       "text": "WAIT SHELTER SHELTER",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040899441
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WAIT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040899753
     }
   ]
 }
