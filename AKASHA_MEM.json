@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772025513832
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772025514029
@@ -291,6 +285,12 @@
       "text": "SHIELD SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772025517460
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025517705
     }
   ]
 }
