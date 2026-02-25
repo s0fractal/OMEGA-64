@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK SEIZE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041123417
-    },
-    {
       "origin": "INTERFACE",
       "text": "COHERE HEAL FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041127630
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041127787
     }
   ]
 }
