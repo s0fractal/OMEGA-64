@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE OSMOSIS FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772033968605
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD SHIELD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772033968824
@@ -291,6 +285,12 @@
       "text": "HUNGER SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772033971845
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772033972848
     }
   ]
 }
