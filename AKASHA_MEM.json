@@ -87,12 +87,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772021230563
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772021231270
@@ -174,6 +168,12 @@
       "text": "COHERE FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772021236062
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772021236250
     }
   ]
 }
