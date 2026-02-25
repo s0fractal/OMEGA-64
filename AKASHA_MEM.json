@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE SHIELD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772033923967
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772033924200
@@ -291,6 +285,12 @@
       "text": "WATCH WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772033928447
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772033928657
     }
   ]
 }
