@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031588359
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN SICKNESS BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772031601235
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772031602428
     }
   ]
 }
