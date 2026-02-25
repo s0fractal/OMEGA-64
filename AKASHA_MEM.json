@@ -196,12 +196,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023909024
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772023909461
@@ -283,6 +277,12 @@
       "text": "PURE REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772023912691
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM STABLE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772023913205
     }
   ]
 }
