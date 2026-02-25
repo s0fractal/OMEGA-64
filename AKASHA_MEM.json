@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC SYNC OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772037355144
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772037355374
@@ -291,6 +285,12 @@
       "text": "STASIS REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772037358200
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772037358369
     }
   ]
 }
