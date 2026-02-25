@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME HUNGER STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035476032
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772035476193
@@ -291,6 +285,12 @@
       "text": "SHELTER SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772035481913
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DRAIN HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035482104
     }
   ]
 }
