@@ -1,12 +1,12 @@
 {
-  "activeDecree": "IMMUNE_SHIELD",
-  "regent": "0x0660666000000006",
+  "activeDecree": "MUTATIVE_FEVER",
+  "regent": "0xAA0A0A0A00000002",
   "legitimacy": 1000,
-  "label": "IMMUNE SHIELD",
+  "label": "MUTATIVE FEVER",
   "mods": {
-    "decay": 0.3,
-    "speed": 0.7,
-    "mutation": 0.5,
-    "label": "IMMUNE SHIELD"
+    "decay": 1.5,
+    "speed": 1.3,
+    "mutation": 4,
+    "label": "MUTATIVE FEVER"
   }
 }
