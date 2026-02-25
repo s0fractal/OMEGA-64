@@ -110,12 +110,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SHOCK HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021879409
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772021879607
@@ -197,6 +191,12 @@
       "text": "WATCH RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772021885438
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT RECON STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772021885689
     }
   ]
 }
