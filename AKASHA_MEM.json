@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035221569
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS WAIT IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772035225808
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND SPARK AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772035225981
     }
   ]
 }
