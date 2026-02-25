@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SEIZE SEIZE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041549600
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WATCH SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772041549880
@@ -291,6 +285,12 @@
       "text": "SYNC BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772041554850
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772041555047
     }
   ]
 }
