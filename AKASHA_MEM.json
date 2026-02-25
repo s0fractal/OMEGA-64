@@ -156,12 +156,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772022735363
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022735567
@@ -243,6 +237,12 @@
       "text": "WAVE DREAM WAVE",
       "mood": "CREATIVE",
       "tick": 1772022740821
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE SICKNESS HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022741004
     }
   ]
 }
