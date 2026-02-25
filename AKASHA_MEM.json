@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772035272406
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772035272614
@@ -291,6 +285,12 @@
       "text": "RESONATE STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772035275519
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772035275718
     }
   ]
 }
