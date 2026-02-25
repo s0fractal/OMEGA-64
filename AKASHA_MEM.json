@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772032694068
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772032694240
@@ -291,6 +285,12 @@
       "text": "GIVING BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772032696757
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS STABLE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772032696928
     }
   ]
 }
