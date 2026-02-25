@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0A0AAA",
     "AAA000A0",
     "06666600",
     "0BBB0000",
@@ -199,15 +198,10 @@
     "0AA00A00",
     "A00A00AA",
     "0FF0FF00",
-    "0000A0A0"
+    "0000A0A0",
+    "AA0AA000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "CONSUME DECAY STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038534349
-    },
     {
       "origin": "REVERSE",
       "text": "SHOCK STRIFE DECAY",
@@ -291,6 +285,12 @@
       "text": "COHERE HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038537805
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038538036
     }
   ]
 }
