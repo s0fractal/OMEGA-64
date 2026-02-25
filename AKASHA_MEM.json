@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS HUNGER STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037599530
-    },
-    {
       "origin": "INTERFACE",
       "text": "COHERE BLOOM OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DECAY STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772037602668
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WAIT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772037602877
     }
   ]
 }
