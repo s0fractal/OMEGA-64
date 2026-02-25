@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER SICKNESS SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032808430
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772032808692
@@ -291,6 +285,12 @@
       "text": "RESONATE GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772032818565
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL BLOOM SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772032819096
     }
   ]
 }
