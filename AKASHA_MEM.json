@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT SHIELD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772026969834
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772026970251
@@ -291,6 +285,12 @@
       "text": "DECAY SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772026976287
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WATCH SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772026977386
     }
   ]
 }
