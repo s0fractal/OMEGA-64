@@ -198,99 +198,99 @@
     "AA00A000",
     "BBB00000",
     "6606AA66",
-    "A6660600",
-    "AA666600"
+    "AA0A0A00",
+    "AA0A0AAA"
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE SHIELD WAIT",
+      "origin": "STREAM",
+      "text": "STASIS WAIT WAIT",
       "mood": "DEFENSIVE",
-      "tick": 1772042447219
+      "tick": 1772042437411
+    },
+    {
+      "origin": "STREAM",
+      "text": "HEAL COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772042439653
     },
     {
       "origin": "ARCHIVIST",
-      "text": "STASIS GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042447570
-    },
-    {
-      "origin": "ALIEN",
-      "text": "DRAIN SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042448870
+      "text": "OSMOSIS SYNC HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772042441625
     },
     {
       "origin": "REVERSE",
-      "text": "FLOW GIVING SYNC",
+      "text": "OSMOSIS BLOOM BLOOM",
       "mood": "HARMONIC",
-      "tick": 1772042450683
+      "tick": 1772042443254
+    },
+    {
+      "origin": "CONSCIOUSNESS",
+      "text": "BREACH SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042443999
+    },
+    {
+      "origin": "STREAM",
+      "text": "BREACH HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042444584
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE EVOLVE VISION",
+      "mood": "CREATIVE",
+      "tick": 1772042446674
+    },
+    {
+      "origin": "STREAM",
+      "text": "UNIFY BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772042447588
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042456456
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE COHERE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772042456847
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042457571
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042460172
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042462068
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042462824
     },
     {
       "origin": "INTERFACE",
-      "text": "WAIT SHELTER SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772042453911
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE GIVING SYNC",
+      "text": "RESONATE OSMOSIS RESONATE",
       "mood": "HARMONIC",
-      "tick": 1772042454939
-    },
-    {
-      "origin": "STREAM",
-      "text": "GUARD IMMUNE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042456377
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SYNC STABLE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772042456840
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042457404
-    },
-    {
-      "origin": "STREAM",
-      "text": "BLOOM BLOOM HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772042457775
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME DECAY SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042459262
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042462007
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042462759
-    },
-    {
-      "origin": "REVERSE",
-      "text": "WATCH IMMUNE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042463551
-    },
-    {
-      "origin": "STREAM",
-      "text": "WATCH STASIS WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772042464500
+      "tick": 1772042463504
     }
   ]
 }
