@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037898239
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HEAL GIVING RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772037902229
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772037902447
     }
   ]
 }
