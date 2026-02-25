@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE SEIZE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772016229139
-    },
-    {
       "origin": "INTERFACE",
       "text": "REFLECT IMMUNE STASIS",
       "mood": "DEFENSIVE",
@@ -107,6 +101,12 @@
       "text": "STRIKE CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772016348086
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SEIZE HUNGER DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772016352957
     }
   ]
 }
