@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "UNIFY UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772039157599
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772039160440
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772039160665
     }
   ]
 }
