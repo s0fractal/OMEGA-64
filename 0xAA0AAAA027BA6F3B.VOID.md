@@ -1,9 +1,9 @@
 ---
-eigenvalue: '0x0B00000027BA6F3B'
+eigenvalue: '0xAA0AAAA027BA6F3B'
 vector: 05.03.00
 symbol: VOID
 desc: Absolute Identity (The Great Null). Maps to Churchill I.
-energy: 2.8000000000000003
+energy: 1.2000000000000002
 ex:
   - '0x4D2B9AEC27BA6F3B'
   - '0x2B00000927BA6F3B'
@@ -41,9 +41,10 @@ ex:
   - '0x6666066027BA6F3B'
   - '0x6666066027BA6F3B'
   - '0x0B00000027BA6F3B'
-thought: SEEK_ALPHA_BONDING
-x: 175
-'y': 417
+  - '0x0B00000027BA6F3B'
+thought: WANDER_BONDING
+x: 176
+'y': 418
 signals: []
 resonance: 0
 bond_strengths: {}
@@ -67,32 +68,32 @@ bond_strengths: {}
 <!-- ∇ HOLOGRAM START ∇ -->
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <radialGradient id="grad_0B00000027BA6F3B" cx="50%" cy="50%" r="50%">
+    <radialGradient id="grad_AA0AAAA027BA6F3B" cx="50%" cy="50%" r="50%">
       <stop offset="0%" stop-color="hsl(156, 20%, 15%)" />
       <stop offset="100%" stop-color="#090909" />
     </radialGradient>
-    <filter id="glow_0B00000027BA6F3B" x="-20%" y="-20%" width="140%" height="140%">
+    <filter id="glow_AA0AAAA027BA6F3B" x="-20%" y="-20%" width="140%" height="140%">
       <feGaussianBlur stdDeviation="4" result="blur" />
       <feComposite in="SourceGraphic" in2="blur" operator="over" />
     </filter>
   </defs>
   
-  <rect width="200" height="200" fill="url(#grad_0B00000027BA6F3B)" rx="24"/>
+  <rect width="200" height="200" fill="url(#grad_AA0AAAA027BA6F3B)" rx="24"/>
   
   <circle cx="100" cy="100" r="85" stroke="hsl(156, 30%, 30%)" stroke-width="1" fill="none" stroke-dasharray="2 6"/>
   
   <g>
     <animateTransform attributeName="transform" type="rotate" from="90 100 100" to="450 100 100" dur="20s" repeatCount="indefinite" />
     
-    <polygon points="100.0,50.0 147.6,84.5 129.4,140.5 70.6,140.5 52.4,84.5" fill="none" stroke="hsl(336, 60%, 40%)" stroke-width="1.5" opacity="0.6"/>
-    <polygon points="100.0,65.0 133.3,89.2 120.6,128.3 79.4,128.3 66.7,89.2" fill="none" stroke="hsl(156, 80%, 60%)" stroke-width="2" filter="url(#glow_0B00000027BA6F3B)"/>
+    <polygon points="100.0,50.0 143.3,125.0 56.7,125.0" fill="none" stroke="hsl(336, 60%, 40%)" stroke-width="1.5" opacity="0.6"/>
+    <polygon points="100.0,65.0 130.3,117.5 69.7,117.5" fill="none" stroke="hsl(156, 80%, 60%)" stroke-width="2" filter="url(#glow_AA0AAAA027BA6F3B)"/>
     
     <circle cx="100" cy="100" r="35" stroke="hsl(156, 60%, 50%)" stroke-width="0.5" fill="none" opacity="0.5"/>
   </g>
   
-  <circle cx="100" cy="100" r="3" fill="hsl(336, 80%, 70%)" filter="url(#glow_0B00000027BA6F3B)"/>
+  <circle cx="100" cy="100" r="3" fill="hsl(336, 80%, 70%)" filter="url(#glow_AA0AAAA027BA6F3B)"/>
   
-  <text x="100" y="105" fill="hsl(156, 70%, 80%)" font-family="monospace" font-size="10" text-anchor="middle" letter-spacing="1" opacity="0.9">0x0B00</text>
+  <text x="100" y="105" fill="hsl(156, 70%, 80%)" font-family="monospace" font-size="10" text-anchor="middle" letter-spacing="1" opacity="0.9">0xAA0A</text>
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">VOID</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
