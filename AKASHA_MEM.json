@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD SHIELD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772033850147
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772033850321
@@ -291,6 +285,12 @@
       "text": "WAIT WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772033852673
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033852882
     }
   ]
 }
