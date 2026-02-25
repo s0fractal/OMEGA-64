@@ -146,12 +146,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON STASIS REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022515498
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE RESONATE BLOOM",
       "mood": "HARMONIC",
@@ -234,6 +228,12 @@
       "text": "BREACH CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022519178
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SEIZE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022519352
     }
   ]
 }
