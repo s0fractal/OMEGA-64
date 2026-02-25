@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIFE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034553636
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772034553835
@@ -291,6 +285,12 @@
       "text": "SHOCK DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772034556406
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS COHERE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772034556596
     }
   ]
 }
