@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772020636210
-    },
-    {
       "origin": "INTERFACE",
       "text": "WAIT IMMUNE WATCH",
       "mood": "DEFENSIVE",
@@ -150,6 +144,12 @@
       "text": "SYNC RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772020647088
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020647768
     }
   ]
 }
