@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON SHELTER GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772039243895
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772039244108
@@ -291,6 +285,12 @@
       "text": "CONSUME BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772039246739
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD PURE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772039246909
     }
   ]
 }
