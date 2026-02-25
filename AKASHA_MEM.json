@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE SHOCK BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020388298
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT WATCH SHIELD",
       "mood": "DEFENSIVE",
@@ -141,6 +135,12 @@
       "text": "HEAL FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772020402273
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772020402825
     }
   ]
 }
