@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER STRIKE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026413297
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772026413504
@@ -291,6 +285,12 @@
       "text": "BEYOND WAVE VISION",
       "mood": "CREATIVE",
       "tick": 1772026416795
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772026417122
     }
   ]
 }
