@@ -65,12 +65,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020757793
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME BREACH DRAIN",
       "mood": "AGGRESSIVE",
@@ -153,6 +147,12 @@
       "text": "OSMOSIS COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772020764567
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772020765261
     }
   ]
 }
