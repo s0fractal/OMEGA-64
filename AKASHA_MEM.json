@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL OSMOSIS UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772032354144
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772032354505
@@ -291,6 +285,12 @@
       "text": "BLOOM RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772032370769
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH STASIS SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772032371174
     }
   ]
 }
