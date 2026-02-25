@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041359305
-    },
-    {
       "origin": "INTERFACE",
       "text": "HUNGER STRIFE DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041362962
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041363425
     }
   ]
 }
