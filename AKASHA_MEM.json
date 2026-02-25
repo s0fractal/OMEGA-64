@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772026725909
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772026726249
@@ -291,6 +285,12 @@
       "text": "UNIFY BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772026731698
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026731990
     }
   ]
 }
