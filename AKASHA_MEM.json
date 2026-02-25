@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "RESONATE HEAL HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772040576145
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY STRIKE SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040579216
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SEIZE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040579372
     }
   ]
 }
