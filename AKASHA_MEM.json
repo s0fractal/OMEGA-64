@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING RESONATE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040998504
-    },
-    {
       "origin": "STREAM",
       "text": "GUARD SHIELD REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "REFLECT STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041002006
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DRAIN HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041002531
     }
   ]
 }
