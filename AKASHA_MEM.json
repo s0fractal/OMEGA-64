@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040884482
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER GUARD STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DRAIN BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772040887659
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE HUNGER STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040887837
     }
   ]
 }
