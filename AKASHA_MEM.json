@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0000A0A0",
     "AA0AA000",
     "0AA0AA0A",
     "AABB0CD0",
@@ -199,15 +198,10 @@
     "06060060",
     "AA606666",
     "AA6660A6",
-    "0666A660"
+    "0666A660",
+    "60060600"
   ],
   "utterances": [
-    {
-      "origin": "INTERFACE",
-      "text": "SICKNESS BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040567499
-    },
     {
       "origin": "REVERSE",
       "text": "BLOOM COHERE FLOW",
@@ -291,6 +285,12 @@
       "text": "WAIT RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040569970
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WAIT REFLECT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040570084
     }
   ]
 }
