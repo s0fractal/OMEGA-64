@@ -90,12 +90,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021265936
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772021267318
@@ -177,6 +171,12 @@
       "text": "HEAL UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772021271399
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT RECON SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021271704
     }
   ]
 }
