@@ -50,12 +50,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RESONATE UNIFY SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772020248100
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WAIT WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020249123
@@ -137,6 +131,12 @@
       "text": "DECAY DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020258405
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DRAIN STRIKE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020258875
     }
   ]
 }
