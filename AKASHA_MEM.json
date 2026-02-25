@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033199904
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772033200103
@@ -291,6 +285,12 @@
       "text": "RECON GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772033202775
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT GUARD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772033203055
     }
   ]
 }
