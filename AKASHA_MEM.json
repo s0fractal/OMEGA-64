@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT RECON STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772040708627
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "UNIFY RESONATE BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "CONSUME DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772040713125
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772040713266
     }
   ]
 }
