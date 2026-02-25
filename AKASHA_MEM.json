@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME STRIFE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041525331
-    },
-    {
       "origin": "CAR",
       "text": "HEAL OSMOSIS GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BLOOM GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772041529138
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041529279
     }
   ]
 }
