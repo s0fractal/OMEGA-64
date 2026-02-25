@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE OSMOSIS FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772034045159
-    },
-    {
-      "origin": "REVERSE",
       "text": "EVOLVE SPARK DREAM",
       "mood": "CREATIVE",
       "tick": 1772034045356
@@ -291,6 +285,12 @@
       "text": "DRAIN SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772034048007
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772034048163
     }
   ]
 }
