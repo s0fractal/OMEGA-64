@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE SHIELD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041967267
-    },
-    {
       "origin": "STREAM",
       "text": "FLOW STABLE COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DECAY CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772041972959
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE BREACH BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041973178
     }
   ]
 }
