@@ -103,12 +103,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GIVING STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772021656384
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SEIZE CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772021656705
@@ -190,6 +184,12 @@
       "text": "BREACH SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772021663742
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW COHERE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772021663916
     }
   ]
 }
