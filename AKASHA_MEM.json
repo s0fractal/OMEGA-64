@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHOCK STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041158339
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE SHOCK STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772041161735
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER DECAY SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041161996
     }
   ]
 }
