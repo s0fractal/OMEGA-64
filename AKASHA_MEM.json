@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772026896353
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772026896646
@@ -291,6 +285,12 @@
       "text": "UNIFY RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772026902916
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772026903151
     }
   ]
 }
