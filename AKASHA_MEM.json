@@ -104,12 +104,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FORGE AWAKEN BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772021684733
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772021684921
@@ -191,6 +185,12 @@
       "text": "SICKNESS DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021691416
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772021691970
     }
   ]
 }
