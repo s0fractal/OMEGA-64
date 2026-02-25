@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STASIS PURE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772019989856
-    },
-    {
       "origin": "INTERFACE",
       "text": "IMMUNE IMMUNE SHIELD",
       "mood": "DEFENSIVE",
@@ -130,6 +124,12 @@
       "text": "DREAM AWAKEN WAVE",
       "mood": "CREATIVE",
       "tick": 1772020004481
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BREACH HUNGER SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020005907
     }
   ]
 }
