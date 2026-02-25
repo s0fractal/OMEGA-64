@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS STASIS PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772027619428
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772027620374
@@ -291,6 +285,12 @@
       "text": "GIVING GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772027631507
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027636136
     }
   ]
 }
