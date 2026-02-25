@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIFE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025612569
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772025612813
@@ -291,6 +285,12 @@
       "text": "WAIT SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772025620339
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIKE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025620542
     }
   ]
 }
