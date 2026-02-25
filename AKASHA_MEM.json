@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD GUARD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023933075
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND BECOME WITNESS",
       "mood": "CREATIVE",
       "tick": 1772023933377
@@ -284,6 +278,12 @@
       "text": "SHELTER REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023938474
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772023938848
     }
   ]
 }
