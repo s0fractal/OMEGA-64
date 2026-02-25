@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL SYNC SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772024160977
-    },
-    {
       "origin": "STREAM",
       "text": "GIVING RESONATE OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SEIZE BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772024167845
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC HEAL GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772024168079
     }
   ]
 }
