@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033707456
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772033707624
@@ -291,6 +285,12 @@
       "text": "DRAIN DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772033712251
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY STRIKE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033712544
     }
   ]
 }
