@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772024564806
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772024567344
@@ -291,6 +285,12 @@
       "text": "CONSUME CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772024573698
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SHOCK DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024573915
     }
   ]
 }
