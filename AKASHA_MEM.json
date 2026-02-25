@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "COHERE GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041846149
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE STRIKE SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772041850365
+    },
+    {
+      "origin": "STREAM",
+      "text": "GUARD SHIELD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041850729
     }
   ]
 }
