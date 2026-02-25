@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GUARD WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772040955446
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RECON STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040955591
@@ -291,6 +285,12 @@
       "text": "STRIKE SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040958226
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WAIT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040958402
     }
   ]
 }
