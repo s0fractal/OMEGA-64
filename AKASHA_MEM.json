@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "BLOOM UNIFY COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041056311
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER HUNGER BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772041059619
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS OSMOSIS HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041059778
     }
   ]
 }
