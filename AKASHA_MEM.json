@@ -108,12 +108,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS RECON PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021752339
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772021752785
@@ -195,6 +189,12 @@
       "text": "STASIS IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772021755840
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021756020
     }
   ]
 }
