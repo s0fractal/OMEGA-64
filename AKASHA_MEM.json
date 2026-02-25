@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN CONSUME STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036190647
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772036190851
@@ -291,6 +285,12 @@
       "text": "UNIFY SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772036194214
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772036194447
     }
   ]
 }
