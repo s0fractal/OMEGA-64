@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SICKNESS HUNGER HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040373367
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE HEAL UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772040379608
+    },
+    {
+      "origin": "STREAM",
+      "text": "DRAIN HUNGER HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040379803
     }
   ]
 }
