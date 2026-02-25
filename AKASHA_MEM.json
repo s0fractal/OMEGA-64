@@ -21,12 +21,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RECON WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772017513994
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN SHOCK DRAIN",
       "mood": "AGGRESSIVE",
@@ -109,6 +103,12 @@
       "text": "GUARD STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772017590886
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC STABLE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772017592920
     }
   ]
 }
