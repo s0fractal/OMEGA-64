@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STASIS WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772040429212
-    },
-    {
       "origin": "REVERSE",
       "text": "RECON STASIS IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HUNGER HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772040432541
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SICKNESS DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040432688
     }
   ]
 }
