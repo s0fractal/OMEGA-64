@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "SUCC",
-      "text": "GIVING COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772041881913
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL GIVING FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BLOOM SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772041885519
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH WATCH SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041885697
     }
   ]
 }
