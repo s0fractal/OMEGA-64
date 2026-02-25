@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772041944488
-    },
-    {
       "origin": "CAR",
       "text": "OSMOSIS COHERE RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RECON IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772041950029
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772041950437
     }
   ]
 }
