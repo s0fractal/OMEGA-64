@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035288893
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772035289086
@@ -291,6 +285,12 @@
       "text": "RESONATE HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772035293727
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD GUARD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772035293988
     }
   ]
 }
