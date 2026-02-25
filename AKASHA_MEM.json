@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME HUNGER STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032387003
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772032387558
@@ -291,6 +285,12 @@
       "text": "STABLE RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772032392839
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772032393346
     }
   ]
 }
