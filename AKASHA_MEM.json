@@ -109,12 +109,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY UNIFY OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772021827216
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772021827591
@@ -196,6 +190,12 @@
       "text": "BLOOM COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772021833395
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD SHELTER RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772021834556
     }
   ]
 }
