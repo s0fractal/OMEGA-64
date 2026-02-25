@@ -75,12 +75,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020962276
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772020962577
@@ -162,6 +156,12 @@
       "text": "STRIKE SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772020967859
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020968510
     }
   ]
 }
