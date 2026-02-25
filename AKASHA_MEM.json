@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772038200529
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772038200751
@@ -291,6 +285,12 @@
       "text": "SYNC HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772038203841
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772038204051
     }
   ]
 }
