@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE HEAL OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772041039928
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE UNIFY SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DECAY DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041045475
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE HUNGER STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041046033
     }
   ]
 }
