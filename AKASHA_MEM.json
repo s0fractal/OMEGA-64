@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AABB000D",
     "AA0A0A00",
     "000A0000",
     "AA666060",
@@ -199,15 +198,10 @@
     "66606060",
     "A0AAA0AA",
     "BBB00000",
-    "AA0A00AA"
+    "AA0A00AA",
+    "60606006"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "HEAL UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772035233338
-    },
     {
       "origin": "REVERSE",
       "text": "RESONATE HEAL GIVING",
@@ -291,6 +285,12 @@
       "text": "GUARD WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772035236487
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE GUARD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772035236656
     }
   ]
 }
