@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING STABLE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772030634154
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772030634488
@@ -291,6 +285,12 @@
       "text": "DRAIN SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772030646915
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS REFLECT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772030647761
     }
   ]
 }
