@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE HEAL UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772019552536
-    },
-    {
       "origin": "STREAM",
       "text": "UNIFY COHERE GIVING",
       "mood": "HARMONIC",
@@ -111,6 +105,12 @@
       "text": "COHERE HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772019562857
+    },
+    {
+      "origin": "STREAM",
+      "text": "HEAL COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772019563049
     }
   ]
 }
