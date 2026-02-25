@@ -180,12 +180,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS BREACH HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023418197
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WITNESS WAVE VISION",
       "mood": "CREATIVE",
@@ -268,6 +262,12 @@
       "text": "WAIT REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023422105
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SHOCK STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023422291
     }
   ]
 }
