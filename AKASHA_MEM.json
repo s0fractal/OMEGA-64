@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "WORKER",
-      "text": "BREACH CONSUME SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041368488
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS DRAIN STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772041372056
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DRAIN STRIKE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041372332
     }
   ]
 }
