@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0AA000",
     "AABB000D",
     "AA0A0A00",
     "000A0000",
@@ -199,15 +198,10 @@
     "66066006",
     "66606060",
     "A0AAA0AA",
-    "BBB00000"
+    "BBB00000",
+    "AA0A00AA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "PURE RECON GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772035232312
-    },
     {
       "origin": "REVERSE",
       "text": "UNIFY OSMOSIS UNIFY",
@@ -291,6 +285,12 @@
       "text": "REFLECT GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772035235326
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035235551
     }
   ]
 }
