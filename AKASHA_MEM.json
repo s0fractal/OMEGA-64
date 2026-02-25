@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032162788
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772032163558
@@ -291,6 +285,12 @@
       "text": "COHERE RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772032171591
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772032172220
     }
   ]
 }
