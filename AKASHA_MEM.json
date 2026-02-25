@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772039953747
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772039954137
@@ -291,6 +285,12 @@
       "text": "SHOCK HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772039961896
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON STASIS RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772039962352
     }
   ]
 }
