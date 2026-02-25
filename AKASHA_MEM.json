@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE HEAL GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772034596533
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772034596690
@@ -291,6 +285,12 @@
       "text": "BREACH HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772034599256
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK STRIKE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034599421
     }
   ]
 }
