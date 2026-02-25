@@ -80,12 +80,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS STABLE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772021119056
-    },
-    {
       "origin": "REVERSE",
       "text": "RECON PURE SHELTER",
       "mood": "DEFENSIVE",
@@ -168,6 +162,12 @@
       "text": "SEIZE SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772021125523
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772021125696
     }
   ]
 }
