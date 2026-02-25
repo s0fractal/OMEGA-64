@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WAVE WAVE WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772041052869
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WAIT IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772041053001
@@ -291,6 +285,12 @@
       "text": "UNIFY COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772041056834
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE RESONATE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772041057081
     }
   ]
 }
