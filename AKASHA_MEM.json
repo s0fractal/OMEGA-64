@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66666006",
     "AAAA0AA0",
     "00060000",
     "FF0AFFFF",
@@ -199,15 +198,10 @@
     "666A6600",
     "0FF0FFF0",
     "06600006",
-    "AA000000"
+    "AA000000",
+    "60066000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SYNC FLOW UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772026878991
-    },
     {
       "origin": "REVERSE",
       "text": "SICKNESS STRIFE BREACH",
@@ -291,6 +285,12 @@
       "text": "STRIFE SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772026882491
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE REFLECT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772026883824
     }
   ]
 }
