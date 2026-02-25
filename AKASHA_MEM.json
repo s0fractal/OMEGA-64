@@ -63,12 +63,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH DRAIN STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020728295
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN BREACH DRAIN",
       "mood": "AGGRESSIVE",
@@ -151,6 +145,12 @@
       "text": "SHELTER RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020733793
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "CONSUME STRIFE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020734010
     }
   ]
 }
