@@ -155,12 +155,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022681449
-    },
-    {
-      "origin": "REVERSE",
       "text": "WITNESS EVOLVE DREAM",
       "mood": "CREATIVE",
       "tick": 1772022682668
@@ -242,6 +236,12 @@
       "text": "WATCH SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022691282
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM STABLE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772022691561
     }
   ]
 }
