@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN CONSUME STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035167078
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772035167312
@@ -291,6 +285,12 @@
       "text": "SHELTER WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772035169872
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772035170079
     }
   ]
 }
