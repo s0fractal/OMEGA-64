@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772035624626
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772035624856
@@ -291,6 +285,12 @@
       "text": "UNIFY COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772035627607
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772035627814
     }
   ]
 }
