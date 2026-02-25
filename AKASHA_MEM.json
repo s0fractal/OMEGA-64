@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772025248265
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772025248527
@@ -291,6 +285,12 @@
       "text": "PURE RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772025254325
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION VISION VISION",
+      "mood": "CREATIVE",
+      "tick": 1772025254518
     }
   ]
 }
