@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE SHIELD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772024351730
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772024351993
@@ -291,6 +285,12 @@
       "text": "RECON REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772024354952
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE FORGE BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772024355148
     }
   ]
 }
