@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE RECON STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772038499057
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772038499268
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772038502390
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION WITNESS WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772038502569
     }
   ]
 }
