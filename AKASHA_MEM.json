@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY CONSUME STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026753550
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772026754025
@@ -291,6 +285,12 @@
       "text": "RESONATE COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772026758661
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIKE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026758869
     }
   ]
 }
