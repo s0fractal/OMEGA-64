@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS COHERE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772019939552
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE DRAIN HUNGER",
       "mood": "AGGRESSIVE",
@@ -130,6 +124,12 @@
       "text": "HUNGER BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772019949119
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS WATCH WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772019949296
     }
   ]
 }
