@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT WATCH WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772025525325
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY SHOCK DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WATCH SHIELD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772025528583
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME BEYOND VISION",
+      "mood": "CREATIVE",
+      "tick": 1772025528786
     }
   ]
 }
