@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "SUCC",
-      "text": "OSMOSIS STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041020861
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME BREACH STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772041024624
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772041024760
     }
   ]
 }
