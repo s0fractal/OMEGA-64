@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HEAL GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040561018
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BECOME EVOLVE WITNESS",
       "mood": "CREATIVE",
       "tick": 1772040561138
@@ -291,6 +285,12 @@
       "text": "BEYOND WITNESS DREAM",
       "mood": "CREATIVE",
       "tick": 1772040563715
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE DECAY SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040563888
     }
   ]
 }
