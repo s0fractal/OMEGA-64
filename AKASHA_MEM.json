@@ -39,12 +39,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH DRAIN DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019812293
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIFE STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772019812726
@@ -126,6 +120,12 @@
       "text": "COHERE COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772019821956
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772019822714
     }
   ]
 }
