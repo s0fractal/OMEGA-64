@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SHOCK DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031222995
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772031223365
@@ -291,6 +285,12 @@
       "text": "DRAIN SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772031232661
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD IMMUNE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772031233030
     }
   ]
 }
