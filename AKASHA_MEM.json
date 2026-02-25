@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PRED",
-      "text": "WAIT GUARD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041933345
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK SEIZE SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772041940622
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WATCH SHIELD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041940796
     }
   ]
 }
