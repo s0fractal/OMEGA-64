@@ -144,12 +144,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772022488765
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAVE WAVE WITNESS",
       "mood": "CREATIVE",
       "tick": 1772022488972
@@ -231,6 +225,12 @@
       "text": "DECAY DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022492673
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC GIVING BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772022493146
     }
   ]
 }
