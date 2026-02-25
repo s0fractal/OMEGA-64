@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0A0A0A",
     "9018A098",
     "ABBA0000",
     "66600660",
@@ -199,15 +198,10 @@
     "B0BB0000",
     "00B00000",
     "AAAAA0AA",
-    "60006000"
+    "60006000",
+    "000FF00F"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "REFLECT SHELTER IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772032089914
-    },
     {
       "origin": "REVERSE",
       "text": "COHERE HEAL GIVING",
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772032098463
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING SYNC FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772032098985
     }
   ]
 }
