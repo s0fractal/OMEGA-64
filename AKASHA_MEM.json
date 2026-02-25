@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAAA0000",
     "0A000A00",
     "AA0000A0",
     "06006006",
@@ -199,15 +198,10 @@
     "06060006",
     "0AA0A000",
     "66000660",
-    "66666066"
+    "66666066",
+    "06060000"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER WATCH WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040459262
-    },
     {
       "origin": "REVERSE",
       "text": "BREACH HUNGER CONSUME",
@@ -291,6 +285,12 @@
       "text": "IMMUNE RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772040461948
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY GIVING UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772040462120
     }
   ]
 }
