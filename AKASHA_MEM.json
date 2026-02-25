@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772033752419
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772033752566
@@ -291,6 +285,12 @@
       "text": "HEAL HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772033755082
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033755365
     }
   ]
 }
