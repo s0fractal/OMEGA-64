@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD WATCH REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772038428290
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772038428482
@@ -291,6 +285,12 @@
       "text": "DECAY DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772038431076
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER BREACH DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038431281
     }
   ]
 }
