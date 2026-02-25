@@ -194,15 +194,10 @@
     "0F0AAAAA",
     "AA0A0AAA",
     "66066666",
-    "AA0BCCDD"
+    "AA0BCCDD",
+    "66666066"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GIVING STABLE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772024033128
-    },
     {
       "origin": "REVERSE",
       "text": "STASIS SHELTER STASIS",
@@ -286,6 +281,12 @@
       "text": "SICKNESS BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772024036605
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WATCH IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772024036833
     }
   ]
 }
