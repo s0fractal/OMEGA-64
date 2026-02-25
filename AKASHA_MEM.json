@@ -27,12 +27,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STASIS REFLECT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772019605097
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "CONSUME DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772019605554
@@ -114,6 +108,12 @@
       "text": "SHIELD PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772019613674
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE HUNGER SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019614905
     }
   ]
 }
