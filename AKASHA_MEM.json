@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041677539
-    },
-    {
       "origin": "INTERFACE",
       "text": "COHERE HEAL STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772041680420
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE GIVING COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041680718
     }
   ]
 }
