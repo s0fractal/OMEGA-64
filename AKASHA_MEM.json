@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772038055177
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772038055415
@@ -291,6 +285,12 @@
       "text": "WAIT WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772038059974
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHIELD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772038060187
     }
   ]
 }
