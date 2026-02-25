@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAAAAA0A",
     "0BBB0000",
     "BB000FF0",
     "A0A0A0A0",
@@ -199,15 +198,10 @@
     "A6660000",
     "66006060",
     "60006600",
-    "66000066"
+    "66000066",
+    "66600006"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BREACH STRIFE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036728074
-    },
     {
       "origin": "REVERSE",
       "text": "FLOW OSMOSIS STABLE",
@@ -291,6 +285,12 @@
       "text": "DRAIN STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772036730757
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT REFLECT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772036730951
     }
   ]
 }
