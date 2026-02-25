@@ -111,12 +111,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME SEIZE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021941689
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH SHELTER WAIT",
       "mood": "DEFENSIVE",
@@ -199,6 +193,12 @@
       "text": "HEAL UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772021947166
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021947445
     }
   ]
 }
