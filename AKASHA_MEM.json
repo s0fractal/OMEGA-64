@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772039015511
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772039018095
@@ -291,6 +285,12 @@
       "text": "STABLE COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772039021149
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039021431
     }
   ]
 }
