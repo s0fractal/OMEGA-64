@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RESONATE GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772019640234
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER BREACH STRIKE",
       "mood": "AGGRESSIVE",
@@ -114,6 +108,12 @@
       "text": "SYNC RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772019652054
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE BLOOM FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772019652266
     }
   ]
 }
