@@ -70,12 +70,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772020883662
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -158,6 +152,12 @@
       "text": "WATCH WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772020889513
+    },
+    {
+      "origin": "STREAM",
+      "text": "OSMOSIS SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772020891206
     }
   ]
 }
