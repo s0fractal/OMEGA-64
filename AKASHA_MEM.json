@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE RECON WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772041247873
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER SHIELD WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772041253922
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041254790
     }
   ]
 }
