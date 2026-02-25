@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SEIZE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027358256
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772027358884
@@ -291,6 +285,12 @@
       "text": "FLOW OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772027366434
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING BLOOM BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772027366821
     }
   ]
 }
