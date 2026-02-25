@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STABLE COHERE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772039021149
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK CONSUME STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "DRAIN DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772039024605
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD RECON GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772039024835
     }
   ]
 }
