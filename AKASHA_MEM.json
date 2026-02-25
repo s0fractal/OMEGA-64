@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH STRIFE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041619047
-    },
-    {
       "origin": "STREAM",
       "text": "FLOW BLOOM RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041625753
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD REFLECT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041626067
     }
   ]
 }
