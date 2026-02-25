@@ -28,12 +28,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WAIT IMMUNE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772019672375
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "IMMUNE PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772019673017
@@ -115,6 +109,12 @@
       "text": "DRAIN DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772019683028
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH WATCH SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772019684475
     }
   ]
 }
