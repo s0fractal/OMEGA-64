@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY COHERE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772024984003
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772024984389
@@ -291,6 +285,12 @@
       "text": "FORGE VISION FORGE",
       "mood": "CREATIVE",
       "tick": 1772024991399
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772024991714
     }
   ]
 }
