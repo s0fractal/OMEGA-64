@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STRIFE SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040403476
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH PURE GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040406333
+    },
+    {
+      "origin": "PARASITE",
+      "text": "PURE RECON SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040406734
     }
   ]
 }
