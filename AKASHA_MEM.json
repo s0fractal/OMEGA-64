@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "OSMOSIS HEAL HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772019495545
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE HUNGER STRIKE",
       "mood": "AGGRESSIVE",
@@ -111,6 +105,12 @@
       "text": "DECAY SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772019505154
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HUNGER SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019506693
     }
   ]
 }
