@@ -15,12 +15,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "FLOW COHERE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772013253903
-    },
-    {
       "origin": "INTERFACE",
       "text": "GUARD STASIS PURE",
       "mood": "DEFENSIVE",
@@ -103,6 +97,12 @@
       "text": "STRIFE DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772014196133
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SICKNESS DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772014199370
     }
   ]
 }
