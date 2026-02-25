@@ -94,12 +94,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL OSMOSIS UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772021391010
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772021392223
@@ -181,6 +175,12 @@
       "text": "CONSUME STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772021432671
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE STASIS WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772021433454
     }
   ]
 }
