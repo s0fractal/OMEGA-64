@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH HUNGER SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035899404
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772035899621
@@ -291,6 +285,12 @@
       "text": "SHIELD PURE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772035904416
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW OSMOSIS HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772035904676
     }
   ]
 }
