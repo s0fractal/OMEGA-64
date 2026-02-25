@@ -184,12 +184,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772023596564
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772023596731
@@ -271,6 +265,12 @@
       "text": "RECON IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023601017
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023601211
     }
   ]
 }
