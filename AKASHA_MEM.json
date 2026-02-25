@@ -107,12 +107,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "FLOW FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772021781131
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER DECAY STRIFE",
       "mood": "AGGRESSIVE",
@@ -195,6 +189,12 @@
       "text": "HEAL GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772021788552
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHELTER REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772021788806
     }
   ]
 }
