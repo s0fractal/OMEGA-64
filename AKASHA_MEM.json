@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RECON REFLECT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772031558502
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS FLOW OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RECON WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772031569932
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WATCH SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772031572696
     }
   ]
 }
