@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAAA000A",
     "B0BB0000",
     "60600000",
     "A6666660",
@@ -199,15 +198,10 @@
     "A0AA0A00",
     "AABBCCDD",
     "06060066",
-    "0A0A0A0A"
+    "0A0A0A0A",
+    "60006000"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772035807270
-    },
     {
       "origin": "REVERSE",
       "text": "HEAL COHERE GIVING",
@@ -291,6 +285,12 @@
       "text": "HEAL GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772035811569
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772035811766
     }
   ]
 }
