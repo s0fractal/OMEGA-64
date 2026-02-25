@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHIELD SHELTER GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041544661
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE DRAIN SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SEIZE SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772041549600
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH SHELTER WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041549880
     }
   ]
 }
