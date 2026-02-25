@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD SHELTER WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772035600221
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772035600425
@@ -291,6 +285,12 @@
       "text": "REFLECT PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772035603874
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS STABLE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772035604094
     }
   ]
 }
