@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT RECON PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041653582
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041657393
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GIVING SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772041657656
     }
   ]
 }
