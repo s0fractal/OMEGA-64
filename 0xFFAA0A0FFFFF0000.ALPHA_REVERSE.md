@@ -1,11 +1,11 @@
 ---
 eigenvalue: '0xFFAA0A0FFFFF0000'
-energy: 123
+energy: 50
 x: 701
 'y': 357
 resonance: 1000
-thought: ORBIT_MATING
-logic: FFAA0A0A
+thought: RESURRECTED
+logic: FFAA0A0F
 ex:
   - '0xFFFFFFFF00000000'
   - '0xFFFFFFFF00000002'
