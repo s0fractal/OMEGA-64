@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772035852111
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772035852484
@@ -291,6 +285,12 @@
       "text": "BREACH BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772035856534
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035856765
     }
   ]
 }
