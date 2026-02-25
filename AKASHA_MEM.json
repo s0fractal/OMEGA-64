@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE WAIT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772024889163
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772024889718
@@ -291,6 +285,12 @@
       "text": "BREACH DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772024893495
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE EVOLVE SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772024893703
     }
   ]
 }
