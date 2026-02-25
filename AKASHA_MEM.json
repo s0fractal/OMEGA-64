@@ -83,12 +83,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH STRIKE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021190295
-    },
-    {
       "origin": "STREAM",
       "text": "STABLE FLOW STABLE",
       "mood": "HARMONIC",
@@ -171,6 +165,12 @@
       "text": "WITNESS SPARK BECOME",
       "mood": "CREATIVE",
       "tick": 1772021196453
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE BLOOM BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772021196874
     }
   ]
 }
