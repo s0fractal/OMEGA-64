@@ -87,12 +87,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIKE CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021241104
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SYNC RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772021241686
@@ -174,6 +168,12 @@
       "text": "SEIZE SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772021246742
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE SPARK AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772021246894
     }
   ]
 }
