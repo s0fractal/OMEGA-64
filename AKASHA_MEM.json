@@ -178,12 +178,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772023334386
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772023334884
@@ -265,6 +259,12 @@
       "text": "DECAY SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023337335
+    },
+    {
+      "origin": "STREAM",
+      "text": "HEAL OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772023337459
     }
   ]
 }
