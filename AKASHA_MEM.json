@@ -171,12 +171,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME SHOCK BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023095725
-    },
-    {
       "origin": "INTERFACE",
       "text": "STABLE UNIFY RESONATE",
       "mood": "HARMONIC",
@@ -259,6 +253,12 @@
       "text": "HEAL BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772023099791
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE BECOME AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772023099974
     }
   ]
 }
