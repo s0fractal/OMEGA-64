@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031696360
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON STASIS SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON SHIELD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772031705341
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH BREACH DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031705749
     }
   ]
 }
