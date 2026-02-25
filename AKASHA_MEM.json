@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024722165
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772024725118
@@ -291,6 +285,12 @@
       "text": "OSMOSIS UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772024735449
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772024735875
     }
   ]
 }
