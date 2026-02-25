@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772030839120
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772030839427
@@ -291,6 +285,12 @@
       "text": "BLOOM SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772030854509
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD GUARD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772030856352
     }
   ]
 }
