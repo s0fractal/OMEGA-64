@@ -69,12 +69,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN BREACH BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020847046
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN DECAY CONSUME",
       "mood": "AGGRESSIVE",
@@ -157,6 +151,12 @@
       "text": "DREAM FORGE BEYOND",
       "mood": "CREATIVE",
       "tick": 1772020852795
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHOCK DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020852974
     }
   ]
 }
