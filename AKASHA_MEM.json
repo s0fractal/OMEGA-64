@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772033608863
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772033609062
@@ -291,6 +285,12 @@
       "text": "GIVING BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772033616951
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE RESONATE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772033617117
     }
   ]
 }
