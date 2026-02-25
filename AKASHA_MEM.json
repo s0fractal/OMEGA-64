@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033715352
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772033715535
@@ -291,6 +285,12 @@
       "text": "WAIT STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772033718942
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM FLOW GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772033719170
     }
   ]
 }
