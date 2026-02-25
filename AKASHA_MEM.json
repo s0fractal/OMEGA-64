@@ -104,12 +104,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY SHOCK DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021698171
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH RECON STASIS",
       "mood": "DEFENSIVE",
@@ -192,6 +186,12 @@
       "text": "SHOCK DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772021703855
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021704014
     }
   ]
 }
