@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60060060",
     "0000F000",
     "A0A0A000",
     "A00A0A0A",
@@ -199,15 +198,10 @@
     "00066600",
     "AAA00AA0",
     "AA0AA000",
-    "AABB000D"
+    "AABB000D",
+    "AA0A0A00"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "HUNGER HUNGER DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033758297
-    },
     {
       "origin": "REVERSE",
       "text": "SHOCK CONSUME CONSUME",
@@ -291,6 +285,12 @@
       "text": "SEIZE DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772033761040
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIKE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033761240
     }
   ]
 }
