@@ -54,12 +54,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DECAY SICKNESS SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020337568
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BLOOM RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772020338451
@@ -141,6 +135,12 @@
       "text": "SHOCK CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020346314
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE CONSUME DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020347357
     }
   ]
 }
