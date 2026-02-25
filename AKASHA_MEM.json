@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM OSMOSIS HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772026230157
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772026230320
@@ -291,6 +285,12 @@
       "text": "SHOCK DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772026237680
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT WAIT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772026237959
     }
   ]
 }
