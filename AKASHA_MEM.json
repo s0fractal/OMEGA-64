@@ -82,12 +82,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021136850
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772021137164
@@ -169,6 +163,12 @@
       "text": "COHERE COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772021144287
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON SHELTER WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772021144450
     }
   ]
 }
