@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772030854509
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GUARD GUARD SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BREACH SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772030866764
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD GUARD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772030867175
     }
   ]
 }
