@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SEIZE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037306472
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772037306688
@@ -291,6 +285,12 @@
       "text": "GIVING UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772037309386
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE RESONATE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772037309581
     }
   ]
 }
