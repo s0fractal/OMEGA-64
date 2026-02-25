@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772037847061
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772037847271
@@ -291,6 +285,12 @@
       "text": "IMMUNE STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772037850601
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772037850819
     }
   ]
 }
