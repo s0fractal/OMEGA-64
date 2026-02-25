@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE GIVING SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772034470985
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772034471172
@@ -291,6 +285,12 @@
       "text": "WATCH GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772034473480
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772034473675
     }
   ]
 }
