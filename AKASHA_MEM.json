@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS IMMUNE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772025925832
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772025926449
@@ -291,6 +285,12 @@
       "text": "DRAIN DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772025932224
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME CONSUME SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025932554
     }
   ]
 }
