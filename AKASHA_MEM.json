@@ -116,12 +116,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE GUARD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022011193
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772022011552
@@ -203,6 +197,12 @@
       "text": "STABLE GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022016175
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SEIZE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022016372
     }
   ]
 }
