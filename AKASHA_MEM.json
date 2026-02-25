@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAAA0000",
     "AAAA00AA",
     "AAAAA000",
     "60606006",
@@ -199,15 +198,10 @@
     "66666660",
     "00000000",
     "66A666A0",
-    "60606000"
+    "60606000",
+    "60666600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BECOME EVOLVE DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772032881120
-    },
     {
       "origin": "REVERSE",
       "text": "COHERE GIVING SYNC",
@@ -291,6 +285,12 @@
       "text": "SHIELD SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772032885372
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHELTER IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772032885556
     }
   ]
 }
