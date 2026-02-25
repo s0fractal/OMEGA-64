@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772023744778
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023744945
@@ -278,6 +272,12 @@
       "text": "WITNESS BECOME WAVE",
       "mood": "CREATIVE",
       "tick": 1772023750792
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIFE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023750930
     }
   ]
 }
