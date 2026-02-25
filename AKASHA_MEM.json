@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STASIS SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772016890889
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE CONSUME HUNGER",
       "mood": "AGGRESSIVE",
@@ -107,6 +101,12 @@
       "text": "BREACH CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772016979109
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE HUNGER STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772016985939
     }
   ]
 }
