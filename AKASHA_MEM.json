@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WITNESS SPARK DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772033690422
-    },
-    {
       "origin": "INTERFACE",
       "text": "RECON RECON SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033693968
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH RECON SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772033694154
     }
   ]
 }
