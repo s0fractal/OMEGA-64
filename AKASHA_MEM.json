@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAB0CC0D",
     "B0BB0000",
     "00006660",
     "AA0AA0AA",
@@ -199,7 +198,8 @@
     "AAAAAAA0",
     "00606606",
     "AAAAAA0A",
-    "AA000AAA"
+    "AA000AAA",
+    "B0B00000"
   ],
   "utterances": [
     {
