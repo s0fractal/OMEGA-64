@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772037862127
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772037862301
@@ -291,6 +285,12 @@
       "text": "STRIKE BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772037864867
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHELTER SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772037865070
     }
   ]
 }
