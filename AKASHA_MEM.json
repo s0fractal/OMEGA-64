@@ -178,12 +178,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT SHIELD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772023335479
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023335646
@@ -265,6 +259,12 @@
       "text": "FORGE WITNESS WITNESS",
       "mood": "CREATIVE",
       "tick": 1772023338945
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHELTER RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772023339120
     }
   ]
 }
