@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS IMMUNE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772037245523
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772037245897
@@ -291,6 +285,12 @@
       "text": "STRIFE DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772037249773
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772037249989
     }
   ]
 }
