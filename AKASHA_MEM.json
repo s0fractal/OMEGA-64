@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772038822533
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772038822754
@@ -291,6 +285,12 @@
       "text": "RESONATE GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772038826048
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772038826264
     }
   ]
 }
