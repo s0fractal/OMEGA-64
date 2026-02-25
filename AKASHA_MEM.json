@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE STRIFE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025728317
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772025728702
@@ -291,6 +285,12 @@
       "text": "BLOOM UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772025737739
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM DREAM WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772025737965
     }
   ]
 }
