@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE GIVING FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772024297339
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772024297578
@@ -291,6 +285,12 @@
       "text": "BREACH SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772024300343
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHIELD REFLECT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772024300537
     }
   ]
 }
