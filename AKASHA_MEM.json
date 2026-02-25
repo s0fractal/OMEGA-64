@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026758029
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772026758257
@@ -291,6 +285,12 @@
       "text": "FLOW COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772026763314
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME AWAKEN WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772026763520
     }
   ]
 }
