@@ -170,12 +170,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SHOCK DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023085289
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772023085452
@@ -257,6 +251,12 @@
       "text": "SICKNESS CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023088187
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772023088334
     }
   ]
 }
