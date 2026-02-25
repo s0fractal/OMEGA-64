@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT WAIT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772025034080
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM COHERE HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FLOW UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772025039963
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SHOCK DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025040148
     }
   ]
 }
