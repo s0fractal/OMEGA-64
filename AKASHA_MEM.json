@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH IMMUNE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772020420416
-    },
-    {
       "origin": "REVERSE",
       "text": "WAVE DREAM SPARK",
       "mood": "CREATIVE",
@@ -141,6 +135,12 @@
       "text": "GIVING SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772020428233
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020428854
     }
   ]
 }
