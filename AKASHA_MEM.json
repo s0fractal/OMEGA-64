@@ -176,12 +176,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772023258720
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023259082
@@ -263,6 +257,12 @@
       "text": "UNIFY RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772023261794
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023262615
     }
   ]
 }
