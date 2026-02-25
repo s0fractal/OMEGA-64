@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026782944
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772026783170
@@ -291,6 +285,12 @@
       "text": "STRIFE BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772026787502
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE RECON STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772026788442
     }
   ]
 }
