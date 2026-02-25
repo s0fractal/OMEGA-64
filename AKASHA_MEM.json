@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS BEYOND DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772031023487
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772031024249
@@ -291,6 +285,12 @@
       "text": "SYNC STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772031030915
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SHOCK BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031031312
     }
   ]
 }
