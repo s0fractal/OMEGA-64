@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HEAL OSMOSIS UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772033258276
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS HUNGER CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772033262351
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772033262521
     }
   ]
 }
