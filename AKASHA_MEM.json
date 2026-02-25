@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME HUNGER BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030395527
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS HEAL GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HUNGER BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772030403578
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER IMMUNE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772030405369
     }
   ]
 }
