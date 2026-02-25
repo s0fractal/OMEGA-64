@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772041305780
-    },
-    {
       "origin": "INTERFACE",
       "text": "SYNC HEAL RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HEAL FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772041310762
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "IMMUNE STASIS GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041310947
     }
   ]
 }
