@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY STABLE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772033772508
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772033772701
@@ -291,6 +285,12 @@
       "text": "DECAY SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772033775279
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033775491
     }
   ]
 }
