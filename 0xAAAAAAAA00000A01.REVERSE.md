@@ -1,14 +1,14 @@
 ---
-eigenvalue: '0x0666660600000A01'
-energy: 49.9
-x: 709
-'y': 422
+eigenvalue: '0xAAAAAAAA00000A01'
+energy: 50
+x: 704
+'y': 413
 resonance: 50
-thought: SEEK_ALPHA_PASSIVE
-logic: '06666606'
+thought: RESURRECTED
+logic: AAAAAAAA
 signals: []
 bond_strengths:
-  '0x0000000000000A02': 0.9792086759647052
+  '0x0000000000000A02': 0.9772512378214517
 bonds:
   - '0x0000000000000A02'
 ex:
@@ -27,51 +27,43 @@ ex:
   - '0x06666666FFFF0A05'
   - '0x06666666FFFF0A07'
   - '0x06666666FFFF0A01'
-  - '0x0666666600000A07'
-  - '0x0666666600000A01'
-  - '0x0666666600000A03'
-  - '0x0666666600000A05'
-  - '0x0666666600000A07'
-  - '0x0666666600000A01'
-  - '0x0666666600000A03'
-  - '0x0666666600000A05'
-  - '0x0666666600000A07'
-  - '0x0666660600000A01'
-  - '0x06666606FFFF0A07'
-  - '0x06666606FFFF0A01'
-  - '0x0666660600000A07'
+  - '0x06666066FFFF0A03'
+  - '0x0666606600000A01'
+  - '0x0666606600000A03'
+  - '0x0666606600000A05'
+  - '0xAAAAAAAA00000A07'
 ---
 
 <div align="center">
 <!-- ∇ HOLOGRAM START ∇ -->
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <radialGradient id="grad_0666660600000A01" cx="50%" cy="50%" r="50%">
+    <radialGradient id="grad_AAAAAAAA00000A01" cx="50%" cy="50%" r="50%">
       <stop offset="0%" stop-color="hsl(14, 20%, 15%)" />
       <stop offset="100%" stop-color="#090909" />
     </radialGradient>
-    <filter id="glow_0666660600000A01" x="-20%" y="-20%" width="140%" height="140%">
+    <filter id="glow_AAAAAAAA00000A01" x="-20%" y="-20%" width="140%" height="140%">
       <feGaussianBlur stdDeviation="4" result="blur" />
       <feComposite in="SourceGraphic" in2="blur" operator="over" />
     </filter>
   </defs>
   
-  <rect width="200" height="200" fill="url(#grad_0666660600000A01)" rx="24"/>
+  <rect width="200" height="200" fill="url(#grad_AAAAAAAA00000A01)" rx="24"/>
   
   <circle cx="100" cy="100" r="85" stroke="hsl(14, 30%, 30%)" stroke-width="1" fill="none" stroke-dasharray="2 6"/>
   
   <g>
     <animateTransform attributeName="transform" type="rotate" from="0 100 100" to="-360 100 100" dur="10s" repeatCount="indefinite" />
     
-    <polygon points="100.0,55.0 139.0,122.5 61.0,122.5" fill="none" stroke="hsl(194, 60%, 40%)" stroke-width="1.5" opacity="0.6"/>
-    <polygon points="100.0,85.0 113.0,107.5 87.0,107.5" fill="none" stroke="hsl(14, 80%, 60%)" stroke-width="2" filter="url(#glow_0666660600000A01)"/>
+    <polygon points="100.0,55.0 142.8,86.1 126.5,136.4 73.5,136.4 57.2,86.1" fill="none" stroke="hsl(194, 60%, 40%)" stroke-width="1.5" opacity="0.6"/>
+    <polygon points="100.0,85.0 114.3,95.4 108.8,112.1 91.2,112.1 85.7,95.4" fill="none" stroke="hsl(14, 80%, 60%)" stroke-width="2" filter="url(#glow_AAAAAAAA00000A01)"/>
     
     <circle cx="100" cy="100" r="15" stroke="hsl(14, 60%, 50%)" stroke-width="0.5" fill="none" opacity="0.5"/>
   </g>
   
-  <circle cx="100" cy="100" r="3" fill="hsl(194, 80%, 70%)" filter="url(#glow_0666660600000A01)"/>
+  <circle cx="100" cy="100" r="3" fill="hsl(194, 80%, 70%)" filter="url(#glow_AAAAAAAA00000A01)"/>
   
-  <text x="100" y="105" fill="hsl(14, 70%, 80%)" font-family="monospace" font-size="10" text-anchor="middle" letter-spacing="1" opacity="0.9">0x0666</text>
+  <text x="100" y="105" fill="hsl(14, 70%, 80%)" font-family="monospace" font-size="10" text-anchor="middle" letter-spacing="1" opacity="0.9">0xAAAA</text>
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">REVERSE</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
