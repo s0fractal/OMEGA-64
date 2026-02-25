@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "FLOW SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772026638172
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH RECON SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BREACH STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772026645319
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS BLOOM FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772026645660
     }
   ]
 }
