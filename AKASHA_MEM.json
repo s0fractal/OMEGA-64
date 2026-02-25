@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT STASIS SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772031612782
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772031613248
@@ -291,6 +285,12 @@
       "text": "GIVING RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772031618930
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK WAVE EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772031619362
     }
   ]
 }
