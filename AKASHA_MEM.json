@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SEIZE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030627119
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772030627421
@@ -291,6 +285,12 @@
       "text": "SYNC BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772030634948
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772030635453
     }
   ]
 }
