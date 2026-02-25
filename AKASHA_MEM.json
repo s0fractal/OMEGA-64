@@ -176,12 +176,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS IMMUNE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023272526
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023272680
@@ -263,6 +257,12 @@
       "text": "BLOOM SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772023275840
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023276011
     }
   ]
 }
