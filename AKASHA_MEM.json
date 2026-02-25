@@ -107,12 +107,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FORGE SPARK SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772021808799
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
@@ -195,6 +189,12 @@
       "text": "STRIFE SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772021814860
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER CONSUME DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021815017
     }
   ]
 }
