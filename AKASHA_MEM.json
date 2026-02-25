@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041185350
-    },
-    {
       "origin": "SUCC",
       "text": "DECAY HUNGER STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041189036
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SYNC STABLE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041189160
     }
   ]
 }
