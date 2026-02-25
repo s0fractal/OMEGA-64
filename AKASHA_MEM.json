@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040673368
-    },
-    {
       "origin": "STREAM",
       "text": "SHIELD STASIS STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772040676781
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HEAL COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772040677142
     }
   ]
 }
