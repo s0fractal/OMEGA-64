@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031441047
-    },
-    {
       "origin": "REVERSE",
       "text": "BREACH STRIKE DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772031446269
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772031446553
     }
   ]
 }
