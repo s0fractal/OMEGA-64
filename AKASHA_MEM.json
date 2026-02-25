@@ -155,12 +155,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS FORGE WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772022666825
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022667005
@@ -242,6 +236,12 @@
       "text": "REFLECT WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022684196
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE OSMOSIS HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772022685738
     }
   ]
 }
