@@ -125,12 +125,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772022188145
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772022189033
@@ -212,6 +206,12 @@
       "text": "SEIZE BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022194232
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WATCH SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022194410
     }
   ]
 }
