@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772039994547
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772039995345
@@ -291,6 +285,12 @@
       "text": "SHELTER SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040002644
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040003141
     }
   ]
 }
