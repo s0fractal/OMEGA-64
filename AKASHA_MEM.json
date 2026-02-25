@@ -196,12 +196,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023912550
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772023912691
@@ -283,6 +277,12 @@
       "text": "BECOME BECOME EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772023922153
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIFE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023922513
     }
   ]
 }
