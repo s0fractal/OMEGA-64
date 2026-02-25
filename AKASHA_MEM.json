@@ -22,12 +22,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "SYNC UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772017573426
-    },
-    {
-      "origin": "INTERFACE",
       "text": "DECAY STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772017575610
@@ -109,6 +103,12 @@
       "text": "IMMUNE REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772017645620
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772017651982
     }
   ]
 }
