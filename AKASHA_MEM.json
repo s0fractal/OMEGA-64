@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHELTER GUARD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772040406020
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL COHERE SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HUNGER BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772040408752
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040408931
     }
   ]
 }
