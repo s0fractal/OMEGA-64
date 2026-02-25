@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772034322159
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SYNC FLOW UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SICKNESS BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772034326540
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION WAVE BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772034326702
     }
   ]
 }
