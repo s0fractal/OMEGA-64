@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772036164838
-    },
-    {
-      "origin": "REVERSE",
       "text": "AWAKEN BECOME WITNESS",
       "mood": "CREATIVE",
       "tick": 1772036165042
@@ -291,6 +285,12 @@
       "text": "GIVING HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772036167928
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036168143
     }
   ]
 }
