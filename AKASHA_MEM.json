@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772031446893
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD SHIELD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772031447175
@@ -291,6 +285,12 @@
       "text": "SHIELD GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772031464537
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031464810
     }
   ]
 }
