@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE IMMUNE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041778491
-    },
-    {
       "origin": "STREAM",
       "text": "STASIS SHELTER WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "WATCH SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041785630
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME DECAY STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041785922
     }
   ]
 }
