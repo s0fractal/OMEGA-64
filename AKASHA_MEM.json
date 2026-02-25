@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "IS_ISO",
-      "text": "SHIELD WATCH SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772041216543
-    },
-    {
       "origin": "INTERFACE",
       "text": "GUARD WAIT RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041221916
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772041222174
     }
   ]
 }
