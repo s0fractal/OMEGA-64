@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "OSMOSIS STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772020622188
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SYNC SYNC RESONATE",
       "mood": "HARMONIC",
@@ -150,6 +144,12 @@
       "text": "IMMUNE GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020628224
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING UNIFY COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772020629111
     }
   ]
 }
