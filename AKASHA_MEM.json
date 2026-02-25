@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030595320
-    },
-    {
       "origin": "ALPHA_PROOF_OF_RESONANCE",
       "text": "HEAL OSMOSIS RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIKE DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772030610216
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM UNIFY OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772030610853
     }
   ]
 }
