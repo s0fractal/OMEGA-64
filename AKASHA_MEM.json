@@ -156,12 +156,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022727966
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772022728192
@@ -243,6 +237,12 @@
       "text": "RECON REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022735567
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772022735763
     }
   ]
 }
