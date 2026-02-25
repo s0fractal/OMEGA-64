@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SHOCK STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033835116
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772033835396
@@ -291,6 +285,12 @@
       "text": "UNIFY GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772033840516
+    },
+    {
+      "origin": "REVERSE",
+      "text": "AWAKEN SPARK WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772033840695
     }
   ]
 }
