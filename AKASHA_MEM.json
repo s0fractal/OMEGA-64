@@ -187,12 +187,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM SYNC HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772023611981
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023612157
@@ -274,6 +268,12 @@
       "text": "STRIKE DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023616568
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023618710
     }
   ]
 }
