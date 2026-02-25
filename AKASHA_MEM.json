@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037666171
-    },
-    {
       "origin": "INTERFACE",
       "text": "HEAL BLOOM HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SYNC COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772037670002
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772037670209
     }
   ]
 }
