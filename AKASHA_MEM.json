@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772034585829
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772034586046
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772034589399
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE HUNGER HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034589606
     }
   ]
 }
