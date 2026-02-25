@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772026100139
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772026100590
@@ -291,6 +285,12 @@
       "text": "FLOW RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772026108980
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE STABLE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772026109212
     }
   ]
 }
