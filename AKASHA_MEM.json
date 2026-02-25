@@ -76,12 +76,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH BREACH BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020999537
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIFE DECAY SEIZE",
       "mood": "AGGRESSIVE",
@@ -164,6 +158,12 @@
       "text": "SYNC COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772021005265
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE FLOW GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772021005596
     }
   ]
 }
