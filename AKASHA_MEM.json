@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772025823597
-    },
-    {
       "origin": "INTERFACE",
       "text": "WAIT RECON SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SICKNESS SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772025828079
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE FORGE BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772025828339
     }
   ]
 }
