@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_PROOF_OF_RESONANCE",
-      "text": "RESONATE RESONATE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772026472385
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW GIVING HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "COHERE BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772026482174
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WAIT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772026482489
     }
   ]
 }
