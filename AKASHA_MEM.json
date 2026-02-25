@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00600060",
     "00060600",
     "06666000",
     "060666A6",
@@ -199,15 +198,10 @@
     "01000000",
     "06660060",
     "00600606",
-    "AA0A0AAA"
+    "AA0A0AAA",
+    "A6660660"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SYNC RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772034160655
-    },
     {
       "origin": "REVERSE",
       "text": "VISION VISION DREAM",
@@ -291,6 +285,12 @@
       "text": "RECON PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772034164354
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034164535
     }
   ]
 }
