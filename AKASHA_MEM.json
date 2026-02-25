@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH WATCH SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772037742709
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "AWAKEN EVOLVE BEYOND",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772037746393
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037746626
     }
   ]
 }
