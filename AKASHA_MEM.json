@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039270748
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER IMMUNE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772039270934
@@ -291,6 +285,12 @@
       "text": "STRIKE STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772039273778
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY STABLE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772039273983
     }
   ]
 }
