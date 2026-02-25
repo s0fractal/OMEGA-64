@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BEYOND BECOME VISION",
-      "mood": "CREATIVE",
-      "tick": 1772032957228
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772032957396
@@ -291,6 +285,12 @@
       "text": "STABLE HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772032960041
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DRAIN STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032960294
     }
   ]
 }
