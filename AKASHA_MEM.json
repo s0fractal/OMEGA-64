@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY HEAL GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772016566720
-    },
-    {
       "origin": "INTERFACE",
       "text": "DRAIN STRIKE STRIKE",
       "mood": "AGGRESSIVE",
@@ -107,6 +101,12 @@
       "text": "BLOOM BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772016661589
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DRAIN BREACH STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772016668687
     }
   ]
 }
