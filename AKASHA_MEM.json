@@ -46,12 +46,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "HEAL STABLE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772020076168
-    },
-    {
-      "origin": "INTERFACE",
       "text": "BREACH DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020077819
@@ -133,6 +127,12 @@
       "text": "SEIZE BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020091153
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020091758
     }
   ]
 }
