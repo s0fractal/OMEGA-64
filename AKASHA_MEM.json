@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC STABLE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772032699768
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772032700927
@@ -291,6 +285,12 @@
       "text": "BLOOM SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772032703342
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772032703493
     }
   ]
 }
