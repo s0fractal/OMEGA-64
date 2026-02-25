@@ -129,12 +129,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772022306661
-    },
-    {
       "origin": "INTERFACE",
       "text": "SICKNESS STRIKE BREACH",
       "mood": "AGGRESSIVE",
@@ -217,6 +211,12 @@
       "text": "COHERE HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772022310596
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON RECON SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022310759
     }
   ]
 }
