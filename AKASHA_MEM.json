@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038270211
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772038270399
@@ -291,6 +285,12 @@
       "text": "RECON SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772038273282
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHELTER IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772038273519
     }
   ]
 }
