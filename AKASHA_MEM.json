@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039014553
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772039014783
@@ -291,6 +285,12 @@
       "text": "FLOW HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772039020137
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WATCH IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772039020417
     }
   ]
 }
