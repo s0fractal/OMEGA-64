@@ -203,18 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STABLE FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042403887
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER RECON WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042404534
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE SHOCK STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +279,18 @@
       "text": "SHOCK STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772042413697
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER IMMUNE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042414187
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042414364
     }
   ]
 }
