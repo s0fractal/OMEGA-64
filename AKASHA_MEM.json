@@ -198,12 +198,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772024009216
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772024010219
@@ -285,6 +279,12 @@
       "text": "UNIFY HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772024014208
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE IMMUNE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772024014394
     }
   ]
 }
