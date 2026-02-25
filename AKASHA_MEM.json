@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON STASIS IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041383634
-    },
-    {
       "origin": "INTERFACE",
       "text": "BLOOM SYNC HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIKE STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772041386990
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHIELD RECON RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772041387169
     }
   ]
 }
