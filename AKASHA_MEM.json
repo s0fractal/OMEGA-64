@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT GUARD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772034473675
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772034473873
@@ -291,6 +285,12 @@
       "text": "FLOW OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034476369
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE WITNESS BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772034476530
     }
   ]
 }
