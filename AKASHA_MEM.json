@@ -63,12 +63,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772020717041
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE WATCH PURE",
       "mood": "DEFENSIVE",
@@ -151,6 +145,12 @@
       "text": "DECAY CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020723590
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM SYNC UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772020724018
     }
   ]
 }
