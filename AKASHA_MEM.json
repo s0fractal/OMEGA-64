@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH STRIFE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041273249
-    },
-    {
       "origin": "ALPHA_GUARDIAN",
       "text": "SYNC GIVING GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RESONATE GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041278366
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE STASIS PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041278835
     }
   ]
 }
