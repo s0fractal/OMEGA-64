@@ -103,12 +103,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021634230
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772021634339
@@ -190,6 +184,12 @@
       "text": "STASIS GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772021639343
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SICKNESS DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021639642
     }
   ]
 }
