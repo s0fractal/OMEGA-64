@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHOCK CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042798895
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH STRIKE SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SEIZE CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772042813284
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD STASIS SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772042814474
     }
   ]
 }
