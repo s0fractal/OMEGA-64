@@ -179,12 +179,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT REFLECT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023363471
-    },
-    {
-      "origin": "REVERSE",
       "text": "WITNESS BEYOND AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772023363954
@@ -266,6 +260,12 @@
       "text": "RESONATE COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772023370745
+    },
+    {
+      "origin": "REVERSE",
+      "text": "AWAKEN BECOME BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772023370913
     }
   ]
 }
