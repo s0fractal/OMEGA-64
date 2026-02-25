@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STRIKE BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038982187
-    },
-    {
       "origin": "REVERSE",
       "text": "AWAKEN BEYOND FORGE",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038985547
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH IMMUNE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772038985769
     }
   ]
 }
