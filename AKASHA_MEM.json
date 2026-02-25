@@ -187,12 +187,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SPARK VISION SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772023611831
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772023611981
@@ -274,6 +268,12 @@
       "text": "WATCH GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772023616390
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023616568
     }
   ]
 }
