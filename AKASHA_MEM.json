@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK SICKNESS SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034529753
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034529967
@@ -291,6 +285,12 @@
       "text": "IMMUNE RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772034532466
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034532658
     }
   ]
 }
