@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON RECON STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772024477918
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772024478139
@@ -291,6 +285,12 @@
       "text": "DECAY DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772024487239
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY OSMOSIS BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772024487622
     }
   ]
 }
