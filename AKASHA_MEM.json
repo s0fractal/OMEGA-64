@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GUARD SHIELD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772019579749
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE DECAY DRAIN",
       "mood": "AGGRESSIVE",
@@ -114,6 +108,12 @@
       "text": "DECAY SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772019594016
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE DECAY STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019594541
     }
   ]
 }
