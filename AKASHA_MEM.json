@@ -55,12 +55,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020554048
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHOCK STRIFE CONSUME",
       "mood": "AGGRESSIVE",
@@ -143,6 +137,12 @@
       "text": "SHELTER RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772020564439
+    },
+    {
+      "origin": "PARADOX",
+      "text": "SPARK DREAM WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772020564865
     }
   ]
 }
