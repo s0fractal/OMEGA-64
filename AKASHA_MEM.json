@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026476494
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772026476858
@@ -291,6 +285,12 @@
       "text": "SHELTER PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772026485333
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772026486419
     }
   ]
 }
