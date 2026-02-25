@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS WAIT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772032909105
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772032909301
@@ -291,6 +285,12 @@
       "text": "STASIS REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772032911848
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT REFLECT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772032912022
     }
   ]
 }
