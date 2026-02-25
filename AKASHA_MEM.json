@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032923641
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772032923840
@@ -291,6 +285,12 @@
       "text": "OSMOSIS FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772032926402
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032926591
     }
   ]
 }
