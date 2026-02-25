@@ -109,12 +109,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021840275
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772021840465
@@ -196,6 +190,12 @@
       "text": "REFLECT WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772021846879
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772021847089
     }
   ]
 }
