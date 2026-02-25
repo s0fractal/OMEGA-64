@@ -122,12 +122,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772022115743
-    },
-    {
       "origin": "STREAM",
       "text": "GIVING SYNC GIVING",
       "mood": "HARMONIC",
@@ -210,6 +204,12 @@
       "text": "SEIZE DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022120608
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS STASIS IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022120811
     }
   ]
 }
