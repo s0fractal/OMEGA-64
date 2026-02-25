@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER STASIS IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040917049
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH GUARD SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772040920491
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "AWAKEN WITNESS BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772040920628
     }
   ]
 }
