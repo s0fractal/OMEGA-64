@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040276592
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772040276778
@@ -291,6 +285,12 @@
       "text": "SHELTER SHIELD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040283220
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772040283509
     }
   ]
 }
