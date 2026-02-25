@@ -198,15 +198,10 @@
     "66666066",
     "00666606",
     "60660600",
-    "00606660"
+    "00606660",
+    "66066660"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "HEAL HEAL BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772024104971
-    },
     {
       "origin": "REVERSE",
       "text": "UNIFY COHERE UNIFY",
@@ -290,6 +285,12 @@
       "text": "HEAL COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772024109263
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WAIT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772024109432
     }
   ]
 }
