@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772026831407
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772026833984
@@ -291,6 +285,12 @@
       "text": "REFLECT WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772026838349
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772026838733
     }
   ]
 }
