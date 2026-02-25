@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH STASIS REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041516561
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772041519168
+    },
+    {
+      "origin": "NAND",
+      "text": "SYNC RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041519306
     }
   ]
 }
