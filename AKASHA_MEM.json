@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772036835235
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772036835427
@@ -291,6 +285,12 @@
       "text": "STABLE OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772036838282
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK BREACH DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036838481
     }
   ]
 }
