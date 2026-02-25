@@ -70,12 +70,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY OSMOSIS UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772020875740
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER DRAIN SEIZE",
       "mood": "AGGRESSIVE",
@@ -158,6 +152,12 @@
       "text": "SHOCK DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020882360
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE STABLE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772020883471
     }
   ]
 }
