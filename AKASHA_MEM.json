@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY FLOW UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772020356583
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE DECAY SEIZE",
       "mood": "AGGRESSIVE",
@@ -141,6 +135,12 @@
       "text": "SHOCK DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020363100
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020364330
     }
   ]
 }
