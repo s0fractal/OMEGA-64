@@ -180,12 +180,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SEIZE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023395260
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772023395440
@@ -267,6 +261,12 @@
       "text": "STABLE HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023399318
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WATCH REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023399657
     }
   ]
 }
