@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE OSMOSIS UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772033320278
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772033320451
@@ -291,6 +285,12 @@
       "text": "BEYOND EVOLVE WAVE",
       "mood": "CREATIVE",
       "tick": 1772033323524
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS BREACH BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033326964
     }
   ]
 }
