@@ -52,12 +52,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HEAL HEAL GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772020329476
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHELTER SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772020330147
@@ -139,6 +133,12 @@
       "text": "STRIKE SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020336253
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772020336905
     }
   ]
 }
