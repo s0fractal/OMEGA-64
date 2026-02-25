@@ -70,12 +70,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW HEAL UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772020892411
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER BREACH DECAY",
       "mood": "AGGRESSIVE",
@@ -158,6 +152,12 @@
       "text": "SEIZE HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020896937
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772020897100
     }
   ]
 }
