@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772034049903
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772034050088
@@ -291,6 +285,12 @@
       "text": "SICKNESS CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772034053645
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIFE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034053816
     }
   ]
 }
