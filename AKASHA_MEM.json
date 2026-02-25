@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "COHERE RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772019494691
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIFE DECAY SICKNESS",
       "mood": "AGGRESSIVE",
@@ -111,6 +105,12 @@
       "text": "UNIFY COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772019503924
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE SHIELD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772019504668
     }
   ]
 }
