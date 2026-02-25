@@ -148,15 +148,10 @@
     "AA0AAA00",
     "0AA0AA00",
     "0BB00000",
-    "AA6066A6"
+    "AA6066A6",
+    "0AA0AAA0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "CONSUME SEIZE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022601025
-    },
     {
       "origin": "ARCHIVIST",
       "text": "BLOOM STABLE UNIFY",
@@ -240,6 +235,12 @@
       "text": "RECON STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022605433
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY GIVING FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772022605752
     }
   ]
 }
