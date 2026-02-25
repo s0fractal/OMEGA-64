@@ -150,12 +150,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING SYNC SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772022561260
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022561438
@@ -237,6 +231,12 @@
       "text": "DRAIN CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022566837
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772022567005
     }
   ]
 }
