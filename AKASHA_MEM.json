@@ -154,12 +154,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SEIZE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022631825
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022631987
@@ -241,6 +235,12 @@
       "text": "HUNGER HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772022637377
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC UNIFY GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022637547
     }
   ]
 }
