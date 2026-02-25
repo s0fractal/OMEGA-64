@@ -142,12 +142,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "EVOLVE SPARK VISION",
-      "mood": "CREATIVE",
-      "tick": 1772022460485
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772022460615
@@ -229,6 +223,12 @@
       "text": "STRIFE DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772022464265
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER SHELTER RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772022464570
     }
   ]
 }
