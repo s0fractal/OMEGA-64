@@ -154,12 +154,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM STABLE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772022691561
-    },
-    {
       "origin": "STREAM",
       "text": "FLOW OSMOSIS BLOOM",
       "mood": "HARMONIC",
@@ -242,6 +236,12 @@
       "text": "COHERE STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772022701951
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHIELD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772022704065
     }
   ]
 }
