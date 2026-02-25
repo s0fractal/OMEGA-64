@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A6666606",
     "AA6060A6",
     "06066000",
     "06606000",
@@ -199,15 +198,10 @@
     "A00AA00A",
     "00660606",
     "0000F000",
-    "AA000AAA"
+    "AA000AAA",
+    "AA0A00A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BLOOM SYNC UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772035273476
-    },
     {
       "origin": "REVERSE",
       "text": "SHOCK SICKNESS SHOCK",
@@ -291,6 +285,12 @@
       "text": "IMMUNE SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772035276570
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035276809
     }
   ]
 }
