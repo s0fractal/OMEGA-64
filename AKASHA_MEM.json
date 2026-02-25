@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772036157126
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772036157346
@@ -291,6 +285,12 @@
       "text": "SPARK FORGE VISION",
       "mood": "CREATIVE",
       "tick": 1772036161236
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772036161483
     }
   ]
 }
