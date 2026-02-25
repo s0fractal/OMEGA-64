@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772042008014
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT SHELTER WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HUNGER SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772042015416
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS GUARD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772042016435
     }
   ]
 }
