@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAVE WAVE SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772032969586
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772032969728
@@ -291,6 +285,12 @@
       "text": "HEAL HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772032971946
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032972109
     }
   ]
 }
