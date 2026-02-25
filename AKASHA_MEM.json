@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040344912
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772040345729
@@ -291,6 +285,12 @@
       "text": "RESONATE OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040352467
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE STABLE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772040354326
     }
   ]
 }
