@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772029343603
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772029344245
@@ -291,6 +285,12 @@
       "text": "SYNC HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772029377725
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029378224
     }
   ]
 }
