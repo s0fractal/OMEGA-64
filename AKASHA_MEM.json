@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH IMMUNE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772038981953
-    },
-    {
       "origin": "STREAM",
       "text": "STRIKE BREACH CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772038985325
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772038985547
     }
   ]
 }
