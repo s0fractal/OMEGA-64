@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY STRIFE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040653367
-    },
-    {
       "origin": "INTERFACE",
       "text": "GIVING STABLE BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "REFLECT PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772040655989
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HUNGER SEIZE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040656283
     }
   ]
 }
