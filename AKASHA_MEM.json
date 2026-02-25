@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772038597335
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772038597938
@@ -291,6 +285,12 @@
       "text": "SICKNESS HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772038604371
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772038604662
     }
   ]
 }
