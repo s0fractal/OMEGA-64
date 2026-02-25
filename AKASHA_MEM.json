@@ -55,12 +55,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHOCK SHOCK DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020533871
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE FLOW SYNC",
       "mood": "HARMONIC",
@@ -143,6 +137,12 @@
       "text": "FLOW UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772020542903
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE SICKNESS STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020543507
     }
   ]
 }
