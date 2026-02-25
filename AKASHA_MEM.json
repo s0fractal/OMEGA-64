@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036407751
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772036407977
@@ -291,6 +285,12 @@
       "text": "SPARK BECOME AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772036410758
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036410933
     }
   ]
 }
