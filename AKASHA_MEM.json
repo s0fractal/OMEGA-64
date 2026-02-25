@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GIVING COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772041509153
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE DRAIN SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041511482
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD IMMUNE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772041511621
     }
   ]
 }
