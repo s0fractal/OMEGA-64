@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772026881597
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772026881841
@@ -291,6 +285,12 @@
       "text": "BEYOND SPARK EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772026886497
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772026886774
     }
   ]
 }
