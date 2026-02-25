@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME FORGE WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772028955009
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772028955218
@@ -291,6 +285,12 @@
       "text": "WITNESS EVOLVE SPARK",
       "mood": "CREATIVE",
       "tick": 1772028959378
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM GIVING COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772028959831
     }
   ]
 }
