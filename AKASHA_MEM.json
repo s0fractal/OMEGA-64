@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772030568429
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772030569120
@@ -291,6 +285,12 @@
       "text": "COHERE FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772030579428
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772030579847
     }
   ]
 }
