@@ -107,12 +107,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE CONSUME STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021802729
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN DECAY DECAY",
       "mood": "AGGRESSIVE",
@@ -195,6 +189,12 @@
       "text": "IMMUNE REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772021806848
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW UNIFY GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772021807442
     }
   ]
 }
