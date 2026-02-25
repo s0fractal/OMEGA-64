@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER STRIKE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020459302
-    },
-    {
       "origin": "INTERFACE",
       "text": "GIVING FLOW FLOW",
       "mood": "HARMONIC",
@@ -142,6 +136,12 @@
       "text": "BREACH BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772020465156
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772020465330
     }
   ]
 }
