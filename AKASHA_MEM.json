@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FORGE EVOLVE AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772025710628
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772025710785
@@ -291,6 +285,12 @@
       "text": "BLOOM UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772025713100
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025713378
     }
   ]
 }
