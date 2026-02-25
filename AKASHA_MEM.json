@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772036243549
-    },
-    {
       "origin": "INTERFACE",
       "text": "UNIFY SYNC GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "CONSUME HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772036247214
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHELTER RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772036247436
     }
   ]
 }
