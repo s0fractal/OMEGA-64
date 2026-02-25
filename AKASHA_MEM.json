@@ -75,12 +75,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE REFLECT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772020951699
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020951873
@@ -162,6 +156,12 @@
       "text": "EVOLVE SPARK BEYOND",
       "mood": "CREATIVE",
       "tick": 1772020959727
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW FLOW HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772020959937
     }
   ]
 }
