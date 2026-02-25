@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037916800
-    },
-    {
       "origin": "INTERFACE",
       "text": "HEAL UNIFY HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WATCH IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772037919994
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS SHELTER STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772037920202
     }
   ]
 }
