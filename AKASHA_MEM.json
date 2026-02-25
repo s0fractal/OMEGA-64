@@ -192,12 +192,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SHOCK SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023831283
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023831463
@@ -279,6 +273,12 @@
       "text": "IMMUNE STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023835986
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SEIZE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023836146
     }
   ]
 }
