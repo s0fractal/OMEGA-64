@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM SYNC UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772026134595
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772026134874
@@ -291,6 +285,12 @@
       "text": "BECOME VISION SPARK",
       "mood": "CREATIVE",
       "tick": 1772026147688
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT IMMUNE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772026148333
     }
   ]
 }
