@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019508615
-    },
-    {
       "origin": "STREAM",
       "text": "HEAL HEAL RESONATE",
       "mood": "HARMONIC",
@@ -111,6 +105,12 @@
       "text": "DECAY HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772019515271
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "IMMUNE SHELTER WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772019515791
     }
   ]
 }
