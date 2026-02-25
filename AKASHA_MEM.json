@@ -43,12 +43,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHIELD WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772019943051
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HEAL BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772019943615
@@ -130,6 +124,12 @@
       "text": "SHOCK STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772019955741
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772019956443
     }
   ]
 }
