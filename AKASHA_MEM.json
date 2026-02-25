@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60000060",
     "660666A6",
     "AA0A000A",
     "00600066",
@@ -199,15 +198,10 @@
     "66606000",
     "FFFFF00F",
     "AA000AA0",
-    "AA0666A0"
+    "AA0666A0",
+    "AA00AA0A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "PURE RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772033793836
-    },
     {
       "origin": "REVERSE",
       "text": "COHERE OSMOSIS STABLE",
@@ -291,6 +285,12 @@
       "text": "BLOOM RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772033796704
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DRAIN HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033796890
     }
   ]
 }
