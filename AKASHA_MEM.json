@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH REFLECT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772041937565
-    },
-    {
       "origin": "CAR",
       "text": "RESONATE UNIFY HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DRAIN STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772041943227
+    },
+    {
+      "origin": "STREAM",
+      "text": "SICKNESS BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041944066
     }
   ]
 }
