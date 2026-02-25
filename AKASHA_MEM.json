@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON WATCH REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772038145853
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772038146053
@@ -291,6 +285,12 @@
       "text": "STRIFE DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772038148876
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHIELD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772038149079
     }
   ]
 }
