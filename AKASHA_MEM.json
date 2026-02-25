@@ -22,12 +22,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "UNIFY GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772017581893
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HUNGER STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772017588615
@@ -109,6 +103,12 @@
       "text": "STRIFE DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772017667296
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DRAIN BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772017671663
     }
   ]
 }
