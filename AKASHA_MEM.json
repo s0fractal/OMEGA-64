@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN CONSUME SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038264895
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772038265128
@@ -291,6 +285,12 @@
       "text": "BREACH DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772038268503
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772038268735
     }
   ]
 }
