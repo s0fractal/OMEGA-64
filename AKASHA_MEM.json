@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER SICKNESS SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042253502
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BLOOM FLOW RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RESONATE STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772042263605
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM RESONATE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772042264053
     }
   ]
 }
