@@ -92,12 +92,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SHOCK STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021272517
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772021272710
@@ -179,6 +173,12 @@
       "text": "BLOOM FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772021284697
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE DECAY SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021286060
     }
   ]
 }
