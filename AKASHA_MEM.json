@@ -152,12 +152,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE REFLECT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022586794
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772022586974
@@ -239,6 +233,12 @@
       "text": "SYNC COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772022591548
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WAIT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022591710
     }
   ]
 }
