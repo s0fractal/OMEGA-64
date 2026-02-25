@@ -88,12 +88,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM FLOW BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772021263656
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH STASIS STASIS",
       "mood": "DEFENSIVE",
@@ -176,6 +170,12 @@
       "text": "DRAIN HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772021270201
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS SYNC SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772021270343
     }
   ]
 }
