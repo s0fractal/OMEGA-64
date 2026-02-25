@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772027328892
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772027329142
@@ -291,6 +285,12 @@
       "text": "SHOCK DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772027336429
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772027336927
     }
   ]
 }
