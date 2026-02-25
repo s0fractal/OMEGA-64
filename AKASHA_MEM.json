@@ -97,12 +97,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772021565006
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772021565186
@@ -184,6 +178,12 @@
       "text": "SHOCK STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772021571044
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT STASIS IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021571317
     }
   ]
 }
