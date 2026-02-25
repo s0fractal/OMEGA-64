@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHOCK DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020423709
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE WATCH STASIS",
       "mood": "DEFENSIVE",
@@ -141,6 +135,12 @@
       "text": "STRIFE SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020430742
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020431106
     }
   ]
 }
