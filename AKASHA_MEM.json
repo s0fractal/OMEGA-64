@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE SEIZE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040832315
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE UNIFY COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772040835683
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM COHERE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772040835858
     }
   ]
 }
