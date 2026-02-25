@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME HUNGER BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039146190
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772039146537
@@ -291,6 +285,12 @@
       "text": "SEIZE SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772039150570
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039150766
     }
   ]
 }
