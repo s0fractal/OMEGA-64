@@ -196,12 +196,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "FLOW BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772023952764
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE DECAY CONSUME",
       "mood": "AGGRESSIVE",
@@ -284,6 +278,12 @@
       "text": "HEAL COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772023957683
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023957825
     }
   ]
 }
