@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772036562261
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772036562475
@@ -291,6 +285,12 @@
       "text": "FLOW UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772036567093
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036567294
     }
   ]
 }
