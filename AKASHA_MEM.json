@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS AWAKEN BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772037597350
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772037597599
@@ -291,6 +285,12 @@
       "text": "HEAL UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772037600452
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY RESONATE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772037600673
     }
   ]
 }
