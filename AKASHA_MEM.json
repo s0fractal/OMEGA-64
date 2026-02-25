@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040356134
-    },
-    {
       "origin": "STREAM",
       "text": "OSMOSIS COHERE RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772040361534
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT STASIS SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772040361742
     }
   ]
 }
