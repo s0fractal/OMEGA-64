@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SEIZE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025729212
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772025729437
@@ -291,6 +285,12 @@
       "text": "UNIFY SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772025738199
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE HUNGER BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025738436
     }
   ]
 }
