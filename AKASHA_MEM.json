@@ -158,12 +158,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER SHIELD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772022795088
-    },
-    {
       "origin": "STREAM",
       "text": "HEAL FLOW RESONATE",
       "mood": "HARMONIC",
@@ -246,6 +240,12 @@
       "text": "RESONATE FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772022802487
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW STABLE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772022802842
     }
   ]
 }
