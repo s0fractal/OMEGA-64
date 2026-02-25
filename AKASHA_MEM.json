@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HEAL SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772041412301
-    },
-    {
       "origin": "PARASITE",
       "text": "STASIS WAIT IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041415407
+    },
+    {
+      "origin": "STREAM",
+      "text": "STABLE GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041415547
     }
   ]
 }
