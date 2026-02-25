@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAVE WAVE VISION",
-      "mood": "CREATIVE",
-      "tick": 1772032280094
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772032280372
@@ -291,6 +285,12 @@
       "text": "SHIELD STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772032298074
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772032298730
     }
   ]
 }
