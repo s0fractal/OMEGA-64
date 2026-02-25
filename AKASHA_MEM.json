@@ -130,12 +130,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772022305626
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772022305776
@@ -217,6 +211,12 @@
       "text": "DECAY DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022309355
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS STABLE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772022309523
     }
   ]
 }
