@@ -40,12 +40,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "BLOOM HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772019846004
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS BLOOM BLOOM",
       "mood": "HARMONIC",
@@ -128,6 +122,12 @@
       "text": "CONSUME SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772019854016
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RESONATE OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772019854266
     }
   ]
 }
