@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772038707199
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772038707404
@@ -291,6 +285,12 @@
       "text": "COHERE OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772038711688
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772038711913
     }
   ]
 }
