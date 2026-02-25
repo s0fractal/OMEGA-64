@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAAAAAA0",
     "A6066600",
     "A0B0C0DD",
     "00000A00",
@@ -199,15 +198,10 @@
     "0A0A0AA0",
     "A06000A0",
     "A0AAA000",
-    "A000A000"
+    "A000A000",
+    "06006600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "CONSUME BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037774282
-    },
     {
       "origin": "REVERSE",
       "text": "SICKNESS SHOCK SHOCK",
@@ -291,6 +285,12 @@
       "text": "IMMUNE WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772037778061
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC UNIFY HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772037778288
     }
   ]
 }
