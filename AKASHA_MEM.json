@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772032964962
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772032965142
@@ -291,6 +285,12 @@
       "text": "SHELTER IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772032967917
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE CONSUME CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032968113
     }
   ]
 }
