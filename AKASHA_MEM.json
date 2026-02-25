@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772034901785
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772034901978
@@ -291,6 +285,12 @@
       "text": "BLOOM BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772034904434
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER RECON GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772034904629
     }
   ]
 }
