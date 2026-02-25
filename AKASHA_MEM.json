@@ -169,12 +169,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023074742
-    },
-    {
-      "origin": "REVERSE",
       "text": "FORGE VISION VISION",
       "mood": "CREATIVE",
       "tick": 1772023074904
@@ -256,6 +250,12 @@
       "text": "SEIZE SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023077959
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SEIZE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023078172
     }
   ]
 }
