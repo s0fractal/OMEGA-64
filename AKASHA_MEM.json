@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772032343593
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772032343873
@@ -291,6 +285,12 @@
       "text": "STRIKE BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772032348347
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS FLOW HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772032348812
     }
   ]
 }
