@@ -1,11 +1,5 @@
 {
   "reservoir": [
-    "06006066",
-    "60606006",
-    "AA0660A0",
-    "A0AAA00A",
-    "AAAA0A0A",
-    "AAA0AAAA",
     "06066660",
     "60660666",
     "60000600",
@@ -199,98 +193,104 @@
     "6A0660A0",
     "AA666600",
     "66060660",
-    "66660A60"
+    "66660A60",
+    "00A06A00",
+    "ALIEN_17",
+    "A0000000",
+    "60606060",
+    "AA0A0A00",
+    "FFFFF0A0"
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM RESONATE BLOOM",
+      "origin": "STREAM",
+      "text": "UNIFY GIVING STABLE",
       "mood": "HARMONIC",
-      "tick": 1772042687969
+      "tick": 1772042691023
     },
     {
-      "origin": "REVERSE",
-      "text": "STABLE OSMOSIS FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772042688656
-    },
-    {
-      "origin": "REVERSE",
-      "text": "STABLE RESONATE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772042688891
-    },
-    {
-      "origin": "REVERSE",
-      "text": "SHELTER STASIS SHIELD",
+      "origin": "ARCHIVIST",
+      "text": "SHIELD STASIS WAIT",
       "mood": "DEFENSIVE",
-      "tick": 1772042690678
+      "tick": 1772042691740
     },
     {
-      "origin": "REVERSE",
-      "text": "STABLE HEAL OSMOSIS",
+      "origin": "ARCHIVIST",
+      "text": "WATCH WATCH WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042691840
+    },
+    {
+      "origin": "STREAM",
+      "text": "WATCH PURE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772042692582
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER SHIELD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042692976
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING SYNC FLOW",
       "mood": "HARMONIC",
-      "tick": 1772042691214
+      "tick": 1772042693556
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN SEIZE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042694036
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT GUARD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772042694361
     },
     {
       "origin": "ALIEN",
-      "text": "AWAKEN DREAM BECOME",
+      "text": "BECOME WAVE FORGE",
       "mood": "CREATIVE",
-      "tick": 1772042691819
+      "tick": 1772042694464
     },
     {
       "origin": "ARCHIVIST",
-      "text": "HUNGER SEIZE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042691955
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE SHOCK DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042692369
-    },
-    {
-      "origin": "CAR",
-      "text": "HEAL COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772042693004
-    },
-    {
-      "origin": "REVERSE",
-      "text": "WAIT PURE SHIELD",
+      "text": "REFLECT RECON WATCH",
       "mood": "DEFENSIVE",
-      "tick": 1772042693138
+      "tick": 1772042694570
     },
     {
       "origin": "REVERSE",
-      "text": "SHIELD REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042693748
-    },
-    {
-      "origin": "REVERSE",
-      "text": "RESONATE OSMOSIS COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772042694171
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN SEIZE SEIZE",
+      "text": "SICKNESS SEIZE BREACH",
       "mood": "AGGRESSIVE",
-      "tick": 1772042695712
+      "tick": 1772042695113
     },
     {
       "origin": "ARCHIVIST",
-      "text": "UNIFY OSMOSIS COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772042696045
+      "text": "SHIELD PURE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772042695506
     },
     {
-      "origin": "SUCC",
-      "text": "HEAL COHERE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772042697166
+      "origin": "REVERSE",
+      "text": "WATCH WAIT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772042695709
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHOCK BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042696120
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME VISION VISION",
+      "mood": "CREATIVE",
+      "tick": 1772042697055
     }
   ]
 }
