@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GUARD STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772040639745
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHOCK STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772040639874
@@ -291,6 +285,12 @@
       "text": "PURE WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772040642223
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "CONSUME DRAIN SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040642387
     }
   ]
 }
