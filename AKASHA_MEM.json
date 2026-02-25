@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIFE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036492228
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772036492467
@@ -291,6 +285,12 @@
       "text": "VISION VISION AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772036496015
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS STASIS RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772036496190
     }
   ]
 }
