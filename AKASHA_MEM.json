@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT WAIT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772037312125
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772037312292
@@ -291,6 +285,12 @@
       "text": "STRIKE BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772037315151
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE PURE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772037315382
     }
   ]
 }
