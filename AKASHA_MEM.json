@@ -106,12 +106,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772021712457
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772021713724
@@ -193,6 +187,12 @@
       "text": "SICKNESS CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772021717636
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHELTER GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021717802
     }
   ]
 }
