@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FORGE VISION WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772040626428
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER IMMUNE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040626609
@@ -291,6 +285,12 @@
       "text": "BLOOM FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772040629536
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772040629777
     }
   ]
 }
