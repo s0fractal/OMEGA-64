@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "GUARDIAN",
-      "text": "HEAL BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041739899
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SYNC HEAL GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STASIS WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041744792
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD WATCH SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772041745150
     }
   ]
 }
