@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM RESONATE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772035495289
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772035495517
@@ -291,6 +285,12 @@
       "text": "SHIELD IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772035498051
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035498257
     }
   ]
 }
