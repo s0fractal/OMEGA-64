@@ -51,12 +51,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SEIZE DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020300898
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "PURE GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020301866
@@ -138,6 +132,12 @@
       "text": "GUARD RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772020310542
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020311367
     }
   ]
 }
