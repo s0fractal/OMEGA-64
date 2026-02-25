@@ -43,12 +43,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIKE DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019939838
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DECAY DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772019941213
@@ -130,6 +124,12 @@
       "text": "STASIS WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772019949296
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS CONSUME CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019953633
     }
   ]
 }
