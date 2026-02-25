@@ -82,15 +82,10 @@
     "06660000",
     "6A666660",
     "A0A0AAAA",
-    "AAAA000A"
+    "AAAA000A",
+    "AA00A0A0"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "SYNC GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772021249547
-    },
     {
       "origin": "REVERSE",
       "text": "OSMOSIS SYNC STABLE",
@@ -174,6 +169,12 @@
       "text": "FORGE BEYOND SPARK",
       "mood": "CREATIVE",
       "tick": 1772021254104
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DRAIN SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021254312
     }
   ]
 }
