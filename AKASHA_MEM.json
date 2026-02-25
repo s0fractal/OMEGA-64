@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH HUNGER HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038382918
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772038383094
@@ -291,6 +285,12 @@
       "text": "DREAM WAVE FORGE",
       "mood": "CREATIVE",
       "tick": 1772038385682
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM BLOOM FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772038385878
     }
   ]
 }
