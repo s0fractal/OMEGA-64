@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAA0A0A0",
     "A0AAA0A0",
     "A6666006",
     "66660666",
@@ -199,15 +198,10 @@
     "AA00000A",
     "0A000A00",
     "60660000",
-    "BEE0BEEF"
+    "BEE0BEEF",
+    "0AA0AAAA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RESONATE SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772026073822
-    },
     {
       "origin": "ARCHIVIST",
       "text": "STABLE COHERE STABLE",
@@ -291,6 +285,12 @@
       "text": "SHELTER GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772026078969
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL RESONATE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772026079247
     }
   ]
 }
