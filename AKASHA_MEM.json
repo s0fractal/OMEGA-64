@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT WATCH IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772024950952
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772024951215
@@ -291,6 +285,12 @@
       "text": "PURE IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772024956463
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON REFLECT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772024956666
     }
   ]
 }
