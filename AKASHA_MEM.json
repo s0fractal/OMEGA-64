@@ -40,12 +40,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GIVING RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772019822714
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DECAY HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772019823179
@@ -127,6 +121,12 @@
       "text": "HEAL OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772019832628
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY RESONATE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772019833125
     }
   ]
 }
