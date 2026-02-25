@@ -75,12 +75,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD WATCH WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772020961308
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020961465
@@ -162,6 +156,12 @@
       "text": "STRIKE BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772020966382
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY HEAL RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772020966693
     }
   ]
 }
