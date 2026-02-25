@@ -176,12 +176,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772023259082
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023259411
@@ -263,6 +257,12 @@
       "text": "SICKNESS SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772023262615
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIKE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023262762
     }
   ]
 }
