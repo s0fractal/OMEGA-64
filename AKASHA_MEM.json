@@ -77,12 +77,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE FLOW GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772021005596
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772021006416
@@ -164,6 +158,12 @@
       "text": "HUNGER DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772021012391
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DECAY DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021013668
     }
   ]
 }
