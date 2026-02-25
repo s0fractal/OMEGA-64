@@ -182,12 +182,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772023521070
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772023521225
@@ -269,6 +263,12 @@
       "text": "IMMUNE STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023523765
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772023523945
     }
   ]
 }
