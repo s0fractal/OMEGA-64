@@ -71,12 +71,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020923093
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE SHOCK STRIFE",
       "mood": "AGGRESSIVE",
@@ -159,6 +153,12 @@
       "text": "RESONATE OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772020928877
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020929039
     }
   ]
 }
