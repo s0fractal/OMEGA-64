@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER WAIT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772036801880
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772036802080
@@ -291,6 +285,12 @@
       "text": "HEAL OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772036805419
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME WAVE BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772036805621
     }
   ]
 }
