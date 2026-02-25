@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038665720
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772038665950
@@ -291,6 +285,12 @@
       "text": "FLOW HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772038668462
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT IMMUNE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772038668679
     }
   ]
 }
