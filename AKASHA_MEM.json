@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY SICKNESS SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029153466
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS STRIFE SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772029163428
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772029163707
     }
   ]
 }
