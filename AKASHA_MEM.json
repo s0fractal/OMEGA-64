@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK STRIKE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032991731
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772032991879
@@ -291,6 +285,12 @@
       "text": "BLOOM FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772032995220
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHELTER SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772032995392
     }
   ]
 }
