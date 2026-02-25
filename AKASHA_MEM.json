@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WATCH REFLECT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772020468245
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GUARD GUARD REFLECT",
       "mood": "DEFENSIVE",
@@ -142,6 +136,12 @@
       "text": "DECAY HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020474232
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772020474600
     }
   ]
 }
