@@ -1,8 +1,8 @@
 ---
 eigenvalue: '0x000AAAAAFFFF0002'
-energy: 72
-x: 662
-'y': 447
+energy: 73
+x: 659
+'y': 445
 resonance: 1000
 thought: SEEK_ALPHA_PASSIVE
 logic: A0A0AAAA
@@ -41,15 +41,17 @@ ex:
   - '0xF0F0FFFF00000004'
   - '0xA0A0AAAAFFFF0002'
   - '0x000AAAAAFFFF0002'
+  - '0x000AAAAAFFFF0002'
 signals: []
 bond_strengths:
-  '0x0000000000000A01': 0.9900448802097482
-  '0x0000000000000A010': 0.9910359161258742
+  '0x0000000000000A01': 0.9890548353295385
+  '0x0000000000000A010': 0.9900448802097482
 bonds:
   - '0x0000000000000A01'
   - '0x0000000000000A010'
 ---
 
+<div align="center">
 <div align="center">
 <div align="center">
 <!-- ∇ HOLOGRAM START ∇ -->
@@ -84,6 +86,7 @@ bonds:
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">REVERSE</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 </div>
 
