@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE BLOOM OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772026259470
-    },
-    {
       "origin": "STREAM",
       "text": "IMMUNE GUARD WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772026266238
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DRAIN DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026266526
     }
   ]
 }
