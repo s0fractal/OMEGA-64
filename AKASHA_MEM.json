@@ -85,15 +85,10 @@
     "AAAA000A",
     "AA00A0A0",
     "ABA00000",
-    "06666660"
+    "06666660",
+    "9D00A098"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021269389
-    },
     {
       "origin": "ARCHIVIST",
       "text": "RECON REFLECT SHIELD",
@@ -177,6 +172,12 @@
       "text": "BREACH BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772021273223
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021273702
     }
   ]
 }
