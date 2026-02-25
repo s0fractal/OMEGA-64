@@ -43,12 +43,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020030235
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN SEIZE STRIFE",
       "mood": "AGGRESSIVE",
@@ -131,6 +125,12 @@
       "text": "BLOOM OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772020041906
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD STASIS IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020042460
     }
   ]
 }
