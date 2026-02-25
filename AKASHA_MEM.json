@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039021431
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772039021635
@@ -291,6 +285,12 @@
       "text": "GUARD RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772039024835
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DRAIN STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039025112
     }
   ]
 }
