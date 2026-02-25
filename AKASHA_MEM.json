@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772037999313
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772037999535
@@ -291,6 +285,12 @@
       "text": "WATCH WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772038002722
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772038003024
     }
   ]
 }
