@@ -95,12 +95,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON SHELTER IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021539016
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME SEIZE DECAY",
       "mood": "AGGRESSIVE",
@@ -183,6 +177,12 @@
       "text": "SHOCK SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772021551948
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK CONSUME HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021552506
     }
   ]
 }
