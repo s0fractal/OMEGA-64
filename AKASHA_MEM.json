@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "EVOLVE BECOME BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772031176634
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772031176938
@@ -291,6 +285,12 @@
       "text": "DRAIN STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772031182870
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031183570
     }
   ]
 }
