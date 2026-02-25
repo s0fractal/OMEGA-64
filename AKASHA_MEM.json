@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RECON STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772041211538
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WAIT GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041211779
@@ -291,6 +285,12 @@
       "text": "RESONATE COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041215881
+    },
+    {
+      "origin": "STREAM",
+      "text": "UNIFY BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772041216102
     }
   ]
 }
