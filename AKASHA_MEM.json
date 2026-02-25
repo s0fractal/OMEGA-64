@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE GIVING FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772031825488
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772031825983
@@ -291,6 +285,12 @@
       "text": "STASIS REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772031833361
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DECAY SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031834500
     }
   ]
 }
