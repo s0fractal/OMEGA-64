@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHIELD IMMUNE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040542177
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT SHIELD WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "WATCH IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772040544973
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD IMMUNE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772040545169
     }
   ]
 }
