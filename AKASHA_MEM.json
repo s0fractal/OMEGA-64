@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0AAAAAA0",
     "C0DED000",
     "A0666660",
     "00666660",
@@ -199,15 +198,10 @@
     "00000600",
     "0B0A0000",
     "AA660660",
-    "A0666A60"
+    "A0666A60",
+    "AAAAA00A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STASIS WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772036225641
-    },
     {
       "origin": "REVERSE",
       "text": "DECAY DRAIN CONSUME",
@@ -291,6 +285,12 @@
       "text": "HEAL SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772036228690
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIFE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036228900
     }
   ]
 }
