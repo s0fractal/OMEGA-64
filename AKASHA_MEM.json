@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772040719568
-    },
-    {
       "origin": "CONSCIOUSNESS",
       "text": "FLOW BLOOM STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHOCK STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772040721887
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772040722329
     }
   ]
 }
