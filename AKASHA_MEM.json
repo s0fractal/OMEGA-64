@@ -174,12 +174,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "FLOW OSMOSIS SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772023253287
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK STRIFE SHOCK",
       "mood": "AGGRESSIVE",
@@ -262,6 +256,12 @@
       "text": "DRAIN SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023258053
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023258234
     }
   ]
 }
