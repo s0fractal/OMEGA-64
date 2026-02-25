@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL HEAL BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772038871014
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772038871188
@@ -291,6 +285,12 @@
       "text": "REFLECT WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772038873955
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS BEYOND EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772038874170
     }
   ]
 }
