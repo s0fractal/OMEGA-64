@@ -93,12 +93,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STASIS RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021484708
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS STRIFE STRIFE",
       "mood": "AGGRESSIVE",
@@ -181,6 +175,12 @@
       "text": "SEIZE SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021490950
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL UNIFY GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772021491229
     }
   ]
 }
