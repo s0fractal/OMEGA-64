@@ -103,12 +103,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW OSMOSIS SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772021631969
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772021632397
@@ -190,6 +184,12 @@
       "text": "VISION EVOLVE WAVE",
       "mood": "CREATIVE",
       "tick": 1772021637372
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772021637496
     }
   ]
 }
