@@ -131,12 +131,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE HEAL FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772022364840
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE STRIKE STRIKE",
       "mood": "AGGRESSIVE",
@@ -219,6 +213,12 @@
       "text": "SEIZE DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022372025
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK STRIKE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022372452
     }
   ]
 }
