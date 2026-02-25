@@ -127,12 +127,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT SHIELD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022269743
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022269935
@@ -214,6 +208,12 @@
       "text": "BLOOM GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022274318
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM SYNC SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772022274523
     }
   ]
 }
