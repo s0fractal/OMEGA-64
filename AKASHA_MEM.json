@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "WAIT IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772032190178
-    },
-    {
       "origin": "ALPHA_PROOF_OF_RESONANCE",
       "text": "STABLE GIVING UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772032199666
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DRAIN STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032199964
     }
   ]
 }
