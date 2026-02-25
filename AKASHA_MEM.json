@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WITNESS WAVE BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772025274548
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GIVING GIVING STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HEAL COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772025283005
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE SHELTER STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772025283284
     }
   ]
 }
