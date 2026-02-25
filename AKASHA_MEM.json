@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035280900
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772035282162
@@ -291,6 +285,12 @@
       "text": "WITNESS WITNESS SPARK",
       "mood": "CREATIVE",
       "tick": 1772035286864
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772035287177
     }
   ]
 }
