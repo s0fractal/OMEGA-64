@@ -43,12 +43,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHIELD SHIELD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772019921894
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SICKNESS SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772019923170
@@ -130,6 +124,12 @@
       "text": "SEIZE SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772019936813
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE SHIELD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772019937425
     }
   ]
 }
