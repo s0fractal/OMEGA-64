@@ -58,12 +58,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE IMMUNE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772020591174
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT RECON PURE",
       "mood": "DEFENSIVE",
@@ -146,6 +140,12 @@
       "text": "DRAIN SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020596722
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GIVING RESONATE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772020597271
     }
   ]
 }
