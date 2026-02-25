@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772026409627
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772026410372
@@ -291,6 +285,12 @@
       "text": "PURE SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772026415700
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE REFLECT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772026415895
     }
   ]
 }
