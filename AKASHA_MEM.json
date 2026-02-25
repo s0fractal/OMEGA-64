@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE WAIT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772033305158
-    },
-    {
-      "origin": "REVERSE",
       "text": "EVOLVE WITNESS VISION",
       "mood": "CREATIVE",
       "tick": 1772033305336
@@ -291,6 +285,12 @@
       "text": "FLOW UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772033310027
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHIELD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772033310264
     }
   ]
 }
