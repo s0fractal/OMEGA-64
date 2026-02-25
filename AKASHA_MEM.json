@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY CONSUME SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028735600
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772028736144
@@ -291,6 +285,12 @@
       "text": "SHOCK CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772028743105
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH REFLECT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772028744072
     }
   ]
 }
