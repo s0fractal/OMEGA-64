@@ -115,12 +115,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW BLOOM STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772022014267
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHIELD SHELTER WAIT",
       "mood": "DEFENSIVE",
@@ -203,6 +197,12 @@
       "text": "BREACH STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022022050
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE SHOCK DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022022614
     }
   ]
 }
