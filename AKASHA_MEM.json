@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772034950336
-    },
-    {
       "origin": "ALPHA_PROOF_OF_RESONANCE",
       "text": "HEAL SYNC GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772034957394
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034957598
     }
   ]
 }
