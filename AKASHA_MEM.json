@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH STRIFE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036971006
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772036971243
@@ -291,6 +285,12 @@
       "text": "HEAL STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772036982193
+    },
+    {
+      "origin": "STREAM",
+      "text": "HEAL COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772036982917
     }
   ]
 }
