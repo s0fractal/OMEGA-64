@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT IMMUNE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041463136
-    },
-    {
       "origin": "CONSCIOUSNESS",
       "text": "FLOW HEAL STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SEIZE DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041466065
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN BREACH STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041466202
     }
   ]
 }
