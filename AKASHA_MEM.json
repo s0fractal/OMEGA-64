@@ -120,12 +120,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL OSMOSIS RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772022104267
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
@@ -208,6 +202,12 @@
       "text": "GIVING FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022108104
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS STASIS STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772022108306
     }
   ]
 }
