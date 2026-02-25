@@ -135,12 +135,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC HEAL RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772022384330
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022384933
@@ -222,6 +216,12 @@
       "text": "SEIZE SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022390495
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022390746
     }
   ]
 }
