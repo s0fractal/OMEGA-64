@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772040587895
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WATCH PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772040590465
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE RECON WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772040590915
     }
   ]
 }
