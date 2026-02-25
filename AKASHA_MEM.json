@@ -146,12 +146,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772022515137
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022515300
@@ -233,6 +227,12 @@
       "text": "GUARD WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022518427
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022518812
     }
   ]
 }
