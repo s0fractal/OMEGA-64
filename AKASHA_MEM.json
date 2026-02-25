@@ -132,12 +132,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022342499
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772022342645
@@ -219,6 +213,12 @@
       "text": "GUARD WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022347236
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022347392
     }
   ]
 }
