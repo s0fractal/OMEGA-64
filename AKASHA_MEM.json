@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT REFLECT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772035844599
-    },
-    {
-      "origin": "REVERSE",
       "text": "AWAKEN EVOLVE BECOME",
       "mood": "CREATIVE",
       "tick": 1772035844820
@@ -291,6 +285,12 @@
       "text": "SHIELD SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772035849760
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772035850090
     }
   ]
 }
