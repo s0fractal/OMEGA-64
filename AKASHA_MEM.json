@@ -81,12 +81,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "VISION WITNESS WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772021109248
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD SHIELD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772021109759
@@ -168,6 +162,12 @@
       "text": "SICKNESS SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021115672
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY SICKNESS BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021116115
     }
   ]
 }
