@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038730010
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772038730254
@@ -291,6 +285,12 @@
       "text": "STABLE OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772038733583
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038733812
     }
   ]
 }
