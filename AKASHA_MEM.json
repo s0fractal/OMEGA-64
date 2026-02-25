@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A0666006",
     "0AA0AAA0",
     "0AAAA000",
     "66060066",
@@ -199,15 +198,10 @@
     "A0A0A0A0",
     "60606666",
     "AA0066A0",
-    "AA0BC00F"
+    "AA0BC00F",
+    "600666A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RECON REFLECT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772037334481
-    },
     {
       "origin": "REVERSE",
       "text": "REFLECT REFLECT REFLECT",
@@ -291,6 +285,12 @@
       "text": "STASIS SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772037337654
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHELTER WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772037337869
     }
   ]
 }
