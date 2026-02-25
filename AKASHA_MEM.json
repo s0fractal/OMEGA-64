@@ -87,12 +87,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY STRIFE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021250336
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM STABLE GIVING",
       "mood": "HARMONIC",
@@ -175,6 +169,12 @@
       "text": "STRIKE HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772021254466
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DRAIN BREACH DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021254634
     }
   ]
 }
