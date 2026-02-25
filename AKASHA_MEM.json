@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY STABLE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772035352593
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772035352791
@@ -291,6 +285,12 @@
       "text": "DRAIN CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772035355431
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772035355624
     }
   ]
 }
