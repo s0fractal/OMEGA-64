@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SICKNESS DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028954732
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME FORGE WITNESS",
       "mood": "CREATIVE",
       "tick": 1772028955009
@@ -291,6 +285,12 @@
       "text": "RESONATE STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772028958992
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS EVOLVE SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772028959378
     }
   ]
 }
