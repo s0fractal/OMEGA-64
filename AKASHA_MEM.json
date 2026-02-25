@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BEYOND BEYOND DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772039183055
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE BLOOM HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772039185975
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SEIZE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039186176
     }
   ]
 }
