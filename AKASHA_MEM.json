@@ -103,12 +103,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021638934
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772021639061
@@ -190,6 +184,12 @@
       "text": "SHELTER GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772021646205
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WATCH SHIELD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021646386
     }
   ]
 }
