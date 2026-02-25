@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING OSMOSIS BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772037760558
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772037760740
@@ -291,6 +285,12 @@
       "text": "DECAY SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772037767680
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER IMMUNE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772037767917
     }
   ]
 }
