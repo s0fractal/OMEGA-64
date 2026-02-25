@@ -107,12 +107,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BECOME FORGE AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772021793339
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS SEIZE SEIZE",
       "mood": "AGGRESSIVE",
@@ -195,6 +189,12 @@
       "text": "OSMOSIS SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772021797351
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD RECON SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021797776
     }
   ]
 }
