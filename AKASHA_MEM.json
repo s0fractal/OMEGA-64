@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAAA00A0",
     "AAA00000",
     "0000A000",
     "A0AAA000",
@@ -199,15 +198,10 @@
     "06000000",
     "60006660",
     "66AA66A0",
-    "0BB00000"
+    "0BB00000",
+    "00000000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "PURE GUARD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772027779817
-    },
     {
       "origin": "REVERSE",
       "text": "IMMUNE WATCH RECON",
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772027787242
+    },
+    {
+      "origin": "ALPHA_PROOF_OF_RESONANCE",
+      "text": "OSMOSIS OSMOSIS BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772027795736
     }
   ]
 }
