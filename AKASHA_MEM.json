@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RECON WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040520399
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "IMMUNE WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772040520524
@@ -291,6 +285,12 @@
       "text": "WATCH GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772040522553
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772040522684
     }
   ]
 }
