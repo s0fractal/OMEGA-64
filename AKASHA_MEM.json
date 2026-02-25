@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE DECAY STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030694448
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW HEAL COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHIELD STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772030704839
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772030705146
     }
   ]
 }
