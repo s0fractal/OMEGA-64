@@ -183,12 +183,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL OSMOSIS BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772023565898
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN STRIKE SHOCK",
       "mood": "AGGRESSIVE",
@@ -271,6 +265,12 @@
       "text": "STABLE SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772023570189
+    },
+    {
+      "origin": "STREAM",
+      "text": "SHELTER REFLECT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023570459
     }
   ]
 }
