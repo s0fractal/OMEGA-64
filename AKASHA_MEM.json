@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE SYNC COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772029284031
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772029284388
@@ -291,6 +285,12 @@
       "text": "DRAIN SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772029294544
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE CONSUME SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029294957
     }
   ]
 }
