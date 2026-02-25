@@ -74,12 +74,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020951873
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY BREACH SICKNESS",
       "mood": "AGGRESSIVE",
@@ -162,6 +156,12 @@
       "text": "FLOW FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772020959937
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STASIS RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020960775
     }
   ]
 }
