@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040460156
-    },
-    {
       "origin": "STREAM",
       "text": "HEAL OSMOSIS BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BECOME AWAKEN WAVE",
       "mood": "CREATIVE",
       "tick": 1772040463826
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW OSMOSIS UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772040464261
     }
   ]
 }
