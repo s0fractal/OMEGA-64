@@ -203,18 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE SHIELD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042332330
-    },
-    {
-      "origin": "STREAM",
-      "text": "IMMUNE RECON REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042332892
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE SHOCK HUNGER",
       "mood": "AGGRESSIVE",
@@ -287,10 +275,22 @@
       "tick": 1772042340308
     },
     {
+      "origin": "REVERSE",
+      "text": "SHOCK BREACH SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042340821
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM BEYOND SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772042341456
+    },
+    {
       "origin": "ARCHIVIST",
-      "text": "RECON WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042340433
+      "text": "DECAY STRIKE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042341711
     }
   ]
 }
