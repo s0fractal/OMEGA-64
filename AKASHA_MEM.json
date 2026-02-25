@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772027285721
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772027285973
@@ -291,6 +285,12 @@
       "text": "FLOW BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772027292458
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772027292669
     }
   ]
 }
