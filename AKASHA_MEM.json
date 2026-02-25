@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY DRAIN SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038679742
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE STRIFE CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "BREACH STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772038682840
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIKE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038683063
     }
   ]
 }
