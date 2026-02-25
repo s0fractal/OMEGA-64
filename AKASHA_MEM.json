@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60600006",
     "66006666",
     "06000000",
     "AA0AAAAA",
@@ -199,15 +198,10 @@
     "B0B00000",
     "66060060",
     "AA0AAA00",
-    "06600006"
+    "06600006",
+    "A000AAA0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "PURE IMMUNE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041192732
-    },
     {
       "origin": "INTERFACE",
       "text": "UNIFY OSMOSIS FLOW",
@@ -291,6 +285,12 @@
       "text": "STABLE STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772041195762
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE SICKNESS STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041195890
     }
   ]
 }
