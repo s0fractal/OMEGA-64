@@ -43,12 +43,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "STRIFE SEIZE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019907526
-    },
-    {
-      "origin": "INTERFACE",
       "text": "DECAY DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772019908122
@@ -130,6 +124,12 @@
       "text": "WAIT REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772019918668
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772019919180
     }
   ]
 }
