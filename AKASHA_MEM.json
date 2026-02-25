@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD STASIS RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772034886967
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772034887268
@@ -291,6 +285,12 @@
       "text": "COHERE HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772034890695
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE DRAIN STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034890889
     }
   ]
 }
