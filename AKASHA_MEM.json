@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035460979
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772035461967
@@ -291,6 +285,12 @@
       "text": "STABLE FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772035465888
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHELTER GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772035466410
     }
   ]
 }
