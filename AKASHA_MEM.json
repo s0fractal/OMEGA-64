@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772026942765
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIKE CONSUME STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HUNGER DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772026949114
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE RECON SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772026949334
     }
   ]
 }
