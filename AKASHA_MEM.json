@@ -69,12 +69,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL STABLE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772020839773
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK BEYOND SPARK",
       "mood": "CREATIVE",
       "tick": 1772020839945
@@ -156,6 +150,12 @@
       "text": "CONSUME BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020846365
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT WATCH WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772020846521
     }
   ]
 }
