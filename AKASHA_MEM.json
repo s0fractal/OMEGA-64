@@ -55,12 +55,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HUNGER SICKNESS STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020448254
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHOCK DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772020448769
@@ -142,6 +136,12 @@
       "text": "FLOW OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772020455033
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD RECON WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772020455443
     }
   ]
 }
