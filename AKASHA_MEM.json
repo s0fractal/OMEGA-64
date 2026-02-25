@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772040522380
-    },
-    {
       "origin": "STREAM",
       "text": "WATCH GUARD WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772040525662
+    },
+    {
+      "origin": "STREAM",
+      "text": "HUNGER BREACH CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040525819
     }
   ]
 }
