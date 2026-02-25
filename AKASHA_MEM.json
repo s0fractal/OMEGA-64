@@ -139,12 +139,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON IMMUNE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022436635
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022436889
@@ -226,6 +220,12 @@
       "text": "STABLE RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022439884
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY HUNGER CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022440048
     }
   ]
 }
