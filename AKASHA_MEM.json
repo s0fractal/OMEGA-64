@@ -187,12 +187,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772023677980
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023678197
@@ -274,6 +268,12 @@
       "text": "DRAIN BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023681616
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE AWAKEN FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772023682166
     }
   ]
 }
