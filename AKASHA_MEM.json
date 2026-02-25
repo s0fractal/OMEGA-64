@@ -110,12 +110,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SHOCK SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021895465
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772021895798
@@ -197,6 +191,12 @@
       "text": "SEIZE SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772021899481
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021899859
     }
   ]
 }
