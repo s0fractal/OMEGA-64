@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "STREAM",
-      "text": "RESONATE HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772040578027
-    },
-    {
-      "origin": "STREAM",
       "text": "HEAL UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772040578181
@@ -291,6 +285,12 @@
       "text": "STASIS REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040581029
+    },
+    {
+      "origin": "STREAM",
+      "text": "RESONATE UNIFY COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772040581190
     }
   ]
 }
