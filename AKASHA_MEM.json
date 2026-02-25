@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BLOOM OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772024748309
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SEIZE BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772024751130
@@ -291,6 +285,12 @@
       "text": "STRIFE BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772024761896
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE REFLECT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772024763372
     }
   ]
 }
