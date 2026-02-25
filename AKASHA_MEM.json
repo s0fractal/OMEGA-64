@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772034400296
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772034400494
@@ -291,6 +285,12 @@
       "text": "STRIKE SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772034403041
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM UNIFY OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772034403221
     }
   ]
 }
