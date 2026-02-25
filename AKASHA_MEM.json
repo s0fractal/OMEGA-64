@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032866846
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772032867019
@@ -291,6 +285,12 @@
       "text": "SICKNESS DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772032869904
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SEIZE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032870144
     }
   ]
 }
