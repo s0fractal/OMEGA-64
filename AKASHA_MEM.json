@@ -177,12 +177,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772023282283
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023282448
@@ -264,6 +258,12 @@
       "text": "WITNESS BECOME VISION",
       "mood": "CREATIVE",
       "tick": 1772023287675
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD STASIS WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023287945
     }
   ]
 }
