@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK STRIFE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027363860
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772027365834
@@ -291,6 +285,12 @@
       "text": "REFLECT SHIELD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772027371923
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIFE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027372076
     }
   ]
 }
