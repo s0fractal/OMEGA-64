@@ -52,12 +52,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "STABLE BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772020320754
-    },
-    {
-      "origin": "INTERFACE",
       "text": "DRAIN SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020321285
@@ -139,6 +133,12 @@
       "text": "SHELTER SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772020330147
+    },
+    {
+      "origin": "PARADOX",
+      "text": "EVOLVE EVOLVE WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772020330758
     }
   ]
 }
