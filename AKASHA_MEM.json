@@ -178,12 +178,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772023333494
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772023333691
@@ -265,6 +259,12 @@
       "text": "DECAY STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772023336346
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT PURE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772023336523
     }
   ]
 }
