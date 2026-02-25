@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY BLOOM OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772030072280
-    },
-    {
-      "origin": "REVERSE",
       "text": "DREAM WAVE EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772030073986
@@ -291,6 +285,12 @@
       "text": "SHELTER STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772030087499
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE STASIS GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772030088152
     }
   ]
 }
