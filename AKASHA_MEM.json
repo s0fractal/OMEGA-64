@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "PURE PURE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040496692
-    },
-    {
       "origin": "REVERSE",
       "text": "IMMUNE PURE SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772040499166
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY STRIKE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040499343
     }
   ]
 }
