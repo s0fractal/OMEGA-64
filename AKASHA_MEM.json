@@ -203,24 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALIEN",
-      "text": "HUNGER SICKNESS HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042784204
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "COHERE UNIFY BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772042785259
-    },
-    {
-      "origin": "REVERSE",
-      "text": "STRIFE CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042785492
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE RECON RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +273,24 @@
       "text": "DECAY SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772042791608
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042792157
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HUNGER DECAY SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042792504
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHELTER WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772042792644
     }
   ]
 }
