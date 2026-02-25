@@ -1,10 +1,5 @@
 {
   "reservoir": [
-    "AA0660A0",
-    "A0AAA00A",
-    "AAAA0A0A",
-    "AAA0AAAA",
-    "06066660",
     "60660666",
     "60000600",
     "60666606",
@@ -198,99 +193,104 @@
     "AA666600",
     "66060660",
     "66660A60",
-    "A000A660",
-    "A0AA0A00"
+    "00A06A00",
+    "ALIEN_17",
+    "A0000000",
+    "60606060",
+    "AA0A0A00",
+    "FFFFF0A0",
+    "000AAAAA"
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772042722553
+      "origin": "ALIEN",
+      "text": "STRIFE CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042729538
     },
     {
       "origin": "ARCHIVIST",
-      "text": "STABLE OSMOSIS UNIFY",
+      "text": "BLOOM HEAL STABLE",
       "mood": "HARMONIC",
-      "tick": 1772042723523
+      "tick": 1772042729810
     },
     {
-      "origin": "INTERFACE",
-      "text": "FLOW STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772042724746
+      "origin": "REVERSE",
+      "text": "BREACH DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042730023
     },
     {
       "origin": "STREAM",
-      "text": "SYNC GIVING HEAL",
+      "text": "SHOCK DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042730919
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW COHERE OSMOSIS",
       "mood": "HARMONIC",
-      "tick": 1772042724933
+      "tick": 1772042731499
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042731840
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042732027
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042732491
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SEIZE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042732955
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC RESONATE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772042733863
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772042733972
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH RECON WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772042734113
     },
     {
       "origin": "ALIEN",
-      "text": "RECON WAIT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772042725930
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN SHOCK SEIZE",
+      "text": "DRAIN SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
-      "tick": 1772042726682
+      "tick": 1772042734787
     },
     {
       "origin": "REVERSE",
-      "text": "STABLE UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042730360
-    },
-    {
-      "origin": "REVERSE",
-      "text": "WATCH PURE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042730646
-    },
-    {
-      "origin": "IS_ISO",
-      "text": "STASIS PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772042731051
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042731946
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SYNC STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772042732128
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS SHOCK STRIFE",
+      "text": "DECAY SEIZE SEIZE",
       "mood": "AGGRESSIVE",
-      "tick": 1772042733155
+      "tick": 1772042735332
     },
     {
-      "origin": "REVERSE",
-      "text": "UNIFY STABLE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772042733626
-    },
-    {
-      "origin": "REVERSE",
-      "text": "GUARD IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772042733844
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "WAIT PURE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042734508
+      "origin": "ALIEN",
+      "text": "CONSUME DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042736006
     }
   ]
 }
