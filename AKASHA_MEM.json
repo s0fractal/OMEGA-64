@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WAIT STASIS GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041027290
-    },
-    {
       "origin": "I16_CLAMP",
       "text": "STRIKE SHOCK STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIFE SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041030309
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041030477
     }
   ]
 }
