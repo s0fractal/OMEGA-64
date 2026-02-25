@@ -115,12 +115,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WAIT WAIT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772022042684
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHELTER WATCH GUARD",
       "mood": "DEFENSIVE",
@@ -203,6 +197,12 @@
       "text": "SICKNESS STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022052765
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM AWAKEN VISION",
+      "mood": "CREATIVE",
+      "tick": 1772022052994
     }
   ]
 }
