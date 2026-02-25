@@ -199,12 +199,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024030456
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772024030638
@@ -286,6 +280,12 @@
       "text": "PURE SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772024033778
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY BLOOM UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772024034186
     }
   ]
 }
