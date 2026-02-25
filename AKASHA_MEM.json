@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772038653754
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038653958
@@ -291,6 +285,12 @@
       "text": "STRIKE BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772038656810
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON STASIS STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772038656978
     }
   ]
 }
