@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036675635
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS SHIELD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772036675836
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772036678610
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD GUARD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772036678786
     }
   ]
 }
