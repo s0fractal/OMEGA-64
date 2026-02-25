@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772034678886
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772034679097
@@ -291,6 +285,12 @@
       "text": "BLOOM BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772034684372
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034684555
     }
   ]
 }
