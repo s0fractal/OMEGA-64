@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SICKNESS SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033388787
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772033388947
@@ -291,6 +285,12 @@
       "text": "STABLE GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772033391235
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK HUNGER SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033391446
     }
   ]
 }
