@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DREAM FORGE BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772034558135
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772034558331
@@ -291,6 +285,12 @@
       "text": "GUARD GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772034561697
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE FORGE DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772034561929
     }
   ]
 }
