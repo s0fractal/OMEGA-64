@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772036497591
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772036497804
@@ -291,6 +285,12 @@
       "text": "IMMUNE SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772036503383
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME HUNGER SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036503854
     }
   ]
 }
