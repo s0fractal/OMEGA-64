@@ -63,12 +63,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS STRIKE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020670908
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER IMMUNE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772020671118
@@ -150,6 +144,12 @@
       "text": "SHOCK SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020678710
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020679345
     }
   ]
 }
