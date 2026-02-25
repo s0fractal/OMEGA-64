@@ -167,12 +167,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023032257
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023032411
@@ -254,6 +248,12 @@
       "text": "HEAL FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772023035477
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD REFLECT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772023035801
     }
   ]
 }
