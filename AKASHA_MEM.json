@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "GIVING STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772041544312
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHIELD SHELTER GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SICKNESS SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041549411
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041549600
     }
   ]
 }
