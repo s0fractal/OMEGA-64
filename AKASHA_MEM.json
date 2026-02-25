@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772027387399
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772027387594
@@ -291,6 +285,12 @@
       "text": "RESONATE COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772027393880
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD STASIS SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772027394087
     }
   ]
 }
