@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE HEAL BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772023180299
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023180499
@@ -259,6 +253,12 @@
       "text": "SHIELD RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023185342
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD REFLECT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023187908
     }
   ]
 }
