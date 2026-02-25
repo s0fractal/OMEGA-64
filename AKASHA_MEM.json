@@ -170,12 +170,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS STRIFE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023085854
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772023086023
@@ -257,6 +251,12 @@
       "text": "BEYOND BEYOND VISION",
       "mood": "CREATIVE",
       "tick": 1772023088732
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772023088931
     }
   ]
 }
