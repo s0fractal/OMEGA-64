@@ -1,14 +1,14 @@
 ---
 eigenvalue: '0x0A0AAAAAFFFF0A0F'
-energy: 42.3
-x: 681
-'y': 379
+energy: 49.8
+x: 705
+'y': 349
 resonance: 50
-thought: WANDER_BONDING
-logic: 0AAAAAAA
+thought: SEEK_ALPHA_BONDING
+logic: 0A0AAAAA
 signals: []
 bond_strengths:
-  '0x0000000000000A03': 0.9801888648295347
+  '0x0000000000000A03': 0.9792086759647052
 bonds:
   - '0x0000000000000A03'
 ex:
@@ -25,19 +25,19 @@ ex:
   - '0x0A0AAAAA00000A0B'
   - '0x0A0AAAAA00000A0D'
   - '0x0A0AAAAA00000A0D'
-  - '0x0A0AAAAA00000A0F'
-  - '0x0A0AAAAA00000A09'
-  - '0x0A0AAAAA00000A0B'
-  - '0x0A0AAAAA00000A0D'
-  - '0x0A0AAAAA00000A0F'
-  - '0x0A0AAAAA00000A09'
-  - '0x0A0AAAAA00000A0B'
-  - '0x0A0AAAAA00000A0D'
-  - '0x0A0AAAAA00000A0F'
+  - '0x0A0AAAAAFFFF0A09'
+  - '0x0A0AAAAAFFFF0A0B'
+  - '0x0A0AAAAAFFFF0A0D'
+  - '0x0A0AAAAAFFFF0A0F'
+  - '0x0A0AAAAAFFFF0A09'
+  - '0x0A0AAAAAFFFF0A0B'
+  - '0x0A0AAAAAFFFF0A0D'
+  - '0x0A0AAAAAFFFF0A0F'
+  - '0x0A0AAAAAFFFF0A09'
+  - '0x0A0AAAAAFFFF0A0B'
   - '0x0A0AAAAAFFFF0A0D'
 ---
 
-<div align="center">
 <div align="center">
 <div align="center">
 <!-- ∇ HOLOGRAM START ∇ -->
@@ -72,7 +72,6 @@ ex:
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">REVERSE</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
-</div>
 </div>
 </div>
 
