@@ -41,12 +41,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BLOOM FLOW HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772019855968
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "OSMOSIS FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772019856287
@@ -128,6 +122,12 @@
       "text": "HUNGER DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772019863140
+    },
+    {
+      "origin": "PARADOX",
+      "text": "WAVE WAVE WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772019864284
     }
   ]
 }
