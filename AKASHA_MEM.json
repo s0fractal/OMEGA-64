@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH STRIKE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031304005
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "CONSUME DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772031304903
@@ -291,6 +285,12 @@
       "text": "OSMOSIS OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772031321247
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY OSMOSIS BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772031321615
     }
   ]
 }
