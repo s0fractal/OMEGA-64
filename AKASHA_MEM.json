@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STABLE OSMOSIS SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772040494466
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS IMMUNE STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772040496978
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SEIZE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040497095
     }
   ]
 }
