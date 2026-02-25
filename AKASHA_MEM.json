@@ -71,12 +71,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS HEAL HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772020918149
-    },
-    {
       "origin": "INTERFACE",
       "text": "HUNGER DRAIN CONSUME",
       "mood": "AGGRESSIVE",
@@ -159,6 +153,12 @@
       "text": "CONSUME DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020924955
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772020925429
     }
   ]
 }
