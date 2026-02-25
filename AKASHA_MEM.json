@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GUARD WAIT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772040865996
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHOCK SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772040866281
@@ -291,6 +285,12 @@
       "text": "STABLE FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772040868837
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772040869027
     }
   ]
 }
