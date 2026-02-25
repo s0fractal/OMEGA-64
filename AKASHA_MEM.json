@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "WATCH GUARD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041023158
-    },
-    {
       "origin": "WORKER",
       "text": "STASIS STASIS RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772041026418
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD RECON WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041026547
     }
   ]
 }
