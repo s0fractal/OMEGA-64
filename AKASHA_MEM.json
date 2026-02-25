@@ -195,12 +195,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "HEAL BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772023888409
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
@@ -283,6 +277,12 @@
       "text": "WAVE BECOME FORGE",
       "mood": "CREATIVE",
       "tick": 1772023895904
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS COHERE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772023896156
     }
   ]
 }
