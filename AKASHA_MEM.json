@@ -204,18 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "UNIFY SYNC SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772042736391
-    },
-    {
-      "origin": "REVERSE",
-      "text": "OSMOSIS SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772042737063
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIFE DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772042737404
@@ -291,6 +279,18 @@
       "text": "GUARD SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772042742780
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT REFLECT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042743370
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE SHOCK SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042743743
     }
   ]
 }
