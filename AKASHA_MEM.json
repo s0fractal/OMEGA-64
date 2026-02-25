@@ -127,12 +127,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022265982
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022266190
@@ -214,6 +208,12 @@
       "text": "FLOW COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772022270997
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022272485
     }
   ]
 }
