@@ -45,12 +45,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "PURE PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772020064327
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RECON WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772020065248
@@ -132,6 +126,12 @@
       "text": "FLOW RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772020081689
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772020082250
     }
   ]
 }
