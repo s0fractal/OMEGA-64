@@ -149,12 +149,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE BLOOM OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772022524393
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022524619
@@ -236,6 +230,12 @@
       "text": "DRAIN STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022528137
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE HEAL RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772022528297
     }
   ]
 }
