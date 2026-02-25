@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772036803684
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772036803916
@@ -291,6 +285,12 @@
       "text": "WAIT PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772036806756
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772036806952
     }
   ]
 }
