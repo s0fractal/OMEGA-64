@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772038624074
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772038624428
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772038627655
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772038627861
     }
   ]
 }
