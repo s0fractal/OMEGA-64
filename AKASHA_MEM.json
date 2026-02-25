@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "POTENTIAL",
-      "text": "SICKNESS BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041964121
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD WAIT GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772041968957
+    },
+    {
+      "origin": "WAVE_SIGNAL",
+      "text": "BLOOM HEAL RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772041969213
     }
   ]
 }
