@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038567945
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772038568172
@@ -291,6 +285,12 @@
       "text": "OSMOSIS COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772038571121
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE OSMOSIS HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772038571343
     }
   ]
 }
