@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHOCK DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041496879
-    },
-    {
       "origin": "CAR",
       "text": "IMMUNE REFLECT SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041501738
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041501874
     }
   ]
 }
