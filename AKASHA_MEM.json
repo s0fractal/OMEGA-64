@@ -76,12 +76,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772021019286
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH RECON SHIELD",
       "mood": "DEFENSIVE",
@@ -164,6 +158,12 @@
       "text": "STRIKE DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772021025312
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RESONATE OSMOSIS UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772021025581
     }
   ]
 }
