@@ -93,12 +93,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021434428
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER SHOCK SEIZE",
       "mood": "AGGRESSIVE",
@@ -181,6 +175,12 @@
       "text": "DECAY BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021470023
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS GIVING BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772021470956
     }
   ]
 }
