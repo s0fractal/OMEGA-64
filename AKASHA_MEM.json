@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM OSMOSIS COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772038065010
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772038065231
@@ -291,6 +285,12 @@
       "text": "SHOCK SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772038069716
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038069919
     }
   ]
 }
