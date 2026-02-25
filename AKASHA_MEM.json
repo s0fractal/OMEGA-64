@@ -154,12 +154,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER GUARD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772022659683
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY SEIZE SHOCK",
       "mood": "AGGRESSIVE",
@@ -242,6 +236,12 @@
       "text": "DREAM FORGE EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772022663840
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS RESONATE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772022664464
     }
   ]
 }
