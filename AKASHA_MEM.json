@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772023948922
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023949123
@@ -284,6 +278,12 @@
       "text": "SHOCK HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023952150
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON STASIS IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023952469
     }
   ]
 }
