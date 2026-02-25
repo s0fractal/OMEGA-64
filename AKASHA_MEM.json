@@ -135,12 +135,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772022388893
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022389247
@@ -222,6 +216,12 @@
       "text": "PURE STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772022393724
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022394089
     }
   ]
 }
