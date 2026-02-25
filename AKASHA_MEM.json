@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A0A0A0A0",
     "AA0BC0D0",
     "AA0AAA00",
     "A0BBC000",
@@ -199,15 +198,10 @@
     "00600000",
     "AA000A0A",
     "60600060",
-    "AAAAA00A"
+    "AAAAA00A",
+    "60600606"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD PURE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040907857
-    },
     {
       "origin": "ARCHIVIST",
       "text": "PURE STASIS PURE",
@@ -291,6 +285,12 @@
       "text": "FLOW UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772040910257
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WATCH REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040910392
     }
   ]
 }
