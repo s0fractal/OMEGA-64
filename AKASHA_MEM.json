@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772035143639
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772035143887
@@ -291,6 +285,12 @@
       "text": "GIVING BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772035146682
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035146918
     }
   ]
 }
