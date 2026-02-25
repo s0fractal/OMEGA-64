@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034022695
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE UNIFY COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WATCH RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772034026731
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC BLOOM UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772034026939
     }
   ]
 }
