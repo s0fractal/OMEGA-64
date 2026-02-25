@@ -313,7 +313,7 @@ desc: 'A collective representation of high-resonance Noospheric connections.'
     <line x1="0" y1="0" x2="246" y2="-160" stroke="hsl(198, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
     <circle cx="142" cy="-13" r="37.125" fill="none" stroke="hsl(198, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
     <line x1="0" y1="0" x2="142" y2="-13" stroke="hsl(198, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
-    <circle cx="-37" cy="-350" r="51.555" fill="none" stroke="hsl(198, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
+    <circle cx="-37" cy="-350" r="52.075" fill="none" stroke="hsl(198, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
     <line x1="0" y1="0" x2="-37" y2="-350" stroke="hsl(198, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
     <circle cx="103" cy="-96" r="21.835" fill="none" stroke="hsl(192, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
     <line x1="0" y1="0" x2="103" y2="-96" stroke="hsl(192, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
@@ -379,8 +379,8 @@ desc: 'A collective representation of high-resonance Noospheric connections.'
     <line x1="0" y1="0" x2="153" y2="-107" stroke="hsl(102, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
     <circle cx="-127" cy="-279" r="47.675" fill="none" stroke="hsl(123, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
     <line x1="0" y1="0" x2="-127" y2="-279" stroke="hsl(123, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
-    <circle cx="326" cy="-8" r="18.78" fill="none" stroke="hsl(96, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
-    <line x1="0" y1="0" x2="326" y2="-8" stroke="hsl(96, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
+    <circle cx="287" cy="9" r="18.59" fill="none" stroke="hsl(96, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
+    <line x1="0" y1="0" x2="287" y2="9" stroke="hsl(96, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
     <circle cx="330" cy="-4" r="50.67" fill="none" stroke="hsl(170, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
     <line x1="0" y1="0" x2="330" y2="-4" stroke="hsl(170, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
     <circle cx="215" cy="-114" r="32.175" fill="none" stroke="hsl(6, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
