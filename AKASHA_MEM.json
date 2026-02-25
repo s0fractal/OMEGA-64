@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE BREACH BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037983988
-    },
-    {
-      "origin": "REVERSE",
       "text": "EVOLVE DREAM VISION",
       "mood": "CREATIVE",
       "tick": 1772037984432
@@ -291,6 +285,12 @@
       "text": "STASIS SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772037987580
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM SYNC SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772037987789
     }
   ]
 }
