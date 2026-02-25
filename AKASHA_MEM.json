@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66660660",
     "AA0A0AA0",
     "66666006",
     "A0AAA000",
@@ -199,15 +198,10 @@
     "A00AA000",
     "66000600",
     "A6666666",
-    "AA666660"
+    "AA666660",
+    "60066000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "OSMOSIS BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772036968437
-    },
     {
       "origin": "REVERSE",
       "text": "BREACH SICKNESS BREACH",
@@ -291,6 +285,12 @@
       "text": "BECOME DREAM SPARK",
       "mood": "CREATIVE",
       "tick": 1772036972268
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS STASIS SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772036972455
     }
   ]
 }
