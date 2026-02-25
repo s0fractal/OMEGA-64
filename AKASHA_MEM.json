@@ -59,12 +59,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020596722
-    },
-    {
       "origin": "INTERFACE",
       "text": "GIVING RESONATE COHERE",
       "mood": "HARMONIC",
@@ -147,6 +141,12 @@
       "text": "RESONATE HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772020602597
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE CONSUME STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020603551
     }
   ]
 }
