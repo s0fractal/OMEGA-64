@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY HUNGER STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037545645
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772037545878
@@ -291,6 +285,12 @@
       "text": "OSMOSIS UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772037551271
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER SHIELD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772037551610
     }
   ]
 }
