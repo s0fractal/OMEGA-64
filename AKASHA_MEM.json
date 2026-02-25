@@ -159,12 +159,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SHOCK HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022790022
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER SHIELD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772022790562
@@ -246,6 +240,12 @@
       "text": "HEAL FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022795985
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022796156
     }
   ]
 }
