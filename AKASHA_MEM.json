@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SICKNESS BREACH SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041149971
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE BREACH SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772041154635
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHELTER WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041154961
     }
   ]
 }
