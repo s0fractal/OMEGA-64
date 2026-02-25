@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON PURE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772033194984
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772033195158
@@ -291,6 +285,12 @@
       "text": "RECON STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772033198246
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772033198438
     }
   ]
 }
