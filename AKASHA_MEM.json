@@ -22,12 +22,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHIELD WAIT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772019414924
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GUARD WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772019416657
@@ -109,6 +103,12 @@
       "text": "SICKNESS DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772019442953
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019446097
     }
   ]
 }
