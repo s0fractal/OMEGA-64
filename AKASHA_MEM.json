@@ -198,12 +198,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE SYNC FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772024016192
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772024016727
@@ -285,6 +279,12 @@
       "text": "BREACH SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772024020826
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WAIT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772024023993
     }
   ]
 }
