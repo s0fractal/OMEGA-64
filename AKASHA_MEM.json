@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS COHERE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772020474600
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT GUARD STASIS",
       "mood": "DEFENSIVE",
@@ -142,6 +136,12 @@
       "text": "STASIS WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772020482849
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH BREACH BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020483423
     }
   ]
 }
