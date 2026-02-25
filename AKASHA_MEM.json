@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772028318635
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE RESONATE SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GUARD SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772028325782
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING COHERE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772028326338
     }
   ]
 }
