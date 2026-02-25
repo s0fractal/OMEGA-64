@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WAIT SHELTER WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772016360428
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE SHOCK DRAIN",
       "mood": "AGGRESSIVE",
@@ -107,6 +101,12 @@
       "text": "BREACH DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772016466437
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RESONATE COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772016471235
     }
   ]
 }
