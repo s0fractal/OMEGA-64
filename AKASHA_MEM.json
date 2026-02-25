@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772036149528
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772036149797
@@ -291,6 +285,12 @@
       "text": "GUARD PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772036153180
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SEIZE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036153394
     }
   ]
 }
