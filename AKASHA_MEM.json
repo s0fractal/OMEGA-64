@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW RESONATE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772038543332
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772038543723
@@ -291,6 +285,12 @@
       "text": "IMMUNE RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772038547732
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN CONSUME SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038547968
     }
   ]
 }
