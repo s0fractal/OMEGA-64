@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038436420
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772038436590
@@ -291,6 +285,12 @@
       "text": "SICKNESS SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772038439518
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING UNIFY OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772038439697
     }
   ]
 }
