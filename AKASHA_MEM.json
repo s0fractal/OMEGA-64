@@ -101,12 +101,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE STRIKE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021608215
-    },
-    {
       "origin": "INTERFACE",
       "text": "STASIS WATCH REFLECT",
       "mood": "DEFENSIVE",
@@ -189,6 +183,12 @@
       "text": "PURE GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772021614585
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHELTER SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021614880
     }
   ]
 }
