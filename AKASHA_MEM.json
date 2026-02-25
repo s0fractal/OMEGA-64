@@ -130,12 +130,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT GUARD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022327508
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022328447
@@ -217,6 +211,12 @@
       "text": "STABLE COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022334272
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SHOCK SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022334491
     }
   ]
 }
