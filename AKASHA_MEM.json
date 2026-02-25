@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772041015254
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "FLOW UNIFY BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "IMMUNE SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772041019237
+    },
+    {
+      "origin": "WORKER",
+      "text": "SEIZE DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041019421
     }
   ]
 }
