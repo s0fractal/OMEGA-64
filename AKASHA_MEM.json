@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772037535994
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772037536325
@@ -291,6 +285,12 @@
       "text": "IMMUNE WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772037543041
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION DREAM SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772037543306
     }
   ]
 }
