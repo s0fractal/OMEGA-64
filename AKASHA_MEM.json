@@ -166,12 +166,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023026974
-    },
-    {
       "origin": "INTERFACE",
       "text": "BLOOM FLOW RESONATE",
       "mood": "HARMONIC",
@@ -254,6 +248,12 @@
       "text": "BREACH SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023032564
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHIELD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023032739
     }
   ]
 }
