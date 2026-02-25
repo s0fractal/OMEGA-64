@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "STRIFE CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041701533
-    },
-    {
-      "origin": "INTERFACE",
       "text": "RESONATE UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772041701831
@@ -291,6 +285,12 @@
       "text": "WAIT PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772041707559
+    },
+    {
+      "origin": "STREAM",
+      "text": "STABLE UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772041707940
     }
   ]
 }
