@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH SEIZE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024300343
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHIELD REFLECT GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIKE STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772024305579
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GIVING RESONATE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772024306672
     }
   ]
 }
