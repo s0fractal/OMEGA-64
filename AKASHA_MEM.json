@@ -15,12 +15,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME STRIKE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772014154383
-    },
-    {
       "origin": "INTERFACE",
       "text": "SYNC OSMOSIS FLOW",
       "mood": "HARMONIC",
@@ -103,6 +97,12 @@
       "text": "BECOME AWAKEN BECOME",
       "mood": "CREATIVE",
       "tick": 1772014279546
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GIVING RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772014285340
     }
   ]
 }
