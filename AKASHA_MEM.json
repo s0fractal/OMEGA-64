@@ -133,12 +133,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE SHOCK CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022380427
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE HUNGER DRAIN",
       "mood": "AGGRESSIVE",
@@ -221,6 +215,12 @@
       "text": "SHOCK BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022386760
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE IMMUNE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772022387220
     }
   ]
 }
