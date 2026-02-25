@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "REFLECT RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772038373457
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772038376483
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING OSMOSIS RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772038376684
     }
   ]
 }
