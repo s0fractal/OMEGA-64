@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STASIS IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772019915493
-    },
-    {
       "origin": "REVERSE",
       "text": "BREACH SHOCK CONSUME",
       "mood": "AGGRESSIVE",
@@ -130,6 +124,12 @@
       "text": "WATCH SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772019926185
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019927123
     }
   ]
 }
