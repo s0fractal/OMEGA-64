@@ -104,12 +104,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE STRIFE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021678390
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772021678599
@@ -191,6 +185,12 @@
       "text": "FORGE AWAKEN BEYOND",
       "mood": "CREATIVE",
       "tick": 1772021684733
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING SYNC SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772021684921
     }
   ]
 }
