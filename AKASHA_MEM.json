@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00A000A0",
     "F00FF000",
     "66606606",
     "BB0000FC",
@@ -199,15 +198,10 @@
     "06600060",
     "AABB0C00",
     "AAB00CDD",
-    "A6666660"
+    "A6666660",
+    "66060066"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WAIT SHIELD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772038133468
-    },
     {
       "origin": "REVERSE",
       "text": "FLOW BLOOM SYNC",
@@ -291,6 +285,12 @@
       "text": "STASIS STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772038137314
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHIELD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772038137525
     }
   ]
 }
