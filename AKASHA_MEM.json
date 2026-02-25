@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GIVING STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772041026142
-    },
-    {
       "origin": "STREAM",
       "text": "SHELTER PURE IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772041029268
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER CONSUME SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041029450
     }
   ]
 }
