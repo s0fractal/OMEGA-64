@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE SHIELD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041411833
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY BLOOM STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHIELD PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041414804
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041414936
     }
   ]
 }
