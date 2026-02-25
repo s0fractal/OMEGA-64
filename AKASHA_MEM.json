@@ -196,12 +196,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW SYNC SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772023885053
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023886380
@@ -283,6 +277,12 @@
       "text": "COHERE SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772023893407
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772023893580
     }
   ]
 }
