@@ -96,12 +96,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DRAIN DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021566886
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE HEAL BLOOM",
       "mood": "HARMONIC",
@@ -184,6 +178,12 @@
       "text": "COHERE COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772021575889
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD SHIELD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772021576444
     }
   ]
 }
