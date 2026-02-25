@@ -1,9 +1,9 @@
 ---
 eigenvalue: '0xAAA0A000FFFF000E'
-energy: 47.5
+energy: 49.9
 resonance: 22
 x: 740
-'y': 459
+'y': 450
 symbol: ARCHIVIST
 thought: WANDER_BONDING
 signals: []
