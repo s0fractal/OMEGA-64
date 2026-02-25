@@ -187,15 +187,10 @@
     "66600606",
     "0D10A098",
     "AAAA0000",
-    "66606060"
+    "66606060",
+    "66660600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "HUNGER SHOCK STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023845427
-    },
     {
       "origin": "REVERSE",
       "text": "PURE RECON RECON",
@@ -279,6 +274,12 @@
       "text": "WATCH WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023849112
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD RECON STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772023849279
     }
   ]
 }
