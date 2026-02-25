@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020410505
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE FLOW COHERE",
       "mood": "HARMONIC",
@@ -141,6 +135,12 @@
       "text": "SEIZE DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020418887
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIKE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020420253
     }
   ]
 }
