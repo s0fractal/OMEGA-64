@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS DRAIN SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033830241
-    },
-    {
-      "origin": "REVERSE",
       "text": "WITNESS BEYOND DREAM",
       "mood": "CREATIVE",
       "tick": 1772033830453
@@ -291,6 +285,12 @@
       "text": "GUARD IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772033832866
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033833050
     }
   ]
 }
