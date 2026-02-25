@@ -1,9 +1,5 @@
 {
   "reservoir": [
-    "60666606",
-    "AAA0AA00",
-    "66060066",
-    "66666666",
     "66606666",
     "66600000",
     "AA0A0A0A",
@@ -199,98 +195,102 @@
     "FFFFF0A0",
     "000AAAAA",
     "660AAA60",
-    "A00A0AA0"
+    "A00A0AA0",
+    "A660A660",
+    "A6666600",
+    "66000000",
+    "66A66060"
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD REFLECT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042831170
+      "origin": "REVERSE",
+      "text": "SEIZE SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042835035
+    },
+    {
+      "origin": "SOMA",
+      "text": "SICKNESS STRIFE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042835446
     },
     {
       "origin": "ARCHIVIST",
-      "text": "OSMOSIS FLOW COHERE",
+      "text": "SHELTER PURE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772042835587
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC FLOW FLOW",
       "mood": "HARMONIC",
-      "tick": 1772042832831
+      "tick": 1772042836137
+    },
+    {
+      "origin": "AUTONOMY_METRIC",
+      "text": "RECON WATCH PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042837073
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER RECON GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042837341
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042838326
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER IMMUNE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042838615
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772042839296
+    },
+    {
+      "origin": "ALIEN",
+      "text": "SEIZE STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042840039
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY BREACH STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042840771
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE BREACH SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042841894
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042842184
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON PURE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042842919
     },
     {
       "origin": "STREAM",
-      "text": "WATCH WATCH STASIS",
+      "text": "WAIT STASIS GUARD",
       "mood": "DEFENSIVE",
-      "tick": 1772042834186
-    },
-    {
-      "origin": "ALIEN",
-      "text": "STRIFE DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042834725
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042835490
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "RECON WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772042836128
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STABLE GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772042836333
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772042836549
-    },
-    {
-      "origin": "STREAM",
-      "text": "CONSUME SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042838466
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SYNC RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772042839929
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "DECAY SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042841540
-    },
-    {
-      "origin": "ALIEN",
-      "text": "STRIFE BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042842332
-    },
-    {
-      "origin": "ALIEN",
-      "text": "HUNGER SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042842741
-    },
-    {
-      "origin": "ALIEN",
-      "text": "BREACH HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042843167
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "WAIT RECON SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772042843576
+      "tick": 1772042844232
     }
   ]
 }
