@@ -81,12 +81,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021129175
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAVE BECOME WAVE",
       "mood": "CREATIVE",
       "tick": 1772021129307
@@ -168,6 +162,12 @@
       "text": "FLOW BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772021133817
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772021134094
     }
   ]
 }
