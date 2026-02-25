@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW SYNC SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772033512995
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772033513145
@@ -291,6 +285,12 @@
       "text": "BLOOM STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772033516273
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772033516468
     }
   ]
 }
