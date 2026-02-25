@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING SYNC UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772031651230
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772031651587
@@ -291,6 +285,12 @@
       "text": "SICKNESS CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772031657869
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW OSMOSIS UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772031658752
     }
   ]
 }
