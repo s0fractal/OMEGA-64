@@ -184,12 +184,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772023582557
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772023582756
@@ -271,6 +265,12 @@
       "text": "HEAL COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772023591313
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SICKNESS STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023591595
     }
   ]
 }
