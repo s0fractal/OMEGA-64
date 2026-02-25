@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON IMMUNE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772039921047
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772039921550
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772039930215
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS PURE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772039930677
     }
   ]
 }
