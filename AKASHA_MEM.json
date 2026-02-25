@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034116277
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772034116468
@@ -291,6 +285,12 @@
       "text": "SHIELD SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772034123571
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772034123779
     }
   ]
 }
