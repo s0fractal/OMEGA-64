@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC OSMOSIS OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772038536403
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772038536592
@@ -291,6 +285,12 @@
       "text": "STASIS SHIELD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772038539641
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE BREACH STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038539832
     }
   ]
 }
