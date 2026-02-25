@@ -155,12 +155,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772022652841
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022653137
@@ -242,6 +236,12 @@
       "text": "DECAY SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772022658284
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WATCH SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022658481
     }
   ]
 }
