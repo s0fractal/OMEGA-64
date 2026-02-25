@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66606600",
     "06066000",
     "00BB0000",
     "B0000000",
@@ -199,15 +198,10 @@
     "06600660",
     "A6660000",
     "06006606",
-    "0AA0A00A"
+    "0AA0A00A",
+    "AAAAAA0A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RESONATE BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772030224111
-    },
     {
       "origin": "REVERSE",
       "text": "BEYOND AWAKEN WITNESS",
@@ -291,6 +285,12 @@
       "text": "RESONATE BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772030229893
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH BREACH STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030230125
     }
   ]
 }
