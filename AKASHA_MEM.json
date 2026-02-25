@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SICKNESS HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025300164
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772025300319
@@ -291,6 +285,12 @@
       "text": "SHIELD STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772025304375
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON REFLECT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772025304780
     }
   ]
 }
