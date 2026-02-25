@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHELTER PURE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041260942
-    },
-    {
       "origin": "REVERSE",
       "text": "FORGE EVOLVE AWAKEN",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "DRAIN BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772041267657
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIFE STRIKE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041267802
     }
   ]
 }
