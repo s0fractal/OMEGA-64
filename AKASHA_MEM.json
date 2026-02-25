@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHIELD WAIT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772015768192
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SEIZE CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772015780954
@@ -107,6 +101,12 @@
       "text": "HEAL SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772015880787
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER DRAIN CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772015883139
     }
   ]
 }
