@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE STASIS WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772031993983
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772031994219
@@ -291,6 +285,12 @@
       "text": "PURE STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772031998561
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772031998824
     }
   ]
 }
