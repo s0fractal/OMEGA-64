@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_REVERSE",
-      "text": "BECOME BEYOND BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772038027224
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING UNIFY UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIKE DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772038030056
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH RECON SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772038030266
     }
   ]
 }
