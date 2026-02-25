@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY STRIKE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025528993
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772025529714
@@ -291,6 +285,12 @@
       "text": "OSMOSIS SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772025533610
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS SHELTER PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772025533898
     }
   ]
 }
