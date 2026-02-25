@@ -107,12 +107,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "REFLECT PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772021821049
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME DRAIN STRIFE",
       "mood": "AGGRESSIVE",
@@ -195,6 +189,12 @@
       "text": "DRAIN CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772021826579
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772021826738
     }
   ]
 }
