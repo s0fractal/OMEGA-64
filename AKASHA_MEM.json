@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772034476931
-    },
-    {
-      "origin": "REVERSE",
       "text": "FORGE VISION WITNESS",
       "mood": "CREATIVE",
       "tick": 1772034478095
@@ -291,6 +285,12 @@
       "text": "WAIT RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772034485268
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DRAIN HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034487204
     }
   ]
 }
