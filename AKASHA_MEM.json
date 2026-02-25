@@ -140,12 +140,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022448057
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022448222
@@ -227,6 +221,12 @@
       "text": "PURE WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022453005
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION EVOLVE SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772022453324
     }
   ]
 }
