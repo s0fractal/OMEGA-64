@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A6660660",
     "AAA0AAA0",
     "AA0666A0",
     "ABBA0000",
@@ -199,15 +198,10 @@
     "00066666",
     "600A0000",
     "06060660",
-    "00AAAAA0"
+    "00AAAAA0",
+    "A6066666"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WAVE WITNESS EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772038872603
-    },
     {
       "origin": "REVERSE",
       "text": "GUARD SHIELD WAIT",
@@ -291,6 +285,12 @@
       "text": "GIVING BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772038876099
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SEIZE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038876362
     }
   ]
 }
