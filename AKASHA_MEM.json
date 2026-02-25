@@ -63,12 +63,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIKE DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020702673
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SEIZE DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020704355
@@ -150,6 +144,12 @@
       "text": "FORGE AWAKEN WAVE",
       "mood": "CREATIVE",
       "tick": 1772020710288
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING FLOW UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772020710476
     }
   ]
 }
