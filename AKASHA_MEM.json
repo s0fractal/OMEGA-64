@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIFE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033554196
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772033554380
@@ -291,6 +285,12 @@
       "text": "GIVING SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772033556641
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772033556820
     }
   ]
 }
