@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SHOCK SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033164756
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772033164902
@@ -291,6 +285,12 @@
       "text": "SPARK WITNESS AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772033167786
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033167933
     }
   ]
 }
