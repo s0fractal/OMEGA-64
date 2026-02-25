@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SICKNESS SEIZE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035563870
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER CONSUME DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772035566800
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHIELD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772035567676
     }
   ]
 }
