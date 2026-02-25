@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WAIT REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772033089370
-    },
-    {
       "origin": "INTERFACE",
       "text": "SYNC SYNC UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "COHERE COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772033092773
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772033093226
     }
   ]
 }
