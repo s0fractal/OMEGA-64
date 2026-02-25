@@ -63,12 +63,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020674815
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772020675161
@@ -150,6 +144,12 @@
       "text": "DRAIN STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772020681438
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SEIZE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020681952
     }
   ]
 }
