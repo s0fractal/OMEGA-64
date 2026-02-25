@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE CONSUME SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032891057
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772032891202
@@ -291,6 +285,12 @@
       "text": "SHOCK SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772032893575
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772032893756
     }
   ]
 }
