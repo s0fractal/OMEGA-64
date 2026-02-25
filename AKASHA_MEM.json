@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW OSMOSIS OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772022238940
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022239855
@@ -213,6 +207,12 @@
       "text": "WAIT WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022244460
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK STRIKE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022244654
     }
   ]
 }
