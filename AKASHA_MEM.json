@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036058331
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772036058548
@@ -291,6 +285,12 @@
       "text": "CONSUME SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772036062690
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WATCH PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772036062891
     }
   ]
 }
