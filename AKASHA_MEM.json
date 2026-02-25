@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772037536325
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772037536520
@@ -291,6 +285,12 @@
       "text": "VISION DREAM SPARK",
       "mood": "CREATIVE",
       "tick": 1772037543306
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW STABLE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772037543944
     }
   ]
 }
