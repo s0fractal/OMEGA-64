@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032075691
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772032076191
@@ -291,6 +285,12 @@
       "text": "SHOCK STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772032082217
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHIELD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772032082952
     }
   ]
 }
