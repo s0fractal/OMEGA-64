@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAAAAAA0",
     "AAAAAAAA",
     "00000000",
     "66666666",
@@ -199,15 +198,10 @@
     "06000600",
     "06666600",
     "000A0A00",
-    "0000AAA0"
+    "0000AAA0",
+    "AABBCCDD"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE SEIZE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024196760
-    },
     {
       "origin": "REVERSE",
       "text": "IMMUNE WATCH SHELTER",
@@ -291,6 +285,12 @@
       "text": "GIVING SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772024201906
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN STRIFE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024202465
     }
   ]
 }
