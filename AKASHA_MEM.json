@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE OSMOSIS FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772035652973
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772035655669
@@ -291,6 +285,12 @@
       "text": "SYNC STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772035659543
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE REFLECT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772035659787
     }
   ]
 }
