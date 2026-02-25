@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS DECAY SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040599417
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040599644
@@ -291,6 +285,12 @@
       "text": "GUARD WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040602888
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS BREACH SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040603059
     }
   ]
 }
