@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025230931
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772025232047
@@ -291,6 +285,12 @@
       "text": "SPARK BECOME BECOME",
       "mood": "CREATIVE",
       "tick": 1772025237886
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025238355
     }
   ]
 }
