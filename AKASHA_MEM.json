@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "HEAL COHERE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772041387757
-    },
-    {
       "origin": "INTERFACE",
       "text": "REFLECT WAIT SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772041391051
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041391561
     }
   ]
 }
