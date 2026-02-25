@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA00A0AA",
     "66066600",
     "60660066",
     "F00AAA00",
@@ -199,15 +198,10 @@
     "AAA0A0AA",
     "66666600",
     "00AAAAAA",
-    "0B0A0000"
+    "0B0A0000",
+    "AAA0AAAA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SICKNESS SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032197274
-    },
     {
       "origin": "REVERSE",
       "text": "BLOOM SYNC GIVING",
@@ -291,6 +285,12 @@
       "text": "DECAY SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772032209003
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS SEIZE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032209642
     }
   ]
 }
