@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_STREAM",
-      "text": "HEAL BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772040558056
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT REFLECT IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772040560481
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS DREAM WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772040560601
     }
   ]
 }
