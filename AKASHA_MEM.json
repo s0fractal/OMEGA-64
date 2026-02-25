@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH STRIFE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033908009
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772033908217
@@ -291,6 +285,12 @@
       "text": "WAIT REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772033916403
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON IMMUNE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772033916614
     }
   ]
 }
