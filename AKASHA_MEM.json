@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041638756
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041639072
@@ -291,6 +285,12 @@
       "text": "STRIKE DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041642112
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON PURE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041642712
     }
   ]
 }
