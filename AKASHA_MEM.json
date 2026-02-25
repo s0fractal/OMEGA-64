@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE SEIZE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020142380
-    },
-    {
       "origin": "REVERSE",
       "text": "FORGE AWAKEN WITNESS",
       "mood": "CREATIVE",
@@ -136,6 +130,12 @@
       "text": "UNIFY SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772020151113
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020151473
     }
   ]
 }
