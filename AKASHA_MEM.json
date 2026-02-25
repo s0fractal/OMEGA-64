@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772027410124
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772027410350
@@ -291,6 +285,12 @@
       "text": "WITNESS AWAKEN VISION",
       "mood": "CREATIVE",
       "tick": 1772027416276
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY BLOOM STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772027421323
     }
   ]
 }
