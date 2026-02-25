@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SYNC FLOW OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772034151757
-    },
-    {
       "origin": "REVERSE",
       "text": "BECOME DREAM VISION",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772034155986
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772034156301
     }
   ]
 }
