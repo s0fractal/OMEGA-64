@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE GUARD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772029728686
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772029729254
@@ -291,6 +285,12 @@
       "text": "IMMUNE WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772029742748
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD RECON GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772029745521
     }
   ]
 }
