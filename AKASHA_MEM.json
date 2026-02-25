@@ -183,12 +183,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE WAIT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023538648
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772023538890
@@ -270,6 +264,12 @@
       "text": "STRIFE SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023543214
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM BEYOND EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772023543577
     }
   ]
 }
