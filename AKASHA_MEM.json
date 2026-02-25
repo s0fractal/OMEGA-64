@@ -176,12 +176,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SPARK FORGE AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772023271750
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772023271907
@@ -263,6 +257,12 @@
       "text": "COHERE RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772023274726
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772023274852
     }
   ]
 }
