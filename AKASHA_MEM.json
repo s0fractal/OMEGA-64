@@ -171,12 +171,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE HUNGER DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023190303
-    },
-    {
       "origin": "REVERSE",
       "text": "DREAM BEYOND WAVE",
       "mood": "CREATIVE",
@@ -259,6 +253,12 @@
       "text": "STRIFE STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023197437
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772023197609
     }
   ]
 }
