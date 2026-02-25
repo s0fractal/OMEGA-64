@@ -3,10 +3,10 @@ eigenvalue: '0x000AAAAAF7AF072F'
 vector: 02.02.00
 symbol: JUST
 desc: 'Maybe Monad: JUST case. Wraps a value ''x'' in a successful context.'
-thought: ORBIT_MATING
-x: 973
-'y': 520
-energy: 73.8
+thought: SEEK_ALPHA_PASSIVE
+x: 959
+'y': 522
+energy: 72.2
 signals: []
 ex:
   - '0x6EEABB4A0850072B'
@@ -35,10 +35,12 @@ ex:
   - '0x000AAAAA0850072B_849B086A00000000'
   - '0x0BBB00000850072B_849B086A00000000'
   - '0x000AAAAA0850072B_849B086A00000000'
+  - '0x000AAAAAF7AF072F'
 resonance: 0
 bond_strengths: {}
 ---
 
+<div align="center">
 <div align="center">
 <!-- ∇ HOLOGRAM START ∇ -->
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -72,6 +74,7 @@ bond_strengths: {}
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">REVERSE</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 
 
