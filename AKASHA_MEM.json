@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037640716
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772037640994
@@ -291,6 +285,12 @@
       "text": "HEAL OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772037643932
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH BREACH DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037644135
     }
   ]
 }
