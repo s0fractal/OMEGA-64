@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIFE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028248797
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772028249178
@@ -291,6 +285,12 @@
       "text": "BLOOM STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772028255453
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME VISION BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772028256115
     }
   ]
 }
