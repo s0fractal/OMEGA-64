@@ -71,12 +71,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "FLOW OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772020917306
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE HEAL COHERE",
       "mood": "HARMONIC",
@@ -159,6 +153,12 @@
       "text": "SICKNESS SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020923093
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020923395
     }
   ]
 }
