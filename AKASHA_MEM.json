@@ -111,12 +111,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE OSMOSIS FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772021911735
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772021911923
@@ -198,6 +192,12 @@
       "text": "RESONATE OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772021919669
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIKE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021919992
     }
   ]
 }
