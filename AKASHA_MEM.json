@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032475086
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772032475390
@@ -291,6 +285,12 @@
       "text": "DRAIN SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772032483272
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE RESONATE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772032484951
     }
   ]
 }
