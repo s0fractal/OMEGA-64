@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A00000DD",
     "0A00AAA0",
     "0A6666A6",
     "00AA0AAA",
@@ -199,15 +198,10 @@
     "AAAA0AAA",
     "06006606",
     "00606600",
-    "0000000D"
+    "0000000D",
+    "06060066"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "UNIFY RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772039243520
-    },
     {
       "origin": "REVERSE",
       "text": "BREACH SEIZE SEIZE",
@@ -291,6 +285,12 @@
       "text": "GUARD IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772039246334
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772039246538
     }
   ]
 }
