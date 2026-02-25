@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SHOCK STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038384487
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772038384685
@@ -291,6 +285,12 @@
       "text": "COHERE COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038387461
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772038387670
     }
   ]
 }
