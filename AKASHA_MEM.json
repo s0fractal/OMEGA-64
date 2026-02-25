@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772033770175
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772033770368
@@ -291,6 +285,12 @@
       "text": "WATCH GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772033773893
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT STASIS GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772033774125
     }
   ]
 }
