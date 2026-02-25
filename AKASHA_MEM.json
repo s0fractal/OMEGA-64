@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS IMMUNE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023726925
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772023727343
@@ -278,6 +272,12 @@
       "text": "FORGE WITNESS WAVE",
       "mood": "CREATIVE",
       "tick": 1772023729617
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT STASIS WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772023729791
     }
   ]
 }
