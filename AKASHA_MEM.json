@@ -180,12 +180,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023384475
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772023384687
@@ -267,6 +261,12 @@
       "text": "SHELTER IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023391000
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT PURE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023391638
     }
   ]
 }
