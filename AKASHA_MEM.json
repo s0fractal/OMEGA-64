@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE STRIKE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034105617
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772034105837
@@ -291,6 +285,12 @@
       "text": "COHERE RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772034110388
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772034110553
     }
   ]
 }
