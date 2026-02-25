@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025476385
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER SEIZE SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772025480997
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS EVOLVE SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772025481231
     }
   ]
 }
