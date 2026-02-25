@@ -80,12 +80,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772021093565
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME DECAY SICKNESS",
       "mood": "AGGRESSIVE",
@@ -168,6 +162,12 @@
       "text": "SEIZE HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772021103840
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772021104401
     }
   ]
 }
