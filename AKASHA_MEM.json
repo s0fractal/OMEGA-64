@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772032876644
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772032876821
@@ -291,6 +285,12 @@
       "text": "RESONATE OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772032879470
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHELTER RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772032879653
     }
   ]
 }
