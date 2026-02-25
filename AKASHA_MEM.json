@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "F0FF000F",
     "AAAAAAA0",
     "660060A6",
     "60066666",
@@ -199,15 +198,10 @@
     "A0666660",
     "00666660",
     "00066660",
-    "AAB0000D"
+    "AAB0000D",
+    "A06000A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SYNC GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772034910967
-    },
     {
       "origin": "REVERSE",
       "text": "RESONATE STABLE SYNC",
@@ -291,6 +285,12 @@
       "text": "PURE REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772034914162
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034914367
     }
   ]
 }
