@@ -180,12 +180,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE REFLECT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023380190
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023380365
@@ -267,6 +261,12 @@
       "text": "UNIFY GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772023384212
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY BREACH SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023384475
     }
   ]
 }
