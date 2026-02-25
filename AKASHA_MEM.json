@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "DECAY SEIZE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041272723
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE DRAIN SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STASIS SHIELD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041277853
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW BLOOM STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041278198
     }
   ]
 }
