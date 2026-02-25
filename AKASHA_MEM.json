@@ -49,12 +49,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "OSMOSIS STABLE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772020130496
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "CONSUME DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020131627
@@ -136,6 +130,12 @@
       "text": "SYNC SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772020143315
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020144181
     }
   ]
 }
