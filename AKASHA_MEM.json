@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HEAL FLOW OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772025456936
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER RECON REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772025460584
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIKE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025461072
     }
   ]
 }
