@@ -176,12 +176,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772023281134
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772023281444
@@ -263,6 +257,12 @@
       "text": "FORGE BECOME DREAM",
       "mood": "CREATIVE",
       "tick": 1772023284637
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE WAVE BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772023284811
     }
   ]
 }
