@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025830530
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE BLOOM SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DECAY DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772025836535
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772025836790
     }
   ]
 }
