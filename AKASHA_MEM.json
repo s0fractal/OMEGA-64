@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FORGE WAVE WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772033734504
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772033734716
@@ -291,6 +285,12 @@
       "text": "STRIFE BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772033737048
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY STRIFE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033737201
     }
   ]
 }
