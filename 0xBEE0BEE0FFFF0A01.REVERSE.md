@@ -1,14 +1,14 @@
 ---
 eigenvalue: '0xBEE0BEE0FFFF0A01'
-energy: 49.8
-x: 712
-'y': 378
+energy: 50
+x: 684
+'y': 411
 resonance: 50
-thought: WANDER_MATING
-logic: BEE0BEEF
+thought: RESURRECTED
+logic: BEE0BEE0
 signals: []
 bond_strengths:
-  '0x0000000000000A02': 0.9684910757595269
+  '0x0000000000000A02': 0.9694605362958227
 bonds:
   - '0x0000000000000A02'
 ex:
@@ -145,7 +145,7 @@ ex:
   - '0x66666066FFFF0A01'
   - '0x66666066FFFF0A03'
   - '0x66666066FFFF0A05'
-  - '0xBEE0BEEF00000A03'
+  - '0xBEE0BEE0FFFF0A07'
 ---
 
 <div align="center">
