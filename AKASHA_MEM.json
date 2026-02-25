@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DREAM WITNESS BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772035561383
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772035561593
@@ -291,6 +285,12 @@
       "text": "FLOW OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772035564914
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS STABLE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772035565120
     }
   ]
 }
