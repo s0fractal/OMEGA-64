@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772023155777
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772023155974
@@ -259,6 +253,12 @@
       "text": "SHELTER SHIELD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023158709
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE REFLECT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772023158865
     }
   ]
 }
