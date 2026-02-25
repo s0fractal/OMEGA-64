@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DREAM AWAKEN FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772037377680
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772037377896
@@ -291,6 +285,12 @@
       "text": "STRIKE CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772037381104
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DRAIN SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037381307
     }
   ]
 }
