@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS STRIFE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030435327
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND BECOME DREAM",
       "mood": "CREATIVE",
       "tick": 1772030435678
@@ -291,6 +285,12 @@
       "text": "WAIT RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772030443805
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW RESONATE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772030450364
     }
   ]
 }
