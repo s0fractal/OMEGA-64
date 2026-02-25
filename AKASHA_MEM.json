@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772041070123
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041070290
@@ -291,6 +285,12 @@
       "text": "WATCH PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772041073800
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041074059
     }
   ]
 }
