@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772035935709
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT WAIT GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIFE HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772035939164
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035939491
     }
   ]
 }
