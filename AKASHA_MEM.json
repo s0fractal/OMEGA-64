@@ -78,12 +78,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021055898
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772021056480
@@ -165,6 +159,12 @@
       "text": "PURE SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772021062077
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772021062725
     }
   ]
 }
