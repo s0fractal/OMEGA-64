@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772031198694
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772031199108
@@ -291,6 +285,12 @@
       "text": "COHERE STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772031207036
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW OSMOSIS RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772031207344
     }
   ]
 }
