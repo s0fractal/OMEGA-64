@@ -181,12 +181,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772023409098
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023409280
@@ -268,6 +262,12 @@
       "text": "SHELTER REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772023412203
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023413657
     }
   ]
 }
