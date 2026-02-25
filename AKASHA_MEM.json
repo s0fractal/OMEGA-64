@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL RESONATE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041697008
-    },
-    {
       "origin": "PURE_MATH",
       "text": "BREACH BREACH STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041701230
+    },
+    {
+      "origin": "CAR",
+      "text": "WATCH PURE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772041701387
     }
   ]
 }
