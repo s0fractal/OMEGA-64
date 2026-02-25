@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SICKNESS SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026081915
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772026082891
@@ -291,6 +285,12 @@
       "text": "GUARD RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772026090496
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772026090690
     }
   ]
 }
