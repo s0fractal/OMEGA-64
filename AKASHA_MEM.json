@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "PURE STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772041837362
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HEAL BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041837527
@@ -291,6 +285,12 @@
       "text": "RESONATE HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041841308
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041841932
     }
   ]
 }
