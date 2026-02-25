@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "COHERE BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041341919
-    },
-    {
       "origin": "REVERSE",
       "text": "SHIELD RECON WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHOCK DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772041344855
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772041345063
     }
   ]
 }
