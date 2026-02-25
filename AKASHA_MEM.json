@@ -96,12 +96,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHOCK STRIFE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021571044
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT STASIS IMMUNE",
       "mood": "DEFENSIVE",
@@ -184,6 +178,12 @@
       "text": "FLOW STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772021578291
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK BECOME BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772021578455
     }
   ]
 }
