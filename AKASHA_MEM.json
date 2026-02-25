@@ -111,12 +111,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HUNGER HUNGER SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021915896
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS WAIT WAIT",
       "mood": "DEFENSIVE",
@@ -199,6 +193,12 @@
       "text": "REFLECT WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772021925743
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SEIZE BREACH CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021926594
     }
   ]
 }
