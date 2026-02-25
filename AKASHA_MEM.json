@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772037481604
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772037481840
@@ -291,6 +285,12 @@
       "text": "PURE IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772037484740
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT IMMUNE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772037484999
     }
   ]
 }
