@@ -126,12 +126,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BEYOND EVOLVE FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772022259942
-    },
-    {
       "origin": "INTERFACE",
       "text": "SEIZE DRAIN DRAIN",
       "mood": "AGGRESSIVE",
@@ -214,6 +208,12 @@
       "text": "CONSUME STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772022265982
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY STRIFE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022266190
     }
   ]
 }
