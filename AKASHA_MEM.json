@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS EVOLVE VISION",
-      "mood": "CREATIVE",
-      "tick": 1772034961540
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772034961741
@@ -291,6 +285,12 @@
       "text": "BLOOM SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772034966964
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772034967201
     }
   ]
 }
