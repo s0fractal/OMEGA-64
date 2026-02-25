@@ -86,12 +86,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "CONSUME HUNGER SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021244012
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM GIVING HEAL",
       "mood": "HARMONIC",
@@ -174,6 +168,12 @@
       "text": "SYNC GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772021249547
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772021250161
     }
   ]
 }
