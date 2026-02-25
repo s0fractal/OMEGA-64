@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING STABLE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772040488278
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS HUNGER HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772040491236
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE RESONATE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772040491830
     }
   ]
 }
