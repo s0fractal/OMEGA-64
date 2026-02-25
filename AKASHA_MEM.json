@@ -70,12 +70,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON SHELTER GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772020874607
-    },
-    {
       "origin": "INTERFACE",
       "text": "RECON IMMUNE WATCH",
       "mood": "DEFENSIVE",
@@ -158,6 +152,12 @@
       "text": "FLOW COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772020880539
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND FORGE BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772020882176
     }
   ]
 }
