@@ -171,12 +171,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE WAIT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772023139580
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE FLOW RESONATE",
       "mood": "HARMONIC",
@@ -259,6 +253,12 @@
       "text": "STRIKE SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023144990
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE RECON SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023145326
     }
   ]
 }
