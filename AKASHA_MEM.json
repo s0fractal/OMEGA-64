@@ -80,12 +80,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021073963
-    },
-    {
-      "origin": "REVERSE",
       "text": "DREAM SPARK AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772021074155
@@ -167,6 +161,12 @@
       "text": "RECON SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772021082164
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHIELD SHELTER WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772021082354
     }
   ]
 }
