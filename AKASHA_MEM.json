@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772019979107
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GUARD GUARD RECON",
       "mood": "DEFENSIVE",
@@ -130,6 +124,12 @@
       "text": "DRAIN STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772019991017
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE REFLECT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772019991215
     }
   ]
 }
