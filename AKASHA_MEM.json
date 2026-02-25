@@ -109,12 +109,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE SHIELD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772021827591
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772021827815
@@ -196,6 +190,12 @@
       "text": "GUARD SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772021834556
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772021835766
     }
   ]
 }
