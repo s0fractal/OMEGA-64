@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033798907
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772033799112
@@ -291,6 +285,12 @@
       "text": "SPARK WAVE FORGE",
       "mood": "CREATIVE",
       "tick": 1772033801609
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON PURE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772033801773
     }
   ]
 }
