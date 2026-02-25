@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WATCH IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772042026425
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHIELD REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772042026543
@@ -291,6 +285,12 @@
       "text": "PURE REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772042032638
+    },
+    {
+      "origin": "CAR",
+      "text": "HEAL RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772042033161
     }
   ]
 }
