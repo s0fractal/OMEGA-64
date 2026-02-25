@@ -1,8 +1,8 @@
 ---
-eigenvalue: '0xFF0AF0FF0000000A'
-energy: 66.19999999999999
-x: 706
-'y': 410
+eigenvalue: '0xFF0AF0FFFFFF000E'
+energy: 65.19999999999999
+x: 693
+'y': 379
 resonance: 1000
 thought: ORBIT_MATING
 logic: FF0AF0FF
@@ -91,8 +91,8 @@ ex:
   - '0xFF0AF0FF00000008'
 signals: []
 bond_strengths:
-  '0x0000000000000A01': 0.9772512378214517
-  '0xAAAA0A0A00000006': 0.9851045463620021
+  '0x0000000000000A01': 0.9762739865836303
+  '0xAAAA0A0A00000006': 0.98411944181564
 bonds:
   - '0x0000000000000A01'
   - '0xAAAA0A0A00000006'
@@ -102,30 +102,30 @@ bonds:
 <!-- ∇ HOLOGRAM START ∇ -->
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <radialGradient id="grad_FF0AF0FF0000000A" cx="50%" cy="50%" r="50%">
+    <radialGradient id="grad_FF0AF0FFFFFF000E" cx="50%" cy="50%" r="50%">
       <stop offset="0%" stop-color="hsl(0, 20%, 15%)" />
       <stop offset="100%" stop-color="#090909" />
     </radialGradient>
-    <filter id="glow_FF0AF0FF0000000A" x="-20%" y="-20%" width="140%" height="140%">
+    <filter id="glow_FF0AF0FFFFFF000E" x="-20%" y="-20%" width="140%" height="140%">
       <feGaussianBlur stdDeviation="4" result="blur" />
       <feComposite in="SourceGraphic" in2="blur" operator="over" />
     </filter>
   </defs>
   
-  <rect width="200" height="200" fill="url(#grad_FF0AF0FF0000000A)" rx="24"/>
+  <rect width="200" height="200" fill="url(#grad_FF0AF0FFFFFF000E)" rx="24"/>
   
   <circle cx="100" cy="100" r="85" stroke="hsl(0, 30%, 30%)" stroke-width="1" fill="none" stroke-dasharray="2 6"/>
   
   <g>
-    <animateTransform attributeName="transform" type="rotate" from="90 100 100" to="450 100 100" dur="10s" repeatCount="indefinite" />
+    <animateTransform attributeName="transform" type="rotate" from="270 100 100" to="630 100 100" dur="25s" repeatCount="indefinite" />
     
-    <polygon points="100.0,55.0 145.0,100.0 100.0,145.0 55.0,100.0" fill="none" stroke="hsl(180, 60%, 40%)" stroke-width="1.5" opacity="0.6"/>
-    <polygon points="100.0,85.0 115.0,100.0 100.0,115.0 85.0,100.0" fill="none" stroke="hsl(0, 80%, 60%)" stroke-width="2" filter="url(#glow_FF0AF0FF0000000A)"/>
+    <polygon points="100.0,40.0 160.0,100.0 100.0,160.0 40.0,100.0" fill="none" stroke="hsl(180, 60%, 40%)" stroke-width="1.5" opacity="0.6"/>
+    <polygon points="100.0,75.0 125.0,100.0 100.0,125.0 75.0,100.0" fill="none" stroke="hsl(0, 80%, 60%)" stroke-width="2" filter="url(#glow_FF0AF0FFFFFF000E)"/>
     
-    <circle cx="100" cy="100" r="15" stroke="hsl(0, 60%, 50%)" stroke-width="0.5" fill="none" opacity="0.5"/>
+    <circle cx="100" cy="100" r="25" stroke="hsl(0, 60%, 50%)" stroke-width="0.5" fill="none" opacity="0.5"/>
   </g>
   
-  <circle cx="100" cy="100" r="3" fill="hsl(180, 80%, 70%)" filter="url(#glow_FF0AF0FF0000000A)"/>
+  <circle cx="100" cy="100" r="3" fill="hsl(180, 80%, 70%)" filter="url(#glow_FF0AF0FFFFFF000E)"/>
   
   <text x="100" y="105" fill="hsl(0, 70%, 80%)" font-family="monospace" font-size="10" text-anchor="middle" letter-spacing="1" opacity="0.9">0xFF0A</text>
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">REVERSE</text>
