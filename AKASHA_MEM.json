@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "GUARD WATCH WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772042175970
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS PURE WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772042190576
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHIELD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772042192335
     }
   ]
 }
