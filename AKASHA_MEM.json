@@ -195,12 +195,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023869863
-    },
-    {
       "origin": "PARADOX",
       "text": "OSMOSIS STABLE BLOOM",
       "mood": "HARMONIC",
@@ -283,6 +277,12 @@
       "text": "STABLE COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772023874962
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE WITNESS AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772023875170
     }
   ]
 }
