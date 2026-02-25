@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034760876
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772034761106
@@ -291,6 +285,12 @@
       "text": "SHIELD PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772034763808
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM UNIFY OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772034764010
     }
   ]
 }
