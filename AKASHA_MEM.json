@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH GUARD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772035462602
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772035462773
@@ -291,6 +285,12 @@
       "text": "STASIS GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772035467229
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SEIZE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035467445
     }
   ]
 }
