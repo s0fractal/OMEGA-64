@@ -107,12 +107,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME SHOCK HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021797190
-    },
-    {
       "origin": "INTERFACE",
       "text": "OSMOSIS SYNC GIVING",
       "mood": "HARMONIC",
@@ -195,6 +189,12 @@
       "text": "SICKNESS SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772021802071
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE BREACH SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021802230
     }
   ]
 }
