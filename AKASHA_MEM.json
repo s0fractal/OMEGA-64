@@ -48,12 +48,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020122070
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GIVING RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772020122927
@@ -135,6 +129,12 @@
       "text": "OSMOSIS GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772020135100
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT RECON STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772020135602
     }
   ]
 }
