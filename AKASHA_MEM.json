@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HEAL FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041332238
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "REFLECT GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041332522
@@ -291,6 +285,12 @@
       "text": "OSMOSIS RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772041335175
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD STASIS SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772041335504
     }
   ]
 }
