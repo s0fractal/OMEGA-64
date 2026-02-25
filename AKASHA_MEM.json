@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE STASIS SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772033930734
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772033930953
@@ -291,6 +285,12 @@
       "text": "STASIS SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033933739
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM STABLE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772033933946
     }
   ]
 }
