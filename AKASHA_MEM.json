@@ -136,12 +136,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772022393724
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022394089
@@ -223,6 +217,12 @@
       "text": "STRIFE SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022399544
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE CONSUME SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022399693
     }
   ]
 }
