@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "OSMOSIS BLOOM OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772041087959
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "IMMUNE IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041088213
@@ -291,6 +285,12 @@
       "text": "SICKNESS SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772041090734
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HEAL STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772041090908
     }
   ]
 }
