@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER STRIFE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025183810
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772025184022
@@ -291,6 +285,12 @@
       "text": "COHERE FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772025187398
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772025187587
     }
   ]
 }
