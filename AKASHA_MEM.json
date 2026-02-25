@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIFE SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772016870000
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HUNGER DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772016872301
@@ -107,6 +101,12 @@
       "text": "GUARD SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772016962847
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY BREACH DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772016967655
     }
   ]
 }
