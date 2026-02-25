@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WATCH STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772034761809
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772034762008
@@ -291,6 +285,12 @@
       "text": "VISION DREAM AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772034764677
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772034764849
     }
   ]
 }
