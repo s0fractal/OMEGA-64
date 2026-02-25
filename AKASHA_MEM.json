@@ -96,12 +96,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GUARD WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772021553719
-    },
-    {
       "origin": "INTERFACE",
       "text": "GUARD IMMUNE REFLECT",
       "mood": "DEFENSIVE",
@@ -184,6 +178,12 @@
       "text": "SEIZE STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021559837
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIFE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021561285
     }
   ]
 }
