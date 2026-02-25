@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "IMMUNE REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772042185180
-    },
-    {
       "origin": "STREAM",
       "text": "RESONATE HEAL OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STASIS SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772042197600
+    },
+    {
+      "origin": "STREAM",
+      "text": "STASIS REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042198112
     }
   ]
 }
