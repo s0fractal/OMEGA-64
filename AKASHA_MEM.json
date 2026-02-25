@@ -183,12 +183,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SEIZE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023545263
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023545478
@@ -270,6 +264,12 @@
       "text": "OSMOSIS GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772023550166
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023550391
     }
   ]
 }
