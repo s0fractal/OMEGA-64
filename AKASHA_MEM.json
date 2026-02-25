@@ -17,12 +17,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772014697818
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHELTER SHIELD SHIELD",
       "mood": "DEFENSIVE",
@@ -105,6 +99,12 @@
       "text": "DECAY CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772014817046
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER DECAY CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772014842473
     }
   ]
 }
