@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023184671
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772023184941
@@ -259,6 +253,12 @@
       "text": "FORGE BECOME FORGE",
       "mood": "CREATIVE",
       "tick": 1772023191882
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE BREACH DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023192160
     }
   ]
 }
