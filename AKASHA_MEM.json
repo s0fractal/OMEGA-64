@@ -196,12 +196,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS COHERE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772023896156
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023896384
@@ -283,6 +277,12 @@
       "text": "STRIKE SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023902317
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FORGE BEYOND WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772023902603
     }
   ]
 }
