@@ -143,12 +143,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "RESONATE BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772022501330
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC STABLE RESONATE",
       "mood": "HARMONIC",
@@ -231,6 +225,12 @@
       "text": "OSMOSIS RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772022505523
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY RESONATE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772022505704
     }
   ]
 }
