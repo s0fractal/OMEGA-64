@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DRAIN STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042292210
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS STABLE HEAL",
       "mood": "HARMONIC",
@@ -281,16 +275,22 @@
       "tick": 1772042303079
     },
     {
-      "origin": "ARCHIVIST",
-      "text": "STASIS SHIELD GUARD",
+      "origin": "VIBRATION",
+      "text": "PURE REFLECT RECON",
       "mood": "DEFENSIVE",
-      "tick": 1772042304254
+      "tick": 1772042303987
     },
     {
       "origin": "ARCHIVIST",
-      "text": "SHOCK BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042304588
+      "text": "GIVING FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042304446
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON WAIT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042304647
     }
   ]
 }
