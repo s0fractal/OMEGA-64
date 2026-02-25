@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW COHERE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772036396031
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME VISION BEYOND",
       "mood": "CREATIVE",
       "tick": 1772036396289
@@ -291,6 +285,12 @@
       "text": "SEIZE DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772036399984
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772036400593
     }
   ]
 }
