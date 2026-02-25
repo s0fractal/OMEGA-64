@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WAIT STASIS IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041048343
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "PURE PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041048510
@@ -291,6 +285,12 @@
       "text": "SHELTER WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772041050819
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HUNGER STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041050947
     }
   ]
 }
