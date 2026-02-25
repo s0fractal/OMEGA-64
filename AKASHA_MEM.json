@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772040713582
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE RESONATE STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GUARD SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772040716709
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHIELD SHIELD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772040716837
     }
   ]
 }
