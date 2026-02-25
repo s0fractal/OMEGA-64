@@ -49,12 +49,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DRAIN CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020226653
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHIELD GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772020227247
@@ -136,6 +130,12 @@
       "text": "SICKNESS HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020235156
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WAIT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772020235636
     }
   ]
 }
