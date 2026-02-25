@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT WATCH STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772041141618
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM HEAL STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "IMMUNE WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041144744
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041145215
     }
   ]
 }
