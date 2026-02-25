@@ -69,12 +69,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE FLOW UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772020829892
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020830353
@@ -156,6 +150,12 @@
       "text": "REFLECT PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772020838065
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH RECON WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020839282
     }
   ]
 }
