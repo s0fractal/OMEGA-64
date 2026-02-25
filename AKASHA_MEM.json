@@ -171,15 +171,10 @@
     "FF00FF0F",
     "01000000",
     "00100000",
-    "66606666"
+    "66606666",
+    "06660660"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "COHERE GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772023281444
-    },
     {
       "origin": "REVERSE",
       "text": "SICKNESS SHOCK SHOCK",
@@ -263,6 +258,12 @@
       "text": "WAVE WAVE BECOME",
       "mood": "CREATIVE",
       "tick": 1772023284811
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE SYNC SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772023284938
     }
   ]
 }
