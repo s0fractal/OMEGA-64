@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE STASIS STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772031998561
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772031998824
@@ -291,6 +285,12 @@
       "text": "WATCH PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772032004201
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE CONSUME STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032004829
     }
   ]
 }
