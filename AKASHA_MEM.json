@@ -108,12 +108,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021836233
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE REFLECT STASIS",
       "mood": "DEFENSIVE",
@@ -196,6 +190,12 @@
       "text": "OSMOSIS RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772021841220
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021841516
     }
   ]
 }
