@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE STRIFE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026382943
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772026383167
@@ -291,6 +285,12 @@
       "text": "DECAY STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772026386756
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772026387166
     }
   ]
 }
