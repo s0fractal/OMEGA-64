@@ -116,12 +116,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHOCK DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022062174
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "UNIFY STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022062996
@@ -203,6 +197,12 @@
       "text": "STABLE OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022069139
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772022069379
     }
   ]
 }
