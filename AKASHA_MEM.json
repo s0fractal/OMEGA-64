@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "BLOOM STABLE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772042014486
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE HEAL FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "COHERE SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772042020990
+    },
+    {
+      "origin": "STREAM",
+      "text": "HUNGER STRIKE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042021499
     }
   ]
 }
