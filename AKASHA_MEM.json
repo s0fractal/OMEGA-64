@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041028184
-    },
-    {
       "origin": "INTERFACE",
       "text": "STASIS WAIT STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STASIS WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772041030896
+    },
+    {
+      "origin": "VIBRATION",
+      "text": "GUARD WATCH GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041031065
     }
   ]
 }
