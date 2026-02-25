@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS RECON SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772036016140
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772036016889
@@ -291,6 +285,12 @@
       "text": "SHELTER PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772036019499
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW RESONATE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772036019690
     }
   ]
 }
