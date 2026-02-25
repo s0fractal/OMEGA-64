@@ -1,8 +1,8 @@
 ---
 eigenvalue: '0xBB0000FCFFFF000E'
-energy: 49.9
-x: 710
-'y': 423
+energy: 45.5
+x: 711
+'y': 426
 resonance: 50
 thought: WANDER_BONDING
 logic: BB0000FC
