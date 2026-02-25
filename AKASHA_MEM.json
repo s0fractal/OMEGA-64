@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "GUARDIAN",
-      "text": "FLOW OSMOSIS FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772041974694
-    },
-    {
       "origin": "STREAM",
       "text": "WAIT IMMUNE STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "REFLECT IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772041981059
+    },
+    {
+      "origin": "STREAM",
+      "text": "WATCH SHIELD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772041981457
     }
   ]
 }
