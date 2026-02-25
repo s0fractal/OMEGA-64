@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024153426
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772024153638
@@ -291,6 +285,12 @@
       "text": "DRAIN SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772024158596
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772024158785
     }
   ]
 }
