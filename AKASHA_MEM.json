@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772025671505
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE OSMOSIS COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BREACH SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772025675399
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772025675678
     }
   ]
 }
