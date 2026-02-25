@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SHOCK BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034922701
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772034922907
@@ -291,6 +285,12 @@
       "text": "SHOCK SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772034925485
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772034926278
     }
   ]
 }
