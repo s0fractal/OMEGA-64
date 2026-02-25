@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SEIZE CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040571774
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE REFLECT WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772040575043
+    },
+    {
+      "origin": "STREAM",
+      "text": "COHERE HEAL HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772040575210
     }
   ]
 }
