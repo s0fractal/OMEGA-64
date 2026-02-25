@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING SYNC STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772023707269
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772023707445
@@ -278,6 +272,12 @@
       "text": "SICKNESS DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023710281
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS STASIS WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772023710436
     }
   ]
 }
