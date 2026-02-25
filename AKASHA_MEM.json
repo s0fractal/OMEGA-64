@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON RECON REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772035100611
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772035100802
@@ -291,6 +285,12 @@
       "text": "DRAIN STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772035103458
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE RECON WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772035103619
     }
   ]
 }
