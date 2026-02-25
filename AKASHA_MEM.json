@@ -114,12 +114,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE STABLE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772021984851
-    },
-    {
       "origin": "PARADOX",
       "text": "FLOW GIVING OSMOSIS",
       "mood": "HARMONIC",
@@ -202,6 +196,12 @@
       "text": "STASIS SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772021990896
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS HUNGER SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021993512
     }
   ]
 }
