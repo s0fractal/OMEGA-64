@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041904032
-    },
-    {
       "origin": "SOMA",
       "text": "DECAY BREACH BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SICKNESS SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772041908871
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM RESONATE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772041909202
     }
   ]
 }
