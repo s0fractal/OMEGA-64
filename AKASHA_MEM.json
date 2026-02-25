@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SICKNESS SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034377068
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772034377265
@@ -291,6 +285,12 @@
       "text": "SHOCK BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772034381187
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DRAIN STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034381430
     }
   ]
 }
