@@ -70,12 +70,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020887476
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIFE SHOCK STRIFE",
       "mood": "AGGRESSIVE",
@@ -158,6 +152,12 @@
       "text": "REFLECT GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772020894206
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772020894506
     }
   ]
 }
