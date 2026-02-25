@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019599677
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "FLOW COHERE BLOOM",
       "mood": "HARMONIC",
@@ -114,6 +108,12 @@
       "text": "BLOOM COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772019608032
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH WATCH WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772019608638
     }
   ]
 }
