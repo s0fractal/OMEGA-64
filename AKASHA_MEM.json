@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE UNIFY SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772035057773
-    },
-    {
       "origin": "INTERFACE",
       "text": "STASIS SHIELD REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772035062124
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772035062346
     }
   ]
 }
