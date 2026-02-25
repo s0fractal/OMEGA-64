@@ -69,12 +69,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "SICKNESS SEIZE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020817509
-    },
-    {
-      "origin": "INTERFACE",
       "text": "SHELTER PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772020818193
@@ -156,6 +150,12 @@
       "text": "IMMUNE SHELTER SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772020823095
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RECON STASIS WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772020823244
     }
   ]
 }
