@@ -181,12 +181,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE STASIS RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772023415271
-    },
-    {
-      "origin": "REVERSE",
       "text": "WITNESS WAVE SPARK",
       "mood": "CREATIVE",
       "tick": 1772023415437
@@ -268,6 +262,12 @@
       "text": "DRAIN SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023420714
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772023420843
     }
   ]
 }
