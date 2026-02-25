@@ -65,12 +65,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE SHELTER IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020768410
-    },
-    {
       "origin": "INTERFACE",
       "text": "SEIZE SEIZE CONSUME",
       "mood": "AGGRESSIVE",
@@ -153,6 +147,12 @@
       "text": "SEIZE SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020775077
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020775280
     }
   ]
 }
