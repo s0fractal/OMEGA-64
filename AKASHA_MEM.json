@@ -50,12 +50,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "IMMUNE SHIELD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020241372
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STASIS IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772020242277
@@ -137,6 +131,12 @@
       "text": "SHOCK STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020249705
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE WATCH REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020250218
     }
   ]
 }
