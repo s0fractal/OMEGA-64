@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME DECAY SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040739251
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE OSMOSIS COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WATCH WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772040743008
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GIVING UNIFY HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772040743455
     }
   ]
 }
