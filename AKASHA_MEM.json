@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE IMMUNE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772025753641
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772025753891
@@ -291,6 +285,12 @@
       "text": "SEIZE DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772025760383
+    },
+    {
+      "origin": "REVERSE",
+      "text": "AWAKEN BEYOND FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772025760930
     }
   ]
 }
