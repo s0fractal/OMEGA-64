@@ -163,12 +163,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER WATCH WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022937567
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE SHIELD REFLECT",
       "mood": "DEFENSIVE",
@@ -251,6 +245,12 @@
       "text": "SEIZE DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772022941410
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772022941621
     }
   ]
 }
