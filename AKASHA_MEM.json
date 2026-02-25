@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH GUARD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772036486373
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772036486640
@@ -291,6 +285,12 @@
       "text": "CONSUME HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772036491195
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE STRIKE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036491426
     }
   ]
 }
