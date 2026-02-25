@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SICKNESS SICKNESS HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024957023
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIFE STRIFE SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HUNGER SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772024961363
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772024961659
     }
   ]
 }
