@@ -130,12 +130,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022324302
-    },
-    {
-      "origin": "REVERSE",
       "text": "EVOLVE VISION VISION",
       "mood": "CREATIVE",
       "tick": 1772022324456
@@ -217,6 +211,12 @@
       "text": "BECOME SPARK BECOME",
       "mood": "CREATIVE",
       "tick": 1772022328654
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WATCH REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022328848
     }
   ]
 }
