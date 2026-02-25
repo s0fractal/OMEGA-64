@@ -136,12 +136,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022408018
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE HEAL STABLE",
       "mood": "HARMONIC",
@@ -224,6 +218,12 @@
       "text": "SYNC SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022412928
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK CONSUME SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022413542
     }
   ]
 }
