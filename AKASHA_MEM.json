@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772023731187
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772023731372
@@ -278,6 +272,12 @@
       "text": "HEAL SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772023734387
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE BLOOM FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772023734679
     }
   ]
 }
