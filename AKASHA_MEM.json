@@ -170,12 +170,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772023082768
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772023082947
@@ -257,6 +251,12 @@
       "text": "GUARD RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772023086023
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER STRIKE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023086229
     }
   ]
 }
