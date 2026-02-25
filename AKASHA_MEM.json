@@ -183,12 +183,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC SYNC COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772023554985
-    },
-    {
       "origin": "INTERFACE",
       "text": "BREACH CONSUME STRIFE",
       "mood": "AGGRESSIVE",
@@ -271,6 +265,12 @@
       "text": "SHOCK SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023557838
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WITNESS FORGE AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772023557997
     }
   ]
 }
