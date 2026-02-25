@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE REFLECT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772019540467
-    },
-    {
       "origin": "INTERFACE",
       "text": "RECON IMMUNE WAIT",
       "mood": "DEFENSIVE",
@@ -111,6 +105,12 @@
       "text": "OSMOSIS STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772019548779
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM GIVING SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772019550352
     }
   ]
 }
