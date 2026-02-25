@@ -129,12 +129,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022317069
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER DECAY STRIKE",
       "mood": "AGGRESSIVE",
@@ -217,6 +211,12 @@
       "text": "REFLECT SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022321238
+    },
+    {
+      "origin": "PARADOX",
+      "text": "OSMOSIS BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772022323506
     }
   ]
 }
