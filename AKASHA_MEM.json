@@ -172,12 +172,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HEAL COHERE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772023221829
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE STABLE SYNC",
       "mood": "HARMONIC",
@@ -260,6 +254,12 @@
       "text": "STRIKE DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023224724
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH IMMUNE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772023226683
     }
   ]
 }
