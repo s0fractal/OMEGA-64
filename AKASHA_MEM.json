@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "GUARD PURE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772033760187
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN CONSUME SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772033762952
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHIELD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772033763161
     }
   ]
 }
