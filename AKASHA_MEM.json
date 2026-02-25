@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772038378993
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772038379216
@@ -291,6 +285,12 @@
       "text": "DRAIN BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772038381937
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT PURE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772038382146
     }
   ]
 }
