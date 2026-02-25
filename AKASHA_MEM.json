@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025126017
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772025126160
@@ -291,6 +285,12 @@
       "text": "FLOW BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772025131807
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772025132044
     }
   ]
 }
