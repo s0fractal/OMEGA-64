@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAA0AA00",
     "66060066",
     "66666666",
     "66606666",
@@ -197,100 +196,101 @@
     "AA0A0A00",
     "FFFFF0A0",
     "000AAAAA",
-    "660AAA60",
-    "A00A0AA0",
-    "A660A660"
+    "A0606660",
+    "0BB00000",
+    "66000000",
+    "AAAA0AAA"
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD SHELTER WATCH",
+      "origin": "INTERFACE",
+      "text": "DRAIN STRIKE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042796018
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER SHIELD WAIT",
       "mood": "DEFENSIVE",
-      "tick": 1772042792644
+      "tick": 1772042796983
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH PURE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772042797223
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT STASIS STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772042797447
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772042797913
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042798036
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WATCH STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772042798413
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE BREACH DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042798879
     },
     {
       "origin": "INTERFACE",
-      "text": "FLOW COHERE RESONATE",
+      "text": "STABLE COHERE UNIFY",
       "mood": "HARMONIC",
-      "tick": 1772042792842
+      "tick": 1772042799462
     },
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS COHERE UNIFY",
+      "origin": "ARCHIVIST",
+      "text": "HUNGER STRIFE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042800945
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC UNIFY GIVING",
       "mood": "HARMONIC",
-      "tick": 1772042795887
-    },
-    {
-      "origin": "REVERSE",
-      "text": "WAIT REFLECT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042796732
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "STASIS SHIELD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042796936
+      "tick": 1772042802286
     },
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042797729
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "GUARD STASIS WATCH",
+      "text": "IMMUNE WAIT IMMUNE",
       "mood": "DEFENSIVE",
-      "tick": 1772042797906
+      "tick": 1772042803467
     },
     {
-      "origin": "INTERFACE",
-      "text": "DECAY STRIKE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042798258
-    },
-    {
-      "origin": "REVERSE",
-      "text": "STRIFE SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042798546
-    },
-    {
-      "origin": "REVERSE",
-      "text": "SHOCK CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042799699
-    },
-    {
-      "origin": "REVERSE",
-      "text": "STASIS GUARD WAIT",
+      "origin": "ALIEN",
+      "text": "SHELTER SHELTER STASIS",
       "mood": "DEFENSIVE",
-      "tick": 1772042802114
-    },
-    {
-      "origin": "REVERSE",
-      "text": "BEYOND EVOLVE WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772042802780
+      "tick": 1772042804239
     },
     {
       "origin": "ARCHIVIST",
-      "text": "STRIFE SICKNESS DECAY",
+      "text": "SHOCK DECAY HUNGER",
       "mood": "AGGRESSIVE",
-      "tick": 1772042803527
+      "tick": 1772042804860
     },
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE SHOCK SEIZE",
+      "origin": "ALIEN",
+      "text": "BREACH SHOCK STRIFE",
       "mood": "AGGRESSIVE",
-      "tick": 1772042803783
-    },
-    {
-      "origin": "REVERSE",
-      "text": "BLOOM COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042804764
+      "tick": 1772042805638
     }
   ]
 }
