@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772033047166
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772033047358
@@ -291,6 +285,12 @@
       "text": "OSMOSIS RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772033049672
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WAIT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772033049845
     }
   ]
 }
