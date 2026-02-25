@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL GIVING SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772035238973
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772035239179
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772035241987
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING OSMOSIS BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772035242212
     }
   ]
 }
