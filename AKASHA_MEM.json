@@ -100,12 +100,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021597845
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772021598068
@@ -187,6 +181,12 @@
       "text": "CONSUME HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021602888
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE WAIT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021603060
     }
   ]
 }
