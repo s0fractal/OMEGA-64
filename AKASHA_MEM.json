@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON WAIT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772025289486
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772025289716
@@ -291,6 +285,12 @@
       "text": "IMMUNE IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772025293746
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772025294160
     }
   ]
 }
