@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038735674
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772038735862
@@ -291,6 +285,12 @@
       "text": "RECON STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772038738783
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIFE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038738973
     }
   ]
 }
