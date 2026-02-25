@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS SYNC OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772033091434
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772033091801
@@ -291,6 +285,12 @@
       "text": "GIVING OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772033094565
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033094750
     }
   ]
 }
