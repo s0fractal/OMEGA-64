@@ -75,12 +75,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD SHELTER WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020959113
-    },
-    {
-      "origin": "REVERSE",
       "text": "EVOLVE SPARK BEYOND",
       "mood": "CREATIVE",
       "tick": 1772020959727
@@ -162,6 +156,12 @@
       "text": "HUNGER CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020964583
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS GUARD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020965197
     }
   ]
 }
