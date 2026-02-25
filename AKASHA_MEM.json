@@ -156,12 +156,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL RESONATE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772022740498
-    },
-    {
-      "origin": "REVERSE",
       "text": "FORGE AWAKEN FORGE",
       "mood": "CREATIVE",
       "tick": 1772022740683
@@ -243,6 +237,12 @@
       "text": "CONSUME HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022746966
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE HEAL OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772022747160
     }
   ]
 }
