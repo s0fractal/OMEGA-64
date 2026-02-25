@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS STRIKE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036726738
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772036726976
@@ -291,6 +285,12 @@
       "text": "STRIFE DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772036729642
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM FORGE EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772036729833
     }
   ]
 }
