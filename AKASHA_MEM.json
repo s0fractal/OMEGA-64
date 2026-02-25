@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031489530
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772031490098
@@ -291,6 +285,12 @@
       "text": "BREACH CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772031499227
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE RECON IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772031499519
     }
   ]
 }
