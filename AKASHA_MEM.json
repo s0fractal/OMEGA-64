@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE COHERE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772031902798
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772031908255
@@ -291,6 +285,12 @@
       "text": "HEAL RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772031915341
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON GUARD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772031917448
     }
   ]
 }
