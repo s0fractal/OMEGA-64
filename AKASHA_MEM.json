@@ -183,12 +183,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "REFLECT PURE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772023561873
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY FLOW COHERE",
       "mood": "HARMONIC",
@@ -271,6 +265,12 @@
       "text": "OSMOSIS HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772023565496
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE BECOME AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772023565727
     }
   ]
 }
