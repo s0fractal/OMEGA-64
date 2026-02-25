@@ -71,12 +71,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020914157
-    },
-    {
       "origin": "INTERFACE",
       "text": "RESONATE SYNC FLOW",
       "mood": "HARMONIC",
@@ -159,6 +153,12 @@
       "text": "HUNGER DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020919092
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE STRIKE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020919622
     }
   ]
 }
