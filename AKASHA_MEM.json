@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772027013649
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772027013856
@@ -291,6 +285,12 @@
       "text": "STABLE SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772027016819
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS FORGE WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772027017243
     }
   ]
 }
