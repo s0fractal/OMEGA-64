@@ -143,12 +143,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS SHOCK HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022502458
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER RECON PURE",
       "mood": "DEFENSIVE",
@@ -231,6 +225,12 @@
       "text": "SYNC HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772022507069
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS BREACH SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022507234
     }
   ]
 }
