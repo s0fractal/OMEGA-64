@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038498119
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772038498401
@@ -291,6 +285,12 @@
       "text": "STABLE RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772038501493
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772038501727
     }
   ]
 }
