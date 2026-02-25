@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS RECON WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772037529140
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772037529410
@@ -291,6 +285,12 @@
       "text": "CONSUME DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772037533059
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC HEAL OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772037533245
     }
   ]
 }
