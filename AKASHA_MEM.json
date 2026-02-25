@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042251091
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING SYNC BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HUNGER SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772042258833
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH STASIS SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772042258933
     }
   ]
 }
