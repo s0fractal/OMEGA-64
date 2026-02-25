@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033880871
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772033881065
@@ -291,6 +285,12 @@
       "text": "CONSUME DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772033883948
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND AWAKEN AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772033884152
     }
   ]
 }
