@@ -163,12 +163,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022889498
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772022889658
@@ -250,6 +244,12 @@
       "text": "SYNC STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022894957
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING OSMOSIS BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772022895347
     }
   ]
 }
