@@ -176,12 +176,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772023317678
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "FLOW FLOW FLOW",
       "mood": "HARMONIC",
@@ -264,6 +258,12 @@
       "text": "RECON IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023323777
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH STASIS IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023323937
     }
   ]
 }
