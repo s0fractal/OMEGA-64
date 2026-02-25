@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "PURE WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772033570243
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING RESONATE STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BLOOM RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772033572880
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK EVOLVE AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772033573067
     }
   ]
 }
