@@ -154,12 +154,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE COHERE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772022613114
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772022613772
@@ -241,6 +235,12 @@
       "text": "DECAY HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022618971
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WATCH IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022619092
     }
   ]
 }
