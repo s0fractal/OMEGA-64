@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT SHELTER IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772024942409
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772024942660
@@ -291,6 +285,12 @@
       "text": "HEAL GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772024947215
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024947470
     }
   ]
 }
