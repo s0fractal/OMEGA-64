@@ -161,12 +161,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE WAIT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022835951
-    },
-    {
       "origin": "INTERFACE",
       "text": "STABLE STABLE OSMOSIS",
       "mood": "HARMONIC",
@@ -249,6 +243,12 @@
       "text": "STRIKE SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772022846951
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW STABLE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772022847172
     }
   ]
 }
