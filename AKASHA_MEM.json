@@ -102,12 +102,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHELTER WAIT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772021637069
-    },
-    {
       "origin": "REVERSE",
       "text": "VISION EVOLVE WAVE",
       "mood": "CREATIVE",
@@ -190,6 +184,12 @@
       "text": "STABLE GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772021643127
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SICKNESS SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021643297
     }
   ]
 }
