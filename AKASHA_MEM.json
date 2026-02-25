@@ -176,12 +176,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023326223
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE RESONATE FLOW",
       "mood": "HARMONIC",
@@ -264,6 +258,12 @@
       "text": "COHERE BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772023332010
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT IMMUNE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772023332246
     }
   ]
 }
