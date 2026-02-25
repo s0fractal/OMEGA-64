@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE OSMOSIS SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772036793047
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772036793281
@@ -291,6 +285,12 @@
       "text": "HEAL SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772036795903
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON PURE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772036796107
     }
   ]
 }
