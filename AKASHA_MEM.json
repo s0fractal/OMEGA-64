@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "FFFFF00F",
     "AA000AA0",
     "AA0666A0",
     "AA00AA0A",
@@ -199,15 +198,10 @@
     "0AA0A000",
     "06600600",
     "AAA00AA0",
-    "A6666666"
+    "A6666666",
+    "A00AA00A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STASIS IMMUNE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772035258113
-    },
     {
       "origin": "REVERSE",
       "text": "SICKNESS CONSUME CONSUME",
@@ -291,6 +285,12 @@
       "text": "UNIFY GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772035261098
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SEIZE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035261326
     }
   ]
 }
