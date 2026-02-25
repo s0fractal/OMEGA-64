@@ -24,12 +24,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WAIT GUARD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772019563420
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIFE SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772019563877
@@ -111,6 +105,12 @@
       "text": "CONSUME SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772019575613
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772019576167
     }
   ]
 }
