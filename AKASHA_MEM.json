@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT PURE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772028342027
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772028342702
@@ -291,6 +285,12 @@
       "text": "HUNGER BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772028360296
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH HUNGER SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028360661
     }
   ]
 }
