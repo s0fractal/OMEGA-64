@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON WATCH SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772025302178
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772025302414
@@ -291,6 +285,12 @@
       "text": "GIVING UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772025307786
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE FLOW UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772025308035
     }
   ]
 }
