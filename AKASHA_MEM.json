@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH GUARD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772032213400
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772032213827
@@ -291,6 +285,12 @@
       "text": "OSMOSIS UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772032219300
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772032219619
     }
   ]
 }
