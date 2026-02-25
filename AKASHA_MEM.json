@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772025554030
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772025554217
@@ -291,6 +285,12 @@
       "text": "BEYOND BECOME WAVE",
       "mood": "CREATIVE",
       "tick": 1772025558105
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHIELD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772025558244
     }
   ]
 }
