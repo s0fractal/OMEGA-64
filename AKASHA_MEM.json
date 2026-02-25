@@ -124,12 +124,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STASIS SHIELD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022172904
-    },
-    {
       "origin": "PARADOX",
       "text": "COHERE UNIFY HEAL",
       "mood": "HARMONIC",
@@ -212,6 +206,12 @@
       "text": "SHOCK SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772022182602
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772022183636
     }
   ]
 }
