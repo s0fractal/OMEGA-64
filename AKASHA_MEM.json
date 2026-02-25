@@ -57,12 +57,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020569792
-    },
-    {
       "origin": "STREAM",
       "text": "SYNC STABLE STABLE",
       "mood": "HARMONIC",
@@ -145,6 +139,12 @@
       "text": "CONSUME SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020575113
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020575264
     }
   ]
 }
