@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "FLOW COHERE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772025229143
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE FLOW STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WAIT WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772025235220
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "PURE REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772025235490
     }
   ]
 }
