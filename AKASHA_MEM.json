@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM RESONATE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772020338451
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL COHERE FLOW",
       "mood": "HARMONIC",
@@ -141,6 +135,12 @@
       "text": "STRIKE CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020347357
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD SHIELD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020348574
     }
   ]
 }
