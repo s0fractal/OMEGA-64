@@ -43,12 +43,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019935311
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "UNIFY OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772019935922
@@ -130,6 +124,12 @@
       "text": "SICKNESS SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772019947065
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019947628
     }
   ]
 }
