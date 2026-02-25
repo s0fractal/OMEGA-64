@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041547000
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN HUNGER STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772041551250
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE GUARD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041551710
     }
   ]
 }
