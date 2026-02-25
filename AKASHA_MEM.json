@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH GUARD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772036434778
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772036434995
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772036438465
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHELTER WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772036438719
     }
   ]
 }
