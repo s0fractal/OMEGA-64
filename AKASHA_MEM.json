@@ -79,12 +79,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021065410
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE SYNC RESONATE",
       "mood": "HARMONIC",
@@ -167,6 +161,12 @@
       "text": "HUNGER CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021070493
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021070896
     }
   ]
 }
