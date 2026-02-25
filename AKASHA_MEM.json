@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038369594
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772038369803
@@ -291,6 +285,12 @@
       "text": "IMMUNE REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772038372461
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM BLOOM FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772038372651
     }
   ]
 }
