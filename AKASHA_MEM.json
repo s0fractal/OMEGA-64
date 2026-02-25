@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE RESONATE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772038947710
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772038947931
@@ -291,6 +285,12 @@
       "text": "STRIFE SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772038951649
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM WITNESS EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772038951878
     }
   ]
 }
