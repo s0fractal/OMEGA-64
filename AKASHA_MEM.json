@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT STASIS PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772030348587
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772030348986
@@ -291,6 +285,12 @@
       "text": "HEAL BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772030356895
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030357381
     }
   ]
 }
