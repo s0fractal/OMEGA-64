@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772030618643
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772030619419
@@ -291,6 +285,12 @@
       "text": "DECAY SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772030627119
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHIELD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772030627421
     }
   ]
 }
