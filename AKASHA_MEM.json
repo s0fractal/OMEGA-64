@@ -112,12 +112,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021923351
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772021923578
@@ -199,6 +193,12 @@
       "text": "BLOOM SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772021931277
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021931929
     }
   ]
 }
