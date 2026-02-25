@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020420253
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH IMMUNE GUARD",
       "mood": "DEFENSIVE",
@@ -141,6 +135,12 @@
       "text": "STRIFE DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020427753
+    },
+    {
+      "origin": "STREAM",
+      "text": "GIVING SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772020428233
     }
   ]
 }
