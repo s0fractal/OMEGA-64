@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIFE DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040416868
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "COHERE GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772040417034
@@ -291,6 +285,12 @@
       "text": "WATCH SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772040419574
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772040419711
     }
   ]
 }
