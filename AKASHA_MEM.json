@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STASIS SHELTER REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772038207595
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE SHELTER RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772038210954
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD IMMUNE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772038211169
     }
   ]
 }
