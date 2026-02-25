@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT RECON PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772026905098
-    },
-    {
-      "origin": "REVERSE",
       "text": "WITNESS BEYOND WAVE",
       "mood": "CREATIVE",
       "tick": 1772026905414
@@ -291,6 +285,12 @@
       "text": "RECON STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772026911068
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM STABLE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772026911354
     }
   ]
 }
