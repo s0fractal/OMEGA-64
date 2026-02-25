@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "RECON WATCH WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040386348
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HEAL COHERE OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STASIS PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772040392046
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772040392226
     }
   ]
 }
