@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772035415356
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772035415556
@@ -291,6 +285,12 @@
       "text": "SHOCK SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772035418930
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL BLOOM SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772035419098
     }
   ]
 }
