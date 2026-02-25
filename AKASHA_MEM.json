@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE RECON SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772033096120
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772033096269
@@ -291,6 +285,12 @@
       "text": "SICKNESS SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772033098566
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY RESONATE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772033098751
     }
   ]
 }
