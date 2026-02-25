@@ -71,12 +71,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "VISION BECOME VISION",
-      "mood": "CREATIVE",
-      "tick": 1772020885054
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020885221
@@ -158,6 +152,12 @@
       "text": "HUNGER BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020892602
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT WATCH GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020893017
     }
   ]
 }
