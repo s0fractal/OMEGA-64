@@ -282,15 +282,15 @@
     },
     {
       "origin": "STREAM",
-      "text": "HUNGER CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042337045
+      "text": "STASIS RECON STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772042336991
     },
     {
-      "origin": "STREAM",
-      "text": "CONSUME BREACH CONSUME",
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIKE SEIZE",
       "mood": "AGGRESSIVE",
-      "tick": 1772042337256
+      "tick": 1772042337404
     }
   ]
 }
