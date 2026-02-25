@@ -167,12 +167,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023046229
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772023046681
@@ -254,6 +248,12 @@
       "text": "STABLE FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772023053358
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "REFLECT PURE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772023053495
     }
   ]
 }
