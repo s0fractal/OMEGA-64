@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041069662
-    },
-    {
-      "origin": "REVERSE",
       "text": "VISION EVOLVE WAVE",
       "mood": "CREATIVE",
       "tick": 1772041069827
@@ -291,6 +285,12 @@
       "text": "STRIKE DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772041072676
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772041073352
     }
   ]
 }
