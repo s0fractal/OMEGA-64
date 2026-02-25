@@ -17,12 +17,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GIVING COHERE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772014938047
-    },
-    {
       "origin": "INTERFACE",
       "text": "DRAIN STRIKE CONSUME",
       "mood": "AGGRESSIVE",
@@ -105,6 +99,12 @@
       "text": "BREACH HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772015056132
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS BLOOM UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772015064386
     }
   ]
 }
