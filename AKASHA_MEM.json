@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS SHOCK SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040435899
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT RECON RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BECOME WITNESS BECOME",
       "mood": "CREATIVE",
       "tick": 1772040439184
+    },
+    {
+      "origin": "STREAM",
+      "text": "IMMUNE REFLECT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040439317
     }
   ]
 }
