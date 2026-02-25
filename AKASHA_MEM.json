@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772037370483
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772037370666
@@ -291,6 +285,12 @@
       "text": "CONSUME DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772037375338
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037375664
     }
   ]
 }
