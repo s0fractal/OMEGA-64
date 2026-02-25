@@ -183,12 +183,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STABLE GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772023556471
-    },
-    {
       "origin": "REVERSE",
       "text": "RECON WATCH GUARD",
       "mood": "DEFENSIVE",
@@ -271,6 +265,12 @@
       "text": "RESONATE GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772023560257
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772023560440
     }
   ]
 }
