@@ -49,12 +49,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RECON IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772020138622
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHIELD REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772020139161
@@ -136,6 +130,12 @@
       "text": "BREACH HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020148082
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON WAIT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020148948
     }
   ]
 }
