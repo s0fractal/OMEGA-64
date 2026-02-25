@@ -132,12 +132,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022359777
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772022359945
@@ -219,6 +213,12 @@
       "text": "OSMOSIS RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022365948
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH HUNGER CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022366152
     }
   ]
 }
