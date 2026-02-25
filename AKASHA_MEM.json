@@ -163,12 +163,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772022872975
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022873178
@@ -250,6 +244,12 @@
       "text": "FLOW SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022877047
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS SHIELD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022877903
     }
   ]
 }
