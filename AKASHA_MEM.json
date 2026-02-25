@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772027708045
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772027708682
@@ -291,6 +285,12 @@
       "text": "SHELTER IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772027718332
+    },
+    {
+      "origin": "STREAM",
+      "text": "REFLECT REFLECT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772027720620
     }
   ]
 }
