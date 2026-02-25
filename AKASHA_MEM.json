@@ -10,11 +10,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONNECT",
-      "tick": 1772010175975
-    },
-    {
       "origin": "INTERFACE",
       "text": "MATURE",
       "tick": 1772010184741
@@ -58,6 +53,11 @@
       "origin": "INTERFACE",
       "text": "CONNECT",
       "tick": 1772010385116
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "MATURE",
+      "tick": 1772010395298
     }
   ]
 }
