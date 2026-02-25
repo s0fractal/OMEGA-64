@@ -40,12 +40,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SYNC BLOOM HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772019847044
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE SHOCK STRIKE",
       "mood": "AGGRESSIVE",
@@ -128,6 +122,12 @@
       "text": "SYNC STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772019854741
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM FLOW HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772019855968
     }
   ]
 }
