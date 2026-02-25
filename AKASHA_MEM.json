@@ -107,12 +107,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW FLOW FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772021772297
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH SHOCK SEIZE",
       "mood": "AGGRESSIVE",
@@ -195,6 +189,12 @@
       "text": "COHERE SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772021777395
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WATCH GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021777730
     }
   ]
 }
