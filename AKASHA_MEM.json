@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SHOCK HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022218240
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772022218438
@@ -213,6 +207,12 @@
       "text": "SHELTER STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022221923
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772022222187
     }
   ]
 }
