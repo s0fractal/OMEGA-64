@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GUARD GUARD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041445807
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STASIS WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041446105
@@ -291,6 +285,12 @@
       "text": "SYNC RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041449842
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK CONSUME SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041450016
     }
   ]
 }
