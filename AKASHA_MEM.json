@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS UNIFY UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772025297729
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772025298369
@@ -291,6 +285,12 @@
       "text": "BLOOM GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772025301535
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT RECON STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772025301731
     }
   ]
 }
