@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON WATCH WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772023740325
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772023740499
@@ -278,6 +272,12 @@
       "text": "SHIELD RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772023743078
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023743677
     }
   ]
 }
