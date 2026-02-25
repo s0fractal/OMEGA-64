@@ -110,12 +110,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772021860599
-    },
-    {
-      "origin": "REVERSE",
       "text": "EVOLVE WITNESS DREAM",
       "mood": "CREATIVE",
       "tick": 1772021860814
@@ -197,6 +191,12 @@
       "text": "IMMUNE WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772021867086
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE STRIFE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021867734
     }
   ]
 }
