@@ -51,15 +51,10 @@
     "0A000A00",
     "AB000000",
     "6A00A000",
-    "66666600"
+    "66666600",
+    "00000606"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "BREACH DECAY SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020555598
-    },
     {
       "origin": "ARCHIVIST",
       "text": "WATCH IMMUNE SHELTER",
@@ -143,6 +138,12 @@
       "text": "BREACH DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020565211
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772020566997
     }
   ]
 }
