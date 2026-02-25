@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SICKNESS SICKNESS HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041687357
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS RESONATE HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HUNGER SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041691690
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772041692165
     }
   ]
 }
