@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY BREACH BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040200104
-    },
-    {
       "origin": "REVERSE",
       "text": "SHIELD RECON SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772040204354
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "CONSUME SEIZE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040204546
     }
   ]
 }
