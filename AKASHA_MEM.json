@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035720065
-    },
-    {
       "origin": "INTERFACE",
       "text": "RECON REFLECT PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772035725439
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772035725738
     }
   ]
 }
