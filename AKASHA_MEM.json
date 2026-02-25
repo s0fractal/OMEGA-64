@@ -203,12 +203,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772024104603
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772024104776
@@ -290,6 +284,12 @@
       "text": "HUNGER CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772024108599
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD IMMUNE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772024109015
     }
   ]
 }
