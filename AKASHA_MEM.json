@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SEIZE BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024167845
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC HEAL GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "PURE RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772024174669
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772024175453
     }
   ]
 }
