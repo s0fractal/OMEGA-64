@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032570028
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE COHERE SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WAVE VISION BEYOND",
       "mood": "CREATIVE",
       "tick": 1772032576982
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC STABLE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772032577180
     }
   ]
 }
