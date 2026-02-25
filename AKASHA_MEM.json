@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHIELD STASIS STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772040472788
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE RESONATE RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772040475150
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772040475307
     }
   ]
 }
