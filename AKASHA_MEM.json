@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL GIVING HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772032824526
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772032824697
@@ -291,6 +285,12 @@
       "text": "GUARD STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772032826979
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032827149
     }
   ]
 }
