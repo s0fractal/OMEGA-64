@@ -77,12 +77,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772021042396
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER REFLECT SHIELD",
       "mood": "DEFENSIVE",
@@ -165,6 +159,12 @@
       "text": "RESONATE FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772021048883
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SHOCK BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021049423
     }
   ]
 }
