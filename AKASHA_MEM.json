@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RESONATE STABLE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772042110428
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STASIS GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772042110661
@@ -291,6 +285,12 @@
       "text": "REFLECT STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772042119416
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD RECON STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772042120749
     }
   ]
 }
