@@ -109,12 +109,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "EVOLVE AWAKEN EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772021828178
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772021828305
@@ -196,6 +190,12 @@
       "text": "SYNC SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772021836106
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021836233
     }
   ]
 }
