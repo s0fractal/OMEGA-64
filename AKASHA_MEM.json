@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE STRIKE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037263609
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772037263931
@@ -291,6 +285,12 @@
       "text": "STASIS IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772037269820
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772037270025
     }
   ]
 }
