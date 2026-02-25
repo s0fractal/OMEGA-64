@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "000A0000",
     "A00A000A",
     "000A000F",
     "AA00A0AA",
@@ -199,15 +198,10 @@
     "60066600",
     "66600006",
     "A0A0A000",
-    "0F0AAAAA"
+    "0F0AAAAA",
+    "66000060"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "HEAL RESONATE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772038455575
-    },
     {
       "origin": "STREAM",
       "text": "COHERE BLOOM GIVING",
@@ -291,6 +285,12 @@
       "text": "GIVING BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772038463008
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS IMMUNE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772038463229
     }
   ]
 }
