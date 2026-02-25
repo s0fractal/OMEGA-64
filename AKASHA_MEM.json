@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE CONSUME SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042042113
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER IMMUNE STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772042059683
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772042060082
     }
   ]
 }
