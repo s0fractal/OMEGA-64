@@ -49,12 +49,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT SHELTER PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020238867
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS STRIKE DRAIN",
       "mood": "AGGRESSIVE",
@@ -137,6 +131,12 @@
       "text": "STRIFE HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020247610
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE UNIFY SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772020248100
     }
   ]
 }
