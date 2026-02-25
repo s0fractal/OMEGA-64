@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "RECON SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041080145
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN SHOCK DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772041083537
+    },
+    {
+      "origin": "STREAM",
+      "text": "SHIELD IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041083785
     }
   ]
 }
