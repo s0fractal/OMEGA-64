@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON IMMUNE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772041332798
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS BREACH BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772041336033
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS HUNGER SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041336214
     }
   ]
 }
