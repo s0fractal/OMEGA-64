@@ -141,12 +141,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022448421
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022448610
@@ -228,6 +222,12 @@
       "text": "GUARD GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022454083
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022454340
     }
   ]
 }
