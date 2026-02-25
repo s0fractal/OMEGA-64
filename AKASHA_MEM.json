@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "STREAM",
-      "text": "STABLE UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772040356896
-    },
-    {
-      "origin": "STREAM",
       "text": "HUNGER CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772040357083
@@ -291,6 +285,12 @@
       "text": "SHIELD PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772040363774
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS PURE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040364236
     }
   ]
 }
