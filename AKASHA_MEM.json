@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY GIVING SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772025610692
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772025611856
@@ -291,6 +285,12 @@
       "text": "CONSUME HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772025619445
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WAIT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772025619633
     }
   ]
 }
