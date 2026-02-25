@@ -59,12 +59,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SICKNESS STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020575264
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SICKNESS SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020576180
@@ -146,6 +140,12 @@
       "text": "STASIS IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772020582140
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD RECON RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772020582323
     }
   ]
 }
