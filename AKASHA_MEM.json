@@ -105,12 +105,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON WATCH IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021704220
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY SEIZE STRIKE",
       "mood": "AGGRESSIVE",
@@ -193,6 +187,12 @@
       "text": "FLOW STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772021711208
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS UNIFY OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772021711350
     }
   ]
 }
