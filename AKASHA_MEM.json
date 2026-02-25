@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAA00A0A",
     "0AAAA0AA",
     "AA0A0A0A",
     "AAAAAA00",
@@ -199,15 +198,10 @@
     "FFFFFF0F",
     "66000060",
     "AA0AAAA0",
-    "66666660"
+    "66666660",
+    "AA6666A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STABLE STABLE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772026404405
-    },
     {
       "origin": "REVERSE",
       "text": "SEIZE HUNGER BREACH",
@@ -291,6 +285,12 @@
       "text": "UNIFY RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772026409627
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026410372
     }
   ]
 }
