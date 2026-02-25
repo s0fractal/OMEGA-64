@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER WAIT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772036082076
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772036082901
@@ -291,6 +285,12 @@
       "text": "SICKNESS DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772036087879
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE GIVING HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772036088208
     }
   ]
 }
