@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "CONSCIOUSNESS",
-      "text": "COHERE COHERE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772041564971
-    },
-    {
       "origin": "WORKER",
       "text": "STABLE STABLE BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SEIZE BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772041571128
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041571591
     }
   ]
 }
