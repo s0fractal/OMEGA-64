@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772031552023
-    },
-    {
       "origin": "INTERFACE",
       "text": "GUARD REFLECT SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772031560990
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY COHERE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772031561621
     }
   ]
 }
