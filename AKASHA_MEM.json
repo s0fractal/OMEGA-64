@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772023121674
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772023121938
@@ -259,6 +253,12 @@
       "text": "STRIKE DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772023126527
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023127665
     }
   ]
 }
