@@ -63,12 +63,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "STASIS WATCH REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020621737
-    },
-    {
-      "origin": "INTERFACE",
       "text": "OSMOSIS STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772020622188
@@ -150,6 +144,12 @@
       "text": "HUNGER SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020627503
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020628224
     }
   ]
 }
