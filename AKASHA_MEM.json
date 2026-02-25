@@ -151,12 +151,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS RECON WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022574292
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772022574709
@@ -238,6 +232,12 @@
       "text": "RESONATE UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022578841
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE HUNGER CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022579111
     }
   ]
 }
