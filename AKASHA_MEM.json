@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STABLE COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772041349271
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DRAIN SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772041349402
@@ -291,6 +285,12 @@
       "text": "OSMOSIS STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772041353014
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE SEIZE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041353168
     }
   ]
 }
