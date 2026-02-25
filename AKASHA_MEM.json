@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER PURE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772038774472
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772038774655
@@ -291,6 +285,12 @@
       "text": "HEAL BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772038778193
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038778437
     }
   ]
 }
