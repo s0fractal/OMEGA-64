@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE REFLECT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772033178141
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772033178290
@@ -291,6 +285,12 @@
       "text": "DRAIN BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772033182633
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY COHERE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772033183119
     }
   ]
 }
