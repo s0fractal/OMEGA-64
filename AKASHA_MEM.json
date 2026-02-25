@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A6600606",
     "BB0B0000",
     "A0606606",
     "00066060",
@@ -199,15 +198,10 @@
     "A60660A0",
     "A0AA0600",
     "6A060A60",
-    "BBBB0000"
+    "BBBB0000",
+    "0A0A0A00"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "PURE SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041873544
-    },
     {
       "origin": "INTERFACE",
       "text": "STRIKE DRAIN SEIZE",
@@ -291,6 +285,12 @@
       "text": "BLOOM STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772041878675
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY GIVING COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041879139
     }
   ]
 }
