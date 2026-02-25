@@ -129,12 +129,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY COHERE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772022325904
-    },
-    {
       "origin": "INTERFACE",
       "text": "WATCH WAIT WATCH",
       "mood": "DEFENSIVE",
@@ -217,6 +211,12 @@
       "text": "SPARK FORGE WITNESS",
       "mood": "CREATIVE",
       "tick": 1772022332213
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022332440
     }
   ]
 }
