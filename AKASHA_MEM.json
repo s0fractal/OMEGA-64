@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE WATCH REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772038279732
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772038279955
@@ -291,6 +285,12 @@
       "text": "IMMUNE PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772038282836
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SICKNESS HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038283068
     }
   ]
 }
