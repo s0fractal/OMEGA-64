@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_GUARDIAN",
-      "text": "HEAL SYNC FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772040881161
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772040884106
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772040884358
     }
   ]
 }
