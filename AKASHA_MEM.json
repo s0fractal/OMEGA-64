@@ -192,12 +192,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE DECAY SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023830815
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772023830988
@@ -279,6 +273,12 @@
       "text": "SYNC HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772023835669
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SICKNESS STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023835828
     }
   ]
 }
