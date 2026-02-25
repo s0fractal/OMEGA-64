@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772032862464
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772032862639
@@ -291,6 +285,12 @@
       "text": "FLOW OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772032866093
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS CONSUME SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032866291
     }
   ]
 }
