@@ -65,12 +65,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BREACH STRIFE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020775886
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE GIVING RESONATE",
       "mood": "HARMONIC",
@@ -153,6 +147,12 @@
       "text": "SHELTER STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020784053
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHELTER REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020784697
     }
   ]
 }
