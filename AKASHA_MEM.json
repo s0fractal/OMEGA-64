@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772019986683
-    },
-    {
       "origin": "INTERFACE",
       "text": "PURE SHIELD SHELTER",
       "mood": "DEFENSIVE",
@@ -130,6 +124,12 @@
       "text": "SICKNESS CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772019999576
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN HUNGER CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020000915
     }
   ]
 }
