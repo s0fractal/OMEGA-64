@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS PURE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772039211750
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772039211951
@@ -291,6 +285,12 @@
       "text": "HEAL BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772039214529
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN CONSUME SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039214732
     }
   ]
 }
