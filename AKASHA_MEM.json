@@ -203,6 +203,12 @@
   ],
   "utterances": [
     {
+      "origin": "INTERFACE",
+      "text": "UNIFY UNIFY HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772042365640
+    },
+    {
       "origin": "REVERSE",
       "text": "IMMUNE REFLECT WATCH",
       "mood": "DEFENSIVE",
@@ -270,27 +276,21 @@
     },
     {
       "origin": "ARCHIVIST",
-      "text": "STABLE BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772042375993
+      "text": "WAIT REFLECT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042376494
     },
     {
-      "origin": "PARADOX",
-      "text": "OSMOSIS BLOOM UNIFY",
+      "origin": "INTERFACE",
+      "text": "RESONATE GIVING COHERE",
       "mood": "HARMONIC",
-      "tick": 1772042376356
+      "tick": 1772042376859
     },
     {
       "origin": "ARCHIVIST",
-      "text": "PURE WAIT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042376915
-    },
-    {
-      "origin": "STREAM",
-      "text": "STRIKE STRIKE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042377462
+      "text": "FLOW HEAL GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772042377505
     }
   ]
 }
