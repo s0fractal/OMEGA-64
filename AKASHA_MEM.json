@@ -80,12 +80,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE RECON SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772021095983
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIFE SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
@@ -168,6 +162,12 @@
       "text": "SHOCK SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772021104841
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS WAVE DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772021105040
     }
   ]
 }
