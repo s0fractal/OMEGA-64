@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE UNIFY UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772023103621
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772023103796
@@ -259,6 +253,12 @@
       "text": "PURE WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772023108397
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS OSMOSIS BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772023108564
     }
   ]
 }
