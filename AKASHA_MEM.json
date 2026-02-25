@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT PURE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772027942392
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772027943316
@@ -291,6 +285,12 @@
       "text": "FLOW COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772027969319
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772027969871
     }
   ]
 }
