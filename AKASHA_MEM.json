@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "RESONATE GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772019655651
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS BLOOM COHERE",
       "mood": "HARMONIC",
@@ -114,6 +108,12 @@
       "text": "SYNC SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772019664112
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHOCK DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019664322
     }
   ]
 }
