@@ -178,12 +178,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "UNIFY BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772023352481
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM OSMOSIS GIVING",
       "mood": "HARMONIC",
@@ -266,6 +260,12 @@
       "text": "FLOW COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772023360299
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH PURE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023360474
     }
   ]
 }
