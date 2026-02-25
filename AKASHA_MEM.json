@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041498391
-    },
-    {
       "origin": "INTERFACE",
       "text": "BLOOM STABLE STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BREACH DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041502987
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD RECON GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041503529
     }
   ]
 }
