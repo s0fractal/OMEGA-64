@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036906812
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772036907026
@@ -291,6 +285,12 @@
       "text": "COHERE OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772036909892
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE CONSUME HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036910108
     }
   ]
 }
