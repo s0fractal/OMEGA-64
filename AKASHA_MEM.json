@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE PURE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772030544012
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY STRIFE HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772030551156
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD STASIS RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772030551383
     }
   ]
 }
