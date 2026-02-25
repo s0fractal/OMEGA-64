@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DECAY SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033629059
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK BECOME EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772033629214
@@ -291,6 +285,12 @@
       "text": "HUNGER DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772033631795
+    },
+    {
+      "origin": "STREAM",
+      "text": "DRAIN STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033632981
     }
   ]
 }
