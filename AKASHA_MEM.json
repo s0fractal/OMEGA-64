@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD SHIELD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772034365575
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772034365748
@@ -291,6 +285,12 @@
       "text": "SICKNESS CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772034368280
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DRAIN DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034368490
     }
   ]
 }
