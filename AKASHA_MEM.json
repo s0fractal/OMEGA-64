@@ -171,12 +171,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023108905
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON SHIELD REFLECT",
       "mood": "DEFENSIVE",
@@ -259,6 +253,12 @@
       "text": "DECAY BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772023119174
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE CONSUME SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023119634
     }
   ]
 }
