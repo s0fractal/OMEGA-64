@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025511986
-    },
-    {
       "origin": "STREAM",
       "text": "PURE STASIS GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STASIS REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772025515388
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WATCH PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772025515622
     }
   ]
 }
