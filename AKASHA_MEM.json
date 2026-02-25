@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040819951
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS HEAL RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIFE SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772040822592
+    },
+    {
+      "origin": "STREAM",
+      "text": "UNIFY BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772040823591
     }
   ]
 }
