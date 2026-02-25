@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS STABLE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772020657910
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY BLOOM HEAL",
       "mood": "HARMONIC",
@@ -150,6 +144,12 @@
       "text": "BLOOM COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772020665727
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD SHELTER GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020665892
     }
   ]
 }
