@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "HUNGER SICKNESS SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024334045
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS RESONATE SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "COHERE UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772024339661
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE RECON WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772024340324
     }
   ]
 }
