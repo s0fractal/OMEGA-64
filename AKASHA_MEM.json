@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GUARD SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041354233
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "PURE PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041355042
@@ -291,6 +285,12 @@
       "text": "DRAIN DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772041359122
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE BREACH DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041359305
     }
   ]
 }
