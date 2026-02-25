@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772033043934
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772033044074
@@ -291,6 +285,12 @@
       "text": "SPARK WAVE FORGE",
       "mood": "CREATIVE",
       "tick": 1772033046413
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIFE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033046608
     }
   ]
 }
