@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH STRIKE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038638954
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038639168
@@ -291,6 +285,12 @@
       "text": "DRAIN STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772038641840
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772038642077
     }
   ]
 }
