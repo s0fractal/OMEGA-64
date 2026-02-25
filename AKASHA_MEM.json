@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT SHELTER WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772037035087
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772037035306
@@ -291,6 +285,12 @@
       "text": "IMMUNE REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772037037775
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037037976
     }
   ]
 }
