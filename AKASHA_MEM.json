@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "FLOW COHERE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772036896599
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772036906812
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING RESONATE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772036907026
     }
   ]
 }
