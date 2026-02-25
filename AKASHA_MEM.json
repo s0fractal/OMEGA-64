@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "UNIFY UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772019658883
-    },
-    {
       "origin": "INTERFACE",
       "text": "BREACH DECAY BREACH",
       "mood": "AGGRESSIVE",
@@ -114,6 +108,12 @@
       "text": "REFLECT WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772019666279
+    },
+    {
+      "origin": "STREAM",
+      "text": "BLOOM STABLE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772019666746
     }
   ]
 }
