@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE RESONATE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772026187651
-    },
-    {
       "origin": "INTERFACE",
       "text": "RECON SHIELD STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772026194840
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY OSMOSIS OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772026195082
     }
   ]
 }
