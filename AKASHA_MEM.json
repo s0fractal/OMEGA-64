@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "IMMUNE WATCH STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772040821793
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE STASIS SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772040825482
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH STASIS SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040825732
     }
   ]
 }
