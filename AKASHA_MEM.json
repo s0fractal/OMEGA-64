@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE OSMOSIS BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772041414608
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD PURE RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041417645
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772041418071
     }
   ]
 }
