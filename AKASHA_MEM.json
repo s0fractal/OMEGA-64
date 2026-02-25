@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS RESONATE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772023950781
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772023950912
@@ -284,6 +278,12 @@
       "text": "STRIFE SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772023955908
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER GUARD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023956189
     }
   ]
 }
