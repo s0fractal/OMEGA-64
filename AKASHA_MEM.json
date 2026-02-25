@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772042274700
-    },
-    {
       "origin": "STREAM",
       "text": "FLOW SYNC HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "REFLECT WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772042281372
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT STASIS GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042281873
     }
   ]
 }
