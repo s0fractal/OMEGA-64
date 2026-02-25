@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM COHERE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772025126160
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772025126415
@@ -291,6 +285,12 @@
       "text": "REFLECT WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772025132044
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH RECON PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772025132284
     }
   ]
 }
