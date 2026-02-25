@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SICKNESS BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041481197
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WAIT SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041481752
@@ -291,6 +285,12 @@
       "text": "SHELTER GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772041485454
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772041485725
     }
   ]
 }
