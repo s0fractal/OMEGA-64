@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040490599
-    },
-    {
       "origin": "REVERSE",
       "text": "SHIELD IMMUNE GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772040493160
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772040493349
     }
   ]
 }
