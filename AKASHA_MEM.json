@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "VISION EVOLVE VISION",
-      "mood": "CREATIVE",
-      "tick": 1772035187328
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772035187508
@@ -291,6 +285,12 @@
       "text": "OSMOSIS STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772035190915
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035191325
     }
   ]
 }
