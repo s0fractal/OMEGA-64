@@ -108,12 +108,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772021765610
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772021765803
@@ -195,6 +189,12 @@
       "text": "HUNGER HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772021770972
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE STRIKE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021771166
     }
   ]
 }
