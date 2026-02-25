@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS HUNGER BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035384188
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772035386355
@@ -291,6 +285,12 @@
       "text": "STABLE GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772035389156
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772035389348
     }
   ]
 }
