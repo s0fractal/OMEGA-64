@@ -189,12 +189,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023682619
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023683381
@@ -276,6 +270,12 @@
       "text": "DECAY DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023687331
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GIVING RESONATE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772023687494
     }
   ]
 }
