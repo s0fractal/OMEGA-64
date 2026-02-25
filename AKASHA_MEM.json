@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772037317061
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772037317268
@@ -291,6 +285,12 @@
       "text": "STABLE STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772037320307
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH PURE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772037320504
     }
   ]
 }
