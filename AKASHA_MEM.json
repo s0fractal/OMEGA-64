@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772033993587
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033993797
@@ -291,6 +285,12 @@
       "text": "BECOME BEYOND AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772033996601
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIKE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033996801
     }
   ]
 }
