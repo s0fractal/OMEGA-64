@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE SEIZE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038413199
-    },
-    {
       "origin": "REVERSE",
       "text": "GUARD GUARD STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772038417210
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772038417457
     }
   ]
 }
