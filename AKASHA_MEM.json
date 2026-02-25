@@ -187,12 +187,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME SPARK VISION",
-      "mood": "CREATIVE",
-      "tick": 1772023638596
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023638816
@@ -274,6 +268,12 @@
       "text": "CONSUME SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772023641500
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772023641723
     }
   ]
 }
