@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034838580
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772034838776
@@ -291,6 +285,12 @@
       "text": "UNIFY BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772034841878
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING RESONATE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772034842085
     }
   ]
 }
