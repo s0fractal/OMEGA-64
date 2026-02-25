@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GIVING RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772019957949
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIFE BREACH DECAY",
       "mood": "AGGRESSIVE",
@@ -130,6 +124,12 @@
       "text": "HEAL SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772019971199
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE STRIFE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019971955
     }
   ]
 }
