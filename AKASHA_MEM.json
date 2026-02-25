@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772024974183
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772024974366
@@ -291,6 +285,12 @@
       "text": "OSMOSIS HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772024978130
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024978333
     }
   ]
 }
