@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036765342
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772036765540
@@ -291,6 +285,12 @@
       "text": "UNIFY BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772036770440
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL STABLE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772036770669
     }
   ]
 }
