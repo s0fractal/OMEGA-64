@@ -192,12 +192,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD SHIELD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023815250
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023815410
@@ -279,6 +273,12 @@
       "text": "CONSUME STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023819809
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WAIT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023820092
     }
   ]
 }
