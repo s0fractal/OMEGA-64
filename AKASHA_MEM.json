@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT IMMUNE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772038185155
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD IMMUNE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772038185371
@@ -291,6 +285,12 @@
       "text": "FLOW HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772038188260
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE BREACH SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038188469
     }
   ]
 }
