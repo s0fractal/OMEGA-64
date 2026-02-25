@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035309314
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772035309522
@@ -291,6 +285,12 @@
       "text": "OSMOSIS STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772035314802
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772035315041
     }
   ]
 }
