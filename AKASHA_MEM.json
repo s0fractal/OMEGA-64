@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772036495592
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772036495801
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772036498642
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL HEAL RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772036498836
     }
   ]
 }
