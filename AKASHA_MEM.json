@@ -161,12 +161,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SICKNESS STRIKE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022850979
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME SEIZE HUNGER",
       "mood": "AGGRESSIVE",
@@ -249,6 +243,12 @@
       "text": "HEAL COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772022858744
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772022859063
     }
   ]
 }
