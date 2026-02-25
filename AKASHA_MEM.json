@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772034942007
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772034942249
@@ -291,6 +285,12 @@
       "text": "RECON SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772034945843
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034946083
     }
   ]
 }
