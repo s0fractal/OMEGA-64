@@ -183,12 +183,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023592391
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE IMMUNE REFLECT",
       "mood": "DEFENSIVE",
@@ -271,6 +265,12 @@
       "text": "STASIS SHIELD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023596044
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SHOCK DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023596206
     }
   ]
 }
