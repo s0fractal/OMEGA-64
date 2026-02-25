@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00060660",
     "66666060",
     "AA6006A6",
     "AA660600",
@@ -199,15 +198,10 @@
     "0FF0FFF0",
     "AAAAA0A0",
     "0AAA00A0",
-    "06000066"
+    "06000066",
+    "60060666"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SYNC FLOW BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772035176562
-    },
     {
       "origin": "REVERSE",
       "text": "BREACH SHOCK DRAIN",
@@ -291,6 +285,12 @@
       "text": "RECON IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772035179664
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772035179906
     }
   ]
 }
