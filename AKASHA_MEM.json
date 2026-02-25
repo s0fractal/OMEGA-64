@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD PURE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772036073017
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772036073228
@@ -291,6 +285,12 @@
       "text": "HUNGER HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772036076022
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH REFLECT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772036076238
     }
   ]
 }
