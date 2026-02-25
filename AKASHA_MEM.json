@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC STABLE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772025520117
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE DECAY SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772025525325
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025525587
     }
   ]
 }
