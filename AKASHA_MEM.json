@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772038662385
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038662562
@@ -291,6 +285,12 @@
       "text": "GUARD WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772038665540
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER CONSUME CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038665720
     }
   ]
 }
