@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772041595472
-    },
-    {
       "origin": "STREAM",
       "text": "PURE SHELTER STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041603894
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE SICKNESS DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041604099
     }
   ]
 }
