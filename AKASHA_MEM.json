@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772033082958
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772033083146
@@ -291,6 +285,12 @@
       "text": "RESONATE COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772033085635
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772033085886
     }
   ]
 }
