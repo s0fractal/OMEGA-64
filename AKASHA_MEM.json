@@ -193,12 +193,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SHOCK CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023847339
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772023847511
@@ -280,6 +274,12 @@
       "text": "SEIZE STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023849784
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023849947
     }
   ]
 }
