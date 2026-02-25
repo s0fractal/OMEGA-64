@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY HUNGER SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031977538
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772031978106
@@ -291,6 +285,12 @@
       "text": "SYNC FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772031984120
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE STRIFE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031984968
     }
   ]
 }
