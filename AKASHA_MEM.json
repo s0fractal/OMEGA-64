@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHOCK DRAIN DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040694068
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE FLOW BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STABLE UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772040698072
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT SHELTER WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040698355
     }
   ]
 }
