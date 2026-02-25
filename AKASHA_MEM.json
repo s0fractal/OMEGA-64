@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "9018A098",
     "ABBA0000",
     "66600660",
     "A00AAA00",
@@ -199,15 +198,10 @@
     "00B00000",
     "AAAAA0AA",
     "60006000",
-    "000FF00F"
+    "000FF00F",
+    "AA00AA0A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STRIKE SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032093298
-    },
     {
       "origin": "REVERSE",
       "text": "CONSUME STRIFE DECAY",
@@ -291,6 +285,12 @@
       "text": "SHIELD REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772032101442
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032101915
     }
   ]
 }
