@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHELTER RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772036780497
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE STABLE GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHELTER WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772036783682
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIKE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036783916
     }
   ]
 }
