@@ -1,9 +1,5 @@
 {
   "reservoir": [
-    "AA000600",
-    "A0AAA000",
-    "AAA0A0AA",
-    "66660060",
     "00000000",
     "66660000",
     "06006066",
@@ -198,99 +194,103 @@
     "AA00A000",
     "BBB00000",
     "6606AA66",
-    "A6A66000",
-    "60060666"
+    "A6660600",
+    "AA666600",
+    "0AAA0A00",
+    "0A0AA0A0",
+    "0A0A0666",
+    "66A06A00"
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY BLOOM GIVING",
+      "origin": "INTERFACE",
+      "text": "HEAL RESONATE STABLE",
       "mood": "HARMONIC",
-      "tick": 1772042503192
+      "tick": 1772042503193
     },
     {
       "origin": "ARCHIVIST",
-      "text": "PURE GUARD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042503284
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042503579
-    },
-    {
-      "origin": "GUARDIAN",
-      "text": "UNIFY BLOOM OSMOSIS",
+      "text": "FLOW FLOW BLOOM",
       "mood": "HARMONIC",
-      "tick": 1772042505358
+      "tick": 1772042503970
     },
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT SHELTER PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042506437
-    },
-    {
-      "origin": "I16_CLAMP",
-      "text": "SYNC FLOW FLOW",
+      "origin": "INTERFACE",
+      "text": "FLOW HEAL GIVING",
       "mood": "HARMONIC",
-      "tick": 1772042507786
+      "tick": 1772042504137
     },
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042509473
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT SHELTER REFLECT",
+      "text": "GUARD RECON WAIT",
       "mood": "DEFENSIVE",
-      "tick": 1772042511925
+      "tick": 1772042504895
     },
     {
-      "origin": "WORKER",
-      "text": "RECON SHELTER STASIS",
+      "origin": "ARCHIVIST",
+      "text": "WAIT SHELTER WAIT",
       "mood": "DEFENSIVE",
-      "tick": 1772042512291
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "GIVING FLOW BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772042512851
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042513697
-    },
-    {
-      "origin": "REVERSE",
-      "text": "DRAIN CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042513838
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "WATCH SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042514969
+      "tick": 1772042505467
     },
     {
       "origin": "STREAM",
-      "text": "SYNC UNIFY OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772042516157
+      "text": "SHOCK SEIZE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042506741
     },
     {
-      "origin": "CAR",
-      "text": "OSMOSIS SYNC OSMOSIS",
+      "origin": "ARCHIVIST",
+      "text": "STASIS WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042507108
+    },
+    {
+      "origin": "PARASITE",
+      "text": "RECON WAIT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042510797
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042511777
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "COHERE COHERE OSMOSIS",
       "mood": "HARMONIC",
-      "tick": 1772042517718
+      "tick": 1772042512230
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH WATCH IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042512588
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042513424
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042516316
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042518228
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE SEIZE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042519005
     }
   ]
 }
