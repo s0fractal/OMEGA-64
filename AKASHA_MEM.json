@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM HEAL OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772033263185
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033263369
@@ -291,6 +285,12 @@
       "text": "RECON SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772033265960
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS EVOLVE EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772033266110
     }
   ]
 }
