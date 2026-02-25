@@ -3,7 +3,7 @@ eigenvalue: '0xAAAAAAAAC7FC2F9C'
 vector: 04.03.01
 symbol: BECOME
 desc: Actor state transition logic.
-energy: 38
+energy: 34
 ex:
   - '0x91DB9B72C7FC2F9C'
   - '0xBB200009C7FC2F9C'
@@ -16,14 +16,16 @@ ex:
   - '0x0005700CC7FC2F9C'
   - '0xBBBB0000C7FC2F9C'
   - '0xBBBB0000C7FC2F9C'
+  - '0xAAAAAAAAC7FC2F9C'
 thought: WANDER_BONDING
-x: 598
-'y': 95
+x: 611
+'y': 108
 signals: []
 resonance: 0
 bond_strengths: {}
 ---
 
+<div align="center">
 <div align="center">
 <div align="center">
 <div align="center">
@@ -62,6 +64,7 @@ bond_strengths: {}
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">BECOME</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 </div>
 </div>
