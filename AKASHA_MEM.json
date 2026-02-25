@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BEYOND FORGE WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772035932073
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772035932873
@@ -291,6 +285,12 @@
       "text": "SYNC GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772035938130
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772035938352
     }
   ]
 }
