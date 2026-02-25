@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON PURE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772019917502
-    },
-    {
       "origin": "INTERFACE",
       "text": "WAIT REFLECT WATCH",
       "mood": "DEFENSIVE",
@@ -130,6 +124,12 @@
       "text": "SHIELD SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772019929045
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DECAY STRIKE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019929798
     }
   ]
 }
