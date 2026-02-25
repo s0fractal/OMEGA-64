@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60660000",
     "0BBB0000",
     "AA0AAA0A",
     "66A066A0",
@@ -199,15 +198,10 @@
     "0A0A000A",
     "AAA0AAAA",
     "A6666000",
-    "00066660"
+    "00066660",
+    "66660060"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STRIKE SEIZE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025541897
-    },
     {
       "origin": "REVERSE",
       "text": "WAIT SHIELD PURE",
@@ -291,6 +285,12 @@
       "text": "HEAL COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772025548550
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH STASIS SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772025554030
     }
   ]
 }
