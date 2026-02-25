@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE STRIFE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037223122
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772037223383
@@ -291,6 +285,12 @@
       "text": "RESONATE OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772037228887
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037229270
     }
   ]
 }
