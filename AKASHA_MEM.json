@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772034417701
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772034417906
@@ -291,6 +285,12 @@
       "text": "SICKNESS SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772034420373
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE STASIS RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772034420557
     }
   ]
 }
