@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HEAL OSMOSIS SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772029346373
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW SYNC RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GUARD GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772029379470
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DRAIN SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029380116
     }
   ]
 }
