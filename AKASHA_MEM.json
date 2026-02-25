@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE STASIS SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772037746178
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772037746393
@@ -291,6 +285,12 @@
       "text": "DECAY SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772037750542
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772037750766
     }
   ]
 }
