@@ -123,12 +123,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SICKNESS STRIFE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022123315
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "REFLECT WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022124098
@@ -210,6 +204,12 @@
       "text": "DRAIN BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772022131841
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE BLOOM FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772022132030
     }
   ]
 }
