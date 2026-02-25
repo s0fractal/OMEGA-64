@@ -160,12 +160,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE WAIT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022830720
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE STRIFE BREACH",
       "mood": "AGGRESSIVE",
@@ -248,6 +242,12 @@
       "text": "STABLE STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022836952
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIFE DECAY SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022837199
     }
   ]
 }
