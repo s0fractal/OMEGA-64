@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028122540
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772028123774
@@ -291,6 +285,12 @@
       "text": "STASIS PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772028133022
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS PURE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772028133614
     }
   ]
 }
