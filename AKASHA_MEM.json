@@ -110,12 +110,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021841516
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772021841857
@@ -197,6 +191,12 @@
       "text": "RESONATE OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772021848967
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021850087
     }
   ]
 }
