@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT SHIELD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772023753033
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772023753481
@@ -278,6 +272,12 @@
       "text": "BECOME DREAM WITNESS",
       "mood": "CREATIVE",
       "tick": 1772023757160
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE STABLE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772023757316
     }
   ]
 }
