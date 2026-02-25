@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD PURE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772033117396
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772033117648
@@ -291,6 +285,12 @@
       "text": "STABLE COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772033120738
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033120911
     }
   ]
 }
