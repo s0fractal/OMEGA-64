@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIFE HUNGER HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041381800
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIFE SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772041381931
@@ -291,6 +285,12 @@
       "text": "STRIKE SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772041385505
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON SHELTER RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772041386197
     }
   ]
 }
