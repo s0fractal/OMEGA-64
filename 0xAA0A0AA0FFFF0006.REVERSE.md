@@ -1,9 +1,9 @@
 ---
 eigenvalue: '0xAA0A0AA0FFFF0006'
-energy: 49.5
+energy: 45.5
 resonance: 30
 x: 693
-'y': 503
+'y': 515
 symbol: ARCHIVIST
 thought: WANDER_BONDING
 signals: []
@@ -163,6 +163,10 @@ ex:
   - '0xAA0A0AA000000006'
   - '0xAA0A0AA000000000'
   - '0xAA0A0AA000000002'
+  - '0xAA0A0AA000000004'
+  - '0xAA0A0AA0FFFF0000'
+  - '0xAA0A0AA0FFFF0002'
+  - '0xAA0A0AA0FFFF0004'
 bonds:
   - '0xAAAAAAA00000000E'
 logic: AA0A0AA0
