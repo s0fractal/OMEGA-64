@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041685211
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD IMMUNE SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHOCK STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772041690291
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN BREACH DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041690473
     }
   ]
 }
