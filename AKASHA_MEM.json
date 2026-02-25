@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041958812
-    },
-    {
       "origin": "PARADOX",
       "text": "RECON WATCH SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DRAIN SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772041966126
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE GIVING SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772041966381
     }
   ]
 }
