@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "UNIFY UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040493042
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM OSMOSIS FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DECAY SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772040496195
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT STASIS WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772040496325
     }
   ]
 }
