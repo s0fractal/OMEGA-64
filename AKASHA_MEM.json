@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STABLE UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772041707940
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE RESONATE RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIKE CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041714249
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041714704
     }
   ]
 }
