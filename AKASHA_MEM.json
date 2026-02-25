@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM UNIFY OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772040637084
-    },
-    {
       "origin": "SOMA",
       "text": "GIVING GIVING COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHOCK STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772040639874
+    },
+    {
+      "origin": "STREAM",
+      "text": "RECON IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040640010
     }
   ]
 }
