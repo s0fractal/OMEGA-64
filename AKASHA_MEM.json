@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041016741
-    },
-    {
       "origin": "STREAM",
       "text": "GIVING OSMOSIS GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SYNC HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772041020697
+    },
+    {
+      "origin": "SUCC",
+      "text": "OSMOSIS STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041020861
     }
   ]
 }
