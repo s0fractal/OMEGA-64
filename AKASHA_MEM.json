@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE BREACH HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037151168
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772037151349
@@ -291,6 +285,12 @@
       "text": "BLOOM HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772037155202
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER IMMUNE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772037155476
     }
   ]
 }
