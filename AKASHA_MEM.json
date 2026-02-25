@@ -69,12 +69,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SEIZE SHOCK HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020821058
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIKE SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020821278
@@ -156,6 +150,12 @@
       "text": "OSMOSIS RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772020827230
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE PURE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772020827412
     }
   ]
 }
