@@ -160,12 +160,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL SYNC OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772022821941
-    },
-    {
       "origin": "INTERFACE",
       "text": "BLOOM UNIFY RESONATE",
       "mood": "HARMONIC",
@@ -248,6 +242,12 @@
       "text": "SEIZE STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022826615
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT STASIS PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022826813
     }
   ]
 }
