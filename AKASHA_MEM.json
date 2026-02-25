@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING SYNC SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772024201906
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN STRIFE DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHOCK SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772024205643
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY STRIKE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024205939
     }
   ]
 }
