@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS AWAKEN BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772024573259
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772024573432
@@ -291,6 +285,12 @@
       "text": "WATCH RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772024579212
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772024580148
     }
   ]
 }
