@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00066006",
     "06600006",
     "000AAA00",
     "00060660",
@@ -199,15 +198,10 @@
     "0A000000",
     "AA0AA0A0",
     "BB0BA000",
-    "A6666A60"
+    "A6666A60",
+    "A0AAA000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STRIFE SEIZE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033467304
-    },
     {
       "origin": "REVERSE",
       "text": "WAIT SHELTER RECON",
@@ -291,6 +285,12 @@
       "text": "RESONATE UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772033474505
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIKE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033474727
     }
   ]
 }
