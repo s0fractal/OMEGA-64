@@ -42,12 +42,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WAIT WATCH STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772019870609
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "COHERE RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772019872846
@@ -129,6 +123,12 @@
       "text": "REFLECT WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772019885875
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE REFLECT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772019886504
     }
   ]
 }
