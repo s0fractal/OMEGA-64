@@ -87,12 +87,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HEAL GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772021251651
-    },
-    {
       "origin": "REVERSE",
       "text": "PURE IMMUNE STASIS",
       "mood": "DEFENSIVE",
@@ -175,6 +169,12 @@
       "text": "SHOCK SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772021255335
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER HUNGER CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021255546
     }
   ]
 }
