@@ -27,12 +27,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "RESONATE RESONATE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772019616300
-    },
-    {
-      "origin": "INTERFACE",
       "text": "FLOW RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772019617452
@@ -114,6 +108,12 @@
       "text": "STRIKE DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772019630278
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772019630935
     }
   ]
 }
