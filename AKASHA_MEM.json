@@ -10,11 +10,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "CONNECT",
-      "tick": 1772009944347
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OBSERVE",
       "tick": 1772009947448
@@ -58,6 +53,11 @@
       "origin": "INTERFACE",
       "text": "CONNECT",
       "tick": 1772010055177
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OBSERVE",
+      "tick": 1772010064393
     }
   ]
 }
