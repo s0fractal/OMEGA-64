@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HEAL FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772020705917
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE CONSUME BREACH",
       "mood": "AGGRESSIVE",
@@ -150,6 +144,12 @@
       "text": "SEIZE HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020710990
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WAIT STASIS SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772020711142
     }
   ]
 }
