@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772034317371
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772034317627
@@ -291,6 +285,12 @@
       "text": "HEAL FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772034320965
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE BREACH SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034321177
     }
   ]
 }
