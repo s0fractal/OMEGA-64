@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT REFLECT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772037888871
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772037889085
@@ -291,6 +285,12 @@
       "text": "DECAY HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772037891887
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE SYNC COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772037892099
     }
   ]
 }
