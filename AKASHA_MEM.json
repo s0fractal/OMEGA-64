@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS SEIZE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025203013
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC SYNC FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIFE STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772025209992
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHELTER REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772025210212
     }
   ]
 }
