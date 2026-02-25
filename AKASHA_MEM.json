@@ -96,12 +96,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE OSMOSIS FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772021566008
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GUARD WAIT PURE",
       "mood": "DEFENSIVE",
@@ -184,6 +178,12 @@
       "text": "GUARD REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772021574893
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "CONSUME SICKNESS DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021575049
     }
   ]
 }
