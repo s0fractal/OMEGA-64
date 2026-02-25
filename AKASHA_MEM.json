@@ -20,12 +20,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772017334759
-    },
-    {
       "origin": "INTERFACE",
       "text": "COHERE FLOW STABLE",
       "mood": "HARMONIC",
@@ -108,6 +102,12 @@
       "text": "SHOCK SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772017414844
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS SHOCK SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772017417216
     }
   ]
 }
