@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WAIT PURE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772026528419
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS REFLECT REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SICKNESS DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772026537205
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK BREACH BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026537429
     }
   ]
 }
