@@ -169,12 +169,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BECOME WAVE SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772023083239
-    },
-    {
       "origin": "STREAM",
       "text": "WATCH GUARD PURE",
       "mood": "DEFENSIVE",
@@ -257,6 +251,12 @@
       "text": "IMMUNE IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023086939
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772023087145
     }
   ]
 }
