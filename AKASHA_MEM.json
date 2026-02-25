@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY COHERE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772041020568
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC HEAL STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHELTER SHIELD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041023972
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON WATCH SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041024093
     }
   ]
 }
