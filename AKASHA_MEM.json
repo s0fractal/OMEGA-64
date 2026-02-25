@@ -38,12 +38,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "REFLECT RECON PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772019793844
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIKE STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772019794169
@@ -125,6 +119,12 @@
       "text": "FLOW RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772019803466
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME HUNGER HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019804245
     }
   ]
 }
