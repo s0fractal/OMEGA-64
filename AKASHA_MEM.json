@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE SICKNESS DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040971147
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING BLOOM BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772040973960
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD IMMUNE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772040974091
     }
   ]
 }
