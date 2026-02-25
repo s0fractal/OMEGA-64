@@ -55,12 +55,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "BLOOM GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772020511559
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK HUNGER SEIZE",
       "mood": "AGGRESSIVE",
@@ -143,6 +137,12 @@
       "text": "STABLE BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772020520803
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT STASIS IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020521642
     }
   ]
 }
