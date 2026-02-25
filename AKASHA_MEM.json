@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA00AAA0",
     "0FFFF0FF",
     "0AA00AA0",
     "00000AA0",
@@ -199,15 +198,10 @@
     "06000606",
     "6A6A66A0",
     "66006066",
-    "66066006"
+    "66066006",
+    "66000066"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "REFLECT SHELTER RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772033543332
-    },
     {
       "origin": "REVERSE",
       "text": "UNIFY STABLE FLOW",
@@ -291,6 +285,12 @@
       "text": "GIVING SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772033546760
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WATCH SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772033546997
     }
   ]
 }
