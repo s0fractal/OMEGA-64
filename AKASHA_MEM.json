@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHOCK BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040987907
-    },
-    {
       "origin": "STREAM",
       "text": "UNIFY HEAL HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STASIS WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040991697
+    },
+    {
+      "origin": "ALPHA_GUARDIAN",
+      "text": "FLOW HEAL HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772040992290
     }
   ]
 }
