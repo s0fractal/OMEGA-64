@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH DECAY STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033534710
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772033534911
@@ -291,6 +285,12 @@
       "text": "SHELTER RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772033537951
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL FLOW HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772033538152
     }
   ]
 }
