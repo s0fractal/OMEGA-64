@@ -83,12 +83,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH SHIELD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021173094
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772021173985
@@ -170,6 +164,12 @@
       "text": "UNIFY BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772021177659
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE WITNESS VISION",
+      "mood": "CREATIVE",
+      "tick": 1772021177951
     }
   ]
 }
