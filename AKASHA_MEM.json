@@ -88,12 +88,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD IMMUNE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772021252302
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021252604
@@ -175,6 +169,12 @@
       "text": "BREACH STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772021255869
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH STRIKE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021256173
     }
   ]
 }
