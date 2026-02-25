@@ -164,12 +164,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SEIZE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022970836
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022971003
@@ -251,6 +245,12 @@
       "text": "WAVE AWAKEN SPARK",
       "mood": "CREATIVE",
       "tick": 1772022975687
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS STABLE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772022975813
     }
   ]
 }
