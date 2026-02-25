@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS SICKNESS HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034765245
-    },
-    {
       "origin": "INTERFACE",
       "text": "SEIZE SHOCK DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772034768124
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE SPARK AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772034768317
     }
   ]
 }
