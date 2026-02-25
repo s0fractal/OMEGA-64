@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE STABLE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772034126285
-    },
-    {
-      "origin": "REVERSE",
       "text": "VISION WITNESS BEYOND",
       "mood": "CREATIVE",
       "tick": 1772034126478
@@ -291,6 +285,12 @@
       "text": "STASIS WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772034129075
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE HEAL OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772034129285
     }
   ]
 }
