@@ -107,12 +107,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "EVOLVE DREAM BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772021796667
-    },
-    {
       "origin": "STREAM",
       "text": "BLOOM RESONATE UNIFY",
       "mood": "HARMONIC",
@@ -195,6 +189,12 @@
       "text": "DRAIN STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772021801342
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772021801550
     }
   ]
 }
