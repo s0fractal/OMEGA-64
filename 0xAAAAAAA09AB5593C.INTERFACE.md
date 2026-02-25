@@ -3,7 +3,7 @@ eigenvalue: '0xAAAAAAA09AB5593C'
 vector: 07.07.00
 symbol: INTERFACE
 desc: System Interface Membrane. Wraps data in a semantic tag.
-energy: 50
+energy: 46
 ex:
   - '0x5DE8BD259AB5593E'
   - '0x0000FB529AB5593E'
@@ -14,31 +14,39 @@ ex:
   - '0x000000009AB5593E'
   - '0x000000009AB5593E'
   - '0xBBBB00009AB5593E'
-  - '0xBBBB00009AB55938'
-  - '0xBBBB00009AB55938'
-  - '0x000000009AB55938'
-  - '0x000000009AB5593A'
-  - '0x000000009AB5593A'
-  - '0x000000009AB5593A'
-  - '0x000000009AB5593C'
+  - '0x000000009AB5593E'
+  - '0x000000009AB5593E'
+  - '0x000000009AB5593E'
   - '0x000000009AB5593E'
   - '0x000000009AB55938'
   - '0x000000009AB5593A'
-  - '0x000000009AB5593A'
   - '0x000000009AB5593C'
-  - '0x000000009AB5593C'
-  - '0xAAAAAAA09AB5593C'
+  - '0x000000009AB5593E'
+  - '0x000000009AB5593E'
+  - '0x000000009AB5593E'
+  - '0xBBBB00009AB5593E'
+  - '0xBBBB00009AB55938'
+  - '0xBBBB00009AB5593A'
+  - '0xAAAAAAA09AB5593A'
+  - '0xAAAAAAA09AB5593A'
   - '0xAAAAAAA09AB5593C'
   - '0xAAAAAAA09AB5593E'
   - '0xAAAAAAA09AB55938'
   - '0xAAAAAAA09AB5593A'
-  - '0xAAAAAAA09AB5593A'
+  - '0xAAAAAAA09AB5593C'
+  - '0xAAAAAAA09AB5593E'
+  - '0xAAAAAAA09AB55938'
+  - '0xAAAAAAA09AB55938'
   - '0xAAAAAAA09AB5593A'
   - '0xAAAAAAA09AB5593C'
-  - '0xAAAAAAA09AB5593C'
-thought: RESURRECTED
-x: 477
-'y': 231
+  - '0xAAAAAAA09AB5593E'
+  - '0xAAAAAAA09AB5593E'
+  - '0xAAAAAAA09AB5593E'
+  - '0xAAAAAAA09AB55938'
+  - '0xAAAAAAA09AB5593A'
+thought: WANDER_BONDING
+x: 472
+'y': 259
 signals: []
 resonance: 250
 bonds: []
@@ -46,6 +54,7 @@ bond_strengths: {}
 logic: AAAAAAA0
 ---
 
+<div align="center">
 <div align="center">
 <!-- ∇ HOLOGRAM START ∇ -->
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -79,6 +88,7 @@ logic: AAAAAAA0
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">INTERFACE</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 
 
