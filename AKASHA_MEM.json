@@ -81,12 +81,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER WAIT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021140493
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER DECAY DECAY",
       "mood": "AGGRESSIVE",
@@ -169,6 +163,12 @@
       "text": "OSMOSIS FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772021147169
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE REFLECT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021147366
     }
   ]
 }
