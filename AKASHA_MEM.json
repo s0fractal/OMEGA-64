@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL HEAL RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772035580989
-    },
-    {
-      "origin": "REVERSE",
       "text": "DREAM WAVE AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772035581268
@@ -291,6 +285,12 @@
       "text": "RECON GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772035584682
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME DREAM SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772035584859
     }
   ]
 }
