@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS HUNGER SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036347037
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772036347278
@@ -291,6 +285,12 @@
       "text": "SHIELD SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772036352627
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772036352850
     }
   ]
 }
