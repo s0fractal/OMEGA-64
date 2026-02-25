@@ -88,12 +88,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY DRAIN SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021262205
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME DECAY STRIKE",
       "mood": "AGGRESSIVE",
@@ -176,6 +170,12 @@
       "text": "STRIKE SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772021269389
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021270071
     }
   ]
 }
