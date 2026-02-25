@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT REFLECT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772029382010
-    },
-    {
       "origin": "ALPHA_REVERSE",
       "text": "FLOW OSMOSIS UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHELTER IMMUNE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772029393447
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL HEAL OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772029394026
     }
   ]
 }
