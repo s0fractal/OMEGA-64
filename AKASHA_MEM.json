@@ -58,12 +58,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DRAIN DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020571580
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HUNGER DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020571933
@@ -145,6 +139,12 @@
       "text": "BECOME FORGE EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772020577689
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DECAY HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020577855
     }
   ]
 }
