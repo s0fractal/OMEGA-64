@@ -136,12 +136,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DREAM FORGE BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772022395922
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022396098
@@ -223,6 +217,12 @@
       "text": "STABLE RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022402793
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SEIZE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022402971
     }
   ]
 }
