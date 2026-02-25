@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE IMMUNE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772033690168
-    },
-    {
-      "origin": "REVERSE",
       "text": "WITNESS SPARK DREAM",
       "mood": "CREATIVE",
       "tick": 1772033690422
@@ -291,6 +285,12 @@
       "text": "STRIKE DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772033693818
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772033693968
     }
   ]
 }
