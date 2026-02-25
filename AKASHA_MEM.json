@@ -77,12 +77,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD IMMUNE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021009591
-    },
-    {
-      "origin": "REVERSE",
       "text": "EVOLVE SPARK EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772021009769
@@ -164,6 +158,12 @@
       "text": "SEIZE SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772021017082
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY DRAIN HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021017283
     }
   ]
 }
