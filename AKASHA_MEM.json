@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE CONSUME SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034737625
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772034737939
@@ -291,6 +285,12 @@
       "text": "UNIFY COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772034743337
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772034743531
     }
   ]
 }
