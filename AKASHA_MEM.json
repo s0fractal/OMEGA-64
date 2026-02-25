@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "EVOLVE WITNESS DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772033271806
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772033272733
@@ -291,6 +285,12 @@
       "text": "GIVING BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772033274986
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW STABLE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772033275183
     }
   ]
 }
