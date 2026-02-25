@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT SHIELD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772027059981
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772027060656
@@ -291,6 +285,12 @@
       "text": "STABLE OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772027065557
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIKE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027065769
     }
   ]
 }
