@@ -177,12 +177,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER IMMUNE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023320685
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023322690
@@ -264,6 +258,12 @@
       "text": "SHOCK DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023327137
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772023327398
     }
   ]
 }
