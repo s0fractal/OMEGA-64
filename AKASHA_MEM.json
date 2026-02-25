@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD REFLECT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772036018189
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772036018386
@@ -291,6 +285,12 @@
       "text": "STRIFE STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772036020864
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE GIVING UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772036021058
     }
   ]
 }
