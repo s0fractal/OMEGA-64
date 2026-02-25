@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT WAIT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772025435815
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772025436006
@@ -291,6 +285,12 @@
       "text": "SHELTER RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772025444466
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS OSMOSIS UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772025444901
     }
   ]
 }
