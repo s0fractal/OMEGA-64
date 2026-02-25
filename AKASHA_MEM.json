@@ -148,12 +148,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GUARD WAIT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022522653
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK SHOCK DECAY",
       "mood": "AGGRESSIVE",
@@ -236,6 +230,12 @@
       "text": "RESONATE COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772022526751
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING FLOW HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772022526912
     }
   ]
 }
