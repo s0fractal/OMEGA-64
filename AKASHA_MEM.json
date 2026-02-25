@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "WATCH WATCH IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041801306
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY BREACH SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772041806934
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER SHOCK BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041807235
     }
   ]
 }
