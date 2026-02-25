@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING OSMOSIS OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772040636763
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040637084
@@ -291,6 +285,12 @@
       "text": "GUARD STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040639745
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040639874
     }
   ]
 }
