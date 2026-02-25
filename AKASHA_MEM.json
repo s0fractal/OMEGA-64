@@ -179,12 +179,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS UNIFY SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772023340897
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772023341027
@@ -266,6 +260,12 @@
       "text": "SHOCK HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023344435
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WAIT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772023345145
     }
   ]
 }
