@@ -20,12 +20,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "REFLECT WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772017383974
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "FLOW HEAL UNIFY",
       "mood": "HARMONIC",
@@ -108,6 +102,12 @@
       "text": "STABLE STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772017456751
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772017467736
     }
   ]
 }
