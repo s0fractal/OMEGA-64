@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029427628
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772029429217
@@ -291,6 +285,12 @@
       "text": "WAIT PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772029436914
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON STASIS GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772029437301
     }
   ]
 }
