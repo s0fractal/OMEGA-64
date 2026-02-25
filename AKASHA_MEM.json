@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HEAL BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772015803377
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DECAY SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772015830815
@@ -107,6 +101,12 @@
       "text": "WAIT RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772015900593
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE STRIKE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772015905338
     }
   ]
 }
