@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "6A6A66A0",
     "60000A00",
     "AABB0000",
     "A0000000",
@@ -199,15 +198,10 @@
     "00006000",
     "60060600",
     "A00A0AA0",
-    "06660600"
+    "06660600",
+    "ABB00000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "COHERE BLOOM OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772024803106
-    },
     {
       "origin": "REVERSE",
       "text": "COHERE HEAL COHERE",
@@ -291,6 +285,12 @@
       "text": "FLOW OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772024831793
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024832416
     }
   ]
 }
