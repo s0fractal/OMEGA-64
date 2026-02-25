@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A06600A6",
     "AA0BC0DD",
     "66606600",
     "AA00000A",
@@ -199,15 +198,10 @@
     "66066660",
     "60660006",
     "AAA0A0A0",
-    "60000606"
+    "60000606",
+    "AA0006A6"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STASIS WAIT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772036866716
-    },
     {
       "origin": "REVERSE",
       "text": "PURE IMMUNE WATCH",
@@ -291,6 +285,12 @@
       "text": "STABLE GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772036869489
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIFE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036869649
     }
   ]
 }
