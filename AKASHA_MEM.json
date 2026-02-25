@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM OSMOSIS UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772036354769
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772036354971
@@ -291,6 +285,12 @@
       "text": "SHIELD SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772036357871
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772036358083
     }
   ]
 }
