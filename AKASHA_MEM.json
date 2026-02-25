@@ -41,12 +41,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DECAY BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019869234
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GUARD REFLECT PURE",
       "mood": "DEFENSIVE",
@@ -129,6 +123,12 @@
       "text": "HUNGER SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772019883643
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME STRIKE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019884080
     }
   ]
 }
