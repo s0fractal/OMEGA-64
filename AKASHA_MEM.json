@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772033771723
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY STABLE FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIKE DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772033775078
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SEIZE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033775279
     }
   ]
 }
