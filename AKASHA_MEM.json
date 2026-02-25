@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "RECON REFLECT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772027189170
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW OSMOSIS STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GUARD STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772027194460
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SEIZE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027194786
     }
   ]
 }
