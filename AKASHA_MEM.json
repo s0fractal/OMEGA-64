@@ -93,12 +93,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021494803
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER SHELTER WATCH",
       "mood": "DEFENSIVE",
@@ -181,6 +175,12 @@
       "text": "COHERE RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772021506154
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772021506346
     }
   ]
 }
