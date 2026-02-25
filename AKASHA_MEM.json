@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD PURE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772034038105
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH BREACH DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772034042407
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK CONSUME STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034042602
     }
   ]
 }
