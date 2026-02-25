@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772034720459
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772034720668
@@ -291,6 +285,12 @@
       "text": "STABLE UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034723698
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SEIZE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034723913
     }
   ]
 }
