@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036022933
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAVE DREAM SPARK",
       "mood": "CREATIVE",
       "tick": 1772036023128
@@ -291,6 +285,12 @@
       "text": "UNIFY STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772036025550
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW COHERE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772036025772
     }
   ]
 }
