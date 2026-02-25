@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772025559517
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772025559694
@@ -291,6 +285,12 @@
       "text": "SHOCK DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772025563576
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772025563769
     }
   ]
 }
