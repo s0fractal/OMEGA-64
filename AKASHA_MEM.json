@@ -162,12 +162,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772022878111
-    },
-    {
       "origin": "INTERFACE",
       "text": "SEIZE CONSUME SHOCK",
       "mood": "AGGRESSIVE",
@@ -250,6 +244,12 @@
       "text": "STRIFE HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772022884822
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS BLOOM FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772022885664
     }
   ]
 }
