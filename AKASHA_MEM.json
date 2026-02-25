@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772034721929
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772034722145
@@ -291,6 +285,12 @@
       "text": "STRIKE BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772034724897
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER REFLECT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772034725101
     }
   ]
 }
