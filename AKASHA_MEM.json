@@ -155,12 +155,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD GUARD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022644465
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022644636
@@ -242,6 +236,12 @@
       "text": "RESONATE UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022651376
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772022651633
     }
   ]
 }
