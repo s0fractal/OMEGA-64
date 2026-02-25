@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY SICKNESS DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040678463
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC OSMOSIS BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HEAL SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772040683243
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SEIZE DRAIN SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040683599
     }
   ]
 }
