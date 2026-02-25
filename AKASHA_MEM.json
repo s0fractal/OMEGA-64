@@ -132,12 +132,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING FLOW GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772022357670
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772022357838
@@ -219,6 +213,12 @@
       "text": "BLOOM COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772022361260
+    },
+    {
+      "origin": "PARADOX",
+      "text": "EVOLVE WAVE AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772022361451
     }
   ]
 }
