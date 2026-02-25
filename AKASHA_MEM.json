@@ -80,12 +80,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE STRIFE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021113101
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIKE DECAY STRIFE",
       "mood": "AGGRESSIVE",
@@ -168,6 +162,12 @@
       "text": "OSMOSIS STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772021119056
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON PURE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772021120033
     }
   ]
 }
