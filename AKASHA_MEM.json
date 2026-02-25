@@ -131,12 +131,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER SHOCK CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022366650
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE BLOOM GIVING",
       "mood": "HARMONIC",
@@ -219,6 +213,12 @@
       "text": "HEAL FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772022373505
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772022373758
     }
   ]
 }
