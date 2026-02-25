@@ -123,12 +123,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE BLOOM OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772022154159
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022154929
@@ -210,6 +204,12 @@
       "text": "HUNGER HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022161157
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SEIZE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022161583
     }
   ]
 }
