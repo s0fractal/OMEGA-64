@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE HUNGER SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032896004
-    },
-    {
-      "origin": "REVERSE",
       "text": "WITNESS BEYOND FORGE",
       "mood": "CREATIVE",
       "tick": 1772032896189
@@ -291,6 +285,12 @@
       "text": "STRIFE SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772032899454
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHELTER GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772032899813
     }
   ]
 }
