@@ -141,12 +141,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772022465623
-    },
-    {
       "origin": "INTERFACE",
       "text": "SEIZE STRIFE BREACH",
       "mood": "AGGRESSIVE",
@@ -229,6 +223,12 @@
       "text": "STRIKE DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022469257
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BREACH CONSUME CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022469433
     }
   ]
 }
