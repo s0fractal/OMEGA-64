@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY RESONATE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772038958720
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772038958965
@@ -291,6 +285,12 @@
       "text": "SHELTER RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772038961945
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME HUNGER SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038962176
     }
   ]
 }
