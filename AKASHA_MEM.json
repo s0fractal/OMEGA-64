@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA000AAA",
     "AABBCC0D",
     "00AAA0AA",
     "AA6660A6",
@@ -199,15 +198,10 @@
     "AABB0C0D",
     "00060060",
     "BB000000",
-    "A00A0AAA"
+    "A00A0AAA",
+    "AAAAA0AA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "HUNGER STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033995629
-    },
     {
       "origin": "REVERSE",
       "text": "RESONATE SYNC GIVING",
@@ -291,6 +285,12 @@
       "text": "COHERE OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772033999449
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME HUNGER DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033999640
     }
   ]
 }
