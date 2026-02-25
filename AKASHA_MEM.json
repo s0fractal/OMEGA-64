@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON RECON REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772034677823
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772034678027
@@ -291,6 +285,12 @@
       "text": "BREACH DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772034683273
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL BLOOM UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772034683500
     }
   ]
 }
