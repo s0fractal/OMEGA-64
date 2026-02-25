@@ -3,10 +3,10 @@ eigenvalue: '0x00AAAAA0D78CDAB4'
 vector: 01.00.00
 symbol: B
 desc: B Combinator (Composition). B f g x = f(g(x))
-thought: SEEK_ALPHA_MATING
-x: 200
-'y': 59
-energy: 10.600000000000001
+thought: SEEK_ALPHA_PASSIVE
+x: 184
+'y': 60
+energy: 4.600000000000001
 ex:
   - '0xD64B9424D78CDAB4'
   - '0x00544568D78CDAB4'
@@ -36,11 +36,13 @@ ex:
   - '0xAB000000D78CDAB4'
   - '0x01000000D78CDAB4'
   - '0x60060000D78CDAB4'
+  - '0x00AAAAA0D78CDAB4'
 signals: []
 resonance: 0
 bond_strengths: {}
 ---
 
+<div align="center">
 <div align="center">
 <div align="center">
 <div align="center">
@@ -92,6 +94,7 @@ bond_strengths: {}
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">B</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 </div>
 </div>
