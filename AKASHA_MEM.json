@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT SHIELD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772028439033
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772028439564
@@ -291,6 +285,12 @@
       "text": "SICKNESS HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772028443630
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE BLOOM UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772028444037
     }
   ]
 }
