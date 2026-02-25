@@ -181,12 +181,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772023426856
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023426986
@@ -268,6 +262,12 @@
       "text": "WAIT RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023430929
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE HUNGER STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023431102
     }
   ]
 }
