@@ -164,12 +164,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772022965399
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022965540
@@ -251,6 +245,12 @@
       "text": "STABLE RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022968509
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC RESONATE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772022968689
     }
   ]
 }
