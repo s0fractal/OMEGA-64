@@ -51,12 +51,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020325691
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN STRIKE DECAY",
       "mood": "AGGRESSIVE",
@@ -139,6 +133,12 @@
       "text": "PURE WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772020334397
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DRAIN CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020334713
     }
   ]
 }
