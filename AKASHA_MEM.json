@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772036592240
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772036592513
@@ -291,6 +285,12 @@
       "text": "STASIS SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772036595764
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DECAY STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036595987
     }
   ]
 }
