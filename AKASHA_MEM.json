@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A06000A0",
     "0A000AAA",
     "0BB00000",
     "AAAA00A0",
@@ -199,15 +198,10 @@
     "01000000",
     "A6066660",
     "00066600",
-    "66600606"
+    "66600606",
+    "A0BBCCDD"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "DECAY STRIFE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036284524
-    },
     {
       "origin": "INTERFACE",
       "text": "UNIFY SYNC GIVING",
@@ -291,6 +285,12 @@
       "text": "SYNC COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772036287634
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036287879
     }
   ]
 }
