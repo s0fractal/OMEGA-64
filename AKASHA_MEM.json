@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN SHOCK DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030503625
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS WAIT SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772030514199
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT PURE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772030514742
     }
   ]
 }
