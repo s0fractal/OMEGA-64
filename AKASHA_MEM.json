@@ -127,12 +127,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772022263935
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772022264105
@@ -214,6 +208,12 @@
       "text": "RECON WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022269935
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHIELD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772022270131
     }
   ]
 }
