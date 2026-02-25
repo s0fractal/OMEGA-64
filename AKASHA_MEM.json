@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SEIZE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034337567
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772034337729
@@ -291,6 +285,12 @@
       "text": "EVOLVE SPARK SPARK",
       "mood": "CREATIVE",
       "tick": 1772034340444
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY BLOOM SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772034340619
     }
   ]
 }
