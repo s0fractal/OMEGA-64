@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME VISION BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772022244259
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022244460
@@ -213,6 +207,12 @@
       "text": "SICKNESS BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772022248995
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIKE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022249285
     }
   ]
 }
