@@ -163,12 +163,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772022880604
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772022880754
@@ -250,6 +244,12 @@
       "text": "RESONATE GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772022886333
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022887135
     }
   ]
 }
