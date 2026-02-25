@@ -20,12 +20,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DRAIN SICKNESS STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772017481236
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK BREACH SHOCK",
       "mood": "AGGRESSIVE",
@@ -108,6 +102,12 @@
       "text": "IMMUNE IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772017555592
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH SHELTER SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772017564346
     }
   ]
 }
