@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772035777053
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772035777223
@@ -291,6 +285,12 @@
       "text": "RESONATE BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772035781418
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK CONSUME SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035781644
     }
   ]
 }
