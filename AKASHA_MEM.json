@@ -65,12 +65,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY BREACH HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020751741
-    },
-    {
       "origin": "REVERSE",
       "text": "GUARD WATCH WAIT",
       "mood": "DEFENSIVE",
@@ -153,6 +147,12 @@
       "text": "RESONATE BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772020756352
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHELTER SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020756600
     }
   ]
 }
