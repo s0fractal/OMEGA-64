@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772040361742
-    },
-    {
       "origin": "REVERSE",
       "text": "SPARK BECOME DREAM",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772040369472
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040370356
     }
   ]
 }
