@@ -186,12 +186,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC SYNC OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772023607397
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023607775
@@ -273,6 +267,12 @@
       "text": "PURE REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023611032
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SEIZE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023611213
     }
   ]
 }
