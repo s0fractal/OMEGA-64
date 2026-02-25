@@ -203,18 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DREAM BEYOND SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772042341456
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "DECAY STRIKE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042341711
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GIVING SYNC GIVING",
       "mood": "HARMONIC",
@@ -291,6 +279,18 @@
       "text": "CONSUME SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772042347971
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHIELD RECON SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042349576
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT IMMUNE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772042349980
     }
   ]
 }
