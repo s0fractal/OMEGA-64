@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772034251545
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772034251741
@@ -291,6 +285,12 @@
       "text": "BLOOM UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772034254398
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034255690
     }
   ]
 }
