@@ -95,12 +95,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE RECON WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772021523444
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772021524271
@@ -182,6 +176,12 @@
       "text": "GUARD REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772021530088
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772021530461
     }
   ]
 }
