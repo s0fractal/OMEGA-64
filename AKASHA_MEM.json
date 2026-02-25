@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM FLOW OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772040505371
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE DRAIN STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772040507770
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE GUARD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040507894
     }
   ]
 }
