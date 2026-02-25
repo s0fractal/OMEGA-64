@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029038338
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772029038630
@@ -291,6 +285,12 @@
       "text": "CONSUME DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772029043960
+    },
+    {
+      "origin": "STREAM",
+      "text": "UNIFY UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772029049875
     }
   ]
 }
