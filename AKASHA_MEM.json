@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW STABLE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772036120023
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772036120189
@@ -291,6 +285,12 @@
       "text": "IMMUNE SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772036125362
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM SPARK DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772036128447
     }
   ]
 }
