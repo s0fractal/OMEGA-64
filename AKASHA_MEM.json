@@ -127,12 +127,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS UNIFY BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772022286281
-    },
-    {
       "origin": "INTERFACE",
       "text": "RESONATE STABLE RESONATE",
       "mood": "HARMONIC",
@@ -215,6 +209,12 @@
       "text": "PURE SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022289108
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIFE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022289231
     }
   ]
 }
