@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER STRIKE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024994827
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772024995097
@@ -291,6 +285,12 @@
       "text": "SHIELD WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772024998472
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772024998654
     }
   ]
 }
