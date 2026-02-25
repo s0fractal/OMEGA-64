@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772022233611
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772022233779
@@ -213,6 +207,12 @@
       "text": "UNIFY FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772022238177
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022238316
     }
   ]
 }
