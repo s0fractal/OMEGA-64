@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772033658657
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772033658845
@@ -291,6 +285,12 @@
       "text": "STABLE COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772033661343
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD RECON IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772033661535
     }
   ]
 }
