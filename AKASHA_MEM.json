@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GIVING COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772040564021
-    },
-    {
       "origin": "STREAM",
       "text": "OSMOSIS STABLE FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BREACH STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772040567378
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040567499
     }
   ]
 }
