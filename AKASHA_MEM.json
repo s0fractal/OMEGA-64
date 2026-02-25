@@ -38,12 +38,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772019802790
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH WAIT IMMUNE",
       "mood": "DEFENSIVE",
@@ -126,6 +120,12 @@
       "text": "STRIFE SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772019811589
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH DRAIN DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019812293
     }
   ]
 }
