@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW SYNC STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772032348089
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772032348347
@@ -291,6 +285,12 @@
       "text": "AWAKEN FORGE EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772032352502
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772032352873
     }
   ]
 }
