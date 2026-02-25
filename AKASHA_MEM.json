@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035495060
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772035495289
@@ -291,6 +285,12 @@
       "text": "OSMOSIS HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772035497854
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD IMMUNE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772035498051
     }
   ]
 }
