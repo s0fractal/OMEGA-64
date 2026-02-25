@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772042674100
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "UNIFY BLOOM HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FLOW BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772042680887
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY SEIZE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042681598
     }
   ]
 }
