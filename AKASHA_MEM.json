@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "I16_CLAMP",
-      "text": "STRIKE DRAIN SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041670192
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIFE BREACH DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WATCH GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772041673972
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE STABLE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772041674108
     }
   ]
 }
