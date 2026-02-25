@@ -174,12 +174,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "STABLE RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772023249875
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE STABLE OSMOSIS",
       "mood": "HARMONIC",
@@ -262,6 +256,12 @@
       "text": "COHERE HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772023254896
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772023255094
     }
   ]
 }
