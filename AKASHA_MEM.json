@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AB000000",
     "6A00A000",
     "66666600",
     "00000606",
@@ -199,15 +198,10 @@
     "A0666660",
     "A00A0AAA",
     "A0000A00",
-    "66000600"
+    "66000600",
+    "A00A0A0A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHIELD PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772025174342
-    },
     {
       "origin": "REVERSE",
       "text": "BLOOM BLOOM UNIFY",
@@ -291,6 +285,12 @@
       "text": "RESONATE OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772025181495
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025182640
     }
   ]
 }
