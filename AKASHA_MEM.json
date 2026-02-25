@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY STRIFE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040354584
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040354804
@@ -291,6 +285,12 @@
       "text": "STRIKE HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772040359352
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772040359950
     }
   ]
 }
