@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034487204
-    },
-    {
       "origin": "STREAM",
       "text": "STASIS RECON REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772034490171
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE IMMUNE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772034490379
     }
   ]
 }
