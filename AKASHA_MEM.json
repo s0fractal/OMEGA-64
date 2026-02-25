@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772020155219
-    },
-    {
       "origin": "PARADOX",
       "text": "BECOME BEYOND WAVE",
       "mood": "CREATIVE",
@@ -136,6 +130,12 @@
       "text": "BREACH DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020162040
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE RESONATE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772020162191
     }
   ]
 }
