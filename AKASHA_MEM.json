@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772029627077
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772029627901
@@ -291,6 +285,12 @@
       "text": "SHIELD WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772029637485
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029637934
     }
   ]
 }
