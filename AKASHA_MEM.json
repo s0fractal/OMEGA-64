@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06600000",
     "0B000000",
     "FFFFFFFF",
     "FFFFFF0F",
@@ -199,15 +198,10 @@
     "AABB0CDD",
     "A00A00A0",
     "660666A6",
-    "00000600"
+    "00000600",
+    "00A0A0AA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHIELD WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772025888754
-    },
     {
       "origin": "REVERSE",
       "text": "SHELTER WAIT RECON",
@@ -291,6 +285,12 @@
       "text": "COHERE OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772025896090
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772025896590
     }
   ]
 }
