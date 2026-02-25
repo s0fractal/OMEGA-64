@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026731990
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS DECAY SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772026737231
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHELTER GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772026737635
     }
   ]
 }
