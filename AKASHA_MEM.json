@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "666A6600",
     "66600600",
     "06666066",
     "AA0AAAAA",
@@ -199,15 +198,10 @@
     "AA0A000A",
     "660000A6",
     "00B00000",
-    "00060660"
+    "00060660",
+    "06606000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "FLOW OSMOSIS OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772026738224
-    },
     {
       "origin": "ARCHIVIST",
       "text": "SYNC RESONATE UNIFY",
@@ -291,6 +285,12 @@
       "text": "DRAIN SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772026747145
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772026748132
     }
   ]
 }
