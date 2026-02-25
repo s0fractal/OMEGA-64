@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM COHERE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772032949777
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772032949941
@@ -291,6 +285,12 @@
       "text": "DECAY STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772032956718
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND BECOME VISION",
+      "mood": "CREATIVE",
+      "tick": 1772032957228
     }
   ]
 }
