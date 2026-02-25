@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SEIZE DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041092856
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON SHIELD STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHOCK BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772041095986
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SICKNESS SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041096404
     }
   ]
 }
