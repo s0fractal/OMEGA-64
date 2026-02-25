@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME SICKNESS SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025648897
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM SYNC RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STASIS REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772025655191
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE WITNESS EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772025655474
     }
   ]
 }
