@@ -178,12 +178,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "CONSUME STRIFE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023351779
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
@@ -266,6 +260,12 @@
       "text": "SHOCK SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023357451
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS SHIELD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772023358943
     }
   ]
 }
