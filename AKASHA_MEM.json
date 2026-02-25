@@ -76,12 +76,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021003102
-    },
-    {
       "origin": "INTERFACE",
       "text": "SICKNESS DRAIN HUNGER",
       "mood": "AGGRESSIVE",
@@ -164,6 +158,12 @@
       "text": "GUARD IMMUNE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772021009591
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE SPARK EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772021009769
     }
   ]
 }
