@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE GIVING SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772025243617
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE STASIS GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772025247803
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING STABLE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772025248052
     }
   ]
 }
