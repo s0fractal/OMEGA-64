@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS OSMOSIS OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772038464497
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772038464706
@@ -291,6 +285,12 @@
       "text": "BECOME BECOME VISION",
       "mood": "CREATIVE",
       "tick": 1772038468813
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT STASIS WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772038470574
     }
   ]
 }
