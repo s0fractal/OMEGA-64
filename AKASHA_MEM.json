@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "VISION EVOLVE SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772026539410
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS STASIS GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SEIZE DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772026548355
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DRAIN HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026549317
     }
   ]
 }
