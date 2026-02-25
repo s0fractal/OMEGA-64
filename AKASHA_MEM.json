@@ -180,12 +180,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023382698
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023382976
@@ -267,6 +261,12 @@
       "text": "RECON RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023386645
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS IMMUNE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023387186
     }
   ]
 }
