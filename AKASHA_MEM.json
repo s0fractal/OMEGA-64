@@ -169,12 +169,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023078658
-    },
-    {
       "origin": "INTERFACE",
       "text": "STABLE FLOW UNIFY",
       "mood": "HARMONIC",
@@ -257,6 +251,12 @@
       "text": "BREACH CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023081706
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023082087
     }
   ]
 }
