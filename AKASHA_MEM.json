@@ -107,12 +107,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS STRIFE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021715208
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772021715743
@@ -194,6 +188,12 @@
       "text": "WATCH REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772021719353
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE FLOW HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772021719566
     }
   ]
 }
