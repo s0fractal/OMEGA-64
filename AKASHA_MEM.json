@@ -58,12 +58,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020589496
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD PURE GUARD",
       "mood": "DEFENSIVE",
@@ -146,6 +140,12 @@
       "text": "DECAY DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020596128
+    },
+    {
+      "origin": "STREAM",
+      "text": "BLOOM BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772020596285
     }
   ]
 }
