@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON STASIS REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772034547777
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772034547980
@@ -291,6 +285,12 @@
       "text": "SPARK FORGE BECOME",
       "mood": "CREATIVE",
       "tick": 1772034552465
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772034552659
     }
   ]
 }
