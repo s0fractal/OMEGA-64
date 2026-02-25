@@ -49,12 +49,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SICKNESS HUNGER DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020186621
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RESONATE UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772020187030
@@ -136,6 +130,12 @@
       "text": "WATCH GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772020195186
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON GUARD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772020195637
     }
   ]
 }
