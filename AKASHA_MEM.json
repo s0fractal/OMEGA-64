@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772040897512
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE DECAY DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772040900859
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772040900997
     }
   ]
 }
