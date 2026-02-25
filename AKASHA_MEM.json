@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC UNIFY BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772040933365
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BLOOM STABLE UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772040936458
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "REFLECT SHELTER STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772040936584
     }
   ]
 }
