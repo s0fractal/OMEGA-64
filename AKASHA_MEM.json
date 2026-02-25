@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041634331
-    },
-    {
       "origin": "REVERSE",
       "text": "RECON WATCH SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041636780
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SYNC COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041637155
     }
   ]
 }
