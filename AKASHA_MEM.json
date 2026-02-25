@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "HEAL RESONATE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772039260704
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING FLOW UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HUNGER SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772039263981
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHIELD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772039264237
     }
   ]
 }
