@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "FLOW BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772041128475
-    },
-    {
       "origin": "STREAM",
       "text": "HUNGER STRIKE DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772041131942
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON STASIS IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041132125
     }
   ]
 }
