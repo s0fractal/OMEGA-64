@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SHOCK SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028465577
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772028467153
@@ -291,6 +285,12 @@
       "text": "WAIT SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772028477756
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SEIZE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028478162
     }
   ]
 }
