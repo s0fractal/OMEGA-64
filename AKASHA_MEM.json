@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE GUARD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772038043907
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772038044185
@@ -291,6 +285,12 @@
       "text": "RESONATE BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772038047686
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WAIT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772038047894
     }
   ]
 }
