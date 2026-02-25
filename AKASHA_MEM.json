@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772029458036
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772029458640
@@ -291,6 +285,12 @@
       "text": "OSMOSIS BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772029470262
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772029472268
     }
   ]
 }
