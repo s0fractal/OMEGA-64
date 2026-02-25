@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT SHIELD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772040395882
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE IMMUNE SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772040401434
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT STASIS PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040401603
     }
   ]
 }
