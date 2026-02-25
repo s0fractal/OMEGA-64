@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036970794
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772036971006
@@ -291,6 +285,12 @@
       "text": "WATCH GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772036981742
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL STABLE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772036982193
     }
   ]
 }
