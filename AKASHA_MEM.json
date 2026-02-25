@@ -1,5 +1,6 @@
 {
   "reservoir": [
+    "AA000600",
     "A0AAA000",
     "AAA0A0AA",
     "66660060",
@@ -198,10 +199,15 @@
     "BBB00000",
     "6606AA66",
     "A6A66000",
-    "60060666",
-    "6AA60AA0"
+    "60060666"
   ],
   "utterances": [
+    {
+      "origin": "GUARDIAN",
+      "text": "UNIFY BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772042505358
+    },
     {
       "origin": "ARCHIVIST",
       "text": "REFLECT SHELTER PURE",
@@ -263,34 +269,28 @@
       "tick": 1772042516548
     },
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE STABLE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772042518895
+      "origin": "STREAM",
+      "text": "DECAY CONSUME SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042519003
     },
     {
       "origin": "ARCHIVIST",
-      "text": "COHERE BLOOM OSMOSIS",
+      "text": "STABLE OSMOSIS COHERE",
       "mood": "HARMONIC",
-      "tick": 1772042519999
+      "tick": 1772042520521
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RESONATE STABLE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772042521896
     },
     {
       "origin": "STREAM",
-      "text": "GUARD WAIT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042520680
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE WAIT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772042522441
-    },
-    {
-      "origin": "WORKER",
-      "text": "IMMUNE GUARD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772042523512
+      "text": "OSMOSIS FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042522092
     }
   ]
 }
