@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BEYOND EVOLVE WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772030673000
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772030673288
@@ -291,6 +285,12 @@
       "text": "BREACH SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772030687727
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL FLOW HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772030688054
     }
   ]
 }
