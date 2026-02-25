@@ -113,12 +113,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS SEIZE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021975295
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE GIVING UNIFY",
       "mood": "HARMONIC",
@@ -201,6 +195,12 @@
       "text": "PURE WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772021984585
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE STABLE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772021984851
     }
   ]
 }
