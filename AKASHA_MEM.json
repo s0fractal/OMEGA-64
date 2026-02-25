@@ -15,12 +15,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RECON WATCH WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772014148428
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME STRIKE CONSUME",
       "mood": "AGGRESSIVE",
@@ -103,6 +97,12 @@
       "text": "SICKNESS SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772014273495
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BECOME AWAKEN BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772014279546
     }
   ]
 }
