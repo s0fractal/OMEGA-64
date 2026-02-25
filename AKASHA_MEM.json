@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STABLE STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772040660792
-    },
-    {
       "origin": "INTERFACE",
       "text": "STABLE SYNC COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772040665315
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE SHOCK BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040665676
     }
   ]
 }
