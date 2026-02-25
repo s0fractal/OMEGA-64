@@ -108,12 +108,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021790120
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772021790272
@@ -195,6 +189,12 @@
       "text": "WAIT GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772021794385
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772021794577
     }
   ]
 }
