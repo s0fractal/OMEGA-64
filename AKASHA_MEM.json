@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772019662890
-    },
-    {
       "origin": "STREAM",
       "text": "SYNC UNIFY RESONATE",
       "mood": "HARMONIC",
@@ -114,6 +108,12 @@
       "text": "STRIFE HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772019670127
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RECON SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772019671565
     }
   ]
 }
