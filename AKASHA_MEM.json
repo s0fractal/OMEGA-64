@@ -164,12 +164,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WATCH IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023002598
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772023004219
@@ -251,6 +245,12 @@
       "text": "SHELTER WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023008460
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD STASIS STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772023008680
     }
   ]
 }
