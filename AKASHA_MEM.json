@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT SHIELD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772036480321
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772036480549
@@ -291,6 +285,12 @@
       "text": "SYNC HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772036483852
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK BREACH SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036484132
     }
   ]
 }
