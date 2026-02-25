@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD RECON STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772035684704
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772035684935
@@ -291,6 +285,12 @@
       "text": "STRIFE BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772035689651
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772035689914
     }
   ]
 }
