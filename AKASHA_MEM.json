@@ -68,12 +68,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020829067
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
@@ -156,6 +150,12 @@
       "text": "SHOCK STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020835464
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE BLOOM FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772020836630
     }
   ]
 }
