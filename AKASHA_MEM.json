@@ -182,12 +182,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772023514624
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772023514787
@@ -269,6 +263,12 @@
       "text": "IMMUNE WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023518923
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023519335
     }
   ]
 }
