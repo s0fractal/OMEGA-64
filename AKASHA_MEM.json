@@ -154,12 +154,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS GIVING SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772022697144
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GUARD SHELTER GUARD",
       "mood": "DEFENSIVE",
@@ -242,6 +236,12 @@
       "text": "STABLE STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022705175
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SEIZE SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022705346
     }
   ]
 }
