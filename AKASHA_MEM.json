@@ -55,12 +55,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE STRIFE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020488563
-    },
-    {
-      "origin": "REVERSE",
       "text": "WITNESS BECOME EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772020489243
@@ -142,6 +136,12 @@
       "text": "CONSUME BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020497812
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772020498175
     }
   ]
 }
