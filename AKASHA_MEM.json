@@ -22,12 +22,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HUNGER STRIKE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772017588615
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GUARD STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772017590886
@@ -109,6 +103,12 @@
       "text": "DRAIN BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772017671663
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER GUARD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772017676035
     }
   ]
 }
