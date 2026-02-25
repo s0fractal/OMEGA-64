@@ -109,12 +109,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE STRIFE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021867734
-    },
-    {
       "origin": "REVERSE",
       "text": "IMMUNE IMMUNE REFLECT",
       "mood": "DEFENSIVE",
@@ -197,6 +191,12 @@
       "text": "GIVING FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772021872605
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT IMMUNE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021872761
     }
   ]
 }
