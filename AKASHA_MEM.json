@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772033693397
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772033693617
@@ -291,6 +285,12 @@
       "text": "STRIFE BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772033695969
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE STRIFE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033696162
     }
   ]
 }
