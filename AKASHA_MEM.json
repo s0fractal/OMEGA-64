@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE HEAL RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772041957325
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH SEIZE HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772041965113
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "IMMUNE REFLECT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041965462
     }
   ]
 }
