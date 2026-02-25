@@ -55,12 +55,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "EVOLVE BECOME SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772020550027
-    },
-    {
       "origin": "INTERFACE",
       "text": "WAIT SHIELD WAIT",
       "mood": "DEFENSIVE",
@@ -143,6 +137,12 @@
       "text": "WATCH GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772020558030
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DRAIN DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020559199
     }
   ]
 }
