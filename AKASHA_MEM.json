@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772020655832
-    },
-    {
       "origin": "INTERFACE",
       "text": "SICKNESS HUNGER DRAIN",
       "mood": "AGGRESSIVE",
@@ -150,6 +144,12 @@
       "text": "BLOOM GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772020663768
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DRAIN CONSUME HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020663902
     }
   ]
 }
