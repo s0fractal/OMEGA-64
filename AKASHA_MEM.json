@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIKE SHOCK BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041425141
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIFE SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041425885
@@ -291,6 +285,12 @@
       "text": "SHIELD GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772041429754
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WATCH SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041429906
     }
   ]
 }
