@@ -66,12 +66,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SEIZE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020775077
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020775280
@@ -153,6 +147,12 @@
       "text": "SHELTER WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772020782259
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE DECAY HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020783627
     }
   ]
 }
