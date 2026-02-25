@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035176770
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772035176968
@@ -291,6 +285,12 @@
       "text": "SHELTER GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772035179906
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT WAIT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772035180111
     }
   ]
 }
