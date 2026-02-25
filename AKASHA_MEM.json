@@ -107,12 +107,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STABLE SYNC HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772021773992
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS STABLE SYNC",
       "mood": "HARMONIC",
@@ -195,6 +189,12 @@
       "text": "GIVING GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772021781529
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021782587
     }
   ]
 }
