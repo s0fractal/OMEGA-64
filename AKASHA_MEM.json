@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON SHIELD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772035068383
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772035068674
@@ -291,6 +285,12 @@
       "text": "SHIELD STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772035072882
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035073806
     }
   ]
 }
