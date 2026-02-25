@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "HEAL SYNC FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772040611195
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE HEAL COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHELTER STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772040613597
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040613798
     }
   ]
 }
