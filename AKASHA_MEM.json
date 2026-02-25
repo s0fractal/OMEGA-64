@@ -196,12 +196,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023873399
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023873673
@@ -283,6 +277,12 @@
       "text": "COHERE BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772023879943
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHIELD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023880176
     }
   ]
 }
