@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772033236182
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772033236793
@@ -291,6 +285,12 @@
       "text": "STABLE UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772033241420
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHELTER WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772033241605
     }
   ]
 }
