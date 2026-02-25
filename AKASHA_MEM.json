@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "BB0000FC",
     "60660606",
     "60600660",
     "60006600",
@@ -199,15 +198,10 @@
     "00660666",
     "F0FF000F",
     "AAAAAAA0",
-    "660060A6"
+    "660060A6",
+    "60066666"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "IMMUNE PURE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772033373730
-    },
     {
       "origin": "REVERSE",
       "text": "COHERE RESONATE UNIFY",
@@ -291,6 +285,12 @@
       "text": "SYNC GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772033377154
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE IMMUNE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772033377444
     }
   ]
 }
