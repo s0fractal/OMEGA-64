@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00006060",
     "0A0A0AA0",
     "66600606",
     "0AAA00AA",
@@ -199,15 +198,10 @@
     "0B000000",
     "60006060",
     "06600660",
-    "A0BB0000"
+    "A0BB0000",
+    "6660A6A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "DRAIN STRIFE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036061711
-    },
     {
       "origin": "REVERSE",
       "text": "STABLE OSMOSIS FLOW",
@@ -291,6 +285,12 @@
       "text": "SEIZE HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772036065465
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WATCH IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772036065678
     }
   ]
 }
