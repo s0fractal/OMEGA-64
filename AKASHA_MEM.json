@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS HUNGER STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037086572
-    },
-    {
       "origin": "ALPHA_STREAM",
       "text": "HEAL COHERE SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "REFLECT SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772037090844
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772037091123
     }
   ]
 }
