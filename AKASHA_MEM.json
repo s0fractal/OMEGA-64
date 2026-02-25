@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023133079
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023135284
@@ -259,6 +253,12 @@
       "text": "IMMUNE SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023139114
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772023139580
     }
   ]
 }
