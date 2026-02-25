@@ -110,12 +110,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772021869278
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772021869498
@@ -197,6 +191,12 @@
       "text": "SHOCK SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021874360
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON RECON SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021874667
     }
   ]
 }
