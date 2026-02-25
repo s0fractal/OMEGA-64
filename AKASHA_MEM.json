@@ -69,12 +69,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHOCK DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020852974
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER DECAY CONSUME",
       "mood": "AGGRESSIVE",
@@ -157,6 +151,12 @@
       "text": "FLOW HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772020858822
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020858978
     }
   ]
 }
