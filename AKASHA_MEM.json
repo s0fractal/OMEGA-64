@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772035706393
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME SPARK BEYOND",
       "mood": "CREATIVE",
       "tick": 1772035706701
@@ -291,6 +285,12 @@
       "text": "UNIFY OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772035710815
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY UNIFY COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772035711030
     }
   ]
 }
