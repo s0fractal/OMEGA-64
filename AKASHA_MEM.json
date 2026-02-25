@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "IMMUNE PURE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772041540366
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIKE DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772041540510
@@ -291,6 +285,12 @@
       "text": "PURE SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041543708
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HEAL STABLE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772041543847
     }
   ]
 }
