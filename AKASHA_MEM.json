@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "FLOW BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772041827822
-    },
-    {
       "origin": "STREAM",
       "text": "WATCH IMMUNE REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772041832646
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER WATCH SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772041832895
     }
   ]
 }
