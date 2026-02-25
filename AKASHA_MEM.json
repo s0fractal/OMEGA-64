@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A0AAA0A0",
     "C0DED00D",
     "06660600",
     "A06660A6",
@@ -199,15 +198,10 @@
     "00B00000",
     "AA666666",
     "00000006",
-    "0AAAAAA0"
+    "0AAAAAA0",
+    "C0DED000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "UNIFY BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772034840046
-    },
     {
       "origin": "REVERSE",
       "text": "BREACH SHOCK DRAIN",
@@ -291,6 +285,12 @@
       "text": "COHERE GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772034843113
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND EVOLVE WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772034843284
     }
   ]
 }
