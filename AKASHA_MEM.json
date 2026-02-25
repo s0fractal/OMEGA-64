@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SPARK BECOME FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772023949660
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023949788
@@ -284,6 +278,12 @@
       "text": "REFLECT WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023954080
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WAIT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772023955383
     }
   ]
 }
