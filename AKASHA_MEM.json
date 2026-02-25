@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL FLOW UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772037832114
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772037832305
@@ -291,6 +285,12 @@
       "text": "SYNC SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772037835713
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE RESONATE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772037835924
     }
   ]
 }
