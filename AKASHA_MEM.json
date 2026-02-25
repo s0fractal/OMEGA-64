@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HEAL HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772035782955
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC GIVING STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "REFLECT SHIELD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772035787129
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772035787339
     }
   ]
 }
