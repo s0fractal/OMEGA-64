@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772030352610
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772030353080
@@ -291,6 +285,12 @@
       "text": "BREACH CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772030371441
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772030372967
     }
   ]
 }
