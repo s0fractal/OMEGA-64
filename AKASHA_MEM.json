@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037541600
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772037541782
@@ -291,6 +285,12 @@
       "text": "GIVING COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772037546294
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW COHERE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772037546551
     }
   ]
 }
