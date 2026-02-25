@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027332161
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH WATCH STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SEIZE HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772027340386
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE STABLE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772027340614
     }
   ]
 }
