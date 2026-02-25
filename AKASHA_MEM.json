@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HEAL GIVING HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772016019037
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SICKNESS STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772016031154
@@ -107,6 +101,12 @@
       "text": "FLOW UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772016141415
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772016153543
     }
   ]
 }
