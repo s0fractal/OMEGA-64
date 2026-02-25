@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772027783375
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772027783898
@@ -291,6 +285,12 @@
       "text": "PURE GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772027803938
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772027804375
     }
   ]
 }
