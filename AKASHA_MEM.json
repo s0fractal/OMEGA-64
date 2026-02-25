@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE HEAL UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772040396748
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772040396904
@@ -291,6 +285,12 @@
       "text": "SYNC COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772040401930
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040402110
     }
   ]
 }
