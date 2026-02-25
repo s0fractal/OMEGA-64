@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE RECON GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040821006
-    },
-    {
       "origin": "INTERFACE",
       "text": "WATCH RECON GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772040824514
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD GUARD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040824958
     }
   ]
 }
