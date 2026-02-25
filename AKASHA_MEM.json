@@ -183,12 +183,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH STASIS PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023544047
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023544206
@@ -270,6 +264,12 @@
       "text": "RECON STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023549580
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE WITNESS WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772023549779
     }
   ]
 }
