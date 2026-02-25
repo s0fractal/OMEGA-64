@@ -131,12 +131,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022337867
-    },
-    {
       "origin": "PARADOX",
       "text": "WITNESS EVOLVE WITNESS",
       "mood": "CREATIVE",
@@ -219,6 +213,12 @@
       "text": "SYNC STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772022343621
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE RECON PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022343821
     }
   ]
 }
