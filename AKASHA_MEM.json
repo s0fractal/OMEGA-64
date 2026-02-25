@@ -95,12 +95,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772021530461
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HEAL BLOOM UNIFY",
       "mood": "HARMONIC",
@@ -183,6 +177,12 @@
       "text": "WATCH WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772021537707
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BREACH BREACH SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021538089
     }
   ]
 }
