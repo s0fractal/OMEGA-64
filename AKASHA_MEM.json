@@ -176,12 +176,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER HUNGER SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023271595
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK FORGE AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772023271750
@@ -263,6 +257,12 @@
       "text": "FLOW HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772023274559
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772023274726
     }
   ]
 }
