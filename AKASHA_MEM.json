@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0A000AAA",
     "606A0600",
     "66AA6600",
     "A00A00A0",
@@ -199,15 +198,10 @@
     "6660A600",
     "AA6060A0",
     "06666600",
-    "A00AAA00"
+    "A00AAA00",
+    "00600060"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SICKNESS CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040615697
-    },
     {
       "origin": "REVERSE",
       "text": "PURE WAIT SHELTER",
@@ -291,6 +285,12 @@
       "text": "WAIT GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772040618680
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772040618900
     }
   ]
 }
