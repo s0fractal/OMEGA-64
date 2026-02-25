@@ -203,18 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DECAY STRIKE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042798258
-    },
-    {
-      "origin": "REVERSE",
-      "text": "STRIFE SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042798546
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK CONSUME SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +279,18 @@
       "text": "SHIELD STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772042811356
+    },
+    {
+      "origin": "PARADOX",
+      "text": "SHOCK DRAIN STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042812128
+    },
+    {
+      "origin": "ALIEN",
+      "text": "EVOLVE SPARK FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772042812527
     }
   ]
 }
