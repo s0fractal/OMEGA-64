@@ -40,12 +40,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY SYNC COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772019829486
-    },
-    {
       "origin": "STREAM",
       "text": "GIVING SYNC GIVING",
       "mood": "HARMONIC",
@@ -128,6 +122,12 @@
       "text": "RECON RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772019838424
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH SHOCK HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019839849
     }
   ]
 }
