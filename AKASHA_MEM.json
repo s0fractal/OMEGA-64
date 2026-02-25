@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW OSMOSIS OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772035064950
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772035065149
@@ -291,6 +285,12 @@
       "text": "RECON SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772035068383
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD PURE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772035068674
     }
   ]
 }
