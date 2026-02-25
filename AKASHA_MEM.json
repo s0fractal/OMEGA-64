@@ -156,12 +156,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DRAIN SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022748661
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022748819
@@ -243,6 +237,12 @@
       "text": "UNIFY HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772022757395
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN BREACH BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022760208
     }
   ]
 }
