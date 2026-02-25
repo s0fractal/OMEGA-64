@@ -110,12 +110,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STASIS STASIS RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772021909332
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER BREACH DECAY",
       "mood": "AGGRESSIVE",
@@ -198,6 +192,12 @@
       "text": "RESONATE RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772021918999
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING UNIFY HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772021919217
     }
   ]
 }
