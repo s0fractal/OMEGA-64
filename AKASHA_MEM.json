@@ -52,15 +52,10 @@
     "AB000000",
     "6A00A000",
     "66666600",
-    "00000606"
+    "00000606",
+    "FFFF0FFF"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SICKNESS DRAIN DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020559199
-    },
     {
       "origin": "INTERFACE",
       "text": "WATCH STASIS SHIELD",
@@ -144,6 +139,12 @@
       "text": "HEAL GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772020569061
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND EVOLVE VISION",
+      "mood": "CREATIVE",
+      "tick": 1772020569239
     }
   ]
 }
