@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME HUNGER STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036886491
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772036886708
@@ -291,6 +285,12 @@
       "text": "GIVING BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772036889596
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHIELD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772036889801
     }
   ]
 }
