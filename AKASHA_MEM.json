@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS UNIFY COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772024735449
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772024735875
@@ -291,6 +285,12 @@
       "text": "SICKNESS DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772024744395
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772024745984
     }
   ]
 }
