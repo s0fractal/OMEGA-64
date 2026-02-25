@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "CAR",
-      "text": "RESONATE GIVING HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772041658358
-    },
-    {
       "origin": "PURE_MATH",
       "text": "STRIKE HUNGER DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772041660702
+    },
+    {
+      "origin": "STREAM",
+      "text": "WATCH PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772041660868
     }
   ]
 }
