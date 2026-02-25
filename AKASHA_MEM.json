@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772042032638
-    },
-    {
       "origin": "CAR",
       "text": "HEAL RESONATE UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772042040950
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS UNIFY HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772042041957
     }
   ]
 }
