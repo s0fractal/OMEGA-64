@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "EVOLVE WITNESS AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772041098992
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772041099315
@@ -291,6 +285,12 @@
       "text": "SHELTER PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772041104271
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772041104404
     }
   ]
 }
