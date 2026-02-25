@@ -123,12 +123,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022147281
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772022147575
@@ -210,6 +204,12 @@
       "text": "HUNGER SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772022152100
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE AWAKEN BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772022152732
     }
   ]
 }
