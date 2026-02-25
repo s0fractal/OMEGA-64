@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772034295485
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772034296214
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772034303162
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772034303317
     }
   ]
 }
