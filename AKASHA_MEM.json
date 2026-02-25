@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "DRAIN DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041132275
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL FLOW UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WAIT GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041136629
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH SHELTER STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772041136812
     }
   ]
 }
