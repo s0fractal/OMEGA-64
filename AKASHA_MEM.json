@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "NAND",
-      "text": "COHERE RESONATE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041828272
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE HEAL BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BLOOM HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041833420
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GUARD REFLECT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041833708
     }
   ]
 }
