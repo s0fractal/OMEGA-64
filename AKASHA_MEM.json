@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GIVING COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772027161065
-    },
-    {
       "origin": "REVERSE",
       "text": "RECON GUARD SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772027167030
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WATCH STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772027167408
     }
   ]
 }
