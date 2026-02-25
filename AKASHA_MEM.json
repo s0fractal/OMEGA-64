@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772025357101
-    },
-    {
       "origin": "ALPHA_PROOF_OF_RESONANCE",
       "text": "SYNC BLOOM STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DREAM SPARK AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772025364661
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC UNIFY SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772025364885
     }
   ]
 }
