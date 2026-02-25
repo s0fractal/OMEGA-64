@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL UNIFY UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772032860342
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME SPARK AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772032860516
@@ -291,6 +285,12 @@
       "text": "HEAL BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772032863406
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032864473
     }
   ]
 }
