@@ -1464,6 +1464,7 @@ async function logAkasha(msg: string) {
 
         // --- 🕳️ FRACTAL SINGULARITY (Dimensional Bifurcation) ---
         // Atoms that become too dense (high energy, high resonance) collapse into a new universe.
+        if (eigenvalue === "0x6600066000000A08") console.log(`[DEBUG] Atom ${eigenvalue} | Energy: ${energy} | Resonance: ${resonance}`);
         if (resonance > 80 && energy > 500 && Math.random() < 1.0) {
             console.log(`   [SINGULARITY] 🕳️ Atom ${eigenvalue} has reached critical mass! Bifurcating...`);
             const subDir = `${ROOT}/DIMENSIONS/${eigenvalue}`;
