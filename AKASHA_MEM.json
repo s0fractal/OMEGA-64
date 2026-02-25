@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040669169
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BEYOND EVOLVE FORGE",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "STRIKE CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772040672338
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH RECON IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040672482
     }
   ]
 }
