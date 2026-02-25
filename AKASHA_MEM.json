@@ -107,12 +107,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH GUARD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772021727354
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772021727759
@@ -194,6 +188,12 @@
       "text": "BLOOM SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772021732846
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772021733011
     }
   ]
 }
