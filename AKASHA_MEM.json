@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66006666",
     "06660600",
     "000B0000",
     "06006000",
@@ -199,15 +198,10 @@
     "AAAAA00A",
     "000AAAAA",
     "AA0A0A0A",
-    "A0BBC0DD"
+    "A0BBC0DD",
+    "60000006"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WAIT PURE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772032760470
-    },
     {
       "origin": "REVERSE",
       "text": "SHELTER IMMUNE RECON",
@@ -291,6 +285,12 @@
       "text": "HEAL OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772032763632
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHELTER RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772032763816
     }
   ]
 }
