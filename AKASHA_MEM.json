@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772036651833
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772036653579
@@ -291,6 +285,12 @@
       "text": "SYNC COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772036662745
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD REFLECT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772036663116
     }
   ]
 }
