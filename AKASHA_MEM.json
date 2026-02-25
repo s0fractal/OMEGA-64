@@ -58,12 +58,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "FLOW OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772020573258
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS SICKNESS DECAY",
       "mood": "AGGRESSIVE",
@@ -146,6 +140,12 @@
       "text": "PURE WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772020578901
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BREACH SEIZE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020579695
     }
   ]
 }
