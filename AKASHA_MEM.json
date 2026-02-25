@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER SEIZE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035855479
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD RECON SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772035859484
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772035859709
     }
   ]
 }
