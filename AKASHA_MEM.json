@@ -77,15 +77,10 @@
     "AA0AAA0A",
     "66A066A0",
     "B0B00000",
-    "60666000"
+    "60666000",
+    "666666A0"
   ],
   "utterances": [
-    {
-      "origin": "STREAM",
-      "text": "OSMOSIS FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772021147169
-    },
     {
       "origin": "REVERSE",
       "text": "PURE REFLECT IMMUNE",
@@ -169,6 +164,12 @@
       "text": "GIVING OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772021151392
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT SHIELD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772021151555
     }
   ]
 }
