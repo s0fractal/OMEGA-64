@@ -191,12 +191,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING HEAL RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772023811588
-    },
-    {
       "origin": "INTERFACE",
       "text": "BREACH SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -279,6 +273,12 @@
       "text": "BEYOND WITNESS BECOME",
       "mood": "CREATIVE",
       "tick": 1772023818631
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772023818761
     }
   ]
 }
