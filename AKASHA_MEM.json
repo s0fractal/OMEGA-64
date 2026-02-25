@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DREAM WAVE SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772037798594
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772037798771
@@ -291,6 +285,12 @@
       "text": "FORGE BEYOND AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772037801527
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE STABLE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772037801704
     }
   ]
 }
