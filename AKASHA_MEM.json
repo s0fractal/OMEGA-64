@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE HEAL UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772032477633
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HEAL SYNC RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHELTER SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772032486432
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DECAY HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032486999
     }
   ]
 }
