@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS SYNC OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772032382424
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772032382876
@@ -291,6 +285,12 @@
       "text": "VISION DREAM BEYOND",
       "mood": "CREATIVE",
       "tick": 1772032388407
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WAIT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772032388800
     }
   ]
 }
