@@ -167,12 +167,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH WAIT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023068384
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME CONSUME HUNGER",
       "mood": "AGGRESSIVE",
@@ -255,6 +249,12 @@
       "text": "GUARD IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023073642
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772023073826
     }
   ]
 }
