@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042102235
-    },
-    {
       "origin": "WORKER",
       "text": "SYNC COHERE OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772042108836
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772042109159
     }
   ]
 }
