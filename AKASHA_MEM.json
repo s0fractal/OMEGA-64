@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772024951215
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772024951405
@@ -291,6 +285,12 @@
       "text": "RECON REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772024956666
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS SICKNESS HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024957023
     }
   ]
 }
