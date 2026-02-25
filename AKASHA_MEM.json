@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "BLOOM OSMOSIS SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772019966725
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GIVING STABLE BLOOM",
       "mood": "HARMONIC",
@@ -130,6 +124,12 @@
       "text": "PURE GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772019977202
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772019978017
     }
   ]
 }
