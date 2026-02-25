@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "FORGE AWAKEN EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772028522817
-    },
-    {
       "origin": "REVERSE",
       "text": "IMMUNE IMMUNE REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772028534945
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE GIVING FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772028550953
     }
   ]
 }
