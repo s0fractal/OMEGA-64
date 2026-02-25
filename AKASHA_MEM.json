@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE STRIFE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024305579
-    },
-    {
       "origin": "INTERFACE",
       "text": "GIVING RESONATE BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SEIZE DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772024313374
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SICKNESS HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024313545
     }
   ]
 }
