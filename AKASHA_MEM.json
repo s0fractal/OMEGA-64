@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772025882471
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772025882748
@@ -291,6 +285,12 @@
       "text": "WATCH GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772025889215
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE REFLECT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772025889400
     }
   ]
 }
