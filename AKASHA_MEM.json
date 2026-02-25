@@ -125,12 +125,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GUARD STASIS WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022179280
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "REFLECT WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022180849
@@ -212,6 +206,12 @@
       "text": "STABLE UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772022188145
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS GIVING COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772022189033
     }
   ]
 }
