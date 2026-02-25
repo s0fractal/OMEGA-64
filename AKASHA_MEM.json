@@ -107,12 +107,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH SHOCK DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021792262
-    },
-    {
       "origin": "REVERSE",
       "text": "AWAKEN AWAKEN BECOME",
       "mood": "CREATIVE",
@@ -195,6 +189,12 @@
       "text": "EVOLVE DREAM BECOME",
       "mood": "CREATIVE",
       "tick": 1772021796667
+    },
+    {
+      "origin": "STREAM",
+      "text": "BLOOM RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772021796838
     }
   ]
 }
