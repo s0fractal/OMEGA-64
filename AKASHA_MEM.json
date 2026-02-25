@@ -184,12 +184,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON SHELTER PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023559492
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023559666
@@ -271,6 +265,12 @@
       "text": "GUARD IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772023563555
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023563713
     }
   ]
 }
