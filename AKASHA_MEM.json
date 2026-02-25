@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY STRIKE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031279418
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772031280018
@@ -291,6 +285,12 @@
       "text": "STABLE STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772031291678
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND EVOLVE FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772031292050
     }
   ]
 }
