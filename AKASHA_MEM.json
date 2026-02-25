@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DECAY SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034182515
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772034182687
@@ -291,6 +285,12 @@
       "text": "OSMOSIS HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772034186299
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772034186452
     }
   ]
 }
