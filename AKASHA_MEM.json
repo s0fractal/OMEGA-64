@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022211085
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772022211236
@@ -213,6 +207,12 @@
       "text": "STASIS REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022215878
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME DECAY STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022216033
     }
   ]
 }
