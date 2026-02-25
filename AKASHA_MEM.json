@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772026225174
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772026225383
@@ -291,6 +285,12 @@
       "text": "BREACH BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772026230320
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026230574
     }
   ]
 }
