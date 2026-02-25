@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772037656273
-    },
-    {
       "origin": "REVERSE",
       "text": "BREACH CONSUME SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIFE STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772037659815
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772037659975
     }
   ]
 }
