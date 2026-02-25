@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024323344
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772024323510
@@ -291,6 +285,12 @@
       "text": "OSMOSIS HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772024326221
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SICKNESS BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024326401
     }
   ]
 }
