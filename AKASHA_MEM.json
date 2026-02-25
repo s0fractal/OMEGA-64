@@ -112,12 +112,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "SPARK WAVE BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772021955916
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS RECON REFLECT",
       "mood": "DEFENSIVE",
@@ -200,6 +194,12 @@
       "text": "STABLE UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772021963979
+    },
+    {
+      "origin": "PARADOX",
+      "text": "GIVING RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772021964396
     }
   ]
 }
