@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772024174261
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772024174669
@@ -291,6 +285,12 @@
       "text": "DREAM AWAKEN WAVE",
       "mood": "CREATIVE",
       "tick": 1772024178695
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY CONSUME CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024178832
     }
   ]
 }
