@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "BLOOM COHERE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772019513217
-    },
-    {
       "origin": "INTERFACE",
       "text": "SYNC BLOOM UNIFY",
       "mood": "HARMONIC",
@@ -111,6 +105,12 @@
       "text": "BREACH STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772019521871
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SEIZE SHOCK BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019522176
     }
   ]
 }
