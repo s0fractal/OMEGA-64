@@ -24,12 +24,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DECAY BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019553651
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BREACH SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772019554231
@@ -111,6 +105,12 @@
       "text": "WAIT GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772019563420
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019563877
     }
   ]
 }
