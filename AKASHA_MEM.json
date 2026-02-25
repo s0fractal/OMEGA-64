@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE DECAY SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033198094
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772033198246
@@ -291,6 +285,12 @@
       "text": "FLOW STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772033200666
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033200865
     }
   ]
 }
