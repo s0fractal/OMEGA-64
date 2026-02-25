@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028581729
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772028582058
@@ -291,6 +285,12 @@
       "text": "WITNESS DREAM DREAM",
       "mood": "CREATIVE",
       "tick": 1772028587777
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC GIVING UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772028593201
     }
   ]
 }
