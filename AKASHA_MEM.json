@@ -35,15 +35,10 @@
     "6A6666A6",
     "AA666666",
     "9D18A690",
-    "666A66A0"
+    "666A66A0",
+    "BB0BA000"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "DECAY HUNGER BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019823179
-    },
     {
       "origin": "ARCHIVIST",
       "text": "SEIZE DECAY BREACH",
@@ -127,6 +122,12 @@
       "text": "UNIFY RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772019833125
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019834996
     }
   ]
 }
