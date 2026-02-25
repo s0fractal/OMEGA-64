@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DREAM AWAKEN VISION",
-      "mood": "CREATIVE",
-      "tick": 1772039269375
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772039269820
@@ -291,6 +285,12 @@
       "text": "SHIELD SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772039272631
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772039272844
     }
   ]
 }
