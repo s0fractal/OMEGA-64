@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AABBC000",
     "AAAA0AA0",
     "01000000",
     "AA0AAA0A",
@@ -199,15 +198,10 @@
     "0AA0A0AA",
     "A0000A00",
     "A00AAAAA",
-    "60066600"
+    "60066600",
+    "00066006"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "REFLECT RECON WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772033920627
-    },
     {
       "origin": "REVERSE",
       "text": "PURE STASIS IMMUNE",
@@ -291,6 +285,12 @@
       "text": "HEAL COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772033923568
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772033923771
     }
   ]
 }
