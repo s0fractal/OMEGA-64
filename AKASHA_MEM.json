@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WAIT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772023988512
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023988768
@@ -284,6 +278,12 @@
       "text": "STABLE SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772023994798
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SEIZE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023994974
     }
   ]
 }
