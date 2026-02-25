@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STASIS REFLECT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772037224107
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM SYNC GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RESONATE BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772037230797
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM SYNC FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772037230969
     }
   ]
 }
