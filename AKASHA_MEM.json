@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772037551271
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER SHIELD STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772037556928
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037557174
     }
   ]
 }
