@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "WORKER",
-      "text": "RECON SHIELD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772041385167
-    },
-    {
       "origin": "REVERSE",
       "text": "GUARD WATCH PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041389284
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE SHOCK HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041389460
     }
   ]
 }
