@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GUARD IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772020460652
-    },
-    {
       "origin": "STREAM",
       "text": "UNIFY STABLE BLOOM",
       "mood": "HARMONIC",
@@ -142,6 +136,12 @@
       "text": "SHOCK BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772020466498
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN STRIKE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020466948
     }
   ]
 }
