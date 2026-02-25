@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772033378782
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772033379048
@@ -291,6 +285,12 @@
       "text": "GIVING BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772033383991
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE SYNC UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772033384224
     }
   ]
 }
