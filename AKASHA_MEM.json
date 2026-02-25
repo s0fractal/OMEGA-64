@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772032566309
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772032566482
@@ -291,6 +285,12 @@
       "text": "IMMUNE SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772032568849
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772032569039
     }
   ]
 }
