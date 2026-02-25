@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD STASIS WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772042013005
-    },
-    {
       "origin": "PARADOX",
       "text": "BLOOM STABLE SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SEIZE DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772042020466
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772042020990
     }
   ]
 }
