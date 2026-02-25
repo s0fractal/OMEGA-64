@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042695884
-    },
-    {
       "origin": "STREAM",
       "text": "OSMOSIS BLOOM UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHOCK SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772042705131
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE SHIELD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772042705918
     }
   ]
 }
