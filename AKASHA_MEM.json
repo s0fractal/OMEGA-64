@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "HEAL COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772036982917
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN BREACH SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772036991580
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE FLOW GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772036991784
     }
   ]
 }
