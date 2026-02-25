@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024561408
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772024561655
@@ -291,6 +285,12 @@
       "text": "COHERE SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772024568305
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH RECON IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772024568580
     }
   ]
 }
