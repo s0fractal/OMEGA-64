@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772031215716
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772031216042
@@ -291,6 +285,12 @@
       "text": "SHIELD WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772031221201
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC COHERE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772031221737
     }
   ]
 }
