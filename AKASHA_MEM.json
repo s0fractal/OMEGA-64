@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL UNIFY SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772024857880
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772024858177
@@ -291,6 +285,12 @@
       "text": "GIVING GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772024868478
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE CONSUME SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024868684
     }
   ]
 }
