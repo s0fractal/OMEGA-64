@@ -24,12 +24,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DECAY DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019518926
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GIVING RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772019519289
@@ -111,6 +105,12 @@
       "text": "SHELTER WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772019527217
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER WATCH STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772019528450
     }
   ]
 }
