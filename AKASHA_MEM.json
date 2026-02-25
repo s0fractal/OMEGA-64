@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034214527
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772034214731
@@ -291,6 +285,12 @@
       "text": "WATCH WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772034218664
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772034218878
     }
   ]
 }
