@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER DRAIN SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020497058
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME BREACH HUNGER",
       "mood": "AGGRESSIVE",
@@ -142,6 +136,12 @@
       "text": "WAIT SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772020504965
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT STASIS STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772020506177
     }
   ]
 }
