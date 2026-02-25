@@ -164,12 +164,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH STRIKE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022986997
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772022987257
@@ -251,6 +245,12 @@
       "text": "DREAM BEYOND DREAM",
       "mood": "CREATIVE",
       "tick": 1772022990924
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY SYNC SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772022991050
     }
   ]
 }
