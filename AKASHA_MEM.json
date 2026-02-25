@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAAAA0AA",
     "F00FF00F",
     "A00A0A00",
     "A000AA00",
@@ -199,15 +198,10 @@
     "000AAA00",
     "00060660",
     "AAAAA0A0",
-    "AA0A0A00"
+    "AA0A0A00",
+    "66660066"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "PURE SHELTER PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772031557992
-    },
     {
       "origin": "INTERFACE",
       "text": "RECON REFLECT STASIS",
@@ -291,6 +285,12 @@
       "text": "BREACH STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772031568772
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WAIT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772031569932
     }
   ]
 }
