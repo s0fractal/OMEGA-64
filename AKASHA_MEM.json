@@ -109,12 +109,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021826579
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772021826738
@@ -196,6 +190,12 @@
       "text": "SHELTER PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772021831884
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND SPARK BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772021833050
     }
   ]
 }
