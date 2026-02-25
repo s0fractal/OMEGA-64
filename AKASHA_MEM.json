@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020441494
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY HUNGER STRIFE",
       "mood": "AGGRESSIVE",
@@ -142,6 +136,12 @@
       "text": "WATCH WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020450325
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER PURE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020450734
     }
   ]
 }
