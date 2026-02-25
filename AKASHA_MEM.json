@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY DECAY SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037310697
-    },
-    {
       "origin": "INTERFACE",
       "text": "SYNC RESONATE FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GUARD PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772037313658
+    },
+    {
+      "origin": "STREAM",
+      "text": "STABLE STABLE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772037313864
     }
   ]
 }
