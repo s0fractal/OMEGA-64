@@ -65,12 +65,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE WATCH SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772020765578
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BLOOM FLOW OSMOSIS",
       "mood": "HARMONIC",
@@ -153,6 +147,12 @@
       "text": "GIVING RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772020770308
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS RECON STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772020770484
     }
   ]
 }
