@@ -122,12 +122,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD IMMUNE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022154929
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHELTER WATCH IMMUNE",
       "mood": "DEFENSIVE",
@@ -210,6 +204,12 @@
       "text": "HUNGER SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772022161583
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BREACH CONSUME SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022162051
     }
   ]
 }
