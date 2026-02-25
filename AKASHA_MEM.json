@@ -164,12 +164,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "VISION AWAKEN VISION",
-      "mood": "CREATIVE",
-      "tick": 1772022938713
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022938936
@@ -251,6 +245,12 @@
       "text": "FLOW SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022942006
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SYNC BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022942368
     }
   ]
 }
