@@ -43,12 +43,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HEAL OSMOSIS RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772020029914
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS BREACH SHOCK",
       "mood": "AGGRESSIVE",
@@ -131,6 +125,12 @@
       "text": "DECAY DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020040995
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772020041906
     }
   ]
 }
