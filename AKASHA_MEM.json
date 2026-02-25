@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A6666A60",
     "A0AAA000",
     "FFFFFFF0",
     "AA000A00",
@@ -199,15 +198,10 @@
     "00AAA000",
     "AA00A0AA",
     "AA0BCC0F",
-    "600A0A00"
+    "600A0A00",
+    "AAAAA000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "HEAL RESONATE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772035030612
-    },
     {
       "origin": "REVERSE",
       "text": "STABLE UNIFY STABLE",
@@ -291,6 +285,12 @@
       "text": "HEAL COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772035034140
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035034380
     }
   ]
 }
