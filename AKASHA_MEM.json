@@ -125,12 +125,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM COHERE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772022214476
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHIELD WATCH SHIELD",
       "mood": "DEFENSIVE",
@@ -213,6 +207,12 @@
       "text": "STABLE COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772022218438
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM GIVING HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772022218626
     }
   ]
 }
