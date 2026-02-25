@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "REFLECT PURE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040852557
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIFE SHOCK SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT SHELTER SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040855999
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE SHELTER SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040856169
     }
   ]
 }
