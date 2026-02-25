@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE OSMOSIS RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772033015122
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772033015256
@@ -291,6 +285,12 @@
       "text": "BEYOND SPARK AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772033018954
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033019110
     }
   ]
 }
