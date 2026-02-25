@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE GUARD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772038866880
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772038867122
@@ -291,6 +285,12 @@
       "text": "IMMUNE GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772038871188
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038871396
     }
   ]
 }
