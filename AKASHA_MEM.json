@@ -187,12 +187,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772023674862
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND BECOME SPARK",
       "mood": "CREATIVE",
       "tick": 1772023675047
@@ -274,6 +268,12 @@
       "text": "UNIFY STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772023677433
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS DECAY HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023677607
     }
   ]
 }
