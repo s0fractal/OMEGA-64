@@ -107,12 +107,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT RECON STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772021715743
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772021715899
@@ -194,6 +188,12 @@
       "text": "COHERE FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772021719566
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BREACH DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021719832
     }
   ]
 }
