@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "IMMUNE SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041982825
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STABLE SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772041983671
@@ -291,6 +285,12 @@
       "text": "REFLECT SHIELD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041990807
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041991237
     }
   ]
 }
