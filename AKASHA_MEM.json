@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60666600",
     "00006606",
     "0FF0FFF0",
     "AAAAA0A0",
@@ -199,15 +198,10 @@
     "A0666666",
     "AA00AAA0",
     "A00A0000",
-    "0BB00000"
+    "0BB00000",
+    "0ABBCCDD"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SYNC HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772036483852
-    },
     {
       "origin": "REVERSE",
       "text": "SHOCK BREACH SHOCK",
@@ -291,6 +285,12 @@
       "text": "GUARD RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772036490146
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW FLOW UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772036490365
     }
   ]
 }
