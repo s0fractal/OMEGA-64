@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772035626989
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772035627155
@@ -291,6 +285,12 @@
       "text": "HUNGER SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772035631043
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035631210
     }
   ]
 }
