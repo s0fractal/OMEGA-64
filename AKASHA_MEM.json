@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "UNIFY RESONATE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772042147002
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "PURE IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772042147299
@@ -291,6 +285,12 @@
       "text": "CONSUME SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772042164823
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT REFLECT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042165967
     }
   ]
 }
