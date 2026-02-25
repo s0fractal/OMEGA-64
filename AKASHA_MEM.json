@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772016602499
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIKE CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
@@ -107,6 +101,12 @@
       "text": "SHOCK SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772016694968
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SEIZE HUNGER STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772016697424
     }
   ]
 }
