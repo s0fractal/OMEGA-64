@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE OSMOSIS OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772032849851
-    },
-    {
       "origin": "STREAM",
       "text": "CONSUME DECAY SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772032855747
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772032855949
     }
   ]
 }
