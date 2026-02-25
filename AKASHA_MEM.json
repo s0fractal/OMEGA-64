@@ -160,12 +160,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE IMMUNE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022812806
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022813043
@@ -247,6 +241,12 @@
       "text": "WATCH WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022817364
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772022817543
     }
   ]
 }
