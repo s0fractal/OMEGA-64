@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW OSMOSIS UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772034476369
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAVE WITNESS BECOME",
       "mood": "CREATIVE",
       "tick": 1772034476530
@@ -291,6 +285,12 @@
       "text": "SHOCK BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772034483928
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772034484642
     }
   ]
 }
