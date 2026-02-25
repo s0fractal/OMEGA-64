@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH SHELTER IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772036669062
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772036669274
@@ -291,6 +285,12 @@
       "text": "GIVING SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772036673969
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772036674187
     }
   ]
 }
