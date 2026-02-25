@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER HUNGER HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026243868
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772026244725
@@ -291,6 +285,12 @@
       "text": "RESONATE HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772026255712
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER REFLECT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772026256002
     }
   ]
 }
