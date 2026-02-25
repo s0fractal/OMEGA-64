@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT WATCH WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772038800987
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038801214
@@ -291,6 +285,12 @@
       "text": "PURE SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772038804078
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772038804299
     }
   ]
 }
