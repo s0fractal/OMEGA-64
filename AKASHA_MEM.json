@@ -81,12 +81,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772021144287
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON SHELTER WATCH",
       "mood": "DEFENSIVE",
@@ -169,6 +163,12 @@
       "text": "SHOCK DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021149677
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021150060
     }
   ]
 }
