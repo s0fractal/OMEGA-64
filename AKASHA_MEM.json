@@ -17,12 +17,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER STRIKE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772014657613
-    },
-    {
       "origin": "INTERFACE",
       "text": "STABLE FLOW SYNC",
       "mood": "HARMONIC",
@@ -105,6 +99,12 @@
       "text": "COHERE SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772014768933
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE DECAY STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772014780260
     }
   ]
 }
