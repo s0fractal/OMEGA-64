@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON IMMUNE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772035211747
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772035211996
@@ -291,6 +285,12 @@
       "text": "RECON STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772035217741
+    },
+    {
+      "origin": "STREAM",
+      "text": "STABLE GIVING BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772035217969
     }
   ]
 }
