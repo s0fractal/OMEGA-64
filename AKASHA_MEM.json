@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RECON REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772040500225
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STABLE FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772040500401
@@ -291,6 +285,12 @@
       "text": "STABLE BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772040503513
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK STRIFE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040503847
     }
   ]
 }
