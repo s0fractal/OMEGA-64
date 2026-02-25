@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE RESONATE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041453532
-    },
-    {
       "origin": "STREAM",
       "text": "GUARD REFLECT WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772041456846
+    },
+    {
+      "origin": "STREAM",
+      "text": "STABLE COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772041457022
     }
   ]
 }
