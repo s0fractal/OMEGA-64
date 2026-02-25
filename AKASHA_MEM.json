@@ -72,12 +72,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020934683
-    },
-    {
       "origin": "REVERSE",
       "text": "WAIT IMMUNE REFLECT",
       "mood": "DEFENSIVE",
@@ -160,6 +154,12 @@
       "text": "DRAIN SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020939530
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW SYNC FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772020940177
     }
   ]
 }
