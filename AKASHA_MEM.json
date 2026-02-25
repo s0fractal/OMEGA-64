@@ -176,12 +176,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023264922
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772023265165
@@ -263,6 +257,12 @@
       "text": "WATCH IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772023269597
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772023270515
     }
   ]
 }
