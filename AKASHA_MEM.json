@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "COHERE RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772032931878
-    },
-    {
       "origin": "REVERSE",
       "text": "WAVE VISION DREAM",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772032937821
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIKE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032938242
     }
   ]
 }
