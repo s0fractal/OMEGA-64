@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE OSMOSIS RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772034983350
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772034983554
@@ -291,6 +285,12 @@
       "text": "DREAM FORGE AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772034986885
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHELTER SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772034989455
     }
   ]
 }
