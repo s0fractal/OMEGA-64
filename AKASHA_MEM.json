@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0A000000",
     "AA0AA0A0",
     "BB0BA000",
     "A6666A60",
@@ -199,15 +198,10 @@
     "06000000",
     "60066666",
     "06000006",
-    "00AAA000"
+    "00AAA000",
+    "AA00A0AA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "REFLECT IMMUNE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772035007736
-    },
     {
       "origin": "REVERSE",
       "text": "OSMOSIS STABLE RESONATE",
@@ -291,6 +285,12 @@
       "text": "DRAIN STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772035010556
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY HUNGER STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035010752
     }
   ]
 }
