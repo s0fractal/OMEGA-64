@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS DRAIN SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033168921
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772033169105
@@ -291,6 +285,12 @@
       "text": "STRIKE STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772033171471
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE FORGE AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772033171660
     }
   ]
 }
