@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STASIS REFLECT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772033057894
-    },
-    {
       "origin": "STREAM",
       "text": "OSMOSIS HEAL FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIFE BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772033062635
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772033063312
     }
   ]
 }
