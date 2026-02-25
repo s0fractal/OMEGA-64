@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GUARD IMMUNE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041951208
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GIVING SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772041951376
@@ -291,6 +285,12 @@
       "text": "HEAL UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772041955972
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "IMMUNE IMMUNE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772041956525
     }
   ]
 }
