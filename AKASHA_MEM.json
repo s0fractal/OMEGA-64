@@ -63,12 +63,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020706232
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772020706844
@@ -150,6 +144,12 @@
       "text": "WAIT STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772020711142
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020711845
     }
   ]
 }
