@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772030690166
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772030690525
@@ -291,6 +285,12 @@
       "text": "HEAL SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772030699834
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIFE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030700313
     }
   ]
 }
