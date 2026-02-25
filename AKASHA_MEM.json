@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER HUNGER BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037489496
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772037489714
@@ -291,6 +285,12 @@
       "text": "WATCH GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772037492951
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772037493171
     }
   ]
 }
