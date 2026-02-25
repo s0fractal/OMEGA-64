@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HEAL OSMOSIS OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772041881571
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHIELD SHELTER SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041881745
@@ -291,6 +285,12 @@
       "text": "FLOW SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772041885156
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC STABLE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772041885330
     }
   ]
 }
