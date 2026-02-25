@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS WATCH SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772032943276
-    },
-    {
-      "origin": "REVERSE",
       "text": "EVOLVE SPARK WITNESS",
       "mood": "CREATIVE",
       "tick": 1772032943460
@@ -291,6 +285,12 @@
       "text": "GIVING COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772032945753
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS SHIELD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772032945924
     }
   ]
 }
