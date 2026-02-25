@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STASIS GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041530772
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIKE DRAIN CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041535737
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING BLOOM UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772041536122
     }
   ]
 }
