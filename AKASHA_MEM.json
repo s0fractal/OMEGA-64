@@ -142,12 +142,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022455957
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH PURE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022456135
@@ -229,6 +223,12 @@
       "text": "CONSUME HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772022460615
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE PURE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022460809
     }
   ]
 }
