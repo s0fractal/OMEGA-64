@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "UNIFY RESONATE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041226500
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT SHELTER RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041232845
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE BREACH STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041233283
     }
   ]
 }
