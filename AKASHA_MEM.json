@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020184676
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS SHOCK SHOCK",
       "mood": "AGGRESSIVE",
@@ -136,6 +130,12 @@
       "text": "BREACH DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772020192940
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE STABLE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772020194609
     }
   ]
 }
