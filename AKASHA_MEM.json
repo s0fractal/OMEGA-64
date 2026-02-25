@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE WAIT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772041401736
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE OSMOSIS SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STABLE BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772041405300
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS RECON WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041405472
     }
   ]
 }
