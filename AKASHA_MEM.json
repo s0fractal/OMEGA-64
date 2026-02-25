@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH STRIFE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024317790
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772024318039
@@ -291,6 +285,12 @@
       "text": "BECOME SPARK FORGE",
       "mood": "CREATIVE",
       "tick": 1772024322643
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024322809
     }
   ]
 }
