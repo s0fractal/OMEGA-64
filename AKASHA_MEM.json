@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DRAIN STRIKE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020681438
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN SEIZE DECAY",
       "mood": "AGGRESSIVE",
@@ -150,6 +144,12 @@
       "text": "HEAL COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772020688999
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS SYNC SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772020689341
     }
   ]
 }
