@@ -99,12 +99,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772021588199
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772021588336
@@ -186,6 +180,12 @@
       "text": "HUNGER CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021594967
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SHOCK STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021595610
     }
   ]
 }
