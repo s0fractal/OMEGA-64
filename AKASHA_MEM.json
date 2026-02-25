@@ -127,12 +127,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT STASIS IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022287136
-    },
-    {
       "origin": "STREAM",
       "text": "BLOOM STABLE SYNC",
       "mood": "HARMONIC",
@@ -215,6 +209,12 @@
       "text": "SHIELD PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022290040
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIKE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022290377
     }
   ]
 }
