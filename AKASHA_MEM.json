@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT IMMUNE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772024118494
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772024118710
@@ -291,6 +285,12 @@
       "text": "GIVING HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772024121854
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024122660
     }
   ]
 }
