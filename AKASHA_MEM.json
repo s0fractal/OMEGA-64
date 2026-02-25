@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE STRIKE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023183917
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023184149
@@ -259,6 +253,12 @@
       "text": "BREACH SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023190038
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE HUNGER DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023190303
     }
   ]
 }
