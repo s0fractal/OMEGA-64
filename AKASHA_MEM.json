@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM OSMOSIS FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772037112181
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772037112381
@@ -291,6 +285,12 @@
       "text": "FLOW STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772037115979
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON RECON SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772037116198
     }
   ]
 }
