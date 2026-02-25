@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM FLOW UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772038950823
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772038951028
@@ -291,6 +285,12 @@
       "text": "STABLE OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772038954323
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD IMMUNE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772038954528
     }
   ]
 }
