@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772038131826
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772038132175
@@ -291,6 +285,12 @@
       "text": "WATCH SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772038135084
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE STASIS WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772038135306
     }
   ]
 }
