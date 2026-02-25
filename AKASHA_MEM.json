@@ -63,12 +63,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020623984
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772020624309
@@ -150,6 +144,12 @@
       "text": "AWAKEN VISION SPARK",
       "mood": "CREATIVE",
       "tick": 1772020629853
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN STRIKE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020629988
     }
   ]
 }
