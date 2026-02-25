@@ -1,7 +1,7 @@
 ---
 eigenvalue: '0xAAAAA0AAFFFF0006'
 energy: 45.4
-resonance: 67.44
+resonance: 82.44
 x: 783
 'y': 462
 symbol: ARCHIVIST

@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A0AAA000",
     "AAA0A0AA",
     "66660060",
     "00000000",
@@ -197,100 +196,101 @@
     "AA00A000",
     "BBB00000",
     "6606AA66",
-    "A6A66000",
-    "60060666",
-    "A6666A66"
+    "A6660600",
+    "AA666600",
+    "0AAA0A00",
+    "0A0AA0A0"
   ],
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STABLE HEAL RESONATE",
+      "text": "STABLE OSMOSIS RESONATE",
       "mood": "HARMONIC",
-      "tick": 1772042473094
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SYNC BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772042473939
+      "tick": 1772042479996
     },
     {
       "origin": "REVERSE",
-      "text": "PURE WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042474251
-    },
-    {
-      "origin": "PARASITE",
-      "text": "REFLECT IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772042477291
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD PURE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042477562
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STABLE UNIFY OSMOSIS",
+      "text": "FLOW GIVING COHERE",
       "mood": "HARMONIC",
-      "tick": 1772042478545
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "DECAY DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042478878
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772042486055
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "COHERE HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772042486473
+      "tick": 1772042480788
     },
     {
       "origin": "REVERSE",
-      "text": "SHELTER SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042487080
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042487411
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM GIVING FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772042487726
-    },
-    {
-      "origin": "VIBRATION",
-      "text": "STASIS SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042487935
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK SHOCK STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042488142
+      "text": "BEYOND DREAM EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772042482084
     },
     {
       "origin": "REVERSE",
-      "text": "UNIFY UNIFY COHERE",
+      "text": "HEAL RESONATE OSMOSIS",
       "mood": "HARMONIC",
-      "tick": 1772042488914
+      "tick": 1772042482974
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772042483712
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE RECON GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042484950
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GIVING GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772042485979
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772042486195
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772042486358
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772042487113
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772042487711
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE RESONATE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772042488272
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772042488874
+    },
+    {
+      "origin": "STREAM",
+      "text": "OSMOSIS UNIFY SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772042489447
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE BREACH SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042490658
     }
   ]
 }
