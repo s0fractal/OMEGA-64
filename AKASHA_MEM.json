@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029039285
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772029040402
@@ -291,6 +285,12 @@
       "text": "BLOOM GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772029055511
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BREACH DRAIN SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029056240
     }
   ]
 }
