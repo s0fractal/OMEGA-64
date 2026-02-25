@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE HUNGER BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037283247
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772037283444
@@ -291,6 +285,12 @@
       "text": "VISION WITNESS BEYOND",
       "mood": "CREATIVE",
       "tick": 1772037286059
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH PURE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772037286249
     }
   ]
 }
