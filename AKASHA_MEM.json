@@ -15,12 +15,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772014172557
-    },
-    {
       "origin": "INTERFACE",
       "text": "REFLECT SHELTER IMMUNE",
       "mood": "DEFENSIVE",
@@ -103,6 +97,12 @@
       "text": "DRAIN BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772014288558
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "CONSUME DECAY SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772014311944
     }
   ]
 }
