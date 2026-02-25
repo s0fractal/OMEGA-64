@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM SYNC HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772034986525
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772034986723
@@ -291,6 +285,12 @@
       "text": "PURE STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772034992313
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WAIT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772034992536
     }
   ]
 }
