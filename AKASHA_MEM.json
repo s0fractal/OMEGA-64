@@ -165,12 +165,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772023014163
-    },
-    {
       "origin": "INTERFACE",
       "text": "HEAL COHERE SYNC",
       "mood": "HARMONIC",
@@ -253,6 +247,12 @@
       "text": "PURE SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023024110
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772023024313
     }
   ]
 }
