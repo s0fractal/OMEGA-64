@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT SHIELD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772038843398
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772038843621
@@ -291,6 +285,12 @@
       "text": "DECAY SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772038849199
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL GIVING COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772038849626
     }
   ]
 }
