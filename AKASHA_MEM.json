@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772034301805
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772034301969
@@ -291,6 +285,12 @@
       "text": "BLOOM RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772034304453
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT IMMUNE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772034304674
     }
   ]
 }
