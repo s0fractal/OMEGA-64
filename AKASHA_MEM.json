@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS COHERE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772036372778
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772036372974
@@ -291,6 +285,12 @@
       "text": "STRIFE STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772036376605
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY STABLE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772036376800
     }
   ]
 }
