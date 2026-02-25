@@ -37,12 +37,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "SHOCK STRIFE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019768412
-    },
-    {
-      "origin": "INTERFACE",
       "text": "CONSUME STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772019769820
@@ -124,6 +118,12 @@
       "text": "GUARD WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772019780068
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS GUARD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772019780343
     }
   ]
 }
