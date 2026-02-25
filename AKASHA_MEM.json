@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019559079
-    },
-    {
       "origin": "INTERFACE",
       "text": "DRAIN STRIFE DECAY",
       "mood": "AGGRESSIVE",
@@ -111,6 +105,12 @@
       "text": "COHERE STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772019570355
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "FLOW STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772019571060
     }
   ]
 }
