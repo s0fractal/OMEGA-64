@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "GIVING BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772041336718
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH SEIZE STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041339721
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041339928
     }
   ]
 }
