@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE HEAL BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772039735201
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772039736137
@@ -291,6 +285,12 @@
       "text": "PURE IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772039747735
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH RECON STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772039748169
     }
   ]
 }
