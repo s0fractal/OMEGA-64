@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772040413330
-    },
-    {
       "origin": "STREAM",
       "text": "GIVING UNIFY RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIKE CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772040416743
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040416868
     }
   ]
 }
