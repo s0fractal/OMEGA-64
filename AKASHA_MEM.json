@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041130901
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "FLOW RESONATE RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "CONSUME SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772041134849
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIFE SEIZE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041135125
     }
   ]
 }
