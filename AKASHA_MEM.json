@@ -173,12 +173,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772023223810
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772023223973
@@ -260,6 +254,12 @@
       "text": "STRIFE CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023228141
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023228307
     }
   ]
 }
