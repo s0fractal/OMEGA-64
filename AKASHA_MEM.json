@@ -1,5 +1,7 @@
 {
   "reservoir": [
+    "00B0C00D",
+    "AA00A0AA",
     "A000AA0A",
     "10000000",
     "A0AAAAAA",
@@ -197,100 +199,98 @@
     "AAA0A00A",
     "A06AA0A0",
     "06006006",
-    "A0A660A0",
-    "06066666",
-    "A0AAA600"
+    "A0A660A0"
   ],
   "utterances": [
     {
-      "origin": "WORKER",
-      "text": "STASIS SHIELD REFLECT",
+      "origin": "ARCHIVIST",
+      "text": "RECON WATCH WAIT",
       "mood": "DEFENSIVE",
-      "tick": 1772042082119
-    },
-    {
-      "origin": "SUCC",
-      "text": "BLOOM COHERE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772042082487
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042082997
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME SEIZE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042083294
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE SICKNESS HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042083565
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS HEAL HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772042084130
-    },
-    {
-      "origin": "PARADOX",
-      "text": "GUARD REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772042085074
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME STRIFE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042085727
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "PURE GUARD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042085984
-    },
-    {
-      "origin": "STREAM",
-      "text": "HEAL HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772042086658
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD GUARD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042086944
+      "tick": 1772042070211
     },
     {
       "origin": "REVERSE",
-      "text": "REFLECT SHIELD PURE",
+      "text": "RESONATE OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042072343
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WATCH STASIS",
       "mood": "DEFENSIVE",
-      "tick": 1772042087337
+      "tick": 1772042072672
     },
     {
       "origin": "ARCHIVIST",
-      "text": "STASIS RECON SHELTER",
+      "text": "COHERE GIVING SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772042075052
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD PURE SHIELD",
       "mood": "DEFENSIVE",
-      "tick": 1772042088110
+      "tick": 1772042075917
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RECON RECON PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042076678
+    },
+    {
+      "origin": "ALPHA_GUARDIAN",
+      "text": "UNIFY GIVING SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772042078937
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042080948
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "OSMOSIS RESONATE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772042081406
     },
     {
       "origin": "ARCHIVIST",
-      "text": "STRIFE SEIZE SICKNESS",
+      "text": "SEIZE STRIFE SEIZE",
       "mood": "AGGRESSIVE",
-      "tick": 1772042088426
+      "tick": 1772042082254
     },
     {
-      "origin": "WORKER",
-      "text": "PURE WATCH WAIT",
+      "origin": "INTERFACE",
+      "text": "STRIKE HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042082990
+    },
+    {
+      "origin": "PURE_MATH",
+      "text": "DECAY SEIZE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042083988
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE REFLECT REFLECT",
       "mood": "DEFENSIVE",
-      "tick": 1772042088994
+      "tick": 1772042087597
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE SHOCK DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042087912
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM BEYOND EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772042088861
     }
   ]
 }
