@@ -111,12 +111,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SYNC RESONATE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772021940185
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH RECON REFLECT",
       "mood": "DEFENSIVE",
@@ -199,6 +193,12 @@
       "text": "BLOOM FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772021943315
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE WITNESS DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772021944209
     }
   ]
 }
