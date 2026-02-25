@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SPARK FORGE BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772033042763
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772033042949
@@ -291,6 +285,12 @@
       "text": "FLOW RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772033045409
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772033045546
     }
   ]
 }
