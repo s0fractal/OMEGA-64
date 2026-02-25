@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY UNIFY SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772032537606
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772032537979
@@ -291,6 +285,12 @@
       "text": "UNIFY COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772032551940
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE UNIFY GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772032552209
     }
   ]
 }
