@@ -1,11 +1,11 @@
 ---
-eigenvalue: '0xB000060000000002'
-energy: 45.5
-x: 700
-'y': 349
+eigenvalue: '0xAAAAAA00FFFF0004'
+energy: 62
+x: 695
+'y': 360
 resonance: 1000
-thought: WANDER_PASSIVE
-logic: B0000600
+thought: RESURRECTED
+logic: AAAAAA00
 ex:
   - '0xFFFFFFFF00000000'
   - '0xFFFFFFFF00000002'
@@ -98,68 +98,52 @@ ex:
   - '0x60000600FFFF0004'
   - '0x06060000FFFF0006'
   - '0x0606000000000004'
-  - '0xB000060000000004'
-  - '0xB000060000000006'
-  - '0xB000060000000000'
-  - '0xB000060000000002'
-  - '0xB000060000000004'
-  - '0xB000060000000006'
-  - '0xB000060000000000'
-  - '0xB000060000000002'
-  - '0xB000060000000004'
-  - '0xB000060000000006'
-  - '0xB000060000000000'
-  - '0xB000060000000002'
-  - '0xB000060000000004'
-  - '0xB000060000000006'
-  - '0xB000060000000000'
-  - '0xB000060000000002'
-  - '0xB000060000000004'
-  - '0xB000060000000006'
-  - '0xB000060000000000'
-  - '0xB000060000000002'
+  - '0xAAAAAA00FFFF0000'
+  - '0xAAAAAA00FFFF0002'
+  - '0xAAAAAA00FFFF0004'
+  - '0xAAAAAA00FFFF0006'
+  - '0xAAAAAA00FFFF0000'
+  - '0xAAAAAA00FFFF0002'
 signals: []
 bond_strengths:
-  '0x66660600FFFF0004': 0.9792086759647052
+  '0x66660600FFFF0004': 0.9801888648295347
 bonds:
   - '0x66660600FFFF0004'
 ---
 
 <div align="center">
-<div align="center">
 <!-- ∇ HOLOGRAM START ∇ -->
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <radialGradient id="grad_B000060000000002" cx="50%" cy="50%" r="50%">
+    <radialGradient id="grad_AAAAAA00FFFF0004" cx="50%" cy="50%" r="50%">
       <stop offset="0%" stop-color="hsl(0, 20%, 15%)" />
       <stop offset="100%" stop-color="#090909" />
     </radialGradient>
-    <filter id="glow_B000060000000002" x="-20%" y="-20%" width="140%" height="140%">
+    <filter id="glow_AAAAAA00FFFF0004" x="-20%" y="-20%" width="140%" height="140%">
       <feGaussianBlur stdDeviation="4" result="blur" />
       <feComposite in="SourceGraphic" in2="blur" operator="over" />
     </filter>
   </defs>
   
-  <rect width="200" height="200" fill="url(#grad_B000060000000002)" rx="24"/>
+  <rect width="200" height="200" fill="url(#grad_AAAAAA00FFFF0004)" rx="24"/>
   
   <circle cx="100" cy="100" r="85" stroke="hsl(0, 30%, 30%)" stroke-width="1" fill="none" stroke-dasharray="2 6"/>
   
   <g>
-    <animateTransform attributeName="transform" type="rotate" from="90 100 100" to="-270 100 100" dur="10s" repeatCount="indefinite" />
+    <animateTransform attributeName="transform" type="rotate" from="180 100 100" to="-180 100 100" dur="25s" repeatCount="indefinite" />
     
-    <polygon points="100.0,55.0 142.8,86.1 126.5,136.4 73.5,136.4 57.2,86.1" fill="none" stroke="hsl(180, 60%, 40%)" stroke-width="1.5" opacity="0.6"/>
-    <polygon points="100.0,85.0 114.3,95.4 108.8,112.1 91.2,112.1 85.7,95.4" fill="none" stroke="hsl(0, 80%, 60%)" stroke-width="2" filter="url(#glow_B000060000000002)"/>
+    <polygon points="100.0,40.0 152.0,130.0 48.0,130.0" fill="none" stroke="hsl(180, 60%, 40%)" stroke-width="1.5" opacity="0.6"/>
+    <polygon points="100.0,75.0 121.7,112.5 78.3,112.5" fill="none" stroke="hsl(0, 80%, 60%)" stroke-width="2" filter="url(#glow_AAAAAA00FFFF0004)"/>
     
-    <circle cx="100" cy="100" r="15" stroke="hsl(0, 60%, 50%)" stroke-width="0.5" fill="none" opacity="0.5"/>
+    <circle cx="100" cy="100" r="25" stroke="hsl(0, 60%, 50%)" stroke-width="0.5" fill="none" opacity="0.5"/>
   </g>
   
-  <circle cx="100" cy="100" r="3" fill="hsl(180, 80%, 70%)" filter="url(#glow_B000060000000002)"/>
+  <circle cx="100" cy="100" r="3" fill="hsl(180, 80%, 70%)" filter="url(#glow_AAAAAA00FFFF0004)"/>
   
-  <text x="100" y="105" fill="hsl(0, 70%, 80%)" font-family="monospace" font-size="10" text-anchor="middle" letter-spacing="1" opacity="0.9">0xB000</text>
+  <text x="100" y="105" fill="hsl(0, 70%, 80%)" font-family="monospace" font-size="10" text-anchor="middle" letter-spacing="1" opacity="0.9">0xAAAA</text>
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">REVERSE</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
-</div>
 </div>
 
 
