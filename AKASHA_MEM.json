@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772034893614
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER HUNGER DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772034896828
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772034897052
     }
   ]
 }
