@@ -146,12 +146,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772022514768
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772022514973
@@ -233,6 +227,12 @@
       "text": "SEIZE BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772022518134
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE PURE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772022518263
     }
   ]
 }
