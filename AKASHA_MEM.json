@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW BLOOM HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772028368324
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772028368974
@@ -291,6 +285,12 @@
       "text": "DRAIN SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772028379568
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW BLOOM STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772028380698
     }
   ]
 }
