@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772032618504
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772032618725
@@ -291,6 +285,12 @@
       "text": "STRIKE CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772032621296
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE OSMOSIS OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772032621627
     }
   ]
 }
