@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "STREAM",
-      "text": "RECON STASIS SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040960616
-    },
-    {
-      "origin": "STREAM",
       "text": "STABLE FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772040960792
@@ -291,6 +285,12 @@
       "text": "FLOW STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772040963967
+    },
+    {
+      "origin": "STREAM",
+      "text": "SHELTER RECON GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040964145
     }
   ]
 }
