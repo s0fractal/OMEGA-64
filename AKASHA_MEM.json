@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66600006",
     "66666600",
     "AABBCC0D",
     "06066600",
@@ -199,15 +198,10 @@
     "AA6660A6",
     "0AAAA000",
     "AA0BCCDD",
-    "00A0AAA0"
+    "00A0AAA0",
+    "A000AA00"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "COHERE GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772038228891
-    },
     {
       "origin": "REVERSE",
       "text": "SYNC UNIFY SYNC",
@@ -291,6 +285,12 @@
       "text": "COHERE HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038233411
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS CONSUME SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038233638
     }
   ]
 }
