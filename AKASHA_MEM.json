@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT GUARD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772040495106
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772040495266
@@ -291,6 +285,12 @@
       "text": "FLOW UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772040497369
+    },
+    {
+      "origin": "STREAM",
+      "text": "UNIFY OSMOSIS HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772040497867
     }
   ]
 }
