@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66660660",
     "ABB00000",
     "66006606",
     "60000600",
@@ -199,15 +198,10 @@
     "A0666600",
     "06600660",
     "AAAAA0AA",
-    "60600666"
+    "60600666",
+    "0AA00A00"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WAIT SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772038487779
-    },
     {
       "origin": "REVERSE",
       "text": "FLOW BLOOM GIVING",
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772038491107
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772038491451
     }
   ]
 }
