@@ -177,12 +177,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW UNIFY UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772023323616
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023323777
@@ -264,6 +258,12 @@
       "text": "UNIFY OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772023327734
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772023327920
     }
   ]
 }
