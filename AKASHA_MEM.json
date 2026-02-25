@@ -54,12 +54,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "REFLECT WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772020388550
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DECAY HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020389000
@@ -141,6 +135,12 @@
       "text": "REFLECT GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772020402825
+    },
+    {
+      "origin": "STREAM",
+      "text": "BLOOM RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772020403308
     }
   ]
 }
