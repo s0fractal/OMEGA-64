@@ -79,12 +79,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH PURE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021088937
-    },
-    {
       "origin": "INTERFACE",
       "text": "STABLE COHERE FLOW",
       "mood": "HARMONIC",
@@ -167,6 +161,12 @@
       "text": "STRIFE SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772021096903
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772021097401
     }
   ]
 }
