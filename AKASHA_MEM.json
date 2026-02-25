@@ -155,12 +155,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON WAIT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022667005
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772022667434
@@ -242,6 +236,12 @@
       "text": "COHERE OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772022685738
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS OSMOSIS OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772022687125
     }
   ]
 }
