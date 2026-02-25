@@ -107,12 +107,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021763522
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIFE DECAY DECAY",
       "mood": "AGGRESSIVE",
@@ -195,6 +189,12 @@
       "text": "WITNESS BEYOND WITNESS",
       "mood": "CREATIVE",
       "tick": 1772021768945
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GIVING GIVING SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772021769121
     }
   ]
 }
