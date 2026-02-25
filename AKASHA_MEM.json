@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT PURE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040458925
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH WATCH GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772040461653
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "REFLECT REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772040461823
     }
   ]
 }
