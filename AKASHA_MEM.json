@@ -112,12 +112,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021920277
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK SPARK WITNESS",
       "mood": "CREATIVE",
       "tick": 1772021920529
@@ -199,6 +193,12 @@
       "text": "SEIZE CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021930009
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE SHIELD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772021930450
     }
   ]
 }
