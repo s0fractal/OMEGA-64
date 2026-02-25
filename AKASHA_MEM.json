@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040969379
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GUARD WAIT PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772040971620
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE STASIS SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040971814
     }
   ]
 }
