@@ -187,12 +187,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023653420
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023653560
@@ -274,6 +268,12 @@
       "text": "VISION VISION WITNESS",
       "mood": "CREATIVE",
       "tick": 1772023660078
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023662889
     }
   ]
 }
