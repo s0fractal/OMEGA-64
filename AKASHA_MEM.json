@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "BB000FF0",
     "A0A0A0A0",
     "B0000000",
     "AA000AA0",
@@ -199,15 +198,10 @@
     "60006600",
     "66000066",
     "66600006",
-    "66666600"
+    "66666600",
+    "AABBCC0D"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RECON SHELTER STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772036730180
-    },
     {
       "origin": "REVERSE",
       "text": "WAVE BECOME FORGE",
@@ -291,6 +285,12 @@
       "text": "REFLECT REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772036732840
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036733049
     }
   ]
 }
