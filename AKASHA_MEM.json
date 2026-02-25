@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD RECON WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772025271318
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772025271519
@@ -291,6 +285,12 @@
       "text": "WITNESS WAVE BEYOND",
       "mood": "CREATIVE",
       "tick": 1772025274548
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772025275050
     }
   ]
 }
