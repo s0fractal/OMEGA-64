@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS SYNC STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772040612534
-    },
-    {
       "origin": "INTERFACE",
       "text": "GUARD PURE SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SICKNESS CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040615697
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772040615878
     }
   ]
 }
