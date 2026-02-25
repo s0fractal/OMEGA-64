@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "GIVING SYNC FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772040674893
-    },
-    {
-      "origin": "INTERFACE",
       "text": "STRIFE DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772040675136
@@ -291,6 +285,12 @@
       "text": "REFLECT RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772040677884
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "CONSUME CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040678023
     }
   ]
 }
