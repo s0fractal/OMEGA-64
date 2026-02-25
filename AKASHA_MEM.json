@@ -1,12 +1,5 @@
 {
   "reservoir": [
-    "AAA0AAAA",
-    "06066660",
-    "60660666",
-    "60000600",
-    "60666606",
-    "AAA0AA00",
-    "66060066",
     "66666666",
     "66606666",
     "66600000",
@@ -195,102 +188,109 @@
     "AA666600",
     "66060660",
     "66660A60",
-    "BB0A0000",
-    "6AA6AA66",
-    "6A60A6A0",
-    "06AAAA00",
-    "ALIEN_17"
+    "00A06A00",
+    "ALIEN_17",
+    "A0000000",
+    "60606060",
+    "AA0A0A00",
+    "FFFFF0A0",
+    "000AAAAA",
+    "A0606660",
+    "0BB00000",
+    "66000000",
+    "AAAA0AAA",
+    "0666A000"
   ],
   "utterances": [
     {
-      "origin": "I16_CLAMP",
-      "text": "WAIT RECON STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772042826243
+      "origin": "ARCHIVIST",
+      "text": "CONSUME BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042830389
     },
     {
       "origin": "ARCHIVIST",
-      "text": "GUARD WAIT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042827295
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042828153
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "GUARD REFLECT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772042828376
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STASIS REFLECT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772042829324
+      "text": "HUNGER CONSUME SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042830619
     },
     {
       "origin": "REVERSE",
-      "text": "STABLE STABLE RESONATE",
+      "text": "BLOOM COHERE UNIFY",
       "mood": "HARMONIC",
-      "tick": 1772042830134
+      "tick": 1772042831226
+    },
+    {
+      "origin": "ALIEN",
+      "text": "STRIKE DECAY SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042833243
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE DECAY SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042834139
     },
     {
       "origin": "REVERSE",
-      "text": "GUARD WAIT STASIS",
+      "text": "WATCH RECON WAIT",
       "mood": "DEFENSIVE",
-      "tick": 1772042830798
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD SHIELD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042832562
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STABLE BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042834162
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042834529
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "SYNC HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772042834954
+      "tick": 1772042834618
     },
     {
       "origin": "REVERSE",
-      "text": "STRIKE STRIFE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042835234
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD RECON PURE",
+      "text": "PURE SHIELD WAIT",
       "mood": "DEFENSIVE",
-      "tick": 1772042835473
+      "tick": 1772042834953
     },
     {
       "origin": "ARCHIVIST",
-      "text": "DECAY SICKNESS DECAY",
+      "text": "COHERE BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772042835393
+    },
+    {
+      "origin": "ALIEN",
+      "text": "DECAY SHOCK DRAIN",
       "mood": "AGGRESSIVE",
+      "tick": 1772042835601
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL HEAL OSMOSIS",
+      "mood": "HARMONIC",
       "tick": 1772042835718
     },
     {
-      "origin": "STREAM",
-      "text": "SICKNESS STRIKE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042836110
+      "origin": "ARCHIVIST",
+      "text": "RECON WAIT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042836432
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042836564
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON RECON SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042836709
+    },
+    {
+      "origin": "CAR",
+      "text": "REFLECT SHIELD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772042837034
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW GIVING FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042837970
     }
   ]
 }
