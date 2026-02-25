@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS AWAKEN VISION",
-      "mood": "CREATIVE",
-      "tick": 1772026347320
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772026347720
@@ -291,6 +285,12 @@
       "text": "COHERE OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772026356594
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE GUARD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772026357085
     }
   ]
 }
