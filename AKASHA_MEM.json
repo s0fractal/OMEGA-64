@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040254862
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772040255196
@@ -291,6 +285,12 @@
       "text": "SEIZE SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772040259529
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040260140
     }
   ]
 }
