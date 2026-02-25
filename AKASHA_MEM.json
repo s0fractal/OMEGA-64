@@ -114,12 +114,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STASIS SHELTER PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021990896
-    },
-    {
       "origin": "INTERFACE",
       "text": "SICKNESS HUNGER SHOCK",
       "mood": "AGGRESSIVE",
@@ -202,6 +196,12 @@
       "text": "WATCH WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022000167
+    },
+    {
+      "origin": "PARADOX",
+      "text": "HEAL STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772022000416
     }
   ]
 }
