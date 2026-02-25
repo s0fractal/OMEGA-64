@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772033002064
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772033002282
@@ -291,6 +285,12 @@
       "text": "COHERE UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772033004614
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE HUNGER SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033004785
     }
   ]
 }
