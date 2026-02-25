@@ -139,12 +139,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE UNIFY UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772022435604
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022435927
@@ -226,6 +220,12 @@
       "text": "BECOME BEYOND BEYOND",
       "mood": "CREATIVE",
       "tick": 1772022439261
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022439483
     }
   ]
 }
