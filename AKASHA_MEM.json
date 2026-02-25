@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SEIZE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037882344
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772037882555
@@ -291,6 +285,12 @@
       "text": "REFLECT WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772037885190
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772037885394
     }
   ]
 }
