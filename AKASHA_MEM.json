@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN DRAIN SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026672349
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH SEIZE SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "EVOLVE SPARK WITNESS",
       "mood": "CREATIVE",
       "tick": 1772026682765
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING RESONATE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772026682984
     }
   ]
 }
