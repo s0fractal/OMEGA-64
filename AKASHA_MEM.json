@@ -81,12 +81,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STASIS WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021142585
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GUARD IMMUNE SHIELD",
       "mood": "DEFENSIVE",
@@ -169,6 +163,12 @@
       "text": "HUNGER DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772021147482
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN STRIFE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021147664
     }
   ]
 }
