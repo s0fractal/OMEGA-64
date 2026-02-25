@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHIELD WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040898068
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE SHOCK STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772040901512
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON IMMUNE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040901657
     }
   ]
 }
