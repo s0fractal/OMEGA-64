@@ -108,12 +108,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL OSMOSIS FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772021789765
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772021789941
@@ -195,6 +189,12 @@
       "text": "SICKNESS SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772021793872
+    },
+    {
+      "origin": "REVERSE",
+      "text": "AWAKEN BECOME BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772021794052
     }
   ]
 }
