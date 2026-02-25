@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT WATCH WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772039099514
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772039099727
@@ -291,6 +285,12 @@
       "text": "WAIT REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772039102481
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH BREACH SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039102708
     }
   ]
 }
