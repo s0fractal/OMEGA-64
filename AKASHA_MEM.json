@@ -55,12 +55,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GIVING BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772020457410
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "PURE SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020458209
@@ -142,6 +136,12 @@
       "text": "GIVING GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772020463637
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE DREAM AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772020464248
     }
   ]
 }
