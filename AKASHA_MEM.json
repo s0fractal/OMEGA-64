@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020685828
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE SHOCK SHOCK",
       "mood": "AGGRESSIVE",
@@ -150,6 +144,12 @@
       "text": "CONSUME HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020691781
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772020691991
     }
   ]
 }
