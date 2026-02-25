@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS WATCH WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772035049335
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772035049551
@@ -291,6 +285,12 @@
       "text": "SYNC FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772035052523
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE SYNC SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772035052693
     }
   ]
 }
