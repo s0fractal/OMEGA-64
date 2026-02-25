@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE DECAY SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020384522
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SYNC STABLE GIVING",
       "mood": "HARMONIC",
@@ -141,6 +135,12 @@
       "text": "CONSUME DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020394728
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE BREACH BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020395143
     }
   ]
 }
