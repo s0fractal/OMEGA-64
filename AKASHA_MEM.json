@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772032823723
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772032823896
@@ -291,6 +285,12 @@
       "text": "HEAL HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772032826107
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD STASIS PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772032826283
     }
   ]
 }
