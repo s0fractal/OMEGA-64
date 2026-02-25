@@ -22,12 +22,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "UNIFY SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772019467181
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY SHOCK HUNGER",
       "mood": "AGGRESSIVE",
@@ -110,6 +104,12 @@
       "text": "CONSUME HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772019476030
+    },
+    {
+      "origin": "STREAM",
+      "text": "GIVING OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772019476610
     }
   ]
 }
