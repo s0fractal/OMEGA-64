@@ -17,12 +17,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH SEIZE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772015023384
-    },
-    {
       "origin": "INTERFACE",
       "text": "BREACH SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
@@ -105,6 +99,12 @@
       "text": "STRIFE DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772015156891
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WITNESS WITNESS WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772015159592
     }
   ]
 }
