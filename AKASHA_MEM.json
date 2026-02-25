@@ -175,12 +175,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023254743
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772023254896
@@ -262,6 +256,12 @@
       "text": "VISION VISION SPARK",
       "mood": "CREATIVE",
       "tick": 1772023258591
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD GUARD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772023258720
     }
   ]
 }
