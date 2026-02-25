@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772033118412
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772033118620
@@ -291,6 +285,12 @@
       "text": "DRAIN STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772033121571
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE STASIS WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772033121743
     }
   ]
 }
