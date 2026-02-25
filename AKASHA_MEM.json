@@ -192,12 +192,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME DREAM WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772023757160
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772023757316
@@ -279,6 +273,12 @@
       "text": "SHOCK SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772023762248
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772023762406
     }
   ]
 }
