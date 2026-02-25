@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE OSMOSIS UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772026007315
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772026007520
@@ -291,6 +285,12 @@
       "text": "DECAY STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772026010735
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE CONSUME STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026010891
     }
   ]
 }
