@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH STRIKE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038613866
-    },
-    {
       "origin": "INTERFACE",
       "text": "STASIS GUARD REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772038617073
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WATCH PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772038617248
     }
   ]
 }
