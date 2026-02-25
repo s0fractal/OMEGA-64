@@ -198,12 +198,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772024007756
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772024007967
@@ -285,6 +279,12 @@
       "text": "COHERE HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772024012724
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WATCH WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772024013034
     }
   ]
 }
