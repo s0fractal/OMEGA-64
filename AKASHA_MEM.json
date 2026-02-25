@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00066006",
     "AA0A000A",
     "00066066",
     "A0666666",
@@ -199,15 +198,10 @@
     "06606600",
     "A00AA0A0",
     "0000AA0A",
-    "A0AA0AAA"
+    "A0AA0AAA",
+    "00660000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHELTER IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772035412113
-    },
     {
       "origin": "REVERSE",
       "text": "BECOME VISION WITNESS",
@@ -291,6 +285,12 @@
       "text": "COHERE COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772035415356
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE SYNC HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772035415556
     }
   ]
 }
