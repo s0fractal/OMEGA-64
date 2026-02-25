@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772025494356
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY DRAIN STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772025498586
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772025499290
     }
   ]
 }
