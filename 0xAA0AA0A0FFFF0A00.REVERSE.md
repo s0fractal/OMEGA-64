@@ -3,7 +3,7 @@ eigenvalue: '0xAA0AA0A0FFFF0A00'
 energy: 50
 x: 723
 'y': 392
-resonance: 34.96
+resonance: 49.96
 thought: RESURRECTED
 logic: AA0AA0A0
 signals: []
