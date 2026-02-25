@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HUNGER STRIFE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040586188
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHOCK STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772040586596
@@ -291,6 +285,12 @@
       "text": "STRIFE CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772040589321
+    },
+    {
+      "origin": "ALPHA_GUARDIAN",
+      "text": "OSMOSIS GIVING COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772040589498
     }
   ]
 }
