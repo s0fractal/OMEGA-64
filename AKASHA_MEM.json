@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY FLOW OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772038589799
-    },
-    {
       "origin": "STREAM",
       "text": "UNIFY SYNC HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "CONSUME SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772038595705
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772038596197
     }
   ]
 }
