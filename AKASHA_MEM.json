@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772027444669
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772027444919
@@ -291,6 +285,12 @@
       "text": "SEIZE SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772027449503
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027449676
     }
   ]
 }
