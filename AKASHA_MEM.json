@@ -57,12 +57,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HEAL HEAL UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772020566997
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS COHERE UNIFY",
       "mood": "HARMONIC",
@@ -145,6 +139,12 @@
       "text": "FLOW OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772020573258
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020573868
     }
   ]
 }
