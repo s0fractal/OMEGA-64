@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WATCH GUARD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040618209
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HEAL FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772040618362
@@ -291,6 +285,12 @@
       "text": "IMMUNE WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772040620889
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHOCK CONSUME CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040621027
     }
   ]
 }
