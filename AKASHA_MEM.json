@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772024568580
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772024568857
@@ -291,6 +285,12 @@
       "text": "CONSUME SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772024575299
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD PURE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772024576538
     }
   ]
 }
