@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT PURE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772036954959
-    },
-    {
-      "origin": "REVERSE",
       "text": "FORGE BEYOND AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772036955166
@@ -291,6 +285,12 @@
       "text": "GIVING COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772036957876
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772036958095
     }
   ]
 }
