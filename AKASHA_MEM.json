@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS SHELTER WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772034319292
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772034319549
@@ -291,6 +285,12 @@
       "text": "SYNC FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034322380
+    },
+    {
+      "origin": "STREAM",
+      "text": "BLOOM RESONATE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772034322684
     }
   ]
 }
