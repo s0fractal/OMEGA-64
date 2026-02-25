@@ -202,12 +202,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE HUNGER DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024089703
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772024090280
@@ -289,6 +283,12 @@
       "text": "BECOME DREAM SPARK",
       "mood": "CREATIVE",
       "tick": 1772024096611
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772024096772
     }
   ]
 }
