@@ -108,12 +108,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772021807442
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772021807569
@@ -195,6 +189,12 @@
       "text": "SICKNESS CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772021810871
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021811218
     }
   ]
 }
