@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WAIT IMMUNE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772025799348
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT SHIELD STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772025804351
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772025804564
     }
   ]
 }
