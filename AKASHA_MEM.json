@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DRAIN CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041640050
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DRAIN STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772041640447
@@ -291,6 +285,12 @@
       "text": "RESONATE STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772041643370
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SYNC SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772041643804
     }
   ]
 }
