@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN BREACH HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023728004
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772023728136
@@ -278,6 +272,12 @@
       "text": "SHIELD STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023731187
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE UNIFY COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772023731372
     }
   ]
 }
