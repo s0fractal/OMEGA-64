@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772027344621
-    },
-    {
       "origin": "STREAM",
       "text": "HEAL BLOOM BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SICKNESS HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772027357896
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SEIZE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027358256
     }
   ]
 }
