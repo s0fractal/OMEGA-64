@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "AWAKEN AWAKEN WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772025854060
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772025854274
@@ -291,6 +285,12 @@
       "text": "HEAL COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772025858570
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER BREACH CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025858834
     }
   ]
 }
