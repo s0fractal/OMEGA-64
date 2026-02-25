@@ -71,15 +71,10 @@
     "0000000F",
     "66660000",
     "000AAAAA",
-    "ABBB0000"
+    "ABBB0000",
+    "60660000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHELTER WAIT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020982079
-    },
     {
       "origin": "ARCHIVIST",
       "text": "IMMUNE IMMUNE REFLECT",
@@ -163,6 +158,12 @@
       "text": "SEIZE SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020990454
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHELTER WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020991739
     }
   ]
 }
