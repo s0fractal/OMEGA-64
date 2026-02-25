@@ -81,12 +81,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021137164
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS SHOCK STRIKE",
       "mood": "AGGRESSIVE",
@@ -169,6 +163,12 @@
       "text": "RECON SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772021144450
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772021144728
     }
   ]
 }
