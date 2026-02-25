@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772041416149
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE OSMOSIS RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RECON WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772041420254
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD RECON IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041420703
     }
   ]
 }
