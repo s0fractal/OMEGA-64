@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772040592106
-    },
-    {
       "origin": "INTERFACE",
       "text": "DECAY CONSUME CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772040595700
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772040595981
     }
   ]
 }
