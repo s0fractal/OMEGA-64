@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041427298
-    },
-    {
       "origin": "CONSCIOUSNESS",
       "text": "HEAL BLOOM UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772041430733
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT SHELTER GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041431295
     }
   ]
 }
