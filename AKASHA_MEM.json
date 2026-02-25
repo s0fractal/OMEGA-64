@@ -9,11 +9,6 @@
   ],
   "utterances": [
     {
-      "origin": "GUARDIAN",
-      "text": "CONNECT",
-      "tick": 1772009259508
-    },
-    {
       "origin": "PARASITE",
       "text": "ASCEND",
       "tick": 1772009285818
@@ -57,6 +52,11 @@
       "origin": "INTERFACE",
       "text": "OBSERVE",
       "tick": 1772009508235
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RECLAIM",
+      "tick": 1772009513044
     }
   ]
 }
