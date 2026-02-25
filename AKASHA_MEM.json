@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE REFLECT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772026800130
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772026800330
@@ -291,6 +285,12 @@
       "text": "HEAL SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772026804393
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772026804630
     }
   ]
 }
