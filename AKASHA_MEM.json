@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "VISION EVOLVE FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772025415845
-    },
-    {
       "origin": "STREAM",
       "text": "REFLECT SHELTER REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772025420864
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD SHELTER SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772025421056
     }
   ]
 }
