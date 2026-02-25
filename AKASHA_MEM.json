@@ -1,5 +1,7 @@
 {
   "reservoir": [
+    "60606006",
+    "AA0660A0",
     "A0AAA00A",
     "AAAA0A0A",
     "AAA0AAAA",
@@ -197,100 +199,98 @@
     "AA666600",
     "66060660",
     "66660A60",
-    "BB0A0000",
-    "6AA6AA66",
-    "6A60A6A0"
+    "BB0A0000"
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042757784
+      "origin": "ARCHIVIST",
+      "text": "CONSUME HUNGER STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042757788
     },
     {
-      "origin": "REVERSE",
-      "text": "STABLE FLOW OSMOSIS",
+      "origin": "ARCHIVIST",
+      "text": "BLOOM SYNC RESONATE",
       "mood": "HARMONIC",
-      "tick": 1772042758551
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM GIVING SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772042758962
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STABLE FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772042759643
-    },
-    {
-      "origin": "REVERSE",
-      "text": "FLOW HEAL BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772042760238
-    },
-    {
-      "origin": "REVERSE",
-      "text": "STRIKE DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042760854
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME STRIKE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042762743
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK SEIZE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042763215
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER GUARD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772042765322
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT SHIELD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042766298
-    },
-    {
-      "origin": "REVERSE",
-      "text": "CONSUME STRIFE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042767200
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042768074
+      "tick": 1772042758013
     },
     {
       "origin": "INTERFACE",
-      "text": "SHELTER STASIS SHIELD",
+      "text": "WAIT PURE IMMUNE",
       "mood": "DEFENSIVE",
-      "tick": 1772042768449
-    },
-    {
-      "origin": "STREAM",
-      "text": "STASIS GUARD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042769152
+      "tick": 1772042758554
     },
     {
       "origin": "ARCHIVIST",
-      "text": "SHIELD SHIELD WATCH",
+      "text": "COHERE STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042759117
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772042759713
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD PURE PURE",
       "mood": "DEFENSIVE",
-      "tick": 1772042769880
+      "tick": 1772042762913
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE FLOW GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772042763921
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042765526
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT WAIT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042766297
+    },
+    {
+      "origin": "CAR",
+      "text": "IMMUNE IMMUNE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042766574
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE STASIS SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042767616
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042768807
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD RECON SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772042769344
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS WATCH WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772042769879
+    },
+    {
+      "origin": "STREAM",
+      "text": "RESONATE GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772042770194
     }
   ]
 }
