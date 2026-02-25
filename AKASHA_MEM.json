@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER STASIS IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772033751149
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772033751354
@@ -291,6 +285,12 @@
       "text": "DRAIN SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772033753743
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS CONSUME SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033753935
     }
   ]
 }
