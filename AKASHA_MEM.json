@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SEIZE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029202121
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772029202483
@@ -291,6 +285,12 @@
       "text": "COHERE BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772029214163
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE REFLECT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772029215086
     }
   ]
 }
