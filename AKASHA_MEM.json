@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHOCK SHOCK SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041854421
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH SHIELD RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041858937
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH RECON STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772041859449
     }
   ]
 }
