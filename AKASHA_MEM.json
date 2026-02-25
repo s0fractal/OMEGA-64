@@ -108,12 +108,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT SHELTER STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772021750571
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772021751874
@@ -195,6 +189,12 @@
       "text": "FORGE AWAKEN VISION",
       "mood": "CREATIVE",
       "tick": 1772021755230
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHELTER PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021755385
     }
   ]
 }
