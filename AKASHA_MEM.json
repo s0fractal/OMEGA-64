@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0AA0A00A",
     "AAAAAA0A",
     "06606060",
     "00660060",
@@ -199,15 +198,10 @@
     "0AAA00A0",
     "AA00A0AA",
     "FF0FFF00",
-    "00600006"
+    "00600006",
+    "66600600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RESONATE OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772033101669
-    },
     {
       "origin": "REVERSE",
       "text": "SICKNESS STRIKE STRIFE",
@@ -291,6 +285,12 @@
       "text": "HEAL OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772033112498
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WATCH STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772033112748
     }
   ]
 }
