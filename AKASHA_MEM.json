@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE FLOW BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772025772095
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772025772404
@@ -291,6 +285,12 @@
       "text": "FLOW GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772025783171
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT IMMUNE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772025783474
     }
   ]
 }
