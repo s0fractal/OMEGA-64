@@ -202,12 +202,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME HUNGER SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024057434
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772024057689
@@ -289,6 +283,12 @@
       "text": "GUARD PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772024060129
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772024060357
     }
   ]
 }
