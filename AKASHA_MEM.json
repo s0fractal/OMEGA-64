@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER SHELTER REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772030463082
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772030464219
@@ -291,6 +285,12 @@
       "text": "IMMUNE SHIELD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772030473770
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE HUNGER DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030479690
     }
   ]
 }
