@@ -118,12 +118,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE RECON WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022083518
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE BREACH DRAIN",
       "mood": "AGGRESSIVE",
@@ -206,6 +200,12 @@
       "text": "GIVING GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022089199
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE STRIKE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022089382
     }
   ]
 }
