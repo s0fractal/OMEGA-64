@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAA0AAA0",
     "B0B0000C",
     "00600000",
     "A1000000",
@@ -199,15 +198,10 @@
     "A00A0000",
     "0AA0AA0A",
     "66006006",
-    "0000AAA0"
+    "0000AAA0",
+    "AA0A0AA0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STASIS IMMUNE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772033043148
-    },
     {
       "origin": "REVERSE",
       "text": "WAIT SHELTER STASIS",
@@ -291,6 +285,12 @@
       "text": "SYNC UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772033045730
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SICKNESS DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033045866
     }
   ]
 }
