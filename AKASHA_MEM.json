@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GIVING SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772041771567
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHOCK SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772041771981
@@ -291,6 +285,12 @@
       "text": "STASIS SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772041778715
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM SYNC FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772041779024
     }
   ]
 }
