@@ -41,15 +41,10 @@
     "A000A000",
     "600A0A00",
     "66A666A0",
-    "A000AA00"
+    "A000AA00",
+    "BA0A0000"
   ],
   "utterances": [
-    {
-      "origin": "INTERFACE",
-      "text": "BREACH DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020077819
-    },
     {
       "origin": "REVERSE",
       "text": "FLOW RESONATE UNIFY",
@@ -133,6 +128,12 @@
       "text": "STRIFE DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772020091758
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN DECAY SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020092476
     }
   ]
 }
