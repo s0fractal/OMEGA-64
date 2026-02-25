@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAA0A0AA",
     "66660060",
     "00000000",
     "66660000",
@@ -199,7 +198,8 @@
     "A6A66000",
     "60060666",
     "A660A666",
-    "00060660"
+    "00060660",
+    "66006000"
   ],
   "utterances": [
     {
@@ -275,22 +275,22 @@
       "tick": 1772042633783
     },
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS COHERE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772042633889
+      "origin": "CAR",
+      "text": "DECAY SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042634108
     },
     {
-      "origin": "REVERSE",
-      "text": "GUARD WAIT REFLECT",
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE SHIELD GUARD",
       "mood": "DEFENSIVE",
-      "tick": 1772042635959
+      "tick": 1772042635981
     },
     {
-      "origin": "WORKER",
-      "text": "RECON SHIELD PURE",
+      "origin": "ARCHIVIST",
+      "text": "PURE SHELTER WAIT",
       "mood": "DEFENSIVE",
-      "tick": 1772042636563
+      "tick": 1772042636782
     }
   ]
 }
