@@ -93,12 +93,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021451762
-    },
-    {
       "origin": "REVERSE",
       "text": "BREACH HUNGER STRIFE",
       "mood": "AGGRESSIVE",
@@ -181,6 +175,12 @@
       "text": "STASIS RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772021484708
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIFE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021484966
     }
   ]
 }
