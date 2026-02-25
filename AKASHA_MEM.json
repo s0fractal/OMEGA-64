@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033851528
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772033851705
@@ -291,6 +285,12 @@
       "text": "IMMUNE GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033855267
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION DREAM BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772033855424
     }
   ]
 }
