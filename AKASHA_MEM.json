@@ -183,12 +183,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023566119
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM SYNC STABLE",
       "mood": "HARMONIC",
@@ -271,6 +265,12 @@
       "text": "SHELTER REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023570459
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023570949
     }
   ]
 }
