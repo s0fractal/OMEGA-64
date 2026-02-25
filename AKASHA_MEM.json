@@ -202,12 +202,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772024075588
-    },
-    {
-      "origin": "REVERSE",
       "text": "WITNESS FORGE WITNESS",
       "mood": "CREATIVE",
       "tick": 1772024075806
@@ -289,6 +283,12 @@
       "text": "CONSUME DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772024079512
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE BEYOND DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772024079685
     }
   ]
 }
