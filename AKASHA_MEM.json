@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041165636
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC UNIFY GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHOCK CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041169345
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE RECON GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041169596
     }
   ]
 }
