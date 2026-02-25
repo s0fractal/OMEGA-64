@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM RESONATE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772034501126
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772034501362
@@ -291,6 +285,12 @@
       "text": "COHERE OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772034504483
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772034504681
     }
   ]
 }
