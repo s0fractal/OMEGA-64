@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772023184323
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772023184460
@@ -259,6 +253,12 @@
       "text": "DREAM BEYOND WAVE",
       "mood": "CREATIVE",
       "tick": 1772023191555
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772023191711
     }
   ]
 }
