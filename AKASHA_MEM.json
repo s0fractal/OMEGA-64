@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE SICKNESS DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033097501
-    },
-    {
       "origin": "STREAM",
       "text": "OSMOSIS BLOOM UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STASIS REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033100173
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WATCH GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772033100360
     }
   ]
 }
