@@ -44,12 +44,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DRAIN SICKNESS SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020013489
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DRAIN STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020014751
@@ -131,6 +125,12 @@
       "text": "SYNC FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772020025884
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHELTER GUARD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020026317
     }
   ]
 }
