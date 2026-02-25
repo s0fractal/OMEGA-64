@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE STRIKE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020432919
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER DRAIN DECAY",
       "mood": "AGGRESSIVE",
@@ -142,6 +136,12 @@
       "text": "STRIKE DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020441494
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY HUNGER STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020441664
     }
   ]
 }
