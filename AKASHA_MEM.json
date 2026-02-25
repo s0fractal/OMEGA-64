@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK STRIFE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040469069
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772040469278
@@ -291,6 +285,12 @@
       "text": "RECON SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772040471802
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040471923
     }
   ]
 }
