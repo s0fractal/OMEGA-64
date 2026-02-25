@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK SHOCK STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041698532
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041699257
@@ -291,6 +285,12 @@
       "text": "BREACH SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772041703928
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041704693
     }
   ]
 }
