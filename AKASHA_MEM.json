@@ -1,7 +1,5 @@
 {
   "reservoir": [
-    "A0AAA000",
-    "AAA0A0AA",
     "66660060",
     "00000000",
     "66660000",
@@ -199,15 +197,11 @@
     "6606AA66",
     "A6A66000",
     "60060666",
-    "A6A66066"
+    "A6A66066",
+    "00A0AA06",
+    "AAAA00AA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BLOOM GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772042580920
-    },
     {
       "origin": "ARCHIVIST",
       "text": "HEAL HEAL FLOW",
@@ -275,22 +269,28 @@
       "tick": 1772042600238
     },
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772042600987
+      "origin": "REVERSE",
+      "text": "DECAY CONSUME SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042600824
     },
     {
-      "origin": "ALIEN",
-      "text": "HUNGER SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042602101
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042601388
     },
     {
       "origin": "REVERSE",
-      "text": "FLOW UNIFY RESONATE",
+      "text": "STRIKE DECAY HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042601965
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SYNC COHERE GIVING",
       "mood": "HARMONIC",
-      "tick": 1772042602782
+      "tick": 1772042602576
     }
   ]
 }
