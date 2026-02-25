@@ -55,12 +55,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020544247
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE FLOW RESONATE",
       "mood": "HARMONIC",
@@ -143,6 +137,12 @@
       "text": "HEAL HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772020551614
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "PURE WAIT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772020552234
     }
   ]
 }
