@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL COHERE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772036737453
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772036737728
@@ -291,6 +285,12 @@
       "text": "HUNGER DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772036742278
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY STABLE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772036742485
     }
   ]
 }
