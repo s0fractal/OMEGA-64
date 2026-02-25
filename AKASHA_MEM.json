@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66666600",
     "00000606",
     "FFFF0FFF",
     "AAAAAA0A",
@@ -199,15 +198,10 @@
     "A0000A00",
     "66000600",
     "A00A0A0A",
-    "00FA000A"
+    "00FA000A",
+    "06606060"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "OSMOSIS COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772025198187
-    },
     {
       "origin": "REVERSE",
       "text": "STABLE RESONATE HEAL",
@@ -291,6 +285,12 @@
       "text": "STRIFE DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772025205154
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772025205373
     }
   ]
 }
