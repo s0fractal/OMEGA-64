@@ -24,12 +24,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SEIZE STRIFE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019530668
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HEAL GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772019531325
@@ -111,6 +105,12 @@
       "text": "SHOCK SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772019542514
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIKE STRIKE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019542835
     }
   ]
 }
