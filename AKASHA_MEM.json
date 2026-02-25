@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS SICKNESS HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020448088
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
@@ -142,6 +136,12 @@
       "text": "BLOOM COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772020454335
+    },
+    {
+      "origin": "STREAM",
+      "text": "FLOW OSMOSIS BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772020455033
     }
   ]
 }
