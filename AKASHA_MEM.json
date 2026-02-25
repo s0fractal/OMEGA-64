@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772036167196
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772036167444
@@ -291,6 +285,12 @@
       "text": "REFLECT SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772036173140
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING BLOOM BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772036173348
     }
   ]
 }
