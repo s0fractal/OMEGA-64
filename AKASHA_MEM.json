@@ -147,12 +147,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022516390
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772022516578
@@ -234,6 +228,12 @@
       "text": "WAIT REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022519671
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "REFLECT STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022519852
     }
   ]
 }
