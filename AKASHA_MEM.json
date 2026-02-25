@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE HUNGER BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037727079
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME SPARK FORGE",
       "mood": "CREATIVE",
       "tick": 1772037727254
@@ -291,6 +285,12 @@
       "text": "IMMUNE IMMUNE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772037730068
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD PURE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772037730324
     }
   ]
 }
