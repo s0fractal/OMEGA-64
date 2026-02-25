@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027805808
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772027806146
@@ -291,6 +285,12 @@
       "text": "SHIELD REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772027816173
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING SYNC SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772027819094
     }
   ]
 }
