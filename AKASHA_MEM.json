@@ -180,12 +180,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HEAL GIVING FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772023407542
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE BREACH DECAY",
       "mood": "AGGRESSIVE",
@@ -268,6 +262,12 @@
       "text": "WITNESS DREAM SPARK",
       "mood": "CREATIVE",
       "tick": 1772023410662
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS FLOW UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772023410831
     }
   ]
 }
