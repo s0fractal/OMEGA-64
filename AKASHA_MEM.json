@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033825566
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME HUNGER SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SICKNESS DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772033830241
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS BEYOND DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772033830453
     }
   ]
 }
