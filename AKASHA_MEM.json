@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE IMMUNE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772029858856
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772029861061
@@ -291,6 +285,12 @@
       "text": "SICKNESS SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772029875403
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772029875707
     }
   ]
 }
