@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE STASIS PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772037960308
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772037960522
@@ -291,6 +285,12 @@
       "text": "GUARD STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772037963424
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER RECON SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772037963630
     }
   ]
 }
