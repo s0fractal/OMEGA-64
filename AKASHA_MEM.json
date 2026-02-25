@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "STASIS SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041875058
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE SHELTER SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041879841
+    },
+    {
+      "origin": "STREAM",
+      "text": "HUNGER STRIFE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041880027
     }
   ]
 }
