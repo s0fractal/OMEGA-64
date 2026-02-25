@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD GUARD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023725915
-    },
-    {
-      "origin": "REVERSE",
       "text": "VISION BEYOND EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772023726078
@@ -278,6 +272,12 @@
       "text": "IMMUNE WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023728604
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE SYNC COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772023728748
     }
   ]
 }
