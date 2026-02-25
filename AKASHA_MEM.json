@@ -183,12 +183,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHOCK SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023557838
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WITNESS FORGE AWAKEN",
       "mood": "CREATIVE",
@@ -271,6 +265,12 @@
       "text": "REFLECT PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023561873
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772023562702
     }
   ]
 }
