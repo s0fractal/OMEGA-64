@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RESONATE COHERE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772042304457
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "PURE WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772042308350
@@ -291,6 +285,12 @@
       "text": "COHERE HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772042317984
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DECAY SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042318239
     }
   ]
 }
