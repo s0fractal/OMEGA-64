@@ -71,12 +71,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020900758
-    },
-    {
-      "origin": "REVERSE",
       "text": "FORGE AWAKEN DREAM",
       "mood": "CREATIVE",
       "tick": 1772020901211
@@ -158,6 +152,12 @@
       "text": "CONSUME SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020905863
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE WAVE EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772020906184
     }
   ]
 }
