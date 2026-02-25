@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0A000A0A",
     "AABBC0DD",
     "A6660600",
     "06000606",
@@ -199,15 +198,10 @@
     "60060660",
     "A0000000",
     "666666A6",
-    "00660000"
+    "00660000",
+    "A0AAAA0A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RECON IMMUNE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772030453419
-    },
     {
       "origin": "REVERSE",
       "text": "STABLE UNIFY UNIFY",
@@ -291,6 +285,12 @@
       "text": "SHOCK SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772030459813
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DRAIN SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030460150
     }
   ]
 }
