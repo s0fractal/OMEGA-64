@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON RECON WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772036717735
-    },
-    {
       "origin": "STREAM",
       "text": "GIVING UNIFY BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772036724717
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE BECOME VISION",
+      "mood": "CREATIVE",
+      "tick": 1772036726539
     }
   ]
 }
