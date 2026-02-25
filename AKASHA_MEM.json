@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A0606066",
     "06066660",
     "0FF0F0F0",
     "AA066000",
@@ -199,15 +198,10 @@
     "66666066",
     "AAAA0000",
     "0A0A00AA",
-    "AA660060"
+    "AA660060",
+    "A0666606"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "HEAL RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772036915133
-    },
     {
       "origin": "REVERSE",
       "text": "BREACH SICKNESS SHOCK",
@@ -291,6 +285,12 @@
       "text": "STRIKE STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772036918460
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE BREACH SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036918657
     }
   ]
 }
