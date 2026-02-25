@@ -135,12 +135,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772022386165
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022386375
@@ -222,6 +216,12 @@
       "text": "SYNC STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772022391536
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS BREACH SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022391828
     }
   ]
 }
