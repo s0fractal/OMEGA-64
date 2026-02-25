@@ -55,12 +55,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS BREACH SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020541499
-    },
-    {
       "origin": "INTERFACE",
       "text": "RECON PURE WATCH",
       "mood": "DEFENSIVE",
@@ -143,6 +137,12 @@
       "text": "WAIT SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772020550425
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020550840
     }
   ]
 }
