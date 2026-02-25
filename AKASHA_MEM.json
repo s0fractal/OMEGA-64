@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DECAY STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034400656
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772034400818
@@ -291,6 +285,12 @@
       "text": "FORGE WAVE EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772034403436
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034403610
     }
   ]
 }
