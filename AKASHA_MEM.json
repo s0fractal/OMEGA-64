@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT WAIT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772031357456
-    },
-    {
       "origin": "REVERSE",
       "text": "WAIT RECON REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIFE CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772031367156
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772031368084
     }
   ]
 }
