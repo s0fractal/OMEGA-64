@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GIVING SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772041657656
-    },
-    {
       "origin": "SOMA",
       "text": "STRIKE CONSUME SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772041660047
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH SHELTER SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041660172
     }
   ]
 }
