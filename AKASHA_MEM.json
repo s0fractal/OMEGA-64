@@ -160,12 +160,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING COHERE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772022817543
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022817719
@@ -247,6 +241,12 @@
       "text": "SEIZE DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022821623
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022821785
     }
   ]
 }
