@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING OSMOSIS RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772029261127
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772029261762
@@ -291,6 +285,12 @@
       "text": "STRIKE DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772029267684
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH IMMUNE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772029268009
     }
   ]
 }
