@@ -167,12 +167,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD WATCH REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023036654
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772023036830
@@ -254,6 +248,12 @@
       "text": "SHELTER REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023041297
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON RECON IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023041452
     }
   ]
 }
