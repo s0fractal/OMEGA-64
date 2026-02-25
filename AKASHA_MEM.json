@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER REFLECT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772027288368
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE STRIFE STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772027294188
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE PURE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772027294403
     }
   ]
 }
