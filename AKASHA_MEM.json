@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SEIZE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028867653
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772028868168
@@ -291,6 +285,12 @@
       "text": "BLOOM RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772028877710
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE BLOOM STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772028878036
     }
   ]
 }
