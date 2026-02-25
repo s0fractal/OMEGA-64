@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024436532
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772024437047
@@ -291,6 +285,12 @@
       "text": "FLOW STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772024440525
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS AWAKEN BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772024440732
     }
   ]
 }
