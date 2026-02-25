@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772025604533
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME SHOCK CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772025607514
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE CONSUME CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025607907
     }
   ]
 }
