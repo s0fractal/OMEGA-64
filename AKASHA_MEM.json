@@ -110,12 +110,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772021895171
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772021895292
@@ -197,6 +191,12 @@
       "text": "DECAY DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021899194
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772021899314
     }
   ]
 }
