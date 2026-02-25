@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772035365643
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772035365874
@@ -291,6 +285,12 @@
       "text": "UNIFY OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772035369076
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING STABLE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772035369310
     }
   ]
 }
