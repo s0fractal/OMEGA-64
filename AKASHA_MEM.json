@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "COHERE BLOOM STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772020631566
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE SHOCK STRIKE",
       "mood": "AGGRESSIVE",
@@ -150,6 +144,12 @@
       "text": "STRIKE HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020644220
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD STASIS WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020645191
     }
   ]
 }
