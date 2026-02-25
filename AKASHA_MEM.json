@@ -163,12 +163,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY STRIKE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022900065
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022900544
@@ -250,6 +244,12 @@
       "text": "SYNC FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772022908048
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE SEIZE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022908241
     }
   ]
 }
