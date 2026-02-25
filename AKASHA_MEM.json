@@ -120,15 +120,10 @@
     "AABBC0DD",
     "06666606",
     "A0AAAAAA",
-    "60666060"
+    "60666060",
+    "A0666666"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "PURE WAIT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022191868
-    },
     {
       "origin": "REVERSE",
       "text": "OSMOSIS SYNC UNIFY",
@@ -212,6 +207,12 @@
       "text": "IMMUNE PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022196573
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK STRIKE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022196768
     }
   ]
 }
