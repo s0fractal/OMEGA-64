@@ -115,12 +115,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STASIS PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772022033391
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS SHIELD SHELTER",
       "mood": "DEFENSIVE",
@@ -203,6 +197,12 @@
       "text": "RESONATE RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772022048326
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIKE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022048543
     }
   ]
 }
