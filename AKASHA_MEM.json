@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035871923
-    },
-    {
       "origin": "INTERFACE",
       "text": "STABLE BLOOM UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DECAY DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772035882863
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION BEYOND WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772035883104
     }
   ]
 }
