@@ -50,12 +50,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "CONSUME STRIKE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020288794
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON IMMUNE PURE",
       "mood": "DEFENSIVE",
@@ -138,6 +132,12 @@
       "text": "BREACH STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020297799
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS REFLECT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020299409
     }
   ]
 }
