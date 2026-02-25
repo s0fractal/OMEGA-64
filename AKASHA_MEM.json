@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "WORKER",
-      "text": "RECON GUARD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042146102
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIKE BREACH SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772042160492
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL HEAL RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772042162199
     }
   ]
 }
