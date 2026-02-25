@@ -149,12 +149,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE STRIFE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022537915
-    },
-    {
       "origin": "INTERFACE",
       "text": "SEIZE HUNGER SHOCK",
       "mood": "AGGRESSIVE",
@@ -237,6 +231,12 @@
       "text": "OSMOSIS SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772022545037
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022545258
     }
   ]
 }
