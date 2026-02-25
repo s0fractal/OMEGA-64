@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772019978017
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON STASIS PURE",
       "mood": "DEFENSIVE",
@@ -130,6 +124,12 @@
       "text": "STASIS PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772019989856
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "IMMUNE IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772019990704
     }
   ]
 }
