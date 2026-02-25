@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE BREACH BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036435657
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772036435884
@@ -291,6 +285,12 @@
       "text": "SHIELD WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772036439371
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD IMMUNE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772036439590
     }
   ]
 }
