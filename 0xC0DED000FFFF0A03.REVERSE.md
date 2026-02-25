@@ -1,8 +1,8 @@
 ---
 eigenvalue: '0xC0DED000FFFF0A03'
-energy: 49.5
-x: 710
-'y': 403
+energy: 49.9
+x: 701
+'y': 405
 resonance: 50
 thought: ORBIT_PASSIVE
 logic: C0DED00D
@@ -20,7 +20,7 @@ ex:
   - '0x66AA66A0FFFF0A07'
   - '0x66AA66A0FFFF0A01'
   - '0xC0DED00D00000A07'
-  - '0xC0DED000FFFF0A05'
+  - '0xC0DED00D00000A01'
   - '0xC0DED000FFFF0A07'
   - '0xC0DED000FFFF0A01'
 ---
