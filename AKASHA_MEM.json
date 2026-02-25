@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SEIZE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025226927
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772025227101
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772025230931
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING UNIFY COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772025232047
     }
   ]
 }
