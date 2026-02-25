@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY OSMOSIS SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772041464835
-    },
-    {
       "origin": "INTERFACE",
       "text": "DRAIN BREACH CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772041468396
+    },
+    {
+      "origin": "STREAM",
+      "text": "WATCH GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772041468739
     }
   ]
 }
