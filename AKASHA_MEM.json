@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA00A0AA",
     "A000AA0A",
     "10000000",
     "A0AAAAAA",
@@ -199,15 +198,10 @@
     "A06AA0A0",
     "06006006",
     "A0A660A0",
-    "06066666"
+    "06066666",
+    "A0AAA600"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "RECON RECON REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042068804
-    },
     {
       "origin": "STREAM",
       "text": "SYNC SYNC BLOOM",
@@ -291,6 +285,12 @@
       "text": "PURE IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772042077573
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE DECAY SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042077831
     }
   ]
 }
