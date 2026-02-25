@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033158359
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772033158549
@@ -291,6 +285,12 @@
       "text": "UNIFY BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772033163434
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033163632
     }
   ]
 }
