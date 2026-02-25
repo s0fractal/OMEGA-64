@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GIVING HEAL GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041532445
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL RESONATE RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BLOOM BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772041537447
+    },
+    {
+      "origin": "STREAM",
+      "text": "WATCH SHELTER WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772041537658
     }
   ]
 }
