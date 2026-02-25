@@ -164,12 +164,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SPARK AWAKEN BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772022996724
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022996868
@@ -251,6 +245,12 @@
       "text": "SEIZE CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022999544
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772022999718
     }
   ]
 }
