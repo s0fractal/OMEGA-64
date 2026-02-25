@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH HUNGER SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020436588
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE SHOCK DECAY",
       "mood": "AGGRESSIVE",
@@ -142,6 +136,12 @@
       "text": "REFLECT WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772020446248
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE GIVING HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772020447359
     }
   ]
 }
