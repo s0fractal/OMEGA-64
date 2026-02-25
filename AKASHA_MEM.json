@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD GUARD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772036702386
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772036702694
@@ -291,6 +285,12 @@
       "text": "SYNC RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772036706337
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS SHIELD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772036706662
     }
   ]
 }
