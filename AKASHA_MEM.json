@@ -11,11 +11,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RECLAIM",
-      "tick": 1772010852381
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OBSERVE",
       "tick": 1772010879551
@@ -96,6 +91,12 @@
       "text": "BREACH SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772012686392
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772012764459
     }
   ]
 }
