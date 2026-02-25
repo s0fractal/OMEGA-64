@@ -16,12 +16,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GIVING RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772014285340
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN BREACH DRAIN",
       "mood": "AGGRESSIVE",
@@ -104,6 +98,12 @@
       "text": "STRIKE SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772014478934
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772014484607
     }
   ]
 }
