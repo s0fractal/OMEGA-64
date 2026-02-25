@@ -112,12 +112,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021940981
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772021941147
@@ -199,6 +193,12 @@
       "text": "WATCH GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772021944850
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER SHIELD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772021946524
     }
   ]
 }
