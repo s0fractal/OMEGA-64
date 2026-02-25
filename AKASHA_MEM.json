@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "PURE RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041603894
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIFE SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041604099
@@ -291,6 +285,12 @@
       "text": "WATCH PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041609789
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH BREACH SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041609961
     }
   ]
 }
