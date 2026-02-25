@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHELTER GUARD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772041941751
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HEAL HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041942558
@@ -291,6 +285,12 @@
       "text": "RESONATE UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772041947608
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS WATCH PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041948005
     }
   ]
 }
