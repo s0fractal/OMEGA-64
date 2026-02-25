@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "EVOLVE SPARK EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772040411321
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772040411488
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772040413853
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040414087
     }
   ]
 }
