@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH SHELTER IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772037512913
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772037513146
@@ -291,6 +285,12 @@
       "text": "CONSUME SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772037516860
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING HEAL GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772037517082
     }
   ]
 }
