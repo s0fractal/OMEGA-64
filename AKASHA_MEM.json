@@ -48,12 +48,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WAIT SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772020125422
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BREACH SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020126442
@@ -135,6 +129,12 @@
       "text": "RECON IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772020138622
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD REFLECT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020139161
     }
   ]
 }
