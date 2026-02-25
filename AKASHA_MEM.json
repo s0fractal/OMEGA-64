@@ -50,12 +50,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020244720
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STASIS SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020245280
@@ -137,6 +131,12 @@
       "text": "GUARD GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772020253263
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE WATCH WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772020253757
     }
   ]
 }
