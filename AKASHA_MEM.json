@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE STABLE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772030343057
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772030346265
@@ -291,6 +285,12 @@
       "text": "STABLE OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772030352610
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772030353080
     }
   ]
 }
