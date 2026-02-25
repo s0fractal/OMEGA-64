@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SHOCK SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034771857
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772034772050
@@ -291,6 +285,12 @@
       "text": "DECAY DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772034775740
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE RESONATE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772034775945
     }
   ]
 }
