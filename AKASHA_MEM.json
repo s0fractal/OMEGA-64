@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE STRIFE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040820705
-    },
-    {
       "origin": "INTERFACE",
       "text": "HEAL RESONATE COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STABLE SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772040824171
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772040824359
     }
   ]
 }
