@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING RESONATE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772026851727
-    },
-    {
       "origin": "INTERFACE",
       "text": "COHERE COHERE BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHOCK SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772026856984
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY BLOOM SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772026857464
     }
   ]
 }
