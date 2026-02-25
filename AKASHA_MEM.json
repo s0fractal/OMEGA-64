@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE WAIT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772036351344
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772036351571
@@ -291,6 +285,12 @@
       "text": "SICKNESS DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772036354351
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772036354559
     }
   ]
 }
