@@ -76,12 +76,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE STASIS SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021024764
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIKE DECAY HUNGER",
       "mood": "AGGRESSIVE",
@@ -164,6 +158,12 @@
       "text": "DECAY CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772021031926
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE DECAY SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021033467
     }
   ]
 }
