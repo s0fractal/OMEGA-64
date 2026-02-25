@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772026667556
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772026667920
@@ -291,6 +285,12 @@
       "text": "DRAIN DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772026672349
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026672619
     }
   ]
 }
