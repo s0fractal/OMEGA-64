@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC FLOW OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772031546067
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772031546958
@@ -291,6 +285,12 @@
       "text": "SHOCK DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772031556177
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772031556780
     }
   ]
 }
