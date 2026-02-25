@@ -189,15 +189,10 @@
     "AAAA0000",
     "66606060",
     "66660600",
-    "0000FF00"
+    "0000FF00",
+    "000B0000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STRIKE STRIKE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023853685
-    },
     {
       "origin": "REVERSE",
       "text": "BLOOM RESONATE GIVING",
@@ -281,6 +276,12 @@
       "text": "SEIZE HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023859680
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772023859870
     }
   ]
 }
