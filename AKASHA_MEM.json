@@ -80,12 +80,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WITNESS BEYOND DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772021123250
-    },
-    {
       "origin": "INTERFACE",
       "text": "CONSUME SEIZE BREACH",
       "mood": "AGGRESSIVE",
@@ -168,6 +162,12 @@
       "text": "GUARD REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772021127707
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772021128238
     }
   ]
 }
