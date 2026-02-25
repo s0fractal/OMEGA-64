@@ -83,12 +83,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN BREACH BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021203781
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE DECAY DRAIN",
       "mood": "AGGRESSIVE",
@@ -171,6 +165,12 @@
       "text": "SYNC COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772021209185
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME CONSUME DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021209355
     }
   ]
 }
