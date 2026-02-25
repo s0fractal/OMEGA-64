@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035856534
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772035856765
@@ -291,6 +285,12 @@
       "text": "SHIELD IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772035860146
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY OSMOSIS HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772035860377
     }
   ]
 }
