@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "FFFFF0FF",
     "FF00FF0F",
     "01000000",
     "00100000",
@@ -199,15 +198,10 @@
     "06060000",
     "AAAAA0A0",
     "66600600",
-    "60666060"
+    "60666060",
+    "FA0AAA00"
   ],
   "utterances": [
-    {
-      "origin": "INTERFACE",
-      "text": "STRIKE CONSUME STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026943385
-    },
     {
       "origin": "REVERSE",
       "text": "OSMOSIS GIVING RESONATE",
@@ -291,6 +285,12 @@
       "text": "PURE RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772026949334
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME VISION WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772026949557
     }
   ]
 }
