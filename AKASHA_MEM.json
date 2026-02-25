@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772035745004
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772035745258
@@ -291,6 +285,12 @@
       "text": "STABLE GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772035748650
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY RESONATE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772035748854
     }
   ]
 }
