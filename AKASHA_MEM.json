@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD STASIS IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772030015548
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772030016103
@@ -291,6 +285,12 @@
       "text": "SHELTER WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772030025122
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE STABLE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772030025737
     }
   ]
 }
