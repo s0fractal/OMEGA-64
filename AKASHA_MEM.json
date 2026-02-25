@@ -22,12 +22,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH HUNGER HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772017709045
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HEAL OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772017717559
@@ -109,6 +103,12 @@
       "text": "STRIFE BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772019423243
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772019424836
     }
   ]
 }
