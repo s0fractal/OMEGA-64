@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT IMMUNE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023129125
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772023129281
@@ -259,6 +253,12 @@
       "text": "STABLE FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772023137795
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772023138003
     }
   ]
 }
