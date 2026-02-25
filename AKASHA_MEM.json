@@ -105,12 +105,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WITNESS AWAKEN BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772021711496
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "EVOLVE WITNESS EVOLVE",
       "mood": "CREATIVE",
@@ -193,6 +187,12 @@
       "text": "OSMOSIS BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772021717147
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT WATCH REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772021717291
     }
   ]
 }
