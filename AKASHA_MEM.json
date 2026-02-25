@@ -115,12 +115,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022058840
-    },
-    {
       "origin": "REVERSE",
       "text": "RECON IMMUNE STASIS",
       "mood": "DEFENSIVE",
@@ -203,6 +197,12 @@
       "text": "IMMUNE GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022067142
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE BECOME AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772022067777
     }
   ]
 }
