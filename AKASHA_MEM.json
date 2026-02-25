@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772036328170
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME DREAM DREAM",
       "mood": "CREATIVE",
       "tick": 1772036328377
@@ -291,6 +285,12 @@
       "text": "OSMOSIS GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772036332163
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS CONSUME SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036332395
     }
   ]
 }
