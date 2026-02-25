@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON PURE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041603560
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE RECON RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772041609604
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH PURE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041609789
     }
   ]
 }
