@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60666600",
     "BAB00000",
     "AA0A0000",
     "AABBCC0D",
@@ -199,15 +198,10 @@
     "00066006",
     "66A666A0",
     "C0DED000",
-    "06066606"
+    "06066606",
+    "0D100098"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "FLOW SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772026510002
-    },
     {
       "origin": "REVERSE",
       "text": "SICKNESS DECAY DRAIN",
@@ -291,6 +285,12 @@
       "text": "STRIFE DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772026514304
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY SYNC HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772026515807
     }
   ]
 }
