@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0A00A0",
     "000060A0",
     "0A000AAA",
     "60000000",
@@ -199,15 +198,10 @@
     "66066000",
     "66666000",
     "06006660",
-    "A0BBC00D"
+    "A0BBC00D",
+    "A00A000A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GUARD WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772032996884
-    },
     {
       "origin": "REVERSE",
       "text": "OSMOSIS RESONATE RESONATE",
@@ -291,6 +285,12 @@
       "text": "STASIS GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772032999409
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DRAIN SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032999581
     }
   ]
 }
