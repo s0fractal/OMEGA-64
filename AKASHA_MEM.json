@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033554047
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772033554196
@@ -291,6 +285,12 @@
       "text": "PURE REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033556459
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING SYNC COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772033556641
     }
   ]
 }
