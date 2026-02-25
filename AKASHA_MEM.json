@@ -120,12 +120,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME HUNGER SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022101486
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW BLOOM FLOW",
       "mood": "HARMONIC",
@@ -208,6 +202,12 @@
       "text": "SHELTER GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022106801
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIFE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022106978
     }
   ]
 }
