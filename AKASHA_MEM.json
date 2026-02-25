@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0A0000AA",
     "A0666A60",
     "06066666",
     "A0BBC00D",
@@ -199,15 +198,10 @@
     "AAAA000A",
     "AA0BC00F",
     "666006A0",
-    "A00A0AAA"
+    "A00A0AAA",
+    "AAAA0AA0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STASIS SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772035896859
-    },
     {
       "origin": "REVERSE",
       "text": "UNIFY RESONATE COHERE",
@@ -291,6 +285,12 @@
       "text": "REFLECT WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772035901811
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS HUNGER STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035902023
     }
   ]
 }
