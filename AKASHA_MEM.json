@@ -155,12 +155,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022644856
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022645322
@@ -242,6 +236,12 @@
       "text": "RESONATE COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772022651845
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022652062
     }
   ]
 }
