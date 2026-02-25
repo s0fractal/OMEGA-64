@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE HEAL HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772038748577
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772038748809
@@ -291,6 +285,12 @@
       "text": "AWAKEN BECOME VISION",
       "mood": "CREATIVE",
       "tick": 1772038751627
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772038751838
     }
   ]
 }
