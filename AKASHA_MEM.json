@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772027386119
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON IMMUNE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772027386330
@@ -291,6 +285,12 @@
       "text": "HUNGER DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772027390315
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SHOCK HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027390530
     }
   ]
 }
