@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE COHERE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772032391133
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772032391520
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772032397616
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772032397997
     }
   ]
 }
