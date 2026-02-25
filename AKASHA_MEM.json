@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019953633
-    },
-    {
       "origin": "STREAM",
       "text": "RESONATE GIVING GIVING",
       "mood": "HARMONIC",
@@ -130,6 +124,12 @@
       "text": "BLOOM OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772019966725
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING STABLE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772019967035
     }
   ]
 }
