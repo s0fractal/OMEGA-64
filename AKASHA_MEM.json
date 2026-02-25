@@ -130,15 +130,10 @@
     "AA6666A0",
     "AAA00A0A",
     "0AAAA0AA",
-    "AA0A0A0A"
+    "AA0A0A0A",
+    "AAAAAA00"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SYNC STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772022391536
-    },
     {
       "origin": "REVERSE",
       "text": "SICKNESS BREACH SEIZE",
@@ -222,6 +217,12 @@
       "text": "SICKNESS HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022396478
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DRAIN CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022396659
     }
   ]
 }
