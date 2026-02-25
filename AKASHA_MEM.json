@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD REFLECT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772038301954
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS RECON STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BECOME WAVE FORGE",
       "mood": "CREATIVE",
       "tick": 1772038305426
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772038305672
     }
   ]
 }
