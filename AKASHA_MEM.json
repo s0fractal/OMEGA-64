@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025275814
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE BREACH STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "FORGE WAVE DREAM",
       "mood": "CREATIVE",
       "tick": 1772025283784
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772025284050
     }
   ]
 }
