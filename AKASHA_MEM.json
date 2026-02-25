@@ -163,12 +163,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BECOME FORGE VISION",
-      "mood": "CREATIVE",
-      "tick": 1772022998678
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BLOOM OSMOSIS GIVING",
       "mood": "HARMONIC",
@@ -251,6 +245,12 @@
       "text": "STABLE COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772023006718
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WATCH STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772023006881
     }
   ]
 }
