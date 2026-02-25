@@ -180,12 +180,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE SICKNESS SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023425493
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIKE SHOCK STRIKE",
       "mood": "AGGRESSIVE",
@@ -268,6 +262,12 @@
       "text": "SHELTER WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023429052
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772023429213
     }
   ]
 }
