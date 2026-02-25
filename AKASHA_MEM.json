@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE STRIKE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036444647
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE HEAL GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIKE DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772036448511
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036448714
     }
   ]
 }
