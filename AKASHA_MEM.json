@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772020680928
-    },
-    {
       "origin": "INTERFACE",
       "text": "DRAIN STRIKE STRIKE",
       "mood": "AGGRESSIVE",
@@ -150,6 +144,12 @@
       "text": "SHOCK STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020688190
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772020688999
     }
   ]
 }
