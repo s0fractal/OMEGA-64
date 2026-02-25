@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772035536512
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772035536726
@@ -291,6 +285,12 @@
       "text": "DECAY CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772035540740
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035541038
     }
   ]
 }
