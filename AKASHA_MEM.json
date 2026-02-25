@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041256035
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE BLOOM UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FORGE EVOLVE AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772041261187
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041261368
     }
   ]
 }
