@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER STRIKE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038289864
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772038290086
@@ -291,6 +285,12 @@
       "text": "COHERE GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772038293871
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY GIVING FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772038294146
     }
   ]
 }
