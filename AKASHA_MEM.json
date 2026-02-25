@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN STRIKE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024165218
-    },
-    {
       "origin": "STREAM",
       "text": "SEIZE BREACH SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772024174261
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE RECON PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772024174669
     }
   ]
 }
