@@ -202,12 +202,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC GIVING FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772024095934
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND BEYOND EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772024096110
@@ -289,6 +283,12 @@
       "text": "SEIZE CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772024098721
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SICKNESS SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024099794
     }
   ]
 }
