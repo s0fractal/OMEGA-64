@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HEAL RESONATE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772040500821
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BLOOM GIVING UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SYNC RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772040504148
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772040504303
     }
   ]
 }
