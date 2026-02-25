@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SHOCK CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036597572
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772036597785
@@ -291,6 +285,12 @@
       "text": "FLOW BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772036606827
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT PURE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772036607057
     }
   ]
 }
