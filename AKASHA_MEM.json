@@ -162,12 +162,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DECAY SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022920383
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT STASIS RECON",
       "mood": "DEFENSIVE",
@@ -250,6 +244,12 @@
       "text": "STRIFE BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022927872
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772022928336
     }
   ]
 }
