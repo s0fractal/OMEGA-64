@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE SYNC COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772040277140
-    },
-    {
       "origin": "INTERFACE",
       "text": "GUARD SHIELD SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772040284762
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040285022
     }
   ]
 }
