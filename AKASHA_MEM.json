@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD RECON GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772029430699
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772029431518
@@ -291,6 +285,12 @@
       "text": "REFLECT REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772029437857
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE GIVING UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772029438061
     }
   ]
 }
