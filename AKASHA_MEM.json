@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "SOMA",
-      "text": "BREACH CONSUME SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041835918
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD WATCH GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772041840204
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772041840796
     }
   ]
 }
