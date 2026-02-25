@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041484322
-    },
-    {
       "origin": "STREAM",
       "text": "STRIFE DECAY SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HUNGER DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772041487897
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME BREACH BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041488168
     }
   ]
 }
