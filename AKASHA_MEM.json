@@ -203,18 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "FLOW RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772042669239
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SYNC GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042669456
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHELTER STASIS SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +279,18 @@
       "text": "FLOW BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772042679609
+    },
+    {
+      "origin": "STREAM",
+      "text": "BLOOM SYNC COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772042679882
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE SHIELD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772042680022
     }
   ]
 }
