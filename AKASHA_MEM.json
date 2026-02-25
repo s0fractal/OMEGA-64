@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE FLOW FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772019615417
-    },
-    {
       "origin": "INTERFACE",
       "text": "RESONATE RESONATE COHERE",
       "mood": "HARMONIC",
@@ -114,6 +108,12 @@
       "text": "RECON STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772019629303
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE DECAY HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019630278
     }
   ]
 }
