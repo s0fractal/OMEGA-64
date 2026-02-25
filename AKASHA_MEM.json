@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772040440981
-    },
-    {
       "origin": "STREAM",
       "text": "BLOOM RESONATE FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RESONATE OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772040443588
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040443760
     }
   ]
 }
