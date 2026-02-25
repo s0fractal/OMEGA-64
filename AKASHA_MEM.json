@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AABBCCD0",
     "A6666666",
     "60060066",
     "A0AA0AA0",
@@ -199,15 +198,10 @@
     "AA0666A6",
     "66066000",
     "A666A0A0",
-    "AA000000"
+    "AA000000",
+    "6666A060"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "GIVING GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041679389
-    },
     {
       "origin": "REVERSE",
       "text": "SHIELD REFLECT RECON",
@@ -291,6 +285,12 @@
       "text": "STASIS GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041682989
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD STASIS IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041683164
     }
   ]
 }
