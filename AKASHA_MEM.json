@@ -63,12 +63,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "REFLECT PURE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020666432
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "IMMUNE STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772020666773
@@ -150,6 +144,12 @@
       "text": "BLOOM BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772020673296
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772020673490
     }
   ]
 }
