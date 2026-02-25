@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020389000
-    },
-    {
       "origin": "STREAM",
       "text": "GIVING UNIFY GIVING",
       "mood": "HARMONIC",
@@ -141,6 +135,12 @@
       "text": "BLOOM RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772020403308
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GUARD REFLECT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020403588
     }
   ]
 }
