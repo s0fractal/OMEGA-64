@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "B_READ",
-      "text": "FLOW RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772040733256
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STASIS STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772040736165
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772040736344
     }
   ]
 }
