@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772030781803
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772030782300
@@ -291,6 +285,12 @@
       "text": "SYNC FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772030790757
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SEIZE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030791018
     }
   ]
 }
