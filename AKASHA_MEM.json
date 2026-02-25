@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772024193175
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772024193307
@@ -291,6 +285,12 @@
       "text": "IMMUNE WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772024197063
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT REFLECT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772024197272
     }
   ]
 }
