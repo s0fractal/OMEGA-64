@@ -191,12 +191,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772023789582
-    },
-    {
       "origin": "INTERFACE",
       "text": "STABLE COHERE RESONATE",
       "mood": "HARMONIC",
@@ -279,6 +273,12 @@
       "text": "STABLE COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772023792789
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WAIT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023792936
     }
   ]
 }
