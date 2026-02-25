@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK SICKNESS DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029941872
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772029942684
@@ -291,6 +285,12 @@
       "text": "IMMUNE STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772029956272
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY SYNC SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772029957028
     }
   ]
 }
