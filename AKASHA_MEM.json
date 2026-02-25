@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE DRAIN SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031222626
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772031222995
@@ -291,6 +285,12 @@
       "text": "AWAKEN BEYOND WAVE",
       "mood": "CREATIVE",
       "tick": 1772031232415
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031232661
     }
   ]
 }
