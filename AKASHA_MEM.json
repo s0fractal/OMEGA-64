@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772038841744
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772038841982
@@ -291,6 +285,12 @@
       "text": "RECON PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772038845646
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY RESONATE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772038846153
     }
   ]
 }
