@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH REFLECT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772030182049
-    },
-    {
       "origin": "REVERSE",
       "text": "IMMUNE SHELTER STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772030194975
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "COHERE HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772030196076
     }
   ]
 }
