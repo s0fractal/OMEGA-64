@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "WORKER",
-      "text": "FLOW RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772041884961
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW SYNC STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "COHERE HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041889313
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER PURE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041889486
     }
   ]
 }
