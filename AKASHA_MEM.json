@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041082270
-    },
-    {
       "origin": "INTERFACE",
       "text": "UNIFY GIVING GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "CONSUME HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772041085060
+    },
+    {
+      "origin": "I16_CLAMP",
+      "text": "COHERE COHERE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772041085192
     }
   ]
 }
