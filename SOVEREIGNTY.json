@@ -1,10 +1,12 @@
 {
   "activeDecree": "IMMUNE_SHIELD",
-  "regent": "0x0000000000000006",
-  "legitimacy": 9975.85,
+  "regent": "0x0000000000000002",
+  "legitimacy": 9960.85,
   "label": "IMMUNE SHIELD",
   "mods": {
     "decay": 0.3,
     "speed": 0.7,
     "mutation": 0.5,
-    "label": "IMMUNE
+    "label": "IMMUNE SHIELD"
+  }
+}
