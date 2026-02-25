@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034659736
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772034660152
@@ -291,6 +285,12 @@
       "text": "STRIFE SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772034663918
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS IMMUNE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772034664133
     }
   ]
 }
