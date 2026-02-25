@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772032331550
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772032331882
@@ -291,6 +285,12 @@
       "text": "GIVING COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772032336500
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772032337968
     }
   ]
 }
