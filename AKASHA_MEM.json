@@ -97,12 +97,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021565186
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772021565360
@@ -184,6 +178,12 @@
       "text": "REFLECT STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772021571317
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SICKNESS DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021571934
     }
   ]
 }
