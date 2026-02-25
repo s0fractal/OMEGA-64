@@ -27,12 +27,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "FLOW COHERE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772019600217
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BREACH SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772019600384
@@ -114,6 +108,12 @@
       "text": "WATCH WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772019608638
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE RESONATE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772019609532
     }
   ]
 }
