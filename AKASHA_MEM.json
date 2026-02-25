@@ -167,12 +167,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772023028349
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAVE AWAKEN AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772023029469
@@ -254,6 +248,12 @@
       "text": "STRIKE CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023033053
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK STRIKE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023033335
     }
   ]
 }
