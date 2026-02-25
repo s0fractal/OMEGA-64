@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "CAR",
-      "text": "SEIZE SEIZE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041209613
-    },
-    {
       "origin": "SUCC",
       "text": "RESONATE STABLE COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SYNC SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772041213348
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772041213646
     }
   ]
 }
