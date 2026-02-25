@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772036368777
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772036368945
@@ -291,6 +285,12 @@
       "text": "BLOOM FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772036371765
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING RESONATE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772036371982
     }
   ]
 }
