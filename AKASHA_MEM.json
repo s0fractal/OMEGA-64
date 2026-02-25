@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "FLOW HEAL BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772040518198
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS SYNC BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHOCK CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772040520649
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING BLOOM BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772040520819
     }
   ]
 }
