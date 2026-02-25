@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAAA00A0",
     "BBBB0000",
     "B0B0000C",
     "000A0A00",
@@ -199,15 +198,10 @@
     "A0600606",
     "06060666",
     "AAAAA00A",
-    "060060A6"
+    "060060A6",
+    "00B00000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BECOME BEYOND EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772034810964
-    },
     {
       "origin": "REVERSE",
       "text": "SEIZE DECAY BREACH",
@@ -291,6 +285,12 @@
       "text": "COHERE BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034814770
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772034815100
     }
   ]
 }
