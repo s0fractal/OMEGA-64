@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DECAY CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019619673
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT PURE WATCH",
       "mood": "DEFENSIVE",
@@ -114,6 +108,12 @@
       "text": "DECAY DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772019632090
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM SYNC FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772019632588
     }
   ]
 }
