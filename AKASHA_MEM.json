@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA6666A6",
     "0A000000",
     "F0FFF00F",
     "0AAA000A",
@@ -199,15 +198,10 @@
     "00660000",
     "00A0AA0A",
     "AAB0C00D",
-    "AAAAA000"
+    "AAAAA000",
+    "66006000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "HEAL STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772025304177
-    },
     {
       "origin": "REVERSE",
       "text": "SHIELD STASIS REFLECT",
@@ -291,6 +285,12 @@
       "text": "HEAL COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772025308823
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772025309227
     }
   ]
 }
