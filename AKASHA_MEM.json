@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00060600",
     "0EE00EEF",
     "AAAAAAAA",
     "AAA00000",
@@ -199,15 +198,10 @@
     "0AAAAA0A",
     "A6060660",
     "AA0A000A",
-    "60060000"
+    "60060000",
+    "00BB0000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "DRAIN BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041466202
-    },
     {
       "origin": "ARCHIVIST",
       "text": "BLOOM FLOW OSMOSIS",
@@ -291,6 +285,12 @@
       "text": "WAIT GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772041470038
+    },
+    {
+      "origin": "STREAM",
+      "text": "FLOW OSMOSIS HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041470174
     }
   ]
 }
