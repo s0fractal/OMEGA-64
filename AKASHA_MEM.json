@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "CONSUME SHOCK CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042252956
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN STRIKE DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIFE CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772042262216
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHIELD STASIS STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772042262339
     }
   ]
 }
