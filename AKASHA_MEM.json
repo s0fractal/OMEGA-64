@@ -75,12 +75,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE SHELTER WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772020976844
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH STRIKE STRIKE",
       "mood": "AGGRESSIVE",
@@ -163,6 +157,12 @@
       "text": "SEIZE HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020984289
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DRAIN CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020984838
     }
   ]
 }
