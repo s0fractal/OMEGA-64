@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772035039095
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772035039293
@@ -291,6 +285,12 @@
       "text": "SHIELD PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772035042125
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772035042332
     }
   ]
 }
