@@ -82,12 +82,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIFE STRIFE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021166045
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW COHERE HEAL",
       "mood": "HARMONIC",
@@ -170,6 +164,12 @@
       "text": "FLOW OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772021171520
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY STRIFE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021171748
     }
   ]
 }
