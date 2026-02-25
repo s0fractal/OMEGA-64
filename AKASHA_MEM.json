@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD STASIS WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772039852971
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772039853535
@@ -291,6 +285,12 @@
       "text": "DECAY HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772039860488
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772039860980
     }
   ]
 }
