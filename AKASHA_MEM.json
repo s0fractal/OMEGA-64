@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "B0B0000C",
     "00600000",
     "A1000000",
     "00066066",
@@ -199,15 +198,10 @@
     "0AA0AA0A",
     "66006006",
     "0000AAA0",
-    "AA0A0AA0"
+    "AA0A0AA0",
+    "A0BBC000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "PURE STASIS PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772033044602
-    },
     {
       "origin": "REVERSE",
       "text": "GUARD GUARD REFLECT",
@@ -291,6 +285,12 @@
       "text": "GIVING BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772033047166
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIFE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033047358
     }
   ]
 }
