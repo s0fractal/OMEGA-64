@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER PURE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772030036250
-    },
-    {
       "origin": "STREAM",
       "text": "REFLECT IMMUNE WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIKE CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772030053996
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM FORGE VISION",
+      "mood": "CREATIVE",
+      "tick": 1772030054553
     }
   ]
 }
