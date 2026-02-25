@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "GIVING RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772041635674
-    },
-    {
       "origin": "INTERFACE",
       "text": "DECAY DRAIN SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772041638627
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT WATCH GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041638756
     }
   ]
 }
