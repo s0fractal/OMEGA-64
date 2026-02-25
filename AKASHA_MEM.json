@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE WATCH WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772042113883
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
@@ -270,27 +264,33 @@
     },
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042122450
+      "text": "BLOOM HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772042122336
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE SHIELD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772042122973
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE GIVING FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042123558
     },
     {
       "origin": "INTERFACE",
-      "text": "PURE STASIS STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772042123706
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772042123949
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SYNC STABLE GIVING",
+      "text": "UNIFY STABLE HEAL",
       "mood": "HARMONIC",
-      "tick": 1772042124634
+      "tick": 1772042124488
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME DRAIN DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042124751
     }
   ]
 }
