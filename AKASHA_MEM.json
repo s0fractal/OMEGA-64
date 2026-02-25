@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE GIVING FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772041259647
-    },
-    {
       "origin": "STREAM",
       "text": "GUARD SHIELD SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIFE STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772041264881
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD SHELTER IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041265532
     }
   ]
 }
