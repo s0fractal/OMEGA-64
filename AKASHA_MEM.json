@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE UNIFY FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772037493171
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772037493348
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772037498036
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY FLOW HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772037498246
     }
   ]
 }
