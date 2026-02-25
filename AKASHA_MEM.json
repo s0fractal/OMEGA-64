@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HEAL OSMOSIS SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772040738456
-    },
-    {
       "origin": "INTERFACE",
       "text": "HUNGER STRIFE STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772040741100
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE UNIFY GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772040741347
     }
   ]
 }
