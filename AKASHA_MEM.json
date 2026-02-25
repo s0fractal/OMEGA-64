@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM GIVING SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772037525009
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772037525233
@@ -291,6 +285,12 @@
       "text": "STASIS REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772037529410
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE BLOOM FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772037529629
     }
   ]
 }
