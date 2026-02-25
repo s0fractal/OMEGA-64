@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON IMMUNE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772033281760
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772033282480
@@ -291,6 +285,12 @@
       "text": "STRIKE BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772033285228
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY STABLE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772033285371
     }
   ]
 }
