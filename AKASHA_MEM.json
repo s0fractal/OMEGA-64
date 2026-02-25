@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037663872
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772037664357
@@ -291,6 +285,12 @@
       "text": "FLOW RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772037669155
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE STASIS SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772037669376
     }
   ]
 }
