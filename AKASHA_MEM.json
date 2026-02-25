@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SPARK DREAM BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772023718484
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772023718637
@@ -278,6 +272,12 @@
       "text": "WAIT REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023723248
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT WAIT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023723414
     }
   ]
 }
