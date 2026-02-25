@@ -86,12 +86,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SEIZE CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021226575
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HEAL COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772021227120
@@ -173,6 +167,12 @@
       "text": "STRIKE CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772021229992
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE COHERE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772021230563
     }
   ]
 }
