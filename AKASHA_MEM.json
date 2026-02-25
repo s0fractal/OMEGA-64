@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE SYNC COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772037672629
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772037672837
@@ -291,6 +285,12 @@
       "text": "SICKNESS CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772037675879
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD PURE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772037676107
     }
   ]
 }
