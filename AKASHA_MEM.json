@@ -40,12 +40,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "GIVING SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772019830484
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS BREACH CONSUME",
       "mood": "AGGRESSIVE",
@@ -128,6 +122,12 @@
       "text": "BREACH SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772019839849
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHOCK SEIZE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019840271
     }
   ]
 }
