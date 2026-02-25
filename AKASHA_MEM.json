@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE SHOCK SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038822754
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN DECAY BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772038826264
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WATCH SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772038826485
     }
   ]
 }
