@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60006606",
     "A00A00A0",
     "AAAA0A0A",
     "00000600",
@@ -199,15 +198,10 @@
     "60000060",
     "0A00AAAA",
     "60006066",
-    "AAA00000"
+    "AAA00000",
+    "000A0A0A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHELTER GUARD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772037654324
-    },
     {
       "origin": "REVERSE",
       "text": "GUARD WAIT PURE",
@@ -291,6 +285,12 @@
       "text": "BLOOM BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772037658152
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772037658357
     }
   ]
 }
