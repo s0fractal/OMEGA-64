@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772033539585
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772033539773
@@ -291,6 +285,12 @@
       "text": "UNIFY STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772033543528
+    },
+    {
+      "origin": "PARADOX",
+      "text": "GUARD PURE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772033543711
     }
   ]
 }
