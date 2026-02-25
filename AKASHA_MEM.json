@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHOCK BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041095986
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHOCK SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041096404
@@ -291,6 +285,12 @@
       "text": "DRAIN SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772041099482
+    },
+    {
+      "origin": "WORKER",
+      "text": "COHERE OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041099880
     }
   ]
 }
