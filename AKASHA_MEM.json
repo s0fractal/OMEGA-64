@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SHOCK SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037269621
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772037269820
@@ -291,6 +285,12 @@
       "text": "DRAIN BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772037272495
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS IMMUNE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772037272692
     }
   ]
 }
