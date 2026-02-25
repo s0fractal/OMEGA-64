@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041789783
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772041790042
@@ -291,6 +285,12 @@
       "text": "RESONATE BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772041796843
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME STRIKE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041797543
     }
   ]
 }
