@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK SEIZE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025067199
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772025070425
@@ -291,6 +285,12 @@
       "text": "RECON SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772025075631
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STABLE UNIFY OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772025077153
     }
   ]
 }
