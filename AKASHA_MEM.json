@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DREAM SPARK WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772040249141
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT IMMUNE GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772040251783
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS WAVE VISION",
+      "mood": "CREATIVE",
+      "tick": 1772040251938
     }
   ]
 }
