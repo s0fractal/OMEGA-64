@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE WAIT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772029742748
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GUARD RECON GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772029791517
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772029792632
     }
   ]
 }
