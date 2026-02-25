@@ -102,12 +102,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "PURE WAIT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772021654802
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN DRAIN SEIZE",
       "mood": "AGGRESSIVE",
@@ -190,6 +184,12 @@
       "text": "SHELTER WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772021659349
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS WATCH SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772021660301
     }
   ]
 }
