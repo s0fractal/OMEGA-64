@@ -121,7 +121,7 @@ desc: 'A collective representation of high-resonance Noospheric connections.'
     <line x1="0" y1="0" x2="329" y2="49" stroke="hsl(198, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
     <circle cx="159" cy="-109" r="15.235" fill="none" stroke="hsl(160, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
     <line x1="0" y1="0" x2="159" y2="-109" stroke="hsl(160, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
-    <circle cx="-33" cy="-302" r="62.44" fill="none" stroke="hsl(102, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
+    <circle cx="-33" cy="-302" r="69.94" fill="none" stroke="hsl(102, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
     <line x1="0" y1="0" x2="-33" y2="-302" stroke="hsl(102, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
     <circle cx="290" cy="-3" r="15.315" fill="none" stroke="hsl(6, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
     <line x1="0" y1="0" x2="290" y2="-3" stroke="hsl(6, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
