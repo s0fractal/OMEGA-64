@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAA0A00A",
     "AAAAAA00",
     "60606606",
     "AA00C0DD",
@@ -199,15 +198,10 @@
     "60606000",
     "60000066",
     "A0066000",
-    "0A00A0AA"
+    "0A00A0AA",
+    "AAAA0A00"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BREACH BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040862460
-    },
     {
       "origin": "ARCHIVIST",
       "text": "RECON SHELTER SHIELD",
@@ -291,6 +285,12 @@
       "text": "DECAY DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772040865140
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040865309
     }
   ]
 }
