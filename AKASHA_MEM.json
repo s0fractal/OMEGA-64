@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE COHERE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772042113033
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE WATCH WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772042123558
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "UNIFY STABLE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772042124488
     }
   ]
 }
