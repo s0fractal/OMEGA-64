@@ -56,12 +56,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE CONSUME STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020522521
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020522830
@@ -143,6 +137,12 @@
       "text": "STRIFE SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020529091
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020529494
     }
   ]
 }
