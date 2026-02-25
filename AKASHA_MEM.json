@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIFE DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772015922622
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "FLOW HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772015927582
@@ -107,6 +101,12 @@
       "text": "STRIKE HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772016006640
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BREACH STRIFE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772016009233
     }
   ]
 }
