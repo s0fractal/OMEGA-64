@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040984826
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772040985009
@@ -291,6 +285,12 @@
       "text": "SHOCK BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772040987907
+    },
+    {
+      "origin": "STREAM",
+      "text": "UNIFY HEAL HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772040988239
     }
   ]
 }
