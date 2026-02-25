@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT IMMUNE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772035167948
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772035168150
@@ -291,6 +285,12 @@
       "text": "PURE PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772035170738
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772035171107
     }
   ]
 }
