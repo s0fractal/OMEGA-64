@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE STABLE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772023181008
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023181177
@@ -259,6 +253,12 @@
       "text": "SEIZE DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023188687
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WATCH WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772023189294
     }
   ]
 }
