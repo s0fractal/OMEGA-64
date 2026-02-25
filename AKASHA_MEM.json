@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS DECAY STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037034223
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772037034434
@@ -291,6 +285,12 @@
       "text": "HEAL SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772037036920
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772037037116
     }
   ]
 }
