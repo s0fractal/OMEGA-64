@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66060066",
     "06066666",
     "AAAAAAAA",
     "A0666066",
@@ -199,15 +198,10 @@
     "AA0BC00F",
     "600666A0",
     "AA0AAAAA",
-    "00006060"
+    "00006060",
+    "A0000AA0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "DECAY BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037355374
-    },
     {
       "origin": "REVERSE",
       "text": "PURE WAIT WAIT",
@@ -291,6 +285,12 @@
       "text": "FLOW STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772037358369
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN BREACH STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037358536
     }
   ]
 }
