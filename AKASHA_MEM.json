@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HEAL STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772034785913
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY CONSUME HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772034790344
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER HUNGER HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034790558
     }
   ]
 }
