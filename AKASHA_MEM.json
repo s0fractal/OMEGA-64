@@ -134,15 +134,10 @@
     "AAAAAA00",
     "60060000",
     "0AAAAA0A",
-    "0AA0A0A0"
+    "0AA0A0A0",
+    "60066000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RESONATE OSMOSIS SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772022444825
-    },
     {
       "origin": "REVERSE",
       "text": "STRIFE CONSUME SICKNESS",
@@ -226,6 +221,12 @@
       "text": "SICKNESS BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022448057
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT GUARD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022448222
     }
   ]
 }
