@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038401687
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772038401859
@@ -291,6 +285,12 @@
       "text": "BLOOM FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772038405513
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772038405684
     }
   ]
 }
