@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON STASIS STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772041326792
-    },
-    {
       "origin": "INTERFACE",
       "text": "BLOOM GIVING COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "REFLECT GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041332522
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HUNGER STRIFE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041332656
     }
   ]
 }
