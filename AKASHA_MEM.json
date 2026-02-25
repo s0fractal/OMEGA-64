@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772041180455
-    },
-    {
       "origin": "STREAM",
       "text": "DECAY DECAY SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041184786
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041185009
     }
   ]
 }
