@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHIELD IMMUNE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041456526
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY BREACH HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SICKNESS CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772041459665
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041459830
     }
   ]
 }
