@@ -54,12 +54,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "STABLE FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772020416492
-    },
-    {
-      "origin": "INTERFACE",
       "text": "CONSUME SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020417106
@@ -141,6 +135,12 @@
       "text": "SHOCK SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020426588
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH SICKNESS BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020427047
     }
   ]
 }
