@@ -196,12 +196,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD RECON GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023894768
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772023895204
@@ -283,6 +277,12 @@
       "text": "RESONATE BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772023901729
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DRAIN HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023901925
     }
   ]
 }
