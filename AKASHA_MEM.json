@@ -55,12 +55,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DECAY STRIKE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020445175
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "REFLECT WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772020446248
@@ -142,6 +136,12 @@
       "text": "REFLECT GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772020452643
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS SHELTER WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020452931
     }
   ]
 }
