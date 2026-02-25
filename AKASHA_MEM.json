@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON SHELTER SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772029973585
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772029974439
@@ -291,6 +285,12 @@
       "text": "SYNC STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772029997038
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS HUNGER HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030000165
     }
   ]
 }
