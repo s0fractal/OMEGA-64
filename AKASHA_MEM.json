@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "CONSCIOUSNESS",
-      "text": "BLOOM BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040628151
-    },
-    {
       "origin": "REVERSE",
       "text": "BREACH SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIFE CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772040631511
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD IMMUNE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040631678
     }
   ]
 }
