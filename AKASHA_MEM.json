@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772037565284
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772037565507
@@ -291,6 +285,12 @@
       "text": "DECAY BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772037570136
+    },
+    {
+      "origin": "STREAM",
+      "text": "RECON WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772037570738
     }
   ]
 }
