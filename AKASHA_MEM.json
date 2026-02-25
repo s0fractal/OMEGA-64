@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER SHIELD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772034343759
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772034343965
@@ -291,6 +285,12 @@
       "text": "STRIFE SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772034351229
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DECAY SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034351432
     }
   ]
 }
