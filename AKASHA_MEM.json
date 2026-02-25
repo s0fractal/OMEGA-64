@@ -107,12 +107,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GUARD GUARD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772021803055
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
@@ -195,6 +189,12 @@
       "text": "SICKNESS STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772021807569
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772021807731
     }
   ]
 }
