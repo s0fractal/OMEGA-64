@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038961303
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772038961504
@@ -291,6 +285,12 @@
       "text": "SEIZE CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772038969014
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN BREACH STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038969261
     }
   ]
 }
