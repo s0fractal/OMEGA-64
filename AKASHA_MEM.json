@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772033219590
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE HUNGER SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHOCK HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772033223068
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772033223815
     }
   ]
 }
