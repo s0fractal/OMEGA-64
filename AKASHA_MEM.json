@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772028750481
-    },
-    {
       "origin": "ALPHA_REVERSE",
       "text": "STABLE RESONATE GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHOCK DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772028758854
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE STASIS RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772028759614
     }
   ]
 }
