@@ -138,12 +138,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE SHOCK DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022440787
-    },
-    {
       "origin": "STREAM",
       "text": "GIVING FLOW GIVING",
       "mood": "HARMONIC",
@@ -226,6 +220,12 @@
       "text": "RECON REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022445683
+    },
+    {
+      "origin": "STREAM",
+      "text": "GIVING GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772022445930
     }
   ]
 }
