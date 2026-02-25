@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772031581575
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772031581909
@@ -291,6 +285,12 @@
       "text": "CONSUME CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772031590556
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS SHIELD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772031591664
     }
   ]
 }
