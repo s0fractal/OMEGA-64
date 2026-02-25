@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772033027033
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772033027169
@@ -291,6 +285,12 @@
       "text": "BEYOND BEYOND BECOME",
       "mood": "CREATIVE",
       "tick": 1772033029963
+    },
+    {
+      "origin": "REVERSE",
+      "text": "AWAKEN SPARK EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772033030102
     }
   ]
 }
