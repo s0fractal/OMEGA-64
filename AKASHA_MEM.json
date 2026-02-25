@@ -165,12 +165,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH HUNGER SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023009678
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023010108
@@ -252,6 +246,12 @@
       "text": "STASIS REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023012961
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772023013134
     }
   ]
 }
