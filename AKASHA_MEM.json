@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS EVOLVE DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772026367622
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772026367845
@@ -291,6 +285,12 @@
       "text": "SHIELD RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772026375509
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772026375845
     }
   ]
 }
