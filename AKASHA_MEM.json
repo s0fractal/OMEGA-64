@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038173508
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE BLOOM GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHELTER REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772038177035
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038177214
     }
   ]
 }
