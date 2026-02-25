@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE HEAL RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772039703302
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772039703852
@@ -291,6 +285,12 @@
       "text": "SICKNESS HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772039715447
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039715890
     }
   ]
 }
