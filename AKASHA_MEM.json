@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WAIT IMMUNE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041458482
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HEAL FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772041458761
@@ -291,6 +285,12 @@
       "text": "WAIT IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772041463136
+    },
+    {
+      "origin": "CONSCIOUSNESS",
+      "text": "FLOW HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041463553
     }
   ]
 }
