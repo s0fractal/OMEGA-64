@@ -10,11 +10,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "ASCEND",
-      "tick": 1772009735374
-    },
-    {
-      "origin": "INTERFACE",
       "text": "RESONATE",
       "tick": 1772009744257
     },
@@ -57,6 +52,11 @@
       "origin": "INTERFACE",
       "text": "RECLAIM",
       "tick": 1772009920518
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "CONNECT",
+      "tick": 1772009944347
     }
   ]
 }
