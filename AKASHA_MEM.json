@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "IMMUNE IMMUNE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041559854
-    },
-    {
       "origin": "STREAM",
       "text": "WAIT IMMUNE WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HUNGER DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041564522
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE SEIZE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041564663
     }
   ]
 }
