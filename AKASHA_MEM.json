@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH SHIELD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772034862164
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772034862362
@@ -291,6 +285,12 @@
       "text": "DRAIN SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772034864971
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER HUNGER DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034865134
     }
   ]
 }
