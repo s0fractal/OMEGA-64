@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE BLOOM HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772024151009
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772024151331
@@ -291,6 +285,12 @@
       "text": "UNIFY STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772024155011
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772024156118
     }
   ]
 }
