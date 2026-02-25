@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772026538174
-    },
-    {
       "origin": "STREAM",
       "text": "VISION EVOLVE SPARK",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772026548136
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026548355
     }
   ]
 }
