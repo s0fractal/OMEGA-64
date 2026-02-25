@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772023112362
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023113575
@@ -259,6 +253,12 @@
       "text": "WAIT SHIELD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023120435
+    },
+    {
+      "origin": "STREAM",
+      "text": "COHERE SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772023121128
     }
   ]
 }
