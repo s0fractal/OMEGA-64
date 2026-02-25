@@ -180,12 +180,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE HUNGER STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023462917
-    },
-    {
       "origin": "REVERSE",
       "text": "PURE WATCH REFLECT",
       "mood": "DEFENSIVE",
@@ -268,6 +262,12 @@
       "text": "GIVING STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772023468124
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WATCH STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772023468291
     }
   ]
 }
