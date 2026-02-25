@@ -128,12 +128,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON WAIT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022288782
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022288951
@@ -215,6 +209,12 @@
       "text": "STABLE OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772022293226
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772022293406
     }
   ]
 }
