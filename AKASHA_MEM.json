@@ -110,12 +110,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD WATCH SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772021897546
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH STRIKE BREACH",
       "mood": "AGGRESSIVE",
@@ -198,6 +192,12 @@
       "text": "SHIELD RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772021902643
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WATCH GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021902765
     }
   ]
 }
