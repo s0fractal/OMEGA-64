@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772040220264
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY UNIFY OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SICKNESS SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040224931
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT WATCH REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040225356
     }
   ]
 }
