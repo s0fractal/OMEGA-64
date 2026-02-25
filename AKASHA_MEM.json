@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772038482012
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772038482216
@@ -291,6 +285,12 @@
       "text": "FLOW FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038486504
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772038486725
     }
   ]
 }
