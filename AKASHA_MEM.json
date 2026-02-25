@@ -50,12 +50,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW STABLE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772020260706
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIFE DECAY CONSUME",
       "mood": "AGGRESSIVE",
@@ -138,6 +132,12 @@
       "text": "GIVING GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772020269917
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772020270876
     }
   ]
 }
