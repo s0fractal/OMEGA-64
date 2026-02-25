@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER SEIZE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032395432
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772032395952
@@ -291,6 +285,12 @@
       "text": "STABLE UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772032401837
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH IMMUNE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772032402217
     }
   ]
 }
