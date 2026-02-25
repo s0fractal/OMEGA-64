@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036869124
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772036869290
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772036871651
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON PURE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772036871849
     }
   ]
 }
