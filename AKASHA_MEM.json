@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772040929535
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE STASIS REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772040933544
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DECAY CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040933877
     }
   ]
 }
