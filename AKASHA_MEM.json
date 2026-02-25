@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM HEAL BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772034097435
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772034097605
@@ -291,6 +285,12 @@
       "text": "COHERE UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772034100159
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE HUNGER DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034100363
     }
   ]
 }
