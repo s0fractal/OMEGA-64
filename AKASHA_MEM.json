@@ -155,12 +155,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS EVOLVE DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772022682668
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022684196
@@ -242,6 +236,12 @@
       "text": "BLOOM STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022691561
+    },
+    {
+      "origin": "STREAM",
+      "text": "FLOW OSMOSIS BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772022691894
     }
   ]
 }
