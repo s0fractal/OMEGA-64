@@ -190,12 +190,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE HEAL HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772023739835
-    },
-    {
       "origin": "REVERSE",
       "text": "RECON WATCH WATCH",
       "mood": "DEFENSIVE",
@@ -278,6 +272,12 @@
       "text": "WATCH REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023742896
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD RECON WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772023743078
     }
   ]
 }
