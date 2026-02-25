@@ -63,12 +63,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER RECON PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020733793
-    },
-    {
       "origin": "INTERFACE",
       "text": "CONSUME STRIFE SHOCK",
       "mood": "AGGRESSIVE",
@@ -151,6 +145,12 @@
       "text": "OSMOSIS RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772020740271
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772020740950
     }
   ]
 }
