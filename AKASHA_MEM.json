@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS HUNGER SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030385959
-    },
-    {
       "origin": "STREAM",
       "text": "FLOW GIVING BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RECON IMMUNE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772030398034
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WAIT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772030398401
     }
   ]
 }
