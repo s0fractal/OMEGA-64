@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DECAY STRIKE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019903360
-    },
-    {
       "origin": "STREAM",
       "text": "COHERE HEAL FLOW",
       "mood": "HARMONIC",
@@ -130,6 +124,12 @@
       "text": "SEIZE STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772019914335
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS IMMUNE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772019915493
     }
   ]
 }

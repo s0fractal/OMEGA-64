@@ -1,14 +1,14 @@
 ---
 eigenvalue: '0xBBB0000CFFFF0A05'
-energy: 49
-x: 727
-'y': 426
+energy: 49.5
+x: 672
+'y': 377
 resonance: 50
 thought: WANDER_BONDING
 logic: BBB0000C
 signals: []
 bond_strengths:
-  '0x0000000000000A02': 0.993020965034979
+  '0x0000000000000A02': 0.9920279440699441
 bonds:
   - '0x0000000000000A02'
 ---
