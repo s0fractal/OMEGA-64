@@ -71,12 +71,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772020896776
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020896937
@@ -158,6 +152,12 @@
       "text": "BLOOM SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772020903092
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS AWAKEN WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772020903302
     }
   ]
 }
