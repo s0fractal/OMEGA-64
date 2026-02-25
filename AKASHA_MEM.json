@@ -58,12 +58,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "FLOW OSMOSIS SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772020581230
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE SEIZE DECAY",
       "mood": "AGGRESSIVE",
@@ -146,6 +140,12 @@
       "text": "HUNGER STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772020589135
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DECAY DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020589496
     }
   ]
 }
