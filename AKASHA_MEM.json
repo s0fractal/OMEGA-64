@@ -162,12 +162,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW HEAL FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772022859063
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022859318
@@ -249,6 +243,12 @@
       "text": "HUNGER HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022861875
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772022862217
     }
   ]
 }
