@@ -177,12 +177,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SEIZE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023315021
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772023315200
@@ -264,6 +258,12 @@
       "text": "FLOW FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772023317910
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT RECON RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772023319002
     }
   ]
 }
