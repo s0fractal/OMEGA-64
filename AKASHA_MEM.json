@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STASIS STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772041049764
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RECON STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772041049987
@@ -291,6 +285,12 @@
       "text": "FLOW BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772041052660
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAVE WAVE WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772041052869
     }
   ]
 }
