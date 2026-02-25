@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772041426491
-    },
-    {
       "origin": "STREAM",
       "text": "GIVING GIVING UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "CONSUME DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772041430106
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER WATCH IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041430386
     }
   ]
 }
