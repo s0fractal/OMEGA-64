@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHOCK BREACH BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037344841
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE HEAL STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772037350613
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS FORGE EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772037350838
     }
   ]
 }
