@@ -59,12 +59,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GUARD RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772020582323
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RECON SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020583046
@@ -146,6 +140,12 @@
       "text": "PURE IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772020591174
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT RECON PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020591349
     }
   ]
 }
