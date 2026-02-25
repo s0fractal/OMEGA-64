@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772033979851
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772033980060
@@ -291,6 +285,12 @@
       "text": "COHERE HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772033983201
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE GIVING FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772033983479
     }
   ]
 }
