@@ -76,12 +76,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021017082
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY DRAIN HUNGER",
       "mood": "AGGRESSIVE",
@@ -164,6 +158,12 @@
       "text": "SEIZE CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772021022163
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS STABLE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772021022655
     }
   ]
 }
