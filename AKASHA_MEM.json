@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS GUARD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772028575557
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772028577917
@@ -291,6 +285,12 @@
       "text": "STASIS STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772028583385
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS UNIFY HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772028583728
     }
   ]
 }
