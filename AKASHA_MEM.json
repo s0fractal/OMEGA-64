@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772024421610
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772024421812
@@ -291,6 +285,12 @@
       "text": "SEIZE SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772024425326
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024425501
     }
   ]
 }
