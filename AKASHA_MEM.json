@@ -115,12 +115,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022067142
-    },
-    {
       "origin": "REVERSE",
       "text": "WAVE BECOME AWAKEN",
       "mood": "CREATIVE",
@@ -203,6 +197,12 @@
       "text": "COHERE UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022072082
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD STASIS SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022072258
     }
   ]
 }
