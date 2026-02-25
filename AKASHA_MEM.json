@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE STABLE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772035538568
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772035538836
@@ -291,6 +285,12 @@
       "text": "HUNGER SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772035543569
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772035543809
     }
   ]
 }
