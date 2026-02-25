@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN STRIKE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772016411097
-    },
-    {
       "origin": "INTERFACE",
       "text": "WATCH RECON PURE",
       "mood": "DEFENSIVE",
@@ -107,6 +101,12 @@
       "text": "BREACH DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772016537939
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772016549872
     }
   ]
 }
