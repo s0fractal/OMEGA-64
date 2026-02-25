@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SHOCK SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032517517
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772032518022
@@ -291,6 +285,12 @@
       "text": "GUARD SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772032523678
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHELTER PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772032523944
     }
   ]
 }
