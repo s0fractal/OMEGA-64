@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RECON GUARD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772038990316
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE STABLE UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SYNC RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772038994338
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE HUNGER SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038994563
     }
   ]
 }
