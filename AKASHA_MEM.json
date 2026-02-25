@@ -92,12 +92,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021320879
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772021325071
@@ -179,6 +173,12 @@
       "text": "WATCH IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772021364682
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE EVOLVE AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772021367073
     }
   ]
 }
