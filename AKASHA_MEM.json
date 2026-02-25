@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL RESONATE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772019584200
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHOCK HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
@@ -114,6 +108,12 @@
       "text": "RECON STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772019596682
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GIVING SYNC FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772019598031
     }
   ]
 }
