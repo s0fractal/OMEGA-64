@@ -164,12 +164,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM OSMOSIS COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772023010673
-    },
-    {
       "origin": "INTERFACE",
       "text": "BLOOM OSMOSIS HEAL",
       "mood": "HARMONIC",
@@ -252,6 +246,12 @@
       "text": "WAIT STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772023013666
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772023013825
     }
   ]
 }
