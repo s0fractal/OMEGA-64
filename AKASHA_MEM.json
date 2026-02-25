@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHELTER WAIT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040201295
-    },
-    {
       "origin": "INTERFACE",
       "text": "STABLE BLOOM SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DECAY CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772040206462
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040206864
     }
   ]
 }
