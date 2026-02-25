@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW UNIFY FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772036958947
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772036959177
@@ -291,6 +285,12 @@
       "text": "SHIELD RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772036962728
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS SHELTER STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772036962909
     }
   ]
 }
