@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIFE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025318743
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772025319409
@@ -291,6 +285,12 @@
       "text": "BECOME DREAM BEYOND",
       "mood": "CREATIVE",
       "tick": 1772025326612
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE CONSUME SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025326774
     }
   ]
 }
