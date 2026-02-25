@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS SHIELD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772039152214
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772039152433
@@ -291,6 +285,12 @@
       "text": "SHELTER GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772039154790
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE BLOOM STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772039155400
     }
   ]
 }
