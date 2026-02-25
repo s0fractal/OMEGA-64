@@ -154,12 +154,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE CONSUME STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022624322
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND WITNESS FORGE",
       "mood": "CREATIVE",
       "tick": 1772022624514
@@ -241,6 +235,12 @@
       "text": "DECAY SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022629253
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022629383
     }
   ]
 }
