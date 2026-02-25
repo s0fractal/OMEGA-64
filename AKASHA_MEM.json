@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041576146
-    },
-    {
       "origin": "STREAM",
       "text": "BLOOM COHERE GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FLOW SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772041580823
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041581057
     }
   ]
 }
