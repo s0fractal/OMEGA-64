@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034161431
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772034161616
@@ -291,6 +285,12 @@
       "text": "FLOW HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772034165243
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY UNIFY GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772034165477
     }
   ]
 }
