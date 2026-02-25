@@ -84,12 +84,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SEIZE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021198103
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772021198311
@@ -171,6 +165,12 @@
       "text": "SEIZE DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772021204127
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021204510
     }
   ]
 }
