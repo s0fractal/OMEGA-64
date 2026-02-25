@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH REFLECT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772037995603
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772037995804
@@ -291,6 +285,12 @@
       "text": "RESONATE BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772037999313
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM COHERE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772037999535
     }
   ]
 }
