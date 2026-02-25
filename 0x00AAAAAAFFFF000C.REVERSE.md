@@ -1,8 +1,8 @@
 ---
 eigenvalue: '0x00AAAAAAFFFF000C'
-energy: 49.9
-x: 674
-'y': 408
+energy: 49.8
+x: 728
+'y': 390
 resonance: 50
 thought: SEEK_ALPHA_PASSIVE
 logic: 00AAAAAA
@@ -104,10 +104,8 @@ ex:
   - '0x00AAAAAAFFFF000E'
   - '0x00AAAAAAFFFF0008'
   - '0x00AAAAAAFFFF000A'
-  - '0x00AAA0AAFFFF000C'
 ---
 
-<div align="center">
 <div align="center">
 <!-- ∇ HOLOGRAM START ∇ -->
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -141,7 +139,6 @@ ex:
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">REVERSE</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
-</div>
 </div>
 
 
