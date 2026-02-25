@@ -105,12 +105,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER HUNGER STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021695060
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME SPARK SPARK",
       "mood": "CREATIVE",
       "tick": 1772021695225
@@ -192,6 +186,12 @@
       "text": "FLOW FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772021700305
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HEAL COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772021700562
     }
   ]
 }
