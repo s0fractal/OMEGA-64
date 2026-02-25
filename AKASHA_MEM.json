@@ -103,12 +103,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC FLOW UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772021652136
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772021652323
@@ -190,6 +184,12 @@
       "text": "SEIZE CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772021656705
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021657177
     }
   ]
 }
