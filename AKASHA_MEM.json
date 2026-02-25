@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772025590558
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772025590740
@@ -291,6 +285,12 @@
       "text": "FLOW RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772025594563
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD SHELTER RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772025594698
     }
   ]
 }
