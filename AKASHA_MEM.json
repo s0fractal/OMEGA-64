@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GIVING UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041489345
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GIVING OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772041489482
@@ -291,6 +285,12 @@
       "text": "CONSUME BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772041492650
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY UNIFY HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041492795
     }
   ]
 }
