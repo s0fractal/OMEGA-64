@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIKE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025178662
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772025179109
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772025183810
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER STASIS GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772025184022
     }
   ]
 }
