@@ -160,12 +160,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE STRIFE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022806611
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022807412
@@ -247,6 +241,12 @@
       "text": "HUNGER DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022813043
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772022813789
     }
   ]
 }
