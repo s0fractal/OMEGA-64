@@ -78,12 +78,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772021048491
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772021048883
@@ -165,6 +159,12 @@
       "text": "GUARD IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772021056956
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY HUNGER DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021057717
     }
   ]
 }
