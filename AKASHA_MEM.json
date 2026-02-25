@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HUNGER STRIFE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041359454
-    },
-    {
       "origin": "STREAM",
       "text": "OSMOSIS COHERE UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772041363425
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS STASIS SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772041363750
     }
   ]
 }
