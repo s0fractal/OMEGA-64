@@ -200,12 +200,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "AWAKEN SPARK FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772024047788
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772024048130
@@ -287,6 +281,12 @@
       "text": "UNIFY SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772024051541
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER BREACH BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024052094
     }
   ]
 }
