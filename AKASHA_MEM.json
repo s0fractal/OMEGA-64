@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIFE CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772015853382
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE CONSUME DECAY",
       "mood": "AGGRESSIVE",
@@ -107,6 +101,12 @@
       "text": "RESONATE FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772015952372
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "CONSUME BREACH SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772015959811
     }
   ]
 }
