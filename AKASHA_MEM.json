@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SYNC BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772016779462
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DRAIN SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772016788818
@@ -107,6 +101,12 @@
       "text": "HUNGER DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772016872301
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772016884124
     }
   ]
 }
