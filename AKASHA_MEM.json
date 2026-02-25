@@ -171,12 +171,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE SHELTER WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023139114
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE WAIT SHELTER",
       "mood": "DEFENSIVE",
@@ -259,6 +253,12 @@
       "text": "SICKNESS SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772023144859
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023144990
     }
   ]
 }
