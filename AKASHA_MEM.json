@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025308586
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772025308823
@@ -291,6 +285,12 @@
       "text": "GUARD IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772025315579
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772025315886
     }
   ]
 }
