@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON STASIS REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772019596682
-    },
-    {
       "origin": "INTERFACE",
       "text": "GIVING SYNC FLOW",
       "mood": "HARMONIC",
@@ -114,6 +108,12 @@
       "text": "CONSUME DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772019605554
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT RECON WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772019606149
     }
   ]
 }
