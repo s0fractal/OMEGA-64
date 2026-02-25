@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772037638138
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772037638495
@@ -291,6 +285,12 @@
       "text": "REFLECT GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772037641851
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WATCH WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772037642261
     }
   ]
 }
