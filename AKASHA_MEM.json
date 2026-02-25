@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038862987
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772038863300
@@ -291,6 +285,12 @@
       "text": "COHERE HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772038866033
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM RESONATE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772038866263
     }
   ]
 }
