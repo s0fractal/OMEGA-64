@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC FLOW UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772034290911
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772034291059
@@ -291,6 +285,12 @@
       "text": "RECON SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772034293436
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHELTER REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772034293592
     }
   ]
 }
