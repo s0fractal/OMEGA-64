@@ -137,12 +137,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STASIS GUARD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022425279
-    },
-    {
       "origin": "INTERFACE",
       "text": "STABLE SYNC UNIFY",
       "mood": "HARMONIC",
@@ -225,6 +219,12 @@
       "text": "STRIKE STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022428571
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022428860
     }
   ]
 }
