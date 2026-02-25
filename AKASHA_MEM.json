@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028604615
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH RECON SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772028616083
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD IMMUNE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772028616929
     }
   ]
 }
