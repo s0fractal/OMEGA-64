@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM UNIFY FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772037938343
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772037938551
@@ -291,6 +285,12 @@
       "text": "SHIELD SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772037943646
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK STRIFE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037943869
     }
   ]
 }
