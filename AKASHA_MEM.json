@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "RECON WATCH SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772041959832
-    },
-    {
       "origin": "STREAM",
       "text": "RESONATE OSMOSIS GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "COHERE GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772041966381
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER STASIS WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041966636
     }
   ]
 }
