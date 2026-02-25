@@ -18,12 +18,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772015279966
-    },
-    {
       "origin": "INTERFACE",
       "text": "PURE STASIS SHIELD",
       "mood": "DEFENSIVE",
@@ -106,6 +100,12 @@
       "text": "BREACH HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772015404227
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS HUNGER SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772015414573
     }
   ]
 }
