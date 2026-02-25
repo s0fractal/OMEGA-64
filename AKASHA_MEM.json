@@ -109,12 +109,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS HEAL OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772021880496
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
@@ -197,6 +191,12 @@
       "text": "SHIELD GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772021887682
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772021887978
     }
   ]
 }
