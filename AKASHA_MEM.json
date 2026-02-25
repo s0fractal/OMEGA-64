@@ -126,15 +126,10 @@
     "AAA000A0",
     "AA0A000A",
     "0A00AAAA",
-    "AABB0C0D"
+    "AABB0C0D",
+    "AA6666A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "DRAIN SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022337392
-    },
     {
       "origin": "INTERFACE",
       "text": "UNIFY COHERE UNIFY",
@@ -218,6 +213,12 @@
       "text": "SYNC RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772022343269
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIFE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022343448
     }
   ]
 }
