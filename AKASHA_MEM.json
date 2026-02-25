@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040545324
-    },
-    {
       "origin": "STREAM",
       "text": "OSMOSIS COHERE RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HEAL BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772040548216
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME DRAIN DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040548443
     }
   ]
 }
