@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00066006",
     "66A666A0",
     "C0DED000",
     "06066606",
@@ -199,15 +198,10 @@
     "AA0AA0A0",
     "60606606",
     "0AAAA0A0",
-    "66066A00"
+    "66066A00",
+    "000AA0AA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "PURE IMMUNE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772030838841
-    },
     {
       "origin": "REVERSE",
       "text": "RECON SHIELD SHIELD",
@@ -291,6 +285,12 @@
       "text": "SHIELD STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772030853325
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772030854509
     }
   ]
 }
