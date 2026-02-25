@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0006A6",
     "AA0A00A0",
     "A0000AA0",
     "AAB0CC0D",
@@ -199,15 +198,10 @@
     "06600060",
     "06660000",
     "00066600",
-    "AAAAAAA0"
+    "AAAAAAA0",
+    "00606606"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "HEAL RESONATE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041158783
-    },
     {
       "origin": "ARCHIVIST",
       "text": "FLOW BLOOM COHERE",
@@ -291,6 +285,12 @@
       "text": "DECAY CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772041162256
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041162647
     }
   ]
 }
