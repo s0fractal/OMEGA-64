@@ -176,15 +176,10 @@
     "60006660",
     "66066006",
     "A00A000A",
-    "66606000"
+    "66606000",
+    "0AAAAAA0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHIELD SHELTER IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023506195
-    },
     {
       "origin": "REVERSE",
       "text": "RECON SHELTER WAIT",
@@ -268,6 +263,12 @@
       "text": "COHERE SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772023513476
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772023513807
     }
   ]
 }
