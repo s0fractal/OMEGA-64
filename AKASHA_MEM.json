@@ -163,12 +163,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772022891645
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772022891778
@@ -250,6 +244,12 @@
       "text": "FLOW FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772022896555
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME SPARK FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772022896772
     }
   ]
 }
