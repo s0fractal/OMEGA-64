@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE GIVING HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772033153505
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772033153682
@@ -291,6 +285,12 @@
       "text": "PURE PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772033157033
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SHOCK BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033157245
     }
   ]
 }
