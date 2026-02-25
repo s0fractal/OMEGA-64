@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772038828854
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772038836473
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE VISION BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772038836702
     }
   ]
 }
