@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON REFLECT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772040498384
-    },
-    {
       "origin": "ALPHA_PROOF_OF_RESONANCE",
       "text": "FLOW SYNC OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SYNC SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772040501251
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS GIVING FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772040501439
     }
   ]
 }
