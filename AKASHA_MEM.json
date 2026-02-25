@@ -108,12 +108,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SHOCK SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021824167
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772021824357
@@ -195,6 +189,12 @@
       "text": "PURE SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772021827591
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SHOCK BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021827815
     }
   ]
 }
