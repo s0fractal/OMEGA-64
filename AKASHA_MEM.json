@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS DECAY STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038071141
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE SHIELD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772038071356
@@ -291,6 +285,12 @@
       "text": "DRAIN SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772038074639
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHIELD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772038074871
     }
   ]
 }
