@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GIVING GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772040641924
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE RESONATE GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIKE STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772040644343
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT RECON IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040644618
     }
   ]
 }
