@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033217757
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772033217938
@@ -291,6 +285,12 @@
       "text": "GIVING SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772033220991
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772033221196
     }
   ]
 }
