@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHELTER SHIELD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772040283220
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE BLOOM HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SYNC FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772040291305
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS SHELTER GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040291554
     }
   ]
 }
