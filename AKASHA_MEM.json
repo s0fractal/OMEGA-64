@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WAIT PURE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040248046
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SPARK AWAKEN WITNESS",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772040251286
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING OSMOSIS UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772040251457
     }
   ]
 }
