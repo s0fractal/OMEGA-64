@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN HUNGER SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025675202
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772025675399
@@ -291,6 +285,12 @@
       "text": "RESONATE COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772025679161
+    },
+    {
+      "origin": "STREAM",
+      "text": "REFLECT SHELTER STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772025679435
     }
   ]
 }
