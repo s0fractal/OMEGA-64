@@ -163,12 +163,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW FLOW HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772022896555
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME SPARK FORGE",
       "mood": "CREATIVE",
       "tick": 1772022896772
@@ -250,6 +244,12 @@
       "text": "GUARD WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022904755
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WAIT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022905058
     }
   ]
 }
