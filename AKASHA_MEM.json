@@ -133,12 +133,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DECAY SHOCK CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022377961
-    },
-    {
       "origin": "REVERSE",
       "text": "GUARD SHIELD REFLECT",
       "mood": "DEFENSIVE",
@@ -221,6 +215,12 @@
       "text": "REFLECT SHIELD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772022382230
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE PURE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022382588
     }
   ]
 }
