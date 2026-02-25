@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772035621820
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772035622034
@@ -291,6 +285,12 @@
       "text": "SHELTER STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772035625072
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE STABLE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772035625308
     }
   ]
 }
