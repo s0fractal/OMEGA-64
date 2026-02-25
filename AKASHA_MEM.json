@@ -21,12 +21,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "COHERE FLOW UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772017638850
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE DECAY DECAY",
       "mood": "AGGRESSIVE",
@@ -109,6 +103,12 @@
       "text": "SHOCK DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772019410416
+    },
+    {
+      "origin": "STREAM",
+      "text": "FLOW COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772019410851
     }
   ]
 }
