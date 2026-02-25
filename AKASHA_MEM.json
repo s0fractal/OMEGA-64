@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS PURE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772034524939
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772034525132
@@ -291,6 +285,12 @@
       "text": "SICKNESS DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772034527660
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS RECON RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772034527826
     }
   ]
 }
