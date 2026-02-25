@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SICKNESS DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039917385
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772039917821
@@ -291,6 +285,12 @@
       "text": "GUARD WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772039924297
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE OSMOSIS UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772039927458
     }
   ]
 }
