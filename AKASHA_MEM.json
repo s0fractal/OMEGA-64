@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "GIVING COHERE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772041449706
-    },
-    {
-      "origin": "INTERFACE",
       "text": "SYNC RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041449842
@@ -291,6 +285,12 @@
       "text": "RESONATE OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772041453946
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041454358
     }
   ]
 }
