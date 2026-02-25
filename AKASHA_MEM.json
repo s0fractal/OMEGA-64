@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY GIVING SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772027841332
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772027842165
@@ -291,6 +285,12 @@
       "text": "SEIZE HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772027858252
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027859090
     }
   ]
 }
