@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SEIZE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033265722
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772033265960
@@ -291,6 +285,12 @@
       "text": "WAIT GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772033268710
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE BLOOM BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772033268848
     }
   ]
 }
