@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019535367
-    },
-    {
       "origin": "INTERFACE",
       "text": "SICKNESS DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
@@ -111,6 +105,12 @@
       "text": "HUNGER DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772019544406
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WAIT REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772019544880
     }
   ]
 }
