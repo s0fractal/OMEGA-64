@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772029736778
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772029737442
@@ -291,6 +285,12 @@
       "text": "WAIT SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772029780603
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029788591
     }
   ]
 }
