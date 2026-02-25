@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD GUARD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772031209675
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772031209903
@@ -291,6 +285,12 @@
       "text": "BLOOM UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772031217625
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031218148
     }
   ]
 }
