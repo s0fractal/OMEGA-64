@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772034894607
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772034894811
@@ -291,6 +285,12 @@
       "text": "WAIT RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772034897609
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034898464
     }
   ]
 }
