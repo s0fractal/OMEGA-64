@@ -114,12 +114,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772021986439
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE DRAIN CONSUME",
       "mood": "AGGRESSIVE",
@@ -202,6 +196,12 @@
       "text": "RECON GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772021995888
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772021996062
     }
   ]
 }
