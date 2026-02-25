@@ -79,12 +79,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021084768
-    },
-    {
       "origin": "REVERSE",
       "text": "WAIT GUARD STASIS",
       "mood": "DEFENSIVE",
@@ -167,6 +161,12 @@
       "text": "SICKNESS SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021092987
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772021093565
     }
   ]
 }
