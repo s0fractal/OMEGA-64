@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIFE CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033361812
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STASIS WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033362505
@@ -291,6 +285,12 @@
       "text": "DRAIN STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772033365107
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT REFLECT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772033365288
     }
   ]
 }
