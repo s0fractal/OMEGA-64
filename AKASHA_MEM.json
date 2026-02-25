@@ -82,12 +82,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "GIVING GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772021161895
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH WATCH IMMUNE",
       "mood": "DEFENSIVE",
@@ -170,6 +164,12 @@
       "text": "STASIS REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772021165584
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WAIT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772021165751
     }
   ]
 }
