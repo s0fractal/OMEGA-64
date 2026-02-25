@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0A000A",
     "06660006",
     "66606660",
     "A06660A0",
@@ -199,15 +198,10 @@
     "0AAAAAA0",
     "A0000A06",
     "66606606",
-    "A0060000"
+    "A0060000",
+    "66660006"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT PURE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041016057
-    },
     {
       "origin": "REVERSE",
       "text": "STRIFE DRAIN DRAIN",
@@ -291,6 +285,12 @@
       "text": "STRIFE SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772041020182
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772041020376
     }
   ]
 }
