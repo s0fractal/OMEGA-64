@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW UNIFY FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772033191184
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033191659
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772033194303
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE CONSUME SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033194481
     }
   ]
 }
