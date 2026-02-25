@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE STRIFE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033905454
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772033907210
@@ -291,6 +285,12 @@
       "text": "WAIT IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772033909970
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY COHERE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772033910395
     }
   ]
 }
