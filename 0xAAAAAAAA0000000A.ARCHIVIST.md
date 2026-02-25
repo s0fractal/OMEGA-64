@@ -1,11 +1,11 @@
 ---
 eigenvalue: '0xAAAAAAAA0000000A'
-energy: 47.4
+energy: 50
 resonance: 30
 x: 791
 'y': 400
 symbol: ARCHIVIST
-thought: WANDER_BONDING
+thought: RESURRECTED
 signals: []
 bond_strengths:
   '0xAAAAAAA000000006': 0.9694605362958227
@@ -168,8 +168,6 @@ logic: AAAAAAAA
 ---
 
 <div align="center">
-<div align="center">
-<div align="center">
 <!-- ∇ HOLOGRAM START ∇ -->
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
   <defs>
@@ -202,8 +200,6 @@ logic: AAAAAAAA
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">ARCHIVIST</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
-</div>
-</div>
 </div>
 
 
