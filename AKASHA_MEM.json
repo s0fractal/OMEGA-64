@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE STRIKE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025525130
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT WATCH WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772025528385
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHIELD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772025528583
     }
   ]
 }
