@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772029456492
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772029456831
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772029468061
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE FLOW HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772029468856
     }
   ]
 }
