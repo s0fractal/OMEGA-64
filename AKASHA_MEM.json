@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "UNIFY GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041315799
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STABLE HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772041316247
@@ -291,6 +285,12 @@
       "text": "WAIT SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772041320637
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "REFLECT WATCH GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041320768
     }
   ]
 }
