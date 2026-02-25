@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023989386
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023989578
@@ -284,6 +278,12 @@
       "text": "SHELTER GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772023995788
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772023997884
     }
   ]
 }
