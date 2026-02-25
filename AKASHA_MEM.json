@@ -88,12 +88,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT RECON WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772021260368
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS WATCH SHELTER",
       "mood": "DEFENSIVE",
@@ -176,6 +170,12 @@
       "text": "SYNC OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772021267318
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772021268171
     }
   ]
 }
