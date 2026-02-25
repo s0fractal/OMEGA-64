@@ -125,12 +125,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772022232798
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "UNIFY STABLE COHERE",
       "mood": "HARMONIC",
@@ -213,6 +207,12 @@
       "text": "UNIFY BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772022237519
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SHOCK HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022237681
     }
   ]
 }
