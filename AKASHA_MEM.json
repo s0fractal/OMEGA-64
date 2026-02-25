@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WAIT PURE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041615407
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SYNC UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772041615596
@@ -291,6 +285,12 @@
       "text": "CONSUME DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041618772
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING UNIFY OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772041618910
     }
   ]
 }
