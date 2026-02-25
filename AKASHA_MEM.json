@@ -72,12 +72,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020924955
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772020925429
@@ -159,6 +153,12 @@
       "text": "STABLE COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772020933026
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020933669
     }
   ]
 }
