@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL HEAL HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772023978887
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAVE WAVE BEYOND",
       "mood": "CREATIVE",
       "tick": 1772023979052
@@ -284,6 +278,12 @@
       "text": "RECON WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772023984140
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023984677
     }
   ]
 }
