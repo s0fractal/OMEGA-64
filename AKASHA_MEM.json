@@ -97,12 +97,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE HUNGER HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021565710
-    },
-    {
-      "origin": "REVERSE",
       "text": "EVOLVE BEYOND WAVE",
       "mood": "CREATIVE",
       "tick": 1772021565857
@@ -184,6 +178,12 @@
       "text": "SHIELD SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772021572247
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772021574594
     }
   ]
 }
