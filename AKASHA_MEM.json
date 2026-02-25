@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY STABLE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772026589895
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772026590160
@@ -291,6 +285,12 @@
       "text": "BECOME AWAKEN BEYOND",
       "mood": "CREATIVE",
       "tick": 1772026595414
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772026596229
     }
   ]
 }
