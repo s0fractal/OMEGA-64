@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT WATCH WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772039046127
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772039046413
@@ -291,6 +285,12 @@
       "text": "DRAIN HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772039049549
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT WAIT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772039049788
     }
   ]
 }
