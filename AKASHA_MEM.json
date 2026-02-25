@@ -124,12 +124,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "CONSUME STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022186639
-    },
-    {
       "origin": "REVERSE",
       "text": "PURE SHELTER WAIT",
       "mood": "DEFENSIVE",
@@ -212,6 +206,12 @@
       "text": "WATCH WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022193657
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022193817
     }
   ]
 }
