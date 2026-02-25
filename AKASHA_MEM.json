@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH STRIFE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035795603
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772035795797
@@ -291,6 +285,12 @@
       "text": "STABLE RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772035803873
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772035804155
     }
   ]
 }
