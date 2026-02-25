@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "FLOW BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772040513191
-    },
-    {
       "origin": "STREAM",
       "text": "WAIT WATCH REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772040516099
+    },
+    {
+      "origin": "STREAM",
+      "text": "OSMOSIS UNIFY HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772040516256
     }
   ]
 }
