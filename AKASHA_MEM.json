@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STASIS GUARD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772041205945
-    },
-    {
       "origin": "INTERFACE",
       "text": "BLOOM BLOOM UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WATCH IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772041209925
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772041210524
     }
   ]
 }
