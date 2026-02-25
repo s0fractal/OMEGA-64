@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GIVING STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772040653499
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK BREACH SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HUNGER SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772040656283
+    },
+    {
+      "origin": "STREAM",
+      "text": "SYNC UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772040656413
     }
   ]
 }
