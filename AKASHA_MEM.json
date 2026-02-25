@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SHOCK CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024435015
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772024435200
@@ -291,6 +285,12 @@
       "text": "WAIT PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772024437988
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772024438175
     }
   ]
 }
