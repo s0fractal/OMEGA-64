@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772024394932
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND SPARK BEYOND",
       "mood": "CREATIVE",
       "tick": 1772024395071
@@ -291,6 +285,12 @@
       "text": "SYNC SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772024397587
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH CONSUME SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024397929
     }
   ]
 }
