@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772035604094
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772035604383
@@ -291,6 +285,12 @@
       "text": "COHERE SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772035607277
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035608650
     }
   ]
 }
