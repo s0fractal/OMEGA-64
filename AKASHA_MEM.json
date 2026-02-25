@@ -192,12 +192,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772023818891
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772023819116
@@ -279,6 +273,12 @@
       "text": "STRIKE DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023824201
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT IMMUNE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023824853
     }
   ]
 }
