@@ -41,12 +41,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HEAL OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772019832628
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "UNIFY RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772019833125
@@ -128,6 +122,12 @@
       "text": "FLOW HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772019842648
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER CONSUME CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019843369
     }
   ]
 }
