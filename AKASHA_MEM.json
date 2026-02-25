@@ -154,12 +154,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH REFLECT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022698148
-    },
-    {
       "origin": "INTERFACE",
       "text": "SEIZE HUNGER SHOCK",
       "mood": "AGGRESSIVE",
@@ -242,6 +236,12 @@
       "text": "STABLE RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022705682
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DECAY STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022705863
     }
   ]
 }
