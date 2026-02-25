@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN STRIFE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024455206
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "FLOW STABLE STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STABLE GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772024468873
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772024469094
     }
   ]
 }
