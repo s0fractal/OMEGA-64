@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772030021742
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772030022373
@@ -291,6 +285,12 @@
       "text": "CONSUME HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772030030381
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING RESONATE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772030030970
     }
   ]
 }
