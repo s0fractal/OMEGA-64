@@ -167,12 +167,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023031795
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023032123
@@ -254,6 +248,12 @@
       "text": "COHERE GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772023035094
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHIELD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023035285
     }
   ]
 }
