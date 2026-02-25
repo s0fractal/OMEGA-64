@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023206673
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023206859
@@ -259,6 +253,12 @@
       "text": "PURE STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023210537
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME STRIKE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023210705
     }
   ]
 }
