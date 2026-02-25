@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772032859535
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772032859714
@@ -291,6 +285,12 @@
       "text": "OSMOSIS UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772032862464
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032862639
     }
   ]
 }
