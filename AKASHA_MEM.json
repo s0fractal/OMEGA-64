@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772036773602
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772036773821
@@ -291,6 +285,12 @@
       "text": "RECON GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772036776886
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772036777087
     }
   ]
 }
