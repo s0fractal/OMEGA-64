@@ -203,18 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RESONATE HEAL UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772042752083
-    },
-    {
-      "origin": "REVERSE",
-      "text": "GIVING STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772042752814
-    },
-    {
       "origin": "WORKER",
       "text": "FLOW GIVING RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +279,18 @@
       "text": "GUARD GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772042760743
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772042761017
+    },
+    {
+      "origin": "PARADOX",
+      "text": "HEAL RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772042761632
     }
   ]
 }
