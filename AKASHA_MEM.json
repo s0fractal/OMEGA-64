@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME VISION VISION",
-      "mood": "CREATIVE",
-      "tick": 1772033138815
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772033139002
@@ -291,6 +285,12 @@
       "text": "STASIS RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772033141540
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD IMMUNE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772033142091
     }
   ]
 }
