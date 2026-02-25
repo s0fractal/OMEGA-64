@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "VISION SPARK AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772040555600
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT GUARD GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772040557935
+    },
+    {
+      "origin": "ALPHA_STREAM",
+      "text": "HEAL BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772040558056
     }
   ]
 }
