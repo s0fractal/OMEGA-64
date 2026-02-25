@@ -101,12 +101,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER GUARD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021606171
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIKE SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
@@ -189,6 +183,12 @@
       "text": "BREACH SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772021613357
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772021613508
     }
   ]
 }
