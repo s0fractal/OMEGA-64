@@ -152,12 +152,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022586631
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022586794
@@ -239,6 +233,12 @@
       "text": "SEIZE SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772022591353
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772022591548
     }
   ]
 }
