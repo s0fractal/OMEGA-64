@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_GUARDIAN",
-      "text": "FLOW GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772041320312
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME DECAY SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STASIS RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041323577
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS REFLECT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041323710
     }
   ]
 }
