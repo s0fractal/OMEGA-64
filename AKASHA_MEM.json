@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037448785
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772037448996
@@ -291,6 +285,12 @@
       "text": "HEAL BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772037454699
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE IMMUNE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772037454903
     }
   ]
 }
