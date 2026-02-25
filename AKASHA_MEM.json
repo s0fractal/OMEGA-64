@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIKE CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026115045
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC RESONATE HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772026120443
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772026120712
     }
   ]
 }
