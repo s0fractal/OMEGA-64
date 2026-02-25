@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "UNIFY UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772042365640
-    },
-    {
       "origin": "REVERSE",
       "text": "IMMUNE REFLECT WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772042377505
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH GUARD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772042378240
     }
   ]
 }
