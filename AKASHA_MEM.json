@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE OSMOSIS FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772034549214
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772034549683
@@ -291,6 +285,12 @@
       "text": "GUARD STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772034553835
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034554033
     }
   ]
 }
