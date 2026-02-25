@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHELTER GUARD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772040350013
-    },
-    {
       "origin": "REVERSE",
       "text": "IMMUNE SHELTER PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772040356542
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE GUARD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772040356715
     }
   ]
 }
