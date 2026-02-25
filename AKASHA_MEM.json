@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026520896
-    },
-    {
       "origin": "REVERSE",
       "text": "WITNESS SPARK VISION",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772026527761
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIFE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026527945
     }
   ]
 }
