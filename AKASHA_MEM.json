@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "FLOW FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040550200
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW RESONATE HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WATCH SHIELD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772040552393
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD PURE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772040552690
     }
   ]
 }
