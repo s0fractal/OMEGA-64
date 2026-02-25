@@ -63,12 +63,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT SHIELD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020673766
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772020674815
@@ -150,6 +144,12 @@
       "text": "RESONATE FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772020680928
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DRAIN STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020681438
     }
   ]
 }
