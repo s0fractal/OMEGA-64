@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME DECAY SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034361943
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772034362173
@@ -291,6 +285,12 @@
       "text": "GUARD REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772034365748
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772034365917
     }
   ]
 }
