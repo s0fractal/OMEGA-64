@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE RESONATE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772023965399
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772023965526
@@ -284,6 +278,12 @@
       "text": "HUNGER SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772023968712
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "PURE PURE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023968929
     }
   ]
 }
