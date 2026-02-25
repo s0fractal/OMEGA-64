@@ -183,12 +183,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE STASIS WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023523765
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772023523945
@@ -270,6 +264,12 @@
       "text": "STASIS WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772023531783
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772023533397
     }
   ]
 }
