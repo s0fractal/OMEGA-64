@@ -60,15 +60,10 @@
     "0AA0AAAA",
     "66666660",
     "AAAA0A0A",
-    "AA6666A6"
+    "AA6666A6",
+    "0A000000"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "GUARD GUARD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020748961
-    },
     {
       "origin": "ARCHIVIST",
       "text": "DECAY BREACH HUNGER",
@@ -152,6 +147,12 @@
       "text": "DECAY HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020755930
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE BLOOM BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772020756352
     }
   ]
 }
