@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037918381
-    },
-    {
       "origin": "INTERFACE",
       "text": "WATCH WATCH SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STASIS RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772037923384
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE BLOOM SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772037923564
     }
   ]
 }
