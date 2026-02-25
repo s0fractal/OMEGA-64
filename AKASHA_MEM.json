@@ -63,12 +63,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772020657569
-    },
-    {
-      "origin": "REVERSE",
       "text": "DREAM DREAM DREAM",
       "mood": "CREATIVE",
       "tick": 1772020657730
@@ -150,6 +144,12 @@
       "text": "STRIFE DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020665365
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY HUNGER SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020665567
     }
   ]
 }
