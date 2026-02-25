@@ -199,12 +199,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024029721
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772024029859
@@ -286,6 +280,12 @@
       "text": "AWAKEN VISION EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772024032807
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME BEYOND BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772024032989
     }
   ]
 }
