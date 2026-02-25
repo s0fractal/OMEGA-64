@@ -175,12 +175,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK STRIFE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023254385
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772023254566
@@ -262,6 +256,12 @@
       "text": "DRAIN SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023258234
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON IMMUNE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772023258417
     }
   ]
 }
