@@ -177,12 +177,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAVE WAVE BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772023284811
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772023284938
@@ -264,6 +258,12 @@
       "text": "WATCH WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023290334
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE SPARK WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772023290499
     }
   ]
 }
