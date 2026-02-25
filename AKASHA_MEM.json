@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "GIVING COHERE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772041290917
-    },
-    {
-      "origin": "INTERFACE",
       "text": "PURE WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772041291049
@@ -291,6 +285,12 @@
       "text": "COHERE COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772041296618
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772041297355
     }
   ]
 }
