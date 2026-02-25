@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT STASIS IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772028608719
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK DRAIN SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIFE HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772028621576
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772028622056
     }
   ]
 }
