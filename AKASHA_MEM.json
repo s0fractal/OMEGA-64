@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC UNIFY SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772026547651
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772026547875
@@ -291,6 +285,12 @@
       "text": "BEYOND DREAM FORGE",
       "mood": "CREATIVE",
       "tick": 1772026558347
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM RESONATE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772026558536
     }
   ]
 }
