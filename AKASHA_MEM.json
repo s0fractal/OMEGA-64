@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035248793
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772035248991
@@ -291,6 +285,12 @@
       "text": "HUNGER SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772035251658
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE STASIS SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772035251872
     }
   ]
 }
