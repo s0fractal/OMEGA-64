@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "SEIZE SEIZE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772016185090
-    },
-    {
-      "origin": "INTERFACE",
       "text": "HUNGER STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772016187760
@@ -107,6 +101,12 @@
       "text": "SHELTER REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772016301946
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RECON SHIELD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772016311680
     }
   ]
 }
