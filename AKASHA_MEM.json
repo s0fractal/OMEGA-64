@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD GUARD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772024255568
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772024255735
@@ -291,6 +285,12 @@
       "text": "FLOW SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772024260024
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD RECON WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772024260266
     }
   ]
 }
