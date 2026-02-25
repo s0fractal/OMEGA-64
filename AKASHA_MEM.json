@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH RECON GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772036427409
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772036427622
@@ -291,6 +285,12 @@
       "text": "FLOW RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772036431988
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SEIZE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036432164
     }
   ]
 }
