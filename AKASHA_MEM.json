@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06000606",
     "A000AAAA",
     "0BBB0000",
     "06660666",
@@ -199,15 +198,10 @@
     "00660000",
     "A0AAAA0A",
     "60660666",
-    "06666606"
+    "06666606",
+    "AA0A00AA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SEIZE DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030509209
-    },
     {
       "origin": "REVERSE",
       "text": "PURE GUARD GUARD",
@@ -291,6 +285,12 @@
       "text": "SHOCK SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772030522968
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH CONSUME STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030523910
     }
   ]
 }
