@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING GIVING FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772036506031
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772036506416
@@ -291,6 +285,12 @@
       "text": "STABLE SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772036512585
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND DREAM EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772036512784
     }
   ]
 }
