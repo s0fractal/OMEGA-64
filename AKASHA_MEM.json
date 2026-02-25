@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030844249
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK BEYOND WITNESS",
       "mood": "CREATIVE",
       "tick": 1772030844933
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772030859302
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772030859655
     }
   ]
 }
