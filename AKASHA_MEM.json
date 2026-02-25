@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH SEIZE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020354390
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME STRIKE HUNGER",
       "mood": "AGGRESSIVE",
@@ -141,6 +135,12 @@
       "text": "SICKNESS STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020360586
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020361734
     }
   ]
 }
