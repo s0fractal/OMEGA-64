@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY CONSUME STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038280828
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772038281047
@@ -291,6 +285,12 @@
       "text": "SEIZE DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772038284251
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772038284557
     }
   ]
 }
