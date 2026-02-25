@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772033576798
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD IMMUNE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772033577021
@@ -291,6 +285,12 @@
       "text": "HEAL STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772033580395
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL RESONATE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772033580571
     }
   ]
 }
