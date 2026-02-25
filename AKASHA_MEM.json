@@ -49,12 +49,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "REFLECT WAIT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772020177348
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GIVING HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772020178639
@@ -136,6 +130,12 @@
       "text": "HEAL GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772020187934
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020188461
     }
   ]
 }
