@@ -1436,7 +1436,6 @@ async function logAkasha(msg: string) {
             const oldest = lastKnownAtoms.keys().next().value;
             if (oldest) lastKnownAtoms.delete(oldest);
         }
-    }
 
     // --- 🔆 THE NOOSPHERIC MANDALA (High-Level Synthesis) ---
     // The swarm generates a collective SVG representation of its most resonant concepts.
