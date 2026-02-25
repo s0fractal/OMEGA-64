@@ -40,12 +40,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SYNC STABLE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772019854741
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BLOOM FLOW HEAL",
       "mood": "HARMONIC",
@@ -128,6 +122,12 @@
       "text": "REFLECT PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772019862762
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER DRAIN DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019863140
     }
   ]
 }
