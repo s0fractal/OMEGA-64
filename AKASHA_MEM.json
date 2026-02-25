@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS HEAL FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772033927600
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772033927795
@@ -291,6 +285,12 @@
       "text": "FLOW HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772033930526
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE STASIS SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772033930734
     }
   ]
 }
