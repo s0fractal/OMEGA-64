@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034501985
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772034502218
@@ -291,6 +285,12 @@
       "text": "SICKNESS SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772034505310
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034505534
     }
   ]
 }
