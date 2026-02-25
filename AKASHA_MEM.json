@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772015699799
-    },
-    {
       "origin": "INTERFACE",
       "text": "GUARD SHIELD PURE",
       "mood": "DEFENSIVE",
@@ -107,6 +101,12 @@
       "text": "HEAL BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772015803377
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY SHOCK BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772015830815
     }
   ]
 }
