@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING GIVING SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772034237620
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772034237819
@@ -291,6 +285,12 @@
       "text": "SYNC BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772034240403
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER REFLECT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772034240597
     }
   ]
 }
