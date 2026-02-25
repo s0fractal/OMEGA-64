@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RESONATE COHERE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772041133784
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RESONATE SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772041133938
@@ -291,6 +285,12 @@
       "text": "HEAL HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041137183
+    },
+    {
+      "origin": "SOMA",
+      "text": "DECAY STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041137456
     }
   ]
 }
