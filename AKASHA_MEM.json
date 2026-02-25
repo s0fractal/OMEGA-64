@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH DRAIN STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041337596
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHIELD PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041337995
@@ -291,6 +285,12 @@
       "text": "OSMOSIS COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772041341494
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SICKNESS SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041341686
     }
   ]
 }
