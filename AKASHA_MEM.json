@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026369726
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772026370266
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772026379564
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK WITNESS DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772026379818
     }
   ]
 }
