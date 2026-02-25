@@ -69,12 +69,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME HUNGER HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020848538
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE GIVING HEAL",
       "mood": "HARMONIC",
@@ -157,6 +151,12 @@
       "text": "WITNESS BEYOND FORGE",
       "mood": "CREATIVE",
       "tick": 1772020855617
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD GUARD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020855794
     }
   ]
 }
