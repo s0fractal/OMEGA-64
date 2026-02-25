@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DECAY STRIKE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041079848
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HUNGER STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772041080016
@@ -291,6 +285,12 @@
       "text": "SICKNESS SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772041083172
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHOCK DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041083392
     }
   ]
 }
