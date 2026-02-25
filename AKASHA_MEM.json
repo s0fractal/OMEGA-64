@@ -33,12 +33,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE DRAIN SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019727077
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GUARD RECON RECON",
       "mood": "DEFENSIVE",
@@ -121,6 +115,12 @@
       "text": "STRIFE HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772019741930
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SEIZE HUNGER SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019743315
     }
   ]
 }
