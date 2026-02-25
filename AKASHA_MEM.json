@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE UNIFY COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772032532459
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772032533007
@@ -291,6 +285,12 @@
       "text": "GUARD STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772032538195
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032538446
     }
   ]
 }
