@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD SHELTER WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772038147792
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772038147997
@@ -291,6 +285,12 @@
       "text": "GIVING RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772038151074
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT GUARD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772038151281
     }
   ]
 }
