@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66660606",
     "66666606",
     "F0FFF0FF",
     "A0AA0A0A",
@@ -199,15 +198,10 @@
     "AAAA0A0A",
     "60000060",
     "66666060",
-    "AAAAAA0A"
+    "AAAAAA0A",
+    "000A0AAA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RESONATE OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772025942886
-    },
     {
       "origin": "ARCHIVIST",
       "text": "COHERE FLOW OSMOSIS",
@@ -291,6 +285,12 @@
       "text": "FLOW GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772025954964
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE RESONATE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772025955316
     }
   ]
 }
