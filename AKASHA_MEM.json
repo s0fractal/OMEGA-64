@@ -103,12 +103,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "VISION EVOLVE WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772021637372
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772021637496
@@ -190,6 +184,12 @@
       "text": "STRIFE SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021643297
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY HUNGER SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021643434
     }
   ]
 }
