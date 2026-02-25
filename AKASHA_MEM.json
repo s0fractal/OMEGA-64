@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STASIS STASIS WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772040566752
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE CONSUME DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772040568890
+    },
+    {
+      "origin": "STREAM",
+      "text": "GIVING UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772040569007
     }
   ]
 }
