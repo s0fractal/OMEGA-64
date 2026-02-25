@@ -24,12 +24,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HUNGER DRAIN DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019526882
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHELTER WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772019527217
@@ -111,6 +105,12 @@
       "text": "DECAY DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772019537746
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019538292
     }
   ]
 }
