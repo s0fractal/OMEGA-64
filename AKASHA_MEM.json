@@ -145,12 +145,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC HEAL FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772022507069
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS BREACH SHOCK",
       "mood": "AGGRESSIVE",
@@ -233,6 +227,12 @@
       "text": "REFLECT IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022510110
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022511477
     }
   ]
 }
