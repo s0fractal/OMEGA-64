@@ -180,12 +180,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023417152
-    },
-    {
       "origin": "INTERFACE",
       "text": "SICKNESS DECAY DECAY",
       "mood": "AGGRESSIVE",
@@ -268,6 +262,12 @@
       "text": "STRIFE SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023421508
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WAIT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023421683
     }
   ]
 }
