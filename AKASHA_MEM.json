@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STABLE GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772040627819
-    },
-    {
       "origin": "STREAM",
       "text": "SHIELD SHELTER STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772040631203
+    },
+    {
+      "origin": "STREAM",
+      "text": "GUARD REFLECT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772040631329
     }
   ]
 }
