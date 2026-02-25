@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHELTER STASIS IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041639468
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE DECAY HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041642842
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS SHOCK HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041642973
     }
   ]
 }
