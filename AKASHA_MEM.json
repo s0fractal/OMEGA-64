@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023708704
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023708881
@@ -278,6 +272,12 @@
       "text": "FLOW HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772023711121
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772023711244
     }
   ]
 }
