@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING UNIFY FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772034046830
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772034047072
@@ -291,6 +285,12 @@
       "text": "WAIT GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772034049395
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT STASIS RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772034049578
     }
   ]
 }
