@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "COHERE COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772042130408
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC HEAL OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DECAY STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772042142926
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772042143264
     }
   ]
 }
