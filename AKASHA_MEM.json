@@ -66,12 +66,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER CONSUME STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020755337
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020755636
@@ -153,6 +147,12 @@
       "text": "GUARD PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772020761594
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER SHIELD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772020762511
     }
   ]
 }
