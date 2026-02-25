@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD SHELTER IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041911807
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE OSMOSIS BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RECON SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041916237
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041917006
     }
   ]
 }
