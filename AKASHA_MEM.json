@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772038071356
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772038071567
@@ -291,6 +285,12 @@
       "text": "PURE SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772038074871
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER RECON SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772038075095
     }
   ]
 }
