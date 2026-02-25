@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GIVING HEAL FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772034682524
-    },
-    {
       "origin": "REVERSE",
       "text": "BREACH DECAY SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "REFLECT WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772034686079
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WATCH STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772034686306
     }
   ]
 }
