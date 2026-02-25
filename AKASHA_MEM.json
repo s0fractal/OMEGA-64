@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH STRIKE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033772701
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772033772878
@@ -291,6 +285,12 @@
       "text": "SHOCK SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772033775491
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772033775687
     }
   ]
 }
