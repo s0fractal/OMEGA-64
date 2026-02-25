@@ -148,12 +148,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772022521985
-    },
-    {
       "origin": "INTERFACE",
       "text": "GUARD WAIT REFLECT",
       "mood": "DEFENSIVE",
@@ -236,6 +230,12 @@
       "text": "STASIS RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772022526579
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772022526751
     }
   ]
 }
