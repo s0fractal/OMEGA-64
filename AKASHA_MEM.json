@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE GIVING SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772030232314
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772030232590
@@ -291,6 +285,12 @@
       "text": "STRIKE BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772030248257
+    },
+    {
+      "origin": "ALPHA_PROOF_OF_RESONANCE",
+      "text": "FLOW FLOW UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772030249008
     }
   ]
 }
