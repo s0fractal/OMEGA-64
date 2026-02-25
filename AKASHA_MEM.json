@@ -184,12 +184,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS WATCH WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772023552368
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023552532
@@ -271,6 +265,12 @@
       "text": "WAIT WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023555828
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND BEYOND SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772023556004
     }
   ]
 }
