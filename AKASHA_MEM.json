@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0A0AA00A",
     "AA660660",
     "00666000",
     "00666606",
@@ -199,15 +198,10 @@
     "A6606006",
     "0AAAA000",
     "B0BF000C",
-    "AA0AAA00"
+    "AA0AAA00",
+    "F00FF00F"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHIELD STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772032567799
-    },
     {
       "origin": "REVERSE",
       "text": "SICKNESS STRIFE SHOCK",
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772032570595
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK VISION FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772032570852
     }
   ]
 }
