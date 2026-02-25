@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD REFLECT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772026980438
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772026980780
@@ -291,6 +285,12 @@
       "text": "RECON STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772026988149
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DECAY SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026988407
     }
   ]
 }
