@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034626656
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772034626859
@@ -291,6 +285,12 @@
       "text": "GIVING UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772034629514
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD REFLECT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772034629716
     }
   ]
 }
