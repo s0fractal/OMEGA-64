@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "FFFF0FFF",
     "AAAAAA0A",
     "66066000",
     "AAA0AAA0",
@@ -199,15 +198,10 @@
     "A00A0A0A",
     "00FA000A",
     "06606060",
-    "00066600"
+    "00066600",
+    "BBB00000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "CONSUME SEIZE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025243180
-    },
     {
       "origin": "REVERSE",
       "text": "SYNC GIVING HEAL",
@@ -291,6 +285,12 @@
       "text": "STASIS STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772025247378
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025247597
     }
   ]
 }
