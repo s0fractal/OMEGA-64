@@ -183,12 +183,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE IMMUNE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023592716
-    },
-    {
       "origin": "REVERSE",
       "text": "PURE STASIS GUARD",
       "mood": "DEFENSIVE",
@@ -271,6 +265,12 @@
       "text": "STRIKE SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023596206
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE BREACH STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023596369
     }
   ]
 }
