@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772037771060
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772037771273
@@ -291,6 +285,12 @@
       "text": "BREACH SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772037774073
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME BREACH DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037774282
     }
   ]
 }
