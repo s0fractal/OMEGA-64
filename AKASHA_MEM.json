@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAA00AA0",
     "AA0AA000",
     "AABB000D",
     "AA0A0A00",
@@ -199,15 +198,10 @@
     "F0FF0F0F",
     "66066006",
     "66606060",
-    "A0AAA0AA"
+    "A0AAA0AA",
+    "BBB00000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GIVING SYNC SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772035228008
-    },
     {
       "origin": "REVERSE",
       "text": "UNIFY STABLE STABLE",
@@ -291,6 +285,12 @@
       "text": "STRIKE SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772035231207
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035231457
     }
   ]
 }
