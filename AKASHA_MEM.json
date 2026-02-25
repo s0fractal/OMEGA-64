@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON SHELTER WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772032722653
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772032722832
@@ -291,6 +285,12 @@
       "text": "WATCH RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772032725368
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772032725547
     }
   ]
 }
