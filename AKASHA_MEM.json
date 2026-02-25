@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER DRAIN STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037273094
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772037273252
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772037276815
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT RECON IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772037277119
     }
   ]
 }
