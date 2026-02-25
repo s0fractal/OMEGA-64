@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME SHOCK SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772016942157
-    },
-    {
       "origin": "INTERFACE",
       "text": "PURE WATCH WATCH",
       "mood": "DEFENSIVE",
@@ -107,6 +101,12 @@
       "text": "COHERE BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772017034312
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIFE STRIFE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772017039146
     }
   ]
 }
