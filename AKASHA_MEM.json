@@ -172,12 +172,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "AWAKEN BEYOND SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772023220665
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -260,6 +254,12 @@
       "text": "HEAL STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772023223973
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772023224090
     }
   ]
 }
