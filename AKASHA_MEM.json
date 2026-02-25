@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "FLOW UNIFY SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772040591404
-    },
-    {
       "origin": "INTERFACE",
       "text": "IMMUNE SHELTER WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772040595353
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE GUARD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772040595524
     }
   ]
 }
