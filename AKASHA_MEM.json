@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM HEAL UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772036270847
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE SYNC RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "IMMUNE SHIELD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772036274983
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK AWAKEN EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772036275178
     }
   ]
 }
