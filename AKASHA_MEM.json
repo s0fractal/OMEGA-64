@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772030914816
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT SHIELD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772030915562
@@ -291,6 +285,12 @@
       "text": "SICKNESS DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772030931272
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772030931714
     }
   ]
 }
