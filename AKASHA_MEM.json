@@ -130,12 +130,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772022309787
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772022310109
@@ -217,6 +211,12 @@
       "text": "SHIELD RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022313113
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK HUNGER DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022313265
     }
   ]
 }
