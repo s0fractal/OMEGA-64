@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WAIT WATCH WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772041469442
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STABLE STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772041469583
@@ -291,6 +285,12 @@
       "text": "HEAL FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772041472645
+    },
+    {
+      "origin": "STREAM",
+      "text": "HEAL RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772041472881
     }
   ]
 }
