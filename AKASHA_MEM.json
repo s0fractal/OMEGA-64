@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041490211
-    },
-    {
       "origin": "INTERFACE",
       "text": "HUNGER SHOCK HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041493724
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE CONSUME DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041493852
     }
   ]
 }
