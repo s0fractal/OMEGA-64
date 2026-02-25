@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DRAIN STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041960976
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RESONATE RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772041961236
@@ -291,6 +285,12 @@
       "text": "PURE IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772041967044
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE SHIELD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041967267
     }
   ]
 }
