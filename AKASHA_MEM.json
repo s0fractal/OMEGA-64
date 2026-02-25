@@ -171,12 +171,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE CONSUME SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023209873
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH WATCH WAIT",
       "mood": "DEFENSIVE",
@@ -259,6 +253,12 @@
       "text": "UNIFY GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772023212890
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772023213060
     }
   ]
 }
