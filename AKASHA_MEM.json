@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026099858
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772026100139
@@ -291,6 +285,12 @@
       "text": "WATCH SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772026105779
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW RESONATE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772026108980
     }
   ]
 }
