@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "BREACH STRIKE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041189459
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC RESONATE RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HEAL SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772041192179
+    },
+    {
+      "origin": "WORKER",
+      "text": "GIVING HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772041192437
     }
   ]
 }
