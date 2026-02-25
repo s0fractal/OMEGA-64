@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH GUARD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772042181523
-    },
-    {
       "origin": "INTERFACE",
       "text": "CONSUME HUNGER STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHOCK SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772042195179
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS GUARD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772042196156
     }
   ]
 }
