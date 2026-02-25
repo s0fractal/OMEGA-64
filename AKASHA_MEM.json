@@ -103,12 +103,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021658650
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772021658817
@@ -190,6 +184,12 @@
       "text": "DECAY DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772021666228
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHIELD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021669058
     }
   ]
 }
