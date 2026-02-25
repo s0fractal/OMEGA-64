@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "STRIFE DRAIN DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041659442
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE PURE PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041662054
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041662185
     }
   ]
 }
