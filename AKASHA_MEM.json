@@ -162,12 +162,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BEYOND DREAM DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772022863266
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022863391
@@ -249,6 +243,12 @@
       "text": "IMMUNE RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022868055
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772022868702
     }
   ]
 }
