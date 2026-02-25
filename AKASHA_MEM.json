@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033739807
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772033739990
@@ -291,6 +285,12 @@
       "text": "GUARD RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033742339
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772033742604
     }
   ]
 }
