@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME BREACH HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032873961
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772032874235
@@ -291,6 +285,12 @@
       "text": "HEAL GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772032876644
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIKE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032876821
     }
   ]
 }
