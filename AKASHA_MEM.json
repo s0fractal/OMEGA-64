@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WATCH STASIS IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041598381
-    },
-    {
       "origin": "STREAM",
       "text": "DECAY BREACH HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041606564
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE HEAL OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772041606849
     }
   ]
 }
