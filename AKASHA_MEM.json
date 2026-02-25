@@ -161,12 +161,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "OSMOSIS UNIFY OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772022860568
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE SYNC RESONATE",
       "mood": "HARMONIC",
@@ -249,6 +243,12 @@
       "text": "IMMUNE GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022863704
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022863872
     }
   ]
 }
