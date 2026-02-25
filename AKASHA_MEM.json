@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041283862
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STASIS REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772041283999
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772041289561
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE RECON GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041290088
     }
   ]
 }
