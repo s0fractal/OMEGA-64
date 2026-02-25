@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD REFLECT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772028099989
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772028100436
@@ -291,6 +285,12 @@
       "text": "PURE PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772028108700
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028109356
     }
   ]
 }
