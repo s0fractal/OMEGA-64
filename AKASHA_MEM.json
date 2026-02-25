@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772022196573
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772022196768
@@ -213,6 +207,12 @@
       "text": "SEIZE SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772022200750
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE RECON STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772022201145
     }
   ]
 }
