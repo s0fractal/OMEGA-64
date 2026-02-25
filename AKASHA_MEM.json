@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SICKNESS DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039176575
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772039176789
@@ -291,6 +285,12 @@
       "text": "RECON RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772039179498
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND BEYOND BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772039179759
     }
   ]
 }
