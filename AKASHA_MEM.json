@@ -129,12 +129,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME SHOCK CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022311331
-    },
-    {
       "origin": "REVERSE",
       "text": "VISION VISION FORGE",
       "mood": "CREATIVE",
@@ -217,6 +211,12 @@
       "text": "SHIELD REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022314828
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS REFLECT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772022314944
     }
   ]
 }
