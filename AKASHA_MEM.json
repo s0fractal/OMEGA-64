@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026341383
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772026341556
@@ -291,6 +285,12 @@
       "text": "UNIFY UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772026350587
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER GUARD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772026350819
     }
   ]
 }
