@@ -99,12 +99,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021587097
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772021587297
@@ -186,6 +180,12 @@
       "text": "OSMOSIS STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772021592988
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY DECAY SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021593380
     }
   ]
 }
