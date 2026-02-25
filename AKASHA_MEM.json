@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "COHERE SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772041021706
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "PURE STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041021836
@@ -291,6 +285,12 @@
       "text": "STABLE HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772041025271
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT WATCH WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041025448
     }
   ]
 }
