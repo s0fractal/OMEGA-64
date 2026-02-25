@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772038749416
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038749632
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772038752468
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038752687
     }
   ]
 }
