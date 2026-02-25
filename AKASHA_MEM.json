@@ -18,12 +18,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIFE STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772015453980
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
@@ -106,6 +100,12 @@
       "text": "STABLE HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772015550604
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772015553238
     }
   ]
 }
