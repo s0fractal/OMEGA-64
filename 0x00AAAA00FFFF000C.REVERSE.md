@@ -1,10 +1,10 @@
 ---
 eigenvalue: '0x00AAAA00FFFF000C'
-energy: 42.9
-x: 685
+energy: 50
+x: 693
 'y': 401
 resonance: 50
-thought: AVOID_PARASITE_PASSIVE
+thought: RESURRECTED
 logic: 00AAAA00
 signals: []
 bond_strengths:
@@ -114,10 +114,6 @@ ex:
   - '0x00AAAA000000000E'
   - '0x00AAAA0000000008'
   - '0x00AAAA00FFFF000E'
-  - '0x00AAAA000000000C'
-  - '0x00AAAA000000000E'
-  - '0x00AAAA0000000008'
-  - '0x00AAAA000000000A'
   - '0x00AAAA00FFFF0008'
   - '0x00AAAA00FFFF000A'
 ---

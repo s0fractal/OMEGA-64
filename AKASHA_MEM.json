@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772038391278
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772038391492
@@ -291,6 +285,12 @@
       "text": "GIVING COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772038394123
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH PURE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772038398550
     }
   ]
 }
