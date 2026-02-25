@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772035607277
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772035608650
@@ -291,6 +285,12 @@
       "text": "COHERE RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772035611524
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE IMMUNE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772035611731
     }
   ]
 }
