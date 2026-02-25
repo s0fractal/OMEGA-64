@@ -149,12 +149,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772022523782
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022524393
@@ -236,6 +230,12 @@
       "text": "STRIKE BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022527972
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022528137
     }
   ]
 }
