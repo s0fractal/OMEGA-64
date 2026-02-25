@@ -147,12 +147,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022518427
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
@@ -235,6 +229,12 @@
       "text": "OSMOSIS UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772022521985
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GUARD WAIT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022522653
     }
   ]
 }
