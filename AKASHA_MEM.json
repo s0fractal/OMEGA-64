@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BLOOM HEAL BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772039904442
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME SEIZE HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772039912760
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE FLOW GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772039913387
     }
   ]
 }
