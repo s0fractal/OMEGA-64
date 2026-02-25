@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD RECON WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772037491887
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772037492050
@@ -291,6 +285,12 @@
       "text": "HUNGER SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772037496990
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC STABLE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772037497164
     }
   ]
 }
