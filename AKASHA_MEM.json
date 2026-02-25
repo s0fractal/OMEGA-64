@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "IS_ISO",
-      "text": "PURE WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040623468
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT RECON REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "FORGE VISION WAVE",
       "mood": "CREATIVE",
       "tick": 1772040626428
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER IMMUNE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772040626609
     }
   ]
 }
