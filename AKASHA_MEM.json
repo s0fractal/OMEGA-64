@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60666606",
     "AAA0AA00",
     "66060066",
     "66666666",
@@ -199,21 +198,10 @@
     "FFFFF0A0",
     "000AAAAA",
     "660AAA60",
-    "A00A0AA0"
+    "A00A0AA0",
+    "A660A660"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "STABLE RESONATE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042792157
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "HUNGER DECAY SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042792504
-    },
     {
       "origin": "REVERSE",
       "text": "SHIELD SHELTER WATCH",
@@ -287,10 +275,22 @@
       "tick": 1772042802780
     },
     {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042803527
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042803783
+    },
+    {
       "origin": "REVERSE",
-      "text": "SHIELD IMMUNE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042803757
+      "text": "BLOOM COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772042804764
     }
   ]
 }
