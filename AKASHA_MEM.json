@@ -179,12 +179,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FORGE DREAM FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772023363171
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023363294
@@ -266,6 +260,12 @@
       "text": "SEIZE SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023369861
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE DECAY HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023370055
     }
   ]
 }
