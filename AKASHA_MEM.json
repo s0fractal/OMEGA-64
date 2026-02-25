@@ -149,12 +149,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022566837
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS GIVING OSMOSIS",
       "mood": "HARMONIC",
@@ -237,6 +231,12 @@
       "text": "BLOOM FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772022569366
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE REFLECT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772022569583
     }
   ]
 }
