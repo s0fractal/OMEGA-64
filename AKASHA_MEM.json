@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040651342
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772040651708
@@ -291,6 +285,12 @@
       "text": "GIVING UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772040653986
+    },
+    {
+      "origin": "STREAM",
+      "text": "GUARD RECON PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040654280
     }
   ]
 }
