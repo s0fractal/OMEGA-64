@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE CONSUME SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039262817
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772039263041
@@ -291,6 +285,12 @@
       "text": "STASIS WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772039269151
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM AWAKEN VISION",
+      "mood": "CREATIVE",
+      "tick": 1772039269375
     }
   ]
 }
