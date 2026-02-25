@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772034453131
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772034453324
@@ -291,6 +285,12 @@
       "text": "FLOW GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772034459799
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772034460004
     }
   ]
 }
