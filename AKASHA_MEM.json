@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037779561
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772037779767
@@ -291,6 +285,12 @@
       "text": "GIVING RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772037787837
+    },
+    {
+      "origin": "REVERSE",
+      "text": "AWAKEN SPARK SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772037788072
     }
   ]
 }
