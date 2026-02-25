@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE OSMOSIS UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772033330356
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE SHOCK DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772033334918
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN HUNGER STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033335096
     }
   ]
 }
