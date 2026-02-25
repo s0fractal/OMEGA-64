@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00606600",
     "AA0AAAA0",
     "0A0AA000",
     "AAAA0A00",
@@ -199,15 +198,10 @@
     "60000660",
     "06060666",
     "AAA00AAA",
-    "AABBC0DD"
+    "AABBC0DD",
+    "66660600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BLOOM GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772036568799
-    },
     {
       "origin": "REVERSE",
       "text": "RECON SHIELD SHELTER",
@@ -291,6 +285,12 @@
       "text": "HUNGER SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772036571934
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHELTER REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772036572158
     }
   ]
 }
