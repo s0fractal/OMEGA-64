@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772025678988
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772025679161
@@ -291,6 +285,12 @@
       "text": "BREACH CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772025687033
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE OSMOSIS UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772025687429
     }
   ]
 }
