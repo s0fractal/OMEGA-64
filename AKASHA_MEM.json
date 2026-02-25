@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD SHIELD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772032802095
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772032802290
@@ -291,6 +285,12 @@
       "text": "SICKNESS SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772032807408
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772032807660
     }
   ]
 }
