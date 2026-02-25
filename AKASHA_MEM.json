@@ -17,12 +17,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772014887568
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE STRIKE DRAIN",
       "mood": "AGGRESSIVE",
@@ -105,6 +99,12 @@
       "text": "DECAY STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772015001594
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772015012322
     }
   ]
 }
