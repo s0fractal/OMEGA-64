@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FORGE BEYOND DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772026794532
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772026794793
@@ -291,6 +285,12 @@
       "text": "HEAL SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772026800330
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE BEYOND SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772026800585
     }
   ]
 }
