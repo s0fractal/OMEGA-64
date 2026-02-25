@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "FLOW UNIFY FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772020355018
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY FLOW UNIFY",
       "mood": "HARMONIC",
@@ -141,6 +135,12 @@
       "text": "SEIZE DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020362498
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK DECAY HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020363100
     }
   ]
 }
