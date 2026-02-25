@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038627655
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772038627861
@@ -291,6 +285,12 @@
       "text": "DRAIN CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772038630640
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE DRAIN HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038631007
     }
   ]
 }
