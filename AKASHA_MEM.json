@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING OSMOSIS HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772025998389
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772025998595
@@ -291,6 +285,12 @@
       "text": "SHIELD WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772026004161
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE DECAY STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026004364
     }
   ]
 }
