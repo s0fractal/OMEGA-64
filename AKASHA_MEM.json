@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH STASIS IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041709335
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON GUARD STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "REFLECT IMMUNE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041715446
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS BREACH SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041715612
     }
   ]
 }
