@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00060060",
     "BB000000",
     "A00A0AAA",
     "AAAAA0AA",
@@ -199,15 +198,10 @@
     "66606600",
     "AA00000A",
     "66666666",
-    "FFAAF0FF"
+    "FFAAF0FF",
+    "A00A0A0A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "HEAL SYNC OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772035491936
-    },
     {
       "origin": "REVERSE",
       "text": "WATCH PURE STASIS",
@@ -291,6 +285,12 @@
       "text": "HUNGER DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772035494843
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035495060
     }
   ]
 }
