@@ -89,12 +89,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FORGE BEYOND SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772021254104
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021254312
@@ -176,6 +170,12 @@
       "text": "CONSUME DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772021260042
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT RECON WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772021260368
     }
   ]
 }
