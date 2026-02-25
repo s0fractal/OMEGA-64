@@ -163,12 +163,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772022891778
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022891945
@@ -250,6 +244,12 @@
       "text": "BECOME SPARK FORGE",
       "mood": "CREATIVE",
       "tick": 1772022896772
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHIELD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022896995
     }
   ]
 }
