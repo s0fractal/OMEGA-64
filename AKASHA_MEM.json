@@ -108,12 +108,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772021799137
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772021799297
@@ -195,6 +189,12 @@
       "text": "DRAIN DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021802891
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD GUARD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772021803055
     }
   ]
 }
