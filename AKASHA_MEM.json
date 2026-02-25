@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL SYNC STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042130690
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK BREACH HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772042146305
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY RESONATE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772042147002
     }
   ]
 }
