@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE REFLECT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772032147361
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772032148131
@@ -291,6 +285,12 @@
       "text": "UNIFY RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772032157035
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHIELD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772032157438
     }
   ]
 }
