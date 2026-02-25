@@ -178,12 +178,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD SHELTER RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772023339120
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD RECON IMMUNE",
       "mood": "DEFENSIVE",
@@ -266,6 +260,12 @@
       "text": "FLOW FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023341748
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH STASIS IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023341983
     }
   ]
 }
