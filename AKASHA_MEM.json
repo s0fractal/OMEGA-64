@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772037849303
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772037849555
@@ -291,6 +285,12 @@
       "text": "SICKNESS HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772037852406
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE HEAL RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772037852601
     }
   ]
 }
