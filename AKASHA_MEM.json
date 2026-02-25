@@ -125,12 +125,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "FLOW OSMOSIS UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772022230200
-    },
-    {
       "origin": "REVERSE",
       "text": "RECON REFLECT RECON",
       "mood": "DEFENSIVE",
@@ -213,6 +207,12 @@
       "text": "REFLECT REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772022233611
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772022233779
     }
   ]
 }
