@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "DRAIN SICKNESS HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040543791
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE UNIFY OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DRAIN DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772040546135
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY OSMOSIS OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772040546268
     }
   ]
 }
