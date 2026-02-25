@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SICKNESS DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034600434
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772034600600
@@ -291,6 +285,12 @@
       "text": "DREAM SPARK EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772034603664
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE UNIFY GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772034603890
     }
   ]
 }
