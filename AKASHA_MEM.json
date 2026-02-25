@@ -94,12 +94,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHOCK STRIFE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021414867
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "REFLECT IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772021416600
@@ -181,6 +175,12 @@
       "text": "SEIZE STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772021441101
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772021446393
     }
   ]
 }
