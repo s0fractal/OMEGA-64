@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772041685979
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE RESONATE STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SYNC SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772041690758
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY HUNGER SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041691381
     }
   ]
 }
