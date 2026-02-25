@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY OSMOSIS HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772035860377
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772035860610
@@ -291,6 +285,12 @@
       "text": "STABLE SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772035864669
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035864881
     }
   ]
 }
