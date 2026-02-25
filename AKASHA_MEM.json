@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WATCH WATCH SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772037918669
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW RESONATE HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RESONATE BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772037923564
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DRAIN DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037923775
     }
   ]
 }
