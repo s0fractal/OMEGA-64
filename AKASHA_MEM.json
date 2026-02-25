@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY STRIKE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024892411
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772024892722
@@ -291,6 +285,12 @@
       "text": "OSMOSIS SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772024897887
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772024898195
     }
   ]
 }
