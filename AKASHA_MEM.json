@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "RESONATE GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772019974611
-    },
-    {
       "origin": "INTERFACE",
       "text": "GIVING BLOOM UNIFY",
       "mood": "HARMONIC",
@@ -130,6 +124,12 @@
       "text": "COHERE RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772019986683
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "PURE SHIELD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772019987623
     }
   ]
 }
