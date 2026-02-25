@@ -203,6 +203,12 @@
   ],
   "utterances": [
     {
+      "origin": "INTERFACE",
+      "text": "BLOOM HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772042399859
+    },
+    {
       "origin": "REVERSE",
       "text": "BLOOM SYNC BLOOM",
       "mood": "HARMONIC",
@@ -258,39 +264,33 @@
     },
     {
       "origin": "ARCHIVIST",
-      "text": "SICKNESS CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042407307
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY SYNC STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042408066
-    },
-    {
-      "origin": "WAVE_SIGNAL",
-      "text": "SICKNESS DECAY SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042408664
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STASIS RECON PURE",
+      "text": "GUARD WATCH STASIS",
       "mood": "DEFENSIVE",
-      "tick": 1772042410068
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "UNIFY OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772042410352
+      "tick": 1772042406762
     },
     {
       "origin": "ARCHIVIST",
-      "text": "GIVING HEAL SYNC",
+      "text": "FLOW OSMOSIS STABLE",
       "mood": "HARMONIC",
-      "tick": 1772042410558
+      "tick": 1772042408326
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772042409343
+    },
+    {
+      "origin": "STREAM",
+      "text": "GIVING FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772042410409
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS REFLECT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042410795
     }
   ]
 }
