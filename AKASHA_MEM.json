@@ -43,12 +43,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK SHOCK SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020003461
-    },
-    {
       "origin": "PARADOX",
       "text": "DREAM AWAKEN WAVE",
       "mood": "CREATIVE",
@@ -131,6 +125,12 @@
       "text": "REFLECT REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772020016516
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772020017074
     }
   ]
 }
