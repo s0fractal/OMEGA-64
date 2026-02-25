@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60006666",
     "A00000DD",
     "0A00AAA0",
     "0A6666A6",
@@ -199,15 +198,10 @@
     "000A00A0",
     "AAAA0AAA",
     "06006606",
-    "00606600"
+    "00606600",
+    "0000000D"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SEIZE STRIFE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039242258
-    },
     {
       "origin": "REVERSE",
       "text": "SHIELD GUARD SHIELD",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772039245148
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772039245351
     }
   ]
 }
