@@ -108,12 +108,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE STRIKE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021750347
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772021750571
@@ -195,6 +189,12 @@
       "text": "BLOOM OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772021755072
+    },
+    {
+      "origin": "PARADOX",
+      "text": "FORGE AWAKEN VISION",
+      "mood": "CREATIVE",
+      "tick": 1772021755230
     }
   ]
 }
