@@ -164,12 +164,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE UNIFY FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772022962495
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022963560
@@ -251,6 +245,12 @@
       "text": "STRIKE DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022966650
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS FLOW UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772022967255
     }
   ]
 }
