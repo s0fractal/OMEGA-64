@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041688249
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH STASIS REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772041692543
+    },
+    {
+      "origin": "STREAM",
+      "text": "RESONATE BLOOM UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772041692721
     }
   ]
 }
