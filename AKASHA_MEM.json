@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME SEIZE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042164823
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WAIT REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772042165967
@@ -291,6 +285,12 @@
       "text": "IMMUNE RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772042181484
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042181726
     }
   ]
 }
