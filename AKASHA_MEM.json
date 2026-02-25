@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772040670124
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GIVING UNIFY HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STABLE FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772040673191
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY DRAIN CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040673368
     }
   ]
 }
