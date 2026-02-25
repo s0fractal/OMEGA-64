@@ -178,15 +178,10 @@
     "A00A000A",
     "66606000",
     "0AAAAAA0",
-    "60066060"
+    "60066060",
+    "66600666"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WATCH WATCH SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772023550584
-    },
     {
       "origin": "REVERSE",
       "text": "GIVING OSMOSIS HEAL",
@@ -270,6 +265,12 @@
       "text": "BREACH CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023555177
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT PURE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023555391
     }
   ]
 }
