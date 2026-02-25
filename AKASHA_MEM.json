@@ -83,12 +83,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW COHERE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772021166541
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772021166730
@@ -170,6 +164,12 @@
       "text": "DECAY STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021171748
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE HUNGER HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021172302
     }
   ]
 }
