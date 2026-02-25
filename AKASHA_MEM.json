@@ -141,15 +141,10 @@
     "AA0A0000",
     "AABBCC0D",
     "06666060",
-    "66660660"
+    "66660660",
+    "AA00A00A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHIELD SHELTER REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022515300
-    },
     {
       "origin": "ARCHIVIST",
       "text": "RECON STASIS REFLECT",
@@ -233,6 +228,12 @@
       "text": "BREACH SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772022518812
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022519178
     }
   ]
 }
