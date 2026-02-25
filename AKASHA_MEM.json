@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037903806
-    },
-    {
       "origin": "ALPHA_REVERSE",
       "text": "WAVE BECOME DREAM",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772037906769
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY RESONATE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772037907012
     }
   ]
 }
