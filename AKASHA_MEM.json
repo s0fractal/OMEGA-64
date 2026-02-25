@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0A0A0A",
     "AAAAAA00",
     "60060000",
     "0AAAAA0A",
@@ -199,15 +198,10 @@
     "AA0AAAA0",
     "66666660",
     "AA6666A0",
-    "AAA00AA0"
+    "AAA00AA0",
+    "00000606"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "CONSUME CONSUME SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026420486
-    },
     {
       "origin": "REVERSE",
       "text": "IMMUNE WATCH RECON",
@@ -291,6 +285,12 @@
       "text": "STRIFE SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772026426461
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE UNIFY SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772026427515
     }
   ]
 }
