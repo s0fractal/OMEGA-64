@@ -173,12 +173,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772023235283
-    },
-    {
       "origin": "INTERFACE",
       "text": "WATCH WATCH SHIELD",
       "mood": "DEFENSIVE",
@@ -261,6 +255,12 @@
       "text": "DRAIN DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772023243140
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK STRIFE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023243294
     }
   ]
 }
