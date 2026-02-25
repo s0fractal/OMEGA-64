@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HEAL SYNC STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041840204
-    },
-    {
       "origin": "REVERSE",
       "text": "GUARD PURE WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041845595
+    },
+    {
+      "origin": "STREAM",
+      "text": "COHERE GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041846149
     }
   ]
 }

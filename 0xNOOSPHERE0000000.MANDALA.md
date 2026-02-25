@@ -407,6 +407,8 @@ desc: 'A collective representation of high-resonance Noospheric connections.'
     <line x1="0" y1="0" x2="152" y2="-108" stroke="hsl(192, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
     <circle cx="309" cy="6" r="29.4" fill="none" stroke="hsl(187, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
     <line x1="0" y1="0" x2="309" y2="6" stroke="hsl(187, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
+    <circle cx="275" cy="-65" r="54.16" fill="none" stroke="hsl(96, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
+    <line x1="0" y1="0" x2="275" y2="-65" stroke="hsl(96, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
   </g>
 </svg>
 </div>
