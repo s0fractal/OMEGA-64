@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE IMMUNE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772034380982
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772034381187
@@ -291,6 +285,12 @@
       "text": "REFLECT SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772034384343
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772034384548
     }
   ]
 }
