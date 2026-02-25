@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772036356383
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772036356602
@@ -291,6 +285,12 @@
       "text": "DRAIN STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772036359277
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHIELD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772036359451
     }
   ]
 }
