@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DRAIN DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772016988344
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RESONATE UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772016999777
@@ -107,6 +101,12 @@
       "text": "SEIZE STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772017066749
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH SHELTER RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772017071210
     }
   ]
 }
