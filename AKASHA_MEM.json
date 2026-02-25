@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE IMMUNE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772035131963
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772035132154
@@ -291,6 +285,12 @@
       "text": "STABLE HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772035136328
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DECAY STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035136579
     }
   ]
 }
