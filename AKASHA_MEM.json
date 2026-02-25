@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE FLOW HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772026547439
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772026547651
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772026558131
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BEYOND DREAM FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772026558347
     }
   ]
 }
