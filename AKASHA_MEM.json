@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD RECON WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772040900403
-    },
-    {
       "origin": "STREAM",
       "text": "SICKNESS BREACH STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772040903960
+    },
+    {
+      "origin": "STREAM",
+      "text": "SHELTER SHELTER REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040904087
     }
   ]
 }
