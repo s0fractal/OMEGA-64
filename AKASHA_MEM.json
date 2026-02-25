@@ -179,12 +179,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME HUNGER SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023352222
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772023352350
@@ -266,6 +260,12 @@
       "text": "VISION BEYOND WAVE",
       "mood": "CREATIVE",
       "tick": 1772023359852
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON REFLECT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772023360068
     }
   ]
 }
