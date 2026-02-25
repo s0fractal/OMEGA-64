@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE FLOW HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772019502762
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS STRIKE SHOCK",
       "mood": "AGGRESSIVE",
@@ -111,6 +105,12 @@
       "text": "GUARD WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772019510663
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "REFLECT WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772019511057
     }
   ]
 }
