@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772016432861
-    },
-    {
       "origin": "INTERFACE",
       "text": "SYNC BLOOM RESONATE",
       "mood": "HARMONIC",
@@ -107,6 +101,12 @@
       "text": "SHIELD WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772016564166
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY HEAL GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772016566720
     }
   ]
 }
