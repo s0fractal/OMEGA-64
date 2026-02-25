@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH SHELTER PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772034958555
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772034958748
@@ -291,6 +285,12 @@
       "text": "WATCH RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772034961346
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS EVOLVE VISION",
+      "mood": "CREATIVE",
+      "tick": 1772034961540
     }
   ]
 }
