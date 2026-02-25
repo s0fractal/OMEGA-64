@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772019664821
-    },
-    {
       "origin": "STREAM",
       "text": "STABLE FLOW SYNC",
       "mood": "HARMONIC",
@@ -114,6 +108,12 @@
       "text": "IMMUNE PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772019673017
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BLOOM GIVING HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772019673764
     }
   ]
 }
