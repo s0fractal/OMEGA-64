@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SEIZE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034155643
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772034155986
@@ -291,6 +285,12 @@
       "text": "REFLECT SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772034159751
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHIELD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772034159937
     }
   ]
 }
