@@ -200,12 +200,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT IMMUNE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772024039731
-    },
-    {
-      "origin": "REVERSE",
       "text": "VISION WITNESS WAVE",
       "mood": "CREATIVE",
       "tick": 1772024039924
@@ -287,6 +281,12 @@
       "text": "GIVING BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772024042263
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772024042445
     }
   ]
 }
