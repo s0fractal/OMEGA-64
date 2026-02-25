@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT STASIS PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772036966927
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772036967222
@@ -291,6 +285,12 @@
       "text": "BREACH STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772036971006
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772036971243
     }
   ]
 }
