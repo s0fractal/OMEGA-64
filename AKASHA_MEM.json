@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66660600",
     "00666000",
     "60060060",
     "A000000A",
@@ -199,15 +198,10 @@
     "A0000CDD",
     "00606600",
     "00000000",
-    "60006666"
+    "60006666",
+    "A00000DD"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "REFLECT IMMUNE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772038004480
-    },
     {
       "origin": "REVERSE",
       "text": "STASIS WAIT REFLECT",
@@ -291,6 +285,12 @@
       "text": "STRIFE SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772038008858
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038009029
     }
   ]
 }
