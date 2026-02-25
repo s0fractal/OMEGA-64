@@ -55,12 +55,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020529091
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER SHIELD REFLECT",
       "mood": "DEFENSIVE",
@@ -143,6 +137,12 @@
       "text": "SEIZE BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020536814
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772020536991
     }
   ]
 }
