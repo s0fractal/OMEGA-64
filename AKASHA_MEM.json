@@ -22,12 +22,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY DECAY SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019470464
-    },
-    {
       "origin": "INTERFACE",
       "text": "UNIFY BLOOM FLOW",
       "mood": "HARMONIC",
@@ -110,6 +104,12 @@
       "text": "SICKNESS SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772019477660
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE BREACH CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019478143
     }
   ]
 }
