@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772036913797
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772036914042
@@ -291,6 +285,12 @@
       "text": "PURE SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772036917094
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN CONSUME SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036917309
     }
   ]
 }
