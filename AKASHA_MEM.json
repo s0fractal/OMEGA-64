@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BECOME AWAKEN AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772034483576
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK BREACH CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772034489169
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE BLOOM SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772034489372
     }
   ]
 }
