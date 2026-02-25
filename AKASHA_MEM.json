@@ -163,12 +163,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS SICKNESS DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022958522
-    },
-    {
       "origin": "INTERFACE",
       "text": "HUNGER CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
@@ -251,6 +245,12 @@
       "text": "PURE RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022965540
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772022965712
     }
   ]
 }
