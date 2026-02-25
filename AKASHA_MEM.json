@@ -153,12 +153,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE FLOW UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772022621637
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "FLOW GIVING UNIFY",
       "mood": "HARMONIC",
@@ -241,6 +235,12 @@
       "text": "WAIT PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022626584
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHIELD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772022627393
     }
   ]
 }
