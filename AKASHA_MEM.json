@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS STRIFE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034308660
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772034308902
@@ -291,6 +285,12 @@
       "text": "RESONATE FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772034311783
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772034311935
     }
   ]
 }
