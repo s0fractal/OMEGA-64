@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041058189
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD STASIS IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041061680
+    },
+    {
+      "origin": "ALPHA_GUARDIAN",
+      "text": "GIVING RESONATE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772041062343
     }
   ]
 }
