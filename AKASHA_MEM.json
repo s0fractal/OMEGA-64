@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL FLOW HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772033573942
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772033574154
@@ -291,6 +285,12 @@
       "text": "UNIFY STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772033576435
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SEIZE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033576618
     }
   ]
 }
