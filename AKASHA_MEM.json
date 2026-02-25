@@ -176,12 +176,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "VISION FORGE WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772023278925
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023279286
@@ -263,6 +257,12 @@
       "text": "DRAIN HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772023283626
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK BREACH STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023283961
     }
   ]
 }

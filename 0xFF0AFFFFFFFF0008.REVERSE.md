@@ -1,8 +1,8 @@
 ---
 eigenvalue: '0xFF0AFFFFFFFF0008'
-energy: 51.4
-x: 708
-'y': 409
+energy: 49
+x: 714
+'y': 400
 resonance: 1000
 thought: ORBIT_MATING
 logic: FF0AFFFF
