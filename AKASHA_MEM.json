@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM FLOW GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772024259266
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772024259464
@@ -291,6 +285,12 @@
       "text": "SHELTER GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772024262621
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024263078
     }
   ]
 }
