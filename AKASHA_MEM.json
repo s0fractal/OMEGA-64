@@ -77,12 +77,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RECON GUARD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772021007889
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHELTER WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772021008711
@@ -164,6 +158,12 @@
       "text": "COHERE SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772021015587
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DECAY HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021016229
     }
   ]
 }
