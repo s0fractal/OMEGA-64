@@ -131,12 +131,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022341500
-    },
-    {
       "origin": "REVERSE",
       "text": "EVOLVE VISION SPARK",
       "mood": "CREATIVE",
@@ -219,6 +213,12 @@
       "text": "GIVING SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772022346887
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS PURE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022347072
     }
   ]
 }
