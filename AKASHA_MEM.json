@@ -109,12 +109,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SYNC HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772021852547
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE UNIFY HEAL",
       "mood": "HARMONIC",
@@ -197,6 +191,12 @@
       "text": "STRIFE DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772021864112
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING COHERE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772021864717
     }
   ]
 }
