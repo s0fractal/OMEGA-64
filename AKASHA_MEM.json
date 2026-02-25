@@ -93,12 +93,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH IMMUNE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021364682
-    },
-    {
-      "origin": "REVERSE",
       "text": "EVOLVE EVOLVE AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772021367073
@@ -180,6 +174,12 @@
       "text": "SHOCK DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021389726
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DECAY SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021390232
     }
   ]
 }
