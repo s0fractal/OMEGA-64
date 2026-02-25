@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WAIT GUARD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041848074
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WAIT SHIELD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041848239
@@ -291,6 +285,12 @@
       "text": "FLOW COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772041852430
+    },
+    {
+      "origin": "STREAM",
+      "text": "STASIS WATCH REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041853013
     }
   ]
 }
