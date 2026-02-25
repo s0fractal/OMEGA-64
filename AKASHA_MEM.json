@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS SHIELD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023972629
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE SHIELD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772023972811
@@ -284,6 +278,12 @@
       "text": "STRIFE DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023975498
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SEIZE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023975704
     }
   ]
 }
