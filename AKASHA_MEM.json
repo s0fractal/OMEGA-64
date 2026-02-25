@@ -43,12 +43,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHELTER GUARD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772020026317
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME STRIKE STRIFE",
       "mood": "AGGRESSIVE",
@@ -131,6 +125,12 @@
       "text": "STABLE GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772020036356
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020036571
     }
   ]
 }
