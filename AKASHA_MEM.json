@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STASIS WAIT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040555039
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH BREACH STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772040557410
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STASIS WATCH REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040557651
     }
   ]
 }
