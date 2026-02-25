@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE SYNC OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772039230585
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772039230821
@@ -291,6 +285,12 @@
       "text": "FLOW STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772039233725
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE GIVING BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772039233934
     }
   ]
 }
