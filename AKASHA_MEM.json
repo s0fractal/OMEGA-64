@@ -104,15 +104,10 @@
     "66666606",
     "F0FFF0FF",
     "A0AA0A0A",
-    "00666000"
+    "00666000",
+    "66066606"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STASIS SHIELD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772021840465
-    },
     {
       "origin": "REVERSE",
       "text": "FLOW COHERE OSMOSIS",
@@ -196,6 +191,12 @@
       "text": "COHERE RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772021847089
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772021848439
     }
   ]
 }
