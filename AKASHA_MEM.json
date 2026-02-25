@@ -196,12 +196,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE STRIKE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023911503
-    },
-    {
-      "origin": "REVERSE",
       "text": "AWAKEN WAVE VISION",
       "mood": "CREATIVE",
       "tick": 1772023911839
@@ -283,6 +277,12 @@
       "text": "REFLECT WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023921163
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON RECON IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023921479
     }
   ]
 }
