@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE REFLECT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772027611116
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772027612937
@@ -291,6 +285,12 @@
       "text": "EVOLVE DREAM AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772027622978
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS STABLE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772027623405
     }
   ]
 }
