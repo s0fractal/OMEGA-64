@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038148876
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772038149079
@@ -291,6 +285,12 @@
       "text": "UNIFY HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772038152109
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE UNIFY SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772038152313
     }
   ]
 }
