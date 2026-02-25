@@ -72,12 +72,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SEIZE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020905863
-    },
-    {
-      "origin": "REVERSE",
       "text": "EVOLVE WAVE EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772020906184
@@ -159,6 +153,12 @@
       "text": "STRIFE SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020910512
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME STRIFE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020910707
     }
   ]
 }
