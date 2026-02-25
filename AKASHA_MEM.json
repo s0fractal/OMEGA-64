@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW BLOOM HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772024934716
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY DECAY STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STASIS IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772024943519
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE FORGE WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772024943726
     }
   ]
 }
