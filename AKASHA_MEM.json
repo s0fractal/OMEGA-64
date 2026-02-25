@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER REFLECT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772032382876
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772032383315
@@ -291,6 +285,12 @@
       "text": "PURE WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772032388800
+    },
+    {
+      "origin": "REVERSE",
+      "text": "AWAKEN WAVE BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772032389075
     }
   ]
 }
