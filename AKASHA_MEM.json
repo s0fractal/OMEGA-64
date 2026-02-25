@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772035126012
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772035126229
@@ -291,6 +285,12 @@
       "text": "DECAY SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772035128949
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772035129188
     }
   ]
 }
