@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING OSMOSIS BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772040922036
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "UNIFY HEAL OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SICKNESS HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040924903
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "REFLECT GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772040925044
     }
   ]
 }
