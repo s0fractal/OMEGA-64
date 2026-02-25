@@ -166,12 +166,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RECON STASIS STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772023043748
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIFE DRAIN HUNGER",
       "mood": "AGGRESSIVE",
@@ -254,6 +248,12 @@
       "text": "RESONATE SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023049851
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIKE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023050099
     }
   ]
 }
