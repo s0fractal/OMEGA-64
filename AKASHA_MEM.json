@@ -124,12 +124,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772022162652
-    },
-    {
       "origin": "REVERSE",
       "text": "BEYOND EVOLVE BECOME",
       "mood": "CREATIVE",
@@ -212,6 +206,12 @@
       "text": "IMMUNE SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022167700
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772022167887
     }
   ]
 }
