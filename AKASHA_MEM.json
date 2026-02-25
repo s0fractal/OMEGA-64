@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH CONSUME SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034886768
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772034886967
@@ -291,6 +285,12 @@
       "text": "RESONATE OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772034890505
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772034890695
     }
   ]
 }
