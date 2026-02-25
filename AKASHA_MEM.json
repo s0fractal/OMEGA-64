@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE PURE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772028467153
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT GUARD GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHOCK SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772028478162
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT IMMUNE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772028478594
     }
   ]
 }
