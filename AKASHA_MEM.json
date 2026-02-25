@@ -93,12 +93,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH STRIFE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021477202
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE DECAY CONSUME",
       "mood": "AGGRESSIVE",
@@ -181,6 +175,12 @@
       "text": "COHERE COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772021489262
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS HEAL HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772021489762
     }
   ]
 }
