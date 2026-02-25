@@ -170,12 +170,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023083729
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023083906
@@ -257,6 +251,12 @@
       "text": "HEAL UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772023087381
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHELTER WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023087542
     }
   ]
 }
