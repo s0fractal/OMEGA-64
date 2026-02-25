@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS STRIFE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032897701
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772032898023
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772032900788
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772032900930
     }
   ]
 }
