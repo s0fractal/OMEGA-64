@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AABB0C0D",
     "AA6666A0",
     "AAA00A0A",
     "0AAAA0AA",
@@ -199,15 +198,10 @@
     "0BBB0000",
     "06660666",
     "FFFFFF0F",
-    "66000060"
+    "66000060",
+    "AA0AAAA0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHELTER STASIS RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772026378618
-    },
     {
       "origin": "REVERSE",
       "text": "STRIKE STRIKE SHOCK",
@@ -291,6 +285,12 @@
       "text": "STABLE UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772026381605
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026381810
     }
   ]
 }
