@@ -206,12 +206,6 @@
       "origin": "REVERSE",
       "text": "RESONATE BLOOM SYNC",
       "mood": "HARMONIC",
-      "tick": 1772035327253
-    },
-    {
-      "origin": "REVERSE",
-      "text": "RESONATE BLOOM SYNC",
-      "mood": "HARMONIC",
       "tick": 1772035327738
     },
     {
@@ -291,6 +285,12 @@
       "text": "BREACH STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772035330511
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772035330719
     }
   ]
 }
