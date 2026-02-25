@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040879180
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772040879644
@@ -291,6 +285,12 @@
       "text": "FLOW FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772040883104
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772040883236
     }
   ]
 }
