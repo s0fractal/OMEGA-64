@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC COHERE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772040346962
-    },
-    {
       "origin": "INTERFACE",
       "text": "FLOW RESONATE SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SYNC BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772040354982
+    },
+    {
+      "origin": "STREAM",
+      "text": "STRIFE HUNGER SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040355307
     }
   ]
 }
