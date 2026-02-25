@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS COHERE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772026048913
-    },
-    {
       "origin": "INTERFACE",
       "text": "SICKNESS HUNGER STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772026053136
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772026053383
     }
   ]
 }
