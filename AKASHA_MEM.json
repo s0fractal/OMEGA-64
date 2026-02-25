@@ -180,12 +180,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SHOCK HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023383864
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772023384037
@@ -267,6 +261,12 @@
       "text": "REFLECT WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772023388856
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW OSMOSIS BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772023389399
     }
   ]
 }
