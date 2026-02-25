@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE DECAY SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033841242
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND DREAM BEYOND",
       "mood": "CREATIVE",
       "tick": 1772033841456
@@ -291,6 +285,12 @@
       "text": "RECON REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772033846666
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033846883
     }
   ]
 }
