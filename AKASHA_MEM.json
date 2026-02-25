@@ -195,12 +195,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER RECON PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023867758
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023867969
@@ -282,6 +276,12 @@
       "text": "OSMOSIS BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772023873141
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023873399
     }
   ]
 }
