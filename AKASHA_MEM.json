@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029481544
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772029482335
@@ -291,6 +285,12 @@
       "text": "REFLECT WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772029490575
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM UNIFY COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772029491150
     }
   ]
 }
