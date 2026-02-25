@@ -115,12 +115,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772021986073
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAVE EVOLVE WITNESS",
       "mood": "CREATIVE",
       "tick": 1772021986266
@@ -202,6 +196,12 @@
       "text": "REFLECT GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772021995080
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772021995659
     }
   ]
 }
