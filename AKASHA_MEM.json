@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIFE BREACH HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041546384
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHELTER RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772041547000
@@ -291,6 +285,12 @@
       "text": "SEIZE SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772041550950
+    },
+    {
+      "origin": "STREAM",
+      "text": "OSMOSIS STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772041551250
     }
   ]
 }
