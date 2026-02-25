@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026418495
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772026418867
@@ -291,6 +285,12 @@
       "text": "VISION SPARK SPARK",
       "mood": "CREATIVE",
       "tick": 1772026422892
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME BREACH STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026423335
     }
   ]
 }
