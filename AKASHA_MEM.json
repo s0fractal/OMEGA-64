@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772034084740
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIKE HUNGER CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772034087715
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WAIT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772034087881
     }
   ]
 }
