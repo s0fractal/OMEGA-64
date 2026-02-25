@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "BB0BA000",
     "A6666A60",
     "A0AAA000",
     "FFFFFFF0",
@@ -199,15 +198,10 @@
     "06000006",
     "00AAA000",
     "AA00A0AA",
-    "AA0BCC0F"
+    "AA0BCC0F",
+    "600A0A00"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "HEAL UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772035020946
-    },
     {
       "origin": "REVERSE",
       "text": "DRAIN SEIZE HUNGER",
@@ -291,6 +285,12 @@
       "text": "HEAL GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772035025765
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT STASIS WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772035025975
     }
   ]
 }
