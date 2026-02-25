@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041914339
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW BLOOM SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WAIT WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041920225
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GIVING FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772041920683
     }
   ]
 }
