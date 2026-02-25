@@ -176,12 +176,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS REFLECT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772023272050
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023272213
@@ -263,6 +257,12 @@
       "text": "HUNGER SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772023275017
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772023275488
     }
   ]
 }
