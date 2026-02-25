@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE STABLE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772023170587
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023170751
@@ -259,6 +253,12 @@
       "text": "IMMUNE RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023176546
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH BREACH BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023178016
     }
   ]
 }
