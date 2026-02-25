@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772034035174
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH RECON RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIFE DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772034040244
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772034041210
     }
   ]
 }
