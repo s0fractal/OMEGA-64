@@ -122,15 +122,10 @@
     "A0AAAAAA",
     "60666060",
     "A0666666",
-    "FFFFF00F"
+    "FFFFF00F",
+    "AAA000A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "HEAL GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772022273293
-    },
     {
       "origin": "ARCHIVIST",
       "text": "BREACH STRIFE SEIZE",
@@ -214,6 +209,12 @@
       "text": "SICKNESS CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772022276588
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY BREACH DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022276768
     }
   ]
 }
