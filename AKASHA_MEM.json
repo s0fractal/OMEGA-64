@@ -107,12 +107,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS SHIELD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772021740044
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772021740181
@@ -194,6 +188,12 @@
       "text": "SICKNESS HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772021743475
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WATCH IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021743705
     }
   ]
 }
