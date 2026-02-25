@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "SOMA",
-      "text": "SEIZE BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042225247
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS RECON IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772042235283
+    },
+    {
+      "origin": "ALPHA_PROOF_OF_RESONANCE",
+      "text": "FLOW HEAL GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772042235568
     }
   ]
 }
