@@ -27,12 +27,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WATCH GUARD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772019661128
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "PURE GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772019661348
@@ -114,6 +108,12 @@
       "text": "CONSUME SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772019668301
+    },
+    {
+      "origin": "STREAM",
+      "text": "HEAL COHERE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772019668827
     }
   ]
 }
