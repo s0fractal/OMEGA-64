@@ -123,12 +123,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD WATCH IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022125247
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK WITNESS AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772022125601
@@ -210,6 +204,12 @@
       "text": "STRIKE SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772022132401
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022132601
     }
   ]
 }
