@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER GUARD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772031751850
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772031752182
@@ -291,6 +285,12 @@
       "text": "VISION EVOLVE SPARK",
       "mood": "CREATIVE",
       "tick": 1772031756867
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER CONSUME DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031757223
     }
   ]
 }
