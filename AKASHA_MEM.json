@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME BREACH BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035935215
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772035935487
@@ -291,6 +285,12 @@
       "text": "SHIELD REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772035938733
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772035938961
     }
   ]
 }
