@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SHOCK BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035657422
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772035657708
@@ -291,6 +285,12 @@
       "text": "WAIT RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772035660777
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WAIT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772035661022
     }
   ]
 }
