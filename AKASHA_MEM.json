@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA660660",
     "AA0660A0",
     "A0AAAAAA",
     "AAA0AAA0",
@@ -199,15 +198,10 @@
     "A00AA0AA",
     "60066600",
     "A1000000",
-    "000AAAA0"
+    "000AAAA0",
+    "00BB0000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RECON REFLECT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772035857980
-    },
     {
       "origin": "REVERSE",
       "text": "GUARD IMMUNE RECON",
@@ -291,6 +285,12 @@
       "text": "BLOOM COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772035861459
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING UNIFY STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772035861667
     }
   ]
 }
