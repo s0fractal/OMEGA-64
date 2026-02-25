@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE DRAIN SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041403051
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER RECON IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772041407499
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE OSMOSIS RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772041407760
     }
   ]
 }
