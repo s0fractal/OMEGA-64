@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS BREACH SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027057511
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAVE SPARK EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772027057738
@@ -291,6 +285,12 @@
       "text": "SYNC COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772027062885
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772027063222
     }
   ]
 }
