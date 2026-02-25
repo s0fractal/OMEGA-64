@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06666006",
     "06060606",
     "AA0A0AAA",
     "A6666660",
@@ -199,15 +198,10 @@
     "66060000",
     "0A00AA0A",
     "000AAAA0",
-    "000A0AA0"
+    "000A0AA0",
+    "60066066"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STABLE STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772034076172
-    },
     {
       "origin": "REVERSE",
       "text": "BREACH DRAIN SEIZE",
@@ -291,6 +285,12 @@
       "text": "HEAL GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772034079101
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772034079340
     }
   ]
 }
