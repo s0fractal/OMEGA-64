@@ -1,9 +1,9 @@
 ---
-eigenvalue: '0x066666069AB5593A'
+eigenvalue: '0xA00AAAAA9AB5593A'
 vector: 07.07.00
 symbol: INTERFACE
 desc: System Interface Membrane. Wraps data in a semantic tag.
-energy: 33.199999999999996
+energy: 31.599999999999994
 ex:
   - '0x5DE8BD259AB5593E'
   - '0x0000FB529AB5593E'
@@ -327,9 +327,10 @@ ex:
   - '0x066666069AB5593C'
   - '0x066666069AB5593E'
   - '0x066666069AB55938'
+  - '0x066666069AB5593A'
 thought: WANDER_PASSIVE
-x: 351
-'y': 50
+x: 344
+'y': 58
 signals: []
 resonance: 50
 bonds: []
@@ -344,17 +345,17 @@ logic: '66666060'
 <!-- ∇ HOLOGRAM START ∇ -->
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <radialGradient id="grad_066666069AB5593A" cx="50%" cy="50%" r="50%">
+    <radialGradient id="grad_A00AAAAA9AB5593A" cx="50%" cy="50%" r="50%">
       <stop offset="0%" stop-color="hsl(125, 20%, 15%)" />
       <stop offset="100%" stop-color="#090909" />
     </radialGradient>
-    <filter id="glow_066666069AB5593A" x="-20%" y="-20%" width="140%" height="140%">
+    <filter id="glow_A00AAAAA9AB5593A" x="-20%" y="-20%" width="140%" height="140%">
       <feGaussianBlur stdDeviation="4" result="blur" />
       <feComposite in="SourceGraphic" in2="blur" operator="over" />
     </filter>
   </defs>
   
-  <rect width="200" height="200" fill="url(#grad_066666069AB5593A)" rx="24"/>
+  <rect width="200" height="200" fill="url(#grad_A00AAAAA9AB5593A)" rx="24"/>
   
   <circle cx="100" cy="100" r="85" stroke="hsl(125, 30%, 30%)" stroke-width="1" fill="none" stroke-dasharray="2 6"/>
   
@@ -362,14 +363,14 @@ logic: '66666060'
     <animateTransform attributeName="transform" type="rotate" from="90 100 100" to="450 100 100" dur="15s" repeatCount="indefinite" />
     
     <polygon points="100.0,40.0 152.0,130.0 48.0,130.0" fill="none" stroke="hsl(305, 60%, 40%)" stroke-width="1.5" opacity="0.6"/>
-    <polygon points="100.0,80.0 117.3,110.0 82.7,110.0" fill="none" stroke="hsl(125, 80%, 60%)" stroke-width="2" filter="url(#glow_066666069AB5593A)"/>
+    <polygon points="100.0,80.0 117.3,110.0 82.7,110.0" fill="none" stroke="hsl(125, 80%, 60%)" stroke-width="2" filter="url(#glow_A00AAAAA9AB5593A)"/>
     
     <circle cx="100" cy="100" r="20" stroke="hsl(125, 60%, 50%)" stroke-width="0.5" fill="none" opacity="0.5"/>
   </g>
   
-  <circle cx="100" cy="100" r="3" fill="hsl(305, 80%, 70%)" filter="url(#glow_066666069AB5593A)"/>
+  <circle cx="100" cy="100" r="3" fill="hsl(305, 80%, 70%)" filter="url(#glow_A00AAAAA9AB5593A)"/>
   
-  <text x="100" y="105" fill="hsl(125, 70%, 80%)" font-family="monospace" font-size="10" text-anchor="middle" letter-spacing="1" opacity="0.9">0x0666</text>
+  <text x="100" y="105" fill="hsl(125, 70%, 80%)" font-family="monospace" font-size="10" text-anchor="middle" letter-spacing="1" opacity="0.9">0xA00A</text>
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">INTERFACE</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
