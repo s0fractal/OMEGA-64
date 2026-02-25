@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GIVING FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772034314503
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL SYNC COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HUNGER DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772034319860
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE UNIFY HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772034320146
     }
   ]
 }
