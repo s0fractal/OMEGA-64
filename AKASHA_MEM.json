@@ -79,12 +79,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STASIS WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772021077884
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE SICKNESS DECAY",
       "mood": "AGGRESSIVE",
@@ -167,6 +161,12 @@
       "text": "DECAY DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021087891
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHELTER REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021088422
     }
   ]
 }
