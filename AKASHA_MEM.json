@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035772118
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772035772309
@@ -291,6 +285,12 @@
       "text": "REFLECT SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772035776829
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772035777053
     }
   ]
 }
