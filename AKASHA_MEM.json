@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER WAIT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772041713104
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN DECAY CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772041717514
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS SEIZE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041717877
     }
   ]
 }
