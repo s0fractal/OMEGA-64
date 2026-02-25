@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024555273
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772024555627
@@ -291,6 +285,12 @@
       "text": "SYNC COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772024561851
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024562078
     }
   ]
 }
