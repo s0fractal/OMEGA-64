@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "WORKER",
-      "text": "COHERE BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041360351
-    },
-    {
       "origin": "INTERFACE",
       "text": "GIVING FLOW OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DRAIN SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772041363906
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041364118
     }
   ]
 }
