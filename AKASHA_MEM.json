@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS PURE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023184460
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023184671
@@ -259,6 +253,12 @@
       "text": "HEAL SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023191711
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE BECOME FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772023191882
     }
   ]
 }
