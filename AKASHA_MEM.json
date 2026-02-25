@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032929716
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772032930016
@@ -291,6 +285,12 @@
       "text": "RESONATE UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772032935250
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032935802
     }
   ]
 }
