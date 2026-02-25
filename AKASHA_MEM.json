@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025676320
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772025676578
@@ -291,6 +285,12 @@
       "text": "AWAKEN BEYOND WITNESS",
       "mood": "CREATIVE",
       "tick": 1772025681426
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772025682890
     }
   ]
 }
