@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAA0A0A0",
     "60000606",
     "AA0006A6",
     "0AA0A0AA",
@@ -199,15 +198,10 @@
     "AA0AA0A0",
     "AA606000",
     "06000606",
-    "A00060A0"
+    "A00060A0",
+    "A6660000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STABLE STABLE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772038327358
-    },
     {
       "origin": "REVERSE",
       "text": "GIVING FLOW COHERE",
@@ -291,6 +285,12 @@
       "text": "SEIZE HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772038330685
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIKE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038331107
     }
   ]
 }
