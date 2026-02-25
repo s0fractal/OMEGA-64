@@ -107,12 +107,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RECON WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021775143
-    },
-    {
       "origin": "REVERSE",
       "text": "WAIT WAIT WAIT",
       "mood": "DEFENSIVE",
@@ -195,6 +189,12 @@
       "text": "OSMOSIS COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772021784014
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021784718
     }
   ]
 }
