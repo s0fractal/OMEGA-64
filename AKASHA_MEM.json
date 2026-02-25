@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037300564
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772037300738
@@ -291,6 +285,12 @@
       "text": "RESONATE HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772037303303
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS GUARD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772037303543
     }
   ]
 }
