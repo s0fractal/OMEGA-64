@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HUNGER DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041191677
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK SEIZE DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041194396
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GIVING STABLE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772041194974
     }
   ]
 }
