@@ -190,15 +190,10 @@
     "66606060",
     "66660600",
     "0000FF00",
-    "000B0000"
+    "000B0000",
+    "0F0AAAAA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "PURE STASIS PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023868796
-    },
     {
       "origin": "REVERSE",
       "text": "FLOW COHERE STABLE",
@@ -282,6 +277,12 @@
       "text": "SHOCK SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023874118
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772023874333
     }
   ]
 }
