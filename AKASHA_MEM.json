@@ -92,12 +92,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE DECAY STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021336739
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER WATCH PURE",
       "mood": "DEFENSIVE",
@@ -180,6 +174,12 @@
       "text": "REFLECT IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772021377514
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD STASIS STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772021378116
     }
   ]
 }
