@@ -181,12 +181,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE SYNC SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772023468448
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023468607
@@ -268,6 +262,12 @@
       "text": "SHIELD GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772023472456
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772023472625
     }
   ]
 }
