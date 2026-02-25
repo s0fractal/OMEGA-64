@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A0BBC0DD",
     "AAAA0AA0",
     "66660666",
     "AA0A0A0A",
@@ -199,15 +198,10 @@
     "A6066606",
     "60666660",
     "06666060",
-    "00606066"
+    "00606066",
+    "A0AA0A00"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHOCK STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035755030
-    },
     {
       "origin": "REVERSE",
       "text": "SHIELD PURE WAIT",
@@ -291,6 +285,12 @@
       "text": "STRIFE BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772035758100
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035758262
     }
   ]
 }
