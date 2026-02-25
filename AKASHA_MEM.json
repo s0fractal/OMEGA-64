@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK STRIFE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023714952
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023715112
@@ -278,6 +272,12 @@
       "text": "SPARK DREAM BECOME",
       "mood": "CREATIVE",
       "tick": 1772023718484
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY FLOW HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772023718637
     }
   ]
 }
