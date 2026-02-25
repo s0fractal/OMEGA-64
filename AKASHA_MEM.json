@@ -55,12 +55,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH STRIFE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020442653
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BREACH DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020443587
@@ -142,6 +136,12 @@
       "text": "STASIS GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772020450965
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME DECAY SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020451727
     }
   ]
 }
