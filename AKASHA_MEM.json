@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH SHELTER PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772036523559
-    },
-    {
-      "origin": "REVERSE",
       "text": "AWAKEN DREAM SPARK",
       "mood": "CREATIVE",
       "tick": 1772036523968
@@ -291,6 +285,12 @@
       "text": "STRIFE HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772036529469
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE STRIKE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036529647
     }
   ]
 }
