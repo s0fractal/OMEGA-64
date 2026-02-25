@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM HEAL GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772037924868
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772037925089
@@ -291,6 +285,12 @@
       "text": "STRIFE DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772037928449
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE VISION WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772037928617
     }
   ]
 }
