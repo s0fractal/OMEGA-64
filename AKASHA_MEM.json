@@ -55,12 +55,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SICKNESS STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020465496
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RESONATE RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772020466041
@@ -142,6 +136,12 @@
       "text": "COHERE GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772020473157
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS BECOME SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772020473442
     }
   ]
 }
