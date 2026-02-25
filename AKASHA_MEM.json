@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE SHOCK CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033266290
-    },
-    {
       "origin": "STREAM",
       "text": "DECAY STRIFE BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772033269153
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772033269325
     }
   ]
 }
