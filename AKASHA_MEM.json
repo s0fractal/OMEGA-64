@@ -118,12 +118,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DECAY SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022078569
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772022078694
@@ -205,6 +199,12 @@
       "text": "BREACH BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772022082579
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772022082873
     }
   ]
 }
