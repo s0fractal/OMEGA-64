@@ -63,12 +63,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020637965
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BREACH BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020638669
@@ -150,6 +144,12 @@
       "text": "SICKNESS SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772020648874
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON IMMUNE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020650028
     }
   ]
 }
