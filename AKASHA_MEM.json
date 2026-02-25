@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH STRIKE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026783170
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772026783407
@@ -291,6 +285,12 @@
       "text": "PURE RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772026788442
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING STABLE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772026788667
     }
   ]
 }
