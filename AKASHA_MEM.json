@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW UNIFY FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772037038760
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772037038965
@@ -291,6 +285,12 @@
       "text": "WITNESS SPARK VISION",
       "mood": "CREATIVE",
       "tick": 1772037043632
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WATCH WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772037043844
     }
   ]
 }
