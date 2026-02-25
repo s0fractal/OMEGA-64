@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772033992748
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772033992954
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772033995629
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772033996020
     }
   ]
 }
