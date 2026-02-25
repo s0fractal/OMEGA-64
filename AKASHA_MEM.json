@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE SYNC OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772031208570
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME DRAIN DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STASIS SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772031216381
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE IMMUNE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772031216836
     }
   ]
 }
