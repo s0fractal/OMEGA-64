@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "WORKER",
-      "text": "CONSUME STRIKE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041460422
-    },
-    {
       "origin": "ALPHA_REVERSE",
       "text": "STRIKE DRAIN STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "DRAIN BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772041464959
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS RESONATE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772041465091
     }
   ]
 }
