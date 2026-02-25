@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE CONSUME SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033875424
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772033875577
@@ -291,6 +285,12 @@
       "text": "BLOOM UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772033878217
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE STRIFE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033878444
     }
   ]
 }
