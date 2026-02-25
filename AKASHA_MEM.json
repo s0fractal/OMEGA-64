@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STASIS PURE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041585146
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM STABLE UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "COHERE SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772041591611
+    },
+    {
+      "origin": "STREAM",
+      "text": "HEAL RESONATE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772041591804
     }
   ]
 }
