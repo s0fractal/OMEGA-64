@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY SYNC COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772028825364
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY STRIKE STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772028836659
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772028836954
     }
   ]
 }
