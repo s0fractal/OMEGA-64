@@ -21,12 +21,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER GUARD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772019411999
-    },
-    {
       "origin": "INTERFACE",
       "text": "FLOW STABLE RESONATE",
       "mood": "HARMONIC",
@@ -109,6 +103,12 @@
       "text": "GUARD GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772019435874
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER IMMUNE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772019442206
     }
   ]
 }
