@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW HEAL HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772033966033
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772033966226
@@ -291,6 +285,12 @@
       "text": "GUARD SHIELD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772033968824
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STABLE HEAL RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772033969061
     }
   ]
 }
