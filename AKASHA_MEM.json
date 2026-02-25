@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030892258
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772030892840
@@ -291,6 +285,12 @@
       "text": "SYNC RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772030912925
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772030913572
     }
   ]
 }
