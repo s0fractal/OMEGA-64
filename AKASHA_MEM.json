@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD RECON STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772041358955
-    },
-    {
       "origin": "PARADOX",
       "text": "DRAIN DECAY BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772041362483
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041362668
     }
   ]
 }
