@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK STRIFE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035761220
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772035761434
@@ -291,6 +285,12 @@
       "text": "UNIFY BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772035767076
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772035768951
     }
   ]
 }
