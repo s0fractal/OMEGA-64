@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH STRIFE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029078871
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772029079392
@@ -291,6 +285,12 @@
       "text": "SHIELD GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772029085181
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772029085558
     }
   ]
 }
