@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772026985151
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772026985747
@@ -291,6 +285,12 @@
       "text": "OSMOSIS GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772026990381
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM BEYOND EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772026990612
     }
   ]
 }
