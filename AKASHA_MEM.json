@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772040472435
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS RECON GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772040474692
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER WATCH SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040474898
     }
   ]
 }
