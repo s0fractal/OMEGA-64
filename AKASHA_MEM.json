@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0A0AAAA0",
     "AA00AAA0",
     "0FFFF0FF",
     "0AA00AA0",
@@ -199,15 +198,10 @@
     "00006000",
     "06000606",
     "6A6A66A0",
-    "66006066"
+    "66006066",
+    "66066006"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RESONATE UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772033541739
-    },
     {
       "origin": "REVERSE",
       "text": "FLOW STABLE RESONATE",
@@ -291,6 +285,12 @@
       "text": "STABLE GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772033544628
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT IMMUNE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772033544819
     }
   ]
 }
