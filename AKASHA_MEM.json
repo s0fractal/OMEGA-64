@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WATCH GUARD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772015991894
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE UNIFY UNIFY",
       "mood": "HARMONIC",
@@ -107,6 +101,12 @@
       "text": "STRIFE SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772016104526
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "PURE SHELTER GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772016109420
     }
   ]
 }
