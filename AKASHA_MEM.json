@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772031171613
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772031171952
@@ -291,6 +285,12 @@
       "text": "STASIS SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772031176938
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT PURE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772031177372
     }
   ]
 }
