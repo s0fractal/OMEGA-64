@@ -182,12 +182,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SHOCK HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023516285
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023516462
@@ -269,6 +263,12 @@
       "text": "CONSUME SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772023520299
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772023520423
     }
   ]
 }
