@@ -183,12 +183,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME SICKNESS STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023591595
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN STRIKE DRAIN",
       "mood": "AGGRESSIVE",
@@ -271,6 +265,12 @@
       "text": "BLOOM COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772023595874
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS SHIELD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023596044
     }
   ]
 }
