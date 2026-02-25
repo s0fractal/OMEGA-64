@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SHOCK DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038948746
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772038948939
@@ -291,6 +285,12 @@
       "text": "PURE STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772038952803
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772038953030
     }
   ]
 }
