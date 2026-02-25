@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW STABLE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772038881982
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772038882206
@@ -291,6 +285,12 @@
       "text": "RECON STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772038885268
+    },
+    {
+      "origin": "REVERSE",
+      "text": "AWAKEN BEYOND EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772038886221
     }
   ]
 }
