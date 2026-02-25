@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772033291506
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772033291693
@@ -291,6 +285,12 @@
       "text": "RECON PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033294214
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHELTER RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772033294796
     }
   ]
 }
