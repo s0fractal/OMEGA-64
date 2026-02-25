@@ -24,12 +24,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "HUNGER SHOCK CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019538601
-    },
-    {
-      "origin": "INTERFACE",
       "text": "SHOCK DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772019539115
@@ -111,6 +105,12 @@
       "text": "BECOME BEYOND FORGE",
       "mood": "CREATIVE",
       "tick": 1772019546842
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE BREACH CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019547221
     }
   ]
 }
