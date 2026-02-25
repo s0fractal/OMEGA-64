@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772015984743
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH RECON GUARD",
       "mood": "DEFENSIVE",
@@ -107,6 +101,12 @@
       "text": "STASIS WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772016077655
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772016087429
     }
   ]
 }
