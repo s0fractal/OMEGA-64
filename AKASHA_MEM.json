@@ -127,12 +127,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT PURE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022268809
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772022269212
@@ -214,6 +208,12 @@
       "text": "SHIELD GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022273735
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIKE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022274136
     }
   ]
 }
