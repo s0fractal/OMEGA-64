@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772029090886
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH IMMUNE SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772029099786
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772029100460
     }
   ]
 }
