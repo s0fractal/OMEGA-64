@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING RESONATE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772026567163
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772026567516
@@ -291,6 +285,12 @@
       "text": "WATCH RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772026575468
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY BLOOM SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772026575929
     }
   ]
 }
