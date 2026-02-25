@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD PURE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772036148250
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY FLOW STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DECAY SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772036153009
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD PURE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772036153180
     }
   ]
 }
