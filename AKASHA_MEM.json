@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041872111
-    },
-    {
       "origin": "STREAM",
       "text": "GIVING GIVING RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "COHERE FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772041876505
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT WAIT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041877220
     }
   ]
 }
