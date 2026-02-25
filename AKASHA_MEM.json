@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER WAIT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772036893906
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772036894916
@@ -291,6 +285,12 @@
       "text": "SICKNESS SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772036897900
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772036898102
     }
   ]
 }
