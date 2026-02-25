@@ -44,12 +44,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020066073
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE RESONATE BLOOM",
       "mood": "HARMONIC",
@@ -132,6 +126,12 @@
       "text": "WATCH GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772020082854
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT IMMUNE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020083954
     }
   ]
 }
