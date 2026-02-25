@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE HUNGER STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032765010
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772032765190
@@ -291,6 +285,12 @@
       "text": "SYNC FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772032767634
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD REFLECT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772032767816
     }
   ]
 }
