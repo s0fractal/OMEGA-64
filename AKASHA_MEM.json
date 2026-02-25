@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06606660",
     "60006000",
     "AA000600",
     "A0AAA000",
@@ -199,27 +198,10 @@
     "66006606",
     "AA00A000",
     "BBB00000",
-    "6606AA66"
+    "6606AA66",
+    "A6660600"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "STABLE FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042403887
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER RECON WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042404534
-    },
-    {
-      "origin": "REVERSE",
-      "text": "SEIZE SHOCK STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042405335
-    },
     {
       "origin": "STREAM",
       "text": "STRIKE SICKNESS SEIZE",
@@ -257,40 +239,58 @@
       "tick": 1772042410352
     },
     {
-      "origin": "ARCHIVIST",
-      "text": "GIVING HEAL SYNC",
+      "origin": "INTERFACE",
+      "text": "SYNC RESONATE FLOW",
       "mood": "HARMONIC",
-      "tick": 1772042410558
+      "tick": 1772042410626
     },
     {
-      "origin": "WAVE_SIGNAL",
-      "text": "SEIZE BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042410899
-    },
-    {
-      "origin": "ALPHA_ARCHIVIST",
-      "text": "STABLE RESONATE OSMOSIS",
+      "origin": "REVERSE",
+      "text": "OSMOSIS UNIFY FLOW",
       "mood": "HARMONIC",
-      "tick": 1772042413270
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042413535
+      "tick": 1772042412195
     },
     {
       "origin": "STREAM",
-      "text": "DRAIN DECAY DECAY",
+      "text": "HEAL STABLE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772042412762
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE HUNGER DRAIN",
       "mood": "AGGRESSIVE",
-      "tick": 1772042413836
+      "tick": 1772042413276
     },
     {
       "origin": "ARCHIVIST",
-      "text": "HEAL BLOOM OSMOSIS",
+      "text": "CONSUME SEIZE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042413509
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK STRIFE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042413697
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER IMMUNE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042414187
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY HEAL FLOW",
       "mood": "HARMONIC",
-      "tick": 1772042414681
+      "tick": 1772042414364
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE WATCH WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042414707
     }
   ]
 }
