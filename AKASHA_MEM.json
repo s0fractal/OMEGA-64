@@ -130,12 +130,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON SHIELD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022312674
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022312820
@@ -217,6 +211,12 @@
       "text": "SPARK WITNESS DREAM",
       "mood": "CREATIVE",
       "tick": 1772022315587
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022315910
     }
   ]
 }
