@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772033319280
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772033319487
@@ -291,6 +285,12 @@
       "text": "STRIFE CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772033321749
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHELTER WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772033321932
     }
   ]
 }
