@@ -180,12 +180,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE SYNC FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772023502664
-    },
-    {
       "origin": "STREAM",
       "text": "RESONATE BLOOM SYNC",
       "mood": "HARMONIC",
@@ -268,6 +262,12 @@
       "text": "IMMUNE SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023506967
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023507175
     }
   ]
 }
