@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON SHELTER WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772036814749
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD SHIELD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772036815018
@@ -291,6 +285,12 @@
       "text": "HEAL COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772036818899
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772036819144
     }
   ]
 }
