@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023138320
-    },
-    {
-      "origin": "REVERSE",
       "text": "DREAM BEYOND DREAM",
       "mood": "CREATIVE",
       "tick": 1772023138484
@@ -259,6 +253,12 @@
       "text": "RESONATE COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772023142116
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023142648
     }
   ]
 }
