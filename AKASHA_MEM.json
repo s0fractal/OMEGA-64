@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE STRIFE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037061731
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE HEAL GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "REFLECT SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772037065581
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037065796
     }
   ]
 }
