@@ -158,12 +158,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022803915
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HEAL UNIFY BLOOM",
       "mood": "HARMONIC",
@@ -246,6 +240,12 @@
       "text": "HEAL BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022809634
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772022810469
     }
   ]
 }
