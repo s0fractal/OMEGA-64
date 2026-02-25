@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIKE SEIZE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041141955
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DECAY DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772041142703
@@ -291,6 +285,12 @@
       "text": "SHELTER WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041145574
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041145741
     }
   ]
 }
