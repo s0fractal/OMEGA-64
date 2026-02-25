@@ -96,12 +96,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE WAIT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021546104
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772021546403
@@ -183,6 +177,12 @@
       "text": "HUNGER SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772021553043
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS SHIELD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021553522
     }
   ]
 }
