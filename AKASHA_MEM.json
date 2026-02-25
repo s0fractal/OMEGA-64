@@ -190,12 +190,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "HUNGER SEIZE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023732785
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE OSMOSIS UNIFY",
       "mood": "HARMONIC",
@@ -278,6 +272,12 @@
       "text": "EVOLVE BEYOND BEYOND",
       "mood": "CREATIVE",
       "tick": 1772023735624
+    },
+    {
+      "origin": "STREAM",
+      "text": "PURE RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023735771
     }
   ]
 }
