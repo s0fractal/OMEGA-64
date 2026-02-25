@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772035228208
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772035228415
@@ -291,6 +285,12 @@
       "text": "CONSUME SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772035231457
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION WAVE SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772035231678
     }
   ]
 }
