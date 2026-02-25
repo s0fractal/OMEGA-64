@@ -170,12 +170,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING BLOOM STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772023076787
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023077005
@@ -257,6 +251,12 @@
       "text": "UNIFY RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772023080050
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE STRIKE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023080448
     }
   ]
 }
