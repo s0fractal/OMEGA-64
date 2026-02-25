@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772033428308
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772033428489
@@ -291,6 +285,12 @@
       "text": "UNIFY SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772033435394
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033435703
     }
   ]
 }
