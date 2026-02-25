@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE SHIELD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772036789762
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772036790000
@@ -291,6 +285,12 @@
       "text": "SHIELD IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772036792833
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772036793047
     }
   ]
 }
