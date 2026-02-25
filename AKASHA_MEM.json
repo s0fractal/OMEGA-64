@@ -130,12 +130,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772022304667
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022305213
@@ -217,6 +211,12 @@
       "text": "RESONATE FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772022308522
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS STRIFE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022308752
     }
   ]
 }
