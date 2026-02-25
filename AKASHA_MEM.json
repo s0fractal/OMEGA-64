@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD RECON WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772025145828
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772025146009
@@ -291,6 +285,12 @@
       "text": "WAIT WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772025150439
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025150864
     }
   ]
 }
