@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038693274
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772038693513
@@ -291,6 +285,12 @@
       "text": "FLOW FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772038697405
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038697623
     }
   ]
 }
