@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY OSMOSIS COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772036980889
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772036981325
@@ -291,6 +285,12 @@
       "text": "GUARD PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772036990770
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD STASIS IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772036990970
     }
   ]
 }
