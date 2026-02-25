@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SHOCK DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033042605
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK FORGE BECOME",
       "mood": "CREATIVE",
       "tick": 1772033042763
@@ -291,6 +285,12 @@
       "text": "OSMOSIS OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772033045234
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW RESONATE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772033045409
     }
   ]
 }
