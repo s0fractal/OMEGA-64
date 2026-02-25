@@ -127,12 +127,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON SHIELD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772022286939
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT STASIS IMMUNE",
       "mood": "DEFENSIVE",
@@ -215,6 +209,12 @@
       "text": "COHERE HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022289749
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD PURE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022290040
     }
   ]
 }
