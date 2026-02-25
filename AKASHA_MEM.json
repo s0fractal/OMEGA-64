@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "COHERE SYNC UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772041929068
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIKE CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772041929233
@@ -291,6 +285,12 @@
       "text": "SEIZE DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041934109
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041934344
     }
   ]
 }
