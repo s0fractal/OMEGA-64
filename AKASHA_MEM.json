@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK HUNGER STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035911159
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772035911331
@@ -291,6 +285,12 @@
       "text": "COHERE STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772035915084
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SEIZE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035915534
     }
   ]
 }
