@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT WAIT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772037444360
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH PURE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772037444566
@@ -291,6 +285,12 @@
       "text": "RESONATE SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772037448608
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037448785
     }
   ]
 }
