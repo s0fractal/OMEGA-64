@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772033544628
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772033544819
@@ -291,6 +285,12 @@
       "text": "STASIS RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033548251
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033548610
     }
   ]
 }
