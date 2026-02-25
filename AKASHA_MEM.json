@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020161342
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIFE DRAIN HUNGER",
       "mood": "AGGRESSIVE",
@@ -136,6 +130,12 @@
       "text": "WATCH REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020172310
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN SICKNESS HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020173014
     }
   ]
 }
