@@ -101,12 +101,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772021611885
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH WATCH PURE",
       "mood": "DEFENSIVE",
@@ -189,6 +183,12 @@
       "text": "BREACH BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772021617830
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021618014
     }
   ]
 }
