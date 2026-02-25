@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS SYNC STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772026137056
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772026137292
@@ -291,6 +285,12 @@
       "text": "WATCH REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772026149403
+    },
+    {
+      "origin": "STREAM",
+      "text": "IMMUNE SHIELD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772026149702
     }
   ]
 }
