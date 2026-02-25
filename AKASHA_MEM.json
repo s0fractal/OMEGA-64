@@ -77,12 +77,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT PURE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772021024166
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772021024470
@@ -164,6 +158,12 @@
       "text": "DRAIN BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772021030791
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE HEAL OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772021030987
     }
   ]
 }
