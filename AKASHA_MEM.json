@@ -44,12 +44,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "UNIFY BLOOM OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772020067977
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD WATCH PURE",
       "mood": "DEFENSIVE",
@@ -132,6 +126,12 @@
       "text": "REFLECT STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772020084170
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772020085626
     }
   ]
 }
