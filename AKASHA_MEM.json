@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME BREACH SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772017011294
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "IMMUNE SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772017015905
@@ -107,6 +101,12 @@
       "text": "DRAIN STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772017085000
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "CONSUME HUNGER DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772017096341
     }
   ]
 }
