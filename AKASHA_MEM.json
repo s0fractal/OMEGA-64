@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL UNIFY COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772034241363
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772034241556
@@ -291,6 +285,12 @@
       "text": "CONSUME DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772034244103
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WAIT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772034244274
     }
   ]
 }
