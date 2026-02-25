@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772026960171
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772026960378
@@ -291,6 +285,12 @@
       "text": "DRAIN STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772026965983
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772026966199
     }
   ]
 }
