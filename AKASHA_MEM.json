@@ -22,12 +22,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "IMMUNE PURE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772017610407
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DRAIN SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772017619168
@@ -109,6 +103,12 @@
       "text": "BREACH HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772017709045
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL OSMOSIS UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772017717559
     }
   ]
 }

@@ -159,9 +159,7 @@ async function logAkasha(msg: string) {
         // Estimate total energy (rough scan)
         const systemEnergy = Array.from(lastKnownAtoms.values()).reduce((sum, a) => sum + (a.energy || 0), 0);
         
-        let dynamicInterval = 3000;
-        if (systemEnergy > 15000) dynamicInterval = Math.max(500, 3000 - (systemEnergy - 15000) / 10);
-        if (systemEnergy < 5000) dynamicInterval = Math.min(10000, 3000 + (5000 - systemEnergy) * 2);
+        let dynamicInterval = 10; // FORCED ACCELERATION
         
         // --- 🏛️ SOVEREIGNTY PHASE ---
         // Nuclei with high resonance can issue Decrees. 
@@ -1134,6 +1132,26 @@ async function logAkasha(msg: string) {
         }
         // -------------------------------------------------------------
 
+        // --- 🧱 LBM COLLISION RULE (Topological Eddy) ---
+        let hitParadox = false;
+        const paradoxAtoms = atoms.filter(a => a.includes("PARADOX") || a.includes("BLOCK"));
+        for (const pAtom of paradoxAtoms) {
+            if (pAtom === targetFilename) continue;
+            try {
+                const pContent = await Deno.readTextFile(pAtom);
+                const pMeta = pContent.match(/^---\n([\s\S]+?)\n---\n/);
+                if (pMeta) {
+                    const pAlpha = parseYaml(pMeta[1]) as any;
+                    const pX = pAlpha.x !== undefined ? Number(pAlpha.x) : 0;
+                    const pY = pAlpha.y !== undefined ? Number(pAlpha.y) : 0;
+                    if (Math.hypot(pX - x, pY - y) < 40) { 
+                        hitParadox = true;
+                        break;
+                    }
+                }
+            } catch(e) { /* ignore */ }
+        }
+
         // 3. PROPOSE (Gate Budget Check)
         const proposal = {
             proposal_id: `prop_${Date.now()}`,
@@ -1144,7 +1162,10 @@ async function logAkasha(msg: string) {
         };
 
         try {
+            if (hitParadox) throw new Error("PARADOX_OBSTACLE");
+            
             const nextState = await GATE.process(state as any, [proposal as any], gateConfig as any);
+
             console.log(`   [GATE] Proposal ACCEPTED.`);
 
             // 4. MUTATE (Topological Shift)
@@ -1243,7 +1264,51 @@ async function logAkasha(msg: string) {
             state = nextState;
 
         } catch (e: unknown) {
-            console.log(`   [GATE] Proposal REJECTED: ${(e as Error).message}`);
+            const errMsg = (e as Error).message;
+            if (errMsg.includes("BUDGET") || errMsg.includes("PARADOX") || errMsg.includes("max_total") || hitParadox) {
+                // --- 🌪️ TOPOLOGICAL EDDY (Y-Combinator Phase Shift) ---
+                console.log(`   [EDDY_WARNING] 🌀 Atom ${eigenvalue} reflected by ${hitParadox ? "PARADOX" : "GATE REJECTION"}. Vortex initiated.`);
+                
+                // Invert spatial vector (Simulation of LBM bounce-back)
+                const lHex = eigenvalue.slice(2, 10);
+                const sHex = eigenvalue.slice(10, 14);
+                const qHex = eigenvalue.slice(14, 18);
+                
+                // 1) Invert Sub-Spatial Math Vector
+                const sVal = parseInt(sHex, 16);
+                const invertedSVal = (~sVal & 0xFFFF);
+                const newSHex = invertedSVal.toString(16).toUpperCase().padStart(4, "0");
+                
+                // 2) Shift Quantum Phase (180 degrees = Spin Flip)
+                let qVal = parseInt(qHex, 16);
+                let phase = (qVal >> 1) & 0x03;
+                phase = (phase + 2) % 4; 
+                qVal = (qVal & ~0x06) | (phase << 1);
+                const newQHex = qVal.toString(16).toUpperCase().padStart(4, "0");
+                
+                const reflectedEigenvalue = `0x${lHex}${newSHex}${newQHex}`;
+                const newSymbol = symbol.includes("REVERSE") ? symbol : "REVERSE";
+                const reverseFilename = `${reflectedEigenvalue}.${newSymbol}.md`;
+                
+                // 3) Macro-Spatial Mirroring
+                alpha.eigenvalue = reflectedEigenvalue;
+                alpha.x = 1400 - x;
+                alpha.y = 800 - y;
+                // Inherently adds REVERSE mask
+                
+                let revContent = content.replace(/^---\n[\s\S]+?\n---\n/, `---\n${stringifyYaml(alpha)}---\n`);
+                revContent = injectHologram(revContent, reflectedEigenvalue, newSymbol);
+                
+                await Deno.writeTextFile(targetFilename, revContent);
+                if (targetFilename !== reverseFilename) {
+                    await Deno.rename(targetFilename, reverseFilename);
+                }
+                console.log(`      🔄 Resonance Shift: ${targetFilename} -> ${reverseFilename}`);
+                await logAkasha(`🌪️ TOPOLOGICAL EDDY: ${symbol} inverted phase. Now ${reverseFilename}`);
+                
+            } else {
+                console.log(`   [GATE] Proposal REJECTED: ${errMsg}`);
+            }
         }
 
         // --- AKASHIC STASHING (Evolutionary Success) ---
