@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033173712
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772033173887
@@ -291,6 +285,12 @@
       "text": "UNIFY FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772033176326
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY STRIFE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033176466
     }
   ]
 }
