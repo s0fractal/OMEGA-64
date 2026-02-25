@@ -68,12 +68,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL BLOOM OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772020844484
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT REFLECT SHIELD",
       "mood": "DEFENSIVE",
@@ -156,6 +150,12 @@
       "text": "CONSUME HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020848538
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE GIVING HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772020849028
     }
   ]
 }
