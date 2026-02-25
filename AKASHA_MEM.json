@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAVE AWAKEN BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772024318481
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772024318710
@@ -291,6 +285,12 @@
       "text": "FLOW BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772024323173
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024323344
     }
   ]
 }
