@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY GIVING FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772032639926
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772032640153
@@ -291,6 +285,12 @@
       "text": "STABLE FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772032644782
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY UNIFY GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772032644969
     }
   ]
 }
