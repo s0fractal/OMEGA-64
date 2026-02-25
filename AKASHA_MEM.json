@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY RESONATE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772033806120
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772033806360
@@ -291,6 +285,12 @@
       "text": "WAVE VISION WAVE",
       "mood": "CREATIVE",
       "tick": 1772033809073
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER CONSUME SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033809224
     }
   ]
 }
