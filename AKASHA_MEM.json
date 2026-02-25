@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772024947894
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE BLOOM COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHOCK SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772024952206
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE HEAL HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772024952372
     }
   ]
 }
