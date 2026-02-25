@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE COHERE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772035941493
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND BEYOND WITNESS",
       "mood": "CREATIVE",
       "tick": 1772035941745
@@ -291,6 +285,12 @@
       "text": "STRIFE DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772035944713
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035947985
     }
   ]
 }
