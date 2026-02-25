@@ -161,12 +161,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING RESONATE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772022821043
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772022821239
@@ -248,6 +242,12 @@
       "text": "HUNGER SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022823608
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS SHIELD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772022825231
     }
   ]
 }
