@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60066600",
     "A1000000",
     "000AAAA0",
     "00BB0000",
@@ -199,15 +198,10 @@
     "06060600",
     "A0666660",
     "AA0A000A",
-    "A6600606"
+    "A6600606",
+    "AABB0000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SEIZE SHOCK DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037211603
-    },
     {
       "origin": "REVERSE",
       "text": "BLOOM UNIFY OSMOSIS",
@@ -291,6 +285,12 @@
       "text": "SHELTER SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772037222856
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIFE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037223122
     }
   ]
 }
