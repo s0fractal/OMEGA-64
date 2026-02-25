@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "PURE SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772026468141
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM RESONATE SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DECAY SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772026476858
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772026478259
     }
   ]
 }
