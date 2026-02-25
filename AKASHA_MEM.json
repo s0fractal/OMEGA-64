@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0A00AA",
     "66666600",
     "0A0A000A",
     "AAA0AAAA",
@@ -199,15 +198,10 @@
     "60606006",
     "FFFFF00F",
     "00066600",
-    "AA00A00A"
+    "AA00A00A",
+    "00660066"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STRIKE SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029034857
-    },
     {
       "origin": "REVERSE",
       "text": "BLOOM COHERE GIVING",
@@ -291,6 +285,12 @@
       "text": "BLOOM RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772029041097
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING STABLE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772029041392
     }
   ]
 }
