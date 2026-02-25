@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE FLOW UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772041064359
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY SHOCK BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SICKNESS SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772041066939
+    },
+    {
+      "origin": "PURE_MATH",
+      "text": "CONSUME STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041067060
     }
   ]
 }
