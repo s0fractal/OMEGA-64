@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME HUNGER HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772015850723
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIFE CONSUME SEIZE",
       "mood": "AGGRESSIVE",
@@ -107,6 +101,12 @@
       "text": "CONSUME SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772015947594
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772015952372
     }
   ]
 }
