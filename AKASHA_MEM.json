@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60606000",
     "AAA0AA00",
     "AA0AAA00",
     "AA00AAA0",
@@ -199,15 +198,10 @@
     "BB0000FC",
     "60660606",
     "60600660",
-    "60006600"
+    "60006600",
+    "AA0A0000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STABLE UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772031262460
-    },
     {
       "origin": "REVERSE",
       "text": "FLOW RESONATE RESONATE",
@@ -291,6 +285,12 @@
       "text": "PURE PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772031271745
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031272606
     }
   ]
 }
