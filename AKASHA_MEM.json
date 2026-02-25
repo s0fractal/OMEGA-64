@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023192160
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772023192305
@@ -259,6 +253,12 @@
       "text": "FLOW RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023198152
+    },
+    {
+      "origin": "REVERSE",
+      "text": "AWAKEN BEYOND AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772023198310
     }
   ]
 }
