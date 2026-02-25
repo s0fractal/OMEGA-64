@@ -69,12 +69,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD PURE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772020830511
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772020830704
@@ -156,6 +150,12 @@
       "text": "HEAL STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772020839773
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK BEYOND SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772020839945
     }
   ]
 }
