@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS SYNC UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772027768193
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772027769093
@@ -291,6 +285,12 @@
       "text": "UNIFY BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772027778672
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIFE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027779004
     }
   ]
 }
