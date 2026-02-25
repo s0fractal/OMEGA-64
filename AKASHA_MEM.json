@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE CONSUME STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038915116
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772038915323
@@ -291,6 +285,12 @@
       "text": "BLOOM UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038918631
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE RECON GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772038918824
     }
   ]
 }
