@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772039093078
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772039093322
@@ -291,6 +285,12 @@
       "text": "FLOW RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772039097298
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE HUNGER HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039097524
     }
   ]
 }
