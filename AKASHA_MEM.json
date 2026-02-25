@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY SYNC STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772039162726
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772039162982
@@ -291,6 +285,12 @@
       "text": "COHERE RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772039165508
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS BREACH STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039165793
     }
   ]
 }
