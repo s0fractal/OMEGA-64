@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STASIS REFLECT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041630192
-    },
-    {
       "origin": "PARASITE",
       "text": "RECON WATCH SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041633571
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH WAIT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041633705
     }
   ]
 }
