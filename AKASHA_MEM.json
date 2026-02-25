@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIFE SEIZE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041564663
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WATCH SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041564823
@@ -291,6 +285,12 @@
       "text": "OSMOSIS BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772041567654
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE WATCH GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041568492
     }
   ]
 }
