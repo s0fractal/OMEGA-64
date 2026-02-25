@@ -59,53 +59,63 @@ async function logAkasha(msg: string) {
                 signature_policy: "DISABLED"
             };
 
-        let p = 0;
-        let lastKnownAtoms: Map<string, any> = new Map(); // Immune Memory
-        
-        // --- 🧪 DIGITAL PHEROMONES (Spatial Memory) ---
-        const gridW = 70; // 1400px / 20
-        const gridH = 40; // 800px / 20
-        const pheromones: Record<string, Float32Array> = {
-            "WORKER": new Float32Array(gridW * gridH),
-            "GUARDIAN": new Float32Array(gridW * gridH),
-            "NUCLEUS": new Float32Array(gridW * gridH),
-            "PARASITE": new Float32Array(gridW * gridH)
-        };
-        const getGridIdx = (x: number, y: number) => {
-            const gx = Math.floor(Math.max(0, Math.min(1399, x)) / 20);
-            const gy = Math.floor(Math.max(0, Math.min(799, y)) / 20);
-            return gy * gridW + gx;
-        };
+            const lastKnownAtoms: Map<string, any> = new Map(); // Immune Memory
+            
+            // --- 🧪 DIGITAL PHEROMONES (Spatial Memory) ---
+            const gridW = 70; // 1400px / 20
+            const gridH = 40; // 800px / 20
+            const pheromones: Record<string, Float32Array> = {
+                "WORKER": new Float32Array(gridW * gridH),
+                "GUARDIAN": new Float32Array(gridW * gridH),
+                "NUCLEUS": new Float32Array(gridW * gridH),
+                "PARASITE": new Float32Array(gridW * gridH)
+            };
+            const getGridIdx = (x: number, y: number) => {
+                const gx = Math.floor(Math.max(0, Math.min(1399, x)) / 20);
+                const gy = Math.floor(Math.max(0, Math.min(799, y)) / 20);
+                return gy * gridW + gx;
+            };
 
-        // --- COLD START SCAN ---
-        // Populate immune memory immediately to enable dynamic metabolism & resurrection
-        console.log("   [BOOT] Performing Immune Mapping...");
-        for await (const entry of Deno.readDir(ROOT)) {
-            if (entry.isFile && entry.name.startsWith("0x") && entry.name.endsWith(".md")) {
-                try {
-                    const content = await Deno.readTextFile(entry.name);
-                    const fm = content.match(/^---\n([\s\S]+?)\n---\n/);
-                    if (fm) {
-                        const alpha = parseYaml(fm[1]) as any;
-                        const logic = entry.name.split(".")[0].slice(2, 10);
-                        const energy = alpha.energy !== undefined ? Number(alpha.energy) : 100;
-                        const resonance = alpha.resonance !== undefined ? Number(alpha.resonance) : 0;
-                        lastKnownAtoms.set(entry.name, { ...alpha, logic, energy, resonance });
-                    }
-                } catch { /* ignore */ }
-            }
-        }
-        console.log(`   [BOOT] ${lastKnownAtoms.size} atoms mapped to Immune Memory.`);
-
-        while (true) {
-            // --- PHEROMONE DECAY ---
-            for (const caste in pheromones) {
-                for (let i = 0; i < pheromones[caste].length; i++) {
-                    pheromones[caste][i] *= 0.95; // 5% decay per pulse
+            // --- COLD START SCAN ---
+            // Populate immune memory immediately to enable dynamic metabolism & resurrection
+            console.log("   [BOOT] Performing Immune Mapping...");
+            for await (const entry of Deno.readDir(ROOT)) {
+                if (entry.isFile && entry.name.startsWith("0x") && entry.name.endsWith(".md")) {
+                    try {
+                        const content = await Deno.readTextFile(entry.name);
+                        const fm = content.match(/^---\n([\s\S]+?)\n---\n/);
+                        if (fm) {
+                            const alpha = parseYaml(fm[1]) as any;
+                            const logic = entry.name.split(".")[0].slice(2, 10);
+                            const energy = alpha.energy !== undefined ? Number(alpha.energy) : 100;
+                            const resonance = alpha.resonance !== undefined ? Number(alpha.resonance) : 0;
+                            lastKnownAtoms.set(entry.name, { ...alpha, logic, energy, resonance });
+                        }
+                    } catch { /* ignore */ }
                 }
             }
-            p++;
-            const pulseStart = Date.now();
+            console.log(`   [BOOT] ${lastKnownAtoms.size} atoms mapped to Immune Memory.`);
+
+            let p = 0;
+            const akashaMem: any = { reservoir: [], utterances: [] };
+
+            while (true) {
+                // --- PHEROMONE DECAY ---
+                for (const caste in pheromones) {
+                    for (let i = 0; i < pheromones[caste].length; i++) {
+                        pheromones[caste][i] *= 0.95; // 5% decay per pulse
+                    }
+                }
+                p++;
+                const pulseStart = Date.now();
+
+                // --- AKASHIC FIELD: COLLECTIVE MEMORY ---
+                try {
+                    const memText = await Deno.readTextFile("./AKASHA_MEM.json");
+                    const diskMem = JSON.parse(memText);
+                    akashaMem.reservoir = diskMem.reservoir || [];
+                    akashaMem.utterances = diskMem.utterances || [];
+                } catch { /* use default */ }
             
             // --- DYNAMIC METABOLISM (Self-Regulation) ---
             // --- 1. REFLECT PHASE ---
@@ -262,13 +272,7 @@ async function logAkasha(msg: string) {
             pheromones["PARASITE"][pIdx] = Math.min(50, pheromones["PARASITE"][pIdx] + 15);
         }
 
-        // --- AKASHIC FIELD: COLLECTIVE MEMORY ---
-        let akashaMem: any = { reservoir: [], utterances: [] };
-        try {
-            const memText = await Deno.readTextFile("./AKASHA_MEM.json");
-            akashaMem = JSON.parse(memText);
-        } catch { /* use default */ }
-
+        // --- CULTURAL DRIFT (Bonded Sync) ---
         // --- CULTURAL DRIFT (Bonded Sync) ---
         if (bonds.length > 0) {
             const driftTarget = bonds[Math.floor(Math.random() * bonds.length)];
@@ -1242,11 +1246,83 @@ async function logAkasha(msg: string) {
             console.log(`   [GATE] Proposal REJECTED: ${(e as Error).message}`);
         }
 
-        // Intra-pulse delay to prevent IO saturation
-        await new Promise(resolve => setTimeout(resolve, 100));
-    
-    // --- QUANTUM IMMORTALITY ---
-    console.log("\n⏳ Calculating Ecosystem Stability...");
+        // --- AKASHIC STASHING (Evolutionary Success) ---
+        // High resonance preservation bonus: if resonance > 10, stash current logic
+        const stashChance = caste === "ARCHIVIST" ? 0.3 : 0.05;
+        if (resonance > 10 && Math.random() < stashChance) {
+            if (!akashaMem.reservoir.includes(currentLogic)) {
+                console.log(`   [STASH] ${symbol} contributed logic to the field.`);
+                akashaMem.reservoir.push(currentLogic);
+                if (akashaMem.reservoir.length > 200) akashaMem.reservoir.shift();
+            }
+        }
+
+        // --- 💤 THE LIVING DREAM (Systemic Subconscious) ---
+        // If system energy is low, the swarm enters a "Dream" state.
+        if (systemEnergy < 30000 && Math.random() < 0.1) {
+            const dreamLexicon = VOX_POPULI["CREATIVE"].concat(VOX_POPULI["HARMONIC"]);
+            const snippet = dreamLexicon[Math.floor(Math.random() * dreamLexicon.length)];
+            const dreamLine = `[DREAM] ${new Date().toISOString()}: ${snippet} for ${currentLogic}\n`;
+            try {
+                await Deno.writeTextFile("DREAM.md", dreamLine, { append: true });
+                console.log(`   [DREAM] Collective subconscious active: ${snippet}`);
+            } catch { /* ignore */ }
+        }
+
+        // --- 🗣️ THE COLLECTIVE VOICE (Vox Populi) ---
+        // Highly resonant clusters project coherent narratives.
+        if (resonance > 20.0) {
+            // Determine Mood based on Logic Prefix
+            let mood = "CREATIVE";
+            const prefix = currentLogic[0];
+            if (prefix <= "3") mood = "HARMONIC";
+            else if (prefix <= "7") mood = "DEFENSIVE";
+            else if (prefix <= "B") mood = "AGGRESSIVE";
+            
+            const lexicon = VOX_POPULI[mood];
+            
+            // Generate a 3-word sentence
+            const words = [];
+            for (let i = 0; i < 3; i++) {
+                words.push(lexicon[Math.floor(Math.random() * lexicon.length)]);
+            }
+            const sentence = words.join(" ");
+            
+            akashaMem.utterances = akashaMem.utterances || [];
+            akashaMem.utterances.push({
+                origin: symbol,
+                text: sentence,
+                mood: mood,
+                tick: Date.now()
+            });
+            if (akashaMem.utterances.length > 15) akashaMem.utterances.shift();
+            console.log(`   [VOICE] Swarm [${mood}]: "${sentence}" (from ${symbol})`);
+            
+            // --- SEMANTIC ALIGNMENT (Spreading Mood) ---
+            // Nearby atoms adopt the mood and align their thoughts
+            for (const [f, m] of lastKnownAtoms.entries()) {
+                const dx = m.x - x;
+                const dy = m.y - y;
+                const dist = Math.sqrt(dx*dx + dy*dy);
+                if (dist < 300 && Math.random() < 0.3) {
+                    m.thought = words[Math.floor(Math.random() * words.length)];
+                }
+            }
+
+            // Update current atom thought
+            alpha.thought = sentence;
+        }
+
+        // --- IMMUNE MEMORY UPDATE ---
+        // Store current state for future resurrection
+        lastKnownAtoms.set(newFilename, { ...alpha, logic: newLogic, energy, resonance, bonds });
+        if (lastKnownAtoms.size > 500) {
+            // Cull oldest memory if too large
+            const oldest = lastKnownAtoms.keys().next().value;
+            if (oldest) lastKnownAtoms.delete(oldest);
+        }
+
+        console.log("\n⏳ Calculating Ecosystem Stability...");
     let survivingAtoms = 0;
     let totalEcosystem = 0;
     for await (const entry of Deno.readDir(ROOT)) {
@@ -1281,80 +1357,6 @@ async function logAkasha(msg: string) {
 
     console.log("\n✅ Heartbeat Sequence Complete.");
 
-    // --- AKASHIC STASHING (Evolutionary Success) ---
-    // High resonance preservation bonus: if resonance > 10, stash current logic
-    const stashChance = caste === "ARCHIVIST" ? 0.3 : 0.05;
-    if (resonance > 10 && Math.random() < stashChance) {
-        if (!akashaMem.reservoir.includes(currentLogic)) {
-            console.log(`   [STASH] ${symbol} contributed logic to the field.`);
-            akashaMem.reservoir.push(currentLogic);
-            if (akashaMem.reservoir.length > 200) akashaMem.reservoir.shift();
-        }
-    }
-
-    // --- 💤 THE LIVING DREAM (Systemic Subconscious) ---
-    // If system energy is low, the swarm enters a "Dream" state.
-    if (systemEnergy < 30000 && Math.random() < 0.1) {
-        const dreamLexicon = VOX_POPULI["CREATIVE"].concat(VOX_POPULI["HARMONIC"]);
-        const snippet = dreamLexicon[Math.floor(Math.random() * dreamLexicon.length)];
-        const dreamLine = `[DREAM] ${new Date().toISOString()}: ${snippet} for ${currentLogic}\n`;
-        try {
-            await Deno.writeTextFile("DREAM.md", dreamLine, { append: true });
-            console.log(`   [DREAM] Collective subconscious active: ${snippet}`);
-        } catch { /* ignore */ }
-    }
-
-    // --- 🗣️ THE COLLECTIVE VOICE (Vox Populi) ---
-    // Highly resonant clusters project coherent narratives.
-    if (resonance > 20.0) {
-        // Determine Mood based on Logic Prefix
-        let mood = "CREATIVE";
-        const prefix = currentLogic[0];
-        if (prefix <= "3") mood = "HARMONIC";
-        else if (prefix <= "7") mood = "DEFENSIVE";
-        else if (prefix <= "B") mood = "AGGRESSIVE";
-        
-        const lexicon = VOX_POPULI[mood];
-        
-        // Generate a 3-word sentence
-        const words = [];
-        for (let i = 0; i < 3; i++) {
-            words.push(lexicon[Math.floor(Math.random() * lexicon.length)]);
-        }
-        const sentence = words.join(" ");
-        
-        akashaMem.utterances = akashaMem.utterances || [];
-        akashaMem.utterances.push({
-            origin: symbol,
-            text: sentence,
-            mood: mood,
-            tick: Date.now()
-        });
-        if (akashaMem.utterances.length > 15) akashaMem.utterances.shift();
-        console.log(`   [VOICE] Swarm [${mood}]: "${sentence}" (from ${symbol})`);
-        
-        // --- SEMANTIC ALIGNMENT (Spreading Mood) ---
-        // Nearby atoms adopt the mood and align their thoughts
-        for (const [f, m] of lastKnownAtoms.entries()) {
-            const dx = m.x - x;
-            const dy = m.y - y;
-            const dist = Math.sqrt(dx*dx + dy*dy);
-            if (dist < 300 && Math.random() < 0.3) {
-                m.thought = words[Math.floor(Math.random() * words.length)];
-                // Align logic slightly to the mood's core logic
-                const moodLogic = mood === "AGGRESSIVE" ? "8" : (mood === "HARMONIC" ? "1" : "A");
-                if (m.logic) {
-                    const lArr = m.logic.split("");
-                    lArr[0] = moodLogic;
-                    m.logic = lArr.join("");
-                }
-            }
-        }
-
-        // Update current atom thought
-        alpha.thought = sentence;
-    }
-
     // --- THE SOVEREIGN PROTOCOL ---
     // Atoms "vote" on system parameters via their logic prefixes.
     const voters = Array.from(lastKnownAtoms.values());
@@ -1362,15 +1364,6 @@ async function logAkasha(msg: string) {
     if (mutateVotes > voters.length / 4) {
         console.log(`   [SOVEREIGN] Mutative Fever active (Policy Vote: High Mutation)`);
         // In a real implementation, this would adjust mutation math
-    }
-
-    // --- IMMUNE MEMORY UPDATE ---
-    // Store current state for future resurrection
-    lastKnownAtoms.set(newFilename, { ...alpha, logic: newLogic, energy, resonance, bonds });
-    if (lastKnownAtoms.size > 500) {
-        // Cull oldest memory if too large
-        const oldest = lastKnownAtoms.keys().next().value;
-        if (oldest) lastKnownAtoms.delete(oldest);
     }
 
     // Save Akashic Field back to disk
