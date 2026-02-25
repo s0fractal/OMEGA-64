@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL UNIFY COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772035750858
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772035751058
@@ -291,6 +285,12 @@
       "text": "SHOCK STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772035755030
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD PURE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772035755263
     }
   ]
 }
