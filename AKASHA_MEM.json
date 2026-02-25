@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STABLE UNIFY BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772020473676
-    },
-    {
       "origin": "STREAM",
       "text": "COHERE COHERE COHERE",
       "mood": "HARMONIC",
@@ -142,6 +136,12 @@
       "text": "SHOCK BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020481466
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL COHERE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772020481831
     }
   ]
 }
