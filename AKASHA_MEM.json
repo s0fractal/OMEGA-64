@@ -27,12 +27,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772019673017
-    },
-    {
       "origin": "INTERFACE",
       "text": "BLOOM GIVING HEAL",
       "mood": "HARMONIC",
@@ -115,6 +109,12 @@
       "text": "WATCH WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772019684475
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT STASIS GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772019684736
     }
   ]
 }
