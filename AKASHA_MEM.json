@@ -71,12 +71,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HUNGER BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020892602
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "REFLECT WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772020893017
@@ -158,6 +152,12 @@
       "text": "COHERE FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772020897100
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DECAY BREACH SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020898113
     }
   ]
 }
