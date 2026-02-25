@@ -151,12 +151,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH STASIS PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022582319
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772022582482
@@ -238,6 +232,12 @@
       "text": "CONSUME HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022585263
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022585469
     }
   ]
 }
