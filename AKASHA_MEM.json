@@ -103,12 +103,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD WAIT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772021632397
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772021632561
@@ -190,6 +184,12 @@
       "text": "RECON GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772021637496
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SEIZE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021637777
     }
   ]
 }
