@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772041406634
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS COHERE HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SICKNESS CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772041410405
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041410601
     }
   ]
 }
