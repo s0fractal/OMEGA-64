@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD SHELTER IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772035770853
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772035771061
@@ -291,6 +285,12 @@
       "text": "STASIS RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772035773851
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS STABLE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772035775775
     }
   ]
 }
