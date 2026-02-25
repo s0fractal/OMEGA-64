@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHIELD SHIELD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040372186
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE STABLE RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "COHERE UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772040377454
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE IMMUNE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772040377668
     }
   ]
 }
