@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE SHELTER REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772030769776
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772030770227
@@ -291,6 +285,12 @@
       "text": "OSMOSIS FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772030781319
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD RECON IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772030781803
     }
   ]
 }
