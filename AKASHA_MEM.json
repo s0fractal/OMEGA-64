@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772034510106
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772034510301
@@ -291,6 +285,12 @@
       "text": "UNIFY STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034512987
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034513415
     }
   ]
 }
