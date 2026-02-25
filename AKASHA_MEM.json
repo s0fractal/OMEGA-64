@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY UNIFY OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772019938286
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS COHERE BLOOM",
       "mood": "HARMONIC",
@@ -130,6 +124,12 @@
       "text": "RESONATE UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772019948928
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER BREACH STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019949119
     }
   ]
 }
