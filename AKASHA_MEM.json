@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035073806
-    },
-    {
       "origin": "REVERSE",
       "text": "WAIT SHELTER SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772035080677
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035080973
     }
   ]
 }
