@@ -49,12 +49,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHELTER SHIELD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772020223040
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHELTER GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020224188
@@ -136,6 +130,12 @@
       "text": "DECAY DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020232864
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020233854
     }
   ]
 }
