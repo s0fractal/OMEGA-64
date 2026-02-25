@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A6660000",
     "00606060",
     "60600060",
     "00600000",
@@ -199,15 +198,10 @@
     "60666606",
     "AAA0AA00",
     "66060066",
-    "66666666"
+    "66666666",
+    "66606666"
   ],
   "utterances": [
-    {
-      "origin": "STREAM",
-      "text": "SHIELD PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772040291951
-    },
     {
       "origin": "STREAM",
       "text": "IMMUNE IMMUNE REFLECT",
@@ -291,6 +285,12 @@
       "text": "RESONATE COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772040297332
+    },
+    {
+      "origin": "STREAM",
+      "text": "SHELTER WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040298030
     }
   ]
 }
