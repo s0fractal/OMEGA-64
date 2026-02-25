@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "EVOLVE BEYOND FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772041187414
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GIVING HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041188040
@@ -291,6 +285,12 @@
       "text": "IMMUNE SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041190579
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772041190802
     }
   ]
 }
