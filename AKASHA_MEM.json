@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0AAA0A",
     "00066006",
     "66A666A0",
     "C0DED000",
@@ -199,15 +198,10 @@
     "00666600",
     "AA0AA0A0",
     "60606606",
-    "0AAAA0A0"
+    "0AAAA0A0",
+    "66066A00"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STASIS RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772030820246
-    },
     {
       "origin": "REVERSE",
       "text": "HUNGER SICKNESS DRAIN",
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772030825083
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON IMMUNE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772030826425
     }
   ]
 }
