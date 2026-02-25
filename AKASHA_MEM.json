@@ -183,12 +183,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023534693
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772023535540
@@ -270,6 +264,12 @@
       "text": "SICKNESS DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772023539263
+    },
+    {
+      "origin": "REVERSE",
+      "text": "AWAKEN WITNESS BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772023540871
     }
   ]
 }
