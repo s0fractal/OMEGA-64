@@ -107,12 +107,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW FLOW UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772021806547
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE REFLECT SHELTER",
       "mood": "DEFENSIVE",
@@ -195,6 +189,12 @@
       "text": "SHOCK BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021809919
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE BLOOM UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772021810134
     }
   ]
 }
