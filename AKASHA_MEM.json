@@ -73,12 +73,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER STASIS SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772020936477
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772020936599
@@ -160,6 +154,12 @@
       "text": "BREACH STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020942004
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DECAY SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020942549
     }
   ]
 }
