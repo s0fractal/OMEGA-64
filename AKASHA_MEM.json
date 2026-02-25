@@ -180,12 +180,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SEIZE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023379298
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023379581
@@ -267,6 +261,12 @@
       "text": "COHERE STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772023383477
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023383614
     }
   ]
 }
