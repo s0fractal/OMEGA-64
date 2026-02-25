@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031740855
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772031741115
@@ -291,6 +285,12 @@
       "text": "SEIZE SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772031747956
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD REFLECT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772031748339
     }
   ]
 }
