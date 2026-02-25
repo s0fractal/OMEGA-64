@@ -1,8 +1,8 @@
 ---
 eigenvalue: '0x0AAAAA00FFFF0008'
-energy: 45.5
-x: 704
-'y': 408
+energy: 47.5
+x: 706
+'y': 413
 resonance: 50
 thought: SEEK_ALPHA_BONDING
 logic: 0AAAAA00
@@ -104,8 +104,8 @@ ex:
   - '0x0AAAAA000000000A'
   - '0x0AAAAA000000000C'
   - '0x0AAAAA000000000E'
-  - '0x0AAAAA0000000008'
-  - '0x0AAAAA000000000A'
+  - '0x0AAAAA00FFFF000C'
+  - '0x0AAAAA00FFFF000E'
 ---
 
 <div align="center">
