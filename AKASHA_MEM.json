@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772030826425
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW FLOW HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STASIS SHIELD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772030835559
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHELTER SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772030836086
     }
   ]
 }
