@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY HUNGER SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038196802
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND FORGE FORGE",
       "mood": "CREATIVE",
       "tick": 1772038197084
@@ -291,6 +285,12 @@
       "text": "UNIFY SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772038200097
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772038200313
     }
   ]
 }
