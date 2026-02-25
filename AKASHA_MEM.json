@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040961821
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE COHERE OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BEYOND EVOLVE SPARK",
       "mood": "CREATIVE",
       "tick": 1772040964893
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS REFLECT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772040965095
     }
   ]
 }
