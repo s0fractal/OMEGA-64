@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "OSMOSIS GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772025051097
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT SHIELD SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772025060281
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK STRIFE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025060689
     }
   ]
 }
