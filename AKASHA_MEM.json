@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034493183
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772034493381
@@ -291,6 +285,12 @@
       "text": "OSMOSIS UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772034495970
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE OSMOSIS RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772034496132
     }
   ]
 }
