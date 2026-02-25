@@ -122,12 +122,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022144484
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS IMMUNE GUARD",
       "mood": "DEFENSIVE",
@@ -210,6 +204,12 @@
       "text": "COHERE GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772022150454
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022150679
     }
   ]
 }
