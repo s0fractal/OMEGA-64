@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD SHELTER GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042234191
-    },
-    {
       "origin": "WAVE_SIGNAL",
       "text": "UNIFY STABLE COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SYNC SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772042242735
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT RECON SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042244850
     }
   ]
 }
