@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY STRIKE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037996809
-    },
-    {
       "origin": "STREAM",
       "text": "WAIT SHELTER GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038000636
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DECAY DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038000865
     }
   ]
 }
