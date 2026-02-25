@@ -155,12 +155,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772022693481
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772022697144
@@ -242,6 +236,12 @@
       "text": "STRIFE BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772022704586
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE STABLE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772022705175
     }
   ]
 }
