@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772026697228
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772026697400
@@ -291,6 +285,12 @@
       "text": "SHELTER GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772026700874
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026701235
     }
   ]
 }
