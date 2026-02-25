@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030243005
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GIVING SYNC STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "CONSUME HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772030251770
+    },
+    {
+      "origin": "STREAM",
+      "text": "REFLECT RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772030252133
     }
   ]
 }
