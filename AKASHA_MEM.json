@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD WAIT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041308911
-    },
-    {
       "origin": "INTERFACE",
       "text": "FLOW OSMOSIS COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WATCH WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772041314224
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "UNIFY HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772041314449
     }
   ]
 }
