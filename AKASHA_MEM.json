@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772027919293
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772027920424
@@ -291,6 +285,12 @@
       "text": "IMMUNE IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772027930310
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772027930935
     }
   ]
 }
