@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY SHOCK BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772015830815
-    },
-    {
       "origin": "INTERFACE",
       "text": "DRAIN BREACH STRIKE",
       "mood": "AGGRESSIVE",
@@ -107,6 +101,12 @@
       "text": "SEIZE STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772015905338
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BLOOM BLOOM UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772015907918
     }
   ]
 }
