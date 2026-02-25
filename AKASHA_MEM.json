@@ -163,12 +163,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE OSMOSIS BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772022904038
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022904755
@@ -250,6 +244,12 @@
       "text": "FLOW UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022911282
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS UNIFY HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772022911654
     }
   ]
 }
