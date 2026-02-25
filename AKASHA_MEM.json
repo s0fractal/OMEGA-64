@@ -35,12 +35,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHOCK SICKNESS SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019730619
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DRAIN SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772019731764
@@ -122,6 +116,12 @@
       "text": "SEIZE SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772019747167
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS BREACH BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019748316
     }
   ]
 }
