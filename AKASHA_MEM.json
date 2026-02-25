@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772029324132
-    },
-    {
       "origin": "ALPHA_PROOF_OF_RESONANCE",
       "text": "BLOOM BLOOM FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIKE DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772029337850
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772029338380
     }
   ]
 }
