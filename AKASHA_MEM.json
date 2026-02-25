@@ -1,5 +1,10 @@
 {
   "reservoir": [
+    "A0AAA000",
+    "AAA0A0AA",
+    "66660060",
+    "00000000",
+    "66660000",
     "06006066",
     "60606006",
     "AA0660A0",
@@ -192,105 +197,100 @@
     "AA00A000",
     "BBB00000",
     "6606AA66",
-    "A6660600",
-    "AA666600",
-    "0AAA0A00",
-    "0A0AA0A0",
-    "0A0A0666",
-    "66A06A00",
-    "AAAA0AAA",
-    "00000000"
+    "A6A66000",
+    "60060666",
+    "A6666A66"
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD GUARD SHIELD",
+      "origin": "ARCHIVIST",
+      "text": "SHELTER STASIS PURE",
       "mood": "DEFENSIVE",
-      "tick": 1772042545014
+      "tick": 1772042542872
     },
     {
       "origin": "ARCHIVIST",
-      "text": "COHERE OSMOSIS BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772042545843
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042546445
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "WAIT IMMUNE REFLECT",
+      "text": "GUARD SHIELD STASIS",
       "mood": "DEFENSIVE",
-      "tick": 1772042547865
+      "tick": 1772042543529
     },
     {
       "origin": "REVERSE",
-      "text": "SEIZE STRIKE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042549063
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SYNC BLOOM STABLE",
+      "text": "OSMOSIS HEAL RESONATE",
       "mood": "HARMONIC",
-      "tick": 1772042549458
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "GUARD SHELTER PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042549958
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "REFLECT SHIELD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772042550399
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STASIS PURE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042551184
+      "tick": 1772042545013
     },
     {
       "origin": "STREAM",
-      "text": "STASIS WATCH IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042551451
+      "text": "GIVING OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772042545842
     },
     {
-      "origin": "INTERFACE",
-      "text": "WAIT IMMUNE PURE",
+      "origin": "REVERSE",
+      "text": "GIVING STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042546647
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHIELD STASIS",
       "mood": "DEFENSIVE",
-      "tick": 1772042551944
+      "tick": 1772042548261
     },
     {
       "origin": "ARCHIVIST",
-      "text": "STABLE HEAL UNIFY",
+      "text": "STABLE STABLE RESONATE",
       "mood": "HARMONIC",
-      "tick": 1772042552376
+      "tick": 1772042549057
     },
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042553609
+      "text": "STRIFE SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042549727
     },
     {
-      "origin": "REVERSE",
-      "text": "BECOME FORGE FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772042554302
+      "origin": "STREAM",
+      "text": "IMMUNE GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042550400
     },
     {
-      "origin": "REVERSE",
-      "text": "HEAL RESONATE STABLE",
+      "origin": "STREAM",
+      "text": "REFLECT GUARD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042550934
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042551273
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH GUARD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772042552175
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL BLOOM FLOW",
       "mood": "HARMONIC",
-      "tick": 1772042554601
+      "tick": 1772042553833
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW UNIFY STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042554723
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH DECAY SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042555551
     }
   ]
 }
