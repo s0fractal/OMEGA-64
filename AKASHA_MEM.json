@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON STASIS STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772038737021
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038737250
@@ -291,6 +285,12 @@
       "text": "STRIKE CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772038740008
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY OSMOSIS RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772038740224
     }
   ]
 }
