@@ -70,12 +70,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE STRIKE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020883885
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE STABLE OSMOSIS",
       "mood": "HARMONIC",
@@ -158,6 +152,12 @@
       "text": "OSMOSIS SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772020891206
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "IMMUNE GUARD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020891468
     }
   ]
 }
