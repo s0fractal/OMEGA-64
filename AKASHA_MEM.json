@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772024396831
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772024397156
@@ -291,6 +285,12 @@
       "text": "GIVING BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772024401306
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY UNIFY SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772024401492
     }
   ]
 }
