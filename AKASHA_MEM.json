@@ -82,12 +82,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW UNIFY COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772021170244
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON STASIS IMMUNE",
       "mood": "DEFENSIVE",
@@ -170,6 +164,12 @@
       "text": "SYNC HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772021175454
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BREACH DRAIN STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021175719
     }
   ]
 }
