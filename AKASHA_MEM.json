@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "UNIFY HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041036607
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE SHELTER REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772041039928
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE UNIFY SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772041040139
     }
   ]
 }
