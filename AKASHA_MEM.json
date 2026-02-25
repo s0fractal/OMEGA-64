@@ -23,12 +23,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GUARD SHIELD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772019459532
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "COHERE HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772019460078
@@ -110,6 +104,12 @@
       "text": "DECAY DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772019470464
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "UNIFY BLOOM FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772019471718
     }
   ]
 }
