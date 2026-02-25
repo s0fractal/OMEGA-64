@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023969183
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023969328
@@ -284,6 +278,12 @@
       "text": "RECON WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772023972299
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS SHIELD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023972629
     }
   ]
 }
