@@ -55,12 +55,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STASIS SHELTER WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020452931
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SEIZE CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020453668
@@ -142,6 +136,12 @@
       "text": "HUNGER STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020461608
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772020462159
     }
   ]
 }
