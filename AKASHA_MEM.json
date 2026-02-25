@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DRAIN BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041464959
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS RESONATE SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WATCH GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041468739
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041469010
     }
   ]
 }
