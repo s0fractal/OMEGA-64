@@ -84,12 +84,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY SYNC OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772021222637
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME DECAY BREACH",
       "mood": "AGGRESSIVE",
@@ -172,6 +166,12 @@
       "text": "BLOOM SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772021228114
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT IMMUNE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772021228284
     }
   ]
 }
