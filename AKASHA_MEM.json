@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER STRIKE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035197148
-    },
-    {
-      "origin": "REVERSE",
       "text": "FORGE SPARK AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772035197423
@@ -291,6 +285,12 @@
       "text": "UNIFY GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772035200880
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY STRIFE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035201106
     }
   ]
 }
