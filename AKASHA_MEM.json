@@ -67,12 +67,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS HUNGER STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020807351
-    },
-    {
       "origin": "INTERFACE",
       "text": "GUARD SHELTER SHELTER",
       "mood": "DEFENSIVE",
@@ -155,6 +149,12 @@
       "text": "HUNGER HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020816183
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH BREACH SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020816954
     }
   ]
 }
