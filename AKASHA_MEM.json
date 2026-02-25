@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DECAY SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039193679
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772039193882
@@ -291,6 +285,12 @@
       "text": "BREACH DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772039196607
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE SEIZE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039196821
     }
   ]
 }
