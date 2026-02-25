@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS AWAKEN FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772035895603
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772035895842
@@ -291,6 +285,12 @@
       "text": "RECON SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772035900883
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SHOCK STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035901130
     }
   ]
 }
