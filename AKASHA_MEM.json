@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RECON STASIS IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041939184
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GUARD SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041939633
@@ -291,6 +285,12 @@
       "text": "OSMOSIS COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041945419
+    },
+    {
+      "origin": "STREAM",
+      "text": "STASIS WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041945608
     }
   ]
 }
