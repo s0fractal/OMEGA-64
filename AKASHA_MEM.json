@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035682958
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772035683192
@@ -291,6 +285,12 @@
       "text": "GUARD IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772035686316
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772035686525
     }
   ]
 }
