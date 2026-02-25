@@ -91,12 +91,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021309192
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE HEAL UNIFY",
       "mood": "HARMONIC",
@@ -179,6 +173,12 @@
       "text": "DRAIN HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772021344467
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BREACH HUNGER HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021346736
     }
   ]
 }
