@@ -181,12 +181,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS WAVE SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772023415437
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772023415642
@@ -268,6 +262,12 @@
       "text": "GIVING GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772023420843
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE FORGE SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772023421153
     }
   ]
 }
