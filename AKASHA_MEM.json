@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT IMMUNE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040580513
-    },
-    {
       "origin": "INTERFACE",
       "text": "RESONATE RESONATE HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RESONATE SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772040583007
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER RECON WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772040583124
     }
   ]
 }
