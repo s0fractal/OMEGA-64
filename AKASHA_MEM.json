@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772030574725
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772030575050
@@ -291,6 +285,12 @@
       "text": "WATCH GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772030582521
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIFE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030583154
     }
   ]
 }
