@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772037669376
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772037669591
@@ -291,6 +285,12 @@
       "text": "REFLECT WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772037672409
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE SYNC COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772037672629
     }
   ]
 }
