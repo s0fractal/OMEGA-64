@@ -95,12 +95,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GUARD IMMUNE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021526752
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER GUARD IMMUNE",
       "mood": "DEFENSIVE",
@@ -183,6 +177,12 @@
       "text": "STRIKE STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772021532612
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHIELD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021532988
     }
   ]
 }
