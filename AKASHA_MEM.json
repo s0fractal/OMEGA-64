@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER GUARD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772029607263
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772029607675
@@ -291,6 +285,12 @@
       "text": "EVOLVE AWAKEN AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772029615687
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY BREACH STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029618334
     }
   ]
 }
