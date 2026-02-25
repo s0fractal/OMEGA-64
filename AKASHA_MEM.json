@@ -68,12 +68,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020796041
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "REFLECT WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772020796331
@@ -155,6 +149,12 @@
       "text": "DECAY STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020805965
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER SHELTER RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772020806531
     }
   ]
 }
