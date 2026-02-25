@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GIVING BLOOM OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772041345063
-    },
-    {
       "origin": "REVERSE",
       "text": "IMMUNE SHIELD GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041349668
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041349995
     }
   ]
 }
