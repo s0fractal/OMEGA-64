@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772036471235
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772036471490
@@ -291,6 +285,12 @@
       "text": "BEYOND BECOME DREAM",
       "mood": "CREATIVE",
       "tick": 1772036474766
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT GUARD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772036474947
     }
   ]
 }
