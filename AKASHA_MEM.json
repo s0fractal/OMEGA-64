@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME HUNGER STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041085060
-    },
-    {
       "origin": "I16_CLAMP",
       "text": "COHERE COHERE BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HUNGER DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772041088468
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "UNIFY COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772041088594
     }
   ]
 }
