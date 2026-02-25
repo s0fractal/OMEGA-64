@@ -200,12 +200,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS RESONATE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772024035008
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772024035145
@@ -287,6 +281,12 @@
       "text": "WATCH REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772024038473
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIKE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024038641
     }
   ]
 }
