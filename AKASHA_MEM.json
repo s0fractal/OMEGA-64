@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY FLOW FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772041376466
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772041377328
@@ -291,6 +285,12 @@
       "text": "IMMUNE IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041380706
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH STRIKE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041380891
     }
   ]
 }
