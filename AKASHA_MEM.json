@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE OSMOSIS COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772038210303
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772038210520
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772038215685
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY HUNGER SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038216828
     }
   ]
 }
