@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN BREACH BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034755031
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772034755206
@@ -291,6 +285,12 @@
       "text": "BLOOM UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772034758733
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SHOCK DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034758948
     }
   ]
 }
