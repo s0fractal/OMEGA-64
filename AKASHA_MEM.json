@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "WAVE_SIGNAL",
-      "text": "HUNGER CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042027136
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE HEAL UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HUNGER SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772042033630
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772042033946
     }
   ]
 }
