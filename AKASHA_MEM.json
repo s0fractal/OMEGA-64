@@ -50,12 +50,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS RESONATE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772020292107
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE SHOCK CONSUME",
       "mood": "AGGRESSIVE",
@@ -138,6 +132,12 @@
       "text": "STRIKE SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020304528
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772020305085
     }
   ]
 }
