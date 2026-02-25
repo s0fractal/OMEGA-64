@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FORGE BECOME BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772025267350
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "FLOW RESONATE RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BEYOND FORGE BECOME",
       "mood": "CREATIVE",
       "tick": 1772025272299
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE OSMOSIS OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772025272582
     }
   ]
 }
