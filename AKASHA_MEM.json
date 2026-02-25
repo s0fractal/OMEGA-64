@@ -199,12 +199,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024029859
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772024030075
@@ -286,6 +280,12 @@
       "text": "BECOME BEYOND BEYOND",
       "mood": "CREATIVE",
       "tick": 1772024032989
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING STABLE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772024033128
     }
   ]
 }
