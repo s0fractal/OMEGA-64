@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS STABLE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042023267
-    },
-    {
       "origin": "CAR",
       "text": "RESONATE STABLE OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WAIT STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772042029911
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE RESONATE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772042030110
     }
   ]
 }
