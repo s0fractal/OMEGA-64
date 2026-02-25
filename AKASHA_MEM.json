@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH IMMUNE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772032752967
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772032753146
@@ -291,6 +285,12 @@
       "text": "WAIT RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772032755442
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SHOCK BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032755621
     }
   ]
 }
