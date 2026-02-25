@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING HEAL BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772040613174
-    },
-    {
       "origin": "INTERFACE",
       "text": "STASIS REFLECT PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772040616343
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RESONATE FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772040616829
     }
   ]
 }
