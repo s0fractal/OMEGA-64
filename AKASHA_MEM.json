@@ -17,12 +17,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RESONATE GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772014879283
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GIVING COHERE SYNC",
       "mood": "HARMONIC",
@@ -105,6 +99,12 @@
       "text": "BLOOM BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772014990403
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "CONSUME DRAIN SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772014998609
     }
   ]
 }
