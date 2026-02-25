@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SICKNESS HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022240788
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022240911
@@ -213,6 +207,12 @@
       "text": "EVOLVE BEYOND SPARK",
       "mood": "CREATIVE",
       "tick": 1772022247059
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY BLOOM BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772022247248
     }
   ]
 }
