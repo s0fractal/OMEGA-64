@@ -17,12 +17,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772014901561
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHOCK SHOCK SEIZE",
       "mood": "AGGRESSIVE",
@@ -105,6 +99,12 @@
       "text": "FLOW GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772015015067
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME DECAY SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772015020683
     }
   ]
 }
