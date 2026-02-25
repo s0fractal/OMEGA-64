@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY SEIZE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030456426
-    },
-    {
       "origin": "ALPHA_REVERSE",
       "text": "DREAM WITNESS SPARK",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772030463082
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY STABLE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772030464219
     }
   ]
 }
