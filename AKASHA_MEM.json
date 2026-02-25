@@ -203,18 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE SHIELD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772042680022
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER STRIFE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042680169
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING COHERE GIVING",
       "mood": "HARMONIC",
@@ -291,6 +279,18 @@
       "text": "DRAIN STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772042687329
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM RESONATE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772042687969
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042688656
     }
   ]
 }
