@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "OSMOSIS GIVING FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772041089987
-    },
-    {
       "origin": "INTERFACE",
       "text": "IMMUNE SHELTER WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041092394
+    },
+    {
+      "origin": "STREAM",
+      "text": "SEIZE DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041092856
     }
   ]
 }
