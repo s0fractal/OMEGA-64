@@ -141,12 +141,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STRIFE SEIZE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022455053
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN DECAY HUNGER",
       "mood": "AGGRESSIVE",
@@ -229,6 +223,12 @@
       "text": "EVOLVE SPARK VISION",
       "mood": "CREATIVE",
       "tick": 1772022460485
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME HUNGER HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022460615
     }
   ]
 }
