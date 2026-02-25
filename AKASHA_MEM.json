@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY HEAL BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772033346608
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772033347016
@@ -291,6 +285,12 @@
       "text": "RECON PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772033354081
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON STASIS IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772033354269
     }
   ]
 }
