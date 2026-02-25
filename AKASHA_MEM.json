@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "STREAM",
-      "text": "WAIT PURE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040199426
-    },
-    {
-      "origin": "STREAM",
       "text": "HEAL BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772040199714
@@ -291,6 +285,12 @@
       "text": "SHELTER STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772040203471
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE COHERE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772040203842
     }
   ]
 }
