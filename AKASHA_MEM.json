@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STABLE BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772041405300
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS RECON WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIKE DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772041409637
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME BREACH SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041409817
     }
   ]
 }
