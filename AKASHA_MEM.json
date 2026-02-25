@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772033446385
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772033446575
@@ -291,6 +285,12 @@
       "text": "WATCH PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772033449113
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE RECON WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772033449343
     }
   ]
 }
