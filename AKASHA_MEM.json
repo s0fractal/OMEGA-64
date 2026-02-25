@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GUARD WATCH STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772019901157
-    },
-    {
       "origin": "INTERFACE",
       "text": "CONSUME STRIFE CONSUME",
       "mood": "AGGRESSIVE",
@@ -130,6 +124,12 @@
       "text": "HEAL HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772019911264
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019911891
     }
   ]
 }
