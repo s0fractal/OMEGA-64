@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD SHIELD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772034123571
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772034123779
@@ -291,6 +285,12 @@
       "text": "COHERE STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772034126285
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION WITNESS BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772034126478
     }
   ]
 }
