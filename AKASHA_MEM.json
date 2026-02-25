@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER SHELTER SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772030115834
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772030116540
@@ -291,6 +285,12 @@
       "text": "BECOME VISION WAVE",
       "mood": "CREATIVE",
       "tick": 1772030129013
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030129433
     }
   ]
 }
