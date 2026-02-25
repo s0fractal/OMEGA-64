@@ -55,12 +55,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020548644
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT SHIELD REFLECT",
       "mood": "DEFENSIVE",
@@ -143,6 +137,12 @@
       "text": "WATCH IMMUNE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772020555994
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020557020
     }
   ]
 }
