@@ -184,12 +184,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772023553995
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023554811
@@ -271,6 +265,12 @@
       "text": "DRAIN BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772023557453
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SEIZE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023557635
     }
   ]
 }
