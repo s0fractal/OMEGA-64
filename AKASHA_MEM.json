@@ -81,12 +81,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021117048
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772021117934
@@ -168,6 +162,12 @@
       "text": "CONSUME SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772021124512
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON STASIS PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021124979
     }
   ]
 }
