@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026511214
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772026511389
@@ -291,6 +285,12 @@
       "text": "BLOOM GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772026516454
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DECAY SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026517229
     }
   ]
 }
