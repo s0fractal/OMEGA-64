@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "CONSUME HUNGER STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033051233
-    },
-    {
       "origin": "REVERSE",
       "text": "RECON REFLECT SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033053970
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE PURE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772033054159
     }
   ]
 }
