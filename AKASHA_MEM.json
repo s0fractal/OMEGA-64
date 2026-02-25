@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772041666668
-    },
-    {
       "origin": "STREAM",
       "text": "GIVING BLOOM STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "COHERE COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772041670064
+    },
+    {
+      "origin": "I16_CLAMP",
+      "text": "STRIKE DRAIN SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041670192
     }
   ]
 }
