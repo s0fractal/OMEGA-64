@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772038649442
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772038649652
@@ -291,6 +285,12 @@
       "text": "GIVING UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038652332
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE UNIFY COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772038652552
     }
   ]
 }
