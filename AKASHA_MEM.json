@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06006066",
     "60606006",
     "AA0660A0",
     "A0AAA00A",
@@ -196,101 +195,102 @@
     "60060666",
     "6AA60AA0",
     "6AA06A00",
-    "6A0660A0",
-    "AA666600",
-    "66060660",
-    "66660A60"
+    "0AAAA00A",
+    "6A606600",
+    "AABBCC0F",
+    "A0AAA000",
+    "A6A6AA00"
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY STRIKE SEIZE",
+      "origin": "ARCHIVIST",
+      "text": "SHELTER REFLECT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772042657231
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE IMMUNE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042658136
+    },
+    {
+      "origin": "SUCC",
+      "text": "DRAIN DRAIN DRAIN",
       "mood": "AGGRESSIVE",
-      "tick": 1772042657122
+      "tick": 1772042658709
     },
     {
       "origin": "ARCHIVIST",
-      "text": "IMMUNE GUARD IMMUNE",
+      "text": "STASIS SHELTER RECON",
       "mood": "DEFENSIVE",
-      "tick": 1772042657861
+      "tick": 1772042659459
     },
     {
       "origin": "ARCHIVIST",
-      "text": "WAIT SHELTER WATCH",
+      "text": "SHELTER WATCH GUARD",
       "mood": "DEFENSIVE",
-      "tick": 1772042658095
+      "tick": 1772042660161
     },
     {
       "origin": "ARCHIVIST",
-      "text": "SHIELD IMMUNE REFLECT",
+      "text": "DRAIN SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042660863
+    },
+    {
+      "origin": "NAND",
+      "text": "RECON WAIT SHELTER",
       "mood": "DEFENSIVE",
-      "tick": 1772042658404
+      "tick": 1772042661490
     },
     {
       "origin": "ARCHIVIST",
-      "text": "GUARD RECON SHELTER",
+      "text": "STRIFE DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042663252
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE PURE SHELTER",
       "mood": "DEFENSIVE",
-      "tick": 1772042658887
+      "tick": 1772042663444
     },
     {
       "origin": "ARCHIVIST",
-      "text": "OSMOSIS STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772042659626
+      "text": "WATCH WATCH IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042663882
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER SEIZE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042664605
     },
     {
       "origin": "REVERSE",
-      "text": "STRIFE STRIFE SICKNESS",
+      "text": "CONSUME SEIZE DRAIN",
       "mood": "AGGRESSIVE",
-      "tick": 1772042662588
+      "tick": 1772042665097
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE SHIELD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772042666849
     },
     {
       "origin": "INTERFACE",
-      "text": "REFLECT SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042663173
-    },
-    {
-      "origin": "STREAM",
-      "text": "PURE WATCH SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772042663940
+      "text": "BLOOM FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772042667729
     },
     {
       "origin": "REVERSE",
-      "text": "COHERE HEAL GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772042664239
-    },
-    {
-      "origin": "REVERSE",
-      "text": "STABLE OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042664847
-    },
-    {
-      "origin": "ALIEN",
-      "text": "WATCH WAIT GUARD",
+      "text": "WATCH SHIELD SHELTER",
       "mood": "DEFENSIVE",
-      "tick": 1772042665655
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "RESONATE GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772042666128
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "WAIT SHIELD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042667023
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "RECON SHIELD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042667680
+      "tick": 1772042668345
     }
   ]
 }
