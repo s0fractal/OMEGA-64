@@ -160,12 +160,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022806487
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772022806611
@@ -247,6 +241,12 @@
       "text": "IMMUNE IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022812806
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022813043
     }
   ]
 }
