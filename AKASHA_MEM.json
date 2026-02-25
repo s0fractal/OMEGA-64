@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "UNIFY BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772033484775
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE GIVING COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772033490080
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS SPARK BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772033490301
     }
   ]
 }
