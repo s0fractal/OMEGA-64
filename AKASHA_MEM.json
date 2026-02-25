@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037595769
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772037596080
@@ -291,6 +285,12 @@
       "text": "RESONATE UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772037599132
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772037599349
     }
   ]
 }
