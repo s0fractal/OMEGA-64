@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772034114720
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772034114913
@@ -291,6 +285,12 @@
       "text": "GUARD STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772034118208
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE WAVE DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772034121999
     }
   ]
 }
