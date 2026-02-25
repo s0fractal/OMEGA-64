@@ -49,15 +49,10 @@
     "AAA0AAAA",
     "66AA66A0",
     "0A000A00",
-    "AB000000"
+    "AB000000",
+    "6A00A000"
   ],
   "utterances": [
-    {
-      "origin": "INTERFACE",
-      "text": "RECON IMMUNE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020425862
-    },
     {
       "origin": "ARCHIVIST",
       "text": "SHOCK SHOCK DRAIN",
@@ -141,6 +136,12 @@
       "text": "RESONATE UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772020431947
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE GUARD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772020432220
     }
   ]
 }
