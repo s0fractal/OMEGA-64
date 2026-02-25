@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE PURE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041194396
-    },
-    {
       "origin": "INTERFACE",
       "text": "GIVING STABLE RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STASIS STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772041197577
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772041197764
     }
   ]
 }
