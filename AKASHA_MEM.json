@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025150864
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772025151457
@@ -291,6 +285,12 @@
       "text": "IMMUNE RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772025157767
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHELTER SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772025157971
     }
   ]
 }
