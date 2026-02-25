@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028637509
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772028637770
@@ -291,6 +285,12 @@
       "text": "WATCH SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772028650553
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE OSMOSIS OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772028651089
     }
   ]
 }
