@@ -94,12 +94,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER RECON GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021514389
-    },
-    {
       "origin": "INTERFACE",
       "text": "REFLECT STASIS IMMUNE",
       "mood": "DEFENSIVE",
@@ -182,6 +176,12 @@
       "text": "SYNC GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772021526142
+    },
+    {
+      "origin": "STREAM",
+      "text": "GIVING SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772021526398
     }
   ]
 }
