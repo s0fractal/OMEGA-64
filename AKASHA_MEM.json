@@ -177,12 +177,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772023288226
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023289125
@@ -264,6 +258,12 @@
       "text": "BEYOND SPARK WITNESS",
       "mood": "CREATIVE",
       "tick": 1772023292255
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772023292964
     }
   ]
 }
