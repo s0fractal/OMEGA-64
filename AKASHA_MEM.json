@@ -177,12 +177,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS BECOME VISION",
-      "mood": "CREATIVE",
-      "tick": 1772023287675
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023287945
@@ -264,6 +258,12 @@
       "text": "SHELTER IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023291198
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC RESONATE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772023291787
     }
   ]
 }
