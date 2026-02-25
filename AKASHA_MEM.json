@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD STASIS REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772037642494
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772037642708
@@ -291,6 +285,12 @@
       "text": "RECON REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772037645269
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE CONSUME CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037645482
     }
   ]
 }
