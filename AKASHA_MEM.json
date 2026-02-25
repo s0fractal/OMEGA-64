@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041968957
-    },
-    {
       "origin": "WAVE_SIGNAL",
       "text": "BLOOM HEAL RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WAIT IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041975257
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE PURE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041975464
     }
   ]
 }
