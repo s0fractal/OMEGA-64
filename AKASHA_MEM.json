@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772036476800
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772036477164
@@ -291,6 +285,12 @@
       "text": "BLOOM GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772036479917
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772036480097
     }
   ]
 }
