@@ -129,12 +129,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022294004
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022294155
@@ -216,6 +210,12 @@
       "text": "VISION BEYOND WAVE",
       "mood": "CREATIVE",
       "tick": 1772022298568
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022298759
     }
   ]
 }
