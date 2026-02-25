@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE REFLECT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772026173286
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772026173507
@@ -291,6 +285,12 @@
       "text": "CONSUME DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772026179255
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772026179449
     }
   ]
 }
