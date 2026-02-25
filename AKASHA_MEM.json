@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER RECON GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041415407
-    },
-    {
       "origin": "STREAM",
       "text": "STABLE GIVING GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STABLE COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772041418565
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE WATCH PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041418862
     }
   ]
 }
