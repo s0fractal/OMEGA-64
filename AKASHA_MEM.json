@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "DRAIN SHOCK CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041955140
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE STRIKE SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772041961460
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT PURE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041961663
     }
   ]
 }
