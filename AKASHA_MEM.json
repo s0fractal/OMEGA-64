@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT WATCH REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040537839
-    },
-    {
       "origin": "REVERSE",
       "text": "IMMUNE WATCH IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SEIZE DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772040540676
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE OSMOSIS BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772040540805
     }
   ]
 }
