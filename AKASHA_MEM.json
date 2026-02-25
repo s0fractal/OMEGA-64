@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SICKNESS STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038186258
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772038186463
@@ -291,6 +285,12 @@
       "text": "STRIFE DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772038189293
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS UNIFY GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772038189547
     }
   ]
 }
