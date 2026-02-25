@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON GUARD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041721134
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER SEIZE CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041728829
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041729067
     }
   ]
 }
