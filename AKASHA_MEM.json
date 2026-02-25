@@ -72,12 +72,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE OSMOSIS BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772020928877
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020929039
@@ -159,6 +153,12 @@
       "text": "WATCH RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772020936088
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER STASIS SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020936477
     }
   ]
 }
