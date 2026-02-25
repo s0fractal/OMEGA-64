@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS OSMOSIS SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772026781998
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772026782730
@@ -291,6 +285,12 @@
       "text": "GUARD WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772026787033
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION BEYOND FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772026787258
     }
   ]
 }
