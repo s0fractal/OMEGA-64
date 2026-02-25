@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037496518
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772037496762
@@ -291,6 +285,12 @@
       "text": "UNIFY FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772037499595
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772037499805
     }
   ]
 }
