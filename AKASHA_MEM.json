@@ -184,12 +184,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023600258
-    },
-    {
       "origin": "INTERFACE",
       "text": "FLOW HEAL FLOW",
       "mood": "HARMONIC",
@@ -272,6 +266,12 @@
       "text": "BREACH DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772023605490
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE BECOME VISION",
+      "mood": "CREATIVE",
+      "tick": 1772023605700
     }
   ]
 }
