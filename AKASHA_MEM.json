@@ -190,12 +190,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "PURE IMMUNE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023748050
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM UNIFY GIVING",
       "mood": "HARMONIC",
@@ -278,6 +272,12 @@
       "text": "BREACH STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023751669
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD GUARD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023751797
     }
   ]
 }
