@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772040653986
-    },
-    {
       "origin": "STREAM",
       "text": "GUARD RECON PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772040657187
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040657319
     }
   ]
 }
