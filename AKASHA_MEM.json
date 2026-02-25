@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME STRIKE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032087180
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HEAL COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772032094481
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772032095317
     }
   ]
 }
