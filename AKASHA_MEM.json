@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036068050
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772036068232
@@ -291,6 +285,12 @@
       "text": "COHERE BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772036072227
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT PURE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772036072515
     }
   ]
 }
