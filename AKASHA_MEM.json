@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIKE SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041242709
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HEAL BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772041242987
@@ -291,6 +285,12 @@
       "text": "PURE RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772041247873
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHIELD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041248424
     }
   ]
 }
