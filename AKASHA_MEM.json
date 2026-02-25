@@ -144,12 +144,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022483984
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772022484172
@@ -231,6 +225,12 @@
       "text": "HUNGER DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022486700
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022487437
     }
   ]
 }
