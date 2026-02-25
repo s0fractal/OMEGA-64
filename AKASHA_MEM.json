@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "OSMOSIS HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772040689179
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT WATCH PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772040692097
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE HUNGER HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040692408
     }
   ]
 }
