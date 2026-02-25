@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00066660",
     "AAB0000D",
     "A06000A0",
     "0A000AAA",
@@ -199,15 +198,10 @@
     "AAAAA00A",
     "AA0AA000",
     "01000000",
-    "A6066660"
+    "A6066660",
+    "00066600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "UNIFY STABLE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772036264553
-    },
     {
       "origin": "REVERSE",
       "text": "COHERE SYNC GIVING",
@@ -291,6 +285,12 @@
       "text": "STRIFE DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772036270504
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772036270847
     }
   ]
 }
