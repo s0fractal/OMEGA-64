@@ -180,12 +180,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS PURE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023380365
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023380548
@@ -267,6 +261,12 @@
       "text": "DECAY BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772023384475
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772023384687
     }
   ]
 }
