@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE OSMOSIS SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772035035010
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772035035210
@@ -291,6 +285,12 @@
       "text": "DRAIN DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772035040387
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE PURE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772035040602
     }
   ]
 }
