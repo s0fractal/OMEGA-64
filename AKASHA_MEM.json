@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL STABLE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772035071045
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772035071277
@@ -291,6 +285,12 @@
       "text": "COHERE COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772035078156
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035078515
     }
   ]
 }
