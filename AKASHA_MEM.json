@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772026800330
-    },
-    {
-      "origin": "REVERSE",
       "text": "EVOLVE BEYOND SPARK",
       "mood": "CREATIVE",
       "tick": 1772026800585
@@ -291,6 +285,12 @@
       "text": "SHIELD GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772026804630
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "REFLECT STASIS WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772026804861
     }
   ]
 }
