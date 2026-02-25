@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772039243309
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772039243520
@@ -291,6 +285,12 @@
       "text": "WATCH STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772039246131
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD IMMUNE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772039246334
     }
   ]
 }
