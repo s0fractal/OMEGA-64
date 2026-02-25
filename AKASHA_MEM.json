@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772025071202
-    },
-    {
       "origin": "INTERFACE",
       "text": "HUNGER DRAIN SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772025079082
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD REFLECT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772025079277
     }
   ]
 }
