@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT REFLECT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772024340672
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772024340803
@@ -291,6 +285,12 @@
       "text": "SHIELD SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772024343534
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772024343739
     }
   ]
 }
