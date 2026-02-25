@@ -190,12 +190,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772023723579
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY STRIKE DRAIN",
       "mood": "AGGRESSIVE",
@@ -278,6 +272,12 @@
       "text": "VISION BEYOND EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772023726078
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772023726257
     }
   ]
 }
