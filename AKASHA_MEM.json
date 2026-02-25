@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "OSMOSIS RESONATE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772041465091
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STABLE COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772041465397
@@ -291,6 +285,12 @@
       "text": "FLOW GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772041469010
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE UNIFY GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041469162
     }
   ]
 }
