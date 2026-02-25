@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026822014
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772026822413
@@ -291,6 +285,12 @@
       "text": "HEAL OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772026827529
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WAIT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772026827826
     }
   ]
 }
