@@ -94,12 +94,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY SHOCK STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021504881
-    },
-    {
       "origin": "REVERSE",
       "text": "WAIT GUARD REFLECT",
       "mood": "DEFENSIVE",
@@ -182,6 +176,12 @@
       "text": "SHELTER RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772021514389
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "REFLECT STASIS IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021515030
     }
   ]
 }
