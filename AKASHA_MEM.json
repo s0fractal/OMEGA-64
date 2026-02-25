@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66606660",
     "A0666660",
     "A00A0AAA",
     "A0000A00",
@@ -199,15 +198,10 @@
     "06660600",
     "000B0000",
     "06006000",
-    "600A66A0"
+    "600A66A0",
+    "00006000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GIVING COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772028475079
-    },
     {
       "origin": "REVERSE",
       "text": "IMMUNE WAIT WATCH",
@@ -291,6 +285,12 @@
       "text": "SHELTER REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772028483658
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY SYNC COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772028484205
     }
   ]
 }
