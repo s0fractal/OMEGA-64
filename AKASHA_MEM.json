@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WAIT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772039186788
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772039186999
@@ -291,6 +285,12 @@
       "text": "BREACH CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772039189703
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE PURE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772039190037
     }
   ]
 }
