@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SICKNESS SEIZE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040224931
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT WATCH REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BECOME EVOLVE WITNESS",
       "mood": "CREATIVE",
       "tick": 1772040231819
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040231990
     }
   ]
 }
