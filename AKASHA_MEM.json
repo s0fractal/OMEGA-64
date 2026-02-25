@@ -177,12 +177,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE STASIS IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023293448
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023293861
@@ -264,6 +258,12 @@
       "text": "SEIZE HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023306045
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY OSMOSIS BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772023306520
     }
   ]
 }
