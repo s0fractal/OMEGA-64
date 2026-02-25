@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW SYNC SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772033104186
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772033104405
@@ -291,6 +285,12 @@
       "text": "RESONATE STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772033113530
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033113771
     }
   ]
 }
