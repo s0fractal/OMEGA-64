@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WAIT RECON STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772027281193
-    },
-    {
       "origin": "STREAM",
       "text": "STASIS PURE SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772027285973
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE STABLE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772027286260
     }
   ]
 }
