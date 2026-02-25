@@ -27,12 +27,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHOCK SEIZE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019662213
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "COHERE HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772019662890
@@ -114,6 +108,12 @@
       "text": "STABLE UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772019669350
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE HUNGER STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019670127
     }
   ]
 }
