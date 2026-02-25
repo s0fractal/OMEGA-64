@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024864584
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772024865126
@@ -291,6 +285,12 @@
       "text": "SHIELD REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772024869934
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772024870142
     }
   ]
 }
