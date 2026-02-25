@@ -21,12 +21,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "COHERE FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772017341523
-    },
-    {
-      "origin": "INTERFACE",
       "text": "STRIFE SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772017350564
@@ -108,6 +102,12 @@
       "text": "SICKNESS SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772017417216
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772017419577
     }
   ]
 }
