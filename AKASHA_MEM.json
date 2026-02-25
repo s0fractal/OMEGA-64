@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS BECOME SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772033774535
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK FORGE AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772033774721
@@ -291,6 +285,12 @@
       "text": "COHERE COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772033777289
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772033777448
     }
   ]
 }
