@@ -49,12 +49,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME STRIFE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020216956
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HEAL HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772020217902
@@ -136,6 +130,12 @@
       "text": "SHIELD GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772020227247
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020228769
     }
   ]
 }
