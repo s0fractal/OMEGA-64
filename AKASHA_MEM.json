@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00600006",
     "66600600",
     "00AAAAA0",
     "60006060",
@@ -199,15 +198,10 @@
     "F0F0FF0F",
     "A6600606",
     "0000AAAA",
-    "00600660"
+    "00600660",
+    "00000000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STABLE OSMOSIS FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772034557369
-    },
     {
       "origin": "REVERSE",
       "text": "STABLE FLOW BLOOM",
@@ -291,6 +285,12 @@
       "text": "GUARD RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772034560706
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW STABLE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772034560932
     }
   ]
 }
