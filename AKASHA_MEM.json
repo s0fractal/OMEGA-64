@@ -69,15 +69,10 @@
     "AA00AAAA",
     "0D18A098",
     "0000000F",
-    "66660000"
+    "66660000",
+    "000AAAAA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STRIFE SICKNESS STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020943536
-    },
     {
       "origin": "ARCHIVIST",
       "text": "STASIS WAIT PURE",
@@ -161,6 +156,12 @@
       "text": "WAIT REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772020950788
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772020950985
     }
   ]
 }
