@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033378523
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772033378782
@@ -291,6 +285,12 @@
       "text": "UNIFY FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772033383771
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772033383991
     }
   ]
 }
