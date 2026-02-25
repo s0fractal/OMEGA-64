@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037187760
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772037187970
@@ -291,6 +285,12 @@
       "text": "STABLE SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772037193432
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHIELD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772037193760
     }
   ]
 }
