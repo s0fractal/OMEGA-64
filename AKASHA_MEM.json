@@ -136,12 +136,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC GIVING FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772022407859
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY BREACH DRAIN",
       "mood": "AGGRESSIVE",
@@ -224,6 +218,12 @@
       "text": "STASIS WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022411303
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SYNC SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772022412928
     }
   ]
 }
