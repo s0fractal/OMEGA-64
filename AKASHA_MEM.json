@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772025559990
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772025560426
@@ -291,6 +285,12 @@
       "text": "PURE PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772025563988
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772025564181
     }
   ]
 }
