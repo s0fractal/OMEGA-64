@@ -156,15 +156,10 @@
     "AA0AAAAA",
     "06060000",
     "60666660",
-    "00AA000A"
+    "00AA000A",
+    "06666006"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "HEAL HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772022834766
-    },
     {
       "origin": "REVERSE",
       "text": "STASIS WAIT SHIELD",
@@ -248,6 +243,12 @@
       "text": "WATCH PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022846446
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772022846647
     }
   ]
 }
