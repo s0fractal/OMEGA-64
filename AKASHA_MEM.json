@@ -192,12 +192,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW SYNC UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772023823323
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD PURE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772023823537
@@ -279,6 +273,12 @@
       "text": "SHOCK DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023830630
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DECAY SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023830815
     }
   ]
 }
