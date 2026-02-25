@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE GIVING FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772028550953
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772028558649
@@ -291,6 +285,12 @@
       "text": "UNIFY OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772028567013
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772028567512
     }
   ]
 }
