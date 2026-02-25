@@ -127,12 +127,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE STRIKE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022270474
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022270654
@@ -214,6 +208,12 @@
       "text": "DECAY STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772022275399
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD PURE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022275532
     }
   ]
 }
