@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS SHIELD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772037089243
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772037089509
@@ -291,6 +285,12 @@
       "text": "BREACH SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772037093608
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772037093961
     }
   ]
 }
