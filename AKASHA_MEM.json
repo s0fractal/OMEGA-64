@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH STRIKE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041380891
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WAIT SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041381035
@@ -291,6 +285,12 @@
       "text": "SHIELD REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772041384399
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING STABLE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041384575
     }
   ]
 }
