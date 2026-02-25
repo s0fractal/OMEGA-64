@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW FLOW FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772026945387
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772026945625
@@ -291,6 +285,12 @@
       "text": "SHIELD PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772026952443
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772026952696
     }
   ]
 }
