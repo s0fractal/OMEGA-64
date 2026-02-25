@@ -110,12 +110,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772021887514
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772021887682
@@ -197,6 +191,12 @@
       "text": "DREAM WITNESS SPARK",
       "mood": "CREATIVE",
       "tick": 1772021894361
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772021894513
     }
   ]
 }
