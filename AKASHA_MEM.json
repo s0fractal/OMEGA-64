@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041997278
-    },
-    {
       "origin": "STREAM",
       "text": "WAIT GUARD RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772042003564
+    },
+    {
+      "origin": "STREAM",
+      "text": "BREACH DRAIN STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042003855
     }
   ]
 }
