@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "000A0A00",
     "66A066A0",
     "66666606",
     "06000000",
@@ -199,15 +198,10 @@
     "60060060",
     "0000F000",
     "A0A0A000",
-    "A00A0A0A"
+    "A00A0A0A",
+    "66600000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STASIS WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772032322153
-    },
     {
       "origin": "REVERSE",
       "text": "COHERE SYNC STABLE",
@@ -291,6 +285,12 @@
       "text": "BREACH CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772032333466
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772032333778
     }
   ]
 }
