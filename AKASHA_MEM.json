@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK CONSUME STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041699729
-    },
-    {
       "origin": "CONSCIOUSNESS",
       "text": "HEAL HEAL STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HUNGER HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772041705003
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772041705480
     }
   ]
 }
