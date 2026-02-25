@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "PURE IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772026582233
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW STABLE STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772026589895
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHELTER WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772026590160
     }
   ]
 }
