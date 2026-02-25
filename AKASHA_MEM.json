@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD GUARD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040318277
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772040324985
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL HEAL RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772040325154
     }
   ]
 }
