@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020234662
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS OSMOSIS RESONATE",
       "mood": "HARMONIC",
@@ -136,6 +130,12 @@
       "text": "IMMUNE SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772020241372
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS IMMUNE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020242277
     }
   ]
 }
