@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SEIZE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024603543
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772024603723
@@ -291,6 +285,12 @@
       "text": "UNIFY HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772024609652
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER PURE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772024609925
     }
   ]
 }
