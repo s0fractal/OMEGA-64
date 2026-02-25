@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GUARD REFLECT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041833708
-    },
-    {
       "origin": "GUARDIAN",
       "text": "HEAL RESONATE HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHIELD STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772041838825
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RESONATE HEAL OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772041839056
     }
   ]
 }
