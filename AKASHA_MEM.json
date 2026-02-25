@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_PROOF_OF_RESONANCE",
-      "text": "SYNC UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772025891947
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER SHIELD STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772025898056
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772025898330
     }
   ]
 }
