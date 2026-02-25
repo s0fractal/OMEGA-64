@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DRAIN CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038482637
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE STRIFE DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772038487143
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772038487329
     }
   ]
 }
