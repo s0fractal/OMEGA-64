@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GIVING BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041029268
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HUNGER CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041029450
@@ -291,6 +285,12 @@
       "text": "SHOCK HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772041031811
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHIELD GUARD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041032276
     }
   ]
 }
