@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020693243
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE WAIT PURE",
       "mood": "DEFENSIVE",
@@ -150,6 +144,12 @@
       "text": "HUNGER DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020700233
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020700502
     }
   ]
 }
