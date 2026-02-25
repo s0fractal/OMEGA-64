@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE HUNGER BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026668657
-    },
-    {
       "origin": "STREAM",
       "text": "UNIFY UNIFY SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "PURE RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772026673660
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772026673870
     }
   ]
 }
