@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY HUNGER STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041004582
-    },
-    {
       "origin": "REVERSE",
       "text": "SHIELD RECON SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DRAIN BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772041007126
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER IMMUNE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041007348
     }
   ]
 }
