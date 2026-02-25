@@ -63,12 +63,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD IMMUNE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020738262
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC FLOW RESONATE",
       "mood": "HARMONIC",
@@ -151,6 +145,12 @@
       "text": "EVOLVE VISION FORGE",
       "mood": "CREATIVE",
       "tick": 1772020746239
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD RECON SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772020746393
     }
   ]
 }
