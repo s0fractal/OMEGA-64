@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW GIVING FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772033407700
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772033407879
@@ -291,6 +285,12 @@
       "text": "STRIFE DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772033410251
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DECAY SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033410447
     }
   ]
 }
