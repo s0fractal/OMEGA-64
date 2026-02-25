@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIFE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038652779
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772038652980
@@ -291,6 +285,12 @@
       "text": "OSMOSIS STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772038655826
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL FLOW UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772038656028
     }
   ]
 }
