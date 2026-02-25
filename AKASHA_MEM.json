@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772036013766
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772036013934
@@ -291,6 +285,12 @@
       "text": "GIVING BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772036017353
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036017613
     }
   ]
 }
