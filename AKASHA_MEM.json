@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772032912520
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772032912695
@@ -291,6 +285,12 @@
       "text": "STABLE RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772032915073
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION WAVE EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772032915260
     }
   ]
 }
