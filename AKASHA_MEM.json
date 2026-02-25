@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD GUARD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772034833685
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772034833909
@@ -291,6 +285,12 @@
       "text": "HEAL RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772034837211
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772034837406
     }
   ]
 }
