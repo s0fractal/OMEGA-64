@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772019644619
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
@@ -114,6 +108,12 @@
       "text": "REFLECT IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772019653714
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH PURE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772019654628
     }
   ]
 }
