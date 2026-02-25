@@ -176,12 +176,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023289125
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE GIVING FLOW",
       "mood": "HARMONIC",
@@ -264,6 +258,12 @@
       "text": "RESONATE SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772023292964
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHELTER IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023293270
     }
   ]
 }
