@@ -66,12 +66,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STASIS RECON STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772020770484
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIKE SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020770695
@@ -153,6 +147,12 @@
       "text": "UNIFY RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772020777195
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN DECAY STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020777379
     }
   ]
 }
