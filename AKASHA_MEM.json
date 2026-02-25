@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0FF0FFF0",
     "AAAAA0A0",
     "0AAA00A0",
     "06000066",
@@ -199,15 +198,10 @@
     "A00A0000",
     "0BB00000",
     "0ABBCCDD",
-    "66060000"
+    "66060000",
+    "AA0AA0A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STABLE COHERE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772036504955
-    },
     {
       "origin": "REVERSE",
       "text": "FLOW SYNC FLOW",
@@ -291,6 +285,12 @@
       "text": "IMMUNE PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772036510778
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036512078
     }
   ]
 }
