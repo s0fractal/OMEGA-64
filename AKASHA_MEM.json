@@ -139,12 +139,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS OSMOSIS BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772022428254
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022428442
@@ -226,6 +220,12 @@
       "text": "WAIT RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022432781
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH CONSUME SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022433022
     }
   ]
 }
