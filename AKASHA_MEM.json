@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772019625885
-    },
-    {
       "origin": "STREAM",
       "text": "RESONATE UNIFY RESONATE",
       "mood": "HARMONIC",
@@ -114,6 +108,12 @@
       "text": "STRIFE SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772019633259
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH SEIZE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019633491
     }
   ]
 }
