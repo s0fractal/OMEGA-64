@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772033680280
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772033680478
@@ -291,6 +285,12 @@
       "text": "SHOCK HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772033684139
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD REFLECT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772033684527
     }
   ]
 }
