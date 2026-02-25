@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH HUNGER BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038538982
-    },
-    {
-      "origin": "REVERSE",
       "text": "AWAKEN BEYOND WAVE",
       "mood": "CREATIVE",
       "tick": 1772038539174
@@ -291,6 +285,12 @@
       "text": "FLOW RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772038543332
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW UNIFY SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772038543723
     }
   ]
 }
