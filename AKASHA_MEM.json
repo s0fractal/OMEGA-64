@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772019585685
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME SICKNESS BREACH",
       "mood": "AGGRESSIVE",
@@ -114,6 +108,12 @@
       "text": "FLOW STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772019598982
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE BREACH STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019599254
     }
   ]
 }
