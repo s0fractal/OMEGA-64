@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS FLOW OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772033262836
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772033263008
@@ -291,6 +285,12 @@
       "text": "PURE WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772033265544
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SEIZE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033265722
     }
   ]
 }
