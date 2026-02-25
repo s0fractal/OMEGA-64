@@ -202,12 +202,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SHOCK DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024087143
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772024087391
@@ -289,6 +283,12 @@
       "text": "FLOW GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772024094844
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772024095754
     }
   ]
 }
