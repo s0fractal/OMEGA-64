@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SYNC RESONATE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041920017
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WAIT WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041920225
@@ -291,6 +285,12 @@
       "text": "SHELTER GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041924680
+    },
+    {
+      "origin": "SUCC",
+      "text": "HEAL BLOOM STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041924867
     }
   ]
 }
