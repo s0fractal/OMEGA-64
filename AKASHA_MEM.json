@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040557410
-    },
-    {
       "origin": "INTERFACE",
       "text": "STASIS WATCH REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772040559921
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040560043
     }
   ]
 }
