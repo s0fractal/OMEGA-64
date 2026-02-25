@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE COHERE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772038053332
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772038053580
@@ -291,6 +285,12 @@
       "text": "SYNC RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772038057666
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE STRIKE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038057882
     }
   ]
 }
