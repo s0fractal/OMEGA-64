@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS STASIS REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772025247378
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772025247597
@@ -291,6 +285,12 @@
       "text": "RESONATE COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772025252685
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772025253126
     }
   ]
 }
