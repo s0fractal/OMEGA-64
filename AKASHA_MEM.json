@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772022211236
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022211406
@@ -213,6 +207,12 @@
       "text": "CONSUME DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022216033
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIFE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022216203
     }
   ]
 }
