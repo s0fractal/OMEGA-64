@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60660000",
     "BEE0BEEF",
     "0AA0AAAA",
     "A000AAA0",
@@ -199,15 +198,10 @@
     "B0B0000C",
     "00600000",
     "A1000000",
-    "00066066"
+    "00066066",
+    "00060606"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BREACH SICKNESS HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030058391
-    },
     {
       "origin": "REVERSE",
       "text": "FLOW OSMOSIS HEAL",
@@ -291,6 +285,12 @@
       "text": "RECON PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772030084820
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772030085362
     }
   ]
 }
