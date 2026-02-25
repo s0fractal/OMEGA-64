@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772032890335
-    },
-    {
-      "origin": "REVERSE",
       "text": "VISION AWAKEN VISION",
       "mood": "CREATIVE",
       "tick": 1772032890474
@@ -291,6 +285,12 @@
       "text": "GIVING HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772032892783
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER RECON WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772032892958
     }
   ]
 }
