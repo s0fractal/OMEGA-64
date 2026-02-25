@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN SICKNESS STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041572604
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH REFLECT STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041578046
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT IMMUNE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041578428
     }
   ]
 }
