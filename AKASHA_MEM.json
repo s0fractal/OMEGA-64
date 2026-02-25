@@ -180,12 +180,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023377631
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772023377869
@@ -267,6 +261,12 @@
       "text": "UNIFY STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772023382411
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023382698
     }
   ]
 }
