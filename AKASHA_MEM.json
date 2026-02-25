@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SHOCK DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034333411
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS SHIELD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772034333756
@@ -291,6 +285,12 @@
       "text": "REFLECT SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772034336370
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772034336566
     }
   ]
 }
