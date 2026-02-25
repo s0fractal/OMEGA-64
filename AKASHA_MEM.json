@@ -183,12 +183,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE RESONATE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772023573500
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT SHELTER WAIT",
       "mood": "DEFENSIVE",
@@ -271,6 +265,12 @@
       "text": "WATCH SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023577672
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023577804
     }
   ]
 }
