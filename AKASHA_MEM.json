@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772029076634
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772029077134
@@ -291,6 +285,12 @@
       "text": "STRIFE CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772029083029
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH REFLECT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772029083453
     }
   ]
 }
