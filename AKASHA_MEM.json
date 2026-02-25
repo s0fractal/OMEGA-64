@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PROOF_OF_RESONANCE",
-      "text": "OSMOSIS GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772026724216
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC FLOW SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HUNGER BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772026728374
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD RECON SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772026729004
     }
   ]
 }
