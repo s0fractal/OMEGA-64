@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE PURE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772038282836
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772038283068
@@ -291,6 +285,12 @@
       "text": "REFLECT STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772038286456
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038286699
     }
   ]
 }
