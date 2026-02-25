@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029878591
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772029878838
@@ -291,6 +285,12 @@
       "text": "STRIKE CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772029895603
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772029896126
     }
   ]
 }
