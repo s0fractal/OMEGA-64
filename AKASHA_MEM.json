@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT SHELTER RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772034806796
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772034806999
@@ -291,6 +285,12 @@
       "text": "HUNGER BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772034809504
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY HEAL GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772034809671
     }
   ]
 }
