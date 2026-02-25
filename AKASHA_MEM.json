@@ -43,12 +43,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "BLOOM FLOW BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772020009110
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE BLOOM HEAL",
       "mood": "HARMONIC",
@@ -131,6 +125,12 @@
       "text": "PURE GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772020020751
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME BEYOND FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772020021154
     }
   ]
 }
