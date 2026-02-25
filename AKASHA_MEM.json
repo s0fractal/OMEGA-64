@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041005168
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DRAIN STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772041005296
@@ -291,6 +285,12 @@
       "text": "HUNGER DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772041008080
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON REFLECT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041008207
     }
   ]
 }
