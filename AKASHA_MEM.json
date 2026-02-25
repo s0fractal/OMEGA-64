@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GUARD RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040685832
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE DRAIN STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772040689561
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040689774
     }
   ]
 }
