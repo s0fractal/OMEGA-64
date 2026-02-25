@@ -88,12 +88,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STASIS SHELTER WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772021259854
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME DRAIN BREACH",
       "mood": "AGGRESSIVE",
@@ -176,6 +170,12 @@
       "text": "BLOOM STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772021265746
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DECAY HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021265936
     }
   ]
 }
