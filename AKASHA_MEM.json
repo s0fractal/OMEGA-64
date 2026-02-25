@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "REFLECT SHIELD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772040821354
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER DECAY CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772040825102
+    },
+    {
+      "origin": "STREAM",
+      "text": "BLOOM GIVING SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772040825302
     }
   ]
 }
