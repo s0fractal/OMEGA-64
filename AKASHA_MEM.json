@@ -83,12 +83,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HEAL STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772021194370
-    },
-    {
       "origin": "REVERSE",
       "text": "EVOLVE FORGE VISION",
       "mood": "CREATIVE",
@@ -171,6 +165,12 @@
       "text": "HUNGER CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021201252
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021201609
     }
   ]
 }
