@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "BBB00000",
     "A0666066",
     "00006060",
     "A0AAAAA0",
@@ -199,15 +198,10 @@
     "06666666",
     "60660606",
     "AAA0A000",
-    "666A6660"
+    "666A6660",
+    "AA0666A6"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "STABLE HEAL BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772041654220
-    },
     {
       "origin": "ALPHA_PROOF_OF_RESONANCE",
       "text": "HEAL COHERE COHERE",
@@ -291,6 +285,12 @@
       "text": "RESONATE GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772041658358
+    },
+    {
+      "origin": "PURE_MATH",
+      "text": "STRIKE HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041658491
     }
   ]
 }
