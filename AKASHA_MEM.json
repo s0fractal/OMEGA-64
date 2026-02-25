@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT WATCH WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772038163567
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772038163730
@@ -291,6 +285,12 @@
       "text": "FORGE BEYOND BEYOND",
       "mood": "CREATIVE",
       "tick": 1772038169719
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING COHERE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772038169918
     }
   ]
 }
