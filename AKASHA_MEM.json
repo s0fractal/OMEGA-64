@@ -109,15 +109,10 @@
     "AAA0A0A0",
     "A0AAA0A0",
     "A6666006",
-    "66660666"
+    "66660666",
+    "0D180098"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "FLOW STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772021983788
-    },
     {
       "origin": "REVERSE",
       "text": "PURE WATCH GUARD",
@@ -201,6 +196,12 @@
       "text": "STRIKE STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772021990178
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772021990379
     }
   ]
 }
