@@ -58,12 +58,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020595549
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY DECAY SEIZE",
       "mood": "AGGRESSIVE",
@@ -146,6 +140,12 @@
       "text": "DRAIN DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020600502
+    },
+    {
+      "origin": "PARADOX",
+      "text": "AWAKEN VISION FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772020601419
     }
   ]
 }
