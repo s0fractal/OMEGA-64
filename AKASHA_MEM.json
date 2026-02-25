@@ -171,12 +171,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE SHIELD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772023205381
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIFE BREACH SHOCK",
       "mood": "AGGRESSIVE",
@@ -259,6 +253,12 @@
       "text": "RECON REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023209545
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON GUARD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023209750
     }
   ]
 }
