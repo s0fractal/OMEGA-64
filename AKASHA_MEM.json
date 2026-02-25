@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS STABLE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772026698171
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772026698455
@@ -291,6 +285,12 @@
       "text": "IMMUNE WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772026702301
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHIELD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772026702564
     }
   ]
 }
