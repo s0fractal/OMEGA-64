@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A00A0F00",
     "66066066",
     "A0AAAA00",
     "AAA0A000",
@@ -199,15 +198,10 @@
     "00AAAAA0",
     "60000000",
     "A06660A0",
-    "60000606"
+    "60000606",
+    "AAAA000A"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "SYNC BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041510954
-    },
     {
       "origin": "ARCHIVIST",
       "text": "STRIKE SICKNESS HUNGER",
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772041514027
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN BREACH STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041514187
     }
   ]
 }
