@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039124966
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772039125198
@@ -291,6 +285,12 @@
       "text": "FLOW OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772039128555
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS GIVING SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772039128779
     }
   ]
 }
