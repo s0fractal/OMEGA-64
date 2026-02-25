@@ -83,12 +83,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH SHELTER STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772021175002
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772021175242
@@ -170,6 +164,12 @@
       "text": "HUNGER STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772021179355
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE STASIS RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772021180275
     }
   ]
 }
