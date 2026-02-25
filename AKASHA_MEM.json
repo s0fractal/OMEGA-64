@@ -27,12 +27,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RECON SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772019671565
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW FLOW RESONATE",
       "mood": "HARMONIC",
@@ -115,6 +109,12 @@
       "text": "DECAY DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772019681153
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WAIT REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772019682354
     }
   ]
 }
