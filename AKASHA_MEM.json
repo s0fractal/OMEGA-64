@@ -79,12 +79,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021062864
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS GUARD IMMUNE",
       "mood": "DEFENSIVE",
@@ -167,6 +161,12 @@
       "text": "DECAY STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772021069073
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021069609
     }
   ]
 }
