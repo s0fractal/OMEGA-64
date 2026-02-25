@@ -86,15 +86,10 @@
     "AA00A0A0",
     "ABA00000",
     "06666660",
-    "9D00A098"
+    "9D00A098",
+    "AAAAA0AA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "REFLECT RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021271704
-    },
     {
       "origin": "REVERSE",
       "text": "UNIFY STABLE FLOW",
@@ -178,6 +173,12 @@
       "text": "SHELTER WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772021281004
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021282536
     }
   ]
 }
