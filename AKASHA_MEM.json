@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY HUNGER HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037071905
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM FLOW OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FLOW UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772037076090
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER BREACH SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037076271
     }
   ]
 }
