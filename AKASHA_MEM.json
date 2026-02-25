@@ -150,12 +150,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022576890
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE BLOOM OSMOSIS",
       "mood": "HARMONIC",
@@ -238,6 +232,12 @@
       "text": "STABLE UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772022582482
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SICKNESS HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022582666
     }
   ]
 }
