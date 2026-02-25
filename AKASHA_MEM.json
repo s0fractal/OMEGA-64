@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "FLOW OSMOSIS SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772036556250
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772036560017
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE RECON PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772036560218
     }
   ]
 }
