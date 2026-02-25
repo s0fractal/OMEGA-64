@@ -68,12 +68,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHOCK HUNGER STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020840318
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT PURE SHELTER",
       "mood": "DEFENSIVE",
@@ -156,6 +150,12 @@
       "text": "DRAIN BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020847046
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN DECAY CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020847198
     }
   ]
 }
