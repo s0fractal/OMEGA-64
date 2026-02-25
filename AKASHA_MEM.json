@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "UNIFY SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772036284755
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME DRAIN SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772036287879
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL OSMOSIS BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772036288081
     }
   ]
 }
