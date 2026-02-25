@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "B_READ",
-      "text": "DRAIN CONSUME SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041382087
-    },
-    {
       "origin": "SOMA",
       "text": "RESONATE RESONATE HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772041386469
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772041386643
     }
   ]
 }
