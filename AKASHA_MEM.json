@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHELTER REFLECT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042227844
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RESONATE SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772042229508
@@ -291,6 +285,12 @@
       "text": "HEAL BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772042236950
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK STRIFE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042237847
     }
   ]
 }
