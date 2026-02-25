@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772037930208
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772037930466
@@ -291,6 +285,12 @@
       "text": "GUARD IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772037935959
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE CONSUME DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037936143
     }
   ]
 }
