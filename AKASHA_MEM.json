@@ -18,12 +18,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE CONSUME SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772015498685
-    },
-    {
       "origin": "INTERFACE",
       "text": "CONSUME DRAIN SEIZE",
       "mood": "AGGRESSIVE",
@@ -106,6 +100,12 @@
       "text": "OSMOSIS COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772015589503
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS SHELTER PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772015597239
     }
   ]
 }
