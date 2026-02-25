@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER SEIZE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026859007
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772026859171
@@ -291,6 +285,12 @@
       "text": "SYNC BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772026862510
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE BLOOM UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772026863043
     }
   ]
 }
