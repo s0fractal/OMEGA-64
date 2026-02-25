@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE SHIELD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772025409517
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772025409911
@@ -291,6 +285,12 @@
       "text": "SPARK DREAM WAVE",
       "mood": "CREATIVE",
       "tick": 1772025414281
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY HUNGER STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025414414
     }
   ]
 }
