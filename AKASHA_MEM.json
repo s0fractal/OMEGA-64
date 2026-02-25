@@ -108,12 +108,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772021781529
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772021782587
@@ -195,6 +189,12 @@
       "text": "FLOW RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772021789026
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON RECON RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772021789403
     }
   ]
 }
