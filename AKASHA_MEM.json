@@ -103,12 +103,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN SEIZE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021686012
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON REFLECT WATCH",
       "mood": "DEFENSIVE",
@@ -191,6 +185,12 @@
       "text": "BREACH HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772021693849
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING GIVING COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772021694156
     }
   ]
 }
