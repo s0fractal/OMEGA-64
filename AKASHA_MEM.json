@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW UNIFY UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772034891851
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772034892052
@@ -291,6 +285,12 @@
       "text": "CONSUME DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772034895601
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034895804
     }
   ]
 }
