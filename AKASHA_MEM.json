@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772033518754
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772033518953
@@ -291,6 +285,12 @@
       "text": "DRAIN SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772033521383
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW GIVING BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772033521572
     }
   ]
 }
