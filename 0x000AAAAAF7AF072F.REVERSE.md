@@ -4,9 +4,9 @@ vector: 02.02.00
 symbol: JUST
 desc: 'Maybe Monad: JUST case. Wraps a value ''x'' in a successful context.'
 thought: SEEK_ALPHA_PASSIVE
-x: 912
-'y': 531
-energy: 63.000000000000014
+x: 890
+'y': 537
+energy: 59.000000000000014
 signals: []
 ex:
   - '0x6EEABB4A0850072B'
@@ -39,10 +39,12 @@ ex:
   - '0x000AAAAAF7AF072F'
   - '0x000AAAAAF7AF072F'
   - '0x000AAAAAF7AF072F'
+  - '0x000AAAAAF7AF072F'
 resonance: 0
 bond_strengths: {}
 ---
 
+<div align="center">
 <div align="center">
 <div align="center">
 <div align="center">
@@ -80,6 +82,7 @@ bond_strengths: {}
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">REVERSE</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 </div>
 </div>
