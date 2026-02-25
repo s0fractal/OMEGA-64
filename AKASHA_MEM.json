@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772035112205
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772035112451
@@ -291,6 +285,12 @@
       "text": "HEAL FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772035115076
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772035115287
     }
   ]
 }
