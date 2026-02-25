@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036145382
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772036145584
@@ -291,6 +285,12 @@
       "text": "UNIFY FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772036149528
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER PURE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772036149797
     }
   ]
 }
