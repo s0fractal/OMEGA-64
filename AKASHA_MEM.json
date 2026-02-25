@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD REFLECT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772041488312
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER REFLECT SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041491855
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772041492064
     }
   ]
 }
