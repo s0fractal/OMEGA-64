@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD REFLECT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772032642376
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772032642566
@@ -291,6 +285,12 @@
       "text": "DECAY CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772032647176
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE RECON WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772032647325
     }
   ]
 }
