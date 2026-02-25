@@ -110,12 +110,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DREAM BECOME BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772021859897
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772021860599
@@ -197,6 +191,12 @@
       "text": "WATCH RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772021866884
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE WATCH PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021867086
     }
   ]
 }
