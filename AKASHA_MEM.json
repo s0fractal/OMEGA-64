@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH SHOCK SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019600384
-    },
-    {
       "origin": "INTERFACE",
       "text": "DECAY CONSUME STRIKE",
       "mood": "AGGRESSIVE",
@@ -114,6 +108,12 @@
       "text": "COHERE RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772019609532
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS BREACH STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019609744
     }
   ]
 }
