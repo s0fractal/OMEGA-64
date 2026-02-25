@@ -111,12 +111,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM SYNC SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772021931277
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER CONSUME DECAY",
       "mood": "AGGRESSIVE",
@@ -199,6 +193,12 @@
       "text": "GIVING RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772021937018
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021937562
     }
   ]
 }
