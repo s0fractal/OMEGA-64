@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0FF0F0F0",
     "AA066000",
     "A0066660",
     "00BBC0DD",
@@ -199,15 +198,10 @@
     "0A0A00AA",
     "AA660060",
     "A0666606",
-    "A0000A0A"
+    "A0000A0A",
+    "66666606"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "FLOW FLOW OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772036920130
-    },
     {
       "origin": "REVERSE",
       "text": "SEIZE STRIKE STRIFE",
@@ -291,6 +285,12 @@
       "text": "STASIS RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772036924518
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON PURE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772036924694
     }
   ]
 }
