@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT PURE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772037475835
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772037476276
@@ -291,6 +285,12 @@
       "text": "RESONATE UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772037481840
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD IMMUNE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772037482063
     }
   ]
 }
