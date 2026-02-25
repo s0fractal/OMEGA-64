@@ -116,12 +116,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022053111
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022053268
@@ -203,6 +197,12 @@
       "text": "BREACH HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022058840
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON IMMUNE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772022059503
     }
   ]
 }
