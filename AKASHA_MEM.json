@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER RECON REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772027930935
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772027933096
@@ -291,6 +285,12 @@
       "text": "STABLE SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772027959586
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772027960437
     }
   ]
 }
