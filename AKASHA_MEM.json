@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME WAVE DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772033065390
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772033065554
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772033067926
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL FLOW GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772033068097
     }
   ]
 }
