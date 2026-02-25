@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS RECON PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772038825583
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772038825798
@@ -291,6 +285,12 @@
       "text": "DREAM SPARK BECOME",
       "mood": "CREATIVE",
       "tick": 1772038828625
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE RECON RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772038828854
     }
   ]
 }
