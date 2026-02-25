@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772020630538
-    },
-    {
       "origin": "INTERFACE",
       "text": "COHERE BLOOM STABLE",
       "mood": "HARMONIC",
@@ -150,6 +144,12 @@
       "text": "UNIFY FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772020643490
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE HUNGER SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020644220
     }
   ]
 }
