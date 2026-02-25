@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00600606",
     "60660660",
     "A6666660",
     "06606660",
@@ -199,15 +198,10 @@
     "A0AAA600",
     "0A00AAAA",
     "AA660A60",
-    "66006606"
+    "66006606",
+    "AA00A000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GIVING RESONATE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042108836
-    },
     {
       "origin": "ARCHIVIST",
       "text": "STABLE COHERE COHERE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772042113883
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042114161
     }
   ]
 }
