@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW COHERE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772037546551
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN DECAY CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772037552862
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772037553084
     }
   ]
 }
