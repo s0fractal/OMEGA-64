@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE PURE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772040898578
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME DECAY HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772040901950
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040902225
     }
   ]
 }
