@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SICKNESS STRIFE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019947837
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIFE SHOCK STRIFE",
       "mood": "AGGRESSIVE",
@@ -130,6 +124,12 @@
       "text": "COHERE OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772019962515
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME BREACH STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019963053
     }
   ]
 }
