@@ -166,12 +166,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT STASIS SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023013666
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772023013825
@@ -253,6 +247,12 @@
       "text": "EVOLVE EVOLVE SPARK",
       "mood": "CREATIVE",
       "tick": 1772023021656
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023022094
     }
   ]
 }
