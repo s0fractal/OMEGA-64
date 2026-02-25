@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772040492474
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772040492628
@@ -291,6 +285,12 @@
       "text": "REFLECT RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772040495266
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "REFLECT SHIELD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040495543
     }
   ]
 }
