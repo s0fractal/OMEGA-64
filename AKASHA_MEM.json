@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS HEAL RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042035630
-    },
-    {
       "origin": "INTERFACE",
       "text": "DECAY STRIFE CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIKE SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772042046547
+    },
+    {
+      "origin": "STREAM",
+      "text": "RECON IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042046759
     }
   ]
 }
