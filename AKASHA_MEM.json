@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK STRIFE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035947985
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772035948167
@@ -291,6 +285,12 @@
       "text": "SICKNESS DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772035950934
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT GUARD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772035951158
     }
   ]
 }
