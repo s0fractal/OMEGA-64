@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028129892
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772028130666
@@ -291,6 +285,12 @@
       "text": "OSMOSIS HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772028139824
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER RECON WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772028140456
     }
   ]
 }
