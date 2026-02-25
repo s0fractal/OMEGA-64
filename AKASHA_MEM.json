@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE BREACH BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025533365
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772025533610
@@ -291,6 +285,12 @@
       "text": "SHIELD SHIELD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772025537472
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT REFLECT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772025537665
     }
   ]
 }
