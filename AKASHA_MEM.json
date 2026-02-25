@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS SEIZE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041165119
-    },
-    {
       "origin": "INTERFACE",
       "text": "SEIZE SEIZE SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041168188
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041168356
     }
   ]
 }
