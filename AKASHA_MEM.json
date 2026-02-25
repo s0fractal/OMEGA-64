@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT GUARD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772040848903
-    },
-    {
       "origin": "INTERFACE",
       "text": "WAIT SHIELD PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772040851882
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL RESONATE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772040852025
     }
   ]
 }
