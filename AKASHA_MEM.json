@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT STASIS WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772033652506
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033652726
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772033655338
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM OSMOSIS HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772033655520
     }
   ]
 }
