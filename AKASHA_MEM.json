@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN STRIFE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032773192
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS BLOOM SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIKE DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772032780118
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SICKNESS HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032780317
     }
   ]
 }
