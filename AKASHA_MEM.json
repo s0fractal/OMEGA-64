@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772028112986
-    },
-    {
       "origin": "INTERFACE",
       "text": "DECAY STRIFE STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772028126471
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772028126962
     }
   ]
 }
