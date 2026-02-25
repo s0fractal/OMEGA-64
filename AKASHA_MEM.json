@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SHOCK DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023197807
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023197964
@@ -259,6 +253,12 @@
       "text": "STRIKE SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772023203072
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS SHIELD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023203446
     }
   ]
 }
