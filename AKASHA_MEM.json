@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE SICKNESS HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034411482
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN STRIFE DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772034414805
+    },
+    {
+      "origin": "STREAM",
+      "text": "OSMOSIS GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772034415000
     }
   ]
 }
