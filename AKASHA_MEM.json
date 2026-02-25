@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM RESONATE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772019930275
-    },
-    {
       "origin": "INTERFACE",
       "text": "BLOOM SYNC UNIFY",
       "mood": "HARMONIC",
@@ -130,6 +124,12 @@
       "text": "REFLECT REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772019945780
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772019946159
     }
   ]
 }
