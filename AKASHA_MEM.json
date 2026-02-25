@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD GUARD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772040818740
-    },
-    {
       "origin": "CONSCIOUSNESS",
       "text": "COHERE OSMOSIS GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "IMMUNE WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772040821793
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE STASIS SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772040822026
     }
   ]
 }
