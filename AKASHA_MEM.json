@@ -93,15 +93,10 @@
     "B0000000",
     "00FF0FFF",
     "66666060",
-    "000000FF"
+    "000000FF",
+    "A6666600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "HEAL FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772021578123
-    },
     {
       "origin": "REVERSE",
       "text": "FLOW STABLE COHERE",
@@ -185,6 +180,12 @@
       "text": "OSMOSIS GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772021585507
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK STRIFE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021586927
     }
   ]
 }
