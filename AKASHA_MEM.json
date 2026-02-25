@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772034510883
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772034511096
@@ -291,6 +285,12 @@
       "text": "BREACH DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772034514895
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SICKNESS HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034515083
     }
   ]
 }
