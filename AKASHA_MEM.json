@@ -22,15 +22,10 @@
     "666A6660",
     "0000AA00",
     "AA000000",
-    "666666A6"
+    "666666A6",
+    "600A0000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "HEAL RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772019666075
-    },
     {
       "origin": "ARCHIVIST",
       "text": "REFLECT WATCH SHELTER",
@@ -114,6 +109,12 @@
       "text": "STRIFE HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772019675239
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT RECON GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772019675905
     }
   ]
 }
