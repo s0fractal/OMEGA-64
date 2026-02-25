@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028098956
-    },
-    {
-      "origin": "REVERSE",
       "text": "EVOLVE WITNESS BECOME",
       "mood": "CREATIVE",
       "tick": 1772028099493
@@ -291,6 +285,12 @@
       "text": "STRIFE SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772028107175
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC SYNC UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772028107824
     }
   ]
 }
