@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038070514
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772038070719
@@ -291,6 +285,12 @@
       "text": "OSMOSIS GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772038073809
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "OSMOSIS OSMOSIS UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772038074102
     }
   ]
 }
