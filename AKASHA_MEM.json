@@ -191,12 +191,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023795916
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GIVING OSMOSIS COHERE",
       "mood": "HARMONIC",
@@ -279,6 +273,12 @@
       "text": "STABLE BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772023799973
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772023800908
     }
   ]
 }
