@@ -102,12 +102,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021648194
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN STRIKE SEIZE",
       "mood": "AGGRESSIVE",
@@ -190,6 +184,12 @@
       "text": "WATCH GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772021652633
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME HUNGER SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021652838
     }
   ]
 }
