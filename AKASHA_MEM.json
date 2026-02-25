@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0BC0DD",
     "0AAA00A0",
     "AA00A0AA",
     "FF0FFF00",
@@ -199,15 +198,10 @@
     "0A0000AA",
     "A0666A60",
     "06066666",
-    "A0BBC00D"
+    "A0BBC00D",
+    "F0F0FF0F"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SEIZE SEIZE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034538275
-    },
     {
       "origin": "REVERSE",
       "text": "STABLE FLOW SYNC",
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772034541317
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION SPARK EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772034541549
     }
   ]
 }
