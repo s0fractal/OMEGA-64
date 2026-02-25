@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SHOCK DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029116887
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772029117217
@@ -291,6 +285,12 @@
       "text": "BLOOM BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772029124818
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION SPARK SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772029125453
     }
   ]
 }
