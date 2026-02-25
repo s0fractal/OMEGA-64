@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STABLE GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041644388
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SYNC STABLE STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "IMMUNE GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041648401
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DECAY SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041648568
     }
   ]
 }
