@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772033022348
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIFE BREACH CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772033025120
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DECAY HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033025290
     }
   ]
 }
