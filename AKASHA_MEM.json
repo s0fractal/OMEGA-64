@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "UNIFY RESONATE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041410271
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS CONSUME DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772041413502
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE PURE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041413729
     }
   ]
 }
