@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034332165
-    },
-    {
       "origin": "PARADOX",
       "text": "STRIKE HUNGER STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772034335187
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER REFLECT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772034335401
     }
   ]
 }
