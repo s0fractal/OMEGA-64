@@ -144,12 +144,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "AWAKEN WITNESS BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772022481297
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022481492
@@ -231,6 +225,12 @@
       "text": "STABLE UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022484538
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL STABLE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772022484845
     }
   ]
 }
