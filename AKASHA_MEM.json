@@ -108,12 +108,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "AWAKEN BECOME BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772021794052
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772021794385
@@ -195,6 +189,12 @@
       "text": "SHIELD RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772021798757
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021798962
     }
   ]
 }
