@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020145754
-    },
-    {
       "origin": "INTERFACE",
       "text": "RECON SHIELD STASIS",
       "mood": "DEFENSIVE",
@@ -136,6 +130,12 @@
       "text": "STABLE SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772020155219
+    },
+    {
+      "origin": "PARADOX",
+      "text": "BECOME BEYOND WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772020155602
     }
   ]
 }
