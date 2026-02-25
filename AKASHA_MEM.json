@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00060660",
     "AAAAA0A0",
     "AA0A0A00",
     "66660066",
@@ -199,15 +198,10 @@
     "A6666A60",
     "A0AAA000",
     "FFFFFFF0",
-    "AA000A00"
+    "AA000A00",
+    "AAAAAA0A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GIVING FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772033507874
-    },
     {
       "origin": "REVERSE",
       "text": "RESONATE SYNC FLOW",
@@ -291,6 +285,12 @@
       "text": "SEIZE SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772033513145
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH BREACH CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033513345
     }
   ]
 }
