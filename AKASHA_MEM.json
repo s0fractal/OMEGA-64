@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772028997737
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772028998072
@@ -291,6 +285,12 @@
       "text": "HEAL COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772029005224
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029005957
     }
   ]
 }
