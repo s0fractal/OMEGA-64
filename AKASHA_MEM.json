@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER SHOCK SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038000383
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038000636
@@ -291,6 +285,12 @@
       "text": "REFLECT IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772038004480
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WAIT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772038004685
     }
   ]
 }
