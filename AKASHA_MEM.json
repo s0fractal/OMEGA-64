@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT SHELTER STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772025425829
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772025426070
@@ -291,6 +285,12 @@
       "text": "DECAY DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772025434711
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS REFLECT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772025434983
     }
   ]
 }
