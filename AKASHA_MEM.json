@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WAIT WATCH WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772031081736
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY BREACH BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772031092399
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031092743
     }
   ]
 }
