@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK BREACH SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030744600
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772030745149
@@ -291,6 +285,12 @@
       "text": "FLOW STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772030752635
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING BLOOM BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772030753056
     }
   ]
 }
