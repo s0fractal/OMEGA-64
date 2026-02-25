@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "BREACH STRIFE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041035531
-    },
-    {
       "origin": "CAR",
       "text": "SHIELD PURE REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772041038042
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD SHELTER WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772041038887
     }
   ]
 }
