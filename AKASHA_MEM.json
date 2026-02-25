@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WATCH REFLECT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772027427139
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY FLOW RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "CONSUME SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772027433813
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772027434828
     }
   ]
 }
