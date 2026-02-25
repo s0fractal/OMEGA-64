@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772035497656
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772035497854
@@ -291,6 +285,12 @@
       "text": "REFLECT SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772035501349
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT SHIELD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772035501627
     }
   ]
 }
