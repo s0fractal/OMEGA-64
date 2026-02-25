@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772025816350
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772025816534
@@ -291,6 +285,12 @@
       "text": "IMMUNE SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772025822911
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL STABLE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772025823137
     }
   ]
 }
