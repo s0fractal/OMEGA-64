@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "PURE SHELTER WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772041613118
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE RESONATE OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "IMMUNE REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041617575
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS SICKNESS SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041617759
     }
   ]
 }
