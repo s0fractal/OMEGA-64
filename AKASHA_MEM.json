@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772032829621
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772032829786
@@ -291,6 +285,12 @@
       "text": "DECAY DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772032832131
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772032832305
     }
   ]
 }
