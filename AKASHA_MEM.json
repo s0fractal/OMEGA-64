@@ -33,12 +33,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RECON WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772019720101
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE SHIELD REFLECT",
       "mood": "DEFENSIVE",
@@ -121,6 +115,12 @@
       "text": "SHOCK SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772019730619
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN SEIZE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019731764
     }
   ]
 }
