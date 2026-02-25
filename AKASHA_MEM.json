@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "WATCH GUARD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041468739
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "FLOW GIVING GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SEIZE DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772041471615
+    },
+    {
+      "origin": "STREAM",
+      "text": "BLOOM UNIFY GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041471838
     }
   ]
 }
