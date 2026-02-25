@@ -155,12 +155,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GUARD STASIS STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772022738569
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM STABLE OSMOSIS",
       "mood": "HARMONIC",
@@ -243,6 +237,12 @@
       "text": "HEAL FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022742881
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022743091
     }
   ]
 }
