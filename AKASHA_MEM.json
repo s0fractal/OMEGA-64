@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD RECON GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772032069042
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772032069630
@@ -291,6 +285,12 @@
       "text": "STRIFE STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772032075691
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE STABLE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772032076191
     }
   ]
 }
