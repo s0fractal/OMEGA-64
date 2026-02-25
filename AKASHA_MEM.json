@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SICKNESS STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039157801
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772039158017
@@ -291,6 +285,12 @@
       "text": "SYNC COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772039160665
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHELTER GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772039160929
     }
   ]
 }
