@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772027184684
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772027184958
@@ -291,6 +285,12 @@
       "text": "RECON REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772027189170
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772027190035
     }
   ]
 }
