@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GIVING FLOW GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772040594139
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "UNIFY STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772040594266
@@ -291,6 +285,12 @@
       "text": "BREACH SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772040596908
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "COHERE OSMOSIS HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772040597107
     }
   ]
 }
