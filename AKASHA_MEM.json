@@ -177,12 +177,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772023308201
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772023308365
@@ -264,6 +258,12 @@
       "text": "SEIZE DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772023314701
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023315021
     }
   ]
 }
