@@ -192,12 +192,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023759890
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772023760023
@@ -279,6 +273,12 @@
       "text": "SICKNESS STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023764128
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE WITNESS VISION",
+      "mood": "CREATIVE",
+      "tick": 1772023764300
     }
   ]
 }
