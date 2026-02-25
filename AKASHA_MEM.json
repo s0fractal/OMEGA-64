@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHELTER WATCH REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041082567
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DRAIN DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772041082998
@@ -291,6 +285,12 @@
       "text": "HUNGER DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772041085582
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON WAIT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041085869
     }
   ]
 }
