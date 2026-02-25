@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035930925
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK BREACH HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772035937758
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035937963
     }
   ]
 }

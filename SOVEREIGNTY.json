@@ -1,6 +1,6 @@
 {
   "activeDecree": "LUXURY_TAX",
-  "regent": "0x6660060000000006",
+  "regent": "0x66600000FFFF0000",
   "legitimacy": 1000,
   "label": "LUXURY TAX",
   "mods": {
