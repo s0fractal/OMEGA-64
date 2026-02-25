@@ -1,5 +1,6 @@
 {
   "reservoir": [
+    "AAA0A0AA",
     "66660060",
     "00000000",
     "66660000",
@@ -198,16 +199,9 @@
     "A6A66000",
     "60060666",
     "6AA60AA0",
-    "6AA06A00",
-    "6A0660A0"
+    "6AA06A00"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "STABLE FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772042591095
-    },
     {
       "origin": "ARCHIVIST",
       "text": "RESONATE GIVING COHERE",
@@ -264,32 +258,38 @@
     },
     {
       "origin": "ARCHIVIST",
-      "text": "COHERE UNIFY UNIFY",
+      "text": "GIVING SYNC FLOW",
       "mood": "HARMONIC",
-      "tick": 1772042609029
+      "tick": 1772042608997
     },
     {
       "origin": "ARCHIVIST",
-      "text": "DECAY BREACH BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042609969
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "PURE SHELTER SHELTER",
+      "text": "GUARD REFLECT REFLECT",
       "mood": "DEFENSIVE",
-      "tick": 1772042610727
-    },
-    {
-      "origin": "ALIEN",
-      "text": "SEIZE SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042611368
+      "tick": 1772042610101
     },
     {
       "origin": "ARCHIVIST",
-      "text": "STASIS STASIS RECON",
-      "mood": "DEFENSIVE",
+      "text": "STRIFE SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042610388
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042611381
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY RESONATE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772042612005
+    },
+    {
+      "origin": "SOMA",
+      "text": "HEAL GIVING UNIFY",
+      "mood": "HARMONIC",
       "tick": 1772042613229
     }
   ]
