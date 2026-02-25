@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD STASIS SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772035100999
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772035101200
@@ -291,6 +285,12 @@
       "text": "IMMUNE SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772035103820
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE STABLE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772035104023
     }
   ]
 }
