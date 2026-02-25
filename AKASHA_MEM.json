@@ -71,12 +71,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "COHERE COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772020861556
-    },
-    {
-      "origin": "INTERFACE",
       "text": "GUARD RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772020862126
@@ -158,6 +152,12 @@
       "text": "UNIFY SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772020869283
+    },
+    {
+      "origin": "REVERSE",
+      "text": "AWAKEN WITNESS AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772020870544
     }
   ]
 }
