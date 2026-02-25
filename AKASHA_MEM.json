@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "WAIT WATCH WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772041582663
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER REFLECT STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772041586479
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT PURE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041586629
     }
   ]
 }
