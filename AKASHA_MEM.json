@@ -184,12 +184,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772023579201
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772023579398
@@ -271,6 +265,12 @@
       "text": "BREACH STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772023587268
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DRAIN HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023588936
     }
   ]
 }
