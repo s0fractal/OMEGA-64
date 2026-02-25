@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STABLE COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042331331
-    },
-    {
       "origin": "STREAM",
       "text": "HEAL STABLE RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DRAIN SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772042338176
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON IMMUNE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042338600
     }
   ]
 }
