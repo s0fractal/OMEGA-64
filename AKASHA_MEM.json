@@ -182,12 +182,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772023518078
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772023518281
@@ -269,6 +263,12 @@
       "text": "DRAIN CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772023521225
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023521381
     }
   ]
 }
