@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH STRIKE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025314215
-    },
-    {
       "origin": "INTERFACE",
       "text": "SICKNESS DRAIN BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772025317941
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS RESONATE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772025318097
     }
   ]
 }
