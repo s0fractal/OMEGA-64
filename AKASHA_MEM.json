@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS AWAKEN FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772032314872
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND WAVE WAVE",
       "mood": "CREATIVE",
       "tick": 1772032315271
@@ -291,6 +285,12 @@
       "text": "REFLECT WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772032321673
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WATCH GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772032322153
     }
   ]
 }
