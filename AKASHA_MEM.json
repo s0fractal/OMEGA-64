@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037523568
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772037523995
@@ -291,6 +285,12 @@
       "text": "OSMOSIS STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772037527485
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM RESONATE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772037527711
     }
   ]
 }
