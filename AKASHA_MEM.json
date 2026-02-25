@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772025930949
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772025931264
@@ -291,6 +285,12 @@
       "text": "REFLECT GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772025938281
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WATCH STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772025938524
     }
   ]
 }
