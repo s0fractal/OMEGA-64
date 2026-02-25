@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY CONSUME SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040954110
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM HEAL UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FLOW SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772040957280
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE SHELTER SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772040957463
     }
   ]
 }
