@@ -151,12 +151,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING GIVING HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772022572522
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022572690
@@ -238,6 +232,12 @@
       "text": "DECAY STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022575993
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIFE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022576748
     }
   ]
 }
