@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HEAL HEAL RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772041137183
-    },
-    {
       "origin": "SOMA",
       "text": "DECAY STRIFE DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772041141129
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER SICKNESS STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041141315
     }
   ]
 }
