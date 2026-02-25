@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HUNGER DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042323870
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE HEAL COHERE",
       "mood": "HARMONIC",
@@ -288,9 +282,15 @@
     },
     {
       "origin": "STREAM",
-      "text": "STASIS RECON STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772042336991
+      "text": "HUNGER CONSUME CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042337045
+    },
+    {
+      "origin": "STREAM",
+      "text": "CONSUME BREACH CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042337256
     }
   ]
 }
