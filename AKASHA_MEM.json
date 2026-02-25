@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "RESONATE UNIFY COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772019948928
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER BREACH STRIKE",
       "mood": "AGGRESSIVE",
@@ -130,6 +124,12 @@
       "text": "DRAIN STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772019963818
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "PURE REFLECT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772019964727
     }
   ]
 }
