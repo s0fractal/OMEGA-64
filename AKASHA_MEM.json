@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS HEAL FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772031653157
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772031653421
@@ -291,6 +285,12 @@
       "text": "SYNC HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772031665309
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS BEYOND VISION",
+      "mood": "CREATIVE",
+      "tick": 1772031665669
     }
   ]
 }
