@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772037500672
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772037500840
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772037506899
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772037507126
     }
   ]
 }
