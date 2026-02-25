@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM UNIFY COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772025654377
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772025654563
@@ -291,6 +285,12 @@
       "text": "SEIZE HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772025657355
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE STABLE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772025657524
     }
   ]
 }
