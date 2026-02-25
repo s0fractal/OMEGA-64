@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SYNC UNIFY BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772042129549
-    },
-    {
       "origin": "REVERSE",
       "text": "BREACH DECAY STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHOCK BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772042143898
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE DECAY HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042144980
     }
   ]
 }
