@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE RECON GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772034516158
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHELTER GUARD GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HUNGER CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772034519147
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034519336
     }
   ]
 }
