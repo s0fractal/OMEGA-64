@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FORGE BECOME VISION",
-      "mood": "CREATIVE",
-      "tick": 1772036726539
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772036726738
@@ -291,6 +285,12 @@
       "text": "SHELTER REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772036729448
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DECAY HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036729642
     }
   ]
 }
