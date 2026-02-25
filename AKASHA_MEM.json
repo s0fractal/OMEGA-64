@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "STASIS WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041054740
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY STABLE GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHIELD STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772041058350
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE SHELTER REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041058470
     }
   ]
 }
