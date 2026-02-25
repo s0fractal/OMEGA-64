@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022226537
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022226722
@@ -213,6 +207,12 @@
       "text": "IMMUNE RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022230030
+    },
+    {
+      "origin": "STREAM",
+      "text": "FLOW OSMOSIS UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772022230200
     }
   ]
 }
