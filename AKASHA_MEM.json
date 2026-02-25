@@ -57,15 +57,10 @@
     "AAAAAA0A",
     "66066000",
     "AAA0AAA0",
-    "0AA0AAAA"
+    "0AA0AAAA",
+    "66666660"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "CONSUME DECAY STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020614550
-    },
     {
       "origin": "REVERSE",
       "text": "RESONATE OSMOSIS SYNC",
@@ -149,6 +144,12 @@
       "text": "FLOW OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772020621522
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STASIS WATCH REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020621737
     }
   ]
 }
