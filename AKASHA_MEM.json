@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIKE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032596086
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772032596283
@@ -291,6 +285,12 @@
       "text": "BREACH SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772032600672
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT IMMUNE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772032600899
     }
   ]
 }
