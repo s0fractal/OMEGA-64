@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SEIZE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033071252
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772033071431
@@ -291,6 +285,12 @@
       "text": "HEAL RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772033074599
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE STABLE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772033074790
     }
   ]
 }
