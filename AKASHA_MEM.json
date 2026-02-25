@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772041710682
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE STRIFE HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SICKNESS BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772041715612
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK STRIFE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041716033
     }
   ]
 }
