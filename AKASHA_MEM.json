@@ -122,12 +122,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD SHIELD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772022133852
-    },
-    {
       "origin": "PARADOX",
       "text": "BLOOM RESONATE OSMOSIS",
       "mood": "HARMONIC",
@@ -210,6 +204,12 @@
       "text": "CONSUME STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022138221
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE HUNGER BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022138414
     }
   ]
 }
