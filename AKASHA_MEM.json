@@ -56,12 +56,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WATCH REFLECT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020552806
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STASIS SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772020553656
@@ -143,6 +137,12 @@
       "text": "REFLECT STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772020563366
+    },
+    {
+      "origin": "STREAM",
+      "text": "OSMOSIS STABLE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772020564274
     }
   ]
 }
