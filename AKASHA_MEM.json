@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH PURE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772025340797
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772025341251
@@ -291,6 +285,12 @@
       "text": "STABLE COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772025344899
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY STRIKE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025345087
     }
   ]
 }
