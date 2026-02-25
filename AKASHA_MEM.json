@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033075780
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772033075920
@@ -291,6 +285,12 @@
       "text": "SHOCK DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772033078213
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WATCH SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772033078742
     }
   ]
 }
