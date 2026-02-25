@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH WAIT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772019486423
-    },
-    {
       "origin": "INTERFACE",
       "text": "IMMUNE GUARD STASIS",
       "mood": "DEFENSIVE",
@@ -111,6 +105,12 @@
       "text": "RESONATE UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772019498963
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHOCK CONSUME SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019500305
     }
   ]
 }
