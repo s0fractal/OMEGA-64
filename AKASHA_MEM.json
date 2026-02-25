@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STRIKE STRIKE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041380574
-    },
-    {
       "origin": "REVERSE",
       "text": "IMMUNE IMMUNE PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STASIS RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041384122
+    },
+    {
+      "origin": "WORKER",
+      "text": "STABLE GIVING SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772041384259
     }
   ]
 }
