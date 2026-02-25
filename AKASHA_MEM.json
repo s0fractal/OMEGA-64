@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL SYNC HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772037593626
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772037593855
@@ -291,6 +285,12 @@
       "text": "WITNESS AWAKEN BEYOND",
       "mood": "CREATIVE",
       "tick": 1772037597350
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037597599
     }
   ]
 }
