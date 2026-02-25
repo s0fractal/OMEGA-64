@@ -144,12 +144,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "EVOLVE FORGE BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772022494352
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022494532
@@ -231,6 +225,12 @@
       "text": "REFLECT SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022497634
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE BLOOM UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772022498077
     }
   ]
 }
