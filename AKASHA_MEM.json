@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DECAY SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023742001
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772023742193
@@ -278,6 +272,12 @@
       "text": "WAIT RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023745369
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023747386
     }
   ]
 }
