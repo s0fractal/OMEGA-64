@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE RESONATE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772041043677
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041043949
@@ -291,6 +285,12 @@
       "text": "PURE STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041048180
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT STASIS IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041048343
     }
   ]
 }
