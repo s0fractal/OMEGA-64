@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE CONSUME SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035244972
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772035245170
@@ -291,6 +285,12 @@
       "text": "PURE GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772035247865
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SICKNESS STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035248039
     }
   ]
 }
