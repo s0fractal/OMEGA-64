@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SHOCK BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034305426
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772034305611
@@ -291,6 +285,12 @@
       "text": "SHOCK SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772034308056
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772034308254
     }
   ]
 }
