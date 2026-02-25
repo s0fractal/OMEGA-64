@@ -74,12 +74,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS SEIZE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020948398
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH HUNGER DRAIN",
       "mood": "AGGRESSIVE",
@@ -162,6 +156,12 @@
       "text": "IMMUNE RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772020956561
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772020957115
     }
   ]
 }
