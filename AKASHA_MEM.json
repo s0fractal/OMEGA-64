@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER SHELTER REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772035051918
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772035052102
@@ -291,6 +285,12 @@
       "text": "SHELTER SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772035056321
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035056547
     }
   ]
 }
