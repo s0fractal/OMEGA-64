@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "UNIFY BLOOM HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772041664927
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GIVING RESONATE HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STASIS IMMUNE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041668047
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RESONATE COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041668531
     }
   ]
 }
