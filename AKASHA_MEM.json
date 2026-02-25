@@ -164,12 +164,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772023006718
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772023006881
@@ -251,6 +245,12 @@
       "text": "HEAL FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772023010507
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772023010673
     }
   ]
 }
