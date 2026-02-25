@@ -107,12 +107,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW FLOW GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772021716629
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772021716789
@@ -194,6 +188,12 @@
       "text": "COHERE GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772021720810
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772021720991
     }
   ]
 }
