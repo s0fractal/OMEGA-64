@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "EVOLVE BECOME SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772037079905
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772037080079
@@ -291,6 +285,12 @@
       "text": "UNIFY OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772037082911
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS STABLE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772037083120
     }
   ]
 }
