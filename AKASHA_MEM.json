@@ -173,15 +173,10 @@
     "00100000",
     "66606666",
     "06660660",
-    "60006660"
+    "60006660",
+    "66066006"
   ],
   "utterances": [
-    {
-      "origin": "INTERFACE",
-      "text": "SICKNESS BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023336860
-    },
     {
       "origin": "REVERSE",
       "text": "SHELTER RECON REFLECT",
@@ -265,6 +260,12 @@
       "text": "PURE WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023340400
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WATCH REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023340541
     }
   ]
 }
