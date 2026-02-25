@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM RESONATE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772033472317
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772033472478
@@ -291,6 +285,12 @@
       "text": "WAIT WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033476123
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772033476321
     }
   ]
 }
