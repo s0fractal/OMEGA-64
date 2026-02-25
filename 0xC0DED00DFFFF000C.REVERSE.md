@@ -1,14 +1,14 @@
 ---
 eigenvalue: '0xC0DED00DFFFF000C'
-energy: 49.9
-x: 743
-'y': 376
+energy: 27.199999999999996
+x: 723
+'y': 395
 resonance: 50
 thought: ORBIT_PASSIVE
 logic: C0DED00D
 signals: []
 bond_strengths:
-  '0x0000000000000A02': 0.9743224148844496
+  '0x0000000000000A02': 0.9752977125970467
 bonds:
   - '0x0000000000000A02'
 ex:
@@ -66,12 +66,26 @@ ex:
   - '0xC0DED00D0000000E'
   - '0xC0DED00D00000008'
   - '0xC0DED00D0000000A'
-  - '0xC0DED00DFFFF0008'
-  - '0xC0DED00DFFFF0008'
-  - '0xC0DED00DFFFF000A'
+  - '0xC0DED00D0000000C'
+  - '0xC0DED00D0000000E'
+  - '0xC0DED00D00000008'
+  - '0xC0DED00D0000000A'
+  - '0xC0DED00D0000000C'
+  - '0xC0DED00D0000000E'
+  - '0xC0DED00D00000008'
+  - '0xC0DED00D0000000A'
+  - '0xC0DED00D0000000C'
+  - '0xC0DED00D0000000E'
+  - '0xC0DED00D00000008'
+  - '0xC0DED00D0000000A'
+  - '0xC0DED00D0000000C'
+  - '0xC0DED00D0000000E'
+  - '0xC0DED00D00000008'
+  - '0xC0DED00D0000000A'
+  - '0xC0DED00D0000000C'
+  - '0xC0DED00D0000000E'
 ---
 
-<div align="center">
 <div align="center">
 <!-- ∇ HOLOGRAM START ∇ -->
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -105,7 +119,6 @@ ex:
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">REVERSE</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
-</div>
 </div>
 
 
