@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772037334022
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772037334255
@@ -291,6 +285,12 @@
       "text": "GUARD RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772037336968
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DECAY DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037337402
     }
   ]
 }
