@@ -47,12 +47,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SEIZE SEIZE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020095115
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHIELD GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772020095445
@@ -134,6 +128,12 @@
       "text": "HEAL GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772020107840
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020109355
     }
   ]
 }
