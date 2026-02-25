@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772041125600
-    },
-    {
       "origin": "STREAM",
       "text": "OSMOSIS RESONATE STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041128654
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041129278
     }
   ]
 }
