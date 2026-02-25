@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY FLOW HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772040215907
-    },
-    {
       "origin": "INTERFACE",
       "text": "WATCH IMMUNE PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "WITNESS WAVE WAVE",
       "mood": "CREATIVE",
       "tick": 1772040221242
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RESONATE GIVING FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772040221435
     }
   ]
 }
