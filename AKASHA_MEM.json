@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772027108993
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772027109630
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772027113566
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772027113923
     }
   ]
 }
