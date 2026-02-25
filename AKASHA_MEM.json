@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "000B0000",
     "06600666",
     "A00AA000",
     "06006666",
@@ -199,15 +198,10 @@
     "A0AA0A0A",
     "00060000",
     "A0AAAA00",
-    "AAB00CD0"
+    "AAB00CD0",
+    "AA666060"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WAIT WAIT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772036008581
-    },
     {
       "origin": "REVERSE",
       "text": "OSMOSIS FLOW HEAL",
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772036011637
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE BREACH BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036011838
     }
   ]
 }
