@@ -38,12 +38,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SYNC GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772019797718
-    },
-    {
       "origin": "INTERFACE",
       "text": "WAIT RECON IMMUNE",
       "mood": "DEFENSIVE",
@@ -126,6 +120,12 @@
       "text": "BREACH DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772019808399
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT STASIS IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772019809381
     }
   ]
 }
