@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW OSMOSIS SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772024540842
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772024541138
@@ -291,6 +285,12 @@
       "text": "OSMOSIS GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772024546461
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024546817
     }
   ]
 }
