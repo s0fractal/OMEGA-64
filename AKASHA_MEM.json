@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037126934
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772037127284
@@ -291,6 +285,12 @@
       "text": "STRIKE CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772037140151
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM UNIFY COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772037140346
     }
   ]
 }
