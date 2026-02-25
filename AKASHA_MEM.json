@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0BBB0000",
     "06660666",
     "FFFFFF0F",
     "66000060",
@@ -199,15 +198,10 @@
     "60660666",
     "06666606",
     "AA0A00AA",
-    "FF00FF00"
+    "FF00FF00",
+    "ABB00000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "REFLECT REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772030557536
-    },
     {
       "origin": "REVERSE",
       "text": "RESONATE FLOW UNIFY",
@@ -291,6 +285,12 @@
       "text": "SICKNESS SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772030567072
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK CONSUME SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030567459
     }
   ]
 }
