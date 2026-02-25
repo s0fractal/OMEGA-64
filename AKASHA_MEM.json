@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040920141
-    },
-    {
       "origin": "STREAM",
       "text": "PURE SHELTER STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772040923305
+    },
+    {
+      "origin": "SUCC",
+      "text": "FLOW GIVING BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772040923578
     }
   ]
 }
