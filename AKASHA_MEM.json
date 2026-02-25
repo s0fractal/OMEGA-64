@@ -24,12 +24,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "SYNC BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772019513479
-    },
-    {
-      "origin": "INTERFACE",
       "text": "GUARD SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772019514014
@@ -111,6 +105,12 @@
       "text": "SEIZE SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772019522176
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "CONSUME STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019522648
     }
   ]
 }
