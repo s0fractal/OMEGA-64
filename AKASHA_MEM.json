@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE HUNGER SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034715506
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772034715735
@@ -291,6 +285,12 @@
       "text": "SHOCK BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772034718707
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHELTER GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772034718933
     }
   ]
 }
