@@ -18,12 +18,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "SHELTER SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772014700808
-    },
-    {
-      "origin": "INTERFACE",
       "text": "DECAY BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772014703758
@@ -105,6 +99,12 @@
       "text": "HUNGER DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772014842473
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RESONATE GIVING UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772014879283
     }
   ]
 }
