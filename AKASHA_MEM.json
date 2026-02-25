@@ -40,12 +40,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME SEIZE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019854016
-    },
-    {
       "origin": "INTERFACE",
       "text": "RESONATE OSMOSIS FLOW",
       "mood": "HARMONIC",
@@ -128,6 +122,12 @@
       "text": "RESONATE BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772019861755
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN DECAY SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019862591
     }
   ]
 }
