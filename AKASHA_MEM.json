@@ -160,12 +160,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772022804990
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772022805572
@@ -247,6 +241,12 @@
       "text": "WAIT WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022810783
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIKE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022811016
     }
   ]
 }
