@@ -22,12 +22,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019422175
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIFE BREACH SICKNESS",
       "mood": "AGGRESSIVE",
@@ -110,6 +104,12 @@
       "text": "STRIKE SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772019449349
+    },
+    {
+      "origin": "STREAM",
+      "text": "GIVING SYNC HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772019450242
     }
   ]
 }
