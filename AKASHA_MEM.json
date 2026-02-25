@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "OSMOSIS BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772031437343
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE FLOW HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHELTER RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772031443550
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN CONSUME SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031444038
     }
   ]
 }
