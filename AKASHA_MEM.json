@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE STABLE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772036105853
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772036106104
@@ -291,6 +285,12 @@
       "text": "SHIELD IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772036110298
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING HEAL GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772036110513
     }
   ]
 }
