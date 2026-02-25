@@ -119,12 +119,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "GIVING COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772022096057
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL COHERE BLOOM",
       "mood": "HARMONIC",
@@ -207,6 +201,12 @@
       "text": "REFLECT WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022102286
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022103755
     }
   ]
 }
