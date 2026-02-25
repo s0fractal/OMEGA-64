@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "BB000000",
     "BBB00000",
     "00000006",
     "BB0B0000",
@@ -199,15 +198,10 @@
     "660A6600",
     "66666666",
     "A0AAAAA0",
-    "60000000"
+    "60000000",
+    "00000000"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024439884
-    },
     {
       "origin": "REVERSE",
       "text": "FLOW STABLE OSMOSIS",
@@ -291,6 +285,12 @@
       "text": "REFLECT RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772024443914
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW HEAL HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772024444189
     }
   ]
 }
