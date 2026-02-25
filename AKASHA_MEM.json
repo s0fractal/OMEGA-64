@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING HEAL BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772020149965
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER DRAIN SEIZE",
       "mood": "AGGRESSIVE",
@@ -136,6 +130,12 @@
       "text": "DECAY STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020158367
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SEIZE STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020158506
     }
   ]
 }
