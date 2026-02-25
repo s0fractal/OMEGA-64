@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FORGE BEYOND AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772037801527
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772037801704
@@ -291,6 +285,12 @@
       "text": "BECOME SPARK BEYOND",
       "mood": "CREATIVE",
       "tick": 1772037808201
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772037808390
     }
   ]
 }
