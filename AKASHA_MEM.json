@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT SHIELD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772040980590
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS BLOOM COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "IMMUNE WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772040983761
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772040984517
     }
   ]
 }
