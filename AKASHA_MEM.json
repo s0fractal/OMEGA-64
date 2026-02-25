@@ -121,15 +121,10 @@
     "06666606",
     "A0AAAAAA",
     "60666060",
-    "A0666666"
+    "A0666666",
+    "FFFFF00F"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "HEAL SYNC OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772022253412
-    },
     {
       "origin": "ARCHIVIST",
       "text": "HEAL BLOOM RESONATE",
@@ -213,6 +208,12 @@
       "text": "STABLE OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772022259706
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND EVOLVE FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772022259942
     }
   ]
 }
