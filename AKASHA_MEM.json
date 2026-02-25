@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STASIS GUARD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042246859
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "FLOW RESONATE UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HUNGER SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772042253502
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772042253958
     }
   ]
 }
