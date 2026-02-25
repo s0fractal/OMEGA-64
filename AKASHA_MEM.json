@@ -120,12 +120,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772022090761
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022091052
@@ -207,6 +201,12 @@
       "text": "UNIFY STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772022093409
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772022093713
     }
   ]
 }
