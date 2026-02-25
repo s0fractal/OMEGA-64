@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "RECON WAIT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040313844
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME SEIZE STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040320561
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW OSMOSIS UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772040320746
     }
   ]
 }
