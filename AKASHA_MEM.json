@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06606660",
     "60006000",
     "AA000600",
     "A0AAA000",
@@ -199,21 +198,10 @@
     "66006606",
     "AA00A000",
     "BBB00000",
-    "6606AA66"
+    "6606AA66",
+    "A6660600"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042402748
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT WAIT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042403118
-    },
     {
       "origin": "ARCHIVIST",
       "text": "STABLE FLOW STABLE",
@@ -269,28 +257,40 @@
       "tick": 1772042410352
     },
     {
-      "origin": "ARCHIVIST",
-      "text": "GIVING HEAL SYNC",
+      "origin": "INTERFACE",
+      "text": "SYNC RESONATE FLOW",
       "mood": "HARMONIC",
-      "tick": 1772042410558
+      "tick": 1772042410626
     },
     {
-      "origin": "WAVE_SIGNAL",
-      "text": "SEIZE BREACH CONSUME",
+      "origin": "REVERSE",
+      "text": "OSMOSIS UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042412195
+    },
+    {
+      "origin": "STREAM",
+      "text": "HEAL STABLE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772042412762
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE HUNGER DRAIN",
       "mood": "AGGRESSIVE",
-      "tick": 1772042410899
-    },
-    {
-      "origin": "ALPHA_ARCHIVIST",
-      "text": "STABLE RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772042413270
+      "tick": 1772042413276
     },
     {
       "origin": "ARCHIVIST",
-      "text": "IMMUNE SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042413535
+      "text": "CONSUME SEIZE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042413509
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK STRIFE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042413697
     }
   ]
 }
