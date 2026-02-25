@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06060600",
     "0AAAA00A",
     "66060006",
     "00AA0000",
@@ -199,15 +198,10 @@
     "6060A660",
     "A0A0AAAA",
     "60600000",
-    "AAAA00A0"
+    "AAAA00A0",
+    "BB000000"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "BREACH HUNGER BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040827357
-    },
     {
       "origin": "REVERSE",
       "text": "FLOW GIVING RESONATE",
@@ -291,6 +285,12 @@
       "text": "SICKNESS SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772040831019
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH CONSUME SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040832093
     }
   ]
 }
