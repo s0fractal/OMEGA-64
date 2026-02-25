@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIFE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038910873
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772038911090
@@ -291,6 +285,12 @@
       "text": "SHELTER WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772038914290
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772038914511
     }
   ]
 }
