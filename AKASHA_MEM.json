@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036334094
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772036334295
@@ -291,6 +285,12 @@
       "text": "DRAIN DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772036338906
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772036339255
     }
   ]
 }
