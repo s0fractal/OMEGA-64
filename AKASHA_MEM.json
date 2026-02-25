@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME DECAY SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020451727
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY STRIFE BREACH",
       "mood": "AGGRESSIVE",
@@ -142,6 +136,12 @@
       "text": "COHERE COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772020460480
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD IMMUNE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772020460652
     }
   ]
 }
