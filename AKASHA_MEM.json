@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "VISION SPARK DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772036449944
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772036450120
@@ -291,6 +285,12 @@
       "text": "GUARD SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772036460217
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND FORGE AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772036461040
     }
   ]
 }
