@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A6606606",
     "0AAA0A00",
     "60666660",
     "06600600",
@@ -199,15 +198,10 @@
     "66606660",
     "60006666",
     "00606600",
-    "000B0000"
+    "000B0000",
+    "AA000000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WAVE VISION WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772032962009
-    },
     {
       "origin": "REVERSE",
       "text": "UNIFY GIVING HEAL",
@@ -291,6 +285,12 @@
       "text": "SICKNESS DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772032964658
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER HUNGER SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032964827
     }
   ]
 }
