@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772034330078
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772034330260
@@ -291,6 +285,12 @@
       "text": "FLOW BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772034332927
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SHOCK STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034333130
     }
   ]
 }
