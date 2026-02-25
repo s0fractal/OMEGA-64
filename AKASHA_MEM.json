@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE STRIFE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038362423
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772038362619
@@ -291,6 +285,12 @@
       "text": "SEIZE SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772038365113
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE CONSUME SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038365314
     }
   ]
 }
