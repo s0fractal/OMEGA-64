@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020133130
-    },
-    {
       "origin": "INTERFACE",
       "text": "OSMOSIS GIVING GIVING",
       "mood": "HARMONIC",
@@ -136,6 +130,12 @@
       "text": "PURE WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772020145030
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020145754
     }
   ]
 }
