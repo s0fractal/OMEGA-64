@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE STABLE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772040483251
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER SHELTER IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040486136
+    },
+    {
+      "origin": "STREAM",
+      "text": "DRAIN DECAY CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040486371
     }
   ]
 }
