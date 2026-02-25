@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON GUARD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772025758287
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772025759011
@@ -291,6 +285,12 @@
       "text": "HUNGER SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772025764410
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE GUARD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772025764589
     }
   ]
 }
