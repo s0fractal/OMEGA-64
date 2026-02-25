@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "REFLECT GUARD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772040925044
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK CONSUME DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772040928279
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040928539
     }
   ]
 }
