@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772036327539
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772036327751
@@ -291,6 +285,12 @@
       "text": "REFLECT IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772036331489
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING UNIFY HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772036331707
     }
   ]
 }
