@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037781705
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772037786419
@@ -291,6 +285,12 @@
       "text": "SHOCK DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772037789781
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772037789960
     }
   ]
 }
