@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027426900
-    },
-    {
       "origin": "INTERFACE",
       "text": "WATCH REFLECT WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STASIS PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772027432492
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027433813
     }
   ]
 }
