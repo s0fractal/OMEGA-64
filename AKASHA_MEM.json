@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "FLOW GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772030387769
-    },
-    {
       "origin": "REVERSE",
       "text": "WAIT SHIELD STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772030398401
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772030398774
     }
   ]
 }
