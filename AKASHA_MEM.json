@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "UNIFY COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772041088594
-    },
-    {
       "origin": "STREAM",
       "text": "COHERE RESONATE STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DRAIN SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772041091293
+    },
+    {
+      "origin": "WORKER",
+      "text": "OSMOSIS HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041091601
     }
   ]
 }
