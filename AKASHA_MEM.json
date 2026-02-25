@@ -127,12 +127,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022267611
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772022267780
@@ -214,6 +208,12 @@
       "text": "WAIT STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022273059
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022273293
     }
   ]
 }
