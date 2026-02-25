@@ -43,12 +43,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE HUNGER STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020034911
-    },
-    {
       "origin": "INTERFACE",
       "text": "SYNC GIVING BLOOM",
       "mood": "HARMONIC",
@@ -131,6 +125,12 @@
       "text": "WATCH GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020045906
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS RECON SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020046785
     }
   ]
 }
