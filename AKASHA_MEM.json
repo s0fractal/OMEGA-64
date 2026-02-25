@@ -22,12 +22,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GUARD WATCH SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772019474505
-    },
-    {
       "origin": "INTERFACE",
       "text": "SEIZE DECAY STRIKE",
       "mood": "AGGRESSIVE",
@@ -110,6 +104,12 @@
       "text": "DRAIN STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772019482026
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019482677
     }
   ]
 }
