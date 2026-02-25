@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DREAM EVOLVE AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772037235481
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772037235653
@@ -291,6 +285,12 @@
       "text": "CONSUME SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772037241806
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772037242135
     }
   ]
 }
