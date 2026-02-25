@@ -115,12 +115,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC SYNC UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772022024080
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT RECON PURE",
       "mood": "DEFENSIVE",
@@ -203,6 +197,12 @@
       "text": "SHELTER REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022032043
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022032433
     }
   ]
 }
