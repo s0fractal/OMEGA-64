@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772038907940
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772038908166
@@ -291,6 +285,12 @@
       "text": "STASIS PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772038911090
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHIELD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772038911268
     }
   ]
 }
