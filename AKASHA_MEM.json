@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA00A000",
     "AAAA0000",
     "0000FF00",
     "66066000",
@@ -199,15 +198,10 @@
     "A00A00AA",
     "A0BBC0DD",
     "AAAA0AA0",
-    "66660666"
+    "66660666",
+    "AA0A0A0A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STABLE GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772034305233
-    },
     {
       "origin": "REVERSE",
       "text": "BREACH SHOCK BREACH",
@@ -291,6 +285,12 @@
       "text": "COHERE OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034307852
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SHOCK STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034308056
     }
   ]
 }
