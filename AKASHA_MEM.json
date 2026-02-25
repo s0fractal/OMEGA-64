@@ -129,12 +129,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT WATCH STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772022315256
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SPARK WITNESS DREAM",
       "mood": "CREATIVE",
@@ -217,6 +211,12 @@
       "text": "DECAY DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022320485
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772022320647
     }
   ]
 }
