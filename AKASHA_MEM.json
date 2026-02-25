@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE STABLE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772040892712
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE SYNC FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772040895970
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HUNGER DECAY SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040896093
     }
   ]
 }
