@@ -108,12 +108,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772021811843
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772021813433
@@ -195,6 +189,12 @@
       "text": "RESONATE FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772021817840
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE CONSUME HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021818235
     }
   ]
 }
