@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH STRIFE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034443638
-    },
-    {
       "origin": "PARADOX",
       "text": "WAIT REFLECT WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BREACH HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772034452428
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772034452591
     }
   ]
 }
