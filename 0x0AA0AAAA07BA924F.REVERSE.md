@@ -4,9 +4,9 @@ vector: 00.04.01
 symbol: SEND
 desc: Message passing primitive. (m => target => target(m))
 thought: SEEK_ALPHA_BONDING
-x: 757
-'y': 313
-energy: 6.5999999999999925
+x: 748
+'y': 325
+energy: 4.999999999999993
 signals: []
 ex:
   - '0x5E76CAB5F845924B'
@@ -46,10 +46,12 @@ ex:
   - '0xB000000007BA924F'
   - '0xB000000007BA924F'
   - '0xB000000007BA924F'
+  - '0x0AA0AAAA07BA924F'
 resonance: 0
 bond_strengths: {}
 ---
 
+<div align="center">
 <div align="center">
 <div align="center">
 <div align="center">
@@ -113,6 +115,7 @@ bond_strengths: {}
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">REVERSE</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 </div>
 </div>
