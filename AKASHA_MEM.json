@@ -154,12 +154,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIFE DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022648862
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT SHELTER GUARD",
       "mood": "DEFENSIVE",
@@ -242,6 +236,12 @@
       "text": "CONSUME SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772022653714
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772022653880
     }
   ]
 }
