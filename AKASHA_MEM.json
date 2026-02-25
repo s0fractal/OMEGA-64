@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER PURE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772031116395
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772031116754
@@ -291,6 +285,12 @@
       "text": "PURE WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772031134352
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772031134762
     }
   ]
 }
