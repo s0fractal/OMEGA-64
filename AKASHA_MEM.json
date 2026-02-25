@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PURE_MATH",
-      "text": "PURE RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041746249
-    },
-    {
       "origin": "SOMA",
       "text": "SYNC FLOW COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BREACH CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772041755405
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041755936
     }
   ]
 }
