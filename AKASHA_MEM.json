@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A6600606",
     "06666006",
     "06060606",
     "AA0A0AAA",
@@ -199,15 +198,10 @@
     "00660006",
     "66060000",
     "0A00AA0A",
-    "000AAAA0"
+    "000AAAA0",
+    "000A0AA0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHIELD SHIELD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772034041629
-    },
     {
       "origin": "REVERSE",
       "text": "IMMUNE PURE SHELTER",
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772034044436
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772034044630
     }
   ]
 }
