@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041629400
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT IMMUNE SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "REFLECT WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041633151
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER BREACH STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041633277
     }
   ]
 }
