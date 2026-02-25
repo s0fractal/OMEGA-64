@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DREAM BEYOND BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772023111423
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023112362
@@ -259,6 +253,12 @@
       "text": "WATCH PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023120162
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WAIT SHIELD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023120435
     }
   ]
 }
