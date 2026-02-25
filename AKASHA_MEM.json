@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT IMMUNE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772035149793
-    },
-    {
-      "origin": "REVERSE",
       "text": "DREAM AWAKEN BEYOND",
       "mood": "CREATIVE",
       "tick": 1772035150012
@@ -291,6 +285,12 @@
       "text": "REFLECT PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772035154872
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN CONSUME DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035155121
     }
   ]
 }
