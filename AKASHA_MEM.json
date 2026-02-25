@@ -108,12 +108,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021802388
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772021802580
@@ -195,6 +189,12 @@
       "text": "REFLECT SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772021806274
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW FLOW UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772021806547
     }
   ]
 }
