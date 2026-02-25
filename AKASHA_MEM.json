@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING GIVING HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772032585132
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772032585337
@@ -291,6 +285,12 @@
       "text": "CONSUME DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772032587635
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK EVOLVE DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772032589072
     }
   ]
 }
