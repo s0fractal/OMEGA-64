@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER RECON WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772023975334
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023975498
@@ -284,6 +278,12 @@
       "text": "STRIFE SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023978297
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT PURE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023978509
     }
   ]
 }
