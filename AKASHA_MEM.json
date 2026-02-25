@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE REFLECT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772037237796
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772037240372
@@ -291,6 +285,12 @@
       "text": "STRIFE CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772037244206
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772037244436
     }
   ]
 }
