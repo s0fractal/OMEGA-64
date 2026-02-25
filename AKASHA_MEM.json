@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE SHIELD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772025405138
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772025406223
@@ -291,6 +285,12 @@
       "text": "SICKNESS SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772025412043
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772025412218
     }
   ]
 }
