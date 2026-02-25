@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040022304
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772040022712
@@ -291,6 +285,12 @@
       "text": "BLOOM RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772040028763
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040029159
     }
   ]
 }
