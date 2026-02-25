@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040564514
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040564879
@@ -291,6 +285,12 @@
       "text": "BLOOM COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772040567622
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE SEIZE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040567779
     }
   ]
 }
