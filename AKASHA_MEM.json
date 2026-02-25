@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772036068232
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772036068486
@@ -291,6 +285,12 @@
       "text": "WAIT PURE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772036072515
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD PURE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772036073017
     }
   ]
 }
