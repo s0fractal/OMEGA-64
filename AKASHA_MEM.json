@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "B0000000",
     "AA0000A0",
     "0A0AA000",
     "AA00A000",
@@ -199,15 +198,10 @@
     "000AAA00",
     "60666660",
     "06606066",
-    "A00AA0A0"
+    "A00AA0A0",
+    "AAAA0A0A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "FLOW COHERE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772038260914
-    },
     {
       "origin": "REVERSE",
       "text": "CONSUME CONSUME CONSUME",
@@ -291,6 +285,12 @@
       "text": "HUNGER SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772038264231
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038264426
     }
   ]
 }
