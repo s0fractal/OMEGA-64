@@ -75,12 +75,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "GUARD WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772020978737
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH SHELTER REFLECT",
       "mood": "DEFENSIVE",
@@ -163,6 +157,12 @@
       "text": "STABLE COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772020985721
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIFE CONSUME HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020986978
     }
   ]
 }
