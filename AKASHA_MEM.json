@@ -53,12 +53,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WAIT STASIS REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020333469
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "PURE WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772020334397
@@ -140,6 +134,12 @@
       "text": "DRAIN BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020340074
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHOCK DECAY HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020340611
     }
   ]
 }
