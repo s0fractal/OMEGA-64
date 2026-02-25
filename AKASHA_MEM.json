@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0A0A00A0",
     "06006000",
     "A000A000",
     "AA660660",
@@ -199,15 +198,10 @@
     "00600600",
     "AA0A000A",
     "A000AA0A",
-    "A00AA0AA"
+    "A00AA0AA",
+    "60066600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SYNC FLOW FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772035846757
-    },
     {
       "origin": "REVERSE",
       "text": "STRIKE SICKNESS STRIKE",
@@ -291,6 +285,12 @@
       "text": "STABLE GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772035852111
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE STASIS RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772035852484
     }
   ]
 }
