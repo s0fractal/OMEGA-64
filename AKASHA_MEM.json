@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE STRIKE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038917057
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772038917280
@@ -291,6 +285,12 @@
       "text": "GUARD SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772038920683
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME BREACH STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038920905
     }
   ]
 }
