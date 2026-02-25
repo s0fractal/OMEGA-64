@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN STRIKE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033382063
-    },
-    {
       "origin": "STREAM",
       "text": "SYNC HEAL RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DECAY SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772033386510
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033386690
     }
   ]
 }
