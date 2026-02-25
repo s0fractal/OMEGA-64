@@ -192,12 +192,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD IMMUNE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023759503
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772023759689
@@ -279,6 +273,12 @@
       "text": "FORGE VISION WITNESS",
       "mood": "CREATIVE",
       "tick": 1772023762724
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772023763644
     }
   ]
 }
