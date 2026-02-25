@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027068915
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772027069206
@@ -291,6 +285,12 @@
       "text": "PURE WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772027073309
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SHOCK HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027073567
     }
   ]
 }
