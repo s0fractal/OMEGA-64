@@ -164,12 +164,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE STASIS SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022943352
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022943663
@@ -251,6 +245,12 @@
       "text": "BEYOND SPARK BEYOND",
       "mood": "CREATIVE",
       "tick": 1772022949428
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC COHERE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772022949559
     }
   ]
 }
