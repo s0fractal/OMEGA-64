@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE STRIKE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041846524
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS RECON PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD SHIELD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772041850729
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON PURE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772041851085
     }
   ]
 }
