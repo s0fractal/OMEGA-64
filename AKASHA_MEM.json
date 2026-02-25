@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772033603108
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772033603377
@@ -291,6 +285,12 @@
       "text": "UNIFY BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772033605693
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772033606370
     }
   ]
 }
