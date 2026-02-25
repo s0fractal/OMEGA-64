@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027141413
-    },
-    {
-      "origin": "REVERSE",
       "text": "VISION DREAM SPARK",
       "mood": "CREATIVE",
       "tick": 1772027141704
@@ -291,6 +285,12 @@
       "text": "SHOCK DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772027146827
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027147317
     }
   ]
 }
