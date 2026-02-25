@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035573180
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772035573409
@@ -291,6 +285,12 @@
       "text": "OSMOSIS BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772035579556
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS HUNGER BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035579907
     }
   ]
 }
