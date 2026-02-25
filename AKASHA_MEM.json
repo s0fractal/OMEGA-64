@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME CONSUME SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025037172
-    },
-    {
       "origin": "ALPHA_PROOF_OF_RESONANCE",
       "text": "GIVING SYNC COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FLOW GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772025041941
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIKE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025042113
     }
   ]
 }
