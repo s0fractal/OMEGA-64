@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031602900
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME SHOCK BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772031612307
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT STASIS SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772031612782
     }
   ]
 }
