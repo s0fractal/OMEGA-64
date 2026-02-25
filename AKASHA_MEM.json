@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772039232312
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772039232705
@@ -291,6 +285,12 @@
       "text": "FLOW OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772039235300
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC HEAL GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772039235508
     }
   ]
 }
