@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY HEAL UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772037457953
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772037458130
@@ -291,6 +285,12 @@
       "text": "GIVING UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772037460812
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC GIVING COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772037461026
     }
   ]
 }
