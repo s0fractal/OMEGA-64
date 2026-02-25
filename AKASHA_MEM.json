@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032704668
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772032704885
@@ -291,6 +285,12 @@
       "text": "WATCH STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772032709137
+    },
+    {
+      "origin": "STREAM",
+      "text": "SHOCK SHOCK DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032709364
     }
   ]
 }
