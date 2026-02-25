@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE SHIELD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772034075503
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772034075728
@@ -291,6 +285,12 @@
       "text": "STASIS SHIELD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772034078462
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772034078655
     }
   ]
 }
