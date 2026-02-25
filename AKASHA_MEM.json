@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023958284
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023958459
@@ -284,6 +278,12 @@
       "text": "IMMUNE WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023961793
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SICKNESS HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023962028
     }
   ]
 }
