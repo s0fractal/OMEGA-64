@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT SHIELD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772036804551
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW RESONATE RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BREACH BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772036807940
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036808202
     }
   ]
 }
