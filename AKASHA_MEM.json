@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE STRIKE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034451462
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772034451662
@@ -291,6 +285,12 @@
       "text": "STRIKE BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772034457936
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772034458145
     }
   ]
 }
