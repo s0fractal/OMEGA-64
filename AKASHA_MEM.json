@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772034552852
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772034553050
@@ -291,6 +285,12 @@
       "text": "COHERE OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772034555575
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS UNIFY COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772034555770
     }
   ]
 }
