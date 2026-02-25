@@ -49,12 +49,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM SYNC UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772020238305
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE DRAIN STRIKE",
       "mood": "AGGRESSIVE",
@@ -137,6 +131,12 @@
       "text": "COHERE OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772020246751
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER STRIFE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020247362
     }
   ]
 }
