@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DECAY SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025590740
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772025590940
@@ -291,6 +285,12 @@
       "text": "GUARD SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772025594698
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER REFLECT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772025594887
     }
   ]
 }
