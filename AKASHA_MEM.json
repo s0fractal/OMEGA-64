@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RECON RECON REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042017924
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER STASIS PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772042024390
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME HUNGER SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042025185
     }
   ]
 }
