@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT PURE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772026007520
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772026007769
@@ -291,6 +285,12 @@
       "text": "SEIZE CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772026010891
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SHOCK SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026011315
     }
   ]
 }
