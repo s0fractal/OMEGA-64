@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SICKNESS SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038914724
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772038914904
@@ -291,6 +285,12 @@
       "text": "GIVING STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772038917755
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE OSMOSIS BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772038918404
     }
   ]
 }
