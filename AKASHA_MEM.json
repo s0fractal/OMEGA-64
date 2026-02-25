@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS SHIELD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772037982442
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772037982662
@@ -291,6 +285,12 @@
       "text": "BLOOM RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772037985916
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN BREACH DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037986120
     }
   ]
 }
