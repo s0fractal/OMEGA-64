@@ -83,12 +83,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK SHOCK SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021205792
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC FLOW UNIFY",
       "mood": "HARMONIC",
@@ -171,6 +165,12 @@
       "text": "SHIELD SHIELD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772021211590
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DECAY STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021212499
     }
   ]
 }
