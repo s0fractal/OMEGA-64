@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STABLE GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772017029893
-    },
-    {
       "origin": "INTERFACE",
       "text": "COHERE BLOOM FLOW",
       "mood": "HARMONIC",
@@ -107,6 +101,12 @@
       "text": "SEIZE BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772017114947
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE STRIFE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772017123825
     }
   ]
 }
