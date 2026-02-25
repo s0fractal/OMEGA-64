@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772025492837
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIKE HUNGER HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772025497942
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772025498124
     }
   ]
 }
