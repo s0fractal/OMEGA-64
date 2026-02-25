@@ -71,12 +71,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "FLOW STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772020907881
-    },
-    {
       "origin": "REVERSE",
       "text": "BREACH DECAY SEIZE",
       "mood": "AGGRESSIVE",
@@ -159,6 +153,12 @@
       "text": "STRIKE SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020913314
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020913976
     }
   ]
 }
