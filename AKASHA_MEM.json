@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "WAIT GUARD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041997474
-    },
-    {
       "origin": "REVERSE",
       "text": "WAIT SHIELD WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BREACH DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772042003855
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042004094
     }
   ]
 }
