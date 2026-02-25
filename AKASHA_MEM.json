@@ -51,12 +51,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RESONATE RESONATE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772020265329
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "CONSUME STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772020266400
@@ -138,6 +132,12 @@
       "text": "HEAL COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772020274546
+    },
+    {
+      "origin": "PARADOX",
+      "text": "BECOME DREAM DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772020276816
     }
   ]
 }
