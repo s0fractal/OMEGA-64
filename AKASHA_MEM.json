@@ -123,12 +123,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022118279
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022118450
@@ -210,6 +204,12 @@
       "text": "STABLE UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022122602
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022123315
     }
   ]
 }
