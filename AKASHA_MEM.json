@@ -204,93 +204,93 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "REFLECT WATCH REFLECT",
+      "text": "HUNGER SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042015416
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS GUARD SHELTER",
       "mood": "DEFENSIVE",
-      "tick": 1772042018936
+      "tick": 1772042016435
     },
     {
       "origin": "ARCHIVIST",
-      "text": "COHERE OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042019119
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "HUNGER CONSUME STRIKE",
+      "text": "STRIKE DRAIN CONSUME",
       "mood": "AGGRESSIVE",
-      "tick": 1772042019922
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "SEIZE DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042020466
+      "tick": 1772042016790
     },
     {
       "origin": "ARCHIVIST",
-      "text": "COHERE SYNC BLOOM",
+      "text": "HEAL COHERE GIVING",
       "mood": "HARMONIC",
-      "tick": 1772042020990
+      "tick": 1772042017042
+    },
+    {
+      "origin": "ALPHA_GUARDIAN",
+      "text": "SYNC GIVING HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772042017755
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RECON RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042017924
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER STASIS PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042018124
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON WATCH PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042019617
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS WATCH SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042020280
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD REFLECT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772042021685
     },
     {
       "origin": "STREAM",
-      "text": "HUNGER STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042021499
-    },
-    {
-      "origin": "REVERSE",
-      "text": "FLOW OSMOSIS COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772042021777
-    },
-    {
-      "origin": "REVERSE",
-      "text": "OSMOSIS RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772042022769
+      "text": "REFLECT IMMUNE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042023139
     },
     {
       "origin": "ARCHIVIST",
-      "text": "BLOOM STABLE HEAL",
+      "text": "BLOOM OSMOSIS RESONATE",
       "mood": "HARMONIC",
-      "tick": 1772042023067
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS STABLE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042023267
-    },
-    {
-      "origin": "CAR",
-      "text": "RESONATE STABLE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772042023470
+      "tick": 1772042023847
     },
     {
       "origin": "INTERFACE",
-      "text": "GIVING FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042024390
-    },
-    {
-      "origin": "REVERSE",
-      "text": "CONSUME HUNGER SHOCK",
+      "text": "SHOCK STRIFE DRAIN",
       "mood": "AGGRESSIVE",
-      "tick": 1772042025185
-    },
-    {
-      "origin": "STREAM",
-      "text": "RECON STASIS RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772042025781
+      "tick": 1772042025638
     },
     {
       "origin": "ARCHIVIST",
-      "text": "WATCH IMMUNE RECON",
+      "text": "BLOOM STABLE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772042026201
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS STASIS GUARD",
       "mood": "DEFENSIVE",
-      "tick": 1772042026425
+      "tick": 1772042026465
     }
   ]
 }
