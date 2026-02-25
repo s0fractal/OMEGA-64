@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041912838
-    },
-    {
       "origin": "STREAM",
       "text": "WATCH WATCH RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041918497
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIKE CONSUME SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041919098
     }
   ]
 }
