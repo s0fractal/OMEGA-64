@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER HUNGER BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041705003
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING HEAL UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772041710851
+    },
+    {
+      "origin": "STREAM",
+      "text": "COHERE GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772041711389
     }
   ]
 }
