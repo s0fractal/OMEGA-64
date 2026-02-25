@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW HEAL UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772034664955
-    },
-    {
-      "origin": "REVERSE",
       "text": "WITNESS AWAKEN FORGE",
       "mood": "CREATIVE",
       "tick": 1772034665169
@@ -291,6 +285,12 @@
       "text": "DRAIN SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772034667999
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER GUARD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772034668198
     }
   ]
 }
