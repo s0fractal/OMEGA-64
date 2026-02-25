@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_GUARDIAN",
-      "text": "GIVING RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772041062343
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY BREACH CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772041065168
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING RESONATE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772041065291
     }
   ]
 }
