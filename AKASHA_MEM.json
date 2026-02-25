@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM FLOW OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772029950756
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH PURE IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772029964014
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK AWAKEN SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772029964823
     }
   ]
 }
