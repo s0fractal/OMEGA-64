@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0AA0AAAA",
     "00AAAA00",
     "60006006",
     "AAAAAAA0",
@@ -199,15 +198,10 @@
     "A0060660",
     "AAA0A0AA",
     "AA0660A0",
-    "AA0A0A0A"
+    "AA0A0A0A",
+    "B0BB0000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "PURE STASIS RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772036308056
-    },
     {
       "origin": "REVERSE",
       "text": "DECAY CONSUME SICKNESS",
@@ -291,6 +285,12 @@
       "text": "GIVING OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772036310910
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SICKNESS SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036311123
     }
   ]
 }
