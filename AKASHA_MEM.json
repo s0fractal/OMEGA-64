@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "UNIFY FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772041550230
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SEIZE SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772041550950
@@ -291,6 +285,12 @@
       "text": "WATCH RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041555217
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE SHIELD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041555360
     }
   ]
 }
