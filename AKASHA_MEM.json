@@ -192,12 +192,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772023773987
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772023774110
@@ -279,6 +273,12 @@
       "text": "CONSUME DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023776898
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH BREACH STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023777078
     }
   ]
 }
