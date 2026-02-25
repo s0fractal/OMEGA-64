@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON SHELTER WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772025075631
-    },
-    {
       "origin": "INTERFACE",
       "text": "STABLE UNIFY OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHELTER WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772025084634
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772025085130
     }
   ]
 }
