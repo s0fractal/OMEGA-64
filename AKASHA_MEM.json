@@ -24,15 +24,10 @@
     "AA000000",
     "666666A6",
     "600A0000",
-    "A6666666"
+    "A6666666",
+    "A0000A00"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE HUNGER HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019675239
-    },
     {
       "origin": "ARCHIVIST",
       "text": "WAIT RECON GUARD",
@@ -116,6 +111,12 @@
       "text": "CONSUME SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772019686434
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE DECAY DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019687404
     }
   ]
 }
