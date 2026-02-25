@@ -79,12 +79,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021076914
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER SEIZE SHOCK",
       "mood": "AGGRESSIVE",
@@ -167,6 +161,12 @@
       "text": "DECAY STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772021084768
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT GUARD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772021085775
     }
   ]
 }
