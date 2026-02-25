@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772027882575
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772027895009
@@ -291,6 +285,12 @@
       "text": "IMMUNE STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772027905302
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027906443
     }
   ]
 }
