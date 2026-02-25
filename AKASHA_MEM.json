@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHOCK SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040499484
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS GIVING UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "COHERE RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772040502712
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040503186
     }
   ]
 }
