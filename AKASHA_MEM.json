@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STASIS WAIT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772041028317
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE STABLE BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GUARD WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041031065
+    },
+    {
+      "origin": "STREAM",
+      "text": "IMMUNE REFLECT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041031345
     }
   ]
 }
