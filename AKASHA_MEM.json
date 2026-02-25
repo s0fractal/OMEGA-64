@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW STABLE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772036200849
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS UNIFY STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772036206479
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE STRIKE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036206668
     }
   ]
 }
