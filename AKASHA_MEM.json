@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_REVERSE",
-      "text": "VISION WAVE DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772027264446
-    },
-    {
       "origin": "REVERSE",
       "text": "RECON GUARD WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHOCK HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772027272607
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772027272852
     }
   ]
 }
