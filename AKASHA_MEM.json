@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772034087715
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772034087881
@@ -291,6 +285,12 @@
       "text": "UNIFY OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772034092050
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772034092253
     }
   ]
 }
