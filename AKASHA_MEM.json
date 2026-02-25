@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HEAL RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772041678495
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "FLOW RESONATE BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RESONATE BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041681370
+    },
+    {
+      "origin": "STREAM",
+      "text": "IMMUNE WATCH PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041681538
     }
   ]
 }
