@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772040297332
-    },
-    {
       "origin": "STREAM",
       "text": "SHELTER WAIT SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772040303123
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SICKNESS SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040303353
     }
   ]
 }
