@@ -37,12 +37,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DRAIN STRIKE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019772674
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GIVING BLOOM SYNC",
       "mood": "HARMONIC",
@@ -125,6 +119,12 @@
       "text": "DECAY SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772019783821
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE HUNGER HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019784664
     }
   ]
 }
