@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW UNIFY OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772036424337
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772036424553
@@ -291,6 +285,12 @@
       "text": "WATCH RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772036427409
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WATCH WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772036427622
     }
   ]
 }
