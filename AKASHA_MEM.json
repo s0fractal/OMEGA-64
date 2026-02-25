@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL OSMOSIS COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772032172220
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772032172807
@@ -291,6 +285,12 @@
       "text": "BREACH DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772032180974
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL STABLE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772032181648
     }
   ]
 }
