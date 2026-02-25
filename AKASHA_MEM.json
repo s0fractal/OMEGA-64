@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHELTER SHELTER WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020404632
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE STABLE OSMOSIS",
       "mood": "HARMONIC",
@@ -141,6 +135,12 @@
       "text": "GIVING GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772020413864
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHELTER WAIT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020414011
     }
   ]
 }
