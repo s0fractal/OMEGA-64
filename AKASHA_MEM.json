@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A00AAA0A",
     "AB0A0000",
     "66666066",
     "AAAA0000",
@@ -199,15 +198,10 @@
     "00606060",
     "60600060",
     "00600000",
-    "66606000"
+    "66606000",
+    "60000666"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SICKNESS STRIKE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038356260
-    },
     {
       "origin": "REVERSE",
       "text": "PURE RECON SHELTER",
@@ -291,6 +285,12 @@
       "text": "UNIFY COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038359136
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS IMMUNE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772038359304
     }
   ]
 }
