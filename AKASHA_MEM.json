@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035782462
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772035782667
@@ -291,6 +285,12 @@
       "text": "STASIS SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772035786641
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WAIT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772035786881
     }
   ]
 }
