@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772026339182
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772026339579
@@ -291,6 +285,12 @@
       "text": "WITNESS WAVE DREAM",
       "mood": "CREATIVE",
       "tick": 1772026344161
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772026344565
     }
   ]
 }
