@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GUARD GUARD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772020458658
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER STRIKE CONSUME",
       "mood": "AGGRESSIVE",
@@ -142,6 +136,12 @@
       "text": "GUARD REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020464417
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH BREACH STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020465156
     }
   ]
 }
