@@ -17,7 +17,7 @@ async function logAkasha(msg: string) {
     // --- Configuration ---
     const SIGNAL_PATH = "./OMEGA_SIGNAL.md";
     const ROOT = Deno.cwd();
-    const PULSE_INTERVAL = 4222; // MUTATED_BY_SINGULARITY // 3 seconds between pulses for stability
+    const PULSE_INTERVAL = 1219; // MUTATED_BY_SINGULARITY // 3 seconds between pulses for stability
     const PULSE_ID = "0xFFFFFFFF00000008"; // PULSE Organic ID
 
     // --- 🏛️ SOVEREIGN STATE ---
@@ -1464,8 +1464,7 @@ async function logAkasha(msg: string) {
 
         // --- 🕳️ FRACTAL SINGULARITY (Dimensional Bifurcation) ---
         // Atoms that become too dense (high energy, high resonance) collapse into a new universe.
-        if (eigenvalue === "0x6600066000000A08") console.log(`[DEBUG] Atom ${eigenvalue} | Energy: ${energy} | Resonance: ${resonance}`);
-        if (resonance > 30 && energy > 10 && Math.random() < 1.0) {
+        if (resonance > 80 && energy > 500 && Math.random() < 0.05) {
             console.log(`   [SINGULARITY] 🕳️ Atom ${eigenvalue} has reached critical mass! Bifurcating...`);
             const subDir = `${ROOT}/DIMENSIONS/${eigenvalue}`;
             try {
