@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "AWAKEN SPARK SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772037788072
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772037788277
@@ -291,6 +285,12 @@
       "text": "RESONATE UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772037791212
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772037791386
     }
   ]
 }
