@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60666000",
     "A00A0000",
     "0AA0AA0A",
     "66006006",
@@ -199,15 +198,10 @@
     "AA0660A0",
     "A0AAAAAA",
     "AAA0AAA0",
-    "0B000000"
+    "0B000000",
+    "0AAAA0AA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "IMMUNE WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772034431547
-    },
     {
       "origin": "REVERSE",
       "text": "SHELTER WATCH SHIELD",
@@ -291,6 +285,12 @@
       "text": "BREACH STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772034434376
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING COHERE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772034434540
     }
   ]
 }
