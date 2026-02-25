@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60006600",
     "66000066",
     "66600006",
     "66666600",
@@ -199,15 +198,10 @@
     "00FA000A",
     "66600066",
     "AA6660A6",
-    "0AAAA000"
+    "0AAAA000",
+    "AA0BCCDD"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "IMMUNE PURE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772038186668
-    },
     {
       "origin": "REVERSE",
       "text": "RESONATE HEAL UNIFY",
@@ -291,6 +285,12 @@
       "text": "STRIFE SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772038189796
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY HUNGER CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038190060
     }
   ]
 }
