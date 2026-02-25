@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HUNGER SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040453500
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE BLOOM HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WATCH WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772040456338
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772040456508
     }
   ]
 }
