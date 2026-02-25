@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SICKNESS DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028457450
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772028457759
@@ -291,6 +285,12 @@
       "text": "DECAY SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772028465577
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE PURE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772028467153
     }
   ]
 }
