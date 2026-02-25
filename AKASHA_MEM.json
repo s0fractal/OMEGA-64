@@ -27,12 +27,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "UNIFY RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772019644390
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RECON IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772019644619
@@ -114,6 +108,12 @@
       "text": "WAIT SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772019653012
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT IMMUNE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772019653714
     }
   ]
 }
