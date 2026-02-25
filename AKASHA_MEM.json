@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772041053777
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIKE HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772041057941
+    },
+    {
+      "origin": "I16_CLAMP",
+      "text": "RESONATE SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041058060
     }
   ]
 }
