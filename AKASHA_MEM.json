@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772028409875
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAVE FORGE FORGE",
       "mood": "CREATIVE",
       "tick": 1772028410286
@@ -291,6 +285,12 @@
       "text": "COHERE STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772028426089
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK HUNGER CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028434547
     }
   ]
 }
