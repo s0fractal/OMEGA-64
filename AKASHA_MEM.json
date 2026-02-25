@@ -125,12 +125,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIKE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022184458
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022184672
@@ -212,6 +206,12 @@
       "text": "PURE WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022191868
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS SYNC UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772022192916
     }
   ]
 }
