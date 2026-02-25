@@ -142,12 +142,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE DRAIN SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022471657
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY SHOCK STRIKE",
       "mood": "AGGRESSIVE",
@@ -230,6 +224,12 @@
       "text": "GIVING HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772022478920
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT PURE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022479102
     }
   ]
 }
