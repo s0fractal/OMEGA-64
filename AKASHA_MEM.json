@@ -17,12 +17,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772014842473
-    },
-    {
       "origin": "INTERFACE",
       "text": "RESONATE GIVING UNIFY",
       "mood": "HARMONIC",
@@ -105,6 +99,12 @@
       "text": "SHOCK STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772014979155
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BLOOM BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772014990403
     }
   ]
 }
