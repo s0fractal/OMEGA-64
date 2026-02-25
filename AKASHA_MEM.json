@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIKE SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040888389
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE GUARD WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772040891219
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE EVOLVE VISION",
+      "mood": "CREATIVE",
+      "tick": 1772040891431
     }
   ]
 }
