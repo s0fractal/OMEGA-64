@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS WAIT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772039848974
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772039852971
@@ -291,6 +285,12 @@
       "text": "BLOOM GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772039859999
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY HUNGER HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039860488
     }
   ]
 }
