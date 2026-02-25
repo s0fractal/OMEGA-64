@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "VIBRATION",
-      "text": "REFLECT STASIS STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772041052391
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW BLOOM OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HUNGER HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772041056438
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WATCH GUARD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772041056713
     }
   ]
 }
