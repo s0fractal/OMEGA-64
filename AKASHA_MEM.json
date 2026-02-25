@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH SHELTER STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772020376280
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME SHOCK SHOCK",
       "mood": "AGGRESSIVE",
@@ -141,6 +135,12 @@
       "text": "SEIZE BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020383840
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE DECAY SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020384522
     }
   ]
 }
