@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SEIZE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024399146
-    },
-    {
-      "origin": "REVERSE",
       "text": "VISION BECOME SPARK",
       "mood": "CREATIVE",
       "tick": 1772024399311
@@ -291,6 +285,12 @@
       "text": "BLOOM UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772024405307
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHELTER STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772024405482
     }
   ]
 }
