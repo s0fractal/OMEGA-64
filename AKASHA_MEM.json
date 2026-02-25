@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "FLOW FLOW FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772041995851
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHIELD SHELTER SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772042002376
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772042002725
     }
   ]
 }
