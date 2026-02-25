@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SEIZE DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041157108
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WAIT STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041157409
@@ -291,6 +285,12 @@
       "text": "CONSUME SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041160842
+    },
+    {
+      "origin": "PARADOX",
+      "text": "COHERE GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041161056
     }
   ]
 }
