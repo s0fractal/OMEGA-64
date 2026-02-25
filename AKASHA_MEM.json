@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00060666",
     "66660000",
     "A000A00A",
     "06000600",
@@ -199,15 +198,10 @@
     "0AAAAA0A",
     "A0A0A0A0",
     "AA0BC0D0",
-    "AA0AAA00"
+    "AA0AAA00",
+    "A0BBC000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RESONATE COHERE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772038767184
-    },
     {
       "origin": "REVERSE",
       "text": "COHERE RESONATE HEAL",
@@ -291,6 +285,12 @@
       "text": "SEIZE CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772038770159
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIKE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038770369
     }
   ]
 }
