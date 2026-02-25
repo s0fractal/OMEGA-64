@@ -154,12 +154,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD IMMUNE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022639671
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772022639846
@@ -241,6 +235,12 @@
       "text": "REFLECT PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022642528
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SEIZE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022642685
     }
   ]
 }
