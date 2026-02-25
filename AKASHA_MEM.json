@@ -111,12 +111,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE OSMOSIS BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772021907515
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772021907874
@@ -198,6 +192,12 @@
       "text": "IMMUNE GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772021914939
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WAIT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772021915139
     }
   ]
 }
