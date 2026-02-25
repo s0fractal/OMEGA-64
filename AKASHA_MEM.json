@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024351993
-    },
-    {
-      "origin": "REVERSE",
       "text": "DREAM FORGE WAVE",
       "mood": "CREATIVE",
       "tick": 1772024352262
@@ -291,6 +285,12 @@
       "text": "EVOLVE FORGE BECOME",
       "mood": "CREATIVE",
       "tick": 1772024355148
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DRAIN STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024355339
     }
   ]
 }
