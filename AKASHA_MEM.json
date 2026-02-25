@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772038935605
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772038935826
@@ -291,6 +285,12 @@
       "text": "GIVING HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772038938596
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772038938827
     }
   ]
 }
