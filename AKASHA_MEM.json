@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AABBCCDD",
     "AAAA00AA",
     "0A00A000",
     "00600600",
@@ -199,15 +198,10 @@
     "A6066000",
     "0AAAA0AA",
     "66666060",
-    "60660000"
+    "60660000",
+    "A00006A0"
   ],
   "utterances": [
-    {
-      "origin": "STREAM",
-      "text": "DECAY SEIZE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041335001
-    },
     {
       "origin": "REVERSE",
       "text": "OSMOSIS RESONATE COHERE",
@@ -291,6 +285,12 @@
       "text": "SHIELD PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041337995
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041338123
     }
   ]
 }
