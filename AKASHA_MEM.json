@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772037353788
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772037355144
@@ -291,6 +285,12 @@
       "text": "SYNC SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772037357991
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS REFLECT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772037358200
     }
   ]
 }
