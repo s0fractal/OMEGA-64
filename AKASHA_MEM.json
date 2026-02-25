@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772025354595
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772025354786
@@ -291,6 +285,12 @@
       "text": "FLOW UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772025360918
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DRAIN CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025361318
     }
   ]
 }
