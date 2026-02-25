@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "OSMOSIS HEAL FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772031094989
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM COHERE STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIFE CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772031102092
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM VISION BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772031102497
     }
   ]
 }
