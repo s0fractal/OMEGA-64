@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIKE BREACH BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041856623
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GIVING HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041856960
@@ -291,6 +285,12 @@
       "text": "CONSUME SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772041861677
+    },
+    {
+      "origin": "STREAM",
+      "text": "HEAL UNIFY COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041861990
     }
   ]
 }
