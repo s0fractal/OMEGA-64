@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772041140411
-    },
-    {
       "origin": "REVERSE",
       "text": "PURE WATCH STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772041143774
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY DECAY SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041143909
     }
   ]
 }
