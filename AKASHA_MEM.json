@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC OSMOSIS BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772025126415
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND FORGE VISION",
       "mood": "CREATIVE",
       "tick": 1772025127990
@@ -291,6 +285,12 @@
       "text": "WATCH RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772025132284
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772025132537
     }
   ]
 }
