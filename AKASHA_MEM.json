@@ -196,12 +196,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023956355
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME DECAY DECAY",
       "mood": "AGGRESSIVE",
@@ -284,6 +278,12 @@
       "text": "SICKNESS SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023959171
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772023959528
     }
   ]
 }
