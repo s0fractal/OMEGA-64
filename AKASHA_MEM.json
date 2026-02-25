@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT IMMUNE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040372861
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772040373140
@@ -291,6 +285,12 @@
       "text": "GIVING COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772040378501
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "FLOW SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772040378882
     }
   ]
 }
