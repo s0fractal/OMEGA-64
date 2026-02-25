@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAAA00AA",
     "00000600",
     "60600600",
     "AAAA0000",
@@ -199,15 +198,10 @@
     "66060066",
     "06066666",
     "AAAAAAAA",
-    "A0666066"
+    "A0666066",
+    "A0AA0A0A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GUARD SHELTER WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772035979906
-    },
     {
       "origin": "REVERSE",
       "text": "RECON SHIELD SHELTER",
@@ -291,6 +285,12 @@
       "text": "COHERE COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772035984181
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS CONSUME STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035984403
     }
   ]
 }
