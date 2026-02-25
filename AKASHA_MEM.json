@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GUARD GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040603851
-    },
-    {
       "origin": "REVERSE",
       "text": "SHIELD WAIT REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DREAM BECOME EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772040607008
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS SHELTER SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772040607205
     }
   ]
 }
