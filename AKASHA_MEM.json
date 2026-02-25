@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772030482717
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772030483204
@@ -291,6 +285,12 @@
       "text": "DECAY STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772030502138
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHIELD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772030502640
     }
   ]
 }
