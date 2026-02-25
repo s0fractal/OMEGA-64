@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY RESONATE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772042223145
-    },
-    {
       "origin": "STREAM",
       "text": "RECON PURE SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772042233063
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH CONSUME STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042233663
     }
   ]
 }
