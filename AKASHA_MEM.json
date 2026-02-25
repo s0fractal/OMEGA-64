@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD SHIELD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772019929045
-    },
-    {
       "origin": "INTERFACE",
       "text": "DECAY STRIKE CONSUME",
       "mood": "AGGRESSIVE",
@@ -130,6 +124,12 @@
       "text": "SHIELD WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772019943051
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL BLOOM SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772019943615
     }
   ]
 }
