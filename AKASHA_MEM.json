@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RECON SHELTER RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041297739
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RECON SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772041297890
@@ -291,6 +285,12 @@
       "text": "RECON SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772041302285
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772041302468
     }
   ]
 }
