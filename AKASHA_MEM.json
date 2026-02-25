@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033043781
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772033043934
@@ -291,6 +285,12 @@
       "text": "WITNESS BEYOND WAVE",
       "mood": "CREATIVE",
       "tick": 1772033046262
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK WAVE FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772033046413
     }
   ]
 }
