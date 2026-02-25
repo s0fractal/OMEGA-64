@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037116609
-    },
-    {
       "origin": "STREAM",
       "text": "RECON PURE GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772037120222
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772037120443
     }
   ]
 }
