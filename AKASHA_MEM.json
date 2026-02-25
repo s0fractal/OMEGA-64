@@ -3,14 +3,10 @@
     "9D18A698",
     "AABBCCDD",
     "C0DED00D",
-    "BEEFBEEF"
+    "BEEFBEEF",
+    "AAAAAAA0"
   ],
   "utterances": [
-    {
-      "origin": "INTERFACE",
-      "text": "RESONATE",
-      "tick": 1771940303325
-    },
     {
       "origin": "INTERFACE",
       "text": "RESONATE",
@@ -55,6 +51,11 @@
       "origin": "INTERFACE",
       "text": "BEYOND",
       "tick": 1772007112861
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OBSERVE",
+      "tick": 1772009034003
     }
   ]
 }
