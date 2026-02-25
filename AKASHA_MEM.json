@@ -187,12 +187,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT RECON REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023639678
-    },
-    {
-      "origin": "REVERSE",
       "text": "VISION FORGE WITNESS",
       "mood": "CREATIVE",
       "tick": 1772023639857
@@ -274,6 +268,12 @@
       "text": "RECON IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023642451
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023642669
     }
   ]
 }
