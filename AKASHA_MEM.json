@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK STRIKE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032372009
-    },
-    {
-      "origin": "REVERSE",
       "text": "AWAKEN EVOLVE SPARK",
       "mood": "CREATIVE",
       "tick": 1772032372442
@@ -291,6 +285,12 @@
       "text": "SYNC COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772032377729
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032378236
     }
   ]
 }
