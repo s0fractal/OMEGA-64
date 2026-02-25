@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037467404
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK SPARK EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772037467660
@@ -291,6 +285,12 @@
       "text": "STRIKE DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772037473156
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHIELD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772037473510
     }
   ]
 }
