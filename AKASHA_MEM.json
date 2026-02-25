@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT SHELTER GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772031125503
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE HUNGER DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772031136696
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHIELD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772031136983
     }
   ]
 }
