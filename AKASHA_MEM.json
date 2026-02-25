@@ -138,12 +138,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE STASIS IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022427101
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772022427413
@@ -225,6 +219,12 @@
       "text": "STASIS RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022430358
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772022430678
     }
   ]
 }
