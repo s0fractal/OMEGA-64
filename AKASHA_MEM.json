@@ -70,12 +70,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020854437
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772020854825
@@ -157,6 +151,12 @@
       "text": "SHIELD IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772020858978
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER SEIZE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020859660
     }
   ]
 }
