@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE RECON STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772039154311
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772039154474
@@ -291,6 +285,12 @@
       "text": "PURE WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772039157399
+    },
+    {
+      "origin": "STREAM",
+      "text": "UNIFY UNIFY STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772039157599
     }
   ]
 }
