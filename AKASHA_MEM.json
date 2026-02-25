@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD STASIS GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772030704839
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772030705146
@@ -291,6 +285,12 @@
       "text": "GUARD WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772030709661
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS BREACH STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030710972
     }
   ]
 }
