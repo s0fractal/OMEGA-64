@@ -51,12 +51,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS UNIFY UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772020316437
-    },
-    {
       "origin": "INTERFACE",
       "text": "DRAIN STRIFE STRIKE",
       "mood": "AGGRESSIVE",
@@ -139,6 +133,12 @@
       "text": "SICKNESS DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020324897
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020325691
     }
   ]
 }
