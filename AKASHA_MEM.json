@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GUARD WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772015962565
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RECON REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772015969686
@@ -107,6 +101,12 @@
       "text": "CONSUME SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772016041156
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772016043667
     }
   ]
 }
