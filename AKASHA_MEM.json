@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW FLOW OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772030966337
-    },
-    {
       "origin": "INTERFACE",
       "text": "DRAIN SHOCK BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772030981265
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772030982266
     }
   ]
 }
