@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772040546872
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY OSMOSIS RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "PURE REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772040549858
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SEIZE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040550020
     }
   ]
 }
