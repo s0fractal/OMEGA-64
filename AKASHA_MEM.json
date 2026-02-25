@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS OSMOSIS OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772025009299
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772025010365
@@ -291,6 +285,12 @@
       "text": "REFLECT WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772025014620
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON IMMUNE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772025014833
     }
   ]
 }
