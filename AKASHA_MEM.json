@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772025130313
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772025130687
@@ -291,6 +285,12 @@
       "text": "OSMOSIS SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772025135932
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIFE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025136110
     }
   ]
 }
