@@ -38,12 +38,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME STRIFE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019787850
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DRAIN SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772019789009
@@ -125,6 +119,12 @@
       "text": "WATCH SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772019797202
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772019797718
     }
   ]
 }
