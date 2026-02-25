@@ -49,12 +49,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "UNIFY OSMOSIS RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772020230132
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIKE STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020230632
@@ -136,6 +130,12 @@
       "text": "WAIT WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772020237190
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME STRIKE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020237811
     }
   ]
 }
