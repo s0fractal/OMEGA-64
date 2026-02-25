@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020460171
-    },
-    {
       "origin": "STREAM",
       "text": "COHERE COHERE RESONATE",
       "mood": "HARMONIC",
@@ -142,6 +136,12 @@
       "text": "SICKNESS STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020465496
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772020466041
     }
   ]
 }
