@@ -149,12 +149,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE STRIKE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022536779
-    },
-    {
       "origin": "INTERFACE",
       "text": "SICKNESS BREACH STRIFE",
       "mood": "AGGRESSIVE",
@@ -237,6 +231,12 @@
       "text": "GUARD GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022543927
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772022544585
     }
   ]
 }
