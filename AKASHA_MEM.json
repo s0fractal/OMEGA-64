@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "WATCH SHELTER GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772032939815
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE HUNGER HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772032942367
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD STASIS WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772032942539
     }
   ]
 }
