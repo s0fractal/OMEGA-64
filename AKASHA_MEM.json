@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60006000",
     "0AAA000A",
     "0B0000F0",
     "60060000",
@@ -199,15 +198,10 @@
     "A00A0A00",
     "A0BB0000",
     "AA0A000A",
-    "06660006"
+    "06660006",
+    "66606660"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "REFLECT WAIT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772038817664
-    },
     {
       "origin": "REVERSE",
       "text": "SHELTER REFLECT SHELTER",
@@ -291,6 +285,12 @@
       "text": "SHOCK DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772038820709
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD IMMUNE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772038820900
     }
   ]
 }
