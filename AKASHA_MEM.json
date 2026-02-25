@@ -70,12 +70,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE HUNGER SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020896937
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE FLOW COHERE",
       "mood": "HARMONIC",
@@ -158,6 +152,12 @@
       "text": "WITNESS AWAKEN WAVE",
       "mood": "CREATIVE",
       "tick": 1772020903302
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772020903458
     }
   ]
 }
