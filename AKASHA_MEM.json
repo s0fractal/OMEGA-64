@@ -83,12 +83,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE IMMUNE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021206512
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "FLOW STABLE COHERE",
       "mood": "HARMONIC",
@@ -171,6 +165,12 @@
       "text": "REFLECT GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772021214330
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD GUARD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772021214718
     }
   ]
 }
