@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE SHIELD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772036274983
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK AWAKEN EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772036275178
@@ -291,6 +285,12 @@
       "text": "COHERE HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772036285615
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHELTER WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772036285818
     }
   ]
 }
