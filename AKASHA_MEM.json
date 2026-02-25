@@ -116,12 +116,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772022026877
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022027138
@@ -203,6 +197,12 @@
       "text": "REFLECT IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022033021
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS PURE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772022033391
     }
   ]
 }
