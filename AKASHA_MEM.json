@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS COHERE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772036989096
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772036989524
@@ -291,6 +285,12 @@
       "text": "CONSUME DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772036992188
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT IMMUNE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772036992399
     }
   ]
 }
