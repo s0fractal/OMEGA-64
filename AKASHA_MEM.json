@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC SYNC HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772040527278
-    },
-    {
       "origin": "STREAM",
       "text": "GUARD WATCH SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772040529796
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE HUNGER STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040529922
     }
   ]
 }
