@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHIELD GUARD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041969687
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WAIT GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041969868
@@ -291,6 +285,12 @@
       "text": "SICKNESS CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772041975920
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772041976208
     }
   ]
 }
