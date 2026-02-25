@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "SUCC",
-      "text": "FLOW GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042360389
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK STRIKE DECAY",
       "mood": "AGGRESSIVE",
@@ -282,15 +276,21 @@
     },
     {
       "origin": "ARCHIVIST",
-      "text": "SHELTER IMMUNE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042369890
+      "text": "FLOW SYNC FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042370088
     },
     {
       "origin": "ARCHIVIST",
-      "text": "GIVING RESONATE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042370321
+      "text": "IMMUNE SHELTER PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042370496
+    },
+    {
+      "origin": "PARADOX",
+      "text": "DECAY BREACH STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042370848
     }
   ]
 }
