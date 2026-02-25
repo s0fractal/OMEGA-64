@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A6666660",
     "66060066",
     "AA6600A6",
     "A0BBC00D",
@@ -199,15 +198,10 @@
     "06606600",
     "0D10A098",
     "AAAAA000",
-    "00B0C00D"
+    "00B0C00D",
+    "AA00A0AA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "DECAY HUNGER HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039860488
-    },
     {
       "origin": "REVERSE",
       "text": "RECON SHIELD REFLECT",
@@ -291,6 +285,12 @@
       "text": "STRIKE CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772039868153
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DECAY STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039872868
     }
   ]
 }
