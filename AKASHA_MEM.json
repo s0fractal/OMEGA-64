@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DREAM VISION SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772032958724
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772032958883
@@ -291,6 +285,12 @@
       "text": "SHOCK SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772032961192
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HUNGER STRIFE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032961322
     }
   ]
 }
