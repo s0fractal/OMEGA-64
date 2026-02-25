@@ -71,12 +71,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772020893667
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020893854
@@ -158,6 +152,12 @@
       "text": "STRIFE BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772020898798
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DRAIN CONSUME STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020899010
     }
   ]
 }
