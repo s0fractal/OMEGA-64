@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE WAIT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772031462814
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN STRIFE SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772031469138
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIKE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031470122
     }
   ]
 }
