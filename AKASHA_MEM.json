@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT WAIT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772037984666
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772037984895
@@ -291,6 +285,12 @@
       "text": "STABLE RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772037987999
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE PURE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772037988174
     }
   ]
 }
