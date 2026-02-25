@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A0606606",
     "A6666606",
     "A06666A6",
     "60666666",
@@ -199,15 +198,10 @@
     "66606066",
     "60660600",
     "AAA0000A",
-    "000AA000"
+    "000AA000",
+    "A06600A6"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STRIFE BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033022996
-    },
     {
       "origin": "REVERSE",
       "text": "SHIELD PURE SHIELD",
@@ -291,6 +285,12 @@
       "text": "DRAIN DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772033025290
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH BREACH DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033025433
     }
   ]
 }
