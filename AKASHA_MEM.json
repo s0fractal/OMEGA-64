@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772035198812
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772035199064
@@ -291,6 +285,12 @@
       "text": "SHOCK SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772035202293
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHIELD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772035202539
     }
   ]
 }
