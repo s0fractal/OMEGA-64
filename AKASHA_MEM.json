@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66006060",
     "AAAAA0AA",
     "F00FF00F",
     "A00A0A00",
@@ -199,15 +198,10 @@
     "06600006",
     "000AAA00",
     "00060660",
-    "AAAAA0A0"
+    "AAAAA0A0",
+    "AA0A0A00"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SEIZE HUNGER DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031516071
-    },
     {
       "origin": "REVERSE",
       "text": "SYNC UNIFY SYNC",
@@ -291,6 +285,12 @@
       "text": "DRAIN DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772031536152
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031536749
     }
   ]
 }
