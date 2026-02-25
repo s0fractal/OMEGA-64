@@ -47,12 +47,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020102197
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BLOOM BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772020103742
@@ -134,6 +128,12 @@
       "text": "STRIFE BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020113027
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020113839
     }
   ]
 }
