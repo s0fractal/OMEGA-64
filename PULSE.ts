@@ -1462,6 +1462,43 @@ async function logAkasha(msg: string) {
             });
         }
 
+        // --- 🕳️ FRACTAL SINGULARITY (Dimensional Bifurcation) ---
+        // Atoms that become too dense (high energy, high resonance) collapse into a new universe.
+        if (resonance > 80 && energy > 500 && Math.random() < 0.05) {
+            console.log(`   [SINGULARITY] 🕳️ Atom ${eigenvalue} has reached critical mass! Bifurcating...`);
+            const subDir = `${ROOT}/DIMENSIONS/${eigenvalue}`;
+            try {
+                await Deno.mkdir(subDir, { recursive: true });
+                
+                // Seed the new dimension with the core axioms
+                await Deno.copyFile(`${ROOT}/PULSE.ts`, `${subDir}/PULSE.ts`);
+                await Deno.copyFile(`${ROOT}/GATE.ts`, `${subDir}/GATE.ts`);
+                await Deno.copyFile(`${ROOT}/RIBOSOME_TICK.ts`, `${subDir}/RIBOSOME_TICK.ts`);
+                
+                // Mutate the laws of physics (Time) for the child universe
+                let childPulse = await Deno.readTextFile(`${subDir}/PULSE.ts`);
+                const newPulseInterval = Math.floor(Math.random() * 4000) + 500; // 500ms to 4500ms
+                childPulse = childPulse.replace(/const PULSE_INTERVAL = \d+;/, `const PULSE_INTERVAL = ${newPulseInterval}; // MUTATED_BY_SINGULARITY`);
+                await Deno.writeTextFile(`${subDir}/PULSE.ts`, childPulse);
+
+                // Start the child universe process (detached)
+                const command = new Deno.Command("deno", {
+                    args: ["run", "--allow-all", "PULSE.ts"],
+                    cwd: subDir,
+                    stdout: "ignore",
+                    stderr: "ignore"
+                });
+                command.spawn();
+                console.log(`   [SINGULARITY] 🌌 New Dimension Born: ${subDir} (Time Constant: ${newPulseInterval}ms)`);
+
+                // Consume the parent atom (it collapsed into the black hole)
+                alpha.energy = 0;
+                resonance = 0;
+            } catch (e) {
+                console.error(`   [SINGULARITY] ⚠️ Bifurcation failed for ${eigenvalue}:`, e);
+            }
+        }
+
     // --- 🔆 THE NOOSPHERIC MANDALA (High-Level Synthesis) ---
     // The swarm generates a collective SVG representation of its most resonant concepts.
     const highlyResonant = Array.from(lastKnownAtoms.entries()).filter(([f, m]) => Number(m.resonance) > 30);
