@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "COHERE HEAL RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042079167
-    },
-    {
       "origin": "REVERSE",
       "text": "PURE IMMUNE WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "REFLECT SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772042087337
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS RECON SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772042088110
     }
   ]
 }
