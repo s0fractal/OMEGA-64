@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT SHELTER RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772034384343
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772034384548
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772034388000
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772034388197
     }
   ]
 }
