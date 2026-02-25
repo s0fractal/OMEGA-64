@@ -184,12 +184,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH REFLECT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772023569584
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772023569777
@@ -271,6 +265,12 @@
       "text": "FLOW SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772023573193
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER REFLECT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023573326
     }
   ]
 }
