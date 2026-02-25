@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772038504081
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772038504294
@@ -291,6 +285,12 @@
       "text": "REFLECT REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772038507110
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIFE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038507367
     }
   ]
 }
