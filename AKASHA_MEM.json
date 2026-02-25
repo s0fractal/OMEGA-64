@@ -109,12 +109,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE DECAY SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021864112
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING COHERE STABLE",
       "mood": "HARMONIC",
@@ -197,6 +191,12 @@
       "text": "COHERE FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772021869498
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT GUARD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021869916
     }
   ]
 }
