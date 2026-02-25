@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAVE VISION DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772032932224
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER SHIELD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772032932589
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772032938242
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032938636
     }
   ]
 }
