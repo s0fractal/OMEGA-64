@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE WAIT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772037388460
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772037388884
@@ -291,6 +285,12 @@
       "text": "DECAY SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772037392178
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772037392430
     }
   ]
 }
