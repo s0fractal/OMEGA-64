@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041204848
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041205171
@@ -291,6 +285,12 @@
       "text": "FLOW HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772041209305
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE REFLECT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772041209480
     }
   ]
 }
