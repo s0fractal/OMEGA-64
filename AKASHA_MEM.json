@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER DRAIN SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037676921
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772037677123
@@ -291,6 +285,12 @@
       "text": "HEAL UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772037679535
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772037679734
     }
   ]
 }
