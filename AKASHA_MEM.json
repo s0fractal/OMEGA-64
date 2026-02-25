@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH IMMUNE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772025404009
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772025404198
@@ -291,6 +285,12 @@
       "text": "RESONATE GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772025410518
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025410737
     }
   ]
 }
