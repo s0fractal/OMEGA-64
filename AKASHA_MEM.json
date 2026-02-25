@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "COHERE STABLE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772036253482
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY SHOCK CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772036256681
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE WAVE WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772036256943
     }
   ]
 }
