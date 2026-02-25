@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY DECAY SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025248527
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772025248847
@@ -291,6 +285,12 @@
       "text": "VISION VISION VISION",
       "mood": "CREATIVE",
       "tick": 1772025254518
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772025254796
     }
   ]
 }
