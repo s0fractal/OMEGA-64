@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "BLOOM HEAL RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772041833420
-    },
-    {
       "origin": "INTERFACE",
       "text": "GUARD REFLECT GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772041838547
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD STASIS WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041838825
     }
   ]
 }
