@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772038143484
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772038143674
@@ -291,6 +285,12 @@
       "text": "GUARD SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772038146461
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772038146675
     }
   ]
 }
