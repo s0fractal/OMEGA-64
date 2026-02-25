@@ -129,12 +129,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD SHELTER RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772022299485
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME DRAIN SEIZE",
       "mood": "AGGRESSIVE",
@@ -217,6 +211,12 @@
       "text": "UNIFY UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772022305626
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIKE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022305776
     }
   ]
 }
