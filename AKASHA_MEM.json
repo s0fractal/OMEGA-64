@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772033553188
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772033553382
@@ -291,6 +285,12 @@
       "text": "BREACH STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772033555797
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC HEAL HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772033555945
     }
   ]
 }
