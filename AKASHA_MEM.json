@@ -181,12 +181,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772023473930
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772023474209
@@ -268,6 +262,12 @@
       "text": "WATCH SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023481111
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT RECON PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023481283
     }
   ]
 }
