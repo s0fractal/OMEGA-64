@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING RESONATE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772028249503
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772028249957
@@ -291,6 +285,12 @@
       "text": "REFLECT RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772028256712
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "OSMOSIS GIVING BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772028257366
     }
   ]
 }
