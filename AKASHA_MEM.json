@@ -65,12 +65,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN BREACH SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020775280
-    },
-    {
       "origin": "INTERFACE",
       "text": "BREACH STRIFE SHOCK",
       "mood": "AGGRESSIVE",
@@ -153,6 +147,12 @@
       "text": "STRIKE DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020783627
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER STASIS PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020784053
     }
   ]
 }
