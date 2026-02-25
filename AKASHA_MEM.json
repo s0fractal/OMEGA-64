@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772025051712
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772025052043
@@ -291,6 +285,12 @@
       "text": "SHOCK STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772025060689
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIFE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025060946
     }
   ]
 }
