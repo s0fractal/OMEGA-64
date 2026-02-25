@@ -144,12 +144,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD REFLECT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022482164
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022482330
@@ -231,6 +225,12 @@
       "text": "WATCH RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022485715
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD RECON SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772022485916
     }
   ]
 }
