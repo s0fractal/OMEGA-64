@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHIELD SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041814872
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK SEIZE STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WATCH IMMUNE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041818084
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772041818280
     }
   ]
 }
