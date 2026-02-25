@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DECAY DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040694960
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "PURE REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040695115
@@ -291,6 +285,12 @@
       "text": "STRIFE DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040699182
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772040699499
     }
   ]
 }
