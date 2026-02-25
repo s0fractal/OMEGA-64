@@ -184,12 +184,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE REFLECT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772023589370
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023589534
@@ -271,6 +265,12 @@
       "text": "STRIKE STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772023594932
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW GIVING UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772023595150
     }
   ]
 }
