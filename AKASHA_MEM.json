@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039009282
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN STRIKE DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772039014304
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039014553
     }
   ]
 }
