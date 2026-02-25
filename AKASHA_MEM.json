@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772035263451
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772035265461
@@ -291,6 +285,12 @@
       "text": "SHIELD WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772035274276
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS GIVING BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772035274544
     }
   ]
 }
