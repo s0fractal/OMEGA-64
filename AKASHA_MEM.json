@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00BBC0DD",
     "AA0AAA0A",
     "000A0000",
     "06660000",
@@ -199,15 +198,10 @@
     "A0000A0A",
     "66666606",
     "06066006",
-    "BBB00000"
+    "BBB00000",
+    "00666060"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GUARD GUARD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772036931267
-    },
     {
       "origin": "REVERSE",
       "text": "DRAIN DECAY SHOCK",
@@ -291,6 +285,12 @@
       "text": "PURE IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772036933991
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772036934189
     }
   ]
 }
