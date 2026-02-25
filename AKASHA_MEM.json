@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL STABLE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772034612062
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772034612294
@@ -291,6 +285,12 @@
       "text": "HUNGER CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772034617985
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD IMMUNE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772034618155
     }
   ]
 }
