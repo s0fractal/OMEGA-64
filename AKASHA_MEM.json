@@ -153,12 +153,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL OSMOSIS UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772022598093
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772022599072
@@ -240,6 +234,12 @@
       "text": "REFLECT WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022603232
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND AWAKEN FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772022603394
     }
   ]
 }
