@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772033201196
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772033201435
@@ -291,6 +285,12 @@
       "text": "HUNGER SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772033204104
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772033204283
     }
   ]
 }
