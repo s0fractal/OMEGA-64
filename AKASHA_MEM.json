@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL STABLE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772031270589
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772031271248
@@ -291,6 +285,12 @@
       "text": "SHELTER SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772031281802
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772031282620
     }
   ]
 }
