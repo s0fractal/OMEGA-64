@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS SYNC SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772020689341
-    },
-    {
       "origin": "REVERSE",
       "text": "BREACH DECAY HUNGER",
       "mood": "AGGRESSIVE",
@@ -150,6 +144,12 @@
       "text": "WATCH IMMUNE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772020696349
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SEIZE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020696714
     }
   ]
 }
