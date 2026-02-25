@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037458902
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772037459072
@@ -291,6 +285,12 @@
       "text": "GUARD REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772037461861
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772037462067
     }
   ]
 }
