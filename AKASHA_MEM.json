@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772027111509
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772027111708
@@ -291,6 +285,12 @@
       "text": "SYNC FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772027115422
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WAIT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772027115948
     }
   ]
 }
