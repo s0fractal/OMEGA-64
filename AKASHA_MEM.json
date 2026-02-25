@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SHOCK STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033048636
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772033048786
@@ -291,6 +285,12 @@
       "text": "HEAL STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772033051694
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SEIZE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033051890
     }
   ]
 }
