@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06666660",
     "9D00A098",
     "AAAAA0AA",
     "AABB0CDD",
@@ -199,15 +198,10 @@
     "00A0AAAA",
     "000A06A0",
     "00600660",
-    "06660000"
+    "06660000",
+    "00606000"
   ],
   "utterances": [
-    {
-      "origin": "STREAM",
-      "text": "DECAY STRIFE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025766123
-    },
     {
       "origin": "REVERSE",
       "text": "SICKNESS STRIFE SEIZE",
@@ -291,6 +285,12 @@
       "text": "BLOOM BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772025770701
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772025770898
     }
   ]
 }
