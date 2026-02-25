@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "SHOCK STRIFE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041399472
-    },
-    {
       "origin": "INTERFACE",
       "text": "GIVING HEAL UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHELTER RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772041403192
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME DECAY SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041403322
     }
   ]
 }
