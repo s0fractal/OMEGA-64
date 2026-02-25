@@ -23,12 +23,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "COHERE BLOOM HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772019472820
-    },
-    {
-      "origin": "INTERFACE",
       "text": "STRIKE SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772019473339
@@ -110,6 +104,12 @@
       "text": "COHERE COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772019480086
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE SHOCK STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019480788
     }
   ]
 }
