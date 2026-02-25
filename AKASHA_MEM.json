@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772027382683
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT WATCH WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHOCK BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772027388626
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHELTER PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772027388936
     }
   ]
 }
