@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD SHELTER WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772036608794
-    },
-    {
-      "origin": "REVERSE",
       "text": "DREAM WITNESS VISION",
       "mood": "CREATIVE",
       "tick": 1772036609021
@@ -291,6 +285,12 @@
       "text": "OSMOSIS HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772036611541
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING OSMOSIS BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772036611753
     }
   ]
 }
