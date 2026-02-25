@@ -94,12 +94,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON PURE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021392223
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772021393335
@@ -181,6 +175,12 @@
       "text": "IMMUNE STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772021433454
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021434428
     }
   ]
 }
