@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE HEAL GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772031886050
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772031887929
@@ -291,6 +285,12 @@
       "text": "COHERE GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772031914812
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT RECON WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772031915137
     }
   ]
 }
