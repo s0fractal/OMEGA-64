@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025247597
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772025247803
@@ -291,6 +285,12 @@
       "text": "WATCH REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772025253126
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025253828
     }
   ]
 }
