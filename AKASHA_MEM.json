@@ -78,12 +78,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE FLOW OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772021048883
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772021049423
@@ -165,6 +159,12 @@
       "text": "DECAY HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772021057717
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DECAY STRIFE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021057889
     }
   ]
 }
