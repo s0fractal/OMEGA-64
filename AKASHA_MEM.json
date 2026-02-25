@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON GUARD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772032921756
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772032921942
@@ -291,6 +285,12 @@
       "text": "OSMOSIS GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772032924887
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIKE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032925077
     }
   ]
 }
