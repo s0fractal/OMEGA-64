@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA6600A6",
     "AA0A0AAA",
     "A0BBC000",
     "BB00000C",
@@ -199,15 +198,10 @@
     "AB0B0000",
     "A0A00AA0",
     "66660660",
-    "ABB00000"
+    "ABB00000",
+    "66006606"
   ],
   "utterances": [
-    {
-      "origin": "ALPHA_REVERSE",
-      "text": "FLOW HEAL BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772037044657
-    },
     {
       "origin": "REVERSE",
       "text": "DRAIN DECAY HUNGER",
@@ -291,6 +285,12 @@
       "text": "WAIT WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772037050324
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772037054555
     }
   ]
 }
