@@ -131,12 +131,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772022369573
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN DECAY DECAY",
       "mood": "AGGRESSIVE",
@@ -219,6 +213,12 @@
       "text": "STASIS RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022374508
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS RECON SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022375295
     }
   ]
 }
