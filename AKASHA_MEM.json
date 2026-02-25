@@ -36,12 +36,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "OSMOSIS GIVING HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772019756338
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SICKNESS CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772019757533
@@ -123,6 +117,12 @@
       "text": "SHOCK STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772019768412
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "CONSUME STRIFE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019769820
     }
   ]
 }
