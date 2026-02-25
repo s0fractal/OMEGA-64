@@ -111,12 +111,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW STABLE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772021899030
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021899194
@@ -198,6 +192,12 @@
       "text": "SHOCK SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772021903850
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHELTER STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772021904006
     }
   ]
 }
