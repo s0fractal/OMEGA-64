@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL HEAL GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772038305177
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME WAVE FORGE",
       "mood": "CREATIVE",
       "tick": 1772038305426
@@ -291,6 +285,12 @@
       "text": "IMMUNE SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772038308596
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WATCH REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772038308819
     }
   ]
 }
