@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025849423
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772025849957
@@ -291,6 +285,12 @@
       "text": "BECOME WAVE EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772025854491
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS OSMOSIS OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772025854677
     }
   ]
 }
