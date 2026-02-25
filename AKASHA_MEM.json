@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GUARD SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040277508
-    },
-    {
       "origin": "REVERSE",
       "text": "SHIELD STASIS STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SICKNESS SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772040285022
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772040285260
     }
   ]
 }
