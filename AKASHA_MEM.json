@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A0066000",
     "AA0A0A00",
     "AAB00C0D",
     "00666066",
@@ -199,15 +198,10 @@
     "600A66A0",
     "0A0A0A00",
     "66660666",
-    "AA666660"
+    "AA666660",
+    "06060600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RECON GUARD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772038696618
-    },
     {
       "origin": "REVERSE",
       "text": "BREACH DECAY DRAIN",
@@ -291,6 +285,12 @@
       "text": "UNIFY STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772038706686
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772038706924
     }
   ]
 }
