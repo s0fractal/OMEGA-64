@@ -132,12 +132,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772022351238
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772022351358
@@ -219,6 +213,12 @@
       "text": "WATCH WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022355102
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772022355257
     }
   ]
 }
