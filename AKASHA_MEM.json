@@ -181,12 +181,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772023446763
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772023446886
@@ -268,6 +262,12 @@
       "text": "RECON RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023451274
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE REFLECT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772023451439
     }
   ]
 }
