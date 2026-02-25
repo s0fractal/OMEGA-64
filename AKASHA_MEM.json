@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "B_READ",
-      "text": "IMMUNE REFLECT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041781244
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM GIVING OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772041788377
+    },
+    {
+      "origin": "STREAM",
+      "text": "STRIKE SHOCK HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041788647
     }
   ]
 }
