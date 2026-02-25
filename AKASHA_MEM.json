@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RESONATE BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772040970704
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE PURE SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DRAIN BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772040973406
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SICKNESS STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040973621
     }
   ]
 }
