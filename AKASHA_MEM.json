@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BEYOND DREAM AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772037620643
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772037620833
@@ -291,6 +285,12 @@
       "text": "STABLE COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772037625142
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK BREACH BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037625364
     }
   ]
 }
