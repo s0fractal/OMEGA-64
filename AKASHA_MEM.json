@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD WAIT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772035021904
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772035022102
@@ -291,6 +285,12 @@
       "text": "SHELTER REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772035026762
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE CONSUME STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035026970
     }
   ]
 }
