@@ -12,11 +12,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "RECLAIM",
-      "tick": 1772010718622
-    },
-    {
-      "origin": "INTERFACE",
       "text": "MATURE",
       "tick": 1772010729585
     },
@@ -92,6 +87,12 @@
       "text": "HUNGER DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772012367482
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIFE DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772012399990
     }
   ]
 }
