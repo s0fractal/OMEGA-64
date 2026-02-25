@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034260857
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772034261026
@@ -291,6 +285,12 @@
       "text": "UNIFY SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772034263586
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS FORGE BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772034265255
     }
   ]
 }
