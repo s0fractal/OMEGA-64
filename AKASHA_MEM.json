@@ -49,12 +49,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020228769
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772020228948
@@ -136,6 +130,12 @@
       "text": "SHOCK SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020235921
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772020236310
     }
   ]
 }
