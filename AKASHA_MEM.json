@@ -21,12 +21,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "CONSUME BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772017075690
-    },
-    {
-      "origin": "INTERFACE",
       "text": "DRAIN STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772017085000
@@ -108,6 +102,12 @@
       "text": "SHOCK STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772017174424
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BLOOM COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772017185518
     }
   ]
 }
