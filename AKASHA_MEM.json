@@ -44,12 +44,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SICKNESS CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019999576
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DRAIN HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020000915
@@ -131,6 +125,12 @@
       "text": "SYNC COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772020011617
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772020012527
     }
   ]
 }
