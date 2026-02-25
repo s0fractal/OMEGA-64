@@ -24,12 +24,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DRAIN HUNGER SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019510345
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GUARD WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772019510663
@@ -111,6 +105,12 @@
       "text": "SEIZE HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772019517310
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE PURE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772019517932
     }
   ]
 }
