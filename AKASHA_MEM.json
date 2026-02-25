@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT WATCH WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772039729003
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772039729439
@@ -291,6 +285,12 @@
       "text": "STASIS IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772039746038
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772039746463
     }
   ]
 }
