@@ -23,12 +23,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "UNIFY HEAL UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772019455543
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RECON PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772019456542
@@ -110,6 +104,12 @@
       "text": "SICKNESS SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772019465460
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE DECAY SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019466027
     }
   ]
 }
