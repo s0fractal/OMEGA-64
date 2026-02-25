@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772028890444
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772028891994
@@ -291,6 +285,12 @@
       "text": "DRAIN HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772028898279
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028898630
     }
   ]
 }
