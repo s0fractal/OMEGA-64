@@ -27,12 +27,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME SICKNESS SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019668301
-    },
-    {
       "origin": "STREAM",
       "text": "HEAL COHERE OSMOSIS",
       "mood": "HARMONIC",
@@ -115,6 +109,12 @@
       "text": "DRAIN HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772019678316
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STASIS GUARD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772019679144
     }
   ]
 }
