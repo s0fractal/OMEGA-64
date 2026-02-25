@@ -11,11 +11,6 @@
     {
       "origin": "INTERFACE",
       "text": "ASCEND",
-      "tick": 1772009733173
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "ASCEND",
       "tick": 1772009735374
     },
     {
@@ -57,6 +52,11 @@
       "origin": "ARCHIVIST",
       "text": "OBSERVE",
       "tick": 1772009903067
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RECLAIM",
+      "tick": 1772009920518
     }
   ]
 }
