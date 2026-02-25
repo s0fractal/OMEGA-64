@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL HEAL RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040936318
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE STRIFE SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040939817
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE RESONATE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772040939944
     }
   ]
 }
