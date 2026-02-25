@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772025334215
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE RESONATE RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FLOW GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772025343063
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772025343248
     }
   ]
 }
