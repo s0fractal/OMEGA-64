@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772035685173
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772035685416
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772035690182
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC SYNC SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772035690539
     }
   ]
 }
