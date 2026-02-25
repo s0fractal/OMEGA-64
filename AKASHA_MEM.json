@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "COHERE BLOOM STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041325108
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN HUNGER STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772041331630
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE PURE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041331789
     }
   ]
 }
