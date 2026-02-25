@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DRAIN STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772017064179
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE STRIFE CONSUME",
       "mood": "AGGRESSIVE",
@@ -107,6 +101,12 @@
       "text": "IMMUNE SHIELD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772017160709
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772017169532
     }
   ]
 }
