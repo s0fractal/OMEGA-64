@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040375084
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040375292
@@ -291,6 +285,12 @@
       "text": "UNIFY COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040380761
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE RESONATE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772040381173
     }
   ]
 }
