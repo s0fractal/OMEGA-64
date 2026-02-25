@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN STRIKE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019963818
-    },
-    {
       "origin": "INTERFACE",
       "text": "PURE REFLECT SHELTER",
       "mood": "DEFENSIVE",
@@ -130,6 +124,12 @@
       "text": "GIVING BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772019974784
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT STASIS PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772019975277
     }
   ]
 }
