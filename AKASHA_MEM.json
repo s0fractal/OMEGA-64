@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON GUARD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772025753891
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772025754141
@@ -291,6 +285,12 @@
       "text": "AWAKEN BEYOND FORGE",
       "mood": "CREATIVE",
       "tick": 1772025760930
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772025761375
     }
   ]
 }
