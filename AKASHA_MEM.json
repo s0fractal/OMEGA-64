@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH BREACH HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041543561
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "PURE SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041543708
@@ -291,6 +285,12 @@
       "text": "DRAIN DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772041548176
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041548357
     }
   ]
 }
