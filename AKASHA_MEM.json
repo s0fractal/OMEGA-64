@@ -132,12 +132,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022349502
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772022350456
@@ -219,6 +213,12 @@
       "text": "SICKNESS SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772022353865
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022354224
     }
   ]
 }
