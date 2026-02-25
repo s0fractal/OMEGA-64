@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772034526886
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034527084
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772034529540
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SICKNESS SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034529753
     }
   ]
 }
