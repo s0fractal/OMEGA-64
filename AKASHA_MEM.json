@@ -94,12 +94,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SICKNESS SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021490108
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772021490541
@@ -181,6 +175,12 @@
       "text": "BLOOM RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772021498897
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021499309
     }
   ]
 }
