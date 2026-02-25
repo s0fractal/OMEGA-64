@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE SHIELD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772034559773
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BLOOM HEAL OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BREACH STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772034563842
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW UNIFY COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772034564151
     }
   ]
 }
