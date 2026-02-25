@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SYNC SYNC UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772042242735
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT RECON SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STASIS WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772042252440
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WAIT STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042252696
     }
   ]
 }
