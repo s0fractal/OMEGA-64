@@ -203,18 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042253200
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD PURE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772042253294
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +279,18 @@
       "text": "SHIELD STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772042262339
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS SYNC FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042263205
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042263605
     }
   ]
 }
