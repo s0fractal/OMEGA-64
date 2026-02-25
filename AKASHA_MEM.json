@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0AA00A",
     "0BBB0000",
     "00AA000A",
     "00AAAA0A",
@@ -199,15 +198,10 @@
     "A6666606",
     "AA6060A6",
     "06066000",
-    "06606000"
+    "06606000",
+    "60006000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WAIT RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772033809629
-    },
     {
       "origin": "REVERSE",
       "text": "IMMUNE IMMUNE WATCH",
@@ -291,6 +285,12 @@
       "text": "RESONATE SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772033813455
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WAIT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772033813777
     }
   ]
 }
