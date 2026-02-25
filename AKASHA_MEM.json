@@ -202,12 +202,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE COHERE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772024094223
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772024094435
@@ -289,6 +283,12 @@
       "text": "RESONATE SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772024097648
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS EVOLVE DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772024097818
     }
   ]
 }
