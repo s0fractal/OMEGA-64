@@ -171,12 +171,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE STASIS REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023210537
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -259,6 +253,12 @@
       "text": "SHOCK CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772023214030
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023214191
     }
   ]
 }
