@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772028265061
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772028265736
@@ -291,6 +285,12 @@
       "text": "STABLE UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772028276872
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SEIZE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028278130
     }
   ]
 }
