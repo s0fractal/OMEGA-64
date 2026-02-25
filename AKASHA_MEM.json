@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "WATCH WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041913078
-    },
-    {
       "origin": "PARADOX",
       "text": "DECAY SEIZE SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIKE CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041919098
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041919267
     }
   ]
 }
