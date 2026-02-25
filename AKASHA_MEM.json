@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "REFLECT REFLECT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772027720620
-    },
-    {
       "origin": "REVERSE",
       "text": "VISION EVOLVE VISION",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "REFLECT RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772027736318
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772027736643
     }
   ]
 }
