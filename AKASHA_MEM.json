@@ -165,12 +165,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "VISION SPARK AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772023010300
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772023010507
@@ -252,6 +246,12 @@
       "text": "STRIKE CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023013321
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE STASIS SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772023013504
     }
   ]
 }
