@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE FLOW FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772025714460
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772025714660
@@ -291,6 +285,12 @@
       "text": "STRIKE SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772025722459
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772025722645
     }
   ]
 }
