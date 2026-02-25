@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040470834
-    },
-    {
       "origin": "STREAM",
       "text": "STRIKE SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772040472905
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772040473027
     }
   ]
 }
