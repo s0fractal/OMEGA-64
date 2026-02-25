@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772030044660
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772030049901
@@ -291,6 +285,12 @@
       "text": "GIVING SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772030058130
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SICKNESS HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030058391
     }
   ]
 }
