@@ -56,12 +56,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SEIZE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020500615
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020500794
@@ -143,6 +137,12 @@
       "text": "BLOOM FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772020508324
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH STRIFE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020508491
     }
   ]
 }
