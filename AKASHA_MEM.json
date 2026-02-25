@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033652122
-    },
-    {
       "origin": "STREAM",
       "text": "OSMOSIS HEAL OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "CONSUME DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772033654961
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW OSMOSIS OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772033655146
     }
   ]
 }
