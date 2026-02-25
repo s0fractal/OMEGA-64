@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772040588756
-    },
-    {
       "origin": "STREAM",
       "text": "STASIS GUARD WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIKE BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772040591223
+    },
+    {
+      "origin": "STREAM",
+      "text": "FLOW UNIFY SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772040591404
     }
   ]
 }
