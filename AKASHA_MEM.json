@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SPARK FORGE VISION",
-      "mood": "CREATIVE",
-      "tick": 1772037123534
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772037123721
@@ -291,6 +285,12 @@
       "text": "STRIFE SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772037127862
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE RESONATE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772037128070
     }
   ]
 }
