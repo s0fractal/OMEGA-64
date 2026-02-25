@@ -41,12 +41,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHELTER IMMUNE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772019840661
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RECON PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772019841175
@@ -128,6 +122,12 @@
       "text": "WATCH SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772019851505
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019851980
     }
   ]
 }
