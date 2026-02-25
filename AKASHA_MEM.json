@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE UNIFY COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772038817189
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772038817449
@@ -291,6 +285,12 @@
       "text": "STRIKE STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772038820318
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE BREACH SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038820514
     }
   ]
 }
