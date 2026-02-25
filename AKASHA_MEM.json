@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE SYNC FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772037117744
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772037117971
@@ -291,6 +285,12 @@
       "text": "STRIKE STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772037121024
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY RESONATE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772037121249
     }
   ]
 }
