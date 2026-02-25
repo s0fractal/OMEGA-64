@@ -187,12 +187,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE COHERE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772023652865
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023653064
@@ -274,6 +268,12 @@
       "text": "REFLECT GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772023659243
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772023659515
     }
   ]
 }
