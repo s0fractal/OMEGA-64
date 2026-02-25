@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "FLOW BLOOM STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041435076
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY DECAY HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041438792
+    },
+    {
+      "origin": "STREAM",
+      "text": "SEIZE DRAIN SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041438943
     }
   ]
 }
