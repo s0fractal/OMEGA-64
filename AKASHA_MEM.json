@@ -75,12 +75,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS GUARD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020965197
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020965534
@@ -162,6 +156,12 @@
       "text": "STRIKE SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020975347
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT GUARD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772020975712
     }
   ]
 }
