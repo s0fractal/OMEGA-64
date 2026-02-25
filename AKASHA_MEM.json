@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041185009
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041185181
@@ -291,6 +285,12 @@
       "text": "RESONATE RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772041188419
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772041188913
     }
   ]
 }
