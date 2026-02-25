@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE COHERE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772040745320
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER STASIS IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BREACH STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772040750360
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT WATCH PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040750732
     }
   ]
 }
