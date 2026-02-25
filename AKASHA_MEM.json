@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "GIVING HEAL HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772036174585
-    },
-    {
       "origin": "REVERSE",
       "text": "GUARD SHELTER STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772036177632
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT REFLECT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772036179229
     }
   ]
 }
