@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE SHIELD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772036482527
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772036482750
@@ -291,6 +285,12 @@
       "text": "STABLE STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772036487827
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772036488255
     }
   ]
 }
