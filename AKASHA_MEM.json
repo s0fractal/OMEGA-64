@@ -49,12 +49,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "REFLECT IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772020219960
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHOCK SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772020221079
@@ -136,6 +130,12 @@
       "text": "UNIFY OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772020230132
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020230632
     }
   ]
 }
