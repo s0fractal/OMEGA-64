@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66000000",
     "A00A0A00",
     "A0BB0000",
     "AA0A000A",
@@ -199,15 +198,10 @@
     "A0BBC00D",
     "66000066",
     "01000000",
-    "0AAAAAA0"
+    "0AAAAAA0",
+    "A0000A06"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "DRAIN BREACH SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040975549
-    },
     {
       "origin": "ARCHIVIST",
       "text": "SHOCK SICKNESS STRIKE",
@@ -291,6 +285,12 @@
       "text": "SHIELD GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772040978382
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE BREACH CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040978511
     }
   ]
 }
