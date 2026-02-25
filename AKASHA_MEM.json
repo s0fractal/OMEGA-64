@@ -141,12 +141,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022466264
-    },
-    {
       "origin": "INTERFACE",
       "text": "SICKNESS STRIKE BREACH",
       "mood": "AGGRESSIVE",
@@ -229,6 +223,12 @@
       "text": "COHERE STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022470057
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WAIT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022470836
     }
   ]
 }
