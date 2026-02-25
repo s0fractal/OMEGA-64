@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH SHELTER PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772038249396
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772038249621
@@ -291,6 +285,12 @@
       "text": "SHIELD WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772038261753
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SEIZE BREACH STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038262018
     }
   ]
 }
