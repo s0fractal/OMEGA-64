@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AABBC0DD",
     "A6660600",
     "06000606",
     "A000AAAA",
@@ -199,15 +198,10 @@
     "A0000000",
     "666666A6",
     "00660000",
-    "A0AAAA0A"
+    "A0AAAA0A",
+    "60660666"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "REFLECT GUARD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772030467656
-    },
     {
       "origin": "REVERSE",
       "text": "EVOLVE WAVE SPARK",
@@ -291,6 +285,12 @@
       "text": "COHERE UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772030482717
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WAIT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772030483204
     }
   ]
 }
