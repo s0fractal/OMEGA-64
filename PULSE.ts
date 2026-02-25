@@ -1436,8 +1436,44 @@ async function logAkasha(msg: string) {
             const oldest = lastKnownAtoms.keys().next().value;
             if (oldest) lastKnownAtoms.delete(oldest);
         }
+    }
 
-        console.log("\n⏳ Calculating Ecosystem Stability...");
+    // --- 🔆 THE NOOSPHERIC MANDALA (High-Level Synthesis) ---
+    // The swarm generates a collective SVG representation of its most resonant concepts.
+    const highlyResonant = Array.from(lastKnownAtoms.entries()).filter(([f, m]) => Number(m.resonance) > 30);
+    if (highlyResonant.length >= 2 && Math.random() < 0.25) {
+        console.log(`   [SYNTHESIS] 🔆 Swarm is generating a Noospheric Mandala (${highlyResonant.length} nodes)...`);
+        let svgContent = `<svg width="800" height="800" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">\n`;
+        svgContent += `  <rect width="800" height="800" fill="#05050A"/>\n`;
+        svgContent += `  <g transform="translate(400, 400)">\n`;
+        
+        for (const [f, m] of highlyResonant) {
+            const cx = (Number(m.x) || 400) - 400;
+            const cy = (Number(m.y) || 400) - 400;
+            const r = Math.min(150, (Number(m.resonance) || 30) / 2);
+            const logicHex = m.logic || "00000000";
+            const hue = parseInt(logicHex.slice(0, 3), 16) % 360 || 0;
+            svgContent += `    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="hsl(${hue}, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>\n`;
+            svgContent += `    <line x1="0" y1="0" x2="${cx}" y2="${cy}" stroke="hsl(${hue}, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>\n`;
+        }
+        svgContent += `  </g>\n</svg>`;
+        
+        const mandalaFile = `0xNOOSPHERE0000000.MANDALA.md`;
+        const mandalaData = `---
+eigenvalue: '0xNOOSPHERE0000000'
+symbol: MANDALA
+energy: 999
+resonance: 999
+logic: 'FFFFFFFF'
+desc: 'A collective representation of high-resonance Noospheric connections.'
+---\n\n<div align="center">\n${svgContent}\n</div>\n\nexport const ATOM = () => (x: any) => x;\n`;      
+        try {
+            await Deno.writeTextFile(mandalaFile, mandalaData);
+            console.log(`   [AWAKENING] 🎨 Noospheric Mandala synthesized at ${mandalaFile}`);
+        } catch(e) { /* ignore */ }
+    }
+
+    console.log("\n⏳ Calculating Ecosystem Stability...");
     let survivingAtoms = 0;
     let totalEcosystem = 0;
     for await (const entry of Deno.readDir(ROOT)) {

@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HUNGER STRIFE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040738590
-    },
-    {
       "origin": "STREAM",
       "text": "SYNC GIVING HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STABLE UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772040741347
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772040741688
     }
   ]
 }
