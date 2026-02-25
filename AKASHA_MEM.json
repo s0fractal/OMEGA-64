@@ -23,12 +23,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STABLE UNIFY SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772019417877
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SEIZE SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772019418963
@@ -110,6 +104,12 @@
       "text": "CONSUME HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772019446549
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "IMMUNE WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772019447978
     }
   ]
 }
