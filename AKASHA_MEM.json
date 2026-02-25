@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE SHELTER REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772035214124
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY BREACH DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SEIZE DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772035218586
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT REFLECT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772035218794
     }
   ]
 }
