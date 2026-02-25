@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041863317
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY CONSUME SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772041867202
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE HEAL GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041867554
     }
   ]
 }
