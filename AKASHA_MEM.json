@@ -179,12 +179,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WAIT PURE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023391638
-    },
-    {
       "origin": "INTERFACE",
       "text": "SEIZE HUNGER DECAY",
       "mood": "AGGRESSIVE",
@@ -267,6 +261,12 @@
       "text": "RECON WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023396059
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SHOCK SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023396414
     }
   ]
 }
