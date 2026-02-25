@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE STRIFE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041202008
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT PURE WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "WATCH SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041207860
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772041208093
     }
   ]
 }
