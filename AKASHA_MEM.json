@@ -143,12 +143,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE STASIS STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772022470999
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022471367
@@ -230,6 +224,12 @@
       "text": "WATCH STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022476827
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME DECAY SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022478129
     }
   ]
 }
