@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "GUARD WATCH SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772040527558
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON WAIT SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SEIZE HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772040529922
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS FLOW HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772040530087
     }
   ]
 }
