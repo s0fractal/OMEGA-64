@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD WATCH IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772028998072
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772028998368
@@ -291,6 +285,12 @@
       "text": "SHOCK DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772029005957
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN HUNGER SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029006643
     }
   ]
 }
