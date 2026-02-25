@@ -163,12 +163,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN HUNGER STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022895970
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH SHIELD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022896126
@@ -250,6 +244,12 @@
       "text": "WAIT RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022901582
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING GIVING UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772022903760
     }
   ]
 }
