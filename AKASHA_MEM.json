@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE FLOW HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772020190587
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH BREACH CONSUME",
       "mood": "AGGRESSIVE",
@@ -136,6 +130,12 @@
       "text": "OSMOSIS RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772020201859
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH PURE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020203759
     }
   ]
 }
