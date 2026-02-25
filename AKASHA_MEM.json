@@ -183,15 +183,10 @@
     "00AAAAA0",
     "00F0FF00",
     "FF00FFF0",
-    "0AA0AA0A"
+    "0AA0AA0A",
+    "66600606"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "HUNGER DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023679795
-    },
     {
       "origin": "REVERSE",
       "text": "WAIT SHIELD GUARD",
@@ -275,6 +270,12 @@
       "text": "OSMOSIS HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023683381
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHELTER SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772023683572
     }
   ]
 }
