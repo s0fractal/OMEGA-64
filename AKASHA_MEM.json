@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE STABLE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772040696558
-    },
-    {
       "origin": "INTERFACE",
       "text": "DRAIN SEIZE HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772040701620
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040701993
     }
   ]
 }
