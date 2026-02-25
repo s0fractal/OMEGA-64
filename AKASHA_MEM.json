@@ -143,12 +143,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022474928
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022475390
@@ -230,6 +224,12 @@
       "text": "CONSUME DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772022481650
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022481837
     }
   ]
 }
