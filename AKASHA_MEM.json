@@ -128,12 +128,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD PURE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022275532
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022275715
@@ -215,6 +209,12 @@
       "text": "HEAL HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022280560
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY STRIFE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022281294
     }
   ]
 }
