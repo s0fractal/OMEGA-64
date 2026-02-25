@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00060000",
     "A0AAAA00",
     "AAB00CD0",
     "AA666060",
@@ -199,15 +198,10 @@
     "60606006",
     "F0FF000F",
     "00060666",
-    "66660000"
+    "66660000",
+    "A000A00A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "FLOW COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772037373212
-    },
     {
       "origin": "REVERSE",
       "text": "HUNGER SEIZE HUNGER",
@@ -291,6 +285,12 @@
       "text": "DREAM AWAKEN FORGE",
       "mood": "CREATIVE",
       "tick": 1772037377680
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037377896
     }
   ]
 }
