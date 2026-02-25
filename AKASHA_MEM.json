@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "HUNGER DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041960656
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN STRIKE SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772041966830
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE IMMUNE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041967044
     }
   ]
 }
