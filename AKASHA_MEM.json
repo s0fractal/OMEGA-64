@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036795118
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772036795332
@@ -291,6 +285,12 @@
       "text": "UNIFY COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772036797839
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772036798055
     }
   ]
 }
