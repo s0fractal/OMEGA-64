@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DECAY SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022195903
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022196051
@@ -213,6 +207,12 @@
       "text": "BREACH CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022199491
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772022199933
     }
   ]
 }
