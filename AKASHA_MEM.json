@@ -201,12 +201,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM HEAL HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772024069602
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HEAL BLOOM HEAL",
       "mood": "HARMONIC",
@@ -289,6 +283,12 @@
       "text": "GIVING OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772024073577
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772024074771
     }
   ]
 }
