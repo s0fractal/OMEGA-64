@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_PROOF_OF_RESONANCE",
-      "text": "GIVING RESONATE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772026585406
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY STRIFE STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "VISION SPARK SPARK",
       "mood": "CREATIVE",
       "tick": 1772026593307
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE BREACH SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026593480
     }
   ]
 }
