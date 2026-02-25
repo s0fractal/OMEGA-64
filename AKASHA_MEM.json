@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037820310
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772037821099
@@ -291,6 +285,12 @@
       "text": "REFLECT SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772037826502
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD PURE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772037826708
     }
   ]
 }
