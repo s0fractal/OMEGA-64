@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH STRIFE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040428116
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS REFLECT IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772040430464
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIKE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040430626
     }
   ]
 }
