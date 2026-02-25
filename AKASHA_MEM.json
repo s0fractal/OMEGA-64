@@ -159,15 +159,10 @@
     "00AA000A",
     "06666006",
     "60600600",
-    "AAAAA0A0"
+    "AAAAA0A0",
+    "B0BB0000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHIELD STASIS GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023008835
-    },
     {
       "origin": "REVERSE",
       "text": "STASIS RECON STASIS",
@@ -251,6 +246,12 @@
       "text": "DECAY DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023012310
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023012474
     }
   ]
 }
