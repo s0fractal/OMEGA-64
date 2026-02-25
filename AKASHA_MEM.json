@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT REFLECT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772027257985
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772027258353
@@ -291,6 +285,12 @@
       "text": "BLOOM BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772027265813
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW OSMOSIS RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772027266072
     }
   ]
 }
