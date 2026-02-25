@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAAA00A0",
     "A0666666",
     "AA00AAA0",
     "A00A0000",
@@ -199,15 +198,10 @@
     "AAAA0AA0",
     "06666606",
     "06066060",
-    "AA0A0A0A"
+    "AA0A0A0A",
+    "AA0AAAA0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "CONSUME SEIZE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037902882
-    },
     {
       "origin": "REVERSE",
       "text": "RESONATE FLOW OSMOSIS",
@@ -291,6 +285,12 @@
       "text": "STABLE UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772037906021
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SEIZE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037906193
     }
   ]
 }
