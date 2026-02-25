@@ -69,12 +69,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772020851501
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
@@ -157,6 +151,12 @@
       "text": "SYNC HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772020857068
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DECAY CONSUME DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020857264
     }
   ]
 }
