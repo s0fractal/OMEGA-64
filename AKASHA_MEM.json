@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHIELD WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041836789
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "CONSUME SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772041837122
@@ -291,6 +285,12 @@
       "text": "GUARD PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772041840796
+    },
+    {
+      "origin": "STREAM",
+      "text": "BLOOM RESONATE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041841057
     }
   ]
 }
