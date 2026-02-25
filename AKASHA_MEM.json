@@ -128,12 +128,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS CONSUME SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022276588
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022276768
@@ -215,6 +209,12 @@
       "text": "UNIFY GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022284802
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022284979
     }
   ]
 }
