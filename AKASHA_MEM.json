@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FORGE FORGE AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772036019344
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772036019499
@@ -291,6 +285,12 @@
       "text": "SEIZE CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772036021977
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS OSMOSIS OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772036022135
     }
   ]
 }
