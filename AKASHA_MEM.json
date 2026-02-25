@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIFE SEIZE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040719410
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BLOOM BLOOM COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HUNGER SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040721737
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHOCK STRIFE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040721887
     }
   ]
 }
