@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "NAND",
-      "text": "SYNC RESONATE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041519306
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE HEAL SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIFE SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041523683
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GIVING HEAL HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041524043
     }
   ]
 }
