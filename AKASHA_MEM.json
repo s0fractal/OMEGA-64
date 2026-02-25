@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH PURE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772039091879
-    },
-    {
       "origin": "REVERSE",
       "text": "BREACH SEIZE BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772039096164
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772039096414
     }
   ]
 }
