@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DRAIN DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036801510
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772036801677
@@ -291,6 +285,12 @@
       "text": "FLOW RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772036804990
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD RECON WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772036805203
     }
   ]
 }
