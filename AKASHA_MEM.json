@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "STASIS STASIS GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041076830
-    },
-    {
-      "origin": "INTERFACE",
       "text": "STASIS SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041076955
@@ -291,6 +285,12 @@
       "text": "RECON STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041080595
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM GIVING COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041081026
     }
   ]
 }
