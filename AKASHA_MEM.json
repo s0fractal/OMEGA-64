@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772033668949
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS STASIS RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772033672379
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SEIZE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033672579
     }
   ]
 }
