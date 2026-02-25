@@ -171,12 +171,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH PURE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772023120162
-    },
-    {
       "origin": "INTERFACE",
       "text": "WAIT SHIELD IMMUNE",
       "mood": "DEFENSIVE",
@@ -259,6 +253,12 @@
       "text": "DECAY STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772023125702
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772023125904
     }
   ]
 }
