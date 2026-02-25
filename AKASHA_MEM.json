@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STABLE COHERE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772033978188
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL OSMOSIS RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772033981977
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIKE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033982176
     }
   ]
 }
