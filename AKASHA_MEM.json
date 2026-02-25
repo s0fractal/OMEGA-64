@@ -202,12 +202,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772024081791
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772024081928
@@ -289,6 +283,12 @@
       "text": "WATCH GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772024089204
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS PURE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772024089478
     }
   ]
 }
