@@ -178,12 +178,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE HUNGER BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023335286
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT SHIELD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023335479
@@ -265,6 +259,12 @@
       "text": "HEAL RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772023338752
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE WITNESS WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772023338945
     }
   ]
 }
