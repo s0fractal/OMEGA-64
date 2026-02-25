@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SICKNESS STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033808523
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772033808723
@@ -291,6 +285,12 @@
       "text": "STASIS PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772033811521
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIKE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033811904
     }
   ]
 }
