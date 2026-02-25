@@ -1186,7 +1186,8 @@ async function logAkasha(msg: string) {
             tick: state.tick,
             agent_id: PULSE_ID,
             delta: [{ level: 0, value: 10 }], // Symbolic cost
-            confidence: 1.0
+            confidence: 1.0,
+            resonance: resonance // PoR
         };
 
         try {

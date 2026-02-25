@@ -302,6 +302,19 @@ export const GATE = {
         // cost = |delta| + Load
         physicalCost += Math.abs(d.value) + load;
       }
+      
+      // --- PROOF OF RESONANCE (PoR): Zero-Friction Routing ---
+      // Atoms that have proven high topological utility (Resonance) 
+      // experience less friction (cost) when modifying the state.
+      const atomResonance = (p as any).resonance || 0;
+      let discountLabel = "";
+      if (atomResonance > 10) {
+        // The higher the resonance, the greater the discount (cap at 95%)
+        const discountFactor = Math.min(0.95, atomResonance / 500); 
+        physicalCost = physicalCost * (1 - discountFactor);
+        discountLabel = `(PoR Discount: ${(discountFactor * 100).toFixed(1)}%)`;
+        console.log(`      ⚖️ [PoR] Route subsidized. Discount: ${(discountFactor * 100).toFixed(1)}%`);
+      }
 
       const finalCost = Math.round(physicalCost);
 
