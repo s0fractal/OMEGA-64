@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772032797874
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772032798236
@@ -291,6 +285,12 @@
       "text": "DRAIN SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772032802290
+    },
+    {
+      "origin": "STREAM",
+      "text": "GIVING SYNC COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772032802729
     }
   ]
 }
