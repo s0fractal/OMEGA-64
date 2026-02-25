@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC HEAL FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772033528485
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME DREAM EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772033528642
@@ -291,6 +285,12 @@
       "text": "SEIZE DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772033531689
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033531843
     }
   ]
 }
