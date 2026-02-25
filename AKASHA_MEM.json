@@ -64,6 +64,12 @@
       "text": "DRAIN SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772010916074
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772010938584
     }
   ]
 }
