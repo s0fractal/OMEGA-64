@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE OSMOSIS SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772035481293
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772035481505
@@ -291,6 +285,12 @@
       "text": "FLOW HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772035489556
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND VISION AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772035489954
     }
   ]
 }
