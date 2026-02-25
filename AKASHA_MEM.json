@@ -110,12 +110,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021902765
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "FLOW OSMOSIS HEAL",
       "mood": "HARMONIC",
@@ -198,6 +192,12 @@
       "text": "RECON REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772021907874
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772021908027
     }
   ]
 }
