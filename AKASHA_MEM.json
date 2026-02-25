@@ -132,12 +132,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM COHERE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772022373758
-    },
-    {
       "origin": "STREAM",
       "text": "UNIFY RESONATE GIVING",
       "mood": "HARMONIC",
@@ -220,6 +214,12 @@
       "text": "SHIELD RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022379280
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772022379807
     }
   ]
 }
