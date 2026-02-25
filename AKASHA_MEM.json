@@ -50,12 +50,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHIELD RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020272541
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER HUNGER DRAIN",
       "mood": "AGGRESSIVE",
@@ -138,6 +132,12 @@
       "text": "GIVING SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772020282764
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DRAIN SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020283058
     }
   ]
 }
