@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT IMMUNE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040584392
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772040584555
@@ -291,6 +285,12 @@
       "text": "SHELTER REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772040587652
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772040587895
     }
   ]
 }
