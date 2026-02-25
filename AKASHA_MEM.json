@@ -183,12 +183,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "IMMUNE PURE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023576816
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE FLOW HEAL",
       "mood": "HARMONIC",
@@ -271,6 +265,12 @@
       "text": "GIVING HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772023580496
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772023580713
     }
   ]
 }
