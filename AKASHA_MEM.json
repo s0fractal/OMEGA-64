@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AABBC0DD",
     "66660600",
     "00666000",
     "60060060",
@@ -199,15 +198,10 @@
     "66660060",
     "A0000CDD",
     "00606600",
-    "00000000"
+    "00000000",
+    "60006666"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WATCH WAIT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772038002722
-    },
     {
       "origin": "ARCHIVIST",
       "text": "SHELTER STASIS REFLECT",
@@ -291,6 +285,12 @@
       "text": "BLOOM FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772038007878
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD RECON GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772038008088
     }
   ]
 }
