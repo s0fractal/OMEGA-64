@@ -46,15 +46,10 @@
     "ABBA0000",
     "BB0B0A00",
     "66666000",
-    "AAA0AAAA"
+    "AAA0AAAA",
+    "66AA66A0"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "GUARD RECON SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772020310542
-    },
     {
       "origin": "REVERSE",
       "text": "SICKNESS SHOCK SICKNESS",
@@ -138,6 +133,12 @@
       "text": "SICKNESS SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020318755
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020319435
     }
   ]
 }
