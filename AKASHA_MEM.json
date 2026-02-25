@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT REFLECT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772033174336
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772033174504
@@ -291,6 +285,12 @@
       "text": "SHOCK CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772033176944
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHIELD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772033177119
     }
   ]
 }
