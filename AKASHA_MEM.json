@@ -123,12 +123,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022110663
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772022110790
@@ -210,6 +204,12 @@
       "text": "BLOOM OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772022115743
+    },
+    {
+      "origin": "STREAM",
+      "text": "GIVING SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022116324
     }
   ]
 }
