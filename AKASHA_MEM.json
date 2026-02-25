@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE UNIFY OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772037043421
-    },
-    {
-      "origin": "REVERSE",
       "text": "WITNESS SPARK VISION",
       "mood": "CREATIVE",
       "tick": 1772037043632
@@ -291,6 +285,12 @@
       "text": "SHOCK DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772037046956
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037047126
     }
   ]
 }
