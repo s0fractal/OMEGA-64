@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026876113
-    },
-    {
-      "origin": "REVERSE",
       "text": "FORGE DREAM EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772026876454
@@ -291,6 +285,12 @@
       "text": "BLOOM HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772026879832
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772026880203
     }
   ]
 }
