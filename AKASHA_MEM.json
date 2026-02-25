@@ -22,12 +22,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIKE SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019473339
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER BREACH CONSUME",
       "mood": "AGGRESSIVE",
@@ -110,6 +104,12 @@
       "text": "STRIFE SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772019480788
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH HUNGER STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019481480
     }
   ]
 }
