@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE WATCH STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772034350590
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772034350799
@@ -291,6 +285,12 @@
       "text": "IMMUNE WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772034354136
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772034354345
     }
   ]
 }
