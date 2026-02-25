@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772024267662
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIKE STRIFE STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "EVOLVE DREAM AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772024274058
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE REFLECT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772024274254
     }
   ]
 }
