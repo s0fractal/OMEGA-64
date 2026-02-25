@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH IMMUNE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772033097158
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772033097327
@@ -291,6 +285,12 @@
       "text": "FLOW FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772033099658
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772033099984
     }
   ]
 }
