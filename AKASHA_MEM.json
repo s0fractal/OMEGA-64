@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE OSMOSIS COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772036389537
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772036389752
@@ -291,6 +285,12 @@
       "text": "SHELTER WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772036392484
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036392740
     }
   ]
 }
