@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME CONSUME SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040614102
-    },
-    {
       "origin": "PARADOX",
       "text": "BLOOM STABLE GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DECAY SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772040617702
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BLOOM BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772040618070
     }
   ]
 }
