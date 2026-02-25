@@ -21,12 +21,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DECAY HUNGER STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772017700111
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN DRAIN SEIZE",
       "mood": "AGGRESSIVE",
@@ -109,6 +103,12 @@
       "text": "GUARD WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772019416657
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE UNIFY SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772019417877
     }
   ]
 }
