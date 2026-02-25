@@ -70,12 +70,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS SEIZE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020870786
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN STRIFE DRAIN",
       "mood": "AGGRESSIVE",
@@ -158,6 +152,12 @@
       "text": "HUNGER DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020876219
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020877026
     }
   ]
 }
