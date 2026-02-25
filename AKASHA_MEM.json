@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STASIS RECON PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041043949
-    },
-    {
       "origin": "STREAM",
       "text": "STRIKE SHOCK CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772041048343
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE PURE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041048510
     }
   ]
 }
