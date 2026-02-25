@@ -18,12 +18,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "UNIFY OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772014763273
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "COHERE SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772014768933
@@ -105,6 +99,12 @@
       "text": "SHELTER RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772014907435
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772014921093
     }
   ]
 }
