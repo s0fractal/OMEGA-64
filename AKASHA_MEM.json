@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772035736456
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772035736627
@@ -291,6 +285,12 @@
       "text": "SYNC HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772035739810
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK HUNGER HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035740136
     }
   ]
 }
