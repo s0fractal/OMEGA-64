@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE SEIZE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772015669155
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "UNIFY GIVING OSMOSIS",
       "mood": "HARMONIC",
@@ -107,6 +101,12 @@
       "text": "SEIZE BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772015760651
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD WAIT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772015768192
     }
   ]
 }
