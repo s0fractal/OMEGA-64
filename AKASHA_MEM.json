@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH RECON WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772031179806
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772031180146
@@ -291,6 +285,12 @@
       "text": "BLOOM GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772031185708
+    },
+    {
+      "origin": "STREAM",
+      "text": "UNIFY STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772031186083
     }
   ]
 }
