@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "WAIT WATCH IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040995560
-    },
-    {
       "origin": "REVERSE",
       "text": "SHIELD REFLECT REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HUNGER BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772040999100
+    },
+    {
+      "origin": "SUCC",
+      "text": "COHERE STABLE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772040999222
     }
   ]
 }
