@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772038082466
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772038082650
@@ -291,6 +285,12 @@
       "text": "RECON WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772038087262
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL STABLE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772038087550
     }
   ]
 }
