@@ -178,12 +178,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772023334228
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772023334386
@@ -265,6 +259,12 @@
       "text": "SHELTER RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023337165
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SEIZE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023337335
     }
   ]
 }
