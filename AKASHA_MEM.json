@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE FLOW HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772040568173
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040568455
@@ -291,6 +285,12 @@
       "text": "STASIS WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772040570943
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772040571347
     }
   ]
 }
