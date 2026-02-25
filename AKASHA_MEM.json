@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE REFLECT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772039113680
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772039113914
@@ -291,6 +285,12 @@
       "text": "RESONATE BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772039116922
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039117140
     }
   ]
 }
