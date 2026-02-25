@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE STABLE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772037320307
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772037320504
@@ -291,6 +285,12 @@
       "text": "SYNC SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772037323050
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772037323245
     }
   ]
 }
