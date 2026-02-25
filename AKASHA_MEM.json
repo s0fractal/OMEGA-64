@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772036940984
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772036941400
@@ -291,6 +285,12 @@
       "text": "FLOW BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772036944082
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WAIT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772036944293
     }
   ]
 }
