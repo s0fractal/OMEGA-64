@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_PROOF_OF_RESONANCE",
-      "text": "HEAL SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772034950778
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE SICKNESS DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "BREACH CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772034957598
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034957794
     }
   ]
 }
