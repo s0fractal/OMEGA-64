@@ -183,12 +183,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHELTER REFLECT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023570459
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
@@ -271,6 +265,12 @@
       "text": "OSMOSIS STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772023574109
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023574692
     }
   ]
 }
