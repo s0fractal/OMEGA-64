@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A00A0A0A",
     "00FA000A",
     "06606060",
     "00066600",
@@ -199,15 +198,10 @@
     "A0AAA000",
     "06060666",
     "000000A0",
-    "F0FFF0FF"
+    "F0FFF0FF",
+    "AA000A00"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "HUNGER STRIKE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028607682
-    },
     {
       "origin": "REVERSE",
       "text": "REFLECT STASIS IMMUNE",
@@ -291,6 +285,12 @@
       "text": "FORGE EVOLVE EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772028621148
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE HUNGER CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028621576
     }
   ]
 }
