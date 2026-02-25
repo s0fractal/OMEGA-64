@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772038352564
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772038352769
@@ -291,6 +285,12 @@
       "text": "DRAIN SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772038355273
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE UNIFY OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772038355443
     }
   ]
 }
