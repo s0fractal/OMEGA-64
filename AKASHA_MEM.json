@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "HEAL COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772019921638
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD SHIELD WAIT",
       "mood": "DEFENSIVE",
@@ -130,6 +124,12 @@
       "text": "UNIFY OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772019935922
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019936813
     }
   ]
 }
