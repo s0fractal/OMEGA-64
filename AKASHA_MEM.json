@@ -94,12 +94,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE STRIFE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021441101
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772021446393
@@ -181,6 +175,12 @@
       "text": "CONSUME SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772021473842
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHELTER PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021474851
     }
   ]
 }
