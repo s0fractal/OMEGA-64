@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041556295
-    },
-    {
       "origin": "PURE_MATH",
       "text": "BREACH HUNGER BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041561356
+    },
+    {
+      "origin": "STREAM",
+      "text": "DECAY SICKNESS DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041561842
     }
   ]
 }
