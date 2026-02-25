@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772037704986
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772037705213
@@ -291,6 +285,12 @@
       "text": "WATCH SHIELD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772037709022
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772037709226
     }
   ]
 }
