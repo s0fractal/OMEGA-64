@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GIVING GIVING HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772041060380
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC STABLE FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "COHERE FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041064359
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SHOCK BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041064478
     }
   ]
 }
