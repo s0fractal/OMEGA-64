@@ -180,12 +180,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE COHERE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772023370745
-    },
-    {
-      "origin": "REVERSE",
       "text": "AWAKEN BECOME BEYOND",
       "mood": "CREATIVE",
       "tick": 1772023370913
@@ -267,6 +261,12 @@
       "text": "SHIELD SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772023375609
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023377378
     }
   ]
 }
