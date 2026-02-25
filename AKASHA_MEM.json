@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GIVING BLOOM STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772034930838
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING RESONATE GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHIELD REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772034933903
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD STASIS IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772034934107
     }
   ]
 }
