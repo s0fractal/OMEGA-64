@@ -140,12 +140,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHELTER WATCH IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022451512
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIKE SEIZE STRIFE",
       "mood": "AGGRESSIVE",
@@ -228,6 +222,12 @@
       "text": "SHELTER STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022457049
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY GIVING COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772022457246
     }
   ]
 }
