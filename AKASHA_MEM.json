@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06606600",
     "0D10A098",
     "AAAAA000",
     "00B0C00D",
@@ -199,15 +198,10 @@
     "0A0A0A00",
     "A0000AA0",
     "A6006000",
-    "AAA0A00A"
+    "AAA0A00A",
+    "A06AA0A0"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "HEAL HEAL UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772041942558
-    },
     {
       "origin": "REVERSE",
       "text": "GUARD SHELTER STASIS",
@@ -291,6 +285,12 @@
       "text": "STASIS WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041948005
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041948392
     }
   ]
 }
