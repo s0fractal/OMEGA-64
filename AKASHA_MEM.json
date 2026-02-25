@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772034068566
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772034068827
@@ -291,6 +285,12 @@
       "text": "DECAY STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772034072033
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL HEAL OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772034073798
     }
   ]
 }
