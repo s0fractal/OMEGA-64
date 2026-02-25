@@ -24,12 +24,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WAIT GUARD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772019507254
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DECAY DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772019507893
@@ -111,6 +105,12 @@
       "text": "GUARD SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772019514014
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIFE SHOCK HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019514812
     }
   ]
 }
