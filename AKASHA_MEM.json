@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE BREACH SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030357381
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772030376550
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DRAIN SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030376894
     }
   ]
 }
