@@ -160,12 +160,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772022805960
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772022806231
@@ -247,6 +241,12 @@
       "text": "SHIELD RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022812432
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022812612
     }
   ]
 }
