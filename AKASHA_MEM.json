@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHELTER WATCH WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772040504741
-    },
-    {
       "origin": "REVERSE",
       "text": "BREACH DRAIN HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772040507270
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772040507456
     }
   ]
 }
