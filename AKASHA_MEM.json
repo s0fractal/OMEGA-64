@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM RESONATE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772019579275
-    },
-    {
       "origin": "INTERFACE",
       "text": "GUARD SHIELD WATCH",
       "mood": "DEFENSIVE",
@@ -114,6 +108,12 @@
       "text": "STASIS WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772019593252
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY SICKNESS HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019594016
     }
   ]
 }
