@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH STRIKE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025436006
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772025438859
@@ -291,6 +285,12 @@
       "text": "OSMOSIS OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772025444901
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025445102
     }
   ]
 }
