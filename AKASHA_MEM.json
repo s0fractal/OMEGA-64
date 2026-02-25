@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING RESONATE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772035111723
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772035112008
@@ -291,6 +285,12 @@
       "text": "DRAIN SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772035114652
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772035114867
     }
   ]
 }
