@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AABBC0DD",
     "66000060",
     "AABB0CDD",
     "0000AAAA",
@@ -199,15 +198,10 @@
     "BBBB0000",
     "B0B0000C",
     "000A0A00",
-    "A0AAA0A0"
+    "A0AAA0A0",
+    "C0DED00D"
   ],
   "utterances": [
-    {
-      "origin": "INTERFACE",
-      "text": "SHIELD REFLECT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772033336994
-    },
     {
       "origin": "REVERSE",
       "text": "UNIFY OSMOSIS RESONATE",
@@ -291,6 +285,12 @@
       "text": "STASIS WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772033340140
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK SPARK VISION",
+      "mood": "CREATIVE",
+      "tick": 1772033340318
     }
   ]
 }
