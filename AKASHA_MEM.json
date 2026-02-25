@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772032030866
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772032031265
@@ -291,6 +285,12 @@
       "text": "DECAY SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772032039382
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772032039694
     }
   ]
 }
