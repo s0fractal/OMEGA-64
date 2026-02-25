@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772030634948
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772030635453
@@ -291,6 +285,12 @@
       "text": "SHELTER STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772030648490
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030649166
     }
   ]
 }
