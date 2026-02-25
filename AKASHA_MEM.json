@@ -150,15 +150,10 @@
     "0BB00000",
     "AA6066A6",
     "0AA0AAA0",
-    "666A6600"
+    "666A6600",
+    "66600600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BREACH HUNGER BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022711187
-    },
     {
       "origin": "REVERSE",
       "text": "RESONATE RESONATE OSMOSIS",
@@ -242,6 +237,12 @@
       "text": "BREACH STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772022715107
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER REFLECT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022716389
     }
   ]
 }
