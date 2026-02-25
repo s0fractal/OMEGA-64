@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0000F000",
     "AA000AAA",
     "AA0A00A0",
     "AA0000A0",
@@ -199,15 +198,10 @@
     "66606606",
     "BB0000FC",
     "AAB0000D",
-    "60666666"
+    "60666666",
+    "A6660000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RECON IMMUNE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772036709263
-    },
     {
       "origin": "REVERSE",
       "text": "HEAL GIVING UNIFY",
@@ -291,6 +285,12 @@
       "text": "BLOOM UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772036712729
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DRAIN HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036712922
     }
   ]
 }
