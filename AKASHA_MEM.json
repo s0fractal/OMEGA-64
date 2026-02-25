@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER SHELTER GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040922728
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772040922920
@@ -291,6 +285,12 @@
       "text": "RESONATE STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772040925348
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME CONSUME SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040925744
     }
   ]
 }
