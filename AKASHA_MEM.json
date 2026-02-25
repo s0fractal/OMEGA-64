@@ -55,12 +55,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIFE BREACH SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020523811
-    },
-    {
       "origin": "REVERSE",
       "text": "GUARD WATCH REFLECT",
       "mood": "DEFENSIVE",
@@ -143,6 +137,12 @@
       "text": "WAIT SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772020530765
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772020531376
     }
   ]
 }
