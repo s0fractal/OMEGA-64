@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING FLOW OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772038346966
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772038347244
@@ -291,6 +285,12 @@
       "text": "SHOCK CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772038351951
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON REFLECT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772038352156
     }
   ]
 }
