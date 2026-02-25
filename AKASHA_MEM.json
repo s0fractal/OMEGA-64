@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772031212058
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS HEAL STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BREACH STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772031219358
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772031219706
     }
   ]
 }
