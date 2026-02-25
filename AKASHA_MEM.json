@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAVE BECOME WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772035386622
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772035386830
@@ -291,6 +285,12 @@
       "text": "IMMUNE PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772035389577
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME CONSUME SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035389751
     }
   ]
 }
