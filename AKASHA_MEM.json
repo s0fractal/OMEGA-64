@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RECON PURE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041651372
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "UNIFY RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772041651534
@@ -291,6 +285,12 @@
       "text": "SHOCK SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041653711
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE CONSUME CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041653903
     }
   ]
 }
