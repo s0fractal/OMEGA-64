@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "DECAY STRIKE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041331630
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE PURE SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772041334555
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC GIVING HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041334689
     }
   ]
 }
