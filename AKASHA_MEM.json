@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC STABLE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772040733114
-    },
-    {
       "origin": "B_READ",
       "text": "FLOW RESONATE UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GUARD SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772040735974
+    },
+    {
+      "origin": "STREAM",
+      "text": "STASIS STASIS SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040736165
     }
   ]
 }
