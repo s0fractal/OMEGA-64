@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS STABLE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772023709261
-    },
-    {
-      "origin": "REVERSE",
       "text": "DREAM BECOME SPARK",
       "mood": "CREATIVE",
       "tick": 1772023709458
@@ -278,6 +272,12 @@
       "text": "FLOW HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772023711577
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE EVOLVE BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772023711767
     }
   ]
 }
