@@ -203,18 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL SYNC STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042130690
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK BREACH HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042132495
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GUARD GUARD IMMUNE",
       "mood": "DEFENSIVE",
@@ -275,22 +263,34 @@
       "tick": 1772042143898
     },
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042144980
-    },
-    {
-      "origin": "WORKER",
-      "text": "RECON GUARD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042146102
-    },
-    {
       "origin": "INTERFACE",
-      "text": "STRIKE BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042147476
+      "text": "WAIT GUARD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042144683
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042146004
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS BLOOM SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772042146305
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY RESONATE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772042147002
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042147299
     }
   ]
 }
