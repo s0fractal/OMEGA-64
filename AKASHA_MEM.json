@@ -108,12 +108,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021818235
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772021818519
@@ -195,6 +189,12 @@
       "text": "FORGE BEYOND SPARK",
       "mood": "CREATIVE",
       "tick": 1772021826031
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772021826240
     }
   ]
 }
