@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772037117531
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772037117744
@@ -291,6 +285,12 @@
       "text": "SEIZE SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772037120849
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037121024
     }
   ]
 }
