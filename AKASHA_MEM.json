@@ -131,12 +131,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SPARK FORGE WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772022332213
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022332440
@@ -218,6 +212,12 @@
       "text": "UNIFY COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022337598
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY BREACH STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022337867
     }
   ]
 }
