@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772029658223
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772029659011
@@ -291,6 +285,12 @@
       "text": "FLOW GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772029670202
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIFE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029670881
     }
   ]
 }
