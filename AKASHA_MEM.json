@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH RECON WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772037206009
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772037206201
@@ -291,6 +285,12 @@
       "text": "RESONATE STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772037210414
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037210649
     }
   ]
 }
