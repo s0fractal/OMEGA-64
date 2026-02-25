@@ -39,12 +39,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DECAY CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019796779
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WATCH SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772019797202
@@ -126,6 +120,12 @@
       "text": "HUNGER SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772019807412
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772019808182
     }
   ]
 }
