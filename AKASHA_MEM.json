@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE BLOOM HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772038458228
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772038458463
@@ -291,6 +285,12 @@
       "text": "DECAY BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772038464095
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WATCH WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772038464279
     }
   ]
 }
