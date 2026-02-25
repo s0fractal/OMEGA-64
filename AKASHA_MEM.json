@@ -86,12 +86,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021229825
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE CONSUME SEIZE",
       "mood": "AGGRESSIVE",
@@ -174,6 +168,12 @@
       "text": "HEAL OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772021235393
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD SHIELD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772021235573
     }
   ]
 }
