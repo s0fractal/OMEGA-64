@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66600600",
     "60666060",
     "FA0AAA00",
     "A0AA0A00",
@@ -199,15 +198,10 @@
     "00000606",
     "BB0B0000",
     "AA6666A0",
-    "00066006"
+    "00066006",
+    "06600006"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "HUNGER STRIFE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031477841
-    },
     {
       "origin": "REVERSE",
       "text": "CONSUME HUNGER SHOCK",
@@ -291,6 +285,12 @@
       "text": "COHERE UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772031483002
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772031484717
     }
   ]
 }
