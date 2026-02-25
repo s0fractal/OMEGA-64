@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040822179
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040822393
@@ -291,6 +285,12 @@
       "text": "STASIS PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772040825875
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040826066
     }
   ]
 }
