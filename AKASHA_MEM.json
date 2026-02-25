@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE RESONATE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772035054187
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772035054413
@@ -291,6 +285,12 @@
       "text": "GUARD IMMUNE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772035060158
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK STRIKE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035060415
     }
   ]
 }
