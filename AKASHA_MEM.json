@@ -103,12 +103,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021691416
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE OSMOSIS GIVING",
       "mood": "HARMONIC",
@@ -191,6 +185,12 @@
       "text": "FLOW SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772021696324
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHIELD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772021696714
     }
   ]
 }
