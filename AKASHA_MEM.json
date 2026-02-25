@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AABB0C0D",
     "00060060",
     "BB000000",
     "A00A0AAA",
@@ -199,15 +198,10 @@
     "AA0BC0DD",
     "66606600",
     "AA00000A",
-    "66666666"
+    "66666666",
+    "FFAAF0FF"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "EVOLVE EVOLVE SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772035474202
-    },
     {
       "origin": "REVERSE",
       "text": "UNIFY UNIFY BLOOM",
@@ -291,6 +285,12 @@
       "text": "BLOOM BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772035480257
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME VISION WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772035480478
     }
   ]
 }
