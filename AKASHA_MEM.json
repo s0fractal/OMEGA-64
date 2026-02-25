@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WAIT RECON SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772025824035
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT SHELTER STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "WAVE FORGE BECOME",
       "mood": "CREATIVE",
       "tick": 1772025828339
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM COHERE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772025828766
     }
   ]
 }
