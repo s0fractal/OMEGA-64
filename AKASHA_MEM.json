@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SICKNESS STRIFE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032624332
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH WATCH SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SEIZE HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772032627468
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON PURE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772032627656
     }
   ]
 }
