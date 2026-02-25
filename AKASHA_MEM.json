@@ -49,12 +49,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020239773
-    },
-    {
       "origin": "INTERFACE",
       "text": "GUARD REFLECT SHELTER",
       "mood": "DEFENSIVE",
@@ -137,6 +131,12 @@
       "text": "RESONATE UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772020248100
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT WAIT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020249123
     }
   ]
 }
