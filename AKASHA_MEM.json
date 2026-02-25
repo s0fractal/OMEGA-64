@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SPARK EVOLVE BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772041004270
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE FLOW GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772041006810
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041006989
     }
   ]
 }
