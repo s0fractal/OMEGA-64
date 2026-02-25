@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH HUNGER DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040252388
-    },
-    {
       "origin": "INTERFACE",
       "text": "BREACH HUNGER STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SEIZE BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772040257598
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772040258423
     }
   ]
 }
