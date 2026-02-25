@@ -62,15 +62,10 @@
     "AAAA0A0A",
     "AA6666A6",
     "0A000000",
-    "F0FFF00F"
+    "F0FFF00F",
+    "0AAA000A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "DECAY STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020793542
-    },
     {
       "origin": "INTERFACE",
       "text": "REFLECT PURE RECON",
@@ -154,6 +149,12 @@
       "text": "CONSUME SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020803547
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE SYNC UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772020804082
     }
   ]
 }
