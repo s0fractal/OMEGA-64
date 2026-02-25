@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772027483221
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772027483872
@@ -291,6 +285,12 @@
       "text": "HEAL RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772027495358
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE WITNESS VISION",
+      "mood": "CREATIVE",
+      "tick": 1772027495953
     }
   ]
 }
