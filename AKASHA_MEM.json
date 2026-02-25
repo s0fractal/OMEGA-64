@@ -38,12 +38,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GIVING OSMOSIS COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772019792868
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "REFLECT RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772019793844
@@ -125,6 +119,12 @@
       "text": "WATCH WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772019802954
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW RESONATE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772019803466
     }
   ]
 }
