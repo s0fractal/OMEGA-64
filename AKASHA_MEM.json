@@ -76,12 +76,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021025312
-    },
-    {
       "origin": "INTERFACE",
       "text": "RESONATE OSMOSIS UNIFY",
       "mood": "HARMONIC",
@@ -164,6 +158,12 @@
       "text": "SEIZE DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021033467
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER HUNGER DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021034341
     }
   ]
 }
