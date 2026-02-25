@@ -182,12 +182,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772023518281
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772023518480
@@ -269,6 +263,12 @@
       "text": "DECAY DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023521381
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIKE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023521539
     }
   ]
 }
