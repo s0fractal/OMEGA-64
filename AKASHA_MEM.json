@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE BREACH BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033821766
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772033823780
@@ -291,6 +285,12 @@
       "text": "SHIELD SHIELD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033828844
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE STABLE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772033829047
     }
   ]
 }
