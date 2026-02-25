@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY STRIKE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034169359
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772034169513
@@ -291,6 +285,12 @@
       "text": "STABLE GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772034172495
+    },
+    {
+      "origin": "PARADOX",
+      "text": "SYNC RESONATE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772034173013
     }
   ]
 }
