@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW HEAL OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772037319463
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772037319694
@@ -291,6 +285,12 @@
       "text": "SHOCK HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772037322282
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHELTER RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772037322475
     }
   ]
 }
