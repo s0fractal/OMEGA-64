@@ -76,12 +76,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020979285
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772020979477
@@ -163,6 +157,12 @@
       "text": "UNIFY BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772020987415
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WATCH WATCH REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020987714
     }
   ]
 }
