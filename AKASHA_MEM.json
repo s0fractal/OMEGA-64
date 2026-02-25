@@ -63,12 +63,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE BREACH BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020724589
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE STASIS PURE",
       "mood": "DEFENSIVE",
@@ -151,6 +145,12 @@
       "text": "STABLE UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772020733076
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM STABLE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772020733250
     }
   ]
 }
