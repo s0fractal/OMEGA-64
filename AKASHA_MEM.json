@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS WAIT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772035353589
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772035353789
@@ -291,6 +285,12 @@
       "text": "VISION EVOLVE BEYOND",
       "mood": "CREATIVE",
       "tick": 1772035356392
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH RECON GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772035356608
     }
   ]
 }
