@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772035263214
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772035263451
@@ -291,6 +285,12 @@
       "text": "SHOCK SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772035274094
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WATCH WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772035274276
     }
   ]
 }
