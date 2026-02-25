@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A00A0AAA",
     "AAAAA0AA",
     "00066000",
     "0AAAA000",
@@ -199,15 +198,10 @@
     "66666666",
     "FFAAF0FF",
     "A00A0A0A",
-    "AA0A0000"
+    "AA0A0000",
+    "A0606606"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "OSMOSIS HEAL RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772035504679
-    },
     {
       "origin": "REVERSE",
       "text": "SHOCK SEIZE SEIZE",
@@ -291,6 +285,12 @@
       "text": "GUARD RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772035509910
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIKE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035510134
     }
   ]
 }
