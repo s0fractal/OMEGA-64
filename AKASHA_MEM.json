@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HUNGER SHOCK CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041478313
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "CONSUME STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041478887
@@ -291,6 +285,12 @@
       "text": "SHIELD SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041483181
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "PURE WAIT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041483351
     }
   ]
 }
