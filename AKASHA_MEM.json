@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "IMMUNE PURE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772041612794
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SICKNESS HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772041612962
@@ -291,6 +285,12 @@
       "text": "WAIT IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041616728
+    },
+    {
+      "origin": "STREAM",
+      "text": "DRAIN SICKNESS BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041616863
     }
   ]
 }
