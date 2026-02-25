@@ -104,12 +104,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING GIVING SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772021684564
-    },
-    {
-      "origin": "REVERSE",
       "text": "FORGE AWAKEN BEYOND",
       "mood": "CREATIVE",
       "tick": 1772021684733
@@ -191,6 +185,12 @@
       "text": "HUNGER SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772021690329
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021691416
     }
   ]
 }
