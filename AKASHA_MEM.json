@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772041699257
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK CONSUME STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHOCK HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772041704693
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER HUNGER BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041705003
     }
   ]
 }
