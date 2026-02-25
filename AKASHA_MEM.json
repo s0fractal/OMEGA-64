@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772033696779
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772033696962
@@ -291,6 +285,12 @@
       "text": "BLOOM GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772033700402
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HUNGER STRIFE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033700626
     }
   ]
 }
