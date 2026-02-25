@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772029063385
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772029063682
@@ -291,6 +285,12 @@
       "text": "BREACH DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772029077702
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE BREACH CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029077966
     }
   ]
 }
