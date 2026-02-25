@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM HEAL UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772036588780
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772036589031
@@ -291,6 +285,12 @@
       "text": "SEIZE BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772036593340
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE RECON IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772036593598
     }
   ]
 }
