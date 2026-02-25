@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD REFLECT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772037606467
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772037606718
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772037609422
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH BREACH SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037609610
     }
   ]
 }
