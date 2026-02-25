@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL OSMOSIS COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772033973056
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772033973289
@@ -291,6 +285,12 @@
       "text": "DECAY CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772033980434
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHIELD REFLECT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772033980633
     }
   ]
 }
