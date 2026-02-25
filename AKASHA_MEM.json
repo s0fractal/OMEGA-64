@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_PROOF_OF_RESONANCE",
-      "text": "HEAL GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772038062602
-    },
-    {
       "origin": "REVERSE",
       "text": "WAIT REFLECT GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772038069275
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE GUARD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772038069508
     }
   ]
 }
