@@ -178,12 +178,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS SHIELD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023333865
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772023334065
@@ -265,6 +259,12 @@
       "text": "SYNC RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772023336685
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS BREACH SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023336860
     }
   ]
 }
