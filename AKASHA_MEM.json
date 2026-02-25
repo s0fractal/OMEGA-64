@@ -116,12 +116,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FORGE VISION EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772022002611
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772022005439
@@ -203,6 +197,12 @@
       "text": "STRIKE STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022012820
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD GUARD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772022013227
     }
   ]
 }
