@@ -46,12 +46,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "CONSUME CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020096263
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SYNC SYNC STABLE",
       "mood": "HARMONIC",
@@ -134,6 +128,12 @@
       "text": "STRIFE SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020110529
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS SHIELD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020111377
     }
   ]
 }
