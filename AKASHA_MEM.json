@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAVE WAVE EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772035589449
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772035589668
@@ -291,6 +285,12 @@
       "text": "WATCH RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772035592112
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772035592318
     }
   ]
 }
