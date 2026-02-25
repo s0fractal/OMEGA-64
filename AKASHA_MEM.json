@@ -11,11 +11,6 @@
     {
       "origin": "ARCHIVIST",
       "text": "OBSERVE",
-      "tick": 1772009034003
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "OBSERVE",
       "tick": 1772009088172
     },
     {
@@ -57,6 +52,11 @@
       "origin": "INTERFACE",
       "text": "CONNECT",
       "tick": 1772009460414
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OBSERVE",
+      "tick": 1772009478002
     }
   ]
 }
