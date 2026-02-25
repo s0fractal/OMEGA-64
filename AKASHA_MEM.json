@@ -178,12 +178,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WAIT IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772023362575
-    },
-    {
       "origin": "INTERFACE",
       "text": "GIVING OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
@@ -266,6 +260,12 @@
       "text": "DRAIN SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023366778
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL STABLE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772023366943
     }
   ]
 }
