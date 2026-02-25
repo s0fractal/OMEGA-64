@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036643832
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772036644030
@@ -291,6 +285,12 @@
       "text": "OSMOSIS SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772036648058
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036648277
     }
   ]
 }
