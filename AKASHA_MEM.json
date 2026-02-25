@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "RESONATE SYNC SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772040583007
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER RECON WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772040585416
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON WATCH IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040585760
     }
   ]
 }
