@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY STABLE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772038223439
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772038223740
@@ -291,6 +285,12 @@
       "text": "GIVING HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772038227401
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DRAIN SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038227593
     }
   ]
 }
