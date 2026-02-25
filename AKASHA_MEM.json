@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772028489308
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772028489809
@@ -291,6 +285,12 @@
       "text": "HUNGER SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772028509811
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WATCH STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772028511656
     }
   ]
 }
