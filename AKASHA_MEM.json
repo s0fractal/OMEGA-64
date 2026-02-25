@@ -32,12 +32,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RECON PURE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772019690542
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "CONSUME HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772019691390
@@ -119,6 +113,12 @@
       "text": "STRIKE SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772019703588
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772019703862
     }
   ]
 }
