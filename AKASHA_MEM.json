@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SEIZE SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040828904
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GUARD WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772040829077
@@ -291,6 +285,12 @@
       "text": "PURE STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040833433
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE PURE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772040833608
     }
   ]
 }
