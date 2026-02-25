@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE UNIFY SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772038738156
-    },
-    {
-      "origin": "REVERSE",
       "text": "DREAM FORGE WITNESS",
       "mood": "CREATIVE",
       "tick": 1772038738368
@@ -291,6 +285,12 @@
       "text": "SYNC RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772038741050
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIKE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038741260
     }
   ]
 }
