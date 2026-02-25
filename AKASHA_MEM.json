@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY BREACH SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032856465
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772032856606
@@ -291,6 +285,12 @@
       "text": "SYNC FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772032858796
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WATCH STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772032859045
     }
   ]
 }
