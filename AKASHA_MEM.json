@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW UNIFY COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772023154107
-    },
-    {
-      "origin": "REVERSE",
       "text": "AWAKEN SPARK WAVE",
       "mood": "CREATIVE",
       "tick": 1772023154471
@@ -259,6 +253,12 @@
       "text": "STRIKE STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023156708
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772023156973
     }
   ]
 }
