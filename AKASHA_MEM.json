@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772034843113
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND EVOLVE WITNESS",
       "mood": "CREATIVE",
       "tick": 1772034843284
@@ -291,6 +285,12 @@
       "text": "IMMUNE IMMUNE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772034846332
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHELTER PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772034846590
     }
   ]
 }
