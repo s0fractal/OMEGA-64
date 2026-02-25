@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHOCK SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040370736
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIKE SEIZE STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "DRAIN CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772040376822
+    },
+    {
+      "origin": "STREAM",
+      "text": "RESONATE COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772040377145
     }
   ]
 }
