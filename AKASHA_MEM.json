@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0000A0",
     "06006006",
     "00660600",
     "06606006",
@@ -199,15 +198,10 @@
     "66000660",
     "66666066",
     "06060000",
-    "A0000AAA"
+    "A0000AAA",
+    "AA0A0AA0"
   ],
   "utterances": [
-    {
-      "origin": "STREAM",
-      "text": "SEIZE CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040466690
-    },
     {
       "origin": "ARCHIVIST",
       "text": "SHIELD WATCH PURE",
@@ -291,6 +285,12 @@
       "text": "RESONATE HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040469953
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK BREACH SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040470157
     }
   ]
 }
