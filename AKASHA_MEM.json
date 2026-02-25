@@ -71,12 +71,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE STRIKE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020911914
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHOCK STRIKE HUNGER",
       "mood": "AGGRESSIVE",
@@ -159,6 +153,12 @@
       "text": "FLOW OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772020917306
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772020917614
     }
   ]
 }
