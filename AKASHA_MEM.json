@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAAAAA00",
     "66606660",
     "60006666",
     "00606600",
@@ -199,15 +198,10 @@
     "A0666000",
     "AA666606",
     "00A0AA0A",
-    "60606000"
+    "60606000",
+    "00060600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "COHERE HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772034212274
-    },
     {
       "origin": "REVERSE",
       "text": "IMMUNE PURE IMMUNE",
@@ -291,6 +285,12 @@
       "text": "SHOCK SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772034215149
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE BLOOM FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772034215326
     }
   ]
 }
