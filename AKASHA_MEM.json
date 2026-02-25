@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037655939
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS COHERE STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FORGE EVOLVE BEYOND",
       "mood": "CREATIVE",
       "tick": 1772037659655
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037659815
     }
   ]
 }
