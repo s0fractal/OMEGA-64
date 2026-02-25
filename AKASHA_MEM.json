@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772033595166
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772033596569
@@ -291,6 +285,12 @@
       "text": "SHOCK STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772033599615
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH GUARD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772033599815
     }
   ]
 }
