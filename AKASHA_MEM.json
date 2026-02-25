@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE FLOW FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772032704487
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772032704668
@@ -291,6 +285,12 @@
       "text": "UNIFY HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772032708996
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH STASIS SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772032709137
     }
   ]
 }
