@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHIELD RECON GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041503529
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "REFLECT REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772041503725
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772041506924
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD RECON WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041507218
     }
   ]
 }
