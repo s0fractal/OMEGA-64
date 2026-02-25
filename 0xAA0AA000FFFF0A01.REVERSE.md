@@ -1,10 +1,10 @@
 ---
 eigenvalue: '0xAA0AA000FFFF0A01'
-energy: 45.5
-x: 676
-'y': 404
+energy: 49.9
+x: 685
+'y': 385
 resonance: 50
-thought: WANDER_BONDING
+thought: SEEK_ALPHA_BONDING
 logic: AA0AA000
 signals: []
 bond_strengths:
@@ -174,6 +174,10 @@ ex:
   - '0x0006660600000A07'
   - '0xAA0AA00000000A01'
   - '0xAA0AA00000000A03'
+  - '0xAA0AA00000000A05'
+  - '0xAA0AA000FFFF0A03'
+  - '0xAA0AA000FFFF0A05'
+  - '0xAA0AA000FFFF0A07'
 ---
 
 <div align="center">
