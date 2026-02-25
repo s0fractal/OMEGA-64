@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER HUNGER STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032143745
-    },
-    {
-      "origin": "REVERSE",
       "text": "EVOLVE AWAKEN BEYOND",
       "mood": "CREATIVE",
       "tick": 1772032144392
@@ -291,6 +285,12 @@
       "text": "HUNGER HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772032153501
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE GUARD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772032154313
     }
   ]
 }
