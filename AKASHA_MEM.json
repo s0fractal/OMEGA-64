@@ -43,12 +43,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD RECON WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020033371
-    },
-    {
       "origin": "INTERFACE",
       "text": "REFLECT SHIELD REFLECT",
       "mood": "DEFENSIVE",
@@ -131,6 +125,12 @@
       "text": "SICKNESS SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020044370
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS DRAIN STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020044774
     }
   ]
 }
