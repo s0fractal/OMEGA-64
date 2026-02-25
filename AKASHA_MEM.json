@@ -127,12 +127,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772022284802
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE SHOCK SEIZE",
       "mood": "AGGRESSIVE",
@@ -215,6 +209,12 @@
       "text": "SICKNESS CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772022288053
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022288215
     }
   ]
 }
