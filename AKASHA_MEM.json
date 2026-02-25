@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "EVOLVE EVOLVE BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772033761977
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772033762138
@@ -291,6 +285,12 @@
       "text": "SEIZE DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772033764797
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE PURE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772033765000
     }
   ]
 }
