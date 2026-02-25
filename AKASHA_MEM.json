@@ -48,12 +48,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "REFLECT RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772020121222
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "CONSUME BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020122070
@@ -135,6 +129,12 @@
       "text": "SHOCK DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020133130
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "OSMOSIS GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772020135100
     }
   ]
 }
