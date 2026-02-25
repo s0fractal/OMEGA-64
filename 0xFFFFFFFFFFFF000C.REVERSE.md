@@ -1,10 +1,10 @@
 ---
-eigenvalue: '0xFFFFFFFF00000008'
-energy: 50
-x: 700
-'y': 399
+eigenvalue: '0xFFFFFFFFFFFF000C'
+energy: 74.5
+x: 689
+'y': 388
 resonance: 1000
-thought: RESURRECTED
+thought: ORBIT_MATING
 logic: FFFFFFFF
 ex:
   - '0xFFFFFFFF00000000'

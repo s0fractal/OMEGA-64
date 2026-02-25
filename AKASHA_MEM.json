@@ -56,12 +56,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STASIS SHELTER RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772020553656
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIKE BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020554048
@@ -143,6 +137,12 @@
       "text": "OSMOSIS STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772020564274
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHELTER RECON STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772020564439
     }
   ]
 }
