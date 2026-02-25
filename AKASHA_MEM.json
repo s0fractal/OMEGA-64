@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772037889483
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772037889683
@@ -291,6 +285,12 @@
       "text": "DRAIN DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772037892523
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK WAVE SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772037892740
     }
   ]
 }
