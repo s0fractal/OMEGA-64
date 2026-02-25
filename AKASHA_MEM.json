@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM RESONATE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772042100437
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON IMMUNE WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772042106579
+    },
+    {
+      "origin": "STREAM",
+      "text": "SHOCK DECAY STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042106934
     }
   ]
 }
