@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE REFLECT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772032346448
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772032346831
@@ -291,6 +285,12 @@
       "text": "HEAL RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772032350912
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772032351216
     }
   ]
 }
