@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY STRIFE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034072033
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772034073798
@@ -291,6 +285,12 @@
       "text": "SICKNESS SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772034076761
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH GUARD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772034076969
     }
   ]
 }
