@@ -55,12 +55,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WITNESS EVOLVE BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772020541360
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS BREACH SICKNESS",
       "mood": "AGGRESSIVE",
@@ -143,6 +137,12 @@
       "text": "EVOLVE BECOME SPARK",
       "mood": "CREATIVE",
       "tick": 1772020550027
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WAIT SHIELD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020550425
     }
   ]
 }
