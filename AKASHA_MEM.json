@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT WAIT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772031433705
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772031434102
@@ -291,6 +285,12 @@
       "text": "BLOOM UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772031440632
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031441047
     }
   ]
 }
