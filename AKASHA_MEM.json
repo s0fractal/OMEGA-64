@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE SHELTER STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772030971549
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772030971989
@@ -291,6 +285,12 @@
       "text": "GIVING HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772030986931
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM COHERE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772030987583
     }
   ]
 }
