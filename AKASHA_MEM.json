@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772034467115
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772034467317
@@ -291,6 +285,12 @@
       "text": "GIVING RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772034470429
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT STASIS SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772034470617
     }
   ]
 }
