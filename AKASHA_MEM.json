@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT REFLECT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772026333764
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772026333945
@@ -291,6 +285,12 @@
       "text": "RECON SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772026336906
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH CONSUME CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026337109
     }
   ]
 }
