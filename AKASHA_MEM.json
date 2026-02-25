@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028027384
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772028029259
@@ -291,6 +285,12 @@
       "text": "REFLECT SHIELD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772028050275
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772028051148
     }
   ]
 }
