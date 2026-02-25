@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL FLOW UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772038612708
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772038612968
@@ -291,6 +285,12 @@
       "text": "DREAM SPARK BECOME",
       "mood": "CREATIVE",
       "tick": 1772038616034
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC UNIFY OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772038616235
     }
   ]
 }
