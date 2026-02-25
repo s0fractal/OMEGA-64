@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60660066",
     "F00AAA00",
     "AABBCC0D",
     "000A0A00",
@@ -199,15 +198,10 @@
     "00AAAAAA",
     "0B0A0000",
     "AAA0AAAA",
-    "60060060"
+    "60060060",
+    "0000F000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "DRAIN SHOCK STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032251700
-    },
     {
       "origin": "REVERSE",
       "text": "SPARK BECOME AWAKEN",
@@ -291,6 +285,12 @@
       "text": "COHERE OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772032261021
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772032261286
     }
   ]
 }
