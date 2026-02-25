@@ -201,12 +201,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024084628
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
@@ -289,6 +283,12 @@
       "text": "SICKNESS DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772024094435
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WAIT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772024094625
     }
   ]
 }
