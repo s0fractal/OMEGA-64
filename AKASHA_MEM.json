@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA000000",
     "60066000",
     "AAAAA00A",
     "06060000",
@@ -199,15 +198,10 @@
     "66060666",
     "66006066",
     "0AAA0AA0",
-    "6A666000"
+    "6A666000",
+    "66060000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WAVE BECOME EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772031418699
-    },
     {
       "origin": "REVERSE",
       "text": "UNIFY HEAL UNIFY",
@@ -291,6 +285,12 @@
       "text": "UNIFY BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772031431788
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON PURE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772031432486
     }
   ]
 }
