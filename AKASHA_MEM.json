@@ -65,12 +65,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "OSMOSIS COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772020764567
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE UNIFY RESONATE",
       "mood": "HARMONIC",
@@ -153,6 +147,12 @@
       "text": "WITNESS WITNESS WAVE",
       "mood": "CREATIVE",
       "tick": 1772020769939
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020770146
     }
   ]
 }
