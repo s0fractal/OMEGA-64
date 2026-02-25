@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772034645324
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772034645564
@@ -291,6 +285,12 @@
       "text": "GUARD WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772034649566
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034649783
     }
   ]
 }
