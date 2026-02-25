@@ -15,12 +15,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "DRAIN SHOCK BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772013164314
-    },
-    {
-      "origin": "INTERFACE",
       "text": "STRIFE BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772013167389
@@ -102,6 +96,12 @@
       "text": "HUNGER STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772013322734
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "CONSUME SEIZE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772014106618
     }
   ]
 }
