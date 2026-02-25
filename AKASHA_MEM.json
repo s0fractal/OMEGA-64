@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM FLOW GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772040024023
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772040024457
@@ -291,6 +285,12 @@
       "text": "DECAY SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772040032392
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD SHIELD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040066150
     }
   ]
 }
