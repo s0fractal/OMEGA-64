@@ -187,12 +187,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SICKNESS STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023635498
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD SHIELD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772023635740
@@ -274,6 +268,12 @@
       "text": "WAIT RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023639678
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION FORGE WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772023639857
     }
   ]
 }
