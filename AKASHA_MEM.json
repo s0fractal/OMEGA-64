@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "FLOW RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772041424183
-    },
-    {
       "origin": "STREAM",
       "text": "UNIFY COHERE STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIFE DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772041428336
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041428831
     }
   ]
 }
