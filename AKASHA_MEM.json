@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE RESONATE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772032857775
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772032857952
@@ -291,6 +285,12 @@
       "text": "HEAL UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772032860342
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME SPARK AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772032860516
     }
   ]
 }
