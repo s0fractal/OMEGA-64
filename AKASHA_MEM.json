@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60666006",
     "00AAAAA0",
     "06606600",
     "A00AA0A0",
@@ -199,15 +198,10 @@
     "B0000000",
     "AA0000A0",
     "0A0AA000",
-    "AA00A000"
+    "AA00A000",
+    "FF0AFFFF"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "CONSUME SEIZE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036776692
-    },
     {
       "origin": "REVERSE",
       "text": "RECON GUARD PURE",
@@ -291,6 +285,12 @@
       "text": "HEAL SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772036779895
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION EVOLVE SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772036780130
     }
   ]
 }
