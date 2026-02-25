@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66060666",
     "0AAA00AA",
     "AA0AA00A",
     "AAAA00A0",
@@ -199,15 +198,10 @@
     "60600066",
     "66006600",
     "000A00A0",
-    "AAAA0AA0"
+    "AAAA0AA0",
+    "06666606"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GUARD SHELTER WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772037890279
-    },
     {
       "origin": "REVERSE",
       "text": "DECAY SICKNESS STRIFE",
@@ -291,6 +285,12 @@
       "text": "RESONATE STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772037893371
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772037893580
     }
   ]
 }
