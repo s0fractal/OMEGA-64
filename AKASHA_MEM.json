@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "GUARDIAN",
-      "text": "STABLE HEAL HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772041026010
-    },
-    {
       "origin": "INTERFACE",
       "text": "GIVING STABLE BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHELTER REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772041029025
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041029268
     }
   ]
 }
