@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD GUARD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772038546757
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772038547003
@@ -291,6 +285,12 @@
       "text": "BECOME FORGE BEYOND",
       "mood": "CREATIVE",
       "tick": 1772038550699
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772038550890
     }
   ]
 }
