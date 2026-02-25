@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020428854
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS RECON GUARD",
       "mood": "DEFENSIVE",
@@ -142,6 +136,12 @@
       "text": "SYNC GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772020436385
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH HUNGER SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020436588
     }
   ]
 }
