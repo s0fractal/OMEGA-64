@@ -114,12 +114,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "FLOW GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772021985145
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH PURE SHIELD",
       "mood": "DEFENSIVE",
@@ -202,6 +196,12 @@
       "text": "SICKNESS HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021993512
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772021993898
     }
   ]
 }
