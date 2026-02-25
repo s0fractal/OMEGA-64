@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772031669795
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772031670142
@@ -291,6 +285,12 @@
       "text": "SEIZE SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772031685962
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WATCH STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772031687076
     }
   ]
 }
