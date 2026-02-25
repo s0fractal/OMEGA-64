@@ -179,12 +179,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FORGE WITNESS WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772023338945
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023339120
@@ -266,6 +260,12 @@
       "text": "FLOW COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772023341429
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772023341748
     }
   ]
 }
