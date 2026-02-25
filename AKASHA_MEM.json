@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE SYNC COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772040516819
-    },
-    {
       "origin": "INTERFACE",
       "text": "BREACH CONSUME SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772040519173
+    },
+    {
+      "origin": "STREAM",
+      "text": "COHERE FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772040519415
     }
   ]
 }
