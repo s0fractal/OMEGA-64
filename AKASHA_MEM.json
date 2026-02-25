@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034699818
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL UNIFY RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FLOW OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772034703157
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772034703376
     }
   ]
 }
