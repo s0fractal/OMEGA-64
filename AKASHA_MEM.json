@@ -41,12 +41,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIFE SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019889455
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GIVING OSMOSIS GIVING",
       "mood": "HARMONIC",
@@ -129,6 +123,12 @@
       "text": "SHIELD SHIELD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772019899294
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD WATCH STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772019901157
     }
   ]
 }
