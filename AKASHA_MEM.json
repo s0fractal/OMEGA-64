@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772033208275
-    },
-    {
       "origin": "STREAM",
       "text": "CONSUME DRAIN STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIFE DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772033212808
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH RECON WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772033213017
     }
   ]
 }
