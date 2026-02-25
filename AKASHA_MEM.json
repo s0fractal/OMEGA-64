@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "VISION FORGE BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772030779316
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772030779815
@@ -291,6 +285,12 @@
       "text": "CONSUME DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772030787724
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772030788152
     }
   ]
 }
