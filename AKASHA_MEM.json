@@ -192,12 +192,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772023770686
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023770854
@@ -279,6 +273,12 @@
       "text": "HEAL STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772023773329
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023773500
     }
   ]
 }
