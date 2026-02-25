@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "IMMUNE SHELTER WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772040885497
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SEIZE SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772040885633
@@ -291,6 +285,12 @@
       "text": "WATCH IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772040888655
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD SHELTER WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040889207
     }
   ]
 }
