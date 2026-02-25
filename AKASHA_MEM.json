@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041121009
-    },
-    {
       "origin": "CAR",
       "text": "HUNGER DECAY DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041125600
+    },
+    {
+      "origin": "STREAM",
+      "text": "OSMOSIS RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041125959
     }
   ]
 }
