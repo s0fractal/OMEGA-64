@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE GUARD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772033086085
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772033086286
@@ -291,6 +285,12 @@
       "text": "HUNGER BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772033088782
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE UNIFY STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772033088969
     }
   ]
 }
