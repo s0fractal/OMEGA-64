@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041410405
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC FLOW COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "IMMUNE PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041413729
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041413930
     }
   ]
 }
