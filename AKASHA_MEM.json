@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE HEAL GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772038901932
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772038902148
@@ -291,6 +285,12 @@
       "text": "HUNGER DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772038908802
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DRAIN HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038909008
     }
   ]
 }
