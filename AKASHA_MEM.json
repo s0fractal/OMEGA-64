@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIFE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033682843
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772033683105
@@ -291,6 +285,12 @@
       "text": "RECON RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772033690734
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033691447
     }
   ]
 }
