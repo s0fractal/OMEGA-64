@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "REFLECT PURE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020662908
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN HUNGER SEIZE",
       "mood": "AGGRESSIVE",
@@ -150,6 +144,12 @@
       "text": "RESONATE UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772020667632
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772020667837
     }
   ]
 }
