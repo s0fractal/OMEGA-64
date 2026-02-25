@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW FLOW UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772019646704
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON PURE WATCH",
       "mood": "DEFENSIVE",
@@ -114,6 +108,12 @@
       "text": "STRIFE HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772019656919
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HUNGER STRIKE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019657493
     }
   ]
 }
