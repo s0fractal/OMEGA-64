@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WAIT STASIS RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772040263642
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHIELD SHIELD IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "WATCH SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040274427
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772040274840
     }
   ]
 }
