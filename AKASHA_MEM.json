@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW UNIFY SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772033174847
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772033175019
@@ -291,6 +285,12 @@
       "text": "STASIS RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772033177470
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD RECON IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772033177649
     }
   ]
 }
