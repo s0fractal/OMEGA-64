@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "B_READ",
-      "text": "DECAY SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041479256
-    },
-    {
       "origin": "CAR",
       "text": "UNIFY FLOW COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041483761
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041484322
     }
   ]
 }
