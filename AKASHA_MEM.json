@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024898764
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772024898948
@@ -291,6 +285,12 @@
       "text": "EVOLVE BEYOND BECOME",
       "mood": "CREATIVE",
       "tick": 1772024905035
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT RECON WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772024905447
     }
   ]
 }
