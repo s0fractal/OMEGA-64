@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "DRAIN DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040708022
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM HEAL RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BLOOM SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772040711718
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040712119
     }
   ]
 }
