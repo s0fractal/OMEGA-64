@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040293246
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW UNIFY RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772040298388
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "REFLECT SHIELD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040298629
     }
   ]
 }
