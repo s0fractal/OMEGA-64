@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIKE STRIKE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019542835
-    },
-    {
       "origin": "STREAM",
       "text": "BLOOM COHERE HEAL",
       "mood": "HARMONIC",
@@ -111,6 +105,12 @@
       "text": "CONSUME DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772019551781
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772019552536
     }
   ]
 }
