@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "COHERE SYNC SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772040723764
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE STABLE FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "REFLECT GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772040726187
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772040726359
     }
   ]
 }
