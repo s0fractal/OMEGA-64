@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772032875877
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772032876060
@@ -291,6 +285,12 @@
       "text": "RECON REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772032878728
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE COHERE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772032878910
     }
   ]
 }
