@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038422607
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772038422838
@@ -291,6 +285,12 @@
       "text": "RECON SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772038426536
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME CONSUME SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038426755
     }
   ]
 }
