@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH DECAY STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034677554
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772034677823
@@ -291,6 +285,12 @@
       "text": "GIVING HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772034682524
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DECAY SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034683273
     }
   ]
 }
