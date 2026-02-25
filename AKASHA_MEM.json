@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER RECON GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772034602891
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772034603087
@@ -291,6 +285,12 @@
       "text": "SEIZE SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772034606279
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE AWAKEN SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772034606485
     }
   ]
 }
