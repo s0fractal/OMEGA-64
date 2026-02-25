@@ -35,15 +35,17 @@ ex:
   - '0xBBBB0000E6D6A062'
   - '0xBEEFBEEFE6D6A062'
   - '0xBEEFBEEFE6D6A062'
-energy: 16
+  - '0xBEEFBEEFE6D6A062'
+energy: 14
 thought: WANDER_MATING
-x: 669
-'y': 56
+x: 671
+'y': 58
 signals: []
 resonance: 0
 bond_strengths: {}
 ---
 
+<div align="center">
 <div align="center">
 <div align="center">
 <div align="center">
@@ -96,6 +98,7 @@ bond_strengths: {}
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">COSMIC</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 </div>
 </div>

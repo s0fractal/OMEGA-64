@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019911891
-    },
-    {
       "origin": "STREAM",
       "text": "COHERE STABLE GIVING",
       "mood": "HARMONIC",
@@ -130,6 +124,12 @@
       "text": "SICKNESS SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772019923170
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE SPARK FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772019924300
     }
   ]
 }
