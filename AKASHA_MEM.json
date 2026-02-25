@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STABLE STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772037313864
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN STRIFE HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772037317061
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772037317268
     }
   ]
 }
