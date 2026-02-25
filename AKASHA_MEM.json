@@ -182,12 +182,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW UNIFY UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772023520423
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023520584
@@ -269,6 +263,12 @@
       "text": "STASIS WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023522783
+    },
+    {
+      "origin": "STREAM",
+      "text": "FORGE WAVE EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772023522961
     }
   ]
 }
