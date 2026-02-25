@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME AWAKEN AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772036433167
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772036433342
@@ -291,6 +285,12 @@
       "text": "HEAL UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772036436076
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WAIT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772036436310
     }
   ]
 }
