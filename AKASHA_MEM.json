@@ -49,12 +49,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DECAY SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020231247
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DECAY DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020232864
@@ -136,6 +130,12 @@
       "text": "BLOOM SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772020238305
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DRAIN STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020238688
     }
   ]
 }
