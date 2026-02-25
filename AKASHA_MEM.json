@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING RESONATE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772027354067
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772027354383
@@ -291,6 +285,12 @@
       "text": "STABLE BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772027362746
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM WITNESS EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772027363065
     }
   ]
 }
