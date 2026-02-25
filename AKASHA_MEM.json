@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037123314
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK FORGE VISION",
       "mood": "CREATIVE",
       "tick": 1772037123534
@@ -291,6 +285,12 @@
       "text": "BREACH STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772037127569
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SICKNESS HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037127862
     }
   ]
 }
