@@ -123,12 +123,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW STABLE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772022116513
-    },
-    {
-      "origin": "REVERSE",
       "text": "FORGE FORGE BEYOND",
       "mood": "CREATIVE",
       "tick": 1772022116772
@@ -210,6 +204,12 @@
       "text": "SHIELD PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022121266
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DECAY SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022121518
     }
   ]
 }
