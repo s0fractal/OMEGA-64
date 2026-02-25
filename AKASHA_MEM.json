@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIKE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035103458
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772035103619
@@ -291,6 +285,12 @@
       "text": "STRIKE SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772035106533
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772035106723
     }
   ]
 }
