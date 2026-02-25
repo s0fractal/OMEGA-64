@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE FLOW UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772015890405
-    },
-    {
       "origin": "INTERFACE",
       "text": "WATCH RECON IMMUNE",
       "mood": "DEFENSIVE",
@@ -107,6 +101,12 @@
       "text": "DRAIN CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772015974795
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS SEIZE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772015982234
     }
   ]
 }
