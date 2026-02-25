@@ -27,12 +27,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RECON STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772019629303
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIKE DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772019630278
@@ -114,6 +108,12 @@
       "text": "CONSUME DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772019635200
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN DECAY HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019635719
     }
   ]
 }
