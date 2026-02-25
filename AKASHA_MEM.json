@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A0AAA000",
     "06060666",
     "000000A0",
     "F0FFF0FF",
@@ -199,15 +198,10 @@
     "AA6066A6",
     "AA000AAA",
     "AABBCC0D",
-    "00AAA0AA"
+    "00AAA0AA",
+    "AA6660A6"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SYNC FLOW OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772032801936
-    },
     {
       "origin": "REVERSE",
       "text": "SHIELD SHIELD SHELTER",
@@ -291,6 +285,12 @@
       "text": "FLOW UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772032807103
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SHOCK STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032807408
     }
   ]
 }
