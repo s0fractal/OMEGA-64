@@ -155,12 +155,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE FLOW BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772022687973
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022688369
@@ -242,6 +236,12 @@
       "text": "WATCH REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022698148
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SEIZE HUNGER SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022698420
     }
   ]
 }
