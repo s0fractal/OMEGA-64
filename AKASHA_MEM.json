@@ -158,12 +158,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC HEAL OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772022776841
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HEAL OSMOSIS COHERE",
       "mood": "HARMONIC",
@@ -246,6 +240,12 @@
       "text": "SICKNESS HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772022783581
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN STRIFE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022783832
     }
   ]
 }
