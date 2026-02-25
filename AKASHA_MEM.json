@@ -154,12 +154,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY HUNGER STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022618971
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022619092
@@ -241,6 +235,12 @@
       "text": "SEIZE CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022624322
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND WITNESS FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772022624514
     }
   ]
 }
