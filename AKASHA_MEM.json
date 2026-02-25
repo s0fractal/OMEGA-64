@@ -118,12 +118,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772022084207
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK HUNGER CONSUME",
       "mood": "AGGRESSIVE",
@@ -206,6 +200,12 @@
       "text": "GIVING HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022089547
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD WATCH SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022089729
     }
   ]
 }
