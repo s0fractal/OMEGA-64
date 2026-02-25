@@ -180,12 +180,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772023432125
-    },
-    {
       "origin": "INTERFACE",
       "text": "SICKNESS STRIKE DECAY",
       "mood": "AGGRESSIVE",
@@ -268,6 +262,12 @@
       "text": "SHELTER WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772023436944
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772023437109
     }
   ]
 }
