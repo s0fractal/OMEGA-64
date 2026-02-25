@@ -50,12 +50,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020271408
-    },
-    {
       "origin": "PARADOX",
       "text": "FORGE DREAM SPARK",
       "mood": "CREATIVE",
@@ -138,6 +132,12 @@
       "text": "DRAIN BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020281126
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE VISION AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772020281638
     }
   ]
 }
