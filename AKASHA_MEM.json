@@ -97,12 +97,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772021554886
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772021555232
@@ -184,6 +178,12 @@
       "text": "IMMUNE WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772021563096
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER SEIZE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021563603
     }
   ]
 }
