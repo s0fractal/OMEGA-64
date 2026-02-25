@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772036908364
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772036908591
@@ -291,6 +285,12 @@
       "text": "UNIFY OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772036911313
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS COHERE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772036911498
     }
   ]
 }
