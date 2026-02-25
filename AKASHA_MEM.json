@@ -154,12 +154,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SEIZE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022642685
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022642864
@@ -241,6 +235,12 @@
       "text": "COHERE HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022646502
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON RECON WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772022647065
     }
   ]
 }
