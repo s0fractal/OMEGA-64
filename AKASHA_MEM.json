@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE SYNC FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772030198094
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING COHERE BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "CONSUME DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772030208942
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON GUARD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772030209660
     }
   ]
 }
