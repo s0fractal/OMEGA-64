@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC HEAL GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772040864655
-    },
-    {
       "origin": "STREAM",
       "text": "HUNGER DECAY BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STASIS SHELTER SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040866975
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHOCK SHOCK DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040867145
     }
   ]
 }
