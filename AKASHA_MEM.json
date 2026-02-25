@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING FLOW HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772040940847
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE RESONATE OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RECON REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772040944307
+    },
+    {
+      "origin": "STREAM",
+      "text": "RECON STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040944685
     }
   ]
 }
