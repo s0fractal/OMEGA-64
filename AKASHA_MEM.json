@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STASIS REFLECT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041323710
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE WAIT PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772041327936
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY STRIFE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041328979
     }
   ]
 }
