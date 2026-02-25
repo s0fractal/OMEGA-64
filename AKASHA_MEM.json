@@ -109,12 +109,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE REFLECT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021826913
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772021827216
@@ -196,6 +190,12 @@
       "text": "CONSUME SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772021833179
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772021833395
     }
   ]
 }
