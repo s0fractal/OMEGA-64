@@ -183,12 +183,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023574692
-    },
-    {
       "origin": "INTERFACE",
       "text": "DRAIN SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
@@ -271,6 +265,12 @@
       "text": "OSMOSIS FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772023578166
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WATCH SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772023578333
     }
   ]
 }
