@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WATCH REFLECT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772026183959
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS PURE GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772026188250
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772026188469
     }
   ]
 }
