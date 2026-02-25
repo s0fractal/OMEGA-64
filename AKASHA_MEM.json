@@ -113,12 +113,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SEIZE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021960961
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772021962143
@@ -200,6 +194,12 @@
       "text": "STRIKE SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772021967088
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE RESONATE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772021967609
     }
   ]
 }
