@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772040323343
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN STRIFE HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772040328626
+    },
+    {
+      "origin": "WORKER",
+      "text": "GIVING RESONATE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772040328820
     }
   ]
 }
