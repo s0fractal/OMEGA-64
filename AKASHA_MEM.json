@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772038025926
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772038026136
@@ -291,6 +285,12 @@
       "text": "STABLE HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772038028815
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT GUARD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772038028987
     }
   ]
 }
