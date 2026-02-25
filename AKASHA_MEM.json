@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041418406
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE COHERE FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041423123
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE RECON IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041423300
     }
   ]
 }
