@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772024601181
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772024601620
@@ -291,6 +285,12 @@
       "text": "SHELTER REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772024606514
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WATCH WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772024606719
     }
   ]
 }
