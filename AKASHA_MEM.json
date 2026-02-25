@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY FLOW BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772039088314
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772039088525
@@ -291,6 +285,12 @@
       "text": "UNIFY OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772039091641
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH PURE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772039091879
     }
   ]
 }
