@@ -110,12 +110,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772021864886
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772021865045
@@ -197,6 +191,12 @@
       "text": "OSMOSIS UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772021870466
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WAIT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021870633
     }
   ]
 }
