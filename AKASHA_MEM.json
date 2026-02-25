@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00006606",
     "0FF0FFF0",
     "AAAAA0A0",
     "0AAA00A0",
@@ -199,15 +198,10 @@
     "AA00AAA0",
     "A00A0000",
     "0BB00000",
-    "0ABBCCDD"
+    "0ABBCCDD",
+    "66060000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STABLE SYNC UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772036504524
-    },
     {
       "origin": "REVERSE",
       "text": "STABLE COHERE FLOW",
@@ -291,6 +285,12 @@
       "text": "STRIFE DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772036509601
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772036510778
     }
   ]
 }
