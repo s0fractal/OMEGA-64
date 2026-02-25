@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT SHIELD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772033068454
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772033068638
@@ -291,6 +285,12 @@
       "text": "COHERE RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772033070895
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DRAIN HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033071074
     }
   ]
 }
