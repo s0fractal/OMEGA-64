@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772031840996
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772031841804
@@ -291,6 +285,12 @@
       "text": "CONSUME SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772031883477
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DECAY STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031883954
     }
   ]
 }
