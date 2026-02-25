@@ -107,12 +107,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME STRIKE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021769364
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD WAIT GUARD",
       "mood": "DEFENSIVE",
@@ -195,6 +189,12 @@
       "text": "DECAY SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772021773785
+    },
+    {
+      "origin": "STREAM",
+      "text": "STABLE SYNC HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772021773992
     }
   ]
 }
