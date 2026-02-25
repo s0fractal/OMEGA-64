@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019505154
-    },
-    {
       "origin": "INTERFACE",
       "text": "HUNGER SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
@@ -111,6 +105,12 @@
       "text": "BLOOM COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772019513217
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SYNC BLOOM UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772019513479
     }
   ]
 }
