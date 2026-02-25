@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW SYNC FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772033757721
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772033757900
@@ -291,6 +285,12 @@
       "text": "DRAIN CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772033760397
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC STABLE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772033760562
     }
   ]
 }
