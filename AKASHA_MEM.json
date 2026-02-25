@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON WAIT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041929660
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS SYNC BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "REFLECT RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041936070
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772041936279
     }
   ]
 }
