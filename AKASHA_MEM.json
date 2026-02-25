@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035842626
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772035842845
@@ -291,6 +285,12 @@
       "text": "UNIFY SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772035846116
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WATCH STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772035846344
     }
   ]
 }
