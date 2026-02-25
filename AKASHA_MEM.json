@@ -201,12 +201,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH HUNGER DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024070455
-    },
-    {
       "origin": "INTERFACE",
       "text": "DRAIN SHOCK STRIKE",
       "mood": "AGGRESSIVE",
@@ -289,6 +283,12 @@
       "text": "STASIS PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772024075096
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SICKNESS STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024075273
     }
   ]
 }
