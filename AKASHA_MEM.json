@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "IMMUNE IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772041641413
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL RESONATE SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SYNC STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772041644535
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIFE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041644853
     }
   ]
 }
