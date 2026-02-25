@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "FLOW UNIFY OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772040190361
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "CONSUME SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772040190912
@@ -291,6 +285,12 @@
       "text": "SHELTER STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040199086
+    },
+    {
+      "origin": "STREAM",
+      "text": "WAIT PURE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040199426
     }
   ]
 }
