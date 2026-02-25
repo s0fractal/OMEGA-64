@@ -80,12 +80,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE STRIKE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021121228
-    },
-    {
       "origin": "STREAM",
       "text": "UNIFY GIVING FLOW",
       "mood": "HARMONIC",
@@ -168,6 +162,12 @@
       "text": "SEIZE STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772021126889
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE BLOOM FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772021127201
     }
   ]
 }
