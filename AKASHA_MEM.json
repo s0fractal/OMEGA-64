@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BECOME VISION WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772035412346
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER STRIKE HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772035415556
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772035415760
     }
   ]
 }
