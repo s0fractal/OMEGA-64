@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RESONATE UNIFY COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041947608
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STASIS WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041948005
@@ -291,6 +285,12 @@
       "text": "OSMOSIS OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772041952072
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT STASIS GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041952421
     }
   ]
 }
