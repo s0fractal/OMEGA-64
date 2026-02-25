@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06066600",
     "AA0AAA00",
     "0AA0AA00",
     "0BB00000",
@@ -199,15 +198,10 @@
     "AABB0C0D",
     "60000600",
     "00666660",
-    "00006660"
+    "00006660",
+    "AA000AAA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RECON SHELTER WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772026663959
-    },
     {
       "origin": "REVERSE",
       "text": "DRAIN STRIFE SEIZE",
@@ -291,6 +285,12 @@
       "text": "RESONATE BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772026669822
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME CONSUME CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026670174
     }
   ]
 }
