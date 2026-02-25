@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033798724
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772033798907
@@ -291,6 +285,12 @@
       "text": "REFLECT RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772033801422
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK WAVE FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772033801609
     }
   ]
 }
