@@ -187,12 +187,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM GIVING FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772023640849
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023641059
@@ -274,6 +268,12 @@
       "text": "PURE GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023647387
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD STASIS GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023647593
     }
   ]
 }
