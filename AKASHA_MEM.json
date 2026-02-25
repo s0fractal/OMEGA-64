@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS SYNC SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772040027349
-    },
-    {
       "origin": "STREAM",
       "text": "PURE GUARD WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772040179064
+    },
+    {
+      "origin": "STREAM",
+      "text": "HUNGER CONSUME HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040179312
     }
   ]
 }
