@@ -43,12 +43,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020033965
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE HUNGER STRIFE",
       "mood": "AGGRESSIVE",
@@ -131,6 +125,12 @@
       "text": "SHOCK STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020045303
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020045906
     }
   ]
 }
