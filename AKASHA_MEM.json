@@ -163,12 +163,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022913316
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772022913471
@@ -250,6 +244,12 @@
       "text": "DECAY BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022919086
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIKE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022919433
     }
   ]
 }
