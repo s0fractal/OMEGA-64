@@ -115,12 +115,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772021997951
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
@@ -203,6 +197,12 @@
       "text": "IMMUNE IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022010347
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DRAIN CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022010983
     }
   ]
 }
