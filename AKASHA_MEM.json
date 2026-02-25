@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BEYOND WITNESS EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772025137223
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772025137416
@@ -291,6 +285,12 @@
       "text": "STASIS WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772025140767
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT PURE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772025141010
     }
   ]
 }
