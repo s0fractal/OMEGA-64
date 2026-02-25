@@ -184,12 +184,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BLOOM BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772023580713
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "FLOW RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772023581988
@@ -271,6 +265,12 @@
       "text": "IMMUNE RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023589704
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772023590133
     }
   ]
 }
