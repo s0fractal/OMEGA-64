@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034737939
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH RECON WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "REFLECT IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772034743531
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT WATCH GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772034743797
     }
   ]
 }
