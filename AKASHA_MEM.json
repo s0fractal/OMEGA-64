@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772037745280
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772037745520
@@ -291,6 +285,12 @@
       "text": "RECON WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772037748280
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHIELD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772037748484
     }
   ]
 }
