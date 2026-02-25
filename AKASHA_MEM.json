@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035964493
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772035964712
@@ -291,6 +285,12 @@
       "text": "HUNGER SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772035971078
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772035973249
     }
   ]
 }
