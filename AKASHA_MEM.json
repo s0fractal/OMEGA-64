@@ -182,12 +182,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIFE SEIZE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023543214
-    },
-    {
       "origin": "REVERSE",
       "text": "DREAM BEYOND EVOLVE",
       "mood": "CREATIVE",
@@ -270,6 +264,12 @@
       "text": "STRIFE SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023546863
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIFE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023547148
     }
   ]
 }
