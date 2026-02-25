@@ -166,12 +166,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BLOOM UNIFY UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772023038629
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS STRIKE HUNGER",
       "mood": "AGGRESSIVE",
@@ -254,6 +248,12 @@
       "text": "DRAIN STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772023043309
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY STRIKE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023043509
     }
   ]
 }
