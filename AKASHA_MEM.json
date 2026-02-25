@@ -155,12 +155,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BREACH SEIZE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022728693
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
@@ -243,6 +237,12 @@
       "text": "STABLE UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022736425
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE COHERE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772022736846
     }
   ]
 }
