@@ -195,12 +195,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT PURE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023857013
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023857179
@@ -282,6 +276,12 @@
       "text": "WAIT RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772023862493
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIKE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023862851
     }
   ]
 }
