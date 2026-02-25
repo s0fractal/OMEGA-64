@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE STRIKE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036234378
-    },
-    {
-      "origin": "REVERSE",
       "text": "WITNESS WITNESS SPARK",
       "mood": "CREATIVE",
       "tick": 1772036234627
@@ -291,6 +285,12 @@
       "text": "RESONATE RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772036241339
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036241625
     }
   ]
 }
