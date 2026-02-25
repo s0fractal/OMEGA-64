@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041339928
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041340354
@@ -291,6 +285,12 @@
       "text": "STRIKE BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772041343895
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD REFLECT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772041344076
     }
   ]
 }
