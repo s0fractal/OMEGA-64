@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS GUARD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772025179940
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772025180289
@@ -291,6 +285,12 @@
       "text": "SEIZE DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772025184893
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SEIZE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025185321
     }
   ]
 }
