@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SEIZE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024563891
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772024564806
@@ -291,6 +285,12 @@
       "text": "SHIELD SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772024573432
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME CONSUME DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024573698
     }
   ]
 }
