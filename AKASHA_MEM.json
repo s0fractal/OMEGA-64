@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON SHELTER WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772041819040
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041819379
@@ -291,6 +285,12 @@
       "text": "OSMOSIS OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772041824165
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC SYNC UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772041824692
     }
   ]
 }
