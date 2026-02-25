@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAAA0AA0",
     "00060000",
     "FF0AFFFF",
     "0AAAAAAA",
@@ -199,15 +198,10 @@
     "0FF0FFF0",
     "06600006",
     "AA000000",
-    "60066000"
+    "60066000",
+    "AAAAA00A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GUARD STASIS SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772026898715
-    },
     {
       "origin": "REVERSE",
       "text": "BLOOM FLOW RESONATE",
@@ -291,6 +285,12 @@
       "text": "STABLE UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772026903803
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE HUNGER SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026904053
     }
   ]
 }
