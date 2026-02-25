@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772031437001
-    },
-    {
       "origin": "STREAM",
       "text": "OSMOSIS BLOOM UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "REFLECT IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772031443262
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER RECON PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772031443550
     }
   ]
 }
