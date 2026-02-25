@@ -87,12 +87,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021252604
-    },
-    {
       "origin": "INTERFACE",
       "text": "WAIT WATCH PURE",
       "mood": "DEFENSIVE",
@@ -175,6 +169,12 @@
       "text": "BREACH STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772021256173
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021257089
     }
   ]
 }
