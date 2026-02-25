@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040211403
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "UNIFY FLOW HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHIELD RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772040221078
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS WAVE WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772040221242
     }
   ]
 }
