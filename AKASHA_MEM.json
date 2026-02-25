@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "WAIT IMMUNE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042099450
-    },
-    {
       "origin": "REVERSE",
       "text": "SPARK DREAM AWAKEN",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "STASIS GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772042104871
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH GUARD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042105727
     }
   ]
 }
