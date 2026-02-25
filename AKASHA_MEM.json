@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM FLOW GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772025138612
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772025138797
@@ -291,6 +285,12 @@
       "text": "BREACH SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772025142165
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH IMMUNE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772025142863
     }
   ]
 }
