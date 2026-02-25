@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028808390
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772028808830
@@ -291,6 +285,12 @@
       "text": "SHOCK DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772028816902
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE STABLE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772028817393
     }
   ]
 }
