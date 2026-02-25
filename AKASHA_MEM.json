@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "B0000000",
     "AAAA000A",
     "A000A000",
     "06606666",
@@ -199,15 +198,10 @@
     "0AA0A00A",
     "AAAAAA0A",
     "06606060",
-    "00660060"
+    "00660060",
+    "60066006"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STASIS RECON SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772030341654
-    },
     {
       "origin": "REVERSE",
       "text": "SHELTER GUARD WAIT",
@@ -291,6 +285,12 @@
       "text": "SHIELD GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772030351373
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON GUARD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772030351939
     }
   ]
 }
