@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "RESONATE COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772019543533
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER DRAIN SEIZE",
       "mood": "AGGRESSIVE",
@@ -111,6 +105,12 @@
       "text": "UNIFY COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772019553479
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY BREACH DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019553651
     }
   ]
 }
