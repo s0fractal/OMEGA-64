@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING UNIFY UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772033958494
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772033958703
@@ -291,6 +285,12 @@
       "text": "SHOCK CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772033961256
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772033961464
     }
   ]
 }
