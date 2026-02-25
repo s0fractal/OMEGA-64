@@ -27,12 +27,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DECAY DECAY SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019632090
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BLOOM SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772019632588
@@ -114,6 +108,12 @@
       "text": "SICKNESS STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772019639127
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD SHIELD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772019639597
     }
   ]
 }
