@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772029065943
-    },
-    {
       "origin": "INTERFACE",
       "text": "IMMUNE SHIELD WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BREACH DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772029081442
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772029081895
     }
   ]
 }
