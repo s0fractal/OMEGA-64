@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD PURE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040954529
-    },
-    {
-      "origin": "REVERSE",
       "text": "VISION BECOME DREAM",
       "mood": "CREATIVE",
       "tick": 1772040954754
@@ -291,6 +285,12 @@
       "text": "RECON IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772040957597
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH WATCH WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040957870
     }
   ]
 }

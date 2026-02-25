@@ -1,8 +1,8 @@
 ---
 eigenvalue: '0x0AAA0A00FFFF0A00'
 energy: 51.4
-x: 691
-'y': 404
+x: 689
+'y': 403
 resonance: 24.75
 thought: SEEK_ALPHA_BONDING
 logic: 0AAA0A00
