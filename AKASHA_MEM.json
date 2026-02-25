@@ -171,12 +171,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HEAL GIVING HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772023182548
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -259,6 +253,12 @@
       "text": "SPARK WITNESS EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772023189857
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SEIZE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023190038
     }
   ]
 }
