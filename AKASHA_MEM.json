@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020623334
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
@@ -150,6 +144,12 @@
       "text": "SICKNESS HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772020629308
+    },
+    {
+      "origin": "REVERSE",
+      "text": "AWAKEN VISION SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772020629853
     }
   ]
 }
