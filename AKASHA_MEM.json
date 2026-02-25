@@ -152,15 +152,10 @@
     "0AA0AAA0",
     "666A6600",
     "66600600",
-    "06666066"
+    "06666066",
+    "AA0AAAAA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WAIT STASIS WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772022764027
-    },
     {
       "origin": "REVERSE",
       "text": "GIVING SYNC HEAL",
@@ -244,6 +239,12 @@
       "text": "HEAL BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772022772039
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022772367
     }
   ]
 }
