@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS FLOW BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772026178603
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772026178855
@@ -291,6 +285,12 @@
       "text": "WATCH REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772026183959
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS PURE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772026184802
     }
   ]
 }
