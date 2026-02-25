@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772038577857
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772038578088
@@ -291,6 +285,12 @@
       "text": "COHERE BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772038581710
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK CONSUME SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038581924
     }
   ]
 }
