@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A00A00A0",
     "AA0AAA0A",
     "0A0AA000",
     "60600600",
@@ -199,15 +198,10 @@
     "A00AAA00",
     "00600060",
     "0AA0A00A",
-    "00066066"
+    "00066066",
+    "AAAAA0AA"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "GIVING UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040638808
-    },
     {
       "origin": "ARCHIVIST",
       "text": "SYNC BLOOM FLOW",
@@ -291,6 +285,12 @@
       "text": "DECAY SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040641512
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SHOCK STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040641640
     }
   ]
 }
