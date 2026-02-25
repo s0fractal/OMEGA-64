@@ -202,12 +202,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD RECON WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772024057689
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772024057923
@@ -289,6 +283,12 @@
       "text": "OSMOSIS STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772024060357
+    },
+    {
+      "origin": "STREAM",
+      "text": "HEAL SYNC UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772024061048
     }
   ]
 }
