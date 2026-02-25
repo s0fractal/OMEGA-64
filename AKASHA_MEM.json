@@ -164,12 +164,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE RECON STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772022930091
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772022930260
@@ -251,6 +245,12 @@
       "text": "GIVING HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772022937223
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022937412
     }
   ]
 }
