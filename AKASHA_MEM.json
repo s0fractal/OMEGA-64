@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "RESONATE GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772041278366
-    },
-    {
       "origin": "REVERSE",
       "text": "IMMUNE STASIS PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041282759
+    },
+    {
+      "origin": "STREAM",
+      "text": "SHELTER WATCH STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772041283371
     }
   ]
 }
