@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772030667165
-    },
-    {
       "origin": "INTERFACE",
       "text": "DRAIN STRIKE DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "BEYOND EVOLVE WITNESS",
       "mood": "CREATIVE",
       "tick": 1772030673000
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS STASIS RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772030673288
     }
   ]
 }
