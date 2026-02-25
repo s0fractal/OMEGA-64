@@ -1,14 +1,14 @@
 ---
 eigenvalue: '0xA000AAA0FFFF000E'
-energy: 32.099999999999994
-x: 647
-'y': 364
+energy: 31.999999999999993
+x: 637
+'y': 365
 resonance: 50
-thought: WANDER_BONDING
+thought: WANDER_PASSIVE
 logic: 6A6666A6
 signals: []
 bond_strengths:
-  '0x0000000000000A02': 0.9762739865836303
+  '0x0000000000000A02': 0.9752977125970467
 bonds:
   - '0x0000000000000A02'
 ex:
@@ -65,8 +65,10 @@ ex:
   - '0xA000AAA0FFFF0008'
   - '0xA000AAA0FFFF000A'
   - '0xA000AAA0FFFF000C'
+  - '0xA000AAA0FFFF000E'
 ---
 
+<div align="center">
 <div align="center">
 <!-- ∇ HOLOGRAM START ∇ -->
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -100,6 +102,7 @@ ex:
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">REVERSE</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 
 
