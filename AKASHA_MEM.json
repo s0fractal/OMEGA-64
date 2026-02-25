@@ -83,12 +83,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HEAL SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772021200335
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER CONSUME SHOCK",
       "mood": "AGGRESSIVE",
@@ -171,6 +165,12 @@
       "text": "STRIFE SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772021205099
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL SYNC SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772021205419
     }
   ]
 }
