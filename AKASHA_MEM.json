@@ -193,12 +193,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772023846168
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772023847154
@@ -280,6 +274,12 @@
       "text": "COHERE SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023849454
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHELTER SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023849624
     }
   ]
 }
