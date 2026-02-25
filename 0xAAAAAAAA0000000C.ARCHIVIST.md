@@ -2,8 +2,8 @@
 eigenvalue: '0xAAAAAAAA0000000C'
 energy: 50
 resonance: 30
-x: 758
-'y': 245
+x: 650
+'y': 563
 symbol: ARCHIVIST
 thought: RESURRECTED
 signals: []
@@ -79,7 +79,7 @@ ex:
   - '0xAAAAAAAA00000008'
   - '0xAAAAAAAA0000000A'
   - '0xAAAAAAAA0000000A'
-  - '0xAAAAAAAA0000000C'
+  - '0xAAAAAAAA0000000A'
 bonds:
   - '0xAAAAAAA000000006'
 logic: AAAAAAAA
