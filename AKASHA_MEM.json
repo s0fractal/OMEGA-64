@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER STRIKE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030825083
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON IMMUNE STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772030835144
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS SHIELD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772030835559
     }
   ]
 }
