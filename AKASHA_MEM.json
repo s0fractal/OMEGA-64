@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772032639203
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772032639395
@@ -291,6 +285,12 @@
       "text": "GIVING STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772032643756
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH BREACH STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032643985
     }
   ]
 }
