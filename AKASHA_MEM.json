@@ -204,18 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "IMMUNE SHIELD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042172715
-    },
-    {
-      "origin": "STREAM",
-      "text": "PURE STASIS SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042174287
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHIELD RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772042174785
@@ -291,6 +279,18 @@
       "text": "STRIKE SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772042186107
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHIELD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042186819
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042187408
     }
   ]
 }
