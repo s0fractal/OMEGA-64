@@ -94,12 +94,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK STRIFE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021498439
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM RESONATE OSMOSIS",
       "mood": "HARMONIC",
@@ -182,6 +176,12 @@
       "text": "GIVING RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772021511248
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021511588
     }
   ]
 }
