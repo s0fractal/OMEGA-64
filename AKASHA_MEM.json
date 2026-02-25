@@ -179,12 +179,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772023346557
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772023346717
@@ -266,6 +260,12 @@
       "text": "FORGE WITNESS WITNESS",
       "mood": "CREATIVE",
       "tick": 1772023350784
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023350919
     }
   ]
 }
