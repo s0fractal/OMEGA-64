@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WATCH IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772033625264
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772033625444
@@ -291,6 +285,12 @@
       "text": "BLOOM GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772033627771
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772033627963
     }
   ]
 }
