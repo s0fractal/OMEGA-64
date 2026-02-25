@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "SOMA",
-      "text": "RESONATE RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772041383165
-    },
-    {
       "origin": "REVERSE",
       "text": "RECON STASIS IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772041386643
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041386990
     }
   ]
 }
