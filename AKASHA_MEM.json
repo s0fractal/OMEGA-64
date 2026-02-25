@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL COHERE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772020339120
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT SHELTER WATCH",
       "mood": "DEFENSIVE",
@@ -141,6 +135,12 @@
       "text": "SHIELD SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772020348574
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020349379
     }
   ]
 }
