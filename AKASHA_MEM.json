@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "PURE GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772040501888
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SYNC BLOOM GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BREACH DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040504907
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHIELD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040505066
     }
   ]
 }
