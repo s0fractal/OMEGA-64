@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60606006",
     "FFFFF00F",
     "00066600",
     "AA00A00A",
@@ -199,15 +198,10 @@
     "60606000",
     "60666600",
     "AA660660",
-    "66606600"
+    "66606600",
+    "AAAA00AA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BREACH BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032895685
-    },
     {
       "origin": "REVERSE",
       "text": "WAIT GUARD REFLECT",
@@ -291,6 +285,12 @@
       "text": "REFLECT STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772032899064
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS CONSUME STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032899251
     }
   ]
 }
