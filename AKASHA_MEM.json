@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772025889978
-    },
-    {
       "origin": "ALPHA_PROOF_OF_RESONANCE",
       "text": "SYNC UNIFY HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WATCH RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772025897837
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD REFLECT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772025898056
     }
   ]
 }
