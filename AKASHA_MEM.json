@@ -56,12 +56,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "HEAL HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772020551614
-    },
-    {
-      "origin": "INTERFACE",
       "text": "PURE WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772020552234
@@ -143,6 +137,12 @@
       "text": "EVOLVE AWAKEN VISION",
       "mood": "CREATIVE",
       "tick": 1772020562415
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020563059
     }
   ]
 }
