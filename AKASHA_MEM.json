@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BLOOM STABLE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772041083537
-    },
-    {
       "origin": "STREAM",
       "text": "SHIELD IMMUNE SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HUNGER SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772041086460
+    },
+    {
+      "origin": "STREAM",
+      "text": "PURE PURE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041086686
     }
   ]
 }
