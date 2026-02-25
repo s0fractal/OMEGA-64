@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SHOCK CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037622736
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772037624089
@@ -291,6 +285,12 @@
       "text": "STABLE OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772037626824
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL RESONATE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772037627063
     }
   ]
 }
