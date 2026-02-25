@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD REFLECT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772024138192
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772024138381
@@ -291,6 +285,12 @@
       "text": "GIVING GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772024142198
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM SYNC COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772024142384
     }
   ]
 }
