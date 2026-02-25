@@ -89,12 +89,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SYNC SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772021268171
-    },
-    {
       "origin": "INTERFACE",
       "text": "HUNGER STRIKE SEIZE",
       "mood": "AGGRESSIVE",
@@ -177,6 +171,12 @@
       "text": "UNIFY STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772021272306
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SHOCK STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021272517
     }
   ]
 }
