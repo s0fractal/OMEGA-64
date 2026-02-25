@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0AAAAA",
     "AA00A000",
     "AAAA0000",
     "0000FF00",
@@ -199,15 +198,10 @@
     "60000606",
     "A00A00AA",
     "A0BBC0DD",
-    "AAAA0AA0"
+    "AAAA0AA0",
+    "66660666"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SEIZE BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034289631
-    },
     {
       "origin": "REVERSE",
       "text": "UNIFY COHERE BLOOM",
@@ -291,6 +285,12 @@
       "text": "FLOW GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772034292159
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHIELD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772034292339
     }
   ]
 }
