@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE FLOW OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772038366373
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772038366587
@@ -291,6 +285,12 @@
       "text": "SHOCK SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772038369594
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772038369803
     }
   ]
 }
