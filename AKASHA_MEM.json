@@ -88,12 +88,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021253230
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772021253348
@@ -175,6 +169,12 @@
       "text": "SYNC STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772021257324
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT STASIS PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021257525
     }
   ]
 }
