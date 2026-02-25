@@ -137,12 +137,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC FLOW UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772022410035
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022410191
@@ -224,6 +218,12 @@
       "text": "COHERE FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022415851
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772022417021
     }
   ]
 }
