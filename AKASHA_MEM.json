@@ -75,12 +75,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIFE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020962097
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020962276
@@ -162,6 +156,12 @@
       "text": "WATCH WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020967071
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIKE SEIZE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020967859
     }
   ]
 }
