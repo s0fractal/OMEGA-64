@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "CONSCIOUSNESS",
-      "text": "GIVING HEAL FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772040919372
-    },
-    {
       "origin": "REVERSE",
       "text": "SHIELD IMMUNE SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040922220
+    },
+    {
+      "origin": "STREAM",
+      "text": "CONSUME BREACH SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040922510
     }
   ]
 }
