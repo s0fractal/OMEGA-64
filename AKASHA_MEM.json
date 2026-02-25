@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772035108772
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772035108961
@@ -291,6 +285,12 @@
       "text": "PURE PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772035112205
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT WATCH PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772035112451
     }
   ]
 }
