@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT RECON WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022221061
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022221624
@@ -213,6 +207,12 @@
       "text": "FLOW FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022224607
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772022224734
     }
   ]
 }
