@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772027014135
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772027014299
@@ -291,6 +285,12 @@
       "text": "STABLE HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772027017618
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SHOCK DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027017941
     }
   ]
 }
