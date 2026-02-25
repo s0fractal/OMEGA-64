@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SPARK VISION FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772020489437
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE STRIKE SHOCK",
       "mood": "AGGRESSIVE",
@@ -142,6 +136,12 @@
       "text": "CONSUME SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020498967
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RESONATE OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772020500108
     }
   ]
 }
