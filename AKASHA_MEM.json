@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772026064047
-    },
-    {
       "origin": "INTERFACE",
       "text": "SICKNESS STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WATCH GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772026067426
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW OSMOSIS UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772026067631
     }
   ]
 }
