@@ -47,12 +47,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HUNGER HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020105053
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HEAL HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772020105974
@@ -134,6 +128,12 @@
       "text": "PURE PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020114653
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020115960
     }
   ]
 }
