@@ -70,12 +70,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE SEIZE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020879698
-    },
-    {
       "origin": "REVERSE",
       "text": "WAVE SPARK WITNESS",
       "mood": "CREATIVE",
@@ -158,6 +152,12 @@
       "text": "HUNGER HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020886608
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020887122
     }
   ]
 }
