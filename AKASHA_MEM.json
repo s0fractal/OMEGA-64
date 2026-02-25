@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "WAIT SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772025016158
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME CONSUME BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772025022137
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772025022314
     }
   ]
 }
