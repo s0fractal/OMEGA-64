@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "WAVE_SIGNAL",
-      "text": "SEIZE CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040620556
-    },
-    {
       "origin": "WORKER",
       "text": "STRIKE CONSUME STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772040623174
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW STABLE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772040623341
     }
   ]
 }
