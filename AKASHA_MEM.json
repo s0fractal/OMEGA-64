@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL COHERE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772040030145
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772040032392
@@ -291,6 +285,12 @@
       "text": "STRIKE BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772040181425
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SEIZE DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040181892
     }
   ]
 }
