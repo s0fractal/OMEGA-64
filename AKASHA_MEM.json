@@ -160,12 +160,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BLOOM UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772022822105
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIKE HUNGER SHOCK",
       "mood": "AGGRESSIVE",
@@ -248,6 +242,12 @@
       "text": "WAIT STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022826813
+    },
+    {
+      "origin": "STREAM",
+      "text": "SYNC OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772022827410
     }
   ]
 }
