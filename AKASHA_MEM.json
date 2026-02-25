@@ -98,12 +98,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE STRIFE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021587494
-    },
-    {
       "origin": "INTERFACE",
       "text": "SEIZE SICKNESS DECAY",
       "mood": "AGGRESSIVE",
@@ -186,6 +180,12 @@
       "text": "SYNC FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772021594319
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021594570
     }
   ]
 }
