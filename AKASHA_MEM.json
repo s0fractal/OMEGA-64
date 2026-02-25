@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL HEAL OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772032744671
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772032744812
@@ -291,6 +285,12 @@
       "text": "AWAKEN BECOME BECOME",
       "mood": "CREATIVE",
       "tick": 1772032751409
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS EVOLVE DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772032751588
     }
   ]
 }
