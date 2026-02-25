@@ -146,12 +146,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022506896
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772022507069
@@ -233,6 +227,12 @@
       "text": "WATCH WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022509863
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT IMMUNE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022510110
     }
   ]
 }
