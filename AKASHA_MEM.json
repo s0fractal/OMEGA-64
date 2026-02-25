@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT REFLECT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040725856
-    },
-    {
       "origin": "STREAM",
       "text": "WATCH SHIELD SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772040729357
+    },
+    {
+      "origin": "STREAM",
+      "text": "HUNGER HUNGER CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040729564
     }
   ]
 }
