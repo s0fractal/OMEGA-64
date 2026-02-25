@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032896338
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK BEYOND FORGE",
       "mood": "CREATIVE",
       "tick": 1772032896497
@@ -291,6 +285,12 @@
       "text": "SHIELD GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772032900072
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE RESONATE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772032900253
     }
   ]
 }
