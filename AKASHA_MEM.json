@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RECON REFLECT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772040707282
-    },
-    {
       "origin": "REVERSE",
       "text": "WAIT SHELTER WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772040711002
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772040711171
     }
   ]
 }
