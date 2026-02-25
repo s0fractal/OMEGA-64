@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_REVERSE",
-      "text": "DECAY STRIKE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033052711
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY OSMOSIS STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HEAL UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772033055677
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033055963
     }
   ]
 }
