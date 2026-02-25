@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034595386
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034595543
@@ -291,6 +285,12 @@
       "text": "COHERE FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772034598031
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHIELD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772034598223
     }
   ]
 }
