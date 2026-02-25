@@ -77,12 +77,6 @@
   "utterances": [
     {
       "origin": "STREAM",
-      "text": "SYNC STABLE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772021021745
-    },
-    {
-      "origin": "STREAM",
       "text": "BLOOM FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772021021970
@@ -164,6 +158,12 @@
       "text": "FLOW UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772021027849
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021028929
     }
   ]
 }
