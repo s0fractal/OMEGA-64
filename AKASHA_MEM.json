@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0FF0FFF0",
     "06600006",
     "AA000000",
     "60066000",
@@ -199,15 +198,10 @@
     "000A60A0",
     "AABBC00D",
     "66060666",
-    "66006066"
+    "66006066",
+    "0AAA0AA0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "OSMOSIS GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772031369668
-    },
     {
       "origin": "REVERSE",
       "text": "RECON WATCH SHIELD",
@@ -291,6 +285,12 @@
       "text": "UNIFY COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772031391620
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772031392139
     }
   ]
 }
