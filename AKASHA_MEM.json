@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022195246
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772022195591
@@ -213,6 +207,12 @@
       "text": "STRIKE DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022199079
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SICKNESS STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022199203
     }
   ]
 }
