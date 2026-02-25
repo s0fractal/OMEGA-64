@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING SYNC COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772040280551
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772040280963
@@ -291,6 +285,12 @@
       "text": "SEIZE CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772040286862
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE IMMUNE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040287954
     }
   ]
 }
