@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772034042407
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772034042602
@@ -291,6 +285,12 @@
       "text": "RESONATE OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772034045159
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE SPARK DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772034045356
     }
   ]
 }
