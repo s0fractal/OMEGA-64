@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAA00A0A",
     "AAAAAA00",
     "0B0A0000",
     "A6666666",
@@ -199,15 +198,10 @@
     "AA00000A",
     "06666066",
     "00000660",
-    "BBB000FC"
+    "BBB000FC",
+    "000AAAA0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "COHERE UNIFY BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772031954487
-    },
     {
       "origin": "REVERSE",
       "text": "OSMOSIS GIVING BLOOM",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772031968371
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772031969795
     }
   ]
 }
