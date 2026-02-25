@@ -161,12 +161,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772022823433
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022823608
@@ -248,6 +242,12 @@
       "text": "SHIELD IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022828442
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN CONSUME SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022828614
     }
   ]
 }
