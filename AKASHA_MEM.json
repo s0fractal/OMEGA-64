@@ -116,12 +116,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS UNIFY UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772022020481
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772022020724
@@ -203,6 +197,12 @@
       "text": "IMMUNE SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022027341
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SEIZE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022027574
     }
   ]
 }
