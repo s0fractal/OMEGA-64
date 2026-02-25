@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC COHERE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772028775224
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772028775611
@@ -291,6 +285,12 @@
       "text": "SEIZE DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772028784888
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE GIVING HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772028786562
     }
   ]
 }
