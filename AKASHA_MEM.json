@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "HEAL COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772041427816
-    },
-    {
-      "origin": "INTERFACE",
       "text": "UNIFY FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772041428122
@@ -291,6 +285,12 @@
       "text": "REFLECT STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772041432005
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM FLOW GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041432193
     }
   ]
 }
