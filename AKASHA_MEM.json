@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772033849018
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772033849202
@@ -291,6 +285,12 @@
       "text": "SHOCK CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772033851528
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE HUNGER CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033851705
     }
   ]
 }
