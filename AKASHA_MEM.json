@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772036649172
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772036649395
@@ -291,6 +285,12 @@
       "text": "DRAIN BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772036653579
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON IMMUNE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772036658335
     }
   ]
 }
