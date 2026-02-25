@@ -95,12 +95,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS OSMOSIS UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772021500679
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772021501408
@@ -182,6 +176,12 @@
       "text": "PURE PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772021512886
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING SYNC UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772021514087
     }
   ]
 }
