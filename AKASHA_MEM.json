@@ -183,12 +183,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772023533397
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023533620
@@ -270,6 +264,12 @@
       "text": "IMMUNE PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023537595
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023537796
     }
   ]
 }
