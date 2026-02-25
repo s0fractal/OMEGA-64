@@ -177,12 +177,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE DECAY SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023314701
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023315021
@@ -264,6 +258,12 @@
       "text": "UNIFY SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023317678
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772023317910
     }
   ]
 }
