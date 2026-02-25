@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SYNC RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772040904555
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RESONATE COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772040904819
@@ -291,6 +285,12 @@
       "text": "UNIFY UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772040907352
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DECAY STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040907649
     }
   ]
 }
