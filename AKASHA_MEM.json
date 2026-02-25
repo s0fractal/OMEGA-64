@@ -63,12 +63,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "IMMUNE GUARD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020628224
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GIVING UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772020629111
@@ -150,6 +144,12 @@
       "text": "BREACH BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020637965
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH BREACH DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020638669
     }
   ]
 }
