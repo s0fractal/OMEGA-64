@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS REFLECT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772035703969
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772035704263
@@ -291,6 +285,12 @@
       "text": "BREACH STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772035709124
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE CONSUME SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035709385
     }
   ]
 }
