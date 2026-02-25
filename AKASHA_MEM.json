@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772023716792
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772023717698
@@ -278,6 +272,12 @@
       "text": "VISION AWAKEN SPARK",
       "mood": "CREATIVE",
       "tick": 1772023721271
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER GUARD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023721428
     }
   ]
 }
