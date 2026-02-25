@@ -128,12 +128,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022289108
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772022289231
@@ -215,6 +209,12 @@
       "text": "HUNGER BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022293676
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772022293835
     }
   ]
 }
