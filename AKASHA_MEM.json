@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "DRAIN BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772015835947
-    },
-    {
-      "origin": "INTERFACE",
       "text": "DRAIN DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772015840770
@@ -107,6 +101,12 @@
       "text": "BLOOM BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772015907918
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIKE SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772015917666
     }
   ]
 }
