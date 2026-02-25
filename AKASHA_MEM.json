@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0AAA00",
     "A0BBC000",
     "66006660",
     "A0666000",
@@ -199,15 +198,10 @@
     "60600060",
     "AAAAA00A",
     "60600606",
-    "0A0BC0DD"
+    "0A0BC0DD",
+    "A0BBC00D"
   ],
   "utterances": [
-    {
-      "origin": "SUCC",
-      "text": "FLOW GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772040923578
-    },
     {
       "origin": "ARCHIVIST",
       "text": "DRAIN STRIFE DECAY",
@@ -291,6 +285,12 @@
       "text": "SHIELD SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772040926646
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HUNGER HUNGER HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040926815
     }
   ]
 }
