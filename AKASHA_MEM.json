@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE WAIT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772029541610
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772029542294
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772029569144
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS IMMUNE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772029569926
     }
   ]
 }
