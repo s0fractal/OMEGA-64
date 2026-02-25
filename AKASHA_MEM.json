@@ -192,12 +192,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL HEAL UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772023762406
-    },
-    {
-      "origin": "REVERSE",
       "text": "FORGE VISION WITNESS",
       "mood": "CREATIVE",
       "tick": 1772023762724
@@ -279,6 +273,12 @@
       "text": "UNIFY COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772023766048
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIKE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023766210
     }
   ]
 }
