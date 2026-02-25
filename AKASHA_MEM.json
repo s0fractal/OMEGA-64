@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BEYOND BEYOND SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772037036600
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772037036764
@@ -291,6 +285,12 @@
       "text": "COHERE BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772037040026
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM STABLE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772037040275
     }
   ]
 }
