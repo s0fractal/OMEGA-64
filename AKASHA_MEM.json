@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772024561851
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772024562078
@@ -291,6 +285,12 @@
       "text": "RECON SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772024568857
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024569134
     }
   ]
 }
