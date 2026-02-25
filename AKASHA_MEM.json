@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033891564
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK BEYOND BEYOND",
       "mood": "CREATIVE",
       "tick": 1772033891758
@@ -291,6 +285,12 @@
       "text": "UNIFY BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772033894810
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772033895010
     }
   ]
 }
