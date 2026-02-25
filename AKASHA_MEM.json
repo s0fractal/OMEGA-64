@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SPARK EVOLVE WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772024909146
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772024909334
@@ -291,6 +285,12 @@
       "text": "UNIFY UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772024915954
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT GUARD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772024916481
     }
   ]
 }
