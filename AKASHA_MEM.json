@@ -166,12 +166,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WAVE AWAKEN AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772023029469
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD REFLECT SHELTER",
       "mood": "DEFENSIVE",
@@ -254,6 +248,12 @@
       "text": "SHOCK STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023033335
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK WAVE BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772023033510
     }
   ]
 }
