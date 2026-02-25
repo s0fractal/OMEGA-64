@@ -111,12 +111,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD RECON GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021902643
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772021902765
@@ -198,6 +192,12 @@
       "text": "STABLE OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772021907515
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON REFLECT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021907874
     }
   ]
 }
