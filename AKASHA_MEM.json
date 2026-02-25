@@ -163,12 +163,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022937701
-    },
-    {
       "origin": "REVERSE",
       "text": "PURE WATCH REFLECT",
       "mood": "DEFENSIVE",
@@ -251,6 +245,12 @@
       "text": "STABLE HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772022941621
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022941793
     }
   ]
 }
