@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "FLOW OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041024624
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "UNIFY OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772041024760
@@ -291,6 +285,12 @@
       "text": "UNIFY GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772041027128
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WAIT STASIS GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041027290
     }
   ]
 }
