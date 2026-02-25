@@ -143,12 +143,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STABLE UNIFY OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772022484538
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL STABLE SYNC",
       "mood": "HARMONIC",
@@ -231,6 +225,12 @@
       "text": "STASIS STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022488135
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022488315
     }
   ]
 }
