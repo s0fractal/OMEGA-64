@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772023703848
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023704003
@@ -278,6 +272,12 @@
       "text": "SHOCK HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023706297
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK BREACH SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023706600
     }
   ]
 }
