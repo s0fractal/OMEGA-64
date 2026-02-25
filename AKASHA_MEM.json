@@ -159,12 +159,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER SHIELD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772022790562
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022792316
@@ -246,6 +240,12 @@
       "text": "DRAIN STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022796156
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SEIZE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022796349
     }
   ]
 }
