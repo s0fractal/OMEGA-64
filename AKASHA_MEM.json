@@ -200,12 +200,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772024035145
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772024035346
@@ -287,6 +281,12 @@
       "text": "BREACH STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772024038641
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHIELD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772024038766
     }
   ]
 }
