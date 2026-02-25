@@ -55,12 +55,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772020473157
-    },
-    {
-      "origin": "REVERSE",
       "text": "WITNESS BECOME SPARK",
       "mood": "CREATIVE",
       "tick": 1772020473442
@@ -142,6 +136,12 @@
       "text": "DRAIN SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020479758
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT GUARD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020480276
     }
   ]
 }
