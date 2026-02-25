@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772020411068
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIFE SHOCK STRIFE",
       "mood": "AGGRESSIVE",
@@ -141,6 +135,12 @@
       "text": "BREACH STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020420253
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH IMMUNE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020420416
     }
   ]
 }
