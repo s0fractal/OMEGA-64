@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE SICKNESS DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041604099
-    },
-    {
       "origin": "INTERFACE",
       "text": "FLOW FLOW BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BREACH BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041609961
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME DRAIN CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041610552
     }
   ]
 }
