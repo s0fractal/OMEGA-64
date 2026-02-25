@@ -82,12 +82,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021164371
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE GIVING OSMOSIS",
       "mood": "HARMONIC",
@@ -170,6 +164,12 @@
       "text": "STRIKE SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772021169246
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WAIT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021170022
     }
   ]
 }
