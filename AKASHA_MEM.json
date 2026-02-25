@@ -123,12 +123,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772022138606
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022138810
@@ -210,6 +204,12 @@
       "text": "STASIS IMMUNE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022144899
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE CONSUME CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022145081
     }
   ]
 }
