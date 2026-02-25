@@ -97,12 +97,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772021574594
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772021574893
@@ -184,6 +178,12 @@
       "text": "SHOCK CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772021582057
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DECAY CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021582219
     }
   ]
 }
