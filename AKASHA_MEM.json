@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038374100
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772038374275
@@ -291,6 +285,12 @@
       "text": "STRIKE DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772038376856
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHIELD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772038377227
     }
   ]
 }
