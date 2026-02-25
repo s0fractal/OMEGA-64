@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS OSMOSIS OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772025854677
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM UNIFY FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DRAIN SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772025859878
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT RECON SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772025860708
     }
   ]
 }
