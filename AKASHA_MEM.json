@@ -71,12 +71,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE STABLE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772020920980
-    },
-    {
       "origin": "INTERFACE",
       "text": "BREACH DRAIN STRIFE",
       "mood": "AGGRESSIVE",
@@ -159,6 +153,12 @@
       "text": "HUNGER HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020926967
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE OSMOSIS BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772020928010
     }
   ]
 }
