@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING STABLE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772035798469
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772035798756
@@ -291,6 +285,12 @@
       "text": "COHERE STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772035804570
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE STABLE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772035804776
     }
   ]
 }
