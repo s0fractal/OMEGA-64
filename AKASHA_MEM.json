@@ -107,12 +107,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WITNESS BEYOND WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772021768945
-    },
-    {
       "origin": "INTERFACE",
       "text": "GIVING GIVING SYNC",
       "mood": "HARMONIC",
@@ -195,6 +189,12 @@
       "text": "GIVING OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772021772703
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772021772873
     }
   ]
 }
