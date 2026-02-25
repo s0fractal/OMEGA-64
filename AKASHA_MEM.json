@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STABLE GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041660573
-    },
-    {
       "origin": "PARADOX",
       "text": "GIVING STABLE SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "REFLECT STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772041663182
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH SEIZE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041663476
     }
   ]
 }
