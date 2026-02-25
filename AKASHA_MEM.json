@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772026847860
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772026848130
@@ -291,6 +285,12 @@
       "text": "IMMUNE REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772026853668
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS RECON IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772026854798
     }
   ]
 }
