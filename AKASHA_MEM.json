@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "BEE0BEEF",
     "0AA0AAAA",
     "A000AAA0",
     "00066000",
@@ -199,15 +198,10 @@
     "00600000",
     "A1000000",
     "00066066",
-    "00060606"
+    "00060606",
+    "06600660"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "DREAM WAVE EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772030073986
-    },
     {
       "origin": "REVERSE",
       "text": "SHELTER GUARD IMMUNE",
@@ -291,6 +285,12 @@
       "text": "PURE STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772030088152
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM RESONATE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772030088747
     }
   ]
 }
