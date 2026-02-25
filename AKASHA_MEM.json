@@ -171,12 +171,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WAIT SHIELD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023120435
-    },
-    {
       "origin": "STREAM",
       "text": "COHERE SYNC GIVING",
       "mood": "HARMONIC",
@@ -259,6 +253,12 @@
       "text": "FLOW UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772023125904
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DECAY STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023126133
     }
   ]
 }
