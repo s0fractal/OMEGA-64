@@ -74,12 +74,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY HEAL FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772020965740
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE BREACH STRIFE",
       "mood": "AGGRESSIVE",
@@ -162,6 +156,12 @@
       "text": "UNIFY STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772020976134
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON PURE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020976353
     }
   ]
 }
