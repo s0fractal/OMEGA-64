@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772028651658
-    },
-    {
       "origin": "INTERFACE",
       "text": "IMMUNE WATCH SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772028687814
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHELTER REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772028688284
     }
   ]
 }
