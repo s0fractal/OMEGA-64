@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME VISION BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772024436380
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772024436532
@@ -291,6 +285,12 @@
       "text": "SHOCK SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772024439884
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772024440525
     }
   ]
 }
