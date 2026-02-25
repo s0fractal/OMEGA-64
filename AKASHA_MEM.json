@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772041381456
-    },
-    {
       "origin": "INTERFACE",
       "text": "RESONATE SYNC OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RECON SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041385167
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WATCH PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041385301
     }
   ]
 }
