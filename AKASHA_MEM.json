@@ -153,12 +153,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON STASIS WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772022635221
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE DECAY STRIFE",
       "mood": "AGGRESSIVE",
@@ -241,6 +235,12 @@
       "text": "DECAY SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022640201
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DECAY SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022640371
     }
   ]
 }
