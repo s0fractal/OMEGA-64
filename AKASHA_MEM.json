@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY STRIKE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027351224
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH WATCH STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772027359419
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027360206
     }
   ]
 }
