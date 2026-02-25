@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772020621522
-    },
-    {
       "origin": "INTERFACE",
       "text": "STASIS WATCH REFLECT",
       "mood": "DEFENSIVE",
@@ -150,6 +144,12 @@
       "text": "STRIFE BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020626807
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020627503
     }
   ]
 }
