@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHELTER SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041023972
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RECON WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041024093
@@ -291,6 +285,12 @@
       "text": "GUARD GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041026680
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY OSMOSIS OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772041026813
     }
   ]
 }
