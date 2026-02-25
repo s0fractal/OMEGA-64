@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60000666",
     "0FF0FFF0",
     "AAAA00A0",
     "A0A00A0A",
@@ -199,15 +198,10 @@
     "66600000",
     "AA0A0A0A",
     "66066600",
-    "66666000"
+    "66666000",
+    "A00AAAAA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GUARD RECON PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040358729
-    },
     {
       "origin": "REVERSE",
       "text": "UNIFY COHERE HEAL",
@@ -291,6 +285,12 @@
       "text": "BREACH HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772040365101
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040365311
     }
   ]
 }
