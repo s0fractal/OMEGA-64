@@ -153,12 +153,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD STASIS PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022593944
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772022594569
@@ -240,6 +234,12 @@
       "text": "VISION BEYOND BECOME",
       "mood": "CREATIVE",
       "tick": 1772022599451
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE SEIZE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022599640
     }
   ]
 }
