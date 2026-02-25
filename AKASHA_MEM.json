@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037186798
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772037186958
@@ -291,6 +285,12 @@
       "text": "EVOLVE BEYOND VISION",
       "mood": "CREATIVE",
       "tick": 1772037192491
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHIELD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772037192702
     }
   ]
 }
