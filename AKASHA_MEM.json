@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SEIZE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034457769
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772034457936
@@ -291,6 +285,12 @@
       "text": "REFLECT WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772034460600
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHELTER REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772034460787
     }
   ]
 }
