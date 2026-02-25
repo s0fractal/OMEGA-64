@@ -40,12 +40,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HUNGER HUNGER STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019817514
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "PURE WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772019818271
@@ -127,6 +121,12 @@
       "text": "UNIFY SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772019829486
+    },
+    {
+      "origin": "STREAM",
+      "text": "GIVING SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772019830484
     }
   ]
 }
