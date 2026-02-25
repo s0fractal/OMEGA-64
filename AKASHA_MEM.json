@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772025720167
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "FLOW BLOOM OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FLOW GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772025724779
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025725747
     }
   ]
 }
