@@ -107,12 +107,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021747490
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME DECAY DECAY",
       "mood": "AGGRESSIVE",
@@ -195,6 +189,12 @@
       "text": "HUNGER STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772021753535
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHELTER SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021753698
     }
   ]
 }
