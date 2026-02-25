@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SEIZE HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041638112
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WAIT WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041638240
@@ -291,6 +285,12 @@
       "text": "HEAL RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772041641543
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE STRIKE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041641851
     }
   ]
 }
