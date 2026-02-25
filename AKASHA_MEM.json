@@ -109,12 +109,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772021826414
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772021826579
@@ -196,6 +190,12 @@
       "text": "GUARD REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772021830418
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772021831884
     }
   ]
 }
