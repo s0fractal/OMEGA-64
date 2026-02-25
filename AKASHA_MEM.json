@@ -75,12 +75,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772020961648
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020962097
@@ -162,6 +156,12 @@
       "text": "RESONATE SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772020966865
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WAIT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020967071
     }
   ]
 }
