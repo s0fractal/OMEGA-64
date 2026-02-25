@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE SYNC OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772038595228
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772038595705
@@ -291,6 +285,12 @@
       "text": "CONSUME BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772038603059
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL HEAL HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772038603398
     }
   ]
 }
