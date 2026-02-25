@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028228497
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772028229129
@@ -291,6 +285,12 @@
       "text": "COHERE FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772028241842
+    },
+    {
+      "origin": "STREAM",
+      "text": "WAIT IMMUNE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772028244040
     }
   ]
 }
