@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHIELD WAIT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772034533397
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW RESONATE GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WAIT GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772034536569
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE SPARK EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772034536963
     }
   ]
 }
