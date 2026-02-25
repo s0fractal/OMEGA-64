@@ -20,12 +20,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772017428263
-    },
-    {
       "origin": "INTERFACE",
       "text": "WAIT SHIELD GUARD",
       "mood": "DEFENSIVE",
@@ -108,6 +102,12 @@
       "text": "BREACH SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772017509489
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772017511844
     }
   ]
 }
