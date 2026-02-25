@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT SHELTER PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772038997731
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772038997950
@@ -291,6 +285,12 @@
       "text": "PURE IMMUNE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772039000968
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING UNIFY SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772039001202
     }
   ]
 }
