@@ -51,12 +51,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020323644
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME BREACH HUNGER",
       "mood": "AGGRESSIVE",
@@ -139,6 +133,12 @@
       "text": "DRAIN CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020332082
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772020332488
     }
   ]
 }
