@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "STREAM",
-      "text": "DRAIN SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040559231
-    },
-    {
-      "origin": "STREAM",
       "text": "STABLE STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772040559352
@@ -291,6 +285,12 @@
       "text": "BECOME EVOLVE WITNESS",
       "mood": "CREATIVE",
       "tick": 1772040561138
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIKE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040561267
     }
   ]
 }
