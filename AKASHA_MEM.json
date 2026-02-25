@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS HEAL GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772040462556
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIFE STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772040466118
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040466278
     }
   ]
 }
