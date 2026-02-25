@@ -92,18 +92,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021282536
-    },
-    {
-      "origin": "STREAM",
-      "text": "BLOOM FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772021284697
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772021286060
@@ -179,6 +167,18 @@
       "text": "IMMUNE STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772021325071
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON IMMUNE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772021328797
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021332108
     }
   ]
 }
