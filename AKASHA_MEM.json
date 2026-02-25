@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SYNC SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772041984605
-    },
-    {
       "origin": "WAVE_SIGNAL",
       "text": "SHOCK SHOCK STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SEIZE HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772041992047
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041992248
     }
   ]
 }
