@@ -88,12 +88,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772021252065
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772021252302
@@ -175,6 +169,12 @@
       "text": "HUNGER HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772021255546
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021255869
     }
   ]
 }
