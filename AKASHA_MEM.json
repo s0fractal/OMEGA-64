@@ -144,12 +144,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE SYNC COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772022479842
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022480066
@@ -231,6 +225,12 @@
       "text": "UNIFY RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772022484172
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHIELD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772022484293
     }
   ]
 }
