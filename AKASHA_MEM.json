@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772038494945
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772038495221
@@ -291,6 +285,12 @@
       "text": "STRIFE CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772038498119
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772038498401
     }
   ]
 }
