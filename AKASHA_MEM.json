@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD PURE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772032522456
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772032522742
@@ -291,6 +285,12 @@
       "text": "DRAIN DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772032528233
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772032528447
     }
   ]
 }
