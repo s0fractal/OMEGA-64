@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772036363672
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772036363867
@@ -291,6 +285,12 @@
       "text": "DREAM EVOLVE SPARK",
       "mood": "CREATIVE",
       "tick": 1772036367961
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER CONSUME CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036368167
     }
   ]
 }
