@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "RESONATE UNIFY SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772024244631
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS SHELTER REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772024252729
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772024252917
     }
   ]
 }
