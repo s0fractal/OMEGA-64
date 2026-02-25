@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE STASIS SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772037370278
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772037370483
@@ -291,6 +285,12 @@
       "text": "SHIELD WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772037374179
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037375338
     }
   ]
 }
