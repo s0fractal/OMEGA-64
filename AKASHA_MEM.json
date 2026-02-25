@@ -163,12 +163,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER SHIELD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022896995
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772022897207
@@ -250,6 +244,12 @@
       "text": "STRIFE SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022906402
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022906999
     }
   ]
 }
