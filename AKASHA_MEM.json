@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DRAIN DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037142303
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772037142512
@@ -291,6 +285,12 @@
       "text": "STRIFE SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772037145885
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772037146097
     }
   ]
 }
