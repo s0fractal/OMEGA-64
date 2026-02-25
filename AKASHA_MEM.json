@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE WATCH REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023090808
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023092946
@@ -259,6 +253,12 @@
       "text": "CONSUME SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023095725
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STABLE UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772023095889
     }
   ]
 }
