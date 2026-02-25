@@ -124,12 +124,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HEAL UNIFY UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772022189648
-    },
-    {
       "origin": "REVERSE",
       "text": "IMMUNE RECON WAIT",
       "mood": "DEFENSIVE",
@@ -212,6 +206,12 @@
       "text": "DRAIN SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022195246
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE GIVING HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772022195591
     }
   ]
 }
