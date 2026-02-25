@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME BEYOND BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772027181328
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772027181958
@@ -291,6 +285,12 @@
       "text": "GUARD PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772027187359
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING UNIFY GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772027188225
     }
   ]
 }
