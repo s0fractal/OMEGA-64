@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "OSMOSIS SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772041857841
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER DECAY CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772041864065
+    },
+    {
+      "origin": "STREAM",
+      "text": "COHERE RESONATE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041864251
     }
   ]
 }
