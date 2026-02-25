@@ -137,12 +137,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS SHIELD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772022400654
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772022402555
@@ -224,6 +218,12 @@
       "text": "RESONATE HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772022408308
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772022408461
     }
   ]
 }
