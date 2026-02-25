@@ -63,12 +63,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FORGE AWAKEN WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772020710288
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772020710476
@@ -150,6 +144,12 @@
       "text": "STASIS SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772020716223
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772020717041
     }
   ]
 }
