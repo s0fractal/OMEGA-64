@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772037123906
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772037124133
@@ -291,6 +285,12 @@
       "text": "SHELTER SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772037128312
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE BREACH SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037130450
     }
   ]
 }
