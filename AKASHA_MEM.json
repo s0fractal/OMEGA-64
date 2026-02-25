@@ -107,15 +107,10 @@
     "00666000",
     "66066606",
     "AAA0A0A0",
-    "A0AAA0A0"
+    "A0AAA0A0",
+    "A6666006"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "CONSUME STRIFE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021942532
-    },
     {
       "origin": "REVERSE",
       "text": "HUNGER SEIZE HUNGER",
@@ -199,6 +194,12 @@
       "text": "COHERE SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772021948428
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIKE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021950152
     }
   ]
 }
