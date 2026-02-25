@@ -102,12 +102,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING STABLE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772021605728
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772021605997
@@ -189,6 +183,12 @@
       "text": "WATCH WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772021612096
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD IMMUNE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021613004
     }
   ]
 }
