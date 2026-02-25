@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER RECON REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772037466938
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772037467195
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772037472544
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037472876
     }
   ]
 }
