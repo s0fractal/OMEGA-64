@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY DRAIN STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023934174
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772023934400
@@ -284,6 +278,12 @@
       "text": "WAIT SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772023941583
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772023942221
     }
   ]
 }
