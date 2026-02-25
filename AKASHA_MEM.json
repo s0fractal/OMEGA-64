@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "REFLECT WAIT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041696640
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HUNGER SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772041696819
@@ -291,6 +285,12 @@
       "text": "OSMOSIS STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772041700697
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER STASIS IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041700883
     }
   ]
 }
