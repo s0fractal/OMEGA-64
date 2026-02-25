@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME DECAY SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041255509
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE CONSUME DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041260942
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE EVOLVE AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772041261187
     }
   ]
 }
