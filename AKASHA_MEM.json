@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE GIVING FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772036579320
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772036579664
@@ -291,6 +285,12 @@
       "text": "RESONATE GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772036582729
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD RECON SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772036582922
     }
   ]
 }
