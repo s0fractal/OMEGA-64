@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "DRAIN SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041616863
-    },
-    {
       "origin": "IS_ISO",
       "text": "IMMUNE REFLECT SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041620941
+    },
+    {
+      "origin": "PARASITE",
+      "text": "WAIT REFLECT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772041622610
     }
   ]
 }
