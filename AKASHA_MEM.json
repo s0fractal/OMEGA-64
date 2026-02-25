@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WATCH WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772034147371
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772034147657
@@ -291,6 +285,12 @@
       "text": "BLOOM OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772034150456
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034150665
     }
   ]
 }
