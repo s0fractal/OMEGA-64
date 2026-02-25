@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772026331779
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772026332010
@@ -291,6 +285,12 @@
       "text": "RESONATE HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772026334827
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SICKNESS STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026335186
     }
   ]
 }
