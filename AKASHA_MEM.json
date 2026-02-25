@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036586884
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772036587143
@@ -291,6 +285,12 @@
       "text": "BLOOM FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772036591054
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772036591320
     }
   ]
 }
