@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040285022
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772040285260
@@ -291,6 +285,12 @@
       "text": "STABLE BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772040292474
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040293246
     }
   ]
 }
