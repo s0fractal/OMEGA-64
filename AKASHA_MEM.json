@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772025897127
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772025897331
@@ -291,6 +285,12 @@
       "text": "GUARD WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772025900681
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC SYNC SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772025901084
     }
   ]
 }
