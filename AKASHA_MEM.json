@@ -37,12 +37,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772019790636
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HEAL RESONATE STABLE",
       "mood": "HARMONIC",
@@ -125,6 +119,12 @@
       "text": "WAIT RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772019799310
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STABLE BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772019800008
     }
   ]
 }
