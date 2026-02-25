@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66A666A0",
     "60606000",
     "60666600",
     "AA660660",
@@ -199,15 +198,10 @@
     "A0AA0000",
     "AA00AA00",
     "AAA00000",
-    "BB0B0000"
+    "BB0B0000",
+    "AA6066A6"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GUARD SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772034114913
-    },
     {
       "origin": "REVERSE",
       "text": "STRIKE SHOCK BREACH",
@@ -291,6 +285,12 @@
       "text": "FORGE WAVE DREAM",
       "mood": "CREATIVE",
       "tick": 1772034121999
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034122257
     }
   ]
 }
