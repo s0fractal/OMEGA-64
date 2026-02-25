@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING OSMOSIS UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772032722210
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772032722653
@@ -291,6 +285,12 @@
       "text": "PURE WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772032725187
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH RECON WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772032725368
     }
   ]
 }
