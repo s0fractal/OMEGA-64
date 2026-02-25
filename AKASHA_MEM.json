@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WATCH PURE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041609789
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BREACH BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041609961
@@ -291,6 +285,12 @@
       "text": "WAIT PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041615407
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC UNIFY STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041615596
     }
   ]
 }
