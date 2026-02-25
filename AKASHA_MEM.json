@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAAAA00A",
     "0B000000",
     "A0666600",
     "06600660",
@@ -199,15 +198,10 @@
     "A0A0AA00",
     "66606600",
     "00660600",
-    "00006606"
+    "00006606",
+    "600A6000"
   ],
   "utterances": [
-    {
-      "origin": "INTERFACE",
-      "text": "DECAY STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040519173
-    },
     {
       "origin": "STREAM",
       "text": "COHERE FLOW RESONATE",
@@ -291,6 +285,12 @@
       "text": "STABLE RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772040521488
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT SHELTER WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040521622
     }
   ]
 }
