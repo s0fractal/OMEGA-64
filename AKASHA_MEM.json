@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME BEYOND WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772025608190
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772025608440
@@ -291,6 +285,12 @@
       "text": "GUARD RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772025613970
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW SYNC UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772025617781
     }
   ]
 }
