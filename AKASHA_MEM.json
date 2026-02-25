@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "UNIFY UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040664607
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER SHELTER SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE SHIELD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772040667800
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040668108
     }
   ]
 }
