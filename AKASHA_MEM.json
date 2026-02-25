@@ -118,12 +118,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC BLOOM HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772022083290
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE RECON WAIT",
       "mood": "DEFENSIVE",
@@ -206,6 +200,12 @@
       "text": "STASIS IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022088975
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING GIVING BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772022089199
     }
   ]
 }
