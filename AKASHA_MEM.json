@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS OSMOSIS UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772033314656
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772033314948
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772033317674
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772033317863
     }
   ]
 }
