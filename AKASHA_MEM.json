@@ -63,12 +63,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020721044
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD RECON SHIELD",
       "mood": "DEFENSIVE",
@@ -151,6 +145,12 @@
       "text": "GUARD SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020729195
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIKE CONSUME SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020729395
     }
   ]
 }
