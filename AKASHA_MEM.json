@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH SEIZE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039163182
-    },
-    {
       "origin": "ALPHA_REVERSE",
       "text": "DRAIN STRIKE STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772039166090
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039166407
     }
   ]
 }
