@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING STABLE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772033165542
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033165733
@@ -291,6 +285,12 @@
       "text": "BECOME AWAKEN WAVE",
       "mood": "CREATIVE",
       "tick": 1772033168607
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772033168757
     }
   ]
 }
