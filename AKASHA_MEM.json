@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00006066",
     "ABBB0000",
     "A6066606",
     "60666660",
@@ -199,15 +198,10 @@
     "AA0A0AAA",
     "AAA000A0",
     "06666600",
-    "0BBB0000"
+    "0BBB0000",
+    "60060600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WAIT WAIT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772037095247
-    },
     {
       "origin": "REVERSE",
       "text": "COHERE OSMOSIS SYNC",
@@ -291,6 +285,12 @@
       "text": "GUARD WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772037099322
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WATCH WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772037099559
     }
   ]
 }
