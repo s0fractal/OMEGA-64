@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772026944030
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772026944489
@@ -291,6 +285,12 @@
       "text": "BECOME VISION WITNESS",
       "mood": "CREATIVE",
       "tick": 1772026949557
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW GIVING FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772026950175
     }
   ]
 }
