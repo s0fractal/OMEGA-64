@@ -132,12 +132,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772022350456
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772022350697
@@ -219,6 +213,12 @@
       "text": "DRAIN DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022354224
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT REFLECT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022354422
     }
   ]
 }
