@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "FLOW RESONATE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772041678631
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW FLOW UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "IMMUNE WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041681538
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT WAIT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772041681966
     }
   ]
 }
