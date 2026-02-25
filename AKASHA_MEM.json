@@ -164,12 +164,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY DECAY SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023009186
-    },
-    {
       "origin": "REVERSE",
       "text": "BREACH HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
@@ -252,6 +246,12 @@
       "text": "DECAY CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772023012645
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS REFLECT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772023012961
     }
   ]
 }
