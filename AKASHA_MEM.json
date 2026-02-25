@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SPARK BECOME AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772039089724
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772039089923
@@ -291,6 +285,12 @@
       "text": "BLOOM COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772039092878
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772039093078
     }
   ]
 }
