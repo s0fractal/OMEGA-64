@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC OSMOSIS SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772036638595
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772036638808
@@ -291,6 +285,12 @@
       "text": "HUNGER DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772036643832
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772036644030
     }
   ]
 }
