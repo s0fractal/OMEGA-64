@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER STASIS IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772025706491
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772025706799
@@ -291,6 +285,12 @@
       "text": "HEAL GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772025709424
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772025709947
     }
   ]
 }
