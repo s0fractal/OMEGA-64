@@ -184,12 +184,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772023578166
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023578333
@@ -271,6 +265,12 @@
       "text": "SHOCK DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023582922
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WATCH STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772023583507
     }
   ]
 }
