@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041409637
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME BREACH SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STASIS WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772041412679
+    },
+    {
+      "origin": "PARADOX",
+      "text": "OSMOSIS STABLE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772041412818
     }
   ]
 }
