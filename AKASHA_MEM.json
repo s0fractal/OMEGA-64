@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025278128
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING COHERE HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WAIT REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772025284362
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHIELD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772025284905
     }
   ]
 }
