@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD WAIT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772032320934
-    },
-    {
-      "origin": "REVERSE",
       "text": "EVOLVE BEYOND SPARK",
       "mood": "CREATIVE",
       "tick": 1772032321330
@@ -291,6 +285,12 @@
       "text": "HEAL HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772032332240
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIFE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032332655
     }
   ]
 }
