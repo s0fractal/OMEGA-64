@@ -170,12 +170,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE PURE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023084085
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772023084581
@@ -257,6 +251,12 @@
       "text": "WAIT SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772023087726
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY BREACH STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023087894
     }
   ]
 }
