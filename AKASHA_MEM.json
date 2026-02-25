@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772041840796
-    },
-    {
       "origin": "STREAM",
       "text": "BLOOM RESONATE GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "COHERE GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772041846149
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE STRIKE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041846524
     }
   ]
 }
