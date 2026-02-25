@@ -136,12 +136,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STASIS WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022411303
-    },
-    {
       "origin": "INTERFACE",
       "text": "SYNC SYNC OSMOSIS",
       "mood": "HARMONIC",
@@ -224,6 +218,12 @@
       "text": "RECON REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022418912
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022419069
     }
   ]
 }
