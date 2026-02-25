@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035252088
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772035252325
@@ -291,6 +285,12 @@
       "text": "STABLE BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772035254846
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT RECON PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772035255549
     }
   ]
 }
