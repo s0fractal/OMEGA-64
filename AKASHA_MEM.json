@@ -107,12 +107,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772021740902
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772021741094
@@ -194,6 +188,12 @@
       "text": "WAIT SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772021745894
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN SEIZE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021746080
     }
   ]
 }
