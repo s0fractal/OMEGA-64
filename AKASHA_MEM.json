@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66600660",
     "A00AAA00",
     "AA0A0AAA",
     "A0660600",
@@ -199,15 +198,10 @@
     "60006000",
     "000FF00F",
     "AA00AA0A",
-    "AA00AAAA"
+    "AA00AAAA",
+    "A00A00A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BREACH BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032148693
-    },
     {
       "origin": "REVERSE",
       "text": "SYNC STABLE BLOOM",
@@ -291,6 +285,12 @@
       "text": "UNIFY GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772032159042
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032162788
     }
   ]
 }
