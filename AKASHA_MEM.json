@@ -166,12 +166,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772023037015
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER REFLECT WATCH",
       "mood": "DEFENSIVE",
@@ -254,6 +248,12 @@
       "text": "SEIZE BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023041656
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772023042834
     }
   ]
 }
