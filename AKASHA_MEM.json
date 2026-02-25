@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040643744
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BLOOM SYNC GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "COHERE BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772040646414
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772040646598
     }
   ]
 }
