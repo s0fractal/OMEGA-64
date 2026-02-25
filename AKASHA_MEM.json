@@ -116,12 +116,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SPARK VISION BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772022023472
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772022023664
@@ -203,6 +197,12 @@
       "text": "WATCH WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772022028561
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BREACH BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022029265
     }
   ]
 }
