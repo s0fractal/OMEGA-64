@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "OSMOSIS OSMOSIS OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772016830571
-    },
-    {
-      "origin": "INTERFACE",
       "text": "RECON STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772016835217
@@ -107,6 +101,12 @@
       "text": "IMMUNE WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772016916407
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HUNGER STRIFE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772016923377
     }
   ]
 }
