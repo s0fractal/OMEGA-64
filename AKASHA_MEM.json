@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE OSMOSIS SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772039074632
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772039074818
@@ -291,6 +285,12 @@
       "text": "HUNGER SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772039078161
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772039078394
     }
   ]
 }
