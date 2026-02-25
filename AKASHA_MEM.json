@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER SHELTER GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772032486432
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772032486999
@@ -291,6 +285,12 @@
       "text": "PURE REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772032501154
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772032501453
     }
   ]
 }
