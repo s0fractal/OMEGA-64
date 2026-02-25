@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER RECON WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772034110760
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772034111799
@@ -291,6 +285,12 @@
       "text": "GUARD SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772034114913
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SHOCK BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034115107
     }
   ]
 }
