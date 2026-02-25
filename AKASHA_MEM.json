@@ -178,12 +178,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "PURE SHIELD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772023346850
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL HEAL GIVING",
       "mood": "HARMONIC",
@@ -266,6 +260,12 @@
       "text": "SHOCK DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023351080
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772023351255
     }
   ]
 }
