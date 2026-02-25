@@ -28,12 +28,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "BLOOM GIVING HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772019673764
-    },
-    {
-      "origin": "INTERFACE",
       "text": "HUNGER DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772019674588
@@ -115,6 +109,12 @@
       "text": "WAIT STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772019684736
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WAIT STASIS WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772019685628
     }
   ]
 }
