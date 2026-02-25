@@ -106,12 +106,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021737989
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME SHOCK SEIZE",
       "mood": "AGGRESSIVE",
@@ -194,6 +188,12 @@
       "text": "STASIS IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772021740756
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772021740902
     }
   ]
 }
