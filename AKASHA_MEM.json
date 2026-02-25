@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW FLOW FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772038026570
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772038026786
@@ -291,6 +285,12 @@
       "text": "REFLECT WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772038029430
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME SPARK DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772038029641
     }
   ]
 }
