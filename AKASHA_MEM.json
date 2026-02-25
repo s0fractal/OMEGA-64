@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041514187
-    },
-    {
       "origin": "STREAM",
       "text": "GUARD WAIT REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041516902
+    },
+    {
+      "origin": "STREAM",
+      "text": "GUARD GUARD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772041517035
     }
   ]
 }
