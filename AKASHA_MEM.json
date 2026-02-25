@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "DECAY CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040206462
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772040217575
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040218891
     }
   ]
 }
