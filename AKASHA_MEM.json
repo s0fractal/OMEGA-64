@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "COHERE RESONATE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772041201259
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "FLOW STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772041201389
@@ -291,6 +285,12 @@
       "text": "STABLE FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772041206413
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS STASIS WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041207004
     }
   ]
 }
