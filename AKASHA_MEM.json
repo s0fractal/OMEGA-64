@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772040895845
-    },
-    {
       "origin": "STREAM",
       "text": "OSMOSIS OSMOSIS STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIFE SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772040898191
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE PURE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772040898578
     }
   ]
 }
