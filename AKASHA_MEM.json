@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW OSMOSIS COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772039128555
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772039128779
@@ -291,6 +285,12 @@
       "text": "STASIS PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772039131899
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM SPARK VISION",
+      "mood": "CREATIVE",
+      "tick": 1772039132136
     }
   ]
 }
