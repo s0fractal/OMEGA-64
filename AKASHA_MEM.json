@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SICKNESS SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037774073
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772037774282
@@ -291,6 +285,12 @@
       "text": "UNIFY FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772037777831
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772037778061
     }
   ]
 }
