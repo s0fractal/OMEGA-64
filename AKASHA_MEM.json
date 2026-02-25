@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD REFLECT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772035386355
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAVE BECOME WITNESS",
       "mood": "CREATIVE",
       "tick": 1772035386622
@@ -291,6 +285,12 @@
       "text": "UNIFY COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772035389348
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE PURE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772035389577
     }
   ]
 }
