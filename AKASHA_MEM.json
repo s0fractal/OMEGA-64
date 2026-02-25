@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STASIS GUARD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041068364
-    },
-    {
       "origin": "REVERSE",
       "text": "EVOLVE FORGE DREAM",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772041071001
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041071133
     }
   ]
 }
