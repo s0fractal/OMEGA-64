@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_GUARDIAN",
-      "text": "GIVING GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041347347
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD GUARD GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772041350832
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL COHERE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041351033
     }
   ]
 }
