@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD GUARD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772024838896
-    },
-    {
       "origin": "INTERFACE",
       "text": "DRAIN DECAY SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "REFLECT STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772024854201
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE HUNGER CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024854411
     }
   ]
 }
