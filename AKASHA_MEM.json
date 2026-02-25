@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH STRIKE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022249285
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022249610
@@ -213,6 +207,12 @@
       "text": "RESONATE FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022253298
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772022253412
     }
   ]
 }
