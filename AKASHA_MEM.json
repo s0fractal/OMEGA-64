@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GIVING OSMOSIS OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772041213825
-    },
-    {
       "origin": "INTERFACE",
       "text": "WATCH SHIELD WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041219712
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041220009
     }
   ]
 }
