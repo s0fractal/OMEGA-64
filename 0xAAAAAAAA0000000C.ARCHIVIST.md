@@ -23,7 +23,7 @@ ex:
   - '0xAAAAAAAA0000000A'
 bonds:
   - '0xAAAAAAA000000006'
-logic: 8AAAAAAA
+logic: 1AAAAAAA
 ---
 
 <div align="center">
