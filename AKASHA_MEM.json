@@ -110,12 +110,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "IMMUNE WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021867086
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIKE STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021867734
@@ -197,6 +191,12 @@
       "text": "SYNC UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772021872394
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772021872605
     }
   ]
 }
