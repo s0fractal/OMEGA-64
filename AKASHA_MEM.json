@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM FLOW OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772030585751
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772030586088
@@ -291,6 +285,12 @@
       "text": "RECON RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772030595083
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIKE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030595320
     }
   ]
 }
