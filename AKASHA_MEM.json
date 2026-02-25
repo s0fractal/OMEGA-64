@@ -94,12 +94,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT SHELTER PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021474851
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772021476159
@@ -181,6 +175,12 @@
       "text": "FLOW FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772021488718
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE BREACH SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021489042
     }
   ]
 }
