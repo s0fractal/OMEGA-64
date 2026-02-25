@@ -16,15 +16,10 @@
     "0000A000",
     "BB000000",
     "BBB00000",
-    "00000006"
+    "00000006",
+    "BB0B0000"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "BREACH SEIZE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772017509489
-    },
     {
       "origin": "ARCHIVIST",
       "text": "DECAY STRIFE DRAIN",
@@ -108,6 +103,12 @@
       "text": "UNIFY GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772017581893
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772017588615
     }
   ]
 }
