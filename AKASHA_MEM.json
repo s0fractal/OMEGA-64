@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHOCK DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019664322
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH PURE WATCH",
       "mood": "DEFENSIVE",
@@ -114,6 +108,12 @@
       "text": "WAIT IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772019672375
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772019673017
     }
   ]
 }
