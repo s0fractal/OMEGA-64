@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "IMMUNE SHELTER GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772017015905
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DECAY DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772017027418
@@ -107,6 +101,12 @@
       "text": "CONSUME HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772017096341
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772017112366
     }
   ]
 }
