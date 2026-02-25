@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "UNIFY HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772019581819
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL RESONATE BLOOM",
       "mood": "HARMONIC",
@@ -114,6 +108,12 @@
       "text": "CONSUME STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772019596148
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772019596682
     }
   ]
 }
