@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "660060A0",
     "A0000AAA",
     "BB0BA000",
     "AA0666A6",
@@ -199,15 +198,10 @@
     "0BBB0000",
     "00AA000A",
     "00AAAA0A",
-    "60066000"
+    "60066000",
+    "A6606006"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GUARD STASIS SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772032538195
-    },
     {
       "origin": "REVERSE",
       "text": "SICKNESS DECAY BREACH",
@@ -291,6 +285,12 @@
       "text": "BLOOM HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772032552435
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME HUNGER SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032553405
     }
   ]
 }
