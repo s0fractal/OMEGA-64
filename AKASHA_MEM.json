@@ -50,12 +50,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STASIS STASIS REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020306680
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE GUARD SHIELD",
       "mood": "DEFENSIVE",
@@ -138,6 +132,12 @@
       "text": "CONSUME SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020314817
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020315309
     }
   ]
 }
