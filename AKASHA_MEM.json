@@ -22,12 +22,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "UNIFY BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772019471718
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE BREACH STRIFE",
       "mood": "AGGRESSIVE",
@@ -110,6 +104,12 @@
       "text": "SEIZE BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772019478143
+    },
+    {
+      "origin": "STREAM",
+      "text": "STABLE SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772019479437
     }
   ]
 }
