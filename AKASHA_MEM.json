@@ -120,12 +120,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022091766
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022091959
@@ -207,6 +201,12 @@
       "text": "GIVING COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772022096057
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL COHERE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772022096289
     }
   ]
 }
