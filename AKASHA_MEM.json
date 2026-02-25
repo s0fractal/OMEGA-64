@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772034657627
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772034657832
@@ -291,6 +285,12 @@
       "text": "COHERE OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772034663041
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034663248
     }
   ]
 }
