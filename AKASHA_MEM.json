@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772025411300
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772025411477
@@ -291,6 +285,12 @@
       "text": "VISION EVOLVE FORGE",
       "mood": "CREATIVE",
       "tick": 1772025415845
+    },
+    {
+      "origin": "STREAM",
+      "text": "REFLECT SHELTER REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772025416487
     }
   ]
 }
