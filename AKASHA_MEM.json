@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE SHOCK STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041525934
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE RESONATE OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIFE DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772041529423
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM SYNC COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041529617
     }
   ]
 }
