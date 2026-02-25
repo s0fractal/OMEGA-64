@@ -63,12 +63,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "IMMUNE WAIT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020694667
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "REFLECT WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020695514
@@ -150,6 +144,12 @@
       "text": "BREACH SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020700502
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DRAIN CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020700665
     }
   ]
 }
