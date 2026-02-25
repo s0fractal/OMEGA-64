@@ -84,12 +84,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS SPARK BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772021196453
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772021196874
@@ -171,6 +165,12 @@
       "text": "SYNC SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772021202346
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772021203277
     }
   ]
 }
