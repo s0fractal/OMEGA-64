@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD WATCH STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772037427850
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772037429721
@@ -291,6 +285,12 @@
       "text": "WAVE AWAKEN WITNESS",
       "mood": "CREATIVE",
       "tick": 1772037432775
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW SYNC UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772037432937
     }
   ]
 }
