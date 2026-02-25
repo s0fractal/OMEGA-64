@@ -106,12 +106,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772021720991
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD PURE IMMUNE",
       "mood": "DEFENSIVE",
@@ -194,6 +188,12 @@
       "text": "WATCH GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772021727354
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE BREACH STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021727759
     }
   ]
 }
