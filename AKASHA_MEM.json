@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "SEIZE HUNGER DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772016352957
-    },
-    {
-      "origin": "INTERFACE",
       "text": "WAIT SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772016360428
@@ -107,6 +101,12 @@
       "text": "SHIELD PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772016461798
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH DECAY DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772016466437
     }
   ]
 }
