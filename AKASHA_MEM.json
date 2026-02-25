@@ -1,9 +1,5 @@
 {
   "reservoir": [
-    "AAA0A0AA",
-    "66660060",
-    "00000000",
-    "66660000",
     "06006066",
     "60606006",
     "AA0660A0",
@@ -196,101 +192,105 @@
     "AA00A000",
     "BBB00000",
     "6606AA66",
-    "A6A66000",
-    "60060666",
-    "6AA60AA0",
-    "6AA06A00"
+    "A6660600",
+    "AA666600",
+    "0AAA0A00",
+    "0A0AA0A0",
+    "0A0A0666",
+    "66A06A00",
+    "AAAA0AAA",
+    "00000000"
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STABLE FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772042543574
+      "origin": "REVERSE",
+      "text": "GUARD GUARD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042545014
     },
     {
-      "origin": "ALIEN",
-      "text": "DRAIN SEIZE STRIKE",
+      "origin": "ARCHIVIST",
+      "text": "COHERE OSMOSIS BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772042545843
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE BREACH DRAIN",
       "mood": "AGGRESSIVE",
-      "tick": 1772042544414
+      "tick": 1772042546445
     },
     {
       "origin": "INTERFACE",
-      "text": "IMMUNE WAIT SHELTER",
+      "text": "WAIT IMMUNE REFLECT",
       "mood": "DEFENSIVE",
-      "tick": 1772042544858
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "RECON IMMUNE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042545322
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "WAIT WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772042545759
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "GUARD GUARD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042546545
-    },
-    {
-      "origin": "STREAM",
-      "text": "DECAY STRIFE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042548479
+      "tick": 1772042547865
     },
     {
       "origin": "REVERSE",
-      "text": "STASIS SHIELD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772042548672
+      "text": "SEIZE STRIKE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042549063
     },
     {
       "origin": "ARCHIVIST",
-      "text": "STASIS STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772042549468
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772042549745
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS FLOW COHERE",
+      "text": "SYNC BLOOM STABLE",
       "mood": "HARMONIC",
-      "tick": 1772042550926
+      "tick": 1772042549458
     },
     {
       "origin": "ARCHIVIST",
-      "text": "SHIELD IMMUNE WATCH",
+      "text": "GUARD SHELTER PURE",
       "mood": "DEFENSIVE",
-      "tick": 1772042551173
+      "tick": 1772042549958
     },
     {
-      "origin": "REVERSE",
-      "text": "SHIELD REFLECT PURE",
+      "origin": "INTERFACE",
+      "text": "REFLECT SHIELD RECON",
       "mood": "DEFENSIVE",
-      "tick": 1772042551581
+      "tick": 1772042550399
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS PURE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042551184
     },
     {
       "origin": "STREAM",
-      "text": "SICKNESS SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042552369
+      "text": "STASIS WATCH IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042551451
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WAIT IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042551944
     },
     {
       "origin": "ARCHIVIST",
-      "text": "REFLECT SHELTER WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772042554306
+      "text": "STABLE HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772042552376
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042553609
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME FORGE FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772042554302
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042554601
     }
   ]
 }
