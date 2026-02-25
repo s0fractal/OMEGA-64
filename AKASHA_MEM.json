@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A0AA000A",
     "AA000000",
     "0D100090",
     "AAAA0A00",
@@ -199,15 +198,10 @@
     "AA0006A6",
     "AA0A00A0",
     "A0000AA0",
-    "AAB0CC0D"
+    "AAB0CC0D",
+    "B0BB0000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "CONSUME DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038974211
-    },
     {
       "origin": "REVERSE",
       "text": "FLOW SYNC GIVING",
@@ -291,6 +285,12 @@
       "text": "WATCH IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772038981953
+    },
+    {
+      "origin": "STREAM",
+      "text": "STRIKE BREACH CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038982187
     }
   ]
 }
