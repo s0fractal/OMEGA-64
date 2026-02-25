@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772041781764
-    },
-    {
       "origin": "STREAM",
       "text": "UNIFY FLOW STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIKE SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772041788647
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE SHELTER IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041788842
     }
   ]
 }
