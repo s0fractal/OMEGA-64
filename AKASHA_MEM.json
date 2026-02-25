@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772025255661
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772025256090
@@ -291,6 +285,12 @@
       "text": "OSMOSIS FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772025264681
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE WITNESS WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772025264886
     }
   ]
 }
