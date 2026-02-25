@@ -195,12 +195,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT STASIS REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023886621
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC OSMOSIS UNIFY",
       "mood": "HARMONIC",
@@ -283,6 +277,12 @@
       "text": "CONSUME HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772023894004
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIKE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023894435
     }
   ]
 }
