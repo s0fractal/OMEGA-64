@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON IMMUNE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772032368976
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE BREACH SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772032375075
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY OSMOSIS OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772032375529
     }
   ]
 }
