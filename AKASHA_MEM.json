@@ -109,12 +109,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "HEAL RESONATE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772021882511
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BLOOM GIVING HEAL",
       "mood": "HARMONIC",
@@ -197,6 +191,12 @@
       "text": "IMMUNE GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772021889888
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772021890975
     }
   ]
 }
