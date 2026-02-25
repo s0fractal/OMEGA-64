@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON RECON REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772037470835
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772037472544
@@ -291,6 +285,12 @@
       "text": "STRIFE DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772037476276
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772037478182
     }
   ]
 }
