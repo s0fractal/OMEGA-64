@@ -162,12 +162,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC FLOW GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772022908048
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE SEIZE CONSUME",
       "mood": "AGGRESSIVE",
@@ -250,6 +244,12 @@
       "text": "DRAIN BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022913759
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH CONSUME SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022913933
     }
   ]
 }
