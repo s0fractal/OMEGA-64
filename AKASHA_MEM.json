@@ -158,12 +158,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022792797
-    },
-    {
       "origin": "REVERSE",
       "text": "SHIELD REFLECT IMMUNE",
       "mood": "DEFENSIVE",
@@ -246,6 +240,12 @@
       "text": "REFLECT WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022797552
+    },
+    {
+      "origin": "PARADOX",
+      "text": "FORGE EVOLVE WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772022797853
     }
   ]
 }
