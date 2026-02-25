@@ -131,12 +131,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "WITNESS EVOLVE WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772022338456
-    },
-    {
       "origin": "REVERSE",
       "text": "RECON PURE SHELTER",
       "mood": "DEFENSIVE",
@@ -219,6 +213,12 @@
       "text": "IMMUNE RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022343821
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SHOCK STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022344163
     }
   ]
 }
