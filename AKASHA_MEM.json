@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772037060768
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND AWAKEN BECOME",
       "mood": "CREATIVE",
       "tick": 1772037060970
@@ -291,6 +285,12 @@
       "text": "GIVING UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772037064424
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD SHELTER WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772037064685
     }
   ]
 }
