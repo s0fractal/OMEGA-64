@@ -181,12 +181,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER WAIT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772023429052
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772023429213
@@ -268,6 +262,12 @@
       "text": "GIVING BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772023435013
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SICKNESS HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023435187
     }
   ]
 }
