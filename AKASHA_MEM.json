@@ -61,12 +61,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020609017
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER BREACH SEIZE",
       "mood": "AGGRESSIVE",
@@ -149,6 +143,12 @@
       "text": "GUARD REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772020616778
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020617289
     }
   ]
 }
