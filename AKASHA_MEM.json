@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE PURE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042737366
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT SHELTER IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772042747872
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN BREACH CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042748950
     }
   ]
 }
