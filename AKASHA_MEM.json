@@ -36,12 +36,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME SEIZE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019758540
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "UNIFY FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772019759956
@@ -123,6 +117,12 @@
       "text": "WAIT RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772019770650
+    },
+    {
+      "origin": "STREAM",
+      "text": "RESONATE RESONATE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772019771299
     }
   ]
 }
