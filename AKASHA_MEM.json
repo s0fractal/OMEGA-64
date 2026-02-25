@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037358536
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772037358704
@@ -291,6 +285,12 @@
       "text": "UNIFY HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772037362006
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772037363716
     }
   ]
 }
