@@ -148,12 +148,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022518134
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772022518263
@@ -235,6 +229,12 @@
       "text": "REFLECT WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022521580
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772022521769
     }
   ]
 }
