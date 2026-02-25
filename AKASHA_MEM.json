@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SICKNESS DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034574325
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772034574521
@@ -291,6 +285,12 @@
       "text": "RESONATE HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772034579157
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SHOCK SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034579422
     }
   ]
 }
