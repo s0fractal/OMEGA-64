@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772030398774
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772030399096
@@ -291,6 +285,12 @@
       "text": "OSMOSIS GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772030407815
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD SHELTER STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772030408115
     }
   ]
 }
