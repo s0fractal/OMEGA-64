@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06600660",
     "AAAAA0AA",
     "60600666",
     "0AA00A00",
@@ -199,15 +198,10 @@
     "00006606",
     "600A6000",
     "0AAAA0A0",
-    "AA0000A0"
+    "AA0000A0",
+    "FFFFF00F"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS FLOW HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772040530087
-    },
     {
       "origin": "STREAM",
       "text": "BREACH BREACH STRIFE",
@@ -291,6 +285,12 @@
       "text": "SHELTER GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772040533518
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BEYOND BECOME WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772040533665
     }
   ]
 }
