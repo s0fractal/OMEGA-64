@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SHOCK SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030414047
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772030414402
@@ -291,6 +285,12 @@
       "text": "REFLECT SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772030417969
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772030418380
     }
   ]
 }
