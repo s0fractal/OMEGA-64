@@ -112,12 +112,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772021919217
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772021919460
@@ -199,6 +193,12 @@
       "text": "SEIZE CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772021927951
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772021928186
     }
   ]
 }
