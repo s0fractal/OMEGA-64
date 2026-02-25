@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RESONATE BLOOM HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772040963247
-    },
-    {
       "origin": "REVERSE",
       "text": "FORGE EVOLVE FORGE",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772040966245
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040966389
     }
   ]
 }
