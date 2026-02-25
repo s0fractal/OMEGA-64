@@ -65,12 +65,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WITNESS WITNESS WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772020769939
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN DECAY DRAIN",
       "mood": "AGGRESSIVE",
@@ -153,6 +147,12 @@
       "text": "BREACH STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020775886
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772020776309
     }
   ]
 }
