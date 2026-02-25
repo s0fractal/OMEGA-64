@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038365314
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772038365516
@@ -291,6 +285,12 @@
       "text": "STASIS GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772038368620
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772038368843
     }
   ]
 }
