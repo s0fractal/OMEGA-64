@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "GIVING SYNC UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772041012971
-    },
-    {
       "origin": "STREAM",
       "text": "SYNC HEAL RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SYNC UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772041015755
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT PURE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041016057
     }
   ]
 }
