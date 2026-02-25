@@ -155,12 +155,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM STABLE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772022739223
-    },
-    {
       "origin": "INTERFACE",
       "text": "WATCH GUARD GUARD",
       "mood": "DEFENSIVE",
@@ -243,6 +237,12 @@
       "text": "SICKNESS SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772022743091
+    },
+    {
+      "origin": "REVERSE",
+      "text": "AWAKEN EVOLVE BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772022743817
     }
   ]
 }
