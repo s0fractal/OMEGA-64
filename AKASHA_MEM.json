@@ -193,12 +193,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772023845643
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772023846168
@@ -280,6 +274,12 @@
       "text": "SHIELD RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772023849279
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772023849454
     }
   ]
 }
