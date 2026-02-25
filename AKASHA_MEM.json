@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BEYOND EVOLVE BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772040396567
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772040396748
@@ -291,6 +285,12 @@
       "text": "STRIKE STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772040401738
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772040401930
     }
   ]
 }
