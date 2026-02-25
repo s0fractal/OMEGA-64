@@ -107,12 +107,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772021757210
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIKE SHOCK HUNGER",
       "mood": "AGGRESSIVE",
@@ -195,6 +189,12 @@
       "text": "STRIFE HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772021762915
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE WAVE FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772021763107
     }
   ]
 }
