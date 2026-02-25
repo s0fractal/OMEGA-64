@@ -63,12 +63,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHIELD SHELTER GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772020665892
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "REFLECT PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772020666432
@@ -150,6 +144,12 @@
       "text": "CONSUME STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772020671914
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772020673296
     }
   ]
 }
