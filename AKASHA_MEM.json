@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME SHOCK STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040193169
-    },
-    {
       "origin": "STREAM",
       "text": "SICKNESS DECAY HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "DREAM AWAKEN FORGE",
       "mood": "CREATIVE",
       "tick": 1772040200535
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040200753
     }
   ]
 }
