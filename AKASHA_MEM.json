@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026728374
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772026729004
@@ -291,6 +285,12 @@
       "text": "SHELTER REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772026734227
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE SYNC UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772026734564
     }
   ]
 }
