@@ -55,12 +55,6 @@
   "utterances": [
     {
       "origin": "STREAM",
-      "text": "FLOW STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772020435377
-    },
-    {
-      "origin": "STREAM",
       "text": "BLOOM FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772020435567
@@ -142,6 +136,12 @@
       "text": "BREACH STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020442653
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH DECAY SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020443587
     }
   ]
 }
