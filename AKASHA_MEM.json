@@ -168,12 +168,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023056209
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023056366
@@ -255,6 +249,12 @@
       "text": "SHIELD REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772023062286
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC RESONATE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772023062451
     }
   ]
 }
