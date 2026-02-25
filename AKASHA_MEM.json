@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH PURE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023974621
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023974881
@@ -284,6 +278,12 @@
       "text": "STABLE HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772023977647
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772023977817
     }
   ]
 }
