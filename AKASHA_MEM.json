@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772038082823
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772038083032
@@ -291,6 +285,12 @@
       "text": "GIVING COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038087783
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHIELD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772038088015
     }
   ]
 }
