@@ -94,12 +94,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHELTER SHELTER WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772021496020
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHIELD SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772021496768
@@ -181,6 +175,12 @@
       "text": "STASIS PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772021506346
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021507595
     }
   ]
 }
