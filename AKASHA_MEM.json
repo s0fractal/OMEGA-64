@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00A0AAA0",
     "A000AA00",
     "60600606",
     "000AAA00",
@@ -199,15 +198,10 @@
     "A6666660",
     "06606660",
     "60006000",
-    "AA000600"
+    "AA000600",
+    "A0AAA000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RECON IMMUNE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772039937703
-    },
     {
       "origin": "REVERSE",
       "text": "DECAY SHOCK DRAIN",
@@ -291,6 +285,12 @@
       "text": "IMMUNE REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772039945701
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH BREACH STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039946105
     }
   ]
 }
