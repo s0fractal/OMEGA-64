@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_GUARDIAN",
-      "text": "BLOOM OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772040682231
-    },
-    {
       "origin": "STREAM",
       "text": "RESONATE OSMOSIS UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FLOW GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772040686345
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD IMMUNE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772040687074
     }
   ]
 }
