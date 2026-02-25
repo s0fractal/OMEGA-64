@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM SYNC SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772036669663
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772036669878
@@ -291,6 +285,12 @@
       "text": "STASIS RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772036674602
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SEIZE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036674804
     }
   ]
 }
