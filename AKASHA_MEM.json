@@ -16,12 +16,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "BREACH SEIZE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772014130515
-    },
-    {
-      "origin": "INTERFACE",
       "text": "RECON WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772014148428
@@ -103,6 +97,12 @@
       "text": "SHOCK SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772014258806
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS SICKNESS SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772014273495
     }
   ]
 }
