@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING BLOOM STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772032696757
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772032696928
@@ -291,6 +285,12 @@
       "text": "SHELTER RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772032699375
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD PURE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772032699550
     }
   ]
 }
