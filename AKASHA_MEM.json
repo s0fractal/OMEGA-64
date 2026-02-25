@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772038622321
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772038622515
@@ -291,6 +285,12 @@
       "text": "DECAY STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772038625305
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD IMMUNE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772038625499
     }
   ]
 }
