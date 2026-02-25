@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SYNC BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772040940700
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING FLOW HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHOCK STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772040943883
+    },
+    {
+      "origin": "STREAM",
+      "text": "RECON REFLECT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040944307
     }
   ]
 }
