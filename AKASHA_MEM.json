@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60606600",
     "00BB0000",
     "66000006",
     "A0AA0000",
@@ -199,15 +198,10 @@
     "60606006",
     "AA0660A0",
     "A0AAA00A",
-    "AAAA0A0A"
+    "AAAA0A0A",
+    "AAA0AAAA"
   ],
   "utterances": [
-    {
-      "origin": "INTERFACE",
-      "text": "COHERE FLOW HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772040197392
-    },
     {
       "origin": "STREAM",
       "text": "SHELTER STASIS SHELTER",
@@ -291,6 +285,12 @@
       "text": "DECAY CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772040202974
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIFE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040203137
     }
   ]
 }
