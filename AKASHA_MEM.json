@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL FLOW HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772022228245
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022228539
@@ -213,6 +207,12 @@
       "text": "COHERE COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022231460
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY CONSUME SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022231629
     }
   ]
 }
