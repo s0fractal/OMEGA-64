@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0000F000",
     "06060660",
     "00006000",
     "60060600",
@@ -199,15 +198,10 @@
     "AAAAAAAA",
     "66666006",
     "AA0AAAAA",
-    "660060A0"
+    "660060A0",
+    "A0000AAA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STABLE OSMOSIS FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772028045128
-    },
     {
       "origin": "REVERSE",
       "text": "HEAL FLOW COHERE",
@@ -291,6 +285,12 @@
       "text": "HEAL FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772028054788
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SEIZE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028056377
     }
   ]
 }
