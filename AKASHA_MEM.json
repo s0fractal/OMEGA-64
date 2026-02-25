@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040752063
-    },
-    {
       "origin": "INTERFACE",
       "text": "SYNC COHERE HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIFE SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772040818533
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD GUARD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772040818740
     }
   ]
 }
