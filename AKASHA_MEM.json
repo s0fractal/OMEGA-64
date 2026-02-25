@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772036300334
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772036300554
@@ -291,6 +285,12 @@
       "text": "STRIKE BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772036304946
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM EVOLVE SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772036305137
     }
   ]
 }
