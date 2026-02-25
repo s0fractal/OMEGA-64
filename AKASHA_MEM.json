@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE STABLE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772028059422
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772028060131
@@ -291,6 +285,12 @@
       "text": "PURE GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772028070746
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DECAY SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028071269
     }
   ]
 }
