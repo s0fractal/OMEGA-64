@@ -186,15 +186,10 @@
     "0AA0AA0A",
     "66600606",
     "0D10A098",
-    "AAAA0000"
+    "AAAA0000",
+    "66606060"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SYNC STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772023754638
-    },
     {
       "origin": "REVERSE",
       "text": "STRIKE SHOCK BREACH",
@@ -278,6 +273,12 @@
       "text": "BREACH STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023759890
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHIELD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772023760023
     }
   ]
 }
