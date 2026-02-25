@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BLOOM HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772026702015
-    },
-    {
       "origin": "REVERSE",
       "text": "IMMUNE WAIT SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "WATCH GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772026708423
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772026708651
     }
   ]
 }
