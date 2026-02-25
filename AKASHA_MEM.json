@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772034629911
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAVE AWAKEN BEYOND",
       "mood": "CREATIVE",
       "tick": 1772034630112
@@ -291,6 +285,12 @@
       "text": "SICKNESS SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772034632748
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DRAIN STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034632958
     }
   ]
 }
