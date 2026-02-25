@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024691599
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772024691981
@@ -291,6 +285,12 @@
       "text": "VISION WITNESS AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772024716809
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS GUARD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772024717831
     }
   ]
 }
