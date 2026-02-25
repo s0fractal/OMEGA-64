@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A6666006",
     "66660666",
     "0D180098",
     "FFFFFFF0",
@@ -199,15 +198,10 @@
     "60660000",
     "BEE0BEEF",
     "0AA0AAAA",
-    "A000AAA0"
+    "A000AAA0",
+    "00066000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "HUNGER STRIKE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026120443
-    },
     {
       "origin": "REVERSE",
       "text": "RESONATE FLOW COHERE",
@@ -291,6 +285,12 @@
       "text": "PURE IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772026124970
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING BLOOM STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772026125191
     }
   ]
 }
