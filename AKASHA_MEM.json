@@ -196,12 +196,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW UNIFY COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772023972125
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON WATCH SHIELD",
       "mood": "DEFENSIVE",
@@ -284,6 +278,12 @@
       "text": "HUNGER BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023975206
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER RECON WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772023975334
     }
   ]
 }
