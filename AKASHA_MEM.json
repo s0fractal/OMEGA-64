@@ -70,12 +70,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS BEYOND FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772020855617
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772020855794
@@ -157,6 +151,12 @@
       "text": "GUARD RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772020862126
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WATCH WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020862906
     }
   ]
 }
