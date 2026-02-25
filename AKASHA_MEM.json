@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "PURE GUARD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041432620
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "IMMUNE WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041432752
@@ -291,6 +285,12 @@
       "text": "PURE SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041436023
+    },
+    {
+      "origin": "GUARDIAN",
+      "text": "BLOOM RESONATE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772041436163
     }
   ]
 }
