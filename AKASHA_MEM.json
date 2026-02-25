@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM COHERE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772025791744
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME BEYOND SPARK",
       "mood": "CREATIVE",
       "tick": 1772025791993
@@ -291,6 +285,12 @@
       "text": "PURE WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772025797082
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WAIT IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772025799348
     }
   ]
 }
