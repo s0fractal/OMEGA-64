@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD IMMUNE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041756330
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GIVING SYNC COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "IMMUNE RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772041764180
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "COHERE COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772041766426
     }
   ]
 }
