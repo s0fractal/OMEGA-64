@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040820508
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE STRIFE SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "BREACH CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772040823988
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE SYNC FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772040824171
     }
   ]
 }
