@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAAAAAAA",
     "01000000",
     "06660060",
     "00600606",
@@ -199,15 +198,10 @@
     "AA0A0AA0",
     "66666006",
     "A0AAA000",
-    "00066006"
+    "00066006",
+    "00660060"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WAIT RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772035660777
-    },
     {
       "origin": "REVERSE",
       "text": "SHIELD WAIT STASIS",
@@ -291,6 +285,12 @@
       "text": "REFLECT PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772035664372
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM GIVING UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772035664579
     }
   ]
 }
