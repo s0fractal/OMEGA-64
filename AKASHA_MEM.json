@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE SYNC HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772024610382
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772024610629
@@ -291,6 +285,12 @@
       "text": "EVOLVE AWAKEN BECOME",
       "mood": "CREATIVE",
       "tick": 1772024617732
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD IMMUNE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772024617902
     }
   ]
 }
