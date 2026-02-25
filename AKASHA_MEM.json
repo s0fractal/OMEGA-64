@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772038656393
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772038656603
@@ -291,6 +285,12 @@
       "text": "CONSUME BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772038659188
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME BREACH SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038659813
     }
   ]
 }
