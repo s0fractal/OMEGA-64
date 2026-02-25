@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE DRAIN SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036809089
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772036809302
@@ -291,6 +285,12 @@
       "text": "CONSUME SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772036814503
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHELTER WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772036814749
     }
   ]
 }
