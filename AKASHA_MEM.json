@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER STASIS RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772034605026
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772034605224
@@ -291,6 +285,12 @@
       "text": "RESONATE RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772034607752
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034608033
     }
   ]
 }
