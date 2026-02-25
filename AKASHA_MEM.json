@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "WATCH RECON WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772041323380
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS RECON SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041326792
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BLOOM GIVING COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041327221
     }
   ]
 }
