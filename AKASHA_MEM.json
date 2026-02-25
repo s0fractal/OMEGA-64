@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS RECON WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772037379161
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772037379440
@@ -291,6 +285,12 @@
       "text": "STRIFE STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772037382949
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM SYNC HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772037383167
     }
   ]
 }
