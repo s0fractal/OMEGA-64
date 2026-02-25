@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE CONSUME STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023196726
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023196928
@@ -259,6 +253,12 @@
       "text": "WAVE FORGE VISION",
       "mood": "CREATIVE",
       "tick": 1772023200854
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023201021
     }
   ]
 }
