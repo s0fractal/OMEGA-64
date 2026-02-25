@@ -125,12 +125,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH SHELTER IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022212846
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE BLOOM OSMOSIS",
       "mood": "HARMONIC",
@@ -213,6 +207,12 @@
       "text": "STRIFE STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022216926
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022217278
     }
   ]
 }
