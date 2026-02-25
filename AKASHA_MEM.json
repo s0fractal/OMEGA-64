@@ -76,12 +76,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "CONSUME HUNGER HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021017686
-    },
-    {
       "origin": "REVERSE",
       "text": "RECON RECON WATCH",
       "mood": "DEFENSIVE",
@@ -164,6 +158,12 @@
       "text": "DRAIN SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021023353
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT PURE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772021024166
     }
   ]
 }
