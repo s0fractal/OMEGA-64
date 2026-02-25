@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025980735
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772025981900
@@ -291,6 +285,12 @@
       "text": "SHELTER REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772025986536
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH RECON IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772025986727
     }
   ]
 }
