@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE REFLECT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022210023
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772022210183
@@ -213,6 +207,12 @@
       "text": "RECON WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022214262
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM COHERE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772022214476
     }
   ]
 }
