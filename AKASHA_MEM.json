@@ -168,12 +168,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023065185
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023065338
@@ -255,6 +249,12 @@
       "text": "WATCH REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023069685
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STASIS REFLECT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023070401
     }
   ]
 }
