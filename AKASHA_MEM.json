@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036997157
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772036997341
@@ -291,6 +285,12 @@
       "text": "GUARD IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772036999832
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHELTER SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772037000260
     }
   ]
 }
