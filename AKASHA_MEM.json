@@ -110,12 +110,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STASIS SHIELD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772021906307
-    },
-    {
       "origin": "REVERSE",
       "text": "SHIELD WAIT IMMUNE",
       "mood": "DEFENSIVE",
@@ -198,6 +192,12 @@
       "text": "SEIZE SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021914083
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021914304
     }
   ]
 }
