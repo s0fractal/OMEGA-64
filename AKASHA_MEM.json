@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STRIKE SEIZE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040709384
-    },
-    {
       "origin": "INTERFACE",
       "text": "DRAIN DECAY SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772040713582
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772040713762
     }
   ]
 }
