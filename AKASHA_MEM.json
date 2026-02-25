@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER SHOCK BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034747378
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD SHIELD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772034747544
@@ -291,6 +285,12 @@
       "text": "BLOOM OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772034755630
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT PURE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772034755826
     }
   ]
 }
