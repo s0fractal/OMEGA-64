@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE SHIELD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772040906440
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GUARD IMMUNE RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772040909063
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHIELD STASIS RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772040909325
     }
   ]
 }
