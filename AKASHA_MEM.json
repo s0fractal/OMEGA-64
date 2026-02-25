@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772038723526
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772038723896
@@ -291,6 +285,12 @@
       "text": "CONSUME CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772038730010
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038730254
     }
   ]
 }
