@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772024533782
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772024533971
@@ -291,6 +285,12 @@
       "text": "OSMOSIS COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772024541138
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DECAY STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024541381
     }
   ]
 }
