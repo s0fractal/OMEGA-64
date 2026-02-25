@@ -66,12 +66,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIKE SICKNESS SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020770695
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHELTER SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772020770857
@@ -153,6 +147,12 @@
       "text": "DRAIN DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772020777379
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH WATCH PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020778058
     }
   ]
 }
