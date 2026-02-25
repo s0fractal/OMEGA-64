@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STASIS WATCH IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040927983
-    },
-    {
       "origin": "INTERFACE",
       "text": "GIVING HEAL HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SEIZE DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772040931434
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY STRIKE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040931627
     }
   ]
 }
