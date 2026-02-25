@@ -164,12 +164,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON GUARD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022930776
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022932472
@@ -251,6 +245,12 @@
       "text": "PURE SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022937701
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WATCH REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022938488
     }
   ]
 }
