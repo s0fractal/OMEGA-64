@@ -138,12 +138,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "COHERE RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772022433310
-    },
-    {
       "origin": "REVERSE",
       "text": "BREACH CONSUME DRAIN",
       "mood": "AGGRESSIVE",
@@ -226,6 +220,12 @@
       "text": "RESONATE HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022438026
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY RESONATE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022438208
     }
   ]
 }
