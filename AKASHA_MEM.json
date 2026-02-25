@@ -71,12 +71,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY SYNC HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772020869283
-    },
-    {
-      "origin": "REVERSE",
       "text": "AWAKEN WITNESS AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772020870544
@@ -158,6 +152,12 @@
       "text": "RECON IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772020874809
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY OSMOSIS UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772020875740
     }
   ]
 }
