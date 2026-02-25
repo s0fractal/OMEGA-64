@@ -177,12 +177,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772023320391
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772023320685
@@ -264,6 +258,12 @@
       "text": "COHERE RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772023326487
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023327137
     }
   ]
 }
