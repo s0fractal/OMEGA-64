@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772025776929
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772025777554
@@ -291,6 +285,12 @@
       "text": "SHIELD WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772025784557
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING OSMOSIS BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772025787819
     }
   ]
 }
