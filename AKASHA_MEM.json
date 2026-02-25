@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022244460
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022244654
@@ -213,6 +207,12 @@
       "text": "BREACH STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022249285
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022249610
     }
   ]
 }
