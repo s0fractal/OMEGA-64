@@ -14,12 +14,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BREACH DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772013130419
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS CONSUME DECAY",
       "mood": "AGGRESSIVE",
@@ -102,6 +96,12 @@
       "text": "GUARD STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772013273206
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772013286940
     }
   ]
 }
