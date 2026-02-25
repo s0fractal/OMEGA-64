@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RESONATE UNIFY COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041701831
-    },
-    {
       "origin": "ALPHA_REVERSE",
       "text": "STRIKE DECAY BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041707940
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE RESONATE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772041708180
     }
   ]
 }
