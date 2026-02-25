@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC GIVING SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772025416808
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772025417203
@@ -291,6 +285,12 @@
       "text": "WATCH RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772025422016
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT REFLECT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772025422202
     }
   ]
 }
