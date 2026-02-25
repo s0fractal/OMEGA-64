@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "F0FFF00F",
     "0AAA000A",
     "06666666",
     "AA00AAA0",
@@ -199,15 +198,10 @@
     "AAB0C00D",
     "AAAAA000",
     "66006000",
-    "00666666"
+    "00666666",
+    "AA0A00A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "FLOW GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772025361657
-    },
     {
       "origin": "REVERSE",
       "text": "GUARD WATCH STASIS",
@@ -291,6 +285,12 @@
       "text": "GIVING GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772025366099
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SHOCK SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025366335
     }
   ]
 }
