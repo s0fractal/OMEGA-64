@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00A0A000",
     "B0B00000",
     "00060660",
     "66666060",
@@ -199,15 +198,10 @@
     "60666600",
     "00006606",
     "0FF0FFF0",
-    "AAAAA0A0"
+    "AAAAA0A0",
+    "0AAA00A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RECON IMMUNE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772035169664
-    },
     {
       "origin": "REVERSE",
       "text": "SHELTER WAIT IMMUNE",
@@ -291,6 +285,12 @@
       "text": "BREACH STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772035173312
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772035173487
     }
   ]
 }
