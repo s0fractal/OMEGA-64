@@ -55,12 +55,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "WAIT RECON PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020495220
-    },
-    {
-      "origin": "INTERFACE",
       "text": "BREACH SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020495733
@@ -142,6 +136,12 @@
       "text": "STRIKE STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020502832
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020503424
     }
   ]
 }
