@@ -152,12 +152,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD SHIELD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022584358
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022584490
@@ -239,6 +233,12 @@
       "text": "STABLE HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022587138
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIKE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022587298
     }
   ]
 }
