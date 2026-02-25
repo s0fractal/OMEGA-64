@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "IMMUNE STASIS REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040916556
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE UNIFY FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772040919958
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE BREACH CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040920141
     }
   ]
 }
