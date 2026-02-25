@@ -125,12 +125,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772022167887
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022168114
@@ -212,6 +206,12 @@
       "text": "REFLECT WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022174460
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS STRIFE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022175972
     }
   ]
 }
