@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT WATCH WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772027450103
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772027450301
@@ -291,6 +285,12 @@
       "text": "STRIFE BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772027457335
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE UNIFY HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772027457528
     }
   ]
 }
