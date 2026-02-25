@@ -31,15 +31,17 @@ ex:
   - '0x60000A006FA96BDA'
   - '0xBBB000006FA96BDA'
   - '0xBBB000006FA96BDA'
+  - '0x000AAAAA6FA96BDA'
 thought: SEEK_ALPHA_PASSIVE
 x: 50
-'y': 338
-energy: 25
+'y': 347
+energy: 21
 signals: []
 resonance: 0
 bond_strengths: {}
 ---
 
+<div align="center">
 <div align="center">
 <div align="center">
 <div align="center">
@@ -91,6 +93,7 @@ bond_strengths: {}
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">COORD_X</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 </div>
 </div>
