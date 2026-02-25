@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE STRIKE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028529843
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772028530392
@@ -291,6 +285,12 @@
       "text": "CONSUME DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772028562870
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHIELD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772028563248
     }
   ]
 }
