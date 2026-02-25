@@ -101,12 +101,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "HEAL RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772021621214
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL BLOOM COHERE",
       "mood": "HARMONIC",
@@ -189,6 +183,12 @@
       "text": "AWAKEN FORGE DREAM",
       "mood": "CREATIVE",
       "tick": 1772021626142
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE CONSUME CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021626284
     }
   ]
 }
