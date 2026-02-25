@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DREAM AWAKEN DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772040429981
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE RESONATE BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "AWAKEN DREAM FORGE",
       "mood": "CREATIVE",
       "tick": 1772040433467
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WATCH PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040433623
     }
   ]
 }
