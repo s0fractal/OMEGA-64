@@ -72,15 +72,10 @@
     "66660000",
     "000AAAAA",
     "ABBB0000",
-    "60660000"
+    "60660000",
+    "0BBB0000"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772021038738
-    },
     {
       "origin": "REVERSE",
       "text": "RECON RECON SHELTER",
@@ -164,6 +159,12 @@
       "text": "HEAL FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772021045919
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772021046247
     }
   ]
 }
