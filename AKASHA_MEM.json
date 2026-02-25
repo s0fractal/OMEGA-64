@@ -124,12 +124,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD WAIT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022185365
-    },
-    {
       "origin": "INTERFACE",
       "text": "CONSUME STRIKE SHOCK",
       "mood": "AGGRESSIVE",
@@ -212,6 +206,12 @@
       "text": "HUNGER DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772022193477
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WAIT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772022193657
     }
   ]
 }
