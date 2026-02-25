@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "RESONATE GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772019955410
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK STRIKE HUNGER",
       "mood": "AGGRESSIVE",
@@ -130,6 +124,12 @@
       "text": "GIVING STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772019967035
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD PURE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772019967950
     }
   ]
 }
