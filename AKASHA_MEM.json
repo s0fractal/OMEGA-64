@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN STRIFE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020624524
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIKE SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
@@ -150,6 +144,12 @@
       "text": "SHIELD SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772020630538
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "COHERE BLOOM STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772020631566
     }
   ]
 }
