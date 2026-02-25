@@ -33,12 +33,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HEAL OSMOSIS FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772019703862
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WAIT GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772019705352
@@ -120,6 +114,12 @@
       "text": "DRAIN STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772019719407
+    },
+    {
+      "origin": "STREAM",
+      "text": "GIVING HEAL GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772019719902
     }
   ]
 }
