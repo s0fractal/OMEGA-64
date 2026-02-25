@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772024493518
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772024493860
@@ -291,6 +285,12 @@
       "text": "GUARD WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772024503598
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024504134
     }
   ]
 }
