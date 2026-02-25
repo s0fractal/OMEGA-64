@@ -102,12 +102,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WATCH SHIELD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021646386
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING UNIFY GIVING",
       "mood": "HARMONIC",
@@ -190,6 +184,12 @@
       "text": "CONSUME HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772021650754
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772021650935
     }
   ]
 }
