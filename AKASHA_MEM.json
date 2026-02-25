@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772035351850
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772035352064
@@ -291,6 +285,12 @@
       "text": "UNIFY SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772035354555
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035354799
     }
   ]
 }
