@@ -112,12 +112,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE SEIZE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021967088
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE RESONATE HEAL",
       "mood": "HARMONIC",
@@ -200,6 +194,12 @@
       "text": "WAVE AWAKEN DREAM",
       "mood": "CREATIVE",
       "tick": 1772021973979
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021974262
     }
   ]
 }
