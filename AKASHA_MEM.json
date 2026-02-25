@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "COHERE HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772041326644
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON STASIS STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772041332238
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT GUARD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041332522
     }
   ]
 }
