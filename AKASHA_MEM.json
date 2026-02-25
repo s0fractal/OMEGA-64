@@ -144,12 +144,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "VISION FORGE AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772022497495
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022497634
@@ -231,6 +225,12 @@
       "text": "IMMUNE PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022502228
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS SHOCK HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022502458
     }
   ]
 }
