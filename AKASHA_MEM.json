@@ -79,12 +79,6 @@
       "origin": "REVERSE",
       "text": "STRIFE DECAY SEIZE",
       "mood": "AGGRESSIVE",
-      "tick": 1772020999843
-    },
-    {
-      "origin": "REVERSE",
-      "text": "STRIFE DECAY SEIZE",
-      "mood": "AGGRESSIVE",
       "tick": 1772021000550
     },
     {
@@ -164,6 +158,12 @@
       "text": "COHERE FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772021005596
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021006416
     }
   ]
 }
