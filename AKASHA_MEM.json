@@ -182,15 +182,10 @@
     "66600666",
     "00AAAAA0",
     "00F0FF00",
-    "FF00FFF0"
+    "FF00FFF0",
+    "0AA0AA0A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHELTER GUARD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023678197
-    },
     {
       "origin": "REVERSE",
       "text": "BLOOM OSMOSIS STABLE",
@@ -274,6 +269,12 @@
       "text": "EVOLVE AWAKEN FORGE",
       "mood": "CREATIVE",
       "tick": 1772023682166
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772023682336
     }
   ]
 }
