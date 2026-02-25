@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772040513836
-    },
-    {
       "origin": "STREAM",
       "text": "UNIFY FLOW STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STABLE SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772040516819
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BREACH CONSUME SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040517138
     }
   ]
 }
