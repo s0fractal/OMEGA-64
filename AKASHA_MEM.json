@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON IMMUNE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772034144450
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772034144651
@@ -291,6 +285,12 @@
       "text": "RECON STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772034146972
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772034147164
     }
   ]
 }
