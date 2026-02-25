@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH IMMUNE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772037591922
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772037592160
@@ -291,6 +285,12 @@
       "text": "CONSUME BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772037595769
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC GIVING COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772037596080
     }
   ]
 }
