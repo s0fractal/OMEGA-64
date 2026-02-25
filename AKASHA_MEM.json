@@ -54,12 +54,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "REFLECT RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020395669
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "REFLECT SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020396597
@@ -141,6 +135,12 @@
       "text": "RECON SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772020405685
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE DECAY CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020406163
     }
   ]
 }
