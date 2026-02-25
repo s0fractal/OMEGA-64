@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033790349
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772033790556
@@ -291,6 +285,12 @@
       "text": "PURE RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033793836
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772033794038
     }
   ]
 }
