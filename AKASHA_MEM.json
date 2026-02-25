@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SHOCK CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029478521
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772029479439
@@ -291,6 +285,12 @@
       "text": "DECAY SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772029489344
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772029489794
     }
   ]
 }
