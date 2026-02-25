@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE STABLE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772020405498
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON SHELTER SHIELD",
       "mood": "DEFENSIVE",
@@ -141,6 +135,12 @@
       "text": "SHELTER WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020414011
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020414594
     }
   ]
 }
