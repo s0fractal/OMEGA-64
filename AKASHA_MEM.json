@@ -91,12 +91,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SEIZE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021271138
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772021271399
@@ -178,6 +172,12 @@
       "text": "SYNC FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772021278607
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS SYNC COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772021278991
     }
   ]
 }
