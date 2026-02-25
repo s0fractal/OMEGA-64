@@ -128,12 +128,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772022278222
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022278411
@@ -215,6 +209,12 @@
       "text": "DECAY HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772022285566
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW UNIFY SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772022285919
     }
   ]
 }
