@@ -64,12 +64,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME BREACH BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020741188
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HUNGER SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020741407
@@ -151,6 +145,12 @@
       "text": "GUARD GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020748961
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020751741
     }
   ]
 }
