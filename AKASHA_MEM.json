@@ -138,12 +138,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022419069
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022419429
@@ -225,6 +219,12 @@
       "text": "SHOCK SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022423603
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC OSMOSIS BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772022423805
     }
   ]
 }
