@@ -19,12 +19,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "HUNGER SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772015250660
-    },
-    {
-      "origin": "INTERFACE",
       "text": "HUNGER SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772015256006
@@ -106,6 +100,12 @@
       "text": "BLOOM HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772015383051
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER PURE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772015385783
     }
   ]
 }
