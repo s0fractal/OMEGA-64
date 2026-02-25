@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026627556
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772026627787
@@ -291,6 +285,12 @@
       "text": "HEAL UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772026637392
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM FORGE AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772026637655
     }
   ]
 }
