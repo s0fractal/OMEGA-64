@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIFE DECAY SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019494887
-    },
-    {
       "origin": "STREAM",
       "text": "OSMOSIS HEAL HEAL",
       "mood": "HARMONIC",
@@ -111,6 +105,12 @@
       "text": "PURE SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772019504668
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY SICKNESS BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019505154
     }
   ]
 }
