@@ -180,12 +180,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GIVING STABLE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772023414880
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM HEAL STABLE",
       "mood": "HARMONIC",
@@ -268,6 +262,12 @@
       "text": "DECAY DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772023419605
+    },
+    {
+      "origin": "STREAM",
+      "text": "SHIELD SHIELD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023420161
     }
   ]
 }
