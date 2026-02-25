@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHOCK BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041517304
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "IMMUNE STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041517650
@@ -291,6 +285,12 @@
       "text": "DRAIN DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772041521092
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041521488
     }
   ]
 }
