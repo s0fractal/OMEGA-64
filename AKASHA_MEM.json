@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "IMMUNE RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041764180
-    },
-    {
-      "origin": "INTERFACE",
       "text": "COHERE COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772041766426
@@ -291,6 +285,12 @@
       "text": "STABLE FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772041773543
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM HEAL RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772041774069
     }
   ]
 }
