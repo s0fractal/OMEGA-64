@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN BREACH BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028780779
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772028781711
@@ -291,6 +285,12 @@
       "text": "HUNGER BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772028806530
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY HUNGER BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028807410
     }
   ]
 }
