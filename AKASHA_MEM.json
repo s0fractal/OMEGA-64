@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT RECON WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772033801422
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK WAVE FORGE",
       "mood": "CREATIVE",
       "tick": 1772033801609
@@ -291,6 +285,12 @@
       "text": "SYNC SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772033805246
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772033805449
     }
   ]
 }
