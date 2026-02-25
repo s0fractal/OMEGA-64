@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036358289
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772036358500
@@ -291,6 +285,12 @@
       "text": "REFLECT GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772036361662
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772036361967
     }
   ]
 }
