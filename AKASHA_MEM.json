@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772029949351
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BLOOM FLOW OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RECON SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772029962290
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029964014
     }
   ]
 }
