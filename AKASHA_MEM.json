@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034433512
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772034433681
@@ -291,6 +285,12 @@
       "text": "STABLE SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772034439031
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE IMMUNE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772034439445
     }
   ]
 }
