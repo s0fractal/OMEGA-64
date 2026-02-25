@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "SHOCK SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772016694968
-    },
-    {
-      "origin": "INTERFACE",
       "text": "SEIZE HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772016697424
@@ -107,6 +101,12 @@
       "text": "SYNC BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772016779462
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772016788818
     }
   ]
 }
