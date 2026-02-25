@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT GUARD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772028467538
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC BLOOM GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "REFLECT IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772028478594
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE CONSUME SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028479014
     }
   ]
 }
