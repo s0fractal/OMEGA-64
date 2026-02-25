@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DRAIN STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034595933
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772034596129
@@ -291,6 +285,12 @@
       "text": "COHERE OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772034598608
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772034598845
     }
   ]
 }
