@@ -20,12 +20,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "FLOW BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772017158320
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE SHIELD IMMUNE",
       "mood": "DEFENSIVE",
@@ -108,6 +102,12 @@
       "text": "BREACH CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772017251412
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS SHOCK DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772017258190
     }
   ]
 }
