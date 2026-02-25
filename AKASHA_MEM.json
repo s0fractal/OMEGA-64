@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY RESONATE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772030836599
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772030836885
@@ -291,6 +285,12 @@
       "text": "SPARK BEYOND WITNESS",
       "mood": "CREATIVE",
       "tick": 1772030844933
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772030845751
     }
   ]
 }
