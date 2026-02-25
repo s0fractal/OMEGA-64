@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME CONSUME STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028754022
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL GIVING FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772028765311
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD SHIELD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772028765957
     }
   ]
 }
