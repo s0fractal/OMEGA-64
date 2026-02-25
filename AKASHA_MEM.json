@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE SHELTER WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772025481966
-    },
-    {
       "origin": "PARADOX",
       "text": "HEAL OSMOSIS RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772025486394
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE BREACH DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025486636
     }
   ]
 }
