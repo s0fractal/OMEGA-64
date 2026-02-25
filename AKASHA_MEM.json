@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SYNC FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772040569679
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SYNC RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772040569807
@@ -291,6 +285,12 @@
       "text": "UNIFY UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040572895
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH SHIELD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040573315
     }
   ]
 }
