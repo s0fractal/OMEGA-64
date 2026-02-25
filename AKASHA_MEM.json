@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "DECAY SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041593374
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GIVING GIVING OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RECON GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041599183
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD REFLECT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041599457
     }
   ]
 }
