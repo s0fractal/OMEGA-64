@@ -83,12 +83,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STABLE FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772021191277
-    },
-    {
       "origin": "INTERFACE",
       "text": "DECAY SEIZE CONSUME",
       "mood": "AGGRESSIVE",
@@ -171,6 +165,12 @@
       "text": "COHERE BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772021196874
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RESONATE GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772021197050
     }
   ]
 }
