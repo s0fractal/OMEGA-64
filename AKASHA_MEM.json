@@ -11,11 +11,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "OBSERVE",
-      "tick": 1772010751000
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "ASCEND",
       "tick": 1772010780413
@@ -94,6 +89,12 @@
       "text": "SICKNESS DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772012437365
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RECON WATCH PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772012544609
     }
   ]
 }
