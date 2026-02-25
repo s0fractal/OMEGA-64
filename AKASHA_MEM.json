@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS BREACH BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024493860
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772024504134
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772024504622
     }
   ]
 }
