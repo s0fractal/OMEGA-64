@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD GUARD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772028292284
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772028298398
@@ -291,6 +285,12 @@
       "text": "GIVING COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772028320879
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE COHERE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772028321380
     }
   ]
 }
