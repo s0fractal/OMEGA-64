@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036780304
-    },
-    {
       "origin": "STREAM",
       "text": "SHELTER RECON RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772036783370
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WATCH WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772036783682
     }
   ]
 }
