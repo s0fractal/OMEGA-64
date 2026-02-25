@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER PURE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772037323860
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772037324453
@@ -291,6 +285,12 @@
       "text": "SICKNESS SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772037329055
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037329226
     }
   ]
 }
