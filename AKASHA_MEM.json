@@ -34,12 +34,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GUARD RECON SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772019728621
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHELTER RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772019729373
@@ -121,6 +115,12 @@
       "text": "BREACH SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772019744807
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STABLE SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772019745736
     }
   ]
 }
