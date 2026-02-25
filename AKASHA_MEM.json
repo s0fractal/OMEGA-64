@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772034306641
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772034306839
@@ -291,6 +285,12 @@
       "text": "RESONATE UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034309858
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034310033
     }
   ]
 }
