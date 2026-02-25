@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WAIT SHIELD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772019653012
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT IMMUNE STASIS",
       "mood": "DEFENSIVE",
@@ -114,6 +108,12 @@
       "text": "SHOCK SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772019662213
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772019662890
     }
   ]
 }
