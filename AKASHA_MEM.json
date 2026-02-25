@@ -191,12 +191,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023780637
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER SEIZE SHOCK",
       "mood": "AGGRESSIVE",
@@ -279,6 +273,12 @@
       "text": "WAIT WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023786624
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023786813
     }
   ]
 }
