@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772036885783
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772036886008
@@ -291,6 +285,12 @@
       "text": "SHOCK SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772036888953
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772036889163
     }
   ]
 }
