@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "WAIT REFLECT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040511993
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE COHERE RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772040514406
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE STABLE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772040514537
     }
   ]
 }
