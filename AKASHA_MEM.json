@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAA0AA0A",
     "AA0A000A",
     "660000A6",
     "00B00000",
@@ -199,15 +198,10 @@
     "00066660",
     "AABBC0DD",
     "66000060",
-    "AABB0CDD"
+    "AABB0CDD",
+    "0000AAAA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STRIFE DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031170721
-    },
     {
       "origin": "REVERSE",
       "text": "DRAIN HUNGER CONSUME",
@@ -291,6 +285,12 @@
       "text": "HUNGER DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772031175503
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772031175962
     }
   ]
 }
