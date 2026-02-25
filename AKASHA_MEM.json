@@ -168,12 +168,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SHOCK SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023056497
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023056675
@@ -255,6 +249,12 @@
       "text": "GIVING RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772023062624
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772023062792
     }
   ]
 }
