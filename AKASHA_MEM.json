@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON IMMUNE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020650028
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS SHOCK STRIFE",
       "mood": "AGGRESSIVE",
@@ -150,6 +144,12 @@
       "text": "STABLE COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772020657569
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM DREAM DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772020657730
     }
   ]
 }
