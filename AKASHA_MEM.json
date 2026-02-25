@@ -58,12 +58,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020578694
-    },
-    {
       "origin": "INTERFACE",
       "text": "PURE WATCH RECON",
       "mood": "DEFENSIVE",
@@ -146,6 +140,12 @@
       "text": "COHERE BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772020586720
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BREACH STRIKE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020586929
     }
   ]
 }
