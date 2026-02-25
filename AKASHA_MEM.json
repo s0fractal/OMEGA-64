@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC STABLE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772026221240
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772026221484
@@ -291,6 +285,12 @@
       "text": "RECON WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772026224990
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772026225174
     }
   ]
 }
