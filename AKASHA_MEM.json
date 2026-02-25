@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER WATCH IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772025818132
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772025818448
@@ -291,6 +285,12 @@
       "text": "OSMOSIS BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772025825500
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHELTER STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772025825696
     }
   ]
 }
