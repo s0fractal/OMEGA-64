@@ -41,12 +41,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "HUNGER SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019857734
-    },
-    {
-      "origin": "INTERFACE",
       "text": "GIVING RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772019858278
@@ -128,6 +122,12 @@
       "text": "STASIS PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772019868499
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DECAY BREACH STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019869234
     }
   ]
 }
