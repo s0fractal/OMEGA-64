@@ -67,12 +67,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY CONSUME SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020801476
-    },
-    {
       "origin": "INTERFACE",
       "text": "WAIT PURE IMMUNE",
       "mood": "DEFENSIVE",
@@ -155,6 +149,12 @@
       "text": "REFLECT WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020809483
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH PURE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772020810961
     }
   ]
 }
