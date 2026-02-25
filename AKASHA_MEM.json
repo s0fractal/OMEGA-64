@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY GIVING SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772035556860
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772035557079
@@ -291,6 +285,12 @@
       "text": "SHELTER RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772035559992
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772035560216
     }
   ]
 }
