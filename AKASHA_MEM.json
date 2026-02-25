@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD STASIS WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022237035
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022237299
@@ -213,6 +207,12 @@
       "text": "SEIZE SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772022240788
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022240911
     }
   ]
 }
