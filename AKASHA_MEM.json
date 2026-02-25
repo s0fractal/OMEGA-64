@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RESONATE SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772041673846
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WATCH GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772041673972
@@ -291,6 +285,12 @@
       "text": "SHIELD IMMUNE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041677839
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041678035
     }
   ]
 }
