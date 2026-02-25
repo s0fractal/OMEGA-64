@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772035912006
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772035912234
@@ -291,6 +285,12 @@
       "text": "COHERE COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772035917495
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035917671
     }
   ]
 }
