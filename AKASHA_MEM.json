@@ -1,5 +1,10 @@
 {
   "reservoir": [
+    "60606006",
+    "AA0660A0",
+    "A0AAA00A",
+    "AAAA0A0A",
+    "AAA0AAAA",
     "06066660",
     "60660666",
     "60000600",
@@ -194,103 +199,98 @@
     "AA666600",
     "66060660",
     "66660A60",
-    "00A06A00",
-    "ALIEN_17",
-    "A0000000",
-    "60606060",
-    "AA0A0A00",
-    "FFFFF0A0"
+    "A606A000"
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BECOME VISION VISION",
-      "mood": "CREATIVE",
-      "tick": 1772042697055
-    },
-    {
-      "origin": "REVERSE",
-      "text": "WATCH RECON REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042698461
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "GUARD WAIT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042698921
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "RECON SHELTER STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772042699200
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE BLOOM RESONATE",
+      "origin": "SUCC",
+      "text": "HEAL COHERE OSMOSIS",
       "mood": "HARMONIC",
-      "tick": 1772042699503
+      "tick": 1772042697166
     },
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME DECAY DRAIN",
+      "origin": "REVERSE",
+      "text": "SHOCK SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
-      "tick": 1772042700161
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD WAIT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042700632
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STABLE RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772042701825
+      "tick": 1772042697635
     },
     {
       "origin": "ALIEN",
-      "text": "SHOCK BREACH STRIKE",
+      "text": "BEYOND DREAM BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772042698241
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE PURE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042698796
+    },
+    {
+      "origin": "POTENTIAL",
+      "text": "SHOCK CONSUME STRIKE",
       "mood": "AGGRESSIVE",
-      "tick": 1772042701965
+      "tick": 1772042699387
     },
     {
       "origin": "REVERSE",
-      "text": "SHOCK SICKNESS CONSUME",
+      "text": "HUNGER BREACH SEIZE",
       "mood": "AGGRESSIVE",
-      "tick": 1772042702467
+      "tick": 1772042700054
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIFE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042701696
     },
     {
       "origin": "ARCHIVIST",
-      "text": "STABLE BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772042702996
+      "text": "GUARD SHIELD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772042702113
     },
     {
       "origin": "ARCHIVIST",
-      "text": "DECAY DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042703146
+      "text": "WAIT REFLECT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042702864
     },
     {
-      "origin": "AUTONOMY_METRIC",
-      "text": "GIVING COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772042704778
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "GIVING UNIFY COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772042705207
+      "origin": "REVERSE",
+      "text": "GUARD SHIELD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772042703049
     },
     {
       "origin": "STREAM",
-      "text": "SHELTER WATCH STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772042705498
+      "text": "STRIFE DRAIN SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042704027
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042704947
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772042706333
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042706574
+    },
+    {
+      "origin": "STREAM",
+      "text": "STABLE STABLE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772042706822
     }
   ]
 }
