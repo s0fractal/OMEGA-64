@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE HEAL HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772030519290
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIKE SEIZE HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SEIZE CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772030535554
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772030536036
     }
   ]
 }
