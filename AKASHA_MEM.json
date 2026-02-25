@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772036342842
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772036343101
@@ -291,6 +285,12 @@
       "text": "SHOCK SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772036346341
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN CONSUME SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036346560
     }
   ]
 }
