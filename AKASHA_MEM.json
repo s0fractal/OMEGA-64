@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034619641
-    },
-    {
       "origin": "STREAM",
       "text": "COHERE BLOOM GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FLOW STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772034622593
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS BREACH CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034622807
     }
   ]
 }
