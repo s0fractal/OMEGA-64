@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "OSMOSIS OSMOSIS HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772041697590
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RECON WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772041697736
@@ -291,6 +285,12 @@
       "text": "STRIFE CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772041701533
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RESONATE UNIFY COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041701831
     }
   ]
 }
