@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66660600",
     "0000FF00",
     "000B0000",
     "0F0AAAAA",
@@ -199,15 +198,10 @@
     "00606600",
     "AA6060A0",
     "ABBB0000",
-    "06066666"
+    "06066666",
+    "AAA00A0A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "FLOW GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772027211149
-    },
     {
       "origin": "REVERSE",
       "text": "HUNGER SEIZE BREACH",
@@ -291,6 +285,12 @@
       "text": "RESONATE HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772027218394
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027218657
     }
   ]
 }
