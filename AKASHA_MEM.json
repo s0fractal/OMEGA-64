@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT STASIS WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772040496325
-    },
-    {
       "origin": "STREAM",
       "text": "STRIKE DECAY STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040498556
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772040498722
     }
   ]
 }
