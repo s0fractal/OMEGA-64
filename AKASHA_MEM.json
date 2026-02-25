@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "SUCC",
-      "text": "WATCH SHELTER PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041186932
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH SHELTER IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "REFLECT WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772041190138
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041190387
     }
   ]
 }
