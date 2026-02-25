@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60060600",
     "66606006",
     "BB0000FC",
     "60660606",
@@ -199,15 +198,10 @@
     "06660600",
     "A06660A6",
     "00660666",
-    "F0FF000F"
+    "F0FF000F",
+    "AAAAAAA0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WATCH RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772033361615
-    },
     {
       "origin": "ARCHIVIST",
       "text": "STRIFE CONSUME DRAIN",
@@ -291,6 +285,12 @@
       "text": "PURE IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033364928
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIFE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033365107
     }
   ]
 }
