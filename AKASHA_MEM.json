@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW OSMOSIS BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772038721719
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772038721984
@@ -291,6 +285,12 @@
       "text": "RESONATE OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772038726270
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE GUARD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772038726547
     }
   ]
 }
