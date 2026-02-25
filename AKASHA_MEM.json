@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AB0A0000",
     "A000A000",
     "600A0A00",
     "66A666A0",
@@ -199,15 +198,10 @@
     "BBBB0000",
     "A00AAAA0",
     "0000AA0A",
-    "0000AA00"
+    "0000AA00",
+    "666066A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STABLE HEAL BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772024956240
-    },
     {
       "origin": "REVERSE",
       "text": "PURE IMMUNE STASIS",
@@ -291,6 +285,12 @@
       "text": "WAIT REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772024960789
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHELTER GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772024960977
     }
   ]
 }
