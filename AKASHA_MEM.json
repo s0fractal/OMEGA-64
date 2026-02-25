@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SPARK EVOLVE EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772037271714
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772037271888
@@ -291,6 +285,12 @@
       "text": "FLOW SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772037274552
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037275287
     }
   ]
 }
