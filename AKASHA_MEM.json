@@ -78,15 +78,10 @@
     "66A066A0",
     "B0B00000",
     "60666000",
-    "666666A0"
+    "666666A0",
+    "06660000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WAIT WATCH WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772021178085
-    },
     {
       "origin": "REVERSE",
       "text": "FLOW RESONATE STABLE",
@@ -170,6 +165,12 @@
       "text": "SEIZE SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772021185539
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772021186008
     }
   ]
 }
