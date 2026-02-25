@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024141614
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772024141870
@@ -291,6 +285,12 @@
       "text": "IMMUNE REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772024144500
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION BECOME BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772024144665
     }
   ]
 }
