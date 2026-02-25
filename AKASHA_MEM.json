@@ -138,15 +138,10 @@
     "60066000",
     "60666600",
     "BAB00000",
-    "AA0A0000"
+    "AA0A0000",
+    "AABBCC0D"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GIVING HEAL GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772022478920
-    },
     {
       "origin": "REVERSE",
       "text": "REFLECT PURE WAIT",
@@ -230,6 +225,12 @@
       "text": "DREAM BEYOND VISION",
       "mood": "CREATIVE",
       "tick": 1772022482735
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022482975
     }
   ]
 }
