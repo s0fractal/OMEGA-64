@@ -70,12 +70,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020879532
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE SEIZE CONSUME",
       "mood": "AGGRESSIVE",
@@ -158,6 +152,12 @@
       "text": "WAIT GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772020885454
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020886608
     }
   ]
 }
