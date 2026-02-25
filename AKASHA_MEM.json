@@ -202,12 +202,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BEYOND BEYOND EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772024096110
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772024096234
@@ -289,6 +283,12 @@
       "text": "HUNGER SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772024099794
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772024102582
     }
   ]
 }
