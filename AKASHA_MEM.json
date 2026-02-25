@@ -204,6 +204,12 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
+      "text": "COHERE BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772042364409
+    },
+    {
+      "origin": "ARCHIVIST",
       "text": "SHIELD GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772042364832
@@ -285,12 +291,6 @@
       "text": "HEAL FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772042375660
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STABLE BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772042375993
     }
   ]
 }
