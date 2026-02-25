@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE WAIT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023989218
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023989386
@@ -284,6 +278,12 @@
       "text": "HEAL GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772023995329
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER GUARD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023995788
     }
   ]
 }
