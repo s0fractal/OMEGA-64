@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0AA00A",
     "000A000F",
     "AABB0C0D",
     "00060060",
@@ -199,15 +198,10 @@
     "60666060",
     "A06600A6",
     "AA0BC0DD",
-    "66606600"
+    "66606600",
+    "AA00000A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "DECAY STRIKE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035455785
-    },
     {
       "origin": "REVERSE",
       "text": "UNIFY HEAL COHERE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772035458631
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035458835
     }
   ]
 }
