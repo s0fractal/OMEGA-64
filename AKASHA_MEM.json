@@ -154,12 +154,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE COHERE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772022651845
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH SEIZE STRIFE",
       "mood": "AGGRESSIVE",
@@ -242,6 +236,12 @@
       "text": "SYNC UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772022655951
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772022656578
     }
   ]
 }
