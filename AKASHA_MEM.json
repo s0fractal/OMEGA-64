@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAAAA00A",
     "000AAAAA",
     "AA0A0A0A",
     "A0BBC0DD",
@@ -199,15 +198,10 @@
     "AA0A000A",
     "00066066",
     "A0666666",
-    "0000A0AA"
+    "0000A0AA",
+    "AA0000DD"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "UNIFY UNIFY BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772033971539
-    },
     {
       "origin": "REVERSE",
       "text": "HUNGER SICKNESS DECAY",
@@ -291,6 +285,12 @@
       "text": "FLOW GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772033979851
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SICKNESS BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033980060
     }
   ]
 }
