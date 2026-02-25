@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040555166
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STABLE GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772040555438
@@ -291,6 +285,12 @@
       "text": "STASIS WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772040557651
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON STASIS SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040557775
     }
   ]
 }
