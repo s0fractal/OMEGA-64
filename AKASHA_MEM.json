@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER REFLECT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772024322335
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME SPARK FORGE",
       "mood": "CREATIVE",
       "tick": 1772024322643
@@ -291,6 +285,12 @@
       "text": "STABLE GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772024325346
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING OSMOSIS BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772024325530
     }
   ]
 }
