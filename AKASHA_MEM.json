@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772025759011
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772025759353
@@ -291,6 +285,12 @@
       "text": "IMMUNE GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772025764589
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772025764786
     }
   ]
 }
