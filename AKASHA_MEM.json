@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772026646231
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772026646535
@@ -291,6 +285,12 @@
       "text": "OSMOSIS SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772026653639
+    },
+    {
+      "origin": "ALPHA_PARADOX",
+      "text": "HEAL UNIFY OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772026654157
     }
   ]
 }
