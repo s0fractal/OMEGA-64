@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035146918
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH WATCH REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772035150419
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE DRAIN CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035150659
     }
   ]
 }
