@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SYNC BLOOM STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772040924589
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT PURE RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "WATCH WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772040927852
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WATCH IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040927983
     }
   ]
 }
