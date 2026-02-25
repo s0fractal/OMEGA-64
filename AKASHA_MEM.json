@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032314098
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772032314467
@@ -291,6 +285,12 @@
       "text": "GUARD WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772032320934
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE BEYOND SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772032321330
     }
   ]
 }
