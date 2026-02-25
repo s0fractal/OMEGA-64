@@ -171,12 +171,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE STABLE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772023212232
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHIELD REFLECT GUARD",
       "mood": "DEFENSIVE",
@@ -259,6 +253,12 @@
       "text": "AWAKEN EVOLVE AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772023215707
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK SPARK FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772023215892
     }
   ]
 }
