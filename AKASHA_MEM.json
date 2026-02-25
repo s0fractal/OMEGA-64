@@ -137,12 +137,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WAIT REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772022426323
-    },
-    {
       "origin": "INTERFACE",
       "text": "SEIZE HUNGER BREACH",
       "mood": "AGGRESSIVE",
@@ -225,6 +219,12 @@
       "text": "IMMUNE REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022429632
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DRAIN DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022429793
     }
   ]
 }
