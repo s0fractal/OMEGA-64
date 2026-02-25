@@ -144,12 +144,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM UNIFY BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772022491547
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772022491696
@@ -231,6 +225,12 @@
       "text": "SHELTER SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022494892
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022495089
     }
   ]
 }
