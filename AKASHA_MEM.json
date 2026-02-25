@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030917590
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SYNC HEAL COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STABLE OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772030933263
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WATCH REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772030934022
     }
   ]
 }
