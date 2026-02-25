@@ -151,12 +151,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "REFLECT IMMUNE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022588668
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME SEIZE CONSUME",
       "mood": "AGGRESSIVE",
@@ -239,6 +233,12 @@
       "text": "STABLE GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772022593261
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772022593491
     }
   ]
 }
