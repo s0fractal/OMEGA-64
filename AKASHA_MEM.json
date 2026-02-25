@@ -79,12 +79,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER CONSUME SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021070493
-    },
-    {
       "origin": "INTERFACE",
       "text": "SICKNESS DECAY DRAIN",
       "mood": "AGGRESSIVE",
@@ -167,6 +161,12 @@
       "text": "STASIS SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772021074359
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER WAIT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772021075296
     }
   ]
 }
