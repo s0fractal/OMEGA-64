@@ -150,12 +150,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE GUARD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022552671
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772022552920
@@ -237,6 +231,12 @@
       "text": "DECAY BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022557691
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS RESONATE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022557936
     }
   ]
 }
