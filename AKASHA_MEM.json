@@ -71,12 +71,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020913976
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER GUARD PURE",
       "mood": "DEFENSIVE",
@@ -159,6 +153,12 @@
       "text": "OSMOSIS HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772020918149
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HUNGER DRAIN CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020919092
     }
   ]
 }
