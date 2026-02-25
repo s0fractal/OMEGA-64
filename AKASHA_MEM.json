@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0B000000",
     "60006060",
     "06600660",
     "A0BB0000",
@@ -199,15 +198,10 @@
     "AA000AAA",
     "66066066",
     "0AAAAAA0",
-    "00006066"
+    "00006066",
+    "60006000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BLOOM STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772037431137
-    },
     {
       "origin": "REVERSE",
       "text": "BLOOM GIVING HEAL",
@@ -291,6 +285,12 @@
       "text": "BREACH SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772037434933
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772037435370
     }
   ]
 }
