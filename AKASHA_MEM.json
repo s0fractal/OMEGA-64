@@ -125,12 +125,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME BREACH HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022250546
-    },
-    {
       "origin": "REVERSE",
       "text": "RECON PURE SHELTER",
       "mood": "DEFENSIVE",
@@ -213,6 +207,12 @@
       "text": "STRIKE SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022255094
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER RECON IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022256131
     }
   ]
 }
