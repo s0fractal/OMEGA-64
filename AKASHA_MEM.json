@@ -67,12 +67,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772020812477
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK HUNGER STRIFE",
       "mood": "AGGRESSIVE",
@@ -155,6 +149,12 @@
       "text": "DECAY STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020820691
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE SHOCK HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020821058
     }
   ]
 }
