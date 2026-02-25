@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SEIZE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033167933
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772033168109
@@ -291,6 +285,12 @@
       "text": "RESONATE BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772033170512
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD REFLECT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772033170695
     }
   ]
 }
