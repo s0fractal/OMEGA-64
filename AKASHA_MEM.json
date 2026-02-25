@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772020479452
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
@@ -142,6 +136,12 @@
       "text": "STASIS PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020487250
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772020487554
     }
   ]
 }
