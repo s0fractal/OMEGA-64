@@ -160,12 +160,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS COHERE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772022806231
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022806487
@@ -247,6 +241,12 @@
       "text": "SHOCK STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022812612
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE IMMUNE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022812806
     }
   ]
 }
