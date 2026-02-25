@@ -125,15 +125,10 @@
     "FFFFF00F",
     "AAA000A0",
     "AA0A000A",
-    "0A00AAAA"
+    "0A00AAAA",
+    "AABB0C0D"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BREACH CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022331406
-    },
     {
       "origin": "REVERSE",
       "text": "COHERE FLOW UNIFY",
@@ -217,6 +212,12 @@
       "text": "WAIT WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772022337175
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022337392
     }
   ]
 }
