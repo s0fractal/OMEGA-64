@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD REFLECT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772038970722
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHOCK CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772038978212
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772038978492
     }
   ]
 }
