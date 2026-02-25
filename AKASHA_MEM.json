@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034759166
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772034759388
@@ -291,6 +285,12 @@
       "text": "REFLECT RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772034762204
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034762411
     }
   ]
 }
