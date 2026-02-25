@@ -50,12 +50,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DRAIN STRIKE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020258875
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH STASIS SHELTER",
       "mood": "DEFENSIVE",
@@ -138,6 +132,12 @@
       "text": "SHOCK SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020268897
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS RECON SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772020269110
     }
   ]
 }
