@@ -140,15 +140,10 @@
     "BAB00000",
     "AA0A0000",
     "AABBCC0D",
-    "06666060"
+    "06666060",
+    "66660660"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER SHOCK STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022504979
-    },
     {
       "origin": "REVERSE",
       "text": "RESONATE COHERE SYNC",
@@ -232,6 +227,12 @@
       "text": "RESONATE SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772022508523
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE GUARD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022508682
     }
   ]
 }
