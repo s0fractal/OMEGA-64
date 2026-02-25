@@ -185,12 +185,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772023597046
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023597212
@@ -272,6 +266,12 @@
       "text": "BLOOM RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772023601600
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD SHIELD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023601870
     }
   ]
 }
