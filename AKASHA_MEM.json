@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GUARD SHIELD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041464551
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "UNIFY OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772041464835
@@ -291,6 +285,12 @@
       "text": "GUARD STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041467923
+    },
+    {
+      "origin": "CAR",
+      "text": "PURE WATCH REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041468396
     }
   ]
 }
