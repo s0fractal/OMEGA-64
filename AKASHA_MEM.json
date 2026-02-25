@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "RECON PURE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772042223462
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER WAIT GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BREACH CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772042233663
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE BLOOM UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772042234010
     }
   ]
 }
