@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE PURE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772038313860
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772038314059
@@ -291,6 +285,12 @@
       "text": "HUNGER SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772038316993
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHELTER SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772038317218
     }
   ]
 }
