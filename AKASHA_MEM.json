@@ -20,12 +20,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "FLOW HEAL UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772017392677
-    },
-    {
       "origin": "INTERFACE",
       "text": "DECAY SHOCK DECAY",
       "mood": "AGGRESSIVE",
@@ -108,6 +102,12 @@
       "text": "SHOCK STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772017467736
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "OSMOSIS SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772017472162
     }
   ]
 }
