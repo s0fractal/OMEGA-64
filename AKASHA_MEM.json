@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH STASIS IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023198734
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772023200486
@@ -259,6 +253,12 @@
       "text": "IMMUNE SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772023205381
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE BREACH SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023205915
     }
   ]
 }
