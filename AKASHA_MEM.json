@@ -39,12 +39,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WATCH WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772019802954
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "FLOW RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772019803466
@@ -126,6 +120,12 @@
       "text": "BREACH DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772019812293
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019812726
     }
   ]
 }
