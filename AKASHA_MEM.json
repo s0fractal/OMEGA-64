@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH CONSUME SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024397929
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772024398360
@@ -291,6 +285,12 @@
       "text": "RESONATE HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772024403436
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024404469
     }
   ]
 }
