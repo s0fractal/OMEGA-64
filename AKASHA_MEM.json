@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH SHELTER RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772040357895
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE HEAL SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "COHERE SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772040364428
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772040364624
     }
   ]
 }
