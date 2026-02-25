@@ -43,12 +43,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020000915
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
@@ -131,6 +125,12 @@
       "text": "UNIFY COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772020012527
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020013489
     }
   ]
 }
