@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STASIS RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772035448299
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "UNIFY FLOW COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DECAY BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772035453743
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL HEAL RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772035454013
     }
   ]
 }
