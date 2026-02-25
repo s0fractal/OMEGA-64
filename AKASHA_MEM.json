@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE CONSUME STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030633923
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772030634154
@@ -291,6 +285,12 @@
       "text": "STASIS IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772030646223
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030646915
     }
   ]
 }
