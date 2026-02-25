@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772040226899
-    },
-    {
       "origin": "STREAM",
       "text": "WATCH RECON GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772040232769
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772040233205
     }
   ]
 }
