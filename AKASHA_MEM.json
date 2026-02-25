@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040421473
-    },
-    {
       "origin": "INTERFACE",
       "text": "WAIT IMMUNE STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SICKNESS CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772040423848
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHELTER REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040423981
     }
   ]
 }
