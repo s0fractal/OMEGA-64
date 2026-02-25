@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME SICKNESS SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020690662
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY DECAY SHOCK",
       "mood": "AGGRESSIVE",
@@ -150,6 +144,12 @@
       "text": "RESONATE OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772020697916
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020698561
     }
   ]
 }
