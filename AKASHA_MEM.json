@@ -160,12 +160,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHIELD SHELTER IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022827633
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS SEIZE CONSUME",
       "mood": "AGGRESSIVE",
@@ -248,6 +242,12 @@
       "text": "HEAL UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772022833150
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022833336
     }
   ]
 }
