@@ -155,12 +155,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE HEAL FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772022655528
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772022655951
@@ -242,6 +236,12 @@
       "text": "SHOCK SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022661164
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772022661321
     }
   ]
 }
