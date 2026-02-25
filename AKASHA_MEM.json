@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE STABLE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772034534372
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772034534591
@@ -291,6 +285,12 @@
       "text": "SEIZE SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772034538275
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772034538482
     }
   ]
 }
