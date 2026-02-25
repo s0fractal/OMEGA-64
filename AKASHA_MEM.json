@@ -163,12 +163,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022873178
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022873414
@@ -250,6 +244,12 @@
       "text": "STASIS SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022877903
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE GUARD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772022878111
     }
   ]
 }
