@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE SEIZE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041732705
-    },
-    {
       "origin": "PARASITE",
       "text": "PURE IMMUNE REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772041740497
+    },
+    {
+      "origin": "I16_CLAMP",
+      "text": "RESONATE BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041740733
     }
   ]
 }
