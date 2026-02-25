@@ -110,12 +110,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC UNIFY COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772021872394
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772021872605
@@ -197,6 +191,12 @@
       "text": "HUNGER STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772021879717
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772021879834
     }
   ]
 }
