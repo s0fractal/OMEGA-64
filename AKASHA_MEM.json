@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772033355185
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772033355341
@@ -291,6 +285,12 @@
       "text": "STABLE RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772033358320
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SICKNESS DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033358516
     }
   ]
 }
