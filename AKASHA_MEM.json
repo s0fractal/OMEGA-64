@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033389450
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772033389634
@@ -291,6 +285,12 @@
       "text": "GIVING GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772033392213
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME CONSUME CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033392496
     }
   ]
 }
