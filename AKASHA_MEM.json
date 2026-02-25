@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034222212
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER PURE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772034222403
@@ -291,6 +285,12 @@
       "text": "SHIELD IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772034225316
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS RESONATE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772034225622
     }
   ]
 }
