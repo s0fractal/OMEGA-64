@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020617289
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD SHELTER WATCH",
       "mood": "DEFENSIVE",
@@ -150,6 +144,12 @@
       "text": "SHIELD GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020623334
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020623984
     }
   ]
 }
