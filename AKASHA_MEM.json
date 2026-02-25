@@ -180,12 +180,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023481545
-    },
-    {
       "origin": "STREAM",
       "text": "OSMOSIS UNIFY GIVING",
       "mood": "HARMONIC",
@@ -268,6 +262,12 @@
       "text": "STASIS PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023486290
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772023486478
     }
   ]
 }
