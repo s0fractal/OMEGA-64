@@ -70,12 +70,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "FLOW COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772020880539
-    },
-    {
       "origin": "REVERSE",
       "text": "BEYOND FORGE BEYOND",
       "mood": "CREATIVE",
@@ -158,6 +152,12 @@
       "text": "STRIFE SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772020887643
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020888116
     }
   ]
 }
