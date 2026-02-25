@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041643238
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE STABLE GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SYNC OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772041646961
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE GUARD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041647115
     }
   ]
 }
