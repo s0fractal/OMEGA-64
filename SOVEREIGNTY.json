@@ -1,6 +1,6 @@
 {
   "activeDecree": "IMMUNE_SHIELD",
-  "regent": "0x00600000FFFF0002",
+  "regent": "0x00AAAAAA00000002",
   "legitimacy": 1000,
   "label": "IMMUNE SHIELD",
   "mods": {

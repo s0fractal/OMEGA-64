@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772035219479
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772035219694
@@ -291,6 +285,12 @@
       "text": "GIVING HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772035223925
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS SYNC UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772035224124
     }
   ]
 }
