@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772041583577
-    },
-    {
       "origin": "INTERFACE",
       "text": "RESONATE BLOOM GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STASIS GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772041587915
+    },
+    {
+      "origin": "ALPHA_PROOF_OF_RESONANCE",
+      "text": "SYNC COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772041588093
     }
   ]
 }
