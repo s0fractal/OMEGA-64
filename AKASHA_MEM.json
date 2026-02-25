@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT STASIS STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772019610285
-    },
-    {
       "origin": "STREAM",
       "text": "UNIFY BLOOM SYNC",
       "mood": "HARMONIC",
@@ -114,6 +108,12 @@
       "text": "STRIFE SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772019625256
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW BLOOM UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772019625885
     }
   ]
 }
