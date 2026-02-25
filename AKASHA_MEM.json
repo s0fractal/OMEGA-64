@@ -71,12 +71,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BEYOND SPARK AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772020879192
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020879373
@@ -158,6 +152,12 @@
       "text": "VISION BECOME VISION",
       "mood": "CREATIVE",
       "tick": 1772020885054
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIFE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020885221
     }
   ]
 }
