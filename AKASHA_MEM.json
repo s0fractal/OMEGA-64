@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM STABLE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772030257002
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772030257525
@@ -291,6 +285,12 @@
       "text": "GUARD WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772030262648
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIKE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030262890
     }
   ]
 }
