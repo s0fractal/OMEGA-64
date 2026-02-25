@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK SICKNESS SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025504785
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE RESONATE FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GUARD RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772025509374
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772025509670
     }
   ]
 }
