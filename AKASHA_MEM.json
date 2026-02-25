@@ -100,12 +100,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE STRIKE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021590659
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772021592988
@@ -187,6 +181,12 @@
       "text": "STABLE FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772021598576
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHELTER GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021598737
     }
   ]
 }
