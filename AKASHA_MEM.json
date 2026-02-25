@@ -82,12 +82,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772021174289
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD WAIT WATCH",
       "mood": "DEFENSIVE",
@@ -170,6 +164,12 @@
       "text": "FLOW RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772021178250
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD REFLECT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772021178682
     }
   ]
 }
