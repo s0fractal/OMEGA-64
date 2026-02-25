@@ -115,12 +115,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "REFLECT WAIT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022012493
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIKE STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -203,6 +197,12 @@
       "text": "GIVING HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772022017203
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD SHIELD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022017485
     }
   ]
 }
