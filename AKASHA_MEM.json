@@ -78,12 +78,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY HUNGER DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021057717
-    },
-    {
       "origin": "INTERFACE",
       "text": "DECAY STRIFE DECAY",
       "mood": "AGGRESSIVE",
@@ -166,6 +160,12 @@
       "text": "DRAIN DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021064241
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN HUNGER SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021064496
     }
   ]
 }
