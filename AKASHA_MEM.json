@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME CONSUME SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042112865
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE COHERE SYNC",
       "mood": "HARMONIC",
@@ -282,15 +276,21 @@
     },
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042122450
+      "text": "BLOOM HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772042122336
     },
     {
-      "origin": "INTERFACE",
-      "text": "PURE STASIS STASIS",
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE SHIELD STASIS",
       "mood": "DEFENSIVE",
-      "tick": 1772042123706
+      "tick": 1772042122973
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE GIVING FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042123558
     }
   ]
 }
