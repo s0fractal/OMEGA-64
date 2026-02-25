@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE SEIZE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025215805
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK SEIZE CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772025221166
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772025221493
     }
   ]
 }
