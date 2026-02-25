@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL FLOW UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772035311832
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772035312036
@@ -291,6 +285,12 @@
       "text": "OSMOSIS BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772035317083
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHIELD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772035317301
     }
   ]
 }
