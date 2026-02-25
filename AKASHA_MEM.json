@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024562078
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772024562282
@@ -291,6 +285,12 @@
       "text": "STRIFE SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772024569134
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772024569442
     }
   ]
 }
