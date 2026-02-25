@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT IMMUNE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772025585091
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772025585303
@@ -291,6 +285,12 @@
       "text": "SHELTER GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772025588511
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS WAVE EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772025589502
     }
   ]
 }
