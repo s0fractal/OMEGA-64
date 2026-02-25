@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA000000",
     "60660600",
     "AA0666A0",
     "BBB00000",
@@ -199,15 +198,10 @@
     "AAAA000A",
     "AA000AA0",
     "6A660660",
-    "06666666"
+    "06666666",
+    "60660606"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "HEAL COHERE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772041574562
-    },
     {
       "origin": "INTERFACE",
       "text": "STABLE SYNC RESONATE",
@@ -291,6 +285,12 @@
       "text": "COHERE OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772041579749
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON SHIELD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041579906
     }
   ]
 }
