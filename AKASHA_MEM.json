@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HEAL COHERE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772041522515
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "UNIFY STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772041522659
@@ -291,6 +285,12 @@
       "text": "FLOW BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041526491
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041527249
     }
   ]
 }
