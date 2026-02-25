@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD STASIS GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772037737464
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE SEIZE DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772037742074
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772037742281
     }
   ]
 }
