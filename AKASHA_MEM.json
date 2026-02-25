@@ -74,12 +74,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY BREACH SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020952334
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE COHERE FLOW",
       "mood": "HARMONIC",
@@ -162,6 +156,12 @@
       "text": "STASIS RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020960775
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WATCH WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772020961308
     }
   ]
 }
