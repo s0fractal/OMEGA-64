@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH STASIS WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772034830182
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772034830396
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772034833109
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772034833320
     }
   ]
 }
