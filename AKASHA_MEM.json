@@ -72,12 +72,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS SHIELD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772020922732
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020922925
@@ -159,6 +153,12 @@
       "text": "SPARK WAVE BECOME",
       "mood": "CREATIVE",
       "tick": 1772020928436
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE OSMOSIS HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772020928640
     }
   ]
 }
