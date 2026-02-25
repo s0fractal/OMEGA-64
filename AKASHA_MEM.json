@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STASIS SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772037406985
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK STRIFE STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772037410313
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS HUNGER STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037410576
     }
   ]
 }
