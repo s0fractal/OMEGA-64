@@ -12,15 +12,10 @@
     "BBBB0000",
     "60000000",
     "BABB0000",
-    "000A0000"
+    "000A0000",
+    "0000A000"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "DECAY DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772014649159
-    },
     {
       "origin": "ARCHIVIST",
       "text": "HUNGER STRIKE STRIKE",
@@ -104,6 +99,12 @@
       "text": "UNIFY OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772014763273
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE SYNC HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772014768933
     }
   ]
 }
