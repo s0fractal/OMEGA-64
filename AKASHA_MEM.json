@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772039241180
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772039241404
@@ -291,6 +285,12 @@
       "text": "STABLE COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772039244108
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME DRAIN HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039244284
     }
   ]
 }
