@@ -171,12 +171,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS SICKNESS HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023144859
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE SHOCK DRAIN",
       "mood": "AGGRESSIVE",
@@ -259,6 +253,12 @@
       "text": "FLOW STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772023150006
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772023150157
     }
   ]
 }
