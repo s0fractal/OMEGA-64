@@ -192,12 +192,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023826910
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772023827218
@@ -279,6 +273,12 @@
       "text": "HEAL COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772023834680
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHIELD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772023834890
     }
   ]
 }
