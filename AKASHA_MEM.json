@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE OSMOSIS SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772034768479
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772034768703
@@ -291,6 +285,12 @@
       "text": "STRIFE CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772034771401
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WAIT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772034771655
     }
   ]
 }
