@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE HUNGER SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032016931
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING SYNC RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "COHERE FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772032025288
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIKE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032025949
     }
   ]
 }
