@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STRIKE HUNGER BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040359352
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SYNC BLOOM HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GUARD WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040365642
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC BLOOM BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772040366673
     }
   ]
 }
