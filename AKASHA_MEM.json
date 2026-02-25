@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772027096491
-    },
-    {
       "origin": "REVERSE",
       "text": "PURE PURE PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772027105753
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WATCH WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772027106009
     }
   ]
 }
