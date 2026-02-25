@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040689406
-    },
-    {
       "origin": "STREAM",
       "text": "HEAL FLOW UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIFE HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040692408
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DECAY SHOCK SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040692538
     }
   ]
 }
