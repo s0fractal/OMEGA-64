@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT WATCH REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772026342262
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS IMMUNE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772026342855
@@ -291,6 +285,12 @@
       "text": "HUNGER DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772026354405
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026354705
     }
   ]
 }
