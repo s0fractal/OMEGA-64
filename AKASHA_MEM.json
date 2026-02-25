@@ -199,12 +199,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON GUARD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772024031500
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772024031705
@@ -286,6 +280,12 @@
       "text": "STABLE GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772024035145
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT STASIS SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772024035346
     }
   ]
 }
