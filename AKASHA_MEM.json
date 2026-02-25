@@ -84,12 +84,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "EVOLVE FORGE VISION",
-      "mood": "CREATIVE",
-      "tick": 1772021194757
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772021194886
@@ -171,6 +165,12 @@
       "text": "STRIKE DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772021201609
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW BLOOM FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772021201749
     }
   ]
 }
