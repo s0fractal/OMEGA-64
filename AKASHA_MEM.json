@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026238509
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER SHOCK SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIFE SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772026244725
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC OSMOSIS UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772026247352
     }
   ]
 }
