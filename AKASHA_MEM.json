@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772036164434
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772036164637
@@ -291,6 +285,12 @@
       "text": "RESONATE RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772036167444
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036167666
     }
   ]
 }
