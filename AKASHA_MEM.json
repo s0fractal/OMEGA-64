@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIFE DRAIN SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041121535
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STABLE COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772041121702
@@ -291,6 +285,12 @@
       "text": "PURE PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772041126249
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772041126483
     }
   ]
 }
