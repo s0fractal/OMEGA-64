@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040387346
-    },
-    {
       "origin": "REVERSE",
       "text": "FORGE BEYOND FORGE",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040393505
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DECAY DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040393814
     }
   ]
 }
