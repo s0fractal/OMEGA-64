@@ -195,12 +195,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772023904300
-    },
-    {
       "origin": "REVERSE",
       "text": "SHIELD SHIELD SHELTER",
       "mood": "DEFENSIVE",
@@ -283,6 +277,12 @@
       "text": "GUARD SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023910079
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772023910247
     }
   ]
 }
