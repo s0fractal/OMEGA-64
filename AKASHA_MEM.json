@@ -119,12 +119,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE IMMUNE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022080502
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772022080931
@@ -206,6 +200,12 @@
       "text": "SHOCK HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022084391
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD IMMUNE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022084925
     }
   ]
 }
