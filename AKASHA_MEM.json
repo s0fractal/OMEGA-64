@@ -155,12 +155,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHIELD PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772022740011
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL RESONATE RESONATE",
       "mood": "HARMONIC",
@@ -243,6 +237,12 @@
       "text": "BLOOM BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022745554
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME HUNGER BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022746966
     }
   ]
 }
