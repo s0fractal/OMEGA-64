@@ -14,12 +14,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "HUNGER BREACH BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772013033494
-    },
-    {
-      "origin": "INTERFACE",
       "text": "HUNGER HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772013039335
@@ -101,6 +95,12 @@
       "text": "SICKNESS HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772013186978
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS CONSUME CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772013195332
     }
   ]
 }
