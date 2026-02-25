@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "060666A6",
     "A0000AAA",
     "00BB0000",
     "AAAAAA00",
@@ -199,15 +198,10 @@
     "AA0A0AAA",
     "A6660660",
     "06666666",
-    "A0666000"
+    "A0666000",
+    "AA666606"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RECON WAIT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772034174757
-    },
     {
       "origin": "REVERSE",
       "text": "FLOW BLOOM COHERE",
@@ -291,6 +285,12 @@
       "text": "GIVING BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772034182892
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE CONSUME SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034183094
     }
   ]
 }
