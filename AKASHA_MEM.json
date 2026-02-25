@@ -203,18 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042808616
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "WAIT REFLECT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042810161
-    },
-    {
       "origin": "ALIEN",
       "text": "IMMUNE IMMUNE REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +279,18 @@
       "text": "CONSUME SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772042817392
+    },
+    {
+      "origin": "ALIEN",
+      "text": "PURE WATCH IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042818173
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772042818494
     }
   ]
 }
