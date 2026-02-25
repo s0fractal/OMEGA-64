@@ -17,7 +17,7 @@ async function logAkasha(msg: string) {
     // --- Configuration ---
     const SIGNAL_PATH = "./OMEGA_SIGNAL.md";
     const ROOT = Deno.cwd();
-    const PULSE_INTERVAL = 4260; // MUTATED_BY_SINGULARITY // 3 seconds between pulses for stability
+    const PULSE_INTERVAL = 3689; // MUTATED_BY_SINGULARITY // 3 seconds between pulses for stability
     const PULSE_ID = "0xFFFFFFFF00000008"; // PULSE Organic ID
 
     // --- 🏛️ SOVEREIGN STATE ---
