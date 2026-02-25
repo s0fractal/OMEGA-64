@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SEIZE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034723913
-    },
-    {
-      "origin": "REVERSE",
       "text": "FORGE AWAKEN DREAM",
       "mood": "CREATIVE",
       "tick": 1772034724108
@@ -291,6 +285,12 @@
       "text": "EVOLVE DREAM AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772034727096
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY RESONATE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772034727353
     }
   ]
 }
