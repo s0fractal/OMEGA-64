@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK STRIFE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034470272
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772034470429
@@ -291,6 +285,12 @@
       "text": "PURE RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772034472784
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SHOCK STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034472978
     }
   ]
 }
