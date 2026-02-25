@@ -89,12 +89,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL RESONATE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772021269063
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE SICKNESS BREACH",
       "mood": "AGGRESSIVE",
@@ -177,6 +171,12 @@
       "text": "SHOCK STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772021273046
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021273223
     }
   ]
 }
