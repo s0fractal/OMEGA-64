@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM COHERE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772040567622
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE SEIZE BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772040570084
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772040570458
     }
   ]
 }
