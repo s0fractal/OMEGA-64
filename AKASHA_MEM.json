@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH IMMUNE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772034727569
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772034727789
@@ -291,6 +285,12 @@
       "text": "GUARD WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772034730712
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772034730881
     }
   ]
 }
