@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026652360
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772026652736
@@ -291,6 +285,12 @@
       "text": "UNIFY RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772026657956
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND SPARK VISION",
+      "mood": "CREATIVE",
+      "tick": 1772026658420
     }
   ]
 }
