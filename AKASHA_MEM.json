@@ -129,12 +129,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SICKNESS STRIFE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022325372
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE STASIS PURE",
       "mood": "DEFENSIVE",
@@ -217,6 +211,12 @@
       "text": "BREACH CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022331406
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE FLOW UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772022331601
     }
   ]
 }
