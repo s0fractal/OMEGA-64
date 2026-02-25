@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "FLOW SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772042273069
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIFE DECAY SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772042278813
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "COHERE RESONATE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772042279069
     }
   ]
 }
