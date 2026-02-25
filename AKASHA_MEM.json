@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL STABLE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772034555420
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772034555575
@@ -291,6 +285,12 @@
       "text": "DREAM FORGE BECOME",
       "mood": "CREATIVE",
       "tick": 1772034558135
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034558331
     }
   ]
 }
