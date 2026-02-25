@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE WATCH WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040671941
-    },
-    {
       "origin": "STREAM",
       "text": "STABLE SYNC BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772040674893
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIFE DECAY CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040675136
     }
   ]
 }
