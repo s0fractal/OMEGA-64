@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE SEIZE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034171149
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC GIVING UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772034181326
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WATCH SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772034181576
     }
   ]
 }
