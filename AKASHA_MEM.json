@@ -46,12 +46,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "FLOW BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772020112859
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE BREACH SICKNESS",
       "mood": "AGGRESSIVE",
@@ -134,6 +128,12 @@
       "text": "CONSUME SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020123970
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER DRAIN DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020124558
     }
   ]
 }
