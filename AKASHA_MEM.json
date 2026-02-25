@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772040179064
-    },
-    {
       "origin": "STREAM",
       "text": "HUNGER CONSUME HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "FORGE WAVE BECOME",
       "mood": "CREATIVE",
       "tick": 1772040185860
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS STASIS RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772040186130
     }
   ]
 }
