@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE DECAY SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027769752
-    },
-    {
       "origin": "INTERFACE",
       "text": "SYNC STABLE UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "CONSUME SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772027779451
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE GUARD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772027779817
     }
   ]
 }
