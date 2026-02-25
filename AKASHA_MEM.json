@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60006060",
     "0000A0A0",
     "00060666",
     "6A606000",
@@ -199,15 +198,10 @@
     "00600660",
     "00000000",
     "AAAA00AA",
-    "00000600"
+    "00000600",
+    "60600600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHOCK CONSUME STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034580101
-    },
     {
       "origin": "REVERSE",
       "text": "OSMOSIS GIVING FLOW",
@@ -291,6 +285,12 @@
       "text": "UNIFY COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772034583277
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT IMMUNE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772034583500
     }
   ]
 }
