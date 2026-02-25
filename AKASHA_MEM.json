@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "COHERE UNIFY UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772015999393
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIKE HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772016006640
@@ -107,6 +101,12 @@
       "text": "PURE SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772016109420
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS HUNGER SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772016136377
     }
   ]
 }
