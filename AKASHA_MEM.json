@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66000060",
     "AA0AAAA0",
     "66666660",
     "AA6666A0",
@@ -199,15 +198,10 @@
     "FF00FF00",
     "ABB00000",
     "6A6606A0",
-    "0B0B0000"
+    "0B0B0000",
+    "60060000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WAIT IMMUNE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772030634488
-    },
     {
       "origin": "REVERSE",
       "text": "SYNC BLOOM UNIFY",
@@ -291,6 +285,12 @@
       "text": "STASIS REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772030647761
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER STASIS PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772030648490
     }
   ]
 }
