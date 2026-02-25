@@ -281,16 +281,16 @@
       "tick": 1772042699845
     },
     {
-      "origin": "STREAM",
-      "text": "PURE SHELTER IMMUNE",
-      "mood": "DEFENSIVE",
+      "origin": "REVERSE",
+      "text": "RESONATE BLOOM RESONATE",
+      "mood": "HARMONIC",
       "tick": 1772042700114
     },
     {
       "origin": "ARCHIVIST",
-      "text": "SEIZE SICKNESS DECAY",
+      "text": "BREACH STRIFE DRAIN",
       "mood": "AGGRESSIVE",
-      "tick": 1772042700687
+      "tick": 1772042700491
     }
   ]
 }
