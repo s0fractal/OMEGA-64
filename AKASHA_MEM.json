@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772037693416
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772037693588
@@ -291,6 +285,12 @@
       "text": "DRAIN HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772037699008
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SHOCK SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037699180
     }
   ]
 }
