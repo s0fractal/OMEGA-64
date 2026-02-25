@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772038347479
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038347773
@@ -291,6 +285,12 @@
       "text": "COHERE RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772038352359
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD SHELTER SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772038352564
     }
   ]
 }
