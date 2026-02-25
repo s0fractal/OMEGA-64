@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GIVING OSMOSIS OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772029486096
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH RECON PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772029506848
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIKE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029507635
     }
   ]
 }
