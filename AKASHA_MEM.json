@@ -107,12 +107,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW HEAL GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772021791726
-    },
-    {
       "origin": "INTERFACE",
       "text": "STABLE GIVING SYNC",
       "mood": "HARMONIC",
@@ -195,6 +189,12 @@
       "text": "STASIS SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772021796141
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "REFLECT WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021796346
     }
   ]
 }
