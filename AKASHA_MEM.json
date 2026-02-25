@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER REFLECT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772036208653
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772036208865
@@ -291,6 +285,12 @@
       "text": "UNIFY BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772036212120
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING SYNC FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772036212395
     }
   ]
 }
