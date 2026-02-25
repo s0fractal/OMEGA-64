@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028849596
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY SEIZE BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772028870467
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM UNIFY STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772028871058
     }
   ]
 }
