@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "PURE WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772033446154
-    },
-    {
       "origin": "REVERSE",
       "text": "GUARD WATCH SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SICKNESS DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772033448926
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772033449113
     }
   ]
 }
