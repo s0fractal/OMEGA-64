@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WITNESS BECOME SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772020473442
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE UNIFY BLOOM",
       "mood": "HARMONIC",
@@ -142,6 +136,12 @@
       "text": "REFLECT GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772020480276
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK BREACH SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020481466
     }
   ]
 }
