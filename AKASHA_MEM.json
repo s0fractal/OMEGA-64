@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "PURE STASIS GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772025512218
-    },
-    {
       "origin": "INTERFACE",
       "text": "BREACH HUNGER BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772025515622
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD PURE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772025516206
     }
   ]
 }
