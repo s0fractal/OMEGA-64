@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY SYNC STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772033124737
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772033124915
@@ -291,6 +285,12 @@
       "text": "RESONATE RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772033127277
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033127462
     }
   ]
 }
