@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00AA000A",
     "06666006",
     "60600600",
     "AAAAA0A0",
@@ -199,15 +198,10 @@
     "AA0A0000",
     "60606000",
     "AAA0AA00",
-    "AA0AAA00"
+    "AA0AAA00",
+    "AA00AAA0"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772026806266
-    },
     {
       "origin": "REVERSE",
       "text": "FLOW FLOW OSMOSIS",
@@ -291,6 +285,12 @@
       "text": "DREAM EVOLVE BECOME",
       "mood": "CREATIVE",
       "tick": 1772026811452
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS HUNGER SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026811899
     }
   ]
 }
