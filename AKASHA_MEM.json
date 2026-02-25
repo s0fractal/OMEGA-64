@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE HEAL FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772026519121
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772026519424
@@ -291,6 +285,12 @@
       "text": "HUNGER SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772026524679
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER RECON RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772026524901
     }
   ]
 }
