@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIFE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034034173
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772034034351
@@ -291,6 +285,12 @@
       "text": "SHOCK DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772034039162
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772034039391
     }
   ]
 }
