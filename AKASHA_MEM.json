@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE STABLE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772034573308
-    },
-    {
       "origin": "ALPHA_REVERSE",
       "text": "AWAKEN WITNESS BECOME",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772034578076
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS OSMOSIS RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772034578295
     }
   ]
 }
