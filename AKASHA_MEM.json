@@ -95,12 +95,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY CONSUME STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021546941
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER CONSUME STRIFE",
       "mood": "AGGRESSIVE",
@@ -183,6 +177,12 @@
       "text": "GUARD WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772021553719
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GUARD IMMUNE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772021554155
     }
   ]
 }
