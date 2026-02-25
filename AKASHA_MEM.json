@@ -58,12 +58,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020573050
-    },
-    {
       "origin": "INTERFACE",
       "text": "FLOW OSMOSIS STABLE",
       "mood": "HARMONIC",
@@ -146,6 +140,12 @@
       "text": "STRIKE SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772020578694
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "PURE WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772020578901
     }
   ]
 }
