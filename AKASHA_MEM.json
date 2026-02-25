@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035019126
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772035019340
@@ -291,6 +285,12 @@
       "text": "GUARD WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772035021904
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE STABLE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772035022102
     }
   ]
 }
