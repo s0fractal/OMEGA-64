@@ -164,12 +164,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SPARK BECOME WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772022950320
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022950453
@@ -251,6 +245,12 @@
       "text": "REFLECT IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022954962
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHIELD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022955122
     }
   ]
 }
