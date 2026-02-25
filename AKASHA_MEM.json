@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772031976322
-    },
-    {
       "origin": "INTERFACE",
       "text": "RECON PURE GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772031983413
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031983759
     }
   ]
 }
