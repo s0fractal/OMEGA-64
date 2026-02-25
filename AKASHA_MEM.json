@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WAIT IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772040509489
-    },
-    {
       "origin": "STREAM",
       "text": "COHERE OSMOSIS HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772040512780
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772040513033
     }
   ]
 }
