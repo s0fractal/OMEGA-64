@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772024157969
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE IMMUNE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772024158227
@@ -291,6 +285,12 @@
       "text": "GIVING RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772024161208
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD GUARD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772024161642
     }
   ]
 }
