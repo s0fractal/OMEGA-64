@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772033606370
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK SEIZE STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772033613032
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WATCH SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772033613218
     }
   ]
 }
