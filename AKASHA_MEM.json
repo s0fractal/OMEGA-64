@@ -77,12 +77,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SEIZE DECAY SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021033467
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HUNGER HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772021034341
@@ -164,6 +158,12 @@
       "text": "IMMUNE PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772021038738
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON RECON SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772021039174
     }
   ]
 }
