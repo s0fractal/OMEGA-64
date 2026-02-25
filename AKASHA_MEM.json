@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS DREAM DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772028587777
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772028593201
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772028607682
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT STASIS IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772028608719
     }
   ]
 }
