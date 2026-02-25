@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON GUARD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023209750
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772023209873
@@ -259,6 +253,12 @@
       "text": "UNIFY UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772023212722
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY GIVING COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772023212890
     }
   ]
 }
