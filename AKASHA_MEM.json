@@ -70,12 +70,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772020877952
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIFE CONSUME CONSUME",
       "mood": "AGGRESSIVE",
@@ -158,6 +152,12 @@
       "text": "COHERE STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772020884561
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772020884742
     }
   ]
 }
