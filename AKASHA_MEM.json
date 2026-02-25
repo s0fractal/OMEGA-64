@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER SEIZE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034366672
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034366871
@@ -291,6 +285,12 @@
       "text": "SHOCK BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772034369530
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034369731
     }
   ]
 }
