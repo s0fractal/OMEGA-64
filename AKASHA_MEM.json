@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772040729357
-    },
-    {
       "origin": "STREAM",
       "text": "HUNGER HUNGER CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772040733114
+    },
+    {
+      "origin": "B_READ",
+      "text": "FLOW RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772040733256
     }
   ]
 }
