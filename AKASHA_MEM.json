@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE GUARD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772037639727
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772037639980
@@ -291,6 +285,12 @@
       "text": "OSMOSIS UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772037643130
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772037643333
     }
   ]
 }
