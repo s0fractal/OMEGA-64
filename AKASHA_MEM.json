@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM RESONATE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772036143168
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT SHELTER STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772036146411
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT REFLECT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772036146624
     }
   ]
 }
