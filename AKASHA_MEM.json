@@ -180,12 +180,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023387584
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023387948
@@ -267,6 +261,12 @@
       "text": "GUARD PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023394723
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772023394897
     }
   ]
 }
