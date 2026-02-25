@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS RESONATE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772034842305
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772034842520
@@ -291,6 +285,12 @@
       "text": "BLOOM RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034845354
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SICKNESS SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034845614
     }
   ]
 }
