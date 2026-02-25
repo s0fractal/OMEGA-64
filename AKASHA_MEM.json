@@ -123,12 +123,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772022118450
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772022118659
@@ -210,6 +204,12 @@
       "text": "SICKNESS STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022123315
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT WAIT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772022124098
     }
   ]
 }
