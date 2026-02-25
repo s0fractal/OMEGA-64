@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STRIKE BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033994003
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS STASIS REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DREAM WITNESS AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772033997004
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772033997160
     }
   ]
 }
