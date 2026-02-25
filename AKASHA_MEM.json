@@ -43,12 +43,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GUARD SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772019941802
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHIELD WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772019943051
@@ -130,6 +124,12 @@
       "text": "RESONATE GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772019955410
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK STRIKE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019955741
     }
   ]
 }
