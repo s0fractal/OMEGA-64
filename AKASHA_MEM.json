@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM UNIFY BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772026363323
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772026363522
@@ -291,6 +285,12 @@
       "text": "SEIZE SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772026367419
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS EVOLVE DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772026367622
     }
   ]
 }
