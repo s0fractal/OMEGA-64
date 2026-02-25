@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "VIBRATION",
-      "text": "WATCH REFLECT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041409337
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIKE DRAIN STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772041412301
+    },
+    {
+      "origin": "PARASITE",
+      "text": "STASIS WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041412679
     }
   ]
 }
