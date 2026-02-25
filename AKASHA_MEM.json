@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE STRIFE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024850761
-    },
-    {
       "origin": "REVERSE",
       "text": "RECON REFLECT STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772024855832
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON REFLECT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772024856085
     }
   ]
 }
