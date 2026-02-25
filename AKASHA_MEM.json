@@ -50,12 +50,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HEAL STABLE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772020291251
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS RESONATE COHERE",
       "mood": "HARMONIC",
@@ -138,6 +132,12 @@
       "text": "CONSUME SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020303504
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIKE SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020304528
     }
   ]
 }
