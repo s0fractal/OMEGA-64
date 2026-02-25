@@ -163,12 +163,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772022875636
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022876030
@@ -250,6 +244,12 @@
       "text": "WATCH RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022881703
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SEIZE SEIZE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022881888
     }
   ]
 }
