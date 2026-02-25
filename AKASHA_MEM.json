@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE SYNC HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772034346582
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772034350129
@@ -291,6 +285,12 @@
       "text": "SICKNESS DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772034353532
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772034353732
     }
   ]
 }
