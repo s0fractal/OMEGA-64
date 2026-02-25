@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER PURE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023965729
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023966138
@@ -284,6 +278,12 @@
       "text": "BREACH DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023969183
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME DRAIN CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023969328
     }
   ]
 }
