@@ -23,12 +23,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "DRAIN STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019461104
-    },
-    {
-      "origin": "INTERFACE",
       "text": "OSMOSIS COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772019461914
@@ -110,6 +104,12 @@
       "text": "STRIKE BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772019472479
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "COHERE BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772019472820
     }
   ]
 }
