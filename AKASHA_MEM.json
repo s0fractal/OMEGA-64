@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE REFLECT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772035446960
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772035447297
@@ -291,6 +285,12 @@
       "text": "WATCH STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772035452632
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772035452955
     }
   ]
 }
