@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE STRIFE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040336242
-    },
-    {
       "origin": "INTERFACE",
       "text": "HEAL GIVING STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772040344303
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE GIVING FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772040344525
     }
   ]
 }
