@@ -56,12 +56,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SEIZE BREACH SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020536814
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BLOOM GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772020536991
@@ -143,6 +137,12 @@
       "text": "OSMOSIS BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772020545263
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE OSMOSIS RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772020546154
     }
   ]
 }
