@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE HUNGER BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031137268
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772031137444
@@ -291,6 +285,12 @@
       "text": "HEAL STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772031142225
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SHOCK HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031142493
     }
   ]
 }
