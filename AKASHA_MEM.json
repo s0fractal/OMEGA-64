@@ -163,12 +163,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022901582
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022903760
@@ -250,6 +244,12 @@
       "text": "COHERE STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772022909855
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772022911089
     }
   ]
 }
