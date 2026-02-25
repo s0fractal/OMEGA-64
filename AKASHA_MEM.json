@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034290728
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034290911
@@ -291,6 +285,12 @@
       "text": "UNIFY GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772034293248
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHELTER GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772034293436
     }
   ]
 }
