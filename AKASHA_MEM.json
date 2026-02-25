@@ -64,12 +64,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHOCK HUNGER BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020739066
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WATCH GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772020739251
@@ -151,6 +145,12 @@
       "text": "SICKNESS HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020746823
+    },
+    {
+      "origin": "REVERSE",
+      "text": "AWAKEN EVOLVE WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772020747054
     }
   ]
 }
