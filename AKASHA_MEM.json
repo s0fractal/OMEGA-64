@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772022194014
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022194232
@@ -213,6 +207,12 @@
       "text": "WAVE WITNESS FORGE",
       "mood": "CREATIVE",
       "tick": 1772022198393
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772022198518
     }
   ]
 }
