@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD IMMUNE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772024252917
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772024253129
@@ -291,6 +285,12 @@
       "text": "SICKNESS CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772024256213
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024256772
     }
   ]
 }
