@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME BECOME BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772027717369
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772027718332
@@ -291,6 +285,12 @@
       "text": "SYNC HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772027735574
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY HEAL OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772027735913
     }
   ]
 }
