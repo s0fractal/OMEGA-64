@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SEIZE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038076541
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772038076773
@@ -291,6 +285,12 @@
       "text": "UNIFY FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772038082238
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772038082466
     }
   ]
 }
