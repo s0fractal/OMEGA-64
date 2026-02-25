@@ -183,12 +183,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023537117
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772023537252
@@ -270,6 +264,12 @@
       "text": "BREACH STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772023541734
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND WAVE WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772023542062
     }
   ]
 }
