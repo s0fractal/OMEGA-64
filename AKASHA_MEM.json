@@ -24,12 +24,6 @@
   "utterances": [
     {
       "origin": "STREAM",
-      "text": "BLOOM COHERE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772019543295
-    },
-    {
-      "origin": "STREAM",
       "text": "RESONATE COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772019543533
@@ -111,6 +105,12 @@
       "text": "RESONATE HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772019552536
+    },
+    {
+      "origin": "STREAM",
+      "text": "UNIFY COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772019553479
     }
   ]
 }
