@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772032576131
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772032576320
@@ -291,6 +285,12 @@
       "text": "BLOOM BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772032579062
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SHOCK SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032579208
     }
   ]
 }
