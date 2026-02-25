@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025331702
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772025331837
@@ -291,6 +285,12 @@
       "text": "RESONATE COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772025338332
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT WAIT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772025338894
     }
   ]
 }
