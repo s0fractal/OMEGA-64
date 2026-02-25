@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772041891942
-    },
-    {
       "origin": "STREAM",
       "text": "BREACH STRIKE DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772041897291
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD PURE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041898094
     }
   ]
 }
