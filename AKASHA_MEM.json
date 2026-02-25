@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040315443
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HEAL FLOW SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772040322721
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772040323343
     }
   ]
 }
