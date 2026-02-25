@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY COHERE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772041198971
-    },
-    {
       "origin": "STREAM",
       "text": "SEIZE CONSUME STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772041204848
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE REFLECT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772041205171
     }
   ]
 }
