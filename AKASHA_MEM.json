@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040430973
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY COHERE COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GUARD SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772040434705
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040434888
     }
   ]
 }
