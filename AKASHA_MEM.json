@@ -183,12 +183,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023547848
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023549580
@@ -270,6 +264,12 @@
       "text": "STABLE COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772023553333
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023553493
     }
   ]
 }
