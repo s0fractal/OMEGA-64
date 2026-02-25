@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS DECAY SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025236294
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS IMMUNE SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772025242967
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025243180
     }
   ]
 }
