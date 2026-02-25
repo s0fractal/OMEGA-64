@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772024333487
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772024333656
@@ -291,6 +285,12 @@
       "text": "BREACH BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772024338233
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING COHERE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772024339262
     }
   ]
 }
