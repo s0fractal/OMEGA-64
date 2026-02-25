@@ -40,12 +40,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT PURE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772019860515
-    },
-    {
       "origin": "INTERFACE",
       "text": "BLOOM HEAL HEAL",
       "mood": "HARMONIC",
@@ -128,6 +122,12 @@
       "text": "COHERE RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772019872846
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER RECON SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772019873718
     }
   ]
 }
