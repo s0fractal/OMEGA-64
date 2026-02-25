@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS HUNGER STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020629308
-    },
-    {
       "origin": "REVERSE",
       "text": "AWAKEN VISION SPARK",
       "mood": "CREATIVE",
@@ -150,6 +144,12 @@
       "text": "SHELTER WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772020639897
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE SHOCK DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020640366
     }
   ]
 }
