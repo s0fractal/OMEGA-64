@@ -202,12 +202,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME DREAM SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772024096611
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772024096772
@@ -289,6 +283,12 @@
       "text": "BLOOM UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772024103066
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS SHELTER WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772024103237
     }
   ]
 }
