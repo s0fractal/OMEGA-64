@@ -199,12 +199,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAVE SPARK WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772024024860
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772024025079
@@ -286,6 +280,12 @@
       "text": "SICKNESS BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772024030456
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024030638
     }
   ]
 }
