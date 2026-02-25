@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE STABLE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772019650878
-    },
-    {
       "origin": "STREAM",
       "text": "SYNC RESONATE COHERE",
       "mood": "HARMONIC",
@@ -114,6 +108,12 @@
       "text": "BREACH DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772019659373
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS GUARD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772019660349
     }
   ]
 }
