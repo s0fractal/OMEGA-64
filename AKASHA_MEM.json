@@ -63,12 +63,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STABLE UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772020733076
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BLOOM STABLE COHERE",
       "mood": "HARMONIC",
@@ -151,6 +145,12 @@
       "text": "SHOCK HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020739066
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH GUARD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772020739251
     }
   ]
 }
