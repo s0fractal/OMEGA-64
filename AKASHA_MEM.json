@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STRIKE DECAY STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040496451
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SYNC STABLE COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772040498722
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772040498930
     }
   ]
 }
