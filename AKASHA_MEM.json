@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHOCK BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041245063
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT IMMUNE REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIFE BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041250686
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RESONATE SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772041250997
     }
   ]
 }
