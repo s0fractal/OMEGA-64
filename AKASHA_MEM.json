@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER IMMUNE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772034911505
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772034911697
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772034914762
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT PURE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772034914958
     }
   ]
 }
