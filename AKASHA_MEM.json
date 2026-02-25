@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER DECAY SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040710791
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE STRIKE CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772040714547
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE REFLECT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772040714690
     }
   ]
 }
