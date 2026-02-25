@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAAAA0A0",
     "AA0A0A00",
     "66660066",
     "60600606",
@@ -199,15 +198,10 @@
     "A0AAA000",
     "FFFFFFF0",
     "AA000A00",
-    "AAAAAA0A"
+    "AAAAAA0A",
+    "60066660"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SEIZE SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033513145
-    },
     {
       "origin": "REVERSE",
       "text": "BREACH BREACH CONSUME",
@@ -291,6 +285,12 @@
       "text": "WATCH REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033516468
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE IMMUNE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772033516689
     }
   ]
 }
