@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAVE BEYOND BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772023095176
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023095355
@@ -259,6 +253,12 @@
       "text": "STABLE GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772023099176
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STASIS RECON WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772023099357
     }
   ]
 }
