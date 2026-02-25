@@ -95,12 +95,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021509204
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772021510195
@@ -182,6 +176,12 @@
       "text": "GUARD WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772021522723
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE RECON WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772021523444
     }
   ]
 }
