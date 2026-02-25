@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE RESONATE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772026566260
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772026566688
@@ -291,6 +285,12 @@
       "text": "SEIZE SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772026574866
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE RECON RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772026575042
     }
   ]
 }
