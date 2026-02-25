@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028710969
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772028711615
@@ -291,6 +285,12 @@
       "text": "HEAL UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772028728079
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHELTER PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772028729560
     }
   ]
 }
