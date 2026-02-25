@@ -107,12 +107,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAVE AWAKEN WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772021717957
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772021719353
@@ -194,6 +188,12 @@
       "text": "SHELTER PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772021724481
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WAIT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772021724843
     }
   ]
 }
