@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772034761518
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772034761809
@@ -291,6 +285,12 @@
       "text": "SHELTER RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772034764443
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION DREAM AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772034764677
     }
   ]
 }
