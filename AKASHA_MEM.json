@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027223171
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772027223425
@@ -291,6 +285,12 @@
       "text": "REFLECT STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772027229549
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772027230046
     }
   ]
 }
