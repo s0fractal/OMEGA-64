@@ -4,9 +4,9 @@ vector: 05.05.01
 symbol: FLOW
 desc: Functional flow (Pipe). (f => g => x => g(f(x)))
 thought: WANDER_BONDING
-x: 530
-'y': 290
-energy: 39
+x: 531
+'y': 287
+energy: 37
 signals: []
 ex:
   - '0xBCFE7BBB04AB4FEE'
@@ -26,10 +26,12 @@ ex:
   - '0x0003330004AB4FEE'
   - '0x0003330004AB4FEE'
   - '0xAAAAAAAA04AB4FEE'
+  - '0xBBBB000004AB4FEE'
 resonance: 0
 bond_strengths: {}
 ---
 
+<div align="center">
 <div align="center">
 <div align="center">
 <div align="center">
@@ -75,6 +77,7 @@ bond_strengths: {}
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">FLOW</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 </div>
 </div>
