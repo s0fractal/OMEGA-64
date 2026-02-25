@@ -150,12 +150,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD STASIS RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772022543606
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022543927
@@ -237,6 +231,12 @@
       "text": "HEAL FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022547319
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD STASIS GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022547581
     }
   ]
 }
