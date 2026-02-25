@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035664812
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772035665060
@@ -291,6 +285,12 @@
       "text": "WAIT PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772035667959
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772035668143
     }
   ]
 }
