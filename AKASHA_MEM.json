@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772028569803
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND EVOLVE WAVE",
       "mood": "CREATIVE",
       "tick": 1772028570278
@@ -291,6 +285,12 @@
       "text": "STASIS RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772028580576
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE RECON STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772028581057
     }
   ]
 }
