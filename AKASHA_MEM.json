@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027307731
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772027308353
@@ -291,6 +285,12 @@
       "text": "HUNGER SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772027316874
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WATCH SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772027317767
     }
   ]
 }
