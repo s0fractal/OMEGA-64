@@ -102,12 +102,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE OSMOSIS FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772021647572
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIFE DRAIN HUNGER",
       "mood": "AGGRESSIVE",
@@ -190,6 +184,12 @@
       "text": "SHIELD SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772021652323
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772021652458
     }
   ]
 }
