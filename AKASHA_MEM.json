@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772026231970
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772026232244
@@ -291,6 +285,12 @@
       "text": "GUARD IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772026240336
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WATCH GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772026240631
     }
   ]
 }
