@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHELTER IMMUNE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772041734005
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STASIS SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041734311
@@ -291,6 +285,12 @@
       "text": "GIVING BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772041741324
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH PURE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041741632
     }
   ]
 }
