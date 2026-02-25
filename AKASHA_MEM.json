@@ -133,12 +133,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER HUNGER STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022377692
-    },
-    {
       "origin": "INTERFACE",
       "text": "DECAY SHOCK CONSUME",
       "mood": "AGGRESSIVE",
@@ -221,6 +215,12 @@
       "text": "GIVING UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022382018
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHIELD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772022382230
     }
   ]
 }
