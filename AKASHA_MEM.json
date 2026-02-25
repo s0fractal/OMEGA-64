@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "SOMA",
-      "text": "DECAY CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041539316
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING HEAL FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041543417
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041543561
     }
   ]
 }
