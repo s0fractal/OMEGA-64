@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0B0A0000",
     "A6666666",
     "00660006",
     "0AA00AAA",
@@ -199,15 +198,10 @@
     "00000660",
     "BBB000FC",
     "000AAAA0",
-    "BB000FFC"
+    "BB000FFC",
+    "0A0AA000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BREACH BREACH HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031983759
-    },
     {
       "origin": "REVERSE",
       "text": "SYNC FLOW GIVING",
@@ -291,6 +285,12 @@
       "text": "STABLE FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772031994637
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772031994918
     }
   ]
 }
