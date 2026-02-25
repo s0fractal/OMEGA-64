@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH SICKNESS HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041404274
-    },
-    {
       "origin": "STREAM",
       "text": "GUARD REFLECT WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772041409036
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER SHELTER WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041409202
     }
   ]
 }
