@@ -154,12 +154,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH STRIKE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022642219
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022642378
@@ -241,6 +235,12 @@
       "text": "SHOCK SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022645588
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS PURE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022645771
     }
   ]
 }
