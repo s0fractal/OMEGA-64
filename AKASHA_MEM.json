@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "IMMUNE SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772017002292
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME BREACH SICKNESS",
       "mood": "AGGRESSIVE",
@@ -107,6 +101,12 @@
       "text": "CONSUME BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772017075690
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DRAIN STRIKE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772017085000
     }
   ]
 }
