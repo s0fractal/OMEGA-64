@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033167072
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772033167330
@@ -291,6 +285,12 @@
       "text": "BLOOM STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772033169765
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE PURE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772033169948
     }
   ]
 }
