@@ -202,12 +202,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAVE BEYOND DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772024079685
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772024080004
@@ -289,6 +283,12 @@
       "text": "WATCH SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772024084399
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024084628
     }
   ]
 }
