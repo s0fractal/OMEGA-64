@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DECAY CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040592379
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER CONSUME BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772040595981
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772040596266
     }
   ]
 }
