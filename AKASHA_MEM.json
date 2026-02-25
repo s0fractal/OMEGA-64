@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING STABLE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772037186229
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772037186439
@@ -291,6 +285,12 @@
       "text": "STRIKE SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772037189446
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD GUARD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772037191159
     }
   ]
 }
