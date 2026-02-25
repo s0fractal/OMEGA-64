@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "WATCH SHELTER SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772031073272
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS WATCH REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772031087861
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WAIT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772031088269
     }
   ]
 }
