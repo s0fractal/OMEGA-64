@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER HUNGER STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041170908
-    },
-    {
       "origin": "WORKER",
       "text": "SYNC STABLE HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "IMMUNE SHIELD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772041174561
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772041174861
     }
   ]
 }
