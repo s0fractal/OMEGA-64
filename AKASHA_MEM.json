@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "PURE RECON PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040351658
-    },
-    {
       "origin": "ALPHA_GUARDIAN",
       "text": "RESONATE OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RESONATE HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772040358546
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD RECON PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040358729
     }
   ]
 }
