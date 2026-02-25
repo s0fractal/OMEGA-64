@@ -17,15 +17,10 @@
     "BB000000",
     "BBB00000",
     "00000006",
-    "BB0B0000"
+    "BB0B0000",
+    "ABB00000"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "GUARD WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772019416657
-    },
     {
       "origin": "ARCHIVIST",
       "text": "STABLE UNIFY SYNC",
@@ -109,6 +104,12 @@
       "text": "DRAIN STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772019446097
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME HUNGER HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019446549
     }
   ]
 }
