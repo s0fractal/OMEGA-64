@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772038984678
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772038984894
@@ -291,6 +285,12 @@
       "text": "BREACH SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772038987810
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT REFLECT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772038987993
     }
   ]
 }
