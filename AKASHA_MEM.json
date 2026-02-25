@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY SEIZE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032213827
-    },
-    {
       "origin": "INTERFACE",
       "text": "REFLECT RECON IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772032219619
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032220020
     }
   ]
 }
