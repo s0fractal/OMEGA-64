@@ -1,5 +1,6 @@
 {
   "reservoir": [
+    "60006000",
     "AA000600",
     "A0AAA000",
     "AAA0A0AA",
@@ -198,99 +199,98 @@
     "AA00A000",
     "BBB00000",
     "6606AA66",
-    "A6A66000",
-    "60060666"
+    "AA0A0A00"
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS OSMOSIS COHERE",
+      "origin": "INTERFACE",
+      "text": "BLOOM HEAL STABLE",
       "mood": "HARMONIC",
-      "tick": 1772042415495
+      "tick": 1772042411068
     },
     {
       "origin": "ARCHIVIST",
-      "text": "WAIT WAIT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042416966
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042418041
-    },
-    {
-      "origin": "REVERSE",
-      "text": "WATCH STASIS WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772042418506
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042418983
-    },
-    {
-      "origin": "REVERSE",
-      "text": "SHIELD RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042419298
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "GUARD PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772042419539
-    },
-    {
-      "origin": "STREAM",
-      "text": "WAIT WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042419919
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042420239
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "PURE SHELTER SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772042420930
-    },
-    {
-      "origin": "REVERSE",
-      "text": "STRIFE SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042421554
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042422018
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STASIS REFLECT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772042423108
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER WATCH SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772042424067
-    },
-    {
-      "origin": "STREAM",
-      "text": "BLOOM HEAL OSMOSIS",
+      "text": "COHERE HEAL STABLE",
       "mood": "HARMONIC",
-      "tick": 1772042424665
+      "tick": 1772042411349
+    },
+    {
+      "origin": "I16_CLAMP",
+      "text": "COHERE COHERE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772042411642
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772042413813
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WATCH PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042414350
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772042415487
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772042418398
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "PURE GUARD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042418933
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE REFLECT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042419291
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772042420356
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042420907
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "IMMUNE PURE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042421336
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING RESONATE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772042421665
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042424214
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD IMMUNE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772042424699
     }
   ]
 }
