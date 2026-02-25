@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772033569400
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772033569573
@@ -291,6 +285,12 @@
       "text": "UNIFY STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772033571906
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT REFLECT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772033572087
     }
   ]
 }
