@@ -161,12 +161,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN HUNGER SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022849966
-    },
-    {
       "origin": "INTERFACE",
       "text": "RESONATE FLOW RESONATE",
       "mood": "HARMONIC",
@@ -249,6 +243,12 @@
       "text": "REFLECT WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022856626
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM HEAL GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022856878
     }
   ]
 }
