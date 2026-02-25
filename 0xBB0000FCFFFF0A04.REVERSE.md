@@ -1,14 +1,14 @@
 ---
 eigenvalue: '0xBB0000FCFFFF0A04'
-energy: 50
-x: 667
-'y': 388
-resonance: 50
-thought: RESURRECTED
+energy: 49.9
+x: 662
+'y': 385
+resonance: 12.25
+thought: WANDER_BONDING
 logic: BB0000FC
 signals: []
 bond_strengths:
-  '0x0000000000000A02': 0.959809440525076
+  '0x0000000000000A02': 0.9578907814534664
 bonds:
   - '0x0000000000000A02'
 ex:
