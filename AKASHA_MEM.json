@@ -75,12 +75,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC OSMOSIS BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772020947430
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772020947607
@@ -162,6 +156,12 @@
       "text": "STRIFE BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020955017
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772020955979
     }
   ]
 }
