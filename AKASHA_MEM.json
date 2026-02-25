@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037810195
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772037810415
@@ -291,6 +285,12 @@
       "text": "PURE IMMUNE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772037816117
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE GIVING UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772037816429
     }
   ]
 }
