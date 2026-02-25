@@ -94,12 +94,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DECAY SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021390232
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772021391010
@@ -181,6 +175,12 @@
       "text": "RECON SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772021431664
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIFE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021432671
     }
   ]
 }
