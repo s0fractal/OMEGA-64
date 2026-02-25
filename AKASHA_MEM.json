@@ -112,12 +112,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "SEIZE STRIFE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021915340
-    },
-    {
-      "origin": "INTERFACE",
       "text": "HUNGER HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772021915896
@@ -199,6 +193,12 @@
       "text": "RESONATE GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772021924578
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT WAIT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021925743
     }
   ]
 }
