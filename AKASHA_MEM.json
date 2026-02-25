@@ -198,12 +198,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SICKNESS SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024000185
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772024000507
@@ -285,6 +279,12 @@
       "text": "FLOW STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772024006142
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024006456
     }
   ]
 }
