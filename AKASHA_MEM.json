@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT WAIT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772033626422
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772033626602
@@ -291,6 +285,12 @@
       "text": "SICKNESS HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772033628898
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DECAY SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033629059
     }
   ]
 }
