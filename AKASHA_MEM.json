@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FORGE AWAKEN AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772036695389
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772036695559
@@ -291,6 +285,12 @@
       "text": "HUNGER DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772036698259
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036698507
     }
   ]
 }
