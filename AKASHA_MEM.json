@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "BBBB0000",
     "60000000",
     "BABB0000",
     "000A0000",
@@ -199,15 +198,10 @@
     "AAAAAAA0",
     "60066666",
     "666060A6",
-    "AAAAAAAA"
+    "AAAAAAAA",
+    "A0AAA0AA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "FLOW GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772024313725
-    },
     {
       "origin": "REVERSE",
       "text": "GUARD GUARD REFLECT",
@@ -291,6 +285,12 @@
       "text": "CONSUME SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772024316184
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DECAY SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024316313
     }
   ]
 }
