@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS WATCH WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772023189294
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH IMMUNE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023189563
@@ -259,6 +253,12 @@
       "text": "SEIZE CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023196726
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE HUNGER BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023196928
     }
   ]
 }
