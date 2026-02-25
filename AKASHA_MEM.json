@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "CONSUME SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041134849
-    },
-    {
-      "origin": "INTERFACE",
       "text": "STRIFE SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772041135125
@@ -291,6 +285,12 @@
       "text": "RESONATE OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772041138668
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041138799
     }
   ]
 }
