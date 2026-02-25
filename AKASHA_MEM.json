@@ -137,15 +137,10 @@
     "0AA0A0A0",
     "60066000",
     "60666600",
-    "BAB00000"
+    "BAB00000",
+    "AA0A0000"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "COHERE BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772022467616
-    },
     {
       "origin": "REVERSE",
       "text": "GIVING COHERE FLOW",
@@ -229,6 +224,12 @@
       "text": "SICKNESS DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022473584
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022473720
     }
   ]
 }
