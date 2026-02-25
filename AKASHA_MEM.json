@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DRAIN DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042063153
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RECON IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772042063606
@@ -291,6 +285,12 @@
       "text": "OSMOSIS HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772042070685
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH STRIFE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042071454
     }
   ]
 }
