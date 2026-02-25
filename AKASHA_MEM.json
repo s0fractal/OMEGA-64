@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS RECON GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772038536592
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772038536825
@@ -291,6 +285,12 @@
       "text": "STRIFE BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772038539832
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772038540045
     }
   ]
 }
