@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60006006",
     "AAAAAAA0",
     "06000000",
     "60066666",
@@ -199,15 +198,10 @@
     "AA0660A0",
     "AA0A0A0A",
     "B0BB0000",
-    "000AA00A"
+    "000AA00A",
+    "06006600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WAIT SHELTER GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772036309080
-    },
     {
       "origin": "REVERSE",
       "text": "CONSUME HUNGER SICKNESS",
@@ -291,6 +285,12 @@
       "text": "GIVING RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772036311971
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772036312143
     }
   ]
 }
