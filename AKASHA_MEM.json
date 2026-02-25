@@ -163,12 +163,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WAIT SHIELD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022950020
-    },
-    {
       "origin": "REVERSE",
       "text": "SPARK BECOME WITNESS",
       "mood": "CREATIVE",
@@ -251,6 +245,12 @@
       "text": "UNIFY BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772022954558
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT IMMUNE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772022954962
     }
   ]
 }
