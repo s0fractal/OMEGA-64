@@ -30,9 +30,12 @@ ex:
   - '0xAAAAAAAA9AB55938'
   - '0xAAAAAAAA9AB5593A'
   - '0xAAAAAAAA9AB5593A'
+  - '0xAAAAAAAA9AB5593C'
+  - '0xAAAAAAAA9AB5593E'
+  - '0xAAAAAAAA9AB55938'
 thought: WANDER_BONDING
-x: 489
-'y': 286
+x: 475
+'y': 273
 signals: []
 resonance: 250
 bonds: []
