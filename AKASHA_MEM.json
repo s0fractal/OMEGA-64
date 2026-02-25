@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772034791626
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772034791845
@@ -291,6 +285,12 @@
       "text": "WAIT RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772034794433
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW STABLE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772034794626
     }
   ]
 }
