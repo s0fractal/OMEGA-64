@@ -41,12 +41,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIFE DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019853115
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHIELD PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772019853556
@@ -128,6 +122,12 @@
       "text": "WAIT PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772019860515
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BLOOM HEAL HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772019861252
     }
   ]
 }
