@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE SYNC STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772032272959
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772032273197
@@ -291,6 +285,12 @@
       "text": "WAVE WAVE VISION",
       "mood": "CREATIVE",
       "tick": 1772032280094
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT IMMUNE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772032280372
     }
   ]
 }
