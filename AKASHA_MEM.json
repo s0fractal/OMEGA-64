@@ -50,12 +50,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772020259861
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW STABLE GIVING",
       "mood": "HARMONIC",
@@ -138,6 +132,12 @@
       "text": "STASIS RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772020269110
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772020269917
     }
   ]
 }
