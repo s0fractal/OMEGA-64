@@ -5,7 +5,7 @@ symbol: POTENTIAL
 desc: >-
   Wave Dynamics Atom: POTENTIAL. Implements gradient computation and field
   sampling.
-energy: 70.5
+energy: 107
 ex:
   - '0x239316A75CBB4BAE'
   - '0x000585785CBB4BAE'
