@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD SHIELD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772034944666
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772034944944
@@ -291,6 +285,12 @@
       "text": "BLOOM COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772034948147
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE STABLE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772034948452
     }
   ]
 }
