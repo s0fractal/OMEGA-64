@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT PURE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772026953413
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772026953659
@@ -291,6 +285,12 @@
       "text": "BREACH SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772026959314
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772026959524
     }
   ]
 }
