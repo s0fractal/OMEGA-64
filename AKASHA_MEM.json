@@ -48,15 +48,10 @@
     "66666000",
     "AAA0AAAA",
     "66AA66A0",
-    "0A000A00"
+    "0A000A00",
+    "AB000000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "HUNGER DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020335203
-    },
     {
       "origin": "ARCHIVIST",
       "text": "SHIELD SHELTER IMMUNE",
@@ -140,6 +135,12 @@
       "text": "COHERE FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772020342192
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020343509
     }
   ]
 }
