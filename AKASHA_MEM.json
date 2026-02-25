@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HEAL GIVING SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772027265345
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY GIVING OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DRAIN SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772027273321
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772027274049
     }
   ]
 }
