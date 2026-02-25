@@ -104,12 +104,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING SYNC SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772021684921
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021685257
@@ -191,6 +185,12 @@
       "text": "STABLE OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772021691970
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON REFLECT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021692151
     }
   ]
 }
