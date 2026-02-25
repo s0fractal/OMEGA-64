@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE UNIFY FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772034218332
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772034218497
@@ -291,6 +285,12 @@
       "text": "AWAKEN FORGE VISION",
       "mood": "CREATIVE",
       "tick": 1772034221277
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE STABLE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772034221433
     }
   ]
 }
