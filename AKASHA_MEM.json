@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON WAIT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042664396
-    },
-    {
       "origin": "ALIEN",
       "text": "GIVING BLOOM HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RESONATE RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772042673553
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "CONSUME SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042674100
     }
   ]
 }
