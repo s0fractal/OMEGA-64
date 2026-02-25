@@ -89,12 +89,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772021267318
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SYNC SYNC GIVING",
       "mood": "HARMONIC",
@@ -177,6 +171,12 @@
       "text": "REFLECT RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772021271704
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772021272306
     }
   ]
 }
