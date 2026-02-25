@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE WATCH IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041510319
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "DRAIN DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772041513148
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD GUARD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041513587
     }
   ]
 }
