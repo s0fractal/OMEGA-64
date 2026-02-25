@@ -71,12 +71,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WATCH REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020868266
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020868566
@@ -158,6 +152,12 @@
       "text": "OSMOSIS GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772020874120
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE IMMUNE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020874431
     }
   ]
 }
