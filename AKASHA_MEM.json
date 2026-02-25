@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772025461618
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD RECON PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BREACH SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772025470616
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025470753
     }
   ]
 }
