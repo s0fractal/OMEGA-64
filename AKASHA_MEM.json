@@ -63,12 +63,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BREACH DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020745628
-    },
-    {
       "origin": "REVERSE",
       "text": "EVOLVE VISION FORGE",
       "mood": "CREATIVE",
@@ -151,6 +145,12 @@
       "text": "SICKNESS SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020753511
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772020753627
     }
   ]
 }
