@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60006600",
     "00660000",
     "00A0AA0A",
     "AAB0C00D",
@@ -199,15 +198,10 @@
     "666006A0",
     "0AAAAAA0",
     "06060600",
-    "AAAAAAA0"
+    "AAAAAAA0",
+    "A0666606"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "OSMOSIS COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772028765311
-    },
     {
       "origin": "REVERSE",
       "text": "GUARD SHIELD WAIT",
@@ -291,6 +285,12 @@
       "text": "BEYOND EVOLVE BEYOND",
       "mood": "CREATIVE",
       "tick": 1772028774123
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE HUNGER CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028774816
     }
   ]
 }
