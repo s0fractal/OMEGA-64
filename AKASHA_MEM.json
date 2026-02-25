@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772034047072
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772034047231
@@ -291,6 +285,12 @@
       "text": "WAIT STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772034049578
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034049750
     }
   ]
 }
