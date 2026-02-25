@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH DRAIN DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041732209
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIKE CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772041732455
@@ -291,6 +285,12 @@
       "text": "BREACH DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041739590
+    },
+    {
+      "origin": "GUARDIAN",
+      "text": "HEAL BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041739899
     }
   ]
 }
