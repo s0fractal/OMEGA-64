@@ -55,12 +55,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020486801
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772020486966
@@ -142,6 +136,12 @@
       "text": "WAIT RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020495220
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BREACH SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020495733
     }
   ]
 }
