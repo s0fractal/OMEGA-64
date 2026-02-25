@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAAAAAA0",
     "660060A6",
     "60066666",
     "A0AAA0AA",
@@ -199,15 +198,10 @@
     "00666660",
     "00066660",
     "AAB0000D",
-    "A06000A0"
+    "A06000A0",
+    "0A000AAA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RESONATE STABLE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772034911155
-    },
     {
       "origin": "REVERSE",
       "text": "HUNGER SICKNESS SHOCK",
@@ -291,6 +285,12 @@
       "text": "DECAY SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772034914367
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772034914565
     }
   ]
 }
