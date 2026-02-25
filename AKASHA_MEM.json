@@ -73,12 +73,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020937667
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772020937889
@@ -160,6 +154,12 @@
       "text": "STASIS WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020944251
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SHOCK STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020944934
     }
   ]
 }
