@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60060066",
     "A0AA0AA0",
     "000A00A0",
     "AAAA0AAA",
@@ -199,15 +198,10 @@
     "A666A0A0",
     "AA000000",
     "6666A060",
-    "AA0AA0A0"
+    "AA0AA0A0",
+    "000000A0"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041690473
-    },
     {
       "origin": "ARCHIVIST",
       "text": "DRAIN SEIZE BREACH",
@@ -291,6 +285,12 @@
       "text": "GIVING SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041695002
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW HEAL GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041695307
     }
   ]
 }
