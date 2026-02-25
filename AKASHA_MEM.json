@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT PURE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772036963359
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772036963576
@@ -291,6 +285,12 @@
       "text": "BREACH SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772036968726
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772036969058
     }
   ]
 }
