@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772042476034
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY BREACH SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772042488272
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772042488874
     }
   ]
 }
