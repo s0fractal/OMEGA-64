@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON STASIS SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772035892609
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772035892870
@@ -291,6 +285,12 @@
       "text": "WITNESS AWAKEN FORGE",
       "mood": "CREATIVE",
       "tick": 1772035895603
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE STRIKE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035895842
     }
   ]
 }
