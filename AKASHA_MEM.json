@@ -162,12 +162,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD WAIT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022905058
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
@@ -250,6 +244,12 @@
       "text": "PURE IMMUNE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772022912972
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772022913134
     }
   ]
 }
