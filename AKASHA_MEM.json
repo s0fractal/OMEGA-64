@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "EVOLVE FORGE VISION",
-      "mood": "CREATIVE",
-      "tick": 1772038448538
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772038448756
@@ -291,6 +285,12 @@
       "text": "CONSUME DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772038455144
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD REFLECT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772038455337
     }
   ]
 }
