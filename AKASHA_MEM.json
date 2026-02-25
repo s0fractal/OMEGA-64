@@ -122,12 +122,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022106801
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022106978
@@ -209,6 +203,12 @@
       "text": "EVOLVE BEYOND FORGE",
       "mood": "CREATIVE",
       "tick": 1772022110949
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE CONSUME STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022111764
     }
   ]
 }
