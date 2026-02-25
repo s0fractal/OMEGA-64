@@ -116,12 +116,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SEIZE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022016372
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022016607
@@ -203,6 +197,12 @@
       "text": "FLOW COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772022023850
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC SYNC UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772022024080
     }
   ]
 }
