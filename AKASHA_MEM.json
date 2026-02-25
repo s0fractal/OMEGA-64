@@ -131,12 +131,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE BLOOM STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772022335852
-    },
-    {
-      "origin": "REVERSE",
       "text": "FORGE WITNESS WITNESS",
       "mood": "CREATIVE",
       "tick": 1772022336978
@@ -218,6 +212,12 @@
       "text": "STRIFE HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022342499
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE UNIFY GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022342645
     }
   ]
 }
