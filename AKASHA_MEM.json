@@ -45,12 +45,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RECON WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772020065248
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SEIZE BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020066073
@@ -132,6 +126,12 @@
       "text": "RESONATE COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772020082250
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH GUARD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772020082854
     }
   ]
 }
