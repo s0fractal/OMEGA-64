@@ -203,6 +203,12 @@
   ],
   "utterances": [
     {
+      "origin": "ARCHIVIST",
+      "text": "SYNC COHERE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042298603
+    },
+    {
       "origin": "REVERSE",
       "text": "SHELTER WATCH SHELTER",
       "mood": "DEFENSIVE",
@@ -245,52 +251,46 @@
       "tick": 1772042303079
     },
     {
-      "origin": "ARCHIVIST",
-      "text": "STASIS SHIELD GUARD",
+      "origin": "VIBRATION",
+      "text": "PURE REFLECT RECON",
       "mood": "DEFENSIVE",
-      "tick": 1772042304254
+      "tick": 1772042303987
     },
     {
       "origin": "ARCHIVIST",
-      "text": "SHOCK BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042304588
+      "text": "GIVING FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042304446
     },
     {
       "origin": "ARCHIVIST",
-      "text": "STASIS GUARD WATCH",
+      "text": "RECON WAIT WAIT",
       "mood": "DEFENSIVE",
-      "tick": 1772042304994
+      "tick": 1772042304647
     },
     {
       "origin": "ARCHIVIST",
-      "text": "STASIS GUARD WATCH",
+      "text": "IMMUNE RECON SHIELD",
       "mood": "DEFENSIVE",
-      "tick": 1772042305828
+      "tick": 1772042307774
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD IMMUNE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042308650
     },
     {
       "origin": "REVERSE",
-      "text": "HEAL SYNC SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772042306027
-    },
-    {
-      "origin": "PURE_MATH",
-      "text": "DRAIN SEIZE STRIFE",
+      "text": "STRIKE HUNGER BREACH",
       "mood": "AGGRESSIVE",
-      "tick": 1772042308424
-    },
-    {
-      "origin": "STREAM",
-      "text": "SHIELD GUARD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772042308862
+      "tick": 1772042308838
     },
     {
       "origin": "ARCHIVIST",
-      "text": "UNIFY OSMOSIS OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772042309197
+      "text": "RECON IMMUNE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772042309101
     }
   ]
 }
