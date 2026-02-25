@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME SEIZE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040660483
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE STABLE HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHELTER SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772040665137
+    },
+    {
+      "origin": "STREAM",
+      "text": "GIVING FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772040665315
     }
   ]
 }
