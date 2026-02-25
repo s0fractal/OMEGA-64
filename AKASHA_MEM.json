@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HEAL STABLE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772041116119
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WAIT RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772041116417
@@ -291,6 +285,12 @@
       "text": "RECON WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041120011
+    },
+    {
+      "origin": "STREAM",
+      "text": "PURE SHIELD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772041120208
     }
   ]
 }
