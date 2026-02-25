@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE IMMUNE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041486377
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS WAIT SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772041489761
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041489898
     }
   ]
 }
