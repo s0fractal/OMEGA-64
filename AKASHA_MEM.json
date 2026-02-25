@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY OSMOSIS OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772035951625
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772035951844
@@ -291,6 +285,12 @@
       "text": "GUARD GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772035955000
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIKE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035955308
     }
   ]
 }
