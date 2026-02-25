@@ -54,12 +54,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SYNC STABLE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772020382748
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GIVING RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772020383289
@@ -141,6 +135,12 @@
       "text": "DECAY HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020389000
+    },
+    {
+      "origin": "STREAM",
+      "text": "GIVING UNIFY GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772020389853
     }
   ]
 }
