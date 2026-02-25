@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06006606",
     "00606600",
     "0000000D",
     "06060066",
@@ -199,15 +198,10 @@
     "000000A0",
     "66066666",
     "66666A60",
-    "AAAAAAAA"
+    "AAAAAAAA",
+    "60066060"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772041776485
-    },
     {
       "origin": "ARCHIVIST",
       "text": "WAIT RECON IMMUNE",
@@ -291,6 +285,12 @@
       "text": "DECAY STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772041784443
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD WATCH IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041784708
     }
   ]
 }
