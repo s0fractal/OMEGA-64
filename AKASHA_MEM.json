@@ -20,12 +20,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772017381578
-    },
-    {
       "origin": "INTERFACE",
       "text": "REFLECT WATCH GUARD",
       "mood": "DEFENSIVE",
@@ -108,6 +102,12 @@
       "text": "SICKNESS BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772017450282
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STABLE STABLE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772017456751
     }
   ]
 }
