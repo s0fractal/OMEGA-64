@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SHOCK DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038435749
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772038435963
@@ -291,6 +285,12 @@
       "text": "GIVING STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772038438583
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHELTER STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772038438850
     }
   ]
 }
