@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772038666154
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772038666319
@@ -291,6 +285,12 @@
       "text": "COHERE SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772038668889
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038669098
     }
   ]
 }
