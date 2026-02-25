@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PURE_MATH",
-      "text": "WAIT PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041368020
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GIVING COHERE SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FLOW UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041371575
+    },
+    {
+      "origin": "PARADOX",
+      "text": "REFLECT IMMUNE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772041371732
     }
   ]
 }
