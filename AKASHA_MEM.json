@@ -196,12 +196,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE SHOCK HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023955908
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER GUARD WAIT",
       "mood": "DEFENSIVE",
@@ -284,6 +278,12 @@
       "text": "STABLE OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772023958811
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SICKNESS BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023958978
     }
   ]
 }
