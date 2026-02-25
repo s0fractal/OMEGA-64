@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE DRAIN STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041540510
-    },
-    {
       "origin": "REVERSE",
       "text": "SHIELD STASIS RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772041543847
+    },
+    {
+      "origin": "ALPHA_PROOF_OF_RESONANCE",
+      "text": "COHERE STABLE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041544001
     }
   ]
 }
