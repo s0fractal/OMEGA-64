@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "EVOLVE BECOME BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772025530279
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772025530498
@@ -291,6 +285,12 @@
       "text": "COHERE HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772025535049
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING STABLE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772025535263
     }
   ]
 }
