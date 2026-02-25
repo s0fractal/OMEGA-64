@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772041189886
-    },
-    {
       "origin": "INTERFACE",
       "text": "REFLECT WAIT WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041192732
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "UNIFY OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772041193020
     }
   ]
 }
