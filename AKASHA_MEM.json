@@ -111,15 +111,10 @@
     "A6666006",
     "66660666",
     "0D180098",
-    "FFFFFFF0"
+    "FFFFFFF0",
+    "66066600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "DECAY STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022071736
-    },
     {
       "origin": "REVERSE",
       "text": "GUARD IMMUNE IMMUNE",
@@ -203,6 +198,12 @@
       "text": "WATCH REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022077996
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS IMMUNE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022078195
     }
   ]
 }
