@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS SYNC COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772036494798
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772036495010
@@ -291,6 +285,12 @@
       "text": "DECAY SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772036497804
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WATCH SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772036497984
     }
   ]
 }
