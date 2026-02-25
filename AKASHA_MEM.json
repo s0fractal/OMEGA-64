@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS BLOOM HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772025192636
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE BREACH SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772025199817
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772025200944
     }
   ]
 }
