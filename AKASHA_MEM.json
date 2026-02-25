@@ -44,12 +44,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE RESONATE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772020067134
-    },
-    {
       "origin": "STREAM",
       "text": "UNIFY BLOOM OSMOSIS",
       "mood": "HARMONIC",
@@ -132,6 +126,12 @@
       "text": "WAIT IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772020083954
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT STASIS GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020084170
     }
   ]
 }
