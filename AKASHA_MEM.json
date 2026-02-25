@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772040632312
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON STASIS RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "WATCH IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040635505
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC GIVING SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772040635697
     }
   ]
 }
