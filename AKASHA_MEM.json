@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772036150488
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772036150727
@@ -291,6 +285,12 @@
       "text": "HEAL COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772036154158
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SEIZE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036154837
     }
   ]
 }
