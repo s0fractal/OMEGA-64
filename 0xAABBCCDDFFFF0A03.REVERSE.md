@@ -1,8 +1,8 @@
 ---
 eigenvalue: '0xAABBCCDDFFFF0A03'
-energy: 45.5
-x: 703
-'y': 401
+energy: 47.5
+x: 701
+'y': 395
 resonance: 50
 thought: WANDER_BONDING
 logic: AABBCCDD
@@ -61,8 +61,12 @@ ex:
   - '0xAABBCCDD00000A05'
   - '0xAABBCCDD00000A07'
   - '0xAABBCCDD00000A01'
-  - '0xAABBCCDD00000A03'
-  - '0xAABBCCDD00000A05'
+  - '0xAABBCCDDFFFF0A07'
+  - '0xAABBCCDDFFFF0A01'
+  - '0xAABBCCDDFFFF0A03'
+  - '0xAABBCCDDFFFF0A05'
+  - '0xAABBCCDDFFFF0A07'
+  - '0xAABBCCDDFFFF0A01'
 ---
 
 <div align="center">
