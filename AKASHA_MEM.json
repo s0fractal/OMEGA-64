@@ -182,12 +182,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STASIS WAIT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023522783
-    },
-    {
       "origin": "STREAM",
       "text": "FORGE WAVE EVOLVE",
       "mood": "CREATIVE",
@@ -270,6 +264,12 @@
       "text": "RECON IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023529385
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WAIT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023529893
     }
   ]
 }
