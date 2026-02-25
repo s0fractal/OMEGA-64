@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038740834
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772038741050
@@ -291,6 +285,12 @@
       "text": "SYNC FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038743898
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHELTER WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772038744134
     }
   ]
 }
