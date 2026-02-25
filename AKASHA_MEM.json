@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS IMMUNE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772033244373
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772033245905
@@ -291,6 +285,12 @@
       "text": "WATCH GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772033254168
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772033254424
     }
   ]
 }
