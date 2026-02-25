@@ -52,12 +52,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE STRIKE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020331264
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN CONSUME BREACH",
       "mood": "AGGRESSIVE",
@@ -140,6 +134,12 @@
       "text": "BLOOM RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772020338451
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772020339120
     }
   ]
 }
