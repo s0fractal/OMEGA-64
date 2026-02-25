@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A6666606",
     "A06666A6",
     "60666666",
     "AA000AA0",
@@ -199,15 +198,10 @@
     "60660600",
     "AAA0000A",
     "000AA000",
-    "A06600A6"
+    "A06600A6",
+    "A0606606"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BREACH SEIZE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033023907
-    },
     {
       "origin": "REVERSE",
       "text": "REFLECT PURE GUARD",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772033026267
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033026444
     }
   ]
 }
