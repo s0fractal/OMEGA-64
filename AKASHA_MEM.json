@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SPARK WITNESS EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772023189857
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023190038
@@ -259,6 +253,12 @@
       "text": "SHOCK SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023197128
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772023197253
     }
   ]
 }
