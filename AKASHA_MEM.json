@@ -86,12 +86,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GUARD SHIELD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772021235573
-    },
-    {
       "origin": "STREAM",
       "text": "COHERE FLOW COHERE",
       "mood": "HARMONIC",
@@ -174,6 +168,12 @@
       "text": "PURE RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772021238916
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SEIZE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021239425
     }
   ]
 }
