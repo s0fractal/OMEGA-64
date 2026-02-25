@@ -154,12 +154,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE STABLE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772022705175
-    },
-    {
       "origin": "INTERFACE",
       "text": "SEIZE SICKNESS DECAY",
       "mood": "AGGRESSIVE",
@@ -242,6 +236,12 @@
       "text": "FLOW STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772022709643
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE BLOOM BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772022710313
     }
   ]
 }
