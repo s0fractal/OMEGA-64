@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040871202
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040871508
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772040874741
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE RESONATE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772040874909
     }
   ]
 }
