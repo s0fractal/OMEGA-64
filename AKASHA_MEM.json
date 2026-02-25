@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033780008
-    },
-    {
       "origin": "INTERFACE",
       "text": "STASIS RECON SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "WATCH SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772033783482
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS PURE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772033783697
     }
   ]
 }
