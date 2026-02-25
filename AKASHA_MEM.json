@@ -20,12 +20,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772017476562
-    },
-    {
       "origin": "INTERFACE",
       "text": "SICKNESS CONSUME CONSUME",
       "mood": "AGGRESSIVE",
@@ -108,6 +102,12 @@
       "text": "STRIKE DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772017538171
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772017546809
     }
   ]
 }
