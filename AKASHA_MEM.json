@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DREAM BECOME EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772037380929
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772037381104
@@ -291,6 +285,12 @@
       "text": "COHERE SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772037384488
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM BLOOM SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772037384695
     }
   ]
 }
