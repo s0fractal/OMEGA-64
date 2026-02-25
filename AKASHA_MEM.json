@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE GUARD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772037315843
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772037316053
@@ -291,6 +285,12 @@
       "text": "SHELTER RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772037319048
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037319258
     }
   ]
 }
