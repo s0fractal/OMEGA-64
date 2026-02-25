@@ -58,12 +58,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON SHELTER PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020583046
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER DECAY SEIZE",
       "mood": "AGGRESSIVE",
@@ -146,6 +140,12 @@
       "text": "REFLECT RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020591349
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020591767
     }
   ]
 }
