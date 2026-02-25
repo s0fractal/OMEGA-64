@@ -3,9 +3,9 @@ eigenvalue: '0xAAAAAAA02A40A908'
 vector: 03.07.00
 symbol: CAR
 desc: 'Church Encoding: CAR (Pair Head) / First element extraction.'
-x: 89
+x: 92
 'y': 236
-energy: 46
+energy: 48.5
 ex:
   - '0x987A10662A40A900'
   - '0x600035482A40A900'
@@ -29,19 +29,21 @@ ex:
   - '0xBB0B00002A40A908'
   - '0xBA0000002A40A908'
   - '0x6A6A66A02A40A908'
+  - '0xAAAAAAA02A40A908'
 signals: []
 thought: WANDER_BONDING
 resonance: 3.5
 bond_strengths:
-  '0x000354022A40A900': 0.9801888648295347
-  '0x03001004DDB8F48A': 0.9801888648295347
-  '0x30010048DDB8F48A': 0.9821521870514506
+  '0x000354022A40A900': 0.9792086759647052
+  '0x03001004DDB8F48A': 0.9792086759647052
+  '0x30010048DDB8F48A': 0.9811700348643991
 bonds:
   - '0x000354022A40A900'
   - '0x03001004DDB8F48A'
   - '0x30010048DDB8F48A'
 ---
 
+<div align="center">
 <div align="center">
 <div align="center">
 <div align="center">
@@ -87,6 +89,7 @@ bonds:
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">CAR</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 </div>
 </div>
