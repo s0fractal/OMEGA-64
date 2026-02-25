@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66066066",
     "A0AAAA00",
     "AAA0A000",
     "AA000000",
@@ -199,15 +198,10 @@
     "60000000",
     "A06660A0",
     "60000606",
-    "AAAA000A"
+    "AAAA000A",
+    "AA000AA0"
   ],
   "utterances": [
-    {
-      "origin": "INTERFACE",
-      "text": "STRIFE CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041534180
-    },
     {
       "origin": "ARCHIVIST",
       "text": "GUARD REFLECT PURE",
@@ -291,6 +285,12 @@
       "text": "GUARD PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772041538872
+    },
+    {
+      "origin": "SOMA",
+      "text": "DECAY CONSUME DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041539316
     }
   ]
 }
