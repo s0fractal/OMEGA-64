@@ -171,12 +171,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772023099176
-    },
-    {
       "origin": "INTERFACE",
       "text": "STASIS RECON WATCH",
       "mood": "DEFENSIVE",
@@ -259,6 +253,12 @@
       "text": "DRAIN BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772023102672
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772023103621
     }
   ]
 }
