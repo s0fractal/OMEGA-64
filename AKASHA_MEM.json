@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE PURE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772026817661
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH IMMUNE GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772026822413
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN DECAY SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026823166
     }
   ]
 }
