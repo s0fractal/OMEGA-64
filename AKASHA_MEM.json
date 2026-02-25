@@ -192,12 +192,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC GIVING SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772023769258
-    },
-    {
-      "origin": "REVERSE",
       "text": "DREAM DREAM EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772023769460
@@ -279,6 +273,12 @@
       "text": "GIVING RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023772221
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER STASIS SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023772402
     }
   ]
 }
