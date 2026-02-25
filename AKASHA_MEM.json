@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIKE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036534157
-    },
-    {
-      "origin": "REVERSE",
       "text": "AWAKEN SPARK BECOME",
       "mood": "CREATIVE",
       "tick": 1772036534396
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772036537505
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS UNIFY GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772036537701
     }
   ]
 }
