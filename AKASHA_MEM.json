@@ -131,12 +131,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SHOCK SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022334491
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022334792
@@ -218,6 +212,12 @@
       "text": "SHELTER PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022340472
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH STASIS PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022341042
     }
   ]
 }
