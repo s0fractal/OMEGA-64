@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER IMMUNE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041816607
-    },
-    {
       "origin": "STREAM",
       "text": "WATCH WAIT WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041820810
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041821060
     }
   ]
 }
