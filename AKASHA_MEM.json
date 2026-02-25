@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "UNIFY COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772041902316
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "IMMUNE IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772041902554
@@ -291,6 +285,12 @@
       "text": "RECON GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041906379
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041906763
     }
   ]
 }
