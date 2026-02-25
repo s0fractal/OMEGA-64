@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772022238177
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022238316
@@ -213,6 +207,12 @@
       "text": "OSMOSIS FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772022242914
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS IMMUNE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772022243167
     }
   ]
 }
