@@ -177,12 +177,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME WAVE FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772023311598
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023311734
@@ -264,6 +258,12 @@
       "text": "SYNC SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772023316902
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SHOCK HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023317080
     }
   ]
 }
