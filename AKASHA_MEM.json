@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "COHERE RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772041790789
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GIVING STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772041790976
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772041799025
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM RESONATE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041799205
     }
   ]
 }
