@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE SEIZE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026114824
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIKE CONSUME DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "REFLECT RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772026120156
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIKE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026120443
     }
   ]
 }
