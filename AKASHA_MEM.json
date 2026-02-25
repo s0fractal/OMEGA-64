@@ -173,12 +173,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SPARK SPARK FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772023215892
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772023216229
@@ -260,6 +254,12 @@
       "text": "HEAL COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772023221829
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE STABLE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772023222402
     }
   ]
 }
