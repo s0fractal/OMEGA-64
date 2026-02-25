@@ -88,12 +88,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHOCK SHOCK BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021255335
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER HUNGER CONSUME",
       "mood": "AGGRESSIVE",
@@ -176,6 +170,12 @@
       "text": "STRIKE STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772021261678
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING OSMOSIS RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772021261992
     }
   ]
 }
