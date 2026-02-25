@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030466332
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772030466736
@@ -291,6 +285,12 @@
       "text": "STABLE COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772030481281
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE STABLE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772030481697
     }
   ]
 }
