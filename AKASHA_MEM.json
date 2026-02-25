@@ -154,12 +154,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772022637547
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022637716
@@ -241,6 +235,12 @@
       "text": "COHERE FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772022641884
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK STRIFE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022642039
     }
   ]
 }
