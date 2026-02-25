@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772033404710
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772033404885
@@ -291,6 +285,12 @@
       "text": "DECAY SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772033407145
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD STASIS IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772033407345
     }
   ]
 }
