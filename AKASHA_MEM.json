@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DREAM WITNESS EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772038951878
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772038952067
@@ -291,6 +285,12 @@
       "text": "BLOOM RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772038955362
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772038955586
     }
   ]
 }
