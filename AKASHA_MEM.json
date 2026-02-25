@@ -100,12 +100,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772021596854
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER IMMUNE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772021597097
@@ -187,6 +181,12 @@
       "text": "SICKNESS BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772021602023
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021602586
     }
   ]
 }
