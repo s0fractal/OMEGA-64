@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "REFLECT RECON WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772040440034
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE GIVING COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FLOW SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772040442344
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "VISION VISION BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772040442693
     }
   ]
 }
