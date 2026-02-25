@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT SHELTER IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772035330073
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772035330289
@@ -291,6 +285,12 @@
       "text": "BLOOM RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772035333081
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHIELD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772035333415
     }
   ]
 }
