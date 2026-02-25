@@ -80,15 +80,10 @@
     "60666000",
     "666666A0",
     "06660000",
-    "6A666660"
+    "6A666660",
+    "A0A0AAAA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHOCK STRIKE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021226244
-    },
     {
       "origin": "REVERSE",
       "text": "DECAY BREACH DRAIN",
@@ -172,6 +167,12 @@
       "text": "CONSUME DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021229661
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021229825
     }
   ]
 }
