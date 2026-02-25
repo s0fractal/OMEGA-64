@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC OSMOSIS SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772034855374
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772034855729
@@ -291,6 +285,12 @@
       "text": "HEAL STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772034859873
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN STRIFE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034860186
     }
   ]
 }
