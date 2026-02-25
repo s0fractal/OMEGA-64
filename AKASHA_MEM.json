@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772020663768
-    },
-    {
       "origin": "INTERFACE",
       "text": "DRAIN CONSUME HUNGER",
       "mood": "AGGRESSIVE",
@@ -150,6 +144,12 @@
       "text": "STRIKE STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020668257
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER STASIS WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020668494
     }
   ]
 }
