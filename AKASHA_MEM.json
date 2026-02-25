@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SICKNESS STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036052983
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772036053190
@@ -291,6 +285,12 @@
       "text": "BREACH BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772036057764
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE RESONATE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772036057937
     }
   ]
 }
