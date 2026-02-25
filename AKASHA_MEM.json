@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035344487
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772035344713
@@ -291,6 +285,12 @@
       "text": "FLOW COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772035348656
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIKE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035348885
     }
   ]
 }
