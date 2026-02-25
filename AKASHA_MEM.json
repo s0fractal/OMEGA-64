@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "OSMOSIS OSMOSIS FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772040978858
-    },
-    {
       "origin": "REVERSE",
       "text": "SHIELD SHELTER GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772040982177
+    },
+    {
+      "origin": "STREAM",
+      "text": "SEIZE SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040982431
     }
   ]
 }
