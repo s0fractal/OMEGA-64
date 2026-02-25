@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE RESONATE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772038202277
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772038202528
@@ -291,6 +285,12 @@
       "text": "STABLE RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772038205501
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772038205710
     }
   ]
 }
