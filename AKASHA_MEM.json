@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "PURE RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772032687235
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY CONSUME CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772032694386
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772032694525
     }
   ]
 }
