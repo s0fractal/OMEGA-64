@@ -156,12 +156,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772022762779
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022763034
@@ -243,6 +237,12 @@
       "text": "BREACH STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022768698
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS RECON RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772022771470
     }
   ]
 }
