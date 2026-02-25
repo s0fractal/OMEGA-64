@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY SYNC COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772035097268
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772035097461
@@ -291,6 +285,12 @@
       "text": "UNIFY BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772035100238
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK DREAM VISION",
+      "mood": "CREATIVE",
+      "tick": 1772035100415
     }
   ]
 }
