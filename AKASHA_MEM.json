@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "IS_ISO",
-      "text": "SHIELD RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772042121154
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME CONSUME CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WATCH WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772042127481
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BLOOM SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772042127698
     }
   ]
 }
