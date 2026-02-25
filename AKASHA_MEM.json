@@ -154,12 +154,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772022664811
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER DECAY SICKNESS",
       "mood": "AGGRESSIVE",
@@ -242,6 +236,12 @@
       "text": "WATCH SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022678117
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT REFLECT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772022680801
     }
   ]
 }
