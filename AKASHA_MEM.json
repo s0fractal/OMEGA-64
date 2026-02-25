@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772038402287
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772038402514
@@ -291,6 +285,12 @@
       "text": "IMMUNE SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772038406085
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DECAY HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038406286
     }
   ]
 }
