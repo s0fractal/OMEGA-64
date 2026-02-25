@@ -146,12 +146,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022508244
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME WAVE BECOME",
       "mood": "CREATIVE",
       "tick": 1772022508365
@@ -233,6 +227,12 @@
       "text": "IMMUNE RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022512505
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHIELD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772022513789
     }
   ]
 }
