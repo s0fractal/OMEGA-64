@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772032279734
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAVE WAVE VISION",
       "mood": "CREATIVE",
       "tick": 1772032280094
@@ -291,6 +285,12 @@
       "text": "BREACH DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772032297620
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD STASIS GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772032298074
     }
   ]
 }
