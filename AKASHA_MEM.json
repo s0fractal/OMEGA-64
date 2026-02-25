@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040250992
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL HEAL FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DECAY DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040254862
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING OSMOSIS RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772040255196
     }
   ]
 }
