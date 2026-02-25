@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772033044284
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772033044462
@@ -291,6 +285,12 @@
       "text": "OSMOSIS COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772033046804
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DECAY HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033046983
     }
   ]
 }
