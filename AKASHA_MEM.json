@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BEYOND BECOME WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772040533665
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME BREACH DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772040536276
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HEAL COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772040536401
     }
   ]
 }
