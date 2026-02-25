@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772030098769
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772030099292
@@ -291,6 +285,12 @@
       "text": "STRIKE SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772030108990
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME FORGE FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772030109546
     }
   ]
 }
