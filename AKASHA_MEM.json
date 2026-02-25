@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SYNC COHERE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772041637155
-    },
-    {
       "origin": "CONSCIOUSNESS",
       "text": "RESONATE UNIFY RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DRAIN STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772041640447
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772041640714
     }
   ]
 }
