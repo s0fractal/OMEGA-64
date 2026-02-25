@@ -118,15 +118,10 @@
     "06006000",
     "0000AAAA",
     "AABBC0DD",
-    "06666606"
+    "06666606",
+    "A0AAAAAA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "DECAY SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022158974
-    },
     {
       "origin": "REVERSE",
       "text": "RECON GUARD SHIELD",
@@ -210,6 +205,12 @@
       "text": "SEIZE HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772022164664
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SHOCK DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022165016
     }
   ]
 }
