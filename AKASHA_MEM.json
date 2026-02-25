@@ -114,12 +114,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STABLE BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772021985624
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY OSMOSIS STABLE",
       "mood": "HARMONIC",
@@ -202,6 +196,12 @@
       "text": "SHOCK SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772021994430
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT GUARD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021995080
     }
   ]
 }
