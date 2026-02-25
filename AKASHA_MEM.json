@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW SYNC COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772039260460
-    },
-    {
       "origin": "STREAM",
       "text": "HEAL RESONATE GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STABLE UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772039263744
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SICKNESS SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039263981
     }
   ]
 }
