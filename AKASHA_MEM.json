@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GUARD RECON STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772042120749
-    },
-    {
       "origin": "IS_ISO",
       "text": "SHIELD RECON RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772042127247
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042127481
     }
   ]
 }
