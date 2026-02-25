@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STASIS IMMUNE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041714704
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WAIT WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041714847
@@ -291,6 +285,12 @@
       "text": "HUNGER SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772041719097
+    },
+    {
+      "origin": "STREAM",
+      "text": "SYNC BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041719273
     }
   ]
 }
