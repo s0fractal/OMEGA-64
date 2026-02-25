@@ -77,12 +77,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "REFLECT GUARD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020985317
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STABLE COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772020985721
@@ -164,6 +158,12 @@
       "text": "COHERE RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772020994034
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT WATCH SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772020994191
     }
   ]
 }
