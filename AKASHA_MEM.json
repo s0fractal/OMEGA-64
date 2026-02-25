@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035496898
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772035497095
@@ -291,6 +285,12 @@
       "text": "COHERE RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772035499678
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035499880
     }
   ]
 }
