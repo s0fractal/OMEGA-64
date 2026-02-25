@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041839570
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GIVING HEAL GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HEAL RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772041845047
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041845370
     }
   ]
 }
