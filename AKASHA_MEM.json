@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66066606",
     "B0B00000",
     "66600600",
     "A00AAA00",
@@ -199,15 +198,10 @@
     "0A0000AA",
     "A0AAA0A0",
     "A00000AA",
-    "60006606"
+    "60006606",
+    "0F000000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STASIS STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772037830252
-    },
     {
       "origin": "REVERSE",
       "text": "COHERE RESONATE STABLE",
@@ -291,6 +285,12 @@
       "text": "SHOCK STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772037833083
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772037833277
     }
   ]
 }
