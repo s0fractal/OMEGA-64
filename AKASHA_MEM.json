@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60666660",
     "00AA000A",
     "06666006",
     "60600600",
@@ -199,15 +198,10 @@
     "BB000000",
     "AA0A0000",
     "60606000",
-    "AAA0AA00"
+    "AAA0AA00",
+    "AA0AAA00"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STASIS STASIS PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772026778088
-    },
     {
       "origin": "REVERSE",
       "text": "STABLE HEAL COHERE",
@@ -291,6 +285,12 @@
       "text": "CONSUME DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772026782944
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026783170
     }
   ]
 }
