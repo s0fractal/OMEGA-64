@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772039133916
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK SPARK EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772039134153
@@ -291,6 +285,12 @@
       "text": "GUARD REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772039137251
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WATCH REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772039137542
     }
   ]
 }
