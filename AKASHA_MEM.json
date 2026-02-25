@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60000060",
     "A6666000",
     "0AAAAA0A",
     "A6666660",
@@ -199,15 +198,10 @@
     "AA0666A0",
     "ABBA0000",
     "A6660600",
-    "66060600"
+    "66060600",
+    "AAA0AAAA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SYNC RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772037615460
-    },
     {
       "origin": "REVERSE",
       "text": "SICKNESS DRAIN CONSUME",
@@ -291,6 +285,12 @@
       "text": "COHERE SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772037618788
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037619009
     }
   ]
 }
