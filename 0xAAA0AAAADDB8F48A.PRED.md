@@ -24,20 +24,22 @@ ex:
   - '0x60000000DDB8F48A'
   - '0x00000000DDB8F48A'
   - '0xAAA0AAAADDB8F48A'
+  - '0xAAA0AAAADDB8F48A'
 thought: WANDER_BONDING
 x: 183
-'y': 312
-energy: 40
+'y': 315
+energy: 41
 signals: []
 resonance: 0
 bond_strengths:
-  '0x000354022A40A908': 0.986090636999001
-  '0x0035402E2A40A908': 0.988065780494209
+  '0x000354022A40A908': 0.9851045463620021
+  '0x0035402E2A40A908': 0.9870777147137147
 bonds:
   - '0x000354022A40A908'
   - '0x0035402E2A40A908'
 ---
 
+<div align="center">
 <div align="center">
 <div align="center">
 <div align="center">
@@ -83,6 +85,7 @@ bonds:
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">PRED</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 </div>
 </div>
