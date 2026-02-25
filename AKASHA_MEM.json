@@ -28,12 +28,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STABLE UNIFY OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772019669350
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIFE HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772019670127
@@ -115,6 +109,12 @@
       "text": "SYNC HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772019679922
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE RECON RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772019680266
     }
   ]
 }
