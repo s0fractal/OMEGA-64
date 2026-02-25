@@ -132,12 +132,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "EVOLVE VISION SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772022342290
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022342499
@@ -219,6 +213,12 @@
       "text": "STASIS PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022347072
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WATCH REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022347236
     }
   ]
 }
