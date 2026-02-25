@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0B000000",
     "FFFFFFFF",
     "FFFFFF0F",
     "000AAAA0",
@@ -199,15 +198,10 @@
     "A00A00A0",
     "660666A6",
     "00000600",
-    "00A0A0AA"
+    "00A0A0AA",
+    "AAAA0A0A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GIVING OSMOSIS HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772025909716
-    },
     {
       "origin": "REVERSE",
       "text": "STABLE UNIFY UNIFY",
@@ -291,6 +285,12 @@
       "text": "SHELTER RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772025919914
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS BREACH CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025920347
     }
   ]
 }
