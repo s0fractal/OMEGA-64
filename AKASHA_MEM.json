@@ -183,12 +183,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BREACH CONSUME STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023555177
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT PURE PURE",
       "mood": "DEFENSIVE",
@@ -271,6 +265,12 @@
       "text": "WITNESS FORGE AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772023557997
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WAIT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772023558542
     }
   ]
 }
