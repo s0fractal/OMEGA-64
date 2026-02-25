@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WATCH IMMUNE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040216234
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING UNIFY SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RESONATE GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772040221435
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIKE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040222401
     }
   ]
 }
