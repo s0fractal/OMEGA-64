@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "WATCH WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772041816774
-    },
-    {
       "origin": "INTERFACE",
       "text": "COHERE STABLE STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STASIS IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041821060
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041821426
     }
   ]
 }
