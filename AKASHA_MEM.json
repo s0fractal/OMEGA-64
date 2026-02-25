@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY BLOOM OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772031136223
-    },
-    {
-      "origin": "REVERSE",
       "text": "AWAKEN FORGE FORGE",
       "mood": "CREATIVE",
       "tick": 1772031136481
@@ -291,6 +285,12 @@
       "text": "FLOW OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772031141153
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772031141435
     }
   ]
 }
