@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW COHERE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772037478182
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772037478499
@@ -291,6 +285,12 @@
       "text": "REFLECT WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772037482281
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON RECON WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772037482489
     }
   ]
 }
