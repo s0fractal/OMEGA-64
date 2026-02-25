@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH IMMUNE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772035721515
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772035721728
@@ -291,6 +285,12 @@
       "text": "FLOW STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772035726729
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH IMMUNE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772035726902
     }
   ]
 }
