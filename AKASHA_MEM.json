@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE STRIFE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023175353
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023175643
@@ -259,6 +253,12 @@
       "text": "RECON SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023179736
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772023180104
     }
   ]
 }
