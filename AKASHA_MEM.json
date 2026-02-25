@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "RECON REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772040684556
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "WAVE SPARK SPARK",
       "mood": "CREATIVE",
       "tick": 1772040688834
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON STASIS PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040688979
     }
   ]
 }
