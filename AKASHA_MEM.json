@@ -196,12 +196,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC SYNC SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772023960060
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS HEAL UNIFY",
       "mood": "HARMONIC",
@@ -284,6 +278,12 @@
       "text": "DRAIN DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772023964899
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772023965205
     }
   ]
 }
