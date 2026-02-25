@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772037603892
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772037604103
@@ -291,6 +285,12 @@
       "text": "DRAIN DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772037608160
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772037608345
     }
   ]
 }
