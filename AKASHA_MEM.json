@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING BLOOM HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772041093733
-    },
-    {
-      "origin": "REVERSE",
       "text": "DREAM WAVE EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772041094032
@@ -291,6 +285,12 @@
       "text": "SHELTER WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772041096924
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE SHOCK HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041097056
     }
   ]
 }
