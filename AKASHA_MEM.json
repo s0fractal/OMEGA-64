@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE SHELTER GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772026376932
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772026378618
@@ -291,6 +285,12 @@
       "text": "BLOOM COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772026381405
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE UNIFY HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772026381605
     }
   ]
 }
