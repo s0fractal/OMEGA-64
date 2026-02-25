@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH PURE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772031543989
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE OSMOSIS FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HEAL UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772031555090
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SEIZE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031555564
     }
   ]
 }
