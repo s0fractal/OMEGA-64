@@ -109,12 +109,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD WAIT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021870633
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS STRIKE DECAY",
       "mood": "AGGRESSIVE",
@@ -197,6 +191,12 @@
       "text": "IMMUNE IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772021878270
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE HUNGER CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021878611
     }
   ]
 }
