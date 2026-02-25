@@ -49,12 +49,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS SEIZE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020258193
-    },
-    {
       "origin": "INTERFACE",
       "text": "DECAY DECAY DRAIN",
       "mood": "AGGRESSIVE",
@@ -137,6 +131,12 @@
       "text": "IMMUNE STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772020267234
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772020267711
     }
   ]
 }
