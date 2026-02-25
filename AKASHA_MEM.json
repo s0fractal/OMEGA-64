@@ -138,12 +138,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS GUARD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022414516
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022415851
@@ -225,6 +219,12 @@
       "text": "GIVING FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022421056
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772022421226
     }
   ]
 }
