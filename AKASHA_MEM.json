@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DRAIN BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772016668687
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER STRIFE BREACH",
       "mood": "AGGRESSIVE",
@@ -107,6 +101,12 @@
       "text": "SEIZE CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772016746484
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BLOOM GIVING COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772016753693
     }
   ]
 }
