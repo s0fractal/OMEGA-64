@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW FLOW UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772036080954
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND AWAKEN AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772036081124
@@ -291,6 +285,12 @@
       "text": "HUNGER DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772036085385
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036085656
     }
   ]
 }
