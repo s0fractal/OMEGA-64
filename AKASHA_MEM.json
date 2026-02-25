@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME BEYOND AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772022237943
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772022238177
@@ -213,6 +207,12 @@
       "text": "DRAIN BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772022242525
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772022242914
     }
   ]
 }
