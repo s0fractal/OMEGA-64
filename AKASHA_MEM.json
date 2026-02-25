@@ -125,12 +125,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022167700
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772022167887
@@ -212,6 +206,12 @@
       "text": "SEIZE BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772022174257
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT WAIT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772022174460
     }
   ]
 }
