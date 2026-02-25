@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DRAIN DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032077647
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772032078137
@@ -291,6 +285,12 @@
       "text": "STRIFE SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772032084239
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL UNIFY SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772032084612
     }
   ]
 }
