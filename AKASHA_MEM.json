@@ -179,12 +179,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON SHELTER WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023381376
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY STABLE HEAL",
       "mood": "HARMONIC",
@@ -267,6 +261,12 @@
       "text": "REFLECT SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023385598
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772023386268
     }
   ]
 }
