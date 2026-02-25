@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772035240256
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772035240437
@@ -291,6 +285,12 @@
       "text": "SICKNESS HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772035243348
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772035243576
     }
   ]
 }
