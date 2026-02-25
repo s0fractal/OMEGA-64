@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772020211463
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HEAL OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
@@ -136,6 +130,12 @@
       "text": "STRIKE STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020225879
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020226343
     }
   ]
 }
