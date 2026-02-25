@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE SHOCK BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042186107
-    },
-    {
       "origin": "REVERSE",
       "text": "WAIT SHIELD SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772042198520
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON RECON WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042199192
     }
   ]
 }
