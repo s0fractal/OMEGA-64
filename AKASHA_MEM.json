@@ -163,12 +163,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER WATCH WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022882238
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAVE WITNESS VISION",
       "mood": "CREATIVE",
       "tick": 1772022884481
@@ -250,6 +244,12 @@
       "text": "FLOW SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022889281
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN BREACH SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022889498
     }
   ]
 }
