@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0AAAA00A",
     "66060006",
     "00AA0000",
     "AAAAAA0A",
@@ -199,15 +198,10 @@
     "A0A0AAAA",
     "60600000",
     "AAAA00A0",
-    "BB000000"
+    "BB000000",
+    "A660A6A0"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT REFLECT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040842621
-    },
     {
       "origin": "ARCHIVIST",
       "text": "WATCH WAIT RECON",
@@ -291,6 +285,12 @@
       "text": "UNIFY OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772040845850
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040846023
     }
   ]
 }
