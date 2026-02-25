@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SICKNESS SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042494927
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "REFLECT STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772042496504
@@ -291,6 +285,12 @@
       "text": "HUNGER HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772042514146
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042514840
     }
   ]
 }
