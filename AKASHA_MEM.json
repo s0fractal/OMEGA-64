@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772032612575
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772032612768
@@ -291,6 +285,12 @@
       "text": "RESONATE FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772032616651
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772032616859
     }
   ]
 }
