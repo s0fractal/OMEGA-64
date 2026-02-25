@@ -105,12 +105,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW HEAL UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772021701693
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE DRAIN HUNGER",
       "mood": "AGGRESSIVE",
@@ -193,6 +187,12 @@
       "text": "DECAY DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021706617
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE HUNGER SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021707991
     }
   ]
 }
