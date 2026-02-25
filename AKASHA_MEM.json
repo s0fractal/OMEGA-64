@@ -170,12 +170,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772023084757
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023085289
@@ -257,6 +251,12 @@
       "text": "WATCH SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023088018
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS CONSUME STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023088187
     }
   ]
 }
