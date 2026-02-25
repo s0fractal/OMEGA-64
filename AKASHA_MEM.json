@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY SYNC SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772042227093
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH STASIS SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STASIS WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772042236107
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SEIZE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042236452
     }
   ]
 }
