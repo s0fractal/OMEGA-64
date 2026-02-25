@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA666666",
     "AAAAA00A",
     "0B000000",
     "A0666600",
@@ -199,15 +198,10 @@
     "06606060",
     "A0A0AA00",
     "66606600",
-    "00660600"
+    "00660600",
+    "00006606"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040509202
-    },
     {
       "origin": "ARCHIVIST",
       "text": "COHERE COHERE UNIFY",
@@ -291,6 +285,12 @@
       "text": "SHIELD SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040512463
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772040512619
     }
   ]
 }
