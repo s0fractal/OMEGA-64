@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIFE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031272606
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772031273529
@@ -291,6 +285,12 @@
       "text": "FLOW COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772031284387
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772031286929
     }
   ]
 }
