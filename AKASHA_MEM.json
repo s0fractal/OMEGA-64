@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE STABLE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772041743962
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE SHELTER PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772041752969
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041753411
     }
   ]
 }
