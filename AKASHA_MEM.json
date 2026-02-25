@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SEIZE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040320931
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040321261
@@ -291,6 +285,12 @@
       "text": "IMMUNE RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772040327651
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WAIT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040328134
     }
   ]
 }
