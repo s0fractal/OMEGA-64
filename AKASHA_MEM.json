@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH BREACH BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025081437
-    },
-    {
       "origin": "STREAM",
       "text": "RECON STASIS SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BREACH STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772025088334
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772025088543
     }
   ]
 }
