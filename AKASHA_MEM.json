@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036918848
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772036919064
@@ -291,6 +285,12 @@
       "text": "BLOOM BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772036922494
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772036922793
     }
   ]
 }
