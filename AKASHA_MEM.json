@@ -198,12 +198,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE COHERE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772024032107
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME CONSUME STRIFE",
       "mood": "AGGRESSIVE",
@@ -286,6 +280,12 @@
       "text": "STABLE FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772024035705
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024036016
     }
   ]
 }
