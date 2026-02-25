@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772034975183
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772034975447
@@ -291,6 +285,12 @@
       "text": "REFLECT REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772034980196
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772034980405
     }
   ]
 }
