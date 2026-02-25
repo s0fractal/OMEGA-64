@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "HUNGER CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040179312
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SYNC STABLE STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STASIS STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772040186130
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772040186518
     }
   ]
 }
