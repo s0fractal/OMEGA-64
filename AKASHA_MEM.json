@@ -74,12 +74,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772020947607
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME DRAIN CONSUME",
       "mood": "AGGRESSIVE",
@@ -162,6 +156,12 @@
       "text": "RESONATE HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772020955979
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772020956213
     }
   ]
 }
