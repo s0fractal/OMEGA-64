@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A0AAA000",
     "A000A000",
     "06006600",
     "00606660",
@@ -199,15 +198,10 @@
     "AABBCCDD",
     "AAAA00AA",
     "0A00A000",
-    "00600600"
+    "00600600",
+    "AA000AA0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "REFLECT IMMUNE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772039056183
-    },
     {
       "origin": "REVERSE",
       "text": "SHELTER GUARD GUARD",
@@ -291,6 +285,12 @@
       "text": "HEAL COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772039060381
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE DRAIN SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039060605
     }
   ]
 }
