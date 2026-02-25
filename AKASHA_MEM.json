@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "EVOLVE BECOME DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772031982982
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772031983413
@@ -291,6 +285,12 @@
       "text": "IMMUNE STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772031993983
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031994219
     }
   ]
 }
