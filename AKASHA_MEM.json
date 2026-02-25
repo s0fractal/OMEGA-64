@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH SHELTER GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772025054079
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772025054511
@@ -291,6 +285,12 @@
       "text": "WATCH SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772025061899
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY BREACH CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025062148
     }
   ]
 }
