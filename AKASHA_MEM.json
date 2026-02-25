@@ -44,12 +44,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "CONSUME SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020062688
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH STRIFE DECAY",
       "mood": "AGGRESSIVE",
@@ -132,6 +126,12 @@
       "text": "SHOCK HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020071117
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD WATCH PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020072645
     }
   ]
 }
