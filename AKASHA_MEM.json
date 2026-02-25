@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME HUNGER SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033635853
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033636066
@@ -291,6 +285,12 @@
       "text": "BLOOM COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772033638607
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHELTER WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772033638796
     }
   ]
 }
