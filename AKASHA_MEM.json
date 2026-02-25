@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772041047994
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE STASIS STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041050407
+    },
+    {
+      "origin": "STREAM",
+      "text": "IMMUNE RECON WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041050626
     }
   ]
 }
