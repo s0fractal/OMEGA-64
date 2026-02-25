@@ -99,12 +99,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER IMMUNE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021597097
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE FLOW HEAL",
       "mood": "HARMONIC",
@@ -187,6 +181,12 @@
       "text": "HUNGER CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772021602586
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK HUNGER SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021602735
     }
   ]
 }
