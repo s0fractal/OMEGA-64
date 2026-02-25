@@ -20,12 +20,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "OSMOSIS SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772017472162
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE IMMUNE WATCH",
       "mood": "DEFENSIVE",
@@ -108,6 +102,12 @@
       "text": "GUARD IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772017535973
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIKE DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772017538171
     }
   ]
 }
