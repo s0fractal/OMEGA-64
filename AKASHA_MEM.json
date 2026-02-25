@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AB0B0000",
     "A0A00AA0",
     "66660660",
     "ABB00000",
@@ -199,15 +198,10 @@
     "AAAAA00A",
     "0B000000",
     "A0666600",
-    "06600660"
+    "06600660",
+    "AAAAA0AA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "DRAIN STRIFE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038481173
-    },
     {
       "origin": "REVERSE",
       "text": "DRAIN DRAIN SHOCK",
@@ -291,6 +285,12 @@
       "text": "HEAL OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772038485594
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE BREACH SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038485896
     }
   ]
 }
