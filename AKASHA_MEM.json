@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772032579965
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772032580116
@@ -291,6 +285,12 @@
       "text": "GIVING GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772032585132
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE HUNGER DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032585337
     }
   ]
 }
