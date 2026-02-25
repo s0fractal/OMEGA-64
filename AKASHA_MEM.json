@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM UNIFY COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772034400101
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772034400296
@@ -291,6 +285,12 @@
       "text": "GIVING BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772034402867
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034403041
     }
   ]
 }
