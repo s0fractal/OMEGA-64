@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035727116
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772035727318
@@ -291,6 +285,12 @@
       "text": "GIVING UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772035729997
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035730218
     }
   ]
 }
