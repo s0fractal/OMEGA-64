@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WAIT RECON WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772015900593
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SEIZE STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772015905338
@@ -107,6 +101,12 @@
       "text": "SEIZE BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772015984743
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH RECON GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772015987227
     }
   ]
 }
