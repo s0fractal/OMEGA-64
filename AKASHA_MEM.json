@@ -77,12 +77,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER RECON GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021036101
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021036315
@@ -164,6 +158,12 @@
       "text": "BLOOM GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772021039997
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021040176
     }
   ]
 }
