@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD SHIELD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772037985710
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772037985916
@@ -291,6 +285,12 @@
       "text": "FLOW BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772037989021
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE STRIKE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037989229
     }
   ]
 }
