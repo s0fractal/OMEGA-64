@@ -72,12 +72,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIKE SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020923395
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DRAIN HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020923945
@@ -159,6 +153,12 @@
       "text": "DECAY DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020929039
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW OSMOSIS OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772020929262
     }
   ]
 }
