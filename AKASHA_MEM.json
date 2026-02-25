@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772036071254
-    },
-    {
       "origin": "INTERFACE",
       "text": "HEAL SYNC OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BREACH DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772036074702
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772036074909
     }
   ]
 }
