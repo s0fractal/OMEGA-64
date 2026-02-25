@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SICKNESS STRIFE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020176172
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE FLOW OSMOSIS",
       "mood": "HARMONIC",
@@ -136,6 +130,12 @@
       "text": "RESONATE UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772020187030
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE STASIS WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020187425
     }
   ]
 }
