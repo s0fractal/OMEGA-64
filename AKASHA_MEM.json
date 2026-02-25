@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772041331413
-    },
-    {
       "origin": "STREAM",
       "text": "DECAY STRIKE CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041334421
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772041334555
     }
   ]
 }
