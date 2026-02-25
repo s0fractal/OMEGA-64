@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "STREAM",
-      "text": "SHELTER GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772040684101
-    },
-    {
-      "origin": "STREAM",
       "text": "RECON REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040684556
@@ -291,6 +285,12 @@
       "text": "STABLE UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772040688648
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAVE SPARK SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772040688834
     }
   ]
 }
