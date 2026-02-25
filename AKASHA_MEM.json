@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS WAVE WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772037242846
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772037243045
@@ -291,6 +285,12 @@
       "text": "REFLECT WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772037246543
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY BREACH SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037246754
     }
   ]
 }
