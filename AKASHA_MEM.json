@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN SEIZE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040560851
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HEAL GIVING RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SYNC FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772040563279
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND WITNESS DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772040563715
     }
   ]
 }
