@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT SHELTER STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772040902729
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772040902903
@@ -291,6 +285,12 @@
       "text": "DRAIN HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772040905456
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHOCK BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040905668
     }
   ]
 }
