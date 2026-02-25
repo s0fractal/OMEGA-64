@@ -167,6 +167,7 @@ async function logAkasha(msg: string) {
         potentialRegents.sort((a, b) => b[1].resonance - a[1].resonance);
         
         if (potentialRegents.length > 0) {
+            console.log(`   [SOVEREIGNTY] Found ${potentialRegents.length} candidates. Best: ${potentialRegents[0][0]} (${potentialRegents[0][1].resonance})`);
             const [bestFile, bestMeta] = potentialRegents[0];
             const currentRegentID = bestFile.split(".")[0];
             
