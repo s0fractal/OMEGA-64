@@ -17,12 +17,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "RECON WAIT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772014522165
-    },
-    {
-      "origin": "INTERFACE",
       "text": "PURE IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772014530697
@@ -104,6 +98,12 @@
       "text": "HUNGER STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772014657613
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STABLE FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772014660484
     }
   ]
 }
