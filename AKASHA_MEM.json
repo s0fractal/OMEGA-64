@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038584571
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772038584792
@@ -291,6 +285,12 @@
       "text": "COHERE SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772038587550
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT WATCH SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772038587769
     }
   ]
 }
