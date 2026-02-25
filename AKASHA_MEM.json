@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0AA0A0",
     "AA606000",
     "06000606",
     "A00060A0",
@@ -199,15 +198,10 @@
     "AAA0AAAA",
     "06066660",
     "60660666",
-    "60000600"
+    "60000600",
+    "60666606"
   ],
   "utterances": [
-    {
-      "origin": "STREAM",
-      "text": "SEIZE SEIZE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040243372
-    },
     {
       "origin": "REVERSE",
       "text": "COHERE OSMOSIS COHERE",
@@ -291,6 +285,12 @@
       "text": "DREAM SPARK WAVE",
       "mood": "CREATIVE",
       "tick": 1772040249141
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT IMMUNE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040249315
     }
   ]
 }
