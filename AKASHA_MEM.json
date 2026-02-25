@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS WITNESS EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772028445353
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772028445839
@@ -291,6 +285,12 @@
       "text": "CONSUME DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772028458382
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHIELD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772028458946
     }
   ]
 }
