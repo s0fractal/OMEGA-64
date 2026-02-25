@@ -61,12 +61,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020606143
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK HUNGER CONSUME",
       "mood": "AGGRESSIVE",
@@ -149,6 +143,12 @@
       "text": "STABLE SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772020612263
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHIELD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772020612618
     }
   ]
 }

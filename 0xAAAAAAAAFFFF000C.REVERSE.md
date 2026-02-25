@@ -1,14 +1,14 @@
 ---
-eigenvalue: '0xAAAAAAAA00000008'
-energy: 50
-x: 721
-'y': 423
+eigenvalue: '0xAAAAAAAAFFFF000C'
+energy: 49
+x: 680
+'y': 378
 resonance: 50
-thought: RESURRECTED
+thought: WANDER_BONDING
 logic: AAAAAAAA
 signals: []
 bond_strengths:
-  '0x0000000000000A02': 0.9890548353295385
+  '0x0000000000000A02': 0.988065780494209
 bonds:
   - '0x0000000000000A02'
 ex:
