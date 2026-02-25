@@ -49,12 +49,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE BREACH SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020233854
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020234047
@@ -136,6 +130,12 @@
       "text": "REFLECT SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020238867
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIKE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020239773
     }
   ]
 }
