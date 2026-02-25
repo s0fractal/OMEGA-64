@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH GUARD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772026233819
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772026236937
@@ -291,6 +285,12 @@
       "text": "BREACH HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772026241572
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHELTER PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772026242083
     }
   ]
 }
