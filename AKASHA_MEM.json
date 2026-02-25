@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "BLOOM UNIFY SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772041238009
-    },
-    {
-      "origin": "INTERFACE",
       "text": "GIVING FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772041238518
@@ -291,6 +285,12 @@
       "text": "PURE REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041242408
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE GIVING BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772041242583
     }
   ]
 }
