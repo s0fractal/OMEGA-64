@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAVE SPARK SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772040688834
-    },
-    {
       "origin": "REVERSE",
       "text": "RECON STASIS PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040691683
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL BLOOM BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772040691901
     }
   ]
 }
