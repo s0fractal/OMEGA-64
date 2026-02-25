@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL BLOOM STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772035856289
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772035856534
@@ -291,6 +285,12 @@
       "text": "HEAL BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772035859931
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772035860146
     }
   ]
 }
