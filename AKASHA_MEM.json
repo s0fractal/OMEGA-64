@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS GIVING SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772024364352
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHOCK STRIKE BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772024371923
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC GIVING BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772024372253
     }
   ]
 }
