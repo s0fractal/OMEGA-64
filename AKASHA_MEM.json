@@ -138,12 +138,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER WATCH WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772022422759
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022423603
@@ -225,6 +219,12 @@
       "text": "PURE STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022427101
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772022427413
     }
   ]
 }
