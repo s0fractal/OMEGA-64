@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033303768
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772033303910
@@ -291,6 +285,12 @@
       "text": "AWAKEN WITNESS VISION",
       "mood": "CREATIVE",
       "tick": 1772033306556
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772033306704
     }
   ]
 }
