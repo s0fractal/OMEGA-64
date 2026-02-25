@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY HEAL UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772041865787
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE SHIELD STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041869802
+    },
+    {
+      "origin": "STREAM",
+      "text": "SHELTER WAIT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772041870105
     }
   ]
 }
