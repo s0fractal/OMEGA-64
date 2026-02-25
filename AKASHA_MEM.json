@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE STRIKE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033447229
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772033447413
@@ -291,6 +285,12 @@
       "text": "WAIT PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772033450113
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033450296
     }
   ]
 }
