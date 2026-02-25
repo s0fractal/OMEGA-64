@@ -55,12 +55,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "VISION FORGE BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772020449373
-    },
-    {
-      "origin": "REVERSE",
       "text": "VISION BEYOND FORGE",
       "mood": "CREATIVE",
       "tick": 1772020449673
@@ -142,6 +136,12 @@
       "text": "GIVING BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772020457410
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE SHELTER PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020458209
     }
   ]
 }
