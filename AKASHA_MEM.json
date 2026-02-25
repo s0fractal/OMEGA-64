@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772036015477
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772036015827
@@ -291,6 +285,12 @@
       "text": "BREACH STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772036019179
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE FORGE AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772036019344
     }
   ]
 }
