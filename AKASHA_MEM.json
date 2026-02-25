@@ -27,12 +27,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019605554
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "REFLECT RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772019606149
@@ -114,6 +108,12 @@
       "text": "STRIKE HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772019614905
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772019615417
     }
   ]
 }
