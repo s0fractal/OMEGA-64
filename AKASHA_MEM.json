@@ -204,6 +204,12 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
+      "text": "GUARD GUARD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042133569
+    },
+    {
+      "origin": "ARCHIVIST",
       "text": "SHELTER WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772042136866
@@ -257,40 +263,34 @@
       "tick": 1772042143898
     },
     {
-      "origin": "INTERFACE",
-      "text": "WAIT GUARD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042144683
+      "origin": "ARCHIVIST",
+      "text": "SEIZE DECAY HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042144980
     },
     {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE RECON REFLECT",
+      "origin": "WORKER",
+      "text": "RECON GUARD WAIT",
       "mood": "DEFENSIVE",
-      "tick": 1772042146004
+      "tick": 1772042146102
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIKE BREACH SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042147476
     },
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772042146305
+      "text": "WATCH SHELTER RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772042147732
     },
     {
       "origin": "ARCHIVIST",
-      "text": "UNIFY RESONATE COHERE",
+      "text": "GIVING SYNC STABLE",
       "mood": "HARMONIC",
-      "tick": 1772042147002
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "PURE IMMUNE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042147299
-    },
-    {
-      "origin": "STREAM",
-      "text": "IMMUNE STASIS GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042148281
+      "tick": 1772042148460
     }
   ]
 }
