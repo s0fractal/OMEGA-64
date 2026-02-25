@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772020367668
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH WATCH WATCH",
       "mood": "DEFENSIVE",
@@ -141,6 +135,12 @@
       "text": "DECAY BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020380117
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE DECAY HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020380955
     }
   ]
 }
