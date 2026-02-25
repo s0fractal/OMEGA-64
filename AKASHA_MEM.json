@@ -163,12 +163,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GUARD IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772022994882
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT SHIELD SHELTER",
       "mood": "DEFENSIVE",
@@ -251,6 +245,12 @@
       "text": "STABLE UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772022998097
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DECAY STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022998251
     }
   ]
 }
