@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772019588496
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER REFLECT WAIT",
       "mood": "DEFENSIVE",
@@ -114,6 +108,12 @@
       "text": "SEIZE BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772019599677
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW COHERE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772019600217
     }
   ]
 }
