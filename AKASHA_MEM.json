@@ -51,12 +51,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RECON RECON STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772020308276
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GUARD REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772020308842
@@ -138,6 +132,12 @@
       "text": "DRAIN STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772020317096
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SHOCK DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020317732
     }
   ]
 }
