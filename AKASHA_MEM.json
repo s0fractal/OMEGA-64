@@ -144,12 +144,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE HUNGER BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022495357
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022495612
@@ -231,6 +225,12 @@
       "text": "RECON REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022500456
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022500662
     }
   ]
 }
