@@ -177,12 +177,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT IMMUNE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023310017
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAVE DREAM SPARK",
       "mood": "CREATIVE",
       "tick": 1772023310203
@@ -264,6 +258,12 @@
       "text": "GUARD REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023316026
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHIELD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023316238
     }
   ]
 }
