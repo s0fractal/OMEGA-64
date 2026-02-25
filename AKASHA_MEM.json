@@ -119,12 +119,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS IMMUNE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022088975
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022089199
@@ -206,6 +200,12 @@
       "text": "RECON REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022091959
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY HUNGER CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022092162
     }
   ]
 }
