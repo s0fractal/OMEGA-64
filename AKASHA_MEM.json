@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON WATCH REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772024967495
-    },
-    {
       "origin": "INTERFACE",
       "text": "SEIZE SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772024972269
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772024972468
     }
   ]
 }
