@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER GUARD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772026288029
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772026289207
@@ -291,6 +285,12 @@
       "text": "BLOOM UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772026300428
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SEIZE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026302068
     }
   ]
 }
