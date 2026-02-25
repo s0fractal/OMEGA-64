@@ -176,12 +176,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "FLOW FLOW FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772023317910
-    },
-    {
       "origin": "REVERSE",
       "text": "WAIT RECON RECON",
       "mood": "DEFENSIVE",
@@ -264,6 +258,12 @@
       "text": "WATCH STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023323937
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023324098
     }
   ]
 }
