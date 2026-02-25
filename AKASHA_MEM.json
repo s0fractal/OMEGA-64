@@ -155,12 +155,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC SYNC COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772022707163
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772022707419
@@ -242,6 +236,12 @@
       "text": "OSMOSIS GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022712132
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772022713053
     }
   ]
 }
