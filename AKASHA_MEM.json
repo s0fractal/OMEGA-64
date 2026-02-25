@@ -136,12 +136,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SYNC SYNC OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772022412928
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK CONSUME SHOCK",
       "mood": "AGGRESSIVE",
@@ -224,6 +218,12 @@
       "text": "SHOCK BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772022419069
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772022419429
     }
   ]
 }
