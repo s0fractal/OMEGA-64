@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031194816
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS GUARD GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772031202307
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772031202653
     }
   ]
 }
