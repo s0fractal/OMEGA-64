@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "ABBA0000",
     "A6660600",
     "66060600",
     "AAA0AAAA",
@@ -199,15 +198,10 @@
     "00AAAAA0",
     "A6066666",
     "AA000A00",
-    "06006000"
+    "06006000",
+    "A0A0AAA0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "UNIFY FLOW FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772038894172
-    },
     {
       "origin": "REVERSE",
       "text": "IMMUNE PURE RECON",
@@ -291,6 +285,12 @@
       "text": "RESONATE RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772038898833
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SEIZE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038899068
     }
   ]
 }
