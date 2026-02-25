@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE SHELTER PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041744471
-    },
-    {
       "origin": "STREAM",
       "text": "STASIS WATCH SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772041753411
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772041753669
     }
   ]
 }
