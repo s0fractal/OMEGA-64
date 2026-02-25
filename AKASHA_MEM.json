@@ -11,11 +11,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "OBSERVE",
-      "tick": 1772010879551
-    },
-    {
       "origin": "INTERFACE",
       "text": "ASCEND",
       "tick": 1772010885620
@@ -97,6 +92,12 @@
       "text": "STRIKE STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772012764459
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER STRIKE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772012775056
     }
   ]
 }
