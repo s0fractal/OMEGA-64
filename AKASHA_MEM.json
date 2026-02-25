@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "EVOLVE VISION BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772038836702
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772038836888
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772038839776
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WATCH REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772038840441
     }
   ]
 }
