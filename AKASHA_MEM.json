@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772036440167
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772036440393
@@ -291,6 +285,12 @@
       "text": "WATCH WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772036443540
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE WITNESS AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772036443756
     }
   ]
 }
