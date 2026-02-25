@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE STRIKE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024563043
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772024563434
@@ -291,6 +285,12 @@
       "text": "BECOME SPARK DREAM",
       "mood": "CREATIVE",
       "tick": 1772024573082
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS AWAKEN BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772024573259
     }
   ]
 }
