@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON SHIELD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041992439
-    },
-    {
       "origin": "INTERFACE",
       "text": "UNIFY OSMOSIS SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772042000267
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772042000887
     }
   ]
 }
