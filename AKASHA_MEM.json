@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772032482229
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN SEIZE STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772032489316
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772032492945
     }
   ]
 }
