@@ -43,12 +43,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BREACH HUNGER SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020005907
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT GUARD STASIS",
       "mood": "DEFENSIVE",
@@ -131,6 +125,12 @@
       "text": "GIVING RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772020017895
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020019191
     }
   ]
 }
