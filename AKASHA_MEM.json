@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SICKNESS SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033274296
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772033274473
@@ -291,6 +285,12 @@
       "text": "STRIFE DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772033277648
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DRAIN DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033277820
     }
   ]
 }
