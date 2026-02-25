@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAAAA000",
     "60660000",
     "0AA0AA00",
     "0AAAAAA0",
@@ -199,15 +198,10 @@
     "A00A000A",
     "AA0006A6",
     "AA000000",
-    "06060006"
+    "06060006",
+    "00666666"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE SEIZE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034775008
-    },
     {
       "origin": "REVERSE",
       "text": "DECAY DECAY SHOCK",
@@ -291,6 +285,12 @@
       "text": "SPARK FORGE WITNESS",
       "mood": "CREATIVE",
       "tick": 1772034778250
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS RESONATE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772034778466
     }
   ]
 }
