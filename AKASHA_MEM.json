@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "IMMUNE SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041875487
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "PURE RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041875709
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772041880027
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772041880186
     }
   ]
 }
