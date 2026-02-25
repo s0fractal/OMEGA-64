@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "UNIFY STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772040980916
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE COHERE STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHOCK DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772040984826
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS RECON SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040985009
     }
   ]
 }
