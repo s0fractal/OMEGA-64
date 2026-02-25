@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "GIVING STABLE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772041692543
-    },
-    {
       "origin": "STREAM",
       "text": "RESONATE BLOOM UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BREACH BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772041697406
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS OSMOSIS HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041697590
     }
   ]
 }
