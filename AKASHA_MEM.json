@@ -79,12 +79,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021077554
-    },
-    {
       "origin": "INTERFACE",
       "text": "STASIS WAIT WATCH",
       "mood": "DEFENSIVE",
@@ -167,6 +161,12 @@
       "text": "SHIELD GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772021087439
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DECAY DECAY SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021087891
     }
   ]
 }
