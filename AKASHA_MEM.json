@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE DRAIN DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024260913
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAVE WITNESS WAVE",
       "mood": "CREATIVE",
       "tick": 1772024261101
@@ -291,6 +285,12 @@
       "text": "STRIFE SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772024267078
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE RESONATE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772024267299
     }
   ]
 }
