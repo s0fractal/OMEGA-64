@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RESONATE COHERE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772040892378
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY DRAIN SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772040895704
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE COHERE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772040895845
     }
   ]
 }
