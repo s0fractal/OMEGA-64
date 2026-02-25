@@ -163,12 +163,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022922526
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772022922708
@@ -250,6 +244,12 @@
       "text": "DRAIN BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772022929366
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE RECON STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772022930091
     }
   ]
 }
