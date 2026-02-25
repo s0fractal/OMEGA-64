@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06666666",
     "06600000",
     "AAAA0000",
     "0A000A00",
@@ -199,15 +198,10 @@
     "00000600",
     "00660060",
     "06060006",
-    "0AA0A000"
+    "0AA0A000",
+    "66000660"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "WAIT RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772040436076
-    },
     {
       "origin": "REVERSE",
       "text": "STABLE FLOW FLOW",
@@ -291,6 +285,12 @@
       "text": "IMMUNE REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772040439317
+    },
+    {
+      "origin": "STREAM",
+      "text": "WATCH STASIS RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772040439444
     }
   ]
 }
