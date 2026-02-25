@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0A00AA",
     "FF00FF00",
     "ABB00000",
     "6A6606A0",
@@ -199,15 +198,10 @@
     "66066660",
     "0A0A0AA0",
     "0BB00000",
-    "A0AAAA0A"
+    "A0AAAA0A",
+    "60000666"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "PURE SHELTER STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772033178829
-    },
     {
       "origin": "REVERSE",
       "text": "AWAKEN WITNESS WAVE",
@@ -291,6 +285,12 @@
       "text": "DECAY SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772033184266
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WATCH STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772033184553
     }
   ]
 }
