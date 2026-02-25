@@ -135,15 +135,10 @@
     "60060000",
     "0AAAAA0A",
     "0AA0A0A0",
-    "60066000"
+    "60066000",
+    "60666600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WAIT GUARD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022448222
-    },
     {
       "origin": "REVERSE",
       "text": "SICKNESS HUNGER CONSUME",
@@ -227,6 +222,12 @@
       "text": "VISION EVOLVE SPARK",
       "mood": "CREATIVE",
       "tick": 1772022453324
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022454083
     }
   ]
 }
