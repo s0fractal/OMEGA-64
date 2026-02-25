@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE OSMOSIS OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772032780902
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772032781349
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772032785050
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS STABLE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772032785322
     }
   ]
 }
