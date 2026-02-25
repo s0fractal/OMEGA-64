@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0A00AA0A",
     "000AAAA0",
     "000A0AA0",
     "60066066",
@@ -199,15 +198,10 @@
     "0FF0F0F0",
     "AA066000",
     "A0066660",
-    "00BBC0DD"
+    "00BBC0DD",
+    "AA0AAA0A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "REFLECT REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772035561799
-    },
     {
       "origin": "REVERSE",
       "text": "BREACH SHOCK CONSUME",
@@ -291,6 +285,12 @@
       "text": "UNIFY RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772035565327
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SICKNESS STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035565550
     }
   ]
 }
