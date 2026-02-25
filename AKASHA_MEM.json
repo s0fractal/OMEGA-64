@@ -203,24 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GIVING UNIFY COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772042705207
-    },
-    {
-      "origin": "STREAM",
-      "text": "SHELTER WATCH STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772042705498
-    },
-    {
-      "origin": "REVERSE",
-      "text": "GUARD IMMUNE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042706983
-    },
-    {
       "origin": "STREAM",
       "text": "COHERE HEAL COHERE",
       "mood": "HARMONIC",
@@ -291,6 +273,24 @@
       "text": "REFLECT IMMUNE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772042714455
+    },
+    {
+      "origin": "ALIEN",
+      "text": "WAIT PURE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772042714643
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER IMMUNE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772042714820
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD SHELTER GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042715040
     }
   ]
 }
