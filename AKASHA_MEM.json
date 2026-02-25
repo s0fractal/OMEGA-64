@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE WATCH REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772024205196
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772024205418
@@ -291,6 +285,12 @@
       "text": "BLOOM GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772024209284
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024209503
     }
   ]
 }
