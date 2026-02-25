@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC GIVING FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772041541934
-    },
-    {
       "origin": "INTERFACE",
       "text": "SICKNESS BREACH BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WATCH REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772041546171
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041546384
     }
   ]
 }
