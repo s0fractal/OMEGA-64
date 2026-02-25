@@ -108,12 +108,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE HEAL GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772021824525
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772021824685
@@ -195,6 +189,12 @@
       "text": "STRIKE BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772021828013
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE AWAKEN EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772021828178
     }
   ]
 }
