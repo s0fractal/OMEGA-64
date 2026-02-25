@@ -187,12 +187,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME SPARK WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772023621805
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023621962
@@ -274,6 +268,12 @@
       "text": "DRAIN DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023626328
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW BLOOM BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772023626743
     }
   ]
 }
