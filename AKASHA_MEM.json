@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STABLE BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772038173818
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE GIVING SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772038177214
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD SHELTER PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772038177922
     }
   ]
 }
