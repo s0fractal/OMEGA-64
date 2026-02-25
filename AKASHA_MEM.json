@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06006066",
     "60606006",
     "AA0660A0",
     "A0AAA00A",
@@ -199,21 +198,10 @@
     "0AAAA00A",
     "6A606600",
     "AABBCC0F",
-    "A0AAA000"
+    "A0AAA000",
+    "A6A6AA00"
   ],
   "utterances": [
-    {
-      "origin": "STREAM",
-      "text": "HUNGER SEIZE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042651040
-    },
-    {
-      "origin": "REVERSE",
-      "text": "GUARD IMMUNE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042651738
-    },
     {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS UNIFY FLOW",
@@ -291,6 +279,18 @@
       "text": "RECON WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772042661490
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042663252
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE PURE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772042663444
     }
   ]
 }
