@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RESONATE BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041583775
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041588093
+    },
+    {
+      "origin": "WORKER",
+      "text": "HEAL GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772041588837
     }
   ]
 }
