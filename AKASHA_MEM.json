@@ -183,12 +183,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "CONSUME DECAY SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023567410
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS REFLECT PURE",
       "mood": "DEFENSIVE",
@@ -271,6 +265,12 @@
       "text": "SHOCK SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023572243
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023572431
     }
   ]
 }
