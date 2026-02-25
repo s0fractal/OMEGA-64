@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIKE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034817697
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772034817975
@@ -291,6 +285,12 @@
       "text": "HUNGER BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772034822322
+    },
+    {
+      "origin": "STREAM",
+      "text": "OSMOSIS UNIFY STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772034822498
     }
   ]
 }
