@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON PURE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041183680
-    },
-    {
       "origin": "STREAM",
       "text": "RESONATE HEAL OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WATCH SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041186932
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH SHELTER IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041187106
     }
   ]
 }
