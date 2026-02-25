@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC RESONATE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772031978106
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772031978564
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772031984968
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WAIT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772031985779
     }
   ]
 }
