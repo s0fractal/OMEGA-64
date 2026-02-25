@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RECON REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772041611579
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GUARD SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041612065
@@ -291,6 +285,12 @@
       "text": "SYNC UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772041616115
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GUARD RECON WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041616295
     }
   ]
 }
