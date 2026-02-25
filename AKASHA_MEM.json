@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_REVERSE",
-      "text": "HUNGER CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038691623
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING GIVING FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STABLE BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772038696015
+    },
+    {
+      "origin": "STREAM",
+      "text": "PURE GUARD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772038696406
     }
   ]
 }
