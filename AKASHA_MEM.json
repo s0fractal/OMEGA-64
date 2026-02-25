@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772025817582
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772025817757
@@ -291,6 +285,12 @@
       "text": "BEYOND BEYOND EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772025824805
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE IMMUNE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772025824998
     }
   ]
 }
