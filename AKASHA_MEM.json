@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772031062928
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT GUARD PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772031082421
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL SYNC FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772031084327
     }
   ]
 }
