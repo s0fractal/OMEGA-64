@@ -129,12 +129,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY COHERE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772022293835
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772022294004
@@ -216,6 +210,12 @@
       "text": "STRIKE SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022298222
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION BEYOND WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772022298568
     }
   ]
 }
