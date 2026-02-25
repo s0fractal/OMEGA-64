@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY HUNGER SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030981265
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "FLOW FLOW BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STABLE COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772030992450
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772030993100
     }
   ]
 }
