@@ -171,12 +171,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772023188313
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE DECAY DECAY",
       "mood": "AGGRESSIVE",
@@ -259,6 +253,12 @@
       "text": "CONSUME STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023194204
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD PURE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023194681
     }
   ]
 }
