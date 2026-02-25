@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STASIS WAIT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040479895
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772040482527
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772040482714
     }
   ]
 }
