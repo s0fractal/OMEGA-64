@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772039045929
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772039046127
@@ -291,6 +285,12 @@
       "text": "STABLE RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772039049289
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN HUNGER DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039049549
     }
   ]
 }
