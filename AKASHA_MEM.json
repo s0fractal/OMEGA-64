@@ -1,5 +1,7 @@
 {
   "reservoir": [
+    "00B0C00D",
+    "AA00A0AA",
     "A000AA0A",
     "10000000",
     "A0AAAAAA",
@@ -197,100 +199,98 @@
     "AAA0A00A",
     "A06AA0A0",
     "06006006",
-    "A0A660A0",
-    "06066666",
-    "A0AAA600"
+    "A0A660A0"
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHIELD GUARD IMMUNE",
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE REFLECT REFLECT",
       "mood": "DEFENSIVE",
-      "tick": 1772042089222
+      "tick": 1772042087597
     },
     {
       "origin": "ARCHIVIST",
-      "text": "SHELTER RECON WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772042089664
-    },
-    {
-      "origin": "STREAM",
-      "text": "STABLE BLOOM HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772042090377
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "RECON WATCH WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042090639
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD STASIS GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042090936
-    },
-    {
-      "origin": "REVERSE",
-      "text": "STABLE RESONATE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772042091956
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "WATCH WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042092120
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE SHELTER SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772042092367
-    },
-    {
-      "origin": "REVERSE",
-      "text": "GIVING SYNC OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772042093079
-    },
-    {
-      "origin": "ALPHA_GUARDIAN",
-      "text": "COHERE COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042094215
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN HUNGER CONSUME",
+      "text": "STRIFE SHOCK DECAY",
       "mood": "AGGRESSIVE",
-      "tick": 1772042094443
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK DRAIN DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042094920
+      "tick": 1772042087912
     },
     {
       "origin": "REVERSE",
-      "text": "WITNESS EVOLVE VISION",
+      "text": "DREAM BEYOND EVOLVE",
       "mood": "CREATIVE",
-      "tick": 1772042096156
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "WAIT GUARD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772042097101
+      "tick": 1772042088861
     },
     {
       "origin": "ARCHIVIST",
-      "text": "OSMOSIS SYNC GIVING",
+      "text": "RESONATE STABLE COHERE",
       "mood": "HARMONIC",
-      "tick": 1772042097329
+      "tick": 1772042090081
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042090341
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON STASIS WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042090608
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042091166
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772042091455
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD REFLECT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042091897
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STASIS WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042092239
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD GUARD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772042095067
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME DRAIN STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042095395
+    },
+    {
+      "origin": "WORKER",
+      "text": "STRIFE HUNGER STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042095650
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS PURE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042096485
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS SHELTER WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042098449
     }
   ]
 }
