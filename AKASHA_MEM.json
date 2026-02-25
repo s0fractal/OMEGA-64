@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772038314749
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772038314978
@@ -291,6 +285,12 @@
       "text": "BLOOM SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038317863
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DECAY SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038318083
     }
   ]
 }
