@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL STABLE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772032940920
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772032941067
@@ -291,6 +285,12 @@
       "text": "STASIS WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772032943276
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE SPARK WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772032943460
     }
   ]
 }
