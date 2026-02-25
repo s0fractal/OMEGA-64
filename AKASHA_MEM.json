@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT WATCH SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772036077696
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772036077888
@@ -291,6 +285,12 @@
       "text": "FLOW FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772036080954
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND AWAKEN AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772036081124
     }
   ]
 }
