@@ -108,12 +108,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021808628
-    },
-    {
-      "origin": "REVERSE",
       "text": "FORGE SPARK SPARK",
       "mood": "CREATIVE",
       "tick": 1772021808799
@@ -195,6 +189,12 @@
       "text": "HUNGER BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772021814739
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021814860
     }
   ]
 }
