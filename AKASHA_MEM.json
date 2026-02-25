@@ -75,12 +75,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772020969986
-    },
-    {
       "origin": "REVERSE",
       "text": "PURE SHELTER GUARD",
       "mood": "DEFENSIVE",
@@ -163,6 +157,12 @@
       "text": "WATCH SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020978930
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020979285
     }
   ]
 }
