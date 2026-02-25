@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE RECON GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772035963658
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772035963963
@@ -291,6 +285,12 @@
       "text": "RESONATE STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772035967490
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIKE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035968867
     }
   ]
 }
