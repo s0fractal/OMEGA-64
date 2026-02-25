@@ -31,12 +31,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019686434
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIKE DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772019687404
@@ -118,6 +112,12 @@
       "text": "PURE SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772019698455
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT SHIELD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772019699115
     }
   ]
 }
