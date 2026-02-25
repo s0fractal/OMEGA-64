@@ -104,12 +104,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021694323
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
@@ -192,6 +186,12 @@
       "text": "IMMUNE RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772021699104
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH HUNGER SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021699682
     }
   ]
 }
