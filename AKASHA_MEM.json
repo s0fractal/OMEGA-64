@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY FLOW FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772040660336
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME SEIZE CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772040664607
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER SHELTER SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040665137
     }
   ]
 }
