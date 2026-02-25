@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "CONSUME DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040715669
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC BLOOM HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RESONATE RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772040718712
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER REFLECT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040718847
     }
   ]
 }
