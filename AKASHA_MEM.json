@@ -63,12 +63,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS SEIZE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020719518
-    },
-    {
       "origin": "REVERSE",
       "text": "GUARD WAIT GUARD",
       "mood": "DEFENSIVE",
@@ -151,6 +145,12 @@
       "text": "PURE STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020724752
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE SHOCK DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020725616
     }
   ]
 }
