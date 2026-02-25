@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772032578326
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772032578511
@@ -291,6 +285,12 @@
       "text": "BREACH DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772032581086
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WATCH IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772032582213
     }
   ]
 }
