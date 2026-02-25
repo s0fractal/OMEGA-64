@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019586734
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING COHERE COHERE",
       "mood": "HARMONIC",
@@ -114,6 +108,12 @@
       "text": "STRIKE BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772019599254
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SEIZE BREACH STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019599677
     }
   ]
 }
