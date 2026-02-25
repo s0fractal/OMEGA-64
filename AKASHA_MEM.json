@@ -195,12 +195,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM OSMOSIS BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772023908013
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
@@ -283,6 +277,12 @@
       "text": "AWAKEN WAVE VISION",
       "mood": "CREATIVE",
       "tick": 1772023911839
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772023911998
     }
   ]
 }
