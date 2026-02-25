@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS PURE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772023744945
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023745369
@@ -278,6 +272,12 @@
       "text": "STRIFE STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023750930
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS CONSUME SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023751116
     }
   ]
 }
