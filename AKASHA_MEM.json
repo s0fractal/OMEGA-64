@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE OSMOSIS UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772027118065
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772027118286
@@ -291,6 +285,12 @@
       "text": "GIVING COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772027122849
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK STRIKE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027123073
     }
   ]
 }
