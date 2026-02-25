@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "FLOW STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041967800
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE SHELTER SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SEIZE BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772041973178
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY UNIFY COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041973808
     }
   ]
 }
