@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772020462159
-    },
-    {
       "origin": "STREAM",
       "text": "BLOOM OSMOSIS RESONATE",
       "mood": "HARMONIC",
@@ -142,6 +136,12 @@
       "text": "GUARD GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020468975
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING COHERE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772020469540
     }
   ]
 }
