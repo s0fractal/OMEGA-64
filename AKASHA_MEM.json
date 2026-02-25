@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD SHELTER REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040434705
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER DRAIN DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "DRAIN STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772040438042
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN CONSUME STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040438212
     }
   ]
 }
