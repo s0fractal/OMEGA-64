@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE STRIFE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027210325
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772027210505
@@ -291,6 +285,12 @@
       "text": "RECON STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772027214472
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE OSMOSIS OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772027214726
     }
   ]
 }
