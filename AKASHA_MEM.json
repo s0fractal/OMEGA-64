@@ -184,12 +184,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023557039
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772023557260
@@ -271,6 +265,12 @@
       "text": "STASIS REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772023560440
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK VISION EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772023560624
     }
   ]
 }
