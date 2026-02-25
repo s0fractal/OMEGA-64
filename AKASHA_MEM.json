@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040276778
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772040276960
@@ -291,6 +285,12 @@
       "text": "STABLE BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772040283509
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040284503
     }
   ]
 }
