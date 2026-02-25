@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772028256712
-    },
-    {
       "origin": "INTERFACE",
       "text": "OSMOSIS GIVING BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "PURE SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772028265736
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHELTER SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772028266337
     }
   ]
 }
