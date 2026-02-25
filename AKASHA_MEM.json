@@ -79,12 +79,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DECAY STRIKE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021069073
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIKE DRAIN DECAY",
       "mood": "AGGRESSIVE",
@@ -167,6 +161,12 @@
       "text": "SICKNESS HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772021073200
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE BEYOND VISION",
+      "mood": "CREATIVE",
+      "tick": 1772021073373
     }
   ]
 }
