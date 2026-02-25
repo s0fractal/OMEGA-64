@@ -76,12 +76,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GIVING GIVING FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772021006581
-    },
-    {
       "origin": "REVERSE",
       "text": "FORGE BECOME BECOME",
       "mood": "CREATIVE",
@@ -164,6 +158,12 @@
       "text": "SYNC HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772021013968
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE COHERE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772021014134
     }
   ]
 }
