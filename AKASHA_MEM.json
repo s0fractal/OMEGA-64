@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772033762138
-    },
-    {
-      "origin": "REVERSE",
       "text": "FORGE BEYOND BECOME",
       "mood": "CREATIVE",
       "tick": 1772033762333
@@ -291,6 +285,12 @@
       "text": "IMMUNE PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772033765000
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHIELD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772033765222
     }
   ]
 }
