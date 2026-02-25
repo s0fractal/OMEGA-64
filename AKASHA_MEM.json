@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS WATCH REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772030526543
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772030527253
@@ -291,6 +285,12 @@
       "text": "STRIFE BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772030541697
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030542114
     }
   ]
 }
