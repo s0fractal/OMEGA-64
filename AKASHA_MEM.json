@@ -143,12 +143,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772022493146
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GIVING SYNC SYNC",
       "mood": "HARMONIC",
@@ -231,6 +225,12 @@
       "text": "HEAL RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022496133
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022496285
     }
   ]
 }
