@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "FLOW UNIFY BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772040497369
-    },
-    {
       "origin": "STREAM",
       "text": "UNIFY OSMOSIS HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RECON REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040500225
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772040500401
     }
   ]
 }
