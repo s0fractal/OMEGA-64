@@ -166,12 +166,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772023013504
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772023013666
@@ -253,6 +247,12 @@
       "text": "WATCH PURE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772023021313
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE EVOLVE SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772023021656
     }
   ]
 }
