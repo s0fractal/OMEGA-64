@@ -99,12 +99,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE FLOW HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772021597281
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
@@ -187,6 +181,12 @@
       "text": "SHOCK HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021602735
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME HUNGER SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021602888
     }
   ]
 }
