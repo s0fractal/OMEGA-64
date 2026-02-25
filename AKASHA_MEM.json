@@ -135,12 +135,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER WATCH WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022391188
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772022391536
@@ -222,6 +216,12 @@
       "text": "SHOCK DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022396098
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS HUNGER CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022396478
     }
   ]
 }
