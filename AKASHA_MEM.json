@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER RECON WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772040583124
-    },
-    {
       "origin": "STREAM",
       "text": "GUARD REFLECT PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772040585760
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER STRIFE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040586188
     }
   ]
 }
