@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE CONSUME SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035245575
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772035245746
@@ -291,6 +285,12 @@
       "text": "SHOCK STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772035248453
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772035248622
     }
   ]
 }
