@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772040272532
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772040272689
@@ -291,6 +285,12 @@
       "text": "SHOCK DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040276592
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040276778
     }
   ]
 }
