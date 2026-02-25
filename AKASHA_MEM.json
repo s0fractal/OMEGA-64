@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RESONATE BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041049116
-    },
-    {
       "origin": "REVERSE",
       "text": "IMMUNE GUARD GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "REFLECT IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772041051747
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW HEAL GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041052089
     }
   ]
 }
