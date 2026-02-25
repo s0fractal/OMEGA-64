@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH HUNGER SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036415320
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772036415508
@@ -291,6 +285,12 @@
       "text": "SHOCK STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772036418558
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772036418766
     }
   ]
 }
