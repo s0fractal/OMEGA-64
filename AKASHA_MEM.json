@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT GUARD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041470038
-    },
-    {
       "origin": "STREAM",
       "text": "FLOW OSMOSIS HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHOCK SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772041473376
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STABLE GIVING HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041473549
     }
   ]
 }
