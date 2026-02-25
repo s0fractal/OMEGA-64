@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW STABLE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772041039390
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE DECAY CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIKE SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772041044235
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN DECAY DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041044526
     }
   ]
 }
