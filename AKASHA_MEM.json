@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME DRAIN SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026709698
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772026709927
@@ -291,6 +285,12 @@
       "text": "WAIT SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772026718067
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026718244
     }
   ]
 }
