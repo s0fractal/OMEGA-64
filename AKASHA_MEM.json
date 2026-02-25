@@ -180,12 +180,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHOCK SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023462773
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE HUNGER STRIFE",
       "mood": "AGGRESSIVE",
@@ -268,6 +262,12 @@
       "text": "HEAL OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772023467169
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING STABLE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772023468124
     }
   ]
 }
