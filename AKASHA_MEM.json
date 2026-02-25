@@ -101,12 +101,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "PURE GUARD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772021614585
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH SHELTER SHIELD",
       "mood": "DEFENSIVE",
@@ -189,6 +183,12 @@
       "text": "SHOCK HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021620165
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE GUARD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021620694
     }
   ]
 }
