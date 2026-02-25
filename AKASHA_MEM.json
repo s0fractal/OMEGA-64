@@ -201,12 +201,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HEAL BLOOM HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772024069833
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIFE STRIKE DRAIN",
       "mood": "AGGRESSIVE",
@@ -289,6 +283,12 @@
       "text": "PURE RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772024074771
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024074914
     }
   ]
 }
