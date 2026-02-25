@@ -149,12 +149,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "OSMOSIS GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772022527038
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HEAL OSMOSIS GIVING",
       "mood": "HARMONIC",
@@ -237,6 +231,12 @@
       "text": "RECON PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022532356
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022532826
     }
   ]
 }
