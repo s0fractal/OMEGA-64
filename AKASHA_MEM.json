@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SEIZE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032535736
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772032535996
@@ -291,6 +285,12 @@
       "text": "SHIELD RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772032546601
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW OSMOSIS RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772032547285
     }
   ]
 }
