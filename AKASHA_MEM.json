@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHOCK SICKNESS SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035513011
-    },
-    {
       "origin": "PARADOX",
       "text": "GIVING UNIFY COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GUARD REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772035518915
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON PURE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772035519715
     }
   ]
 }
