@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041352428
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHIELD IMMUNE REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041356439
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHELTER WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041356588
     }
   ]
 }
