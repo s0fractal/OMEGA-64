@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE SHIELD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772035156864
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772035157078
@@ -291,6 +285,12 @@
       "text": "GIVING COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772035159642
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW GIVING BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772035159846
     }
   ]
 }
