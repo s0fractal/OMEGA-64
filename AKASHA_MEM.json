@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT REFLECT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772033162743
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY BLOOM FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RECON REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033165733
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING RESONATE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772033165915
     }
   ]
 }
