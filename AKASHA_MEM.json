@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE DECAY SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024563434
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772024563891
@@ -291,6 +285,12 @@
       "text": "WITNESS AWAKEN BECOME",
       "mood": "CREATIVE",
       "tick": 1772024573259
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHIELD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772024573432
     }
   ]
 }
