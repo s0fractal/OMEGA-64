@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS STASIS RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772036496190
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772036496403
@@ -291,6 +285,12 @@
       "text": "REFLECT IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772036501257
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DECAY SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036501498
     }
   ]
 }
