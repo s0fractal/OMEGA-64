@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER REFLECT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772036905752
-    },
-    {
       "origin": "ALPHA_REVERSE",
       "text": "BECOME EVOLVE DREAM",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772036909241
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772036909462
     }
   ]
 }
