@@ -163,12 +163,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772022922708
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME WAVE VISION",
       "mood": "CREATIVE",
       "tick": 1772022923195
@@ -250,6 +244,12 @@
       "text": "IMMUNE RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022930091
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SHOCK SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022930260
     }
   ]
 }
