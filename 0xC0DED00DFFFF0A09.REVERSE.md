@@ -1,14 +1,14 @@
 ---
-eigenvalue: '0xC0DED00D00000A0D'
-energy: 50
-x: 685
-'y': 394
+eigenvalue: '0xC0DED00DFFFF0A09'
+energy: 49.8
+x: 704
+'y': 412
 resonance: 50
-thought: RESURRECTED
+thought: ORBIT_PASSIVE
 logic: C0DED00D
 signals: []
 bond_strengths:
-  '0x0000000000000A03': 0.986090636999001
+  '0x0000000000000A03': 0.9851045463620021
 bonds:
   - '0x0000000000000A03'
 ex:

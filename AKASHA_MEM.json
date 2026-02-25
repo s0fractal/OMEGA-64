@@ -164,12 +164,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SPARK BEYOND BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772022932650
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772022932834
@@ -251,6 +245,12 @@
       "text": "VISION AWAKEN VISION",
       "mood": "CREATIVE",
       "tick": 1772022938713
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022938936
     }
   ]
 }
