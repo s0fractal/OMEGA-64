@@ -147,15 +147,10 @@
     "06066600",
     "AA0AAA00",
     "0AA0AA00",
-    "0BB00000"
+    "0BB00000",
+    "AA6066A6"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "OSMOSIS SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772022592134
-    },
     {
       "origin": "REVERSE",
       "text": "GIVING OSMOSIS HEAL",
@@ -239,6 +234,12 @@
       "text": "STABLE STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772022597265
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022597413
     }
   ]
 }
