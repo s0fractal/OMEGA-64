@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772034145762
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772034145959
@@ -291,6 +285,12 @@
       "text": "BLOOM GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772034148465
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772034148664
     }
   ]
 }
