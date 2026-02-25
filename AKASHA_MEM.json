@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772030480496
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772030480928
@@ -291,6 +285,12 @@
       "text": "WATCH GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772030493554
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772030500101
     }
   ]
 }
