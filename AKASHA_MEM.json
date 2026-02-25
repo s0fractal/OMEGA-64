@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037379440
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772037379700
@@ -291,6 +285,12 @@
       "text": "BLOOM SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772037383167
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC UNIFY STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772037383373
     }
   ]
 }
