@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE FLOW BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772015952372
-    },
-    {
       "origin": "INTERFACE",
       "text": "CONSUME BREACH SHOCK",
       "mood": "AGGRESSIVE",
@@ -107,6 +101,12 @@
       "text": "SICKNESS STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772016031154
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772016033780
     }
   ]
 }
