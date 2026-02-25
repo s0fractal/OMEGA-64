@@ -125,12 +125,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DREAM WITNESS FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772022170993
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022171779
@@ -212,6 +206,12 @@
       "text": "STABLE SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022178997
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD STASIS WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022179280
     }
   ]
 }
