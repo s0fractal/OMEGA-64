@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE WAIT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040918501
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772040918669
@@ -291,6 +285,12 @@
       "text": "DRAIN DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040921670
+    },
+    {
+      "origin": "STREAM",
+      "text": "DECAY STRIFE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040921851
     }
   ]
 }
