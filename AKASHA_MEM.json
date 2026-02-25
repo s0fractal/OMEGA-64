@@ -112,15 +112,10 @@
     "66660666",
     "0D180098",
     "FFFFFFF0",
-    "66066600"
+    "66066600",
+    "0000A006"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "COHERE GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772022073382
-    },
     {
       "origin": "REVERSE",
       "text": "DRAIN STRIKE SEIZE",
@@ -204,6 +199,12 @@
       "text": "SICKNESS BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022079078
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022079620
     }
   ]
 }
