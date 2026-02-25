@@ -55,12 +55,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHOCK SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020426588
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BREACH SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020427047
@@ -142,6 +136,12 @@
       "text": "IMMUNE GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772020432220
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE STRIKE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020432919
     }
   ]
 }
