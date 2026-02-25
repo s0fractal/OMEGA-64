@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772039101844
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME BEYOND BECOME",
       "mood": "CREATIVE",
       "tick": 1772039102066
@@ -291,6 +285,12 @@
       "text": "STABLE UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772039111210
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD PURE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772039111454
     }
   ]
 }
