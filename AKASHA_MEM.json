@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027158511
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772027158665
@@ -291,6 +285,12 @@
       "text": "CONSUME SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772027164371
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD REFLECT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772027164582
     }
   ]
 }
