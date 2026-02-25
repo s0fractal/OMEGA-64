@@ -190,12 +190,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT SHIELD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772023721672
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY DECAY SICKNESS",
       "mood": "AGGRESSIVE",
@@ -278,6 +272,12 @@
       "text": "FLOW SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772023725373
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SEIZE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023725547
     }
   ]
 }
