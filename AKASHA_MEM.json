@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE SHELTER REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040423981
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772040426913
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GIVING COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772040427082
     }
   ]
 }
