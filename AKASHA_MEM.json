@@ -203,24 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GUARD SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042283270
-    },
-    {
-      "origin": "REVERSE",
-      "text": "DRAIN HUNGER STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042283930
-    },
-    {
-      "origin": "REVERSE",
-      "text": "BLOOM COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772042284534
-    },
-    {
       "origin": "WAVE_SIGNAL",
       "text": "BLOOM UNIFY HEAL",
       "mood": "HARMONIC",
@@ -263,34 +245,52 @@
       "tick": 1772042286662
     },
     {
-      "origin": "REVERSE",
-      "text": "PURE IMMUNE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042288435
-    },
-    {
       "origin": "ARCHIVIST",
-      "text": "CONSUME STRIFE SICKNESS",
+      "text": "BREACH SEIZE SHOCK",
       "mood": "AGGRESSIVE",
-      "tick": 1772042289254
+      "tick": 1772042287522
     },
     {
       "origin": "REVERSE",
-      "text": "SHELTER PURE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042290642
+      "text": "FLOW RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042287686
+    },
+    {
+      "origin": "STREAM",
+      "text": "GIVING OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772042289063
     },
     {
       "origin": "ARCHIVIST",
-      "text": "PURE STASIS WATCH",
+      "text": "SHELTER REFLECT STASIS",
       "mood": "DEFENSIVE",
-      "tick": 1772042291197
+      "tick": 1772042289579
     },
     {
-      "origin": "INTERFACE",
-      "text": "DRAIN STRIFE SEIZE",
+      "origin": "REVERSE",
+      "text": "RESONATE STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772042290416
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
-      "tick": 1772042292210
+      "tick": 1772042290799
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042291579
+    },
+    {
+      "origin": "STREAM",
+      "text": "PURE WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772042293025
     }
   ]
 }
