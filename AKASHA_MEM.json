@@ -173,12 +173,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023215142
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772023215352
@@ -260,6 +254,12 @@
       "text": "CONSUME STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772023220856
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772023221292
     }
   ]
 }
