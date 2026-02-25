@@ -80,12 +80,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD GUARD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772021120244
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME SHOCK DRAIN",
       "mood": "AGGRESSIVE",
@@ -168,6 +162,12 @@
       "text": "COHERE SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772021125888
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC HEAL HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772021126754
     }
   ]
 }
