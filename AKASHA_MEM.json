@@ -183,12 +183,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH STRIFE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023547148
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772023547848
@@ -270,6 +264,12 @@
       "text": "SYNC UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772023553176
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE COHERE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772023553333
     }
   ]
 }
