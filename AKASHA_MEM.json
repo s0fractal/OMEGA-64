@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE STASIS GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772030088152
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772030088747
@@ -291,6 +285,12 @@
       "text": "SYNC RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772030100617
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE BECOME BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772030101358
     }
   ]
 }
