@@ -99,12 +99,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME STRIFE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021589116
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIKE HUNGER SEIZE",
       "mood": "AGGRESSIVE",
@@ -187,6 +181,12 @@
       "text": "SHELTER IMMUNE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772021597097
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE FLOW HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772021597281
     }
   ]
 }
