@@ -122,12 +122,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022151068
-    },
-    {
       "origin": "INTERFACE",
       "text": "IMMUNE SHELTER GUARD",
       "mood": "DEFENSIVE",
@@ -210,6 +204,12 @@
       "text": "DECAY SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022158974
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON GUARD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022159277
     }
   ]
 }
