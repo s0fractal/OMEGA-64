@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772039797885
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772039799316
@@ -291,6 +285,12 @@
       "text": "PURE REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772039805942
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039806602
     }
   ]
 }
