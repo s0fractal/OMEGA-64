@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06060606",
     "66066060",
     "60600600",
     "B0600000",
@@ -199,15 +198,10 @@
     "AAAAAAA0",
     "AA0A0AA0",
     "A0AAA00A",
-    "06666006"
+    "06666006",
+    "06600060"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "IMMUNE GUARD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772038069508
-    },
     {
       "origin": "REVERSE",
       "text": "SHOCK SEIZE SEIZE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772038072727
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS OSMOSIS BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772038072969
     }
   ]
 }
