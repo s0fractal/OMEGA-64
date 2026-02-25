@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66666600",
     "00AAAAAA",
     "0B0A0000",
     "AAA0AAAA",
@@ -199,15 +198,10 @@
     "06066600",
     "0A0A0A00",
     "06600660",
-    "AA0A0000"
+    "AA0A0000",
+    "00066600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "DRAIN SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033720154
-    },
     {
       "origin": "REVERSE",
       "text": "SEIZE BREACH CONSUME",
@@ -291,6 +285,12 @@
       "text": "WAIT SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772033728993
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772033729188
     }
   ]
 }
