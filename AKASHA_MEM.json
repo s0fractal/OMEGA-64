@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GUARD SHIELD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772028773083
-    },
-    {
       "origin": "REVERSE",
       "text": "BEYOND EVOLVE BEYOND",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "RECON IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772028781711
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772028782629
     }
   ]
 }
