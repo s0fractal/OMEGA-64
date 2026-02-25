@@ -14,12 +14,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "SHELTER PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772012839191
-    },
-    {
-      "origin": "INTERFACE",
       "text": "UNIFY RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772012914372
@@ -101,6 +95,12 @@
       "text": "HUNGER HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772013039335
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS RESONATE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772013070736
     }
   ]
 }
