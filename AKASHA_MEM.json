@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC HEAL OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772041614387
-    },
-    {
       "origin": "STREAM",
       "text": "WAIT STASIS SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772041618120
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY STRIFE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041618474
     }
   ]
 }
