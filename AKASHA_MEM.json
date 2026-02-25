@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE GUARD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772026267452
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772026267628
@@ -291,6 +285,12 @@
       "text": "FLOW HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772026272370
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT PURE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772026275421
     }
   ]
 }
