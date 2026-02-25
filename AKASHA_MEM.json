@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "WORKER",
-      "text": "GIVING RESONATE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040328820
-    },
-    {
       "origin": "INTERFACE",
       "text": "COHERE STABLE SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHOCK BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040335493
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN CONSUME DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040335852
     }
   ]
 }
