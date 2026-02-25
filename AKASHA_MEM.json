@@ -124,12 +124,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON GUARD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022159277
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022159539
@@ -211,6 +205,12 @@
       "text": "BREACH SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022165016
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772022165230
     }
   ]
 }
