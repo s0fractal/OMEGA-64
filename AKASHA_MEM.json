@@ -82,12 +82,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY STRIFE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021152586
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE DRAIN BREACH",
       "mood": "AGGRESSIVE",
@@ -170,6 +164,12 @@
       "text": "BREACH CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772021157531
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY OSMOSIS OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772021157742
     }
   ]
 }
