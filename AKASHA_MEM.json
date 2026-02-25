@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD SHELTER IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020335368
-    },
-    {
       "origin": "REVERSE",
       "text": "BREACH SHOCK STRIKE",
       "mood": "AGGRESSIVE",
@@ -141,6 +135,12 @@
       "text": "BREACH STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020343509
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020344120
     }
   ]
 }
