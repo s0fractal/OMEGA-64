@@ -200,12 +200,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD STASIS WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772024048349
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAVE EVOLVE AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772024048731
@@ -287,6 +281,12 @@
       "text": "STRIKE SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772024052316
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024052455
     }
   ]
 }
