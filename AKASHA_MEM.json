@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH SHIELD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772039209862
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772039210084
@@ -291,6 +285,12 @@
       "text": "STRIFE SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772039212759
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WATCH SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772039212926
     }
   ]
 }
