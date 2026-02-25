@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS EVOLVE DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772035312912
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772035314802
@@ -291,6 +285,12 @@
       "text": "STABLE COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772035317793
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIKE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035318062
     }
   ]
 }
