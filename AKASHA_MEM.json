@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE BLOOM OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772037313026
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772037313229
@@ -291,6 +285,12 @@
       "text": "PURE REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772037316267
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037316484
     }
   ]
 }
