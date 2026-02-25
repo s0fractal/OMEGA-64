@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA6666A0",
     "AAA00A0A",
     "0AAAA0AA",
     "AA0A0A0A",
@@ -199,15 +198,10 @@
     "06660666",
     "FFFFFF0F",
     "66000060",
-    "AA0AAAA0"
+    "AA0AAAA0",
+    "66666660"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RESONATE BLOOM HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772026387166
-    },
     {
       "origin": "REVERSE",
       "text": "DECAY SHOCK DRAIN",
@@ -291,6 +285,12 @@
       "text": "FLOW RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772026393103
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WATCH SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772026393362
     }
   ]
 }
