@@ -56,12 +56,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RECON REFLECT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020532963
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WATCH RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772020533362
@@ -143,6 +137,12 @@
       "text": "SICKNESS BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020541499
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RECON PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772020542354
     }
   ]
 }
