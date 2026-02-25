@@ -67,15 +67,10 @@
     "06666666",
     "AA00AAA0",
     "AA00AAAA",
-    "0D18A098"
+    "0D18A098",
+    "0000000F"
   ],
   "utterances": [
-    {
-      "origin": "INTERFACE",
-      "text": "STABLE OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772020931170
-    },
     {
       "origin": "ARCHIVIST",
       "text": "STABLE COHERE STABLE",
@@ -159,6 +154,12 @@
       "text": "OSMOSIS STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772020936788
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772020937527
     }
   ]
 }
