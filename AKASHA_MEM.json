@@ -76,12 +76,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY CONSUME SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021031926
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE DECAY SHOCK",
       "mood": "AGGRESSIVE",
@@ -164,6 +158,12 @@
       "text": "RECON IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772021038568
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772021038738
     }
   ]
 }
