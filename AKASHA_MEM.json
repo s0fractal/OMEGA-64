@@ -163,12 +163,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BREACH DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023007779
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER WAIT RECON",
       "mood": "DEFENSIVE",
@@ -251,6 +245,12 @@
       "text": "IMMUNE WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023011764
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT GUARD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772023011941
     }
   ]
 }
