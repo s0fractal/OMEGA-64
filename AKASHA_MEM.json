@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HEAL RESONATE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772020494364
-    },
-    {
       "origin": "INTERFACE",
       "text": "WAIT RECON PURE",
       "mood": "DEFENSIVE",
@@ -142,6 +136,12 @@
       "text": "HUNGER BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020502267
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE STRIKE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020502832
     }
   ]
 }
