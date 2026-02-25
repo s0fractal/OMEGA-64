@@ -70,12 +70,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020846777
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020847046
@@ -157,6 +151,12 @@
       "text": "RESONATE GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772020852348
+    },
+    {
+      "origin": "PARADOX",
+      "text": "DREAM FORGE BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772020852795
     }
   ]
 }
