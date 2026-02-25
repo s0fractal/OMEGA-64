@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHOCK HUNGER SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019585143
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM STABLE COHERE",
       "mood": "HARMONIC",
@@ -114,6 +108,12 @@
       "text": "GIVING SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772019598031
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772019598982
     }
   ]
 }
