@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW SYNC STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772036695559
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772036695760
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772036698507
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772036698731
     }
   ]
 }
