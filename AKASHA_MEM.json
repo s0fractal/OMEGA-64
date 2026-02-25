@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM STABLE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772038465720
-    },
-    {
-      "origin": "REVERSE",
       "text": "AWAKEN SPARK WITNESS",
       "mood": "CREATIVE",
       "tick": 1772038465936
@@ -291,6 +285,12 @@
       "text": "FLOW BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038471927
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SICKNESS HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038472412
     }
   ]
 }
