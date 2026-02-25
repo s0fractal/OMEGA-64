@@ -55,12 +55,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY SHOCK SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020503600
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT REFLECT PURE",
       "mood": "DEFENSIVE",
@@ -143,6 +137,12 @@
       "text": "SHOCK HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020511731
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772020512747
     }
   ]
 }
