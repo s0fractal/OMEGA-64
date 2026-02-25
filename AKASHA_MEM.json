@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER GUARD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041485454
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE HEAL FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DECAY DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772041488902
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING UNIFY GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041489345
     }
   ]
 }
