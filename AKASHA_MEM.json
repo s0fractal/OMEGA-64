@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHELTER SHELTER REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040904087
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS WAIT REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772040907038
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS CONSUME DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040907181
     }
   ]
 }
