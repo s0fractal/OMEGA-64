@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023205915
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023206152
@@ -259,6 +253,12 @@
       "text": "RECON GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772023209750
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE CONSUME SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023209873
     }
   ]
 }
