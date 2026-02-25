@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAAA0A00",
     "00066000",
     "06606060",
     "AA00A0A0",
@@ -199,15 +198,10 @@
     "AAB0CC0D",
     "B0BB0000",
     "00006660",
-    "AA0AA0AA"
+    "AA0AA0AA",
+    "60600006"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "COHERE COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772038995427
-    },
     {
       "origin": "REVERSE",
       "text": "SHOCK SICKNESS SHOCK",
@@ -291,6 +285,12 @@
       "text": "RESONATE RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038998646
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT WATCH SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772038998889
     }
   ]
 }
