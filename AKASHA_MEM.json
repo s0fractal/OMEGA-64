@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041429906
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME DRAIN SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041433555
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON WATCH REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041434242
     }
   ]
 }
