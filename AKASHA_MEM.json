@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772026364688
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772026365128
@@ -291,6 +285,12 @@
       "text": "WAIT REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772026368699
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE STRIFE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026368905
     }
   ]
 }
