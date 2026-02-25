@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0BCC0F",
     "600A0A00",
     "AAAAA000",
     "06006006",
@@ -199,15 +198,10 @@
     "AAAAAAA0",
     "A6066600",
     "A0B0C0DD",
-    "00000A00"
+    "00000A00",
+    "06666006"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "DECAY DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036323739
-    },
     {
       "origin": "STREAM",
       "text": "BLOOM FLOW COHERE",
@@ -291,6 +285,12 @@
       "text": "STRIFE SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772036327348
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772036327539
     }
   ]
 }
