@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06666066",
     "00000660",
     "BBB000FC",
     "000AAAA0",
@@ -199,15 +198,10 @@
     "AAAA0A0A",
     "AA0000A0",
     "AAB00CD0",
-    "AA0A00AA"
+    "AA0A00AA",
+    "AAA00AAA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "DRAIN CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033626234
-    },
     {
       "origin": "REVERSE",
       "text": "REFLECT WAIT RECON",
@@ -291,6 +285,12 @@
       "text": "UNIFY FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772033628708
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS HUNGER DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033628898
     }
   ]
 }
