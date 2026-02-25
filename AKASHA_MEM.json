@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772026674427
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE BLOOM BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BLOOM COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772026684213
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD STASIS WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772026685001
     }
   ]
 }
