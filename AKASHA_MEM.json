@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS SICKNESS STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040862081
-    },
-    {
       "origin": "REVERSE",
       "text": "BREACH BREACH SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772040865009
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DRAIN CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040865140
     }
   ]
 }
