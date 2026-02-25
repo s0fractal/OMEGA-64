@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT SHELTER RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772039147267
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE SHIELD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772039147608
@@ -291,6 +285,12 @@
       "text": "SHOCK BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772039151106
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE RESONATE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772039151300
     }
   ]
 }
