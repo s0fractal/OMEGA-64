@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS UNIFY FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772024867953
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772024868478
@@ -291,6 +285,12 @@
       "text": "RECON SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772024875908
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM WITNESS BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772024876046
     }
   ]
 }
