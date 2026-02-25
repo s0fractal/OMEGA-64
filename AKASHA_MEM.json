@@ -170,12 +170,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023085631
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772023085854
@@ -257,6 +251,12 @@
       "text": "PURE REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772023088508
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND BEYOND VISION",
+      "mood": "CREATIVE",
+      "tick": 1772023088732
     }
   ]
 }
