@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAAAA0A0",
     "0AAA00A0",
     "06000066",
     "60060666",
@@ -199,15 +198,10 @@
     "0BB00000",
     "0ABBCCDD",
     "66060000",
-    "AA0AA0A0"
+    "AA0AA0A0",
+    "00B0C00D"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "DRAIN SEIZE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036536214
-    },
     {
       "origin": "REVERSE",
       "text": "HEAL GIVING FLOW",
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772036539401
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL HEAL OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772036539573
     }
   ]
 }
