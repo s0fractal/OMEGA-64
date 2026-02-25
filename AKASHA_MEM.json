@@ -95,12 +95,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD WATCH REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772021537184
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH WATCH PURE",
       "mood": "DEFENSIVE",
@@ -183,6 +177,12 @@
       "text": "CONSUME DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021549782
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021550315
     }
   ]
 }
