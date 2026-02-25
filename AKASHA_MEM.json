@@ -167,12 +167,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023045435
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023045603
@@ -254,6 +248,12 @@
       "text": "HEAL GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772023052743
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD PURE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023052911
     }
   ]
 }
