@@ -200,12 +200,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772024035705
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772024036016
@@ -287,6 +281,12 @@
       "text": "STASIS RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772024039102
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WATCH IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772024039417
     }
   ]
 }
