@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER STRIKE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037339719
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772037339926
@@ -291,6 +285,12 @@
       "text": "SHOCK BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772037344841
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772037345290
     }
   ]
 }
