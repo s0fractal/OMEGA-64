@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772032839627
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772032839770
@@ -291,6 +285,12 @@
       "text": "SHELTER PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772032845851
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT STASIS PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772032846056
     }
   ]
 }
