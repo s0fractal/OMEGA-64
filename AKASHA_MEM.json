@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON RECON WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772035819752
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772035819958
@@ -291,6 +285,12 @@
       "text": "SYNC COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772035828673
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIKE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035828971
     }
   ]
 }
