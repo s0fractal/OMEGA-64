@@ -170,12 +170,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT WATCH STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772023079664
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023079885
@@ -257,6 +251,12 @@
       "text": "SICKNESS CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772023082947
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE RECON STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772023083085
     }
   ]
 }
