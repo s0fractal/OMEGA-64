@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033706127
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772033706493
@@ -291,6 +285,12 @@
       "text": "REFLECT PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772033711322
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW GIVING FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772033711477
     }
   ]
 }
