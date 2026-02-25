@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL COHERE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772038900616
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772038900822
@@ -291,6 +285,12 @@
       "text": "STASIS SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772038903527
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE BREACH CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038904561
     }
   ]
 }
