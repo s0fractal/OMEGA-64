@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME SICKNESS STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041578641
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIFE STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041578796
@@ -291,6 +285,12 @@
       "text": "SHELTER REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041582807
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK STRIKE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041582991
     }
   ]
 }
