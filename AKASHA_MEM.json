@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "COHERE HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772040706089
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH SHELTER SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "WATCH WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040710463
+    },
+    {
+      "origin": "STREAM",
+      "text": "HEAL STABLE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772040710637
     }
   ]
 }
