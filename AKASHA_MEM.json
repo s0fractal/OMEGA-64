@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040908902
-    },
-    {
       "origin": "INTERFACE",
       "text": "UNIFY OSMOSIS RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "PURE REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772040911303
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHOCK DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040911478
     }
   ]
 }
