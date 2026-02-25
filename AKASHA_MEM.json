@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE STABLE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772032681084
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH STRIFE STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772032686809
+    },
+    {
+      "origin": "STREAM",
+      "text": "PURE RECON IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772032687235
     }
   ]
 }
