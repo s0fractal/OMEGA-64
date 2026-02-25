@@ -54,12 +54,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772020387823
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772020387981
@@ -141,6 +135,12 @@
       "text": "HUNGER CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020398954
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020400213
     }
   ]
 }
