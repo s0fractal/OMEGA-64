@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW FLOW UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772025734245
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772025734420
@@ -291,6 +285,12 @@
       "text": "DRAIN STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772025740213
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772025740396
     }
   ]
 }
