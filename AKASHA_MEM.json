@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06006600",
     "00606660",
     "AA6666A6",
     "60060066",
@@ -199,15 +198,10 @@
     "0A00A000",
     "00600600",
     "AA000AA0",
-    "AA0666A6"
+    "AA0666A6",
+    "66666660"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STABLE RESONATE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772039065226
-    },
     {
       "origin": "REVERSE",
       "text": "FLOW SYNC STABLE",
@@ -291,6 +285,12 @@
       "text": "UNIFY HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772039070593
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772039070825
     }
   ]
 }
