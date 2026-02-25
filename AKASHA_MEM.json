@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "CONSUME STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038523025
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK DRAIN STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772038528649
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS CONSUME STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038528905
     }
   ]
 }
