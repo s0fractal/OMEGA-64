@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER SEIZE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036109067
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772036109302
@@ -291,6 +285,12 @@
       "text": "HEAL GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772036118012
+    },
+    {
+      "origin": "PARADOX",
+      "text": "UNIFY UNIFY STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772036118269
     }
   ]
 }
