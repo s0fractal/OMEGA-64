@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE PURE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772020712280
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
@@ -150,6 +144,12 @@
       "text": "SHELTER WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020720322
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIKE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020720855
     }
   ]
 }
