@@ -126,12 +126,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STABLE BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772022262355
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
@@ -214,6 +208,12 @@
       "text": "WAIT PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022268809
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772022269212
     }
   ]
 }
