@@ -72,12 +72,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK SEIZE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020911747
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020911914
@@ -159,6 +153,12 @@
       "text": "SHIELD REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772020917138
+    },
+    {
+      "origin": "STREAM",
+      "text": "FLOW OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772020917306
     }
   ]
 }
