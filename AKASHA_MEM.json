@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD RECON REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772033951986
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIKE DRAIN STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "EVOLVE WITNESS BECOME",
       "mood": "CREATIVE",
       "tick": 1772033958154
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772033958330
     }
   ]
 }
