@@ -129,12 +129,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022299758
-    },
-    {
       "origin": "REVERSE",
       "text": "GUARD PURE PURE",
       "mood": "DEFENSIVE",
@@ -217,6 +211,12 @@
       "text": "HUNGER STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772022305776
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022305992
     }
   ]
 }
