@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON SHELTER REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023179736
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772023180104
@@ -259,6 +253,12 @@
       "text": "SHELTER WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023184671
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK CONSUME SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023184941
     }
   ]
 }
