@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HUNGER STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041454358
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BREACH CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772041454629
@@ -291,6 +285,12 @@
       "text": "FLOW OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772041457375
+    },
+    {
+      "origin": "STREAM",
+      "text": "IMMUNE STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041457662
     }
   ]
 }
