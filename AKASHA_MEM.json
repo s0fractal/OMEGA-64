@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041409817
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RECON SHIELD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041409952
@@ -291,6 +285,12 @@
       "text": "OSMOSIS STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041412818
+    },
+    {
+      "origin": "STREAM",
+      "text": "SEIZE CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041413134
     }
   ]
 }
