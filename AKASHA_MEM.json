@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772040445959
-    },
-    {
       "origin": "INTERFACE",
       "text": "COHERE OSMOSIS BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STASIS RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772040450943
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHIELD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772040451223
     }
   ]
 }
