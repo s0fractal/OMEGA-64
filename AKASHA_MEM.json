@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER SHELTER STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772033715895
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772033716041
@@ -291,6 +285,12 @@
       "text": "BLOOM UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772033719570
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772033719761
     }
   ]
 }
