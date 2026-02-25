@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE IMMUNE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041118837
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041119401
@@ -291,6 +285,12 @@
       "text": "WATCH WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041123265
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SEIZE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041123417
     }
   ]
 }
