@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WAIT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772027176180
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772027176504
@@ -291,6 +285,12 @@
       "text": "DECAY HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772027180721
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME BEYOND BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772027181328
     }
   ]
 }
