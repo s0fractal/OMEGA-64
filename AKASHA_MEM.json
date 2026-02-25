@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772023169521
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023169707
@@ -259,6 +253,12 @@
       "text": "SEIZE STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023175353
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023175643
     }
   ]
 }
