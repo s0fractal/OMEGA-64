@@ -55,12 +55,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "PURE STASIS WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772020538196
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH STRIFE DECAY",
       "mood": "AGGRESSIVE",
@@ -143,6 +137,12 @@
       "text": "HUNGER DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020547674
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK BEYOND SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772020547855
     }
   ]
 }
