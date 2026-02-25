@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HEAL STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772027821813
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS CONSUME DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WATCH PURE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772027835474
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS BREACH SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027835932
     }
   ]
 }
