@@ -103,12 +103,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON GUARD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772021651962
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772021652136
@@ -190,6 +184,12 @@
       "text": "GIVING STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772021656384
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE CONSUME DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021656705
     }
   ]
 }
