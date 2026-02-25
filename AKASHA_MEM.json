@@ -125,12 +125,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD RECON SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772022201626
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIFE DRAIN DRAIN",
       "mood": "AGGRESSIVE",
@@ -213,6 +207,12 @@
       "text": "REFLECT RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022208031
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHELTER SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772022208393
     }
   ]
 }
