@@ -153,12 +153,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY SHOCK CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022629253
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS DRAIN DECAY",
       "mood": "AGGRESSIVE",
@@ -241,6 +235,12 @@
       "text": "GIVING UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772022633079
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE SHELTER STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772022633294
     }
   ]
 }
