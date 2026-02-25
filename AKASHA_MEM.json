@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60000A00",
     "66006666",
     "06660600",
     "000B0000",
@@ -199,15 +198,10 @@
     "00666000",
     "AAAAA00A",
     "000AAAAA",
-    "AA0A0A0A"
+    "AA0A0A0A",
+    "A0BBC0DD"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "CONSUME STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032757677
-    },
     {
       "origin": "ARCHIVIST",
       "text": "RESONATE GIVING FLOW",
@@ -291,6 +285,12 @@
       "text": "RECON WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772032761964
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH HUNGER SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032762320
     }
   ]
 }
