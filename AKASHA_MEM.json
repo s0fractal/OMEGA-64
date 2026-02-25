@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING OSMOSIS RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040255196
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772040260140
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772040260331
     }
   ]
 }
