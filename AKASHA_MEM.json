@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772027410713
-    },
-    {
       "origin": "INTERFACE",
       "text": "CONSUME SEIZE STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772027422981
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION SPARK VISION",
+      "mood": "CREATIVE",
+      "tick": 1772027423255
     }
   ]
 }
