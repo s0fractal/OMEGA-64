@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772028236205
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK WAVE WAVE",
       "mood": "CREATIVE",
       "tick": 1772028236663
@@ -291,6 +285,12 @@
       "text": "GIVING RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772028249503
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772028249957
     }
   ]
 }
