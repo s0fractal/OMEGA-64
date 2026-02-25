@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD IMMUNE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772032590722
-    },
-    {
       "origin": "STREAM",
       "text": "SEIZE STRIFE CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772032594754
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS SHIELD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772032594930
     }
   ]
 }
