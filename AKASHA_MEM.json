@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIFE CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040631511
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHIELD IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772040631678
@@ -291,6 +285,12 @@
       "text": "SYNC OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040634612
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD WATCH WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040635039
     }
   ]
 }
