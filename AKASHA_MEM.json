@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE SYNC SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772026156568
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772026156778
@@ -291,6 +285,12 @@
       "text": "DREAM WAVE WAVE",
       "mood": "CREATIVE",
       "tick": 1772026160968
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WAIT STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772026161149
     }
   ]
 }
