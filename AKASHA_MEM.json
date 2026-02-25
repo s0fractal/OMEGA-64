@@ -41,12 +41,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772019888098
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIFE SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
@@ -129,6 +123,12 @@
       "text": "OSMOSIS HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772019898298
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD SHIELD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772019899294
     }
   ]
 }
