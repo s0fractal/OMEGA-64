@@ -119,12 +119,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772022086188
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022086367
@@ -206,6 +200,12 @@
       "text": "SHELTER IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022091052
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK BREACH SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022091251
     }
   ]
 }
