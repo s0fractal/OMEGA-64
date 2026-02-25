@@ -80,12 +80,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT SHIELD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772021117934
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS STABLE GIVING",
       "mood": "HARMONIC",
@@ -168,6 +162,12 @@
       "text": "RECON STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772021124979
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SHOCK STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021125523
     }
   ]
 }
