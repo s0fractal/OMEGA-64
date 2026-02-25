@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "BLOOM FLOW OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772040744590
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE COHERE FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SEIZE SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772040750228
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040750360
     }
   ]
 }
