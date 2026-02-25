@@ -202,12 +202,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772024072685
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAVE WITNESS BEYOND",
       "mood": "CREATIVE",
       "tick": 1772024072853
@@ -289,6 +283,12 @@
       "text": "DECAY SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772024076820
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024077622
     }
   ]
 }
