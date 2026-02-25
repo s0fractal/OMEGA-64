@@ -95,12 +95,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021498104
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHOCK STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021498439
@@ -182,6 +176,12 @@
       "text": "SHOCK SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772021510195
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING RESONATE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772021511248
     }
   ]
 }
