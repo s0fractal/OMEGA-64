@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON SHIELD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772039898473
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772039899045
@@ -291,6 +285,12 @@
       "text": "DRAIN DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772039907936
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772039908544
     }
   ]
 }
