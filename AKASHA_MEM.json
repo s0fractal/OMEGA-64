@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE SYNC HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772025721306
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHELTER WAIT GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772025725909
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025726141
     }
   ]
 }
