@@ -114,12 +114,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021978042
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772021979054
@@ -201,6 +195,12 @@
       "text": "CONSUME HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772021987327
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772021987702
     }
   ]
 }
