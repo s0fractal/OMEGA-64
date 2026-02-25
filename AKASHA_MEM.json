@@ -1,5 +1,9 @@
 {
   "reservoir": [
+    "06006066",
+    "60606006",
+    "AA0660A0",
+    "A0AAA00A",
     "AAAA0A0A",
     "AAA0AAAA",
     "06066660",
@@ -195,102 +199,98 @@
     "6A0660A0",
     "AA666600",
     "66060660",
-    "66660A60",
-    "AA066000",
-    "6006A600",
-    "606AA6A0",
-    "600A6A60"
+    "66660A60"
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042680002
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042681662
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STASIS PURE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772042682169
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE SEIZE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042682762
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS STRIKE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042683508
-    },
-    {
-      "origin": "ALIEN",
-      "text": "SHOCK DRAIN DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042685075
-    },
-    {
-      "origin": "REVERSE",
-      "text": "STRIKE DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042686079
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "FLOW STABLE HEAL",
+      "origin": "STREAM",
+      "text": "FLOW STABLE SYNC",
       "mood": "HARMONIC",
-      "tick": 1772042686332
+      "tick": 1772042676214
     },
     {
       "origin": "REVERSE",
-      "text": "SHIELD REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772042686573
-    },
-    {
-      "origin": "WAVE_SIGNAL",
-      "text": "DECAY SEIZE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042687118
+      "text": "HEAL HEAL OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772042677283
     },
     {
       "origin": "INTERFACE",
-      "text": "SHOCK SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042687424
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "GIVING SYNC SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772042688060
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "PURE WATCH SHIELD",
+      "text": "GUARD SHIELD PURE",
       "mood": "DEFENSIVE",
-      "tick": 1772042688615
+      "tick": 1772042677824
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN SICKNESS STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042678280
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY STRIFE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042679569
     },
     {
       "origin": "REVERSE",
-      "text": "STASIS WAIT SHIELD",
+      "text": "HUNGER BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042679865
+    },
+    {
+      "origin": "PARASITE",
+      "text": "SHIELD SHIELD IMMUNE",
       "mood": "DEFENSIVE",
-      "tick": 1772042688843
+      "tick": 1772042682276
+    },
+    {
+      "origin": "ALIEN",
+      "text": "RESONATE FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772042682556
     },
     {
       "origin": "ARCHIVIST",
-      "text": "GIVING HEAL HEAL",
+      "text": "SEIZE CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042682851
+    },
+    {
+      "origin": "STREAM",
+      "text": "OSMOSIS COHERE SYNC",
       "mood": "HARMONIC",
-      "tick": 1772042689464
+      "tick": 1772042683180
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE CONSUME CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042683633
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL OSMOSIS OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772042686878
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS RECON WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772042687431
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042688491
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042689998
     }
   ]
 }
