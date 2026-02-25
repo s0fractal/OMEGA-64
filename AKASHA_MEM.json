@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY FLOW BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772040204354
-    },
-    {
       "origin": "INTERFACE",
       "text": "CONSUME SEIZE HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "REFLECT RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772040211403
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY FLOW HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772040215907
     }
   ]
 }
