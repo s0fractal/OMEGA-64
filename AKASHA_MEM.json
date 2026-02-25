@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772025390199
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772025390433
@@ -291,6 +285,12 @@
       "text": "FLOW OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772025394216
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772025394461
     }
   ]
 }
