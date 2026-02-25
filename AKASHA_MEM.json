@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FORGE FORGE AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772026917657
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772026917915
@@ -291,6 +285,12 @@
       "text": "GIVING HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772026922306
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772026922877
     }
   ]
 }
