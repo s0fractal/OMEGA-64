@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "PURE IMMUNE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040407524
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY STRIKE SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIKE SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040410232
+    },
+    {
+      "origin": "STREAM",
+      "text": "OSMOSIS OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772040410439
     }
   ]
 }
