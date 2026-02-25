@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772038645828
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772038646060
@@ -291,6 +285,12 @@
       "text": "DRAIN DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772038648603
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DECAY SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038648805
     }
   ]
 }
