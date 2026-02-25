@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772033005808
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772033005979
@@ -291,6 +285,12 @@
       "text": "STABLE GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772033008141
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DRAIN STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033008469
     }
   ]
 }
