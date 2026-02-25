@@ -203,18 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "FLOW FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042779856
-    },
-    {
-      "origin": "REVERSE",
-      "text": "STABLE BLOOM STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042782532
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SYNC COHERE RESONATE",
       "mood": "HARMONIC",
@@ -275,22 +263,34 @@
       "tick": 1772042792718
     },
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH SHELTER STASIS",
+      "origin": "REVERSE",
+      "text": "RECON WATCH RECON",
       "mood": "DEFENSIVE",
-      "tick": 1772042795821
+      "tick": 1772042795524
     },
     {
-      "origin": "ALIEN",
-      "text": "SYNC FLOW RESONATE",
+      "origin": "ARCHIVIST",
+      "text": "DECAY DRAIN CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042797277
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH SICKNESS STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042797488
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "FLOW FLOW BLOOM",
       "mood": "HARMONIC",
-      "tick": 1772042796669
+      "tick": 1772042797862
     },
     {
-      "origin": "ALIEN",
-      "text": "EVOLVE WITNESS WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772042797013
+      "origin": "ARCHIVIST",
+      "text": "SEIZE SEIZE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042798424
     }
   ]
 }
