@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041375552
-    },
-    {
       "origin": "STREAM",
       "text": "SYNC BLOOM RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772041379874
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH STRIKE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041380017
     }
   ]
 }
