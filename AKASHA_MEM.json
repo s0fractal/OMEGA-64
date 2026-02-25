@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "PURE STASIS STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772020159366
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
@@ -136,6 +130,12 @@
       "text": "DRAIN HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020170041
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE STABLE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772020170626
     }
   ]
 }
