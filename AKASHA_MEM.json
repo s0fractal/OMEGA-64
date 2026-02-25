@@ -104,12 +104,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER WAIT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772021698781
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE RECON REFLECT",
       "mood": "DEFENSIVE",
@@ -192,6 +186,12 @@
       "text": "RECON WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772021704220
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SEIZE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021705154
     }
   ]
 }
