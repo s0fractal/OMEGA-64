@@ -179,12 +179,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023347965
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023348125
@@ -266,6 +260,12 @@
       "text": "CONSUME HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772023352222
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772023352350
     }
   ]
 }
