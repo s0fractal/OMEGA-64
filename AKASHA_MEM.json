@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STABLE GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772041316521
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIKE HUNGER DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT PURE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041321181
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772041321545
     }
   ]
 }
