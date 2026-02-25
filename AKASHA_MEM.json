@@ -171,12 +171,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023188687
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS WATCH WATCH",
       "mood": "DEFENSIVE",
@@ -259,6 +253,12 @@
       "text": "GUARD PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023194681
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE CONSUME STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023196726
     }
   ]
 }
