@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772040721422
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE SHELTER WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHOCK SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772040724692
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIFE SEIZE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040724854
     }
   ]
 }
