@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042247862
-    },
-    {
       "origin": "PURE_MATH",
       "text": "RECON WATCH WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772042256022
+    },
+    {
+      "origin": "STREAM",
+      "text": "STRIFE STRIFE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042256672
     }
   ]
 }
