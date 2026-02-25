@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772039722301
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772039722690
@@ -291,6 +285,12 @@
       "text": "STRIKE STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772039729439
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS STABLE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772039729914
     }
   ]
 }
