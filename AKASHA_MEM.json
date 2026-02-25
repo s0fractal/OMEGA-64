@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK HUNGER SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039961896
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772039962352
@@ -291,6 +285,12 @@
       "text": "GIVING UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772039970910
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772039971383
     }
   ]
 }
