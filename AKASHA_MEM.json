@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL RESONATE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772031175235
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772031175503
@@ -291,6 +285,12 @@
       "text": "STASIS WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772031180868
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772031181291
     }
   ]
 }
