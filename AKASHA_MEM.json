@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY STRIKE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025536195
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772025536377
@@ -291,6 +285,12 @@
       "text": "IMMUNE STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772025541688
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025541897
     }
   ]
 }
