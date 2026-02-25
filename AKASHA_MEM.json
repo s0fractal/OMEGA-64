@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031193611
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772031193950
@@ -291,6 +285,12 @@
       "text": "PURE SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772031199752
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772031201012
     }
   ]
 }
