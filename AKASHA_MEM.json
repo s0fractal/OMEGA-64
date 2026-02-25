@@ -106,12 +106,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE HEAL BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772021716056
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT WAIT SHIELD",
       "mood": "DEFENSIVE",
@@ -194,6 +188,12 @@
       "text": "REFLECT IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772021720160
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW RESONATE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772021720325
     }
   ]
 }
