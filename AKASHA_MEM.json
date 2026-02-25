@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER GUARD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772029287370
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772029288053
@@ -291,6 +285,12 @@
       "text": "STRIKE STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772029297840
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029298218
     }
   ]
 }
