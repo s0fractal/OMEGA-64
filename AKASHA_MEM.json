@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "UNIFY BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772026043583
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC GIVING HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HEAL RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772026050390
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE BECOME WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772026050624
     }
   ]
 }
