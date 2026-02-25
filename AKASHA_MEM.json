@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS RESONATE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772037889683
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772037889894
@@ -291,6 +285,12 @@
       "text": "SPARK WAVE SPARK",
       "mood": "CREATIVE",
       "tick": 1772037892740
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WAIT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772037892929
     }
   ]
 }
