@@ -43,12 +43,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH DECAY SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020032117
-    },
-    {
       "origin": "REVERSE",
       "text": "GUARD RECON WAIT",
       "mood": "DEFENSIVE",
@@ -131,6 +125,12 @@
       "text": "OSMOSIS RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772020043386
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020044370
     }
   ]
 }
