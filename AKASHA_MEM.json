@@ -173,12 +173,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DREAM VISION BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772023230394
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023231036
@@ -260,6 +254,12 @@
       "text": "GUARD WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023234016
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW HEAL GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772023234175
     }
   ]
 }
