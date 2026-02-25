@@ -116,12 +116,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAVE BECOME AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772022067777
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK WAVE SPARK",
       "mood": "CREATIVE",
       "tick": 1772022068130
@@ -203,6 +197,12 @@
       "text": "SHIELD STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022072258
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIFE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022072583
     }
   ]
 }
