@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "SEIZE DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041672599
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE HUNGER HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STASIS SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772041676662
+    },
+    {
+      "origin": "PARADOX",
+      "text": "RESONATE UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772041676810
     }
   ]
 }
