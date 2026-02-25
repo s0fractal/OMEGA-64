@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041144586
-    },
-    {
       "origin": "REVERSE",
       "text": "IMMUNE WAIT SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041150652
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS SICKNESS BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041150932
     }
   ]
 }
