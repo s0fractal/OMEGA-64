@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD WAIT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772031088269
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772031088560
@@ -291,6 +285,12 @@
       "text": "SHELTER RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772031096516
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772031097467
     }
   ]
 }
