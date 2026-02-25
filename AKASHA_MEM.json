@@ -162,12 +162,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SICKNESS DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022909061
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE STRIFE STRIKE",
       "mood": "AGGRESSIVE",
@@ -250,6 +244,12 @@
       "text": "PURE SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022914394
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022914690
     }
   ]
 }
