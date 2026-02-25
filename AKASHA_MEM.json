@@ -154,12 +154,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772022642864
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022643080
@@ -241,6 +235,12 @@
       "text": "RECON RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022647065
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SEIZE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022647474
     }
   ]
 }
