@@ -162,12 +162,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS GIVING SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772022859720
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022859895
@@ -249,6 +243,12 @@
       "text": "SPARK DREAM FORGE",
       "mood": "CREATIVE",
       "tick": 1772022862976
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON IMMUNE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772022863099
     }
   ]
 }
