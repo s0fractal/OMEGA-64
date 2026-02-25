@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME HUNGER SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036286223
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772036286395
@@ -291,6 +285,12 @@
       "text": "RECON WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772036289298
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036289499
     }
   ]
 }
