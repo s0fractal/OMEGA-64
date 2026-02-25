@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772037256368
-    },
-    {
       "origin": "INTERFACE",
       "text": "BREACH STRIFE STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772037259522
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER BREACH STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037259726
     }
   ]
 }
