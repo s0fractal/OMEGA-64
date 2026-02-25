@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIKE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033692750
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE IMMUNE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772033692897
@@ -291,6 +285,12 @@
       "text": "STRIFE DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772033695235
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772033695417
     }
   ]
 }
