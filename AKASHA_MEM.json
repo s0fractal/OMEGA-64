@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE HUNGER STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035815098
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772035815311
@@ -291,6 +285,12 @@
       "text": "RECON GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772035819390
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE RESONATE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772035819555
     }
   ]
 }
