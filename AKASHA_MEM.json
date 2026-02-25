@@ -116,12 +116,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022046474
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772022048326
@@ -203,6 +197,12 @@
       "text": "SICKNESS SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022054741
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772022054934
     }
   ]
 }
