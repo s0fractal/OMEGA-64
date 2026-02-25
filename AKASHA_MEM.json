@@ -123,12 +123,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE CONSUME STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022111764
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022111952
@@ -210,6 +204,12 @@
       "text": "FORGE FORGE BEYOND",
       "mood": "CREATIVE",
       "tick": 1772022116772
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022117400
     }
   ]
 }
