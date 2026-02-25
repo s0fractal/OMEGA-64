@@ -131,12 +131,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022369743
-    },
-    {
       "origin": "REVERSE",
       "text": "SPARK WITNESS AWAKEN",
       "mood": "CREATIVE",
@@ -219,6 +213,12 @@
       "text": "STASIS RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022375295
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHELTER IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022375538
     }
   ]
 }
