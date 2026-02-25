@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIFE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034293064
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772034293248
@@ -291,6 +285,12 @@
       "text": "HEAL COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772034296214
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND DREAM BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772034296387
     }
   ]
 }
