@@ -92,12 +92,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021371139
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER GUARD PURE",
       "mood": "DEFENSIVE",
@@ -180,6 +174,12 @@
       "text": "HEAL OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772021391010
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON PURE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021392223
     }
   ]
 }
