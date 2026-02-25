@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041785922
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING FLOW RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772041790420
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS WATCH SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041790614
     }
   ]
 }
