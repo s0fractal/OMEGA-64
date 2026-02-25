@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH STASIS REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772024241222
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772024241448
@@ -291,6 +285,12 @@
       "text": "STRIKE STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772024244444
+    },
+    {
+      "origin": "STREAM",
+      "text": "RESONATE UNIFY SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772024244631
     }
   ]
 }
