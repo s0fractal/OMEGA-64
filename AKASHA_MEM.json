@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE COHERE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772026383167
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772026383363
@@ -291,6 +285,12 @@
       "text": "RESONATE BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772026387166
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026387437
     }
   ]
 }
