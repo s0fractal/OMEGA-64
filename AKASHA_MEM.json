@@ -172,15 +172,10 @@
     "01000000",
     "00100000",
     "66606666",
-    "06660660"
+    "06660660",
+    "60006660"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STABLE HEAL FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772023327920
-    },
     {
       "origin": "REVERSE",
       "text": "DREAM SPARK DREAM",
@@ -264,6 +259,12 @@
       "text": "HEAL UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772023333691
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS SHIELD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023333865
     }
   ]
 }
