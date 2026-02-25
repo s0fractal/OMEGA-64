@@ -161,12 +161,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD WAIT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772022833518
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022833684
@@ -248,6 +242,12 @@
       "text": "SYNC SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772022841439
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772022841674
     }
   ]
 }
