@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040032392
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD SHIELD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772040066150
@@ -291,6 +285,12 @@
       "text": "SEIZE DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772040181892
+    },
+    {
+      "origin": "ALPHA_STREAM",
+      "text": "STABLE BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772040183045
     }
   ]
 }
