@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035663518
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772035663738
@@ -291,6 +285,12 @@
       "text": "WATCH SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772035666606
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC GIVING HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772035666840
     }
   ]
 }
