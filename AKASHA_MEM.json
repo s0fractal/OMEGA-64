@@ -154,12 +154,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE STRIFE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022628981
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022629253
@@ -241,6 +235,12 @@
       "text": "SHIELD WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022632914
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING UNIFY HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772022633079
     }
   ]
 }
