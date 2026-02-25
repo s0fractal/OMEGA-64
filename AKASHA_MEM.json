@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY DRAIN DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033560453
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772033560739
@@ -291,6 +285,12 @@
       "text": "SHIELD GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772033564091
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND VISION VISION",
+      "mood": "CREATIVE",
+      "tick": 1772033564315
     }
   ]
 }
