@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE CONSUME SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025326774
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772025327172
@@ -291,6 +285,12 @@
       "text": "STASIS WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772025330455
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER STASIS GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772025330666
     }
   ]
 }
