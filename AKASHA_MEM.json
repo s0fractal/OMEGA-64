@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SEIZE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037002037
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772037002234
@@ -291,6 +285,12 @@
       "text": "IMMUNE SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772037004958
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772037005126
     }
   ]
 }
