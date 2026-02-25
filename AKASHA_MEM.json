@@ -181,12 +181,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772023420843
-    },
-    {
-      "origin": "REVERSE",
       "text": "EVOLVE FORGE SPARK",
       "mood": "CREATIVE",
       "tick": 1772023421153
@@ -268,6 +262,12 @@
       "text": "RECON SHELTER SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023423842
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WATCH SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023424021
     }
   ]
 }
