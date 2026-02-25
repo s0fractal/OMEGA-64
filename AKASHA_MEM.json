@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "RESONATE UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772019626098
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
@@ -114,6 +108,12 @@
       "text": "BREACH SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772019633491
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT WAIT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772019633927
     }
   ]
 }
