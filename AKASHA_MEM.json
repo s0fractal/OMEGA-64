@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027340386
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772027340614
@@ -291,6 +285,12 @@
       "text": "HEAL BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772027346380
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SHOCK DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027350906
     }
   ]
 }

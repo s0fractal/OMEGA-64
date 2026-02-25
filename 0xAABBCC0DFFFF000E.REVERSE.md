@@ -1,8 +1,8 @@
 ---
 eigenvalue: '0xAABBCC0DFFFF000E'
-energy: 49.5
-x: 704
-'y': 399
+energy: 49.9
+x: 701
+'y': 395
 resonance: 50
 thought: WANDER_BONDING
 logic: AABBCC0D
@@ -62,8 +62,8 @@ ex:
   - '0x606660600000000E'
   - '0x6066606000000008'
   - '0xAABBCC0D0000000A'
-  - '0xAABBCC0DFFFF0008'
-  - '0xAABBCC0DFFFF000A'
+  - '0xAABBCC0D0000000C'
+  - '0xAABBCC0D0000000E'
   - '0xAABBCC0DFFFF000C'
 ---
 
