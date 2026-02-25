@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW STABLE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772025271089
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772025271318
@@ -291,6 +285,12 @@
       "text": "SHIELD STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772025274141
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS WAVE BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772025274548
     }
   ]
 }
