@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER SHOCK BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040879992
-    },
-    {
       "origin": "INTERFACE",
       "text": "GUARD REFLECT WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD SHIELD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040883409
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT WATCH STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772040883539
     }
   ]
 }
