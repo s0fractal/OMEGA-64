@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS REFLECT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040425867
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772040426089
@@ -291,6 +285,12 @@
       "text": "STASIS REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772040428245
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040428449
     }
   ]
 }
