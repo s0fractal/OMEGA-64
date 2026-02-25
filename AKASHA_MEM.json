@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00060606",
     "06600660",
     "A6660000",
     "06006606",
@@ -199,15 +198,10 @@
     "A0BBC000",
     "A0AA0A0A",
     "00060000",
-    "AA0BC0DD"
+    "AA0BC0DD",
+    "0AAA00A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHELTER SHIELD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772033077093
-    },
     {
       "origin": "REVERSE",
       "text": "CONSUME SICKNESS DECAY",
@@ -291,6 +285,12 @@
       "text": "REFLECT SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772033081978
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772033082169
     }
   ]
 }
