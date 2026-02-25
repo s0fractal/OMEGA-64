@@ -175,12 +175,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER PURE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023267582
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HEAL COHERE STABLE",
       "mood": "HARMONIC",
@@ -263,6 +257,12 @@
       "text": "PURE SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023272213
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023272365
     }
   ]
 }
