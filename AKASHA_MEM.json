@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DREAM BEYOND SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772036867726
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772036867889
@@ -291,6 +285,12 @@
       "text": "AWAKEN DREAM SPARK",
       "mood": "CREATIVE",
       "tick": 1772036870347
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER STASIS WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772036870510
     }
   ]
 }
