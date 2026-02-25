@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772038573427
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH IMMUNE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772038573655
@@ -291,6 +285,12 @@
       "text": "RECON SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772038576547
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038576762
     }
   ]
 }
