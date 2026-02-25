@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA6660A0",
     "00600060",
     "00060600",
     "06666000",
@@ -199,15 +198,10 @@
     "AAAAAAAA",
     "01000000",
     "06660060",
-    "00600606"
+    "00600606",
+    "AA0A0AAA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "IMMUNE SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772034159937
-    },
     {
       "origin": "REVERSE",
       "text": "GIVING SYNC FLOW",
@@ -291,6 +285,12 @@
       "text": "STASIS GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772034163531
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK STRIFE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034163723
     }
   ]
 }
