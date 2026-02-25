@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66660060",
     "A0000CDD",
     "00606600",
     "00000000",
@@ -199,15 +198,10 @@
     "AABBCCD0",
     "A6666666",
     "60060066",
-    "A0AA0AA0"
+    "A0AA0AA0",
+    "000A00A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "HUNGER HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039234326
-    },
     {
       "origin": "REVERSE",
       "text": "SICKNESS DRAIN DECAY",
@@ -291,6 +285,12 @@
       "text": "BLOOM COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772039237134
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL UNIFY HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772039237338
     }
   ]
 }
