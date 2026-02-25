@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66606060",
     "A0AAA0AA",
     "BBB00000",
     "AA0A00AA",
@@ -199,15 +198,10 @@
     "66060606",
     "AAA0A00A",
     "A00A0A00",
-    "AAAAA000"
+    "AAAAA000",
+    "AAAAAA00"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SICKNESS CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036630929
-    },
     {
       "origin": "REVERSE",
       "text": "RECON WAIT RECON",
@@ -291,6 +285,12 @@
       "text": "SHOCK HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772036635676
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036635880
     }
   ]
 }
