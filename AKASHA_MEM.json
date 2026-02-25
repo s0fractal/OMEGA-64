@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RECON RECON REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020709823
-    },
-    {
       "origin": "REVERSE",
       "text": "FORGE AWAKEN WAVE",
       "mood": "CREATIVE",
@@ -150,6 +144,12 @@
       "text": "STASIS IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772020715983
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS SHIELD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772020716223
     }
   ]
 }
