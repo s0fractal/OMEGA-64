@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "REFLECT REFLECT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772040191744
-    },
-    {
       "origin": "STREAM",
       "text": "PURE WATCH WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772040200104
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD RECON SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772040200336
     }
   ]
 }
