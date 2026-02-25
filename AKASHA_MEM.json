@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SICKNESS BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041149412
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER STASIS WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772041154276
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE SICKNESS BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041154456
     }
   ]
 }
