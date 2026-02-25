@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHELTER GUARD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772034516394
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE BLOOM SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SICKNESS SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772034519336
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772034519546
     }
   ]
 }
