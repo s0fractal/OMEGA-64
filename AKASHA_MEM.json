@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "FA0AAA00",
     "A0AA0A00",
     "66006060",
     "AAAAA0AA",
@@ -199,15 +198,10 @@
     "AA6666A0",
     "00066006",
     "06600006",
-    "000AAA00"
+    "000AAA00",
+    "00060660"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SICKNESS SEIZE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031490590
-    },
     {
       "origin": "REVERSE",
       "text": "STRIFE SICKNESS BREACH",
@@ -291,6 +285,12 @@
       "text": "REFLECT STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772031499987
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE OSMOSIS HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772031500409
     }
   ]
 }
