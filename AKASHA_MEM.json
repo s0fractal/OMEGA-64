@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SPARK FORGE WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772034159605
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772034159751
@@ -291,6 +285,12 @@
       "text": "COHERE HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034163186
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772034163379
     }
   ]
 }
