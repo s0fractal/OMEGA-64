@@ -1,5 +1,7 @@
 {
   "reservoir": [
+    "AA000600",
+    "A0AAA000",
     "AAA0A0AA",
     "66660060",
     "00000000",
@@ -196,101 +198,99 @@
     "AA00A000",
     "BBB00000",
     "6606AA66",
-    "A6660600",
-    "AA666600",
-    "0AAA0A00",
-    "0A0AA0A0"
+    "A6A66000",
+    "60060666"
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772042480788
-    },
-    {
-      "origin": "REVERSE",
-      "text": "BEYOND DREAM EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772042482084
-    },
-    {
-      "origin": "REVERSE",
-      "text": "HEAL RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772042482974
+      "origin": "ARCHIVIST",
+      "text": "DECAY DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042478878
     },
     {
       "origin": "ARCHIVIST",
-      "text": "COHERE COHERE GIVING",
+      "text": "RESONATE BLOOM BLOOM",
       "mood": "HARMONIC",
-      "tick": 1772042483712
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "PURE RECON GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042484950
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "GIVING GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772042485979
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "COHERE FLOW OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772042486195
-    },
-    {
-      "origin": "REVERSE",
-      "text": "PURE WAIT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772042486358
-    },
-    {
-      "origin": "REVERSE",
-      "text": "GIVING COHERE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772042487113
-    },
-    {
-      "origin": "REVERSE",
-      "text": "UNIFY HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772042487711
-    },
-    {
-      "origin": "REVERSE",
-      "text": "STABLE RESONATE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772042488272
-    },
-    {
-      "origin": "REVERSE",
-      "text": "GUARD WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772042488874
+      "tick": 1772042486055
     },
     {
       "origin": "STREAM",
-      "text": "OSMOSIS UNIFY SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772042489447
+      "text": "SHELTER SHIELD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042486394
     },
     {
       "origin": "REVERSE",
-      "text": "STRIKE BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042490658
+      "text": "PURE REFLECT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042486736
     },
     {
-      "origin": "INTERFACE",
-      "text": "SYNC GIVING RESONATE",
+      "origin": "REVERSE",
+      "text": "UNIFY OSMOSIS STABLE",
       "mood": "HARMONIC",
-      "tick": 1772042491980
+      "tick": 1772042486997
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042487176
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS REFLECT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042487466
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS STABLE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772042487642
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC BLOOM FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042488247
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SEIZE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042488371
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042490101
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042490218
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772042490618
+    },
+    {
+      "origin": "STREAM",
+      "text": "SYNC UNIFY STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042491123
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW COHERE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772042491427
     }
   ]
 }
