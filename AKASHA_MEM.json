@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING OSMOSIS SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772037897642
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772037897842
@@ -291,6 +285,12 @@
       "text": "OSMOSIS FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772037901619
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD REFLECT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772037901846
     }
   ]
 }
