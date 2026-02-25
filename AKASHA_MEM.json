@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06606060",
     "AA00A0A0",
     "A0BBC0DD",
     "A6666060",
@@ -199,15 +198,10 @@
     "00006660",
     "AA0AA0AA",
     "60600006",
-    "66006666"
+    "66006666",
+    "06000000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STABLE OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772039000734
-    },
     {
       "origin": "REVERSE",
       "text": "PURE IMMUNE SHELTER",
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772039004242
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE COHERE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772039004440
     }
   ]
 }
