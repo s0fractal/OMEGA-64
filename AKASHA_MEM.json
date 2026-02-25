@@ -169,12 +169,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD RECON STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772023086023
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER STRIKE SEIZE",
       "mood": "AGGRESSIVE",
@@ -257,6 +251,12 @@
       "text": "FLOW COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772023088931
+    },
+    {
+      "origin": "STREAM",
+      "text": "BLOOM FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772023089500
     }
   ]
 }
