@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING STABLE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772034575269
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772034575464
@@ -291,6 +285,12 @@
       "text": "OSMOSIS GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772034580521
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER PURE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772034580697
     }
   ]
 }
