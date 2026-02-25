@@ -54,12 +54,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHOCK DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020363100
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "REFLECT WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772020364330
@@ -141,6 +135,12 @@
       "text": "STRIFE CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020375070
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHELTER STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772020376280
     }
   ]
 }
