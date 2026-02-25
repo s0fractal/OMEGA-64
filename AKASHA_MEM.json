@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN STRIKE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020466948
-    },
-    {
       "origin": "INTERFACE",
       "text": "WATCH REFLECT RECON",
       "mood": "DEFENSIVE",
@@ -142,6 +136,12 @@
       "text": "COHERE COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772020474008
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY HUNGER BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020474232
     }
   ]
 }
