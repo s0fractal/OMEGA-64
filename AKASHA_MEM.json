@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHIELD SHIELD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772035010951
-    },
-    {
       "origin": "REVERSE",
       "text": "WAIT SHELTER SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772035014712
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772035014926
     }
   ]
 }
