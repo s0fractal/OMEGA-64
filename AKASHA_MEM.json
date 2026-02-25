@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030153822
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772030154154
@@ -291,6 +285,12 @@
       "text": "BREACH CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772030158725
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND FORGE BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772030159085
     }
   ]
 }
