@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772024434490
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772024434659
@@ -291,6 +285,12 @@
       "text": "COHERE RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772024437360
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772024437582
     }
   ]
 }
