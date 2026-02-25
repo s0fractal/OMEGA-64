@@ -64,12 +64,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "DECAY STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020744955
-    },
-    {
-      "origin": "INTERFACE",
       "text": "BREACH DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772020745628
@@ -151,6 +145,12 @@
       "text": "SHELTER REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020753348
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020753511
     }
   ]
 }
