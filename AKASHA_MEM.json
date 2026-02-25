@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034375164
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772034375328
@@ -291,6 +285,12 @@
       "text": "UNIFY BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772034379125
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK VISION AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772034379307
     }
   ]
 }
