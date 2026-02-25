@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER STASIS WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772035552800
-    },
-    {
       "origin": "INTERFACE",
       "text": "RESONATE COHERE RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STASIS IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772035557298
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DRAIN DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035557521
     }
   ]
 }
