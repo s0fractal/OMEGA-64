@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "AWAKEN BEYOND WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772025681426
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772025682890
@@ -291,6 +285,12 @@
       "text": "BREACH SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772025689070
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772025689362
     }
   ]
 }
