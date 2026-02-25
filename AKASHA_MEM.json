@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAA0A00A",
     "A00A0A00",
     "AAAAA000",
     "AAAAAA00",
@@ -199,15 +198,10 @@
     "0A00AAA0",
     "0A6666A6",
     "00AA0AAA",
-    "0A00AA0A"
+    "0A00AA0A",
+    "AAAAAAA0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WATCH RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772038030266
-    },
     {
       "origin": "REVERSE",
       "text": "SHIELD REFLECT RECON",
@@ -291,6 +285,12 @@
       "text": "COHERE RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772038036795
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER CONSUME SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038037036
     }
   ]
 }
