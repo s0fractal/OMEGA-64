@@ -200,12 +200,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK STRIKE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024050723
-    },
-    {
-      "origin": "REVERSE",
       "text": "DREAM FORGE DREAM",
       "mood": "CREATIVE",
       "tick": 1772024050899
@@ -287,6 +281,12 @@
       "text": "GIVING OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772024053825
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON STASIS SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772024054013
     }
   ]
 }
