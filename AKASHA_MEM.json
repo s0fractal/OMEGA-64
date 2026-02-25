@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "EVOLVE BECOME BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772033784273
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772033784447
@@ -291,6 +285,12 @@
       "text": "GIVING UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772033791293
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DECAY SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033791637
     }
   ]
 }
