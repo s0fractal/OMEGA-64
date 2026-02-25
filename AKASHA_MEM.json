@@ -164,12 +164,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772022932472
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK BEYOND BECOME",
       "mood": "CREATIVE",
       "tick": 1772022932650
@@ -251,6 +245,12 @@
       "text": "PURE WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022938488
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION AWAKEN VISION",
+      "mood": "CREATIVE",
+      "tick": 1772022938713
     }
   ]
 }
