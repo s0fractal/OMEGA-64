@@ -75,15 +75,10 @@
     "60660000",
     "0BBB0000",
     "AA0AAA0A",
-    "66A066A0"
+    "66A066A0",
+    "B0B00000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BECOME WAVE AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772021090745
-    },
     {
       "origin": "REVERSE",
       "text": "SICKNESS SHOCK SEIZE",
@@ -167,6 +162,12 @@
       "text": "PURE STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772021098348
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIFE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021098995
     }
   ]
 }
