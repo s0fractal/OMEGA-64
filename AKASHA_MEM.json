@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS EVOLVE DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772026160788
-    },
-    {
-      "origin": "REVERSE",
       "text": "DREAM WAVE WAVE",
       "mood": "CREATIVE",
       "tick": 1772026160968
@@ -291,6 +285,12 @@
       "text": "STRIKE STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772026166879
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772026169354
     }
   ]
 }
