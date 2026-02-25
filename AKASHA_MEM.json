@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037279210
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772037279386
@@ -291,6 +285,12 @@
       "text": "WAIT IMMUNE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772037282825
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL GIVING HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772037283031
     }
   ]
 }
