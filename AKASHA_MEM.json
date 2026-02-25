@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN HUNGER STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041547308
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772041547490
@@ -291,6 +285,12 @@
       "text": "IMMUNE GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772041551710
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "FLOW UNIFY GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041552164
     }
   ]
 }
