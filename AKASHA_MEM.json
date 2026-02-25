@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033547998
-    },
-    {
       "origin": "INTERFACE",
       "text": "STASIS RECON SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772033553188
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033553382
     }
   ]
 }
