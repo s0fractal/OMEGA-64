@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD SHELTER WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772040512463
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING HEAL BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HEAL HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772040514656
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772040514902
     }
   ]
 }
