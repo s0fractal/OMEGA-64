@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON SHELTER SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772024187993
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772024188173
@@ -291,6 +285,12 @@
       "text": "SYNC GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772024191315
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772024191489
     }
   ]
 }
