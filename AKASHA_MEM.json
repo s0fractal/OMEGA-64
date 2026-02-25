@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772036968073
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772036968437
@@ -291,6 +285,12 @@
       "text": "RECON RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772036971997
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME DREAM SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772036972268
     }
   ]
 }
