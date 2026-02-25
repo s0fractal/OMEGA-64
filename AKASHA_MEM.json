@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "STRIKE HUNGER SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041831309
-    },
-    {
       "origin": "WORKER",
       "text": "REFLECT STASIS PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041836789
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SEIZE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041837122
     }
   ]
 }
