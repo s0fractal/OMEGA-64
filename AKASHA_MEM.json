@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON REFLECT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020381441
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE GIVING BLOOM",
       "mood": "HARMONIC",
@@ -141,6 +135,12 @@
       "text": "BLOOM SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772020388128
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SHOCK BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020388298
     }
   ]
 }
