@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHOCK BREACH HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035373272
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772035387046
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE RESONATE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772035387261
     }
   ]
 }
