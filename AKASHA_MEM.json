@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027015826
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772027016006
@@ -291,6 +285,12 @@
       "text": "WATCH WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772027019774
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE BLOOM UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772027020062
     }
   ]
 }
