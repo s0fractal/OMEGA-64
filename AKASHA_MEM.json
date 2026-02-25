@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SEIZE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027273321
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772027274049
@@ -291,6 +285,12 @@
       "text": "DECAY HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772027280193
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772027280517
     }
   ]
 }
