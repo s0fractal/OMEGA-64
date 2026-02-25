@@ -68,12 +68,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "HEAL SYNC UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772020830816
-    },
-    {
       "origin": "INTERFACE",
       "text": "WATCH RECON SHELTER",
       "mood": "DEFENSIVE",
@@ -156,6 +150,12 @@
       "text": "RESONATE OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772020840138
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHOCK HUNGER STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020840318
     }
   ]
 }
