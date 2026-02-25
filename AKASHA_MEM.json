@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035292212
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772035292484
@@ -291,6 +285,12 @@
       "text": "HUNGER SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772035296275
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT RECON WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772035296490
     }
   ]
 }
