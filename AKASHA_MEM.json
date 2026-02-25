@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024640669
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772024648111
@@ -291,6 +285,12 @@
       "text": "BLOOM UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772024662410
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT STASIS SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772024663949
     }
   ]
 }
