@@ -142,12 +142,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022469841
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE STABLE BLOOM",
       "mood": "HARMONIC",
@@ -230,6 +224,12 @@
       "text": "IMMUNE PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022475390
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW HEAL GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022475955
     }
   ]
 }
