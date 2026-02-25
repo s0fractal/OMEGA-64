@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH SHELTER STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772026035639
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772026035833
@@ -291,6 +285,12 @@
       "text": "SPARK DREAM EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772026040798
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD RECON RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772026040963
     }
   ]
 }
