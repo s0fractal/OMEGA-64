@@ -154,12 +154,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE STRIKE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022607347
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022607550
@@ -241,6 +235,12 @@
       "text": "CONSUME STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022614080
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE SYNC HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772022614311
     }
   ]
 }
