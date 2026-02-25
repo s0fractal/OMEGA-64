@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME CONSUME STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027340853
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772027341026
@@ -291,6 +285,12 @@
       "text": "DECAY STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772027351224
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WATCH STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772027352606
     }
   ]
 }
