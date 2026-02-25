@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_REVERSE",
-      "text": "WITNESS WAVE DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772026344161
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE FLOW OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SEIZE DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772026354969
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772026355278
     }
   ]
 }
