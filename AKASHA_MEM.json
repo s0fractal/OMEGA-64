@@ -76,12 +76,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STABLE COHERE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772020985721
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIFE CONSUME HUNGER",
       "mood": "AGGRESSIVE",
@@ -164,6 +158,12 @@
       "text": "WAIT WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772020994191
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020994343
     }
   ]
 }
