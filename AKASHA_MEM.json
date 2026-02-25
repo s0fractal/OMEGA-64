@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034253406
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772034253609
@@ -291,6 +285,12 @@
       "text": "STASIS PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772034258091
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIFE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034258329
     }
   ]
 }
