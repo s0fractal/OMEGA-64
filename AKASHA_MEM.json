@@ -183,12 +183,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING OSMOSIS HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772023550737
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS RESONATE STABLE",
       "mood": "HARMONIC",
@@ -271,6 +265,12 @@
       "text": "REFLECT PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023555391
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE DREAM SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772023555554
     }
   ]
 }
