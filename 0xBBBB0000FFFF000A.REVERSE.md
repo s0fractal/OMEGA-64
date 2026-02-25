@@ -1,5 +1,5 @@
 ---
-eigenvalue: '0xBBBB00000000000E'
+eigenvalue: '0xBBBB0000FFFF000A'
 energy: 50
 x: 726
 'y': 424
