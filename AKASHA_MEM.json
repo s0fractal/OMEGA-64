@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "CONSUME SEIZE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041584997
-    },
-    {
       "origin": "INTERFACE",
       "text": "STASIS PURE SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041591434
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "COHERE SYNC HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041591611
     }
   ]
 }
