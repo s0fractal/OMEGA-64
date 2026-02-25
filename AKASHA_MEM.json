@@ -155,12 +155,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME FORGE EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772022646015
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022646502
@@ -242,6 +236,12 @@
       "text": "FLOW BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022652841
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772022653137
     }
   ]
 }
