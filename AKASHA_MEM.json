@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00660606",
     "06006606",
     "06066660",
     "AA0A00AA",
@@ -199,15 +198,10 @@
     "BBB00000",
     "A0666066",
     "00006060",
-    "A0AAAAA0"
+    "A0AAAAA0",
+    "AABBCCD0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "COHERE HEAL GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772039211018
-    },
     {
       "origin": "REVERSE",
       "text": "PURE SHELTER PURE",
@@ -291,6 +285,12 @@
       "text": "SHELTER IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772039213731
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DRAIN SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039213942
     }
   ]
 }
