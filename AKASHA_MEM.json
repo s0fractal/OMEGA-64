@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIKE SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042046547
-    },
-    {
       "origin": "STREAM",
       "text": "RECON IMMUNE PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772042055335
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD WATCH REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042055622
     }
   ]
 }
