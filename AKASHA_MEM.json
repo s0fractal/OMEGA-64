@@ -108,12 +108,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772021828456
-    },
-    {
       "origin": "INTERFACE",
       "text": "CONSUME BREACH STRIFE",
       "mood": "AGGRESSIVE",
@@ -196,6 +190,12 @@
       "text": "PURE REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772021836424
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE BREACH DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021837204
     }
   ]
 }
