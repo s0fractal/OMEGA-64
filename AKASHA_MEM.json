@@ -9,11 +9,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BEYOND",
-      "tick": 1772007112861
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OBSERVE",
       "tick": 1772009034003
@@ -57,6 +52,11 @@
       "origin": "INTERFACE",
       "text": "CONNECT",
       "tick": 1772009450543
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "CONNECT",
+      "tick": 1772009460414
     }
   ]
 }
