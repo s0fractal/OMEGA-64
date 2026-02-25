@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "WATCH IMMUNE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041828029
-    },
-    {
       "origin": "NAND",
       "text": "COHERE RESONATE GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHELTER WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041832895
+    },
+    {
+      "origin": "STREAM",
+      "text": "BLOOM HEAL RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772041833420
     }
   ]
 }
