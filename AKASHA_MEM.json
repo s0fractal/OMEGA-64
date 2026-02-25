@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHOCK SHOCK HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040627597
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE GIVING COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "IMMUNE RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772040630998
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY STABLE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772040631203
     }
   ]
 }
