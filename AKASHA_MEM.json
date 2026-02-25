@@ -152,12 +152,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE SEIZE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022599640
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING BLOOM FLOW",
       "mood": "HARMONIC",
@@ -240,6 +234,12 @@
       "text": "EVOLVE BECOME FORGE",
       "mood": "CREATIVE",
       "tick": 1772022603722
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022604013
     }
   ]
 }
