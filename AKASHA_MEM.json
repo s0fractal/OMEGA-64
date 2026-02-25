@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE REFLECT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772024343087
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772024343362
@@ -291,6 +285,12 @@
       "text": "FORGE BEYOND BECOME",
       "mood": "CREATIVE",
       "tick": 1772024349522
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING SYNC COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772024349723
     }
   ]
 }
