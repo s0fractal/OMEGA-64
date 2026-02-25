@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035406388
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772035406558
@@ -291,6 +285,12 @@
       "text": "GUARD REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772035409345
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035409596
     }
   ]
 }
