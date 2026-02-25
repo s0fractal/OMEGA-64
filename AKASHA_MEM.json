@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DECAY SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035707258
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772035707496
@@ -291,6 +285,12 @@
       "text": "COHERE BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772035711495
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772035711812
     }
   ]
 }
