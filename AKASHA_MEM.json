@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BREACH DRAIN STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020189188
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SYNC BLOOM FLOW",
       "mood": "HARMONIC",
@@ -136,6 +130,12 @@
       "text": "OSMOSIS UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772020198746
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "CONSUME SEIZE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020200138
     }
   ]
 }
