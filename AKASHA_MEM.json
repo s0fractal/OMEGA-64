@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772040696119
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME SHOCK DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HUNGER SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040701214
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT REFLECT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040701426
     }
   ]
 }
