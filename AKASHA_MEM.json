@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH DECAY SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029081442
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772029081895
@@ -291,6 +285,12 @@
       "text": "GUARD SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772029086614
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029087005
     }
   ]
 }
