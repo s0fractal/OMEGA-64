@@ -163,12 +163,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK SHOCK SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022967712
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIFE STRIKE STRIFE",
       "mood": "AGGRESSIVE",
@@ -251,6 +245,12 @@
       "text": "BLOOM BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772022971830
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WATCH SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772022972178
     }
   ]
 }
