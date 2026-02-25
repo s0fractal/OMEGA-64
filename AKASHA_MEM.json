@@ -177,12 +177,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WATCH SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772023290334
-    },
-    {
-      "origin": "REVERSE",
       "text": "EVOLVE SPARK WITNESS",
       "mood": "CREATIVE",
       "tick": 1772023290499
@@ -264,6 +258,12 @@
       "text": "BECOME FORGE DREAM",
       "mood": "CREATIVE",
       "tick": 1772023294492
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SHOCK DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023294689
     }
   ]
 }
