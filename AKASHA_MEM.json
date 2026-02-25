@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "WATCH WAIT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772033146674
-    },
-    {
       "origin": "REVERSE",
       "text": "RECON IMMUNE STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772033150269
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772033150448
     }
   ]
 }
