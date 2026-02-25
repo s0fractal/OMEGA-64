@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "WORKER",
-      "text": "OSMOSIS RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772040668727
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE HEAL SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "PURE WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772040671941
+    },
+    {
+      "origin": "STREAM",
+      "text": "STABLE SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772040672063
     }
   ]
 }
