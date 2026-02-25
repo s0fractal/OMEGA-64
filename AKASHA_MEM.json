@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027906443
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772027907224
@@ -291,6 +285,12 @@
       "text": "FLOW RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772027923931
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772027924593
     }
   ]
 }
