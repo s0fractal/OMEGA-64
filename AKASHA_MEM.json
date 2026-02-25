@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "REFLECT STASIS WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772041061551
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY DRAIN SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772041064849
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW BLOOM SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772041065008
     }
   ]
 }
