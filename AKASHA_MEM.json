@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772026370266
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772026370728
@@ -291,6 +285,12 @@
       "text": "SPARK WITNESS DREAM",
       "mood": "CREATIVE",
       "tick": 1772026379818
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL UNIFY COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772026380069
     }
   ]
 }
