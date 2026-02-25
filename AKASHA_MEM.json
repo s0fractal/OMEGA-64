@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "EVOLVE SPARK WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772025089387
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772025089573
@@ -291,6 +285,12 @@
       "text": "REFLECT WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772025093724
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING STABLE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772025093920
     }
   ]
 }
