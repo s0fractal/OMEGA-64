@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE HUNGER STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032195721
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772032196159
@@ -291,6 +285,12 @@
       "text": "SYNC RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772032207655
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE BLOOM SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772032208226
     }
   ]
 }
