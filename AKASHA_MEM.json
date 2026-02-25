@@ -55,12 +55,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020551447
-    },
-    {
       "origin": "INTERFACE",
       "text": "HEAL HEAL SYNC",
       "mood": "HARMONIC",
@@ -143,6 +137,12 @@
       "text": "SEIZE DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020560745
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE AWAKEN VISION",
+      "mood": "CREATIVE",
+      "tick": 1772020562415
     }
   ]
 }
