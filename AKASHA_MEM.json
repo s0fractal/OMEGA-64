@@ -125,12 +125,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE SHELTER WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022187251
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022187651
@@ -212,6 +206,12 @@
       "text": "DRAIN SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772022193817
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS GUARD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772022194014
     }
   ]
 }
