@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE RECON SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772040457590
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING FLOW FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RESONATE BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772040460007
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS DECAY STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040460156
     }
   ]
 }
