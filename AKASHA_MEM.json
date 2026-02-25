@@ -17,12 +17,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHOCK SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772014904465
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER RECON WATCH",
       "mood": "DEFENSIVE",
@@ -105,6 +99,12 @@
       "text": "CONSUME DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772015020683
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772015023384
     }
   ]
 }
