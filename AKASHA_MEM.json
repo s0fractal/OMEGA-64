@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD REFLECT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772024348579
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772024348806
@@ -291,6 +285,12 @@
       "text": "DREAM FORGE WAVE",
       "mood": "CREATIVE",
       "tick": 1772024352262
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE FORGE BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772024352412
     }
   ]
 }
