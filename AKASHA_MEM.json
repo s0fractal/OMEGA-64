@@ -176,12 +176,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM HEAL BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772023266684
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772023267067
@@ -263,6 +257,12 @@
       "text": "HUNGER HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023271595
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK FORGE AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772023271750
     }
   ]
 }
