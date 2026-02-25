@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD IMMUNE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772037903347
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772037903561
@@ -291,6 +285,12 @@
       "text": "DECAY SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772037906391
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE REFLECT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772037906565
     }
   ]
 }
