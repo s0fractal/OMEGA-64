@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772036805792
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772036806042
@@ -291,6 +285,12 @@
       "text": "FORGE BEYOND WAVE",
       "mood": "CREATIVE",
       "tick": 1772036809528
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM RESONATE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772036809746
     }
   ]
 }
