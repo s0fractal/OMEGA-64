@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00660660",
     "00F0F00F",
     "AA0A00AA",
     "66666600",
@@ -199,15 +198,10 @@
     "AAAA00AA",
     "AAAAA000",
     "60606006",
-    "FFFFF00F"
+    "FFFFF00F",
+    "00066600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GUARD SHELTER GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772028949076
-    },
     {
       "origin": "REVERSE",
       "text": "HEAL COHERE HEAL",
@@ -291,6 +285,12 @@
       "text": "BECOME FORGE WITNESS",
       "mood": "CREATIVE",
       "tick": 1772028955009
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772028955218
     }
   ]
 }
