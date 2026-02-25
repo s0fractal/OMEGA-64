@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "VISION WAVE FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772040946477
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS GIVING OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HUNGER HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772040949336
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772040949528
     }
   ]
 }
