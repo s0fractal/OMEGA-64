@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772026366447
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772026366644
@@ -291,6 +285,12 @@
       "text": "STRIFE CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772026369726
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772026370266
     }
   ]
 }
