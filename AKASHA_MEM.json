@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE OSMOSIS COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772040573468
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040573783
@@ -291,6 +285,12 @@
       "text": "RESONATE HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772040576145
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY STRIKE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040576422
     }
   ]
 }
