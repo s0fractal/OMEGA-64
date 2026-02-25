@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00060600",
     "AAA00A0A",
     "00600666",
     "AA0060A0",
@@ -199,15 +198,10 @@
     "AA0A0AAA",
     "A0BBC000",
     "BB00000C",
-    "ABBA0000"
+    "ABBA0000",
+    "AA0AA0AA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "UNIFY UNIFY COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772035711030
-    },
     {
       "origin": "REVERSE",
       "text": "WATCH IMMUNE PURE",
@@ -291,6 +285,12 @@
       "text": "RECON PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772035714355
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME DRAIN CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035715106
     }
   ]
 }
