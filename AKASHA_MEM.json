@@ -112,12 +112,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH RECON REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772021940553
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772021940793
@@ -199,6 +193,12 @@
       "text": "WAVE WITNESS DREAM",
       "mood": "CREATIVE",
       "tick": 1772021944209
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE DECAY SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021944345
     }
   ]
 }
