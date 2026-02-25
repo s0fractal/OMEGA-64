@@ -170,12 +170,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC UNIFY OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772023075564
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023075731
@@ -257,6 +251,12 @@
       "text": "STABLE FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772023078801
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023079083
     }
   ]
 }
