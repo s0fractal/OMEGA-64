@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA000600",
     "A0AAA000",
     "AAA0A0AA",
     "66660060",
@@ -199,7 +198,8 @@
     "BBB00000",
     "6606AA66",
     "A6A66000",
-    "60060666"
+    "60060666",
+    "A6A66066"
   ],
   "utterances": [
     {
@@ -287,10 +287,10 @@
       "tick": 1772042569935
     },
     {
-      "origin": "STREAM",
-      "text": "GIVING HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772042570210
+      "origin": "ARCHIVIST",
+      "text": "SHOCK DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042570418
     }
   ]
 }
