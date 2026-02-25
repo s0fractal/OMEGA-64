@@ -192,12 +192,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE IMMUNE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023797348
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023797518
@@ -279,6 +273,12 @@
       "text": "HEAL FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772023802008
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772023802245
     }
   ]
 }
