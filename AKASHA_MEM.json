@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIKE SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041158536
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HEAL RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772041158783
@@ -291,6 +285,12 @@
       "text": "HUNGER DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041161996
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY CONSUME HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041162256
     }
   ]
 }
