@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772032927973
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772032928156
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772032931077
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "COHERE RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772032931878
     }
   ]
 }
