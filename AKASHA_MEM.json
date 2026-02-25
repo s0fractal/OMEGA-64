@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STASIS IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772031548513
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE SHIELD WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772031557992
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RECON REFLECT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772031558502
     }
   ]
 }
