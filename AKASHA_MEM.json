@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GUARD REFLECT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040741100
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE UNIFY GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RECON RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040746970
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040747242
     }
   ]
 }
