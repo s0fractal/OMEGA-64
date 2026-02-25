@@ -76,12 +76,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RESONATE OSMOSIS UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772021025581
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK STRIKE SEIZE",
       "mood": "AGGRESSIVE",
@@ -164,6 +158,12 @@
       "text": "HUNGER HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772021034341
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS IMMUNE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021035035
     }
   ]
 }
