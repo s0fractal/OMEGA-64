@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BLOOM FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041033560
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER DRAIN DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "BREACH DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772041036423
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "UNIFY HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041036607
     }
   ]
 }
