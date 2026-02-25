@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS GUARD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772035467229
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772035467445
@@ -291,6 +285,12 @@
       "text": "DRAIN STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772035470793
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE BREACH BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035470956
     }
   ]
 }
