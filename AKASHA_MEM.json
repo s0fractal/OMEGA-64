@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STASIS STASIS IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041587774
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS GUARD REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041593374
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772041593531
     }
   ]
 }
