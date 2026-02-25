@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A0BBC0DD",
     "60000006",
     "66660600",
     "AA6066A6",
@@ -199,15 +198,10 @@
     "0000A0AA",
     "AA0000DD",
     "AA0AA00A",
-    "000A000F"
+    "000A000F",
+    "AABB0C0D"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "PURE PURE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772033985934
-    },
     {
       "origin": "REVERSE",
       "text": "HEAL HEAL SYNC",
@@ -291,6 +285,12 @@
       "text": "SEIZE DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772033989119
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033989341
     }
   ]
 }
