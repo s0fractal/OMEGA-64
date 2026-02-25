@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772026006569
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772026006792
@@ -291,6 +285,12 @@
       "text": "REFLECT RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772026010155
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WAIT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772026010361
     }
   ]
 }
