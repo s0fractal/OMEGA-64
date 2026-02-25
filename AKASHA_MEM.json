@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "AWAKEN EVOLVE WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772030092269
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772030093014
@@ -291,6 +285,12 @@
       "text": "SHELTER RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772030103417
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE IMMUNE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772030104072
     }
   ]
 }
