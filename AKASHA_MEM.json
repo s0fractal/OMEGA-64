@@ -106,12 +106,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIFE DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021701884
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHIELD PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772021702639
@@ -193,6 +187,12 @@
       "text": "STRIKE HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021707991
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY HUNGER BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021708808
     }
   ]
 }
