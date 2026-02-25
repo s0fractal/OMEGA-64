@@ -141,12 +141,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SEIZE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022451907
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022452218
@@ -228,6 +222,12 @@
       "text": "UNIFY GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772022457246
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772022457700
     }
   ]
 }
