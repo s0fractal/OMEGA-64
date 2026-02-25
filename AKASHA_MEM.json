@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SEIZE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027483872
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772027488231
@@ -291,6 +285,12 @@
       "text": "EVOLVE WITNESS VISION",
       "mood": "CREATIVE",
       "tick": 1772027495953
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772027496717
     }
   ]
 }
