@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER STRIKE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042184277
-    },
-    {
       "origin": "INTERFACE",
       "text": "IMMUNE REFLECT SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772042196726
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS SHELTER STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772042197600
     }
   ]
 }
