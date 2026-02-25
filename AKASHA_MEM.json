@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033503038
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772033503232
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772033507874
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE SYNC FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772033508061
     }
   ]
 }
