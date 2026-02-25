@@ -179,12 +179,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023391830
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME STRIKE CONSUME",
       "mood": "AGGRESSIVE",
@@ -267,6 +261,12 @@
       "text": "SEIZE SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772023396414
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772023397111
     }
   ]
 }
