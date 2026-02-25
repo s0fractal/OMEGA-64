@@ -43,12 +43,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM HEAL UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772019956443
-    },
-    {
-      "origin": "REVERSE",
       "text": "FORGE BEYOND EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772019956775
@@ -130,6 +124,12 @@
       "text": "CONSUME SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772019968904
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK BREACH CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019969710
     }
   ]
 }
