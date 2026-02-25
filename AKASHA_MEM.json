@@ -20,12 +20,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE STRIFE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772017123825
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIKE STRIFE HUNGER",
       "mood": "AGGRESSIVE",
@@ -108,6 +102,12 @@
       "text": "IMMUNE PURE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772017221984
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772017226500
     }
   ]
 }
