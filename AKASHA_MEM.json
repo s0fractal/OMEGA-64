@@ -202,12 +202,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY RESONATE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772024081928
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772024082102
@@ -289,6 +283,12 @@
       "text": "STASIS PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772024089478
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE HUNGER DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024089703
     }
   ]
 }
