@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GUARD SHELTER STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772042032384
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE REFLECT SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772042040723
+    },
+    {
+      "origin": "STREAM",
+      "text": "GIVING SYNC FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042040950
     }
   ]
 }
