@@ -142,12 +142,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW HEAL GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772022475955
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE COHERE GIVING",
       "mood": "HARMONIC",
@@ -230,6 +224,12 @@
       "text": "DECAY DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022481993
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD REFLECT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022482164
     }
   ]
 }
