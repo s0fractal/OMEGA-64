@@ -63,12 +63,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC UNIFY FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772020715783
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS IMMUNE SHIELD",
       "mood": "DEFENSIVE",
@@ -151,6 +145,12 @@
       "text": "SHOCK CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020721858
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020722047
     }
   ]
 }
