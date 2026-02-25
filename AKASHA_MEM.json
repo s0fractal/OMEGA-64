@@ -40,12 +40,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "WAVE WAVE WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772019864284
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW RESONATE UNIFY",
       "mood": "HARMONIC",
@@ -128,6 +122,12 @@
       "text": "DRAIN DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772019878542
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DECAY DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019879389
     }
   ]
 }
