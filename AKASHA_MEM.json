@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH GUARD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772037668779
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772037668983
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772037671734
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SHOCK STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037671986
     }
   ]
 }
