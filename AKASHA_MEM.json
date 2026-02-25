@@ -29,12 +29,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIKE SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019677274
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN HUNGER STRIFE",
       "mood": "AGGRESSIVE",
@@ -117,6 +111,12 @@
       "text": "SHOCK STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772019689105
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE UNIFY HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772019689825
     }
   ]
 }
