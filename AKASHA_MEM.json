@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS EVOLVE SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772028959378
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772028959831
@@ -291,6 +285,12 @@
       "text": "SYNC OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772028974092
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WATCH SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772028974499
     }
   ]
 }
