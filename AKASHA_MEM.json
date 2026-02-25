@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026901590
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME SHOCK DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WITNESS BEYOND WAVE",
       "mood": "CREATIVE",
       "tick": 1772026905414
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772026905646
     }
   ]
 }
