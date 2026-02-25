@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772037831502
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772037831724
@@ -291,6 +285,12 @@
       "text": "RECON IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772037834560
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD STASIS SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772037835322
     }
   ]
 }
