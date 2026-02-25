@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035090398
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772035090601
@@ -291,6 +285,12 @@
       "text": "HEAL UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772035093137
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772035093335
     }
   ]
 }
