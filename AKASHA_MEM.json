@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0AA0AAA0",
     "666A6600",
     "66600600",
     "06666066",
@@ -199,15 +198,10 @@
     "AAA0AA0A",
     "AA0A000A",
     "660000A6",
-    "00B00000"
+    "00B00000",
+    "00060660"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHELTER REFLECT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772026734227
-    },
     {
       "origin": "REVERSE",
       "text": "STABLE SYNC UNIFY",
@@ -291,6 +285,12 @@
       "text": "DRAIN CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772026741102
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772026741421
     }
   ]
 }
