@@ -58,12 +58,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772020569061
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND EVOLVE VISION",
       "mood": "CREATIVE",
       "tick": 1772020569239
@@ -145,6 +139,12 @@
       "text": "PURE WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772020574200
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772020574587
     }
   ]
 }
