@@ -162,12 +162,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS STASIS IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022859536
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772022859720
@@ -249,6 +243,12 @@
       "text": "IMMUNE SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022862731
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK DREAM FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772022862976
     }
   ]
 }
