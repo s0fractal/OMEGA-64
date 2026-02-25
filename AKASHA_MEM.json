@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH PURE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041671623
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "REFLECT GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041675750
+    },
+    {
+      "origin": "I16_CLAMP",
+      "text": "FLOW SYNC COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041675880
     }
   ]
 }
