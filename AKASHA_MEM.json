@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHOCK DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038306859
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIFE BREACH STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772038310288
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772038310500
     }
   ]
 }
