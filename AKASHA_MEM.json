@@ -125,12 +125,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STABLE STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772022212379
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH SHELTER IMMUNE",
       "mood": "DEFENSIVE",
@@ -213,6 +207,12 @@
       "text": "COHERE UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772022216374
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022216926
     }
   ]
 }
