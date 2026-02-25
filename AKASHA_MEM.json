@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC OSMOSIS OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772038821593
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD SHIELD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772038821886
@@ -291,6 +285,12 @@
       "text": "STRIFE CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772038825350
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS RECON PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772038825583
     }
   ]
 }
