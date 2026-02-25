@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66606000",
     "00066000",
     "AA0A0A00",
     "00660666",
@@ -199,15 +198,10 @@
     "A00A000A",
     "000A000F",
     "AA00A0AA",
-    "AA0666A6"
+    "AA0666A6",
+    "00AAA0AA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SEIZE SHOCK BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037010999
-    },
     {
       "origin": "REVERSE",
       "text": "BECOME WAVE AWAKEN",
@@ -291,6 +285,12 @@
       "text": "COHERE UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772037017364
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772037020565
     }
   ]
 }
