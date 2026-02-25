@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SEIZE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037079524
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772037079700
@@ -291,6 +285,12 @@
       "text": "UNIFY GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772037082497
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER STASIS IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772037082707
     }
   ]
 }
