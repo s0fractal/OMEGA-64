@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772040740195
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE GUARD WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772040746158
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING STABLE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772040746417
     }
   ]
 }
