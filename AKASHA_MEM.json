@@ -158,12 +158,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT WAIT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022797552
-    },
-    {
       "origin": "PARADOX",
       "text": "FORGE EVOLVE WAVE",
       "mood": "CREATIVE",
@@ -246,6 +240,12 @@
       "text": "SHIELD SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022803915
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772022804161
     }
   ]
 }
