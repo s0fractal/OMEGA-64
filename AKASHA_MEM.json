@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW FLOW FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772033726857
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772033727045
@@ -291,6 +285,12 @@
       "text": "HEAL STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772033729618
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033729814
     }
   ]
 }
