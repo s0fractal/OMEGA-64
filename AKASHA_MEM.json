@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "ABA00000",
     "06666660",
     "9D00A098",
     "AAAAA0AA",
@@ -199,15 +198,10 @@
     "A00AAA0A",
     "00A0AAAA",
     "000A06A0",
-    "00600660"
+    "00600660",
+    "06660000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHIELD SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772025765367
-    },
     {
       "origin": "STREAM",
       "text": "DECAY STRIFE CONSUME",
@@ -291,6 +285,12 @@
       "text": "HEAL RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772025770494
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772025770701
     }
   ]
 }
