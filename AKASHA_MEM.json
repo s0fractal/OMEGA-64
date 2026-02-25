@@ -203,24 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "CAR",
-      "text": "COHERE COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772042395543
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "STRIFE DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042396373
-    },
-    {
-      "origin": "REVERSE",
-      "text": "RESONATE SYNC STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042396877
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE WAIT PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +273,24 @@
       "text": "WATCH IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772042402602
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772042402706
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH SHIELD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772042402991
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHIELD STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042403087
     }
   ]
 }
