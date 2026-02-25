@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772035206568
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772035206768
@@ -291,6 +285,12 @@
       "text": "SPARK BEYOND BECOME",
       "mood": "CREATIVE",
       "tick": 1772035209793
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL RESONATE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772035209995
     }
   ]
 }
