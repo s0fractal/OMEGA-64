@@ -19,12 +19,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SICKNESS BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772015545593
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DRAIN DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772015548014
@@ -106,6 +100,12 @@
       "text": "IMMUNE RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772015654010
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SEIZE SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772015669155
     }
   ]
 }
