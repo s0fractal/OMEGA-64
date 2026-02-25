@@ -169,12 +169,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023074568
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023074742
@@ -256,6 +250,12 @@
       "text": "SHOCK STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772023077462
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023077959
     }
   ]
 }
