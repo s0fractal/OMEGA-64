@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DECAY STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035581569
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772035581878
@@ -291,6 +285,12 @@
       "text": "COHERE COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772035585026
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS RESONATE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772035585239
     }
   ]
 }
