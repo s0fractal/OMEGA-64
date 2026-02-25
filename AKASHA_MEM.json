@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE BLOOM HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772041384848
-    },
-    {
       "origin": "WORKER",
       "text": "RECON SHIELD STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DRAIN SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772041389148
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON PURE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772041389284
     }
   ]
 }
