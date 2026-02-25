@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772037820008
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772037820310
@@ -291,6 +285,12 @@
       "text": "FLOW GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772037825967
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHELTER WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772037826502
     }
   ]
 }
