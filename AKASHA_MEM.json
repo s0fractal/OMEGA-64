@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WAIT SHELTER PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041574309
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HEAL COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772041574562
@@ -291,6 +285,12 @@
       "text": "STRIFE STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041578796
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "COHERE OSMOSIS HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041579749
     }
   ]
 }
