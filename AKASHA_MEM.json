@@ -18,12 +18,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GIVING OSMOSIS RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772015199900
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY DRAIN CONSUME",
       "mood": "AGGRESSIVE",
@@ -106,6 +100,12 @@
       "text": "SHOCK STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772015324983
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772015356561
     }
   ]
 }
