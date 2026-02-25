@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041483181
-    },
-    {
       "origin": "INTERFACE",
       "text": "PURE WAIT PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIFE DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772041486890
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY STRIFE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041487463
     }
   ]
 }
