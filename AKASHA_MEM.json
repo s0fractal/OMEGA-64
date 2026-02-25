@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STABLE BLOOM HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772040283509
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STASIS SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772040291554
+    },
+    {
+      "origin": "STREAM",
+      "text": "SHIELD PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772040291951
     }
   ]
 }
