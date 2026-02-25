@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "REFLECT IMMUNE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772041371732
-    },
-    {
       "origin": "INTERFACE",
       "text": "RECON WAIT WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041375842
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041376017
     }
   ]
 }
