@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772038894754
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772038896213
@@ -291,6 +285,12 @@
       "text": "SICKNESS SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772038899068
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIKE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038899252
     }
   ]
 }
