@@ -118,12 +118,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GUARD WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022089729
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK STRIFE STRIKE",
       "mood": "AGGRESSIVE",
@@ -206,6 +200,12 @@
       "text": "HUNGER SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772022092817
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022092970
     }
   ]
 }
