@@ -81,12 +81,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME DECAY SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021094715
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772021095752
@@ -168,6 +162,12 @@
       "text": "COHERE FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772021104401
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE REFLECT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772021104634
     }
   ]
 }
