@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE IMMUNE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772025180289
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772025180596
@@ -291,6 +285,12 @@
       "text": "SICKNESS SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772025185321
+    },
+    {
+      "origin": "STREAM",
+      "text": "SHELTER RECON WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772025185683
     }
   ]
 }
