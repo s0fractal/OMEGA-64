@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE IMMUNE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040533390
-    },
-    {
       "origin": "STREAM",
       "text": "SHELTER GUARD SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772040535997
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772040536159
     }
   ]
 }
