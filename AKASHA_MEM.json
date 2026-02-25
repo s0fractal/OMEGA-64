@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772033061579
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033061828
@@ -291,6 +285,12 @@
       "text": "BECOME WAVE DREAM",
       "mood": "CREATIVE",
       "tick": 1772033065390
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772033065554
     }
   ]
 }
