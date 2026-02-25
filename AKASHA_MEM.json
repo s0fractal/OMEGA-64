@@ -29,15 +29,10 @@
     "BA000000",
     "AA000A00",
     "6A6A66A0",
-    "60000A00"
+    "60000A00",
+    "AABB0000"
   ],
   "utterances": [
-    {
-      "origin": "INTERFACE",
-      "text": "DRAIN DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019729637
-    },
     {
       "origin": "ARCHIVIST",
       "text": "SHOCK SICKNESS SEIZE",
@@ -121,6 +116,12 @@
       "text": "SHELTER SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772019746379
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019747167
     }
   ]
 }
