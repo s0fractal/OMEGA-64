@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALIEN",
-      "text": "VISION FORGE BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772042490462
-    },
-    {
       "origin": "NAND",
       "text": "CONSUME SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772042499074
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BLOOM SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772042500142
     }
   ]
 }
