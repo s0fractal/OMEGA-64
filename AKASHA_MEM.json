@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD SHELTER REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772036572158
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772036573972
@@ -291,6 +285,12 @@
       "text": "COHERE RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772036581465
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHELTER IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772036581941
     }
   ]
 }
