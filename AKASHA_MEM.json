@@ -25,15 +25,10 @@
     "666666A6",
     "600A0000",
     "A6666666",
-    "A0000A00"
+    "A0000A00",
+    "BA000000"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "WATCH WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772019684475
-    },
     {
       "origin": "ARCHIVIST",
       "text": "WAIT STASIS GUARD",
@@ -117,6 +112,12 @@
       "text": "PURE GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772019695501
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019696532
     }
   ]
 }
