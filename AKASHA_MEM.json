@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GUARD REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772041012052
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY BREACH STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "BREACH BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772041014929
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772041015254
     }
   ]
 }
