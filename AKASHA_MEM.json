@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772027837293
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME VISION DREAM",
       "mood": "CREATIVE",
       "tick": 1772027838457
@@ -291,6 +285,12 @@
       "text": "RECON GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772027855709
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE UNIFY STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772027856483
     }
   ]
 }
