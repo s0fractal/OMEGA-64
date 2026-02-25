@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE HUNGER DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030665416
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE STABLE OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HEAL FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772030672273
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE IMMUNE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772030672652
     }
   ]
 }
