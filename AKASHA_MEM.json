@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER SHELTER PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772035163023
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772035163182
@@ -291,6 +285,12 @@
       "text": "GUARD SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772035166866
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN CONSUME STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035167078
     }
   ]
 }
