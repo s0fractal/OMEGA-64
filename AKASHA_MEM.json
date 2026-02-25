@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK STRIFE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030831574
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772030832045
@@ -291,6 +285,12 @@
       "text": "DECAY SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772030838296
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE RESONATE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772030838543
     }
   ]
 }
