@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA6666A0",
     "00066006",
     "06600006",
     "000AAA00",
@@ -199,15 +198,10 @@
     "A0AAAAA0",
     "0A000000",
     "AA0AA0A0",
-    "BB0BA000"
+    "BB0BA000",
+    "A6666A60"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "STABLE SYNC COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772033466374
-    },
     {
       "origin": "REVERSE",
       "text": "CONSUME DRAIN DRAIN",
@@ -291,6 +285,12 @@
       "text": "PURE GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772033472478
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033472803
     }
   ]
 }
