@@ -51,12 +51,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RESONATE RESONATE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772020287228
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BREACH CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020287975
@@ -138,6 +132,12 @@
       "text": "SICKNESS SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772020295827
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020296337
     }
   ]
 }
