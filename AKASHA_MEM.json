@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME DRAIN DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041284487
-    },
-    {
       "origin": "ALPHA_PROOF_OF_RESONANCE",
       "text": "COHERE OSMOSIS FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772041290917
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "PURE WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041291049
     }
   ]
 }
