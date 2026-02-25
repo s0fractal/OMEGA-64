@@ -187,12 +187,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023618710
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772023618865
@@ -274,6 +268,12 @@
       "text": "DRAIN DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023621600
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME SPARK WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772023621805
     }
   ]
 }
