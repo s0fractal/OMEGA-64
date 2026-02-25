@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772034539913
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772034540131
@@ -291,6 +285,12 @@
       "text": "IMMUNE STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772034542888
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY STABLE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772034543077
     }
   ]
 }
