@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772032614770
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772032614960
@@ -291,6 +285,12 @@
       "text": "WAIT RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772032618725
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC SYNC COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772032618917
     }
   ]
 }
