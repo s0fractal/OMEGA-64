@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "I16_CLAMP",
-      "text": "UNIFY STABLE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772041127630
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME SHOCK STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WATCH REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041130901
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW RESONATE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772041131076
     }
   ]
 }
