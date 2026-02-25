@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038733812
-    },
-    {
       "origin": "STREAM",
       "text": "PURE REFLECT SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038737250
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL HEAL RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772038737552
     }
   ]
 }
