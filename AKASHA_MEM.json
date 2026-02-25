@@ -54,12 +54,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "COHERE FLOW OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772020342192
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BREACH STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020343509
@@ -141,6 +135,12 @@
       "text": "SHOCK DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020352713
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772020352888
     }
   ]
 }
