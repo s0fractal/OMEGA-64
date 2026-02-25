@@ -157,12 +157,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM BLOOM STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772022764499
-    },
-    {
       "origin": "REVERSE",
       "text": "RECON GUARD REFLECT",
       "mood": "DEFENSIVE",
@@ -245,6 +239,12 @@
       "text": "AWAKEN WITNESS BECOME",
       "mood": "CREATIVE",
       "tick": 1772022772663
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772022772941
     }
   ]
 }
