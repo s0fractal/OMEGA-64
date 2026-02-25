@@ -159,12 +159,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DREAM BEYOND BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772022815098
-    },
-    {
       "origin": "STREAM",
       "text": "BLOOM RESONATE HEAL",
       "mood": "HARMONIC",
@@ -247,6 +241,12 @@
       "text": "STASIS WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022818398
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY RESONATE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772022818592
     }
   ]
 }
