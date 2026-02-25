@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT REFLECT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772028147473
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772028147925
@@ -291,6 +285,12 @@
       "text": "BLOOM SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772028154352
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHIELD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772028154688
     }
   ]
 }
