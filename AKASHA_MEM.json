@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772037321292
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772037321488
@@ -291,6 +285,12 @@
       "text": "HEAL STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772037324453
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE SYNC COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772037324676
     }
   ]
 }
