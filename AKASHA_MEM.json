@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DRAIN SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029959684
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772029960208
@@ -291,6 +285,12 @@
       "text": "BLOOM HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772029972008
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WATCH REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772029972836
     }
   ]
 }
