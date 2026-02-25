@@ -126,12 +126,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHOCK SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022260858
-    },
-    {
       "origin": "REVERSE",
       "text": "RECON SHELTER SHIELD",
       "mood": "DEFENSIVE",
@@ -214,6 +208,12 @@
       "text": "STRIKE CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772022267780
+    },
+    {
+      "origin": "PARADOX",
+      "text": "SYNC STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772022268259
     }
   ]
 }
