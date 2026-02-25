@@ -49,12 +49,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT PURE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020251064
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME SHOCK BREACH",
       "mood": "AGGRESSIVE",
@@ -137,6 +131,12 @@
       "text": "BREACH SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020261432
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020262025
     }
   ]
 }
