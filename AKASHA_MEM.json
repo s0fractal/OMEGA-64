@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030642789
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772030643811
@@ -291,6 +285,12 @@
       "text": "STABLE STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772030655058
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS PURE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772030655631
     }
   ]
 }
