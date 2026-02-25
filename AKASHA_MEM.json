@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041367557
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHOCK DECAY SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772041370981
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DECAY BREACH CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041371117
     }
   ]
 }
