@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT GUARD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772033142620
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772033142789
@@ -291,6 +285,12 @@
       "text": "STASIS SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772033146328
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772033146494
     }
   ]
 }
