@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772038674929
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772038675128
@@ -291,6 +285,12 @@
       "text": "DRAIN CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772038678179
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SHOCK HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038678423
     }
   ]
 }
