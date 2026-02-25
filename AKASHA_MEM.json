@@ -43,12 +43,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "IMMUNE PURE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772019972939
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHELTER WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772019973619
@@ -130,6 +124,12 @@
       "text": "WATCH WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772019983598
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SEIZE SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019984245
     }
   ]
 }
