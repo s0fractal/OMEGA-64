@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE BLOOM HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772031094661
-    },
-    {
       "origin": "STREAM",
       "text": "OSMOSIS HEAL FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHIELD WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772031101685
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE CONSUME SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031102092
     }
   ]
 }
