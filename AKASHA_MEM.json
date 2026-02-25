@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE STABLE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772025324340
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772025324497
@@ -291,6 +285,12 @@
       "text": "DRAIN SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772025328427
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD IMMUNE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772025328627
     }
   ]
 }
