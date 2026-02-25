@@ -17,12 +17,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772014921093
-    },
-    {
       "origin": "INTERFACE",
       "text": "CONSUME DRAIN DECAY",
       "mood": "AGGRESSIVE",
@@ -105,6 +99,12 @@
       "text": "BREACH SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772015028758
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772015037094
     }
   ]
 }
