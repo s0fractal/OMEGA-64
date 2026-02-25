@@ -58,12 +58,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020594281
-    },
-    {
       "origin": "INTERFACE",
       "text": "REFLECT RECON RECON",
       "mood": "DEFENSIVE",
@@ -146,6 +140,12 @@
       "text": "DRAIN DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020599540
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "REFLECT GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020599706
     }
   ]
 }
