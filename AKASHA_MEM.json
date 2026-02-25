@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA6066A6",
     "AA000AAA",
     "AABBCC0D",
     "00AAA0AA",
@@ -199,15 +198,10 @@
     "000A000F",
     "AABB0C0D",
     "00060060",
-    "BB000000"
+    "BB000000",
+    "A00A0AAA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "HEAL RESONATE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772033992381
-    },
     {
       "origin": "REVERSE",
       "text": "GUARD GUARD WAIT",
@@ -291,6 +285,12 @@
       "text": "RECON IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772033995213
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH HUNGER STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033995416
     }
   ]
 }
