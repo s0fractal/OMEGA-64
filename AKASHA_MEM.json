@@ -180,12 +180,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772023406710
-    },
-    {
       "origin": "INTERFACE",
       "text": "HEAL GIVING FLOW",
       "mood": "HARMONIC",
@@ -268,6 +262,12 @@
       "text": "STABLE FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772023410476
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS DREAM SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772023410662
     }
   ]
 }
