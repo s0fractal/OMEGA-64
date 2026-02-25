@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772022196230
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022196573
@@ -213,6 +207,12 @@
       "text": "STRIKE STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022200271
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE SEIZE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022200750
     }
   ]
 }
