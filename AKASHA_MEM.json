@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "FLOW GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772041541311
-    },
-    {
       "origin": "STREAM",
       "text": "HEAL HEAL COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772041544312
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHIELD SHELTER GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041544661
     }
   ]
 }
