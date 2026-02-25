@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RECON RECON SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772033690734
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME DRAIN STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WATCH RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772033694154
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHELTER SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772033694342
     }
   ]
 }
