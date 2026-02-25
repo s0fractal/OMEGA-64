@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772034434169
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772034434376
@@ -291,6 +285,12 @@
       "text": "COHERE STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772034440346
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM RESONATE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772034442188
     }
   ]
 }
