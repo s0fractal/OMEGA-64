@@ -153,12 +153,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "HEAL UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772022624926
-    },
-    {
       "origin": "REVERSE",
       "text": "WAIT GUARD WAIT",
       "mood": "DEFENSIVE",
@@ -241,6 +235,12 @@
       "text": "FLOW COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772022630271
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STABLE HEAL GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022630546
     }
   ]
 }
