@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772035120302
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772035122605
@@ -291,6 +285,12 @@
       "text": "STRIFE SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772035125789
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHIELD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772035126012
     }
   ]
 }
