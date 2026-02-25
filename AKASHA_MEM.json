@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "STREAM",
-      "text": "WAIT PURE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040627106
-    },
-    {
-      "origin": "STREAM",
       "text": "SICKNESS SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772040627240
@@ -291,6 +285,12 @@
       "text": "UNIFY STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772040630410
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772040630738
     }
   ]
 }
