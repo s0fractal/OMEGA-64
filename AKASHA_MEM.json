@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "STRIKE CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042011321
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHELTER GUARD STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "REFLECT WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772042018936
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042019119
     }
   ]
 }
