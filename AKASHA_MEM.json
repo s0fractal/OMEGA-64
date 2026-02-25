@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING UNIFY UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772025343644
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772025343827
@@ -291,6 +285,12 @@
       "text": "GUARD SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772025346238
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DRAIN SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025346426
     }
   ]
 }
