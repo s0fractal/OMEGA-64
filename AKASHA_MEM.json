@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT STASIS WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772041432005
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BLOOM FLOW GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DECAY DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772041435218
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772041435846
     }
   ]
 }
