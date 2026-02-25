@@ -106,12 +106,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT WAIT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021716223
-    },
-    {
       "origin": "PARADOX",
       "text": "BEYOND BECOME DREAM",
       "mood": "CREATIVE",
@@ -194,6 +188,12 @@
       "text": "FLOW RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772021720325
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS PURE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021720623
     }
   ]
 }
