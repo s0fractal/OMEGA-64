@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE UNIFY SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772030339822
-    },
-    {
-      "origin": "REVERSE",
       "text": "FORGE BEYOND SPARK",
       "mood": "CREATIVE",
       "tick": 1772030340221
@@ -291,6 +285,12 @@
       "text": "STRIFE SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772030350017
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD SHELTER RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772030350539
     }
   ]
 }
