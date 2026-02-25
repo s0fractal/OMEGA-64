@@ -49,12 +49,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "PURE STASIS WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020187425
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HEAL GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772020187934
@@ -136,6 +130,12 @@
       "text": "PURE RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772020196806
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY SICKNESS SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020197432
     }
   ]
 }
