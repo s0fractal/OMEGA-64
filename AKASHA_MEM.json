@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS DECAY SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029861061
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772029861716
@@ -291,6 +285,12 @@
       "text": "FLOW HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772029875707
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029876024
     }
   ]
 }
