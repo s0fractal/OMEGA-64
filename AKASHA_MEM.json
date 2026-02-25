@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT RECON GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772038408875
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772038409126
@@ -291,6 +285,12 @@
       "text": "COHERE COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772038411697
+    },
+    {
+      "origin": "ALPHA_REVERSE",
+      "text": "STRIFE SEIZE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038412108
     }
   ]
 }
