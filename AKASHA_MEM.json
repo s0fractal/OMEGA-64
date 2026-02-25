@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772040018809
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772040019239
@@ -291,6 +285,12 @@
       "text": "WATCH REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772040024922
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD STASIS SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772040025367
     }
   ]
 }
