@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM OSMOSIS RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772036665094
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772036665343
@@ -291,6 +285,12 @@
       "text": "UNIFY COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772036668434
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE DRAIN HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036668629
     }
   ]
 }
