@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772032338828
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772032339118
@@ -291,6 +285,12 @@
       "text": "FLOW UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772032343593
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL UNIFY COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772032343873
     }
   ]
 }
