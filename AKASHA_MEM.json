@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60660666",
     "60000600",
     "60666606",
     "AAA0AA00",
@@ -199,21 +198,10 @@
     "60606060",
     "AA0A0A00",
     "FFFFF0A0",
-    "000AAAAA"
+    "000AAAAA",
+    "A0606660"
   ],
   "utterances": [
-    {
-      "origin": "PURE_MATH",
-      "text": "HUNGER SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042737004
-    },
-    {
-      "origin": "REVERSE",
-      "text": "IMMUNE PURE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042737366
-    },
     {
       "origin": "ARCHIVIST",
       "text": "WAIT SHELTER IMMUNE",
@@ -251,46 +239,58 @@
       "tick": 1772042741724
     },
     {
-      "origin": "ALPHA_PROOF_OF_RESONANCE",
-      "text": "UNIFY SYNC FLOW",
+      "origin": "REVERSE",
+      "text": "RESONATE RESONATE RESONATE",
       "mood": "HARMONIC",
-      "tick": 1772042742153
+      "tick": 1772042741896
     },
     {
-      "origin": "REVERSE",
-      "text": "STRIFE STRIKE CONSUME",
+      "origin": "ARCHIVIST",
+      "text": "RESONATE OSMOSIS RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772042743024
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE BREACH SICKNESS",
       "mood": "AGGRESSIVE",
-      "tick": 1772042744572
+      "tick": 1772042743365
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042744940
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RESONATE STABLE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772042745069
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE HUNGER SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042746061
     },
     {
       "origin": "ALIEN",
-      "text": "EVOLVE DREAM SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772042744828
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "UNIFY SYNC HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772042745060
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "STRIFE STRIFE STRIKE",
+      "text": "SHOCK DRAIN HUNGER",
       "mood": "AGGRESSIVE",
-      "tick": 1772042745302
+      "tick": 1772042746597
     },
     {
       "origin": "ARCHIVIST",
-      "text": "STRIKE SEIZE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042746794
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE SHIELD SHIELD",
+      "text": "WAIT REFLECT RECON",
       "mood": "DEFENSIVE",
-      "tick": 1772042747367
+      "tick": 1772042747083
+    },
+    {
+      "origin": "ALIEN",
+      "text": "SEIZE DECAY STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042747303
     }
   ]
 }
