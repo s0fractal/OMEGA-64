@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772040431281
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772040431604
@@ -291,6 +285,12 @@
       "text": "HUNGER DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772040434888
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040435020
     }
   ]
 }
