@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER HUNGER SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027610361
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772027611116
@@ -291,6 +285,12 @@
       "text": "DECAY DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772027622524
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE DREAM AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772027622978
     }
   ]
 }
