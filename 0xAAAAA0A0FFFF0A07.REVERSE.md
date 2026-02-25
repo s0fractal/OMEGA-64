@@ -1,10 +1,10 @@
 ---
-eigenvalue: '0xAAAAA0A000000A03'
-energy: 50
-x: 686
-'y': 410
+eigenvalue: '0xAAAAA0A0FFFF0A07'
+energy: 49.8
+x: 699
+'y': 408
 resonance: 50
-thought: RESURRECTED
+thought: AVOID_PARASITE_PASSIVE
 logic: AAAAA0A0
 signals: []
 bond_strengths:
@@ -208,7 +208,7 @@ ex:
   - '0xAAAAAAA0FFFF0A07'
   - '0xAAAAAAA0FFFF0A01'
   - '0xAAAAAAA0FFFF0A03'
-  - '0xAAAAA0A0FFFF0A05'
+  - '0xAAAAA0A000000A01'
 ---
 
 <div align="center">
