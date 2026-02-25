@@ -171,12 +171,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023109679
-    },
-    {
       "origin": "REVERSE",
       "text": "DREAM BEYOND BECOME",
       "mood": "CREATIVE",
@@ -259,6 +253,12 @@
       "text": "STRIFE CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772023119634
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH PURE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772023120162
     }
   ]
 }
