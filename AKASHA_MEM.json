@@ -101,12 +101,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021624745
-    },
-    {
       "origin": "INTERFACE",
       "text": "IMMUNE GUARD GUARD",
       "mood": "DEFENSIVE",
@@ -189,6 +183,12 @@
       "text": "OSMOSIS UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772021630078
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND AWAKEN BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772021630202
     }
   ]
 }
