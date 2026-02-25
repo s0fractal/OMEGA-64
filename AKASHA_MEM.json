@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE GUARD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772032393882
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772032394475
@@ -291,6 +285,12 @@
       "text": "GIVING GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772032400181
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON RECON WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772032400656
     }
   ]
 }
