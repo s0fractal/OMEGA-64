@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772034391732
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772034391937
@@ -291,6 +285,12 @@
       "text": "BLOOM UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772034394599
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034394968
     }
   ]
 }
