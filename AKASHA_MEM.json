@@ -50,12 +50,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHOCK DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020280581
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN BREACH HUNGER",
       "mood": "AGGRESSIVE",
@@ -138,6 +132,12 @@
       "text": "BREACH CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020287975
+    },
+    {
+      "origin": "STREAM",
+      "text": "UNIFY BLOOM STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772020288627
     }
   ]
 }
