@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD GUARD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772037849763
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772037849970
@@ -291,6 +285,12 @@
       "text": "FLOW RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772037852792
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772037852992
     }
   ]
 }
