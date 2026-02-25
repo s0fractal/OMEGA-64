@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "000AA00A",
     "06006600",
     "A0606060",
     "06666660",
@@ -199,15 +198,10 @@
     "AAAA0AAA",
     "AAAA00AA",
     "60000000",
-    "06066666"
+    "06066666",
+    "0A0A0AA0"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "AWAKEN EVOLVE BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772037742992
-    },
     {
       "origin": "REVERSE",
       "text": "UNIFY SYNC COHERE",
@@ -291,6 +285,12 @@
       "text": "SEIZE DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772037746626
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY RESONATE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772037746857
     }
   ]
 }
