@@ -38,12 +38,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GUARD WATCH SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772019780068
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STASIS GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772019780343
@@ -125,6 +119,12 @@
       "text": "DRAIN SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772019789009
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772019790636
     }
   ]
 }
