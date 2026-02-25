@@ -204,18 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DECAY STRIFE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042641254
-    },
-    {
-      "origin": "ALPHA_GUARDIAN",
-      "text": "SYNC UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772042645239
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHOCK SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772042646890
@@ -291,6 +279,18 @@
       "text": "CONSUME CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772042654085
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE BREACH STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042654555
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE STRIKE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042654754
     }
   ]
 }
