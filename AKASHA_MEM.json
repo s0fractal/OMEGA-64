@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036065257
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772036065465
@@ -291,6 +285,12 @@
       "text": "PURE SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772036068486
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772036069078
     }
   ]
 }
