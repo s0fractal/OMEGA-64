@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE STABLE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772040958920
-    },
-    {
       "origin": "ALPHA_GUARDIAN",
       "text": "GIVING HEAL UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "COHERE STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772040962596
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE SHELTER RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772040962755
     }
   ]
 }
