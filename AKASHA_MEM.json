@@ -154,12 +154,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT STASIS RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772022652480
-    },
-    {
       "origin": "STREAM",
       "text": "OSMOSIS FLOW BLOOM",
       "mood": "HARMONIC",
@@ -242,6 +236,12 @@
       "text": "FLOW FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022657254
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SEIZE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022657888
     }
   ]
 }
