@@ -52,12 +52,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WAIT WAIT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772020319435
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIKE CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772020320217
@@ -139,6 +133,12 @@
       "text": "SEIZE CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772020329221
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL HEAL GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772020329476
     }
   ]
 }
