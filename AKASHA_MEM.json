@@ -154,12 +154,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER DECAY SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022665107
-    },
-    {
       "origin": "REVERSE",
       "text": "WAIT IMMUNE WATCH",
       "mood": "DEFENSIVE",
@@ -242,6 +236,12 @@
       "text": "WAIT REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022680801
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022681449
     }
   ]
 }
