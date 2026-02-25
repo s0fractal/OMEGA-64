@@ -180,12 +180,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023400193
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772023400370
@@ -267,6 +261,12 @@
       "text": "REFLECT REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023403168
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE GUARD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023403359
     }
   ]
 }
