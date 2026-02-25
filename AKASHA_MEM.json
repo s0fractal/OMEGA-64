@@ -21,15 +21,10 @@
     "ABB00000",
     "666A6660",
     "0000AA00",
-    "AA000000"
+    "AA000000",
+    "666666A6"
   ],
   "utterances": [
-    {
-      "origin": "INTERFACE",
-      "text": "WATCH STASIS STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772019578769
-    },
     {
       "origin": "ARCHIVIST",
       "text": "BLOOM RESONATE BLOOM",
@@ -113,6 +108,12 @@
       "text": "DECAY SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772019591303
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS WAIT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772019593252
     }
   ]
 }
