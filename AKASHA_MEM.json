@@ -135,12 +135,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022390495
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772022390746
@@ -222,6 +216,12 @@
       "text": "SYNC GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022395422
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM FORGE BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772022395922
     }
   ]
 }
