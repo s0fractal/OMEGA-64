@@ -206,6 +206,7 @@ async function handler(req: Request): Promise<Response> {
     if (req.method === "GET" && url.pathname === "/api/akasha") {
         let logs: string[] = [];
         let memory: any = { reservoir: [], utterances: [] };
+        let sovereignty: any = { activeDecree: "NONE", regent: "NONE", legitimacy: 0, label: "DEMOCRACY" };
         
         try {
             const logContent = await Deno.readTextFile("AKASHA.log");
@@ -217,7 +218,12 @@ async function handler(req: Request): Promise<Response> {
             memory = JSON.parse(memContent);
         } catch { /* ignore */ }
 
-        return new Response(JSON.stringify({ logs, ...memory }), {
+        try {
+            const sovContent = await Deno.readTextFile("./SOVEREIGNTY.json");
+            sovereignty = JSON.parse(sovContent);
+        } catch { /* ignore */ }
+
+        return new Response(JSON.stringify({ logs, ...memory, sovereignty }), {
             headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
         });
     }

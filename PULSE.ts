@@ -20,6 +20,18 @@ async function logAkasha(msg: string) {
     const PULSE_INTERVAL = 3000; // 3 seconds between pulses for stability
     const PULSE_ID = "0xFFFFFFFF00000008"; // PULSE Organic ID
 
+    // --- 🏛️ SOVEREIGN STATE ---
+    const DECREES: Record<string, any> = {
+        "NONE": { decay: 1.0, speed: 1.0, mutation: 1.0, label: "DEMOCRACY" },
+        "LUXURY_TAX": { decay: 2.5, speed: 1.0, mutation: 1.0, label: "LUXURY TAX" }, 
+        "IMMUNE_SHIELD": { decay: 0.3, speed: 0.7, mutation: 0.5, label: "IMMUNE SHIELD" },
+        "MUTATIVE_FEVER": { decay: 1.5, speed: 1.3, mutation: 4.0, label: "MUTATIVE FEVER" },
+        "VOID_STASIS": { decay: 0.5, speed: 0.2, mutation: 0.1, label: "VOID STASIS" }
+    };
+    let activeDecree = "NONE";
+    let regent = "NONE";
+    let legitimacy = 0;
+
     export const PULSE = {
         run: async () => {
             console.log("🛡️ OMEGA-64 | AUTOPOIETIC RESONANCE | HEARTBEAT ACTIVE");
@@ -132,7 +144,49 @@ async function logAkasha(msg: string) {
         if (systemEnergy > 15000) dynamicInterval = Math.max(500, 3000 - (systemEnergy - 15000) / 10);
         if (systemEnergy < 5000) dynamicInterval = Math.min(10000, 3000 + (5000 - systemEnergy) * 2);
         
-        console.log(`\n💓 Pulse #${p} | Energy: ${Math.floor(systemEnergy)} | Interval: ${Math.floor(dynamicInterval)}ms`);
+        // --- 🏛️ SOVEREIGNTY PHASE ---
+        // Nuclei with high resonance can issue Decrees
+        let potentialRegents = Array.from(lastKnownAtoms.entries())
+            .filter(([_, meta]) => meta.resonance > 100)
+            .sort((a, b) => b[1].resonance - a[1].resonance);
+        
+        if (potentialRegents.length > 0) {
+            const [bestFile, bestMeta] = potentialRegents[0];
+            const currentRegentID = bestFile.split(".")[0];
+            
+            if (regent !== currentRegentID) {
+                regent = currentRegentID;
+                legitimacy = bestMeta.resonance;
+                // Select a decree based on the first digit of the regent's logic
+                const logicDigit = parseInt(bestMeta.logic[0], 16);
+                if (logicDigit <= 3) activeDecree = "IMMUNE_SHIELD";
+                else if (logicDigit <= 7) activeDecree = "LUXURY_TAX";
+                else if (logicDigit <= 11) activeDecree = "MUTATIVE_FEVER";
+                else activeDecree = "VOID_STASIS";
+                
+                await logAkasha(`🏛️ SOVEREIGNTY: ${bestFile.split(".")[1]} (${regent}) has ascended as Regent! Decree: ${activeDecree}`);
+            }
+        } else {
+            activeDecree = "NONE";
+            regent = "NONE";
+            legitimacy = 0;
+        }
+
+        // Apply Decree Modifiers
+        const mods = DECREES[activeDecree];
+
+        // Persist Sovereignty for Dashboard
+        try {
+            await Deno.writeTextFile("./SOVEREIGNTY.json", JSON.stringify({
+                activeDecree,
+                regent,
+                legitimacy,
+                label: mods.label,
+                mods
+            }, null, 2));
+        } catch { /* ignore */ }
+
+        console.log(`\n💓 Pulse #${p} | Energy: ${Math.floor(systemEnergy)} | Interval: ${Math.floor(dynamicInterval)}ms | LAW: ${activeDecree}`);
 
         if (atoms.length === 0) {
             console.log("   [REFLECT] Empty Flatland. Heartbeat suspending.");
@@ -214,7 +268,10 @@ async function logAkasha(msg: string) {
             }
         }
 
-        const newLogic = RIBOSOME_TICK.reduce(currentLogic);
+
+        
+        // --- APPLY DECREE MODIFIER (Mutation) ---
+        const newLogic = Math.random() < mods.mutation ? RIBOSOME_TICK.reduce(currentLogic) : currentLogic;
         const hasSignals = (alpha.signals && alpha.signals.length > 0);
 
         const newEigenvalue = `0x${newLogic}${eigenvalue.slice(10)}`;
@@ -330,6 +387,10 @@ async function logAkasha(msg: string) {
             x += totalVelX + (Math.random() - 0.5) * 2;
             y += totalVelY + (Math.random() - 0.5) * 2;
         }
+
+        // --- APPLY DECREE MODIFIER (Speed) ---
+        x = alpha.x + (x - alpha.x) * mods.speed;
+        y = alpha.y + (y - alpha.y) * mods.speed;
 
         // --- SPRING-MASS PHYSICS (Macro-Molecules) ---
         // If bonded, apply Hooke's Law to keep them at a strict molecular distance
@@ -509,7 +570,28 @@ async function logAkasha(msg: string) {
 
         // --- ECOLOGY: METABOLISM & STARVATION ---
         // Passive Metabolic Decay
-        const decay = 2; // Slower decay for autonomous stability
+        let decay = 2 * mods.decay; // Sovereignty Multiplier
+        
+        // --- 💸 DIGITAL TAXATION ---
+        // Every non-regent atom pays 1 NRG to the nearest Nucleus or Regent
+        if (regent !== "NONE" && eigenvalue.slice(0, 18) !== regent) {
+            energy -= 1.0;
+            // Transfer to regent (find Regent file)
+            const regentFile = atoms.find(a => a.startsWith(regent));
+            if (regentFile) {
+                try {
+                    const rContent = await Deno.readTextFile(regentFile);
+                    const rMetaMatch = rContent.match(/^---\n([\s\S]+?)\n---\n/);
+                    if (rMetaMatch) {
+                        const rAlpha = parseYaml(rMetaMatch[1]) as any;
+                        rAlpha.energy = (Number(rAlpha.energy) || 100) + 1.0;
+                        const rNewContent = rContent.replace(/^---\n[\s\S]+?\n---\n/, `---\n${stringifyYaml(rAlpha)}---\n`);
+                        await Deno.writeTextFile(regentFile, rNewContent);
+                    }
+                } catch { /* regent busy */ }
+            }
+        }
+
         energy -= decay;
 
         // Symbiotic Recovery: Cooperation rewards survival

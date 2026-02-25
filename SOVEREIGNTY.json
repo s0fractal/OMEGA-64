@@ -1,0 +1,12 @@
+{
+  "activeDecree": "NONE",
+  "regent": "NONE",
+  "legitimacy": 0,
+  "label": "DEMOCRACY",
+  "mods": {
+    "decay": 1,
+    "speed": 1,
+    "mutation": 1,
+    "label": "DEMOCRACY"
+  }
+}

@@ -102,6 +102,31 @@
         color: #fff;
       }
 
+      /* --- SOVEREIGNTY HUD --- */
+      .sovereignty-hud {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 1rem;
+        padding: 0.8rem;
+        background: rgba(16, 185, 129, 0.05);
+        border: 1px solid rgba(16, 185, 129, 0.2);
+        border-radius: 12px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.85rem;
+        backdrop-filter: blur(8px);
+        transition: all 0.3s ease;
+      }
+      .sovereignty-hud.active {
+        background: rgba(16, 185, 129, 0.1);
+        border-color: rgba(16, 185, 129, 0.5);
+        box-shadow: 0 0 20px rgba(16, 185, 129, 0.1);
+      }
+      .sov-item { display: flex; align-items: center; gap: 0.5rem; }
+      .sov-label { color: var(--text-dim); text-transform: uppercase; font-size: 0.7rem; }
+      .sov-val { color: var(--accent); font-weight: bold; text-shadow: 0 0 10px var(--accent-glow); }
+      .sov-val.none { color: var(--text-dim); text-shadow: none; }
+
       .arena-container {
         position: relative;
         width: 100%;
@@ -455,6 +480,21 @@
           SYS. ENERGY: <span class="stat-val" id="sys-energy">0</span>
         </div>
       </div>
+
+      <div class="sovereignty-hud" id="sov-hud">
+        <div class="sov-item">
+          <span class="sov-label">REGENT:</span>
+          <span id="regent-id" class="sov-val none">NONE</span>
+        </div>
+        <div class="sov-item">
+          <span class="sov-label">DECREE:</span>
+          <span id="active-decree" class="sov-val none">DEMOCRACY</span>
+        </div>
+        <div class="sov-item">
+          <span class="sov-label">LEGITIMACY:</span>
+          <span id="legitimacy-val" class="sov-val none">0%</span>
+        </div>
+      </div>
     </header>
 
     <div class="forge-panel">
@@ -754,6 +794,28 @@
             if (html) {
                 ticker.innerHTML = html;
                 ticker.scrollLeft = ticker.scrollWidth;
+            }
+
+            // Update Sovereignty HUD
+            const sov = data.sovereignty || { activeDecree: "NONE", regent: "NONE", legitimacy: 0 };
+            const regentEl = document.getElementById("regent-id");
+            const decreeEl = document.getElementById("active-decree");
+            const legitimacyEl = document.getElementById("legitimacy-val");
+            const hud = document.getElementById("sov-hud");
+
+            regentEl.textContent = sov.regent || "NONE";
+            regentEl.className = sov.regent === "NONE" ? "sov-val none" : "sov-val";
+            
+            decreeEl.textContent = sov.label || "DEMOCRACY";
+            decreeEl.className = sov.activeDecree === "NONE" ? "sov-val none" : "sov-val";
+            
+            legitimacyEl.textContent = `${Math.floor(sov.legitimacy || 0)}%`;
+            legitimacyEl.className = sov.legitimacy > 0 ? "sov-val" : "sov-val none";
+
+            if (sov.regent !== "NONE") {
+              hud.classList.add("active");
+            } else {
+              hud.classList.remove("active");
             }
         } catch { }
       }
