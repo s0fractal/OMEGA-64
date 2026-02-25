@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772031607323
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772031608300
@@ -291,6 +285,12 @@
       "text": "SHOCK STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772031615853
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772031616823
     }
   ]
 }
