@@ -80,12 +80,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "UNIFY GIVING FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772021121386
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE IMMUNE SHELTER",
       "mood": "DEFENSIVE",
@@ -168,6 +162,12 @@
       "text": "COHERE BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772021127201
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING COHERE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772021127365
     }
   ]
 }
