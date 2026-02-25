@@ -147,12 +147,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FORGE AWAKEN DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772022517039
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022517336
@@ -234,6 +228,12 @@
       "text": "STRIKE DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022520271
+    },
+    {
+      "origin": "STREAM",
+      "text": "HEAL COHERE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772022520473
     }
   ]
 }
