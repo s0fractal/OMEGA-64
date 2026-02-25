@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040411191
-    },
-    {
       "origin": "REVERSE",
       "text": "EVOLVE SPARK EVOLVE",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "REFLECT SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772040413677
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIKE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040413853
     }
   ]
 }
