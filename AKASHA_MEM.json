@@ -128,12 +128,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022288579
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022288782
@@ -215,6 +209,12 @@
       "text": "SYNC OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772022293050
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772022293226
     }
   ]
 }
