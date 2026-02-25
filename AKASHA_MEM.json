@@ -191,12 +191,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHOCK DRAIN DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023776259
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT STASIS RECON",
       "mood": "DEFENSIVE",
@@ -279,6 +273,12 @@
       "text": "HUNGER SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772023782395
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SEIZE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023783269
     }
   ]
 }
