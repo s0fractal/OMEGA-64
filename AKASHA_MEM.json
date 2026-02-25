@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "CONSUME STRIFE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019596148
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON STASIS REFLECT",
       "mood": "DEFENSIVE",
@@ -114,6 +108,12 @@
       "text": "STASIS REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772019605097
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019605554
     }
   ]
 }
