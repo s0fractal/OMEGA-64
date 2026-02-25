@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE PURE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772035849379
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772035849586
@@ -291,6 +285,12 @@
       "text": "COHERE FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772035854023
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772035854226
     }
   ]
 }
