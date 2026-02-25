@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037158721
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772037160431
@@ -291,6 +285,12 @@
       "text": "STABLE BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772037163622
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037163832
     }
   ]
 }
