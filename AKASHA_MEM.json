@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772032959573
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772032959749
@@ -291,6 +285,12 @@
       "text": "WAVE VISION WAVE",
       "mood": "CREATIVE",
       "tick": 1772032962009
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY GIVING HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772032962147
     }
   ]
 }
