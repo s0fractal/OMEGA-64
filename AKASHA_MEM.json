@@ -4,14 +4,10 @@
     "AABBCCDD",
     "C0DED00D",
     "BEEFBEEF",
-    "AAAAAAA0"
+    "AAAAAAA0",
+    "AAAAAAAA"
   ],
   "utterances": [
-    {
-      "origin": "PARASITE",
-      "text": "ASCEND",
-      "tick": 1771940843769
-    },
     {
       "origin": "INTERFACE",
       "text": "CONNECT",
@@ -56,6 +52,11 @@
       "origin": "INTERFACE",
       "text": "ASCEND",
       "tick": 1772009185928
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONNECT",
+      "tick": 1772009217045
     }
   ]
 }
