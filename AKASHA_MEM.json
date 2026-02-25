@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS STRIKE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032876821
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772032876997
@@ -291,6 +285,12 @@
       "text": "WAIT SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772032879653
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772032879827
     }
   ]
 }
