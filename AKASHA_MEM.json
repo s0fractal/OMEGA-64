@@ -149,12 +149,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022546358
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHELTER IMMUNE GUARD",
       "mood": "DEFENSIVE",
@@ -237,6 +231,12 @@
       "text": "FLOW RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772022550320
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY STRIKE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022550500
     }
   ]
 }
