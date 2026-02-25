@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RECON STASIS PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772016835217
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME DECAY SEIZE",
       "mood": "AGGRESSIVE",
@@ -107,6 +101,12 @@
       "text": "HUNGER STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772016923377
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "UNIFY FLOW UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772016926013
     }
   ]
 }
