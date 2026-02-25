@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "REFLECT PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772040964747
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BEYOND EVOLVE SPARK",
       "mood": "CREATIVE",
       "tick": 1772040964893
@@ -291,6 +285,12 @@
       "text": "STABLE COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772040968718
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD IMMUNE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772040968895
     }
   ]
 }
