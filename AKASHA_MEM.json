@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "PURE PURE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041048510
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WAIT SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041048638
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772041050947
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041051137
     }
   ]
 }
