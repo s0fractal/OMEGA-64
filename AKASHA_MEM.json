@@ -49,12 +49,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHIELD GUARD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020162350
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "OSMOSIS SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772020163003
@@ -136,6 +130,12 @@
       "text": "SEIZE CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020175369
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020176172
     }
   ]
 }
