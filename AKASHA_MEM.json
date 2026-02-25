@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE SYNC HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772027603029
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772027603272
@@ -291,6 +285,12 @@
       "text": "HUNGER BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772027612937
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772027613513
     }
   ]
 }
