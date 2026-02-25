@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE BREACH BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025270892
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772025271089
@@ -291,6 +285,12 @@
       "text": "FLOW FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772025273878
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD STASIS SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772025274141
     }
   ]
 }
