@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772031986105
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772031986377
@@ -291,6 +285,12 @@
       "text": "DECAY SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772031995643
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC RESONATE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772031995899
     }
   ]
 }
