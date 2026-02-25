@@ -118,12 +118,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE STRIKE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022089382
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING HEAL UNIFY",
       "mood": "HARMONIC",
@@ -206,6 +200,12 @@
       "text": "SICKNESS DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022092343
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT REFLECT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022092483
     }
   ]
 }
