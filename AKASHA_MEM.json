@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER SHOCK SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041011201
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772041011367
@@ -291,6 +285,12 @@
       "text": "SICKNESS SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772041014393
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772041014577
     }
   ]
 }
