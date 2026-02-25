@@ -192,12 +192,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SEIZE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023765332
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023765509
@@ -279,6 +273,12 @@
       "text": "HUNGER DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023768144
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC GIVING SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772023769258
     }
   ]
 }
