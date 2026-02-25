@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "GIVING BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040222597
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL COHERE BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BEYOND SPARK BEYOND",
       "mood": "CREATIVE",
       "tick": 1772040228700
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH RECON WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772040228935
     }
   ]
 }
