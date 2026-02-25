@@ -92,12 +92,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH BREACH SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021273223
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021273702
@@ -179,6 +173,12 @@
       "text": "OSMOSIS FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772021300113
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772021303249
     }
   ]
 }
