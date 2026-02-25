@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "IMMUNE SHELTER WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040591791
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "UNIFY HEAL COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "IMMUNE GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040595524
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD RECON SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040595700
     }
   ]
 }
