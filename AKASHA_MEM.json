@@ -69,12 +69,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "COHERE STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772020847620
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
@@ -157,6 +151,12 @@
       "text": "HUNGER DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020854437
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WAIT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772020854825
     }
   ]
 }
