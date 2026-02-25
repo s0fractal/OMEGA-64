@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS UNIFY FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772037292879
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772037293081
@@ -291,6 +285,12 @@
       "text": "BLOOM RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772037297075
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037297270
     }
   ]
 }
