@@ -180,12 +180,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "COHERE OSMOSIS OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772023411930
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER REFLECT SHIELD",
       "mood": "DEFENSIVE",
@@ -268,6 +262,12 @@
       "text": "SHIELD GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023417152
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS DECAY DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023417708
     }
   ]
 }
