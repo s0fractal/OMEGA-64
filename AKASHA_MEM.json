@@ -160,12 +160,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772022817364
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772022817543
@@ -247,6 +241,12 @@
       "text": "RESONATE STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772022821428
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022821623
     }
   ]
 }
