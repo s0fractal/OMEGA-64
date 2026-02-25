@@ -101,12 +101,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "AWAKEN FORGE DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772021626142
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE CONSUME CONSUME",
       "mood": "AGGRESSIVE",
@@ -189,6 +183,12 @@
       "text": "FLOW OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772021631969
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WAIT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772021632397
     }
   ]
 }
