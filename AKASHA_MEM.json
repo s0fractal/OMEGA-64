@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0A00AA",
     "AAA00AAA",
     "A00A0AA0",
     "00A0A000",
@@ -199,15 +198,10 @@
     "66600000",
     "AABBCC0D",
     "660060A6",
-    "60666600"
+    "60666600",
+    "00006606"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WAIT WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772035155773
-    },
     {
       "origin": "REVERSE",
       "text": "SHIELD GUARD REFLECT",
@@ -291,6 +285,12 @@
       "text": "GIVING STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772035158645
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM OSMOSIS RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772035158844
     }
   ]
 }
