@@ -160,12 +160,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022816836
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022817205
@@ -247,6 +241,12 @@
       "text": "GIVING RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772022821043
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS RESONATE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772022821239
     }
   ]
 }
