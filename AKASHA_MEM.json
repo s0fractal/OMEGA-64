@@ -184,12 +184,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH IMMUNE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023594196
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772023594365
@@ -271,6 +265,12 @@
       "text": "SHELTER WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023596890
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772023597046
     }
   ]
 }
