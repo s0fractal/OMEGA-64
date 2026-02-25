@@ -203,18 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALIEN",
-      "text": "STRIFE CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042729538
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042729810
-    },
-    {
       "origin": "REVERSE",
       "text": "BREACH DECAY DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +279,18 @@
       "text": "CONSUME DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772042736006
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIFE SEIZE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042736438
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE RESONATE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772042736895
     }
   ]
 }
