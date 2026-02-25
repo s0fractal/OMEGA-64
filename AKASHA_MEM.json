@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN HUNGER SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025431448
-    },
-    {
       "origin": "STREAM",
       "text": "DECAY SHOCK HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772025439294
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS GIVING BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772025439500
     }
   ]
 }
