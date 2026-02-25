@@ -66,12 +66,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020753511
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772020753627
@@ -153,6 +147,12 @@
       "text": "SEIZE DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020757793
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020758634
     }
   ]
 }
