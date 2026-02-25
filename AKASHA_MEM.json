@@ -164,12 +164,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022986834
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022986997
@@ -251,6 +245,12 @@
       "text": "DRAIN STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022990571
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM BEYOND DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772022990924
     }
   ]
 }
