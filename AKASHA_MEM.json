@@ -72,12 +72,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY SYNC COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772020916280
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772020916445
@@ -159,6 +153,12 @@
       "text": "RESONATE STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772020920980
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BREACH DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020921176
     }
   ]
 }
