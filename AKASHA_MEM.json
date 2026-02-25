@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "UNIFY SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772036243802
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE CONSUME CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772036247436
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS COHERE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772036248248
     }
   ]
 }
