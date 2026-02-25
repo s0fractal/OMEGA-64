@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "HEAL GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772024990961
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE GIVING FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772024997077
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772024997437
     }
   ]
 }
