@@ -187,12 +187,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK SICKNESS HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023619387
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772023619540
@@ -274,6 +268,12 @@
       "text": "RESONATE COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772023622191
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE CONSUME STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023622672
     }
   ]
 }
