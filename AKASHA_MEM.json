@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAVE WITNESS DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772026121730
-    },
-    {
-      "origin": "REVERSE",
       "text": "WITNESS VISION EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772026121870
@@ -291,6 +285,12 @@
       "text": "UNIFY COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772026129537
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026130061
     }
   ]
 }
