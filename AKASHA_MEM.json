@@ -58,12 +58,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "BECOME FORGE EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772020577689
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS DECAY HUNGER",
       "mood": "AGGRESSIVE",
@@ -146,6 +140,12 @@
       "text": "HUNGER DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020584092
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE BREACH BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020584665
     }
   ]
 }
