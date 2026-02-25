@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772041051747
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "FLOW HEAL GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041055797
+    },
+    {
+      "origin": "STREAM",
+      "text": "RECON WATCH SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041055977
     }
   ]
 }
