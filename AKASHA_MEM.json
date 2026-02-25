@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "PURE SHELTER REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041755153
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH CONSUME STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772041762146
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE RECON IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041763218
     }
   ]
 }
