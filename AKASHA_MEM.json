@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS WAIT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772026268667
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772026268897
@@ -291,6 +285,12 @@
       "text": "AWAKEN SPARK BECOME",
       "mood": "CREATIVE",
       "tick": 1772026277012
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WATCH REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772026277178
     }
   ]
 }
