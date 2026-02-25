@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE STRIFE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022251661
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022252768
@@ -213,6 +207,12 @@
       "text": "REFLECT WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022258646
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772022258826
     }
   ]
 }
