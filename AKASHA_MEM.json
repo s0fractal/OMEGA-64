@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS WAIT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772030611880
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772030612152
@@ -291,6 +285,12 @@
       "text": "FLOW RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772030621115
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772030621918
     }
   ]
 }
