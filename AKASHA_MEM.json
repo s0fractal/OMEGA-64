@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040426615
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT PURE SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772040428873
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SICKNESS SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040429048
     }
   ]
 }
