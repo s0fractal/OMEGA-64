@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH SHOCK CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034498086
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE STRIFE DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772034502218
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772034502474
     }
   ]
 }
