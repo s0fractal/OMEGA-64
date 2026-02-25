@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAVE DREAM BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772027449842
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772027450103
@@ -291,6 +285,12 @@
       "text": "GIVING SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772027457022
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027457335
     }
   ]
 }
