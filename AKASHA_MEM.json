@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037554164
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW FLOW FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DRAIN STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772037561473
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON PURE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772037561655
     }
   ]
 }
