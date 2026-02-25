@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE CONSUME SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039191700
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772039191898
@@ -291,6 +285,12 @@
       "text": "FLOW GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772039194844
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WAIT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772039195015
     }
   ]
 }
