@@ -58,12 +58,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STASIS IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772020582140
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GUARD RECON RECON",
       "mood": "DEFENSIVE",
@@ -146,6 +140,12 @@
       "text": "STASIS REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020590950
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020591174
     }
   ]
 }
