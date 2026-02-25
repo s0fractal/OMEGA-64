@@ -146,12 +146,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD IMMUNE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022511477
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK BEYOND AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772022511663
@@ -233,6 +227,12 @@
       "text": "SHIELD SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022515300
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022515498
     }
   ]
 }
