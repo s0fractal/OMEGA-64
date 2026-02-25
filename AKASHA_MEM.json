@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SHOCK CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031620259
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772031620621
@@ -291,6 +285,12 @@
       "text": "BLOOM SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772031640400
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772031640741
     }
   ]
 }
