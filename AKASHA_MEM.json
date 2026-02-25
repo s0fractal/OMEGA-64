@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE HUNGER STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032728617
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772032728805
@@ -291,6 +285,12 @@
       "text": "DRAIN STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772032732000
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME BECOME BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772032732185
     }
   ]
 }
