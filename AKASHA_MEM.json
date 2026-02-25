@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60660000",
     "AAAA0AAA",
     "AAAA00AA",
     "60000000",
@@ -199,15 +198,10 @@
     "06000000",
     "AA0AAAAA",
     "A0666006",
-    "AA660600"
+    "AA660600",
+    "66666060"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "IMMUNE PURE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772039005905
-    },
     {
       "origin": "REVERSE",
       "text": "REFLECT WATCH WAIT",
@@ -291,6 +285,12 @@
       "text": "AWAKEN FORGE BEYOND",
       "mood": "CREATIVE",
       "tick": 1772039008835
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH RECON STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772039009035
     }
   ]
 }
