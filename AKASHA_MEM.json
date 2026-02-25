@@ -184,12 +184,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE STRIFE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023594932
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772023595150
@@ -271,6 +265,12 @@
       "text": "RESONATE GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772023597334
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY FLOW UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772023597495
     }
   ]
 }
