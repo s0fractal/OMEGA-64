@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HUNGER SHOCK HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041490390
-    },
-    {
       "origin": "CONSCIOUSNESS",
       "text": "HEAL SYNC RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SEIZE CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041493852
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041493987
     }
   ]
 }
