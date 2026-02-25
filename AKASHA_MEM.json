@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RECON PURE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772034605826
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL COHERE COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BLOOM SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772034609025
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034609200
     }
   ]
 }
