@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772033625749
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772033625938
@@ -291,6 +285,12 @@
       "text": "FLOW STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772033628142
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHIELD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772033628326
     }
   ]
 }
