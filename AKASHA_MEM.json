@@ -96,12 +96,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DRAIN SICKNESS STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021549397
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME DRAIN DECAY",
       "mood": "AGGRESSIVE",
@@ -184,6 +178,12 @@
       "text": "WAIT IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772021554886
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772021555232
     }
   ]
 }
