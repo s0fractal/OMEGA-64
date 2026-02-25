@@ -124,12 +124,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM OSMOSIS RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772022171779
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE PURE RECON",
       "mood": "DEFENSIVE",
@@ -212,6 +206,12 @@
       "text": "GUARD STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022179280
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT WATCH GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022180849
     }
   ]
 }
