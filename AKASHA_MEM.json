@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH DECAY SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034683273
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034683500
@@ -291,6 +285,12 @@
       "text": "RECON WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772034686306
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034686520
     }
   ]
 }
