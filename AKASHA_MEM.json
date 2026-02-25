@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A6066660",
     "06006666",
     "A6600606",
     "BB0B0000",
@@ -199,15 +198,10 @@
     "66606060",
     "60606600",
     "A60660A0",
-    "A0AA0600"
+    "A0AA0600",
+    "6A060A60"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772041858937
-    },
     {
       "origin": "ARCHIVIST",
       "text": "WATCH RECON STASIS",
@@ -291,6 +285,12 @@
       "text": "SHOCK DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772041864642
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT GUARD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041864802
     }
   ]
 }
