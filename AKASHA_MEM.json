@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042087337
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS RECON SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DRAIN HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772042094443
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK DRAIN DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042094920
     }
   ]
 }
