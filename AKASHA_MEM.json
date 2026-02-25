@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SEIZE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028056377
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772028056942
@@ -291,6 +285,12 @@
       "text": "RESONATE OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772028067398
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SHOCK SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028067798
     }
   ]
 }
