@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER WATCH REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772026768419
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772026768653
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772026775410
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026775733
     }
   ]
 }
