@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS COHERE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772020228948
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER SHIELD SHELTER",
       "mood": "DEFENSIVE",
@@ -136,6 +130,12 @@
       "text": "SYNC BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772020236310
+    },
+    {
+      "origin": "PARADOX",
+      "text": "DREAM EVOLVE VISION",
+      "mood": "CREATIVE",
+      "tick": 1772020236881
     }
   ]
 }
