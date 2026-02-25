@@ -178,12 +178,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772023334065
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772023334228
@@ -265,6 +259,12 @@
       "text": "SICKNESS BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023336860
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023337165
     }
   ]
 }
