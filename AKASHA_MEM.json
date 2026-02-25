@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "COHERE OSMOSIS SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772024393643
-    },
-    {
       "origin": "REVERSE",
       "text": "WAIT WAIT GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772024396831
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD SHELTER IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772024397156
     }
   ]
 }
