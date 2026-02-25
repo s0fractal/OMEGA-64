@@ -184,12 +184,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023571889
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023572243
@@ -271,6 +265,12 @@
       "text": "GUARD GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023575480
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023575804
     }
   ]
 }
