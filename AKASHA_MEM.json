@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH SEIZE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041703928
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK HUNGER DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WATCH STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772041709335
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON GUARD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772041710682
     }
   ]
 }
