@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC FLOW OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772026007045
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772026007315
@@ -291,6 +285,12 @@
       "text": "FORGE BECOME WITNESS",
       "mood": "CREATIVE",
       "tick": 1772026010575
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY STRIKE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026010735
     }
   ]
 }
