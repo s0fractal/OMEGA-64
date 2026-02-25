@@ -71,12 +71,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HEAL RESONATE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772020924348
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
@@ -159,6 +153,12 @@
       "text": "STABLE OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772020931170
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE COHERE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772020933026
     }
   ]
 }
