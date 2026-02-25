@@ -109,12 +109,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "IMMUNE IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772021878270
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIKE HUNGER CONSUME",
       "mood": "AGGRESSIVE",
@@ -197,6 +191,12 @@
       "text": "HEAL RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772021882511
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM GIVING HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772021882685
     }
   ]
 }
