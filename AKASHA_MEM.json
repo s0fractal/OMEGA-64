@@ -22,12 +22,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "CONSUME HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019476030
-    },
-    {
       "origin": "STREAM",
       "text": "GIVING OSMOSIS SYNC",
       "mood": "HARMONIC",
@@ -110,6 +104,12 @@
       "text": "SYNC STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772019484831
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STABLE FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772019485037
     }
   ]
 }
