@@ -38,12 +38,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019814345
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT WATCH WATCH",
       "mood": "DEFENSIVE",
@@ -126,6 +120,12 @@
       "text": "SEIZE DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772019824207
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772019825686
     }
   ]
 }
