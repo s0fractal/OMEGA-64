@@ -24,12 +24,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "SHOCK BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019555201
-    },
-    {
-      "origin": "INTERFACE",
       "text": "UNIFY FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772019555880
@@ -111,6 +105,12 @@
       "text": "SHOCK STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772019565898
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772019566105
     }
   ]
 }
