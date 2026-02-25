@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE STRIFE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034931614
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772034931791
@@ -291,6 +285,12 @@
       "text": "RESONATE STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772034934505
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772034934709
     }
   ]
 }
