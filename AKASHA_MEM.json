@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "PURE REFLECT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772042051797
-    },
-    {
       "origin": "CAR",
       "text": "SYNC OSMOSIS STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DRAIN DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772042063153
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042063606
     }
   ]
 }
