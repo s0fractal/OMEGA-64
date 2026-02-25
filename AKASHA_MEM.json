@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772037968763
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772037972203
@@ -291,6 +285,12 @@
       "text": "DRAIN BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772037980414
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIFE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037980632
     }
   ]
 }
