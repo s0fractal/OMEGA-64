@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD GUARD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772020227247
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME DRAIN SEIZE",
       "mood": "AGGRESSIVE",
@@ -136,6 +130,12 @@
       "text": "IMMUNE WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772020235636
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020235921
     }
   ]
 }
