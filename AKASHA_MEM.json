@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032975150
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772032975318
@@ -291,6 +285,12 @@
       "text": "PURE REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772032977944
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL FLOW GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772032978125
     }
   ]
 }
