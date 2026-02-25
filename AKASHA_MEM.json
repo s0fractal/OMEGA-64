@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD RECON REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772038922961
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038923174
@@ -291,6 +285,12 @@
       "text": "GIVING HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772038926983
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS BREACH DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038927198
     }
   ]
 }
