@@ -52,12 +52,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING COHERE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772020332488
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE FLOW BLOOM",
       "mood": "HARMONIC",
@@ -140,6 +134,12 @@
       "text": "WAIT SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772020339341
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020339888
     }
   ]
 }
