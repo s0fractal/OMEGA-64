@@ -43,12 +43,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SICKNESS CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019916859
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RECON PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772019917502
@@ -130,6 +124,12 @@
       "text": "DECAY SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772019928343
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD SHIELD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772019929045
     }
   ]
 }
