@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER STASIS WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772041149779
-    },
-    {
       "origin": "INTERFACE",
       "text": "SICKNESS BREACH SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIKE SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772041154456
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING BLOOM STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041154635
     }
   ]
 }
