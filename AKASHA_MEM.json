@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772024228384
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW STABLE OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHIELD GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772024232912
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WATCH REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772024233164
     }
   ]
 }
