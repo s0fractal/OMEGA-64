@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING SYNC COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772040603225
-    },
-    {
       "origin": "STREAM",
       "text": "STRIKE DECAY SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "BREACH STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772040606126
+    },
+    {
+      "origin": "STREAM",
+      "text": "SYNC STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772040606629
     }
   ]
 }
