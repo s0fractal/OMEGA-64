@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772027058330
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772027058913
@@ -291,6 +285,12 @@
       "text": "WAVE BEYOND WITNESS",
       "mood": "CREATIVE",
       "tick": 1772027063783
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE STABLE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772027064035
     }
   ]
 }
