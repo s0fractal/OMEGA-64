@@ -103,12 +103,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772021673450
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772021674705
@@ -190,6 +184,12 @@
       "text": "SYNC FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772021680924
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME AWAKEN SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772021681148
     }
   ]
 }
