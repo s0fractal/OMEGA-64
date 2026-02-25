@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STRIFE SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041716717
-    },
-    {
       "origin": "REVERSE",
       "text": "RECON IMMUNE RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772041721134
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER SEIZE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041721363
     }
   ]
 }
