@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024218072
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772024218335
@@ -291,6 +285,12 @@
       "text": "PURE GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772024220986
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SICKNESS SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024221300
     }
   ]
 }
