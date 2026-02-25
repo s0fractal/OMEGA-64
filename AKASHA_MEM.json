@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE SYNC HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772034601582
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772034601806
@@ -291,6 +285,12 @@
       "text": "SHELTER STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772034605026
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DRAIN DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034605224
     }
   ]
 }
