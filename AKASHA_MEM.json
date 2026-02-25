@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772025447825
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772025448320
@@ -291,6 +285,12 @@
       "text": "SHIELD PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772025451455
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHELTER SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772025451646
     }
   ]
 }
