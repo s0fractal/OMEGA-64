@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING UNIFY BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772024883436
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772024883699
@@ -291,6 +285,12 @@
       "text": "SHOCK STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772024886758
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIFE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024886942
     }
   ]
 }
