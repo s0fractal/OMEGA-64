@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "FF0FFF00",
     "00600006",
     "66600600",
     "00AAAAA0",
@@ -199,15 +198,10 @@
     "A0BBC00D",
     "F0F0FF0F",
     "A6600606",
-    "0000AAAA"
+    "0000AAAA",
+    "00600660"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "DRAIN SHOCK HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034551620
-    },
     {
       "origin": "REVERSE",
       "text": "PURE GUARD IMMUNE",
@@ -291,6 +285,12 @@
       "text": "SYNC COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772034554424
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE OSMOSIS HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772034554622
     }
   ]
 }
