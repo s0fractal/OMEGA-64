@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHELTER GUARD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041914170
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE UNIFY GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SYNC RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772041920017
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772041920225
     }
   ]
 }
