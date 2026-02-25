@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME VISION WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772030129013
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772030129433
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772030154154
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE BLOOM SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772030154513
     }
   ]
 }
