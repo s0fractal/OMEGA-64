@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "WORKER",
-      "text": "SEIZE SICKNESS DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041060769
-    },
-    {
       "origin": "STREAM",
       "text": "REFLECT STASIS WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772041064727
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041064849
     }
   ]
 }
