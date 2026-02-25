@@ -141,12 +141,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER SHELTER RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772022464570
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE STRIFE STRIFE",
       "mood": "AGGRESSIVE",
@@ -229,6 +223,12 @@
       "text": "GIVING COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772022468710
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DECAY STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022468902
     }
   ]
 }
