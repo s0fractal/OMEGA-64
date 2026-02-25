@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING GIVING HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772034557942
-    },
-    {
-      "origin": "REVERSE",
       "text": "DREAM FORGE BECOME",
       "mood": "CREATIVE",
       "tick": 1772034558135
@@ -291,6 +285,12 @@
       "text": "OSMOSIS UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772034561510
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD GUARD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772034561697
     }
   ]
 }
