@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD SHELTER GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042358839
-    },
-    {
       "origin": "CAR",
       "text": "RESONATE SYNC OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HEAL UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772042368541
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042369890
     }
   ]
 }
