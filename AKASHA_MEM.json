@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM RESONATE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772036811056
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772036811278
@@ -291,6 +285,12 @@
       "text": "SHOCK BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772036817534
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL FLOW GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772036817824
     }
   ]
 }
