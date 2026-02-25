@@ -142,12 +142,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "VISION EVOLVE SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772022453324
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022454083
@@ -229,6 +223,12 @@
       "text": "SHELTER SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022459138
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022459544
     }
   ]
 }
