@@ -49,12 +49,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH HUNGER SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020155828
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GIVING GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772020156255
@@ -136,6 +130,12 @@
       "text": "SHIELD GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020162350
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS SYNC FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772020163003
     }
   ]
 }
