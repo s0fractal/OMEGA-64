@@ -175,12 +175,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772023261608
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "UNIFY RESONATE OSMOSIS",
       "mood": "HARMONIC",
@@ -263,6 +257,12 @@
       "text": "DRAIN DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772023267240
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON IMMUNE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023267444
     }
   ]
 }
