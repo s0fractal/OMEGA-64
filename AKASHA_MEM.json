@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772031684642
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE SHOCK DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772031695577
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031696360
     }
   ]
 }
