@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037799667
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772037799878
@@ -291,6 +285,12 @@
       "text": "SHIELD GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772037806053
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS BREACH BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037806354
     }
   ]
 }
