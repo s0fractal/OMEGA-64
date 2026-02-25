@@ -171,12 +171,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772023141863
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE COHERE UNIFY",
       "mood": "HARMONIC",
@@ -259,6 +253,12 @@
       "text": "STASIS SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772023148723
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME BREACH DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023148995
     }
   ]
 }
