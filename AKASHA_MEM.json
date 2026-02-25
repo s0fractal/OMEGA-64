@@ -159,12 +159,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH PURE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022803586
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772022803774
@@ -246,6 +240,12 @@
       "text": "STABLE STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772022808379
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE BREACH SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022808924
     }
   ]
 }
