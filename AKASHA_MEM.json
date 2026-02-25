@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041355901
-    },
-    {
       "origin": "STREAM",
       "text": "RECON IMMUNE RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772041360808
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "CONSUME STRIKE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041361452
     }
   ]
 }
