@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SEIZE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035128949
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772035129188
@@ -291,6 +285,12 @@
       "text": "PURE IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772035131963
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SICKNESS HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035132154
     }
   ]
 }
