@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772025124933
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE HEAL HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RECON REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772025131094
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SICKNESS HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025131377
     }
   ]
 }
