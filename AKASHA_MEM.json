@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SHOCK HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033027933
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772033028568
@@ -291,6 +285,12 @@
       "text": "RECON WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772033030705
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772033030881
     }
   ]
 }
