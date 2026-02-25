@@ -92,12 +92,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN HUNGER BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021344467
-    },
-    {
       "origin": "INTERFACE",
       "text": "BREACH HUNGER HUNGER",
       "mood": "AGGRESSIVE",
@@ -180,6 +174,12 @@
       "text": "BREACH STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772021379307
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WATCH STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772021382806
     }
   ]
 }
