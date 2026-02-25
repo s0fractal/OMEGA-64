@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL COHERE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772040222808
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "UNIFY OSMOSIS RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WATCH RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040228935
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIKE SEIZE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040229521
     }
   ]
 }
