@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019521871
-    },
-    {
       "origin": "INTERFACE",
       "text": "SEIZE SHOCK BREACH",
       "mood": "AGGRESSIVE",
@@ -111,6 +105,12 @@
       "text": "HUNGER STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772019529102
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIKE DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019529718
     }
   ]
 }
