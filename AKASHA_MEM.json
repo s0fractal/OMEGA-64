@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALIEN",
-      "text": "STRIFE STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042755462
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT WATCH GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STASIS GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772042769152
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD SHIELD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772042769880
     }
   ]
 }
