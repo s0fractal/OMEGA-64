@@ -164,12 +164,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS REFLECT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022987773
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022988079
@@ -251,6 +245,12 @@
       "text": "IMMUNE WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022991395
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY BLOOM FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772022991560
     }
   ]
 }
