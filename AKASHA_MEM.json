@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON IMMUNE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772037304931
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS DECAY SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STASIS WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772037308569
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE DECAY CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037308762
     }
   ]
 }
