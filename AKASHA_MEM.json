@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037831092
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772037831297
@@ -291,6 +285,12 @@
       "text": "FLOW RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772037833869
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772037834060
     }
   ]
 }
