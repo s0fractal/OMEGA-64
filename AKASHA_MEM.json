@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE HEAL FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772035193427
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772035193807
@@ -291,6 +285,12 @@
       "text": "FORGE SPARK AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772035197423
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772035197672
     }
   ]
 }
