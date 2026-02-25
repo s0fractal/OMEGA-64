@@ -174,12 +174,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE GIVING SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772023234963
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023235090
@@ -261,6 +255,12 @@
       "text": "SYNC SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772023242191
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW RESONATE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772023242980
     }
   ]
 }
