@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE STASIS REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772037299846
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BLOOM STABLE UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHOCK DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772037302938
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772037303138
     }
   ]
 }
