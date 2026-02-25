@@ -122,12 +122,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT WAIT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772022124098
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE GIVING COHERE",
       "mood": "HARMONIC",
@@ -210,6 +204,12 @@
       "text": "RESONATE BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772022132030
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS HUNGER HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022132210
     }
   ]
 }
