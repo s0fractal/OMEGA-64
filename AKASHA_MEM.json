@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE RECON PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040461948
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772040462120
@@ -291,6 +285,12 @@
       "text": "HUNGER CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040465456
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE WAIT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040465573
     }
   ]
 }
