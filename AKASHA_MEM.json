@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FORGE BECOME FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772023191882
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023192160
@@ -259,6 +253,12 @@
       "text": "FLOW UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023197964
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW RESONATE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772023198152
     }
   ]
 }
