@@ -120,12 +120,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SEIZE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022091592
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772022091766
@@ -207,6 +201,12 @@
       "text": "RESONATE BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022094583
+    },
+    {
+      "origin": "STREAM",
+      "text": "GIVING COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022096057
     }
   ]
 }
