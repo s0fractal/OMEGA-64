@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "HUNGER BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040525819
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME BREACH SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772040528492
+    },
+    {
+      "origin": "STREAM",
+      "text": "HEAL GIVING UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772040528619
     }
   ]
 }
