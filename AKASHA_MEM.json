@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "I16_CLAMP",
-      "text": "FLOW SYNC COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041675880
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHOCK SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772041678968
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY SEIZE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041679133
     }
   ]
 }
