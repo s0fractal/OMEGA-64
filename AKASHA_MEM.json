@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "SHELTER WAIT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041356588
-    },
-    {
-      "origin": "INTERFACE",
       "text": "RESONATE SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041356889
@@ -291,6 +285,12 @@
       "text": "OSMOSIS OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772041361756
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HEAL GIVING UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772041361904
     }
   ]
 }
