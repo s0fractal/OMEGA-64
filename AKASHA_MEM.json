@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE STRIFE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033524240
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772033524430
@@ -291,6 +285,12 @@
       "text": "UNIFY SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772033526954
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772033527124
     }
   ]
 }
