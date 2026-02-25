@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAVE BEYOND BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772036689751
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER IMMUNE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772036689934
@@ -291,6 +285,12 @@
       "text": "UNIFY SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772036693948
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036694172
     }
   ]
 }
