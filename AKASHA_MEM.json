@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "STREAM",
-      "text": "DECAY BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040979351
-    },
-    {
-      "origin": "STREAM",
       "text": "BLOOM FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772040979636
@@ -291,6 +285,12 @@
       "text": "UNIFY BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772040982689
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772040982860
     }
   ]
 }
