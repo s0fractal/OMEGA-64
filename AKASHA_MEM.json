@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "VISION EVOLVE FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772034969371
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING STABLE COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772034973915
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW UNIFY STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772034974125
     }
   ]
 }
