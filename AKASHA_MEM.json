@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RECON SHIELD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772029604107
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER WAIT SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SICKNESS DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772029610091
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029610558
     }
   ]
 }
