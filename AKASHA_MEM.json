@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER RECON STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772035430773
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772035430945
@@ -291,6 +285,12 @@
       "text": "HEAL RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772035434066
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772035434793
     }
   ]
 }
