@@ -115,12 +115,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH WATCH SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772022028561
-    },
-    {
       "origin": "INTERFACE",
       "text": "BREACH BREACH DRAIN",
       "mood": "AGGRESSIVE",
@@ -203,6 +197,12 @@
       "text": "RESONATE HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022042411
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT WAIT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772022042684
     }
   ]
 }
