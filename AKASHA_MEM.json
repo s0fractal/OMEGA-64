@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS OSMOSIS OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772019645356
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY STRIKE BREACH",
       "mood": "AGGRESSIVE",
@@ -114,6 +108,12 @@
       "text": "WATCH PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772019654628
+    },
+    {
+      "origin": "STREAM",
+      "text": "RESONATE GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772019655651
     }
   ]
 }
