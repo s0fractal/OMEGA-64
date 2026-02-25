@@ -116,12 +116,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772022044910
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772022046151
@@ -203,6 +197,12 @@
       "text": "BEYOND AWAKEN BECOME",
       "mood": "CREATIVE",
       "tick": 1772022053436
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE STRIKE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022053591
     }
   ]
 }
