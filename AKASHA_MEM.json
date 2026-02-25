@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023994175
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023994528
@@ -284,6 +278,12 @@
       "text": "COHERE RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023999985
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024000185
     }
   ]
 }
