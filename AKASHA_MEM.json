@@ -162,12 +162,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022855677
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772022855891
@@ -249,6 +243,12 @@
       "text": "COHERE UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772022860068
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT STASIS RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772022860236
     }
   ]
 }
