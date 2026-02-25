@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL GIVING HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772041408743
-    },
-    {
       "origin": "STREAM",
       "text": "DRAIN STRIKE HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "BREACH DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772041411689
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE SHIELD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041411833
     }
   ]
 }
