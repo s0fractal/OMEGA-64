@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY RESONATE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772038277140
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772038277366
@@ -291,6 +285,12 @@
       "text": "SHIELD REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772038280170
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL HEAL GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772038280389
     }
   ]
 }
