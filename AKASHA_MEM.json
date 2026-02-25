@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772025846761
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772025849423
@@ -291,6 +285,12 @@
       "text": "HEAL STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772025854274
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME WAVE EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772025854491
     }
   ]
 }
