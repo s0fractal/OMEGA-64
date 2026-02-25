@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE STRIKE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037880921
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772037881133
@@ -291,6 +285,12 @@
       "text": "WITNESS BECOME WITNESS",
       "mood": "CREATIVE",
       "tick": 1772037884023
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS AWAKEN EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772037884185
     }
   ]
 }
