@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHOCK DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041389963
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT WAIT RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041394044
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH IMMUNE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041394933
     }
   ]
 }
