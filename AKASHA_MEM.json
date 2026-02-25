@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK CONSUME SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038010402
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772038010577
@@ -291,6 +285,12 @@
       "text": "WATCH REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772038014974
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772038015179
     }
   ]
 }
