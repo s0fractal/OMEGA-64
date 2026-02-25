@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772035786421
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772035786641
@@ -291,6 +285,12 @@
       "text": "COHERE FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772035789551
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035789825
     }
   ]
 }
