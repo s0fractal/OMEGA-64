@@ -77,12 +77,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "REFLECT STASIS RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772020999043
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BREACH BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020999537
@@ -164,6 +158,12 @@
       "text": "STRIKE DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021005104
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772021005265
     }
   ]
 }
