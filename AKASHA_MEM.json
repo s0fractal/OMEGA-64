@@ -183,12 +183,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE HEAL OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772023537252
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS IMMUNE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023537422
@@ -270,6 +264,12 @@
       "text": "BEYOND WAVE WITNESS",
       "mood": "CREATIVE",
       "tick": 1772023542062
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT REFLECT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772023542193
     }
   ]
 }
