@@ -1,14 +1,14 @@
 ---
-eigenvalue: '0x0AA0AA0A00000A0D'
-energy: 50
-x: 678
-'y': 395
+eigenvalue: '0x0AA0AA0AFFFF0A09'
+energy: 45.4
+x: 733
+'y': 416
 resonance: 50
-thought: RESURRECTED
+thought: AVOID_PARASITE_PASSIVE
 logic: 0AA0AA0A
 signals: []
 bond_strengths:
-  '0x0000000000000A03': 0.9704309672630859
+  '0x0000000000000A03': 0.9694605362958227
 bonds:
   - '0x0000000000000A03'
 ex:
