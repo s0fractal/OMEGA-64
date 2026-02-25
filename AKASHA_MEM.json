@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD WATCH WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772035343596
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772035344009
@@ -291,6 +285,12 @@
       "text": "BLOOM COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772035347996
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE RECON SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772035348217
     }
   ]
 }
