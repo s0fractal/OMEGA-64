@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE WAIT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772035810564
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772035810806
@@ -291,6 +285,12 @@
       "text": "RECON SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772035813238
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772035813434
     }
   ]
 }
