@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL UNIFY COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772023106298
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023106527
@@ -259,6 +253,12 @@
       "text": "COHERE SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023112362
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023113575
     }
   ]
 }
