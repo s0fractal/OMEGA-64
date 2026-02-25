@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772034876541
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772034876711
@@ -291,6 +285,12 @@
       "text": "SYNC HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772034881461
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD REFLECT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772034881661
     }
   ]
 }
