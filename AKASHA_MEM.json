@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772033907455
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772033907670
@@ -291,6 +285,12 @@
       "text": "UNIFY BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772033910569
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHELTER STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772033911967
     }
   ]
 }
