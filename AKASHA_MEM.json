@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT PURE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772033335619
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772033335795
@@ -291,6 +285,12 @@
       "text": "WAIT SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772033338923
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772033339198
     }
   ]
 }
