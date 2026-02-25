@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER SHELTER SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772034730310
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772034730512
@@ -291,6 +285,12 @@
       "text": "UNIFY STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772034733017
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772034733187
     }
   ]
 }
