@@ -72,12 +72,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SPARK WAVE BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772020928436
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772020928640
@@ -159,6 +153,12 @@
       "text": "STRIFE SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020935619
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND FORGE SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772020935951
     }
   ]
 }
