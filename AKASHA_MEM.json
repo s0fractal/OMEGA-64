@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SYNC BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772041375842
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BLOOM SYNC STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BREACH STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041380017
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041380227
     }
   ]
 }
