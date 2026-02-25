@@ -76,12 +76,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021001278
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH PURE WAIT",
       "mood": "DEFENSIVE",
@@ -164,6 +158,12 @@
       "text": "FORGE BECOME BECOME",
       "mood": "CREATIVE",
       "tick": 1772021007184
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHOCK CONSUME STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021007339
     }
   ]
 }
