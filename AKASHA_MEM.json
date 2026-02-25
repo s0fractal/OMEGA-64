@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038513327
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772038513549
@@ -291,6 +285,12 @@
       "text": "UNIFY COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772038524705
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772038524902
     }
   ]
 }
