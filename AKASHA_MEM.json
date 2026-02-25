@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772031147623
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772031148066
@@ -291,6 +285,12 @@
       "text": "SHELTER PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772031153815
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772031154305
     }
   ]
 }
