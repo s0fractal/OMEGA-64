@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772036058768
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772036058981
@@ -291,6 +285,12 @@
       "text": "WATCH REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772036063153
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIFE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036064200
     }
   ]
 }
