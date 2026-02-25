@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0AAAA0AA",
     "0A660600",
     "A00A0000",
     "AA0AAAAA",
@@ -199,15 +198,10 @@
     "00600606",
     "0000AAA0",
     "06606000",
-    "AA00A0A0"
+    "AA00A0A0",
+    "A000A000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "DECAY DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035882863
-    },
     {
       "origin": "REVERSE",
       "text": "VISION BEYOND WAVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772035886091
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH HUNGER STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035886297
     }
   ]
 }
