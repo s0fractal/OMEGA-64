@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STABLE BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772040201492
-    },
-    {
       "origin": "STREAM",
       "text": "STRIFE STRIFE DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772040206864
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772040207129
     }
   ]
 }
