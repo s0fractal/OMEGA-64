@@ -187,12 +187,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023616568
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023618710
@@ -274,6 +268,12 @@
       "text": "GUARD REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023621427
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DECAY SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023621600
     }
   ]
 }
