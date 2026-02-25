@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT STASIS GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772033367550
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772033367739
@@ -291,6 +285,12 @@
       "text": "DECAY CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772033370231
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772033370444
     }
   ]
 }
