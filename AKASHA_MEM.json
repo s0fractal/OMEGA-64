@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "COHERE UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772042003210
-    },
-    {
       "origin": "INTERFACE",
       "text": "STABLE SYNC GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "IMMUNE REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772042010161
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE SHIELD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772042010550
     }
   ]
 }
