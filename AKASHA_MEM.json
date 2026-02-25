@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE STRIKE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035998802
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772035998960
@@ -291,6 +285,12 @@
       "text": "FLOW UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772036003419
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH IMMUNE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772036003585
     }
   ]
 }
