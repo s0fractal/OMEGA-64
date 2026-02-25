@@ -180,12 +180,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE WATCH SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772023395086
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023395260
@@ -267,6 +261,12 @@
       "text": "REFLECT STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023398910
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772023399318
     }
   ]
 }
