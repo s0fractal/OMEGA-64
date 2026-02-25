@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SEIZE DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028845938
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE SYNC BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WAIT REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772028869220
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE WAVE BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772028869834
     }
   ]
 }
