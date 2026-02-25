@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE GIVING SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772038496118
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772038496349
@@ -291,6 +285,12 @@
       "text": "WAIT REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772038499268
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772038499484
     }
   ]
 }
