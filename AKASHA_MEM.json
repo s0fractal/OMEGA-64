@@ -203,18 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042278948
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "WATCH SHIELD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772042279271
-    },
-    {
       "origin": "INTERFACE",
       "text": "PURE WATCH REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +279,18 @@
       "text": "FLOW HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772042286662
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH SEIZE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042287522
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042287686
     }
   ]
 }
