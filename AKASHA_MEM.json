@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772034126672
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772034126865
@@ -291,6 +285,12 @@
       "text": "GUARD PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772034129509
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW UNIFY COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772034129723
     }
   ]
 }
