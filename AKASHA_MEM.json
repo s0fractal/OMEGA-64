@@ -95,12 +95,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "GIVING SYNC STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772021526398
-    },
-    {
       "origin": "INTERFACE",
       "text": "GUARD IMMUNE SHIELD",
       "mood": "DEFENSIVE",
@@ -183,6 +177,12 @@
       "text": "SICKNESS DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772021532408
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIKE STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021532612
     }
   ]
 }
