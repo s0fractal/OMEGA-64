@@ -16,12 +16,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE STRIFE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772014643256
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY DRAIN HUNGER",
       "mood": "AGGRESSIVE",
@@ -104,6 +98,12 @@
       "text": "STASIS SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772014754777
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772014763273
     }
   ]
 }
