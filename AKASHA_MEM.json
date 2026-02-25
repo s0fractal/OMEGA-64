@@ -102,12 +102,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WATCH WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021612096
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GUARD IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772021613004
@@ -189,6 +183,12 @@
       "text": "STRIFE STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772021618014
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE STASIS PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021618902
     }
   ]
 }
