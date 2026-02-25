@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028612850
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772028613464
@@ -291,6 +285,12 @@
       "text": "STRIFE BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772028623868
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIFE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028626333
     }
   ]
 }
