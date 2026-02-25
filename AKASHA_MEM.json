@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE SICKNESS HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041550950
-    },
-    {
       "origin": "STREAM",
       "text": "OSMOSIS STABLE FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "PURE SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772041555360
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT REFLECT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772041555517
     }
   ]
 }
