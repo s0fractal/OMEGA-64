@@ -164,12 +164,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772022940715
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772022940888
@@ -251,6 +245,12 @@
       "text": "STRIKE STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022946261
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS SYNC COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772022946445
     }
   ]
 }
