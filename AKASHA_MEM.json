@@ -180,12 +180,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE HUNGER SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023395877
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023396059
@@ -267,6 +261,12 @@
       "text": "STRIKE CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023400020
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DECAY HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023400193
     }
   ]
 }
