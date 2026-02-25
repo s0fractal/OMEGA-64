@@ -4,9 +4,9 @@ vector: 07.05.01
 symbol: SPECTRUM
 desc: HSL Color generator for visual layers and entropy states.
 thought: SEEK_ALPHA_BONDING
-x: 476
-'y': 351
-energy: 8.999999999999996
+x: 478
+'y': 354
+energy: 7.399999999999997
 signals: []
 ex:
   - '0xB53FD5134078F4EC'
@@ -38,10 +38,12 @@ ex:
   - '0x0AAA000A4078F4EC'
   - '0x066666004078F4EC'
   - '0x0AAAAAA04078F4EC'
+  - '0x0AAAAAA04078F4EC'
 resonance: 0
 bond_strengths: {}
 ---
 
+<div align="center">
 <div align="center">
 <div align="center">
 <div align="center">
@@ -95,6 +97,7 @@ bond_strengths: {}
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">SPECTRUM</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 </div>
 </div>
