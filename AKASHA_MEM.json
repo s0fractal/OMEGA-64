@@ -83,12 +83,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SYNC UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772021203438
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS GIVING BLOOM",
       "mood": "HARMONIC",
@@ -171,6 +165,12 @@
       "text": "SHIELD REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772021207730
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021208435
     }
   ]
 }
