@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "SEIZE SEIZE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772016212022
-    },
-    {
-      "origin": "INTERFACE",
       "text": "SEIZE DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772016224100
@@ -107,6 +101,12 @@
       "text": "BREACH STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772016323980
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH WAIT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772016333543
     }
   ]
 }
