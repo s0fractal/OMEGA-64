@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772024112535
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC UNIFY GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FLOW COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772024115588
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772024116498
     }
   ]
 }
