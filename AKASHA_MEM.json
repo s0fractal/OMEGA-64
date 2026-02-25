@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON WAIT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023956962
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023957139
@@ -284,6 +278,12 @@
       "text": "SYNC SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772023960060
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772023960247
     }
   ]
 }
