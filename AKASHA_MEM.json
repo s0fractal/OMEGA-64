@@ -169,12 +169,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "WATCH GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023083550
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY HUNGER CONSUME",
       "mood": "AGGRESSIVE",
@@ -257,6 +251,12 @@
       "text": "HEAL GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772023087145
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL UNIFY STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772023087381
     }
   ]
 }
