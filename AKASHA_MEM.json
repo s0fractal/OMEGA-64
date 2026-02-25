@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66600600",
     "06666066",
     "AA0AAAAA",
     "06060000",
@@ -199,15 +198,10 @@
     "660000A6",
     "00B00000",
     "00060660",
-    "06606000"
+    "06606000",
+    "BB000000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SEIZE STRIKE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026758869
-    },
     {
       "origin": "REVERSE",
       "text": "GUARD SHIELD RECON",
@@ -291,6 +285,12 @@
       "text": "SYNC HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772026764243
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026764494
     }
   ]
 }
