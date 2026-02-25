@@ -19,12 +19,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "BREACH SICKNESS HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772015503931
-    },
-    {
-      "origin": "INTERFACE",
       "text": "SICKNESS STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772015516659
@@ -106,6 +100,12 @@
       "text": "STRIFE SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772015600043
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHIELD SHELTER IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772015620545
     }
   ]
 }
