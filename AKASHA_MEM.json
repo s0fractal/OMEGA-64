@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "COHERE RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772040385235
-    },
-    {
       "origin": "REVERSE",
       "text": "SHIELD IMMUNE WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772040390271
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772040391513
     }
   ]
 }
