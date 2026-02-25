@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "UNIFY GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041082438
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER WATCH REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772041085192
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DECAY SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041085582
     }
   ]
 }
