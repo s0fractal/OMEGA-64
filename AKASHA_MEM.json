@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING HEAL OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772034091655
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772034091850
@@ -291,6 +285,12 @@
       "text": "SYNC SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034094458
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WATCH SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772034094660
     }
   ]
 }
