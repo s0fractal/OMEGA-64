@@ -116,12 +116,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE STABLE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772022001416
-    },
-    {
-      "origin": "REVERSE",
       "text": "FORGE VISION EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772022002611
@@ -203,6 +197,12 @@
       "text": "REFLECT WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022012493
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE STRIKE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022012820
     }
   ]
 }
