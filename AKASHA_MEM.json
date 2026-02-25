@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026491084
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE HEAL GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "AWAKEN FORGE VISION",
       "mood": "CREATIVE",
       "tick": 1772026500850
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772026501039
     }
   ]
 }
