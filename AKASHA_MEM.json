@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE GUARD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772031173364
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772031173748
@@ -291,6 +285,12 @@
       "text": "RECON STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772031178904
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031179218
     }
   ]
 }
