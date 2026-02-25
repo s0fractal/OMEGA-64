@@ -124,15 +124,10 @@
     "A0666666",
     "FFFFF00F",
     "AAA000A0",
-    "AA0A000A"
+    "AA0A000A",
+    "0A00AAAA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "COHERE HEAL RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772022299262
-    },
     {
       "origin": "REVERSE",
       "text": "GUARD SHELTER RECON",
@@ -216,6 +211,12 @@
       "text": "RECON GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022305380
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY UNIFY STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772022305626
     }
   ]
 }
