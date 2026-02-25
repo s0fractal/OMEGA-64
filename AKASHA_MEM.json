@@ -125,12 +125,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022217455
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC FLOW FLOW",
       "mood": "HARMONIC",
@@ -213,6 +207,12 @@
       "text": "UNIFY FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022221624
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD STASIS SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772022221790
     }
   ]
 }
