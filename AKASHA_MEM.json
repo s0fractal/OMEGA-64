@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD SHELTER WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772026924262
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772026924463
@@ -291,6 +285,12 @@
       "text": "STASIS PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772026930314
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE WITNESS AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772026930851
     }
   ]
 }
