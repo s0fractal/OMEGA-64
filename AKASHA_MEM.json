@@ -144,12 +144,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS EVOLVE EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772022489823
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772022490066
@@ -231,6 +225,12 @@
       "text": "OSMOSIS SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022493828
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIFE SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022493994
     }
   ]
 }
