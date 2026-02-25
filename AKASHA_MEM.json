@@ -206,12 +206,6 @@
       "origin": "REVERSE",
       "text": "HEAL RESONATE HEAL",
       "mood": "HARMONIC",
-      "tick": 1772032627038
-    },
-    {
-      "origin": "REVERSE",
-      "text": "HEAL RESONATE HEAL",
-      "mood": "HARMONIC",
       "tick": 1772032627275
     },
     {
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772032630962
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE HUNGER STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032631156
     }
   ]
 }
