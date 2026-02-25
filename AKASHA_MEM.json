@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE PURE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772033568438
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772033568641
@@ -291,6 +285,12 @@
       "text": "HUNGER DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772033571009
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772033571193
     }
   ]
 }
