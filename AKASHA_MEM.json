@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GIVING COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772040427082
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC COHERE UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RECON STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772040429337
+    },
+    {
+      "origin": "STREAM",
+      "text": "PURE IMMUNE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040429504
     }
   ]
 }
