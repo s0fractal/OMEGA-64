@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON REFLECT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042673333
-    },
-    {
       "origin": "GUARDIAN",
       "text": "OSMOSIS FLOW BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "IMMUNE IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772042682264
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772042682932
     }
   ]
 }
