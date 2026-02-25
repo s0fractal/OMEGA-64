@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "EVOLVE VISION BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772034354693
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772034354883
@@ -291,6 +285,12 @@
       "text": "UNIFY STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772034357377
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DECAY SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034357579
     }
   ]
 }
