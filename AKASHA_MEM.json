@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034649783
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772034649980
@@ -291,6 +285,12 @@
       "text": "STABLE COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772034652554
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034652813
     }
   ]
 }
