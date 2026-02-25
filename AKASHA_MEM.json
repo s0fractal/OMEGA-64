@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BREACH DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041799596
-    },
-    {
       "origin": "STREAM",
       "text": "COHERE FLOW COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STABLE BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772041803715
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT STASIS WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772041804227
     }
   ]
 }
