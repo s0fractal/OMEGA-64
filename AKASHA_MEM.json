@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "COHERE RESONATE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041864251
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "FLOW UNIFY FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STABLE UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041867799
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIKE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041867970
     }
   ]
 }
