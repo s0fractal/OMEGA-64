@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT WAIT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772030483204
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772030483645
@@ -291,6 +285,12 @@
       "text": "PURE SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772030502640
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN SHOCK DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030503625
     }
   ]
 }
