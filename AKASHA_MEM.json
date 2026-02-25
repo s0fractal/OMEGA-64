@@ -24,12 +24,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "UNIFY COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772019503924
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "PURE SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772019504668
@@ -111,6 +105,12 @@
       "text": "FLOW FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772019512619
+    },
+    {
+      "origin": "STREAM",
+      "text": "STABLE BLOOM FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772019513085
     }
   ]
 }
