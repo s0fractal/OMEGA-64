@@ -132,15 +132,10 @@
     "0AAAA0AA",
     "AA0A0A0A",
     "AAAAAA00",
-    "60060000"
+    "60060000",
+    "0AAAAA0A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "COHERE GIVING HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772022413720
-    },
     {
       "origin": "REVERSE",
       "text": "FLOW BLOOM STABLE",
@@ -224,6 +219,12 @@
       "text": "RECON REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022419613
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY UNIFY STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772022419897
     }
   ]
 }
