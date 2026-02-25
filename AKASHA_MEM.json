@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BEYOND SPARK FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772039055028
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772039055243
@@ -291,6 +285,12 @@
       "text": "COHERE RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772039059297
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772039059525
     }
   ]
 }
