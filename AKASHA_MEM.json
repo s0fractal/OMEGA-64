@@ -169,12 +169,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE STRIFE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023082087
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS GIVING BLOOM",
       "mood": "HARMONIC",
@@ -257,6 +251,12 @@
       "text": "PURE SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023085631
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023085854
     }
   ]
 }
