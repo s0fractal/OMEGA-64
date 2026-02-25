@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BECOME EVOLVE WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772040561138
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME STRIKE STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SEIZE DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772040563888
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GIVING COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772040564021
     }
   ]
 }
