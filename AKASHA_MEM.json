@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "RESONATE COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772040377145
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE UNIFY SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BECOME DREAM WAVE",
       "mood": "CREATIVE",
       "tick": 1772040384878
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "COHERE RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772040385235
     }
   ]
 }
