@@ -30,12 +30,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SYNC HEAL UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772019679922
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "IMMUNE RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772019680266
@@ -117,6 +111,12 @@
       "text": "RECON PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772019690542
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME HUNGER SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019691390
     }
   ]
 }
