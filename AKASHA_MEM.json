@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME HUNGER DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033999640
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772033999839
@@ -291,6 +285,12 @@
       "text": "GIVING HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772034002316
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034002507
     }
   ]
 }
