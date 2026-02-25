@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STRIKE DECAY SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040603556
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040606629
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS REFLECT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772040606821
     }
   ]
 }
