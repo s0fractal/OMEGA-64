@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "RECON STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772025084369
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER WATCH SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772025088543
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE RESONATE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772025088776
     }
   ]
 }
