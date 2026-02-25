@@ -82,12 +82,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH REFLECT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021136542
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772021136704
@@ -169,6 +163,12 @@
       "text": "COHERE HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772021143470
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE DREAM VISION",
+      "mood": "CREATIVE",
+      "tick": 1772021144170
     }
   ]
 }
