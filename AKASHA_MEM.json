@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772035336622
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772035337260
@@ -291,6 +285,12 @@
       "text": "STASIS WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772035339988
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772035340227
     }
   ]
 }
