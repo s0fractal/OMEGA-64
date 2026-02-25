@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW FLOW BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772027284418
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772027284723
@@ -291,6 +285,12 @@
       "text": "GIVING UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772027291455
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE STABLE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772027291791
     }
   ]
 }
