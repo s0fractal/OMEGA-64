@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GUARD GUARD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040824958
-    },
-    {
       "origin": "PARADOX",
       "text": "PURE STASIS SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SEIZE SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772040828904
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD WATCH SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040829077
     }
   ]
 }
