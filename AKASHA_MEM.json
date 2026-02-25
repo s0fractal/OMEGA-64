@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772023206319
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772023206475
@@ -259,6 +253,12 @@
       "text": "WATCH WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023210047
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIFE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023210383
     }
   ]
 }
