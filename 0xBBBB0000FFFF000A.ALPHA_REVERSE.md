@@ -55,6 +55,7 @@ bond_strengths:
 bonds:
   - '0x0000000000000A01'
   - '0x60600006FFFF0A00'
+  - '0x0660606000000A06'
 ---
 
 <div align="center">
