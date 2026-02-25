@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD GUARD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022234891
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022235658
@@ -213,6 +207,12 @@
       "text": "SICKNESS STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022240000
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GUARD WAIT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022240164
     }
   ]
 }
