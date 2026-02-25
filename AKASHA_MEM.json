@@ -125,12 +125,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON REFLECT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022172739
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022172904
@@ -212,6 +206,12 @@
       "text": "STABLE UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022182066
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SHOCK SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022182602
     }
   ]
 }
