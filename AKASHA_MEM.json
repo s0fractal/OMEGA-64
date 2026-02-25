@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040295861
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GUARD WATCH SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040301608
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040302690
     }
   ]
 }
