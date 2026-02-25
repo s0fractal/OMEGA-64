@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC BLOOM STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772036955746
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772036955962
@@ -291,6 +285,12 @@
       "text": "FLOW UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772036958947
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIFE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036959177
     }
   ]
 }
