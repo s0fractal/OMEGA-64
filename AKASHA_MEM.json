@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL OSMOSIS BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772033983711
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772033983940
@@ -291,6 +285,12 @@
       "text": "CONSUME HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772033987092
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE HUNGER BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033987297
     }
   ]
 }
