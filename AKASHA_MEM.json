@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0A0A0A",
     "B0BB0000",
     "000AA00A",
     "06006600",
@@ -199,15 +198,10 @@
     "A6666060",
     "60660000",
     "AAAA0AAA",
-    "AAAA00AA"
+    "AAAA00AA",
+    "60000000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "CONSUME DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037736888
-    },
     {
       "origin": "REVERSE",
       "text": "STABLE FLOW FLOW",
@@ -291,6 +285,12 @@
       "text": "SPARK EVOLVE DREAM",
       "mood": "CREATIVE",
       "tick": 1772037741455
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772037741666
     }
   ]
 }
