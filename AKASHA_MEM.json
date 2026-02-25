@@ -179,12 +179,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER SHIELD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772023361081
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS IMMUNE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023361251
@@ -266,6 +260,12 @@
       "text": "WITNESS BEYOND AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772023363954
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND SPARK BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772023364259
     }
   ]
 }
