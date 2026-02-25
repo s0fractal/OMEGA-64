@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH STASIS GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772034169841
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772034170030
@@ -291,6 +285,12 @@
       "text": "OSMOSIS FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772034174577
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772034174757
     }
   ]
 }
