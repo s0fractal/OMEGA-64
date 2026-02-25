@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023145326
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772023146132
@@ -259,6 +253,12 @@
       "text": "COHERE BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772023150317
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023150469
     }
   ]
 }
