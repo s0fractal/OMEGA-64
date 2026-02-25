@@ -54,12 +54,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHOCK CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020346314
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIKE CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020347357
@@ -141,6 +135,12 @@
       "text": "UNIFY FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772020356583
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE DECAY SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020356745
     }
   ]
 }
