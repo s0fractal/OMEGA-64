@@ -180,12 +180,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD WATCH WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772023427481
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "UNIFY RESONATE FLOW",
       "mood": "HARMONIC",
@@ -268,6 +262,12 @@
       "text": "SICKNESS SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772023431580
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772023431712
     }
   ]
 }
