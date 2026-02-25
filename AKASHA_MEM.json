@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE RECON REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040630998
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "UNIFY STABLE RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772040633977
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER RECON STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772040634152
     }
   ]
 }
