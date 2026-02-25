@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE SICKNESS STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027870669
-    },
-    {
       "origin": "STREAM",
       "text": "BLOOM STABLE HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RESONATE FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772027903271
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772027904133
     }
   ]
 }
