@@ -84,12 +84,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021215438
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS IMMUNE RECON",
       "mood": "DEFENSIVE",
@@ -172,6 +166,12 @@
       "text": "HEAL BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772021220957
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME BREACH STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021221135
     }
   ]
 }
