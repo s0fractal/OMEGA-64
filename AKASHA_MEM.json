@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIFE DECAY SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038189293
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS UNIFY GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIFE STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772038193079
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772038193278
     }
   ]
 }
