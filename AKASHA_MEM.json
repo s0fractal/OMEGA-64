@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772033689806
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772033690168
@@ -291,6 +285,12 @@
       "text": "STASIS WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772033693617
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033693818
     }
   ]
 }
