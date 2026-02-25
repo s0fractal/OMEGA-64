@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "PURE WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041357045
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "COHERE SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772041357419
@@ -291,6 +285,12 @@
       "text": "UNIFY RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772041362050
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHIELD RECON PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041362198
     }
   ]
 }
