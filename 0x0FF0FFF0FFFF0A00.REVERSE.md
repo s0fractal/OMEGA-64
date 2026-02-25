@@ -2,7 +2,7 @@
 eigenvalue: '0x0FF0FFF0FFFF0A00'
 energy: 49.9
 x: 687
-'y': 393
+'y': 394
 resonance: 24.75
 thought: SEEK_ALPHA_MATING
 logic: 0FF0FFF0

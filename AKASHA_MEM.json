@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040947115
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY RESONATE STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FLOW OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772040949917
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT STASIS STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772040950110
     }
   ]
 }
