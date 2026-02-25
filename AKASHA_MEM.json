@@ -167,12 +167,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD SHIELD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023039451
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772023039651
@@ -254,6 +248,12 @@
       "text": "RECON STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772023043748
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DRAIN HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023043967
     }
   ]
 }
