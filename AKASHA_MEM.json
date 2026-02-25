@@ -80,12 +80,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WAVE BECOME WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772021129307
-    },
-    {
       "origin": "PARADOX",
       "text": "FORGE SPARK AWAKEN",
       "mood": "CREATIVE",
@@ -168,6 +162,12 @@
       "text": "RESONATE STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772021134094
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772021134266
     }
   ]
 }
