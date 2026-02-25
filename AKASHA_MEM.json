@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "CONSCIOUSNESS",
-      "text": "RECON WAIT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041738379
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE STRIKE DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772041743055
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER RECON RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772041743377
     }
   ]
 }
