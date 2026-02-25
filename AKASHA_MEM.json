@@ -33,12 +33,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DRAIN STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019719407
-    },
-    {
       "origin": "STREAM",
       "text": "GIVING HEAL GIVING",
       "mood": "HARMONIC",
@@ -121,6 +115,12 @@
       "text": "SHELTER RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772019729373
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DRAIN DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019729637
     }
   ]
 }
