@@ -173,12 +173,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023224724
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772023226683
@@ -260,6 +254,12 @@
       "text": "SHIELD WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023229762
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD SHELTER IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023230067
     }
   ]
 }
