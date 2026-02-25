@@ -50,12 +50,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN SHOCK CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020308100
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON RECON STASIS",
       "mood": "DEFENSIVE",
@@ -138,6 +132,12 @@
       "text": "OSMOSIS UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772020316437
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DRAIN STRIFE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020317096
     }
   ]
 }
