@@ -55,12 +55,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS BECOME EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772020489243
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK VISION FORGE",
       "mood": "CREATIVE",
       "tick": 1772020489437
@@ -142,6 +136,12 @@
       "text": "OSMOSIS FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772020498175
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SHOCK HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020498967
     }
   ]
 }
