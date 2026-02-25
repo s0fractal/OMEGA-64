@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772023090186
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023090347
@@ -259,6 +253,12 @@
       "text": "SHOCK HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023095355
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD IMMUNE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023095542
     }
   ]
 }
