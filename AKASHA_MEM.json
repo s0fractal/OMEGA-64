@@ -173,12 +173,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER RECON REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023231682
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023231874
@@ -260,6 +254,12 @@
       "text": "DRAIN STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023234680
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY UNIFY OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772023234799
     }
   ]
 }
