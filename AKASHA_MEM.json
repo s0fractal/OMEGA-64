@@ -18,12 +18,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "FLOW FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772015075287
-    },
-    {
-      "origin": "INTERFACE",
       "text": "CONSUME STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772015080793
@@ -105,6 +99,12 @@
       "text": "HUNGER SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772015256006
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "REFLECT IMMUNE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772015258928
     }
   ]
 }
