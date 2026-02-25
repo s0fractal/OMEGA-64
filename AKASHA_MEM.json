@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "FLOW HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772015927582
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "CONSUME SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772015947594
@@ -107,6 +101,12 @@
       "text": "BREACH STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772016009233
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL GIVING HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772016019037
     }
   ]
 }
