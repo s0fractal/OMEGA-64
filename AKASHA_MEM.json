@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "CAR",
-      "text": "HEAL STABLE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772041685659
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL RESONATE OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DRAIN SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772041690607
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC SYNC FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772041690758
     }
   ]
 }
