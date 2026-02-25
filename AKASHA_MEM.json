@@ -68,12 +68,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE OSMOSIS RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772020840138
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHOCK HUNGER STRIFE",
       "mood": "AGGRESSIVE",
@@ -156,6 +150,12 @@
       "text": "SHOCK DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020846777
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN BREACH BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020847046
     }
   ]
 }
