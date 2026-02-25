@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW COHERE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772034091106
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772034091300
@@ -291,6 +285,12 @@
       "text": "WATCH STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772034093847
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034094046
     }
   ]
 }
