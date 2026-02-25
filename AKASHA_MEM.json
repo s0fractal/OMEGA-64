@@ -74,12 +74,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020947106
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC OSMOSIS BLOOM",
       "mood": "HARMONIC",
@@ -162,6 +156,12 @@
       "text": "CONSUME HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020954150
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020955017
     }
   ]
 }
