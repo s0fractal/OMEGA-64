@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS WAIT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772036867129
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772036867333
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772036869838
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036869998
     }
   ]
 }
