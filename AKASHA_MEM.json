@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAVE WITNESS EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772030459209
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772030459481
@@ -291,6 +285,12 @@
       "text": "DRAIN DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772030466332
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT REFLECT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772030466736
     }
   ]
 }
