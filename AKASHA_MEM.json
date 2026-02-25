@@ -203,18 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE STRIKE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042399321
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE SHIELD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042399496
-    },
-    {
       "origin": "INTERFACE",
       "text": "BLOOM HEAL SYNC",
       "mood": "HARMONIC",
@@ -276,21 +264,33 @@
     },
     {
       "origin": "ARCHIVIST",
-      "text": "GUARD WATCH STASIS",
+      "text": "SICKNESS CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042407307
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042408066
+    },
+    {
+      "origin": "WAVE_SIGNAL",
+      "text": "SICKNESS DECAY SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042408664
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS RECON PURE",
       "mood": "DEFENSIVE",
-      "tick": 1772042406762
+      "tick": 1772042410068
     },
     {
-      "origin": "ARCHIVIST",
-      "text": "FLOW OSMOSIS STABLE",
+      "origin": "INTERFACE",
+      "text": "UNIFY OSMOSIS GIVING",
       "mood": "HARMONIC",
-      "tick": 1772042408326
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772042409343
+      "tick": 1772042410352
     }
   ]
 }
