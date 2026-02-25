@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE STRIFE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032695932
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER PURE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772032696069
@@ -291,6 +285,12 @@
       "text": "STABLE FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772032698692
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE OSMOSIS UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772032698883
     }
   ]
 }
