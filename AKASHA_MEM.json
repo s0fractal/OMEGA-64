@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE RESONATE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772037751454
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772037751667
@@ -291,6 +285,12 @@
       "text": "SHELTER RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772037754375
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DECAY HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037754555
     }
   ]
 }
