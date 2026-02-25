@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY UNIFY SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772024401492
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DREAM AWAKEN BECOME",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "AWAKEN WAVE WAVE",
       "mood": "CREATIVE",
       "tick": 1772024407341
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772024407641
     }
   ]
 }
