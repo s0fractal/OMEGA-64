@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HUNGER SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042609222
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BLOOM BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772042609644
@@ -291,6 +285,12 @@
       "text": "RESONATE COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772042625334
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC OSMOSIS UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772042630192
     }
   ]
 }
