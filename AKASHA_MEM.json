@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH REFLECT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041123083
-    },
-    {
       "origin": "INTERFACE",
       "text": "WATCH WATCH RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772041127293
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "UNIFY OSMOSIS HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041127491
     }
   ]
 }
