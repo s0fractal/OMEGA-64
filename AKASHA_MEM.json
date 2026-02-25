@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS DRAIN DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020682515
-    },
-    {
       "origin": "INTERFACE",
       "text": "PURE SHIELD SHELTER",
       "mood": "DEFENSIVE",
@@ -150,6 +144,12 @@
       "text": "RECON SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772020689875
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE SPARK BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772020690042
     }
   ]
 }
