@@ -27,12 +27,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "STRIFE HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019601360
-    },
-    {
-      "origin": "INTERFACE",
       "text": "DRAIN STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772019602092
@@ -114,6 +108,12 @@
       "text": "UNIFY BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772019610743
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DECAY SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019611157
     }
   ]
 }
