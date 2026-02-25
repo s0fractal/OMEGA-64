@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL FLOW OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772025777906
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772025778623
@@ -291,6 +285,12 @@
       "text": "BLOOM STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772025788295
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON PURE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772025789020
     }
   ]
 }
