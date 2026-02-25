@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH STASIS STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772023946332
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023948488
@@ -284,6 +278,12 @@
       "text": "DRAIN SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772023951439
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD GUARD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772023951844
     }
   ]
 }
