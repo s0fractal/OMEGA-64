@@ -47,12 +47,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WAIT PURE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020118228
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SEIZE BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020119955
@@ -134,6 +128,12 @@
       "text": "CONSUME DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020131627
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SEIZE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020132407
     }
   ]
 }
