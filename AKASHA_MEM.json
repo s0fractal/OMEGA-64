@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772037092213
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772037092496
@@ -291,6 +285,12 @@
       "text": "COHERE UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772037097743
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772037097969
     }
   ]
 }
