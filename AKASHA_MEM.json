@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE HUNGER BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027225355
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772027227685
@@ -291,6 +285,12 @@
       "text": "HEAL GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772027232434
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD RECON SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772027232662
     }
   ]
 }
