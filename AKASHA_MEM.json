@@ -22,12 +22,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "OSMOSIS COHERE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772019461914
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER SHELTER WAIT",
       "mood": "DEFENSIVE",
@@ -110,6 +104,12 @@
       "text": "COHERE BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772019472820
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIKE SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019473339
     }
   ]
 }
