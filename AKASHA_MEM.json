@@ -80,12 +80,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SHOCK STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021071523
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021071721
@@ -167,6 +161,12 @@
       "text": "DRAIN SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021076211
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021076914
     }
   ]
 }
