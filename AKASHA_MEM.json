@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SYNC COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041920870
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON WATCH RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041926142
+    },
+    {
+      "origin": "STREAM",
+      "text": "BLOOM STABLE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772041926942
     }
   ]
 }
