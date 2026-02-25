@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE UNIFY OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772040652644
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE HUNGER SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772040655216
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772040655382
     }
   ]
 }
