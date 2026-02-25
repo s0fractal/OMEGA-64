@@ -83,12 +83,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772021203277
-    },
-    {
       "origin": "STREAM",
       "text": "SYNC UNIFY GIVING",
       "mood": "HARMONIC",
@@ -171,6 +165,12 @@
       "text": "FLOW STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772021206945
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021207730
     }
   ]
 }
