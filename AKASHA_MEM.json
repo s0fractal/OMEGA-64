@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772038786457
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772038786685
@@ -291,6 +285,12 @@
       "text": "UNIFY GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772038789710
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE PURE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772038789915
     }
   ]
 }
