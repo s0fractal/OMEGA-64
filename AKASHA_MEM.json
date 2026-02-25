@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER WAIT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772039114392
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772039114635
@@ -291,6 +285,12 @@
       "text": "STRIFE SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772039117547
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039117762
     }
   ]
 }
