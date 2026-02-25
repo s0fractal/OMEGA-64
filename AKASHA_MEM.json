@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN BREACH HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024213008
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772024213255
@@ -291,6 +285,12 @@
       "text": "UNIFY SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772024218892
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772024219058
     }
   ]
 }
