@@ -166,12 +166,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772023018094
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023018412
@@ -253,6 +247,12 @@
       "text": "COHERE GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772023024681
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WATCH REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023026328
     }
   ]
 }
