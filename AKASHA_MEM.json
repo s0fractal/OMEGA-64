@@ -159,12 +159,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772022803363
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022803586
@@ -246,6 +240,12 @@
       "text": "BLOOM STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772022807629
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STABLE STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772022808379
     }
   ]
 }
