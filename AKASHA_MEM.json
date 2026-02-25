@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "BBB00000",
     "00600600",
     "60006600",
     "00660000",
@@ -199,15 +198,10 @@
     "AA000A00",
     "AAAA00A0",
     "666006A0",
-    "0AAAAAA0"
+    "0AAAAAA0",
+    "06060600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHIELD REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772028738676
-    },
     {
       "origin": "REVERSE",
       "text": "GIVING BLOOM RESONATE",
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772028746262
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772028746750
     }
   ]
 }
