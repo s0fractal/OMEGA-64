@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66666060",
     "000000FF",
     "A6666600",
     "06600000",
@@ -199,15 +198,10 @@
     "A00A0000",
     "00600066",
     "00AAAA00",
-    "AABB0CDD"
+    "AABB0CDD",
+    "A00A00A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WAIT RECON STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772025861282
-    },
     {
       "origin": "REVERSE",
       "text": "HEAL UNIFY HEAL",
@@ -291,6 +285,12 @@
       "text": "STRIKE BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772025871037
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025872531
     }
   ]
 }
