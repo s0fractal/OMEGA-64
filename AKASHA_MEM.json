@@ -111,12 +111,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021897260
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772021897390
@@ -198,6 +192,12 @@
       "text": "STRIKE STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772021902195
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772021902524
     }
   ]
 }
