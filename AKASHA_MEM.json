@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA6660A6",
     "0AAAA000",
     "AA0BCCDD",
     "00A0AAA0",
@@ -199,15 +198,10 @@
     "A0AAAAAA",
     "00600606",
     "60660660",
-    "A6666660"
+    "A6666660",
+    "06606660"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "DRAIN DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039927919
-    },
     {
       "origin": "REVERSE",
       "text": "STABLE HEAL STABLE",
@@ -291,6 +285,12 @@
       "text": "WATCH RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772039935454
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772039935919
     }
   ]
 }
