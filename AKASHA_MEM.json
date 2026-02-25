@@ -71,12 +71,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020882360
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772020883471
@@ -158,6 +152,12 @@
       "text": "IMMUNE IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772020889011
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME WITNESS AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772020889182
     }
   ]
 }
