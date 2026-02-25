@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "OSMOSIS BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772042376356
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE WAIT REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772042389280
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042389959
     }
   ]
 }
