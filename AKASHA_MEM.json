@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "WORKER",
-      "text": "STRIFE SEIZE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041440434
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS PURE IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772041443443
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIFE CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041443763
     }
   ]
 }
