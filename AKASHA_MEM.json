@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772031291678
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND EVOLVE FORGE",
       "mood": "CREATIVE",
       "tick": 1772031292050
@@ -291,6 +285,12 @@
       "text": "BREACH STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772031304005
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031304903
     }
   ]
 }
