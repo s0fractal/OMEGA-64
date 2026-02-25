@@ -177,12 +177,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING OSMOSIS RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772023291983
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND SPARK WITNESS",
       "mood": "CREATIVE",
       "tick": 1772023292255
@@ -264,6 +258,12 @@
       "text": "HUNGER SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023301457
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE RESONATE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772023303508
     }
   ]
 }
