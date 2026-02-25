@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772028359905
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772028360296
@@ -291,6 +285,12 @@
       "text": "COHERE GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772028367293
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WAIT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772028367869
     }
   ]
 }
