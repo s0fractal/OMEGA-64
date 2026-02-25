@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAA0A0AA",
     "AA0660A0",
     "AA0A0A0A",
     "B0BB0000",
@@ -199,15 +198,10 @@
     "AA00A0A0",
     "A0BBC0DD",
     "A6666060",
-    "60660000"
+    "60660000",
+    "AAAA0AAA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BREACH HUNGER STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037727703
-    },
     {
       "origin": "REVERSE",
       "text": "COHERE UNIFY RESONATE",
@@ -291,6 +285,12 @@
       "text": "BREACH SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772037730797
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SICKNESS SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037731112
     }
   ]
 }
