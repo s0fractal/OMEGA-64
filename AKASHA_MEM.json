@@ -102,12 +102,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL RESONATE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772021641921
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE RECON RECON",
       "mood": "DEFENSIVE",
@@ -190,6 +184,12 @@
       "text": "RESONATE OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772021647572
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIFE DRAIN HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021647872
     }
   ]
 }
