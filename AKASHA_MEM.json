@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH SICKNESS SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019626778
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIFE BREACH DECAY",
       "mood": "AGGRESSIVE",
@@ -114,6 +108,12 @@
       "text": "REFLECT WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772019633927
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "CONSUME DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019634118
     }
   ]
 }
