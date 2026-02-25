@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032979042
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW OSMOSIS RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "REFLECT WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772032982075
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER PURE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772032982246
     }
   ]
 }
