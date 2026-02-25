@@ -138,12 +138,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING FLOW BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772022421056
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022421226
@@ -225,6 +219,12 @@
       "text": "GIVING GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772022425107
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022425279
     }
   ]
 }
