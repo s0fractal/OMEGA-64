@@ -196,12 +196,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023924430
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME SHOCK STRIKE",
       "mood": "AGGRESSIVE",
@@ -284,6 +278,12 @@
       "text": "PURE PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023932504
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE PURE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023932812
     }
   ]
 }
