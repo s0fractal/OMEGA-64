@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC STABLE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772036670763
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772036670979
@@ -291,6 +285,12 @@
       "text": "STRIFE DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772036675635
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS SHIELD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772036675836
     }
   ]
 }
