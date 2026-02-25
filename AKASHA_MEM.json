@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHOCK STRIKE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024364548
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW RESONATE BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SYNC GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772024372253
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SEIZE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024372591
     }
   ]
 }
