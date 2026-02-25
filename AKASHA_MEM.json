@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE SHOCK BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041400319
-    },
-    {
       "origin": "ALPHA_GUARDIAN",
       "text": "GIVING FLOW RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GUARD REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772041404500
+    },
+    {
+      "origin": "PARASITE",
+      "text": "SHELTER SHIELD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041404990
     }
   ]
 }
