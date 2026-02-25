@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT STASIS IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040581872
-    },
-    {
       "origin": "SUCC",
       "text": "COHERE BLOOM BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SYNC COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772040584265
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT IMMUNE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040584392
     }
   ]
 }
