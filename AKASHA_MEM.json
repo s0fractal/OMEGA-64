@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "WAIT GUARD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772037007262
-    },
-    {
       "origin": "REVERSE",
       "text": "BREACH DECAY DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SEIZE SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772037010999
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME WAVE AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772037011200
     }
   ]
 }
