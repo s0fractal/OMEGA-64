@@ -163,12 +163,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022880272
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022880448
@@ -250,6 +244,12 @@
       "text": "RESONATE SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022885863
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW STABLE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772022886109
     }
   ]
 }
