@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHOCK DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020352713
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SYNC SYNC RESONATE",
       "mood": "HARMONIC",
@@ -141,6 +135,12 @@
       "text": "OSMOSIS GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772020359582
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020359755
     }
   ]
 }
