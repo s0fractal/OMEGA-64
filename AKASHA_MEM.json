@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH DRAIN DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033858822
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772033858990
@@ -291,6 +285,12 @@
       "text": "UNIFY UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772033863216
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033863423
     }
   ]
 }
