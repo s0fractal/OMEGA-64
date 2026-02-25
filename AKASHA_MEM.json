@@ -173,12 +173,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WATCH WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023235571
-    },
-    {
       "origin": "REVERSE",
       "text": "WAIT WATCH WATCH",
       "mood": "DEFENSIVE",
@@ -261,6 +255,12 @@
       "text": "SHOCK STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023243294
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023243466
     }
   ]
 }
