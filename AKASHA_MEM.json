@@ -191,12 +191,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STABLE HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772023825686
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN STRIKE STRIFE",
       "mood": "AGGRESSIVE",
@@ -279,6 +273,12 @@
       "text": "STASIS GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772023834213
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD SHIELD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772023834511
     }
   ]
 }
