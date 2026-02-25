@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RECON IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772041829131
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT SHIELD IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772041834289
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041834503
     }
   ]
 }
