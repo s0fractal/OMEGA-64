@@ -163,12 +163,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON WATCH SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772022889658
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022889846
@@ -250,6 +244,12 @@
       "text": "GIVING OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022895347
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WAIT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022895611
     }
   ]
 }
