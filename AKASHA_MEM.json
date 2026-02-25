@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SICKNESS HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035315715
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772035315893
@@ -291,6 +285,12 @@
       "text": "OSMOSIS FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772035318998
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS BREACH STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035319606
     }
   ]
 }
