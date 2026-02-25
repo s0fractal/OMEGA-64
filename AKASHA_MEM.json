@@ -20,12 +20,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WAIT SHIELD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772017430481
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY SEIZE SEIZE",
       "mood": "AGGRESSIVE",
@@ -108,6 +102,12 @@
       "text": "DECAY STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772017511844
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RECON WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772017513994
     }
   ]
 }
