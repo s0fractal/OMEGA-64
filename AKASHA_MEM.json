@@ -182,12 +182,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BREACH STRIFE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023541734
-    },
-    {
       "origin": "REVERSE",
       "text": "BEYOND WAVE WITNESS",
       "mood": "CREATIVE",
@@ -270,6 +264,12 @@
       "text": "COHERE SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772023545795
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT IMMUNE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023545962
     }
   ]
 }
