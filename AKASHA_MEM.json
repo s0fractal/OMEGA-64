@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STASIS WAIT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772041247370
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW COHERE UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "COHERE COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772041253541
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041253734
     }
   ]
 }
