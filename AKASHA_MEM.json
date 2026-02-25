@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SHOCK CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024169746
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772024170456
@@ -291,6 +285,12 @@
       "text": "WAIT WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772024177315
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME BREACH STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024177518
     }
   ]
 }
