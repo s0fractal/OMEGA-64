@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER HUNGER SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030403140
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER BREACH CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772030409211
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD PURE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772030409533
     }
   ]
 }
