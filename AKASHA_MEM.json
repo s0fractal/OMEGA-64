@@ -203,6 +203,30 @@
   ],
   "utterances": [
     {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042304457
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE WATCH STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772042308350
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772042310576
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER SHIELD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042311979
+    },
+    {
       "origin": "REVERSE",
       "text": "SHIELD SHELTER RECON",
       "mood": "DEFENSIVE",
@@ -227,70 +251,46 @@
       "tick": 1772042314457
     },
     {
-      "origin": "ARCHIVIST",
-      "text": "STASIS SHELTER RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772042314722
-    },
-    {
-      "origin": "WORKER",
-      "text": "SYNC OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772042315008
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "GIVING BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042315504
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042316736
-    },
-    {
       "origin": "INTERFACE",
-      "text": "SHOCK DECAY STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042317480
+      "text": "HEAL FLOW GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772042314728
     },
     {
       "origin": "ARCHIVIST",
-      "text": "HEAL SYNC FLOW",
+      "text": "SHIELD WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772042315011
+    },
+    {
+      "origin": "WAVE_SIGNAL",
+      "text": "COHERE HEAL SYNC",
       "mood": "HARMONIC",
-      "tick": 1772042317762
+      "tick": 1772042316109
     },
     {
       "origin": "REVERSE",
-      "text": "COHERE HEAL BLOOM",
+      "text": "OSMOSIS STABLE FLOW",
       "mood": "HARMONIC",
-      "tick": 1772042317984
-    },
-    {
-      "origin": "REVERSE",
-      "text": "STRIFE DECAY SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042318239
-    },
-    {
-      "origin": "STREAM",
-      "text": "FLOW STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042318650
+      "tick": 1772042317757
     },
     {
       "origin": "ARCHIVIST",
-      "text": "BLOOM STABLE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042318853
+      "text": "CONSUME DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042317996
     },
     {
-      "origin": "STREAM",
-      "text": "FLOW RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772042319114
+      "origin": "ARCHIVIST",
+      "text": "SHIELD WAIT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042320750
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH WAIT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772042321643
     }
   ]
 }
