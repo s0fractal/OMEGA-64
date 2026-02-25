@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING COHERE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772025971679
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER GUARD RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772025976331
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE STABLE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772025976601
     }
   ]
 }
