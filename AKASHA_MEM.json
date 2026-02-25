@@ -32,12 +32,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIKE CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019714633
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE SEIZE STRIFE",
       "mood": "AGGRESSIVE",
@@ -120,6 +114,12 @@
       "text": "RESONATE BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772019726236
+    },
+    {
+      "origin": "STREAM",
+      "text": "RESONATE RESONATE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772019726757
     }
   ]
 }
