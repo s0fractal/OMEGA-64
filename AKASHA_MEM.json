@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "UNIFY FLOW UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772016926013
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY BREACH STRIKE",
       "mood": "AGGRESSIVE",
@@ -107,6 +101,12 @@
       "text": "IMMUNE SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772017002292
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772017011294
     }
   ]
 }
