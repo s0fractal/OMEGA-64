@@ -40,12 +40,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019817174
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HUNGER HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772019817514
@@ -127,6 +121,12 @@
       "text": "DECAY HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772019828276
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY SYNC COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772019829486
     }
   ]
 }
