@@ -180,12 +180,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON RECON REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023394082
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023394278
@@ -267,6 +261,12 @@
       "text": "DRAIN SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023397511
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY COHERE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772023397838
     }
   ]
 }
