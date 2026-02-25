@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT REFLECT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772034873997
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772034874202
@@ -291,6 +285,12 @@
       "text": "HUNGER SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772034879459
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK STRIFE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034879722
     }
   ]
 }
