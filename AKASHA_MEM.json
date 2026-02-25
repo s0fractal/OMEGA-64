@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "000000A0",
     "00666000",
     "66660606",
     "06666000",
@@ -199,15 +198,10 @@
     "66600600",
     "A00AAA00",
     "A0666000",
-    "6A666000"
+    "6A666000",
+    "FB000000"
   ],
   "utterances": [
-    {
-      "origin": "STREAM",
-      "text": "SHELTER WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772036392484
-    },
     {
       "origin": "REVERSE",
       "text": "STRIKE SICKNESS STRIFE",
@@ -291,6 +285,12 @@
       "text": "FLOW COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772036396031
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME VISION BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772036396289
     }
   ]
 }
