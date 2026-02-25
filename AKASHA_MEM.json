@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772032785322
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH STASIS WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772032789503
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032789949
     }
   ]
 }
