@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025713378
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772025713777
@@ -291,6 +285,12 @@
       "text": "GUARD SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772025720167
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772025720396
     }
   ]
 }
