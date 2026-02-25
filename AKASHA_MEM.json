@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE SYNC UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772037618788
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772037619009
@@ -291,6 +285,12 @@
       "text": "FLOW HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772037621951
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER GUARD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772037622185
     }
   ]
 }
