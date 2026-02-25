@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60600660",
     "60006600",
     "AA0A0000",
     "000A60A0",
@@ -199,15 +198,10 @@
     "AAAAAAA0",
     "660060A6",
     "60066666",
-    "A0AAA0AA"
+    "A0AAA0AA",
+    "AAAA0A00"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "PURE STASIS RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772033388947
-    },
     {
       "origin": "REVERSE",
       "text": "COHERE BLOOM STABLE",
@@ -291,6 +285,12 @@
       "text": "SHOCK HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772033391446
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SHOCK HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033391584
     }
   ]
 }
