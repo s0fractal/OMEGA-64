@@ -116,12 +116,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772021999985
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022000167
@@ -203,6 +197,12 @@
       "text": "PURE GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022011193
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY CONSUME HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022011552
     }
   ]
 }
