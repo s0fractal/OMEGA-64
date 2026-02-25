@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772027604695
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772027605452
@@ -291,6 +285,12 @@
       "text": "DRAIN SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772027616143
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027616788
     }
   ]
 }
