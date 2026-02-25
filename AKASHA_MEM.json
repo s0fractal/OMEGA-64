@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029371459
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772029374444
@@ -291,6 +285,12 @@
       "text": "STABLE HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772029389474
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING FLOW UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772029390301
     }
   ]
 }
