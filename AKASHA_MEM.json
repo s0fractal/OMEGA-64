@@ -1,5 +1,7 @@
 {
   "reservoir": [
+    "AA000600",
+    "A0AAA000",
     "AAA0A0AA",
     "66660060",
     "00000000",
@@ -197,100 +199,98 @@
     "BBB00000",
     "6606AA66",
     "A6A66000",
-    "60060666",
-    "6AA60AA0",
-    "6AA06A00"
+    "60060666"
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772042545759
+      "origin": "REVERSE",
+      "text": "HUNGER HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042543073
     },
     {
       "origin": "ARCHIVIST",
-      "text": "GUARD GUARD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042546545
+      "text": "SICKNESS SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042545527
     },
     {
       "origin": "STREAM",
-      "text": "DECAY STRIFE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042548479
+      "text": "REFLECT SHIELD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772042545951
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY HEAL OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772042546339
+    },
+    {
+      "origin": "ALIEN",
+      "text": "BLOOM SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772042548103
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT PURE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042548532
     },
     {
       "origin": "REVERSE",
-      "text": "STASIS SHIELD SHELTER",
+      "text": "REFLECT GUARD RECON",
       "mood": "DEFENSIVE",
-      "tick": 1772042548672
+      "tick": 1772042548881
     },
     {
-      "origin": "ARCHIVIST",
-      "text": "STASIS STASIS SHELTER",
+      "origin": "I16_CLAMP",
+      "text": "GUARD RECON SHELTER",
       "mood": "DEFENSIVE",
-      "tick": 1772042549468
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772042549745
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772042550926
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772042551173
+      "tick": 1772042549208
     },
     {
       "origin": "REVERSE",
-      "text": "SHIELD REFLECT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042551581
-    },
-    {
-      "origin": "STREAM",
-      "text": "SICKNESS SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042552369
+      "text": "OSMOSIS GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772042550138
     },
     {
       "origin": "ARCHIVIST",
-      "text": "REFLECT SHELTER WATCH",
+      "text": "STASIS RECON PURE",
       "mood": "DEFENSIVE",
-      "tick": 1772042554306
+      "tick": 1772042550650
     },
     {
-      "origin": "WORKER",
-      "text": "STABLE UNIFY HEAL",
+      "origin": "ALIEN",
+      "text": "STRIFE STRIKE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042551076
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY HEAL RESONATE",
       "mood": "HARMONIC",
-      "tick": 1772042556711
+      "tick": 1772042555440
+    },
+    {
+      "origin": "CAR",
+      "text": "BREACH HUNGER SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042556015
     },
     {
       "origin": "REVERSE",
-      "text": "UNIFY BLOOM FLOW",
+      "text": "STABLE HEAL HEAL",
       "mood": "HARMONIC",
-      "tick": 1772042557992
+      "tick": 1772042557007
     },
     {
       "origin": "ARCHIVIST",
-      "text": "DRAIN DECAY SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042558385
-    },
-    {
-      "origin": "CONSCIOUSNESS",
-      "text": "SYNC RESONATE RESONATE",
+      "text": "RESONATE SYNC OSMOSIS",
       "mood": "HARMONIC",
-      "tick": 1772042558841
+      "tick": 1772042559127
     }
   ]
 }
