@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772038210738
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772038210954
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772038217065
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS BLOOM FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772038217327
     }
   ]
 }
