@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH GUARD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772041398962
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GIVING BLOOM RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STASIS REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772041402448
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772041402726
     }
   ]
 }
