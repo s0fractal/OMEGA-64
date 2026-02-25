@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE GUARD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041485142
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER GUARD WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041488757
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY DRAIN STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041488902
     }
   ]
 }
