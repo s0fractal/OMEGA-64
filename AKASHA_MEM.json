@@ -153,12 +153,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM HEAL FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772022638578
-    },
-    {
       "origin": "REVERSE",
       "text": "SHIELD IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
@@ -241,6 +235,12 @@
       "text": "CONSUME SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022642378
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT PURE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022642528
     }
   ]
 }
