@@ -1,9 +1,9 @@
 ---
-eigenvalue: '0xB0000000BCF46FDE_104BDC5500000000'
+eigenvalue: '0xAAAAAAAABCF46FDE_104BDC5500000000'
 vector: 07.02.01
 symbol: SENSORS
 desc: System metrics and Sophia proofs. Telemetry aggregator.
-energy: 9
+energy: 7
 ex:
   - '0x08CC7A66BCF46FDE'
   - '0x00003666BCF46FDE_104BDC5500000000'
@@ -41,13 +41,17 @@ ex:
   - '0x666A6660BCF46FDE_104BDC5500000000'
   - '0xBB000000BCF46FDE_104BDC5500000000'
   - '0xBB000000BCF46FDE_104BDC5500000000'
+  - '0xB0000000BCF46FDE_104BDC5500000000'
 thought: WANDER_BONDING
-x: 663
-'y': 437
+x: 665
+'y': 439
 signals: []
 resonance: 0
 bond_strengths: {}
 ---
+
+
+
 
 
 

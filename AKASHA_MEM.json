@@ -41,12 +41,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIFE SHOCK STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019847216
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "REFLECT IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772019848348
@@ -128,6 +122,12 @@
       "text": "BLOOM FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772019855968
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772019856287
     }
   ]
 }
