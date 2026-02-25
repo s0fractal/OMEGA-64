@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041567416
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772041567654
@@ -291,6 +285,12 @@
       "text": "REFLECT REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772041575987
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE GIVING COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041576146
     }
   ]
 }
