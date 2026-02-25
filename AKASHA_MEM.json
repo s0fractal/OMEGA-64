@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY OSMOSIS OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772040473615
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772040473813
@@ -291,6 +285,12 @@
       "text": "STRIKE SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772040476279
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL UNIFY STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772040476406
     }
   ]
 }
