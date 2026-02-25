@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS BEYOND WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772033046262
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK WAVE FORGE",
       "mood": "CREATIVE",
       "tick": 1772033046413
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772033048786
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS UNIFY HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772033048974
     }
   ]
 }
