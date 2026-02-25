@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032887084
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772032887291
@@ -291,6 +285,12 @@
       "text": "RESONATE HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772032890335
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION AWAKEN VISION",
+      "mood": "CREATIVE",
+      "tick": 1772032890474
     }
   ]
 }
