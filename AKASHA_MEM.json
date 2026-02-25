@@ -143,12 +143,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME DECAY SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022478129
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772022478920
@@ -230,6 +224,12 @@
       "text": "RESONATE BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772022482493
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM BEYOND VISION",
+      "mood": "CREATIVE",
+      "tick": 1772022482735
     }
   ]
 }
