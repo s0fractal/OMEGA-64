@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM HEAL BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772040250600
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772040250819
@@ -291,6 +285,12 @@
       "text": "SYNC SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772040253883
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN SICKNESS SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040254188
     }
   ]
 }
