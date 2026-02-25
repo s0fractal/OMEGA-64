@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024615306
-    },
-    {
-      "origin": "REVERSE",
       "text": "FORGE WITNESS SPARK",
       "mood": "CREATIVE",
       "tick": 1772024617437
@@ -291,6 +285,12 @@
       "text": "GIVING UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772024622260
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD PURE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772024622843
     }
   ]
 }
