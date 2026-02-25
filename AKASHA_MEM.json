@@ -154,12 +154,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON RECON WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772022708820
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW STABLE HEAL",
       "mood": "HARMONIC",
@@ -242,6 +236,12 @@
       "text": "HEAL GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772022713425
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE DRAIN CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022713858
     }
   ]
 }
