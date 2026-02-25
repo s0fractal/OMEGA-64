@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772033117648
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772033117853
@@ -291,6 +285,12 @@
       "text": "DECAY SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772033120911
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER IMMUNE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772033121085
     }
   ]
 }
