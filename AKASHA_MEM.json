@@ -179,12 +179,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE IMMUNE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772023385327
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT SHIELD REFLECT",
       "mood": "DEFENSIVE",
@@ -267,6 +261,12 @@
       "text": "CONSUME STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023392146
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WATCH REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023392434
     }
   ]
 }
