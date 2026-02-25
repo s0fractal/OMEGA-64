@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772035361489
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772035361689
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772035364973
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIKE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035365180
     }
   ]
 }
