@@ -39,12 +39,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019808399
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WAIT STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772019809381
@@ -126,6 +120,12 @@
       "text": "REFLECT REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772019816193
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH CONSUME HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019817174
     }
   ]
 }
