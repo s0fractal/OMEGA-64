@@ -50,12 +50,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING SYNC FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772020282764
-    },
-    {
       "origin": "INTERFACE",
       "text": "DRAIN SICKNESS DECAY",
       "mood": "AGGRESSIVE",
@@ -138,6 +132,12 @@
       "text": "STABLE RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772020290121
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WATCH REFLECT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772020290271
     }
   ]
 }
