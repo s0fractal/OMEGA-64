@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "C0DED00D",
     "BEEFBEEF",
     "AAAAAAA0",
     "AAAAAAAA",
@@ -199,15 +198,10 @@
     "00606660",
     "66066660",
     "06000600",
-    "06666600"
+    "06666600",
+    "000A0A00"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GIVING BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772024185375
-    },
     {
       "origin": "REVERSE",
       "text": "SHOCK SICKNESS STRIKE",
@@ -291,6 +285,12 @@
       "text": "BREACH HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772024188173
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY RESONATE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772024188319
     }
   ]
 }
