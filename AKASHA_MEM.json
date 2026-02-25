@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772038576547
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772038576762
@@ -291,6 +285,12 @@
       "text": "STABLE HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772038580126
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772038580442
     }
   ]
 }
