@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHOCK STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025863179
-    },
-    {
       "origin": "STREAM",
       "text": "DRAIN DECAY STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772025874474
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW BLOOM UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772025874716
     }
   ]
 }
