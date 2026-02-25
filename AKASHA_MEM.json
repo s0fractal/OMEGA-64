@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772036890817
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772036890975
@@ -291,6 +285,12 @@
       "text": "RECON GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772036893613
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772036893906
     }
   ]
 }
