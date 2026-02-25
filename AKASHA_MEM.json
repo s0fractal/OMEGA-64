@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020337387
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
@@ -141,6 +135,12 @@
       "text": "STABLE UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772020346093
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK CONSUME DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020346314
     }
   ]
 }
