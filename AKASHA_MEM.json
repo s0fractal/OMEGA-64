@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER IMMUNE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772036928087
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772036928300
@@ -291,6 +285,12 @@
       "text": "DRAIN DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772036931445
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036931610
     }
   ]
 }
