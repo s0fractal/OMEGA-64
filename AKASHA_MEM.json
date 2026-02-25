@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "B0B00000",
     "66600600",
     "A00AAA00",
     "A0666000",
@@ -199,15 +198,10 @@
     "A0AAA0A0",
     "A00000AA",
     "60006606",
-    "0F000000"
+    "0F000000",
+    "A6660060"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SYNC FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772037838030
-    },
     {
       "origin": "REVERSE",
       "text": "SHELTER RECON REFLECT",
@@ -291,6 +285,12 @@
       "text": "RESONATE SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772037845298
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037845684
     }
   ]
 }
