@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE SHELTER RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772036559254
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772036559473
@@ -291,6 +285,12 @@
       "text": "OSMOSIS SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772036562261
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH BREACH BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036562475
     }
   ]
 }
