@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY RESONATE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772026807690
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772026809275
@@ -291,6 +285,12 @@
       "text": "DRAIN STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772026813838
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER PURE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772026814065
     }
   ]
 }
