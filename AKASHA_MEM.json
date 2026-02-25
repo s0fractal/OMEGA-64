@@ -115,12 +115,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WITNESS SPARK WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772022066763
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE GUARD PURE",
       "mood": "DEFENSIVE",
@@ -203,6 +197,12 @@
       "text": "GUARD IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022071901
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772022072082
     }
   ]
 }
