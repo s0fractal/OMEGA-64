@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON SHELTER WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772035014712
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772035014926
@@ -291,6 +285,12 @@
       "text": "SHIELD SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772035017733
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DRAIN SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035017977
     }
   ]
 }
