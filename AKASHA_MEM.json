@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHELTER PURE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041496067
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GUARD WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041496200
@@ -291,6 +285,12 @@
       "text": "FLOW HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772041500060
+    },
+    {
+      "origin": "STREAM",
+      "text": "GIVING GIVING FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772041500355
     }
   ]
 }
