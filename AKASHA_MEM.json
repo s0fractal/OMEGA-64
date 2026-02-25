@@ -40,12 +40,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HEAL OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772019827772
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY HUNGER STRIKE",
       "mood": "AGGRESSIVE",
@@ -128,6 +122,12 @@
       "text": "SEIZE SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772019837526
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS STRIKE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019837945
     }
   ]
 }
