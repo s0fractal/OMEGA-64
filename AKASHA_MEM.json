@@ -120,12 +120,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN HUNGER SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022104493
-    },
-    {
       "origin": "REVERSE",
       "text": "WAIT REFLECT IMMUNE",
       "mood": "DEFENSIVE",
@@ -208,6 +202,12 @@
       "text": "STASIS STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022108306
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WAIT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022108480
     }
   ]
 }
