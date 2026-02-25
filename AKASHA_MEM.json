@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK SICKNESS STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026603842
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772026604042
@@ -291,6 +285,12 @@
       "text": "STASIS WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772026608742
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DECAY SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026608953
     }
   ]
 }
