@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041859633
-    },
-    {
       "origin": "STREAM",
       "text": "BLOOM RESONATE RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHIELD REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041865020
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE HUNGER SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041865192
     }
   ]
 }
