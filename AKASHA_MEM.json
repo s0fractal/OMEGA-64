@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS BREACH BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038606026
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772038606260
@@ -291,6 +285,12 @@
       "text": "OSMOSIS BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772038609156
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE DREAM EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772038609438
     }
   ]
 }
