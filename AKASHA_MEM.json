@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD IMMUNE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772024240005
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK AWAKEN WAVE",
       "mood": "CREATIVE",
       "tick": 1772024240458
@@ -291,6 +285,12 @@
       "text": "SYNC UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772024242853
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772024243038
     }
   ]
 }
