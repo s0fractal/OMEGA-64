@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772034823582
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772034823856
@@ -291,6 +285,12 @@
       "text": "BLOOM HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772034827713
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "CONSUME STRIKE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034827921
     }
   ]
 }
