@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HUNGER DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772015883139
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RESONATE FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772015890405
@@ -107,6 +101,12 @@
       "text": "SHOCK SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772015972304
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN CONSUME DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772015974795
     }
   ]
 }
