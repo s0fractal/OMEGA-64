@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_REVERSE",
-      "text": "DECAY BREACH BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038219839
-    },
-    {
       "origin": "REVERSE",
       "text": "IMMUNE IMMUNE SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038225179
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY STRIKE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038225415
     }
   ]
 }
