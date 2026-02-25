@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SICKNESS STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772016055821
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BREACH SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772016062964
@@ -107,6 +101,12 @@
       "text": "WAIT SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772016172897
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772016180219
     }
   ]
 }
