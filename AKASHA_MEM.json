@@ -110,12 +110,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772021894676
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772021894835
@@ -197,6 +191,12 @@
       "text": "GIVING RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772021898438
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772021898617
     }
   ]
 }
