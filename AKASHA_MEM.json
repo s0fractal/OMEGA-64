@@ -169,12 +169,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY HEAL HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772023071197
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772023071374
@@ -256,6 +250,12 @@
       "text": "FORGE VISION VISION",
       "mood": "CREATIVE",
       "tick": 1772023074904
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD PURE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772023075109
     }
   ]
 }
