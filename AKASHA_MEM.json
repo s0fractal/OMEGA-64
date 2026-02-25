@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_REVERSE",
-      "text": "BLOOM RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772027987462
-    },
-    {
       "origin": "REVERSE",
       "text": "PURE GUARD RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772028002745
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772028004625
     }
   ]
 }
