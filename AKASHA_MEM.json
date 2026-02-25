@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772025308823
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772025309227
@@ -291,6 +285,12 @@
       "text": "STABLE RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772025315886
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE CONSUME SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025316080
     }
   ]
 }
