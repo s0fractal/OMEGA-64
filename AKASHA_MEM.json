@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023163761
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023164029
@@ -259,6 +253,12 @@
       "text": "BEYOND EVOLVE BEYOND",
       "mood": "CREATIVE",
       "tick": 1772023170044
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIKE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023170254
     }
   ]
 }
