@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "CONSCIOUSNESS",
-      "text": "STABLE UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772040546546
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS RESONATE UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WAIT REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772040549423
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE REFLECT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040549858
     }
   ]
 }
