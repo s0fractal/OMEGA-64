@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772040285260
-    },
-    {
       "origin": "INTERFACE",
       "text": "STASIS WAIT WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SICKNESS SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772040293246
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772040293804
     }
   ]
 }
