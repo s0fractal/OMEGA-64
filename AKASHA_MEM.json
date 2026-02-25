@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WAIT GUARD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040412130
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIFE STRIFE DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772040414689
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772040414864
     }
   ]
 }
