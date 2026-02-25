@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "IMMUNE STASIS REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041457662
-    },
-    {
       "origin": "INTERFACE",
       "text": "REFLECT REFLECT GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772041461835
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS PURE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772041462387
     }
   ]
 }
