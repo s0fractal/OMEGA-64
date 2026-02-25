@@ -63,12 +63,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772020738759
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK HUNGER BREACH",
       "mood": "AGGRESSIVE",
@@ -151,6 +145,12 @@
       "text": "SHIELD RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772020746393
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS HUNGER SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020746823
     }
   ]
 }
