@@ -56,12 +56,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DREAM BECOME EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772020518846
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772020519027
@@ -143,6 +137,12 @@
       "text": "GUARD WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020524354
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM RESONATE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772020525180
     }
   ]
 }
