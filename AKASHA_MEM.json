@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772033599414
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772033599615
@@ -291,6 +285,12 @@
       "text": "SHELTER PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772033603108
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE HUNGER STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033603377
     }
   ]
 }
