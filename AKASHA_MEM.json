@@ -97,12 +97,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021552696
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772021552890
@@ -184,6 +178,12 @@
       "text": "CONSUME SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021557843
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE REFLECT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021558076
     }
   ]
 }
