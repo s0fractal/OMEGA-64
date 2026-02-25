@@ -132,12 +132,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SHOCK STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022344163
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022344332
@@ -219,6 +213,12 @@
       "text": "SHIELD REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022348905
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS GIVING FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772022349087
     }
   ]
 }
