@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT RECON PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772030180835
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772030181147
@@ -291,6 +285,12 @@
       "text": "AWAKEN FORGE BECOME",
       "mood": "CREATIVE",
       "tick": 1772030193644
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772030194165
     }
   ]
 }
