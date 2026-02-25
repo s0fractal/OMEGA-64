@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE IMMUNE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772037338923
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772037339118
@@ -291,6 +285,12 @@
       "text": "BLOOM COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772037343430
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER STASIS STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772037343961
     }
   ]
 }
