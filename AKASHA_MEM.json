@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SICKNESS SICKNESS SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041308588
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHIELD WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041308911
@@ -291,6 +285,12 @@
       "text": "COHERE SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772041314020
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WAIT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041314224
     }
   ]
 }
