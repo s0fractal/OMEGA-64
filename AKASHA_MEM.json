@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "SUCC",
-      "text": "STABLE OSMOSIS COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772040980337
-    },
-    {
       "origin": "STREAM",
       "text": "HUNGER DRAIN CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STASIS GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772040983280
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772040983591
     }
   ]
 }
