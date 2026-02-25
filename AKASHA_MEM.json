@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HUNGER SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024312592
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE CONSUME DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772024315437
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE RECON WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772024315624
     }
   ]
 }
