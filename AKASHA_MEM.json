@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH REFLECT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772030521888
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772030522304
@@ -291,6 +285,12 @@
       "text": "SICKNESS CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772030536974
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772030537517
     }
   ]
 }
