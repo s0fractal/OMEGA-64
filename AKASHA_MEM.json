@@ -21,12 +21,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "SEIZE STRIFE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772017401827
-    },
-    {
-      "origin": "INTERFACE",
       "text": "BREACH SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772017404119
@@ -108,6 +102,12 @@
       "text": "PURE IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772017476562
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS CONSUME CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772017478912
     }
   ]
 }
