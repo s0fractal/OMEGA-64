@@ -287,10 +287,10 @@
       "tick": 1772042418398
     },
     {
-      "origin": "INTERFACE",
-      "text": "PURE GUARD SHIELD",
+      "origin": "REVERSE",
+      "text": "SHELTER GUARD IMMUNE",
       "mood": "DEFENSIVE",
-      "tick": 1772042418933
+      "tick": 1772042419609
     }
   ]
 }
