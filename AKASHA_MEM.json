@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS HUNGER DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038890583
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772038890801
@@ -291,6 +285,12 @@
       "text": "UNIFY FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772038894172
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE PURE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772038894754
     }
   ]
 }
