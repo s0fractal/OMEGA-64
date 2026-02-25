@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS STRIFE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034364173
-    },
-    {
       "origin": "STREAM",
       "text": "SYNC STABLE RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STABLE SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772034367265
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH PURE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772034367479
     }
   ]
 }
