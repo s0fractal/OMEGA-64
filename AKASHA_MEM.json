@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SYNC SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772040667669
-    },
-    {
       "origin": "REVERSE",
       "text": "PURE SHIELD SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040670124
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING UNIFY HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772040670254
     }
   ]
 }
