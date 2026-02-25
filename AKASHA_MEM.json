@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_REVERSE",
-      "text": "STRIKE DRAIN DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038511470
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIFE CONSUME HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SICKNESS DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772038515863
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM COHERE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772038521895
     }
   ]
 }
