@@ -192,12 +192,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY SYNC STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772023801265
-    },
-    {
-      "origin": "REVERSE",
       "text": "VISION BEYOND VISION",
       "mood": "CREATIVE",
       "tick": 1772023801453
@@ -279,6 +273,12 @@
       "text": "STASIS STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023804946
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "REFLECT IMMUNE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772023805153
     }
   ]
 }
