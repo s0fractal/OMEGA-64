@@ -108,12 +108,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021837204
-    },
-    {
       "origin": "REVERSE",
       "text": "RECON STASIS WAIT",
       "mood": "DEFENSIVE",
@@ -196,6 +190,12 @@
       "text": "RECON GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772021841857
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT STASIS SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021842456
     }
   ]
 }
