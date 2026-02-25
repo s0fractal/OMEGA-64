@@ -60,12 +60,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON SHELTER REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020598045
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020598217
@@ -147,6 +141,12 @@
       "text": "SHOCK HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020605143
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772020605857
     }
   ]
 }
