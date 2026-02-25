@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STABLE SYNC UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772040858240
-    },
-    {
       "origin": "INTERFACE",
       "text": "RECON PURE GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772040860875
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DECAY SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040861050
     }
   ]
 }
