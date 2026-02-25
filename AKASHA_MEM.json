@@ -176,12 +176,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SEIZE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023262615
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023262762
@@ -263,6 +257,12 @@
       "text": "SHELTER PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023267582
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL COHERE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772023267769
     }
   ]
 }
