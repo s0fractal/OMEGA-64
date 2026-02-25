@@ -86,12 +86,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "GIVING UNIFY FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772021242255
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER HUNGER BREACH",
       "mood": "AGGRESSIVE",
@@ -174,6 +168,12 @@
       "text": "STASIS STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772021247519
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021247728
     }
   ]
 }
