@@ -200,12 +200,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER SEIZE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024038949
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772024039102
@@ -287,6 +281,12 @@
       "text": "SHOCK HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772024041644
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772024041919
     }
   ]
 }
