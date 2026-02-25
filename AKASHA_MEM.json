@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038693513
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772038693712
@@ -291,6 +285,12 @@
       "text": "SHOCK SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772038697623
+    },
+    {
+      "origin": "STREAM",
+      "text": "SEIZE DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038697810
     }
   ]
 }
