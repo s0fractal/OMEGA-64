@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON SHELTER SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772030836086
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772030836599
@@ -291,6 +285,12 @@
       "text": "SHOCK BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772030844249
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK BEYOND WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772030844933
     }
   ]
 }
