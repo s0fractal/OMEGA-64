@@ -125,12 +125,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022241368
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN BREACH SEIZE",
       "mood": "AGGRESSIVE",
@@ -213,6 +207,12 @@
       "text": "RECON RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022247613
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772022247791
     }
   ]
 }
