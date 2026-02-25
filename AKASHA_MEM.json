@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "ABB00000",
     "A1000000",
     "66006666",
     "A0BBC0DD",
@@ -199,15 +198,10 @@
     "AA0666A6",
     "0A0AA00A",
     "AA660660",
-    "00666000"
+    "00666000",
+    "00666606"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "CONSUME HUNGER STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028158467
-    },
     {
       "origin": "REVERSE",
       "text": "OSMOSIS BLOOM COHERE",
@@ -291,6 +285,12 @@
       "text": "PURE IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772028178139
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772028178953
     }
   ]
 }
