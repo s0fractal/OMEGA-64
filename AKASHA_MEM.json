@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN SHOCK DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041099482
-    },
-    {
       "origin": "WORKER",
       "text": "COHERE OSMOSIS GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STASIS STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772041104575
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE SYNC HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041105055
     }
   ]
 }
