@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030699245
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772030699834
@@ -291,6 +285,12 @@
       "text": "SHIELD STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772030705492
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH IMMUNE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772030705774
     }
   ]
 }
