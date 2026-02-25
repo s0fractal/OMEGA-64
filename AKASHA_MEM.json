@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772033741214
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772033741400
@@ -291,6 +285,12 @@
       "text": "STASIS RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772033744054
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD PURE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772033744231
     }
   ]
 }
