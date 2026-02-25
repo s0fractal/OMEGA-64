@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT IMMUNE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772027205064
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772027205309
@@ -291,6 +285,12 @@
       "text": "BLOOM COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772027210505
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS BREACH BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027210718
     }
   ]
 }
