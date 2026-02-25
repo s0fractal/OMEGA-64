@@ -199,12 +199,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "STABLE COHERE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772024049444
-    },
-    {
       "origin": "REVERSE",
       "text": "BEYOND SPARK BEYOND",
       "mood": "CREATIVE",
@@ -287,6 +281,12 @@
       "text": "BREACH DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772024053054
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772024053229
     }
   ]
 }
