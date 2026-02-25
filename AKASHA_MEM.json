@@ -132,12 +132,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772022355257
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK BEYOND BECOME",
       "mood": "CREATIVE",
       "tick": 1772022355408
@@ -219,6 +213,12 @@
       "text": "IMMUNE PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022358882
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW COHERE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772022359619
     }
   ]
 }
