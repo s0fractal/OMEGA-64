@@ -12,11 +12,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "ASCEND",
-      "tick": 1772010885620
-    },
-    {
-      "origin": "INTERFACE",
       "text": "DRAIN SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772010916074
@@ -98,6 +93,12 @@
       "text": "HUNGER STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772012775056
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STASIS WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772012806280
     }
   ]
 }
