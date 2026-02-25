@@ -160,12 +160,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022811016
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022811203
@@ -247,6 +241,12 @@
       "text": "CONSUME DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022816313
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER SHELTER WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772022816438
     }
   ]
 }
