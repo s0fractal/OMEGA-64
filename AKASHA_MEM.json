@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041623330
-    },
-    {
       "origin": "INTERFACE",
       "text": "GUARD SHIELD IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772041627590
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041627761
     }
   ]
 }
