@@ -79,12 +79,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WAIT GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772021085775
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD GUARD STASIS",
       "mood": "DEFENSIVE",
@@ -167,6 +161,12 @@
       "text": "RESONATE STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772021093565
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME DECAY SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021094715
     }
   ]
 }
