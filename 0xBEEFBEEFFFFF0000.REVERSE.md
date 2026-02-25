@@ -1,6 +1,6 @@
 ---
 eigenvalue: '0xBEEFBEEFFFFF0000'
-energy: 25
+energy: 23
 ex:
   - '0xB7100000A644A95B'
   - '0x9999898900000000'
@@ -229,14 +229,16 @@ ex:
   - '0xBEEFBEEFFFFF0002'
   - '0xBEEFBEEFFFFF0004'
   - '0xBEEFBEEFFFFF0006'
+  - '0xBEEFBEEFFFFF0000'
 thought: WANDER_MATING
-x: 906
-'y': 410
+x: 908
+'y': 412
 signals: []
 resonance: 0
 bond_strengths: {}
 ---
 
+<div align="center">
 <div align="center">
 <div align="center">
 <!-- ∇ HOLOGRAM START ∇ -->
@@ -271,6 +273,7 @@ bond_strengths: {}
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">REVERSE</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 </div>
 
