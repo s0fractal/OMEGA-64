@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GUARD SHIELD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041293320
-    },
-    {
       "origin": "INTERFACE",
       "text": "STABLE UNIFY BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIKE DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772041298641
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041299272
     }
   ]
 }
