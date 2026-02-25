@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BREACH DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019659373
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS GUARD WAIT",
       "mood": "DEFENSIVE",
@@ -114,6 +108,12 @@
       "text": "BLOOM STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772019666746
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM RESONATE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772019667724
     }
   ]
 }
