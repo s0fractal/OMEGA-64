@@ -1,5 +1,10 @@
 {
   "reservoir": [
+    "AA000600",
+    "A0AAA000",
+    "AAA0A0AA",
+    "66660060",
+    "00000000",
     "66660000",
     "06006066",
     "60606006",
@@ -193,104 +198,99 @@
     "AA00A000",
     "BBB00000",
     "6606AA66",
-    "A6660600",
-    "AA666600",
-    "0AAA0A00",
-    "0A0AA0A0",
-    "0A0A0666",
-    "66A06A00",
-    "AAAA0AAA"
+    "A6A66000",
+    "60060666"
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM GIVING OSMOSIS",
+      "origin": "I16_CLAMP",
+      "text": "UNIFY GIVING UNIFY",
       "mood": "HARMONIC",
-      "tick": 1772042539756
-    },
-    {
-      "origin": "ALIEN",
-      "text": "HUNGER CONSUME STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042542182
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "RECON IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772042542545
+      "tick": 1772042541176
     },
     {
       "origin": "REVERSE",
-      "text": "GUARD GUARD SHIELD",
+      "text": "SHIELD SHIELD SHELTER",
       "mood": "DEFENSIVE",
-      "tick": 1772042545014
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "COHERE OSMOSIS BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772042545843
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042546445
+      "tick": 1772042541937
     },
     {
       "origin": "INTERFACE",
-      "text": "WAIT IMMUNE REFLECT",
+      "text": "OSMOSIS HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042542348
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE IMMUNE RECON",
       "mood": "DEFENSIVE",
-      "tick": 1772042547865
+      "tick": 1772042542467
     },
     {
       "origin": "REVERSE",
-      "text": "SEIZE STRIKE SEIZE",
+      "text": "HUNGER HUNGER DECAY",
       "mood": "AGGRESSIVE",
-      "tick": 1772042549063
+      "tick": 1772042543073
     },
     {
       "origin": "ARCHIVIST",
-      "text": "SYNC BLOOM STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042549458
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "GUARD SHELTER PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042549958
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "REFLECT SHIELD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772042550399
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STASIS PURE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042551184
+      "text": "SICKNESS SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042545527
     },
     {
       "origin": "STREAM",
-      "text": "STASIS WATCH IMMUNE",
+      "text": "REFLECT SHIELD STASIS",
       "mood": "DEFENSIVE",
-      "tick": 1772042551451
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "WAIT IMMUNE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042551944
+      "tick": 1772042545951
     },
     {
       "origin": "ARCHIVIST",
-      "text": "STABLE HEAL UNIFY",
+      "text": "UNIFY HEAL OSMOSIS",
       "mood": "HARMONIC",
-      "tick": 1772042552376
+      "tick": 1772042546339
+    },
+    {
+      "origin": "ALIEN",
+      "text": "BLOOM SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772042548103
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT PURE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042548532
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772042548881
+    },
+    {
+      "origin": "I16_CLAMP",
+      "text": "GUARD RECON SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772042549208
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772042550138
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS RECON PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042550650
+    },
+    {
+      "origin": "ALIEN",
+      "text": "STRIFE STRIKE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042551076
     }
   ]
 }
