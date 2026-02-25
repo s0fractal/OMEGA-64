@@ -200,12 +200,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772024045770
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772024046090
@@ -287,6 +281,12 @@
       "text": "BEYOND SPARK BEYOND",
       "mood": "CREATIVE",
       "tick": 1772024049800
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHELTER GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772024050208
     }
   ]
 }
