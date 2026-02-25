@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY DECAY SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033889051
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772033889265
@@ -291,6 +285,12 @@
       "text": "COHERE FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772033893243
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH STASIS IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772033893447
     }
   ]
 }
