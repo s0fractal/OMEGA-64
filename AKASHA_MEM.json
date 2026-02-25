@@ -27,12 +27,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HUNGER BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019641857
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHELTER IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772019643801
@@ -114,6 +108,12 @@
       "text": "STABLE BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772019652266
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE STASIS WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772019652425
     }
   ]
 }
