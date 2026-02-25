@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SYNC UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772036339255
-    },
-    {
       "origin": "REVERSE",
       "text": "GUARD SHIELD PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772036343949
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772036344197
     }
   ]
 }
