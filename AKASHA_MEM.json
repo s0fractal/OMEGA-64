@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772042267875
-    },
-    {
       "origin": "STREAM",
       "text": "STASIS RECON GUARD",
       "mood": "DEFENSIVE",
@@ -287,10 +281,16 @@
       "tick": 1772042273327
     },
     {
-      "origin": "INTERFACE",
-      "text": "STABLE COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772042274276
+      "origin": "ARCHIVIST",
+      "text": "PURE GUARD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042274244
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME DECAY SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042274469
     }
   ]
 }
