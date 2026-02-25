@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER SEIZE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033667194
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM STABLE GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIFE HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772033671865
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIKE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033672168
     }
   ]
 }
