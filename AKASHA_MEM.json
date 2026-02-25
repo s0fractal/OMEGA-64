@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BREACH STRIFE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772016009233
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HEAL GIVING HEAL",
       "mood": "HARMONIC",
@@ -107,6 +101,12 @@
       "text": "SEIZE BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772016138910
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772016141415
     }
   ]
 }
