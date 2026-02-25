@@ -101,15 +101,10 @@
     "FFFFFF0F",
     "000AAAA0",
     "66660606",
-    "66666606"
+    "66666606",
+    "F0FFF0FF"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STRIFE SHOCK CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021713724
-    },
     {
       "origin": "ARCHIVIST",
       "text": "DRAIN DECAY BREACH",
@@ -193,6 +188,12 @@
       "text": "WAIT SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772021717802
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE AWAKEN WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772021717957
     }
   ]
 }
