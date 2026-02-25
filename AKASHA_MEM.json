@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT SHELTER GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772034344897
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772034345085
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772034353148
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE SYNC HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772034353337
     }
   ]
 }
