@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE CONSUME SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034695448
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND BECOME EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772034695662
@@ -291,6 +285,12 @@
       "text": "SYNC RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772034698536
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034698780
     }
   ]
 }
