@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "OSMOSIS UNIFY OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772040484301
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD WAIT GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "REFLECT SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772040487171
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT WAIT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772040487330
     }
   ]
 }
