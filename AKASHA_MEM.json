@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING RESONATE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772038663340
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772038663567
@@ -291,6 +285,12 @@
       "text": "SHIELD WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772038666520
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT PURE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772038666721
     }
   ]
 }
