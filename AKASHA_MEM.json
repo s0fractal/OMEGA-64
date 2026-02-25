@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE WAIT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772031614073
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772031614576
@@ -291,6 +285,12 @@
       "text": "DECAY SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772031620259
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772031620621
     }
   ]
 }
