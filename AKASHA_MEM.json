@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "CONSUME DECAY SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041177706
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE OSMOSIS RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIFE DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772041180918
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SYNC STABLE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772041181179
     }
   ]
 }
