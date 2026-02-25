@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772033859220
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772033859664
@@ -291,6 +285,12 @@
       "text": "SYNC SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772033863624
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SICKNESS BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033863855
     }
   ]
 }
