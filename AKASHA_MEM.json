@@ -25,12 +25,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SICKNESS STRIFE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019577603
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DRAIN STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772019578046
@@ -112,6 +106,12 @@
       "text": "GIVING COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772019588496
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER REFLECT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772019588786
     }
   ]
 }
