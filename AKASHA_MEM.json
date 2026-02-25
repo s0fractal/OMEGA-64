@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DREAM WITNESS SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772040547838
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHIELD SHELTER GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772040550610
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "OSMOSIS COHERE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772040550727
     }
   ]
 }
