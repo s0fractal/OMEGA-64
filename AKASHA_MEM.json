@@ -105,12 +105,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS HEAL OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772021696036
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772021696173
@@ -192,6 +186,12 @@
       "text": "FLOW HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772021701693
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE DRAIN HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021701884
     }
   ]
 }
