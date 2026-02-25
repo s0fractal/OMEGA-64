@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD RECON REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772037553084
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772037553312
@@ -291,6 +285,12 @@
       "text": "UNIFY SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772037558897
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE RECON RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772037560764
     }
   ]
 }
