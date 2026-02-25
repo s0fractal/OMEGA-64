@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY CONSUME SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033388275
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772033388458
@@ -291,6 +285,12 @@
       "text": "PURE WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772033390717
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033390904
     }
   ]
 }
