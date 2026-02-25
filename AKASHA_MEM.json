@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE DRAIN SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035700774
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772035701129
@@ -291,6 +285,12 @@
       "text": "SHOCK SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772035704879
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD IMMUNE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772035705198
     }
   ]
 }
