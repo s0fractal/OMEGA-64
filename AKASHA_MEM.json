@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SEIZE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032744999
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772032745140
@@ -291,6 +285,12 @@
       "text": "STABLE STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772032751898
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK VISION BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772032752074
     }
   ]
 }
