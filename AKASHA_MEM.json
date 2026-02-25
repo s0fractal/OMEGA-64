@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME SICKNESS HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041895486
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SYNC HEAL HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RESONATE GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041900232
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS STABLE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041900439
     }
   ]
 }
