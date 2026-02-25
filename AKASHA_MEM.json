@@ -152,12 +152,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772022590185
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772022590488
@@ -239,6 +233,12 @@
       "text": "SHIELD STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022593944
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS GUARD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772022594569
     }
   ]
 }
