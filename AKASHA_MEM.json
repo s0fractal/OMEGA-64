@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035979523
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772035979729
@@ -291,6 +285,12 @@
       "text": "COHERE UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772035983737
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD REFLECT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772035983958
     }
   ]
 }
