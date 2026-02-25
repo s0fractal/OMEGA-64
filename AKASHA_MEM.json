@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037617581
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772037617792
@@ -291,6 +285,12 @@
       "text": "BEYOND DREAM AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772037620643
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH IMMUNE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772037620833
     }
   ]
 }
