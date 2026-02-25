@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0AA0A0AA",
     "A00A0F00",
     "66066066",
     "A0AAAA00",
@@ -199,15 +198,10 @@
     "66060000",
     "00AAAAA0",
     "60000000",
-    "A06660A0"
+    "A06660A0",
+    "60000606"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE SYNC SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772041508819
-    },
     {
       "origin": "INTERFACE",
       "text": "GIVING COHERE UNIFY",
@@ -291,6 +285,12 @@
       "text": "SICKNESS SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041511252
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD SHIELD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772041511482
     }
   ]
 }
