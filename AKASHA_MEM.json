@@ -183,12 +183,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023524432
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772023524916
@@ -270,6 +264,12 @@
       "text": "COHERE GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023533792
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772023534011
     }
   ]
 }
