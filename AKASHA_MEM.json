@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772036918179
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772036918460
@@ -291,6 +285,12 @@
       "text": "SHOCK DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772036921944
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772036922117
     }
   ]
 }
