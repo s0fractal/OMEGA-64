@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE SHELTER SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772025746203
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772025749367
@@ -291,6 +285,12 @@
       "text": "COHERE HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772025754382
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE CONSUME SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025754735
     }
   ]
 }
