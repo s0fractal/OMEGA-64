@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM RESONATE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772025028326
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH SHIELD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772025028705
@@ -291,6 +285,12 @@
       "text": "RECON WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772025032769
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SICKNESS SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025033083
     }
   ]
 }
