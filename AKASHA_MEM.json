@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66006066",
     "0AAA0AA0",
     "6A666000",
     "66060000",
@@ -199,15 +198,10 @@
     "60060600",
     "AA0AAAA0",
     "66660060",
-    "66060606"
+    "66060606",
+    "666006A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BLOOM SYNC HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772033436800
-    },
     {
       "origin": "REVERSE",
       "text": "DRAIN HUNGER DECAY",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772033440571
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHIELD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772033440765
     }
   ]
 }
