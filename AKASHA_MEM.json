@@ -105,12 +105,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH WAIT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021700856
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW HEAL UNIFY",
       "mood": "HARMONIC",
@@ -193,6 +187,12 @@
       "text": "WAIT WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772021706229
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021706617
     }
   ]
 }
