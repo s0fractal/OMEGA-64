@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH IMMUNE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772035316120
-    },
-    {
       "origin": "INTERFACE",
       "text": "HEAL STABLE OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIFE HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772035321370
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY OSMOSIS HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772035321755
     }
   ]
 }
