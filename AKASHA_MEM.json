@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL UNIFY COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772036670979
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772036671194
@@ -291,6 +285,12 @@
       "text": "STASIS SHIELD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772036675836
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772036676041
     }
   ]
 }
