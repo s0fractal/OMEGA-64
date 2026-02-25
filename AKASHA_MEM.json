@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SPARK SPARK EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772031276026
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772031277913
@@ -291,6 +285,12 @@
       "text": "UNIFY STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772031289879
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772031290495
     }
   ]
 }
