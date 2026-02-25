@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A0A0A0A0",
     "B0000000",
     "AA000AA0",
     "66666606",
@@ -199,15 +198,10 @@
     "66000066",
     "66600006",
     "66666600",
-    "AABBCC0D"
+    "AABBCC0D",
+    "06066600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SICKNESS DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036733462
-    },
     {
       "origin": "REVERSE",
       "text": "OSMOSIS HEAL RESONATE",
@@ -291,6 +285,12 @@
       "text": "SHELTER PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772036736679
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS GIVING FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772036736889
     }
   ]
 }
