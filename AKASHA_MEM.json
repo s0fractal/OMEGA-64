@@ -149,12 +149,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT WAIT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022523613
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022523782
@@ -236,6 +230,12 @@
       "text": "STABLE FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772022527808
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE BREACH BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022527972
     }
   ]
 }
