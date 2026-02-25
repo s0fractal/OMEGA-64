@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035783638
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772035783919
@@ -291,6 +285,12 @@
       "text": "STRIKE DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772035787535
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772035787758
     }
   ]
 }
