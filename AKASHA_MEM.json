@@ -73,12 +73,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772020933988
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020934503
@@ -160,6 +154,12 @@
       "text": "OSMOSIS RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772020937889
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK DRAIN HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020938839
     }
   ]
 }
