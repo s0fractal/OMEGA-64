@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHOCK SEIZE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041771981
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WATCH WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041772466
@@ -291,6 +285,12 @@
       "text": "BLOOM SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772041779024
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE STABLE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041779707
     }
   ]
 }
