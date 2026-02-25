@@ -195,12 +195,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "OSMOSIS STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772023870353
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE BLOOM SYNC",
       "mood": "HARMONIC",
@@ -283,6 +277,12 @@
       "text": "WAVE WITNESS AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772023875170
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772023875374
     }
   ]
 }
