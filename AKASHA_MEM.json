@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DECAY DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041631896
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHELTER PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041632202
@@ -291,6 +285,12 @@
       "text": "RESONATE SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772041634961
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041635097
     }
   ]
 }
