@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT REFLECT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041503725
-    },
-    {
       "origin": "STREAM",
       "text": "SICKNESS STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772041507218
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041507498
     }
   ]
 }
