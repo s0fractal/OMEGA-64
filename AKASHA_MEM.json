@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD PURE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772026031658
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772026032151
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772026036879
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772026037279
     }
   ]
 }
