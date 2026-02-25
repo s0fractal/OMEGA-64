@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0AAAA000",
     "B0BF000C",
     "AA0AAA00",
     "F00FF00F",
@@ -199,15 +198,10 @@
     "AABBC0DD",
     "600A66A0",
     "06000666",
-    "060060A0"
+    "060060A0",
+    "0AA0AAA0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "OSMOSIS COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772033862270
-    },
     {
       "origin": "REVERSE",
       "text": "STRIFE HUNGER CONSUME",
@@ -291,6 +285,12 @@
       "text": "RECON WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772033866983
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772033867179
     }
   ]
 }
