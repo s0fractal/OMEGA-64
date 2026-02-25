@@ -94,12 +94,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING SYNC UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772021514087
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER RECON GUARD",
       "mood": "DEFENSIVE",
@@ -182,6 +176,12 @@
       "text": "STABLE STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772021525687
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772021526142
     }
   ]
 }
