@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RESONATE GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041826047
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER HUNGER SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772041830024
+    },
+    {
+      "origin": "WORKER",
+      "text": "COHERE OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772041830216
     }
   ]
 }
