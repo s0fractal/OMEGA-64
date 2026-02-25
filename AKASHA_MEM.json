@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041878675
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "UNIFY GIVING COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SEIZE SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041882599
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME STRIFE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041882862
     }
   ]
 }
