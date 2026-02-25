@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW RESONATE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772035330289
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772035330511
@@ -291,6 +285,12 @@
       "text": "WATCH SHIELD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772035333415
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY STABLE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772035333627
     }
   ]
 }
