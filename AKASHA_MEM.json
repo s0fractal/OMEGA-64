@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH REFLECT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772033027169
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772033027341
@@ -291,6 +285,12 @@
       "text": "AWAKEN SPARK EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772033030102
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE BLOOM STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772033030240
     }
   ]
 }
