@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT RECON STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772038949937
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH STRIKE DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772038953873
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY HEAL OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772038954097
     }
   ]
 }
