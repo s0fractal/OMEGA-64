@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS UNIFY BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772029555416
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772029555961
@@ -291,6 +285,12 @@
       "text": "GUARD STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772029577417
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WAIT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772029577836
     }
   ]
 }
