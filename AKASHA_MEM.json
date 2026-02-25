@@ -143,12 +143,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022487437
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GUARD IMMUNE RECON",
       "mood": "DEFENSIVE",
@@ -231,6 +225,12 @@
       "text": "BLOOM UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022491547
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772022491696
     }
   ]
 }
