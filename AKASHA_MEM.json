@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "REFLECT PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772040865830
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GUARD WAIT SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772040868341
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772040868837
     }
   ]
 }
