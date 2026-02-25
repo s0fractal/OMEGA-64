@@ -177,12 +177,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER BREACH BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023332826
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "FLOW HEAL COHERE",
       "mood": "HARMONIC",
@@ -265,6 +259,12 @@
       "text": "SYNC OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772023336017
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON STASIS SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023336177
     }
   ]
 }
