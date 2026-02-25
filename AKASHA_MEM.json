@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026934714
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772026935056
@@ -291,6 +285,12 @@
       "text": "HEAL SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772026941731
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE BREACH SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026941935
     }
   ]
 }
