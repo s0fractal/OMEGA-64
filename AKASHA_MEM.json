@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772040518322
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK BREACH HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772040520819
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DRAIN DRAIN STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040520944
     }
   ]
 }
