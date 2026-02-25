@@ -189,12 +189,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023697058
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023697248
@@ -276,6 +270,12 @@
       "text": "STASIS IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772023700904
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS HUNGER CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023701278
     }
   ]
 }
