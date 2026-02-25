@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER GUARD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772037140551
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772037140799
@@ -291,6 +285,12 @@
       "text": "STASIS STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772037143577
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "PURE SHIELD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772037144049
     }
   ]
 }
