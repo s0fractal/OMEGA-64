@@ -17,12 +17,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772014720663
-    },
-    {
       "origin": "INTERFACE",
       "text": "PURE SHELTER WATCH",
       "mood": "DEFENSIVE",
@@ -105,6 +99,12 @@
       "text": "GIVING COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772014884693
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SEIZE DECAY CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772014887568
     }
   ]
 }
