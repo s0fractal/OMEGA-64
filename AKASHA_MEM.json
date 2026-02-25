@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAVE WITNESS BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772034476530
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772034476728
@@ -291,6 +285,12 @@
       "text": "WATCH WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772034484642
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772034484866
     }
   ]
 }
