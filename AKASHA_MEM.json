@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A0B0C0DD",
     "00000A00",
     "06666006",
     "0A0AA0AA",
@@ -199,15 +198,10 @@
     "A0AAA000",
     "A000A000",
     "06006600",
-    "00606660"
+    "00606660",
+    "AA6666A6"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "FLOW FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772037777590
-    },
     {
       "origin": "REVERSE",
       "text": "UNIFY FLOW BLOOM",
@@ -291,6 +285,12 @@
       "text": "BREACH DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772037780621
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DECAY SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037780909
     }
   ]
 }
