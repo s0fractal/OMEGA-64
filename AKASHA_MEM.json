@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772032725547
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772032725786
@@ -291,6 +285,12 @@
       "text": "GIVING STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772032728439
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE HUNGER STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032728617
     }
   ]
 }
