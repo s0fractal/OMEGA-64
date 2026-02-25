@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035561131
-    },
-    {
-      "origin": "REVERSE",
       "text": "DREAM WITNESS BECOME",
       "mood": "CREATIVE",
       "tick": 1772035561383
@@ -291,6 +285,12 @@
       "text": "SHOCK STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772035564731
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW OSMOSIS HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772035564914
     }
   ]
 }
