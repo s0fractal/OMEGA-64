@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS IMMUNE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772025238859
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772025239148
@@ -291,6 +285,12 @@
       "text": "BLOOM STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772025245072
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772025245437
     }
   ]
 }
