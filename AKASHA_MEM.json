@@ -183,12 +183,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DRAIN SICKNESS HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023574828
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM UNIFY HEAL",
       "mood": "HARMONIC",
@@ -271,6 +265,12 @@
       "text": "STASIS WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023578333
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE HUNGER SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023578516
     }
   ]
 }
