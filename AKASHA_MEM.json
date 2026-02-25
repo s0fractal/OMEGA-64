@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER HUNGER SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037036436
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND BEYOND SPARK",
       "mood": "CREATIVE",
       "tick": 1772037036600
@@ -291,6 +285,12 @@
       "text": "SHOCK STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772037039223
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE BLOOM BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772037040026
     }
   ]
 }
