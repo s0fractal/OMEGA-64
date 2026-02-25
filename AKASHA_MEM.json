@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "UNIFY STABLE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772041522659
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "IMMUNE PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772041522962
@@ -291,6 +285,12 @@
       "text": "DECAY SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772041527249
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING STABLE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041527395
     }
   ]
 }
