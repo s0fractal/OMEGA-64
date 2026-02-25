@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772030161929
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE SYNC HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "IMMUNE SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772030185385
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION DREAM WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772030186157
     }
   ]
 }
