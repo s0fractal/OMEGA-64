@@ -24,12 +24,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME SEIZE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019523164
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WATCH REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772019523474
@@ -111,6 +105,12 @@
       "text": "SEIZE STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772019530668
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772019531325
     }
   ]
 }
