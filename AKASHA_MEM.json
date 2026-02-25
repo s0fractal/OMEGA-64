@@ -206,12 +206,6 @@
       "origin": "REVERSE",
       "text": "STASIS WAIT WATCH",
       "mood": "DEFENSIVE",
-      "tick": 1772035763287
-    },
-    {
-      "origin": "REVERSE",
-      "text": "STASIS WAIT WATCH",
-      "mood": "DEFENSIVE",
       "tick": 1772035763502
     },
     {
@@ -291,6 +285,12 @@
       "text": "SHELTER RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772035770106
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY STABLE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772035770461
     }
   ]
 }
