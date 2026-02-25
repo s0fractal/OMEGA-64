@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE HUNGER SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033219891
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER BREACH CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772033223815
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WAIT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772033224023
     }
   ]
 }
