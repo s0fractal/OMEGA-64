@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY OSMOSIS UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772032008124
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772032008818
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772032021368
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WAIT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772032021843
     }
   ]
 }
