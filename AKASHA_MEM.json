@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIKE BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042147476
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH SHELTER RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772042162199
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN SEIZE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042163476
     }
   ]
 }
