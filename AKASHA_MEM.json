@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE BREACH BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036011838
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN CONSUME SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772036014929
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHELTER WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772036015099
     }
   ]
 }
