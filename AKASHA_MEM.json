@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DECAY STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033410251
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772033410447
@@ -291,6 +285,12 @@
       "text": "PURE IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033412725
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772033412904
     }
   ]
 }
