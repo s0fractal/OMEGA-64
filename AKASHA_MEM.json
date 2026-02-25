@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE OSMOSIS FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772035866246
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772035866487
@@ -291,6 +285,12 @@
       "text": "HEAL OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772035870929
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772035871267
     }
   ]
 }
