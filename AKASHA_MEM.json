@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK HUNGER STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036922321
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772036922494
@@ -291,6 +285,12 @@
       "text": "REFLECT SHIELD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772036925983
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DECAY SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036926249
     }
   ]
 }
