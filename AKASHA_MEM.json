@@ -96,12 +96,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER STRIFE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021551743
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
@@ -184,6 +178,12 @@
       "text": "OSMOSIS FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772021555996
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE HEAL OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772021556156
     }
   ]
 }
