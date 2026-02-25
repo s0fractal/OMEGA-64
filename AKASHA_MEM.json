@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHIELD SHELTER GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772034589185
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME STRIKE SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772034593327
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034593539
     }
   ]
 }
