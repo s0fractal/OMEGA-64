@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STASIS WATCH WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772041156441
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WAIT WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041156572
@@ -291,6 +285,12 @@
       "text": "WAIT STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041159631
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041160477
     }
   ]
 }
