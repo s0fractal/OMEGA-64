@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "HEAL HEAL BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772042009662
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE REFLECT STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772042017755
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RECON RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042017924
     }
   ]
 }
