@@ -189,12 +189,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER SHELTER IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023680604
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023680762
@@ -276,6 +270,12 @@
       "text": "BLOOM BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772023685419
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT REFLECT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023685765
     }
   ]
 }
