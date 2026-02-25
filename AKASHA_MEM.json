@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY UNIFY COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041973808
-    },
-    {
       "origin": "GUARDIAN",
       "text": "FLOW OSMOSIS FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041980377
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT IMMUNE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041981059
     }
   ]
 }
