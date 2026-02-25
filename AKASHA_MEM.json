@@ -154,12 +154,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772022640042
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022640201
@@ -241,6 +235,12 @@
       "text": "SHIELD REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022642864
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772022643080
     }
   ]
 }
