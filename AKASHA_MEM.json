@@ -176,12 +176,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE COHERE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772023255094
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772023255217
@@ -263,6 +257,12 @@
       "text": "REFLECT REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023259082
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023259411
     }
   ]
 }
