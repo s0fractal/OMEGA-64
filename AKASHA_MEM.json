@@ -173,12 +173,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD SHELTER IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023230067
-    },
-    {
-      "origin": "REVERSE",
       "text": "DREAM VISION BECOME",
       "mood": "CREATIVE",
       "tick": 1772023230394
@@ -260,6 +254,12 @@
       "text": "FLOW COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772023233854
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772023234016
     }
   ]
 }
