@@ -44,12 +44,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STASIS RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772020046785
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STABLE HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772020047829
@@ -131,6 +125,12 @@
       "text": "CONSUME SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020062688
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH STRIFE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020063221
     }
   ]
 }
