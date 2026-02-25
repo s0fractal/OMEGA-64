@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE CONSUME SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037206990
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772037207187
@@ -291,6 +285,12 @@
       "text": "WAIT GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772037211398
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SHOCK DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037211603
     }
   ]
 }
