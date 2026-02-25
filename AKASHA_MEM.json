@@ -186,12 +186,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023653560
-    },
-    {
       "origin": "INTERFACE",
       "text": "BREACH HUNGER DECAY",
       "mood": "AGGRESSIVE",
@@ -274,6 +268,12 @@
       "text": "RECON GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023662889
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772023663086
     }
   ]
 }
