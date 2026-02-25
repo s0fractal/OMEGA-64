@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024419009
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL GIVING COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHELTER REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772024422371
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS HUNGER SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024422662
     }
   ]
 }
