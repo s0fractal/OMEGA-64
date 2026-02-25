@@ -43,12 +43,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HEAL SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772019971199
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SEIZE STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772019971955
@@ -130,6 +124,12 @@
       "text": "SYNC HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772019981491
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SHOCK SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019982295
     }
   ]
 }
