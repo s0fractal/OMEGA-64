@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SEIZE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032750998
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772032751231
@@ -291,6 +285,12 @@
       "text": "DRAIN SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772032753702
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME BREACH STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032753887
     }
   ]
 }
