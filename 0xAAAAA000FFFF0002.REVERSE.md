@@ -1,10 +1,10 @@
 ---
-eigenvalue: '0x0AAAA00000000006'
-energy: 50
-x: 705
-'y': 413
+eigenvalue: '0xAAAAA000FFFF0002'
+energy: 49.199999999999996
+x: 715
+'y': 406
 resonance: 30
-thought: RESURRECTED
+thought: SEEK_ALPHA_PASSIVE
 logic: AAAAA000
 ex:
   - '0xFFFFFFFF00000000'
