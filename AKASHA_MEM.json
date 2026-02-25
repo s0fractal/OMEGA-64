@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772034080792
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772034080994
@@ -291,6 +285,12 @@
       "text": "REFLECT SHELTER SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772034086299
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772034086527
     }
   ]
 }
