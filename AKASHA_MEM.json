@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD PURE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041205808
-    },
-    {
       "origin": "STREAM",
       "text": "STASIS GUARD WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772041209786
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH IMMUNE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041209925
     }
   ]
 }
