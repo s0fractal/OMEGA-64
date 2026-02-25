@@ -90,12 +90,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021268896
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772021269063
@@ -177,6 +171,12 @@
       "text": "PURE RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772021272710
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK STRIKE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021273046
     }
   ]
 }
