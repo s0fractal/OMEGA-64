@@ -110,12 +110,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH STRIKE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021897810
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING RESONATE UNIFY",
       "mood": "HARMONIC",
@@ -198,6 +192,12 @@
       "text": "RECON WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772021902765
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW OSMOSIS HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772021903072
     }
   ]
 }
