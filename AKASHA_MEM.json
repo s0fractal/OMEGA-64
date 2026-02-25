@@ -59,12 +59,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SEIZE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020581603
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772020581980
@@ -146,6 +140,12 @@
       "text": "DECAY DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020589496
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD PURE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020589671
     }
   ]
 }
