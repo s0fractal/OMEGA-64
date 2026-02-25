@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772034238021
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772034238223
@@ -291,6 +285,12 @@
       "text": "STRIFE SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772034240801
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH GUARD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772034240969
     }
   ]
 }
