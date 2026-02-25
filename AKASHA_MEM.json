@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60660600",
     "00606660",
     "66066660",
     "06000600",
@@ -199,15 +198,10 @@
     "0AA00AAA",
     "66006006",
     "AA0A0A0A",
-    "9018A098"
+    "9018A098",
+    "ABBA0000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STASIS WATCH STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772027331787
-    },
     {
       "origin": "REVERSE",
       "text": "HUNGER DRAIN CONSUME",
@@ -291,6 +285,12 @@
       "text": "GUARD REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772027338563
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027340386
     }
   ]
 }
