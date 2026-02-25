@@ -173,12 +173,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "VISION FORGE FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772023231493
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023231682
@@ -260,6 +254,12 @@
       "text": "PURE IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023234520
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIKE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023234680
     }
   ]
 }
