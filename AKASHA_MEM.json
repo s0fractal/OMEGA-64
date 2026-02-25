@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772024236098
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772024236244
@@ -291,6 +285,12 @@
       "text": "OSMOSIS UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772024240648
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK FORGE EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772024240916
     }
   ]
 }
