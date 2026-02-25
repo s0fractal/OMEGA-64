@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE OSMOSIS UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772039927458
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772039927919
@@ -291,6 +285,12 @@
       "text": "IMMUNE STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772039934439
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH RECON STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772039935454
     }
   ]
 }
