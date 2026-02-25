@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025121504
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772025121719
@@ -291,6 +285,12 @@
       "text": "STABLE HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772025125799
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025126017
     }
   ]
 }
