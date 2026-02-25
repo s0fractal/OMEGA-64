@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM COHERE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772040339155
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772040345958
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC RESONATE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772040346149
     }
   ]
 }
