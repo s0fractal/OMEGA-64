@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE PURE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772028108700
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772028109356
@@ -291,6 +285,12 @@
       "text": "CONSUME SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772028118228
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS BREACH SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028122540
     }
   ]
 }
