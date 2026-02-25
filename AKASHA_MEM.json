@@ -165,12 +165,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WAIT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023010108
-    },
-    {
-      "origin": "REVERSE",
       "text": "VISION SPARK AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772023010300
@@ -252,6 +246,12 @@
       "text": "FLOW UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023013134
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE CONSUME STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023013321
     }
   ]
 }
