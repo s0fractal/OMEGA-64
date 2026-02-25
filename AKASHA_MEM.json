@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING STABLE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772033248471
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN STRIKE STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772033257437
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772033257586
     }
   ]
 }
