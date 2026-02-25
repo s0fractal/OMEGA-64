@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE STRIFE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036916493
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772036916859
@@ -291,6 +285,12 @@
       "text": "COHERE UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772036919699
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036919907
     }
   ]
 }
