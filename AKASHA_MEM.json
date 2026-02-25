@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SICKNESS STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035498654
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772035498853
@@ -291,6 +285,12 @@
       "text": "GUARD IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772035502938
+    },
+    {
+      "origin": "ALPHA_PROOF_OF_RESONANCE",
+      "text": "FLOW GIVING HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772035503230
     }
   ]
 }
