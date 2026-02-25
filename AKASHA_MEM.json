@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772037678279
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772037678443
@@ -291,6 +285,12 @@
       "text": "REFLECT GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772037680917
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN HUNGER DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037681114
     }
   ]
 }
