@@ -59,12 +59,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "PURE WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772020578901
-    },
-    {
-      "origin": "INTERFACE",
       "text": "BREACH SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020579695
@@ -146,6 +140,12 @@
       "text": "BREACH STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020586929
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020587813
     }
   ]
 }
