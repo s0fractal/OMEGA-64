@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE OSMOSIS HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772040443588
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040443760
@@ -291,6 +285,12 @@
       "text": "STABLE HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772040448115
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WATCH WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040448368
     }
   ]
 }
