@@ -132,12 +132,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FORGE WAVE WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772022357323
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772022357670
@@ -219,6 +213,12 @@
       "text": "RESONATE SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772022361043
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM COHERE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772022361260
     }
   ]
 }
