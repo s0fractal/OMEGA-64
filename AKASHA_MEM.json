@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE GUARD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772025184225
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772025184470
@@ -291,6 +285,12 @@
       "text": "FLOW OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772025187794
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS SHIELD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772025187971
     }
   ]
 }
