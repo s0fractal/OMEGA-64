@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "660000A6",
     "00B00000",
     "00060660",
     "06606000",
@@ -199,15 +198,10 @@
     "66000060",
     "AABB0CDD",
     "0000AAAA",
-    "AA6666A6"
+    "AA6666A6",
+    "60060600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "HUNGER SHOCK SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031186555
-    },
     {
       "origin": "REVERSE",
       "text": "BLOOM FLOW HEAL",
@@ -291,6 +285,12 @@
       "text": "RECON GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772031191922
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHELTER SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772031192185
     }
   ]
 }
