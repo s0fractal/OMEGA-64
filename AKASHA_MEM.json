@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS BECOME WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772023750792
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023750930
@@ -278,6 +272,12 @@
       "text": "SYNC STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772023754638
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SHOCK BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023754909
     }
   ]
 }
