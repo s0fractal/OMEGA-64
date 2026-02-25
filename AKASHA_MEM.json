@@ -154,12 +154,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON RECON WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772022647065
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK SEIZE DRAIN",
       "mood": "AGGRESSIVE",
@@ -242,6 +236,12 @@
       "text": "WATCH WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772022653302
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022653480
     }
   ]
 }
