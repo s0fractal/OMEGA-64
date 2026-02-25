@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME STRIFE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040718572
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE RESONATE FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SYNC FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040721057
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS GIVING SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772040721236
     }
   ]
 }
