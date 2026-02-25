@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM STABLE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772038276476
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772038276699
@@ -291,6 +285,12 @@
       "text": "RECON WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772038279515
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WATCH REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772038279732
     }
   ]
 }
