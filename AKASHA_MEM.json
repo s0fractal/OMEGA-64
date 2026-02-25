@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE STRIFE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034990307
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772034990493
@@ -291,6 +285,12 @@
       "text": "SHIELD SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772034993749
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT PURE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772034993956
     }
   ]
 }
