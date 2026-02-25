@@ -81,12 +81,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME SEIZE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021124512
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RECON STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772021124979
@@ -168,6 +162,12 @@
       "text": "WAVE BECOME WAVE",
       "mood": "CREATIVE",
       "tick": 1772021129307
+    },
+    {
+      "origin": "PARADOX",
+      "text": "FORGE SPARK AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772021129499
     }
   ]
 }
