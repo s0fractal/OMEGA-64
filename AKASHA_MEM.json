@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772032519615
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772032520142
@@ -291,6 +285,12 @@
       "text": "COHERE UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772032524904
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772032525179
     }
   ]
 }
