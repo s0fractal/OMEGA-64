@@ -103,12 +103,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH GUARD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021672964
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772021673138
@@ -190,6 +184,12 @@
       "text": "SHELTER SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772021678599
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT REFLECT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021679288
     }
   ]
 }
