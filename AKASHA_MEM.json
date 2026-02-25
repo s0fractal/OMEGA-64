@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN STRIFE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034687198
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772034691693
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034691986
     }
   ]
 }
