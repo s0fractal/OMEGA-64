@@ -143,12 +143,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022500662
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BLOOM RESONATE BLOOM",
       "mood": "HARMONIC",
@@ -231,6 +225,12 @@
       "text": "BREACH DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022504815
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER SHOCK STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022504979
     }
   ]
 }
