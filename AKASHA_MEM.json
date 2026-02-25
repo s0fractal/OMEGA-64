@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS RESONATE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772034658221
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS REFLECT STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIFE HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772034663460
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING SYNC COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772034663702
     }
   ]
 }
