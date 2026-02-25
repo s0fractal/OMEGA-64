@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DECAY BREACH HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026923228
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS WAIT PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772026926916
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SICKNESS STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026927134
     }
   ]
 }
