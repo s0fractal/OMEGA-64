@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772024470003
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772024470798
@@ -291,6 +285,12 @@
       "text": "STASIS WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772024480622
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SEIZE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024480960
     }
   ]
 }
