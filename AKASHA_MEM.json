@@ -123,12 +123,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022122152
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772022122390
@@ -210,6 +204,12 @@
       "text": "HEAL STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022131087
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772022131370
     }
   ]
 }
