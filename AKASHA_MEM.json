@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0AAAA0",
     "0A0AA000",
     "AAAA0A00",
     "60066000",
@@ -199,15 +198,10 @@
     "06060666",
     "AAA00AAA",
     "AABBC0DD",
-    "66660600"
+    "66660600",
+    "00666000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "OSMOSIS OSMOSIS COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772036578966
-    },
     {
       "origin": "REVERSE",
       "text": "RESONATE GIVING FLOW",
@@ -291,6 +285,12 @@
       "text": "DRAIN SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772036582539
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE GIVING SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772036582729
     }
   ]
 }
