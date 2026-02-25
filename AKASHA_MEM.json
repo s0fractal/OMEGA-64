@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL OSMOSIS SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772038321321
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772038321507
@@ -291,6 +285,12 @@
       "text": "GUARD GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772038324913
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038325141
     }
   ]
 }
