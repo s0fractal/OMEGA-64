@@ -46,7 +46,7 @@ x: 493
 'y': 224
 energy: 50
 signals: []
-resonance: 60.54
+resonance: 75.53999999999999
 bond_strengths: {}
 logic: AAAAA0AA
 bonds: []
