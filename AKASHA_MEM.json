@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN STRIKE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041008345
-    },
-    {
       "origin": "STREAM",
       "text": "OSMOSIS UNIFY OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HUNGER SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772041011201
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WATCH REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041011367
     }
   ]
 }
