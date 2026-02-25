@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE STRIKE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041432906
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS OSMOSIS GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772041436295
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041436681
     }
   ]
 }
