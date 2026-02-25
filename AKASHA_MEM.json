@@ -162,12 +162,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772022842186
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022844504
@@ -249,6 +243,12 @@
       "text": "IMMUNE STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022850757
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS STRIKE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022850979
     }
   ]
 }
