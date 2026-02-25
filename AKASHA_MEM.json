@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HEAL STABLE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772041543847
-    },
-    {
       "origin": "ALPHA_PROOF_OF_RESONANCE",
       "text": "COHERE STABLE HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIKE CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772041548875
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT WATCH GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041549074
     }
   ]
 }
