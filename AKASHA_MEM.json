@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC RESONATE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772024397353
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772024397587
@@ -291,6 +285,12 @@
       "text": "DREAM AWAKEN BECOME",
       "mood": "CREATIVE",
       "tick": 1772024401783
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024403263
     }
   ]
 }
