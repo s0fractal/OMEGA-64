@@ -110,12 +110,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE CONSUME SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021850364
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772021850516
@@ -197,6 +191,12 @@
       "text": "SHOCK STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772021858486
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM BECOME BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772021859897
     }
   ]
 }
