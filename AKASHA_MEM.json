@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DREAM BECOME EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772034302199
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772034302393
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772034304861
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034305046
     }
   ]
 }
