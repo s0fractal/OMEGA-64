@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BEYOND FORGE BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772025272299
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772025280386
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SICKNESS HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025280607
     }
   ]
 }
