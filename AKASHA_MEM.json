@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAAA0A00",
     "06006066",
     "60060600",
     "AA0AAAA0",
@@ -199,15 +198,10 @@
     "0A000AAA",
     "0BB00000",
     "AAAA00A0",
-    "AAA0A0A0"
+    "AAA0A0A0",
+    "0F000F00"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RESONATE UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772034933587
-    },
     {
       "origin": "REVERSE",
       "text": "SHIELD REFLECT SHIELD",
@@ -291,6 +285,12 @@
       "text": "COHERE SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772034936170
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY GIVING SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772034938453
     }
   ]
 }
