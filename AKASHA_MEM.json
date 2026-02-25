@@ -116,12 +116,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772022017203
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022017485
@@ -203,6 +197,12 @@
       "text": "AWAKEN SPARK SPARK",
       "mood": "CREATIVE",
       "tick": 1772022026249
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022026619
     }
   ]
 }
