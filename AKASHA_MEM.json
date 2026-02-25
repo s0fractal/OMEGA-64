@@ -125,12 +125,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE WATCH WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022245147
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE REFLECT REFLECT",
       "mood": "DEFENSIVE",
@@ -213,6 +207,12 @@
       "text": "STRIKE BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022249816
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772022250059
     }
   ]
 }
