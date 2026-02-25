@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772034603890
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY HEAL OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DRAIN SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772034607156
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON IMMUNE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772034607388
     }
   ]
 }
