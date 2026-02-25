@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "FF0AFFFA",
     "66006660",
     "0AA0A00A",
     "00006060",
@@ -199,15 +198,10 @@
     "AA666060",
     "60660066",
     "66660060",
-    "0B000000"
+    "0B000000",
+    "60006060"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "PURE SHIELD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772036026783
-    },
     {
       "origin": "INTERFACE",
       "text": "GUARD PURE SHELTER",
@@ -291,6 +285,12 @@
       "text": "RESONATE GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772036029677
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHIELD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772036029874
     }
   ]
 }
