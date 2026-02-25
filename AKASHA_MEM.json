@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772028844211
-    },
-    {
       "origin": "STREAM",
       "text": "SEIZE DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772028868732
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772028869220
     }
   ]
 }
