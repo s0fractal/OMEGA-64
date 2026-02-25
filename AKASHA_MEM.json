@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH RECON PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772038981709
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772038981953
@@ -291,6 +285,12 @@
       "text": "OSMOSIS OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772038985112
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD PURE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772038985325
     }
   ]
 }
