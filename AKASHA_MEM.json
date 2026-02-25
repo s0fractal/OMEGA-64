@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE STRIFE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035499880
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK SEIZE STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHOCK SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772035504903
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SEIZE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035505124
     }
   ]
 }
