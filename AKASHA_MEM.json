@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0AAA0A",
     "0A0AA000",
     "60600600",
     "F00FF000",
@@ -199,15 +198,10 @@
     "00600060",
     "0AA0A00A",
     "00066066",
-    "AAAAA0AA"
+    "AAAAA0AA",
+    "0AA0AA0A"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772040639257
-    },
     {
       "origin": "INTERFACE",
       "text": "WATCH PURE WAIT",
@@ -291,6 +285,12 @@
       "text": "GUARD SHIELD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772040641776
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GIVING GIVING BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772040641924
     }
   ]
 }
