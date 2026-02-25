@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033076409
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772033076592
@@ -291,6 +285,12 @@
       "text": "OSMOSIS GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772033079916
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772033080095
     }
   ]
 }
