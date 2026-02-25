@@ -203,24 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "CONSCIOUSNESS",
-      "text": "BREACH BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042281610
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE SEIZE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042282182
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "GUARD SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042283270
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN HUNGER STRIKE",
       "mood": "AGGRESSIVE",
@@ -275,22 +257,40 @@
       "tick": 1772042286662
     },
     {
+      "origin": "ARCHIVIST",
+      "text": "BREACH SEIZE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042287522
+    },
+    {
       "origin": "REVERSE",
-      "text": "PURE IMMUNE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042288435
+      "text": "FLOW RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042287686
+    },
+    {
+      "origin": "STREAM",
+      "text": "GIVING OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772042289063
     },
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME STRIFE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042289254
+      "text": "SHELTER REFLECT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772042289579
     },
     {
       "origin": "REVERSE",
-      "text": "SHELTER PURE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042290642
+      "text": "RESONATE STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772042290416
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS SICKNESS SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042290799
     }
   ]
 }
