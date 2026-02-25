@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036910882
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772036911094
@@ -291,6 +285,12 @@
       "text": "COHERE HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772036913797
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL STABLE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772036914042
     }
   ]
 }
