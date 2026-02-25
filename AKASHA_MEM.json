@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "WAIT IMMUNE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041560003
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SYNC UNIFY GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIFE SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772041564663
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH SHELTER RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772041564823
     }
   ]
 }
