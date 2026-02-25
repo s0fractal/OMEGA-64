@@ -113,12 +113,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER SEIZE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021942710
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772021942875
@@ -200,6 +194,12 @@
       "text": "HUNGER STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772021950152
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD PURE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021950347
     }
   ]
 }
