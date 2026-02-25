@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "COHERE STABLE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772040329587
-    },
-    {
-      "origin": "INTERFACE",
       "text": "DECAY DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772040329974
@@ -291,6 +285,12 @@
       "text": "DRAIN CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772040335852
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIFE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040336242
     }
   ]
 }
