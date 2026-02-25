@@ -35,12 +35,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "BLOOM FLOW GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772019762689
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS STASIS RECON",
       "mood": "DEFENSIVE",
@@ -123,6 +117,12 @@
       "text": "GIVING BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772019773302
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE WATCH WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772019773958
     }
   ]
 }
