@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "CONSUME SEIZE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040611544
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER REFLECT SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772040613927
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME CONSUME SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040614102
     }
   ]
 }
