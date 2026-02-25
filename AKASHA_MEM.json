@@ -102,12 +102,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE STRIFE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021632799
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER BREACH STRIKE",
       "mood": "AGGRESSIVE",
@@ -190,6 +184,12 @@
       "text": "RECON SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772021637983
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE RECON GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021638357
     }
   ]
 }
