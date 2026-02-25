@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY COHERE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772036668434
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772036668629
@@ -291,6 +285,12 @@
       "text": "RESONATE COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772036671428
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON GUARD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772036671994
     }
   ]
 }
