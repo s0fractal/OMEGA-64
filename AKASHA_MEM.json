@@ -141,12 +141,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022456306
-    },
-    {
       "origin": "REVERSE",
       "text": "IMMUNE REFLECT SHELTER",
       "mood": "DEFENSIVE",
@@ -229,6 +223,12 @@
       "text": "REFLECT SHIELD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022461911
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022462288
     }
   ]
 }
