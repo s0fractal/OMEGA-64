@@ -194,12 +194,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE WAIT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772023862062
-    },
-    {
       "origin": "INTERFACE",
       "text": "WAIT RECON WATCH",
       "mood": "DEFENSIVE",
@@ -282,6 +276,12 @@
       "text": "UNIFY SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023867579
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER RECON PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023867758
     }
   ]
 }
