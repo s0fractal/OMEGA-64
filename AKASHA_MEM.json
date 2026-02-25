@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE STRIFE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036959177
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772036959428
@@ -291,6 +285,12 @@
       "text": "STASIS SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772036962909
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT PURE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772036963125
     }
   ]
 }
