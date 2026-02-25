@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE SHELTER RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772040939088
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772040939389
@@ -291,6 +285,12 @@
       "text": "GUARD RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772040941814
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE IMMUNE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772040942110
     }
   ]
 }
