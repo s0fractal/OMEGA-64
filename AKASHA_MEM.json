@@ -57,12 +57,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "SPARK DREAM WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772020564865
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH DRAIN BREACH",
       "mood": "AGGRESSIVE",
@@ -145,6 +139,12 @@
       "text": "REFLECT WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772020572418
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE STRIKE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020573050
     }
   ]
 }
