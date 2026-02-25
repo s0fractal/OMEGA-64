@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WAIT SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040849046
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM BLOOM STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HEAL RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772040852025
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHELTER SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040852197
     }
   ]
 }
