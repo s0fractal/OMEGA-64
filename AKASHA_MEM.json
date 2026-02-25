@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC COHERE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772040680961
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HEAL BLOOM BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772040685549
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GUARD RECON IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040685832
     }
   ]
 }
