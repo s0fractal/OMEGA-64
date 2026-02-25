@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772036897126
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772036897337
@@ -291,6 +285,12 @@
       "text": "WAIT RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772036907249
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SHOCK HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036907462
     }
   ]
 }
