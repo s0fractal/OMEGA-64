@@ -94,15 +94,10 @@
     "00FF0FFF",
     "66666060",
     "000000FF",
-    "A6666600"
+    "A6666600",
+    "06600000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "HEAL SYNC STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772021588499
-    },
     {
       "origin": "INTERFACE",
       "text": "CONSUME BREACH STRIKE",
@@ -186,6 +181,12 @@
       "text": "STRIKE SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772021595808
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772021596854
     }
   ]
 }
