@@ -24,12 +24,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RECON SHELTER GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772019487603
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RECON PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772019490194
@@ -111,6 +105,12 @@
       "text": "STRIFE SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772019501261
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE PURE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772019501989
     }
   ]
 }
