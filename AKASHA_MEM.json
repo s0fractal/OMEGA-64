@@ -139,12 +139,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022440048
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022440204
@@ -226,6 +220,12 @@
       "text": "RESONATE OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772022444825
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE CONSUME SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022445033
     }
   ]
 }
