@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL COHERE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772031214137
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772031214481
@@ -291,6 +285,12 @@
       "text": "CONSUME SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772031220093
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD SHIELD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772031220539
     }
   ]
 }
