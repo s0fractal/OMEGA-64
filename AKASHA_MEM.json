@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE SHIELD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772039743178
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772039743642
@@ -291,6 +285,12 @@
       "text": "BREACH CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772039749495
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL BLOOM UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772039749856
     }
   ]
 }
