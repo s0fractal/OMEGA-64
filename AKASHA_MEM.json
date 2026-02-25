@@ -71,12 +71,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020872628
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772020872797
@@ -158,6 +152,12 @@
       "text": "STRIFE CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020878561
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND SPARK AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772020879192
     }
   ]
 }
