@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE COHERE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772023154905
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023155066
@@ -259,6 +253,12 @@
       "text": "DECAY CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023157852
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK STRIKE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023158049
     }
   ]
 }
