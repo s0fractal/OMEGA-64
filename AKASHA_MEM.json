@@ -163,12 +163,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022880932
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022881065
@@ -250,6 +244,12 @@
       "text": "SHOCK DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022887368
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022887557
     }
   ]
 }
