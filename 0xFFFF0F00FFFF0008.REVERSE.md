@@ -1,6 +1,6 @@
 ---
 eigenvalue: '0xFFFF0F000000000C'
-energy: 56
+energy: 57
 x: 698
 'y': 417
 resonance: 1000
