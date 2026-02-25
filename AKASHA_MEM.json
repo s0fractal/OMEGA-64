@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772024582938
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772024583353
@@ -291,6 +285,12 @@
       "text": "SHOCK SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772024592922
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772024593199
     }
   ]
 }
