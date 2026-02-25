@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034374220
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM STABLE STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WATCH STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772034377265
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034377461
     }
   ]
 }
