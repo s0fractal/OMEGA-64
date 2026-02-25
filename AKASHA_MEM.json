@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772040833137
-    },
-    {
       "origin": "WORKER",
       "text": "PURE STASIS SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "REFLECT PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040836327
+    },
+    {
+      "origin": "STREAM",
+      "text": "SEIZE STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040836498
     }
   ]
 }
