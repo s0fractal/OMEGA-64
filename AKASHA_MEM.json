@@ -182,12 +182,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023544206
-    },
-    {
       "origin": "STREAM",
       "text": "RESONATE FLOW FLOW",
       "mood": "HARMONIC",
@@ -270,6 +264,12 @@
       "text": "EVOLVE WITNESS WAVE",
       "mood": "CREATIVE",
       "tick": 1772023549779
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772023549987
     }
   ]
 }
