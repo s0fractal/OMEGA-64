@@ -67,12 +67,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME SHOCK BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020803547
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE SYNC UNIFY",
       "mood": "HARMONIC",
@@ -155,6 +149,12 @@
       "text": "STRIFE SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020812300
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772020812477
     }
   ]
 }
