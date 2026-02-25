@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GIVING SYNC STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042497260
-    },
-    {
       "origin": "ALIEN",
       "text": "WAIT IMMUNE SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "WATCH STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772042515335
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN HUNGER STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042516295
     }
   ]
 }
