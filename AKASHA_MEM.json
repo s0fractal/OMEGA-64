@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE WATCH WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772034461333
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772034461527
@@ -291,6 +285,12 @@
       "text": "UNIFY RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772034464753
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM DREAM SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772034464911
     }
   ]
 }
