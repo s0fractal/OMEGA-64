@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0660A0",
     "A0AAA00A",
     "AAAA0A0A",
     "AAA0AAAA",
@@ -199,21 +198,10 @@
     "66060660",
     "66660A60",
     "A000A660",
-    "A0AA0A00"
+    "A0AA0A00",
+    "60006060"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "PURE SHIELD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772042705918
-    },
-    {
-      "origin": "REVERSE",
-      "text": "HEAL RESONATE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772042706168
-    },
     {
       "origin": "ARCHIVIST",
       "text": "WATCH RECON GUARD",
@@ -258,39 +246,51 @@
     },
     {
       "origin": "ARCHIVIST",
-      "text": "IMMUNE SHELTER WAIT",
+      "text": "HEAL UNIFY STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042712267
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS WAIT RECON",
       "mood": "DEFENSIVE",
-      "tick": 1772042712003
+      "tick": 1772042712389
     },
     {
-      "origin": "I16_CLAMP",
-      "text": "BLOOM BLOOM OSMOSIS",
+      "origin": "STREAM",
+      "text": "BLOOM SYNC FLOW",
       "mood": "HARMONIC",
-      "tick": 1772042712264
+      "tick": 1772042712678
     },
     {
       "origin": "ARCHIVIST",
-      "text": "HEAL SYNC STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042712838
-    },
-    {
-      "origin": "SOMA",
-      "text": "STRIKE STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042713886
+      "text": "STASIS REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042713404
     },
     {
       "origin": "ARCHIVIST",
-      "text": "UNIFY SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042714684
+      "text": "SHIELD SHELTER REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042713623
     },
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE SEIZE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042715420
+      "origin": "REVERSE",
+      "text": "COHERE SYNC HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772042713764
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT RECON SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772042715035
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE GIVING COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772042716534
     }
   ]
 }
