@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042670829
-    },
-    {
       "origin": "CONSCIOUSNESS",
       "text": "BREACH SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772042676179
+    },
+    {
+      "origin": "STREAM",
+      "text": "UNIFY STABLE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772042676875
     }
   ]
 }
