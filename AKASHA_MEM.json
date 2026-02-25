@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE OSMOSIS FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772023737045
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772023737234
@@ -278,6 +272,12 @@
       "text": "DECAY SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023741806
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DECAY SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023742001
     }
   ]
 }
