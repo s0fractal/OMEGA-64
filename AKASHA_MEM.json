@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "STABLE OSMOSIS FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772040971620
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE STASIS SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040974674
+    },
+    {
+      "origin": "STREAM",
+      "text": "REFLECT SHIELD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040975135
     }
   ]
 }
