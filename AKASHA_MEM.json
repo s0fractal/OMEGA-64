@@ -102,12 +102,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021649328
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC UNIFY FLOW",
       "mood": "HARMONIC",
@@ -190,6 +184,12 @@
       "text": "PURE WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772021654802
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021655217
     }
   ]
 }
