@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE DECAY SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036058122
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772036058331
@@ -291,6 +285,12 @@
       "text": "FLOW OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772036062521
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036062690
     }
   ]
 }
