@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041805551
-    },
-    {
       "origin": "STREAM",
       "text": "IMMUNE SHIELD GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041811179
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE GIVING HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041811617
     }
   ]
 }
