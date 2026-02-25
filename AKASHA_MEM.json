@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH RECON GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772015987227
-    },
-    {
       "origin": "INTERFACE",
       "text": "WATCH GUARD SHIELD",
       "mood": "DEFENSIVE",
@@ -107,6 +101,12 @@
       "text": "SYNC BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772016087429
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIFE SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772016104526
     }
   ]
 }
