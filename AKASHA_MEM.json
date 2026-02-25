@@ -14,12 +14,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HUNGER BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772012961825
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DRAIN CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772012980490
@@ -101,6 +95,12 @@
       "text": "DRAIN CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772013090696
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS DECAY SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772013104894
     }
   ]
 }
