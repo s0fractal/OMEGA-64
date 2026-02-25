@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL HEAL RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772033264243
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772033264426
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772033267530
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT GUARD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772033267702
     }
   ]
 }
