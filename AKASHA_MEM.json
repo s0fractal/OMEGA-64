@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD SHELTER GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772028325782
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772028326338
@@ -291,6 +285,12 @@
       "text": "FLOW RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772028335390
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING OSMOSIS OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772028335898
     }
   ]
 }
