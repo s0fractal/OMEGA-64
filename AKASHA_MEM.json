@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIKE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035436538
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772035436703
@@ -291,6 +285,12 @@
       "text": "WATCH GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772035439985
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772035440189
     }
   ]
 }
