@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "BLOOM RESONATE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772037364667
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS BREACH BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT SHIELD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772037369860
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS OSMOSIS RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772037370083
     }
   ]
 }
