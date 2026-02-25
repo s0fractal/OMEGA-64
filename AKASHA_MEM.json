@@ -87,12 +87,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH HUNGER DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021232542
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772021232754
@@ -174,6 +168,12 @@
       "text": "HUNGER STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772021237135
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD REFLECT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021237433
     }
   ]
 }
