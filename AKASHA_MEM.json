@@ -154,12 +154,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW GIVING FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772022643437
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIKE STRIFE DECAY",
       "mood": "AGGRESSIVE",
@@ -242,6 +236,12 @@
       "text": "REFLECT GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022648414
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIFE DECAY DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022648862
     }
   ]
 }
