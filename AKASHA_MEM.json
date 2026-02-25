@@ -164,12 +164,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022946609
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022946775
@@ -251,6 +245,12 @@
       "text": "SPARK BECOME WITNESS",
       "mood": "CREATIVE",
       "tick": 1772022950320
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY BREACH STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022950453
     }
   ]
 }
