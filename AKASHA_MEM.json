@@ -110,12 +110,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE GUARD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772021889888
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772021890975
@@ -197,6 +191,12 @@
       "text": "BLOOM HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772021895171
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772021895292
     }
   ]
 }
