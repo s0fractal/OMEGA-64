@@ -178,12 +178,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE DECAY SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023356160
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK SEIZE CONSUME",
       "mood": "AGGRESSIVE",
@@ -266,6 +260,12 @@
       "text": "STRIFE SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772023362409
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT IMMUNE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772023362575
     }
   ]
 }
