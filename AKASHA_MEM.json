@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772041337183
-    },
-    {
       "origin": "STREAM",
       "text": "CONSUME SHOCK SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041340354
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS WATCH GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041340512
     }
   ]
 }
