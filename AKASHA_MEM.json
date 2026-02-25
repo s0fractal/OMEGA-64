@@ -58,12 +58,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "EVOLVE AWAKEN VISION",
-      "mood": "CREATIVE",
-      "tick": 1772020562415
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020563059
@@ -145,6 +139,12 @@
       "text": "SYNC STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772020570659
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL OSMOSIS RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772020571014
     }
   ]
 }
