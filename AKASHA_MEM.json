@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023169707
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND EVOLVE BEYOND",
       "mood": "CREATIVE",
       "tick": 1772023170044
@@ -259,6 +253,12 @@
       "text": "SHIELD GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023175643
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHELTER STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772023175815
     }
   ]
 }
