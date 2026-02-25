@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_REVERSE",
-      "text": "SICKNESS DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033448926
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH PURE WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772033451812
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772033452006
     }
   ]
 }
