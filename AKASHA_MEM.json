@@ -122,12 +122,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE STRIFE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022135076
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY SHOCK HUNGER",
       "mood": "AGGRESSIVE",
@@ -210,6 +204,12 @@
       "text": "BLOOM FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772022140202
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022141648
     }
   ]
 }
