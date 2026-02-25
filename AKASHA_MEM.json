@@ -58,6 +58,12 @@
       "origin": "INTERFACE",
       "text": "ASCEND",
       "tick": 1772010885620
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DRAIN SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772010916074
     }
   ]
 }
