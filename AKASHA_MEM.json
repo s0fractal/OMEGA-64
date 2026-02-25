@@ -169,12 +169,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER STRIKE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023086229
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM FLOW BLOOM",
       "mood": "HARMONIC",
@@ -257,6 +251,12 @@
       "text": "BLOOM FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772023089500
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023090007
     }
   ]
 }
