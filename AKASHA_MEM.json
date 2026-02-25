@@ -130,12 +130,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD SHIELD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772022319918
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022320301
@@ -217,6 +211,12 @@
       "text": "WATCH IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022325048
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS STRIFE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022325372
     }
   ]
 }
