@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "I16_CLAMP",
-      "text": "BLOOM OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041349115
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE COHERE UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHIELD IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772041352865
+    },
+    {
+      "origin": "STREAM",
+      "text": "OSMOSIS STABLE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041353014
     }
   ]
 }
