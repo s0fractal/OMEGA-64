@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE STRIFE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026171400
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772026171744
@@ -291,6 +285,12 @@
       "text": "REFLECT WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772026174748
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DECAY HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026174953
     }
   ]
 }
