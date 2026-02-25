@@ -123,12 +123,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "AWAKEN BEYOND SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772022133663
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022133852
@@ -210,6 +204,12 @@
       "text": "STABLE OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772022138045
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIFE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022138221
     }
   ]
 }
