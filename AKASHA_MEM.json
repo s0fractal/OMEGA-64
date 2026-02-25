@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SEIZE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036026226
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772036026411
@@ -291,6 +285,12 @@
       "text": "RESONATE HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772036029072
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772036029272
     }
   ]
 }
