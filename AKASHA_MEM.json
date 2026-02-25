@@ -192,12 +192,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772023801822
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772023802008
@@ -279,6 +273,12 @@
       "text": "SEIZE DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023805688
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DECAY STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023806909
     }
   ]
 }
