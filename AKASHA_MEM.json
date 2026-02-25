@@ -181,12 +181,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER WAIT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772023459009
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK WITNESS SPARK",
       "mood": "CREATIVE",
       "tick": 1772023459257
@@ -268,6 +262,12 @@
       "text": "SHELTER GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023463234
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME HUNGER STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023463440
     }
   ]
 }
