@@ -32,12 +32,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772019699115
-    },
-    {
       "origin": "INTERFACE",
       "text": "IMMUNE IMMUNE RECON",
       "mood": "DEFENSIVE",
@@ -120,6 +114,12 @@
       "text": "BREACH CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772019713943
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIKE CONSUME HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019714633
     }
   ]
 }
