@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034500697
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772034500902
@@ -291,6 +285,12 @@
       "text": "SEIZE DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772034504071
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE HEAL HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772034504285
     }
   ]
 }
