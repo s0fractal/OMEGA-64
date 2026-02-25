@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE SYNC HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772035228415
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772035228586
@@ -291,6 +285,12 @@
       "text": "VISION WAVE SPARK",
       "mood": "CREATIVE",
       "tick": 1772035231678
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772035231869
     }
   ]
 }
