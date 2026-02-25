@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037864867
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772037865070
@@ -291,6 +285,12 @@
       "text": "UNIFY UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772037868064
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037868261
     }
   ]
 }
