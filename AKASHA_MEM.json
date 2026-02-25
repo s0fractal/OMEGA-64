@@ -109,12 +109,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772021852373
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SYNC HEAL COHERE",
       "mood": "HARMONIC",
@@ -197,6 +191,12 @@
       "text": "DECAY CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772021863941
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE DECAY SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021864112
     }
   ]
 }
