@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FORGE WAVE FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772024184979
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772024185130
@@ -291,6 +285,12 @@
       "text": "STRIKE CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772024187811
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHELTER SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772024187993
     }
   ]
 }
