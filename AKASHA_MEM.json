@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIFE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033698256
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772033698487
@@ -291,6 +285,12 @@
       "text": "STABLE FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772033702255
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD PURE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772033702429
     }
   ]
 }
