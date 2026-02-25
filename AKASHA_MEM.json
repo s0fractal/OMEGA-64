@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A0000000",
     "6A6666A6",
     "AA666666",
     "9D18A690",
@@ -199,15 +198,10 @@
     "06660600",
     "ABB00000",
     "A1000000",
-    "66006666"
+    "66006666",
+    "A0BBC0DD"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WATCH PURE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772024866460
-    },
     {
       "origin": "REVERSE",
       "text": "UNIFY BLOOM UNIFY",
@@ -291,6 +285,12 @@
       "text": "DRAIN STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772024871054
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS BREACH STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024872023
     }
   ]
 }
