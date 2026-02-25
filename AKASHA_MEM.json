@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0D10A098",
     "AAAA0000",
     "66606060",
     "66660600",
@@ -199,15 +198,10 @@
     "0AA0AAA0",
     "00AAAAA0",
     "06060606",
-    "00606600"
+    "00606600",
+    "AA6060A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHELTER WATCH STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772027167408
-    },
     {
       "origin": "REVERSE",
       "text": "STRIFE DRAIN STRIFE",
@@ -291,6 +285,12 @@
       "text": "REFLECT SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772027173347
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIKE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027174040
     }
   ]
 }
