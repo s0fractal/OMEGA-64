@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772038144588
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE SHOCK STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772038147792
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038147997
     }
   ]
 }
