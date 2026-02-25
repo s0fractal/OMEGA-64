@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STRIKE SICKNESS HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027450722
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY COHERE BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772027457711
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH HUNGER SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027457999
     }
   ]
 }
