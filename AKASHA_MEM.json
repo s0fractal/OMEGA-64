@@ -111,12 +111,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GUARD REFLECT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021941321
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME SEIZE DRAIN",
       "mood": "AGGRESSIVE",
@@ -199,6 +193,12 @@
       "text": "BLOOM UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772021946988
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL UNIFY OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772021947166
     }
   ]
 }
