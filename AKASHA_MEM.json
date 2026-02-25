@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD SHELTER WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772041718346
-    },
-    {
       "origin": "STREAM",
       "text": "HUNGER SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIKE BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772041724865
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772041725263
     }
   ]
 }
