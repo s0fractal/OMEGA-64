@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041396287
-    },
-    {
       "origin": "STREAM",
       "text": "HEAL OSMOSIS GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GUARD STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041399832
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041400009
     }
   ]
 }
