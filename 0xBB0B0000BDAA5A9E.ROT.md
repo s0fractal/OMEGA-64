@@ -5,9 +5,9 @@ symbol: ROT
 desc: >-
   Complex Rotation Operator (90 degrees). Performs a cyclic shift on a 4-basis
   state.
-x: 228
-'y': 275
-energy: 13.399999999999993
+x: 229
+'y': 259
+energy: 7.399999999999993
 ex:
   - '0xB25B9F65BDAA5A9E'
   - '0x000210BBBDAA5A9E'
@@ -53,12 +53,14 @@ ex:
   - '0x00606660BDAA5A9E'
   - '0xBB0B0000BDAA5A9E'
   - '0xBB0B0000BDAA5A9E'
+  - '0xBB0B0000BDAA5A9E'
 thought: WANDER_BONDING
 signals: []
 resonance: 0
 bond_strengths: {}
 ---
 
+<div align="center">
 <div align="center">
 <div align="center">
 <div align="center">
@@ -128,6 +130,7 @@ bond_strengths: {}
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">ROT</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 </div>
 </div>
