@@ -183,12 +183,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW RESONATE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772023522124
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772023522288
@@ -270,6 +264,12 @@
       "text": "IMMUNE GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023526773
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DRAIN CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023528545
     }
   ]
 }
