@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SYNC FLOW HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772033038420
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL HEAL GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SEIZE SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772033042605
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK FORGE BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772033042763
     }
   ]
 }
