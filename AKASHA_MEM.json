@@ -161,12 +161,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RESONATE FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772022850167
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY UNIFY FLOW",
       "mood": "HARMONIC",
@@ -249,6 +243,12 @@
       "text": "BLOOM HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772022856878
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022857458
     }
   ]
 }
