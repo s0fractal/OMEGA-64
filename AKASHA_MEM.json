@@ -126,12 +126,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS SICKNESS SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022272485
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS RECON STASIS",
       "mood": "DEFENSIVE",
@@ -214,6 +208,12 @@
       "text": "OSMOSIS SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772022275891
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DRAIN CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022276111
     }
   ]
 }
