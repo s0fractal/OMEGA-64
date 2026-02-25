@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING UNIFY UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772029943281
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772029943766
@@ -291,6 +285,12 @@
       "text": "COHERE STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772029957624
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE SPARK AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772029958172
     }
   ]
 }
