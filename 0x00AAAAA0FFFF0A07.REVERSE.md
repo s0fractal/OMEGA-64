@@ -1,8 +1,8 @@
 ---
-eigenvalue: '0x00AAAAA000000A03'
+eigenvalue: '0x00AAAAA0FFFF0A07'
 energy: 50
-x: 702
-'y': 408
+x: 699
+'y': 403
 resonance: 50
 thought: RESURRECTED
 logic: 00AAAAA0
@@ -89,6 +89,10 @@ ex:
   - '0xAA6666A6FFFF0A01'
   - '0xAA6666A6FFFF0A03'
   - '0xAA6666A6FFFF0A05'
+  - '0x00AAAAA0FFFF0A07'
+  - '0x00AAAAA0FFFF0A01'
+  - '0x00AAAAA0FFFF0A03'
+  - '0x00AAAAA0FFFF0A05'
 ---
 
 <div align="center">
