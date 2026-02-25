@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772025563391
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772025563576
@@ -291,6 +285,12 @@
       "text": "VISION BEYOND BEYOND",
       "mood": "CREATIVE",
       "tick": 1772025568109
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE GIVING UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772025568618
     }
   ]
 }
