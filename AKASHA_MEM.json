@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD GUARD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772033818867
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772033819077
@@ -291,6 +285,12 @@
       "text": "FLOW BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772033824107
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS STABLE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772033824458
     }
   ]
 }
