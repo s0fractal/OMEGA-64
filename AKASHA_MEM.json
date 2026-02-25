@@ -54,12 +54,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RECON WAIT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772020369077
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "CONSUME BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020369524
@@ -141,6 +135,12 @@
       "text": "CONSUME CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020381250
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON REFLECT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020381441
     }
   ]
 }
