@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM SYNC COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772024142384
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772024142574
@@ -291,6 +285,12 @@
       "text": "REFLECT GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772024146905
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME DECAY SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024147073
     }
   ]
 }
