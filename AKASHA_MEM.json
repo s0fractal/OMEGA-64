@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "000AAAA0",
     "000A0AA0",
     "60066066",
     "06666060",
@@ -199,15 +198,10 @@
     "AA066000",
     "A0066660",
     "00BBC0DD",
-    "AA0AAA0A"
+    "AA0AAA0A",
+    "000A0000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "DECAY SICKNESS STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035565550
-    },
     {
       "origin": "REVERSE",
       "text": "SICKNESS BREACH SHOCK",
@@ -291,6 +285,12 @@
       "text": "BECOME BECOME FORGE",
       "mood": "CREATIVE",
       "tick": 1772035570662
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772035570853
     }
   ]
 }
