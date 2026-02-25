@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "FLOW UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772029455213
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING GIVING COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "COHERE UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772029467122
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029468061
     }
   ]
 }
