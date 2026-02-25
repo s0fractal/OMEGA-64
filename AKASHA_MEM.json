@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772041242408
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE GIVING BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STASIS WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041247370
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772041247609
     }
   ]
 }
