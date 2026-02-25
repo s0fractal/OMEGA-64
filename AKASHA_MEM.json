@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER IMMUNE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772033121085
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772033121260
@@ -291,6 +285,12 @@
       "text": "STABLE OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772033124565
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772033124737
     }
   ]
 }
