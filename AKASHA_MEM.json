@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER STASIS PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772038896566
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772038896750
@@ -291,6 +285,12 @@
       "text": "DECAY SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772038899429
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT REFLECT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772038899619
     }
   ]
 }
