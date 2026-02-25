@@ -98,12 +98,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772021580183
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "EVOLVE WITNESS VISION",
       "mood": "CREATIVE",
@@ -186,6 +180,12 @@
       "text": "SYNC COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772021587297
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIFE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021587494
     }
   ]
 }
