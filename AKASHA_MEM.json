@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772028872071
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS GUARD SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772028885050
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SICKNESS SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028885763
     }
   ]
 }
