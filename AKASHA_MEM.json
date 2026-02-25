@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "BB0B0000",
     "A0606606",
     "00066060",
     "06606600",
@@ -199,15 +198,10 @@
     "A0AA0600",
     "6A060A60",
     "BBBB0000",
-    "0A0A0A00"
+    "0A0A0A00",
+    "A0000AA0"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "GUARD GUARD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041888639
-    },
     {
       "origin": "ARCHIVIST",
       "text": "COHERE HEAL RESONATE",
@@ -291,6 +285,12 @@
       "text": "HEAL HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772041894664
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041894897
     }
   ]
 }
