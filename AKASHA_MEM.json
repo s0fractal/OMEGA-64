@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY STRIFE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034745759
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772034745915
@@ -291,6 +285,12 @@
       "text": "BLOOM SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772034754729
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN BREACH BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034755031
     }
   ]
 }
