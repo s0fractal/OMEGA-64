@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE SHIELD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772034060910
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS BREACH DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772034066373
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE PURE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772034066581
     }
   ]
 }
