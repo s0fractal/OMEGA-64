@@ -154,12 +154,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW FLOW HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772022639846
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022640042
@@ -241,6 +235,12 @@
       "text": "STRIFE SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022642685
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772022642864
     }
   ]
 }
