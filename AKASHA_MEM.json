@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SHOCK DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031139742
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772031140890
@@ -291,6 +285,12 @@
       "text": "PURE WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772031144956
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT GUARD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772031145253
     }
   ]
 }
