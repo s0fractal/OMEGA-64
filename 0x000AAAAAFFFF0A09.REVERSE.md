@@ -1,7 +1,7 @@
 ---
 eigenvalue: '0x000AAAAAFFFF0A09'
 energy: 49.9
-x: 730
+x: 729
 'y': 422
 resonance: 10.1
 thought: SEEK_ALPHA_PASSIVE
