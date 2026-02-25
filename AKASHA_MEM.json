@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL FLOW HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772030688054
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772030688482
@@ -291,6 +285,12 @@
       "text": "SEIZE DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772030694448
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772030696977
     }
   ]
 }
