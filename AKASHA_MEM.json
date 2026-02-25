@@ -125,12 +125,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STASIS PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772022240580
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
@@ -213,6 +207,12 @@
       "text": "DRAIN STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022246635
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE BEYOND SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772022247059
     }
   ]
 }
