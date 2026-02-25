@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL RESONATE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772028679486
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772028679938
@@ -291,6 +285,12 @@
       "text": "BREACH SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772028695056
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHELTER IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772028695550
     }
   ]
 }
