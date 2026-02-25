@@ -108,12 +108,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772021789403
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772021789573
@@ -195,6 +189,12 @@
       "text": "IMMUNE WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772021793180
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BECOME FORGE AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772021793339
     }
   ]
 }
