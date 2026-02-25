@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041324737
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD GUARD RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772041330993
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772041331413
     }
   ]
 }
