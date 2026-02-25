@@ -40,12 +40,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHELTER SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772019820871
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "COHERE COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772019821956
@@ -127,6 +121,12 @@
       "text": "BREACH CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772019832328
+    },
+    {
+      "origin": "STREAM",
+      "text": "COHERE HEAL HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772019832481
     }
   ]
 }
