@@ -55,12 +55,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STASIS GUARD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772020450965
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "CONSUME DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020451727
@@ -142,6 +136,12 @@
       "text": "SEIZE DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020460171
+    },
+    {
+      "origin": "STREAM",
+      "text": "COHERE COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772020460480
     }
   ]
 }
