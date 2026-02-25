@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DECAY SHOCK SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024236801
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS HEAL HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SEIZE DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772024241448
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHIELD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772024241609
     }
   ]
 }
