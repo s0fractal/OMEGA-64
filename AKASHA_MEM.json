@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041493987
-    },
-    {
       "origin": "NAND",
       "text": "GIVING HEAL HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WAIT STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772041498052
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041498391
     }
   ]
 }
