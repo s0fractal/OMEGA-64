@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772037270025
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772037270221
@@ -291,6 +285,12 @@
       "text": "OSMOSIS GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772037272890
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DRAIN STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037273094
     }
   ]
 }
