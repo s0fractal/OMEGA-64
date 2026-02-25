@@ -50,12 +50,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SICKNESS SICKNESS STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020295827
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
@@ -138,6 +132,12 @@
       "text": "PURE GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772020307318
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020308100
     }
   ]
 }
