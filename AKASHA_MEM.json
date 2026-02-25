@@ -181,12 +181,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772023415105
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023415271
@@ -268,6 +262,12 @@
       "text": "SHIELD SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023420161
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SEIZE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023420714
     }
   ]
 }
