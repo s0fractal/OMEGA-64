@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SEIZE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025362755
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772025363281
@@ -291,6 +285,12 @@
       "text": "RESONATE FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772025366757
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHIELD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772025366954
     }
   ]
 }
