@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIKE BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019524127
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT SHELTER IMMUNE",
       "mood": "DEFENSIVE",
@@ -111,6 +105,12 @@
       "text": "SICKNESS SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772019532835
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BREACH HUNGER HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019534705
     }
   ]
 }
