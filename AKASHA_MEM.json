@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY COHERE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772037536520
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772037536751
@@ -291,6 +285,12 @@
       "text": "FLOW STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772037543944
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772037544208
     }
   ]
 }
