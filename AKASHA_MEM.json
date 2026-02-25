@@ -190,12 +190,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023700744
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772023700904
@@ -277,6 +271,12 @@
       "text": "OSMOSIS FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772023704487
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023704790
     }
   ]
 }
