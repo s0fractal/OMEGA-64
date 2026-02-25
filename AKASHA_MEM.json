@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026491990
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772026492419
@@ -291,6 +285,12 @@
       "text": "SICKNESS BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772026502121
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772026502508
     }
   ]
 }
