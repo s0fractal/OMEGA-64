@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772023209545
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772023209750
@@ -259,6 +253,12 @@
       "text": "SHIELD REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023212416
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772023212722
     }
   ]
 }
