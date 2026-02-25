@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772037231943
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772037232161
@@ -291,6 +285,12 @@
       "text": "SICKNESS BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772037235275
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM EVOLVE AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772037235481
     }
   ]
 }
