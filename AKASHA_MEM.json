@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019959372
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHOCK CONSUME DRAIN",
       "mood": "AGGRESSIVE",
@@ -130,6 +124,12 @@
       "text": "SEIZE STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772019971955
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE PURE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772019972939
     }
   ]
 }
