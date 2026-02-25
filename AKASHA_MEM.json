@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE SYNC OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772035938352
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK BECOME BECOME",
       "mood": "CREATIVE",
       "tick": 1772035938560
@@ -291,6 +285,12 @@
       "text": "REFLECT WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772035942623
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT WAIT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772035942849
     }
   ]
 }
