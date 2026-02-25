@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE STRIKE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038820318
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772038820514
@@ -291,6 +285,12 @@
       "text": "STABLE OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772038824050
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS GUARD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772038824289
     }
   ]
 }
