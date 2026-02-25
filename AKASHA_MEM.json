@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT SHELTER IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040648503
-    },
-    {
       "origin": "STREAM",
       "text": "SYNC COHERE UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772040651708
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL GIVING FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772040652018
     }
   ]
 }
