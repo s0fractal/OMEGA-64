@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "REFLECT SHELTER GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040518065
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "FLOW HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772040518198
@@ -291,6 +285,12 @@
       "text": "IMMUNE WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772040520524
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK CONSUME STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040520649
     }
   ]
 }
