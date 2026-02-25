@@ -120,12 +120,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WAIT WATCH IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022098324
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME SHOCK CONSUME",
       "mood": "AGGRESSIVE",
@@ -208,6 +202,12 @@
       "text": "WAIT REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022106441
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022106609
     }
   ]
 }
