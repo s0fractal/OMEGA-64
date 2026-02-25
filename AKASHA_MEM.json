@@ -128,12 +128,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING STABLE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772022275221
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772022275399
@@ -215,6 +209,12 @@
       "text": "GUARD RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022279477
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM BLOOM BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772022280045
     }
   ]
 }
