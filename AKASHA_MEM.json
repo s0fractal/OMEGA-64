@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE STRIKE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037314711
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772037314937
@@ -291,6 +285,12 @@
       "text": "SHELTER WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772037317924
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037318088
     }
   ]
 }
