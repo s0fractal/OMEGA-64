@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "COHERE STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041817145
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER STRIKE STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIKE DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772041821426
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS HUNGER SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041821818
     }
   ]
 }
