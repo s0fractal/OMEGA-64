@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772041900232
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772041900439
@@ -291,6 +285,12 @@
       "text": "DECAY BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772041904397
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772041904573
     }
   ]
 }
