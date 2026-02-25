@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS SHELTER GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772026763037
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772026763314
@@ -291,6 +285,12 @@
       "text": "WAIT SHELTER SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772026766908
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME SPARK AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772026767165
     }
   ]
 }
