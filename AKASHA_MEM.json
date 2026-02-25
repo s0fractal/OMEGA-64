@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE STABLE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772029165483
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772029165720
@@ -291,6 +285,12 @@
       "text": "STRIKE STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772029170491
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772029170714
     }
   ]
 }
