@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER STRIKE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031586782
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772031587207
@@ -291,6 +285,12 @@
       "text": "DECAY DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772031598314
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW STABLE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772031600030
     }
   ]
 }
