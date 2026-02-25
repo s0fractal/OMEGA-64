@@ -86,12 +86,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SYNC RESONATE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772021241686
-    },
-    {
       "origin": "STREAM",
       "text": "GIVING UNIFY FLOW",
       "mood": "HARMONIC",
@@ -174,6 +168,12 @@
       "text": "WAVE SPARK AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772021246894
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS STASIS WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772021247519
     }
   ]
 }
