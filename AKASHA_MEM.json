@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00666060",
     "00F0000F",
     "00066660",
     "AABBC0DD",
@@ -199,15 +198,10 @@
     "A6666666",
     "BA000000",
     "AAAA00A0",
-    "BBBB0000"
+    "BBBB0000",
+    "B0B0000C"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STRIKE STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033320703
-    },
     {
       "origin": "REVERSE",
       "text": "OSMOSIS RESONATE COHERE",
@@ -291,6 +285,12 @@
       "text": "RESONATE BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772033327177
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033327361
     }
   ]
 }
