@@ -63,12 +63,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD WAIT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772020719905
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER WATCH PURE",
       "mood": "DEFENSIVE",
@@ -151,6 +145,12 @@
       "text": "STRIKE SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020725616
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH DRAIN STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020728295
     }
   ]
 }
