@@ -184,12 +184,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT PURE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023555391
-    },
-    {
-      "origin": "REVERSE",
       "text": "EVOLVE DREAM SPARK",
       "mood": "CREATIVE",
       "tick": 1772023555554
@@ -271,6 +265,12 @@
       "text": "WATCH WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023558542
+    },
+    {
+      "origin": "STREAM",
+      "text": "WAIT IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023558744
     }
   ]
 }
