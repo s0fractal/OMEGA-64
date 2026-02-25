@@ -37,12 +37,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT PURE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772019785523
-    },
-    {
       "origin": "STREAM",
       "text": "SYNC UNIFY BLOOM",
       "mood": "HARMONIC",
@@ -125,6 +119,12 @@
       "text": "STRIKE STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772019794169
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772019795568
     }
   ]
 }
