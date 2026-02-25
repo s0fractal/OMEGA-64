@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STASIS PURE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040825875
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN DECAY BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772040830049
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GIVING OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772040830884
     }
   ]
 }
