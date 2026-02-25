@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE STRIKE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037795122
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772037795564
@@ -291,6 +285,12 @@
       "text": "SHELTER PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772037798401
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM WAVE SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772037798594
     }
   ]
 }
