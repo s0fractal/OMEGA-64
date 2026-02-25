@@ -24,12 +24,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019577016
-    },
-    {
       "origin": "STREAM",
       "text": "GIVING RESONATE BLOOM",
       "mood": "HARMONIC",
@@ -112,6 +106,12 @@
       "text": "BLOOM STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772019585685
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SICKNESS BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019586734
     }
   ]
 }
