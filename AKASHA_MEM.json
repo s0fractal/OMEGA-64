@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "CONSUME DRAIN DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025812812
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL BLOOM UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STABLE UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772025816350
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772025816534
     }
   ]
 }
