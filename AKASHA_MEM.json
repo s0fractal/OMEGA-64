@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY STRIFE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033379048
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772033379303
@@ -291,6 +285,12 @@
       "text": "RESONATE SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772033384224
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT WAIT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772033384694
     }
   ]
 }
