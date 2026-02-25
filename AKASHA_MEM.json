@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE DRAIN SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033848058
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC RESONATE STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "COHERE UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772033850685
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772033850868
     }
   ]
 }
