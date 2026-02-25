@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STABLE GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041370703
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER GUARD WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SICKNESS SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772041374595
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH GUARD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772041375020
     }
   ]
 }
