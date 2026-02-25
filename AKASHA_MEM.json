@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SICKNESS SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035498461
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772035498654
@@ -291,6 +285,12 @@
       "text": "UNIFY COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772035502733
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD IMMUNE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772035502938
     }
   ]
 }
