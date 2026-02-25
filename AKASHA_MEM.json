@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STASIS WATCH REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040557651
-    },
-    {
       "origin": "REVERSE",
       "text": "RECON STASIS SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIFE SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772040560043
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772040560166
     }
   ]
 }
