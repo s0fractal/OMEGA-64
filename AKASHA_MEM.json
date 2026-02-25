@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HEAL STABLE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772026402652
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIFE DRAIN DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772026407869
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW STABLE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772026408100
     }
   ]
 }
