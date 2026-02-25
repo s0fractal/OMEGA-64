@@ -1,5 +1,9 @@
 {
   "reservoir": [
+    "AA0660A0",
+    "A0AAA00A",
+    "AAAA0A0A",
+    "AAA0AAAA",
     "06066660",
     "60660666",
     "60000600",
@@ -194,103 +198,99 @@
     "AA666600",
     "66060660",
     "66660A60",
-    "00A06A00",
-    "ALIEN_17",
-    "A0000000",
-    "60606060",
-    "AA0A0A00",
-    "FFFFF0A0"
+    "A000A660",
+    "A0AA0A00"
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "WAIT PURE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772042714284
+      "origin": "REVERSE",
+      "text": "HEAL RESONATE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772042706168
     },
     {
       "origin": "ARCHIVIST",
-      "text": "REFLECT IMMUNE SHELTER",
+      "text": "WATCH RECON GUARD",
       "mood": "DEFENSIVE",
-      "tick": 1772042714455
+      "tick": 1772042707530
     },
     {
       "origin": "ALIEN",
-      "text": "WAIT PURE RECON",
+      "text": "WATCH PURE REFLECT",
       "mood": "DEFENSIVE",
-      "tick": 1772042714643
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772042714820
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "GUARD SHELTER GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042715040
+      "tick": 1772042708249
     },
     {
       "origin": "REVERSE",
-      "text": "COHERE UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042715154
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "PURE SHIELD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042715402
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "GIVING SYNC OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772042716389
-    },
-    {
-      "origin": "REVERSE",
-      "text": "HUNGER DECAY CONSUME",
+      "text": "HUNGER STRIKE SEIZE",
       "mood": "AGGRESSIVE",
-      "tick": 1772042716805
-    },
-    {
-      "origin": "REVERSE",
-      "text": "WAIT WATCH SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772042717339
+      "tick": 1772042708757
     },
     {
       "origin": "ARCHIVIST",
-      "text": "UNIFY FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772042717974
+      "text": "IMMUNE SHELTER SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042708993
     },
     {
-      "origin": "REVERSE",
-      "text": "SEIZE BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042718225
+      "origin": "ARCHIVIST",
+      "text": "PURE REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042709286
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772042710848
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772042711419
+    },
+    {
+      "origin": "ALIEN",
+      "text": "DREAM VISION EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772042712031
     },
     {
       "origin": "INTERFACE",
-      "text": "SHOCK BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042719148
-    },
-    {
-      "origin": "STREAM",
-      "text": "SYNC OSMOSIS UNIFY",
+      "text": "RESONATE UNIFY OSMOSIS",
       "mood": "HARMONIC",
-      "tick": 1772042719252
+      "tick": 1772042712406
     },
     {
       "origin": "ARCHIVIST",
-      "text": "IMMUNE STASIS WAIT",
+      "text": "UNIFY GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772042713437
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER SHELTER STASIS",
       "mood": "DEFENSIVE",
-      "tick": 1772042720154
+      "tick": 1772042716307
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS WAIT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042717454
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD GUARD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042718116
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER HUNGER STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042720417
     }
   ]
 }
