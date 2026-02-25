@@ -166,12 +166,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BLOOM FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772023027176
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS SYNC GIVING",
       "mood": "HARMONIC",
@@ -254,6 +248,12 @@
       "text": "RECON SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023032739
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023032898
     }
   ]
 }
