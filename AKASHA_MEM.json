@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772037529629
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772037529843
@@ -291,6 +285,12 @@
       "text": "HEAL UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772037533457
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DRAIN HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037533666
     }
   ]
 }
