@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT REFLECT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772034307415
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772034307617
@@ -291,6 +285,12 @@
       "text": "SHELTER RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772034310702
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DECAY DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034310896
     }
   ]
 }
