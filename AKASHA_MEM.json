@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE FLOW HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772035589250
-    },
-    {
       "origin": "REVERSE",
       "text": "WAVE WAVE EVOLVE",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772035591909
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH RECON STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772035592112
     }
   ]
 }
