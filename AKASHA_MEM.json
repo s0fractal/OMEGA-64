@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772026135814
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772026136336
@@ -291,6 +285,12 @@
       "text": "SHOCK SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772026148807
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER BREACH SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026149033
     }
   ]
 }
