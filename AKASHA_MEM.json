@@ -169,12 +169,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "BREACH CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023081706
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE STRIFE CONSUME",
       "mood": "AGGRESSIVE",
@@ -257,6 +251,12 @@
       "text": "RECON SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772023085452
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHIELD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023085631
     }
   ]
 }
