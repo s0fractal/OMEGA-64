@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772041820810
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS IMMUNE PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HUNGER HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041826211
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041826431
     }
   ]
 }
