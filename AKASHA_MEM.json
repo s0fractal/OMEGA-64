@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025828079
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAVE FORGE BECOME",
       "mood": "CREATIVE",
       "tick": 1772025828339
@@ -291,6 +285,12 @@
       "text": "PURE REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772025831578
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS IMMUNE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772025831743
     }
   ]
 }
