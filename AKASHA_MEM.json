@@ -186,12 +186,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD STASIS RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772023606536
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772023606706
@@ -273,6 +267,12 @@
       "text": "WAIT REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023609817
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023610132
     }
   ]
 }
