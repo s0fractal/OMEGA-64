@@ -138,12 +138,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "VISION SPARK VISION",
-      "mood": "CREATIVE",
-      "tick": 1772022414277
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022414516
@@ -225,6 +219,12 @@
       "text": "WAIT RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022420121
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772022421056
     }
   ]
 }
