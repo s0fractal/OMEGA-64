@@ -161,12 +161,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE RECON REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022822929
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772022823092
@@ -248,6 +242,12 @@
       "text": "SHELTER RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022827936
+    },
+    {
+      "origin": "STREAM",
+      "text": "SYNC FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772022828126
     }
   ]
 }
