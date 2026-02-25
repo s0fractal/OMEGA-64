@@ -108,12 +108,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021789573
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772021789765
@@ -195,6 +189,12 @@
       "text": "BECOME FORGE AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772021793339
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021793872
     }
   ]
 }
