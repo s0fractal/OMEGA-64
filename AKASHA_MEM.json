@@ -61,12 +61,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER SEIZE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020610591
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE HEAL GIVING",
       "mood": "HARMONIC",
@@ -149,6 +143,12 @@
       "text": "STABLE RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772020618678
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "FLOW RESONATE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772020619018
     }
   ]
 }
