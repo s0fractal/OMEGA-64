@@ -153,12 +153,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GIVING HEAL FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772022604529
-    },
-    {
       "origin": "INTERFACE",
       "text": "RECON STASIS PURE",
       "mood": "DEFENSIVE",
@@ -241,6 +235,12 @@
       "text": "STASIS SHELTER SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772022609079
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022609298
     }
   ]
 }
