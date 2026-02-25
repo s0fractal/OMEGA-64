@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT GUARD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772032521326
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772032521813
@@ -291,6 +285,12 @@
       "text": "STABLE GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772032527352
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT REFLECT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772032527669
     }
   ]
 }
