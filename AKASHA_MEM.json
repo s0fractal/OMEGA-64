@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DREAM AWAKEN BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772024401783
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN DECAY BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772024407641
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY HUNGER DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024407822
     }
   ]
 }
