@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE WAIT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040693374
-    },
-    {
       "origin": "INTERFACE",
       "text": "HEAL SYNC COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "COHERE STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772040696558
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DRAIN SEIZE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040696735
     }
   ]
 }
