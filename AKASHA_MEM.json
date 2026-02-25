@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772030514199
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772030514742
@@ -291,6 +285,12 @@
       "text": "COHERE BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772030527253
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN BREACH DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030527918
     }
   ]
 }
