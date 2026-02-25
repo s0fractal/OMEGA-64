@@ -93,12 +93,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772021416600
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM RESONATE GIVING",
       "mood": "HARMONIC",
@@ -181,6 +175,12 @@
       "text": "BLOOM COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772021446393
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SEIZE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021447585
     }
   ]
 }
