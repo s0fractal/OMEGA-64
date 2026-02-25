@@ -163,12 +163,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HUNGER CONSUME SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022959288
-    },
-    {
       "origin": "REVERSE",
       "text": "PURE SHELTER PURE",
       "mood": "DEFENSIVE",
@@ -251,6 +245,12 @@
       "text": "GIVING STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022965712
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772022965897
     }
   ]
 }
