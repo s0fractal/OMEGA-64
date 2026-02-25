@@ -169,12 +169,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD IMMUNE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023073642
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772023073826
@@ -256,6 +250,12 @@
       "text": "DECAY DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023076090
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772023076317
     }
   ]
 }
