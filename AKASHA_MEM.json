@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66000000",
     "ABBA0000",
     "06606600",
     "A6666000",
@@ -199,15 +198,10 @@
     "00006060",
     "0A0A0AA0",
     "66600606",
-    "0AAA00AA"
+    "0AAA00AA",
+    "60060606"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STRIFE BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034711377
-    },
     {
       "origin": "REVERSE",
       "text": "STASIS WATCH WATCH",
@@ -291,6 +285,12 @@
       "text": "UNIFY COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772034717147
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WAIT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772034717372
     }
   ]
 }
