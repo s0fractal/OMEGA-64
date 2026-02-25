@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SEIZE CONSUME STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041199353
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE CONSUME CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041205171
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE UNIFY STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041205626
     }
   ]
 }
