@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023155414
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD IMMUNE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023155598
@@ -259,6 +253,12 @@
       "text": "RECON REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772023158336
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772023158536
     }
   ]
 }
