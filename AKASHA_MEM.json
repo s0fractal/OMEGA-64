@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024355789
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE HEAL OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BLOOM RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772024362721
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE BLOOM SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772024362856
     }
   ]
 }
