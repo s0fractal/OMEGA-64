@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772040550326
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME SEIZE SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD PURE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772040552690
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY CONSUME SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040552983
     }
   ]
 }
