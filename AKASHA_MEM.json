@@ -142,15 +142,10 @@
     "AABBCC0D",
     "06666060",
     "66660660",
-    "AA00A00A"
+    "AA00A00A",
+    "06660006"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHELTER IMMUNE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022517336
-    },
     {
       "origin": "ARCHIVIST",
       "text": "HEAL SYNC BLOOM",
@@ -234,6 +229,12 @@
       "text": "HEAL COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022520473
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772022520724
     }
   ]
 }
