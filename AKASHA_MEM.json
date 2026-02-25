@@ -162,12 +162,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022887557
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE GIVING COHERE",
       "mood": "HARMONIC",
@@ -250,6 +244,12 @@
       "text": "SHELTER IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022892228
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD SHIELD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772022892621
     }
   ]
 }
