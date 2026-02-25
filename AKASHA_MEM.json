@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038707404
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772038707627
@@ -291,6 +285,12 @@
       "text": "REFLECT SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772038711913
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772038712145
     }
   ]
 }
