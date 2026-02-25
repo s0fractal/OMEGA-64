@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS FLOW BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772023944081
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023944442
@@ -284,6 +278,12 @@
       "text": "COHERE COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772023949495
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK BECOME FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772023949660
     }
   ]
 }
