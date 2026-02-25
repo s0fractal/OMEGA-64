@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH RECON GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772034170218
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772034170402
@@ -291,6 +285,12 @@
       "text": "FLOW BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772034174931
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHELTER RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772034175118
     }
   ]
 }
