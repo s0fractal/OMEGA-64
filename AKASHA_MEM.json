@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037600018
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772037600221
@@ -291,6 +285,12 @@
       "text": "OSMOSIS COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772037603086
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772037603297
     }
   ]
 }
