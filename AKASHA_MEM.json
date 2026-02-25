@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT RECON SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772037299130
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772037299339
@@ -291,6 +285,12 @@
       "text": "SYNC GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772037302581
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING SYNC SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772037302775
     }
   ]
 }
