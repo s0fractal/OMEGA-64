@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STABLE SYNC STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041983671
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE GIVING HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DRAIN BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772041991237
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN HUNGER CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041991437
     }
   ]
 }
