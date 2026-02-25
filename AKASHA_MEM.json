@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SYNC RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772019909005
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE BREACH BREACH",
       "mood": "AGGRESSIVE",
@@ -130,6 +124,12 @@
       "text": "STABLE COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772019920102
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772019920742
     }
   ]
 }
