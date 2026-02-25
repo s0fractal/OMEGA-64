@@ -109,12 +109,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021870858
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE OSMOSIS FLOW",
       "mood": "HARMONIC",
@@ -197,6 +191,12 @@
       "text": "STRIKE HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772021878611
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021878753
     }
   ]
 }
