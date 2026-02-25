@@ -116,12 +116,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BEYOND FORGE VISION",
-      "mood": "CREATIVE",
-      "tick": 1772022070030
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022070201
@@ -203,6 +197,12 @@
       "text": "STRIFE SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022076891
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE BREACH STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022077125
     }
   ]
 }
