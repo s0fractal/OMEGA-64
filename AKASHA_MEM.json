@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "BB0B0A00",
     "66666000",
     "AAA0AAAA",
     "66AA66A0",
@@ -199,15 +198,10 @@
     "AA6660A0",
     "AA000A00",
     "06006660",
-    "AA00A000"
+    "AA00A000",
+    "66606660"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "HUNGER SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025090454
-    },
     {
       "origin": "REVERSE",
       "text": "UNIFY GIVING RESONATE",
@@ -291,6 +285,12 @@
       "text": "HEAL UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772025094676
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON IMMUNE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772025094863
     }
   ]
 }
