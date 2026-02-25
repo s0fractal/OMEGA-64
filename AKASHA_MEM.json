@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "FLOW BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772041874741
-    },
-    {
       "origin": "PARADOX",
       "text": "STASIS SHIELD SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772041879671
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHIELD RECON PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041879841
     }
   ]
 }
