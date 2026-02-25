@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD WAIT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772034771655
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772034771857
@@ -291,6 +285,12 @@
       "text": "SEIZE SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772034775008
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DECAY SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034775740
     }
   ]
 }
