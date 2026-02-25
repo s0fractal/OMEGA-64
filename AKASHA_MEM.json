@@ -178,12 +178,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STASIS IMMUNE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772023361251
-    },
-    {
       "origin": "STREAM",
       "text": "SICKNESS CONSUME STRIKE",
       "mood": "AGGRESSIVE",
@@ -266,6 +260,12 @@
       "text": "BEYOND SPARK BEYOND",
       "mood": "CREATIVE",
       "tick": 1772023364259
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL STABLE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772023364400
     }
   ]
 }
