@@ -123,12 +123,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER STRIFE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022132752
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022132908
@@ -210,6 +204,12 @@
       "text": "STABLE FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772022136342
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022136509
     }
   ]
 }
