@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIKE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040834886
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772040835079
@@ -291,6 +285,12 @@
       "text": "HUNGER SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772040838188
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GUARD STASIS WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040838422
     }
   ]
 }
