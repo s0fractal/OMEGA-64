@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD PURE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772035921951
-    },
-    {
       "origin": "ALPHA_STREAM",
       "text": "HEAL HEAL FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772035929487
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE BREACH DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035929706
     }
   ]
 }
