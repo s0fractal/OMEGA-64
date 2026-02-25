@@ -108,12 +108,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772021788552
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772021788806
@@ -195,6 +189,12 @@
       "text": "BREACH SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021792262
+    },
+    {
+      "origin": "REVERSE",
+      "text": "AWAKEN AWAKEN BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772021792684
     }
   ]
 }
