@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STASIS WATCH REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040189925
-    },
-    {
       "origin": "REVERSE",
       "text": "RECON WATCH WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772040196241
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "COHERE FLOW HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772040197392
     }
   ]
 }
