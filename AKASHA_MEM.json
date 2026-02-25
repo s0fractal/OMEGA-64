@@ -150,12 +150,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022543437
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022543606
@@ -237,6 +231,12 @@
       "text": "WATCH WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022547169
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772022547319
     }
   ]
 }
