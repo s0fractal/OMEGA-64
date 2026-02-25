@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHELTER SHIELD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772042272085
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "REFLECT SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772042272351
@@ -291,6 +285,12 @@
       "text": "BLOOM GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772042277516
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "OSMOSIS BLOOM UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772042278365
     }
   ]
 }
