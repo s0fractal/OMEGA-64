@@ -201,12 +201,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE SEIZE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024080298
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GIVING SYNC HEAL",
       "mood": "HARMONIC",
@@ -289,6 +283,12 @@
       "text": "DRAIN SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772024084927
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SHOCK DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024087143
     }
   ]
 }
