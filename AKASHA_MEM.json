@@ -192,12 +192,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772023842834
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK AWAKEN DREAM",
       "mood": "CREATIVE",
       "tick": 1772023843007
@@ -279,6 +273,12 @@
       "text": "STRIKE STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772023847668
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING BLOOM SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772023847844
     }
   ]
 }
