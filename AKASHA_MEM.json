@@ -40,12 +40,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BLOOM HEAL HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772019861252
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE BLOOM FLOW",
       "mood": "HARMONIC",
@@ -128,6 +122,12 @@
       "text": "SHELTER RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772019873718
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE BLOOM SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772019875246
     }
   ]
 }
