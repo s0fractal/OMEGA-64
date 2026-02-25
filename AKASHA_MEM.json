@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030954962
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772030955340
@@ -291,6 +285,12 @@
       "text": "VISION BECOME BECOME",
       "mood": "CREATIVE",
       "tick": 1772030971132
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHELTER STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772030971549
     }
   ]
 }
