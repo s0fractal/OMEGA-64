@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772025946098
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE GIVING HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FORGE SPARK AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772025959446
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIFE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025959710
     }
   ]
 }
