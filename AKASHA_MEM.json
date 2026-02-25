@@ -178,12 +178,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON STASIS SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023336177
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772023336346
@@ -265,6 +259,12 @@
       "text": "SHOCK SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023339653
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WATCH WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772023339926
     }
   ]
 }
