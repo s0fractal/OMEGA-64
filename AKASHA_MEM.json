@@ -76,12 +76,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY UNIFY FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772020976682
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772020976844
@@ -163,6 +157,12 @@
       "text": "IMMUNE WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020983741
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SEIZE HUNGER SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020984289
     }
   ]
 }
