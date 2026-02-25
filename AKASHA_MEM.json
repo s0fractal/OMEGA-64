@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER RECON REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772034764443
-    },
-    {
-      "origin": "REVERSE",
       "text": "VISION DREAM AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772034764677
@@ -291,6 +285,12 @@
       "text": "SYNC COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034767343
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772034767546
     }
   ]
 }
