@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023703516
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772023703692
@@ -278,6 +272,12 @@
       "text": "SHOCK STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772023705964
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY GIVING COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772023706130
     }
   ]
 }
