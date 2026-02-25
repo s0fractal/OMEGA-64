@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM FLOW OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772041466343
-    },
-    {
       "origin": "STREAM",
       "text": "DRAIN DRAIN SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772041470174
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772041470490
     }
   ]
 }
