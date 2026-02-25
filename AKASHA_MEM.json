@@ -57,12 +57,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS STRIFE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020571227
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN DRAIN CONSUME",
       "mood": "AGGRESSIVE",
@@ -145,6 +139,12 @@
       "text": "PURE PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020577036
+    },
+    {
+      "origin": "PARADOX",
+      "text": "BECOME FORGE EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772020577689
     }
   ]
 }
