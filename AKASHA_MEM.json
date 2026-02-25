@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS GUARD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772032875152
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772032875340
@@ -291,6 +285,12 @@
       "text": "STRIKE DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772032878019
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772032878198
     }
   ]
 }
