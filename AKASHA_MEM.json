@@ -102,12 +102,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIFE DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021647872
-    },
-    {
       "origin": "REVERSE",
       "text": "RECON RECON IMMUNE",
       "mood": "DEFENSIVE",
@@ -190,6 +184,12 @@
       "text": "HEAL OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772021652458
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH GUARD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772021652633
     }
   ]
 }
