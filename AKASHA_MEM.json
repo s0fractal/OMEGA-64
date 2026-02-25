@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW UNIFY SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772035920862
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772035921094
@@ -291,6 +285,12 @@
       "text": "RECON REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772035928653
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035928860
     }
   ]
 }
