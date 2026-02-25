@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040739685
-    },
-    {
       "origin": "STREAM",
       "text": "WATCH IMMUNE WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772040744319
+    },
+    {
+      "origin": "STREAM",
+      "text": "BLOOM FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772040744590
     }
   ]
 }
