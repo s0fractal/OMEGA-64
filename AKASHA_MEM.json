@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041002531
-    },
-    {
       "origin": "SUCC",
       "text": "SYNC UNIFY GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHIELD RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041004728
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RESONATE STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041004902
     }
   ]
 }
