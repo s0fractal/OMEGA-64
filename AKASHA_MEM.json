@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772039012734
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772039013012
@@ -291,6 +285,12 @@
       "text": "RECON WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772039018304
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH REFLECT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772039018539
     }
   ]
 }
