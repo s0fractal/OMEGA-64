@@ -70,12 +70,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772020872965
-    },
-    {
       "origin": "STREAM",
       "text": "HEAL BLOOM SYNC",
       "mood": "HARMONIC",
@@ -158,6 +152,12 @@
       "text": "SEIZE CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020879373
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020879532
     }
   ]
 }
