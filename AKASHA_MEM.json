@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE RESONATE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772027598198
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772027598516
@@ -291,6 +285,12 @@
       "text": "SICKNESS DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772027604396
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING UNIFY HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772027604695
     }
   ]
 }
