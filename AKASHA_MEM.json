@@ -81,12 +81,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE REFLECT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772021104634
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772021104841
@@ -168,6 +162,12 @@
       "text": "VISION WITNESS WITNESS",
       "mood": "CREATIVE",
       "tick": 1772021109248
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHIELD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772021109759
     }
   ]
 }
