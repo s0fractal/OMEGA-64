@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SHOCK CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027378524
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772027378717
@@ -291,6 +285,12 @@
       "text": "DRAIN DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772027386546
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING UNIFY SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772027386758
     }
   ]
 }
