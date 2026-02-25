@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE UNIFY UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772038552820
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772038553003
@@ -291,6 +285,12 @@
       "text": "FLOW GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772038557867
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIKE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038558088
     }
   ]
 }
