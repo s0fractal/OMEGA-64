@@ -76,12 +76,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIFE CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020986978
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "UNIFY BLOOM STABLE",
       "mood": "HARMONIC",
@@ -164,6 +158,12 @@
       "text": "BREACH DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020994343
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020994522
     }
   ]
 }
