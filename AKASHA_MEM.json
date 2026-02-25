@@ -110,15 +110,10 @@
     "A0AAA0A0",
     "A6666006",
     "66660666",
-    "0D180098"
+    "0D180098",
+    "FFFFFFF0"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021994430
-    },
     {
       "origin": "ARCHIVIST",
       "text": "REFLECT GUARD GUARD",
@@ -202,6 +197,12 @@
       "text": "COHERE STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772022001416
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE VISION EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772022002611
     }
   ]
 }
