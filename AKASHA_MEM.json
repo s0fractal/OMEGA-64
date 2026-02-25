@@ -23,15 +23,10 @@
     "0000AA00",
     "AA000000",
     "666666A6",
-    "600A0000"
+    "600A0000",
+    "A6666666"
   ],
   "utterances": [
-    {
-      "origin": "INTERFACE",
-      "text": "HUNGER DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019674588
-    },
     {
       "origin": "ARCHIVIST",
       "text": "STRIFE HUNGER HUNGER",
@@ -115,6 +110,12 @@
       "text": "WAIT STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772019685628
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019686434
     }
   ]
 }
