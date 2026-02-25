@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772032518022
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772032518523
@@ -291,6 +285,12 @@
       "text": "SHIELD SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772032523944
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHELTER WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772032524220
     }
   ]
 }
