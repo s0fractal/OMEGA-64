@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE HUNGER SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023152452
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023152655
@@ -259,6 +253,12 @@
       "text": "RESONATE STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772023155777
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772023155974
     }
   ]
 }
