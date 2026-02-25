@@ -114,12 +114,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SICKNESS DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021977294
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE SHIELD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772021977551
@@ -201,6 +195,12 @@
       "text": "WAVE EVOLVE WITNESS",
       "mood": "CREATIVE",
       "tick": 1772021986266
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772021986439
     }
   ]
 }
