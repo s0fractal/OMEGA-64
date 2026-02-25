@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "WATCH SHIELD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772037289277
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE STABLE OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772037293679
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772037293842
     }
   ]
 }
