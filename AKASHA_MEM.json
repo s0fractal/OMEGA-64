@@ -186,12 +186,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STASIS REFLECT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772023655848
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT PURE RECON",
       "mood": "DEFENSIVE",
@@ -274,6 +268,12 @@
       "text": "REFLECT WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023664457
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE REFLECT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023664783
     }
   ]
 }
