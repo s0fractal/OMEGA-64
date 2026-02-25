@@ -158,12 +158,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HEAL OSMOSIS COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772022777887
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE BREACH CONSUME",
       "mood": "AGGRESSIVE",
@@ -246,6 +240,12 @@
       "text": "DRAIN STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772022783832
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DRAIN HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022784802
     }
   ]
 }
