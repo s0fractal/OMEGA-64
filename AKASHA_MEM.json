@@ -71,12 +71,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BEYOND FORGE BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772020882176
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020882360
@@ -158,6 +152,12 @@
       "text": "REFLECT STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020888116
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE IMMUNE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772020889011
     }
   ]
 }
