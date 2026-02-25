@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL GIVING SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772035811569
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772035811766
@@ -291,6 +285,12 @@
       "text": "HEAL COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772035814243
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE IMMUNE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772035814444
     }
   ]
 }
