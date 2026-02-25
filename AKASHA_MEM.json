@@ -130,12 +130,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD WATCH REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022328848
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022329098
@@ -217,6 +211,12 @@
       "text": "DRAIN SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772022335110
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING FLOW GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022335554
     }
   ]
 }
