@@ -110,12 +110,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD REFLECT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772021846473
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772021846642
@@ -197,6 +191,12 @@
       "text": "RECON PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772021851338
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW FLOW HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772021852119
     }
   ]
 }
