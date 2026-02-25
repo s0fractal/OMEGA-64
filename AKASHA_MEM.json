@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0A0AAA",
     "A6660660",
     "06666666",
     "A0666000",
@@ -199,15 +198,10 @@
     "00660060",
     "66606000",
     "00066000",
-    "AA0A0A00"
+    "AA0A0A00",
+    "00660666"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHELTER GUARD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772035676453
-    },
     {
       "origin": "REVERSE",
       "text": "SEIZE DRAIN SEIZE",
@@ -291,6 +285,12 @@
       "text": "HEAL UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772035683444
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING RESONATE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772035683715
     }
   ]
 }
