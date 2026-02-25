@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037714575
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772037714786
@@ -291,6 +285,12 @@
       "text": "DRAIN STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772037722059
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT REFLECT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772037722332
     }
   ]
 }
