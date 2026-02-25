@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "WORKER",
-      "text": "BREACH DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041403625
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SYNC BLOOM UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HEAL GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772041408743
+    },
+    {
+      "origin": "STREAM",
+      "text": "DRAIN STRIKE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041408892
     }
   ]
 }
