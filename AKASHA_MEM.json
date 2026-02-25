@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHELTER SHIELD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040952877
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HEAL SYNC STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SEIZE SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772040956163
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER SHIELD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040956546
     }
   ]
 }
