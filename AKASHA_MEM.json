@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STABLE FLOW GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772040930793
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE DECAY STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772040935067
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SYNC COHERE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772040935197
     }
   ]
 }
