@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772040868837
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE BLOOM OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DRAIN SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772040871022
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040871202
     }
   ]
 }
