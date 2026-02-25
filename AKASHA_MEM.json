@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY OSMOSIS RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772036215197
-    },
-    {
-      "origin": "REVERSE",
       "text": "WITNESS BEYOND EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772036215463
@@ -291,6 +285,12 @@
       "text": "SYNC OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772036219001
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036219284
     }
   ]
 }
