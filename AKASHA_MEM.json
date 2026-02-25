@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS WAIT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772032613530
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772032613713
@@ -291,6 +285,12 @@
       "text": "SYNC FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772032617431
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032617613
     }
   ]
 }
