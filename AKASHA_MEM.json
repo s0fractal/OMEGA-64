@@ -155,12 +155,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE HEAL OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772022646502
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022647065
@@ -242,6 +236,12 @@
       "text": "WAIT PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022653137
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772022653302
     }
   ]
 }
