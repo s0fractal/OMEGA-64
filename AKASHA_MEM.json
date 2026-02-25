@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772016999777
-    },
-    {
       "origin": "INTERFACE",
       "text": "IMMUNE SHIELD PURE",
       "mood": "DEFENSIVE",
@@ -107,6 +101,12 @@
       "text": "WATCH SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772017071210
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "CONSUME BREACH STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772017075690
     }
   ]
 }
