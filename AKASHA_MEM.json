@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041405959
-    },
-    {
       "origin": "STREAM",
       "text": "GUARD PURE REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON SHIELD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041409952
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "FLOW HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772041410122
     }
   ]
 }
