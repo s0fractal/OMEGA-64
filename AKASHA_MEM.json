@@ -99,12 +99,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772021578291
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK BECOME BEYOND",
       "mood": "CREATIVE",
       "tick": 1772021578455
@@ -186,6 +180,12 @@
       "text": "SHOCK STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772021586927
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DECAY DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021587097
     }
   ]
 }
