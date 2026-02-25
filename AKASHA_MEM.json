@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WAIT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772028808830
-    },
-    {
-      "origin": "REVERSE",
       "text": "DREAM EVOLVE BEYOND",
       "mood": "CREATIVE",
       "tick": 1772028809169
@@ -291,6 +285,12 @@
       "text": "STABLE STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772028817393
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772028817967
     }
   ]
 }
