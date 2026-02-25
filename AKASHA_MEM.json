@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE STASIS WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772019652425
-    },
-    {
       "origin": "INTERFACE",
       "text": "WAIT SHIELD WAIT",
       "mood": "DEFENSIVE",
@@ -114,6 +108,12 @@
       "text": "PURE GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772019661348
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SEIZE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019662213
     }
   ]
 }
