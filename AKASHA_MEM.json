@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035003035
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772035003235
@@ -291,6 +285,12 @@
       "text": "EVOLVE BEYOND SPARK",
       "mood": "CREATIVE",
       "tick": 1772035005932
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC GIVING BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772035006167
     }
   ]
 }
