@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON WATCH STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772035760020
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772035760221
@@ -291,6 +285,12 @@
       "text": "STASIS WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772035763502
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772035763713
     }
   ]
 }
