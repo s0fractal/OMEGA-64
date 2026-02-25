@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60060660",
     "A0000000",
     "0AA00A0A",
     "FF00FF00",
@@ -199,15 +198,10 @@
     "60600600",
     "00660600",
     "06066660",
-    "A6666000"
+    "A6666000",
+    "A6606606"
   ],
   "utterances": [
-    {
-      "origin": "INTERFACE",
-      "text": "PURE WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772029244577
-    },
     {
       "origin": "REVERSE",
       "text": "DECAY STRIFE HUNGER",
@@ -291,6 +285,12 @@
       "text": "COHERE RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772029252571
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIFE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029253095
     }
   ]
 }
