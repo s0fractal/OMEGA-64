@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041377328
-    },
-    {
       "origin": "INTERFACE",
       "text": "FLOW OSMOSIS STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BREACH STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772041380891
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT SHELTER STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772041381035
     }
   ]
 }
