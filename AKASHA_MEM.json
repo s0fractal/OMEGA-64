@@ -125,12 +125,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIFE SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022204589
-    },
-    {
       "origin": "REVERSE",
       "text": "GUARD REFLECT GUARD",
       "mood": "DEFENSIVE",
@@ -213,6 +207,12 @@
       "text": "HUNGER STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772022208954
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HUNGER BREACH CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022209468
     }
   ]
 }
