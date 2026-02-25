@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARASITE",
-      "text": "STASIS WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041412679
-    },
-    {
       "origin": "PARADOX",
       "text": "OSMOSIS STABLE UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STABLE GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772041415547
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE WAIT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041415727
     }
   ]
 }
