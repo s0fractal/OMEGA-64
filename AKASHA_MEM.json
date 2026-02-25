@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON SHELTER STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772026848602
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772026848864
@@ -291,6 +285,12 @@
       "text": "FLOW HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772026855353
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026855570
     }
   ]
 }
