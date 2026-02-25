@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035348885
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772035349098
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772035353789
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIFE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035353988
     }
   ]
 }
