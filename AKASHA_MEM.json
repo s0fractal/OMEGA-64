@@ -70,6 +70,12 @@
       "text": "DECAY STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772010938584
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN HUNGER BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772010948903
     }
   ]
 }
