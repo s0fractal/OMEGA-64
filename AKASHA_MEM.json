@@ -183,12 +183,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023539263
-    },
-    {
-      "origin": "REVERSE",
       "text": "AWAKEN WITNESS BEYOND",
       "mood": "CREATIVE",
       "tick": 1772023540871
@@ -270,6 +264,12 @@
       "text": "OSMOSIS STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772023543710
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH STASIS PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023544047
     }
   ]
 }
