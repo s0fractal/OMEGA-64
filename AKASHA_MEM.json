@@ -106,12 +106,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY CONSUME SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021741881
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH PURE WATCH",
       "mood": "DEFENSIVE",
@@ -194,6 +188,12 @@
       "text": "STRIFE DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021747490
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME DECAY DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021747631
     }
   ]
 }
