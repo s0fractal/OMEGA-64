@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE WAIT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041722600
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE STRIFE HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041731427
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH DRAIN DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041732209
     }
   ]
 }
