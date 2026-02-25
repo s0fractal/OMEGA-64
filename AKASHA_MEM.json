@@ -13,12 +13,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SICKNESS DECAY SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772013104894
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER DECAY DECAY",
       "mood": "AGGRESSIVE",
@@ -101,6 +95,12 @@
       "text": "SICKNESS CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772013248363
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772013253903
     }
   ]
 }
