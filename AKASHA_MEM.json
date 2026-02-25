@@ -180,12 +180,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL RESONATE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772023472802
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHOCK STRIFE BREACH",
       "mood": "AGGRESSIVE",
@@ -268,6 +262,12 @@
       "text": "SHELTER SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023478614
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772023478811
     }
   ]
 }
