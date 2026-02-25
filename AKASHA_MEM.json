@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040579939
-    },
-    {
       "origin": "STREAM",
       "text": "GUARD RECON PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BREACH HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772040582729
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS STASIS SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772040582848
     }
   ]
 }
