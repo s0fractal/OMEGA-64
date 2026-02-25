@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON STASIS WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772024596977
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772024597763
@@ -291,6 +285,12 @@
       "text": "WAIT RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772024602751
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION WITNESS WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772024603025
     }
   ]
 }
