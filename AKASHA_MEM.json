@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772030931714
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772030932579
@@ -291,6 +285,12 @@
       "text": "STRIKE STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772030940400
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772030940955
     }
   ]
 }
