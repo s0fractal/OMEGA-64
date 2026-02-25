@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772038734997
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772038735221
@@ -291,6 +285,12 @@
       "text": "COHERE UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772038738156
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM FORGE WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772038738368
     }
   ]
 }
