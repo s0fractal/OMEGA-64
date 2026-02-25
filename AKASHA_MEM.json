@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034310896
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772034311088
@@ -291,6 +285,12 @@
       "text": "SHIELD SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772034317371
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034317627
     }
   ]
 }
