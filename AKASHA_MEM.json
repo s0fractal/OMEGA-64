@@ -50,12 +50,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772020305085
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE COHERE OSMOSIS",
       "mood": "HARMONIC",
@@ -138,6 +132,12 @@
       "text": "HEAL HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772020312514
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SHOCK STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020312893
     }
   ]
 }
