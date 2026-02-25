@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD REFLECT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772027816173
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING SYNC SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772027830994
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHIELD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772027831783
     }
   ]
 }
