@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A0AA0000",
     "AA0AA0A0",
     "AA606000",
     "06000606",
@@ -199,15 +198,10 @@
     "AAAA0A0A",
     "AAA0AAAA",
     "06066660",
-    "60660666"
+    "60660666",
+    "60000600"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "SYNC OSMOSIS RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040219889
-    },
     {
       "origin": "REVERSE",
       "text": "COHERE RESONATE RESONATE",
@@ -291,6 +285,12 @@
       "text": "SHIELD WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772040224150
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD IMMUNE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040224430
     }
   ]
 }
