@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772034800319
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772034800487
@@ -291,6 +285,12 @@
       "text": "IMMUNE IMMUNE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772034803221
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772034803394
     }
   ]
 }
