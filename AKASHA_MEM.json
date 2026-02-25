@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "REFLECT WATCH REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041247115
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS WAIT STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772041253269
+    },
+    {
+      "origin": "WORKER",
+      "text": "COHERE COHERE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772041253541
     }
   ]
 }
