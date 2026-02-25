@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040667800
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK SHOCK DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772040670254
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SICKNESS DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040671264
     }
   ]
 }
