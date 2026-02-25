@@ -173,12 +173,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT PURE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023215531
-    },
-    {
-      "origin": "REVERSE",
       "text": "AWAKEN EVOLVE AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772023215707
@@ -260,6 +254,12 @@
       "text": "REFLECT STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772023221453
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772023221623
     }
   ]
 }
