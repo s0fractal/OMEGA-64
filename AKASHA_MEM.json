@@ -1,7 +1,5 @@
 {
   "reservoir": [
-    "A0AAA000",
-    "AAA0A0AA",
     "66660060",
     "00000000",
     "66660000",
@@ -197,100 +195,102 @@
     "AA00A000",
     "BBB00000",
     "6606AA66",
-    "A6A66000",
-    "60060666",
-    "A6666A66"
+    "A6660600",
+    "AA666600",
+    "0AAA0A00",
+    "0A0AA0A0",
+    "0A0A0666"
   ],
   "utterances": [
     {
-      "origin": "NAND",
-      "text": "CONSUME SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042490884
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "PURE RECON GUARD",
+      "origin": "REVERSE",
+      "text": "PURE WAIT SHELTER",
       "mood": "DEFENSIVE",
-      "tick": 1772042491196
+      "tick": 1772042486358
     },
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SICKNESS SICKNESS",
+      "text": "GIVING COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772042487113
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772042487711
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE RESONATE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772042488272
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772042488874
+    },
+    {
+      "origin": "STREAM",
+      "text": "OSMOSIS UNIFY SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772042489447
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE BREACH SEIZE",
       "mood": "AGGRESSIVE",
-      "tick": 1772042491374
+      "tick": 1772042490658
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SYNC GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772042491980
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE SYNC COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772042493733
     },
     {
       "origin": "SUCC",
-      "text": "GIVING OSMOSIS GIVING",
+      "text": "REFLECT IMMUNE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042494657
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER RECON IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042495334
+    },
+    {
+      "origin": "ALPHA_STREAM",
+      "text": "REFLECT WAIT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772042497719
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY SYNC STABLE",
       "mood": "HARMONIC",
-      "tick": 1772042491840
+      "tick": 1772042499258
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT REFLECT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042499795
     },
     {
       "origin": "REVERSE",
-      "text": "STABLE RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772042492127
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE STRIKE STRIFE",
+      "text": "DECAY STRIFE CONSUME",
       "mood": "AGGRESSIVE",
-      "tick": 1772042492563
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK HUNGER BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042494501
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE DRAIN STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042495660
-    },
-    {
-      "origin": "REVERSE",
-      "text": "REFLECT WAIT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042496118
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "SHOCK DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042496727
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE WATCH WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772042497155
-    },
-    {
-      "origin": "IS_ISO",
-      "text": "BLOOM OSMOSIS HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772042497562
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME SICKNESS DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042497955
-    },
-    {
-      "origin": "REVERSE",
-      "text": "SHELTER SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042499074
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "BLOOM SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042500142
+      "tick": 1772042500532
     }
   ]
 }
