@@ -106,12 +106,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STASIS GUARD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772021734259
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH SHELTER WAIT",
       "mood": "DEFENSIVE",
@@ -194,6 +188,12 @@
       "text": "SICKNESS SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772021738853
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS STASIS RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772021739240
     }
   ]
 }
