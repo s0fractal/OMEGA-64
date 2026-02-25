@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06660006",
     "06066600",
     "AA0AAA00",
     "0AA0AA00",
@@ -199,15 +198,10 @@
     "AA6666A6",
     "AABB0C0D",
     "60000600",
-    "00666660"
+    "00666660",
+    "00006660"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BLOOM FLOW BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772026620579
-    },
     {
       "origin": "ARCHIVIST",
       "text": "STRIFE CONSUME BREACH",
@@ -291,6 +285,12 @@
       "text": "RECON GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772026626451
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772026627318
     }
   ]
 }
