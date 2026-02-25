@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL FLOW UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772028486366
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772028487033
@@ -291,6 +285,12 @@
       "text": "GUARD SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772028507335
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS REFLECT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772028507626
     }
   ]
 }
