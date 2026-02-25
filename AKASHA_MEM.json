@@ -79,12 +79,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE UNIFY FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772021072174
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD PURE GUARD",
       "mood": "DEFENSIVE",
@@ -167,6 +161,12 @@
       "text": "BREACH DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021077554
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STASIS WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772021077884
     }
   ]
 }
