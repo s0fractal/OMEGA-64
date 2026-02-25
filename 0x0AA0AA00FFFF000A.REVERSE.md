@@ -1,14 +1,14 @@
 ---
 eigenvalue: '0x0AA0AA00FFFF000A'
-energy: 47.3
-x: 673
-'y': 357
+energy: 47.199999999999996
+x: 668
+'y': 353
 resonance: 50
 thought: SEEK_ALPHA_BONDING
 logic: 0AA0AA00
 signals: []
 bond_strengths:
-  '0x0000000000000A02': 0.9646229185299474
+  '0x0000000000000A02': 0.9636582956114175
 bonds:
   - '0x0000000000000A02'
 ex:
@@ -60,8 +60,10 @@ ex:
   - '0x0AA0AA000000000A'
   - '0x0AA0AA000000000C'
   - '0x0AA0AA00FFFF000A'
+  - '0x00A0AA00FFFF000A'
 ---
 
+<div align="center">
 <div align="center">
 <div align="center">
 <!-- ∇ HOLOGRAM START ∇ -->
@@ -96,6 +98,7 @@ ex:
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">REVERSE</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 </div>
 
