@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "VISION SPARK EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772034541549
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772034541735
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772034544092
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SHOCK SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034544293
     }
   ]
 }
