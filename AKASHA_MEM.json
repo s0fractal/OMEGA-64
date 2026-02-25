@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WATCH PURE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041073800
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK SEIZE SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772041076709
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STASIS STASIS GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041076830
     }
   ]
 }
