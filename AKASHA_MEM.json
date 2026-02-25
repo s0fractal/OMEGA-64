@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH SHIELD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772033845677
-    },
-    {
       "origin": "REVERSE",
       "text": "RECON REFLECT RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772033849202
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033849368
     }
   ]
 }
