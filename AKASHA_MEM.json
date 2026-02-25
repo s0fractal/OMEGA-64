@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BREACH DRAIN STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040729710
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER GUARD WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BREACH SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772040733413
+    },
+    {
+      "origin": "STREAM",
+      "text": "STABLE STABLE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772040733576
     }
   ]
 }
