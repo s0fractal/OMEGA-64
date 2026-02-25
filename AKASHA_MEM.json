@@ -46,12 +46,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHOCK HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020071117
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHIELD WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020072645
@@ -133,6 +127,12 @@
       "text": "DRAIN STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772020089086
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIFE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020089749
     }
   ]
 }
