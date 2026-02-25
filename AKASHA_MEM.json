@@ -166,12 +166,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023041452
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE BREACH STRIFE",
       "mood": "AGGRESSIVE",
@@ -254,6 +248,12 @@
       "text": "COHERE UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772023046681
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHELTER IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023047097
     }
   ]
 }
