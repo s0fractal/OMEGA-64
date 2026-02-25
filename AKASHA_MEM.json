@@ -44,12 +44,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WATCH WAIT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772020017074
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GIVING RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772020017895
@@ -131,6 +125,12 @@
       "text": "SEIZE SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772020027971
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY DECAY CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020028604
     }
   ]
 }
