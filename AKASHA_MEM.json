@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772026359401
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME BECOME DREAM",
       "mood": "CREATIVE",
       "tick": 1772026360213
@@ -291,6 +285,12 @@
       "text": "IMMUNE STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772026365128
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE BLOOM SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772026365721
     }
   ]
 }
