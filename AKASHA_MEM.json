@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772020466041
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK BREACH STRIKE",
       "mood": "AGGRESSIVE",
@@ -142,6 +136,12 @@
       "text": "WITNESS BECOME SPARK",
       "mood": "CREATIVE",
       "tick": 1772020473442
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772020473676
     }
   ]
 }
