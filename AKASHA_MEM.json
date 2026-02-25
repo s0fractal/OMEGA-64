@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772033179144
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772033180997
@@ -291,6 +285,12 @@
       "text": "UNIFY GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772033184805
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH IMMUNE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772033185077
     }
   ]
 }
