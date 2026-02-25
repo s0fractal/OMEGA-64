@@ -195,12 +195,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023859680
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772023859870
@@ -282,6 +276,12 @@
       "text": "PURE PURE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772023865339
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT SHIELD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772023865911
     }
   ]
 }
