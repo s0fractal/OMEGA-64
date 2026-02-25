@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028364816
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772028365211
@@ -291,6 +285,12 @@
       "text": "UNIFY SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772028372524
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DRAIN SEIZE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028372982
     }
   ]
 }
