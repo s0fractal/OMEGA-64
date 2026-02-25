@@ -182,12 +182,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE WAIT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023529893
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE HUNGER DECAY",
       "mood": "AGGRESSIVE",
@@ -270,6 +264,12 @@
       "text": "HEAL UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772023536269
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DECAY DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023537117
     }
   ]
 }
