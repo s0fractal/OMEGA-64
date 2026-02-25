@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE SHELTER RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772029008539
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772029008975
@@ -291,6 +285,12 @@
       "text": "STASIS PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772029022278
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772029022873
     }
   ]
 }
