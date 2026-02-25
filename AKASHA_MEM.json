@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WATCH IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772025842288
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772025842474
@@ -291,6 +285,12 @@
       "text": "UNIFY RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772025850978
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE OSMOSIS UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772025851365
     }
   ]
 }
