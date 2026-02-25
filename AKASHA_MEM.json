@@ -204,6 +204,18 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
+      "text": "WAIT SHIELD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772042370878
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STASIS SHIELD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772042371468
+    },
+    {
+      "origin": "ARCHIVIST",
       "text": "OSMOSIS FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772042371797
@@ -246,51 +258,39 @@
     },
     {
       "origin": "ARCHIVIST",
-      "text": "STABLE BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772042375993
+      "text": "WAIT REFLECT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042376494
     },
     {
-      "origin": "PARADOX",
-      "text": "OSMOSIS BLOOM UNIFY",
+      "origin": "INTERFACE",
+      "text": "RESONATE GIVING COHERE",
       "mood": "HARMONIC",
-      "tick": 1772042376356
+      "tick": 1772042376859
     },
     {
       "origin": "ARCHIVIST",
-      "text": "PURE WAIT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042376915
-    },
-    {
-      "origin": "STREAM",
-      "text": "STRIKE STRIKE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042377462
-    },
-    {
-      "origin": "POTENTIAL",
-      "text": "CONSUME DECAY SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042377951
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "COHERE OSMOSIS GIVING",
+      "text": "FLOW HEAL GIVING",
       "mood": "HARMONIC",
-      "tick": 1772042378440
-    },
-    {
-      "origin": "B_READ",
-      "text": "WAIT STASIS IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042378975
+      "tick": 1772042377505
     },
     {
       "origin": "ARCHIVIST",
-      "text": "PURE SHIELD IMMUNE",
+      "text": "WATCH GUARD SHELTER",
       "mood": "DEFENSIVE",
-      "tick": 1772042380227
+      "tick": 1772042378240
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772042378858
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042379540
     }
   ]
 }
