@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772026966429
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772026966699
@@ -291,6 +285,12 @@
       "text": "DRAIN HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772026970535
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772026970868
     }
   ]
 }
