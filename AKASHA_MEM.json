@@ -83,12 +83,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021205625
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK SHOCK SHOCK",
       "mood": "AGGRESSIVE",
@@ -171,6 +165,12 @@
       "text": "SHELTER PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772021211227
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHIELD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772021211590
     }
   ]
 }
