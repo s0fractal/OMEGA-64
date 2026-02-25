@@ -1,14 +1,14 @@
 ---
-eigenvalue: '0x66006660FFFF0A06'
-energy: 49.8
-x: 714
-'y': 375
-resonance: 5.88
-thought: SEEK_ALPHA_PASSIVE
-logic: '66006660'
+eigenvalue: '0x00AAAAAA00000A00'
+energy: 50
+x: 703
+'y': 406
+resonance: 49.5
+thought: RESURRECTED
+logic: 000AAAAA
 signals: []
 bond_strengths:
-  '0x0000000000000A02': 0.9540649618417361
+  '0x0000000000000A02': 0.9607702107358118
 bonds:
   - '0x0000000000000A02'
 ex:
@@ -41,56 +41,51 @@ ex:
   - '0x00000600FFFF0A04'
   - '0x0000060000000A02'
   - '0x0000060000000A04'
-  - '0xB0BB000000000A06'
-  - '0xB0BB000000000A00'
-  - '0xB0BB000000000A02'
-  - '0xB0BB000000000A04'
-  - '0xB0BB000000000A06'
-  - '0x6000006000000A00'
-  - '0x6000006000000A02'
-  - '0x6000006000000A04'
-  - '0x6000006000000A06'
-  - '0x6000006000000A00'
-  - '0x6000006000000A02'
-  - '0x6000006000000A04'
-  - '0x6000006000000A06'
-  - '0x6000006000000A00'
-  - '0x6000006000000A02'
-  - '0x6000006000000A04'
-  - '0x6000006000000A06'
-  - '0x6000006000000A00'
+  - '0x00AAAAAAFFFF0A02'
+  - '0x00AAAAAAFFFF0A04'
+  - '0x00AAAAAA00000A02'
+  - '0x00AAAAAA00000A04'
+  - '0x00AAAAAA00000A06'
+  - '0x00AAAAAA00000A00'
+  - '0x00AAAAAA00000A02'
+  - '0x00AAAAAA00000A04'
+  - '0x00AAAAAA00000A06'
+  - '0x00AAAAAAFFFF0A04'
+  - '0x00AAAAAAFFFF0A06'
+  - '0x00AAAAAAFFFF0A00'
+  - '0x00AAAAAAFFFF0A02'
 ---
 
 <div align="center">
 <!-- ∇ HOLOGRAM START ∇ -->
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <radialGradient id="grad_66006660FFFF0A06" cx="50%" cy="50%" r="50%">
+    <radialGradient id="grad_000AAAAAFFFF0A04" cx="50%" cy="50%" r="50%">
       <stop offset="0%" stop-color="hsl(14, 20%, 15%)" />
       <stop offset="100%" stop-color="#090909" />
     </radialGradient>
-    <filter id="glow_66006660FFFF0A06" x="-20%" y="-20%" width="140%" height="140%">
+    <filter id="glow_000AAAAAFFFF0A04" x="-20%" y="-20%" width="140%" height="140%">
       <feGaussianBlur stdDeviation="4" result="blur" />
       <feComposite in="SourceGraphic" in2="blur" operator="over" />
     </filter>
   </defs>
   
-  <rect width="200" height="200" fill="url(#grad_66006660FFFF0A06)" rx="24"/>
+  <rect width="200" height="200" fill="url(#grad_000AAAAAFFFF0A04)" rx="24"/>
   
   <circle cx="100" cy="100" r="85" stroke="hsl(14, 30%, 30%)" stroke-width="1" fill="none" stroke-dasharray="2 6"/>
   
   <g>
-    <animateTransform attributeName="transform" type="rotate" from="270 100 100" to="-90 100 100" dur="25s" repeatCount="indefinite" />
+    <animateTransform attributeName="transform" type="rotate" from="180 100 100" to="-180 100 100" dur="25s" repeatCount="indefinite" />
     
-    <polygon points="100.0,40.0 152.0,130.0 48.0,130.0" fill="none" stroke="hsl(194, 60%, 40%)" stroke-width="1.5" opacity="0.6"/>
-    <polygon points="100.0,75.0 121.7,112.5 78.3,112.5" fill="none" stroke="hsl(14, 80%, 60%)" stroke-width="2" filter="url(#glow_66006660FFFF0A06)"/>
+    <polygon points="100.0,40.0 157.1,81.5 135.3,148.5 64.7,148.5 42.9,81.5" fill="none" stroke="hsl(194, 60%, 40%)" stroke-width="1.5" opacity="0.6"/>
+    <polygon points="100.0,75.0 123.8,92.3 114.7,120.2 85.3,120.2 76.2,92.3" fill="none" stroke="hsl(14, 80%, 60%)" stroke-width="2" filter="url(#glow_000AAAAAFFFF0A04)"/>
     
     <circle cx="100" cy="100" r="25" stroke="hsl(14, 60%, 50%)" stroke-width="0.5" fill="none" opacity="0.5"/>
   </g>
   
-  <circle cx="100" cy="100" r="3" fill="hsl(194, 80%, 70%)" filter="url(#glow_66006660FFFF0A06)"/>
+  <circle cx="100" cy="100" r="3" fill="hsl(194, 80%, 70%)" filter="url(#glow_000AAAAAFFFF0A04)"/>
   
-  <text x="100" y="105" fill="hsl(14, 70%, 80%)" font-family="monospace" font-size="10" text-anchor="middle" letter-spacing="1" opacity="0.9">0x6600</text>
+  <text x="100" y="105" fill="hsl(14, 70%, 80%)" font-family="monospace" font-size="10" text-anchor="middle" letter-spacing="1" opacity="0.9">0x000A</text>
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">REVERSE</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
