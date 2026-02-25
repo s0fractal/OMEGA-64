@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE HEAL UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772032092817
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772032093298
@@ -291,6 +285,12 @@
       "text": "RECON WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772032100934
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD REFLECT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772032101442
     }
   ]
 }
