@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A00A0000",
     "0BB00000",
     "0ABBCCDD",
     "66060000",
@@ -199,15 +198,10 @@
     "AA0A0A0A",
     "AA0AAAA0",
     "A000000D",
-    "66600600"
+    "66600600",
+    "06606606"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHOCK SEIZE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037921248
-    },
     {
       "origin": "REVERSE",
       "text": "SHELTER WAIT REFLECT",
@@ -291,6 +285,12 @@
       "text": "IMMUNE PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772037926590
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772037926817
     }
   ]
 }
