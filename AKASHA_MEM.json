@@ -179,12 +179,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023370055
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE COHERE OSMOSIS",
       "mood": "HARMONIC",
@@ -267,6 +261,12 @@
       "text": "IMMUNE GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772023375224
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHELTER SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023375609
     }
   ]
 }
