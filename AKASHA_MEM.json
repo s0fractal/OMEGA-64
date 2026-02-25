@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772038534830
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772038535067
@@ -291,6 +285,12 @@
       "text": "SEIZE DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772038538265
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772038538468
     }
   ]
 }
