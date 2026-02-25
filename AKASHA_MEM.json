@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH IMMUNE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772030693942
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE DECAY STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772030704462
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD STASIS GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772030704839
     }
   ]
 }
