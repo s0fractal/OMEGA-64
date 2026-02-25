@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038569617
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038569808
@@ -291,6 +285,12 @@
       "text": "GIVING BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772038572707
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GUARD SHIELD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772038572931
     }
   ]
 }
