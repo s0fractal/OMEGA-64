@@ -163,12 +163,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC FLOW FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772022967547
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
@@ -251,6 +245,12 @@
       "text": "CONSUME SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022971500
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM BLOOM STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772022971830
     }
   ]
 }
