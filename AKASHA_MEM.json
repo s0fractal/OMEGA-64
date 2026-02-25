@@ -98,12 +98,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021587878
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT STASIS SHELTER",
       "mood": "DEFENSIVE",
@@ -186,6 +180,12 @@
       "text": "SICKNESS SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772021594570
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021594967
     }
   ]
 }
