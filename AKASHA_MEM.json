@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "IMMUNE STASIS REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772036812351
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME SEIZE DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772036818459
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SICKNESS SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036818674
     }
   ]
 }
