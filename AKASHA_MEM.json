@@ -107,12 +107,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL RESONATE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772021746694
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME STRIFE STRIKE",
       "mood": "AGGRESSIVE",
@@ -195,6 +189,12 @@
       "text": "BLOOM SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772021753231
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772021753377
     }
   ]
 }
