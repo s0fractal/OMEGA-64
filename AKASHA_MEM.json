@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE UNIFY BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772019498963
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHOCK CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
@@ -111,6 +105,12 @@
       "text": "BREACH DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772019508615
+    },
+    {
+      "origin": "STREAM",
+      "text": "HEAL HEAL RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772019509247
     }
   ]
 }
