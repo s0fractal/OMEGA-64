@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE HUNGER STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041924289
-    },
-    {
       "origin": "STREAM",
       "text": "WATCH RECON RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041929660
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772041930684
     }
   ]
 }
