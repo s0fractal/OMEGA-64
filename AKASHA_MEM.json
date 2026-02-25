@@ -38,12 +38,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DECAY SHOCK DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019783821
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SEIZE HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772019784664
@@ -125,6 +119,12 @@
       "text": "CONSUME BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772019792702
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772019792868
     }
   ]
 }
