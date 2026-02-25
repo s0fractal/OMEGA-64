@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024108599
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772024109015
@@ -291,6 +285,12 @@
       "text": "STRIKE CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772024111911
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE PURE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772024112135
     }
   ]
 }
