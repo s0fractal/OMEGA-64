@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DECAY SICKNESS SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772015878046
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HEAL SYNC FLOW",
       "mood": "HARMONIC",
@@ -107,6 +101,12 @@
       "text": "GUARD WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772015962565
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772015969686
     }
   ]
 }
