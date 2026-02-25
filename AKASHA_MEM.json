@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE FLOW HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772033031913
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772033032106
@@ -291,6 +285,12 @@
       "text": "HUNGER BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772033034678
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772033034822
     }
   ]
 }
