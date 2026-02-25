@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE HUNGER SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033525965
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772033526165
@@ -291,6 +285,12 @@
       "text": "BECOME DREAM EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772033528642
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772033528799
     }
   ]
 }
