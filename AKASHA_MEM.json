@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS GUARD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772034032951
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772034033148
@@ -291,6 +285,12 @@
       "text": "SICKNESS BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772034036448
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS HEAL HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772034037490
     }
   ]
 }
