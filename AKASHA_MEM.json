@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "IMMUNE STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772041517650
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DECAY HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772041517816
@@ -291,6 +285,12 @@
       "text": "WAIT GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772041521488
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT RECON SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772041521624
     }
   ]
 }
