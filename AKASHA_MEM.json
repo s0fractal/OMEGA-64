@@ -125,12 +125,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022242525
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS FLOW SYNC",
       "mood": "HARMONIC",
@@ -213,6 +207,12 @@
       "text": "GIVING SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022247791
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022248000
     }
   ]
 }
