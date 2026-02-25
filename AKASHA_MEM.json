@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025784154
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772025784557
@@ -291,6 +285,12 @@
       "text": "WATCH WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772025795659
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW FLOW HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772025795994
     }
   ]
 }
