@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772023949495
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK BECOME FORGE",
       "mood": "CREATIVE",
       "tick": 1772023949660
@@ -284,6 +278,12 @@
       "text": "SEIZE DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023953846
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772023954080
     }
   ]
 }
