@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "PURE REFLECT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022245711
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "CONSUME HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772022246202
@@ -213,6 +207,12 @@
       "text": "SYNC UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022250059
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER CONSUME STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022250214
     }
   ]
 }
