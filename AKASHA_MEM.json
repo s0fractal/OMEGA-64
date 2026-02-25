@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040437458
-    },
-    {
       "origin": "INTERFACE",
       "text": "STABLE GIVING COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "CONSUME SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772040439909
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "REFLECT RECON WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772040440034
     }
   ]
 }
