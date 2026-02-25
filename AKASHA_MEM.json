@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772028212737
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN CONSUME STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SPARK WAVE WAVE",
       "mood": "CREATIVE",
       "tick": 1772028236663
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK HUNGER SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028237707
     }
   ]
 }
