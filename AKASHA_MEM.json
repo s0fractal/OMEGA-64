@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM RESONATE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772036155037
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772036155243
@@ -291,6 +285,12 @@
       "text": "SEIZE SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772036158530
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS CONSUME HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036158831
     }
   ]
 }
