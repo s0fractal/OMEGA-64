@@ -77,12 +77,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SEIZE SHOCK BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020988215
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIFE STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020989449
@@ -164,6 +158,12 @@
       "text": "HEAL FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772020995732
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH BREACH BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020996196
     }
   ]
 }
