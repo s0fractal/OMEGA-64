@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025678658
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772025678851
@@ -291,6 +285,12 @@
       "text": "WAIT STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772025686362
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS REFLECT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772025686623
     }
   ]
 }
