@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030693305
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772030693616
@@ -291,6 +285,12 @@
       "text": "STABLE COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772030703715
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHELTER SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772030704172
     }
   ]
 }
