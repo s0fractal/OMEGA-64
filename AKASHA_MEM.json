@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772040403964
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772040404142
@@ -291,6 +285,12 @@
       "text": "DECAY DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040407067
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL UNIFY SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772040407199
     }
   ]
 }
