@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772035806709
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772035806925
@@ -291,6 +285,12 @@
       "text": "REFLECT WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772035811172
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY CONSUME CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035811373
     }
   ]
 }
