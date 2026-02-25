@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772039025511
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772039025719
@@ -291,6 +285,12 @@
       "text": "GIVING HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772039031531
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772039031765
     }
   ]
 }
