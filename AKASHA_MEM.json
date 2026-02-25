@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A00060A0",
     "A6660000",
     "00606060",
     "60600060",
@@ -199,15 +198,10 @@
     "60000600",
     "60666606",
     "AAA0AA00",
-    "66060066"
+    "66060066",
+    "66666666"
   ],
   "utterances": [
-    {
-      "origin": "INTERFACE",
-      "text": "STASIS PURE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040262944
-    },
     {
       "origin": "ALPHA_STREAM",
       "text": "COHERE SYNC HEAL",
@@ -291,6 +285,12 @@
       "text": "STABLE COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772040272689
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE SHELTER PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040272868
     }
   ]
 }
