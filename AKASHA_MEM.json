@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT WAIT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772026277383
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772026277602
@@ -291,6 +285,12 @@
       "text": "DRAIN SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772026281471
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE RECON IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772026281839
     }
   ]
 }
