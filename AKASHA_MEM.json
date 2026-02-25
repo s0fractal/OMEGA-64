@@ -19,12 +19,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH STRIKE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772015581953
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "OSMOSIS COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772015589503
@@ -106,6 +100,12 @@
       "text": "SICKNESS DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772015699799
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GUARD SHIELD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772015707633
     }
   ]
 }
