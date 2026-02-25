@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH HUNGER STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035065149
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772035065353
@@ -291,6 +285,12 @@
       "text": "SHIELD PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772035068674
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE SYNC HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772035068948
     }
   ]
 }
