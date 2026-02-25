@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "COHERE COHERE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772019480086
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE SHOCK STRIKE",
       "mood": "AGGRESSIVE",
@@ -111,6 +105,12 @@
       "text": "RECON PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772019490194
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE SEIZE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019491866
     }
   ]
 }
