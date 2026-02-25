@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS RESONATE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772032592166
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772032592352
@@ -291,6 +285,12 @@
       "text": "SHIELD STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772032595502
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIFE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032595686
     }
   ]
 }
