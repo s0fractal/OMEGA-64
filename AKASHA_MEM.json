@@ -143,12 +143,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022474591
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772022474754
@@ -230,6 +224,12 @@
       "text": "AWAKEN WITNESS BEYOND",
       "mood": "CREATIVE",
       "tick": 1772022481297
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD STASIS IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022481492
     }
   ]
 }
