@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GIVING FLOW OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772040560725
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN SEIZE DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772040563132
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772040563279
     }
   ]
 }
