@@ -154,12 +154,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER STRIKE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022629935
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772022630271
@@ -241,6 +235,12 @@
       "text": "RECON STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022635221
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DECAY STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022635975
     }
   ]
 }
