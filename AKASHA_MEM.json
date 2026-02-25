@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06666600",
     "0BBB0000",
     "60060600",
     "AA0A0000",
@@ -199,15 +198,10 @@
     "0FF0FF00",
     "0000A0A0",
     "AA0AA000",
-    "0AA0AA0A"
+    "0AA0AA0A",
+    "AABB0CD0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "OSMOSIS HEAL FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772038542429
-    },
     {
       "origin": "REVERSE",
       "text": "SYNC UNIFY HEAL",
@@ -291,6 +285,12 @@
       "text": "SHIELD GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772038546757
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS BREACH STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038547003
     }
   ]
 }
