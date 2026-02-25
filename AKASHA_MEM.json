@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772016224100
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE DRAIN CONSUME",
       "mood": "AGGRESSIVE",
@@ -107,6 +101,12 @@
       "text": "WATCH WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772016333543
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY SEIZE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772016343243
     }
   ]
 }
