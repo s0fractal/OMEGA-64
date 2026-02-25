@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772037351046
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772037351245
@@ -291,6 +285,12 @@
       "text": "STASIS RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772037356060
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772037356276
     }
   ]
 }
