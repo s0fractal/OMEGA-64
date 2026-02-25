@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772032266604
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772032266952
@@ -291,6 +285,12 @@
       "text": "SHOCK DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772032271801
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772032272959
     }
   ]
 }
