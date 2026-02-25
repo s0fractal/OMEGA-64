@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772029081895
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772029082225
@@ -291,6 +285,12 @@
       "text": "DECAY CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772029087005
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DECAY SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029087466
     }
   ]
 }
