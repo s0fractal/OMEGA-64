@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW UNIFY SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772024215343
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD GUARD WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIKE BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772024220027
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024220194
     }
   ]
 }
