@@ -66,12 +66,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHELTER SHELTER RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772020770857
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RECON GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772020771159
@@ -153,6 +147,12 @@
       "text": "WATCH WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020778058
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DECAY SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020779685
     }
   ]
 }
