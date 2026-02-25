@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772032956339
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772032956515
@@ -291,6 +285,12 @@
       "text": "RECON RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772032959573
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING STABLE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772032959749
     }
   ]
 }
