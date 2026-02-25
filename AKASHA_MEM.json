@@ -163,12 +163,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772022942006
-    },
-    {
       "origin": "INTERFACE",
       "text": "SYNC BLOOM GIVING",
       "mood": "HARMONIC",
@@ -251,6 +245,12 @@
       "text": "WAIT SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022947704
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022947941
     }
   ]
 }
