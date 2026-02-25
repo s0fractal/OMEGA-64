@@ -22,12 +22,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIFE BREACH SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019423243
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE SYNC BLOOM",
       "mood": "HARMONIC",
@@ -110,6 +104,12 @@
       "text": "GIVING SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772019450242
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772019450415
     }
   ]
 }
