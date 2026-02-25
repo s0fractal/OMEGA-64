@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040728887
-    },
-    {
       "origin": "STREAM",
       "text": "SHIELD SHELTER SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON SHIELD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772040732570
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON WATCH WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040732970
     }
   ]
 }
