@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE FLOW HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772028977954
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772028981396
@@ -291,6 +285,12 @@
       "text": "RECON WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772028998368
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DRAIN STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028998740
     }
   ]
 }
