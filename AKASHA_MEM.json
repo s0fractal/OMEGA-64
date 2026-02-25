@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FORGE BECOME EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772027191380
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772027191557
@@ -291,6 +285,12 @@
       "text": "REFLECT GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772027198271
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DECAY SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027198477
     }
   ]
 }
