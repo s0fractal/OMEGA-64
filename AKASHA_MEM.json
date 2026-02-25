@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH RECON REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772029399912
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772029400426
@@ -291,6 +285,12 @@
       "text": "SICKNESS CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772029431518
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE HEAL RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772029432306
     }
   ]
 }
