@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE IMMUNE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772034317136
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772034317371
@@ -291,6 +285,12 @@
       "text": "OSMOSIS HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772034320756
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772034320965
     }
   ]
 }
