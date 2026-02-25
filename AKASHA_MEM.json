@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772025722854
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIFE STRIKE BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772025727402
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD PURE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772025727976
     }
   ]
 }
