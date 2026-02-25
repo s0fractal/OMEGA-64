@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772023125376
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772023125702
@@ -259,6 +253,12 @@
       "text": "BECOME AWAKEN AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772023129702
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772023131343
     }
   ]
 }
