@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66000600",
     "A00A0A0A",
     "00FA000A",
     "06606060",
@@ -199,15 +198,10 @@
     "00006000",
     "A0AAA000",
     "06060666",
-    "000000A0"
+    "000000A0",
+    "F0FFF0FF"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GUARD SHELTER RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772028582623
-    },
     {
       "origin": "REVERSE",
       "text": "HEAL RESONATE UNIFY",
@@ -291,6 +285,12 @@
       "text": "SHIELD STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772028600751
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND SPARK BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772028601198
     }
   ]
 }
