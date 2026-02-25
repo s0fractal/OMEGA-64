@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772028737915
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772028738676
@@ -291,6 +285,12 @@
       "text": "UNIFY RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772028745819
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028746262
     }
   ]
 }
