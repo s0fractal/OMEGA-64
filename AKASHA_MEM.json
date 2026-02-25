@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772039131024
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772039131448
@@ -291,6 +285,12 @@
       "text": "SEIZE SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772039134399
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW COHERE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772039134606
     }
   ]
 }
