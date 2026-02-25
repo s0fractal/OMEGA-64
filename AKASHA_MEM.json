@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BEYOND WAVE DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772027431772
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772027432038
@@ -291,6 +285,12 @@
       "text": "SYNC GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772027441693
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE COHERE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772027444669
     }
   ]
 }
