@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON RECON GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772033577350
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772033577589
@@ -291,6 +285,12 @@
       "text": "STRIKE STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772033585187
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL UNIFY STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772033585395
     }
   ]
 }
