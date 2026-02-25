@@ -3,7 +3,7 @@ eigenvalue: '0xAAAAAA0A9AB5593C'
 vector: 07.07.00
 symbol: INTERFACE
 desc: System Interface Membrane. Wraps data in a semantic tag.
-energy: 36
+energy: 50
 ex:
   - '0x5DE8BD259AB5593E'
   - '0x0000FB529AB5593E'
@@ -111,22 +111,14 @@ ex:
   - '0xAAAAAA0A9AB5593E'
   - '0xAAAAAA0A9AB55938'
   - '0xAAAAAA0A9AB5593A'
-  - '0xAAAAAA0A9AB5593C'
-  - '0xAAAAAA0A9AB5593E'
-  - '0xAAAAAA0A9AB55938'
-  - '0xAAAAAA0A9AB5593A'
-  - '0xAAAAAA0A9AB5593C'
-  - '0xAAAAAA0A9AB5593E'
-  - '0xAAAAAA0A9AB55938'
-  - '0xAAAAAA0A9AB5593A'
-thought: WANDER_BONDING
+thought: RESURRECTED
 x: 361
 'y': 98
 signals: []
 resonance: 50
 bonds: []
 bond_strengths: {}
-logic: AB0A0000
+logic: AAAAAA0A
 ---
 
 <div align="center">

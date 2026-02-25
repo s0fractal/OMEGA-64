@@ -128,12 +128,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM FLOW BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772022293406
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER BREACH STRIFE",
       "mood": "AGGRESSIVE",
@@ -216,6 +210,12 @@
       "text": "BREACH DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772022297778
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022298023
     }
   ]
 }
