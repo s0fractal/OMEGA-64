@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041849544
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT WAIT GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "WATCH SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041854578
+    },
+    {
+      "origin": "ALPHA_GUARDIAN",
+      "text": "BLOOM BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041855281
     }
   ]
 }
