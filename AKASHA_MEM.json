@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE GIVING HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772038946451
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772038946656
@@ -291,6 +285,12 @@
       "text": "REFLECT RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772038949937
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038950219
     }
   ]
 }
