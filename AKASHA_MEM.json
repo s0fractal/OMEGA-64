@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "IMMUNE IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772041040605
-    },
-    {
       "origin": "INTERFACE",
       "text": "RECON WAIT RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772041046278
+    },
+    {
+      "origin": "PARASITE",
+      "text": "SHIELD WATCH WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772041046798
     }
   ]
 }
