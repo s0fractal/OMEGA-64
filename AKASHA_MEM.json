@@ -187,12 +187,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT RECON WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772023675668
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772023675799
@@ -274,6 +268,12 @@
       "text": "SEIZE STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023679390
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772023679622
     }
   ]
 }
