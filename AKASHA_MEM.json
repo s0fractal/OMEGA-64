@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SYNC OSMOSIS BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772041614994
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT PURE SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STASIS SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041618626
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041618772
     }
   ]
 }
