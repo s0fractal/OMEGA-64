@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS STRIKE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028833889
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772028834873
@@ -291,6 +285,12 @@
       "text": "SHIELD PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772028840336
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHIELD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772028841217
     }
   ]
 }
