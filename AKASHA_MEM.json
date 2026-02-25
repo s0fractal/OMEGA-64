@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK HUNGER STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034553050
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772034553246
@@ -291,6 +285,12 @@
       "text": "OSMOSIS UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772034555770
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT IMMUNE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772034556008
     }
   ]
 }
