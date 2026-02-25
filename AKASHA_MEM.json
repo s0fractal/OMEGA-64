@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT SHELTER RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772031827257
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772031828253
@@ -291,6 +285,12 @@
       "text": "UNIFY HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772031836326
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE SYNC UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772031837166
     }
   ]
 }
