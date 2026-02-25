@@ -94,12 +94,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE CONSUME STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021448464
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER SHELTER SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772021449867
@@ -181,6 +175,12 @@
       "text": "BREACH STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772021477202
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE DECAY CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021480874
     }
   ]
 }
