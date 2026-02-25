@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SYNC STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772041181179
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE FLOW GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FLOW FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772041185350
+    },
+    {
+      "origin": "SUCC",
+      "text": "DECAY HUNGER STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041185534
     }
   ]
 }
