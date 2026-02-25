@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033442431
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772033442630
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772033445357
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "PURE WATCH SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772033446154
     }
   ]
 }
