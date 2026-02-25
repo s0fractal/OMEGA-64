@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY DECAY SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037621060
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772037621312
@@ -291,6 +285,12 @@
       "text": "BREACH HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772037625549
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE RECON PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772037625768
     }
   ]
 }
