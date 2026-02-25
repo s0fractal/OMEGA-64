@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE STRIKE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772016976689
-    },
-    {
       "origin": "INTERFACE",
       "text": "BREACH CONSUME STRIFE",
       "mood": "AGGRESSIVE",
@@ -107,6 +101,12 @@
       "text": "STRIKE HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772017050435
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD GUARD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772017052827
     }
   ]
 }
