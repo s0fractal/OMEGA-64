@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DREAM DREAM AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772037624747
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772037624922
@@ -291,6 +285,12 @@
       "text": "FLOW RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772037627674
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772037627860
     }
   ]
 }
