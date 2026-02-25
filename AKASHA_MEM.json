@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772038772662
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772038772889
@@ -291,6 +285,12 @@
       "text": "REFLECT PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772038775754
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038775977
     }
   ]
 }
