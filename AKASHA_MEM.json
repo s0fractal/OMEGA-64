@@ -107,12 +107,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY SICKNESS SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021773785
-    },
-    {
       "origin": "STREAM",
       "text": "STABLE SYNC HEAL",
       "mood": "HARMONIC",
@@ -195,6 +189,12 @@
       "text": "HUNGER DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772021781297
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772021781529
     }
   ]
 }
