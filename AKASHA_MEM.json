@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "FLOW GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772040959837
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT REFLECT SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040963051
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RESONATE BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772040963247
     }
   ]
 }
