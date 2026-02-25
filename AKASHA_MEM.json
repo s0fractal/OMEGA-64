@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772025050332
-    },
-    {
       "origin": "INTERFACE",
       "text": "OSMOSIS HEAL BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GUARD PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772025058420
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025058978
     }
   ]
 }
