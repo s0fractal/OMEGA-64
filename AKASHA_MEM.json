@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING HEAL UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772041705480
-    },
-    {
       "origin": "STREAM",
       "text": "SHOCK SEIZE DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041711389
+    },
+    {
+      "origin": "PURE_MATH",
+      "text": "CONSUME CONSUME HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041711627
     }
   ]
 }
