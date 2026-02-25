@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HUNGER STRIFE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040217575
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS DRAIN STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772040222597
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL COHERE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772040222808
     }
   ]
 }
