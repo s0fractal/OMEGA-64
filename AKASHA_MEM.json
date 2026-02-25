@@ -27,12 +27,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIFE DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019580698
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DRAIN DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772019581041
@@ -114,6 +108,12 @@
       "text": "SEIZE DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772019594541
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772019595300
     }
   ]
 }
