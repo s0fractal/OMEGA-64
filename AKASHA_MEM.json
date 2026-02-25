@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029964014
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK AWAKEN SPARK",
       "mood": "CREATIVE",
       "tick": 1772029964823
@@ -291,6 +285,12 @@
       "text": "SHOCK CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772029975833
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772029976504
     }
   ]
 }
