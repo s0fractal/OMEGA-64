@@ -183,12 +183,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SICKNESS SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023535718
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023535844
@@ -270,6 +264,12 @@
       "text": "SHOCK SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023541091
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WATCH WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023541262
     }
   ]
 }
