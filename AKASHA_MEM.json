@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW HEAL FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772036021423
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772036021590
@@ -291,6 +285,12 @@
       "text": "SICKNESS DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772036024055
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772036024265
     }
   ]
 }
