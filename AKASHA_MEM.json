@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GUARD PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041591084
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "PURE STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041591434
@@ -291,6 +285,12 @@
       "text": "PURE SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041595745
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIFE STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041596616
     }
   ]
 }
