@@ -152,12 +152,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022585671
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022585800
@@ -239,6 +233,12 @@
       "text": "CONSUME SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022589679
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE GUARD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772022590185
     }
   ]
 }
