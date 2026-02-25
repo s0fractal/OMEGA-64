@@ -120,12 +120,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772022093409
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772022093713
@@ -207,6 +201,12 @@
       "text": "STASIS RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022097938
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT WATCH IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022098324
     }
   ]
 }
