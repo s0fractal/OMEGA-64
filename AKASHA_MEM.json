@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD GUARD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772034561697
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAVE FORGE DREAM",
       "mood": "CREATIVE",
       "tick": 1772034561929
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772034565891
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM HEAL GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772034566217
     }
   ]
 }
