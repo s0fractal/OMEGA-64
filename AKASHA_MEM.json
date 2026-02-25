@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036301485
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY STABLE FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WAIT IMMUNE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772036307042
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772036307275
     }
   ]
 }
