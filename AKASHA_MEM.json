@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER PURE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772037798401
-    },
-    {
-      "origin": "REVERSE",
       "text": "DREAM WAVE SPARK",
       "mood": "CREATIVE",
       "tick": 1772037798594
@@ -291,6 +285,12 @@
       "text": "WATCH REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772037801316
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE BEYOND AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772037801527
     }
   ]
 }
