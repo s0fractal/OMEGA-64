@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STABLE UNIFY FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772020427335
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE GIVING SYNC",
       "mood": "HARMONIC",
@@ -142,6 +136,12 @@
       "text": "HUNGER DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020433552
+    },
+    {
+      "origin": "STREAM",
+      "text": "FLOW STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772020435377
     }
   ]
 }
