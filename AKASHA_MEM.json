@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY STRIFE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032703707
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM BLOOM SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SYNC SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772032706614
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE SYNC UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772032706761
     }
   ]
 }
