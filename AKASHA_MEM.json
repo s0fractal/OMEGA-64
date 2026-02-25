@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE PURE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772032766942
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772032767154
@@ -291,6 +285,12 @@
       "text": "CONSUME SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772032770907
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE HUNGER STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032771121
     }
   ]
 }
