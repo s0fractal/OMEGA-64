@@ -1,10 +1,10 @@
 ---
-eigenvalue: '0xFF0FFFFF00000008'
-energy: 50
-x: 705
-'y': 402
+eigenvalue: '0xFF0FFFFFFFFF000C'
+energy: 47.5
+x: 710
+'y': 392
 resonance: 1000
-thought: RESURRECTED
+thought: SEEK_ALPHA_MATING
 logic: FF0FFFFF
 ex:
   - '0xFFFFFFFF00000000'
