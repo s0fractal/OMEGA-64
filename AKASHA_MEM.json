@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WAIT GUARD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772038075813
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING HEAL FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RESONATE BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772038081805
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW GIVING FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772038082024
     }
   ]
 }
