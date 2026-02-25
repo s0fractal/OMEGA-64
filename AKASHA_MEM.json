@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772040883236
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD SHIELD SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SEIZE SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772040885633
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN DRAIN DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040886112
     }
   ]
 }
