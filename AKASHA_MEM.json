@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW RESONATE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772033841062
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772033841242
@@ -291,6 +285,12 @@
       "text": "WATCH SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772033845677
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON REFLECT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772033846666
     }
   ]
 }
