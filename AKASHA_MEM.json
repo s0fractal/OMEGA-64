@@ -41,12 +41,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "PURE SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772019842101
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "FLOW HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772019842648
@@ -128,6 +122,12 @@
       "text": "SHIELD RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772019852637
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE DECAY HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019853115
     }
   ]
 }
