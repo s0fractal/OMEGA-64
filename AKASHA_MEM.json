@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DECAY CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019600595
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE SHOCK STRIKE",
       "mood": "AGGRESSIVE",
@@ -114,6 +108,12 @@
       "text": "SICKNESS BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772019609744
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT STASIS STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772019610285
     }
   ]
 }
