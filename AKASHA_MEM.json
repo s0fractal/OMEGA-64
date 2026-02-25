@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772033949304
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY BREACH STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772033953065
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772033953476
     }
   ]
 }
