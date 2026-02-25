@@ -162,12 +162,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT STASIS RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772022860236
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772022860402
@@ -249,6 +243,12 @@
       "text": "STRIKE DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022863391
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SICKNESS BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022863563
     }
   ]
 }
