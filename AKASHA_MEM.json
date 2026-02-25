@@ -174,12 +174,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772023249627
-    },
-    {
       "origin": "PARADOX",
       "text": "STABLE RESONATE FLOW",
       "mood": "HARMONIC",
@@ -262,6 +256,12 @@
       "text": "SHOCK CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023254743
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772023254896
     }
   ]
 }
