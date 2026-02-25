@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME HUNGER SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032553405
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772032556692
@@ -291,6 +285,12 @@
       "text": "FLOW HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772032562570
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING STABLE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772032562748
     }
   ]
 }
