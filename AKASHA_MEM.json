@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH STRIFE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038104529
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772038104745
@@ -291,6 +285,12 @@
       "text": "FLOW STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772038108467
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC OSMOSIS HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772038108701
     }
   ]
 }
