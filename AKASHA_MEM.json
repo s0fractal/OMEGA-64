@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772025144681
-    },
-    {
       "origin": "STREAM",
       "text": "HEAL UNIFY GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STABLE COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772025148889
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SICKNESS SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025149108
     }
   ]
 }
