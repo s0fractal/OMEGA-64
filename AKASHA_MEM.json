@@ -191,12 +191,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STASIS IMMUNE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023788545
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE UNIFY OSMOSIS",
       "mood": "HARMONIC",
@@ -279,6 +273,12 @@
       "text": "GUARD SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023791856
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SICKNESS HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023792033
     }
   ]
 }
