@@ -143,12 +143,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE WAIT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772022490066
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD GUARD IMMUNE",
       "mood": "DEFENSIVE",
@@ -231,6 +225,12 @@
       "text": "STRIFE SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022493994
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE FORGE BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772022494352
     }
   ]
 }
