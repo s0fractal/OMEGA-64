@@ -1,14 +1,14 @@
 ---
 eigenvalue: '0xFFFFF00FFFFF000A'
 energy: 49.9
-resonance: 29.41
-x: 627
-'y': 334
+resonance: 29.11
+x: 764
+'y': 464
 symbol: ARCHIVIST
 thought: ORBIT_MATING
 signals: []
 bond_strengths:
-  '0xAAAAAAA000000006': 0.959809440525076
+  '0xAAAAAAA000000006': 0.9588496310845509
 ex:
   - '0xAAAAAAAA00000000'
   - '0xAAAAAAAA00000008'
