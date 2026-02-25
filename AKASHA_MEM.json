@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "000A00A0",
     "000A0A0A",
     "66066000",
     "60066600",
@@ -199,15 +198,10 @@
     "AA666660",
     "AABBC000",
     "AAAA0AA0",
-    "01000000"
+    "01000000",
+    "AA0AAA0A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WATCH WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772032721862
-    },
     {
       "origin": "REVERSE",
       "text": "SHOCK STRIKE HUNGER",
@@ -291,6 +285,12 @@
       "text": "STASIS SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772032724828
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK HUNGER STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032725006
     }
   ]
 }
