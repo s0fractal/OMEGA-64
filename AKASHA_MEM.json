@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772036020507
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772036020670
@@ -291,6 +285,12 @@
       "text": "WAVE DREAM SPARK",
       "mood": "CREATIVE",
       "tick": 1772036023128
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772036023291
     }
   ]
 }
