@@ -105,12 +105,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT WATCH IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021706229
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY DRAIN DECAY",
       "mood": "AGGRESSIVE",
@@ -193,6 +187,12 @@
       "text": "DRAIN DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772021714758
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021715208
     }
   ]
 }
