@@ -96,12 +96,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SPARK AWAKEN FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772021529739
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772021530088
@@ -183,6 +177,12 @@
       "text": "SEIZE BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772021536640
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD WATCH REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772021537184
     }
   ]
 }
