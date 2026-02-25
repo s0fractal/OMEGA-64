@@ -182,12 +182,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023533620
-    },
-    {
       "origin": "STREAM",
       "text": "COHERE GIVING BLOOM",
       "mood": "HARMONIC",
@@ -270,6 +264,12 @@
       "text": "SHOCK SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023537796
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772023538278
     }
   ]
 }
