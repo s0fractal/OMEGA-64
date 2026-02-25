@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING UNIFY SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772040625296
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040625471
@@ -291,6 +285,12 @@
       "text": "BREACH SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772040628293
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER PURE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040628915
     }
   ]
 }
