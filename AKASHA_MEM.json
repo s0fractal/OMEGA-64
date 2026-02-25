@@ -32,12 +32,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "IMMUNE IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772019699966
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE STRIKE DECAY",
       "mood": "AGGRESSIVE",
@@ -120,6 +114,12 @@
       "text": "STRIKE CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772019714633
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019715606
     }
   ]
 }
