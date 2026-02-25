@@ -40,12 +40,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "OSMOSIS SYNC HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772019835994
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER SICKNESS DECAY",
       "mood": "AGGRESSIVE",
@@ -128,6 +122,12 @@
       "text": "OSMOSIS BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772019846339
+    },
+    {
+      "origin": "STREAM",
+      "text": "SYNC BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772019847044
     }
   ]
 }
