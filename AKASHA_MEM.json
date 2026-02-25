@@ -80,12 +80,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021069609
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772021069760
@@ -167,6 +161,12 @@
       "text": "WAVE BEYOND VISION",
       "mood": "CREATIVE",
       "tick": 1772021073373
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772021073792
     }
   ]
 }
