@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035169081
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772035169283
@@ -291,6 +285,12 @@
       "text": "STASIS GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772035172672
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WATCH STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772035172897
     }
   ]
 }
