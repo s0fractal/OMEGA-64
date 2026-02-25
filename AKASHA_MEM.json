@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SYNC COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040584265
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT IMMUNE REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772040587394
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER REFLECT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040587652
     }
   ]
 }
