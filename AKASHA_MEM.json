@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A0BBCCDD",
     "AAAA00AA",
     "A0060660",
     "AAA0A0AA",
@@ -199,15 +198,10 @@
     "AAAA0A00",
     "00066000",
     "06606060",
-    "AA00A0A0"
+    "AA00A0A0",
+    "A0BBC0DD"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "REFLECT IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772037721440
-    },
     {
       "origin": "REVERSE",
       "text": "SICKNESS CONSUME SHOCK",
@@ -291,6 +285,12 @@
       "text": "DRAIN SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772037725071
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIFE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037725302
     }
   ]
 }
