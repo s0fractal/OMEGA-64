@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772036053815
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772036053987
@@ -291,6 +285,12 @@
       "text": "UNIFY FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772036058548
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC GIVING BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772036058768
     }
   ]
 }
