@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00006060",
     "A0AAAAA0",
     "AABBCCD0",
     "A6666666",
@@ -199,15 +198,10 @@
     "AAA0A000",
     "666A6660",
     "AA0666A6",
-    "66066000"
+    "66066000",
+    "A666A0A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STABLE BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772041662317
-    },
     {
       "origin": "ARCHIVIST",
       "text": "PURE WAIT SHELTER",
@@ -291,6 +285,12 @@
       "text": "SICKNESS DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041666106
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY HUNGER STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041666242
     }
   ]
 }
