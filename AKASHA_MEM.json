@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER GUARD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772032347718
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772032348089
@@ -291,6 +285,12 @@
       "text": "RESONATE FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772032352109
+    },
+    {
+      "origin": "REVERSE",
+      "text": "AWAKEN FORGE EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772032352502
     }
   ]
 }
