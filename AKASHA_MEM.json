@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025882748
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772025882977
@@ -291,6 +285,12 @@
       "text": "PURE REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772025889400
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE CONSUME SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025889626
     }
   ]
 }
