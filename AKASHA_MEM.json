@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041205626
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD PURE PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SEIZE SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772041209613
+    },
+    {
+      "origin": "SUCC",
+      "text": "RESONATE STABLE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041209786
     }
   ]
 }
