@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024525520
-    },
-    {
       "origin": "STREAM",
       "text": "BLOOM HEAL STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772024533971
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER RECON SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772024534391
     }
   ]
 }
