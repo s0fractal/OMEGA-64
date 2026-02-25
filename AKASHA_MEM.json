@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772025491368
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772025491558
@@ -291,6 +285,12 @@
       "text": "FLOW UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772025495617
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME AWAKEN WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772025495789
     }
   ]
 }
