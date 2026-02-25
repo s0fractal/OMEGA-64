@@ -67,12 +67,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GUARD SHELTER SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772020807511
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE SHOCK CONSUME",
       "mood": "AGGRESSIVE",
@@ -155,6 +149,12 @@
       "text": "BREACH BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020816954
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS SEIZE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020817509
     }
   ]
 }
