@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025057943
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772025058420
@@ -291,6 +285,12 @@
       "text": "FLOW UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772025063010
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772025063397
     }
   ]
 }
