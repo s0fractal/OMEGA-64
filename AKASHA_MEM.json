@@ -167,12 +167,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023043309
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023043509
@@ -254,6 +248,12 @@
       "text": "RECON SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023049304
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW SYNC SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772023049489
     }
   ]
 }
