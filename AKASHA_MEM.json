@@ -40,12 +40,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHIELD STASIS IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772019856736
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
@@ -128,6 +122,12 @@
       "text": "FLOW RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772019864969
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD IMMUNE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772019865136
     }
   ]
 }
