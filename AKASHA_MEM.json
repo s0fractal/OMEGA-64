@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STASIS IMMUNE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041335642
-    },
-    {
       "origin": "STREAM",
       "text": "IMMUNE RECON IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041338480
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041338696
     }
   ]
 }
