@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "IMMUNE SHIELD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772029066346
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS STRIKE HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772029081895
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029082225
     }
   ]
 }
