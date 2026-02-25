@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038921575
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772038921778
@@ -291,6 +285,12 @@
       "text": "FLOW OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772038925481
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS SHIELD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772038925696
     }
   ]
 }
