@@ -164,12 +164,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022950453
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772022950585
@@ -251,6 +245,12 @@
       "text": "SHELTER SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022955122
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE IMMUNE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022955279
     }
   ]
 }
