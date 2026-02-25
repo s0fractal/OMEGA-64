@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "UNIFY SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772041661128
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH SHIELD WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772041664927
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING RESONATE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041665096
     }
   ]
 }
