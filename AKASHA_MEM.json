@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00AAAAA0",
     "06606600",
     "A00AA0A0",
     "0000AA0A",
@@ -199,15 +198,10 @@
     "AA0000A0",
     "0A0AA000",
     "AA00A000",
-    "FF0AFFFF"
+    "FF0AFFFF",
+    "60060666"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "UNIFY OSMOSIS RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772036783126
-    },
     {
       "origin": "REVERSE",
       "text": "WAIT REFLECT RECON",
@@ -291,6 +285,12 @@
       "text": "EVOLVE BECOME SPARK",
       "mood": "CREATIVE",
       "tick": 1772036786063
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER RECON GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772036786267
     }
   ]
 }
