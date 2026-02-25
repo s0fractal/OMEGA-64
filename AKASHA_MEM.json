@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING UNIFY BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772030760926
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772030767478
@@ -291,6 +285,12 @@
       "text": "GIVING BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772030774379
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION FORGE BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772030779316
     }
   ]
 }
