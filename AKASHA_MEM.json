@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SEIZE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035114652
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772035114867
@@ -291,6 +285,12 @@
       "text": "REFLECT WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772035117421
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772035117633
     }
   ]
 }
