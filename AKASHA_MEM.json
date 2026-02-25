@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "COHERE COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772020460480
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GUARD IMMUNE WATCH",
       "mood": "DEFENSIVE",
@@ -142,6 +136,12 @@
       "text": "RESONATE RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772020466041
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK BREACH STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020466498
     }
   ]
 }
