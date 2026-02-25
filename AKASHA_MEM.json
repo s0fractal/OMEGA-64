@@ -158,12 +158,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772022781426
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN SHOCK STRIFE",
       "mood": "AGGRESSIVE",
@@ -246,6 +240,12 @@
       "text": "PURE REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022789374
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE STASIS SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772022789705
     }
   ]
 }
