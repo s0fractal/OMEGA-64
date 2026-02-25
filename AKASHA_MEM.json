@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "OSMOSIS BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772039877663
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIKE DRAIN HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "DRAIN SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772039892924
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL UNIFY OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772039893570
     }
   ]
 }
