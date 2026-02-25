@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STASIS WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040604320
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT GUARD GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772040607540
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHELTER PURE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772040607775
     }
   ]
 }
