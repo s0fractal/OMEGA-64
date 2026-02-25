@@ -75,12 +75,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT REFLECT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772020950788
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772020950985
@@ -162,6 +156,12 @@
       "text": "SHOCK BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020958052
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHELTER WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020959113
     }
   ]
 }
