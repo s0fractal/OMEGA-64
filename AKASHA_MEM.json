@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE RESONATE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772038591413
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772038591712
@@ -291,6 +285,12 @@
       "text": "BLOOM BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772038598473
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038599332
     }
   ]
 }
