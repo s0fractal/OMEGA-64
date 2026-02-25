@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772029092911
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772029093330
@@ -291,6 +285,12 @@
       "text": "REFLECT RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772029101689
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772029102188
     }
   ]
 }
