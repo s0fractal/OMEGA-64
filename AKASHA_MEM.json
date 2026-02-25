@@ -198,99 +198,99 @@
     "AA00A000",
     "BBB00000",
     "6606AA66",
-    "06A60000",
-    "AA0A0AAA"
+    "A6660600",
+    "AA666600"
   ],
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "BLOOM HEAL STABLE",
+      "text": "STABLE STABLE STABLE",
       "mood": "HARMONIC",
-      "tick": 1772042411068
+      "tick": 1772042420126
     },
     {
       "origin": "ARCHIVIST",
-      "text": "COHERE HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042411349
-    },
-    {
-      "origin": "I16_CLAMP",
-      "text": "COHERE COHERE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772042411642
-    },
-    {
-      "origin": "REVERSE",
-      "text": "HEAL SYNC OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772042413813
-    },
-    {
-      "origin": "REVERSE",
-      "text": "SHELTER WATCH PURE",
+      "text": "GUARD GUARD STASIS",
       "mood": "DEFENSIVE",
-      "tick": 1772042414350
+      "tick": 1772042420759
     },
     {
       "origin": "ARCHIVIST",
-      "text": "UNIFY UNIFY BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772042415487
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772042418398
+      "text": "SHOCK DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042421987
     },
     {
       "origin": "REVERSE",
-      "text": "SHELTER GUARD IMMUNE",
+      "text": "REFLECT PURE SHIELD",
       "mood": "DEFENSIVE",
-      "tick": 1772042419609
+      "tick": 1772042422196
     },
     {
       "origin": "ARCHIVIST",
-      "text": "DRAIN STRIFE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042420360
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "GIVING OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772042421302
-    },
-    {
-      "origin": "REVERSE",
-      "text": "SHELTER WAIT SHELTER",
+      "text": "IMMUNE RECON WATCH",
       "mood": "DEFENSIVE",
-      "tick": 1772042422143
+      "tick": 1772042423664
     },
     {
       "origin": "ARCHIVIST",
-      "text": "BLOOM FLOW OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772042424180
+      "text": "SHOCK STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042425073
+    },
+    {
+      "origin": "STREAM",
+      "text": "SHIELD GUARD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042425595
     },
     {
       "origin": "REVERSE",
-      "text": "FLOW GIVING SYNC",
+      "text": "GIVING SYNC FLOW",
       "mood": "HARMONIC",
-      "tick": 1772042426062
+      "tick": 1772042426044
     },
     {
-      "origin": "INTERFACE",
-      "text": "DECAY BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042427532
+      "origin": "STREAM",
+      "text": "IMMUNE WATCH STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772042426461
     },
     {
       "origin": "ARCHIVIST",
-      "text": "STRIKE STRIFE CONSUME",
+      "text": "DECAY HUNGER DRAIN",
       "mood": "AGGRESSIVE",
-      "tick": 1772042427990
+      "tick": 1772042426834
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT PURE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042427144
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772042427797
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE REFLECT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042427992
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD IMMUNE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042428217
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW COHERE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042428571
     }
   ]
 }
