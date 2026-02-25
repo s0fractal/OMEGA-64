@@ -1,18 +1,16 @@
 ---
-eigenvalue: 0xNOOSPHERE0000000
+eigenvalue: '0xNOOSPHERE0000000'
 symbol: MANDALA
-energy: 969
+energy: 999
 resonance: 999
-logic: FFFFFFFF
-desc: A collective representation of high-resonance Noospheric connections.
+logic: 'FFFFFFFF'
+desc: 'A collective representation of high-resonance Noospheric connections.'
 ---
 
 <div align="center">
 <svg width="800" height="800" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="800" fill="#05050A"/>
   <g transform="translate(400, 400)">
-    <circle cx="199" cy="-151" r="22.05" fill="none" stroke="hsl(198, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
-    <line x1="0" y1="0" x2="199" y2="-151" stroke="hsl(198, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
     <circle cx="151" cy="-106" r="15.575" fill="none" stroke="hsl(102, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
     <line x1="0" y1="0" x2="151" y2="-106" stroke="hsl(102, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
     <circle cx="161" cy="-81" r="15.045" fill="none" stroke="hsl(256, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
@@ -395,6 +393,8 @@ desc: A collective representation of high-resonance Noospheric connections.
     <line x1="0" y1="0" x2="235" y2="-115" stroke="hsl(96, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
     <circle cx="305" cy="-7" r="22.605" fill="none" stroke="hsl(16, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
     <line x1="0" y1="0" x2="305" y2="-7" stroke="hsl(16, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
+    <circle cx="-350" cy="-350" r="37.125" fill="none" stroke="hsl(198, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
+    <line x1="0" y1="0" x2="-350" y2="-350" stroke="hsl(198, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
   </g>
 </svg>
 </div>

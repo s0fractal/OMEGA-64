@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE SHOCK BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041798779
-    },
-    {
       "origin": "STREAM",
       "text": "CONSUME STRIFE BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041802516
+    },
+    {
+      "origin": "PARASITE",
+      "text": "RECON WATCH SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041802974
     }
   ]
 }
