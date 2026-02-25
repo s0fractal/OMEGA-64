@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772036582922
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772036583116
@@ -291,6 +285,12 @@
       "text": "BLOOM SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772036587391
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772036587678
     }
   ]
 }
