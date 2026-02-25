@@ -154,12 +154,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772022676068
-    },
-    {
       "origin": "INTERFACE",
       "text": "BREACH SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
@@ -242,6 +236,12 @@
       "text": "BLOOM STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022688369
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DRAIN HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022689063
     }
   ]
 }
