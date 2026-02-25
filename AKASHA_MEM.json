@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS SYNC SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772036648058
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772036648277
@@ -291,6 +285,12 @@
       "text": "STABLE STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772036651133
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIKE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036651336
     }
   ]
 }
