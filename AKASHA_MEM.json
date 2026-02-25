@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD SHELTER RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772037830885
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772037831092
@@ -291,6 +285,12 @@
       "text": "WAIT PURE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772037833677
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW RESONATE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772037833869
     }
   ]
 }
