@@ -54,12 +54,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIKE CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020347357
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHIELD SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772020348574
@@ -141,6 +135,12 @@
       "text": "STRIFE DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020356745
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772020357295
     }
   ]
 }
