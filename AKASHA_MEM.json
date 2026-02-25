@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BEYOND BECOME VISION",
-      "mood": "CREATIVE",
-      "tick": 1772034089300
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772034090356
@@ -291,6 +285,12 @@
       "text": "STABLE UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772034093032
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772034093238
     }
   ]
 }
