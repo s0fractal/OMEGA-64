@@ -177,12 +177,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT SHIELD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023325932
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772023326223
@@ -264,6 +258,12 @@
       "text": "OSMOSIS SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772023330510
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE BLOOM FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772023332010
     }
   ]
 }
