@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD WAIT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023090347
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023090808
@@ -259,6 +253,12 @@
       "text": "GUARD IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023095542
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SHOCK BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023095725
     }
   ]
 }
