@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772028726412
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772028727310
@@ -291,6 +285,12 @@
       "text": "DECAY CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772028735600
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028736144
     }
   ]
 }
