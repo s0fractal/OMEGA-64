@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772040859765
-    },
-    {
       "origin": "INTERFACE",
       "text": "OSMOSIS UNIFY SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BREACH BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772040862460
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON SHELTER SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040862623
     }
   ]
 }
