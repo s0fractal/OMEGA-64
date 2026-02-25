@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "PURE REFLECT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040521234
-    },
-    {
-      "origin": "INTERFACE",
       "text": "SHIELD WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772040521358
@@ -291,6 +285,12 @@
       "text": "UNIFY BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772040523588
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040523817
     }
   ]
 }
