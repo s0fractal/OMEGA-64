@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH STASIS GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772033887841
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772033888047
@@ -291,6 +285,12 @@
       "text": "SPARK BEYOND BEYOND",
       "mood": "CREATIVE",
       "tick": 1772033891758
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772033891919
     }
   ]
 }
