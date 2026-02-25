@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC SYNC HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772029795717
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772029796201
@@ -291,6 +285,12 @@
       "text": "PURE IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772029817061
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND VISION WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772029817626
     }
   ]
 }
