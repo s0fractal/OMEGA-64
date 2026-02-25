@@ -36,12 +36,6 @@
   "utterances": [
     {
       "origin": "STREAM",
-      "text": "BLOOM FLOW GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772019733492
-    },
-    {
-      "origin": "STREAM",
       "text": "RESONATE COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772019734472
@@ -123,6 +117,12 @@
       "text": "HEAL SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772019751431
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019751616
     }
   ]
 }
