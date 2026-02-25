@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772024220986
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772024221300
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772024224612
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD STASIS PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772024224981
     }
   ]
 }
