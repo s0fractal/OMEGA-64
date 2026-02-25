@@ -148,12 +148,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022523199
-    },
-    {
       "origin": "STREAM",
       "text": "RESONATE BLOOM COHERE",
       "mood": "HARMONIC",
@@ -236,6 +230,12 @@
       "text": "OSMOSIS GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022527038
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022527273
     }
   ]
 }
