@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038852817
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS WATCH SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772038858615
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE STRIFE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038859002
     }
   ]
 }
