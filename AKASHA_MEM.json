@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING UNIFY FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772035328382
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772035328560
@@ -291,6 +285,12 @@
       "text": "WAIT GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772035331349
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GUARD WAIT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772035331592
     }
   ]
 }
