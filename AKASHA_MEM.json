@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT RECON WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772038247023
-    },
-    {
       "origin": "REVERSE",
       "text": "IMMUNE WAIT GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772038252073
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE STABLE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772038258096
     }
   ]
 }
