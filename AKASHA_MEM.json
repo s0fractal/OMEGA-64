@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772033408251
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772033408434
@@ -291,6 +285,12 @@
       "text": "GIVING GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772033410814
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH BREACH SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033411009
     }
   ]
 }
