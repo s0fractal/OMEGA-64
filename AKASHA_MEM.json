@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE STASIS RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772032721128
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772032721326
@@ -291,6 +285,12 @@
       "text": "REFLECT GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772032723941
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772032724282
     }
   ]
 }
