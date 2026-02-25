@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_GUARDIAN",
-      "text": "BLOOM COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041241605
-    },
-    {
       "origin": "REVERSE",
       "text": "RECON REFLECT REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772041245984
+    },
+    {
+      "origin": "STREAM",
+      "text": "SHOCK CONSUME HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041246389
     }
   ]
 }
