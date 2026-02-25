@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772036271266
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY DECAY STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SPARK AWAKEN EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772036275178
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE CONSUME SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036275341
     }
   ]
 }
