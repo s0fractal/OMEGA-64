@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "DECAY SHOCK HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040641512
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME SHOCK STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772040643578
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040643744
     }
   ]
 }
