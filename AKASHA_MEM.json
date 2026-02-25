@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772035781418
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772035781644
@@ -291,6 +285,12 @@
       "text": "STASIS SHELTER SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772035785493
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS COHERE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772035785723
     }
   ]
 }
