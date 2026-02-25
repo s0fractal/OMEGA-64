@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SHOCK SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038585200
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772038585385
@@ -291,6 +285,12 @@
       "text": "PURE WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772038588241
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN CONSUME STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038588452
     }
   ]
 }
