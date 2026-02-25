@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772040275728
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE STABLE COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772040281410
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHELTER WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772040281624
     }
   ]
 }
