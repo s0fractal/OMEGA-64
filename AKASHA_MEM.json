@@ -79,12 +79,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY STRIFE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021083147
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS REFLECT REFLECT",
       "mood": "DEFENSIVE",
@@ -167,6 +161,12 @@
       "text": "RECON SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772021092511
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DRAIN HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021092700
     }
   ]
 }
