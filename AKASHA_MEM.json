@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772035814243
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772035814444
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772035818515
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW UNIFY OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772035818755
     }
   ]
 }
