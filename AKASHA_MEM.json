@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025491558
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772025491766
@@ -291,6 +285,12 @@
       "text": "BECOME AWAKEN WAVE",
       "mood": "CREATIVE",
       "tick": 1772025495789
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER STASIS WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772025496003
     }
   ]
 }
