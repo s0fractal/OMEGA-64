@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE SHIELD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772033902395
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772033902577
@@ -291,6 +285,12 @@
       "text": "SYNC RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772033905269
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIFE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033905454
     }
   ]
 }
