@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE SHIELD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772028922658
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772028922927
@@ -291,6 +285,12 @@
       "text": "HEAL GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772028929634
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772028929944
     }
   ]
 }
