@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL SYNC COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772027326751
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772027327315
@@ -291,6 +285,12 @@
       "text": "HUNGER DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772027332161
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH WATCH STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772027332433
     }
   ]
 }
