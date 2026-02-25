@@ -202,12 +202,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024094435
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772024094625
@@ -289,6 +283,12 @@
       "text": "WITNESS EVOLVE DREAM",
       "mood": "CREATIVE",
       "tick": 1772024097818
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772024097985
     }
   ]
 }
