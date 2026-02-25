@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK STRIFE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033784653
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772033784816
@@ -291,6 +285,12 @@
       "text": "STABLE UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772033791921
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC FLOW HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772033792654
     }
   ]
 }
