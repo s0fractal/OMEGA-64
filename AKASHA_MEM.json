@@ -144,12 +144,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022485044
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022485177
@@ -231,6 +225,12 @@
       "text": "HEAL FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772022488552
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772022488765
     }
   ]
 }
