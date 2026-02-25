@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE SHOCK BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041962617
-    },
-    {
       "origin": "POTENTIAL",
       "text": "SICKNESS BREACH STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041968553
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY STRIFE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041968957
     }
   ]
 }
