@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "IMMUNE REFLECT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041924055
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE HUNGER STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772041929405
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON WAIT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041929660
     }
   ]
 }
