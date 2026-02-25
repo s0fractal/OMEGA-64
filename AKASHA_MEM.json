@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040181425
-    },
-    {
       "origin": "INTERFACE",
       "text": "SEIZE DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040187899
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772040188274
     }
   ]
 }
