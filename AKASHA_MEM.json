@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "FLOW OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772034646728
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HUNGER HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772034650772
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772034650972
     }
   ]
 }
