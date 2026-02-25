@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BEYOND BECOME WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772023933377
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772023933577
@@ -284,6 +278,12 @@
       "text": "BLOOM UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772023938848
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIKE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023940936
     }
   ]
 }
