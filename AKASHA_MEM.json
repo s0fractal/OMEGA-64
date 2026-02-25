@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM FLOW UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772034781414
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772034781639
@@ -291,6 +285,12 @@
       "text": "DECAY CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772034786216
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772034786423
     }
   ]
 }
