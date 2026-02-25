@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE CONSUME SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027414148
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM FLOW RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "CONSUME DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772027426900
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WATCH REFLECT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772027427139
     }
   ]
 }
