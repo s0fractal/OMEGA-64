@@ -112,12 +112,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SHOCK DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021914083
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021914304
@@ -199,6 +193,12 @@
       "text": "SPARK SPARK WITNESS",
       "mood": "CREATIVE",
       "tick": 1772021920529
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021923351
     }
   ]
 }
