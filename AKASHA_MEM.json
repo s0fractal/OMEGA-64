@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING STABLE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772032068420
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772032069042
@@ -291,6 +285,12 @@
       "text": "DRAIN HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772032075040
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIKE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032075691
     }
   ]
 }
