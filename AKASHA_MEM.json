@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00600660",
     "A0000A00",
     "00000606",
     "66000000",
@@ -199,15 +198,10 @@
     "06660660",
     "A1000000",
     "A6660660",
-    "AAA0AAA0"
+    "AAA0AAA0",
+    "AA0666A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "FLOW STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772037583965
-    },
     {
       "origin": "REVERSE",
       "text": "REFLECT IMMUNE SHIELD",
@@ -291,6 +285,12 @@
       "text": "STRIKE CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772037587192
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037587416
     }
   ]
 }
