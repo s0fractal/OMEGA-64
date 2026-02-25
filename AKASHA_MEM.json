@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772033904233
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772033904469
@@ -291,6 +285,12 @@
       "text": "STRIFE STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772033908653
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772033908868
     }
   ]
 }
