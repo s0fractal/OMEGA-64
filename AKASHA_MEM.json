@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW COHERE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772023728426
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023728604
@@ -278,6 +272,12 @@
       "text": "IMMUNE GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772023731860
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER WATCH IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023732046
     }
   ]
 }
