@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STASIS GUARD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041682989
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD STASIS IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772041686493
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041686747
     }
   ]
 }
