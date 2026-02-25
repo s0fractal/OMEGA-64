@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034410611
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034410893
@@ -291,6 +285,12 @@
       "text": "UNIFY FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772034413982
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD RECON STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772034414178
     }
   ]
 }
