@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WAIT WATCH WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772041001756
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DECAY SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772041001879
@@ -291,6 +285,12 @@
       "text": "SPARK EVOLVE BECOME",
       "mood": "CREATIVE",
       "tick": 1772041004270
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE FLOW GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041004450
     }
   ]
 }
