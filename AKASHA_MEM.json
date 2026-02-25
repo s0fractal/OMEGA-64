@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772025460311
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD STASIS WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772025468510
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON PURE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772025468685
     }
   ]
 }
