@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER REFLECT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772027603698
-    },
-    {
-      "origin": "REVERSE",
       "text": "FORGE WITNESS EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772027604034
@@ -291,6 +285,12 @@
       "text": "BREACH SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772027614188
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL RESONATE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772027615179
     }
   ]
 }
