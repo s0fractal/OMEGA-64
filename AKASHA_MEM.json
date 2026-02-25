@@ -129,12 +129,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER PURE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022318229
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE SHOCK BREACH",
       "mood": "AGGRESSIVE",
@@ -217,6 +211,12 @@
       "text": "EVOLVE VISION VISION",
       "mood": "CREATIVE",
       "tick": 1772022324456
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022324720
     }
   ]
 }
