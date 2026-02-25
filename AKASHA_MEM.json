@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034802578
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772034802787
@@ -291,6 +285,12 @@
       "text": "OSMOSIS UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772034805372
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW UNIFY STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772034805569
     }
   ]
 }
