@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIKE STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040970257
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH HUNGER HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD IMMUNE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772040972676
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE HEAL GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772040973003
     }
   ]
 }
