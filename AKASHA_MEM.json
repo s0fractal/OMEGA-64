@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STABLE GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772040989495
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN DECAY SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIFE HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772040993493
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "FLOW FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772040993629
     }
   ]
 }
