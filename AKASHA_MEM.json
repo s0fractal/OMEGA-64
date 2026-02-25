@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC UNIFY OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772033969449
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772033969686
@@ -291,6 +285,12 @@
       "text": "STABLE GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772033973289
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772033973566
     }
   ]
 }
