@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT SHELTER GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772036176981
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772036177188
@@ -291,6 +285,12 @@
       "text": "OSMOSIS GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772036181912
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DECAY DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036182162
     }
   ]
 }
