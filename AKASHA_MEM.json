@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772024419316
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772024419485
@@ -291,6 +285,12 @@
       "text": "SICKNESS HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772024422662
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD STASIS STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772024422863
     }
   ]
 }
