@@ -111,12 +111,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021907331
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772021907515
@@ -198,6 +192,12 @@
       "text": "STRIFE HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021914304
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE GUARD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772021914939
     }
   ]
 }
