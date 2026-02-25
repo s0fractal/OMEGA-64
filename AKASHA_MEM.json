@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "UNIFY HEAL RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772026938704
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK DRAIN SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772026944835
+    },
+    {
+      "origin": "REVERSE",
+      "text": "AWAKEN BEYOND FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772026945164
     }
   ]
 }
