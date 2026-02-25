@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039246739
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772039246909
@@ -291,6 +285,12 @@
       "text": "STRIKE SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772039250205
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772039250659
     }
   ]
 }
