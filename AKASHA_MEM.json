@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE RESONATE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772039178675
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772039178922
@@ -291,6 +285,12 @@
       "text": "SHIELD GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772039181524
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039181716
     }
   ]
 }
