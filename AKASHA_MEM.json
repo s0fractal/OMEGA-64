@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SHOCK SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035340773
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772035340975
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772035344487
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHELTER IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772035344713
     }
   ]
 }
