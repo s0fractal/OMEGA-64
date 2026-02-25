@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH BREACH BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037778981
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772037779207
@@ -291,6 +285,12 @@
       "text": "DECAY DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772037786890
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SICKNESS DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037787373
     }
   ]
 }
