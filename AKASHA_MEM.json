@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME STRIFE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034687488
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE COHERE BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIFE SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772034691986
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DECAY STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034692208
     }
   ]
 }
