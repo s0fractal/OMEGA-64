@@ -63,12 +63,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHIELD STASIS WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020645191
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "CONSUME SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020646336
@@ -150,6 +144,12 @@
       "text": "REFLECT GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772020654008
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020655192
     }
   ]
 }
