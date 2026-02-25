@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STASIS PURE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772033157986
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW HEAL SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FLOW STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772033162466
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT REFLECT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772033162743
     }
   ]
 }
