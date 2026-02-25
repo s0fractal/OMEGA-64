@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60000660",
     "06060666",
     "AAA00AAA",
     "AABBC0DD",
@@ -199,15 +198,10 @@
     "06006606",
     "06066660",
     "AA0A00AA",
-    "66660060"
+    "66660060",
+    "A0000CDD"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "REFLECT RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772037962643
-    },
     {
       "origin": "REVERSE",
       "text": "COHERE FLOW COHERE",
@@ -291,6 +285,12 @@
       "text": "WATCH SHIELD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772037977480
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037977840
     }
   ]
 }
