@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH STASIS PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023992775
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH PURE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772023993178
@@ -284,6 +278,12 @@
       "text": "REFLECT REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023998818
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SICKNESS SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023999138
     }
   ]
 }
