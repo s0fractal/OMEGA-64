@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772024370076
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY STRIFE DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772024377085
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772024380519
     }
   ]
 }
