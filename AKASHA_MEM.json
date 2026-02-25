@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772031327922
-    },
-    {
       "origin": "STREAM",
       "text": "GUARD STASIS WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BREACH DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772031336869
+    },
+    {
+      "origin": "STREAM",
+      "text": "WAIT GUARD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772031337588
     }
   ]
 }
