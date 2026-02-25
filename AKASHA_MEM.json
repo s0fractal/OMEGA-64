@@ -137,12 +137,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022410473
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772022410627
@@ -224,6 +218,12 @@
       "text": "GIVING STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772022417630
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE IMMUNE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772022418122
     }
   ]
 }
