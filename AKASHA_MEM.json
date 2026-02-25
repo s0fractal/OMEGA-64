@@ -108,12 +108,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021777730
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772021779487
@@ -195,6 +189,12 @@
       "text": "BREACH STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772021785860
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON SHIELD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021786737
     }
   ]
 }
