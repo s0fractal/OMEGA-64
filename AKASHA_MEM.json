@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026718244
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772026718492
@@ -291,6 +285,12 @@
       "text": "HEAL SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772026726249
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE RECON WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772026726550
     }
   ]
 }
