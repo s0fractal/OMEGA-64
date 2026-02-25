@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026201769
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772026201960
@@ -291,6 +285,12 @@
       "text": "SYNC GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772026211312
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY RESONATE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772026211598
     }
   ]
 }
