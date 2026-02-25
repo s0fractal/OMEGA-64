@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038013963
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER SHIELD SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772038017727
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772038017908
     }
   ]
 }
