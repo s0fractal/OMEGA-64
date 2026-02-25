@@ -191,12 +191,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY FLOW UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772023823998
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE DECAY STRIFE",
       "mood": "AGGRESSIVE",
@@ -279,6 +273,12 @@
       "text": "BREACH SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772023831283
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE PURE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772023831463
     }
   ]
 }
