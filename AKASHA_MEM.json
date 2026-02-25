@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD STASIS WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023926486
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772023926745
@@ -284,6 +278,12 @@
       "text": "GUARD GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772023933075
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND BECOME WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772023933377
     }
   ]
 }
