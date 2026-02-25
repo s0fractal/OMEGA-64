@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE RESONATE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772030586088
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772030586477
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772030595320
+    },
+    {
+      "origin": "ALPHA_PROOF_OF_RESONANCE",
+      "text": "HEAL OSMOSIS RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772030600580
     }
   ]
 }
