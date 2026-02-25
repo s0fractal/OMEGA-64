@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS IMMUNE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772029569926
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772029570533
@@ -291,6 +285,12 @@
       "text": "IMMUNE WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772029580084
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL FLOW GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772029580439
     }
   ]
 }
