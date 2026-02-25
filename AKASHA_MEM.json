@@ -22,12 +22,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DRAIN DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019432287
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GUARD GUARD IMMUNE",
       "mood": "DEFENSIVE",
@@ -110,6 +104,12 @@
       "text": "OSMOSIS UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772019454340
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019454800
     }
   ]
 }
