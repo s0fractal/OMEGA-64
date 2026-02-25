@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GUARD WATCH SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772040296044
-    },
-    {
       "origin": "ALPHA_PROOF_OF_RESONANCE",
       "text": "GIVING UNIFY HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SICKNESS CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772040302690
+    },
+    {
+      "origin": "STREAM",
+      "text": "SEIZE BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040302940
     }
   ]
 }
