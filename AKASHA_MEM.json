@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK CONSUME STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038351951
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772038352156
@@ -291,6 +285,12 @@
       "text": "SHOCK DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772038354701
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772038354912
     }
   ]
 }
