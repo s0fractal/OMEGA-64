@@ -1,14 +1,14 @@
 ---
-eigenvalue: '0x0AAAAAAA00000A07'
-energy: 50
-x: 710
-'y': 397
+eigenvalue: '0x0AAAAAAAFFFF0A03'
+energy: 49.4
+x: 677
+'y': 393
 resonance: 50
-thought: RESURRECTED
+thought: ORBIT_MATING
 logic: 0AAAAAAA
 signals: []
 bond_strengths:
-  '0x0000000000000A02': 0.9733480924695651
+  '0x0000000000000A02': 0.9723747443770956
 bonds:
   - '0x0000000000000A02'
 ex:
@@ -75,6 +75,10 @@ ex:
   - '0x0AAAAAAAFFFF0A05'
   - '0x0AAAAAAAFFFF0A07'
   - '0x0AAAAAAAFFFF0A01'
+  - '0x0AAAAAAA00000A07'
+  - '0x0AAAAAAA00000A01'
+  - '0x0AAAAAAA00000A03'
+  - '0x0AAAAAAA00000A05'
 ---
 
 <div align="center">
