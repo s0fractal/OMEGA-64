@@ -86,12 +86,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW OSMOSIS OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772021242677
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN STRIKE HUNGER",
       "mood": "AGGRESSIVE",
@@ -174,6 +168,12 @@
       "text": "CONSUME SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772021247921
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME STRIKE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021248783
     }
   ]
 }
