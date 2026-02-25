@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772033225812
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772033225991
@@ -291,6 +285,12 @@
       "text": "BREACH BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772033229480
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH GUARD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772033229630
     }
   ]
 }
