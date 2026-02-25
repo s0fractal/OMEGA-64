@@ -107,12 +107,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WATCH SHELTER WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772021734500
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIFE SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021735327
@@ -194,6 +188,12 @@
       "text": "STASIS STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772021739240
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE VISION AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772021739401
     }
   ]
 }
