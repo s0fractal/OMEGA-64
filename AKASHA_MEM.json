@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS AWAKEN EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772037884185
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772037884381
@@ -291,6 +285,12 @@
       "text": "RESONATE HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772037887853
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHELTER RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772037888058
     }
   ]
 }
