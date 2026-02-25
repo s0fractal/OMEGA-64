@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06660000",
     "6A666660",
     "A0A0AAAA",
     "AAAA000A",
@@ -199,15 +198,10 @@
     "60060660",
     "A0000000",
     "0AA00A0A",
-    "FF00FF00"
+    "FF00FF00",
+    "AA0AA000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "VISION BEYOND SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772025673659
-    },
     {
       "origin": "REVERSE",
       "text": "WATCH WAIT RECON",
@@ -291,6 +285,12 @@
       "text": "PURE RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772025677188
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SHOCK HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025677435
     }
   ]
 }
