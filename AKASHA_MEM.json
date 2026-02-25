@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE REFLECT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772026883824
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772026884047
@@ -291,6 +285,12 @@
       "text": "OSMOSIS HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772026889081
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS DREAM SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772026889300
     }
   ]
 }
