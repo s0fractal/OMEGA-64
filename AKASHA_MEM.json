@@ -80,12 +80,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "EVOLVE DREAM BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772021105552
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE DRAIN SHOCK",
       "mood": "AGGRESSIVE",
@@ -168,6 +162,12 @@
       "text": "BLOOM OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772021111722
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIFE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021112805
     }
   ]
 }
