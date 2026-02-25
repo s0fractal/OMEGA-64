@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS RESONATE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772036354971
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772036355173
@@ -291,6 +285,12 @@
       "text": "BLOOM OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772036358083
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036358289
     }
   ]
 }
