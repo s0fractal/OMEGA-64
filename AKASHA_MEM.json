@@ -84,12 +84,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT SHIELD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021210516
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772021210742
@@ -171,6 +165,12 @@
       "text": "BREACH BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772021218389
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772021218546
     }
   ]
 }
