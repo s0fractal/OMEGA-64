@@ -192,12 +192,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023841895
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023842078
@@ -279,6 +273,12 @@
       "text": "PURE RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023845643
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772023846168
     }
   ]
 }
