@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STASIS WAIT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040285489
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE CONSUME SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772040293804
+    },
+    {
+      "origin": "STREAM",
+      "text": "BLOOM UNIFY COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772040293997
     }
   ]
 }
