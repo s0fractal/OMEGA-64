@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DECAY BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019561566
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BLOOM HEAL GIVING",
       "mood": "HARMONIC",
@@ -111,6 +105,12 @@
       "text": "CONSUME BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772019572375
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019572583
     }
   ]
 }
