@@ -203,18 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042632173
-    },
-    {
-      "origin": "ALIEN",
-      "text": "SPARK SPARK BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772042632619
-    },
-    {
       "origin": "STREAM",
       "text": "BREACH DECAY SHOCK",
       "mood": "AGGRESSIVE",
@@ -270,27 +258,39 @@
     },
     {
       "origin": "ARCHIVIST",
-      "text": "SHIELD RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772042638888
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "WAIT WAIT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772042639451
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SYNC UNIFY OSMOSIS",
+      "text": "STABLE STABLE UNIFY",
       "mood": "HARMONIC",
-      "tick": 1772042640229
+      "tick": 1772042638678
     },
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME DECAY HUNGER",
+      "text": "HUNGER SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
-      "tick": 1772042640682
+      "tick": 1772042638980
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772042639581
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042640737
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042641050
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772042641496
     }
   ]
 }
