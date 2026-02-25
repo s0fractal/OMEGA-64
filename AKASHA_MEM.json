@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772024280469
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772024280658
@@ -291,6 +285,12 @@
       "text": "RECON STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772024284369
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024284538
     }
   ]
 }
