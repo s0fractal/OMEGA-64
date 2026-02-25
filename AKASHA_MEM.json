@@ -91,12 +91,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SICKNESS STRIKE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021274510
-    },
-    {
       "origin": "REVERSE",
       "text": "PURE WATCH SHIELD",
       "mood": "DEFENSIVE",
@@ -179,6 +173,12 @@
       "text": "WATCH SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772021309192
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772021313158
     }
   ]
 }
