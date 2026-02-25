@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC COHERE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772037924649
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772037924868
@@ -291,6 +285,12 @@
       "text": "SHIELD SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772037928246
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037928449
     }
   ]
 }
