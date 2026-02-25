@@ -102,12 +102,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772021608699
-    },
-    {
-      "origin": "REVERSE",
       "text": "WITNESS DREAM FORGE",
       "mood": "CREATIVE",
       "tick": 1772021608888
@@ -189,6 +183,12 @@
       "text": "WAVE EVOLVE SPARK",
       "mood": "CREATIVE",
       "tick": 1772021615767
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021615907
     }
   ]
 }
