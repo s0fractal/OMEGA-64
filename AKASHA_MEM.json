@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "REFLECT WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041320768
-    },
-    {
-      "origin": "INTERFACE",
       "text": "FLOW SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772041320915
@@ -291,6 +285,12 @@
       "text": "DECAY STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772041324052
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041324251
     }
   ]
 }
