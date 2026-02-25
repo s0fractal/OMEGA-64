@@ -24,12 +24,6 @@
   "utterances": [
     {
       "origin": "STREAM",
-      "text": "STABLE BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772019513085
-    },
-    {
-      "origin": "STREAM",
       "text": "BLOOM COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772019513217
@@ -111,6 +105,12 @@
       "text": "SICKNESS BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772019520826
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019521871
     }
   ]
 }
