@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "REFLECT PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041438496
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DECAY STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041438792
@@ -291,6 +285,12 @@
       "text": "SEIZE HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772041442248
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041442395
     }
   ]
 }
