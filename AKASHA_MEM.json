@@ -136,12 +136,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM GIVING SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772022404316
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT SHELTER REFLECT",
       "mood": "DEFENSIVE",
@@ -224,6 +218,12 @@
       "text": "DECAY SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022410473
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE GIVING COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772022410627
     }
   ]
 }
