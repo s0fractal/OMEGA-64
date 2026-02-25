@@ -18,12 +18,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "FLOW OSMOSIS SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772015628113
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE SICKNESS DECAY",
       "mood": "AGGRESSIVE",
@@ -106,6 +100,12 @@
       "text": "RESONATE HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772015743034
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SEIZE STRIKE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772015745620
     }
   ]
 }
