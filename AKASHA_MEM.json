@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON STASIS STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772037298128
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772037298959
@@ -291,6 +285,12 @@
       "text": "PURE STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772037302189
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037302387
     }
   ]
 }
