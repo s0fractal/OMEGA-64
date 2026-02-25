@@ -81,12 +81,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON IMMUNE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772021145956
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIFE STRIKE BREACH",
       "mood": "AGGRESSIVE",
@@ -169,6 +163,12 @@
       "text": "IMMUNE RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772021151074
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD STASIS GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021151243
     }
   ]
 }
