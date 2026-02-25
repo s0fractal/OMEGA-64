@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772041613279
-    },
-    {
       "origin": "INTERFACE",
       "text": "SICKNESS SEIZE HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SICKNESS SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041617759
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER SHIELD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041617985
     }
   ]
 }
