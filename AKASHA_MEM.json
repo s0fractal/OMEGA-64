@@ -56,12 +56,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH GUARD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020558030
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS DRAIN DRAIN",
       "mood": "AGGRESSIVE",
@@ -144,6 +138,12 @@
       "text": "SHOCK CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020568840
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772020569061
     }
   ]
 }
