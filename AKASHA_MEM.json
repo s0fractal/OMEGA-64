@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT SHIELD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772034292339
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772034292520
@@ -291,6 +285,12 @@
       "text": "VISION EVOLVE DREAM",
       "mood": "CREATIVE",
       "tick": 1772034294859
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE UNIFY GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772034295007
     }
   ]
 }
