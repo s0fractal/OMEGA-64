@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STABLE SYNC STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772040590135
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HEAL GIVING STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772040594266
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772040594397
     }
   ]
 }
