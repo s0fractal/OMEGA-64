@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SYNC RESONATE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772040556462
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIKE SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STASIS WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772040559049
+    },
+    {
+      "origin": "STREAM",
+      "text": "DRAIN SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040559231
     }
   ]
 }
