@@ -173,12 +173,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772023214941
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023215142
@@ -260,6 +254,12 @@
       "text": "AWAKEN BEYOND SPARK",
       "mood": "CREATIVE",
       "tick": 1772023220665
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME STRIKE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023220856
     }
   ]
 }
