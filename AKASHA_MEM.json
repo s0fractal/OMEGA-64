@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER WAIT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020484295
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT PURE STASIS",
       "mood": "DEFENSIVE",
@@ -142,6 +136,12 @@
       "text": "WATCH WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772020492682
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020493117
     }
   ]
 }
