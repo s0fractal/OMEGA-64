@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66606600",
     "AAAA00AA",
     "AA6660A0",
     "00600060",
@@ -199,15 +198,10 @@
     "AA6066A6",
     "66066060",
     "AAAAAAAA",
-    "01000000"
+    "01000000",
+    "06660060"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WITNESS VISION FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772034157309
-    },
     {
       "origin": "REVERSE",
       "text": "STASIS WATCH REFLECT",
@@ -291,6 +285,12 @@
       "text": "COHERE GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772034160501
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC RESONATE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772034160655
     }
   ]
 }
