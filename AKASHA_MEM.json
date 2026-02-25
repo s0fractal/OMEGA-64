@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY UNIFY OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772027250513
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772027251042
@@ -291,6 +285,12 @@
       "text": "OSMOSIS UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772027256933
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT IMMUNE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772027257176
     }
   ]
 }
