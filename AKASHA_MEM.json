@@ -43,12 +43,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019963053
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DRAIN STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772019963818
@@ -130,6 +124,12 @@
       "text": "RESONATE GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772019974611
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GIVING BLOOM UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772019974784
     }
   ]
 }
