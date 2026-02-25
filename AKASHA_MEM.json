@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER WATCH WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772036783682
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772036783916
@@ -291,6 +285,12 @@
       "text": "UNIFY STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772036786472
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RECON IMMUNE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772036786676
     }
   ]
 }
