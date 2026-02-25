@@ -66,12 +66,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020787896
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON SHELTER STASIS",
       "mood": "DEFENSIVE",
@@ -154,6 +148,12 @@
       "text": "IMMUNE IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020795621
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH HUNGER CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020796041
     }
   ]
 }
