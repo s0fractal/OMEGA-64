@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL SYNC UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772033387360
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772033387531
@@ -291,6 +285,12 @@
       "text": "FORGE BEYOND AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772033389967
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WAIT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772033390155
     }
   ]
 }
