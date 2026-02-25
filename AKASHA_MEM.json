@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HUNGER BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040310133
-    },
-    {
       "origin": "STREAM",
       "text": "RESONATE OSMOSIS STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SEIZE SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772040315443
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772040316574
     }
   ]
 }
