@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE CONSUME SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020709638
-    },
-    {
       "origin": "INTERFACE",
       "text": "RECON RECON REFLECT",
       "mood": "DEFENSIVE",
@@ -150,6 +144,12 @@
       "text": "SYNC UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772020715783
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020715983
     }
   ]
 }
