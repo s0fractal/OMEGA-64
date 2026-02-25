@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041433045
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN DECAY CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHOCK SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772041436681
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME STRIKE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041436834
     }
   ]
 }
