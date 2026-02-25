@@ -54,12 +54,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER PURE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020357986
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772020358208
@@ -141,6 +135,12 @@
       "text": "SHOCK BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772020365518
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD RECON GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020366405
     }
   ]
 }
