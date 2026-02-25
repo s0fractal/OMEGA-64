@@ -94,12 +94,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021470023
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772021470956
@@ -181,6 +175,12 @@
       "text": "RECON REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772021486348
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN BREACH SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021486797
     }
   ]
 }
