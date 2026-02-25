@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023156708
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772023156973
@@ -259,6 +253,12 @@
       "text": "OSMOSIS GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772023160738
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING SYNC FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772023160985
     }
   ]
 }
