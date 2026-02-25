@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIFE STRIFE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041524569
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIKE SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772041524707
@@ -291,6 +285,12 @@
       "text": "STABLE FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772041528652
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD SHELTER IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041528801
     }
   ]
 }
