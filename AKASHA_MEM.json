@@ -55,12 +55,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM UNIFY BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772020531376
-    },
-    {
       "origin": "INTERFACE",
       "text": "WAIT PURE WATCH",
       "mood": "DEFENSIVE",
@@ -143,6 +137,12 @@
       "text": "GIVING GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772020540455
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020540631
     }
   ]
 }
