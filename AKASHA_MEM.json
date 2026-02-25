@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL OSMOSIS RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772032980500
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772032980692
@@ -291,6 +285,12 @@
       "text": "SHIELD GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772032984150
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIFE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032984345
     }
   ]
 }
