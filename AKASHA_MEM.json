@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM HEAL FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772025113962
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772025114306
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772025117953
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772025118374
     }
   ]
 }
