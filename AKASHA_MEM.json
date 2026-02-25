@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE RECON GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772019636936
-    },
-    {
       "origin": "INTERFACE",
       "text": "CONSUME STRIKE DRAIN",
       "mood": "AGGRESSIVE",
@@ -114,6 +108,12 @@
       "text": "HUNGER DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772019647740
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE CONSUME HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019648305
     }
   ]
 }
