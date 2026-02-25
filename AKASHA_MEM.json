@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME HUNGER SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041629097
-    },
-    {
       "origin": "INTERFACE",
       "text": "GIVING SYNC SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHIELD WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041632849
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW RESONATE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772041632980
     }
   ]
 }
