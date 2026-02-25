@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM RESONATE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772036554399
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772036554633
@@ -291,6 +285,12 @@
       "text": "HUNGER DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772036558205
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD PURE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772036558399
     }
   ]
 }
