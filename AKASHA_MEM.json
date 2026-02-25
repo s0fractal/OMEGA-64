@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772040710463
-    },
-    {
       "origin": "STREAM",
       "text": "HEAL STABLE GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772040714228
+    },
+    {
+      "origin": "STREAM",
+      "text": "STRIKE BREACH DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040714409
     }
   ]
 }
