@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE STRIFE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040704366
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT IMMUNE WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772040709039
+    },
+    {
+      "origin": "STREAM",
+      "text": "STRIKE SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040709384
     }
   ]
 }
