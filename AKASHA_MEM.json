@@ -77,12 +77,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS STABLE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772021022655
-    },
-    {
-      "origin": "REVERSE",
       "text": "VISION SPARK VISION",
       "mood": "CREATIVE",
       "tick": 1772021023200
@@ -164,6 +158,12 @@
       "text": "SICKNESS STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772021029995
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772021030445
     }
   ]
 }
