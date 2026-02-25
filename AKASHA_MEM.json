@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "OSMOSIS GIVING HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772040718091
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME STRIFE BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772040720877
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772040721057
     }
   ]
 }
