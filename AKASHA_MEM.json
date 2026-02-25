@@ -63,12 +63,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020718602
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS SEIZE HUNGER",
       "mood": "AGGRESSIVE",
@@ -151,6 +145,12 @@
       "text": "STRIKE BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020724589
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE STASIS PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020724752
     }
   ]
 }
