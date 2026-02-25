@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "VISION WITNESS WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772023716600
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772023716792
@@ -278,6 +272,12 @@
       "text": "REFLECT WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023721104
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION AWAKEN SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772023721271
     }
   ]
 }
