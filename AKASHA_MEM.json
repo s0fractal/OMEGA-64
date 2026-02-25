@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC GIVING SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772036177188
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772036177632
@@ -291,6 +285,12 @@
       "text": "DECAY DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772036182162
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772036182347
     }
   ]
 }
