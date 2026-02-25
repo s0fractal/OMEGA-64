@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772035230978
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772035231207
@@ -291,6 +285,12 @@
       "text": "HEAL FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772035233942
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT PURE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772035234110
     }
   ]
 }
