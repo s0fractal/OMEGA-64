@@ -118,12 +118,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS BREACH SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022079078
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GIVING OSMOSIS GIVING",
       "mood": "HARMONIC",
@@ -206,6 +200,12 @@
       "text": "SYNC BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772022083290
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE RECON WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022083518
     }
   ]
 }
