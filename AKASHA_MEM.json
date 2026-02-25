@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON SHELTER REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772034892052
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772034892263
@@ -291,6 +285,12 @@
       "text": "CONSUME CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772034895804
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT GUARD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772034896006
     }
   ]
 }
