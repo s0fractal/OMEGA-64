@@ -154,12 +154,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022642378
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022642528
@@ -241,6 +235,12 @@
       "text": "STASIS PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022645771
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME FORGE EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772022646015
     }
   ]
 }
