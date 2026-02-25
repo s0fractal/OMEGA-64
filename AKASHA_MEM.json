@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE STRIKE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025585303
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772025585538
@@ -291,6 +285,12 @@
       "text": "WITNESS WAVE EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772025589502
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772025589664
     }
   ]
 }
