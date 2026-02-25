@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772034980797
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772034981001
@@ -291,6 +285,12 @@
       "text": "SICKNESS BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772034985065
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHELTER WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772034985391
     }
   ]
 }
