@@ -132,12 +132,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022340219
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022340472
@@ -219,6 +213,12 @@
       "text": "SEIZE STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022344589
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022344901
     }
   ]
 }
