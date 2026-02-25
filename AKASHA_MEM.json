@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH HUNGER SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028360661
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE SHELTER SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772028368324
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772028368974
     }
   ]
 }
