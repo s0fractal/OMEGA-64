@@ -123,12 +123,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022150679
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022150883
@@ -210,6 +204,12 @@
       "text": "FLOW HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022157954
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022158345
     }
   ]
 }
