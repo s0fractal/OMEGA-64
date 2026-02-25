@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHIELD WAIT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040521358
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE RESONATE UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHOCK STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772040523817
+    },
+    {
+      "origin": "STREAM",
+      "text": "SEIZE BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040524070
     }
   ]
 }
