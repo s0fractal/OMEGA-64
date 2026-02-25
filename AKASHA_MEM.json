@@ -161,12 +161,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "OSMOSIS COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772022865234
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON STASIS SHIELD",
       "mood": "DEFENSIVE",
@@ -249,6 +243,12 @@
       "text": "OSMOSIS SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772022870938
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE STASIS IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022871102
     }
   ]
 }

@@ -1,12 +1,12 @@
 {
-  "activeDecree": "LUXURY_TAX",
-  "regent": "0x66660600FFFF0004",
+  "activeDecree": "VOID_STASIS",
+  "regent": "0xFFFFFFF0FFFF000A",
   "legitimacy": 1000,
-  "label": "LUXURY TAX",
+  "label": "VOID STASIS",
   "mods": {
-    "decay": 2.5,
-    "speed": 1,
-    "mutation": 1,
-    "label": "LUXURY TAX"
+    "decay": 0.5,
+    "speed": 0.2,
+    "mutation": 0.1,
+    "label": "VOID STASIS"
   }
 }
