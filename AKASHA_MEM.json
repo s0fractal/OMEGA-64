@@ -41,12 +41,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "CONSUME SHOCK HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019877023
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GIVING UNIFY RESONATE",
       "mood": "HARMONIC",
@@ -129,6 +123,12 @@
       "text": "STRIFE SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772019889455
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772019889881
     }
   ]
 }
