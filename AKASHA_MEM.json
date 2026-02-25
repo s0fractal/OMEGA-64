@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAAAA0AA",
     "60006000",
     "000FF00F",
     "AA00AA0A",
@@ -199,15 +198,10 @@
     "00060660",
     "66666060",
     "AA6006A6",
-    "AA660600"
+    "AA660600",
+    "66000606"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WATCH SHIELD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772033677721
-    },
     {
       "origin": "REVERSE",
       "text": "STASIS PURE GUARD",
@@ -291,6 +285,12 @@
       "text": "WAVE BECOME AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772033681060
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT PURE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772033681311
     }
   ]
 }
