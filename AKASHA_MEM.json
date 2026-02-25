@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038425868
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772038426325
@@ -291,6 +285,12 @@
       "text": "HEAL RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772038428936
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE GIVING BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772038429141
     }
   ]
 }
