@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772036595539
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772036595764
@@ -291,6 +285,12 @@
       "text": "DECAY STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772036598786
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE STABLE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772036599541
     }
   ]
 }
