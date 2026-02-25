@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD WAIT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041752022
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE FLOW GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SYNC OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772041759690
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE DRAIN HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041760496
     }
   ]
 }
