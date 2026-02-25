@@ -287,10 +287,10 @@
       "tick": 1772042701288
     },
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042702429
+      "origin": "INTERFACE",
+      "text": "SICKNESS SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042702564
     }
   ]
 }
