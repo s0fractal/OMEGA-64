@@ -198,12 +198,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772024015183
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772024015393
@@ -285,6 +279,12 @@
       "text": "SHOCK SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772024019824
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD SHIELD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772024019965
     }
   ]
 }
