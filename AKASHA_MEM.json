@@ -180,12 +180,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772023384212
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772023384475
@@ -267,6 +261,12 @@
       "text": "STABLE GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772023389982
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023391000
     }
   ]
 }
