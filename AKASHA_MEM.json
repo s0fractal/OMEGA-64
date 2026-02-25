@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027001699
-    },
-    {
       "origin": "REVERSE",
       "text": "RECON PURE REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772027008898
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE BLOOM BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772027009429
     }
   ]
 }
