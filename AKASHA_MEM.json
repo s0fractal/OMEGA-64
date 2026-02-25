@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM UNIFY SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772041884145
-    },
-    {
       "origin": "REVERSE",
       "text": "IMMUNE SHIELD WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BREACH HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772041888283
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WATCH REFLECT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041888469
     }
   ]
 }
