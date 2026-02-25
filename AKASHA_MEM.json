@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA00AAAA",
     "A00A00A0",
     "AAA0A0AA",
     "66666600",
@@ -199,15 +198,10 @@
     "66000606",
     "AA00000A",
     "66006606",
-    "06066600"
+    "06066600",
+    "0A0A0A00"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WATCH SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772033704531
-    },
     {
       "origin": "REVERSE",
       "text": "PURE IMMUNE GUARD",
@@ -291,6 +285,12 @@
       "text": "CONSUME DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772033707456
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC BLOOM FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772033707624
     }
   ]
 }
