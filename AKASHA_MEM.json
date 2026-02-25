@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE STRIKE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034619395
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772034619641
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772034622421
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW STABLE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772034622593
     }
   ]
 }
