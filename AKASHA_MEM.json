@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "OSMOSIS GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772020359582
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS SHOCK SEIZE",
       "mood": "AGGRESSIVE",
@@ -141,6 +135,12 @@
       "text": "WATCH WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772020367905
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON WAIT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772020369077
     }
   ]
 }
