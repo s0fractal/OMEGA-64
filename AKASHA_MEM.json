@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM RESONATE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772038193910
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772038194109
@@ -291,6 +285,12 @@
       "text": "BEYOND FORGE FORGE",
       "mood": "CREATIVE",
       "tick": 1772038197084
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772038197575
     }
   ]
 }
