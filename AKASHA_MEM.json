@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040439742
-    },
-    {
       "origin": "INTERFACE",
       "text": "CONSUME SEIZE STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHOCK DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772040441942
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772040442165
     }
   ]
 }
