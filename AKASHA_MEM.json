@@ -115,12 +115,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER REFLECT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772022032043
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER DECAY DRAIN",
       "mood": "AGGRESSIVE",
@@ -203,6 +197,12 @@
       "text": "WAIT WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022043771
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DRAIN STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022044246
     }
   ]
 }
