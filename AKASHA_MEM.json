@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033475551
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772033475747
@@ -291,6 +285,12 @@
       "text": "FLOW RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772033478054
+    },
+    {
+      "origin": "STREAM",
+      "text": "SICKNESS DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033478408
     }
   ]
 }
