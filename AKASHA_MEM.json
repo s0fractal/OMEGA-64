@@ -43,12 +43,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GIVING STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772019967035
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GUARD PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772019967950
@@ -130,6 +124,12 @@
       "text": "FLOW OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772019978017
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON STASIS PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772019978339
     }
   ]
 }
