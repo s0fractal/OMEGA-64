@@ -151,12 +151,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY STRIFE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022575993
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772022576748
@@ -238,6 +232,12 @@
       "text": "SEIZE DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022582074
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH STASIS PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022582319
     }
   ]
 }
