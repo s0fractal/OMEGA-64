@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024368033
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772024368348
@@ -291,6 +285,12 @@
       "text": "SYNC GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772024374746
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DECAY STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024375103
     }
   ]
 }
