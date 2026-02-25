@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772034990144
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772034990307
@@ -291,6 +285,12 @@
       "text": "SICKNESS SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772034993541
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHIELD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772034993749
     }
   ]
 }
