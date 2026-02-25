@@ -155,12 +155,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772022704252
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772022704586
@@ -242,6 +236,12 @@
       "text": "GIVING STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022707870
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON RECON WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772022708820
     }
   ]
 }
