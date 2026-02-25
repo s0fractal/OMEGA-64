@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020151967
-    },
-    {
       "origin": "STREAM",
       "text": "STABLE COHERE BLOOM",
       "mood": "HARMONIC",
@@ -136,6 +130,12 @@
       "text": "HUNGER SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020159836
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD SHIELD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020160127
     }
   ]
 }
