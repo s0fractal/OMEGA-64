@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SYNC BLOOM HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772020236310
-    },
-    {
       "origin": "PARADOX",
       "text": "DREAM EVOLVE VISION",
       "mood": "CREATIVE",
@@ -136,6 +130,12 @@
       "text": "SICKNESS SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020244289
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020244720
     }
   ]
 }
