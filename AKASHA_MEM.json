@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020224690
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIKE STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -136,6 +130,12 @@
       "text": "HUNGER STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020234047
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH STASIS IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020234246
     }
   ]
 }
