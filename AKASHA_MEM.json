@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0AA0A000",
     "06600600",
     "AAA00AA0",
     "A6666666",
@@ -199,15 +198,10 @@
     "06060606",
     "66066060",
     "60600600",
-    "B0600000"
+    "B0600000",
+    "00A000A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RECON RECON GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772036680540
-    },
     {
       "origin": "REVERSE",
       "text": "STRIKE HUNGER HUNGER",
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772036684183
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772036684354
     }
   ]
 }
