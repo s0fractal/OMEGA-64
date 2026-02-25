@@ -151,12 +151,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022573105
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772022573796
@@ -238,6 +232,12 @@
       "text": "SHELTER WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022577358
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING RESONATE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022577516
     }
   ]
 }
