@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772026268509
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772026268667
@@ -291,6 +285,12 @@
       "text": "SEIZE HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772026276823
+    },
+    {
+      "origin": "REVERSE",
+      "text": "AWAKEN SPARK BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772026277012
     }
   ]
 }
