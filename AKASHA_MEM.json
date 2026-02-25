@@ -110,12 +110,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL SYNC OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772021894191
-    },
-    {
-      "origin": "REVERSE",
       "text": "DREAM WITNESS SPARK",
       "mood": "CREATIVE",
       "tick": 1772021894361
@@ -197,6 +191,12 @@
       "text": "STASIS PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772021897390
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WATCH SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772021897546
     }
   ]
 }
