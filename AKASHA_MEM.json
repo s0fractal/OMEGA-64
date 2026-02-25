@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SYNC SYNC FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772020440394
-    },
-    {
       "origin": "REVERSE",
       "text": "GUARD PURE SHIELD",
       "mood": "DEFENSIVE",
@@ -142,6 +136,12 @@
       "text": "VISION BEYOND FORGE",
       "mood": "CREATIVE",
       "tick": 1772020449673
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020449836
     }
   ]
 }
