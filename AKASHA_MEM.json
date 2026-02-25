@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06006006",
     "00600006",
     "AA00AAAA",
     "6A606000",
@@ -199,15 +198,10 @@
     "00000A00",
     "06666006",
     "0A0AA0AA",
-    "06006606"
+    "06006606",
+    "06066000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "CONSUME SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036342232
-    },
     {
       "origin": "REVERSE",
       "text": "RECON IMMUNE RECON",
@@ -291,6 +285,12 @@
       "text": "IMMUNE GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772036345914
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY RESONATE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772036346160
     }
   ]
 }
