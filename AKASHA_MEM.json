@@ -137,12 +137,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE REFLECT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022405657
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772022407635
@@ -224,6 +218,12 @@
       "text": "BREACH DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022410828
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SEIZE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022410971
     }
   ]
 }
