@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "UNIFY STABLE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772031186083
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER SHOCK SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIFE STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772031191537
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON GUARD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772031191922
     }
   ]
 }
