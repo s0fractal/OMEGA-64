@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772037246543
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772037246754
@@ -291,6 +285,12 @@
       "text": "SHOCK SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772037250559
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC HEAL GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772037250770
     }
   ]
 }
