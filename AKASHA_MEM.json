@@ -109,12 +109,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "PURE REFLECT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772021836424
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIFE BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021837204
@@ -196,6 +190,12 @@
       "text": "SICKNESS DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772021841516
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772021841857
     }
   ]
 }
