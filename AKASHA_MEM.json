@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW COHERE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772035010151
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772035010353
@@ -291,6 +285,12 @@
       "text": "WAIT SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772035013866
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK WITNESS SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772035014067
     }
   ]
 }
