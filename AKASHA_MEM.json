@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE STRIKE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040482527
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY SYNC BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772040484701
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHIELD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040484873
     }
   ]
 }
