@@ -107,12 +107,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK SHOCK CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021811218
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE GIVING UNIFY",
       "mood": "HARMONIC",
@@ -195,6 +189,12 @@
       "text": "REFLECT WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772021817306
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772021817840
     }
   ]
 }
