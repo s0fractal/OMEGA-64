@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SHOCK SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035778202
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772035778367
@@ -291,6 +285,12 @@
       "text": "UNIFY FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772035782667
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772035782955
     }
   ]
 }
