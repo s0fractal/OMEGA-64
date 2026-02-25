@@ -94,12 +94,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "REFLECT STASIS IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021515030
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH IMMUNE RECON",
       "mood": "DEFENSIVE",
@@ -182,6 +176,12 @@
       "text": "GIVING SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772021526398
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GUARD IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021526752
     }
   ]
 }
