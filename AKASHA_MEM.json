@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032894515
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS RESONATE SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FLOW GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772032898224
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032898409
     }
   ]
 }
