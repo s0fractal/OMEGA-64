@@ -23,12 +23,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIKE SHOCK STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019475241
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "CONSUME HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772019475454
@@ -110,6 +104,12 @@
       "text": "GUARD WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772019483072
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIKE STRIFE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019483771
     }
   ]
 }
