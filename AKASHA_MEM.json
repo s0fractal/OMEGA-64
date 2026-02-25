@@ -196,12 +196,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772023874962
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAVE WITNESS AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772023875170
@@ -283,6 +277,12 @@
       "text": "DRAIN HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023882182
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023882465
     }
   ]
 }
