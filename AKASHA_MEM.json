@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS SHOCK BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772016638000
-    },
-    {
       "origin": "INTERFACE",
       "text": "UNIFY OSMOSIS GIVING",
       "mood": "HARMONIC",
@@ -107,6 +101,12 @@
       "text": "STRIKE STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772016723213
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE BREACH SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772016725611
     }
   ]
 }
