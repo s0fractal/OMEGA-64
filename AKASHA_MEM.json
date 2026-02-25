@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "C0DED000",
     "A0666660",
     "00666660",
     "00066660",
@@ -199,15 +198,10 @@
     "0B0A0000",
     "AA660660",
     "A0666A60",
-    "AAAAA00A"
+    "AAAAA00A",
+    "AA0AA000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "COHERE UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772036226895
-    },
     {
       "origin": "REVERSE",
       "text": "UNIFY BLOOM HEAL",
@@ -291,6 +285,12 @@
       "text": "HEAL STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772036229929
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DECAY SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036230437
     }
   ]
 }
