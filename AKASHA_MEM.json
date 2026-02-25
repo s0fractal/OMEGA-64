@@ -150,12 +150,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STABLE UNIFY FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772022578263
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE UNIFY UNIFY",
       "mood": "HARMONIC",
@@ -238,6 +232,12 @@
       "text": "REFLECT IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022583738
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022583926
     }
   ]
 }
