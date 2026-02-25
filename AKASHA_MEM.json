@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON WAIT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772038638722
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772038638954
@@ -291,6 +285,12 @@
       "text": "STABLE OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772038641622
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038641840
     }
   ]
 }
