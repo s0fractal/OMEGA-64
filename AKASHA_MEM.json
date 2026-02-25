@@ -163,12 +163,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS RESONATE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772022997213
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER STASIS IMMUNE",
       "mood": "DEFENSIVE",
@@ -251,6 +245,12 @@
       "text": "STRIFE DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023000902
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WATCH IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023002598
     }
   ]
 }
