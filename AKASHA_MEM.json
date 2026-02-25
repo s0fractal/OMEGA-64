@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "SOMA",
-      "text": "FLOW FLOW BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772041810927
-    },
-    {
       "origin": "INTERFACE",
       "text": "UNIFY HEAL RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "REFLECT STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772041816191
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE SHELTER REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041816390
     }
   ]
 }
