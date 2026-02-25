@@ -81,12 +81,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772021134551
-    },
-    {
       "origin": "INTERFACE",
       "text": "BREACH SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
@@ -169,6 +163,12 @@
       "text": "DECAY HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772021143174
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772021143303
     }
   ]
 }
