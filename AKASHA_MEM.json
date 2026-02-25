@@ -110,12 +110,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "GIVING HEAL HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772021903713
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK SEIZE STRIFE",
       "mood": "AGGRESSIVE",
@@ -198,6 +192,12 @@
       "text": "DRAIN SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772021908270
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BREACH DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021908596
     }
   ]
 }
