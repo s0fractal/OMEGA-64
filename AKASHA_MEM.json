@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "WATCH WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040948006
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM BLOOM SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIFE HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040951041
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "UNIFY GIVING BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772040951361
     }
   ]
 }
