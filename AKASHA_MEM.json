@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "UNIFY BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772040475583
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER SHELTER SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772040478122
+    },
+    {
+      "origin": "STREAM",
+      "text": "PURE PURE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040478246
     }
   ]
 }
