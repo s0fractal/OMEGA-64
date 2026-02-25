@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE UNIFY UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772034723698
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772034723913
@@ -291,6 +285,12 @@
       "text": "SHOCK SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772034726879
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE DREAM AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772034727096
     }
   ]
 }
