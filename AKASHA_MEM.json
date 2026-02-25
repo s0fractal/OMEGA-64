@@ -159,12 +159,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SEIZE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022797289
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022797552
@@ -246,6 +240,12 @@
       "text": "RESONATE UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772022803774
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHIELD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022803915
     }
   ]
 }
