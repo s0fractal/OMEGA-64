@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER SHELTER WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772038902519
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772038902756
@@ -291,6 +285,12 @@
       "text": "FLOW OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772038909424
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772038909650
     }
   ]
 }
