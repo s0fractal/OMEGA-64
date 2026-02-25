@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "NAND",
-      "text": "BLOOM GIVING SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772041392792
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL FLOW OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772041398287
+    },
+    {
+      "origin": "STREAM",
+      "text": "PURE SHIELD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041398773
     }
   ]
 }
