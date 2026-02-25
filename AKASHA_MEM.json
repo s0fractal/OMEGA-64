@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STABLE COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772026074232
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIKE SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772026075565
@@ -291,6 +285,12 @@
       "text": "HEAL RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772026079247
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DECAY CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026079922
     }
   ]
 }
