@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037044481
-    },
-    {
       "origin": "ALPHA_REVERSE",
       "text": "FLOW HEAL BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WAIT REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772037048468
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT WATCH WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772037050324
     }
   ]
 }
