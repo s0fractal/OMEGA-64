@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE BREACH SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026901121
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772026901590
@@ -291,6 +285,12 @@
       "text": "WAIT RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772026905098
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS BEYOND WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772026905414
     }
   ]
 }
