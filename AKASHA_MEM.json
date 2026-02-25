@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "GUARD REFLECT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041453812
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE OSMOSIS HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STABLE COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041457022
+    },
+    {
+      "origin": "STREAM",
+      "text": "UNIFY UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772041457197
     }
   ]
 }
