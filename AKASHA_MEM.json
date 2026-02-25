@@ -149,12 +149,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SICKNESS BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022537192
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
@@ -237,6 +231,12 @@
       "text": "SYNC SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022544585
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772022544870
     }
   ]
 }
