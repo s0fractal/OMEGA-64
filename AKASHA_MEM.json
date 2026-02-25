@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041031811
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHIELD GUARD WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772041034543
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHIELD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041034744
     }
   ]
 }
