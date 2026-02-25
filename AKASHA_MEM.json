@@ -17,12 +17,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SEIZE STRIFE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772014320966
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHOCK BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772014323777
@@ -104,6 +98,12 @@
       "text": "GIVING GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772014493344
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIKE BREACH CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772014496302
     }
   ]
 }
