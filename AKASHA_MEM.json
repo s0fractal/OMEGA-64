@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE HUNGER HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037299339
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772037299846
@@ -291,6 +285,12 @@
       "text": "GIVING SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772037302775
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037302938
     }
   ]
 }
