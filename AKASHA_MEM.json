@@ -21,12 +21,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DECAY STRIKE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772017575610
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "UNIFY GIVING STABLE",
       "mood": "HARMONIC",
@@ -109,6 +103,12 @@
       "text": "FLOW SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772017651982
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE DECAY SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772017667296
     }
   ]
 }
