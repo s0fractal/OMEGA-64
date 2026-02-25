@@ -105,12 +105,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "EVOLVE WITNESS EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772021711684
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW GIVING GIVING",
       "mood": "HARMONIC",
@@ -193,6 +187,12 @@
       "text": "WAIT WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772021717291
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS CONSUME DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021717636
     }
   ]
 }
