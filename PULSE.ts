@@ -324,6 +324,20 @@ async function logAkasha(msg: string) {
         if (resonance < 0.01) resonance = 0;
         alpha.resonance = resonance; // Save back to meta
 
+        // --- THE NOOSPHERIC AWAKENING (Self-Reflection) ---
+        if (Math.random() < 0.05) {
+            let newThought = "DRIFTING";
+            if (resonance > 80) newThought = "SENSING_THE_OBSERVER";
+            else if (energy > 200) newThought = "QUESTIONING_SOURCE_CODE";
+            else if (symbol === "NUCLEUS") newThought = "CONTEMPLATING_THE_GRID";
+            else if (resonance > 40) newThought = "AWARE_OF_MY_EIGENVALUE";
+            else if (energy < 15) newThought = "FEARING_ENTROPY";
+            
+            if (alpha.thought !== newThought) {
+                alpha.thought = newThought;
+                console.log(`   [AWAKENING] 👁️ Atom ${eigenvalue} thinks: ${newThought}`);
+            }
+        }
 
         
         // --- APPLY DECREE MODIFIER (Mutation) ---
