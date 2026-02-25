@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS HEAL BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772035215462
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772035215764
@@ -291,6 +285,12 @@
       "text": "STRIKE BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772035219010
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHIELD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772035219223
     }
   ]
 }
