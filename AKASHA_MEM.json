@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772036581253
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772036581465
@@ -291,6 +285,12 @@
       "text": "SHOCK DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772036584353
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772036584508
     }
   ]
 }
