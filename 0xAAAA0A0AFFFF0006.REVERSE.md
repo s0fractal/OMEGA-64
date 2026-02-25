@@ -72,6 +72,7 @@ signals: []
 bond_strengths: {}
 bonds:
   - '0xFF0FFFFF0000000E'
+  - '0xAABB0000FFFF0002'
 ---
 
 <div align="center">
