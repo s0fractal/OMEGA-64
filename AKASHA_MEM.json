@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772030314181
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772030314720
@@ -291,6 +285,12 @@
       "text": "OSMOSIS BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772030320646
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON RECON IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772030321010
     }
   ]
 }
