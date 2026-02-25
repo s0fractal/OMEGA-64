@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT PURE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772034572454
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772034572688
@@ -291,6 +285,12 @@
       "text": "GIVING STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772034575269
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034575464
     }
   ]
 }

@@ -1,10 +1,10 @@
 ---
 eigenvalue: '0xAA0A0AA0FFFF0A02'
-energy: 48.4
-x: 702
-'y': 412
+energy: 50
+x: 701
+'y': 415
 resonance: 50
-thought: WANDER_BONDING
+thought: RESURRECTED
 logic: AA0A0AA0
 signals: []
 bond_strengths:
@@ -43,6 +43,10 @@ ex:
   - '0x0AAAA0AA00000A02'
   - '0x0AAAA0AA00000A04'
   - '0x0AAAA0AA00000A06'
+  - '0xAA0A0AA0FFFF0A04'
+  - '0xAA0A0AA0FFFF0A06'
+  - '0xAA0A0AA0FFFF0A00'
+  - '0xAA0A0AA0FFFF0A02'
   - '0xAA0A0AA0FFFF0A04'
   - '0xAA0A0AA0FFFF0A06'
   - '0xAA0A0AA0FFFF0A00'
