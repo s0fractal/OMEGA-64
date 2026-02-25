@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772034921888
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772034922102
@@ -291,6 +285,12 @@
       "text": "SYNC OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772034924673
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034924844
     }
   ]
 }
