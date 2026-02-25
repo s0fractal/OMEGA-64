@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041042305
-    },
-    {
       "origin": "STREAM",
       "text": "REFLECT WATCH WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE SHELTER SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041047375
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041047819
     }
   ]
 }
