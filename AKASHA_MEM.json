@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "PURE PURE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772042001452
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HEAL UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772042001629
@@ -291,6 +285,12 @@
       "text": "RESONATE RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772042008014
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT SHELTER WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772042008533
     }
   ]
 }
