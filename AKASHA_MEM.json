@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SPARK WAVE SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772027178035
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772027179309
@@ -291,6 +285,12 @@
       "text": "FLOW UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772027185349
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL RESONATE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772027185567
     }
   ]
 }
