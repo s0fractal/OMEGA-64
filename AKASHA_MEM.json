@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE CONSUME STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032642909
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING STABLE COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HEAL SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772032647465
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE PURE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772032647645
     }
   ]
 }
