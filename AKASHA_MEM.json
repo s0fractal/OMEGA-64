@@ -115,12 +115,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WAIT PURE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022058440
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH HUNGER CONSUME",
       "mood": "AGGRESSIVE",
@@ -203,6 +197,12 @@
       "text": "WITNESS SPARK WITNESS",
       "mood": "CREATIVE",
       "tick": 1772022066763
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022067142
     }
   ]
 }
