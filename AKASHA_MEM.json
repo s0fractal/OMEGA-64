@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS SHELTER WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772025030906
-    },
-    {
-      "origin": "REVERSE",
       "text": "AWAKEN EVOLVE FORGE",
       "mood": "CREATIVE",
       "tick": 1772025031039
@@ -291,6 +285,12 @@
       "text": "HEAL GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772025036637
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772025036818
     }
   ]
 }
