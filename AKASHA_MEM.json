@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772023749465
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772023749665
@@ -278,6 +272,12 @@
       "text": "WATCH WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023752359
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHIELD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772023753033
     }
   ]
 }
