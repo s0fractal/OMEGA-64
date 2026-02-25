@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772026759283
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772026759664
@@ -291,6 +285,12 @@
       "text": "PURE WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772026764681
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIFE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026764884
     }
   ]
 }
