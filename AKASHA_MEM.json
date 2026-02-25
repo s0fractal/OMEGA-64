@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE OSMOSIS OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772025827637
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772025828079
@@ -291,6 +285,12 @@
       "text": "SHELTER STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772025831392
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772025831578
     }
   ]
 }
