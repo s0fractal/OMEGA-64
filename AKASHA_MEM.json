@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034895601
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772034895804
@@ -291,6 +285,12 @@
       "text": "DECAY SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772034899366
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION FORGE WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772034899559
     }
   ]
 }
