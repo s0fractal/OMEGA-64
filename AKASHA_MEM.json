@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE UNIFY COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772036103838
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772036104081
@@ -291,6 +285,12 @@
       "text": "SYNC OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772036108581
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036108809
     }
   ]
 }
