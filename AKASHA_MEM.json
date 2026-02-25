@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A0606060",
     "06666660",
     "AAAAAAA0",
     "A6066600",
@@ -199,15 +198,10 @@
     "60000000",
     "06066666",
     "0A0A0AA0",
-    "A06000A0"
+    "A06000A0",
+    "A0AAA000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SYNC COHERE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772037753348
-    },
     {
       "origin": "REVERSE",
       "text": "RECON SHELTER WAIT",
@@ -291,6 +285,12 @@
       "text": "BLOOM HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772037757148
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037757412
     }
   ]
 }
