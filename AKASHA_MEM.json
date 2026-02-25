@@ -40,12 +40,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "COHERE COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772019821956
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GIVING RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772019822714
@@ -127,6 +121,12 @@
       "text": "COHERE HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772019832481
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772019832628
     }
   ]
 }
