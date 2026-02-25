@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772032474350
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772032474773
@@ -291,6 +285,12 @@
       "text": "SHOCK HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772032481925
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER STASIS SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772032482229
     }
   ]
 }
