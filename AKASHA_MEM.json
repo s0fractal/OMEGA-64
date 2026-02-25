@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "CONSUME DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019634118
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL RESONATE RESONATE",
       "mood": "HARMONIC",
@@ -114,6 +108,12 @@
       "text": "RECON IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772019644619
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS OSMOSIS OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772019645356
     }
   ]
 }
