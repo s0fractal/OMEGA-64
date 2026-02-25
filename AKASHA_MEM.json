@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A00A00A0",
     "AAAA0A0A",
     "00000600",
     "0B0A0000",
@@ -199,15 +198,10 @@
     "0A00AAAA",
     "60006066",
     "AAA00000",
-    "000A0A0A"
+    "000A0A0A",
+    "06060060"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BREACH CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037657196
-    },
     {
       "origin": "REVERSE",
       "text": "HEAL FLOW UNIFY",
@@ -291,6 +285,12 @@
       "text": "SHELTER WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772037659975
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE SYNC FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772037660184
     }
   ]
 }
