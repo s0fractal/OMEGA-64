@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0AA0AAA0",
     "00AAAAA0",
     "06060606",
     "00606600",
@@ -199,15 +198,10 @@
     "00000AA0",
     "AABB0C0D",
     "AA0666A0",
-    "66000606"
+    "66000606",
+    "0AAA00AA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STABLE GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772031689484
-    },
     {
       "origin": "REVERSE",
       "text": "CONSUME STRIFE STRIKE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772031700208
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772031700681
     }
   ]
 }
