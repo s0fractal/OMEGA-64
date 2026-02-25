@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038376856
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772038377227
@@ -291,6 +285,12 @@
       "text": "STABLE RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772038380066
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING HEAL RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772038380272
     }
   ]
 }
