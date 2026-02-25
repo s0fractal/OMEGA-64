@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT PURE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040604862
-    },
-    {
       "origin": "STREAM",
       "text": "GUARD GUARD WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040608072
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772040608241
     }
   ]
 }
