@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DREAM VISION EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772025104139
-    },
-    {
       "origin": "INTERFACE",
       "text": "SYNC GIVING COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHIELD SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772025111215
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WATCH PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772025111744
     }
   ]
 }
