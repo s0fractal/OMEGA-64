@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029163070
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772029163428
@@ -291,6 +285,12 @@
       "text": "STABLE HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772029168129
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DECAY SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029168390
     }
   ]
 }
