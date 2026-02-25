@@ -185,12 +185,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023601211
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772023601399
@@ -272,6 +266,12 @@
       "text": "FLOW SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772023606371
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD STASIS RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772023606536
     }
   ]
 }
