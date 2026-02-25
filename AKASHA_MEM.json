@@ -32,12 +32,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WAIT WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772019690049
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RECON PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772019690542
@@ -119,6 +113,12 @@
       "text": "SHOCK DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772019702450
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019703588
     }
   ]
 }
