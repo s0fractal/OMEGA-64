@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "I16_CLAMP",
-      "text": "COHERE COHERE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772041085192
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER DECAY SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041088594
+    },
+    {
+      "origin": "STREAM",
+      "text": "COHERE RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041088864
     }
   ]
 }
