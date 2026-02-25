@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772027403846
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772027404073
@@ -291,6 +285,12 @@
       "text": "SHOCK CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772027411269
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHIELD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772027411714
     }
   ]
 }
