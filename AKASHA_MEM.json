@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE WAIT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772041272536
-    },
-    {
       "origin": "STREAM",
       "text": "DECAY SEIZE SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041277478
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS SHIELD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772041277853
     }
   ]
 }
