@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS STRIFE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036211216
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772036211551
@@ -291,6 +285,12 @@
       "text": "UNIFY OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772036215197
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS BEYOND EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772036215463
     }
   ]
 }
