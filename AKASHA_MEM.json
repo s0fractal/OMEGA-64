@@ -155,12 +155,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT WATCH SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772022720344
-    },
-    {
       "origin": "PARADOX",
       "text": "FLOW GIVING OSMOSIS",
       "mood": "HARMONIC",
@@ -243,6 +237,12 @@
       "text": "SHOCK CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022729814
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE STABLE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772022730331
     }
   ]
 }
