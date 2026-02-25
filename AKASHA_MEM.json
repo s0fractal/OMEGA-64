@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "PURE GUARD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041706824
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE FLOW HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHELTER WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041713104
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DECAY CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041713515
     }
   ]
 }
