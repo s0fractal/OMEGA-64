@@ -96,12 +96,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER GUARD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021527312
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772021527797
@@ -183,6 +177,12 @@
       "text": "SHELTER SHIELD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772021532988
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SHOCK SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021533975
     }
   ]
 }
