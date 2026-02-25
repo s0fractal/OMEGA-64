@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY RESONATE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772037295486
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772037295751
@@ -291,6 +285,12 @@
       "text": "IMMUNE STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772037299846
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM STABLE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772037300082
     }
   ]
 }
