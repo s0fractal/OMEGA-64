@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035365874
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772035366079
@@ -291,6 +285,12 @@
       "text": "GIVING STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772035369310
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD RECON STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772035369582
     }
   ]
 }
