@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD WATCH STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772026416354
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772026416561
@@ -291,6 +285,12 @@
       "text": "CONSUME CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772026420486
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772026420752
     }
   ]
 }
