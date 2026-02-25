@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "PURE PURE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041086686
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS HEAL HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772041089987
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "IMMUNE SHELTER WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041090158
     }
   ]
 }
