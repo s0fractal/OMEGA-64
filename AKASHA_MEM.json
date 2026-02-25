@@ -149,12 +149,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHELTER IMMUNE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022546527
-    },
-    {
       "origin": "REVERSE",
       "text": "SHIELD WATCH GUARD",
       "mood": "DEFENSIVE",
@@ -237,6 +231,12 @@
       "text": "DECAY STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772022550500
+    },
+    {
+      "origin": "STREAM",
+      "text": "UNIFY STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772022550664
     }
   ]
 }
