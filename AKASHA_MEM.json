@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING HEAL FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772029523715
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772029524689
@@ -291,6 +285,12 @@
       "text": "DREAM EVOLVE WITNESS",
       "mood": "CREATIVE",
       "tick": 1772029537199
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING UNIFY GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772029538066
     }
   ]
 }
