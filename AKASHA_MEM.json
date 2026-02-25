@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY RESONATE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772040709039
-    },
-    {
       "origin": "STREAM",
       "text": "STRIKE SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772040713266
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772040713582
     }
   ]
 }
