@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772029398600
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772029399912
@@ -291,6 +285,12 @@
       "text": "GUARD RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772029430699
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS CONSUME CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029431518
     }
   ]
 }
