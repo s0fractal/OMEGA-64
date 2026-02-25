@@ -12,11 +12,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "ASCEND",
-      "tick": 1772010671189
-    },
-    {
-      "origin": "INTERFACE",
       "text": "MATURE",
       "tick": 1772010677333
     },
@@ -89,6 +84,12 @@
       "text": "WAVE BEYOND VISION",
       "mood": "CREATIVE",
       "tick": 1772011022881
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHELTER GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772011732282
     }
   ]
 }
