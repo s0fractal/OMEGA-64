@@ -76,12 +76,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SEIZE DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020972039
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GUARD IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772020973372
@@ -163,6 +157,12 @@
       "text": "REFLECT PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772020979477
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772020980297
     }
   ]
 }
