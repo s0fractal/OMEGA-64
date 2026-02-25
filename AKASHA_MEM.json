@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE RESONATE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772040713762
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS WAIT WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772040716837
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT RECON STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772040716973
     }
   ]
 }
