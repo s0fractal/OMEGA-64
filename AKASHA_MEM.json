@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIFE STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041240871
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "COHERE HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772041241458
@@ -291,6 +285,12 @@
       "text": "REFLECT IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772041245298
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772041245529
     }
   ]
 }
