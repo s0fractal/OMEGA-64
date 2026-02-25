@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "ABB00000",
     "66006606",
     "60000600",
     "AA0A0AAA",
@@ -199,15 +198,10 @@
     "06600660",
     "AAAAA0AA",
     "60600666",
-    "0AA00A00"
+    "0AA00A00",
+    "A00A00AA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "IMMUNE SHELTER WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772038489951
-    },
     {
       "origin": "ARCHIVIST",
       "text": "FLOW FLOW FLOW",
@@ -291,6 +285,12 @@
       "text": "DRAIN STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772038493340
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DRAIN STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038493574
     }
   ]
 }
