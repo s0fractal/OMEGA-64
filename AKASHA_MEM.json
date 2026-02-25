@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026618060
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772026618370
@@ -291,6 +285,12 @@
       "text": "OSMOSIS UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772026622435
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING GIVING FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772026622874
     }
   ]
 }
