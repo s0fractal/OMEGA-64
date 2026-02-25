@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE STASIS IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772029011117
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772029011325
@@ -291,6 +285,12 @@
       "text": "RECON GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772029026510
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772029028120
     }
   ]
 }
