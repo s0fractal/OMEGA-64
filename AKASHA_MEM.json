@@ -151,12 +151,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE UNIFY UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772022573957
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022574121
@@ -238,6 +232,12 @@
       "text": "BLOOM GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022577689
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772022578263
     }
   ]
 }
