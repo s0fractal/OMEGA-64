@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "B_READ",
-      "text": "OSMOSIS HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041160660
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME SEIZE DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIFE CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041163474
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772041164186
     }
   ]
 }
