@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SEIZE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026465448
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772026465633
@@ -291,6 +285,12 @@
       "text": "SHIELD WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772026470970
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772026471212
     }
   ]
 }
