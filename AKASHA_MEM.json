@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_GUARDIAN",
-      "text": "UNIFY HEAL HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772040480199
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE FLOW STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SEIZE CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772040482886
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040483009
     }
   ]
 }
