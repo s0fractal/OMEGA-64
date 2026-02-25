@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SICKNESS HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034286586
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772034286770
@@ -291,6 +285,12 @@
       "text": "SHELTER WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772034289233
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772034289443
     }
   ]
 }
