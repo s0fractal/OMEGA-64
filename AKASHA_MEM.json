@@ -146,12 +146,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE HUNGER STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022507393
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772022507694
@@ -233,6 +227,12 @@
       "text": "SPARK BEYOND AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772022511663
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH STASIS GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022511857
     }
   ]
 }
