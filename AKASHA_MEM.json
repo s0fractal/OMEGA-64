@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GUARD SHIELD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772019639597
-    },
-    {
       "origin": "INTERFACE",
       "text": "RESONATE GIVING STABLE",
       "mood": "HARMONIC",
@@ -114,6 +108,12 @@
       "text": "RESONATE STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772019650878
+    },
+    {
+      "origin": "STREAM",
+      "text": "SYNC RESONATE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772019652054
     }
   ]
 }
