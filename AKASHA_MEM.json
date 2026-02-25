@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "CONSUME BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772015959811
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GUARD WAIT WATCH",
       "mood": "DEFENSIVE",
@@ -107,6 +101,12 @@
       "text": "DECAY SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772016033780
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "CONSUME SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772016041156
     }
   ]
 }
