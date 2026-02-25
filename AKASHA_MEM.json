@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66066660",
     "06000600",
     "06666600",
     "000A0A00",
@@ -199,15 +198,10 @@
     "AA0A0A0A",
     "9018A098",
     "ABBA0000",
-    "66600660"
+    "66600660",
+    "A00AAA00"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "REFLECT REFLECT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772027344390
-    },
     {
       "origin": "REVERSE",
       "text": "STABLE BLOOM GIVING",
@@ -291,6 +285,12 @@
       "text": "SICKNESS BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772027357600
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS HUNGER SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027357896
     }
   ]
 }
