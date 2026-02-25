@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041449366
-    },
-    {
       "origin": "INTERFACE",
       "text": "GIVING COHERE FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GUARD REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772041453812
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE OSMOSIS HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041453946
     }
   ]
 }
