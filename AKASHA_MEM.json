@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029008188
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772029008539
@@ -291,6 +285,12 @@
       "text": "DRAIN STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772029021218
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS PURE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772029022278
     }
   ]
 }
