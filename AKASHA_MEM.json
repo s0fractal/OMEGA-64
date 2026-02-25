@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STABLE STABLE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040733576
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS WATCH GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772040736953
+    },
+    {
+      "origin": "CAR",
+      "text": "BREACH SEIZE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040737139
     }
   ]
 }
