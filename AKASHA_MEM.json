@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772039918365
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772039918873
@@ -291,6 +285,12 @@
       "text": "DRAIN DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772039927919
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772039928413
     }
   ]
 }
