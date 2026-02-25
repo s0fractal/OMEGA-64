@@ -92,12 +92,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021275167
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772021276196
@@ -179,6 +173,12 @@
       "text": "RESONATE HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772021313158
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772021313975
     }
   ]
 }
