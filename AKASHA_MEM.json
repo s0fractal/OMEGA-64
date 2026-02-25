@@ -180,12 +180,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD WATCH REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023392434
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023394082
@@ -267,6 +261,12 @@
       "text": "BREACH CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023397294
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023397511
     }
   ]
 }
