@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DECAY SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026734014
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772026734227
@@ -291,6 +285,12 @@
       "text": "OSMOSIS UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772026740813
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026741102
     }
   ]
 }
