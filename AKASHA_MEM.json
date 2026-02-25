@@ -49,12 +49,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHIELD REFLECT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772020139161
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GIVING RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772020140830
@@ -136,6 +130,12 @@
       "text": "RECON WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772020148948
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772020149965
     }
   ]
 }
