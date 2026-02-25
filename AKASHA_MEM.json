@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON SHELTER RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772027150277
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772027150704
@@ -291,6 +285,12 @@
       "text": "STRIFE DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772027158511
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772027158665
     }
   ]
 }
