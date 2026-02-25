@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040929830
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GUARD RECON IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772040934061
+    },
+    {
+      "origin": "STREAM",
+      "text": "WAIT GUARD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040934669
     }
   ]
 }
