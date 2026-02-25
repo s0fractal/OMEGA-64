@@ -180,12 +180,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE IMMUNE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023377378
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023377631
@@ -267,6 +261,12 @@
       "text": "RECON SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023381376
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY STABLE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772023382411
     }
   ]
 }
