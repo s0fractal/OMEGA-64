@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033526570
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772033526749
@@ -291,6 +285,12 @@
       "text": "HEAL BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772033529143
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772033529326
     }
   ]
 }
