@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE SHIELD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023141393
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772023141661
@@ -259,6 +253,12 @@
       "text": "STRIKE CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772023147634
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW OSMOSIS HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772023147924
     }
   ]
 }
