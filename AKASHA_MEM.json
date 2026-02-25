@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772039073454
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772039073651
@@ -291,6 +285,12 @@
       "text": "WATCH GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772039076955
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS COHERE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772039077181
     }
   ]
 }
