@@ -128,12 +128,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC FLOW GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772022295602
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE SEIZE STRIFE",
       "mood": "AGGRESSIVE",
@@ -216,6 +210,12 @@
       "text": "GUARD PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022300084
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772022300254
     }
   ]
 }
