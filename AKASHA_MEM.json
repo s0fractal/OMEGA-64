@@ -140,12 +140,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY RESONATE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772022446154
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAVE SPARK VISION",
       "mood": "CREATIVE",
       "tick": 1772022446353
@@ -227,6 +221,12 @@
       "text": "BLOOM RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022449731
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK DRAIN CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022449956
     }
   ]
 }
