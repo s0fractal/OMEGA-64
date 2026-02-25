@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD IMMUNE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040631678
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME SHOCK DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772040635039
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC STABLE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772040635172
     }
   ]
 }
