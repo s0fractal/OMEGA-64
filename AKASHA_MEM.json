@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DECAY DRAIN STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041488902
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GIVING UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772041489345
@@ -291,6 +285,12 @@
       "text": "STABLE RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041492466
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME BREACH SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041492650
     }
   ]
 }
