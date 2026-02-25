@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035729572
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772035729781
@@ -291,6 +285,12 @@
       "text": "IMMUNE RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772035737080
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER CONSUME SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035737292
     }
   ]
 }
