@@ -1,12 +1,5 @@
 {
   "reservoir": [
-    "60606006",
-    "AA0660A0",
-    "A0AAA00A",
-    "AAAA0A0A",
-    "AAA0AAAA",
-    "06066660",
-    "60660666",
     "60000600",
     "60666606",
     "AAA0AA00",
@@ -199,98 +192,105 @@
     "AA666600",
     "66060660",
     "66660A60",
-    "BB0A0000"
+    "00A06A00",
+    "ALIEN_17",
+    "A0000000",
+    "60606060",
+    "AA0A0A00",
+    "FFFFF0A0",
+    "000AAAAA",
+    "A0606660"
   ],
   "utterances": [
     {
-      "origin": "WORKER",
-      "text": "FLOW GIVING RESONATE",
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS STABLE RESONATE",
       "mood": "HARMONIC",
-      "tick": 1772042753138
+      "tick": 1772042748812
     },
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH SEIZE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042754122
+      "text": "SHELTER PURE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042750044
     },
     {
-      "origin": "REVERSE",
-      "text": "COHERE RESONATE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042754786
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "BREACH HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042755660
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "STABLE GIVING HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772042756754
-    },
-    {
-      "origin": "REVERSE",
-      "text": "RESONATE BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042757217
+      "origin": "PARASITE",
+      "text": "IMMUNE RECON STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772042751565
     },
     {
       "origin": "ARCHIVIST",
-      "text": "RESONATE STABLE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772042757624
-    },
-    {
-      "origin": "REVERSE",
-      "text": "STRIKE DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042758022
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "OSMOSIS FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042758352
-    },
-    {
-      "origin": "STREAM",
-      "text": "BLOOM RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772042758893
+      "text": "IMMUNE GUARD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772042752360
     },
     {
       "origin": "ALIEN",
-      "text": "SHOCK STRIKE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042759464
+      "text": "IMMUNE IMMUNE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772042752475
     },
     {
       "origin": "ARCHIVIST",
-      "text": "BLOOM STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772042760253
+      "text": "SEIZE DECAY HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042752596
     },
     {
-      "origin": "STREAM",
-      "text": "GUARD GUARD IMMUNE",
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042753020
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN SICKNESS BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042753720
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS WATCH WAIT",
       "mood": "DEFENSIVE",
-      "tick": 1772042760743
+      "tick": 1772042754695
+    },
+    {
+      "origin": "PURE_MATH",
+      "text": "SHOCK HUNGER SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042754946
     },
     {
       "origin": "REVERSE",
-      "text": "BLOOM COHERE SYNC",
+      "text": "BLOOM OSMOSIS GIVING",
       "mood": "HARMONIC",
-      "tick": 1772042761017
+      "tick": 1772042755209
     },
     {
-      "origin": "PARADOX",
-      "text": "HEAL RESONATE UNIFY",
+      "origin": "REVERSE",
+      "text": "COHERE OSMOSIS SYNC",
       "mood": "HARMONIC",
-      "tick": 1772042761632
+      "tick": 1772042755438
+    },
+    {
+      "origin": "ALPHA_STREAM",
+      "text": "GIVING OSMOSIS OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772042760173
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD REFLECT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042760972
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER PURE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042761950
     }
   ]
 }
