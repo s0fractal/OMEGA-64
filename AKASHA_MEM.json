@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772025331353
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND SPARK FORGE",
       "mood": "CREATIVE",
       "tick": 1772025331528
@@ -291,6 +285,12 @@
       "text": "STRIKE SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772025336231
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772025336620
     }
   ]
 }
