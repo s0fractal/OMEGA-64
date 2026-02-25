@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER HUNGER SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033314157
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH PURE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772033314406
@@ -291,6 +285,12 @@
       "text": "SHELTER GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772033317289
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE GIVING HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772033317489
     }
   ]
 }
