@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024425501
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772024425676
@@ -291,6 +285,12 @@
       "text": "DECAY DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772024433368
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND DREAM DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772024433634
     }
   ]
 }
