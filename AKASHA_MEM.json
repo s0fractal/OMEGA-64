@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "HEAL UNIFY SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772040578181
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK DRAIN HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772040581190
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WATCH STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772040581434
     }
   ]
 }
