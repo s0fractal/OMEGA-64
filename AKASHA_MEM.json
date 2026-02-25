@@ -41,12 +41,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BLOOM STABLE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772019859068
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HUNGER HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772019859534
@@ -128,6 +122,12 @@
       "text": "GUARD REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772019869720
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER DRAIN HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019870336
     }
   ]
 }
