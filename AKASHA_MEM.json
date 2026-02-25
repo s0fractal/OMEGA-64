@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING BLOOM STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772035304620
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH DECAY SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HUNGER DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772035310338
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT REFLECT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772035310644
     }
   ]
 }
