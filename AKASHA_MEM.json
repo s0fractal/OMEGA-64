@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT PURE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772033239109
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772033239391
@@ -291,6 +285,12 @@
       "text": "STASIS IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772033244373
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033245905
     }
   ]
 }
