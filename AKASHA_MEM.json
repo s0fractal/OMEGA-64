@@ -204,93 +204,93 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER STASIS REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042688491
-    },
-    {
-      "origin": "REVERSE",
-      "text": "HEAL RESONATE FLOW",
+      "text": "STABLE HEAL OSMOSIS",
       "mood": "HARMONIC",
-      "tick": 1772042689998
+      "tick": 1772042691214
+    },
+    {
+      "origin": "ALIEN",
+      "text": "AWAKEN DREAM BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772042691819
     },
     {
       "origin": "ARCHIVIST",
-      "text": "RECON STASIS RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772042692043
-    },
-    {
-      "origin": "REVERSE",
-      "text": "HEAL STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042692638
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "WATCH SHIELD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772042692855
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE BREACH SHOCK",
+      "text": "HUNGER SEIZE CONSUME",
       "mood": "AGGRESSIVE",
-      "tick": 1772042693085
-    },
-    {
-      "origin": "REVERSE",
-      "text": "OSMOSIS HEAL RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042693587
-    },
-    {
-      "origin": "REVERSE",
-      "text": "GIVING STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042693905
+      "tick": 1772042691955
     },
     {
       "origin": "ARCHIVIST",
-      "text": "OSMOSIS GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772042694689
-    },
-    {
-      "origin": "REVERSE",
-      "text": "IMMUNE SHIELD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042694966
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "BREACH HUNGER BREACH",
+      "text": "SEIZE SHOCK DECAY",
       "mood": "AGGRESSIVE",
-      "tick": 1772042695840
+      "tick": 1772042692369
+    },
+    {
+      "origin": "CAR",
+      "text": "HEAL COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772042693004
     },
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS UNIFY OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772042696247
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE HEAL RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042697098
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD STASIS PURE",
+      "text": "WAIT PURE SHIELD",
       "mood": "DEFENSIVE",
-      "tick": 1772042697499
+      "tick": 1772042693138
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042693748
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772042694171
     },
     {
       "origin": "ARCHIVIST",
-      "text": "SHIELD PURE WATCH",
+      "text": "DRAIN SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042695712
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772042696045
+    },
+    {
+      "origin": "SUCC",
+      "text": "HEAL COHERE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772042697166
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SICKNESS DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042697635
+    },
+    {
+      "origin": "ALIEN",
+      "text": "BEYOND DREAM BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772042698241
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE PURE GUARD",
       "mood": "DEFENSIVE",
-      "tick": 1772042699479
+      "tick": 1772042698796
+    },
+    {
+      "origin": "POTENTIAL",
+      "text": "SHOCK CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042699387
     }
   ]
 }
