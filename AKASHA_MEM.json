@@ -97,12 +97,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHIELD IMMUNE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772021575382
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "COHERE COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772021575889
@@ -184,6 +178,12 @@
       "text": "CONSUME STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021582493
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN HUNGER SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021583548
     }
   ]
 }
