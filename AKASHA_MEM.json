@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "10000000",
     "66660660",
     "AA0A0AA0",
     "66666006",
@@ -199,15 +198,10 @@
     "00000006",
     "A00AA000",
     "66000600",
-    "A6666666"
+    "A6666666",
+    "AA666660"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "HEAL COHERE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772036966412
-    },
     {
       "origin": "REVERSE",
       "text": "WATCH SHELTER WAIT",
@@ -291,6 +285,12 @@
       "text": "HUNGER DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772036970539
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036970794
     }
   ]
 }
