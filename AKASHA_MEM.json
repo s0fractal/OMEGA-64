@@ -79,15 +79,10 @@
     "B0B00000",
     "60666000",
     "666666A0",
-    "06660000"
+    "06660000",
+    "6A666660"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT GUARD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021214330
-    },
     {
       "origin": "REVERSE",
       "text": "GUARD GUARD STASIS",
@@ -171,6 +166,12 @@
       "text": "SHOCK BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021220355
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD WAIT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021220568
     }
   ]
 }
