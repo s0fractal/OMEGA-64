@@ -173,12 +173,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE SHIELD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023237854
-    },
-    {
       "origin": "INTERFACE",
       "text": "BLOOM FLOW COHERE",
       "mood": "HARMONIC",
@@ -261,6 +255,12 @@
       "text": "STABLE OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772023245015
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DECAY CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023245370
     }
   ]
 }
