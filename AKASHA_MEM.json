@@ -61,12 +61,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE HEAL GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772020611289
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS PURE RECON",
       "mood": "DEFENSIVE",
@@ -149,6 +143,12 @@
       "text": "FLOW RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772020619018
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHIELD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020619595
     }
   ]
 }
