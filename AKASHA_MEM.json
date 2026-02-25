@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772037040275
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772037040467
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772037044481
+    },
+    {
+      "origin": "ALPHA_REVERSE",
+      "text": "FLOW HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772037044657
     }
   ]
 }
