@@ -102,12 +102,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772021677444
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH STASIS IMMUNE",
       "mood": "DEFENSIVE",
@@ -190,6 +184,12 @@
       "text": "STRIFE BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772021683836
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE STRIFE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021684016
     }
   ]
 }
