@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033868913
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772033869124
@@ -291,6 +285,12 @@
       "text": "BLOOM SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772033872555
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772033872748
     }
   ]
 }
