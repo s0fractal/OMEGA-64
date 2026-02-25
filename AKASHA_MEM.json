@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772038747942
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772038748149
@@ -291,6 +285,12 @@
       "text": "STASIS REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772038750962
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE SYNC SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772038751184
     }
   ]
 }
