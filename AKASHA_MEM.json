@@ -70,12 +70,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "HEAL BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772020873269
-    },
-    {
       "origin": "INTERFACE",
       "text": "HUNGER HUNGER STRIKE",
       "mood": "AGGRESSIVE",
@@ -158,6 +152,12 @@
       "text": "DRAIN CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772020879532
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE SEIZE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020879698
     }
   ]
 }
