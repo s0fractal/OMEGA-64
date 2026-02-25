@@ -27,15 +27,10 @@
     "A6666666",
     "A0000A00",
     "BA000000",
-    "AA000A00"
+    "AA000A00",
+    "6A6A66A0"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME HUNGER SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019691390
-    },
     {
       "origin": "REVERSE",
       "text": "STABLE BLOOM SYNC",
@@ -119,6 +114,12 @@
       "text": "HEAL OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772019703862
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772019705352
     }
   ]
 }
