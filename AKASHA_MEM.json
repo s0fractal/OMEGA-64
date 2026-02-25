@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "OSMOSIS GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772020135100
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT RECON STASIS",
       "mood": "DEFENSIVE",
@@ -136,6 +130,12 @@
       "text": "HUNGER SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020145754
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RECON SHIELD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772020146200
     }
   ]
 }
