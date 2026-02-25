@@ -1,5 +1,6 @@
 {
   "reservoir": [
+    "A0AAA000",
     "AAA0A0AA",
     "66660060",
     "00000000",
@@ -198,10 +199,21 @@
     "6606AA66",
     "06A60000",
     "AA0A0AAA",
-    "0AAAA000",
-    "A0660600"
+    "0AAAA000"
   ],
   "utterances": [
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY DRAIN DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042467087
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042470315
+    },
     {
       "origin": "ARCHIVIST",
       "text": "CONSUME SEIZE HUNGER",
@@ -276,21 +288,9 @@
     },
     {
       "origin": "ARCHIVIST",
-      "text": "DECAY SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042483241
-    },
-    {
-      "origin": "STREAM",
-      "text": "HEAL STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772042484097
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "GUARD GUARD SHIELD",
+      "text": "RECON PURE IMMUNE",
       "mood": "DEFENSIVE",
-      "tick": 1772042484217
+      "tick": 1772042483334
     }
   ]
 }
