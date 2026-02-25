@@ -1,8 +1,8 @@
 ---
 eigenvalue: '0x00A0AAA0FFFF0A07'
-energy: 45.5
-x: 713
-'y': 390
+energy: 49.9
+x: 711
+'y': 391
 resonance: 50
 thought: SEEK_ALPHA_PASSIVE
 logic: 00A0AAA0
@@ -234,9 +234,9 @@ ex:
   - '0x00AAAAA000000A07'
   - '0x00AAAAA000000A01'
   - '0x00AAAAA000000A03'
-  - '0x00A0AAA000000A05'
-  - '0x00A0AAA000000A07'
-  - '0x00A0AAA000000A01'
+  - '0x00A0AAA0FFFF0A01'
+  - '0x00A0AAA0FFFF0A03'
+  - '0x00A0AAA0FFFF0A05'
 ---
 
 <div align="center">
