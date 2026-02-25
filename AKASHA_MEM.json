@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE SEIZE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042088426
-    },
-    {
       "origin": "WORKER",
       "text": "PURE WATCH WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "WITNESS EVOLVE VISION",
       "mood": "CREATIVE",
       "tick": 1772042096156
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WAIT GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772042097101
     }
   ]
 }
