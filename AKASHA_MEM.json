@@ -108,12 +108,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772021749339
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772021750347
@@ -195,6 +189,12 @@
       "text": "WATCH GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772021754899
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM OSMOSIS OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772021755072
     }
   ]
 }
