@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON IMMUNE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772024816661
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772024817448
@@ -291,6 +285,12 @@
       "text": "HEAL UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772024835242
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE CONSUME SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024835566
     }
   ]
 }
