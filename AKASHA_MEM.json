@@ -50,12 +50,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "SPARK EVOLVE EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772020279539
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS UNIFY GIVING",
       "mood": "HARMONIC",
@@ -138,6 +132,12 @@
       "text": "CONSUME DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020286172
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE RESONATE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772020287228
     }
   ]
 }
