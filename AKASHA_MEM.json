@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE STRIKE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041869451
-    },
-    {
       "origin": "I16_CLAMP",
       "text": "SYNC STABLE UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WAIT REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041874434
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW BLOOM BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772041874741
     }
   ]
 }
