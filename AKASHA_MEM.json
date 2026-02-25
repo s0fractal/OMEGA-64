@@ -153,12 +153,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE STABLE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772022597265
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022597413
@@ -240,6 +234,12 @@
       "text": "COHERE GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022601846
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN CONSUME STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022602048
     }
   ]
 }
