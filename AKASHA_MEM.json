@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SICKNESS DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023705127
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772023705312
@@ -278,6 +272,12 @@
       "text": "FLOW SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772023708323
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023708541
     }
   ]
 }
