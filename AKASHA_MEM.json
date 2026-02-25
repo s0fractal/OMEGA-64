@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE PURE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772025978861
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772025979068
@@ -291,6 +285,12 @@
       "text": "STRIKE DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772025984823
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE DREAM VISION",
+      "mood": "CREATIVE",
+      "tick": 1772025984971
     }
   ]
 }
