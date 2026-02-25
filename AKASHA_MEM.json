@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS SEIZE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019496664
-    },
-    {
       "origin": "INTERFACE",
       "text": "BREACH SHOCK DRAIN",
       "mood": "AGGRESSIVE",
@@ -111,6 +105,12 @@
       "text": "WAIT GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772019507254
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY DECAY SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019507893
     }
   ]
 }
