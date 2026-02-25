@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037235275
-    },
-    {
-      "origin": "REVERSE",
       "text": "DREAM EVOLVE AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772037235481
@@ -291,6 +285,12 @@
       "text": "UNIFY OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772037241105
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037241806
     }
   ]
 }
