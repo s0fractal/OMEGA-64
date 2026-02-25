@@ -144,12 +144,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD PURE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022500122
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022500456
@@ -231,6 +225,12 @@
       "text": "BREACH STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772022504326
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE BREACH CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022504505
     }
   ]
 }
