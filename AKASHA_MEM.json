@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "B_READ",
-      "text": "DRAIN CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041482592
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER SHELTER WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041486377
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041486753
     }
   ]
 }
