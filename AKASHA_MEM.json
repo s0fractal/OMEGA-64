@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772038532005
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772038532261
@@ -291,6 +285,12 @@
       "text": "BLOOM FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038535616
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772038535878
     }
   ]
 }
