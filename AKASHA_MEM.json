@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772034657832
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS RESONATE STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772034663248
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE HUNGER SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034663460
     }
   ]
 }
