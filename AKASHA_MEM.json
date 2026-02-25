@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE HUNGER BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037322084
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772037322282
@@ -291,6 +285,12 @@
       "text": "SHIELD RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772037325336
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772037325548
     }
   ]
 }
