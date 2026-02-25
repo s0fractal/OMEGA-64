@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE COHERE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772026180299
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE RECON SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DRAIN STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772026186469
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772026186711
     }
   ]
 }
