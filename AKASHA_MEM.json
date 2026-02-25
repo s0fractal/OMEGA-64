@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036193154
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772036193326
@@ -291,6 +285,12 @@
       "text": "FLOW BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772036196935
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772036197126
     }
   ]
 }
