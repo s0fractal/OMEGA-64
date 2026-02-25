@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041561356
-    },
-    {
       "origin": "STREAM",
       "text": "DECAY SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "DRAIN CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772041565304
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK BREACH DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041565464
     }
   ]
 }
