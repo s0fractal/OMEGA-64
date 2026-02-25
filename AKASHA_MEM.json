@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "UNIFY UNIFY UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772029049875
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN STRIKE DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772029062874
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE RECON RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772029063385
     }
   ]
 }
