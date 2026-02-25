@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME STRIFE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041841932
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GUARD WATCH REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041847165
+    },
+    {
+      "origin": "STREAM",
+      "text": "SYNC UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772041847769
     }
   ]
 }
