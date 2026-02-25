@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY SEIZE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041379400
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY STRIFE STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "DRAIN CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041382087
+    },
+    {
+      "origin": "SOMA",
+      "text": "RESONATE RESONATE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041383165
     }
   ]
 }
