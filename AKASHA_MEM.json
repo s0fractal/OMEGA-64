@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772030309238
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772030309678
@@ -291,6 +285,12 @@
       "text": "RECON PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772030314720
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030315968
     }
   ]
 }
