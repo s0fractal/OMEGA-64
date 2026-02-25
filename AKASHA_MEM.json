@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "FLOW OSMOSIS COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041309047
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK DRAIN SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772041314449
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041315799
     }
   ]
 }
