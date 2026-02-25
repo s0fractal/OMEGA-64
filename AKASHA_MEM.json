@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "F0F0FF0F",
     "A6600606",
     "0000AAAA",
     "00600660",
@@ -199,15 +198,10 @@
     "AAAA0AA0",
     "AA6660A6",
     "A0666006",
-    "0AA0AAA0"
+    "0AA0AAA0",
+    "0AAAA000"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK BREACH HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035931195
-    },
     {
       "origin": "REVERSE",
       "text": "BEYOND FORGE WAVE",
@@ -291,6 +285,12 @@
       "text": "SEIZE SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772035937963
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC GIVING HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772035938130
     }
   ]
 }
