@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A0AAA0A0",
     "A6666006",
     "66660666",
     "0D180098",
@@ -199,15 +198,10 @@
     "0A000A00",
     "60660000",
     "BEE0BEEF",
-    "0AA0AAAA"
+    "0AA0AAAA",
+    "A000AAA0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "PURE STASIS PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772026118062
-    },
     {
       "origin": "REVERSE",
       "text": "COHERE RESONATE GIVING",
@@ -291,6 +285,12 @@
       "text": "RESONATE COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772026122195
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026122345
     }
   ]
 }
