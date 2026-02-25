@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039749495
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772039749856
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772039801479
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD REFLECT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772039801966
     }
   ]
 }
