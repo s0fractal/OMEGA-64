@@ -98,15 +98,10 @@
     "06600000",
     "0B000000",
     "FFFFFFFF",
-    "FFFFFF0F"
+    "FFFFFF0F",
+    "000AAAA0"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "WATCH STASIS IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021677623
-    },
     {
       "origin": "REVERSE",
       "text": "GUARD REFLECT WATCH",
@@ -190,6 +185,12 @@
       "text": "SEIZE STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772021684016
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING GIVING SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772021684564
     }
   ]
 }
