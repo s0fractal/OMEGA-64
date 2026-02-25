@@ -125,12 +125,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH BREACH SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022184019
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022184268
@@ -212,6 +206,12 @@
       "text": "SYNC RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772022191520
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIFE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022191693
     }
   ]
 }
