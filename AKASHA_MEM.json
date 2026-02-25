@@ -180,12 +180,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772023378677
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772023378948
@@ -267,6 +261,12 @@
       "text": "DRAIN STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023382976
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772023383284
     }
   ]
 }
