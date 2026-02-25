@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041521092
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT GUARD REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772041525028
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041525331
     }
   ]
 }
