@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00A0A0AA",
     "AAAA0A0A",
     "60000060",
     "66666060",
@@ -199,15 +198,10 @@
     "00606666",
     "A0606606",
     "A6666606",
-    "A06666A6"
+    "A06666A6",
+    "60666666"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RESONATE COHERE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772029845383
-    },
     {
       "origin": "REVERSE",
       "text": "STABLE OSMOSIS RESONATE",
@@ -291,6 +285,12 @@
       "text": "SHOCK SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772029854193
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER IMMUNE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772029854435
     }
   ]
 }
