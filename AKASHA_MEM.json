@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WAIT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772033519938
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772033520125
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772033522498
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE STRIKE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033522682
     }
   ]
 }
