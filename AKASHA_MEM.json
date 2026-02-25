@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH PURE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772032004201
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772032004829
@@ -291,6 +285,12 @@
       "text": "STRIFE HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772032016931
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772032018110
     }
   ]
 }
