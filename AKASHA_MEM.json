@@ -20,12 +20,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SICKNESS SHOCK DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772017258190
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER SHOCK DRAIN",
       "mood": "AGGRESSIVE",
@@ -108,6 +102,12 @@
       "text": "COHERE FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772017341523
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIFE SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772017350564
     }
   ]
 }
