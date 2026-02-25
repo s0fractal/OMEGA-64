@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RESONATE SYNC OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772041381658
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE HUNGER HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041385301
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041385505
     }
   ]
 }
