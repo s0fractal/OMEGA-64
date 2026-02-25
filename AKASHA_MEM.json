@@ -21,12 +21,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "SICKNESS CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772017112366
-    },
-    {
-      "origin": "INTERFACE",
       "text": "SEIZE BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772017114947
@@ -108,6 +102,12 @@
       "text": "CONSUME HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772017212891
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE SHELTER IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772017217452
     }
   ]
 }
