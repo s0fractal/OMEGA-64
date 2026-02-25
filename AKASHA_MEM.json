@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL GIVING HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772025928202
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772025928834
@@ -291,6 +285,12 @@
       "text": "STRIFE DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772025934486
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772025934965
     }
   ]
 }
