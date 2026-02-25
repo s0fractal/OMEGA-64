@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM STABLE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772034798680
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772034798884
@@ -291,6 +285,12 @@
       "text": "BREACH BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772034801551
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY RESONATE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772034801762
     }
   ]
 }
