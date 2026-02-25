@@ -16,12 +16,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772014288558
-    },
-    {
       "origin": "INTERFACE",
       "text": "CONSUME DECAY SICKNESS",
       "mood": "AGGRESSIVE",
@@ -104,6 +98,12 @@
       "text": "STRIKE STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772014484607
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "OSMOSIS UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772014490257
     }
   ]
 }
