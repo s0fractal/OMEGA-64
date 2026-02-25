@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHIELD REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772041581405
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WATCH WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041581894
@@ -291,6 +285,12 @@
       "text": "SHELTER SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041584855
+    },
+    {
+      "origin": "STREAM",
+      "text": "CONSUME SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041584997
     }
   ]
 }
