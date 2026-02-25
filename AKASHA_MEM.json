@@ -112,12 +112,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021927951
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772021928186
@@ -199,6 +193,12 @@
       "text": "SHIELD WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772021934506
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772021935233
     }
   ]
 }
