@@ -48,12 +48,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME SEIZE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020123970
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HUNGER DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020124558
@@ -135,6 +129,12 @@
       "text": "WAIT REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772020137283
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING BLOOM FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772020138065
     }
   ]
 }
