@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772016138910
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "FLOW UNIFY FLOW",
       "mood": "HARMONIC",
@@ -107,6 +101,12 @@
       "text": "STRIFE DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772016226776
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE SEIZE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772016229139
     }
   ]
 }
