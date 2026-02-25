@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "FFFF0FFF",
     "00666060",
     "60066000",
     "66666600",
@@ -199,15 +198,10 @@
     "00000606",
     "AA066666",
     "00660000",
-    "AA0AAAA0"
+    "AA0AAAA0",
+    "6660A600"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER REFLECT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040587652
-    },
     {
       "origin": "REVERSE",
       "text": "COHERE COHERE GIVING",
@@ -291,6 +285,12 @@
       "text": "HEAL GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772040590306
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH PURE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040590465
     }
   ]
 }
