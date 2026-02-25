@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "COHERE FLOW BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772040664142
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIFE DECAY BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772040667501
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772040667669
     }
   ]
 }
