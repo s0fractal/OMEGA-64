@@ -162,12 +162,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH RECON WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772022881703
-    },
-    {
       "origin": "INTERFACE",
       "text": "SEIZE SEIZE CONSUME",
       "mood": "AGGRESSIVE",
@@ -250,6 +244,12 @@
       "text": "SEIZE SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022888848
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL STABLE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772022889090
     }
   ]
 }
