@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD RECON STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772023159194
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023159810
@@ -259,6 +253,12 @@
       "text": "GIVING COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023165026
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS BEYOND BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772023165211
     }
   ]
 }
