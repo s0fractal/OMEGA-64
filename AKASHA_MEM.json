@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034766390
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772034766546
@@ -291,6 +285,12 @@
       "text": "COHERE FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772034769119
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHIELD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772034769330
     }
   ]
 }
