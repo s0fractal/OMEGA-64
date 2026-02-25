@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66666066",
     "AAAA0000",
     "0A0A00AA",
     "AA660060",
@@ -199,15 +198,10 @@
     "00600000",
     "66606000",
     "60000666",
-    "0FF0FFF0"
+    "0FF0FFF0",
+    "AAAA00A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BREACH DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038367557
-    },
     {
       "origin": "REVERSE",
       "text": "STASIS STASIS WATCH",
@@ -291,6 +285,12 @@
       "text": "IMMUNE IMMUNE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772038370611
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME BREACH DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038370814
     }
   ]
 }
