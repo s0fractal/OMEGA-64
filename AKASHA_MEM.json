@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "FFAAF0FF",
     "A00A0A0A",
     "AA0A0000",
     "A0606606",
@@ -199,15 +198,10 @@
     "0AA0A0AA",
     "AA0A00A0",
     "A00AAA0A",
-    "AB0A0000"
+    "AB0A0000",
+    "66666066"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BREACH BREACH HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036891977
-    },
     {
       "origin": "REVERSE",
       "text": "FLOW UNIFY COHERE",
@@ -291,6 +285,12 @@
       "text": "REFLECT GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772036895797
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE REFLECT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772036896092
     }
   ]
 }
