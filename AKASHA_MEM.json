@@ -203,18 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DRAIN SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042828721
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "DECAY SEIZE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042828870
-    },
-    {
       "origin": "REVERSE",
       "text": "PURE WAIT IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +279,18 @@
       "text": "RECON WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772042836432
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042836564
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON RECON SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042836709
     }
   ]
 }
