@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE STASIS RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772028759614
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772028760220
@@ -291,6 +285,12 @@
       "text": "WAIT WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772028769450
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772028770040
     }
   ]
 }
