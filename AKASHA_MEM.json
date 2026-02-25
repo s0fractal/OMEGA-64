@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772033552572
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772033552822
@@ -291,6 +285,12 @@
       "text": "GIVING GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772033555208
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT RECON WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772033555393
     }
   ]
 }
