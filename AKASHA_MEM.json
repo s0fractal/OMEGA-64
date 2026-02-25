@@ -102,12 +102,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH SHELTER WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772021636400
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY RESONATE BLOOM",
       "mood": "HARMONIC",
@@ -190,6 +184,12 @@
       "text": "HEAL RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772021641921
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE RECON RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772021642079
     }
   ]
 }
