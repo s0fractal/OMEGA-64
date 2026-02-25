@@ -132,12 +132,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772022365948
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022366152
@@ -219,6 +213,12 @@
       "text": "WAIT WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022372737
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022373197
     }
   ]
 }
