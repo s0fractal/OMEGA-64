@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM STABLE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772038162784
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772038163001
@@ -291,6 +285,12 @@
       "text": "SICKNESS HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772038168809
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHELTER STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772038169019
     }
   ]
 }
