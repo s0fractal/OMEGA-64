@@ -136,12 +136,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022393278
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772022393724
@@ -223,6 +217,12 @@
       "text": "SHELTER REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022399249
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022399544
     }
   ]
 }
