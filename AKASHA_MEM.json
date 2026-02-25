@@ -40,12 +40,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772019861755
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN DECAY SHOCK",
       "mood": "AGGRESSIVE",
@@ -128,6 +122,12 @@
       "text": "COHERE BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772019875246
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "CONSUME SHOCK HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019877023
     }
   ]
 }
