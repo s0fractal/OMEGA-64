@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040665137
-    },
-    {
       "origin": "STREAM",
       "text": "GIVING FLOW COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHOCK SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772040668108
+    },
+    {
+      "origin": "CONSCIOUSNESS",
+      "text": "STABLE FLOW GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772040668234
     }
   ]
 }
