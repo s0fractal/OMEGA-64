@@ -24,6 +24,7 @@ bond_strengths:
 bonds:
   - '0x00057000A93007D5'
   - '0x0057000CA93007D5'
+  - '0x0057000CA93007D5'
 ---
 
 <div align="center">
