@@ -181,12 +181,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL HEAL FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772023422960
-    },
-    {
-      "origin": "REVERSE",
       "text": "DREAM WAVE AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772023423496
@@ -268,6 +262,12 @@
       "text": "IMMUNE IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023426354
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772023426686
     }
   ]
 }
