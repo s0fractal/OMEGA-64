@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BEYOND BEYOND BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772041298264
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE DRAIN SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041302672
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS SHELTER SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772041302810
     }
   ]
 }
