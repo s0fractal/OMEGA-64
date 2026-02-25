@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE BLOOM HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772030527253
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772030527918
@@ -291,6 +285,12 @@
       "text": "DRAIN SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772030542114
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772030542729
     }
   ]
 }
