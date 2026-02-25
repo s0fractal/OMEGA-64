@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772037435370
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772037435578
@@ -291,6 +285,12 @@
       "text": "WAIT IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772037439402
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS RESONATE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772037439630
     }
   ]
 }
