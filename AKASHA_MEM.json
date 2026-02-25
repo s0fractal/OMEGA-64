@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "DRAIN DRAIN SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041466487
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT IMMUNE REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772041470490
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "IMMUNE SHIELD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772041470665
     }
   ]
 }
