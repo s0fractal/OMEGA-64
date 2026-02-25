@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT SHIELD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772038073177
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038073393
@@ -291,6 +285,12 @@
       "text": "SHELTER PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772038076773
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772038077300
     }
   ]
 }
