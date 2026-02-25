@@ -84,12 +84,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772021196281
-    },
-    {
-      "origin": "REVERSE",
       "text": "WITNESS SPARK BECOME",
       "mood": "CREATIVE",
       "tick": 1772021196453
@@ -171,6 +165,12 @@
       "text": "SHELTER SHIELD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772021202129
+    },
+    {
+      "origin": "STREAM",
+      "text": "SYNC SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772021202346
     }
   ]
 }
