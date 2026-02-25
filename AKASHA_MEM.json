@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE SHOCK SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025628896
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIFE DRAIN DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772025633737
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM OSMOSIS OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772025634886
     }
   ]
 }
