@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STABLE RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772037765002
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME SEIZE HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772037770638
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS OSMOSIS OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772037770851
     }
   ]
 }
