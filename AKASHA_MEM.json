@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON STASIS RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772026725185
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772026725355
@@ -291,6 +285,12 @@
       "text": "FLOW BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772026729543
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE DECAY STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026730626
     }
   ]
 }
