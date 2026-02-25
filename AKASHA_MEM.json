@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAVE FORGE VISION",
-      "mood": "CREATIVE",
-      "tick": 1772036539018
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772036539192
@@ -291,6 +285,12 @@
       "text": "GIVING HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772036549002
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW BLOOM FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772036549209
     }
   ]
 }
