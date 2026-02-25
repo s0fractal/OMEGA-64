@@ -186,12 +186,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023638238
-    },
-    {
       "origin": "REVERSE",
       "text": "BECOME SPARK VISION",
       "mood": "CREATIVE",
@@ -274,6 +268,12 @@
       "text": "PURE WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023641235
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023641500
     }
   ]
 }
