@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041253922
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK CONSUME DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD SHIELD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041260368
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041260642
     }
   ]
 }
