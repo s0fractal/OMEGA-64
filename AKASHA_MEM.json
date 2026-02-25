@@ -163,12 +163,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE IMMUNE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772022912972
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772022913134
@@ -250,6 +244,12 @@
       "text": "BLOOM HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022916060
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772022917939
     }
   ]
 }
