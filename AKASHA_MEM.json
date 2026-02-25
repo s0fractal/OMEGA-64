@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC GIVING SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772026211312
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772026211598
@@ -291,6 +285,12 @@
       "text": "VISION FORGE FORGE",
       "mood": "CREATIVE",
       "tick": 1772026217048
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD SHELTER STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772026217210
     }
   ]
 }
