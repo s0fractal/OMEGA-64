@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772029198952
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772029199878
@@ -291,6 +285,12 @@
       "text": "DREAM WAVE VISION",
       "mood": "CREATIVE",
       "tick": 1772029207534
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RESONATE SYNC FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772029208050
     }
   ]
 }
