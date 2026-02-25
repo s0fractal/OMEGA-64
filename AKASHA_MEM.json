@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT SHELTER STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772032778652
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW UNIFY HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "CONSUME SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772032783590
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772032783788
     }
   ]
 }
