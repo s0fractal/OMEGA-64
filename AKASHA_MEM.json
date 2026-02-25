@@ -141,12 +141,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE PURE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022460809
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT SHIELD IMMUNE",
       "mood": "DEFENSIVE",
@@ -229,6 +223,12 @@
       "text": "SEIZE STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022465179
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHIELD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772022465342
     }
   ]
 }
