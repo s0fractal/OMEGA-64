@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE HEAL RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772025405001
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772025405138
@@ -291,6 +285,12 @@
       "text": "DECAY STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772025411477
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025412043
     }
   ]
 }
