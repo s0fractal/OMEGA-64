@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WATCH RECON SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772041555217
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "PURE SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772041555360
@@ -291,6 +285,12 @@
       "text": "RESONATE COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772041559563
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "IMMUNE IMMUNE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041559854
     }
   ]
 }
