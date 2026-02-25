@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772040520819
-    },
-    {
       "origin": "INTERFACE",
       "text": "DRAIN DRAIN STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040523005
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772040523182
     }
   ]
 }
