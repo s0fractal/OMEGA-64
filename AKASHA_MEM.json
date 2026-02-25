@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772023967260
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772023967465
@@ -284,6 +278,12 @@
       "text": "SYNC STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772023970881
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH CONSUME HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023971052
     }
   ]
 }
