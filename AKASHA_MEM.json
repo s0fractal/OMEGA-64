@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037350613
-    },
-    {
-      "origin": "REVERSE",
       "text": "WITNESS FORGE EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772037350838
@@ -291,6 +285,12 @@
       "text": "PURE WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772037355593
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER GUARD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772037355818
     }
   ]
 }
