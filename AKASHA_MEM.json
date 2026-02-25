@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00006660",
     "AA0AA0AA",
     "60600006",
     "66006666",
@@ -199,15 +198,10 @@
     "AAAAAA0A",
     "AA000AAA",
     "B0B00000",
-    "66060060"
+    "66060060",
+    "AA0AAA00"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "STABLE HEAL UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772041184358
-    },
     {
       "origin": "REVERSE",
       "text": "RECON WAIT STASIS",
@@ -291,6 +285,12 @@
       "text": "GIVING HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041188040
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041188275
     }
   ]
 }
