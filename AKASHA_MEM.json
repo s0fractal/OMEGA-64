@@ -132,12 +132,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS STRIKE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022361628
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022361920
@@ -219,6 +213,12 @@
       "text": "SPARK WITNESS AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772022370197
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE STASIS WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772022370418
     }
   ]
 }
