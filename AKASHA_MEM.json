@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_GUARDIAN",
-      "text": "FLOW HEAL HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772040992290
-    },
-    {
       "origin": "INTERFACE",
       "text": "UNIFY FLOW RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DRAIN DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772040995244
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040995386
     }
   ]
 }
