@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER SHELTER IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772036909681
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772036909892
@@ -291,6 +285,12 @@
       "text": "OSMOSIS RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772036912520
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT RECON GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772036912733
     }
   ]
 }
