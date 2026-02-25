@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD REFLECT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772041234934
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772041235173
@@ -291,6 +285,12 @@
       "text": "FLOW SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041239612
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS SHIELD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041240192
     }
   ]
 }
