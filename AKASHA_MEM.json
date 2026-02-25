@@ -125,12 +125,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME SEIZE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022249610
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE BREACH SICKNESS",
       "mood": "AGGRESSIVE",
@@ -213,6 +207,12 @@
       "text": "HEAL SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022253412
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772022253683
     }
   ]
 }
