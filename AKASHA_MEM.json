@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER REFLECT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772033585935
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772033586116
@@ -291,6 +285,12 @@
       "text": "HEAL SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772033589175
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WATCH STASIS WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772033589418
     }
   ]
 }
