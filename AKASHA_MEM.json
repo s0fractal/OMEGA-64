@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "FLOW SYNC SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772041344210
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SICKNESS STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041344351
@@ -291,6 +285,12 @@
       "text": "RESONATE BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772041348640
+    },
+    {
+      "origin": "I16_CLAMP",
+      "text": "BLOOM OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041349115
     }
   ]
 }
