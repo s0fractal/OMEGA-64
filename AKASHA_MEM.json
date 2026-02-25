@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STASIS IMMUNE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040646773
-    },
-    {
       "origin": "SOMA",
       "text": "UNIFY OSMOSIS HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HEAL GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772040650152
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD RECON PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040650302
     }
   ]
 }
