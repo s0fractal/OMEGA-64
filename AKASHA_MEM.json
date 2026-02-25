@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE STABLE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772033666432
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772033666585
@@ -291,6 +285,12 @@
       "text": "SICKNESS BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772033671047
+    },
+    {
+      "origin": "STREAM",
+      "text": "DRAIN DECAY STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033671253
     }
   ]
 }
