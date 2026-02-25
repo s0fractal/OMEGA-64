@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BEYOND EVOLVE FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772040669378
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RESONATE STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772040669636
@@ -291,6 +285,12 @@
       "text": "WATCH RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772040672482
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS RECON WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772040672619
     }
   ]
 }
