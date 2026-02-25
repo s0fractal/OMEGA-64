@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE PURE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772033483992
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772033484193
@@ -291,6 +285,12 @@
       "text": "WATCH WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772033487730
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772033487962
     }
   ]
 }
