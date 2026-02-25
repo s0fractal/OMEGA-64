@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "UNIFY GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041675217
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE BREACH SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772041678495
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW RESONATE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772041678631
     }
   ]
 }
