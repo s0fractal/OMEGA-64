@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD PURE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042106316
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL STABLE UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772042111353
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772042111669
     }
   ]
 }
