@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036084888
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772036085145
@@ -291,6 +285,12 @@
       "text": "HEAL BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772036090242
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036090479
     }
   ]
 }
