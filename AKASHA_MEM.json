@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS HUNGER SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033993419
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772033993587
@@ -291,6 +285,12 @@
       "text": "STRIKE BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772033996413
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME BEYOND AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772033996601
     }
   ]
 }
