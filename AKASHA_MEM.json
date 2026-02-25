@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON IMMUNE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040703321
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772040708434
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT RECON STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772040708627
     }
   ]
 }
