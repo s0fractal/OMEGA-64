@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE COHERE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772041575773
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT REFLECT REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772041580224
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DECAY SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041580396
     }
   ]
 }
