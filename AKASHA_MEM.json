@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "6A6666A6",
     "AA666666",
     "9D18A690",
     "666A66A0",
@@ -199,15 +198,10 @@
     "ABB00000",
     "A1000000",
     "66006666",
-    "A0BBC0DD"
+    "A0BBC0DD",
+    "AA00AA00"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STRIKE SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024882563
-    },
     {
       "origin": "REVERSE",
       "text": "RESONATE STABLE FLOW",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772024886048
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SHOCK BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024886252
     }
   ]
 }
