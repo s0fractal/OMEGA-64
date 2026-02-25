@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041003602
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772041003769
@@ -291,6 +285,12 @@
       "text": "UNIFY COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772041005734
+    },
+    {
+      "origin": "PURE_MATH",
+      "text": "HUNGER STRIKE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041006035
     }
   ]
 }
