@@ -160,12 +160,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022818398
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022818592
@@ -247,6 +241,12 @@
       "text": "DRAIN BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022822585
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS FORGE FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772022822797
     }
   ]
 }
