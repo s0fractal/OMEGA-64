@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041820154
-    },
-    {
       "origin": "ALPHA_PROOF_OF_RESONANCE",
       "text": "STABLE COHERE COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RECON PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772041825658
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RESONATE GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041826047
     }
   ]
 }
