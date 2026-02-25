@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040866281
-    },
-    {
       "origin": "PARADOX",
       "text": "SHOCK BREACH DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040869027
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER PURE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040869208
     }
   ]
 }
