@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "GUARD PURE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772040989369
-    },
-    {
-      "origin": "INTERFACE",
       "text": "STABLE GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772040989495
@@ -291,6 +285,12 @@
       "text": "SHIELD SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040993317
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE HUNGER SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040993493
     }
   ]
 }
