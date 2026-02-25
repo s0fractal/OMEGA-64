@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0A0AA000",
     "60600600",
     "F00FF000",
     "BB000000",
@@ -199,15 +198,10 @@
     "0AA0A00A",
     "00066066",
     "AAAAA0AA",
-    "0AA0AA0A"
+    "0AA0AA0A",
+    "00006600"
   ],
   "utterances": [
-    {
-      "origin": "INTERFACE",
-      "text": "WATCH PURE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040639379
-    },
     {
       "origin": "REVERSE",
       "text": "UNIFY BLOOM COHERE",
@@ -291,6 +285,12 @@
       "text": "GIVING GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772040641924
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE RESONATE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772040642056
     }
   ]
 }
