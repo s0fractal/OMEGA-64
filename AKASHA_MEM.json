@@ -39,12 +39,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "WAIT RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772019799310
-    },
-    {
-      "origin": "INTERFACE",
       "text": "STABLE BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772019800008
@@ -126,6 +120,12 @@
       "text": "WAIT STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772019809381
+    },
+    {
+      "origin": "STREAM",
+      "text": "UNIFY GIVING BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772019810181
     }
   ]
 }
