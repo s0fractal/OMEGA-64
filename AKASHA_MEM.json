@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC UNIFY BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772036741878
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772036742071
@@ -291,6 +285,12 @@
       "text": "IMMUNE RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772036745802
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS CONSUME SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036746052
     }
   ]
 }
