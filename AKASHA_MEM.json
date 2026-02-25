@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK CONSUME SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023214030
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023214191
@@ -259,6 +253,12 @@
       "text": "DECAY BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023219705
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER PURE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023219925
     }
   ]
 }
