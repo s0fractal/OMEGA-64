@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772033531503
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772033531689
@@ -291,6 +285,12 @@
       "text": "SHELTER RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772033535115
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772033535311
     }
   ]
 }
