@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772033173887
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD PURE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772033174025
@@ -291,6 +285,12 @@
       "text": "DECAY STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772033176466
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WATCH WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772033176607
     }
   ]
 }
