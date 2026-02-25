@@ -128,12 +128,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022276768
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772022277951
@@ -215,6 +209,12 @@
       "text": "SEIZE SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772022284979
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW COHERE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772022285207
     }
   ]
 }
