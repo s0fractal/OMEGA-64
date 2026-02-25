@@ -102,12 +102,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772021621566
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772021621764
@@ -189,6 +183,12 @@
       "text": "STRIFE CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772021626284
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DRAIN SEIZE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021627092
     }
   ]
 }
