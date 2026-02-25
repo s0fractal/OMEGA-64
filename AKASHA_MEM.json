@@ -103,12 +103,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021655891
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GIVING STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772021656384
@@ -190,6 +184,12 @@
       "text": "OSMOSIS OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772021662699
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021663742
     }
   ]
 }
