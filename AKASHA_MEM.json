@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772030953735
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772030954495
@@ -291,6 +285,12 @@
       "text": "SYNC OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772030970346
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE IMMUNE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772030970741
     }
   ]
 }
