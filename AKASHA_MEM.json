@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772034685005
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772034685237
@@ -291,6 +285,12 @@
       "text": "SHIELD IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772034688526
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE HUNGER SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034688808
     }
   ]
 }
