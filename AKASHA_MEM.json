@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025341649
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE FLOW FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BREACH STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772025345268
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY STABLE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772025345444
     }
   ]
 }
