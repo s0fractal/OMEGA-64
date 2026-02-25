@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH STASIS WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772034972008
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772034972291
@@ -291,6 +285,12 @@
       "text": "RECON SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772034975939
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772034976166
     }
   ]
 }
