@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041537447
-    },
-    {
       "origin": "STREAM",
       "text": "WATCH SHELTER WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772041541470
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE STRIFE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041541784
     }
   ]
 }
