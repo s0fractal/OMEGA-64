@@ -27,12 +27,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BLOOM SYNC FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772019632588
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHIELD SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772019632792
@@ -114,6 +108,12 @@
       "text": "GUARD SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772019639597
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RESONATE GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772019640234
     }
   ]
 }
