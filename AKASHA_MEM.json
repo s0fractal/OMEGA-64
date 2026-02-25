@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME SHOCK HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041304201
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER BREACH SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHOCK DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041309289
+    },
+    {
+      "origin": "WORKER",
+      "text": "STABLE SYNC FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772041309481
     }
   ]
 }
