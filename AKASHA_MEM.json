@@ -115,12 +115,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022053591
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
@@ -203,6 +197,12 @@
       "text": "SYNC BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772022061787
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS GIVING UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772022061984
     }
   ]
 }
