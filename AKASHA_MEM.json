@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER IMMUNE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772030889838
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772030890233
@@ -291,6 +285,12 @@
       "text": "GUARD SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772030896982
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIFE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030897744
     }
   ]
 }
