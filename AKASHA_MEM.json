@@ -55,12 +55,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHOCK STRIFE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020555162
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH DECAY SEIZE",
       "mood": "AGGRESSIVE",
@@ -143,6 +137,12 @@
       "text": "SPARK DREAM WAVE",
       "mood": "CREATIVE",
       "tick": 1772020564865
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020565211
     }
   ]
 }
