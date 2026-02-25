@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD IMMUNE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041010546
-    },
-    {
       "origin": "STREAM",
       "text": "UNIFY SYNC COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WATCH STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041013593
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE GUARD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041013716
     }
   ]
 }
