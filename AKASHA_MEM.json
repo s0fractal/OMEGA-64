@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WAIT IMMUNE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020207653
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER HUNGER DECAY",
       "mood": "AGGRESSIVE",
@@ -136,6 +130,12 @@
       "text": "IMMUNE PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772020221951
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER SHIELD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772020223040
     }
   ]
 }
