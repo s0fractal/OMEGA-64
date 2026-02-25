@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC HEAL BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772037124348
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH SHOCK HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772037134765
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY STABLE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772037135446
     }
   ]
 }
