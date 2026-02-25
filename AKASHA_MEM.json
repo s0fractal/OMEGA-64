@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "ABBA0000",
     "66600660",
     "A00AAA00",
     "AA0A0AAA",
@@ -199,15 +198,10 @@
     "AAAAA0AA",
     "60006000",
     "000FF00F",
-    "AA00AA0A"
+    "AA00AA0A",
+    "AA00AAAA"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER HUNGER BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032136422
-    },
     {
       "origin": "REVERSE",
       "text": "RESONATE GIVING SYNC",
@@ -291,6 +285,12 @@
       "text": "STRIFE STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772032148131
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH BREACH STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032148693
     }
   ]
 }
