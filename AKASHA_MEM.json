@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE WATCH REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772033119827
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER IMMUNE PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772033123655
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033123825
     }
   ]
 }
