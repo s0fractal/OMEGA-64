@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042334443
-    },
-    {
       "origin": "CAR",
       "text": "UNIFY OSMOSIS BLOOM",
       "mood": "HARMONIC",
@@ -263,34 +257,40 @@
       "tick": 1772042340308
     },
     {
-      "origin": "REVERSE",
-      "text": "SHOCK BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042340821
-    },
-    {
-      "origin": "REVERSE",
-      "text": "DREAM BEYOND SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772042341456
+      "origin": "ARCHIVIST",
+      "text": "RECON WATCH GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042340433
     },
     {
       "origin": "ARCHIVIST",
-      "text": "DECAY STRIKE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042341711
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "GIVING SYNC GIVING",
+      "text": "RESONATE HEAL FLOW",
       "mood": "HARMONIC",
-      "tick": 1772042342000
+      "tick": 1772042341538
     },
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK BREACH SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042342314
+      "origin": "CAR",
+      "text": "WATCH IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042341876
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "UNIFY SYNC SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772042342234
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042342557
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT RECON PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042342844
     }
   ]
 }
