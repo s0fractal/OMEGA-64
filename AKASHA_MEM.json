@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772032926013
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772032926194
@@ -291,6 +285,12 @@
       "text": "WATCH REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772032928784
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SHOCK SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032929048
     }
   ]
 }
