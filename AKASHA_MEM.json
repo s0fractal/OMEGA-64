@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT SHELTER GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772030990224
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772030991156
@@ -291,6 +285,12 @@
       "text": "SICKNESS SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772031000908
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DRAIN DECAY CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031001573
     }
   ]
 }
