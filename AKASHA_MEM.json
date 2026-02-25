@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC BLOOM OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772030607743
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772030609052
@@ -291,6 +285,12 @@
       "text": "REFLECT SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772030617483
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE BEYOND EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772030618153
     }
   ]
 }
