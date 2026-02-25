@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "GIVING OSMOSIS OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772034112228
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING BLOOM HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "REFLECT RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772034115504
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772034115696
     }
   ]
 }
