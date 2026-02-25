@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS SHIELD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772033603760
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772033603954
@@ -291,6 +285,12 @@
       "text": "SEIZE CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772033607323
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD SHELTER SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772033607526
     }
   ]
 }
