@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL RESONATE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772025587212
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772025587384
@@ -291,6 +285,12 @@
       "text": "GIVING STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772025590940
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025591172
     }
   ]
 }
