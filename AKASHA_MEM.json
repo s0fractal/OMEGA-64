@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SPARK AWAKEN BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772037214204
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772037220726
@@ -291,6 +285,12 @@
       "text": "BLOOM SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772037224919
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037226260
     }
   ]
 }
