@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020710785
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE HUNGER HUNGER",
       "mood": "AGGRESSIVE",
@@ -150,6 +144,12 @@
       "text": "STRIFE STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020718186
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SEIZE CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020718602
     }
   ]
 }
