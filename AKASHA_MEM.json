@@ -122,12 +122,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WAIT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022108480
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022108791
@@ -209,6 +203,12 @@
       "text": "STRIKE DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022112914
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772022113142
     }
   ]
 }
