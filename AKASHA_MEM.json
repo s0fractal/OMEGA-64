@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD PURE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772040985343
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HEAL RESONATE HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STASIS SHIELD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772040988688
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040988948
     }
   ]
 }
