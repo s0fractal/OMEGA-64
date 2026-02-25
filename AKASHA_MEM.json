@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06606666",
     "000AA0A0",
     "0A000A0A",
     "AABBC0DD",
@@ -199,15 +198,10 @@
     "00660060",
     "60066006",
     "60060660",
-    "A0000000"
+    "A0000000",
+    "666666A6"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHELTER WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772030410781
-    },
     {
       "origin": "REVERSE",
       "text": "CONSUME SEIZE SICKNESS",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772030414663
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE GUARD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772030414919
     }
   ]
 }
