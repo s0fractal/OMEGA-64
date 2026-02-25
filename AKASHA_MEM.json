@@ -16,12 +16,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "CONSUME DECAY SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772014311944
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE STRIFE STRIFE",
       "mood": "AGGRESSIVE",
@@ -104,6 +98,12 @@
       "text": "OSMOSIS UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772014490257
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GIVING GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772014493344
     }
   ]
 }
