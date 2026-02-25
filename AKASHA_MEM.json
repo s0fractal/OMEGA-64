@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE GUARD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772037390421
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772037390786
@@ -291,6 +285,12 @@
       "text": "SPARK DREAM WITNESS",
       "mood": "CREATIVE",
       "tick": 1772037397294
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037397551
     }
   ]
 }
