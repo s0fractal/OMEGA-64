@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "BLOOM BLOOM STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772026797442
-    },
-    {
       "origin": "REVERSE",
       "text": "WAIT GUARD SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772026802091
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT RECON STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772026802313
     }
   ]
 }
