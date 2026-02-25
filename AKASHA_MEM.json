@@ -124,12 +124,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK SHOCK SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022182602
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL COHERE SYNC",
       "mood": "HARMONIC",
@@ -212,6 +206,12 @@
       "text": "IMMUNE RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022190698
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772022191347
     }
   ]
 }
