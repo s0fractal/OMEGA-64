@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE SYNC SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772033486310
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE COHERE GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HEAL RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772033491156
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHELTER IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772033491365
     }
   ]
 }
