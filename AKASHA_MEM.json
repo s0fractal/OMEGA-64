@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0AAAAA00",
     "AAAA0000",
     "AAAA00AA",
     "AAAAA000",
@@ -199,15 +198,10 @@
     "A6666660",
     "66666660",
     "00000000",
-    "66A666A0"
+    "66A666A0",
+    "60606000"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "BREACH HUNGER SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032880266
-    },
     {
       "origin": "REVERSE",
       "text": "IMMUNE SHELTER GUARD",
@@ -291,6 +285,12 @@
       "text": "FLOW FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772032884672
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER STASIS SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772032884856
     }
   ]
 }
