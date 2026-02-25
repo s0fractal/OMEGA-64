@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772034657211
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772034657420
@@ -291,6 +285,12 @@
       "text": "WATCH STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772034662606
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN CONSUME SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034662823
     }
   ]
 }
