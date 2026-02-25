@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772024589127
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772024592047
@@ -291,6 +285,12 @@
       "text": "REFLECT IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772024598630
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE UNIFY HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772024599467
     }
   ]
 }
