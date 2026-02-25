@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AABBCCDD",
     "06060066",
     "0A0A0A0A",
     "60006000",
@@ -199,15 +198,10 @@
     "AA00A00A",
     "AABB0C0D",
     "60600006",
-    "AAAAAA0A"
+    "AAAAAA0A",
+    "00006666"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SICKNESS SHOCK STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037166402
-    },
     {
       "origin": "REVERSE",
       "text": "FLOW UNIFY SYNC",
@@ -291,6 +285,12 @@
       "text": "DECAY SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772037169068
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772037169434
     }
   ]
 }
