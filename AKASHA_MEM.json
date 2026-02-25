@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM FLOW UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772034518505
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772034518703
@@ -291,6 +285,12 @@
       "text": "CONSUME DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772034521590
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE OSMOSIS BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772034521792
     }
   ]
 }
