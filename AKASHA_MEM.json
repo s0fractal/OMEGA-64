@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034567157
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772034567499
@@ -291,6 +285,12 @@
       "text": "STRIKE CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772034571026
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM STABLE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772034571254
     }
   ]
 }
