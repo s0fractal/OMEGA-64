@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "WORKER",
-      "text": "UNIFY STABLE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772041808169
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE OSMOSIS GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHIELD IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041814484
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHIELD SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041814872
     }
   ]
 }
