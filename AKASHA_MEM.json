@@ -80,12 +80,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021080725
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772021080931
@@ -167,6 +161,12 @@
       "text": "CONSUME SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772021090280
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME WAVE AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772021090745
     }
   ]
 }
