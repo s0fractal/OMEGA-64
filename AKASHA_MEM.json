@@ -94,12 +94,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021397145
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772021399061
@@ -181,6 +175,12 @@
       "text": "DECAY BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021437700
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIFE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021440381
     }
   ]
 }
