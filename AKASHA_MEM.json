@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772027110555
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772027110900
@@ -291,6 +285,12 @@
       "text": "GUARD IMMUNE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772027114357
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WATCH SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772027114572
     }
   ]
 }
