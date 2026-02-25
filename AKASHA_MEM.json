@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RESONATE COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042295650
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SICKNESS HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772042296429
@@ -263,34 +257,40 @@
       "tick": 1772042303079
     },
     {
-      "origin": "VIBRATION",
-      "text": "PURE REFLECT RECON",
+      "origin": "ARCHIVIST",
+      "text": "STASIS SHIELD GUARD",
       "mood": "DEFENSIVE",
-      "tick": 1772042303987
+      "tick": 1772042304254
     },
     {
       "origin": "ARCHIVIST",
-      "text": "GIVING FLOW FLOW",
+      "text": "SHOCK BREACH SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042304588
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS GUARD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772042304994
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS GUARD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772042305828
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL SYNC SYNC",
       "mood": "HARMONIC",
-      "tick": 1772042304446
+      "tick": 1772042306027
     },
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON WAIT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042304647
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042307774
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "GUARD IMMUNE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042308650
+      "origin": "PURE_MATH",
+      "text": "DRAIN SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042308424
     }
   ]
 }
