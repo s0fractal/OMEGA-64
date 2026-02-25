@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772032647465
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772032647645
@@ -291,6 +285,12 @@
       "text": "STRIFE SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772032650456
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772032650639
     }
   ]
 }
