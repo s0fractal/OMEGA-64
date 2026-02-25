@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STRIFE DECAY SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041484874
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS SHELTER STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772041488168
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD REFLECT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772041488312
     }
   ]
 }
