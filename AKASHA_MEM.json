@@ -75,12 +75,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020954150
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIFE BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020955017
@@ -162,6 +156,12 @@
       "text": "BREACH SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020961465
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE GIVING BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772020961648
     }
   ]
 }
