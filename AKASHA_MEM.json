@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772034096485
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772034096677
@@ -291,6 +285,12 @@
       "text": "FORGE AWAKEN BECOME",
       "mood": "CREATIVE",
       "tick": 1772034099134
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SEIZE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034099334
     }
   ]
 }
