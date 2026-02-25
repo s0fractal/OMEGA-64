@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING COHERE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772041363425
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041363750
@@ -291,6 +285,12 @@
       "text": "STASIS IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041367095
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041367404
     }
   ]
 }
