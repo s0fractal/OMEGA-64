@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772024599467
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772024599657
@@ -291,6 +285,12 @@
       "text": "GIVING BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772024604655
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772024604846
     }
   ]
 }
