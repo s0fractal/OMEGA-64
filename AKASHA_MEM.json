@@ -21,12 +21,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772017564346
-    },
-    {
       "origin": "INTERFACE",
       "text": "RESONATE COHERE HEAL",
       "mood": "HARMONIC",
@@ -109,6 +103,12 @@
       "text": "COHERE FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772017638850
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE DECAY DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772017643227
     }
   ]
 }
