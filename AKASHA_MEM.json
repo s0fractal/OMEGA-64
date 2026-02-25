@@ -149,12 +149,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "UNIFY STABLE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772022550664
-    },
-    {
       "origin": "REVERSE",
       "text": "GUARD GUARD SHELTER",
       "mood": "DEFENSIVE",
@@ -237,6 +231,12 @@
       "text": "GIVING UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022556909
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHIELD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022557065
     }
   ]
 }
