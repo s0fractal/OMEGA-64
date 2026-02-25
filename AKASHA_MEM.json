@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW COHERE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772035140618
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772035140814
@@ -291,6 +285,12 @@
       "text": "CONSUME HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772035145557
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772035145777
     }
   ]
 }
