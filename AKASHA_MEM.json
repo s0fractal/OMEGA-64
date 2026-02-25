@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DRAIN STRIFE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040342789
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS FLOW UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "IMMUNE SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772040350197
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772040350422
     }
   ]
 }
