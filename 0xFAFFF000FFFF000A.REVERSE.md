@@ -1,0 +1,161 @@
+---
+eigenvalue: '0xFAFFF00F0000000E'
+energy: 50
+resonance: 28.82
+x: 636
+'y': 345
+symbol: ARCHIVIST
+thought: RESURRECTED
+signals: []
+bond_strengths:
+  '0xAAAAAAA000000006': 0.9578907814534664
+ex:
+  - '0xAAAAAAAA00000000'
+  - '0xAAAAAAAA00000008'
+  - '0xAAAAAAAA0000000A'
+  - '0xAAAAAAAA0000000C'
+  - '0xAAAAAAA00000000E'
+  - '0xAAAAAAA00000000E'
+  - '0xAAAAAAA00000000E'
+  - '0xAAAAAAAA0000000E'
+  - '0xAAAAAAAA00000008'
+  - '0xAAAAAAAA0000000A'
+  - '0xAAAAAAAA0000000A'
+  - '0xAAAAAAAA0000000C'
+  - '0xAAAAAAAA0000000E'
+  - '0xAAAAAAA00000000E'
+  - '0xAAAAAAA000000008'
+  - '0xAAAAAAA00000000A'
+  - '0xAAAAAAA00000000C'
+  - '0xAAAAAAA00000000E'
+  - '0xAAAAAAA000000008'
+  - '0xAAAAAAA000000008'
+  - '0xAAAAAAA00000000A'
+  - '0x666666660000000A'
+  - '0x666666600000000A'
+  - '0x666666600000000A'
+  - '0x666666600000000A'
+  - '0x666666600000000A'
+  - '0x666666600000000A'
+  - '0x666666600000000A'
+  - '0x66666A600000000C'
+  - '0x666666600000000C'
+  - '0x666666600000000C'
+  - '0x666A66600000000C'
+  - '0x6A6A66600000000C'
+  - '0x6A6A66600000000E'
+  - '0x6A6A666000000008'
+  - '0x6A6A66600000000A'
+  - '0x6A6A66600000000C'
+  - '0x6A6A66600000000E'
+  - '0x6A6A666000000008'
+  - '0x6A6A66600000000A'
+  - '0x6A6A66600000000C'
+  - '0x6A6A66600000000E'
+  - '0x6A6A666000000008'
+  - '0x6A6A66600000000A'
+  - '0x6A6A66600000000C'
+  - '0x6A6A66600000000E'
+  - '0x6A6A66600000000E'
+  - '0x6A6A666000000008'
+  - '0xAB0A000000000008'
+  - '0xAB0A000000000008'
+  - '0xAB0A00000000000A'
+  - '0xAB0A00000000000A'
+  - '0xAB0A00000000000C'
+  - '0xAB0A00000000000E'
+  - '0xAB0A000000000008'
+  - '0xAB0A00000000000A'
+  - '0xAB0A00000000000C'
+  - '0xAB0A00000000000C'
+  - '0xAB0A00000000000C'
+  - '0xAB0A00000000000E'
+  - '0xAB0A00000000000E'
+  - '0xB00000000000000E'
+  - '0x666666600000000E'
+  - '0x6666666000000008'
+  - '0x0666000000000008'
+  - '0x0666000000000008'
+  - '0x0666000000000008'
+  - '0x0666000000000008'
+  - '0x066600000000000A'
+  - '0x066600000000000C'
+  - '0x066600000000000E'
+  - '0x0666000000000008'
+  - '0x6066666000000008'
+  - '0x6066666000000008'
+  - '0x0000A00000000008'
+  - '0x0000A0000000000A'
+  - '0x0000AA000000000A'
+  - '0x0000AA000000000C'
+  - '0x0000AA000000000E'
+  - '0x0000AA0000000008'
+  - '0x0000AA000000000A'
+  - '0x0000AA000000000C'
+  - '0x0000AA000000000E'
+  - '0x0000AA0000000008'
+  - '0x0000AA000000000A'
+  - '0x0000AA000000000C'
+  - '0x0000AA000000000E'
+  - '0x0000AA0000000008'
+  - '0x0000AA000000000A'
+  - '0x0000AA000000000C'
+  - '0x0000AA000000000E'
+  - '0x0000AA0000000008'
+  - '0x0000AA000000000A'
+  - '0x0000AA000000000C'
+  - '0x0000AA000000000E'
+  - '0x0000AA0000000008'
+  - '0x0000AA000000000A'
+  - '0x0000AA000000000C'
+  - '0x0000AA000000000E'
+  - '0x000000000000000E'
+  - '0xBBBB00000000000E'
+  - '0xFFFFF00F0000000E'
+  - '0xFFFFF00F00000008'
+  - '0xFFFFF00F0000000A'
+  - '0xFFFFF00F0000000C'
+  - '0xFFFFF00F0000000C'
+  - '0xFFFFF00F0000000C'
+bonds:
+  - '0xAAAAAAA000000006'
+logic: FAFFF000
+---
+
+<div align="center">
+<!-- ∇ HOLOGRAM START ∇ -->
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="grad_FAFFF000FFFF000A" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="hsl(0, 20%, 15%)" />
+      <stop offset="100%" stop-color="#090909" />
+    </radialGradient>
+    <filter id="glow_FAFFF000FFFF000A" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  
+  <rect width="200" height="200" fill="url(#grad_FAFFF000FFFF000A)" rx="24"/>
+  
+  <circle cx="100" cy="100" r="85" stroke="hsl(0, 30%, 30%)" stroke-width="1" fill="none" stroke-dasharray="2 6"/>
+  
+  <g>
+    <animateTransform attributeName="transform" type="rotate" from="90 100 100" to="450 100 100" dur="25s" repeatCount="indefinite" />
+    
+    <polygon points="100.0,40.0 146.9,62.6 158.5,113.4 126.0,154.1 74.0,154.1 41.5,113.4 53.1,62.6" fill="none" stroke="hsl(180, 60%, 40%)" stroke-width="1.5" opacity="0.6"/>
+    <polygon points="100.0,75.0 119.5,84.4 124.4,105.6 110.8,122.5 89.2,122.5 75.6,105.6 80.5,84.4" fill="none" stroke="hsl(0, 80%, 60%)" stroke-width="2" filter="url(#glow_FAFFF000FFFF000A)"/>
+    
+    <circle cx="100" cy="100" r="25" stroke="hsl(0, 60%, 50%)" stroke-width="0.5" fill="none" opacity="0.5"/>
+  </g>
+  
+  <circle cx="100" cy="100" r="3" fill="hsl(180, 80%, 70%)" filter="url(#glow_FAFFF000FFFF000A)"/>
+  
+  <text x="100" y="105" fill="hsl(0, 70%, 80%)" font-family="monospace" font-size="10" text-anchor="middle" letter-spacing="1" opacity="0.9">0xFAFF</text>
+  <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">REVERSE</text>
+</svg>
+<!-- Δ HOLOGRAM END Δ -->
+</div>
+
+
+export const ATOM = () => (x: any) => x;

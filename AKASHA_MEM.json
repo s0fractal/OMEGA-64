@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WAIT SHELTER SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772041001459
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT WATCH WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772041004104
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK EVOLVE BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772041004270
     }
   ]
 }
