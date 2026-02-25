@@ -118,12 +118,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772022089199
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE STRIKE STRIFE",
       "mood": "AGGRESSIVE",
@@ -206,6 +200,12 @@
       "text": "DECAY HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022092162
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DECAY STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022092343
     }
   ]
 }
