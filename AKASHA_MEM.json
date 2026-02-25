@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025687033
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STABLE OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772025687429
@@ -291,6 +285,12 @@
       "text": "RESONATE UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772025691388
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SHOCK STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025691607
     }
   ]
 }
