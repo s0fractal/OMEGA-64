@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "AWAKEN FORGE FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772031136481
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772031136696
@@ -291,6 +285,12 @@
       "text": "RECON STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772031141435
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON IMMUNE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772031141692
     }
   ]
 }
