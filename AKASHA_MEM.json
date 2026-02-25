@@ -158,12 +158,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH STRIFE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022768698
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022771470
@@ -245,6 +239,12 @@
       "text": "PURE RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022779110
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE GIVING FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772022779311
     }
   ]
 }
