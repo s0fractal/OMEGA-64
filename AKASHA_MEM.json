@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD SHELTER REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772032029710
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772032030144
@@ -291,6 +285,12 @@
       "text": "HEAL RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772032036388
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT GUARD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772032037196
     }
   ]
 }
