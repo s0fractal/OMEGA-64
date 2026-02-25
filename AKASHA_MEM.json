@@ -77,12 +77,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020994343
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020994522
@@ -164,6 +158,12 @@
       "text": "SHELTER SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772021000774
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021001278
     }
   ]
 }
