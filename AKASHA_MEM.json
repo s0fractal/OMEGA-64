@@ -11,15 +11,10 @@
     "BBB0000C",
     "BBBB0000",
     "60000000",
-    "BABB0000"
+    "BABB0000",
+    "000A0000"
   ],
   "utterances": [
-    {
-      "origin": "INTERFACE",
-      "text": "DECAY BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772014243805
-    },
     {
       "origin": "INTERFACE",
       "text": "SEIZE BREACH SHOCK",
@@ -103,6 +98,12 @@
       "text": "STRIFE SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772014388757
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE SYNC FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772014409028
     }
   ]
 }
