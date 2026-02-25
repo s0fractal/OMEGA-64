@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC COHERE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772038733114
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND WAVE FORGE",
       "mood": "CREATIVE",
       "tick": 1772038733356
@@ -291,6 +285,12 @@
       "text": "STRIFE SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772038736577
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM RESONATE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772038736813
     }
   ]
 }
