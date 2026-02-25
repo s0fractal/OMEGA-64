@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772033890698
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772033890931
@@ -291,6 +285,12 @@
       "text": "UNIFY OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772033894064
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033894252
     }
   ]
 }
