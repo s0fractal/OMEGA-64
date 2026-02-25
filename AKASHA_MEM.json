@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME BEYOND VISION",
-      "mood": "CREATIVE",
-      "tick": 1772025528786
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772025528993
@@ -291,6 +285,12 @@
       "text": "STRIKE BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772025533365
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772025533610
     }
   ]
 }
