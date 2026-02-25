@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW UNIFY UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772034334542
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772034334803
@@ -291,6 +285,12 @@
       "text": "GUARD SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772034337372
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SEIZE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034337567
     }
   ]
 }
