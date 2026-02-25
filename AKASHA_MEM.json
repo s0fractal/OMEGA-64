@@ -144,12 +144,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SEIZE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022482975
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022483212
@@ -231,6 +225,12 @@
       "text": "BEYOND SPARK BECOME",
       "mood": "CREATIVE",
       "tick": 1772022486393
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH BREACH BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022486520
     }
   ]
 }
