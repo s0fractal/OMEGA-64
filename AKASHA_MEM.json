@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "CONSUME BREACH SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038749843
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC UNIFY FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHELTER SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772038752900
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD REFLECT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772038753112
     }
   ]
 }
