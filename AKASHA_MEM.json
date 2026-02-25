@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DRAIN SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037300903
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772037301103
@@ -291,6 +285,12 @@
       "text": "PURE SHELTER SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772037303863
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW OSMOSIS OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772037304077
     }
   ]
 }
