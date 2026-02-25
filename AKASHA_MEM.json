@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "SUCC",
-      "text": "HEAL BLOOM STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041924867
-    },
-    {
-      "origin": "SUCC",
       "text": "UNIFY BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772041925719
@@ -291,6 +285,12 @@
       "text": "HEAL HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772041931338
+    },
+    {
+      "origin": "STREAM",
+      "text": "OSMOSIS OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041931524
     }
   ]
 }
