@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WAIT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772032848117
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772032848358
@@ -291,6 +285,12 @@
       "text": "BLOOM GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772032854829
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE HUNGER DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032855007
     }
   ]
 }
