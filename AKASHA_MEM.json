@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033589922
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772033590131
@@ -291,6 +285,12 @@
       "text": "IMMUNE GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772033593209
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD IMMUNE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772033593486
     }
   ]
 }
