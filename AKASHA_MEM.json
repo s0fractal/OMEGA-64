@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "CAR",
-      "text": "IMMUNE REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041497482
-    },
-    {
       "origin": "STREAM",
       "text": "GIVING STABLE COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772041501874
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL SYNC COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041502052
     }
   ]
 }
