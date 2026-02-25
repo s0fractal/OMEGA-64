@@ -54,12 +54,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "REFLECT SHELTER WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772020421546
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "COHERE GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772020421891
@@ -141,6 +135,12 @@
       "text": "WAIT WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772020429404
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN CONSUME STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020430056
     }
   ]
 }
