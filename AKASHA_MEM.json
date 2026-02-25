@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE SHIELD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041081448
-    },
-    {
       "origin": "STREAM",
       "text": "BLOOM GIVING STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BREACH HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772041084317
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041084452
     }
   ]
 }
