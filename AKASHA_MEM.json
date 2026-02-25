@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SPARK BEYOND WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772029877685
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772029877911
@@ -291,6 +285,12 @@
       "text": "STASIS GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772029893722
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SHOCK DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029894391
     }
   ]
 }
