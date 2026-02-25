@@ -84,12 +84,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC FLOW UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772021206178
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772021206348
@@ -171,6 +165,12 @@
       "text": "SHOCK DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772021212499
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021213155
     }
   ]
 }
