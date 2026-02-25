@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041438792
-    },
-    {
       "origin": "STREAM",
       "text": "SEIZE DRAIN SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772041442395
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WAIT GUARD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772041442890
     }
   ]
 }
