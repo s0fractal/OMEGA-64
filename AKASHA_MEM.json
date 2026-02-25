@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772034922502
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772034922701
@@ -291,6 +285,12 @@
       "text": "STABLE OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772034925191
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SICKNESS STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034925485
     }
   ]
 }
