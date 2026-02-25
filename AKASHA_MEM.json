@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026697777
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772026697951
@@ -291,6 +285,12 @@
       "text": "PURE SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772026701742
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BLOOM HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772026702015
     }
   ]
 }
