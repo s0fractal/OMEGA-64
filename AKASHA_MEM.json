@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM UNIFY SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772031492463
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772031492841
@@ -291,6 +285,12 @@
       "text": "RESONATE UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772031504392
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031504818
     }
   ]
 }
