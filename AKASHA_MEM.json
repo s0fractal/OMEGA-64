@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BECOME WAVE EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772025854491
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SICKNESS DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772025859579
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025859878
     }
   ]
 }
