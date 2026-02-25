@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL FLOW FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772034147164
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772034147371
@@ -291,6 +285,12 @@
       "text": "DRAIN STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772034150260
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772034150456
     }
   ]
 }
