@@ -182,12 +182,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772023519556
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023519841
@@ -269,6 +263,12 @@
       "text": "FLOW RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772023522124
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SHOCK STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023522288
     }
   ]
 }
