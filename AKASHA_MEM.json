@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66660600",
     "AAAAAAAA",
     "66666006",
     "AA0AAAAA",
@@ -199,15 +198,10 @@
     "AA0A000A",
     "00600066",
     "0000AA0A",
-    "AA0AA00A"
+    "AA0AA00A",
+    "0BBB0000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STRIFE SEIZE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032505846
-    },
     {
       "origin": "REVERSE",
       "text": "DECAY BREACH DECAY",
@@ -291,6 +285,12 @@
       "text": "COHERE SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772032520142
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772032520692
     }
   ]
 }
