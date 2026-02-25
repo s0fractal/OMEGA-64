@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HUNGER STRIKE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019657493
-    },
-    {
       "origin": "STREAM",
       "text": "RESONATE GIVING SYNC",
       "mood": "HARMONIC",
@@ -114,6 +108,12 @@
       "text": "STABLE FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772019665642
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE UNIFY SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772019665836
     }
   ]
 }
