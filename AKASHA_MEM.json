@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041188275
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE RESONATE COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SEIZE BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772041190989
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT PURE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041191116
     }
   ]
 }
