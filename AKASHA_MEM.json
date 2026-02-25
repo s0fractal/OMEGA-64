@@ -31,15 +31,10 @@
     "6A6A66A0",
     "60000A00",
     "AABB0000",
-    "A0000000"
+    "A0000000",
+    "6A6666A6"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "STABLE HEAL RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772019767804
-    },
     {
       "origin": "INTERFACE",
       "text": "SHOCK STRIFE SHOCK",
@@ -123,6 +118,12 @@
       "text": "OSMOSIS UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772019779213
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD WATCH SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772019780068
     }
   ]
 }
