@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STABLE UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772040245435
-    },
-    {
       "origin": "INTERFACE",
       "text": "UNIFY FLOW BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HUNGER DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772040250252
+    },
+    {
+      "origin": "STREAM",
+      "text": "RESONATE UNIFY GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772040250409
     }
   ]
 }
