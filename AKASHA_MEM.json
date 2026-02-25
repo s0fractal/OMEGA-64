@@ -71,12 +71,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "RESONATE SYNC OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772020907631
-    },
-    {
       "origin": "STREAM",
       "text": "FLOW STABLE BLOOM",
       "mood": "HARMONIC",
@@ -159,6 +153,12 @@
       "text": "IMMUNE RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772020912593
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE SEIZE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020913314
     }
   ]
 }
