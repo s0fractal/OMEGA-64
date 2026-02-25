@@ -155,12 +155,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS PURE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022645771
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME FORGE EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772022646015
@@ -242,6 +236,12 @@
       "text": "OSMOSIS FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022652684
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW BLOOM BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772022652841
     }
   ]
 }
