@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "FLOW STABLE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040313251
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS REFLECT STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772040319755
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW STABLE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772040320140
     }
   ]
 }
