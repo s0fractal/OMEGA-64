@@ -144,12 +144,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAVE WAVE WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772022488972
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772022489143
@@ -231,6 +225,12 @@
       "text": "SYNC GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022493146
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING SYNC SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772022493309
     }
   ]
 }
