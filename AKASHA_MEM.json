@@ -161,15 +161,10 @@
     "60600600",
     "AAAAA0A0",
     "B0BB0000",
-    "66666006"
+    "66666006",
+    "AAAA0AA0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "FORGE EVOLVE FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772023019871
-    },
     {
       "origin": "REVERSE",
       "text": "DECAY SICKNESS SEIZE",
@@ -253,6 +248,12 @@
       "text": "DRAIN STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023026765
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE DECAY CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023026974
     }
   ]
 }
