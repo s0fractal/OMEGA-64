@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE RESONATE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772026682534
-    },
-    {
-      "origin": "REVERSE",
       "text": "EVOLVE SPARK WITNESS",
       "mood": "CREATIVE",
       "tick": 1772026682765
@@ -291,6 +285,12 @@
       "text": "STRIFE BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772026688566
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026688879
     }
   ]
 }
