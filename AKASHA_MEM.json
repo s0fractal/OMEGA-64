@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE COHERE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772036325428
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772036325631
@@ -291,6 +285,12 @@
       "text": "BECOME DREAM DREAM",
       "mood": "CREATIVE",
       "tick": 1772036328377
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH BREACH STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036328542
     }
   ]
 }
