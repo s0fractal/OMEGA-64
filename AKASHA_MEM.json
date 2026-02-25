@@ -76,12 +76,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON PURE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772020976353
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772020976682
@@ -163,6 +157,12 @@
       "text": "PURE SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020982713
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE WATCH PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020983741
     }
   ]
 }
