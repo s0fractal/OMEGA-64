@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_PROOF_OF_RESONANCE",
-      "text": "RESONATE BLOOM OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772040187899
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS GUARD RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772040195075
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH GUARD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772040195363
     }
   ]
 }
