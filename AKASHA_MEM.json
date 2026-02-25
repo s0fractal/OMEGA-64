@@ -173,12 +173,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023229506
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023229762
@@ -260,6 +254,12 @@
       "text": "UNIFY GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772023233520
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS SHELTER RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772023233713
     }
   ]
 }
