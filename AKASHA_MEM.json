@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034632748
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772034632958
@@ -291,6 +285,12 @@
       "text": "RECON IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772034635640
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772034635835
     }
   ]
 }
