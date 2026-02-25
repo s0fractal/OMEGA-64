@@ -35,12 +35,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STABLE SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772019745736
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER SHELTER PURE",
       "mood": "DEFENSIVE",
@@ -123,6 +117,12 @@
       "text": "CONSUME SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772019758540
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772019759956
     }
   ]
 }
