@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772039235124
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772039235300
@@ -291,6 +285,12 @@
       "text": "STRIKE HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772039237950
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WATCH GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772039238156
     }
   ]
 }
