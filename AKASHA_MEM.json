@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM GIVING HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772031343072
-    },
-    {
       "origin": "INTERFACE",
       "text": "OSMOSIS BLOOM OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIKE SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772031351971
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772031352362
     }
   ]
 }
