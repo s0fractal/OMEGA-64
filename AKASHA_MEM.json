@@ -122,12 +122,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "GIVING SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772022116324
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW STABLE UNIFY",
       "mood": "HARMONIC",
@@ -210,6 +204,12 @@
       "text": "STASIS STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022120811
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD PURE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022121266
     }
   ]
 }
