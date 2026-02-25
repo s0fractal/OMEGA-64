@@ -173,12 +173,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE STABLE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772023224602
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023224724
@@ -260,6 +254,12 @@
       "text": "SEIZE CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023229506
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WATCH WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023229762
     }
   ]
 }
