@@ -70,12 +70,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE STRIKE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020867592
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME BREACH CONSUME",
       "mood": "AGGRESSIVE",
@@ -158,6 +152,12 @@
       "text": "HEAL BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772020873269
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HUNGER HUNGER STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020873453
     }
   ]
 }
