@@ -169,12 +169,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023081464
-    },
-    {
       "origin": "STREAM",
       "text": "BREACH CONSUME SEIZE",
       "mood": "AGGRESSIVE",
@@ -257,6 +251,12 @@
       "text": "STRIKE SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023085289
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHELTER STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772023085452
     }
   ]
 }
