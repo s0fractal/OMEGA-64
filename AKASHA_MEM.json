@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STABLE HEAL UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772035976482
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC COHERE RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DRAIN DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772035979523
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035979729
     }
   ]
 }
