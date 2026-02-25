@@ -99,12 +99,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY DECAY SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021593380
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC FLOW UNIFY",
       "mood": "HARMONIC",
@@ -187,6 +181,12 @@
       "text": "SYNC OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772021599042
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772021600204
     }
   ]
 }
