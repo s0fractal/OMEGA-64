@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM UNIFY SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772020406505
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHOCK SEIZE HUNGER",
       "mood": "AGGRESSIVE",
@@ -141,6 +135,12 @@
       "text": "BLOOM UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772020415792
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "CONSUME STRIKE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020415941
     }
   ]
 }
