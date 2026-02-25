@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING HEAL FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772023200676
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAVE FORGE VISION",
       "mood": "CREATIVE",
       "tick": 1772023200854
@@ -259,6 +253,12 @@
       "text": "STRIFE SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023206152
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL RESONATE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772023206319
     }
   ]
 }
