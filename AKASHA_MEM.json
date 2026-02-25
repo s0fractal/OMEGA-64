@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STASIS STASIS STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772041672341
-    },
-    {
       "origin": "PARADOX",
       "text": "SEIZE DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772041676532
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS SHELTER REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041676662
     }
   ]
 }
