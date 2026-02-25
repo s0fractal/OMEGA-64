@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WAIT RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772036691262
-    },
-    {
       "origin": "STREAM",
       "text": "STRIFE BREACH DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "FORGE AWAKEN AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772036695389
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772036695559
     }
   ]
 }
