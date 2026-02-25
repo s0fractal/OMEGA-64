@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE WAIT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772029694734
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772029695431
@@ -291,6 +285,12 @@
       "text": "SYNC UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772029704414
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM STABLE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772029704870
     }
   ]
 }
