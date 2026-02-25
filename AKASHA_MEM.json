@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772033649124
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772033649314
@@ -291,6 +285,12 @@
       "text": "STRIFE BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772033652122
+    },
+    {
+      "origin": "STREAM",
+      "text": "OSMOSIS HEAL OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772033652317
     }
   ]
 }
