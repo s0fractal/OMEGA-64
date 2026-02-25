@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038879958
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772038880171
@@ -291,6 +285,12 @@
       "text": "UNIFY FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038883870
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW STABLE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772038884046
     }
   ]
 }
