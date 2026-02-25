@@ -83,12 +83,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772021189581
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH STRIKE SEIZE",
       "mood": "AGGRESSIVE",
@@ -171,6 +165,12 @@
       "text": "SHELTER IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772021196281
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS SPARK BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772021196453
     }
   ]
 }
