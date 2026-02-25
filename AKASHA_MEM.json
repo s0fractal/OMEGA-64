@@ -116,12 +116,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD SHELTER PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022023064
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK VISION BEYOND",
       "mood": "CREATIVE",
       "tick": 1772022023472
@@ -203,6 +197,12 @@
       "text": "SICKNESS STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022028203
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WATCH SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772022028561
     }
   ]
 }
