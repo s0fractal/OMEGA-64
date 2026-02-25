@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE GIVING HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772040837289
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE GIVING BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RESONATE UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772040840938
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WATCH WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772040841115
     }
   ]
 }
