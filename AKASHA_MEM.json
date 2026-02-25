@@ -63,12 +63,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "CONSUME STRIFE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020734010
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME DECAY BREACH",
       "mood": "AGGRESSIVE",
@@ -151,6 +145,12 @@
       "text": "GIVING RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772020740950
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME BREACH BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020741188
     }
   ]
 }
