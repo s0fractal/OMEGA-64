@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD WATCH IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023180499
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772023180670
@@ -259,6 +253,12 @@
       "text": "GUARD REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023187908
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772023188134
     }
   ]
 }
