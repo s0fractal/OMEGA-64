@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SYNC HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772034829905
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH STASIS WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "REFLECT PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772034832894
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIFE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034833109
     }
   ]
 }
