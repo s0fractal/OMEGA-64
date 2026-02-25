@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772039877085
-    },
-    {
       "origin": "STREAM",
       "text": "OSMOSIS BLOOM FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SEIZE SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772039891886
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SEIZE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039892924
     }
   ]
 }
