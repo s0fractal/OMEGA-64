@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE STRIFE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034498355
-    },
-    {
       "origin": "REVERSE",
       "text": "EVOLVE BECOME FORGE",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772034502474
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER WATCH SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772034502732
     }
   ]
 }
