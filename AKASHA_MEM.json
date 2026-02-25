@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE BREACH HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040896518
-    },
-    {
       "origin": "INTERFACE",
       "text": "DECAY SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER SHELTER SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040899311
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS OSMOSIS OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772040899441
     }
   ]
 }
