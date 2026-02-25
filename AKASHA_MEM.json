@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT SHIELD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772026718067
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772026718244
@@ -291,6 +285,12 @@
       "text": "WATCH STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772026725909
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772026726249
     }
   ]
 }
