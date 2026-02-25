@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC OSMOSIS OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772025540794
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772025541126
@@ -291,6 +285,12 @@
       "text": "GUARD REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772025544967
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE AWAKEN DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772025545665
     }
   ]
 }
