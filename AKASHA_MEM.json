@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772032998852
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772032999042
@@ -291,6 +285,12 @@
       "text": "STASIS STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772033001679
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE GIVING UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772033001876
     }
   ]
 }
