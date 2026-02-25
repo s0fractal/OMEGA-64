@@ -144,12 +144,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022486099
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022486219
@@ -231,6 +225,12 @@
       "text": "WITNESS EVOLVE EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772022489823
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772022490066
     }
   ]
 }
