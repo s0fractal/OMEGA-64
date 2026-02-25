@@ -164,12 +164,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023006410
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023006525
@@ -251,6 +245,12 @@
       "text": "WATCH WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023010108
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION SPARK AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772023010300
     }
   ]
 }
