@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "000AA000",
     "A06600A6",
     "A0606606",
     "60666000",
@@ -199,15 +198,10 @@
     "06006000",
     "A000A000",
     "AA660660",
-    "AA0660A0"
+    "AA0660A0",
+    "A0AAAAAA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SPARK VISION AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772034379307
-    },
     {
       "origin": "REVERSE",
       "text": "WAIT WATCH IMMUNE",
@@ -291,6 +285,12 @@
       "text": "FLOW HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772034382621
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SHOCK DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034382801
     }
   ]
 }
