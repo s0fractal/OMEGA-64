@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036329853
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW COHERE BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772036333693
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772036333926
     }
   ]
 }
