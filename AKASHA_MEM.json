@@ -152,12 +152,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE STRIKE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022587298
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022587467
@@ -239,6 +233,12 @@
       "text": "OSMOSIS UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772022591986
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772022592134
     }
   ]
 }
