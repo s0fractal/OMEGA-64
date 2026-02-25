@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HUNGER SHOCK SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041676400
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "PURE STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772041676532
@@ -291,6 +285,12 @@
       "text": "DECAY SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772041679133
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING GIVING COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041679389
     }
   ]
 }
