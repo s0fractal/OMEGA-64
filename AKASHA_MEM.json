@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SHOCK BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036156915
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772036157126
@@ -291,6 +285,12 @@
       "text": "GIVING RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772036160999
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK FORGE VISION",
+      "mood": "CREATIVE",
+      "tick": 1772036161236
     }
   ]
 }
