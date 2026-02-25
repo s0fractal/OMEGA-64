@@ -24,12 +24,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GUARD REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772019516280
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SEIZE CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772019516763
@@ -111,6 +105,12 @@
       "text": "WAIT SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772019524641
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH SHELTER WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772019525185
     }
   ]
 }
