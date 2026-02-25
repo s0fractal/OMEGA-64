@@ -127,12 +127,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE OSMOSIS RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772022254658
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022254844
@@ -214,6 +208,12 @@
       "text": "SHOCK STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772022260522
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022260682
     }
   ]
 }
