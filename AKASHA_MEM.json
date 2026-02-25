@@ -109,12 +109,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE SICKNESS STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021855772
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS FLOW FLOW",
       "mood": "HARMONIC",
@@ -197,6 +191,12 @@
       "text": "WAIT STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772021865507
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE STASIS GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021865691
     }
   ]
 }
