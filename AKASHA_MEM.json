@@ -165,12 +165,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023012474
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772023012645
@@ -252,6 +246,12 @@
       "text": "BLOOM FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772023018735
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE EVOLVE FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772023019871
     }
   ]
 }
