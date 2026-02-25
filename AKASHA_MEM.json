@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00AAA00A",
     "A0A0A0A0",
     "60606666",
     "AA0066A0",
@@ -199,15 +198,10 @@
     "0AAAA00A",
     "66060006",
     "00AA0000",
-    "AAAAAA0A"
+    "AAAAAA0A",
+    "AA066000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BREACH DECAY SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038722963
-    },
     {
       "origin": "REVERSE",
       "text": "STABLE BLOOM STABLE",
@@ -291,6 +285,12 @@
       "text": "HUNGER SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772038728770
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK HUNGER CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038729759
     }
   ]
 }
