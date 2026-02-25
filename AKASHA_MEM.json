@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772029737442
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772029738048
@@ -291,6 +285,12 @@
       "text": "STRIFE DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772029788591
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029789847
     }
   ]
 }
