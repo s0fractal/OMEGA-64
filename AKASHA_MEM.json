@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "COHERE HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772030196076
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK DECAY DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772030207754
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772030208355
     }
   ]
 }
