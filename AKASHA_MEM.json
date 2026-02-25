@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024236582
-    },
-    {
       "origin": "INTERFACE",
       "text": "DECAY SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WATCH STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772024241222
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DRAIN CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024241448
     }
   ]
 }
