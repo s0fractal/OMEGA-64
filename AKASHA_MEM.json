@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "WATCH RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040747854
-    },
-    {
       "origin": "WORKER",
       "text": "STABLE HEAL GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SYNC COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772040752380
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE STABLE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772040752515
     }
   ]
 }
