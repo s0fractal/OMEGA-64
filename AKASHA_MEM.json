@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH RECON WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772038150650
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772038150861
@@ -291,6 +285,12 @@
       "text": "OSMOSIS GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038153414
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772038153610
     }
   ]
 }
