@@ -151,15 +151,10 @@
     "AA6066A6",
     "0AA0AAA0",
     "666A6600",
-    "66600600"
+    "66600600",
+    "06666066"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STASIS RECON WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772022763034
-    },
     {
       "origin": "REVERSE",
       "text": "FLOW UNIFY UNIFY",
@@ -243,6 +238,12 @@
       "text": "STASIS RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022771470
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE OSMOSIS UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772022771797
     }
   ]
 }
