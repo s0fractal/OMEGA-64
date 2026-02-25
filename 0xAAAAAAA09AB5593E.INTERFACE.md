@@ -35,9 +35,12 @@ ex:
   - '0xAAAAAAA09AB5593A'
   - '0xAAAAAAA09AB5593A'
   - '0xAAAAAAA09AB5593C'
+  - '0xAAAAAAA09AB5593C'
+  - '0xAAAAAAA09AB5593C'
+  - '0xAAAAAAA09AB5593C'
 thought: RESURRECTED
-x: 439
-'y': 230
+x: 495
+'y': 232
 signals: []
 resonance: 250
 bonds: []
