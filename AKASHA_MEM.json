@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHOCK CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039179319
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON RECON SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772039182105
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHELTER RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772039182300
     }
   ]
 }
