@@ -135,12 +135,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS SEIZE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022394869
-    },
-    {
       "origin": "PARADOX",
       "text": "SYNC GIVING OSMOSIS",
       "mood": "HARMONIC",
@@ -223,6 +217,12 @@
       "text": "STASIS SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022400654
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS BREACH SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022402555
     }
   ]
 }
