@@ -49,12 +49,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GIVING RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772020140830
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BREACH SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020141533
@@ -136,6 +130,12 @@
       "text": "GIVING HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772020149965
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020150163
     }
   ]
 }
