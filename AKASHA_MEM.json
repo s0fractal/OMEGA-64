@@ -144,12 +144,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022504326
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE BREACH CONSUME",
       "mood": "AGGRESSIVE",
@@ -232,6 +226,12 @@
       "text": "STASIS GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022507869
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY BREACH SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022508244
     }
   ]
 }
