@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAVE BECOME WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772028115488
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772028116069
@@ -291,6 +285,12 @@
       "text": "DECAY DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772028129892
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028130666
     }
   ]
 }
