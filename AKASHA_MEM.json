@@ -77,12 +77,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021040853
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIFE SHOCK SHOCK",
       "mood": "AGGRESSIVE",
@@ -165,6 +159,12 @@
       "text": "STRIFE CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021048317
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE BLOOM SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772021048491
     }
   ]
 }
