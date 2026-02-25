@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041968095
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHIELD WAIT GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772041973808
+    },
+    {
+      "origin": "GUARDIAN",
+      "text": "FLOW OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772041974694
     }
   ]
 }
