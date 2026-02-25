@@ -80,12 +80,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021121079
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE STRIKE HUNGER",
       "mood": "AGGRESSIVE",
@@ -168,6 +162,12 @@
       "text": "SYNC HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772021126754
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE STRIFE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021126889
     }
   ]
 }
