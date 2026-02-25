@@ -177,12 +177,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD WAIT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023311211
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772023311403
@@ -264,6 +258,12 @@
       "text": "RESONATE HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772023316407
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023316736
     }
   ]
 }
