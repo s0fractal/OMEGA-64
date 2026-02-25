@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020648874
-    },
-    {
       "origin": "REVERSE",
       "text": "RECON IMMUNE WAIT",
       "mood": "DEFENSIVE",
@@ -150,6 +144,12 @@
       "text": "SEIZE HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020657162
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772020657569
     }
   ]
 }
