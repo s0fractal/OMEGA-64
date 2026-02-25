@@ -115,15 +115,10 @@
     "66066600",
     "0000A006",
     "00AA60A0",
-    "06006000"
+    "06006000",
+    "0000AAAA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "HEAL COHERE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772022096289
-    },
     {
       "origin": "REVERSE",
       "text": "RESONATE UNIFY BLOOM",
@@ -207,6 +202,12 @@
       "text": "CONSUME SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022103755
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL OSMOSIS RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772022104267
     }
   ]
 }
