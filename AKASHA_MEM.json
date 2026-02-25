@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HEAL GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772041780646
-    },
-    {
       "origin": "B_READ",
       "text": "IMMUNE REFLECT WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041787458
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772041788377
     }
   ]
 }
