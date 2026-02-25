@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH DECAY SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026768989
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772026769234
@@ -291,6 +285,12 @@
       "text": "DRAIN BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772026775970
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SICKNESS STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026776199
     }
   ]
 }
