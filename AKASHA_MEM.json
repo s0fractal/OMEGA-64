@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RESONATE OSMOSIS HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772041138668
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BLOOM BLOOM COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DECAY DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772041142703
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE EVOLVE SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772041142847
     }
   ]
 }
