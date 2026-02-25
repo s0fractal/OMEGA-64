@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY SYNC STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772023987643
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772023987852
@@ -284,6 +278,12 @@
       "text": "WATCH PURE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772023993178
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SEIZE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023993574
     }
   ]
 }
