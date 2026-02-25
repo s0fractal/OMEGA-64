@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "FLOW SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040314922
-    },
-    {
       "origin": "REVERSE",
       "text": "SHIELD GUARD WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DRAIN SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040321261
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GIVING BLOOM BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772040321520
     }
   ]
 }
