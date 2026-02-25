@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00000000",
     "60006666",
     "A00000DD",
     "0A00AAA0",
@@ -199,15 +198,10 @@
     "A0AA0AA0",
     "000A00A0",
     "AAAA0AAA",
-    "06006606"
+    "06006606",
+    "00606600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RESONATE HEAL FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772039240337
-    },
     {
       "origin": "REVERSE",
       "text": "UNIFY UNIFY STABLE",
@@ -291,6 +285,12 @@
       "text": "SHELTER REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772039243309
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY RESONATE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772039243520
     }
   ]
 }
