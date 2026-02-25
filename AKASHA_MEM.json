@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING GIVING HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772041131942
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON STASIS IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041135944
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772041136257
     }
   ]
 }
