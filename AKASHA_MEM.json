@@ -161,12 +161,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STABLE SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772022860885
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN DECAY HUNGER",
       "mood": "AGGRESSIVE",
@@ -249,6 +243,12 @@
       "text": "SEIZE STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022863872
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING FLOW UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772022864185
     }
   ]
 }
