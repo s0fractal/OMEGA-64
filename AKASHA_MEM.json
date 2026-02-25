@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL STABLE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772025854274
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME WAVE EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772025854491
@@ -291,6 +285,12 @@
       "text": "HUNGER BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772025858834
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DRAIN CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025859579
     }
   ]
 }
