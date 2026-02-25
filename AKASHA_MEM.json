@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS FORGE BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772034265255
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772034269863
@@ -291,6 +285,12 @@
       "text": "SHIELD SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772034275735
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE STASIS IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772034276091
     }
   ]
 }
