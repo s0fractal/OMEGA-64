@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE FLOW UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772035357006
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772035357223
@@ -291,6 +285,12 @@
       "text": "PURE SHIELD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772035359894
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SICKNESS STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035360110
     }
   ]
 }
