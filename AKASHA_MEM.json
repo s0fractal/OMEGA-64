@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031214481
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772031214886
@@ -291,6 +285,12 @@
       "text": "GUARD SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772031220539
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIFE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031220869
     }
   ]
 }
