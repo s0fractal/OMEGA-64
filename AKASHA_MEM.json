@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT RECON SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772034499750
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034500072
@@ -291,6 +285,12 @@
       "text": "STRIFE BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772034503405
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772034503604
     }
   ]
 }
