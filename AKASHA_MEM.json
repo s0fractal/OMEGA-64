@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD REFLECT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022204920
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022205162
@@ -213,6 +207,12 @@
       "text": "HUNGER BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022209468
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK DECAY DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022209861
     }
   ]
 }
