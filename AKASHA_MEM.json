@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BEYOND FORGE VISION",
-      "mood": "CREATIVE",
-      "tick": 1772025127990
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772025129122
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772025132537
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE WITNESS BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772025132940
     }
   ]
 }
