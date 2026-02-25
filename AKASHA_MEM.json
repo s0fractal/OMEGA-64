@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS GIVING HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772033785036
-    },
-    {
-      "origin": "REVERSE",
       "text": "EVOLVE FORGE SPARK",
       "mood": "CREATIVE",
       "tick": 1772033786593
@@ -291,6 +285,12 @@
       "text": "STRIFE DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772033792825
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033793026
     }
   ]
 }
