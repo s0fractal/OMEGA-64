@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH STASIS WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772034369892
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772034370060
@@ -291,6 +285,12 @@
       "text": "SHELTER STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772034372708
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE HEAL GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772034372875
     }
   ]
 }
