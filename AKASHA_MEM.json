@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIKE DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019529718
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER RECON REFLECT",
       "mood": "DEFENSIVE",
@@ -111,6 +105,12 @@
       "text": "IMMUNE REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772019540467
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RECON IMMUNE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772019541953
     }
   ]
 }
