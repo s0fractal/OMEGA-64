@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A6660060",
     "60060660",
     "AA00AA0A",
     "0AA0A0A0",
@@ -199,15 +198,10 @@
     "00060600",
     "0EE00EEF",
     "AAAAAAAA",
-    "AAA00000"
+    "AAA00000",
+    "BBBB0000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STRIFE SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039130165
-    },
     {
       "origin": "REVERSE",
       "text": "UNIFY GIVING COHERE",
@@ -291,6 +285,12 @@
       "text": "PURE RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772039133456
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039133683
     }
   ]
 }
