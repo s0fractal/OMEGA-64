@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A6660000",
     "06006606",
     "0AA0A00A",
     "AAAAAA0A",
@@ -199,15 +198,10 @@
     "00060000",
     "AA0BC0DD",
     "0AAA00A0",
-    "AA00A0AA"
+    "AA00A0AA",
+    "FF0FFF00"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STABLE RESONATE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772033093977
-    },
     {
       "origin": "REVERSE",
       "text": "GUARD STASIS RECON",
@@ -291,6 +285,12 @@
       "text": "BREACH SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772033096633
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS SPARK BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772033096852
     }
   ]
 }
