@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "000A0AAA",
     "AABBC00D",
     "AA00000A",
     "0A000A00",
@@ -199,15 +198,10 @@
     "AA000AA0",
     "06666666",
     "AA6006A6",
-    "AAA0AAA0"
+    "AAA0AAA0",
+    "B0B0000C"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "COHERE OSMOSIS UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772030020925
-    },
     {
       "origin": "REVERSE",
       "text": "STABLE GIVING UNIFY",
@@ -291,6 +285,12 @@
       "text": "RECON REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772030029826
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030030381
     }
   ]
 }
