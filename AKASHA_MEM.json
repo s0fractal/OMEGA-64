@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60666600",
     "0AA0AAA0",
     "00AAAAA0",
     "06060606",
@@ -199,15 +198,10 @@
     "0AA00AA0",
     "00000AA0",
     "AABB0C0D",
-    "AA0666A0"
+    "AA0666A0",
+    "66000606"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHIELD WATCH STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772031687076
-    },
     {
       "origin": "REVERSE",
       "text": "SYNC UNIFY HEAL",
@@ -291,6 +285,12 @@
       "text": "RECON STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772031697060
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS REFLECT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772031698302
     }
   ]
 }
