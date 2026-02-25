@@ -74,12 +74,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "EVOLVE SPARK BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772020959727
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "FLOW FLOW HEAL",
       "mood": "HARMONIC",
@@ -162,6 +156,12 @@
       "text": "STASIS GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772020965197
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT STASIS PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020965534
     }
   ]
 }
