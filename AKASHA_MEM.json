@@ -17,12 +17,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "WAIT IMMUNE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772014559607
-    },
-    {
-      "origin": "INTERFACE",
       "text": "DECAY STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772014582689
@@ -104,6 +98,12 @@
       "text": "STRIFE SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772014672019
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SEIZE STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772014677687
     }
   ]
 }
