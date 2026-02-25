@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772042022769
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BLOOM STABLE HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DRAIN HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772042029243
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042029650
     }
   ]
 }
