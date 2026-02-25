@@ -95,12 +95,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SEIZE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021521137
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772021522723
@@ -182,6 +176,12 @@
       "text": "HUNGER CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772021528791
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK AWAKEN FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772021529739
     }
   ]
 }
