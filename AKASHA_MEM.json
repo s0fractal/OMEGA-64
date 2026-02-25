@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SICKNESS HUNGER STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038677053
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE CONSUME SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772038680395
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772038680583
     }
   ]
 }
