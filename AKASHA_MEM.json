@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS STRIKE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023733551
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772023733765
@@ -278,6 +272,12 @@
       "text": "BLOOM COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772023736096
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772023736426
     }
   ]
 }
