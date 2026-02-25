@@ -158,15 +158,10 @@
     "60666660",
     "00AA000A",
     "06666006",
-    "60600600"
+    "60600600",
+    "AAAAA0A0"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022925070
-    },
     {
       "origin": "REVERSE",
       "text": "UNIFY BLOOM COHERE",
@@ -250,6 +245,12 @@
       "text": "SPARK BEYOND BECOME",
       "mood": "CREATIVE",
       "tick": 1772022932650
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DECAY SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022932834
     }
   ]
 }
