@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER WAIT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772033742604
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772033742817
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772033747326
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT GUARD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772033750590
     }
   ]
 }
