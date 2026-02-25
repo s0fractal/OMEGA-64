@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772033898368
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772033898595
@@ -291,6 +285,12 @@
       "text": "PURE STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772033901195
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIFE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033901448
     }
   ]
 }
