@@ -156,12 +156,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022713858
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022714120
@@ -243,6 +237,12 @@
       "text": "GIVING BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022721643
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772022721906
     }
   ]
 }
