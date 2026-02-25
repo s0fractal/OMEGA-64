@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "666666A0",
     "06660000",
     "6A666660",
     "A0A0AAAA",
@@ -199,15 +198,10 @@
     "0AAA0AA0",
     "60060660",
     "A0000000",
-    "0AA00A0A"
+    "0AA00A0A",
+    "FF00FF00"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "PURE WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772025611856
-    },
     {
       "origin": "REVERSE",
       "text": "GIVING OSMOSIS OSMOSIS",
@@ -291,6 +285,12 @@
       "text": "IMMUNE WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772025619633
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS WITNESS AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772025619840
     }
   ]
 }
