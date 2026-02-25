@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE STRIKE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041097599
-    },
-    {
       "origin": "REVERSE",
       "text": "AWAKEN EVOLVE DREAM",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "WATCH GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041103051
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE IMMUNE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772041103255
     }
   ]
 }
