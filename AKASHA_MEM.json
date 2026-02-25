@@ -155,12 +155,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772022736425
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE COHERE OSMOSIS",
       "mood": "HARMONIC",
@@ -243,6 +237,12 @@
       "text": "HEAL SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022742286
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER PURE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022742492
     }
   ]
 }
