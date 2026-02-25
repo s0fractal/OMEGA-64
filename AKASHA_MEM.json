@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH WAIT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040927852
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS WATCH IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772040930793
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE DECAY STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040931434
     }
   ]
 }
