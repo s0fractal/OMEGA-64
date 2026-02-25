@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "WORKER",
-      "text": "PURE WATCH WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042088994
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHIELD GUARD IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772042097101
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772042097329
     }
   ]
 }
