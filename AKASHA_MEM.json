@@ -164,12 +164,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772022947941
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022948944
@@ -251,6 +245,12 @@
       "text": "GIVING STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772022951452
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD GUARD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022951713
     }
   ]
 }
