@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772035327988
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772035328201
@@ -291,6 +285,12 @@
       "text": "REFLECT STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772035330919
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035331129
     }
   ]
 }
