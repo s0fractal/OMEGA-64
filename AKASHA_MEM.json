@@ -115,12 +115,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH WAIT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022000167
-    },
-    {
       "origin": "PARADOX",
       "text": "HEAL STABLE STABLE",
       "mood": "HARMONIC",
@@ -203,6 +197,12 @@
       "text": "DECAY CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772022011552
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS REFLECT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772022011812
     }
   ]
 }
