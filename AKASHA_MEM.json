@@ -167,12 +167,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FORGE VISION FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772023033631
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD IMMUNE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023033860
@@ -254,6 +248,12 @@
       "text": "BREACH SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772023037661
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BLOOM UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772023038629
     }
   ]
 }
