@@ -64,12 +64,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DECAY SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020714865
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "REFLECT WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772020715335
@@ -151,6 +145,12 @@
       "text": "SHIELD RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772020721199
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020721700
     }
   ]
 }
