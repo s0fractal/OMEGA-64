@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM OSMOSIS SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772036220447
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772036220755
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772036225070
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN HUNGER STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036225245
     }
   ]
 }
