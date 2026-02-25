@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE UNIFY UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772026733342
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772026733580
@@ -291,6 +285,12 @@
       "text": "SYNC RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772026738501
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT GUARD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772026739327
     }
   ]
 }
