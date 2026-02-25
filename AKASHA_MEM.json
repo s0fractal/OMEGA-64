@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE OSMOSIS COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772023958811
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023958978
@@ -284,6 +278,12 @@
       "text": "WAIT SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023962741
+    },
+    {
+      "origin": "STREAM",
+      "text": "FLOW FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772023962916
     }
   ]
 }
