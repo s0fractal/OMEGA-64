@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAAA0AA0",
     "66660666",
     "AA0A0A0A",
     "AAAA000A",
@@ -199,15 +198,10 @@
     "60666660",
     "06666060",
     "00606066",
-    "A0AA0A00"
+    "A0AA0A00",
+    "AABBCCDD"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "CONSUME CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035773383
-    },
     {
       "origin": "REVERSE",
       "text": "SPARK WITNESS BEYOND",
@@ -291,6 +285,12 @@
       "text": "UNIFY HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772035778006
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SHOCK SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035778202
     }
   ]
 }
