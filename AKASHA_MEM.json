@@ -177,12 +177,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023283961
-    },
-    {
-      "origin": "REVERSE",
       "text": "FORGE BECOME DREAM",
       "mood": "CREATIVE",
       "tick": 1772023284637
@@ -264,6 +258,12 @@
       "text": "DRAIN STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023289988
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772023290147
     }
   ]
 }
