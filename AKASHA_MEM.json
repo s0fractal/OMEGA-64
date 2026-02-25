@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038365113
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772038365314
@@ -291,6 +285,12 @@
       "text": "OSMOSIS FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772038368359
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772038368620
     }
   ]
 }
