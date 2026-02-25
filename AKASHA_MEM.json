@@ -110,12 +110,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING SYNC HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772021896123
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS REFLECT WAIT",
       "mood": "DEFENSIVE",
@@ -198,6 +192,12 @@
       "text": "CONSUME SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772021900549
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772021901999
     }
   ]
 }
