@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772037247559
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772037248008
@@ -291,6 +285,12 @@
       "text": "FLOW OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772037251683
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE IMMUNE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772037251866
     }
   ]
 }
