@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD WATCH WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023727675
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772023727877
@@ -278,6 +272,12 @@
       "text": "SICKNESS HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023730098
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WATCH GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023730237
     }
   ]
 }
