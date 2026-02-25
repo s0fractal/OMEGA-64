@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHIELD GUARD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772036450790
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK BREACH SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772036464751
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM GIVING BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772036465077
     }
   ]
 }
