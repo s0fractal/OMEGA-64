@@ -96,12 +96,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHIELD SHIELD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772021572247
-    },
-    {
       "origin": "REVERSE",
       "text": "IMMUNE WATCH RECON",
       "mood": "DEFENSIVE",
@@ -184,6 +178,12 @@
       "text": "EVOLVE WITNESS VISION",
       "mood": "CREATIVE",
       "tick": 1772021580393
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK CONSUME DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021582057
     }
   ]
 }
