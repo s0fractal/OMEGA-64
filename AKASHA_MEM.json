@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STASIS WAIT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772024903688
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT WATCH IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SICKNESS SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772024909526
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHELTER WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772024909956
     }
   ]
 }
