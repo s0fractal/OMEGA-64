@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON SHELTER GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772034293436
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772034293592
@@ -291,6 +285,12 @@
       "text": "DRAIN HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772034297941
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE STABLE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772034301204
     }
   ]
 }
