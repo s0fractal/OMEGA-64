@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HEAL BLOOM HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772024619676
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM UNIFY UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FLOW COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772024632795
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC OSMOSIS RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772024635104
     }
   ]
 }
