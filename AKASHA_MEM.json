@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06066000",
     "06606000",
     "60006000",
     "66660660",
@@ -199,15 +198,10 @@
     "0000F000",
     "AA000AAA",
     "AA0A00A0",
-    "AA0000A0"
+    "AA0000A0",
+    "AAAAAA0A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RECON STASIS SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772035283865
-    },
     {
       "origin": "REVERSE",
       "text": "DECAY SEIZE SICKNESS",
@@ -291,6 +285,12 @@
       "text": "BLOOM HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772035288437
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SEIZE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035288659
     }
   ]
 }
