@@ -15,12 +15,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SICKNESS CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772013248363
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "FLOW COHERE FLOW",
       "mood": "HARMONIC",
@@ -103,6 +97,12 @@
       "text": "REFLECT SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772014178256
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIFE DRAIN STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772014196133
     }
   ]
 }
