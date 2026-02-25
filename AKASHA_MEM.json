@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "F0FFF0FF",
     "AA000A00",
     "AAAA00A0",
     "666006A0",
@@ -199,15 +198,10 @@
     "00AAA0AA",
     "AA6660A6",
     "00660606",
-    "AAAAAAAA"
+    "AAAAAAAA",
+    "00FFF00F"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHIELD STASIS PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772032826283
-    },
     {
       "origin": "REVERSE",
       "text": "IMMUNE IMMUNE WAIT",
@@ -291,6 +285,12 @@
       "text": "STASIS IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772032829621
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING RESONATE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772032829786
     }
   ]
 }
