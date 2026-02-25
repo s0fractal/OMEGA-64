@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029298218
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772029298579
@@ -291,6 +285,12 @@
       "text": "UNIFY OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772029304739
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772029305168
     }
   ]
 }
