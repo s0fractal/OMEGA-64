@@ -171,12 +171,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BEYOND BEYOND VISION",
-      "mood": "CREATIVE",
-      "tick": 1772023088732
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772023088931
@@ -258,6 +252,12 @@
       "text": "SHOCK SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023094648
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL RESONATE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772023094810
     }
   ]
 }
