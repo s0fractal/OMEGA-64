@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "HEAL HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772040481177
-    },
-    {
       "origin": "INTERFACE",
       "text": "PURE SHELTER SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772040483640
+    },
+    {
+      "origin": "STREAM",
+      "text": "FLOW GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772040483811
     }
   ]
 }
