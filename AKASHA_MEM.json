@@ -177,12 +177,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772023319002
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772023319196
@@ -264,6 +258,12 @@
       "text": "PURE GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023324098
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH PURE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023324310
     }
   ]
 }
