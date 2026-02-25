@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE WATCH REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772028144515
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772028145268
@@ -291,6 +285,12 @@
       "text": "COHERE COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772028152344
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE GIVING COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772028152787
     }
   ]
 }
