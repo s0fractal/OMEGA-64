@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SEIZE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023927379
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772023927907
@@ -284,6 +278,12 @@
       "text": "DECAY DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772023934174
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE SYNC COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772023934400
     }
   ]
 }
