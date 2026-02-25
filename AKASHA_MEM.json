@@ -60,12 +60,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772020601876
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SYNC OSMOSIS RESONATE",
       "mood": "HARMONIC",
@@ -148,6 +142,12 @@
       "text": "WAVE BEYOND SPARK",
       "mood": "CREATIVE",
       "tick": 1772020608852
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020609017
     }
   ]
 }
