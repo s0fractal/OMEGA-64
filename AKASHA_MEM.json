@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035785277
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS SHELTER SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772035785493
@@ -291,6 +285,12 @@
       "text": "WAIT RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772035788595
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772035788821
     }
   ]
 }
