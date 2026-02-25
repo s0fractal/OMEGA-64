@@ -108,12 +108,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING GIVING SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772021813433
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772021813605
@@ -195,6 +189,12 @@
       "text": "STRIFE CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772021818235
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772021818519
     }
   ]
 }
