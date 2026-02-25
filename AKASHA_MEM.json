@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE HUNGER STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040301055
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772040301411
@@ -291,6 +285,12 @@
       "text": "BLOOM STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772040306923
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SYNC SYNC FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772040307490
     }
   ]
 }
