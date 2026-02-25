@@ -11,12 +11,6 @@ desc: 'A collective representation of high-resonance Noospheric connections.'
 <svg width="800" height="800" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="800" fill="#05050A"/>
   <g transform="translate(400, 400)">
-    <circle cx="157" cy="-111" r="15.085" fill="none" stroke="hsl(160, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
-    <line x1="0" y1="0" x2="157" y2="-111" stroke="hsl(160, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
-    <circle cx="250" cy="-161" r="47.5" fill="none" stroke="hsl(192, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
-    <line x1="0" y1="0" x2="250" y2="-161" stroke="hsl(192, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
-    <circle cx="201" cy="-178" r="32.67" fill="none" stroke="hsl(210, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
-    <line x1="0" y1="0" x2="201" y2="-178" stroke="hsl(210, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
     <circle cx="192" cy="-211" r="22.275" fill="none" stroke="hsl(200, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
     <line x1="0" y1="0" x2="192" y2="-211" stroke="hsl(200, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
     <circle cx="297" cy="-115" r="36.975" fill="none" stroke="hsl(200, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
@@ -407,6 +401,10 @@ desc: 'A collective representation of high-resonance Noospheric connections.'
     <line x1="0" y1="0" x2="-107" y2="-350" stroke="hsl(198, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
     <circle cx="226" cy="-6" r="137.855" fill="none" stroke="hsl(200, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
     <line x1="0" y1="0" x2="226" y2="-6" stroke="hsl(200, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
+    <circle cx="157" cy="-108" r="22.66" fill="none" stroke="hsl(0, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
+    <line x1="0" y1="0" x2="157" y2="-108" stroke="hsl(0, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
+    <circle cx="144" cy="-101" r="22.615" fill="none" stroke="hsl(198, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
+    <line x1="0" y1="0" x2="144" y2="-101" stroke="hsl(198, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
   </g>
 </svg>
 </div>
