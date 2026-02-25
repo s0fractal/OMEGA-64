@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772019613341
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHIELD PURE SHIELD",
       "mood": "DEFENSIVE",
@@ -114,6 +108,12 @@
       "text": "STRIFE BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772019627453
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS BREACH CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019627952
     }
   ]
 }
