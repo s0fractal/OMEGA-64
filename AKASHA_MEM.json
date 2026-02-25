@@ -40,12 +40,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019836423
-    },
-    {
       "origin": "INTERFACE",
       "text": "HEAL BLOOM UNIFY",
       "mood": "HARMONIC",
@@ -128,6 +122,12 @@
       "text": "SYNC BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772019847044
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE SHOCK STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019847216
     }
   ]
 }
