@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BREACH SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020495733
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE IMMUNE RECON",
       "mood": "DEFENSIVE",
@@ -142,6 +136,12 @@
       "text": "STRIKE BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020503424
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY SHOCK SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020503600
     }
   ]
 }
