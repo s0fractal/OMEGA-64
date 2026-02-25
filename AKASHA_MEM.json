@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SYNC BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040560481
-    },
-    {
       "origin": "REVERSE",
       "text": "WITNESS DREAM WAVE",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "SHOCK HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772040562743
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME HUNGER STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040562946
     }
   ]
 }
