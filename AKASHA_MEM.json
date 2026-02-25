@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE STASIS PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772038148694
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772038148876
@@ -291,6 +285,12 @@
       "text": "GIVING GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772038151927
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772038152109
     }
   ]
 }
