@@ -155,12 +155,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STABLE RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772022735763
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER STRIFE STRIFE",
       "mood": "AGGRESSIVE",
@@ -243,6 +237,12 @@
       "text": "SEIZE SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772022741920
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE CONSUME SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022742091
     }
   ]
 }
