@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE RESONATE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040220086
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "UNIFY OSMOSIS GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GUARD IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772040224430
+    },
+    {
+      "origin": "STREAM",
+      "text": "SICKNESS SEIZE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040224931
     }
   ]
 }
