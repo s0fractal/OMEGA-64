@@ -111,12 +111,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SYNC OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772021935233
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE STABLE COHERE",
       "mood": "HARMONIC",
@@ -199,6 +193,12 @@
       "text": "DECAY SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772021940793
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE DECAY STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021940981
     }
   ]
 }
