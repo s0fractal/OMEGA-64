@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772029642551
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772029642954
@@ -291,6 +285,12 @@
       "text": "WATCH WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772029653042
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK STRIFE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029653735
     }
   ]
 }
