@@ -33,15 +33,10 @@
     "AABB0000",
     "A0000000",
     "6A6666A6",
-    "AA666666"
+    "AA666666",
+    "9D18A690"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT GUARD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772019795568
-    },
     {
       "origin": "INTERFACE",
       "text": "SEIZE CONSUME HUNGER",
@@ -125,6 +120,12 @@
       "text": "HUNGER STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772019805300
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN BREACH DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019806760
     }
   ]
 }
