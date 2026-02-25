@@ -36,15 +36,10 @@
     "AA666666",
     "9D18A690",
     "666A66A0",
-    "BB0BA000"
+    "BB0BA000",
+    "AB0A0000"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772019865136
-    },
     {
       "origin": "ARCHIVIST",
       "text": "STASIS PURE PURE",
@@ -128,6 +123,12 @@
       "text": "SHOCK STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772019882022
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019882509
     }
   ]
 }
