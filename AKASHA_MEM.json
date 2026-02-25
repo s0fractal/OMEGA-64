@@ -164,12 +164,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022996033
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022996215
@@ -251,6 +245,12 @@
       "text": "STRIKE HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022998495
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME FORGE VISION",
+      "mood": "CREATIVE",
+      "tick": 1772022998678
     }
   ]
 }
