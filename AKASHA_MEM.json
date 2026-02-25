@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE RESONATE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040874909
-    },
-    {
       "origin": "STREAM",
       "text": "SHIELD RECON RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772040878760
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040878911
     }
   ]
 }
