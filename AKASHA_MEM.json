@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME CONSUME SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034907527
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772034907725
@@ -291,6 +285,12 @@
       "text": "SHOCK SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772034910777
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772034910967
     }
   ]
 }
