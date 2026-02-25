@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STRIFE STRIFE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040410895
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIFE HUNGER SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772040413330
+    },
+    {
+      "origin": "STREAM",
+      "text": "GIVING UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772040413500
     }
   ]
 }
