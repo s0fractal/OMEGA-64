@@ -160,12 +160,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS WATCH STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772022817837
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772022817955
@@ -247,6 +241,12 @@
       "text": "HEAL SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022821941
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BLOOM UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772022822105
     }
   ]
 }
