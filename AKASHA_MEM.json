@@ -84,12 +84,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DECAY SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021206348
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772021206512
@@ -171,6 +165,12 @@
       "text": "STRIFE SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772021213155
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT GUARD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021214330
     }
   ]
 }
