@@ -153,12 +153,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME SHOCK STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022631005
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD RECON GUARD",
       "mood": "DEFENSIVE",
@@ -241,6 +235,12 @@
       "text": "SHELTER STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022636735
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW HEAL HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772022637202
     }
   ]
 }
