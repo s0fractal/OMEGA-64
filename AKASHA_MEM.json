@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GUARD WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040958548
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIKE BREACH SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040961952
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHIELD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772040962140
     }
   ]
 }
