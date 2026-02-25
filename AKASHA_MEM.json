@@ -102,12 +102,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT RECON PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021604036
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772021604181
@@ -189,6 +183,12 @@
       "text": "WITNESS DREAM FORGE",
       "mood": "CREATIVE",
       "tick": 1772021608888
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021609011
     }
   ]
 }
