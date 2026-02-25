@@ -55,12 +55,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH RECON WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772020533362
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHOCK SHOCK DECAY",
       "mood": "AGGRESSIVE",
@@ -143,6 +137,12 @@
       "text": "RECON PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772020542354
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW UNIFY OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772020542903
     }
   ]
 }
