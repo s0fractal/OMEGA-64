@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032056700
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772032057273
@@ -291,6 +285,12 @@
       "text": "STRIKE STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772032064787
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS STABLE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772032065279
     }
   ]
 }
