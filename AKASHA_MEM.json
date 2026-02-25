@@ -43,12 +43,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN STRIFE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020014751
-    },
-    {
       "origin": "INTERFACE",
       "text": "REFLECT REFLECT SHELTER",
       "mood": "DEFENSIVE",
@@ -131,6 +125,12 @@
       "text": "SHELTER GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772020026317
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME STRIKE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020027030
     }
   ]
 }
