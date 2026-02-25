@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD WATCH WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772033970491
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772033970716
@@ -291,6 +285,12 @@
       "text": "STABLE COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772033978188
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL OSMOSIS RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772033978994
     }
   ]
 }
