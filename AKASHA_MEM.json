@@ -44,12 +44,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN SEIZE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020058284
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE DECAY BREACH",
       "mood": "AGGRESSIVE",
@@ -132,6 +126,12 @@
       "text": "GIVING BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772020069487
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION WAVE WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772020069733
     }
   ]
 }
