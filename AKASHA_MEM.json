@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772035960792
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772035961120
@@ -291,6 +285,12 @@
       "text": "FLOW SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772035965632
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM WITNESS BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772035965954
     }
   ]
 }
