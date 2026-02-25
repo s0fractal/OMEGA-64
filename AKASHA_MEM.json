@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DECAY CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031149139
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "COHERE SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772031149825
@@ -291,6 +285,12 @@
       "text": "STABLE RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772031155365
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER REFLECT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772031155668
     }
   ]
 }
