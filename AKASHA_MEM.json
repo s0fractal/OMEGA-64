@@ -140,12 +140,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM RESONATE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772022449731
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK DRAIN CONSUME",
       "mood": "AGGRESSIVE",
@@ -228,6 +222,12 @@
       "text": "WATCH PURE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022456135
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022456306
     }
   ]
 }
