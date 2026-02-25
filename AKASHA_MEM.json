@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY UNIFY BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772025186332
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772025186575
@@ -291,6 +285,12 @@
       "text": "WATCH WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772025190030
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772025190291
     }
   ]
 }
