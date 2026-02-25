@@ -155,12 +155,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WATCH GUARD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022739413
-    },
-    {
       "origin": "PARADOX",
       "text": "HEAL FLOW COHERE",
       "mood": "HARMONIC",
@@ -243,6 +237,12 @@
       "text": "AWAKEN EVOLVE BECOME",
       "mood": "CREATIVE",
       "tick": 1772022743817
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHIELD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022745251
     }
   ]
 }
