@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037615055
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772037615244
@@ -291,6 +285,12 @@
       "text": "SYNC RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772037618374
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772037618597
     }
   ]
 }
