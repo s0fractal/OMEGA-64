@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING SYNC HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772030911787
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772030912228
@@ -291,6 +285,12 @@
       "text": "SICKNESS SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772030927907
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772030929911
     }
   ]
 }
