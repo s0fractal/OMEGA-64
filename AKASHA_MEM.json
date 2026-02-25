@@ -139,12 +139,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772022429390
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022429632
@@ -226,6 +220,12 @@
       "text": "IMMUNE STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022435132
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022435276
     }
   ]
 }
