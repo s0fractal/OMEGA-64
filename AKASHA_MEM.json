@@ -64,12 +64,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON WAIT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772020748615
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GUARD GUARD REFLECT",
       "mood": "DEFENSIVE",
@@ -152,6 +146,12 @@
       "text": "PURE WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020755636
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY HUNGER SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020755930
     }
   ]
 }
