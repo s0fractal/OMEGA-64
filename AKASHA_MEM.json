@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AABBCCDD",
     "AAAAAAA0",
     "60066666",
     "666060A6",
@@ -199,15 +198,10 @@
     "AA0A0AAA",
     "A0660600",
     "A6666660",
-    "AA00A0AA"
+    "AA00A0AA",
+    "66066600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "HEAL BLOOM HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772027404073
-    },
     {
       "origin": "REVERSE",
       "text": "RESONATE OSMOSIS STABLE",
@@ -291,6 +285,12 @@
       "text": "RECON SHIELD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772027411714
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772027411970
     }
   ]
 }
