@@ -125,12 +125,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE RECON WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022190698
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772022191347
@@ -212,6 +206,12 @@
       "text": "RESONATE GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772022195591
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DECAY SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022195903
     }
   ]
 }
