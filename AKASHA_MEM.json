@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041103442
-    },
-    {
       "origin": "INTERFACE",
       "text": "DECAY CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772041108016
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772041108233
     }
   ]
 }
