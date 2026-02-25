@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66660606",
     "06666000",
     "60060600",
     "0D10A008",
@@ -199,15 +198,10 @@
     "A0666000",
     "6A666000",
     "FB000000",
-    "00066060"
+    "00066060",
+    "F0AAF0FF"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RESONATE BLOOM HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772036407543
-    },
     {
       "origin": "REVERSE",
       "text": "STRIKE DECAY HUNGER",
@@ -291,6 +285,12 @@
       "text": "RECON SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772036410551
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK BECOME AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772036410758
     }
   ]
 }
