@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM SYNC COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041529617
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE SYNC HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIFE CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041534180
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD REFLECT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041534648
     }
   ]
 }
