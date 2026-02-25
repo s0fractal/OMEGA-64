@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041232845
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772041233283
@@ -291,6 +285,12 @@
       "text": "CONSUME SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772041237742
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BLOOM UNIFY SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772041238009
     }
   ]
 }
