@@ -115,12 +115,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772022068287
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE WATCH WATCH",
       "mood": "DEFENSIVE",
@@ -203,6 +197,12 @@
       "text": "IMMUNE GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022072714
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE GIVING UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772022073382
     }
   ]
 }
