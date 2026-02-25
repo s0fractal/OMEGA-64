@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025096960
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772025097363
@@ -291,6 +285,12 @@
       "text": "GIVING COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772025103910
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM VISION EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772025104139
     }
   ]
 }
