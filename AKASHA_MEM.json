@@ -196,12 +196,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER SHELTER GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023869253
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023869541
@@ -283,6 +277,12 @@
       "text": "RESONATE COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772023874552
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772023874711
     }
   ]
 }
