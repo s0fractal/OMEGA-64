@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772035602445
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIKE SEIZE SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772035606456
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION SPARK WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772035606648
     }
   ]
 }
