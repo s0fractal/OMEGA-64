@@ -196,12 +196,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY STRIFE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023969619
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS SHIELD RECON",
       "mood": "DEFENSIVE",
@@ -284,6 +278,12 @@
       "text": "SICKNESS SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023972982
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772023973149
     }
   ]
 }
