@@ -83,12 +83,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021213155
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT GUARD IMMUNE",
       "mood": "DEFENSIVE",
@@ -171,6 +165,12 @@
       "text": "IMMUNE WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772021220145
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK BREACH DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021220355
     }
   ]
 }
