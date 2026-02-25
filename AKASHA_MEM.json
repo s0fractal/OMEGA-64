@@ -177,12 +177,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FORGE BECOME DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772023284637
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAVE WAVE BECOME",
       "mood": "CREATIVE",
       "tick": 1772023284811
@@ -264,6 +258,12 @@
       "text": "GIVING SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772023290147
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WATCH SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772023290334
     }
   ]
 }
