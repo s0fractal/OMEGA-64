@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HUNGER DECAY SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040896093
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY OSMOSIS UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "CONSUME DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040898842
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC UNIFY HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772040899043
     }
   ]
 }
