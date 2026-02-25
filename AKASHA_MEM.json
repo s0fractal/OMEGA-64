@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "C0DED00D",
     "06660600",
     "A06660A6",
     "00660666",
@@ -199,15 +198,10 @@
     "AA666666",
     "00000006",
     "0AAAAAA0",
-    "C0DED000"
+    "C0DED000",
+    "A0666660"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BREACH SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034840364
-    },
     {
       "origin": "REVERSE",
       "text": "DECAY DRAIN CONSUME",
@@ -291,6 +285,12 @@
       "text": "BEYOND EVOLVE WITNESS",
       "mood": "CREATIVE",
       "tick": 1772034843284
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034843461
     }
   ]
 }
