@@ -192,12 +192,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS STRIFE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023809156
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023809363
@@ -279,6 +273,12 @@
       "text": "FLOW UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772023812648
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL HEAL HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772023814213
     }
   ]
 }
