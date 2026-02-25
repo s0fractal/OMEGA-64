@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK SICKNESS HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036761446
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772036761643
@@ -291,6 +285,12 @@
       "text": "DRAIN STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772036764355
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE WITNESS BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772036764735
     }
   ]
 }
