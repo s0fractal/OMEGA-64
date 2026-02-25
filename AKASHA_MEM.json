@@ -80,12 +80,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "DECAY DECAY SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021087891
-    },
-    {
-      "origin": "INTERFACE",
       "text": "SHELTER REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772021088422
@@ -167,6 +161,12 @@
       "text": "COHERE STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772021095752
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE RECON SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772021095983
     }
   ]
 }
