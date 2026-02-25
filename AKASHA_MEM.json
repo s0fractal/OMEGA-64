@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME SHOCK DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036849527
-    },
-    {
       "origin": "ALPHA_REVERSE",
       "text": "UNIFY STABLE GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHOCK CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772036855388
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC FLOW GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772036855561
     }
   ]
 }
