@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE HEAL OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772026194587
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772026194840
@@ -291,6 +285,12 @@
       "text": "REFLECT PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772026199058
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026199263
     }
   ]
 }
