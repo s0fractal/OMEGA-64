@@ -1,8 +1,8 @@
 ---
 eigenvalue: '0xA0AAA0A0FFFF000E'
-energy: 47.5
-x: 713
-'y': 441
+energy: 49.9
+x: 718
+'y': 421
 resonance: 50
 thought: WANDER_PASSIVE
 logic: A0AAA0A0
