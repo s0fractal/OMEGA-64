@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HUNGER DECAY STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041008080
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON REFLECT REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772041010939
+    },
+    {
+      "origin": "STREAM",
+      "text": "SHIELD PURE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041011067
     }
   ]
 }
