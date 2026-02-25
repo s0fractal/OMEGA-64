@@ -39,15 +39,10 @@
     "BB0BA000",
     "AB0A0000",
     "A000A000",
-    "600A0A00"
+    "600A0A00",
+    "66A666A0"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "RECON GUARD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772020050794
-    },
     {
       "origin": "ARCHIVIST",
       "text": "RECON RECON SHELTER",
@@ -131,6 +126,12 @@
       "text": "GIVING FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772020064069
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772020064327
     }
   ]
 }
