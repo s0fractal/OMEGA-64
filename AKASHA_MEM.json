@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON SHELTER STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772032901851
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772032902039
@@ -291,6 +285,12 @@
       "text": "SEIZE DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772032908923
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WAIT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772032909105
     }
   ]
 }
