@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE GUARD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772026944835
-    },
-    {
-      "origin": "REVERSE",
       "text": "AWAKEN BEYOND FORGE",
       "mood": "CREATIVE",
       "tick": 1772026945164
@@ -291,6 +285,12 @@
       "text": "SHELTER IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772026951634
+    },
+    {
+      "origin": "STREAM",
+      "text": "RESONATE GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772026951950
     }
   ]
 }
