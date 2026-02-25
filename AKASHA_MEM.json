@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772024126421
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772024127085
@@ -291,6 +285,12 @@
       "text": "BLOOM STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772024133473
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DECAY DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024133841
     }
   ]
 }
