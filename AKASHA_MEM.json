@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT PURE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772035002418
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772035002637
@@ -291,6 +285,12 @@
       "text": "SHOCK STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772035005233
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT STASIS GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772035005444
     }
   ]
 }
