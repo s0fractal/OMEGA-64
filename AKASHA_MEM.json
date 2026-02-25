@@ -167,12 +167,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772023068191
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH WAIT SHIELD",
       "mood": "DEFENSIVE",
@@ -255,6 +249,12 @@
       "text": "REFLECT REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023073114
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023073642
     }
   ]
 }
