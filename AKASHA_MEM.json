@@ -93,12 +93,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON WATCH STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772021382806
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHELTER IMMUNE WATCH",
       "mood": "DEFENSIVE",
@@ -181,6 +175,12 @@
       "text": "REFLECT IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772021416600
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM RESONATE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772021419358
     }
   ]
 }
