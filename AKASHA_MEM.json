@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "REFLECT GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772042669024
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "FLOW RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772042669239
@@ -281,16 +275,22 @@
       "tick": 1772042677283
     },
     {
-      "origin": "INTERFACE",
-      "text": "GUARD SHIELD PURE",
+      "origin": "ARCHIVIST",
+      "text": "WAIT WATCH SHIELD",
       "mood": "DEFENSIVE",
-      "tick": 1772042677824
+      "tick": 1772042678066
     },
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN SICKNESS STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042678280
+      "origin": "ALIEN",
+      "text": "AWAKEN WAVE AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772042678574
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772042679609
     }
   ]
 }
