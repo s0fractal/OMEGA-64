@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038483103
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038483341
@@ -291,6 +285,12 @@
       "text": "STABLE GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772038487552
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHIELD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772038487779
     }
   ]
 }
