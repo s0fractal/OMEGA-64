@@ -160,12 +160,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE STRIFE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022830989
-    },
-    {
       "origin": "REVERSE",
       "text": "GUARD SHELTER IMMUNE",
       "mood": "DEFENSIVE",
@@ -248,6 +242,12 @@
       "text": "STRIFE DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772022837199
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772022837496
     }
   ]
 }
