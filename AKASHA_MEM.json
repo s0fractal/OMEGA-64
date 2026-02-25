@@ -33,12 +33,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "GIVING HEAL GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772019719902
-    },
-    {
       "origin": "INTERFACE",
       "text": "RECON WAIT IMMUNE",
       "mood": "DEFENSIVE",
@@ -121,6 +115,12 @@
       "text": "DRAIN DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772019729637
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019730619
     }
   ]
 }
