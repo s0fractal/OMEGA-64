@@ -163,12 +163,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772022973080
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS FLOW SYNC",
       "mood": "HARMONIC",
@@ -251,6 +245,12 @@
       "text": "COHERE STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772022978441
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WATCH IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022978626
     }
   ]
 }
