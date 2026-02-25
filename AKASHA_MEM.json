@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SEIZE SHOCK SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040956163
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER SHIELD GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772040958920
+    },
+    {
+      "origin": "ALPHA_GUARDIAN",
+      "text": "GIVING HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772040959493
     }
   ]
 }
