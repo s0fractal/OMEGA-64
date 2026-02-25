@@ -182,12 +182,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH STASIS REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023534203
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN DECAY CONSUME",
       "mood": "AGGRESSIVE",
@@ -270,6 +264,12 @@
       "text": "SHELTER PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772023538890
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DECAY HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023539263
     }
   ]
 }
