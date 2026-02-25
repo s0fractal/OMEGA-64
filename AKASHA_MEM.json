@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772026989395
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772026989671
@@ -291,6 +285,12 @@
       "text": "BLOOM UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772026993353
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS VISION WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772026993576
     }
   ]
 }
