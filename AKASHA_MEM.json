@@ -49,12 +49,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GUARD REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772020240732
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE SHIELD WAIT",
       "mood": "DEFENSIVE",
@@ -137,6 +131,12 @@
       "text": "WAIT WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020249123
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK STRIKE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020249705
     }
   ]
 }
