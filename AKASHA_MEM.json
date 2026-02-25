@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER DECAY SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041981868
-    },
-    {
       "origin": "CAR",
       "text": "BREACH DRAIN STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041989098
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT SHELTER WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772041989819
     }
   ]
 }
