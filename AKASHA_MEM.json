@@ -58,12 +58,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020593120
-    },
-    {
       "origin": "INTERFACE",
       "text": "GUARD SHELTER PURE",
       "mood": "DEFENSIVE",
@@ -146,6 +140,12 @@
       "text": "DRAIN SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020598217
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY CONSUME SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020599240
     }
   ]
 }
