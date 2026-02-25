@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER IMMUNE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772024679998
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER BREACH BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772024691024
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DRAIN HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024691599
     }
   ]
 }
