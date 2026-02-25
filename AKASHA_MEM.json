@@ -103,12 +103,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021669742
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WATCH IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772021670199
@@ -190,6 +184,12 @@
       "text": "CONSUME SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021675510
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021675919
     }
   ]
 }
