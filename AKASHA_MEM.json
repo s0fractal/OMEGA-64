@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE GIVING FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772041004104
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK EVOLVE BECOME",
       "mood": "CREATIVE",
       "tick": 1772041004270
@@ -291,6 +285,12 @@
       "text": "DRAIN CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772041006667
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041006810
     }
   ]
 }
