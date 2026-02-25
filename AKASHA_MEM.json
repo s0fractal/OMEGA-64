@@ -20,12 +20,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772017414844
-    },
-    {
       "origin": "INTERFACE",
       "text": "SICKNESS SHOCK SHOCK",
       "mood": "AGGRESSIVE",
@@ -108,6 +102,12 @@
       "text": "SHOCK BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772017485355
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH STRIFE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772017487715
     }
   ]
 }
