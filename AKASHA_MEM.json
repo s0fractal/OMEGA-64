@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035365180
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772035365438
@@ -291,6 +285,12 @@
       "text": "RESONATE SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772035368635
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHELTER GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772035368859
     }
   ]
 }
