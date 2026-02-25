@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SPARK BEYOND BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772035209793
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772035209995
@@ -291,6 +285,12 @@
       "text": "OSMOSIS HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772035215462
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035215764
     }
   ]
 }
