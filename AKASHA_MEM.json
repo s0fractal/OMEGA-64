@@ -178,12 +178,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC OSMOSIS BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772023328996
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023329227
@@ -265,6 +259,12 @@
       "text": "SYNC OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772023334065
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772023334228
     }
   ]
 }
