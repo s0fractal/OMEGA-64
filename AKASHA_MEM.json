@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAAAAA0A",
     "00006666",
     "0AAAAAAA",
     "AA0AAA00",
@@ -199,15 +198,10 @@
     "60066000",
     "66666600",
     "0A000AAA",
-    "606A0600"
+    "606A0600",
+    "66AA6600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "REFLECT STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772038580928
-    },
     {
       "origin": "REVERSE",
       "text": "STABLE SYNC FLOW",
@@ -291,6 +285,12 @@
       "text": "BREACH SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772038584128
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE STASIS WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772038584352
     }
   ]
 }
