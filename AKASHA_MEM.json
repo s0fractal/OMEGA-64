@@ -103,12 +103,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772021644265
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772021644453
@@ -190,6 +184,12 @@
       "text": "STRIFE DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772021648681
+    },
+    {
+      "origin": "STREAM",
+      "text": "WAIT SHELTER WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772021648958
     }
   ]
 }
