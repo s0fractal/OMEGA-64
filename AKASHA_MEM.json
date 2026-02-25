@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GIVING SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772019494238
-    },
-    {
       "origin": "STREAM",
       "text": "COHERE RESONATE OSMOSIS",
       "mood": "HARMONIC",
@@ -111,6 +105,12 @@
       "text": "STRIFE SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772019503149
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772019503924
     }
   ]
 }
