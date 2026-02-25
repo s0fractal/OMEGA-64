@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA00000A",
     "66666666",
     "FFAAF0FF",
     "A00A0A0A",
@@ -199,15 +198,10 @@
     "60000606",
     "AA0006A6",
     "0AA0A0AA",
-    "AA0A00A0"
+    "AA0A00A0",
+    "A00AAA0A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WAIT GUARD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772036875243
-    },
     {
       "origin": "REVERSE",
       "text": "UNIFY FLOW BLOOM",
@@ -291,6 +285,12 @@
       "text": "SEIZE DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772036879195
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SICKNESS HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036879399
     }
   ]
 }
