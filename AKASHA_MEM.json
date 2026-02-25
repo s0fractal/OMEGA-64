@@ -123,12 +123,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER SEIZE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022161583
-    },
-    {
       "origin": "INTERFACE",
       "text": "BREACH CONSUME SEIZE",
       "mood": "AGGRESSIVE",
@@ -211,6 +205,12 @@
       "text": "BLOOM COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022167357
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772022167523
     }
   ]
 }
