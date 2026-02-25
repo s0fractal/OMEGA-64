@@ -75,12 +75,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIFE STRIKE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020963908
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "CONSUME BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020964205
@@ -162,6 +156,12 @@
       "text": "PURE SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772020971376
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE DECAY HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020972039
     }
   ]
 }
