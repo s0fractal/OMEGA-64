@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD IMMUNE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041586779
-    },
-    {
       "origin": "INTERFACE",
       "text": "RESONATE SYNC FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHOCK STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772041592719
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SEIZE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041593186
     }
   ]
 }
