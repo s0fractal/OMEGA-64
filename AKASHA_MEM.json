@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772038092742
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772038093075
@@ -291,6 +285,12 @@
       "text": "WITNESS WITNESS WAVE",
       "mood": "CREATIVE",
       "tick": 1772038097591
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER RECON STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772038098138
     }
   ]
 }
