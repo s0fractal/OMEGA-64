@@ -51,12 +51,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH STRIKE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020297799
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STASIS REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020299409
@@ -138,6 +132,12 @@
       "text": "GUARD REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772020308842
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020309149
     }
   ]
 }
