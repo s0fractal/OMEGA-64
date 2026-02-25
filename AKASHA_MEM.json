@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772037205238
-    },
-    {
-      "origin": "REVERSE",
       "text": "AWAKEN SPARK WAVE",
       "mood": "CREATIVE",
       "tick": 1772037205486
@@ -291,6 +285,12 @@
       "text": "WAIT WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772037208469
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037209242
     }
   ]
 }
