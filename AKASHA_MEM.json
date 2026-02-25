@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "SUCC",
-      "text": "SYNC UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041002735
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER WATCH REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772041004902
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD IMMUNE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772041005037
     }
   ]
 }
