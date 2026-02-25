@@ -105,12 +105,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "FLOW UNIFY BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772021709851
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL COHERE HEAL",
       "mood": "HARMONIC",
@@ -193,6 +187,12 @@
       "text": "REFLECT WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772021716223
+    },
+    {
+      "origin": "PARADOX",
+      "text": "BEYOND BECOME DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772021716481
     }
   ]
 }
