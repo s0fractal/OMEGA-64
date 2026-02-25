@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH SEIZE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025142165
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH IMMUNE WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772025145828
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772025146009
     }
   ]
 }
