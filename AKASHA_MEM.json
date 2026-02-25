@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "BB0B0000",
     "ABB00000",
     "666A6660",
     "0000AA00",
@@ -199,15 +198,10 @@
     "60000000",
     "00000000",
     "AAAA00A0",
-    "AAA00000"
+    "AAA00000",
+    "0000A000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WAIT SHIELD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772024523373
-    },
     {
       "origin": "REVERSE",
       "text": "SICKNESS BREACH STRIFE",
@@ -291,6 +285,12 @@
       "text": "STABLE SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772024533782
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772024533971
     }
   ]
 }
