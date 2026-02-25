@@ -78,12 +78,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON RECON SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772021039174
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772021039823
@@ -165,6 +159,12 @@
       "text": "SYNC RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772021046247
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH HUNGER STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021046418
     }
   ]
 }
