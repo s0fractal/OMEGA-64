@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A00AAAA0",
     "0000AA0A",
     "0000AA00",
     "666066A0",
@@ -199,15 +198,10 @@
     "06000600",
     "A06660A0",
     "0AAAAAAA",
-    "000A00A0"
+    "000A00A0",
+    "000A0A0A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "HUNGER STRIFE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028199250
-    },
     {
       "origin": "REVERSE",
       "text": "HEAL RESONATE FLOW",
@@ -291,6 +285,12 @@
       "text": "WAIT SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772028206623
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772028207231
     }
   ]
 }
