@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD REFLECT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772033777835
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772033777988
@@ -291,6 +285,12 @@
       "text": "WAIT SHIELD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033780428
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC COHERE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772033780646
     }
   ]
 }
