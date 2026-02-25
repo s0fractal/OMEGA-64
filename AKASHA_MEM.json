@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SICKNESS DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036263741
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772036263968
@@ -291,6 +285,12 @@
       "text": "SHIELD WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772036268866
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772036269295
     }
   ]
 }
