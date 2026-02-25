@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM RESONATE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041276571
-    },
-    {
       "origin": "PARADOX",
       "text": "HUNGER SHOCK CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIFE HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041281121
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772041281408
     }
   ]
 }
