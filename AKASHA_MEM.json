@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC HEAL UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772036313698
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772036313900
@@ -291,6 +285,12 @@
       "text": "DECAY HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772036317645
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT GUARD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772036317850
     }
   ]
 }
