@@ -105,15 +105,10 @@
     "F0FFF0FF",
     "A0AA0A0A",
     "00666000",
-    "66066606"
+    "66066606",
+    "AAA0A0A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "REFLECT GUARD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772021895964
-    },
     {
       "origin": "REVERSE",
       "text": "GIVING SYNC HEAL",
@@ -197,6 +192,12 @@
       "text": "SYNC FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772021900318
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SICKNESS STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021900549
     }
   ]
 }
