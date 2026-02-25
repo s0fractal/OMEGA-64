@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "STREAM",
-      "text": "HEAL GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772040528619
-    },
-    {
-      "origin": "STREAM",
       "text": "SHELTER REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772040528792
@@ -291,6 +285,12 @@
       "text": "FLOW SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040531197
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS DECAY SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040531448
     }
   ]
 }
