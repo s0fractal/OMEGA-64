@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "6A6A66A0",
     "66006066",
     "66066006",
     "66000066",
@@ -199,15 +198,10 @@
     "6A606000",
     "60000000",
     "AA0000AA",
-    "AA000600"
+    "AA000600",
+    "AA0AA0A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "REFLECT SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772035063170
-    },
     {
       "origin": "REVERSE",
       "text": "GUARD SHELTER WAIT",
@@ -291,6 +285,12 @@
       "text": "BLOOM COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772035066057
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DRAIN STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035066261
     }
   ]
 }
