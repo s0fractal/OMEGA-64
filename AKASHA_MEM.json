@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WAIT RECON WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040753232
-    },
-    {
       "origin": "STREAM",
       "text": "PURE GUARD WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772040819614
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE DECAY STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040819951
     }
   ]
 }
