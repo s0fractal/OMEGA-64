@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033654961
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772033655146
@@ -291,6 +285,12 @@
       "text": "RECON WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772033657570
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE REFLECT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772033657760
     }
   ]
 }
