@@ -37,12 +37,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WAIT SHIELD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772019781227
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING BLOOM BLOOM",
       "mood": "HARMONIC",
@@ -125,6 +119,12 @@
       "text": "PURE GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772019791326
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC UNIFY HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772019791995
     }
   ]
 }
