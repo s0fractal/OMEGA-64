@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER SICKNESS SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025960290
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772025960501
@@ -291,6 +285,12 @@
       "text": "BLOOM UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772025968714
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS GUARD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772025968944
     }
   ]
 }
