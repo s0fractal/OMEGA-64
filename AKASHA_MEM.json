@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS UNIFY BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772022251207
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022251461
@@ -213,6 +207,12 @@
       "text": "SHIELD GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022258323
+    },
+    {
+      "origin": "PARADOX",
+      "text": "BEYOND VISION SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772022258499
     }
   ]
 }
