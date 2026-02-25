@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SEIZE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034841028
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772034841242
@@ -291,6 +285,12 @@
       "text": "UNIFY STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034843977
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING RESONATE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772034844229
     }
   ]
 }
