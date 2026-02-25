@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SYNC GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772034467573
-    },
-    {
       "origin": "REVERSE",
       "text": "PURE STASIS IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772034470803
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE GIVING SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772034470985
     }
   ]
 }
