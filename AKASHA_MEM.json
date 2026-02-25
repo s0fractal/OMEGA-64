@@ -89,12 +89,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS SHIELD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021265564
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772021265746
@@ -176,6 +170,12 @@
       "text": "HUNGER HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772021270853
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SEIZE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021271138
     }
   ]
 }
