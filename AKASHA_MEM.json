@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "AWAKEN FORGE EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772032352502
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772032352873
@@ -291,6 +285,12 @@
       "text": "RESONATE UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772032368683
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON IMMUNE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772032368976
     }
   ]
 }
