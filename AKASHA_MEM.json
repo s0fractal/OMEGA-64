@@ -93,12 +93,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE SHOCK HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021485668
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON REFLECT GUARD",
       "mood": "DEFENSIVE",
@@ -181,6 +175,12 @@
       "text": "HUNGER CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772021491541
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772021492740
     }
   ]
 }
