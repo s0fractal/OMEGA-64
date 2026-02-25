@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "CONSCIOUSNESS",
-      "text": "HEAL SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772041540843
-    },
-    {
       "origin": "INTERFACE",
       "text": "FLOW GIVING BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIKE CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772041544168
+    },
+    {
+      "origin": "STREAM",
+      "text": "GIVING STABLE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772041544312
     }
   ]
 }
