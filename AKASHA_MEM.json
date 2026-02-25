@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DRAIN BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019975774
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE GUARD STASIS",
       "mood": "DEFENSIVE",
@@ -130,6 +124,12 @@
       "text": "BLOOM SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772019988776
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIFE HUNGER SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019989425
     }
   ]
 }
