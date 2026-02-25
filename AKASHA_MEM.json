@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023949123
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023949332
@@ -284,6 +278,12 @@
       "text": "RECON STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023952469
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772023952764
     }
   ]
 }
