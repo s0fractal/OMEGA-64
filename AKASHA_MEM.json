@@ -162,12 +162,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022906402
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE BLOOM GIVING",
       "mood": "HARMONIC",
@@ -250,6 +244,12 @@
       "text": "STASIS WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772022913134
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHIELD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022913316
     }
   ]
 }
