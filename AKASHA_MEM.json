@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SYNC SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772040638382
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "IMMUNE STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772040638524
@@ -291,6 +285,12 @@
       "text": "DRAIN SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772040640814
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE IMMUNE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772040640942
     }
   ]
 }
