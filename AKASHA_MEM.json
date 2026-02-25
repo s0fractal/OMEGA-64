@@ -63,12 +63,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT REFLECT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020731898
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIKE STRIKE SHOCK",
       "mood": "AGGRESSIVE",
@@ -151,6 +145,12 @@
       "text": "HEAL UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772020737819
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY BREACH SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020738002
     }
   ]
 }
