@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772035115287
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772035115453
@@ -291,6 +285,12 @@
       "text": "STRIFE HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772035118050
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772035118261
     }
   ]
 }
