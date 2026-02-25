@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HEAL SYNC FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772015880787
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HUNGER DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772015883139
@@ -107,6 +101,12 @@
       "text": "RECON REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772015969686
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SICKNESS SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772015972304
     }
   ]
 }
