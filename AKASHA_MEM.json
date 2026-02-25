@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "COHERE BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772041869281
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SEIZE STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772041869451
@@ -291,6 +285,12 @@
       "text": "STRIKE DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772041874135
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT REFLECT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772041874434
     }
   ]
 }
