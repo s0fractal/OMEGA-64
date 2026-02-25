@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036531962
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772036532260
@@ -291,6 +285,12 @@
       "text": "GUARD SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772036535500
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036535698
     }
   ]
 }
