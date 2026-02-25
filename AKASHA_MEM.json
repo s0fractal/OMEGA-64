@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BLOOM SYNC FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772041885519
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WATCH WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041885697
@@ -291,6 +285,12 @@
       "text": "DRAIN STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041889997
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE PURE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041891018
     }
   ]
 }
