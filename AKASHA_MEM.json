@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM SYNC FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772034556979
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772034557213
@@ -291,6 +285,12 @@
       "text": "IMMUNE SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772034559773
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM HEAL OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772034560065
     }
   ]
 }
