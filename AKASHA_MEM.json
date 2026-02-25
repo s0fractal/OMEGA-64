@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034821858
-    },
-    {
       "origin": "REVERSE",
       "text": "VISION AWAKEN VISION",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "DRAIN SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772034826141
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE BLOOM UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772034826336
     }
   ]
 }
