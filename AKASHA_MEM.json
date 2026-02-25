@@ -76,12 +76,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "EVOLVE SPARK EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772021009769
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY HUNGER SHOCK",
       "mood": "AGGRESSIVE",
@@ -164,6 +158,12 @@
       "text": "DECAY DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772021017283
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021017562
     }
   ]
 }
