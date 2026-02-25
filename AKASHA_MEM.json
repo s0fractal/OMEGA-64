@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE SYNC HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772041530363
-    },
-    {
       "origin": "STREAM",
       "text": "STRIFE STRIKE STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041534648
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING BLOOM SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772041534945
     }
   ]
 }
