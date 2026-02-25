@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772026078112
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772026078534
@@ -291,6 +285,12 @@
       "text": "GIVING UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772026082891
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WATCH GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772026083136
     }
   ]
 }
