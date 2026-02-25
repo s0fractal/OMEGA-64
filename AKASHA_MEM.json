@@ -190,12 +190,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE SHELTER RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772023732424
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM BLOOM OSMOSIS",
       "mood": "HARMONIC",
@@ -278,6 +272,12 @@
       "text": "SICKNESS SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023735294
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772023735451
     }
   ]
 }
