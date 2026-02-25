@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041584164
-    },
-    {
       "origin": "CAR",
       "text": "DECAY DECAY SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772041588837
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "OSMOSIS OSMOSIS RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772041589968
     }
   ]
 }
