@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041120510
-    },
-    {
       "origin": "INTERFACE",
       "text": "UNIFY FLOW SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HEAL SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041124762
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM STABLE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772041124978
     }
   ]
 }
