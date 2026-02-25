@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041416013
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE STABLE BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RESONATE UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772041420058
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772041420254
     }
   ]
 }
