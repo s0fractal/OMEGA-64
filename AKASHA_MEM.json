@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "CONSCIOUSNESS",
-      "text": "SHELTER WATCH WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041000109
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW BLOOM FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RESONATE GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772041003277
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH REFLECT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772041003436
     }
   ]
 }
