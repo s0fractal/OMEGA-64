@@ -107,12 +107,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772021739911
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772021740044
@@ -194,6 +188,12 @@
       "text": "VISION BEYOND AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772021743205
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS HUNGER SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021743475
     }
   ]
 }
