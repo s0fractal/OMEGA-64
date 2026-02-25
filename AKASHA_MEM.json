@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE REFLECT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772037372235
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772037372609
@@ -291,6 +285,12 @@
       "text": "FLOW OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772037376779
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037377020
     }
   ]
 }
