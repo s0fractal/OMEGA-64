@@ -89,12 +89,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772021259566
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772021259854
@@ -176,6 +170,12 @@
       "text": "STASIS SHIELD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772021265564
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM STABLE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772021265746
     }
   ]
 }
