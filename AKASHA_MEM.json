@@ -96,12 +96,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD SHIELD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772021576444
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT SHELTER SHELTER",
       "mood": "DEFENSIVE",
@@ -184,6 +178,12 @@
       "text": "STABLE FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772021583725
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE RESONATE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772021583941
     }
   ]
 }
