@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SHOCK DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032604793
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772032604948
@@ -291,6 +285,12 @@
       "text": "SHELTER PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772032608454
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SHOCK HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032608666
     }
   ]
 }
