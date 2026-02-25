@@ -116,12 +116,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022054741
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772022054934
@@ -203,6 +197,12 @@
       "text": "OSMOSIS GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022061984
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK DRAIN HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022062174
     }
   ]
 }
