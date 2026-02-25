@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING HEAL HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772026153584
-    },
-    {
       "origin": "INTERFACE",
       "text": "PURE SHIELD RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BREACH CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772026156778
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE BEYOND WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772026157069
     }
   ]
 }
