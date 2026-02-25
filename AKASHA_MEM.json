@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FORGE WAVE DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772025283784
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772025284050
@@ -291,6 +285,12 @@
       "text": "WATCH SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772025288183
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WATCH SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772025288617
     }
   ]
 }
