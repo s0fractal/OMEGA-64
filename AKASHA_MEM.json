@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAA000A0",
     "06666600",
     "0BBB0000",
     "60060600",
@@ -199,15 +198,10 @@
     "A00A00AA",
     "0FF0FF00",
     "0000A0A0",
-    "AA0AA000"
+    "AA0AA000",
+    "0AA0AA0A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STRIFE BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038538036
-    },
     {
       "origin": "REVERSE",
       "text": "SEIZE DRAIN SHOCK",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772038542429
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC UNIFY HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772038542624
     }
   ]
 }
