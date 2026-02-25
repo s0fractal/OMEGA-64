@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE STABLE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772030666818
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772030667165
@@ -291,6 +285,12 @@
       "text": "IMMUNE IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772030672652
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND EVOLVE WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772030673000
     }
   ]
 }
