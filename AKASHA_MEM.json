@@ -70,12 +70,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE STABLE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772020880134
-    },
-    {
       "origin": "STREAM",
       "text": "FLOW COHERE GIVING",
       "mood": "HARMONIC",
@@ -158,6 +152,12 @@
       "text": "SEIZE BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020887476
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIFE SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020887643
     }
   ]
 }
