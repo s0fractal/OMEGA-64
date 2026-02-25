@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "HEAL SYNC UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772040539397
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SYNC COHERE SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHIELD IMMUNE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772040542177
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT SHIELD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772040542426
     }
   ]
 }
