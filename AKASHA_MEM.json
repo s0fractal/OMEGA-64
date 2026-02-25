@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034826751
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772034826960
@@ -291,6 +285,12 @@
       "text": "RESONATE OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772034829667
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SYNC HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772034829905
     }
   ]
 }
