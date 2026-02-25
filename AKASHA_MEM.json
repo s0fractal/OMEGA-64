@@ -107,12 +107,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DECAY SHOCK SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021774722
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH REFLECT SHIELD",
       "mood": "DEFENSIVE",
@@ -195,6 +189,12 @@
       "text": "RESONATE STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772021782772
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT REFLECT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021783288
     }
   ]
 }
