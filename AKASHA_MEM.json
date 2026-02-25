@@ -127,12 +127,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "AWAKEN SPARK AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772022254494
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022254658
@@ -214,6 +208,12 @@
       "text": "SEIZE DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772022260247
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022260522
     }
   ]
 }
