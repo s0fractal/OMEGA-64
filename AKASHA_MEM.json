@@ -154,15 +154,10 @@
     "66600600",
     "06666066",
     "AA0AAAAA",
-    "06060000"
+    "06060000",
+    "60666660"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RECON SHELTER IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022804819
-    },
     {
       "origin": "REVERSE",
       "text": "COHERE RESONATE FLOW",
@@ -246,6 +241,12 @@
       "text": "VISION DREAM BECOME",
       "mood": "CREATIVE",
       "tick": 1772022810651
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT WAIT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772022810783
     }
   ]
 }
