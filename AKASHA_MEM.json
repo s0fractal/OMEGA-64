@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHOCK DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026662498
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE HEAL SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIFE HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772026668657
+    },
+    {
+      "origin": "STREAM",
+      "text": "UNIFY UNIFY SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772026669203
     }
   ]
 }
