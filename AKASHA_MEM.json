@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RECON GUARD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772040421348
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE STRIFE DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772040423524
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS CONSUME SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040423848
     }
   ]
 }
