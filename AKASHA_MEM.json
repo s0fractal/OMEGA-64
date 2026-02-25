@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY HUNGER SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035042732
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772035042939
@@ -291,6 +285,12 @@
       "text": "STASIS WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772035045744
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772035045947
     }
   ]
 }
