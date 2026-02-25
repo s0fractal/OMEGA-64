@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772025548550
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772025554030
@@ -291,6 +285,12 @@
       "text": "OSMOSIS RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772025557921
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND BECOME WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772025558105
     }
   ]
 }
