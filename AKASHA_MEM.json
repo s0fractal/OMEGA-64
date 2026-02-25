@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY HUNGER STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025425548
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772025425829
@@ -291,6 +285,12 @@
       "text": "OSMOSIS UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772025434515
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DRAIN HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025434711
     }
   ]
 }
