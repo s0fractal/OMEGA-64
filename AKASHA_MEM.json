@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772034412053
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772034412250
@@ -291,6 +285,12 @@
       "text": "STRIFE STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772034415864
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHELTER SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772034416898
     }
   ]
 }
