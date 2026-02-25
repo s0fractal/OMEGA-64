@@ -65,12 +65,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS HUNGER SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020746823
-    },
-    {
-      "origin": "REVERSE",
       "text": "AWAKEN EVOLVE WITNESS",
       "mood": "CREATIVE",
       "tick": 1772020747054
@@ -152,6 +146,12 @@
       "text": "SICKNESS CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020754509
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772020754669
     }
   ]
 }
