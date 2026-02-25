@@ -89,12 +89,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH STASIS STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772021264233
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772021264452
@@ -176,6 +170,12 @@
       "text": "OSMOSIS SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772021270343
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021270540
     }
   ]
 }
