@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHOCK DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040712360
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME DECAY SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772040716036
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD IMMUNE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772040716192
     }
   ]
 }
