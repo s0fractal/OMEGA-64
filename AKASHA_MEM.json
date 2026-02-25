@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD RECON REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772036962728
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772036962909
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772036967814
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772036968073
     }
   ]
 }
