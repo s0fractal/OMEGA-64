@@ -153,12 +153,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022635044
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON STASIS WATCH",
       "mood": "DEFENSIVE",
@@ -241,6 +235,12 @@
       "text": "FLOW RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022640042
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SHOCK BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022640201
     }
   ]
 }
