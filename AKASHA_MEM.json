@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "HEAL HEAL RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772041989098
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT SHELTER WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772041995851
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHIELD SHELTER SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041996096
     }
   ]
 }
