@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772026840378
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772026840643
@@ -291,6 +285,12 @@
       "text": "STRIKE SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772026846262
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD SHELTER REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772026846585
     }
   ]
 }
