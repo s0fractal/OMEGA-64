@@ -48,12 +48,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH SHOCK HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020126442
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHOCK SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020127165
@@ -135,6 +129,12 @@
       "text": "SHIELD REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772020139161
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772020140830
     }
   ]
 }
