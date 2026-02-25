@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER STASIS GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772036404353
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772036404573
@@ -291,6 +285,12 @@
       "text": "STRIKE DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772036407751
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY UNIFY OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772036407977
     }
   ]
 }
