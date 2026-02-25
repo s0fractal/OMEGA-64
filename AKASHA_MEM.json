@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772025861485
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772025861672
@@ -291,6 +285,12 @@
       "text": "SICKNESS BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772025872531
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE RESONATE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772025872730
     }
   ]
 }
