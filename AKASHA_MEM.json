@@ -200,12 +200,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAVE EVOLVE AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772024048731
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772024049022
@@ -287,6 +281,12 @@
       "text": "STRIFE DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772024052455
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "PURE SHIELD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772024052669
     }
   ]
 }
