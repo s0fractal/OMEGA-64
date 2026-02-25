@@ -180,12 +180,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772023488581
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS DRAIN DRAIN",
       "mood": "AGGRESSIVE",
@@ -268,6 +262,12 @@
       "text": "PURE SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772023492257
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772023492429
     }
   ]
 }
