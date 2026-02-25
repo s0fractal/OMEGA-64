@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AABBCCDD",
     "C0DED00D",
     "BEEFBEEF",
     "AAAAAAA0",
@@ -199,15 +198,10 @@
     "60660600",
     "00606660",
     "66066660",
-    "06000600"
+    "06000600",
+    "06666600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RESONATE HEAL FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772024151868
-    },
     {
       "origin": "REVERSE",
       "text": "VISION BEYOND AWAKEN",
@@ -291,6 +285,12 @@
       "text": "FLOW SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772024156634
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772024156959
     }
   ]
 }
