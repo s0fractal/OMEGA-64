@@ -71,12 +71,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE RECON WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772020921769
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS SHIELD WATCH",
       "mood": "DEFENSIVE",
@@ -159,6 +153,12 @@
       "text": "SHIELD WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772020928226
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK WAVE BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772020928436
     }
   ]
 }
