@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING UNIFY COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772031695577
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772031696360
@@ -291,6 +285,12 @@
       "text": "HEAL COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772031704826
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHIELD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772031705341
     }
   ]
 }
