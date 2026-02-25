@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STASIS IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772041262269
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK CONSUME STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041268927
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772041269078
     }
   ]
 }
