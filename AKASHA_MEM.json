@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SEIZE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034966376
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772034966583
@@ -291,6 +285,12 @@
       "text": "SHELTER STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772034970561
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT PURE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772034970780
     }
   ]
 }
