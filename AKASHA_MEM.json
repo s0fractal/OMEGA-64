@@ -92,12 +92,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021339007
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN HUNGER BREACH",
       "mood": "AGGRESSIVE",
@@ -180,6 +174,12 @@
       "text": "SHIELD STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772021378116
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BREACH STRIFE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021379307
     }
   ]
 }
