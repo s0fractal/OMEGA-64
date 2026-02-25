@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH HUNGER HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020148082
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON WAIT GUARD",
       "mood": "DEFENSIVE",
@@ -136,6 +130,12 @@
       "text": "DECAY CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020157238
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS GIVING BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772020157485
     }
   ]
 }
