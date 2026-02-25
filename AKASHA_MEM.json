@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039085184
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHELTER STASIS RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772039088314
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772039088525
     }
   ]
 }
