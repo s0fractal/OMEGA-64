@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038650896
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772038651089
@@ -291,6 +285,12 @@
       "text": "STABLE RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772038653754
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772038653958
     }
   ]
 }
