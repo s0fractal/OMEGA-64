@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS REFLECT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772035609275
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772035609484
@@ -291,6 +285,12 @@
       "text": "HUNGER DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772035612322
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD SHELTER RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772035612542
     }
   ]
 }
