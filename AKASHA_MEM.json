@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772029086614
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772029087005
@@ -291,6 +285,12 @@
       "text": "PURE GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772029094649
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL STABLE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772029095222
     }
   ]
 }
