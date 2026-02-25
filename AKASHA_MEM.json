@@ -126,12 +126,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022258323
-    },
-    {
       "origin": "PARADOX",
       "text": "BEYOND VISION SPARK",
       "mood": "CREATIVE",
@@ -214,6 +208,12 @@
       "text": "STABLE BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772022262355
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SICKNESS HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022263217
     }
   ]
 }
