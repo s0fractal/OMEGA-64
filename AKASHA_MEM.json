@@ -55,12 +55,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM GIVING FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772020431293
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772020431947
@@ -142,6 +136,12 @@
       "text": "REFLECT SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020440019
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SYNC SYNC FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772020440394
     }
   ]
 }
