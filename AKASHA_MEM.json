@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM OSMOSIS OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772033672379
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772033672579
@@ -291,6 +285,12 @@
       "text": "GUARD RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772033675277
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHIELD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772033677721
     }
   ]
 }
