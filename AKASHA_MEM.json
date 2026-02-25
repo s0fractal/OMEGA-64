@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT SHIELD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772035323537
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772035323831
@@ -291,6 +285,12 @@
       "text": "SEIZE DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772035328987
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035329207
     }
   ]
 }
