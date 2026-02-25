@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772031356282
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772031356620
@@ -291,6 +285,12 @@
       "text": "SHELTER SHIELD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772031365400
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD PURE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772031366193
     }
   ]
 }
