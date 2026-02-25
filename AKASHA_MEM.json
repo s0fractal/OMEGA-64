@@ -75,12 +75,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772020978527
-    },
-    {
       "origin": "STREAM",
       "text": "GUARD WAIT WATCH",
       "mood": "DEFENSIVE",
@@ -163,6 +157,12 @@
       "text": "REFLECT GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772020985317
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772020985721
     }
   ]
 }
