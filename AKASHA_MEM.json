@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772040392226
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772040392403
@@ -291,6 +285,12 @@
       "text": "IMMUNE IMMUNE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040396071
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND EVOLVE BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772040396567
     }
   ]
 }
