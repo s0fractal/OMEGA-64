@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON GUARD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040226513
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE FLOW STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772040232584
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SICKNESS BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040232769
     }
   ]
 }
