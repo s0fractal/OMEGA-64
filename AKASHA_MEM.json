@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA000A00",
     "06006000",
     "A0A0AAA0",
     "00606606",
@@ -199,15 +198,10 @@
     "66000060",
     "606660A0",
     "6066A600",
-    "0AA000AA"
+    "0AA000AA",
+    "A6A06000"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD STASIS IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041058350
-    },
     {
       "origin": "ARCHIVIST",
       "text": "PURE SHELTER REFLECT",
@@ -291,6 +285,12 @@
       "text": "GIVING RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772041062343
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY BREACH CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041062708
     }
   ]
 }
