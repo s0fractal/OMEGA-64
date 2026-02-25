@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772034683500
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772034683701
@@ -291,6 +285,12 @@
       "text": "CONSUME BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772034686520
+    },
+    {
+      "origin": "ALPHA_REVERSE",
+      "text": "COHERE OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772034686752
     }
   ]
 }
