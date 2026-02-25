@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHELTER WATCH SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772034422550
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC RESONATE STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772034425384
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WAIT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772034426178
     }
   ]
 }
