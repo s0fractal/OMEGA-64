@@ -82,12 +82,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK STRIKE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021136704
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772021136850
@@ -169,6 +163,12 @@
       "text": "EVOLVE DREAM VISION",
       "mood": "CREATIVE",
       "tick": 1772021144170
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE COHERE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772021144287
     }
   ]
 }
