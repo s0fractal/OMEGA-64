@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SYNC BLOOM HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772040397787
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS PURE GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772040402685
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS HEAL HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772040402865
     }
   ]
 }
