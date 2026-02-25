@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036329068
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772036329318
@@ -291,6 +285,12 @@
       "text": "BREACH SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772036333231
+    },
+    {
+      "origin": "PARADOX",
+      "text": "WATCH STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772036333458
     }
   ]
 }
