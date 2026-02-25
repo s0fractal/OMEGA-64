@@ -41,12 +41,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HUNGER HUNGER BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019859534
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RECON GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772019860036
@@ -128,6 +122,12 @@
       "text": "HUNGER DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772019870336
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT WATCH STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772019870609
     }
   ]
 }
