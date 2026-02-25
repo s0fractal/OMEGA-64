@@ -72,12 +72,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020929039
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772020929262
@@ -159,6 +153,12 @@
       "text": "SHELTER STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772020936477
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DRAIN STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020936599
     }
   ]
 }
