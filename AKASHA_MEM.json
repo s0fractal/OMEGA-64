@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772024873378
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772024877876
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD RECON SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772024878159
     }
   ]
 }
