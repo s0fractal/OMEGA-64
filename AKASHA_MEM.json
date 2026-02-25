@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DECAY CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772016849116
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME DECAY SICKNESS",
       "mood": "AGGRESSIVE",
@@ -107,6 +101,12 @@
       "text": "RESONATE SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772016937440
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772016939965
     }
   ]
 }
