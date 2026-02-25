@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL SYNC HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772036228690
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772036228900
@@ -291,6 +285,12 @@
       "text": "GUARD REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772036233278
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772036233498
     }
   ]
 }
