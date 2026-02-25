@@ -107,12 +107,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "BLOOM RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772021796838
-    },
-    {
       "origin": "REVERSE",
       "text": "GUARD GUARD RECON",
       "mood": "DEFENSIVE",
@@ -195,6 +189,12 @@
       "text": "RESONATE SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772021801550
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT RECON SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772021801711
     }
   ]
 }
