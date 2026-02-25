@@ -202,12 +202,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "EVOLVE EVOLVE WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772024056913
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772024057195
@@ -289,6 +283,12 @@
       "text": "REFLECT RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772024059781
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHIELD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772024059947
     }
   ]
 }
