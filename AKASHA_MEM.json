@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023961426
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023961793
@@ -284,6 +278,12 @@
       "text": "STASIS WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023966138
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE IMMUNE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772023966437
     }
   ]
 }
