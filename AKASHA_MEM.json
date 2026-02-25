@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SHOCK BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032975318
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772032975492
@@ -291,6 +285,12 @@
       "text": "HEAL FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772032978125
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032978304
     }
   ]
 }
