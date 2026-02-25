@@ -282,6 +282,12 @@ export const GATE = {
     const combinedDelta = new Map<number, number>();
 
     for (const p of validProposals) {
+      if ((p as any).resonance !== undefined) {
+          console.log(`   [DEBUG PROPOSAL] ID: ${p.proposal_id}, resonance: ${(p as any).resonance}`);
+      } else {
+          console.log(`   [DEBUG PROPOSAL] ID: ${p.proposal_id}, NO RESONANCE FOUND.`);
+      }
+      
       // Calculate Physical Cost using LOAD model
       let physicalCost = 0;
       const agentPhase = p.agent_phase_u16 ?? 0;
