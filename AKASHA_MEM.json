@@ -116,12 +116,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE OSMOSIS UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772022069139
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022069379
@@ -203,6 +197,12 @@
       "text": "DRAIN STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772022073604
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772022073737
     }
   ]
 }
