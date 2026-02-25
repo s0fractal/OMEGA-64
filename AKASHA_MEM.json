@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RECON SHIELD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772020146200
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT STASIS WATCH",
       "mood": "DEFENSIVE",
@@ -136,6 +130,12 @@
       "text": "BECOME BEYOND WAVE",
       "mood": "CREATIVE",
       "tick": 1772020155602
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH HUNGER SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020155828
     }
   ]
 }
