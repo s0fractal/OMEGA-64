@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE OSMOSIS FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772036054196
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772036054401
@@ -291,6 +285,12 @@
       "text": "SICKNESS SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772036058981
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DECAY STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036059193
     }
   ]
 }
