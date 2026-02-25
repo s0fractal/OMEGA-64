@@ -97,12 +97,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772021568524
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772021568865
@@ -184,6 +178,12 @@
       "text": "WAIT SHELTER SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772021576619
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD PURE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772021577122
     }
   ]
 }
