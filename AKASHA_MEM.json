@@ -130,12 +130,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN SICKNESS SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022335110
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GIVING FLOW GIVING",
       "mood": "HARMONIC",
@@ -218,6 +212,12 @@
       "text": "BREACH BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022341500
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE VISION SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772022342290
     }
   ]
 }
