@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772027718332
-    },
-    {
       "origin": "STREAM",
       "text": "REFLECT REFLECT GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772027735913
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT RECON STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772027736318
     }
   ]
 }
