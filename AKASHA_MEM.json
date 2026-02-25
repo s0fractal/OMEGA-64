@@ -163,12 +163,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT WAIT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772022874894
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022875074
@@ -250,6 +244,12 @@
       "text": "STABLE FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772022880754
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE CONSUME CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022880932
     }
   ]
 }
