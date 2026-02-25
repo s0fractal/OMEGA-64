@@ -1,14 +1,14 @@
 ---
 eigenvalue: '0xFA0AAA00FFFF0A06'
-energy: 49.5
-x: 711
-'y': 399
+energy: 45.5
+x: 682
+'y': 420
 resonance: 50
-thought: ORBIT_BONDING
+thought: ORBIT_PASSIVE
 logic: FA0AAA00
 signals: []
 bond_strengths:
-  '0x0000000000000A02': 0.9723747443770956
+  '0x0000000000000A02': 0.9714023696327185
 bonds:
   - '0x0000000000000A02'
 ex:
@@ -24,6 +24,10 @@ ex:
   - '0x0A000A0000000A06'
   - '0xAA000A0000000A06'
   - '0xAA000A0000000A00'
+  - '0xFA0AAA0000000A02'
+  - '0xFA0AAA00FFFF0A00'
+  - '0xFA0AAA00FFFF0A02'
+  - '0xFA0AAA00FFFF0A04'
 ---
 
 <div align="center">
