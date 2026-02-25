@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772024996503
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772024996866
@@ -291,6 +285,12 @@
       "text": "PURE RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772025002233
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING RESONATE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772025002412
     }
   ]
 }
