@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT GUARD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041499542
-    },
-    {
       "origin": "INTERFACE",
       "text": "FLOW HEAL BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "REFLECT SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041504609
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN HUNGER BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041504903
     }
   ]
 }
