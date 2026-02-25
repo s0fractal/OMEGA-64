@@ -175,12 +175,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "HEAL SYNC STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772023263184
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY BREACH CONSUME",
       "mood": "AGGRESSIVE",
@@ -263,6 +257,12 @@
       "text": "STABLE OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772023269332
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH IMMUNE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772023269597
     }
   ]
 }
