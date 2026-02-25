@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BREACH DRAIN SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029056240
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER BREACH DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772029064275
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE SYNC HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772029064792
     }
   ]
 }
