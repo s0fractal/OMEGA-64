@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME BECOME DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772034828185
-    },
-    {
-      "origin": "REVERSE",
       "text": "EVOLVE DREAM BECOME",
       "mood": "CREATIVE",
       "tick": 1772034828399
@@ -291,6 +285,12 @@
       "text": "UNIFY COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772034831272
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIKE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034831491
     }
   ]
 }
