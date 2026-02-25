@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772036941784
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772036942001
@@ -291,6 +285,12 @@
       "text": "SHOCK SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772036944661
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772036944865
     }
   ]
 }
