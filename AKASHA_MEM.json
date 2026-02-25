@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD RECON STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772026858748
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772026859007
@@ -291,6 +285,12 @@
       "text": "HEAL UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772026861944
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC BLOOM STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772026862510
     }
   ]
 }
