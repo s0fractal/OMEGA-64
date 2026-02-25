@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772028362759
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772028363464
@@ -291,6 +285,12 @@
       "text": "UNIFY STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772028370819
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028371375
     }
   ]
 }
