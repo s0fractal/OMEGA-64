@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038972645
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772038972905
@@ -291,6 +285,12 @@
       "text": "SHELTER IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772038980123
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS UNIFY COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772038980379
     }
   ]
 }
