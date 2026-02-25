@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SEIZE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034993541
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772034993749
@@ -291,6 +285,12 @@
       "text": "WAIT RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772034999706
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772034999914
     }
   ]
 }
