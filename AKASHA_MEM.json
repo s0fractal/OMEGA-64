@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHOCK SHOCK HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028022850
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS SHELTER WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772028048022
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE HEAL HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772028048555
     }
   ]
 }
