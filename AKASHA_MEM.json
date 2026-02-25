@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041982536
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE SHELTER SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772041990600
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT SHIELD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772041990807
     }
   ]
 }
