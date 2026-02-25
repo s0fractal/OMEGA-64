@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE GUARD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772028479902
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772028480337
@@ -291,6 +285,12 @@
       "text": "SEIZE BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772028488236
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS RECON SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772028488645
     }
   ]
 }
