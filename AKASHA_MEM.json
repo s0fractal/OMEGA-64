@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "PURE STASIS SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040825102
-    },
-    {
       "origin": "STREAM",
       "text": "BLOOM GIVING SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GUARD WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772040829077
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHIELD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040829387
     }
   ]
 }
