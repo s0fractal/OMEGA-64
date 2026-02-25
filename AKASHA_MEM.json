@@ -125,12 +125,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022238316
-    },
-    {
       "origin": "INTERFACE",
       "text": "BREACH DRAIN STRIKE",
       "mood": "AGGRESSIVE",
@@ -213,6 +207,12 @@
       "text": "STASIS IMMUNE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772022243167
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME VISION BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772022244259
     }
   ]
 }
