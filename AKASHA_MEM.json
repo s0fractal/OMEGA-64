@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE CONSUME STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026129152
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY COHERE SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WAVE VISION BEYOND",
       "mood": "CREATIVE",
       "tick": 1772026134446
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM SYNC UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772026134595
     }
   ]
 }
