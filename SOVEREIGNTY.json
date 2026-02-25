@@ -1,12 +1,12 @@
 {
-  "activeDecree": "IMMUNE_SHIELD",
-  "regent": "0x06006060FFFF0004",
+  "activeDecree": "LUXURY_TAX",
+  "regent": "0x6600060000000002",
   "legitimacy": 1000,
-  "label": "IMMUNE SHIELD",
+  "label": "LUXURY TAX",
   "mods": {
-    "decay": 0.3,
-    "speed": 0.7,
-    "mutation": 0.5,
-    "label": "IMMUNE SHIELD"
+    "decay": 2.5,
+    "speed": 1,
+    "mutation": 1,
+    "label": "LUXURY TAX"
   }
 }
