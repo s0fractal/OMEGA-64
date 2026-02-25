@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC STABLE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772023970881
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772023971052
@@ -284,6 +278,12 @@
       "text": "PURE RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023973648
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE BREACH BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023974034
     }
   ]
 }
