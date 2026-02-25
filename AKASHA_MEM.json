@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON WATCH WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042070211
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE OSMOSIS STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DREAM BEYOND EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772042088861
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE STABLE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772042090081
     }
   ]
 }
