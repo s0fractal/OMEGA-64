@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60660666",
     "06666606",
     "AA0A00AA",
     "FF00FF00",
@@ -199,15 +198,10 @@
     "A0666660",
     "06000600",
     "66066660",
-    "0A0A0AA0"
+    "0A0A0AA0",
+    "0BB00000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WAVE FORGE AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772033171660
-    },
     {
       "origin": "REVERSE",
       "text": "GIVING COHERE OSMOSIS",
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772033174675
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW UNIFY SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772033174847
     }
   ]
 }
