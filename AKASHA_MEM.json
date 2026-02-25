@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034130567
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772034131016
@@ -291,6 +285,12 @@
       "text": "STABLE SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772034133776
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS SHIELD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772034134000
     }
   ]
 }
