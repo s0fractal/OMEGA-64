@@ -67,12 +67,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020814465
-    },
-    {
       "origin": "INTERFACE",
       "text": "CONSUME STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -155,6 +149,12 @@
       "text": "REFLECT REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020821663
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH WAIT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020821839
     }
   ]
 }
