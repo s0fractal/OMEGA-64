@@ -74,15 +74,10 @@
     "ABBB0000",
     "60660000",
     "0BBB0000",
-    "AA0AAA0A"
+    "AA0AAA0A",
+    "66A066A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WATCH WATCH STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772021059549
-    },
     {
       "origin": "INTERFACE",
       "text": "IMMUNE PURE SHIELD",
@@ -166,6 +161,12 @@
       "text": "RECON WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772021066194
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD RECON SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772021066429
     }
   ]
 }
