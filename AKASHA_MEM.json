@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DECAY STRIKE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019929798
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM RESONATE RESONATE",
       "mood": "HARMONIC",
@@ -130,6 +124,12 @@
       "text": "HEAL BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772019943615
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "REFLECT REFLECT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772019945780
     }
   ]
 }
