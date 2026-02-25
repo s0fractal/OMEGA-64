@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAVE EVOLVE BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772023711767
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772023711922
@@ -278,6 +272,12 @@
       "text": "STRIKE SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023714166
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY SYNC SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772023714325
     }
   ]
 }
