@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE UNIFY UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772040309582
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HEAL GIVING RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BECOME VISION BEYOND",
       "mood": "CREATIVE",
       "tick": 1772040314747
+    },
+    {
+      "origin": "STREAM",
+      "text": "FLOW SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772040314922
     }
   ]
 }
