@@ -49,12 +49,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DRAIN SEIZE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020191669
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BREACH DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772020192940
@@ -136,6 +130,12 @@
       "text": "SICKNESS STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020205527
+    },
+    {
+      "origin": "STREAM",
+      "text": "HEAL HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772020206765
     }
   ]
 }
