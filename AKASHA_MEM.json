@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "OSMOSIS SYNC FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772032267783
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772032273828
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772032274048
     }
   ]
 }
