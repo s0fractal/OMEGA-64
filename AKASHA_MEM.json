@@ -80,12 +80,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STASIS SHIELD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772021074359
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHELTER WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772021075296
@@ -167,6 +161,12 @@
       "text": "DREAM WITNESS EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772021083005
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021083147
     }
   ]
 }
