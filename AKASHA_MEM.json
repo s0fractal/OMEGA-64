@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SHOCK BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038874841
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772038875327
@@ -291,6 +285,12 @@
       "text": "OSMOSIS RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772038879456
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE STASIS WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772038879701
     }
   ]
 }
