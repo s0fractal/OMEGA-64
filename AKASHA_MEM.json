@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE HEAL OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772030978469
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772030979629
@@ -291,6 +285,12 @@
       "text": "WAIT SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772030990224
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772030991156
     }
   ]
 }
