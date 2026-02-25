@@ -93,12 +93,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW COHERE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772021362731
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772021364682
@@ -180,6 +174,12 @@
       "text": "SEIZE SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021389344
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021389726
     }
   ]
 }
