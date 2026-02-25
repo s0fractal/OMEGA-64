@@ -189,12 +189,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL SYNC COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772023696235
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023696434
@@ -276,6 +270,12 @@
       "text": "SHELTER WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023700280
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE PURE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023700452
     }
   ]
 }
