@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STASIS SHELTER STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772041618626
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "CONSUME DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041618772
@@ -291,6 +285,12 @@
       "text": "FLOW BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772041624343
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BLOOM BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041624855
     }
   ]
 }
