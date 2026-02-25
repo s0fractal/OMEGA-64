@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033192183
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772033192393
@@ -291,6 +285,12 @@
       "text": "IMMUNE IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772033194808
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON PURE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772033194984
     }
   ]
 }
