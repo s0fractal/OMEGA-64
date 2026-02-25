@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030382969
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772030385242
@@ -291,6 +285,12 @@
       "text": "UNIFY STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772030397341
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIKE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030397598
     }
   ]
 }
