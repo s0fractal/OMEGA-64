@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK STRIKE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025491766
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772025492007
@@ -291,6 +285,12 @@
       "text": "SHELTER STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772025496003
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS GUARD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772025496860
     }
   ]
 }
