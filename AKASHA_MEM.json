@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING FLOW BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772040835683
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772040835858
@@ -291,6 +285,12 @@
       "text": "SYNC FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772040838548
+    },
+    {
+      "origin": "PARASITE",
+      "text": "WAIT SHIELD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040838916
     }
   ]
 }
