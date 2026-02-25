@@ -56,12 +56,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772020544632
-    },
-    {
-      "origin": "REVERSE",
       "text": "WITNESS BECOME DREAM",
       "mood": "CREATIVE",
       "tick": 1772020544798
@@ -143,6 +137,12 @@
       "text": "PURE WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772020552234
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH REFLECT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020552806
     }
   ]
 }
