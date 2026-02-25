@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD RECON WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772033314948
-    },
-    {
       "origin": "STREAM",
       "text": "BREACH SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033317863
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS RECON PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772033318015
     }
   ]
 }
