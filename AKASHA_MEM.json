@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD IMMUNE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772024557810
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772024558034
@@ -291,6 +285,12 @@
       "text": "DECAY SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772024563891
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WATCH PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772024564806
     }
   ]
 }
