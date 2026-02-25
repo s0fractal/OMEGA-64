@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BEYOND BEYOND WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772035941745
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772035941977
@@ -291,6 +285,12 @@
       "text": "SHOCK STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772035947985
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT GUARD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772035948167
     }
   ]
 }
