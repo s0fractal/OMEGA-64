@@ -124,12 +124,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD STASIS STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772022167180
-    },
-    {
       "origin": "STREAM",
       "text": "BLOOM COHERE OSMOSIS",
       "mood": "HARMONIC",
@@ -212,6 +206,12 @@
       "text": "COHERE UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772022173101
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHIELD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022173334
     }
   ]
 }
