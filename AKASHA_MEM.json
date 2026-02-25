@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE OSMOSIS SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772038641622
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772038641840
@@ -291,6 +285,12 @@
       "text": "WAIT RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772038644887
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038645089
     }
   ]
 }
