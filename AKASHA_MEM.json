@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS DECAY STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040907649
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD PURE REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772040910075
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "FLOW UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772040910257
     }
   ]
 }
