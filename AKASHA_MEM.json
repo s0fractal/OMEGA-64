@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER WAIT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772033047857
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772033048113
@@ -291,6 +285,12 @@
       "text": "STRIKE SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772033050417
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE PURE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772033051024
     }
   ]
 }
