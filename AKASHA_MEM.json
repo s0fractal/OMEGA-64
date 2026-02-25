@@ -187,12 +187,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023670876
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772023671004
@@ -274,6 +268,12 @@
       "text": "UNIFY OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772023675489
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT RECON WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772023675668
     }
   ]
 }
