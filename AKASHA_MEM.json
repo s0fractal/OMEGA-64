@@ -203,18 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STASIS SHIELD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772042371468
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS FLOW FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772042371797
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE BLOOM FLOW",
       "mood": "HARMONIC",
@@ -291,6 +279,18 @@
       "text": "UNIFY COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772042381039
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT SHELTER WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772042381657
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT PURE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772042381970
     }
   ]
 }
