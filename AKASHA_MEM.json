@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STASIS SHELTER PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041371394
-    },
-    {
       "origin": "INTERFACE",
       "text": "FLOW UNIFY UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BREACH STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772041375372
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY DRAIN HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041375552
     }
   ]
 }
