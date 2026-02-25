@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE HUNGER SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038506102
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772038506293
@@ -291,6 +285,12 @@
       "text": "STRIFE CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772038511694
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772038511895
     }
   ]
 }
