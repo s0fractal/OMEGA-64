@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME BREACH SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027298175
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772027298354
@@ -291,6 +285,12 @@
       "text": "WAIT SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772027303947
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772027304180
     }
   ]
 }
