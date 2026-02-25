@@ -4,9 +4,9 @@ vector: 03.00.00
 symbol: HALT
 desc: Machine Halt state. Terminates processing by returning only state.
 thought: WANDER_BONDING
-x: 64
-'y': 348
-energy: 15.999999999999993
+x: 75
+'y': 338
+energy: 9.999999999999993
 ex:
   - '0xD3CB93F33153FFF2'
   - '0x3B30000C3153FFF2'
@@ -37,11 +37,13 @@ ex:
   - '0x000000003153FFF2'
   - '0x000000003153FFF2'
   - '0x000000003153FFF2'
+  - '0xAAAA0AA03153FFF2'
 signals: []
 resonance: 0
 bond_strengths: {}
 ---
 
+<div align="center">
 <div align="center">
 <div align="center">
 <div align="center">
@@ -95,6 +97,7 @@ bond_strengths: {}
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">HALT</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 </div>
 </div>
