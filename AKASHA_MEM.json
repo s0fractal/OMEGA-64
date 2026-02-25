@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "NAND",
-      "text": "SYNC STABLE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772041062941
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON SHIELD PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041065767
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SYNC OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041065884
     }
   ]
 }
