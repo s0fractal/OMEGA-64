@@ -77,12 +77,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021005104
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772021005265
@@ -164,6 +158,12 @@
       "text": "PURE STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772021010958
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHELTER STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772021011704
     }
   ]
 }
