@@ -106,12 +106,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE FLOW HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772021719566
-    },
-    {
       "origin": "INTERFACE",
       "text": "BREACH DRAIN DECAY",
       "mood": "AGGRESSIVE",
@@ -194,6 +188,12 @@
       "text": "RECON PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772021725549
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD RECON IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021725794
     }
   ]
 }
