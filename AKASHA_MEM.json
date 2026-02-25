@@ -71,12 +71,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH DECAY SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020908011
-    },
-    {
       "origin": "STREAM",
       "text": "HEAL GIVING OSMOSIS",
       "mood": "HARMONIC",
@@ -159,6 +153,12 @@
       "text": "SEIZE DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020913976
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020914157
     }
   ]
 }
