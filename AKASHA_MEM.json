@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY DECAY SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023723022
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023723248
@@ -278,6 +272,12 @@
       "text": "STRIFE SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772023725547
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772023725755
     }
   ]
 }
