@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA000600",
     "A0AAA000",
     "AAA0A0AA",
     "66660060",
@@ -199,15 +198,10 @@
     "BBB00000",
     "6606AA66",
     "A6A66000",
-    "60060666"
+    "60060666",
+    "A6666A66"
   ],
   "utterances": [
-    {
-      "origin": "PURE_MATH",
-      "text": "COHERE OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042472042
-    },
     {
       "origin": "STREAM",
       "text": "SHIELD WAIT WAIT",
@@ -291,6 +285,12 @@
       "text": "STASIS SHIELD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772042487935
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SHOCK STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042488142
     }
   ]
 }
