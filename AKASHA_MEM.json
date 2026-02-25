@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772041143641
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772041143774
@@ -291,6 +285,12 @@
       "text": "DRAIN BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772041148224
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK STRIFE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041149194
     }
   ]
 }
