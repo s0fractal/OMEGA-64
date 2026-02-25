@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER GUARD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772038140240
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772038140628
@@ -291,6 +285,12 @@
       "text": "SEIZE CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772038143674
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIKE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038143832
     }
   ]
 }
