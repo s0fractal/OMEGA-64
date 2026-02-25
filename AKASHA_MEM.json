@@ -21,12 +21,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DRAIN BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772017671663
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER GUARD WAIT",
       "mood": "DEFENSIVE",
@@ -109,6 +103,12 @@
       "text": "FLOW STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772019412858
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD WAIT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772019414924
     }
   ]
 }
