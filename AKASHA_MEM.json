@@ -94,12 +94,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772021468714
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021470023
@@ -181,6 +175,12 @@
       "text": "SEIZE SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772021485668
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON REFLECT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021486348
     }
   ]
 }
