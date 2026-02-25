@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "666666A6",
     "600A0000",
     "A6666666",
     "A0000A00",
@@ -199,15 +198,10 @@
     "A0AAA000",
     "66000606",
     "BB0B0000",
-    "AA0A0A00"
+    "AA0A0A00",
+    "0000F000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "COHERE BLOOM STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772024607278
-    },
     {
       "origin": "REVERSE",
       "text": "RESONATE FLOW UNIFY",
@@ -291,6 +285,12 @@
       "text": "BLOOM STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772024614248
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY GIVING FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772024614448
     }
   ]
 }
