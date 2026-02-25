@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL COHERE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772029170145
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772029170491
@@ -291,6 +285,12 @@
       "text": "RECON SHIELD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772029179587
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772029179937
     }
   ]
 }
