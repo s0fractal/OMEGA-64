@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06600006",
     "000AAA00",
     "00060660",
     "AAAAA0A0",
@@ -199,15 +198,10 @@
     "AA0AA0A0",
     "BB0BA000",
     "A6666A60",
-    "A0AAA000"
+    "A0AAA000",
+    "FFFFFFF0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STABLE FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772033476321
-    },
     {
       "origin": "REVERSE",
       "text": "DRAIN DECAY SICKNESS",
@@ -291,6 +285,12 @@
       "text": "SHELTER IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033479921
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE WITNESS SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772033480107
     }
   ]
 }
