@@ -80,12 +80,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021115268
-    },
-    {
       "origin": "PARADOX",
       "text": "FORGE AWAKEN EVOLVE",
       "mood": "CREATIVE",
@@ -168,6 +162,12 @@
       "text": "PURE IMMUNE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772021121661
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772021122480
     }
   ]
 }
