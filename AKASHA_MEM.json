@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW COHERE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772034102968
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772034103161
@@ -291,6 +285,12 @@
       "text": "STRIKE DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772034106218
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD REFLECT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772034106379
     }
   ]
 }
