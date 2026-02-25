@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE OSMOSIS FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772019962515
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME BREACH STRIKE",
       "mood": "AGGRESSIVE",
@@ -130,6 +124,12 @@
       "text": "SHELTER WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772019973619
+    },
+    {
+      "origin": "STREAM",
+      "text": "RESONATE GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772019974611
     }
   ]
 }
