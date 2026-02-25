@@ -180,12 +180,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE STRIKE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023394278
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023394552
@@ -267,6 +261,12 @@
       "text": "UNIFY COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772023397838
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS GUARD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023398046
     }
   ]
 }
