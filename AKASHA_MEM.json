@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60000A00",
     "AABB0000",
     "A0000000",
     "6A6666A6",
@@ -199,15 +198,10 @@
     "60060600",
     "A00A0AA0",
     "06660600",
-    "ABB00000"
+    "ABB00000",
+    "A1000000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BLOOM SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772024817448
-    },
     {
       "origin": "REVERSE",
       "text": "REFLECT IMMUNE IMMUNE",
@@ -291,6 +285,12 @@
       "text": "SEIZE CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772024835566
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024836225
     }
   ]
 }
