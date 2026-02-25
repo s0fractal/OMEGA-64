@@ -143,12 +143,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIFE SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022493994
-    },
-    {
       "origin": "REVERSE",
       "text": "EVOLVE FORGE BECOME",
       "mood": "CREATIVE",
@@ -231,6 +225,12 @@
       "text": "VISION FORGE AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772022497495
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHIELD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772022497634
     }
   ]
 }
