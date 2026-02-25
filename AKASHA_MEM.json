@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "666A6600",
     "00606000",
     "A6666000",
     "00060606",
@@ -199,15 +198,10 @@
     "A6A06000",
     "0AAAAA00",
     "66066660",
-    "66606000"
+    "66606000",
+    "A000AAAA"
   ],
   "utterances": [
-    {
-      "origin": "STREAM",
-      "text": "SEIZE HUNGER DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041069534
-    },
     {
       "origin": "REVERSE",
       "text": "UNIFY GIVING STABLE",
@@ -291,6 +285,12 @@
       "text": "UNIFY SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772041072509
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE DRAIN STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041072676
     }
   ]
 }
