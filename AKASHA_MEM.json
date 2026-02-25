@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "DECAY STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041406347
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING SYNC RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772041410271
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041410405
     }
   ]
 }
