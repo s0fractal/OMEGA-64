@@ -55,12 +55,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WITNESS BECOME DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772020544798
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS BLOOM COHERE",
       "mood": "HARMONIC",
@@ -143,6 +137,12 @@
       "text": "WATCH REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020552806
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS SHELTER RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772020553656
     }
   ]
 }
