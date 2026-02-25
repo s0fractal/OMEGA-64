@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE SYNC SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772031252488
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772031252819
@@ -291,6 +285,12 @@
       "text": "FORGE WAVE EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772031263555
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW STABLE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772031263797
     }
   ]
 }
