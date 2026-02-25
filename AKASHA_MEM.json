@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66060000",
     "0A00AA0A",
     "000AAAA0",
     "000A0AA0",
@@ -199,15 +198,10 @@
     "06066660",
     "0FF0F0F0",
     "AA066000",
-    "A0066660"
+    "A0066660",
+    "00BBC0DD"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SYNC HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772035555827
-    },
     {
       "origin": "REVERSE",
       "text": "DRAIN DRAIN SICKNESS",
@@ -291,6 +285,12 @@
       "text": "RESONATE GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772035558807
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772035559022
     }
   ]
 }
