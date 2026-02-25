@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00660666",
     "F0FF000F",
     "AAAAAAA0",
     "660060A6",
@@ -199,15 +198,10 @@
     "C0DED000",
     "A0666660",
     "00666660",
-    "00066660"
+    "00066660",
+    "AAB0000D"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RESONATE RESONATE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772034863001
-    },
     {
       "origin": "REVERSE",
       "text": "PURE REFLECT RECON",
@@ -291,6 +285,12 @@
       "text": "UNIFY RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772034865775
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DECAY STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034865973
     }
   ]
 }
