@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "RESONATE BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772041692721
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS REFLECT SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772041697590
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772041697736
     }
   ]
 }
