@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0AAA00AA",
     "60060606",
     "0AB00C0D",
     "66006000",
@@ -199,15 +198,10 @@
     "A0BB0000",
     "6660A6A0",
     "AA6666A6",
-    "06606660"
+    "06606660",
+    "AAAAA0AA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SEIZE CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036080346
-    },
     {
       "origin": "REVERSE",
       "text": "WAIT RECON IMMUNE",
@@ -291,6 +285,12 @@
       "text": "FLOW RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772036084633
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036084888
     }
   ]
 }
