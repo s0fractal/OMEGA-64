@@ -163,12 +163,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON PURE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022985591
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS WAIT STASIS",
       "mood": "DEFENSIVE",
@@ -251,6 +245,12 @@
       "text": "SYNC UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772022990047
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772022990250
     }
   ]
 }
