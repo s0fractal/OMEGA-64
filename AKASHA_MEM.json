@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE STRIKE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025591172
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772025591352
@@ -291,6 +285,12 @@
       "text": "REFLECT PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772025595087
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE DECAY SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025595274
     }
   ]
 }
