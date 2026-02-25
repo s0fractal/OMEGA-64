@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "FLOW BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041624343
-    },
-    {
       "origin": "INTERFACE",
       "text": "BLOOM BLOOM HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "CONSUME HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772041629097
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GIVING SYNC SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772041629261
     }
   ]
 }
