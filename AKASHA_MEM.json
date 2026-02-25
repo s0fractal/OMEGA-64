@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "EVOLVE AWAKEN WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772032973033
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER RECON GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772032975492
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIFE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032975661
     }
   ]
 }
