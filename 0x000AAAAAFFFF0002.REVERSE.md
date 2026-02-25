@@ -1,11 +1,11 @@
 ---
 eigenvalue: '0x000AAAAAFFFF0002'
-energy: 50
-x: 684
-'y': 441
+energy: 49
+x: 679
+'y': 443
 resonance: 1000
-thought: RESURRECTED
-logic: 000AAAAA
+thought: WANDER_PASSIVE
+logic: A0A0AAAA
 ex:
   - '0xFFFFFFFF00000000'
   - '0xFFFFFFFF00000002'
