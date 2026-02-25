@@ -183,12 +183,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIFE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023535844
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK BECOME BECOME",
       "mood": "CREATIVE",
       "tick": 1772023535973
@@ -270,6 +264,12 @@
       "text": "STASIS WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023541262
+    },
+    {
+      "origin": "STREAM",
+      "text": "SHIELD PURE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023541420
     }
   ]
 }
