@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN BREACH HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028938586
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772028938883
@@ -291,6 +285,12 @@
       "text": "WATCH WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772028943568
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD SHIELD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772028944001
     }
   ]
 }
