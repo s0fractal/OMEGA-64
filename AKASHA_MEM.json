@@ -55,12 +55,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE SEIZE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020521945
-    },
-    {
       "origin": "INTERFACE",
       "text": "DECAY CONSUME CONSUME",
       "mood": "AGGRESSIVE",
@@ -143,6 +137,12 @@
       "text": "SEIZE DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020528737
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE HUNGER DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020528906
     }
   ]
 }
