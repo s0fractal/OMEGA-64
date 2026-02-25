@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH STRIFE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020210449
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL BLOOM BLOOM",
       "mood": "HARMONIC",
@@ -136,6 +130,12 @@
       "text": "CONSUME DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020224690
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIKE STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020225879
     }
   ]
 }
