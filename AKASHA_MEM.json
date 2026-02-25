@@ -118,12 +118,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022084391
-    },
-    {
       "origin": "REVERSE",
       "text": "SHIELD IMMUNE GUARD",
       "mood": "DEFENSIVE",
@@ -206,6 +200,12 @@
       "text": "GUARD WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022089729
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK STRIFE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022090300
     }
   ]
 }
