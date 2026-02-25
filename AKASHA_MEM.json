@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE STRIFE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033623313
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME BREACH SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "REFLECT WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772033626422
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE COHERE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772033626602
     }
   ]
 }
