@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME SICKNESS DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036336108
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS SHOCK DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772036340809
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772036341142
     }
   ]
 }
