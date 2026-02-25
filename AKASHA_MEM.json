@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER WAIT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041226117
-    },
-    {
       "origin": "STREAM",
       "text": "UNIFY RESONATE STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHELTER GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772041232174
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHELTER SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041232845
     }
   ]
 }
