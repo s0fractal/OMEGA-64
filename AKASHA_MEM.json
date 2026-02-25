@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING STABLE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772025670760
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772025670941
@@ -291,6 +285,12 @@
       "text": "COHERE FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772025674651
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT IMMUNE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772025674811
     }
   ]
 }
