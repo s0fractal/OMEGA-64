@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "VISION AWAKEN BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772038575819
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772038576099
@@ -291,6 +285,12 @@
       "text": "RESONATE UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772038579135
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "FLOW FLOW UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772038579432
     }
   ]
 }
