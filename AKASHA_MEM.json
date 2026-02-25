@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHIELD GUARD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041444112
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHELTER IMMUNE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041444245
@@ -291,6 +285,12 @@
       "text": "HUNGER DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772041447378
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772041447748
     }
   ]
 }
