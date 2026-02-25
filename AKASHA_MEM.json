@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041631336
-    },
-    {
       "origin": "STREAM",
       "text": "STRIKE STRIKE SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STASIS WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772041634191
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SEIZE HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041634331
     }
   ]
 }
