@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772032428623
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772032429061
@@ -291,6 +285,12 @@
       "text": "SYNC STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772032436390
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WAIT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772032436927
     }
   ]
 }
