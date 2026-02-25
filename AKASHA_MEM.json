@@ -56,15 +56,10 @@
     "FFFF0FFF",
     "AAAAAA0A",
     "66066000",
-    "AAA0AAA0"
+    "AAA0AAA0",
+    "0AA0AAAA"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020604534
-    },
     {
       "origin": "ARCHIVIST",
       "text": "SHOCK HUNGER CONSUME",
@@ -148,6 +143,12 @@
       "text": "HUNGER SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020610591
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE HEAL GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772020611289
     }
   ]
 }
