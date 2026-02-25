@@ -33,12 +33,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "FLOW HEAL FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772019724997
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE REFLECT SHIELD",
       "mood": "DEFENSIVE",
@@ -121,6 +115,12 @@
       "text": "GUARD RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772019734659
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH RECON GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772019736101
     }
   ]
 }
