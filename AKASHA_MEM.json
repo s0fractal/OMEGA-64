@@ -70,12 +70,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772020893017
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE UNIFY HEAL",
       "mood": "HARMONIC",
@@ -158,6 +152,12 @@
       "text": "DECAY BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020898113
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE BREACH STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020898798
     }
   ]
 }
