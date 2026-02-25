@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772030418380
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIKE SHOCK SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIKE SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772030425532
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHELTER SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772030425880
     }
   ]
 }
