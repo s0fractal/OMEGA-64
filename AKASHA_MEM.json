@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE IMMUNE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772024883026
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772024883245
@@ -291,6 +285,12 @@
       "text": "WATCH WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772024886400
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE RECON STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772024886544
     }
   ]
 }
