@@ -116,12 +116,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022000659
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772022001416
@@ -203,6 +197,12 @@
       "text": "STABLE FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772022012107
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "REFLECT WAIT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022012493
     }
   ]
 }
