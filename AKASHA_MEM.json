@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA000A00",
     "AAAA00A0",
     "666006A0",
     "0AAAAAA0",
@@ -199,15 +198,10 @@
     "AA6660A6",
     "00660606",
     "AAAAAAAA",
-    "00FFF00F"
+    "00FFF00F",
+    "A000A000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RECON WAIT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772032831599
-    },
     {
       "origin": "REVERSE",
       "text": "WATCH SHIELD RECON",
@@ -291,6 +285,12 @@
       "text": "STABLE RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772032834053
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SEIZE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032834235
     }
   ]
 }
