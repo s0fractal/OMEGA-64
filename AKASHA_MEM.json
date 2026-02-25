@@ -68,12 +68,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772020836630
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH SICKNESS DECAY",
       "mood": "AGGRESSIVE",
@@ -156,6 +150,12 @@
       "text": "STRIKE DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020845274
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SEIZE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020845762
     }
   ]
 }
