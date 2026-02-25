@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WAIT SHELTER REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041388429
-    },
-    {
       "origin": "STREAM",
       "text": "RECON SHELTER WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041392046
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041392234
     }
   ]
 }
