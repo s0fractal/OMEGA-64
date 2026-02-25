@@ -1,12 +1,12 @@
 {
-  "activeDecree": "LUXURY_TAX",
-  "regent": "0x60606660FFFF000E",
+  "activeDecree": "MUTATIVE_FEVER",
+  "regent": "0xAAA0000000000008",
   "legitimacy": 1000,
-  "label": "LUXURY TAX",
+  "label": "MUTATIVE FEVER",
   "mods": {
-    "decay": 2.5,
-    "speed": 1,
-    "mutation": 1,
-    "label": "LUXURY TAX"
+    "decay": 1.5,
+    "speed": 1.3,
+    "mutation": 4,
+    "label": "MUTATIVE FEVER"
   }
 }
