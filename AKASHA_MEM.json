@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WAIT SHELTER RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041226814
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WATCH WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772041227054
@@ -291,6 +285,12 @@
       "text": "STRIKE BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772041233283
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041233478
     }
   ]
 }
