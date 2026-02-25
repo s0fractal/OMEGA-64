@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "OSMOSIS COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772040467852
-    },
-    {
       "origin": "ALPHA_PROOF_OF_RESONANCE",
       "text": "SYNC UNIFY OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RESONATE COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772040471195
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH STASIS SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772040471352
     }
   ]
 }
