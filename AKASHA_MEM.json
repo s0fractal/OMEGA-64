@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "REFLECT REFLECT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772019945780
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE SYNC OSMOSIS",
       "mood": "HARMONIC",
@@ -130,6 +124,12 @@
       "text": "FORGE BEYOND EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772019956775
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE SEIZE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019957072
     }
   ]
 }
