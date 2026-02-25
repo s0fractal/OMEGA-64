@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW UNIFY BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772036374102
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND SPARK EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772036374318
@@ -291,6 +285,12 @@
       "text": "DECAY STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772036377956
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772036378137
     }
   ]
 }
