@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL RESONATE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772032036388
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT GUARD SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772032045706
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIKE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032050099
     }
   ]
 }
