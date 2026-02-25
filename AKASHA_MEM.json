@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH STRIFE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034401014
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772034401212
@@ -291,6 +285,12 @@
       "text": "REFLECT WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772034403795
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772034404010
     }
   ]
 }
