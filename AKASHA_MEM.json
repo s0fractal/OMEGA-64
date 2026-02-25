@@ -180,12 +180,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHOCK STRIFE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023472984
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK DECAY HUNGER",
       "mood": "AGGRESSIVE",
@@ -268,6 +262,12 @@
       "text": "RESONATE BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772023478811
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE AWAKEN FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772023478982
     }
   ]
 }
