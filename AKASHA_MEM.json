@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIKE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034301969
-    },
-    {
-      "origin": "REVERSE",
       "text": "DREAM BECOME EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772034302199
@@ -291,6 +285,12 @@
       "text": "REFLECT IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772034304674
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING FLOW GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772034304861
     }
   ]
 }
