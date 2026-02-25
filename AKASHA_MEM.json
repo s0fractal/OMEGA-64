@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "FLOW RESONATE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772040347168
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER WAIT WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIFE HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772040355307
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040356134
     }
   ]
 }
