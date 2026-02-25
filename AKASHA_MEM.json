@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772035240916
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772035241127
@@ -291,6 +285,12 @@
       "text": "HEAL COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772035243940
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM DREAM WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772035244142
     }
   ]
 }
