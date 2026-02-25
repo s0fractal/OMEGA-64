@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A0A0A000",
     "0F0AAAAA",
     "66000060",
     "AA666666",
@@ -199,15 +198,10 @@
     "00000660",
     "06006660",
     "000AAA0A",
-    "06606060"
+    "06606060",
+    "A0A0AA00"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "OSMOSIS GIVING FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772040501439
-    },
     {
       "origin": "STREAM",
       "text": "PURE GUARD STASIS",
@@ -291,6 +285,12 @@
       "text": "SHELTER WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040504741
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DRAIN HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040504907
     }
   ]
 }
