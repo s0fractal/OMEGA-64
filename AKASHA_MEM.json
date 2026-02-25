@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER STRIKE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031146498
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772031146796
@@ -291,6 +285,12 @@
       "text": "HEAL OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772031152385
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772031152841
     }
   ]
 }
