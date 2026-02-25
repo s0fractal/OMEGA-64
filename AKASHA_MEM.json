@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040865009
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772040865140
@@ -291,6 +285,12 @@
       "text": "GUARD SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772040867474
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WATCH PURE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772040867743
     }
   ]
 }
