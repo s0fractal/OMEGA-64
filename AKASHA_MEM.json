@@ -21,12 +21,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SYNC SYNC STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772019411666
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER GUARD IMMUNE",
       "mood": "DEFENSIVE",
@@ -109,6 +103,12 @@
       "text": "DRAIN DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772019432287
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD GUARD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772019435874
     }
   ]
 }
