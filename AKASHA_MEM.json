@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE REFLECT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040549858
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME SEIZE CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772040552093
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW GIVING COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772040552223
     }
   ]
 }
