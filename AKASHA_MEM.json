@@ -154,12 +154,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT GUARD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022625393
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022625759
@@ -241,6 +235,12 @@
       "text": "STABLE HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772022630546
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK STRIFE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022630808
     }
   ]
 }
