@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS IMMUNE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772035617286
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772035617489
@@ -291,6 +285,12 @@
       "text": "STRIFE STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772035620009
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WAIT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772035620218
     }
   ]
 }
