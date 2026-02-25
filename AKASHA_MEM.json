@@ -65,12 +65,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HEAL COHERE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772020763487
-    },
-    {
       "origin": "REVERSE",
       "text": "BEYOND AWAKEN DREAM",
       "mood": "CREATIVE",
@@ -153,6 +147,12 @@
       "text": "CONSUME BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020767941
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SHOCK BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020768103
     }
   ]
 }
