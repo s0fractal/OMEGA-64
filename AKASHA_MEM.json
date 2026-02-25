@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "RECON REFLECT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772027912346
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS SHELTER GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HUNGER CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772027928989
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL UNIFY HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772027929564
     }
   ]
 }
