@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS STASIS STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772037886067
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772037886449
@@ -291,6 +285,12 @@
       "text": "OSMOSIS RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772037889683
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772037889894
     }
   ]
 }
