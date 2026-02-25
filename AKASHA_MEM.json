@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772038108025
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772038108223
@@ -291,6 +285,12 @@
       "text": "SEIZE HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772038112253
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL FLOW GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772038112449
     }
   ]
 }
