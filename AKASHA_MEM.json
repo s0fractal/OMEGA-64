@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN HUNGER BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026332664
-    },
-    {
-      "origin": "REVERSE",
       "text": "DREAM WAVE WITNESS",
       "mood": "CREATIVE",
       "tick": 1772026332817
@@ -291,6 +285,12 @@
       "text": "STABLE UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772026335987
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SICKNESS BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026336223
     }
   ]
 }
