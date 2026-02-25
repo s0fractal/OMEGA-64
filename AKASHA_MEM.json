@@ -163,12 +163,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SYNC GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772022942759
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE RESONATE HEAL",
       "mood": "HARMONIC",
@@ -251,6 +245,12 @@
       "text": "CONSUME SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022948944
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIKE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022949242
     }
   ]
 }
