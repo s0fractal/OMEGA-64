@@ -74,12 +74,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE COHERE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772020953922
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME HUNGER CONSUME",
       "mood": "AGGRESSIVE",
@@ -162,6 +156,12 @@
       "text": "GUARD WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772020961308
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020961465
     }
   ]
 }
