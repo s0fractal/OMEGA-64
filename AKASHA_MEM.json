@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040897674
-    },
-    {
       "origin": "STREAM",
       "text": "SHIELD WATCH GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772040900997
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY SHOCK STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040901512
     }
   ]
 }
