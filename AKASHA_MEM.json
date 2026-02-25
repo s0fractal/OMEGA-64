@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "DECAY STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025218071
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM STABLE UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772025223362
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025223548
     }
   ]
 }
