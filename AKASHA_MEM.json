@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HUNGER SICKNESS SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020144669
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE WATCH WAIT",
       "mood": "DEFENSIVE",
@@ -136,6 +130,12 @@
       "text": "STRIFE BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020153028
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772020153212
     }
   ]
 }
