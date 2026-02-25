@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024262151
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772024262378
@@ -291,6 +285,12 @@
       "text": "STRIKE DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772024268175
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WATCH PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772024268380
     }
   ]
 }
