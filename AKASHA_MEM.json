@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A000A000",
     "AAAA000A",
     "AA0BC00F",
     "666006A0",
@@ -199,15 +198,10 @@
     "00060660",
     "A0066000",
     "AA0A0A00",
-    "AAB00C0D"
+    "AAB00C0D",
+    "00666066"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BLOOM FLOW HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772037279585
-    },
     {
       "origin": "REVERSE",
       "text": "RECON GUARD WAIT",
@@ -291,6 +285,12 @@
       "text": "SEIZE HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772037283247
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772037283444
     }
   ]
 }
