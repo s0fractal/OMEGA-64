@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE SHELTER REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772025012398
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH STRIKE SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772025016534
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772025016844
     }
   ]
 }
