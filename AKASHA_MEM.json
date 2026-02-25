@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772025627272
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772025627457
@@ -291,6 +285,12 @@
       "text": "IMMUNE PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772025632644
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025632851
     }
   ]
 }
