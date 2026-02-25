@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD IMMUNE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772032454898
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772032455256
@@ -291,6 +285,12 @@
       "text": "SEIZE SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772032466447
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW BLOOM SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772032466817
     }
   ]
 }
