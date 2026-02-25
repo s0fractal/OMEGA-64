@@ -18,12 +18,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RESONATE GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772015369788
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GIVING RESONATE COHERE",
       "mood": "HARMONIC",
@@ -106,6 +100,12 @@
       "text": "STRIKE HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772015480220
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD SHELTER REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772015495874
     }
   ]
 }
