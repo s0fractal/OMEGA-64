@@ -131,15 +131,10 @@
     "AAA00A0A",
     "0AAAA0AA",
     "AA0A0A0A",
-    "AAAAAA00"
+    "AAAAAA00",
+    "60060000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHELTER REFLECT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022399249
-    },
     {
       "origin": "REVERSE",
       "text": "STRIFE SHOCK STRIFE",
@@ -223,6 +218,12 @@
       "text": "REFLECT SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022404563
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE REFLECT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022405657
     }
   ]
 }
