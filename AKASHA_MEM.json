@@ -180,12 +180,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BEYOND SPARK BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772023364259
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772023364400
@@ -267,6 +261,12 @@
       "text": "STRIKE HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023371083
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT IMMUNE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023371287
     }
   ]
 }
