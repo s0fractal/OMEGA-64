@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HEAL OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042195616
-    },
-    {
       "origin": "CAR",
       "text": "RECON STASIS GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772042209733
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042210868
     }
   ]
 }
