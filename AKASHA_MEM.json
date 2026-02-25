@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772034354345
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772034354537
@@ -291,6 +285,12 @@
       "text": "STABLE STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034356990
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772034357182
     }
   ]
 }
