@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHIELD REFLECT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772024300537
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT GUARD WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772024306672
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024306968
     }
   ]
 }
