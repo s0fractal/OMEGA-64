@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY GIVING FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772036404573
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772036404794
@@ -291,6 +285,12 @@
       "text": "UNIFY UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772036407977
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW GIVING UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772036408196
     }
   ]
 }
