@@ -49,12 +49,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HUNGER STRIKE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020242771
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE STRIFE SHOCK",
       "mood": "AGGRESSIVE",
@@ -137,6 +131,12 @@
       "text": "HUNGER STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020250589
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT PURE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020251064
     }
   ]
 }
