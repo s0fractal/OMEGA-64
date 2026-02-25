@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_PROOF_OF_RESONANCE",
-      "text": "COHERE UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040554711
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER DECAY SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772040556988
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WATCH WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040557125
     }
   ]
 }
