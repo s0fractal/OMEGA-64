@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE PURE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772026659095
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772026659623
@@ -291,6 +285,12 @@
       "text": "STRIKE DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772026666688
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE BLOOM FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772026666883
     }
   ]
 }
