@@ -122,12 +122,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING FLOW BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772022108104
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022108306
@@ -209,6 +203,12 @@
       "text": "HUNGER CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022112484
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL RESONATE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772022112708
     }
   ]
 }
