@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE DECAY SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032859714
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772032859887
@@ -291,6 +285,12 @@
       "text": "STRIFE SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772032862639
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD REFLECT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772032862815
     }
   ]
 }
