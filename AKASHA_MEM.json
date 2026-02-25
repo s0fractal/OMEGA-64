@@ -22,12 +22,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "IMMUNE REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772017645620
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "FLOW SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772017651982
@@ -109,6 +103,12 @@
       "text": "BREACH HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772019411204
+    },
+    {
+      "origin": "STREAM",
+      "text": "SYNC SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772019411666
     }
   ]
 }
