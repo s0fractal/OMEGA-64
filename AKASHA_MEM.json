@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "FLOW OSMOSIS HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772041470174
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL HEAL BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STABLE GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772041473549
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHELTER PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041473682
     }
   ]
 }
