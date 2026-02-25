@@ -40,12 +40,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHOCK SEIZE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019840271
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER IMMUNE PURE",
       "mood": "DEFENSIVE",
@@ -128,6 +122,12 @@
       "text": "BREACH SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772019851184
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH SHELTER IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772019851505
     }
   ]
 }
