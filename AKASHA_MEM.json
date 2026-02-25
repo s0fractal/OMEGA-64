@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FORGE VISION WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772024688551
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772024688986
@@ -291,6 +285,12 @@
       "text": "SYNC STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772024706250
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL RESONATE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772024710672
     }
   ]
 }
