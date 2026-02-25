@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772035999176
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772035999393
@@ -291,6 +285,12 @@
       "text": "WATCH IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772036003790
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT GUARD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772036003990
     }
   ]
 }
