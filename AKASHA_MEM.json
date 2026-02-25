@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WAIT SHIELD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772040486535
-    },
-    {
       "origin": "INTERFACE",
       "text": "SEIZE SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772040489252
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772040489426
     }
   ]
 }
