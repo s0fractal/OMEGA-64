@@ -108,12 +108,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021753698
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772021753874
@@ -195,6 +189,12 @@
       "text": "SHOCK SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772021759265
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT PURE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021759765
     }
   ]
 }
