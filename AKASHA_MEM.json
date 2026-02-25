@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE HUNGER SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026402227
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772026402429
@@ -291,6 +285,12 @@
       "text": "UNIFY OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772026407457
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026407694
     }
   ]
 }
