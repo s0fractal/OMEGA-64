@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033767185
-    },
-    {
-      "origin": "REVERSE",
       "text": "AWAKEN FORGE VISION",
       "mood": "CREATIVE",
       "tick": 1772033767407
@@ -291,6 +285,12 @@
       "text": "UNIFY STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772033770994
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772033771395
     }
   ]
 }
