@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_PROOF_OF_RESONANCE",
-      "text": "OSMOSIS SYNC OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772033331660
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT RECON WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772033335458
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT PURE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772033335619
     }
   ]
 }
