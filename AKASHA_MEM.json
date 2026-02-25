@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032727856
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772032728036
@@ -291,6 +285,12 @@
       "text": "GIVING HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772032731203
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GUARD PURE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772032731413
     }
   ]
 }
