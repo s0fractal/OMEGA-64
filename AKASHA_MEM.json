@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY RESONATE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772035468933
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK STRIKE STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772035472402
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH GUARD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772035472565
     }
   ]
 }
