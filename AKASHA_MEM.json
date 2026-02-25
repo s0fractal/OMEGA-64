@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772037640994
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772037641213
@@ -291,6 +285,12 @@
       "text": "BREACH BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772037644135
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE GUARD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772037644347
     }
   ]
 }
