@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON REFLECT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023211627
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023211750
@@ -259,6 +253,12 @@
       "text": "HUNGER STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023215142
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772023215352
     }
   ]
 }
