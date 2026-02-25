@@ -43,12 +43,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WATCH SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772019926185
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIFE SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772019927123
@@ -130,6 +124,12 @@
       "text": "STRIKE DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772019939838
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019941213
     }
   ]
 }
