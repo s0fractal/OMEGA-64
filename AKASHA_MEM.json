@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038439518
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772038439697
@@ -291,6 +285,12 @@
       "text": "VISION FORGE EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772038442242
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL OSMOSIS BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772038442415
     }
   ]
 }
