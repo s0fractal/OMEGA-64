@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAVE BECOME WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772035894937
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH SHIELD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772035895130
@@ -291,6 +285,12 @@
       "text": "FLOW SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772035900065
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772035900293
     }
   ]
 }
