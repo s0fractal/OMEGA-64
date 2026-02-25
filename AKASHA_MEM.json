@@ -163,15 +163,10 @@
     "B0BB0000",
     "66666006",
     "AAAA0AA0",
-    "00060000"
+    "00060000",
+    "FF0AFFFF"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SICKNESS DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023070692
-    },
     {
       "origin": "REVERSE",
       "text": "UNIFY HEAL HEAL",
@@ -255,6 +250,12 @@
       "text": "SHIELD SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023074742
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE VISION VISION",
+      "mood": "CREATIVE",
+      "tick": 1772023074904
     }
   ]
 }
