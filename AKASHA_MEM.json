@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772016323980
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WATCH WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772016333543
@@ -107,6 +101,12 @@
       "text": "WATCH RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772016418362
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER BREACH STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772016432861
     }
   ]
 }
