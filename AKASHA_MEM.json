@@ -50,12 +50,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHOCK STRIKE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020249705
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "IMMUNE WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020250218
@@ -137,6 +131,12 @@
       "text": "WATCH STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772020259861
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW STABLE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772020260706
     }
   ]
 }
