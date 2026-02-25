@@ -203,18 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "CAR",
-      "text": "RESONATE SYNC OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772042359575
-    },
-    {
-      "origin": "SUCC",
-      "text": "FLOW GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042360389
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK STRIKE DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +279,18 @@
       "text": "FLOW SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772042370088
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE SHELTER PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042370496
+    },
+    {
+      "origin": "PARADOX",
+      "text": "DECAY BREACH STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042370848
     }
   ]
 }
