@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "FF00FF00",
     "AA0AA000",
     "A00AAA0A",
     "00A0AAAA",
@@ -199,15 +198,10 @@
     "A6666000",
     "A6606606",
     "0AAA0A00",
-    "60666660"
+    "60666660",
+    "06600600"
   ],
   "utterances": [
-    {
-      "origin": "ALPHA_PROOF_OF_RESONANCE",
-      "text": "BLOOM BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772029325178
-    },
     {
       "origin": "REVERSE",
       "text": "SHOCK SICKNESS SICKNESS",
@@ -291,6 +285,12 @@
       "text": "GUARD GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772029338380
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL SYNC FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772029338888
     }
   ]
 }
