@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT WATCH STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772036323441
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772036323739
@@ -291,6 +285,12 @@
       "text": "PURE WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772036327139
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036327348
     }
   ]
 }
