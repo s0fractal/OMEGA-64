@@ -43,12 +43,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RECON RECON SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772019895790
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "COHERE UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772019896289
@@ -130,6 +124,12 @@
       "text": "DECAY DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772019908122
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY STABLE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772019908622
     }
   ]
 }
