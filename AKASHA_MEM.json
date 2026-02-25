@@ -146,12 +146,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING HEAL GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772022507694
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022507869
@@ -233,6 +227,12 @@
       "text": "WATCH STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022511857
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY FLOW HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772022512116
     }
   ]
 }
