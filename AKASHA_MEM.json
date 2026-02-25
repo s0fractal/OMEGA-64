@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0A0AAA",
     "06606666",
     "BB00000C",
     "66A066A0",
@@ -199,15 +198,10 @@
     "60006660",
     "66600060",
     "00600066",
-    "A0BB0000"
+    "A0BB0000",
+    "00660666"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041418268
-    },
     {
       "origin": "REVERSE",
       "text": "SEIZE DRAIN SEIZE",
@@ -291,6 +285,12 @@
       "text": "RECON PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772041422899
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING OSMOSIS RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772041423123
     }
   ]
 }
