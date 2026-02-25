@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772026925367
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772026925682
@@ -291,6 +285,12 @@
       "text": "CONSUME SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772026932311
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772026932549
     }
   ]
 }
