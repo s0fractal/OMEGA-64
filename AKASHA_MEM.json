@@ -96,12 +96,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772021531241
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772021531447
@@ -183,6 +177,12 @@
       "text": "BREACH HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021538756
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHELTER IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021539016
     }
   ]
 }
