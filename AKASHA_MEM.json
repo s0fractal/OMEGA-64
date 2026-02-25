@@ -177,12 +177,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAVE DREAM SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772023310203
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023311211
@@ -264,6 +258,12 @@
       "text": "SHIELD SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023316238
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE HEAL OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772023316407
     }
   ]
 }
