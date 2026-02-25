@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIFE SHOCK BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040665676
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HUNGER CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772040665833
@@ -291,6 +285,12 @@
       "text": "STASIS REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772040668367
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772040668539
     }
   ]
 }
