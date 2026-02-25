@@ -166,12 +166,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN SICKNESS DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023045603
-    },
-    {
       "origin": "STREAM",
       "text": "COHERE SYNC OSMOSIS",
       "mood": "HARMONIC",
@@ -254,6 +248,12 @@
       "text": "SHIELD PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023052911
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS STABLE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772023053193
     }
   ]
 }
