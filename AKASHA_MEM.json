@@ -196,12 +196,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE STRIFE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023907735
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023908013
@@ -283,6 +277,12 @@
       "text": "STRIKE STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772023911503
+    },
+    {
+      "origin": "REVERSE",
+      "text": "AWAKEN WAVE VISION",
+      "mood": "CREATIVE",
+      "tick": 1772023911839
     }
   ]
 }
