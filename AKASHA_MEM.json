@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM RESONATE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772037435784
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772037436055
@@ -291,6 +285,12 @@
       "text": "WAIT STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772037439834
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK HUNGER STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037440067
     }
   ]
 }
