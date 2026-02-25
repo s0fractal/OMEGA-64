@@ -166,12 +166,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DRAIN DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023013985
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772023014163
@@ -253,6 +247,12 @@
       "text": "GUARD WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023023935
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHIELD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023024110
     }
   ]
 }
