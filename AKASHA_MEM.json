@@ -190,12 +190,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "UNIFY COHERE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772023715615
-    },
-    {
       "origin": "REVERSE",
       "text": "GUARD IMMUNE WATCH",
       "mood": "DEFENSIVE",
@@ -278,6 +272,12 @@
       "text": "GUARD WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023719484
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772023719824
     }
   ]
 }
