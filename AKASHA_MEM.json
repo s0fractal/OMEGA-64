@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041338696
-    },
-    {
       "origin": "INTERFACE",
       "text": "STASIS WATCH STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772041342633
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING FLOW GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041342767
     }
   ]
 }
