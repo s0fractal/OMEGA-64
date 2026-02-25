@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772034247504
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM UNIFY OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772034250369
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034250568
     }
   ]
 }
