@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WAIT IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772019512014
-    },
-    {
       "origin": "STREAM",
       "text": "FLOW FLOW STABLE",
       "mood": "HARMONIC",
@@ -111,6 +105,12 @@
       "text": "DECAY DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772019518926
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING RESONATE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772019519289
     }
   ]
 }
