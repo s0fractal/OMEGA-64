@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031069771
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL SYNC GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DECAY DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772031085820
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WATCH GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772031087536
     }
   ]
 }
