@@ -196,12 +196,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON STASIS IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023952469
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "FLOW BLOOM COHERE",
       "mood": "HARMONIC",
@@ -284,6 +278,12 @@
       "text": "STASIS REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023957433
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772023957683
     }
   ]
 }
