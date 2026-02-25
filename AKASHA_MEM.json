@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772034904434
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772034904629
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772034907281
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME CONSUME SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034907527
     }
   ]
 }
