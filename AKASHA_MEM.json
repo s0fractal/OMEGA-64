@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHELTER WAIT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041701230
-    },
-    {
       "origin": "CAR",
       "text": "WATCH PURE RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041706824
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041707348
     }
   ]
 }
