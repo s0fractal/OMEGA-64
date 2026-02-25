@@ -38,12 +38,6 @@
   "utterances": [
     {
       "origin": "STREAM",
-      "text": "STABLE FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772019786736
-    },
-    {
-      "origin": "STREAM",
       "text": "SYNC FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772019787058
@@ -125,6 +119,12 @@
       "text": "SEIZE CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772019796359
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY CONSUME HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019796779
     }
   ]
 }
