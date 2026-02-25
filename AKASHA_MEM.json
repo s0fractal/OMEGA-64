@@ -196,12 +196,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DECAY CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023982768
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC OSMOSIS RESONATE",
       "mood": "HARMONIC",
@@ -284,6 +278,12 @@
       "text": "PURE WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023989218
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023989386
     }
   ]
 }
