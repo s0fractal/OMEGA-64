@@ -199,12 +199,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM RESONATE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772024025079
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772024025254
@@ -286,6 +280,12 @@
       "text": "DECAY BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772024030638
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772024030892
     }
   ]
 }
