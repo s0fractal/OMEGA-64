@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY BREACH HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041456846
-    },
-    {
       "origin": "STREAM",
       "text": "STABLE COHERE UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041459830
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD PURE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041460120
     }
   ]
 }
