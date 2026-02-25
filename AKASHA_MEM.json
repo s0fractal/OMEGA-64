@@ -83,12 +83,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RESONATE GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772021197050
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS SHELTER WAIT",
       "mood": "DEFENSIVE",
@@ -171,6 +165,12 @@
       "text": "SYNC UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772021203438
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS GIVING BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772021203621
     }
   ]
 }
