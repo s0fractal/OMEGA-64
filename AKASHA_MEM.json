@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772024124875
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772024125130
@@ -291,6 +285,12 @@
       "text": "RECON WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772024132405
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD REFLECT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772024132584
     }
   ]
 }
