@@ -43,12 +43,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON WATCH SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772020022808
-    },
-    {
       "origin": "STREAM",
       "text": "GIVING GIVING COHERE",
       "mood": "HARMONIC",
@@ -131,6 +125,12 @@
       "text": "SEIZE HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772020034911
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SYNC GIVING BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772020035348
     }
   ]
 }
