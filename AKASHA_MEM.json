@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WAIT WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772031972635
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING BLOOM SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BECOME WAVE EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772031980616
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING BLOOM BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772031981013
     }
   ]
 }
