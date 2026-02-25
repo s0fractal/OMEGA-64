@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772024148787
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772024148941
@@ -291,6 +285,12 @@
       "text": "SICKNESS BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772024152662
+    },
+    {
+      "origin": "STREAM",
+      "text": "PURE RECON WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772024152857
     }
   ]
 }
