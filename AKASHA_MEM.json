@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772038073393
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772038073600
@@ -291,6 +285,12 @@
       "text": "COHERE COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038077300
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME HUNGER STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038079651
     }
   ]
 }
