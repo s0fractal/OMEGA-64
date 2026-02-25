@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772037522035
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772037522246
@@ -291,6 +285,12 @@
       "text": "COHERE GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772037525688
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772037525956
     }
   ]
 }
