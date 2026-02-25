@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK CONSUME SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023184941
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023185342
@@ -259,6 +253,12 @@
       "text": "SEIZE BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023192160
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW GIVING UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772023192305
     }
   ]
 }
