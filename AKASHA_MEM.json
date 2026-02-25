@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIFE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034843461
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772034843708
@@ -291,6 +285,12 @@
       "text": "HEAL COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772034846824
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER GUARD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772034847062
     }
   ]
 }
