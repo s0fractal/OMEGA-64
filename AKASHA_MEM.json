@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD REFLECT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772038578338
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772038578612
@@ -291,6 +285,12 @@
       "text": "STRIKE BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772038582109
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772038582326
     }
   ]
 }
