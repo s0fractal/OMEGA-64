@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING SYNC UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772037925640
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772037926359
@@ -291,6 +285,12 @@
       "text": "HEAL HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772037929129
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIFE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037929325
     }
   ]
 }
