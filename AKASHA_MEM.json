@@ -163,12 +163,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD SHELTER SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772022957683
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE GUARD IMMUNE",
       "mood": "DEFENSIVE",
@@ -251,6 +245,12 @@
       "text": "FLOW BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772022965195
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022965399
     }
   ]
 }
