@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029062874
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772029063385
@@ -291,6 +285,12 @@
       "text": "GIVING GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772029077420
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029077702
     }
   ]
 }
