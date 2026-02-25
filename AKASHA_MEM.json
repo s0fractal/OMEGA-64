@@ -22,12 +22,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "RESONATE OSMOSIS COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772019452399
-    },
-    {
       "origin": "INTERFACE",
       "text": "DRAIN CONSUME STRIKE",
       "mood": "AGGRESSIVE",
@@ -110,6 +104,12 @@
       "text": "SHELTER SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772019462651
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH STRIFE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019463308
     }
   ]
 }
