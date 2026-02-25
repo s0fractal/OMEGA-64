@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027251042
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772027251549
@@ -291,6 +285,12 @@
       "text": "REFLECT IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772027257176
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE GIVING SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772027257441
     }
   ]
 }
