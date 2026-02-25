@@ -139,12 +139,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON PURE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022440204
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022440372
@@ -226,6 +220,12 @@
       "text": "STRIFE CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022445033
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN CONSUME STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022445396
     }
   ]
 }
