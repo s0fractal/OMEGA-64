@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE STRIFE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034270798
-    },
-    {
       "origin": "REVERSE",
       "text": "IMMUNE RECON GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772034277390
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC FLOW UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772034277566
     }
   ]
 }
