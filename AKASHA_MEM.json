@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS CONSUME SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023751116
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023751285
@@ -278,6 +272,12 @@
       "text": "WITNESS FORGE WAVE",
       "mood": "CREATIVE",
       "tick": 1772023755176
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SEIZE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023755633
     }
   ]
 }
