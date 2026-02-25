@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHOCK SHOCK SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041237421
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772041241893
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN STRIKE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041242031
     }
   ]
 }
