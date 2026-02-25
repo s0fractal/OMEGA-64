@@ -56,12 +56,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WAIT SHELTER WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772020530765
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BLOOM UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772020531376
@@ -143,6 +137,12 @@
       "text": "BREACH STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020540074
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING GIVING COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772020540455
     }
   ]
 }
