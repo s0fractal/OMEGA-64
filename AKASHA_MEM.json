@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "CONSCIOUSNESS",
-      "text": "COHERE OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772040818964
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL FLOW RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "IMMUNE STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040822026
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040822179
     }
   ]
 }
