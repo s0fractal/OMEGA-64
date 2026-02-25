@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772025572775
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772025584475
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING STABLE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772025584662
     }
   ]
 }
