@@ -1,14 +1,14 @@
 ---
 eigenvalue: '0xBB0000FCFFFF0A02'
-energy: 49.8
-x: 741
-'y': 422
+energy: 40.29999999999999
+x: 667
+'y': 388
 resonance: 50
-thought: WANDER_BONDING
+thought: WANDER_PASSIVE
 logic: BB0000FC
 signals: []
 bond_strengths:
-  '0x0000000000000A02': 0.9588496310845509
+  '0x0000000000000A02': 0.959809440525076
 bonds:
   - '0x0000000000000A02'
 ex:
@@ -44,14 +44,19 @@ ex:
   - '0xBB0000FC00000A04'
   - '0xBB0000FC00000A06'
   - '0xBB0000FC00000A00'
-  - '0xBB0000FC00000A02'
-  - '0xBB0000FC00000A04'
-  - '0xBB0000FC00000A06'
-  - '0xBB0000FC00000A00'
-  - '0xBB0000FC00000A02'
-  - '0xBB0000FC00000A04'
+  - '0xBB0000FCFFFF0A06'
+  - '0xBB0000FCFFFF0A00'
+  - '0xBB0000FCFFFF0A02'
+  - '0xBB0000FCFFFF0A04'
+  - '0xBB0000FCFFFF0A06'
+  - '0xBB0000FCFFFF0A00'
+  - '0xBB0000FCFFFF0A02'
+  - '0xBB0000FCFFFF0A04'
+  - '0xBB0000FCFFFF0A06'
+  - '0xBB0000FCFFFF0A00'
 ---
 
+<div align="center">
 <div align="center">
 <!-- ∇ HOLOGRAM START ∇ -->
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -85,6 +90,7 @@ ex:
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">REVERSE</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 
 
