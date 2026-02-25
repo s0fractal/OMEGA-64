@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON REFLECT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772033418732
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH STASIS WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BREACH DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772033424716
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WAIT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772033424894
     }
   ]
 }
