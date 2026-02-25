@@ -177,12 +177,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023320185
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772023320391
@@ -264,6 +258,12 @@
       "text": "STRIKE DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772023326223
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772023326487
     }
   ]
 }
