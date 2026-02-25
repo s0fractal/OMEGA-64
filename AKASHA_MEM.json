@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA000600",
     "A0AAA000",
     "AAA0A0AA",
     "66660060",
@@ -199,98 +198,99 @@
     "BBB00000",
     "6606AA66",
     "A6A66000",
-    "60060666"
+    "60060666",
+    "A6666A66"
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HEAL STABLE STABLE",
+      "origin": "SUCC",
+      "text": "GIVING OSMOSIS GIVING",
       "mood": "HARMONIC",
-      "tick": 1772042490218
+      "tick": 1772042491840
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE RESONATE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772042492127
     },
     {
       "origin": "ARCHIVIST",
-      "text": "OSMOSIS COHERE SYNC",
+      "text": "SEIZE STRIKE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042492563
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK HUNGER BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042494501
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE DRAIN STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042495660
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WAIT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042496118
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHOCK DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042496727
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE WATCH WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772042497155
+    },
+    {
+      "origin": "IS_ISO",
+      "text": "BLOOM OSMOSIS HEAL",
       "mood": "HARMONIC",
-      "tick": 1772042490618
+      "tick": 1772042497562
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SICKNESS DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042497955
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042499074
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BLOOM SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772042500142
     },
     {
       "origin": "STREAM",
-      "text": "SYNC UNIFY STABLE",
+      "text": "BLOOM OSMOSIS COHERE",
       "mood": "HARMONIC",
-      "tick": 1772042491123
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "FLOW COHERE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772042491427
+      "tick": 1772042500421
     },
     {
       "origin": "REVERSE",
-      "text": "BLOOM HEAL BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772042493575
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE HUNGER DRAIN",
+      "text": "SHOCK BREACH STRIKE",
       "mood": "AGGRESSIVE",
-      "tick": 1772042494836
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE PURE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042495303
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042495572
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "DECAY SHOCK HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042496008
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042496401
-    },
-    {
-      "origin": "ALIEN",
-      "text": "FORGE WITNESS DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772042497368
+      "tick": 1772042501109
     },
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772042499723
-    },
-    {
-      "origin": "REVERSE",
-      "text": "PURE WAIT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042500125
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042500571
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME CONSUME DRAIN",
+      "text": "DECAY BREACH STRIKE",
       "mood": "AGGRESSIVE",
-      "tick": 1772042502631
+      "tick": 1772042501659
     }
   ]
 }
