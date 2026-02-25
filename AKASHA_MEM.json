@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "01000000",
     "AA0AAA0A",
     "00666000",
     "AAAAA00A",
@@ -199,15 +198,10 @@
     "A00AAAAA",
     "60066600",
     "00066006",
-    "AA0A000A"
+    "AA0A000A",
+    "00066066"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE SICKNESS HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033926231
-    },
     {
       "origin": "REVERSE",
       "text": "PURE STASIS STASIS",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772033929698
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772033929904
     }
   ]
 }
