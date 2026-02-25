@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "RESONATE RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772037420995
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE UNIFY STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FLOW HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772037424930
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SICKNESS BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037425258
     }
   ]
 }
