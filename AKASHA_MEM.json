@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0A0000AA",
     "A0AAA0A0",
     "A00000AA",
     "60006606",
@@ -199,15 +198,10 @@
     "AA0A0AAA",
     "06606666",
     "BB00000C",
-    "66A066A0"
+    "66A066A0",
+    "AABBCC0F"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SYNC UNIFY FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772039114635
-    },
     {
       "origin": "REVERSE",
       "text": "SICKNESS SHOCK BREACH",
@@ -291,6 +285,12 @@
       "text": "DECAY BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772039117762
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SHOCK BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039117948
     }
   ]
 }
