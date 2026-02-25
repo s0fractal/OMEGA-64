@@ -55,12 +55,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHIELD RECON WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772020455443
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GIVING BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772020457410
@@ -142,6 +136,12 @@
       "text": "WATCH GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772020462800
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772020463637
     }
   ]
 }
