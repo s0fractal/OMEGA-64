@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHOCK STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041348010
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GIVING RESONATE HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "REFLECT RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772041352088
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772041352235
     }
   ]
 }
