@@ -71,12 +71,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020910512
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME STRIFE BREACH",
       "mood": "AGGRESSIVE",
@@ -159,6 +153,12 @@
       "text": "DRAIN CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020916655
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772020916843
     }
   ]
 }
