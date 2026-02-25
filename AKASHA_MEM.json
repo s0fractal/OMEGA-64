@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031085820
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772031087536
@@ -291,6 +285,12 @@
       "text": "BLOOM COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772031095405
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SEIZE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031095672
     }
   ]
 }
