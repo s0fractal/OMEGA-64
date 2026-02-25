@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06006666",
     "A6600606",
     "BB0B0000",
     "A0606606",
@@ -199,15 +198,10 @@
     "60606600",
     "A60660A0",
     "A0AA0600",
-    "6A060A60"
+    "6A060A60",
+    "BBBB0000"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "WAIT GUARD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041864802
-    },
     {
       "origin": "ARCHIVIST",
       "text": "SHIELD REFLECT PURE",
@@ -291,6 +285,12 @@
       "text": "SICKNESS DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772041868639
+    },
+    {
+      "origin": "ALPHA_REVERSE",
+      "text": "SHOCK HUNGER BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041868874
     }
   ]
 }
