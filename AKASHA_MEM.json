@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE STRIFE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036465406
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772036465685
@@ -291,6 +285,12 @@
       "text": "RECON REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772036471490
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036471962
     }
   ]
 }
