@@ -115,12 +115,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022027574
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN SHOCK STRIFE",
       "mood": "AGGRESSIVE",
@@ -203,6 +197,12 @@
       "text": "GIVING STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022034673
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022034885
     }
   ]
 }
