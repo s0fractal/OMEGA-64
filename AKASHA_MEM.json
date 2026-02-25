@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028784888
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772028786562
@@ -291,6 +285,12 @@
       "text": "WATCH WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772028808830
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM EVOLVE BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772028809169
     }
   ]
 }
