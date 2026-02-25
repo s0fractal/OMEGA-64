@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772035228586
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772035228795
@@ -291,6 +285,12 @@
       "text": "SHIELD WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772035231869
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM UNIFY GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772035232111
     }
   ]
 }
