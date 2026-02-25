@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC HEAL BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772034986723
-    },
-    {
-      "origin": "REVERSE",
       "text": "DREAM FORGE AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772034986885
@@ -291,6 +285,12 @@
       "text": "SHELTER WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772034992536
+    },
+    {
+      "origin": "STREAM",
+      "text": "WAIT SHIELD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772034992751
     }
   ]
 }
