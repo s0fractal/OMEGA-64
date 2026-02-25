@@ -94,12 +94,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772021501408
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY SHOCK STRIKE",
       "mood": "AGGRESSIVE",
@@ -182,6 +176,12 @@
       "text": "GIVING SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772021514087
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER RECON GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021514389
     }
   ]
 }
