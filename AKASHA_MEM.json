@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER WAIT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772037659975
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772037660184
@@ -291,6 +285,12 @@
       "text": "WAIT SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772037663044
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW STABLE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772037663258
     }
   ]
 }
