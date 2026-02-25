@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "WATCH SHIELD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772041151863
-    },
-    {
       "origin": "REVERSE",
       "text": "PURE SHELTER WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041156770
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041157108
     }
   ]
 }
