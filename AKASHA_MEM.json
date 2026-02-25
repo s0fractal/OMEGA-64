@@ -110,12 +110,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772021898438
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE WAIT SHELTER",
       "mood": "DEFENSIVE",
@@ -198,6 +192,12 @@
       "text": "FLOW OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772021903072
+    },
+    {
+      "origin": "PARADOX",
+      "text": "GIVING HEAL HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772021903713
     }
   ]
 }
