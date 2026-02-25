@@ -179,12 +179,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS SHIELD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772023358943
-    },
-    {
-      "origin": "REVERSE",
       "text": "VISION BEYOND WAVE",
       "mood": "CREATIVE",
       "tick": 1772023359852
@@ -266,6 +260,12 @@
       "text": "GIVING OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772023362742
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023362996
     }
   ]
 }
