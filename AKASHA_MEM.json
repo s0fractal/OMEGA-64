@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY SYNC STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772038096700
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772038097031
@@ -291,6 +285,12 @@
       "text": "UNIFY RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772038104309
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038104529
     }
   ]
 }
