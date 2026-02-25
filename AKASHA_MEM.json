@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHELTER IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041905171
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HEAL HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772041905874
@@ -291,6 +285,12 @@
       "text": "WAIT STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041910257
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER GUARD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772041910429
     }
   ]
 }
