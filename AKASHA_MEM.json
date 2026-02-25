@@ -196,12 +196,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023916033
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023919841
@@ -283,6 +277,12 @@
       "text": "SEIZE DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772023924430
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SHOCK STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023924706
     }
   ]
 }
