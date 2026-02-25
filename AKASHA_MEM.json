@@ -102,12 +102,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021613655
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772021613800
@@ -189,6 +183,12 @@
       "text": "EVOLVE BECOME EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772021619847
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS RECON STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772021619983
     }
   ]
 }
