@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0A00A0",
     "A0000AA0",
     "AAB0CC0D",
     "B0BB0000",
@@ -199,15 +198,10 @@
     "06660000",
     "00066600",
     "AAAAAAA0",
-    "00606606"
+    "00606606",
+    "AAAAAA0A"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD GUARD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041168483
-    },
     {
       "origin": "ARCHIVIST",
       "text": "SHOCK CONSUME DRAIN",
@@ -291,6 +285,12 @@
       "text": "FLOW UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772041172108
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BREACH HUNGER DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041172271
     }
   ]
 }
