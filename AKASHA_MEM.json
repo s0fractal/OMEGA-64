@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772036924300
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772036924518
@@ -291,6 +285,12 @@
       "text": "HEAL GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772036927454
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WATCH PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772036927679
     }
   ]
 }
