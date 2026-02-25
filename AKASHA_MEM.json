@@ -107,12 +107,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772021810134
-    },
-    {
       "origin": "INTERFACE",
       "text": "SICKNESS CONSUME DRAIN",
       "mood": "AGGRESSIVE",
@@ -195,6 +189,12 @@
       "text": "STASIS RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772021816415
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT STASIS SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772021817119
     }
   ]
 }
