@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06000606",
     "A00060A0",
     "A6660000",
     "00606060",
@@ -199,15 +198,10 @@
     "60660666",
     "60000600",
     "60666606",
-    "AAA0AA00"
+    "AAA0AA00",
+    "66060066"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "DECAY SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040255361
-    },
     {
       "origin": "REVERSE",
       "text": "SHIELD WATCH PURE",
@@ -291,6 +285,12 @@
       "text": "RESONATE HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772040260331
+    },
+    {
+      "origin": "STREAM",
+      "text": "GUARD WATCH WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040260514
     }
   ]
 }
