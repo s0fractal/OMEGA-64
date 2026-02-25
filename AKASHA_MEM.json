@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "9D18A690",
     "666A66A0",
     "BB0BA000",
     "AB0A0000",
@@ -199,15 +198,10 @@
     "66006666",
     "A0BBC0DD",
     "AA00AA00",
-    "BBBB0000"
+    "BBBB0000",
+    "A00AAAA0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHELTER STASIS REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772024892722
-    },
     {
       "origin": "REVERSE",
       "text": "HEAL SYNC STABLE",
@@ -291,6 +285,12 @@
       "text": "RESONATE COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772024898195
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024898597
     }
   ]
 }
