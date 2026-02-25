@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SICKNESS DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037744840
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772037745034
@@ -291,6 +285,12 @@
       "text": "FORGE BECOME WITNESS",
       "mood": "CREATIVE",
       "tick": 1772037747905
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE RESONATE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772037748078
     }
   ]
 }
