@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY OSMOSIS OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772032375529
-    },
-    {
       "origin": "REVERSE",
       "text": "SHIELD WATCH PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772032381583
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE UNIFY OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772032381972
     }
   ]
 }
