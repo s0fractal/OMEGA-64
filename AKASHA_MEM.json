@@ -109,12 +109,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021874667
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS SYNC FLOW",
       "mood": "HARMONIC",
@@ -197,6 +191,12 @@
       "text": "STRIFE SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021881648
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE STRIKE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021882088
     }
   ]
 }
