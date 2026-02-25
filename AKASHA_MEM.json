@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HEAL HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041894664
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HUNGER SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772041894897
@@ -291,6 +285,12 @@
       "text": "SHELTER IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041899497
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER REFLECT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041899857
     }
   ]
 }
