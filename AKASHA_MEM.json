@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "UNIFY HEAL HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772040988239
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE STABLE FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FLOW HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772040992290
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "UNIFY FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772040992582
     }
   ]
 }
