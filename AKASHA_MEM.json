@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS STRIFE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041976891
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK DECAY SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772041983989
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON IMMUNE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041984207
     }
   ]
 }
