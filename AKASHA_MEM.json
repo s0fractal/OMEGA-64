@@ -177,12 +177,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT SHIELD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023290637
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772023290813
@@ -264,6 +258,12 @@
       "text": "SICKNESS STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023296665
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772023296851
     }
   ]
 }
