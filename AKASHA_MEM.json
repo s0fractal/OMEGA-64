@@ -196,12 +196,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023908611
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023908844
@@ -283,6 +277,12 @@
       "text": "SHELTER SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023912212
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023912550
     }
   ]
 }
