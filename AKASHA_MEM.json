@@ -36,12 +36,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "RESONATE RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772019771299
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE SHOCK SEIZE",
       "mood": "AGGRESSIVE",
@@ -124,6 +118,12 @@
       "text": "WAIT SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772019781227
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING BLOOM BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772019782215
     }
   ]
 }
