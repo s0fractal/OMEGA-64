@@ -177,12 +177,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023324098
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023324310
@@ -264,6 +258,12 @@
       "text": "SYNC OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023328996
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN BREACH STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023329227
     }
   ]
 }
