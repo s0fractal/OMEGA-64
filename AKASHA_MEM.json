@@ -65,12 +65,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BEYOND AWAKEN DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772020763838
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE BREACH CONSUME",
       "mood": "AGGRESSIVE",
@@ -153,6 +147,12 @@
       "text": "CONSUME SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020768103
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE SHELTER IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020768410
     }
   ]
 }
