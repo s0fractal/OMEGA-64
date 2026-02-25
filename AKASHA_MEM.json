@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DRAIN STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036891776
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772036891977
@@ -291,6 +285,12 @@
       "text": "DRAIN HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772036895564
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT GUARD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772036895797
     }
   ]
 }
