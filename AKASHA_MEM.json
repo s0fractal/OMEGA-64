@@ -80,12 +80,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "FORGE AWAKEN EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772021115443
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
@@ -168,6 +162,12 @@
       "text": "SYNC GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772021122480
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS BEYOND DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772021123250
     }
   ]
 }
