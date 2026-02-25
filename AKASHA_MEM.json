@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE WAIT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041634012
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS WAIT WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BREACH CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041636445
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIFE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041636589
     }
   ]
 }
