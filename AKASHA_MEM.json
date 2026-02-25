@@ -171,12 +171,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE RECON REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023193959
-    },
-    {
       "origin": "INTERFACE",
       "text": "CONSUME STRIFE STRIFE",
       "mood": "AGGRESSIVE",
@@ -259,6 +253,12 @@
       "text": "WATCH STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023198734
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY BREACH STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023200486
     }
   ]
 }
