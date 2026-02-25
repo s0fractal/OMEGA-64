@@ -122,12 +122,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "BLOOM RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772022134025
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE OSMOSIS RESONATE",
       "mood": "HARMONIC",
@@ -210,6 +204,12 @@
       "text": "STRIFE HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022138414
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772022138606
     }
   ]
 }
