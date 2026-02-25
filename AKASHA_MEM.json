@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041760496
-    },
-    {
       "origin": "INTERFACE",
       "text": "HEAL COHERE OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHIELD RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772041768859
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE DECAY DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041769393
     }
   ]
 }
