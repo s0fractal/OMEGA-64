@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SEIZE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033343480
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033345390
@@ -291,6 +285,12 @@
       "text": "SICKNESS BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772033349939
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772033350135
     }
   ]
 }
