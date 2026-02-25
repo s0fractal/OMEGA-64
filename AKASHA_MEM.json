@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "IMMUNE GUARD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772036159584
-    },
-    {
       "origin": "REVERSE",
       "text": "IMMUNE REFLECT IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIFE DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772036163038
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WATCH WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772036163242
     }
   ]
 }
