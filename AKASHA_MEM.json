@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "FLOW FLOW FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772040184914
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "FORGE WAVE BECOME",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772040191377
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "REFLECT REFLECT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772040191744
     }
   ]
 }
