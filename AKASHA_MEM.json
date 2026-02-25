@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A0AAAAAA",
     "60666060",
     "A0666666",
     "FFFFF00F",
@@ -199,15 +198,10 @@
     "06606666",
     "000AA0A0",
     "0A000A0A",
-    "AABBC0DD"
+    "AABBC0DD",
+    "A6660600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "DRAIN SICKNESS HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026281471
-    },
     {
       "origin": "REVERSE",
       "text": "IMMUNE RECON IMMUNE",
@@ -291,6 +285,12 @@
       "text": "RESONATE COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772026299327
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIFE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026299526
     }
   ]
 }
