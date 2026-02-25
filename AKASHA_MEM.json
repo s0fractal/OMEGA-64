@@ -163,12 +163,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772022976375
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE DRAIN STRIKE",
       "mood": "AGGRESSIVE",
@@ -251,6 +245,12 @@
       "text": "DECAY SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022980648
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER RECON WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022980872
     }
   ]
 }
