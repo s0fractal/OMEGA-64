@@ -176,12 +176,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "VISION VISION SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772023258591
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772023258720
@@ -263,6 +257,12 @@
       "text": "STABLE STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023261608
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY RESONATE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772023261794
     }
   ]
 }
