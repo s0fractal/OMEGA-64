@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772039973641
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772039974128
@@ -291,6 +285,12 @@
       "text": "STRIKE SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772039982502
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING HEAL OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772039983341
     }
   ]
 }
