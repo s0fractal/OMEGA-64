@@ -187,12 +187,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS PURE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772023611653
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK VISION SPARK",
       "mood": "CREATIVE",
       "tick": 1772023611831
@@ -274,6 +268,12 @@
       "text": "REFLECT RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023616231
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH GUARD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023616390
     }
   ]
 }
