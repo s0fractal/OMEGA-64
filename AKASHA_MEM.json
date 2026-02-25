@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "AWAKEN SPARK WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772023154471
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023154716
@@ -259,6 +253,12 @@
       "text": "GIVING FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772023156973
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772023157098
     }
   ]
 }
