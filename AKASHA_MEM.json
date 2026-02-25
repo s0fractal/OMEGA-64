@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "IMMUNE GUARD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040880807
-    },
-    {
       "origin": "ALPHA_GUARDIAN",
       "text": "HEAL SYNC FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "PURE WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040883980
+    },
+    {
+      "origin": "WORKER",
+      "text": "COHERE RESONATE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772040884106
     }
   ]
 }
