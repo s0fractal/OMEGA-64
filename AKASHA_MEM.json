@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DECAY SICKNESS SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039827987
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE RESONATE HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DECAY STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772039845416
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC UNIFY OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772039845979
     }
   ]
 }
