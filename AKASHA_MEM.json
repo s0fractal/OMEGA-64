@@ -18,12 +18,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH HUNGER STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772015404227
-    },
-    {
       "origin": "INTERFACE",
       "text": "SICKNESS HUNGER SEIZE",
       "mood": "AGGRESSIVE",
@@ -106,6 +100,12 @@
       "text": "SHELTER PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772015519566
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GIVING COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772015522116
     }
   ]
 }
