@@ -133,12 +133,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHOCK BREACH SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022379155
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD RECON IMMUNE",
       "mood": "DEFENSIVE",
@@ -221,6 +215,12 @@
       "text": "STRIKE STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022385424
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE STABLE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772022386165
     }
   ]
 }
