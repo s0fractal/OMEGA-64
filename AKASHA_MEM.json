@@ -51,12 +51,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020261432
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIKE BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020262025
@@ -138,6 +132,12 @@
       "text": "CONSUME SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020271408
+    },
+    {
+      "origin": "PARADOX",
+      "text": "FORGE DREAM SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772020271566
     }
   ]
 }
