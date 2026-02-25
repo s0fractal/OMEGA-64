@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH IMMUNE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772020696349
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIFE SEIZE STRIKE",
       "mood": "AGGRESSIVE",
@@ -150,6 +144,12 @@
       "text": "UNIFY FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772020700849
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH SHELTER REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020701603
     }
   ]
 }
