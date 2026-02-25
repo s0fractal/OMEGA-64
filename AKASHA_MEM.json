@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS GUARD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772038350395
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772038350802
@@ -291,6 +285,12 @@
       "text": "WATCH STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772038353552
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SHOCK HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038353767
     }
   ]
 }
