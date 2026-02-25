@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RECON STASIS STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772025108311
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS GUARD RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SEIZE SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772025113181
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE STABLE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772025113734
     }
   ]
 }
