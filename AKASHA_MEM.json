@@ -40,12 +40,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY HUNGER SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019857107
-    },
-    {
       "origin": "INTERFACE",
       "text": "HUNGER SHOCK DRAIN",
       "mood": "AGGRESSIVE",
@@ -128,6 +122,12 @@
       "text": "SHIELD IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772019865136
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS PURE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772019868499
     }
   ]
 }
