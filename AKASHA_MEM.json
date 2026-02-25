@@ -107,12 +107,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021786737
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIKE DRAIN SEIZE",
       "mood": "AGGRESSIVE",
@@ -195,6 +189,12 @@
       "text": "FLOW HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772021791726
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STABLE GIVING SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772021791890
     }
   ]
 }
