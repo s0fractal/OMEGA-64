@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "AWAKEN EVOLVE FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772026956795
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772026957141
@@ -291,6 +285,12 @@
       "text": "COHERE OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772026962296
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026962532
     }
   ]
 }
