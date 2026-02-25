@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041009651
-    },
-    {
       "origin": "STREAM",
       "text": "DECAY SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041012572
+    },
+    {
+      "origin": "PARADOX",
+      "text": "GIVING SYNC UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772041012971
     }
   ]
 }
