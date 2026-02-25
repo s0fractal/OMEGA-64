@@ -50,12 +50,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772020290121
-    },
-    {
       "origin": "INTERFACE",
       "text": "WATCH REFLECT STASIS",
       "mood": "DEFENSIVE",
@@ -138,6 +132,12 @@
       "text": "SEIZE DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020300898
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020301866
     }
   ]
 }
