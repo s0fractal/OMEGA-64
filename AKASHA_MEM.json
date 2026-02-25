@@ -51,12 +51,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DRAIN SHOCK SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020321285
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS SEIZE STRIFE",
       "mood": "AGGRESSIVE",
@@ -139,6 +133,12 @@
       "text": "EVOLVE EVOLVE WAVE",
       "mood": "CREATIVE",
       "tick": 1772020330758
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020330920
     }
   ]
 }
