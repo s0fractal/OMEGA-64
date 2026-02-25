@@ -191,12 +191,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HEAL HEAL HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772023814213
-    },
-    {
       "origin": "REVERSE",
       "text": "SHIELD SHIELD GUARD",
       "mood": "DEFENSIVE",
@@ -279,6 +273,12 @@
       "text": "FLOW RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772023819603
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIKE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023819809
     }
   ]
 }
