@@ -69,12 +69,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "REFLECT PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772020838065
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WATCH RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772020839282
@@ -156,6 +150,12 @@
       "text": "SHOCK CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020845946
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE FLOW HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772020846211
     }
   ]
 }
