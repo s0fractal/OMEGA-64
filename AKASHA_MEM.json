@@ -167,12 +167,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WATCH STASIS IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023048119
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHELTER GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023049048
@@ -254,6 +248,12 @@
       "text": "BREACH CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772023055631
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DECAY DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023056209
     }
   ]
 }
