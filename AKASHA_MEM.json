@@ -130,12 +130,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SEIZE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022310430
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772022310596
@@ -217,6 +211,12 @@
       "text": "OSMOSIS UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022313539
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022314257
     }
   ]
 }
