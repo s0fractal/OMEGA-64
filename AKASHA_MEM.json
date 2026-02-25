@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN HUNGER SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034433131
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772034433324
@@ -291,6 +285,12 @@
       "text": "RESONATE HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034438501
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK AWAKEN WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772034438765
     }
   ]
 }
