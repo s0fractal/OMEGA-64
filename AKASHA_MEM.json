@@ -77,12 +77,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HUNGER HUNGER DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021034341
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STASIS IMMUNE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772021035035
@@ -164,6 +158,12 @@
       "text": "RECON RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772021039174
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772021039823
     }
   ]
 }
