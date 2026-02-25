@@ -181,12 +181,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SEIZE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023438576
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772023438741
@@ -268,6 +262,12 @@
       "text": "SHIELD SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023441844
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023442006
     }
   ]
 }
