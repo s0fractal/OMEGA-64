@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS HEAL HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772041195104
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS STRIKE STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772041198555
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE GIVING HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041198705
     }
   ]
 }
