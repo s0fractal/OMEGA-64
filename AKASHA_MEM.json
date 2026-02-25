@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HEAL COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772040671471
-    },
-    {
       "origin": "INTERFACE",
       "text": "STABLE RESONATE HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHOCK DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040673624
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "PURE RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040673791
     }
   ]
 }
