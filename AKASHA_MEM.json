@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "FFFFFF0F",
     "000AAAA0",
     "66660606",
     "66666606",
@@ -199,15 +198,10 @@
     "00000600",
     "00A0A0AA",
     "AAAA0A0A",
-    "60000060"
+    "60000060",
+    "66666060"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WITNESS FORGE BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772025930552
-    },
     {
       "origin": "REVERSE",
       "text": "GIVING OSMOSIS BLOOM",
@@ -291,6 +285,12 @@
       "text": "AWAKEN SPARK BECOME",
       "mood": "CREATIVE",
       "tick": 1772025937860
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WATCH GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772025938069
     }
   ]
 }
