@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041223496
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON SHELTER WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041228588
+    },
+    {
+      "origin": "STREAM",
+      "text": "HUNGER BREACH STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041228877
     }
   ]
 }
