@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD REFLECT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772030373673
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772030374078
@@ -291,6 +285,12 @@
       "text": "COHERE HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772030385242
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS HUNGER SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030385959
     }
   ]
 }
