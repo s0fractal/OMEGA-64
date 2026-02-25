@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHIELD GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040978382
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIKE BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772040978511
@@ -291,6 +285,12 @@
       "text": "STASIS WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772040981801
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HUNGER DECAY STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040981922
     }
   ]
 }
