@@ -116,15 +116,10 @@
     "0000A006",
     "00AA60A0",
     "06006000",
-    "0000AAAA"
+    "0000AAAA",
+    "AABBC0DD"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WAIT REFLECT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772022106441
-    },
     {
       "origin": "REVERSE",
       "text": "BREACH SEIZE STRIFE",
@@ -208,6 +203,12 @@
       "text": "SHOCK DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022110663
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN BREACH SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022110790
     }
   ]
 }
