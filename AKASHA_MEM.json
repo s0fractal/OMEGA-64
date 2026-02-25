@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037892523
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK WAVE SPARK",
       "mood": "CREATIVE",
       "tick": 1772037892740
@@ -291,6 +285,12 @@
       "text": "DECAY SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772037895335
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772037895545
     }
   ]
 }
