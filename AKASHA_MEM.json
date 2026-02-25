@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE GUARD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041060038
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772041060215
@@ -291,6 +285,12 @@
       "text": "DRAIN SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772041063753
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE IMMUNE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041064073
     }
   ]
 }
