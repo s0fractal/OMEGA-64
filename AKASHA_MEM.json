@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60060666",
     "00606660",
     "00606600",
     "AA0AAAA0",
@@ -199,15 +198,10 @@
     "AA0AA0A0",
     "00B0C00D",
     "60000660",
-    "06060666"
+    "06060666",
+    "AAA00AAA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GIVING SYNC UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772036563100
-    },
     {
       "origin": "REVERSE",
       "text": "SEIZE SICKNESS SICKNESS",
@@ -291,6 +285,12 @@
       "text": "RECON SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772036567905
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIKE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036568104
     }
   ]
 }
