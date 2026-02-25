@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH IMMUNE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772033185077
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772033185304
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772033192183
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS STASIS GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772033192393
     }
   ]
 }
