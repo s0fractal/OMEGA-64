@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE SEIZE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020478733
-    },
-    {
       "origin": "STREAM",
       "text": "BLOOM BLOOM UNIFY",
       "mood": "HARMONIC",
@@ -142,6 +136,12 @@
       "text": "SEIZE BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020486018
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME HUNGER CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020486801
     }
   ]
 }
