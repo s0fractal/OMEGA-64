@@ -49,12 +49,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HUNGER HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020208406
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BREACH CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020210071
@@ -136,6 +130,12 @@
       "text": "SHELTER SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772020223040
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020224188
     }
   ]
 }
