@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW HEAL OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772041209305
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE REFLECT STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772041213006
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SICKNESS SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041213212
     }
   ]
 }
