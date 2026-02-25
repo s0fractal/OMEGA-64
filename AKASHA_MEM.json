@@ -94,12 +94,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021506022
-    },
-    {
       "origin": "STREAM",
       "text": "COHERE RESONATE OSMOSIS",
       "mood": "HARMONIC",
@@ -182,6 +176,12 @@
       "text": "WATCH IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772021515451
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021517366
     }
   ]
 }
