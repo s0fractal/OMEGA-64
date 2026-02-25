@@ -108,12 +108,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE SYNC OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772021777395
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772021777730
@@ -195,6 +189,12 @@
       "text": "OSMOSIS OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772021785629
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH STRIKE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021785860
     }
   ]
 }
