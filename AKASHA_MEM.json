@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GIVING FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772039027570
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS RECON STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772039033762
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN BREACH STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039033997
     }
   ]
 }
