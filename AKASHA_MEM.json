@@ -54,12 +54,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHIELD SHIELD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020348574
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SEIZE STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020349379
@@ -141,6 +135,12 @@
       "text": "UNIFY COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772020357295
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN HUNGER SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020357767
     }
   ]
 }
