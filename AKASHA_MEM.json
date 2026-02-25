@@ -194,12 +194,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "PURE PURE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772023865339
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT SHIELD SHELTER",
       "mood": "DEFENSIVE",
@@ -282,6 +276,12 @@
       "text": "REFLECT RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023869541
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIFE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023869863
     }
   ]
 }
