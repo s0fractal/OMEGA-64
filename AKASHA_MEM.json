@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040470157
-    },
-    {
       "origin": "INTERFACE",
       "text": "SYNC FLOW FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772040472435
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS RECON GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040472587
     }
   ]
 }
