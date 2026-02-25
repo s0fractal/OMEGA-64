@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037077690
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772037077906
@@ -291,6 +285,12 @@
       "text": "HEAL OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772037080493
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM BECOME EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772037080696
     }
   ]
 }
