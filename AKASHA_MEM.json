@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0A0000",
     "60606000",
     "AAA0AA00",
     "AA0AAA00",
@@ -199,15 +198,10 @@
     "66606006",
     "BB0000FC",
     "60660606",
-    "60600660"
+    "60600660",
+    "60006600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WATCH STASIS SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772031253697
-    },
     {
       "origin": "REVERSE",
       "text": "STRIKE DRAIN STRIFE",
@@ -291,6 +285,12 @@
       "text": "UNIFY UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772031264628
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772031265669
     }
   ]
 }
