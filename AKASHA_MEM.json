@@ -162,12 +162,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHOCK CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022914690
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE SHOCK BREACH",
       "mood": "AGGRESSIVE",
@@ -250,6 +244,12 @@
       "text": "OSMOSIS STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772022921997
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC BLOOM STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772022922220
     }
   ]
 }
