@@ -192,12 +192,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772023766048
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023766210
@@ -279,6 +273,12 @@
       "text": "COHERE COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772023770126
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SHOCK STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023770290
     }
   ]
 }
