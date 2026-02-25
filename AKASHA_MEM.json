@@ -166,12 +166,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH SHOCK HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023037661
-    },
-    {
       "origin": "INTERFACE",
       "text": "BLOOM UNIFY UNIFY",
       "mood": "HARMONIC",
@@ -254,6 +248,12 @@
       "text": "HEAL RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772023043011
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIKE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023043309
     }
   ]
 }
