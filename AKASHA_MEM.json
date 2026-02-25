@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040342554
-    },
-    {
       "origin": "INTERFACE",
       "text": "DRAIN STRIFE HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772040350013
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHELTER PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040350197
     }
   ]
 }
