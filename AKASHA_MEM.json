@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DRAIN SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039938610
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772039939030
@@ -291,6 +285,12 @@
       "text": "SYNC RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772039946581
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE RESONATE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772039947022
     }
   ]
 }
