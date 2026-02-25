@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036015827
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772036016140
@@ -291,6 +285,12 @@
       "text": "FORGE FORGE AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772036019344
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER PURE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772036019499
     }
   ]
 }
