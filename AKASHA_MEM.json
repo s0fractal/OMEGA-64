@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS STRIFE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041179222
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BLOOM FLOW RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HEAL BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772041182702
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772041183292
     }
   ]
 }
