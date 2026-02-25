@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE BLOOM OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772024735016
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772024735449
@@ -291,6 +285,12 @@
       "text": "REFLECT WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772024743574
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS DECAY STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024744395
     }
   ]
 }
