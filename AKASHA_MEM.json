@@ -183,12 +183,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING HEAL HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772023580496
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BLOOM BLOOM GIVING",
       "mood": "HARMONIC",
@@ -271,6 +265,12 @@
       "text": "GIVING COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023589534
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE RECON WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023589704
     }
   ]
 }
