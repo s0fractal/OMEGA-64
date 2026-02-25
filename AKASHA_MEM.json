@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772020709049
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIKE HUNGER HUNGER",
       "mood": "AGGRESSIVE",
@@ -150,6 +144,12 @@
       "text": "DECAY SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020714865
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT WAIT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020715335
     }
   ]
 }
