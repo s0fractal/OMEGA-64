@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON STASIS RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772025586783
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772025587042
@@ -291,6 +285,12 @@
       "text": "GIVING GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772025590558
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DECAY SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025590740
     }
   ]
 }
