@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY STABLE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772022219123
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022219291
@@ -213,6 +207,12 @@
       "text": "SYNC STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772022223180
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME DRAIN DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022223343
     }
   ]
 }
