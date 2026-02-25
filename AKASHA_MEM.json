@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772042109679
-    },
-    {
       "origin": "STREAM",
       "text": "SEIZE CONSUME SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772042115289
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042115538
     }
   ]
 }
