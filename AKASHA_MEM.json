@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "IMMUNE REFLECT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041965462
-    },
-    {
       "origin": "REVERSE",
       "text": "GUARD WAIT WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772041969687
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041969868
     }
   ]
 }
