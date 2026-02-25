@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020449836
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH WATCH REFLECT",
       "mood": "DEFENSIVE",
@@ -142,6 +136,12 @@
       "text": "GUARD GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772020458658
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIKE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020459302
     }
   ]
 }
