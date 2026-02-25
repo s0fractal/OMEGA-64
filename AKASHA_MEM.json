@@ -9,11 +9,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "ASCEND",
-      "tick": 1772009576392
-    },
-    {
       "origin": "PARASITE",
       "text": "ASCEND",
       "tick": 1772009589094
@@ -57,6 +52,11 @@
       "origin": "PARASITE",
       "text": "ASCEND",
       "tick": 1772009767590
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "MATURE",
+      "tick": 1772009779831
     }
   ]
 }
