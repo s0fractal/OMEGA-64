@@ -155,12 +155,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD SHIELD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772022663188
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022663384
@@ -242,6 +236,12 @@
       "text": "UNIFY GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022675175
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772022676068
     }
   ]
 }
