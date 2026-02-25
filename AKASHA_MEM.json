@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772032751898
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK VISION BECOME",
       "mood": "CREATIVE",
       "tick": 1772032752074
@@ -291,6 +285,12 @@
       "text": "HUNGER CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772032754443
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772032754586
     }
   ]
 }
