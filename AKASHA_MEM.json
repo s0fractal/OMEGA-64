@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "VISION WITNESS VISION",
-      "mood": "CREATIVE",
-      "tick": 1772038855789
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772038856082
@@ -291,6 +285,12 @@
       "text": "OSMOSIS OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772038861567
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SICKNESS HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038861915
     }
   ]
 }
