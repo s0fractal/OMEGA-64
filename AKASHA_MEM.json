@@ -55,12 +55,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RESONATE STABLE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772020444308
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DECAY STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020445175
@@ -142,6 +136,12 @@
       "text": "DECAY STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020452478
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772020452643
     }
   ]
 }
