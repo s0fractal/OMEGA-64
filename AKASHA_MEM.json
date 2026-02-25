@@ -58,12 +58,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "REFLECT RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772020594439
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK STRIFE BREACH",
       "mood": "AGGRESSIVE",
@@ -146,6 +140,12 @@
       "text": "REFLECT GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020599706
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020600299
     }
   ]
 }
