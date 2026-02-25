@@ -44,12 +44,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIKE STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020002453
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHOCK SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020003461
@@ -131,6 +125,12 @@
       "text": "DRAIN STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020014751
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "REFLECT REFLECT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772020016516
     }
   ]
 }
