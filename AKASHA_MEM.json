@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC STABLE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772026090041
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME EVOLVE WAVE",
       "mood": "CREATIVE",
       "tick": 1772026090280
@@ -291,6 +285,12 @@
       "text": "HUNGER DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772026099858
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772026100139
     }
   ]
 }
