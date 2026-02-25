@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039907034
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772039907511
@@ -291,6 +285,12 @@
       "text": "STRIKE CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772039914317
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE OSMOSIS OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772039914772
     }
   ]
 }
