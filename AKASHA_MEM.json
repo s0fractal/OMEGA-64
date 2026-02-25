@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHELTER REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040423524
-    },
-    {
       "origin": "INTERFACE",
       "text": "SICKNESS CONSUME SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIFE CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772040426615
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT PURE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772040426745
     }
   ]
 }
