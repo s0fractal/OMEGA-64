@@ -76,12 +76,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020994522
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE STRIKE BREACH",
       "mood": "AGGRESSIVE",
@@ -164,6 +158,12 @@
       "text": "STRIKE CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021001278
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH PURE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772021001636
     }
   ]
 }
