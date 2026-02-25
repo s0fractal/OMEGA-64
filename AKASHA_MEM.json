@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DECAY STRIKE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041031674
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHOCK HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772041031811
@@ -291,6 +285,12 @@
       "text": "RECON GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041034229
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041034543
     }
   ]
 }
