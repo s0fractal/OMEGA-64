@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE UNIFY BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772035800178
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772035800385
@@ -291,6 +285,12 @@
       "text": "PURE PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772035806085
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHIELD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772035806322
     }
   ]
 }
