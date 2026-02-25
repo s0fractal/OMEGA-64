@@ -142,12 +142,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BREACH CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022469433
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIKE DECAY CONSUME",
       "mood": "AGGRESSIVE",
@@ -230,6 +224,12 @@
       "text": "DRAIN DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022474928
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE PURE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772022475390
     }
   ]
 }
