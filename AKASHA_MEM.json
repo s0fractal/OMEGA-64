@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SYNC GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772041727170
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER IMMUNE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041734005
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS SHELTER PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041734311
     }
   ]
 }
