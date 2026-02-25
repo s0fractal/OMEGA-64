@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772041527395
-    },
-    {
       "origin": "INTERFACE",
       "text": "OSMOSIS SYNC GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STASIS GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041530772
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIKE DRAIN CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041531227
     }
   ]
 }
