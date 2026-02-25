@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FORGE SPARK AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772035197423
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772035197672
@@ -291,6 +285,12 @@
       "text": "DECAY STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772035201106
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS BREACH STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035201320
     }
   ]
 }
