@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RESONATE HEAL OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772040565443
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL COHERE OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STABLE FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772040568173
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD STASIS SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772040568455
     }
   ]
 }
