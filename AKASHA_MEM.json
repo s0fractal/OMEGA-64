@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE STABLE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772028958992
-    },
-    {
-      "origin": "REVERSE",
       "text": "WITNESS EVOLVE SPARK",
       "mood": "CREATIVE",
       "tick": 1772028959378
@@ -291,6 +285,12 @@
       "text": "IMMUNE RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772028973540
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772028974092
     }
   ]
 }
