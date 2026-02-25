@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SHOCK HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028776033
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772028776439
@@ -291,6 +285,12 @@
       "text": "SYNC RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772028787554
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772028789953
     }
   ]
 }
