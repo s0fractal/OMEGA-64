@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GUARD SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020160127
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIFE DRAIN DECAY",
       "mood": "AGGRESSIVE",
@@ -136,6 +130,12 @@
       "text": "BREACH SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772020170956
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH REFLECT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020172310
     }
   ]
 }
