@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036755164
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772036755374
@@ -291,6 +285,12 @@
       "text": "HEAL SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772036758232
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY UNIFY SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772036758424
     }
   ]
 }
