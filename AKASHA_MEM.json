@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00600660",
     "00000000",
     "AAAA00AA",
     "00000600",
@@ -199,15 +198,10 @@
     "0AA0AAA0",
     "0AAAA000",
     "66060066",
-    "06066666"
+    "06066666",
+    "AAAAAAAA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "AWAKEN EVOLVE FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772035944491
-    },
     {
       "origin": "REVERSE",
       "text": "STRIFE DECAY DECAY",
@@ -291,6 +285,12 @@
       "text": "GUARD REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772035950493
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE HUNGER BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035950712
     }
   ]
 }
