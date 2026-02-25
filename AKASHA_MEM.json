@@ -64,15 +64,10 @@
     "0A000000",
     "F0FFF00F",
     "0AAA000A",
-    "06666666"
+    "06666666",
+    "AA00AAA0"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020845946
-    },
     {
       "origin": "REVERSE",
       "text": "RESONATE FLOW HEAL",
@@ -156,6 +151,12 @@
       "text": "SHELTER WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772020850623
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK BREACH DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020851060
     }
   ]
 }
