@@ -76,12 +76,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GUARD IMMUNE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020973372
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIKE SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020975347
@@ -163,6 +157,12 @@
       "text": "RESONATE FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772020980297
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH STRIKE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020981479
     }
   ]
 }
