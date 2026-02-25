@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SHOCK HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031142493
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772031142812
@@ -291,6 +285,12 @@
       "text": "PURE WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772031148066
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM GIVING FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772031148432
     }
   ]
 }
