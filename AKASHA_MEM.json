@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT SHELTER STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772036143709
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772036143927
@@ -291,6 +285,12 @@
       "text": "WAIT REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772036146624
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DECAY DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036146836
     }
   ]
 }
