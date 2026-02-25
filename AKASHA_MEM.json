@@ -173,12 +173,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH RECON REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023227024
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772023227200
@@ -260,6 +254,12 @@
       "text": "DREAM VISION BECOME",
       "mood": "CREATIVE",
       "tick": 1772023230394
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023231036
     }
   ]
 }
