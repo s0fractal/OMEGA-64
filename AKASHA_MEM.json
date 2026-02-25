@@ -103,12 +103,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER SHOCK STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021651104
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772021651962
@@ -190,6 +184,12 @@
       "text": "CONSUME DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772021655891
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772021656384
     }
   ]
 }
