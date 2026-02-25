@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772040974091
-    },
-    {
       "origin": "STREAM",
       "text": "GIVING COHERE SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BLOOM SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772040977510
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE OSMOSIS OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772040977652
     }
   ]
 }
