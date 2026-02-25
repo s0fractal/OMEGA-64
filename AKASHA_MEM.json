@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SEIZE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032694386
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772032694525
@@ -291,6 +285,12 @@
       "text": "REFLECT SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772032697124
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772032697293
     }
   ]
 }
