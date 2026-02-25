@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041686747
-    },
-    {
       "origin": "INTERFACE",
       "text": "SICKNESS SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041691510
+    },
+    {
+      "origin": "PARADOX",
+      "text": "HUNGER SICKNESS DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041691690
     }
   ]
 }
