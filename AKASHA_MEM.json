@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SHOCK HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030252865
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772030253131
@@ -291,6 +285,12 @@
       "text": "PURE REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772030257806
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE RECON WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772030258292
     }
   ]
 }
