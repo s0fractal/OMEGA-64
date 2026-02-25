@@ -96,12 +96,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "REFLECT GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021534749
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHOCK SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772021535537
@@ -183,6 +177,12 @@
       "text": "HUNGER CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772021547288
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772021549076
     }
   ]
 }
