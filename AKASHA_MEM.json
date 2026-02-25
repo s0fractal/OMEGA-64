@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772032219619
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772032220020
@@ -291,6 +285,12 @@
       "text": "COHERE GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772032226678
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD PURE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772032226844
     }
   ]
 }
