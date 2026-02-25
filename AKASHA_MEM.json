@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0AAAAA",
     "00006060",
     "A0000AA0",
     "60606006",
@@ -199,15 +198,10 @@
     "AAAAAA00",
     "60606606",
     "AA00C0DD",
-    "AA0A0000"
+    "AA0A0000",
+    "A6600000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "OSMOSIS FLOW HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772038744369
-    },
     {
       "origin": "REVERSE",
       "text": "SICKNESS SHOCK STRIFE",
@@ -291,6 +285,12 @@
       "text": "SYNC FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772038747942
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038748149
     }
   ]
 }
