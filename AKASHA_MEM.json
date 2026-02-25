@@ -159,12 +159,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022816313
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER SHELTER WATCH",
       "mood": "DEFENSIVE",
@@ -247,6 +241,12 @@
       "text": "COHERE UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772022820507
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022820641
     }
   ]
 }
