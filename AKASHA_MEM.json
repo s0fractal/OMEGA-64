@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE COHERE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772037737294
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772037737464
@@ -291,6 +285,12 @@
       "text": "STRIFE DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772037741901
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS GIVING SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772037742074
     }
   ]
 }
