@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIKE SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041154456
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GIVING BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772041154635
@@ -291,6 +285,12 @@
       "text": "SHOCK STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041158339
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041158536
     }
   ]
 }
