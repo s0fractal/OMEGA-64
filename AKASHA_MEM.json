@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE CONSUME SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020453668
-    },
-    {
       "origin": "INTERFACE",
       "text": "BLOOM COHERE UNIFY",
       "mood": "HARMONIC",
@@ -142,6 +136,12 @@
       "text": "STABLE SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772020462159
+    },
+    {
+      "origin": "STREAM",
+      "text": "BLOOM OSMOSIS RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772020462343
     }
   ]
 }
