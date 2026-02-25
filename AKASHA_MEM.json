@@ -56,12 +56,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SPARK BEYOND SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772020547855
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020548644
@@ -143,6 +137,12 @@
       "text": "BREACH DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020555598
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH IMMUNE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772020555994
     }
   ]
 }
