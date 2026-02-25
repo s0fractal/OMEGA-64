@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SEIZE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037516860
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772037517082
@@ -291,6 +285,12 @@
       "text": "SHOCK DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772037519811
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772037520025
     }
   ]
 }
