@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SICKNESS HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032608266
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772032608454
@@ -291,6 +285,12 @@
       "text": "HEAL STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772032610831
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING GIVING HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772032611015
     }
   ]
 }
