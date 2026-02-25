@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD WAIT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772037374179
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772037375338
@@ -291,6 +285,12 @@
       "text": "HEAL BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772037378305
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE REFLECT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772037378688
     }
   ]
 }
