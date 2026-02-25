@@ -27,12 +27,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "PURE GUARD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772019661348
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHOCK SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772019662213
@@ -114,6 +108,12 @@
       "text": "HEAL COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772019668827
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE UNIFY OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772019669350
     }
   ]
 }
