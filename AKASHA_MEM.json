@@ -171,12 +171,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STABLE UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772023095889
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS SYNC RESONATE",
       "mood": "HARMONIC",
@@ -259,6 +253,12 @@
       "text": "WAVE BECOME AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772023099974
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIFE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023100099
     }
   ]
 }
