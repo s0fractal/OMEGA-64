@@ -44,12 +44,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DECAY DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020040995
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BLOOM OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772020041906
@@ -131,6 +125,12 @@
       "text": "FLOW STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772020054017
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL COHERE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772020055036
     }
   ]
 }
