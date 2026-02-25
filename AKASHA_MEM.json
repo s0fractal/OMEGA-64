@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STABLE HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772040374422
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER SHIELD PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SEIZE BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772040380561
+    },
+    {
+      "origin": "STREAM",
+      "text": "UNIFY COHERE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772040380761
     }
   ]
 }
