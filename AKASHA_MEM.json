@@ -109,12 +109,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772021831884
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND SPARK BECOME",
       "mood": "CREATIVE",
       "tick": 1772021833050
@@ -196,6 +190,12 @@
       "text": "DRAIN STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021839088
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHELTER SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021839693
     }
   ]
 }
