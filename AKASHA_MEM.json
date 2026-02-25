@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHIELD WAIT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772026113407
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING HEAL GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772026117632
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE STASIS PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772026118062
     }
   ]
 }
