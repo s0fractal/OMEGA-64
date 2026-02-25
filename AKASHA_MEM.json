@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772031212615
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL COHERE FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "COHERE RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772031219706
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SEIZE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031220093
     }
   ]
 }
