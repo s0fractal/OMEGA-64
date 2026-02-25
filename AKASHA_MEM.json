@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DRAIN SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025558924
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772025559100
@@ -291,6 +285,12 @@
       "text": "RECON WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772025562946
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772025563154
     }
   ]
 }
