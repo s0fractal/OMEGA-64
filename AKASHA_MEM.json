@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "EVOLVE AWAKEN BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772024617732
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772024617902
@@ -291,6 +285,12 @@
       "text": "OSMOSIS OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772024623259
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS BLOOM SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772024623495
     }
   ]
 }
