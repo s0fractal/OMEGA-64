@@ -63,12 +63,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "PURE SHIELD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772020682699
-    },
-    {
-      "origin": "INTERFACE",
       "text": "HUNGER SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020683392
@@ -150,6 +144,12 @@
       "text": "EVOLVE SPARK BECOME",
       "mood": "CREATIVE",
       "tick": 1772020690042
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020690242
     }
   ]
 }
