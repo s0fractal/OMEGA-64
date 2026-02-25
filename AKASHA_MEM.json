@@ -116,12 +116,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER STASIS PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022056510
-    },
-    {
-      "origin": "REVERSE",
       "text": "EVOLVE BECOME WITNESS",
       "mood": "CREATIVE",
       "tick": 1772022057808
@@ -203,6 +197,12 @@
       "text": "REFLECT IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022063856
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772022064232
     }
   ]
 }
