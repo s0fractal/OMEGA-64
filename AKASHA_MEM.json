@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034125156
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772034125347
@@ -291,6 +285,12 @@
       "text": "GUARD SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772034127830
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772034128032
     }
   ]
 }
