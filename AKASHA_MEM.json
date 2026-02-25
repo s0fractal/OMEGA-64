@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772040427209
-    },
-    {
       "origin": "STREAM",
       "text": "DRAIN STRIKE CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772040429504
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW STABLE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772040429672
     }
   ]
 }
