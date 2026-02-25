@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WAIT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772026224591
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772026224786
@@ -291,6 +285,12 @@
       "text": "PURE STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772026229713
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING FLOW HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772026229933
     }
   ]
 }
