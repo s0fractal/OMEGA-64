@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE COHERE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772032558171
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772032558522
@@ -291,6 +285,12 @@
       "text": "BLOOM COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772032563345
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE CONSUME SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032563489
     }
   ]
 }
