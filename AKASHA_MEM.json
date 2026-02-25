@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL HEAL HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772033328199
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772033328356
@@ -291,6 +285,12 @@
       "text": "OSMOSIS SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772033331660
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT RECON WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772033333096
     }
   ]
 }
