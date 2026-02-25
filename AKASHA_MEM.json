@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040194516
-    },
-    {
       "origin": "INTERFACE",
       "text": "SYNC HEAL HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STABLE BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772040201492
+    },
+    {
+      "origin": "STREAM",
+      "text": "STRIFE STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040201759
     }
   ]
 }
