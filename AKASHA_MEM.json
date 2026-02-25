@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033439374
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033439604
@@ -291,6 +285,12 @@
       "text": "OSMOSIS STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772033442235
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033442431
     }
   ]
 }
