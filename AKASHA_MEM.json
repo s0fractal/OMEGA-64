@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00660066",
     "06006660",
     "0000AA00",
     "06066006",
@@ -199,15 +198,10 @@
     "AAAA00AA",
     "AA6660A0",
     "00600060",
-    "00060600"
+    "00060600",
+    "06666000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "DRAIN BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032916401
-    },
     {
       "origin": "REVERSE",
       "text": "BLOOM RESONATE UNIFY",
@@ -291,6 +285,12 @@
       "text": "WAIT SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772032919526
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772032919706
     }
   ]
 }
