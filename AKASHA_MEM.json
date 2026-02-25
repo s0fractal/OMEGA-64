@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "VISION BEYOND EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772023726078
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772023726257
@@ -278,6 +272,12 @@
       "text": "RESONATE SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772023728748
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM COHERE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772023728933
     }
   ]
 }
