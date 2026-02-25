@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040415979
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772040416208
@@ -291,6 +285,12 @@
       "text": "GIVING BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772040418351
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH RECON WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040418517
     }
   ]
 }
