@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHIELD RECON WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772040687745
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE UNIFY GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RECON WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772040690613
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT REFLECT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772040690748
     }
   ]
 }
