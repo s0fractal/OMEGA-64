@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772038657722
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772038657919
@@ -291,6 +285,12 @@
       "text": "SICKNESS CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772038661175
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772038661353
     }
   ]
 }
