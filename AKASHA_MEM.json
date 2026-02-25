@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028328309
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772028329056
@@ -291,6 +285,12 @@
       "text": "OSMOSIS OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772028337080
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772028337669
     }
   ]
 }
