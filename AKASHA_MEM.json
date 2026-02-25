@@ -184,12 +184,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS WATCH SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772023578333
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023578516
@@ -271,6 +265,12 @@
       "text": "WATCH WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772023583507
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023583843
     }
   ]
 }
