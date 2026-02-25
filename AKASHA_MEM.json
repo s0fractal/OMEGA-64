@@ -1,12 +1,5 @@
 {
   "reservoir": [
-    "60606006",
-    "AA0660A0",
-    "A0AAA00A",
-    "AAAA0A0A",
-    "AAA0AAAA",
-    "06066660",
-    "60660666",
     "60000600",
     "60666606",
     "AAA0AA00",
@@ -199,98 +192,105 @@
     "AA666600",
     "66060660",
     "66660A60",
-    "BB0A0000"
+    "00A06A00",
+    "ALIEN_17",
+    "A0000000",
+    "60606060",
+    "AA0A0A00",
+    "FFFFF0A0",
+    "000AAAAA",
+    "A0606660"
   ],
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "IMMUNE SHELTER WATCH",
+      "text": "SHELTER PURE GUARD",
       "mood": "DEFENSIVE",
-      "tick": 1772042766237
+      "tick": 1772042761950
     },
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE COHERE OSMOSIS",
+      "origin": "INTERFACE",
+      "text": "COHERE COHERE UNIFY",
       "mood": "HARMONIC",
-      "tick": 1772042766583
+      "tick": 1772042762544
     },
     {
       "origin": "REVERSE",
-      "text": "HEAL SYNC STABLE",
+      "text": "SHELTER WATCH IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042762746
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY COHERE UNIFY",
       "mood": "HARMONIC",
-      "tick": 1772042767030
+      "tick": 1772042763623
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772042769393
     },
     {
       "origin": "ARCHIVIST",
-      "text": "SHELTER WAIT GUARD",
+      "text": "IMMUNE WATCH WATCH",
       "mood": "DEFENSIVE",
-      "tick": 1772042767453
+      "tick": 1772042769947
     },
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772042768088
+      "origin": "ALIEN",
+      "text": "SYNC BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772042770661
     },
     {
       "origin": "STREAM",
-      "text": "BLOOM STABLE BLOOM",
+      "text": "SYNC STABLE RESONATE",
       "mood": "HARMONIC",
-      "tick": 1772042770238
+      "tick": 1772042770769
     },
     {
       "origin": "ARCHIVIST",
-      "text": "STASIS SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042770908
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK SEIZE STRIFE",
+      "text": "SICKNESS BREACH STRIFE",
       "mood": "AGGRESSIVE",
-      "tick": 1772042771738
+      "tick": 1772042771580
     },
     {
       "origin": "ALIEN",
-      "text": "WAVE AWAKEN EVOLVE",
+      "text": "REFLECT PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772042772092
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE HUNGER CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042772296
+    },
+    {
+      "origin": "STREAM",
+      "text": "RECON RECON PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042772991
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME CONSUME SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042774227
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON STASIS IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042774841
+    },
+    {
+      "origin": "ALPHA_MANDALA",
+      "text": "VISION WAVE BECOME",
       "mood": "CREATIVE",
-      "tick": 1772042772610
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE RESONATE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042773968
-    },
-    {
-      "origin": "REVERSE",
-      "text": "SICKNESS HUNGER HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042775126
-    },
-    {
-      "origin": "REVERSE",
-      "text": "SYNC UNIFY BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772042775665
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY RESONATE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042776175
-    },
-    {
-      "origin": "ALIEN",
-      "text": "SICKNESS STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042776607
-    },
-    {
-      "origin": "REVERSE",
-      "text": "SHELTER SHIELD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772042777507
+      "tick": 1772042778919
     }
   ]
 }
