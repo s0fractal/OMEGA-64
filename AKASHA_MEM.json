@@ -87,12 +87,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK SEIZE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021239425
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772021239606
@@ -174,6 +168,12 @@
       "text": "BLOOM GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772021244425
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021245107
     }
   ]
 }
