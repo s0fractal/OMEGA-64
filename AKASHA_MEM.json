@@ -127,12 +127,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC COHERE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772022292464
-    },
-    {
       "origin": "INTERFACE",
       "text": "IMMUNE SHELTER RECON",
       "mood": "DEFENSIVE",
@@ -215,6 +209,12 @@
       "text": "STRIFE SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022295785
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SHOCK HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022296620
     }
   ]
 }
