@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772040896392
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE BREACH HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772040899182
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER SHELTER SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772040899311
     }
   ]
 }
