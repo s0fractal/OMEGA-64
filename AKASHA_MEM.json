@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772025188237
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772025188420
@@ -291,6 +285,12 @@
       "text": "OSMOSIS BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772025192636
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE BREACH SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025192870
     }
   ]
 }
