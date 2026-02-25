@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "OSMOSIS BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772033097671
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING BLOOM OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WATCH WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772033100360
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY CONSUME SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033100542
     }
   ]
 }
