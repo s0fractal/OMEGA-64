@@ -122,12 +122,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022145081
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE BREACH CONSUME",
       "mood": "AGGRESSIVE",
@@ -210,6 +204,12 @@
       "text": "SYNC FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022150883
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DECAY HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022151068
     }
   ]
 }
