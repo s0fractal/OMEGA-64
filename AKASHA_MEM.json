@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035715329
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772035715546
@@ -291,6 +285,12 @@
       "text": "CONSUME CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772035718788
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH REFLECT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772035718969
     }
   ]
 }
