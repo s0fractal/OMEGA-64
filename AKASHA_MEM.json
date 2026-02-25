@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06606600",
     "A6666000",
     "60066006",
     "00AA0A0A",
@@ -199,15 +198,10 @@
     "66600606",
     "0AAA00AA",
     "60060606",
-    "0AB00C0D"
+    "0AB00C0D",
+    "66006000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHOCK SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034726879
-    },
     {
       "origin": "REVERSE",
       "text": "EVOLVE DREAM AWAKEN",
@@ -291,6 +285,12 @@
       "text": "WATCH WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772034730111
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHELTER SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772034730310
     }
   ]
 }
