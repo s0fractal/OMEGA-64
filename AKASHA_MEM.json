@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD PURE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772030565224
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772030565863
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772030575345
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772030575823
     }
   ]
 }
