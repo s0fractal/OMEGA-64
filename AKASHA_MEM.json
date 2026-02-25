@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS RESONATE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772026781022
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772026781260
@@ -291,6 +285,12 @@
       "text": "SYNC UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772026785333
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026785813
     }
   ]
 }
