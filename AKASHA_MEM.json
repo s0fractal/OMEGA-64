@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER BREACH SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034458574
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772034458757
@@ -291,6 +285,12 @@
       "text": "PURE WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772034461333
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS SHIELD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772034461527
     }
   ]
 }
