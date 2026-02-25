@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033387783
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772033388084
@@ -291,6 +285,12 @@
       "text": "DRAIN BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772033390348
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772033390530
     }
   ]
 }
