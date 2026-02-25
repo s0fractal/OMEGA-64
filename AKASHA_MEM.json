@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "BLOOM BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772041365734
-    },
-    {
       "origin": "INTERFACE",
       "text": "SYNC COHERE HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "REFLECT GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041369692
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH STASIS WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041369971
     }
   ]
 }
