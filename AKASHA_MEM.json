@@ -151,12 +151,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE GUARD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772022590937
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE SEIZE DRAIN",
       "mood": "AGGRESSIVE",
@@ -239,6 +233,12 @@
       "text": "BREACH HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772022594991
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772022595940
     }
   ]
 }
