@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040613465
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER STASIS SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772040616963
+    },
+    {
+      "origin": "STREAM",
+      "text": "WATCH WATCH WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040617248
     }
   ]
 }
