@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE RESONATE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772038755726
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772038756090
@@ -291,6 +285,12 @@
       "text": "DRAIN STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772038759642
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE GIVING UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772038759854
     }
   ]
 }
