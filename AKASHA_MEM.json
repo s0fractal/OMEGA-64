@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SICKNESS DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033045866
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772033046078
@@ -291,6 +285,12 @@
       "text": "OSMOSIS STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772033048455
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SHOCK STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033048636
     }
   ]
 }
