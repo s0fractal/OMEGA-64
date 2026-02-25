@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "UNIFY SYNC COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772040663626
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC UNIFY COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SYNC COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772040666786
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772040666967
     }
   ]
 }
