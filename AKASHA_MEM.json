@@ -129,12 +129,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WATCH WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772022326083
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIFE BREACH HUNGER",
       "mood": "AGGRESSIVE",
@@ -217,6 +211,12 @@
       "text": "STRIFE SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022332440
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM UNIFY GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022332813
     }
   ]
 }
