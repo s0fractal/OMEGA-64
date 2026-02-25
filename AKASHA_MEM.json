@@ -180,12 +180,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON WAIT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772023397111
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023397294
@@ -267,6 +261,12 @@
       "text": "HEAL BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023400544
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM WITNESS BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772023400669
     }
   ]
 }
