@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD STASIS WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023105855
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772023106160
@@ -259,6 +253,12 @@
       "text": "RECON SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023109679
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM BEYOND BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772023111423
     }
   ]
 }
