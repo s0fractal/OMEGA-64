@@ -55,12 +55,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH DECAY SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020443587
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RESONATE STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772020444308
@@ -142,6 +136,12 @@
       "text": "CONSUME DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020451727
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY STRIFE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020452478
     }
   ]
 }
