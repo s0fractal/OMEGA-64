@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHOCK DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040911478
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE IMMUNE REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BREACH STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040915427
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772040915616
     }
   ]
 }
