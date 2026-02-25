@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772027803541
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772027803938
@@ -291,6 +285,12 @@
       "text": "REFLECT IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772027810999
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE HEAL OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772027811960
     }
   ]
 }
