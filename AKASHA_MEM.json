@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HEAL COHERE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772040969935
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GUARD RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040970073
@@ -291,6 +285,12 @@
       "text": "SHIELD REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772040972255
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHELTER REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040972453
     }
   ]
 }
