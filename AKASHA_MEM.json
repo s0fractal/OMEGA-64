@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT GUARD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772033841740
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772033841926
@@ -291,6 +285,12 @@
       "text": "FLOW STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772033847039
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY RESONATE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772033847253
     }
   ]
 }
