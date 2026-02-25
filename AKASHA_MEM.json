@@ -165,12 +165,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023012645
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023012961
@@ -252,6 +246,12 @@
       "text": "FORGE EVOLVE FORGE",
       "mood": "CREATIVE",
       "tick": 1772023019871
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023020128
     }
   ]
 }
