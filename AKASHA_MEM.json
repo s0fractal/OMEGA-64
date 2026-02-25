@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER STRIFE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037629326
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772037629549
@@ -291,6 +285,12 @@
       "text": "STABLE UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772037633077
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY COHERE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772037633596
     }
   ]
 }
