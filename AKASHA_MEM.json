@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772033367739
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772033367924
@@ -291,6 +285,12 @@
       "text": "IMMUNE GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772033370444
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE HUNGER BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033370664
     }
   ]
 }
