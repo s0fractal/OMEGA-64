@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK HUNGER DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037322282
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772037322475
@@ -291,6 +285,12 @@
       "text": "STABLE OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772037325548
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772037325768
     }
   ]
 }
