@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028558649
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772028559559
@@ -291,6 +285,12 @@
       "text": "SHELTER RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772028567512
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS GIVING UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772028568077
     }
   ]
 }
