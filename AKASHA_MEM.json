@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772033321033
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772033321218
@@ -291,6 +285,12 @@
       "text": "RECON STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772033327520
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH STASIS RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772033327703
     }
   ]
 }
