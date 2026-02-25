@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037210649
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772037210820
@@ -291,6 +285,12 @@
       "text": "FLOW HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772037221415
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN BREACH DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037221793
     }
   ]
 }
