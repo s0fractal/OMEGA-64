@@ -123,12 +123,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIFE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022148395
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772022148839
@@ -210,6 +204,12 @@
       "text": "GUARD IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022154929
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHELTER WATCH IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022155631
     }
   ]
 }
