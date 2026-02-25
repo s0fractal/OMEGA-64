@@ -70,12 +70,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH BREACH SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020887122
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE BREACH DRAIN",
       "mood": "AGGRESSIVE",
@@ -158,6 +152,12 @@
       "text": "BLOOM COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772020894015
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772020894206
     }
   ]
 }
