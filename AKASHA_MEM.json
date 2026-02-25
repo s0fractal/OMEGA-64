@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON RECON STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772035476193
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772035476391
@@ -291,6 +285,12 @@
       "text": "SEIZE DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772035482104
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE SYNC COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772035482308
     }
   ]
 }
