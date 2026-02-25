@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER BREACH BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040405175
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE UNIFY STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772040408234
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS REFLECT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040408399
     }
   ]
 }
