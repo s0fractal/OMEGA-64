@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS SPARK EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772034167323
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772034167472
@@ -291,6 +285,12 @@
       "text": "WATCH STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772034169841
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034170030
     }
   ]
 }
