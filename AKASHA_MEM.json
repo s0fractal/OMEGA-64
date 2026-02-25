@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT WATCH WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772031541579
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772031542223
@@ -291,6 +285,12 @@
       "text": "RESONATE HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772031552023
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GUARD REFLECT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772031552754
     }
   ]
 }
