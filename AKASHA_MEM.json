@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "BREACH BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040530209
-    },
-    {
       "origin": "REVERSE",
       "text": "GUARD IMMUNE GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BEYOND BECOME WITNESS",
       "mood": "CREATIVE",
       "tick": 1772040533665
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040533888
     }
   ]
 }
