@@ -76,12 +76,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "VISION SPARK VISION",
-      "mood": "CREATIVE",
-      "tick": 1772021023200
-    },
-    {
       "origin": "INTERFACE",
       "text": "DRAIN SHOCK SHOCK",
       "mood": "AGGRESSIVE",
@@ -164,6 +158,12 @@
       "text": "WATCH WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772021030445
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772021030627
     }
   ]
 }
