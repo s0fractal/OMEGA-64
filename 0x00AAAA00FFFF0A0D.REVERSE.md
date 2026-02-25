@@ -1,8 +1,8 @@
 ---
 eigenvalue: '0x00AAAA00FFFF0A0D'
 energy: 49.9
-x: 718
-'y': 423
+x: 717
+'y': 428
 resonance: 50
 thought: SEEK_ALPHA_PASSIVE
 logic: 00AAAA00
@@ -63,7 +63,7 @@ ex:
   - '0x00AAAA0000000A09'
   - '0x00AAAA0000000A0B'
   - '0x00AAAA0000000A0D'
-  - '0x00AAAA0000000A0F'
+  - '0x00AAAA00FFFF0A0B'
 ---
 
 <div align="center">
