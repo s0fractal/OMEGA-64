@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034638485
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772034638694
@@ -291,6 +285,12 @@
       "text": "GIVING GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772034641350
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772034641511
     }
   ]
 }
