@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "FLOW SYNC COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041320915
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT PURE STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DRAIN DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772041324251
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS REFLECT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041324391
     }
   ]
 }
