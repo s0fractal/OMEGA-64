@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772034592153
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772034593327
@@ -291,6 +285,12 @@
       "text": "RECON WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772034595739
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DRAIN STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034595933
     }
   ]
 }
