@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772035849099
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772035849379
@@ -291,6 +285,12 @@
       "text": "FLOW SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772035853813
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772035854023
     }
   ]
 }
