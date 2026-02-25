@@ -55,12 +55,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL HEAL OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772020436223
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772020436385
@@ -142,6 +136,12 @@
       "text": "RESONATE STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772020444308
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY STRIKE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020445175
     }
   ]
 }
