@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DECAY CONSUME STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031818978
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS BREACH DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772031826376
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772031826744
     }
   ]
 }
