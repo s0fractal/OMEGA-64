@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE STRIKE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026558131
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BEYOND DREAM FORGE",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772026563043
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SEIZE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026563290
     }
   ]
 }
