@@ -83,12 +83,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "IMMUNE GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772021182792
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC STABLE HEAL",
       "mood": "HARMONIC",
@@ -171,6 +165,12 @@
       "text": "OSMOSIS STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772021189581
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH STRIKE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021190295
     }
   ]
 }
