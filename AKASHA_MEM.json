@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD REFLECT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041691510
-    },
-    {
       "origin": "PARADOX",
       "text": "HUNGER SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "REFLECT WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772041696640
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER SHOCK DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041696819
     }
   ]
 }
