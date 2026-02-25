@@ -109,12 +109,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS FLOW FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772021858039
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK STRIKE CONSUME",
       "mood": "AGGRESSIVE",
@@ -197,6 +191,12 @@
       "text": "PURE STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772021865691
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772021866688
     }
   ]
 }
