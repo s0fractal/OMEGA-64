@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036998847
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772036999002
@@ -291,6 +285,12 @@
       "text": "STRIKE DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772037001832
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037002037
     }
   ]
 }
