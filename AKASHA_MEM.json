@@ -202,12 +202,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE COHERE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772024057195
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772024057434
@@ -289,6 +283,12 @@
       "text": "REFLECT SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772024059947
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GUARD PURE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772024060129
     }
   ]
 }
