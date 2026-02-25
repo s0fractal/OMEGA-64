@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772035221239
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY CONSUME DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772035225607
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772035225808
     }
   ]
 }
