@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DREAM WAVE AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772035581268
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772035581569
@@ -291,6 +285,12 @@
       "text": "BECOME DREAM SPARK",
       "mood": "CREATIVE",
       "tick": 1772035584859
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772035585026
     }
   ]
 }
