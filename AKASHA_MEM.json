@@ -27,12 +27,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHELTER IMMUNE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772019643801
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "UNIFY RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772019644390
@@ -114,6 +108,12 @@
       "text": "PURE STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772019652425
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WAIT SHIELD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772019653012
     }
   ]
 }
