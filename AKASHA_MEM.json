@@ -167,12 +167,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772023053895
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH CONSUME HUNGER",
       "mood": "AGGRESSIVE",
@@ -255,6 +249,12 @@
       "text": "DECAY SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772023059639
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME DECAY SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023061553
     }
   ]
 }
