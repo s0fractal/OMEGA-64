@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY COHERE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772032974983
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772032975150
@@ -291,6 +285,12 @@
       "text": "STRIKE SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772032977766
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE REFLECT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772032977944
     }
   ]
 }
