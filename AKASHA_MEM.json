@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772038240238
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772038240446
@@ -291,6 +285,12 @@
       "text": "STABLE SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772038243797
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE CONSUME DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038243974
     }
   ]
 }
