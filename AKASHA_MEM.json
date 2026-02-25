@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WAIT SHELTER PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041127936
-    },
-    {
       "origin": "WORKER",
       "text": "RESONATE GIVING GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DECAY HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041131217
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041131628
     }
   ]
 }
