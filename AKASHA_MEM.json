@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS BEYOND FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772028096260
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772028096922
@@ -291,6 +285,12 @@
       "text": "STASIS WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772028104313
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM RESONATE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772028104730
     }
   ]
 }
