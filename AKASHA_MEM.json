@@ -157,15 +157,10 @@
     "06060000",
     "60666660",
     "00AA000A",
-    "06666006"
+    "06666006",
+    "60600600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "HEAL HEAL GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772022869732
-    },
     {
       "origin": "REVERSE",
       "text": "RECON PURE RECON",
@@ -249,6 +244,12 @@
       "text": "OSMOSIS FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772022874411
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHELTER REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022874555
     }
   ]
 }
