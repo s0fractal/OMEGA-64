@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772033963185
-    },
-    {
-      "origin": "REVERSE",
       "text": "AWAKEN DREAM WITNESS",
       "mood": "CREATIVE",
       "tick": 1772033963409
@@ -291,6 +285,12 @@
       "text": "FLOW HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772033966033
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD PURE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772033966226
     }
   ]
 }
