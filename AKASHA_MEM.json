@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM RESONATE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772020698985
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN SHOCK BREACH",
       "mood": "AGGRESSIVE",
@@ -150,6 +144,12 @@
       "text": "OSMOSIS UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772020706844
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WAIT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020707047
     }
   ]
 }
