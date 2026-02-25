@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT SHELTER IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772033820056
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772033820251
@@ -291,6 +285,12 @@
       "text": "SICKNESS SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772033827541
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033827759
     }
   ]
 }
