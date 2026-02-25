@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE STRIKE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032874604
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772032874786
@@ -291,6 +285,12 @@
       "text": "GIVING STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772032877190
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772032877384
     }
   ]
 }
