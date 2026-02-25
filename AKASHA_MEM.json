@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020481466
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL COHERE BLOOM",
       "mood": "HARMONIC",
@@ -142,6 +136,12 @@
       "text": "STRIFE STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020488563
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS BECOME EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772020489243
     }
   ]
 }
