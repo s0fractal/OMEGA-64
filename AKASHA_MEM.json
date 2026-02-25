@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "DECAY SICKNESS HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041009961
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIFE HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041012971
+    },
+    {
+      "origin": "STREAM",
+      "text": "SYNC HEAL RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772041013140
     }
   ]
 }
