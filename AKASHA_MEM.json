@@ -103,12 +103,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON REFLECT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021692151
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS COHERE GIVING",
       "mood": "HARMONIC",
@@ -191,6 +185,12 @@
       "text": "HEAL OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772021696991
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SHOCK DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021698171
     }
   ]
 }
