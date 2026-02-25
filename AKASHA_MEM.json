@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "SUCC",
-      "text": "DECAY HUNGER STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041185534
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER IMMUNE WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772041189160
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE REFLECT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041189288
     }
   ]
 }
