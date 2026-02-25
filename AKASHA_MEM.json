@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "HEAL HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772020206765
-    },
-    {
       "origin": "INTERFACE",
       "text": "SICKNESS CONSUME BREACH",
       "mood": "AGGRESSIVE",
@@ -136,6 +130,12 @@
       "text": "REFLECT IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772020219960
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SHOCK STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020221079
     }
   ]
 }
