@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772027301180
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAVE DREAM SPARK",
       "mood": "CREATIVE",
       "tick": 1772027301416
@@ -291,6 +285,12 @@
       "text": "SEIZE SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772027306806
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772027307218
     }
   ]
 }
