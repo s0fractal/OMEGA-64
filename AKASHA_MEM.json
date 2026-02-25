@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE HEAL GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772039906573
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772039907034
@@ -291,6 +285,12 @@
       "text": "WATCH SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772039913869
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE CONSUME STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039914317
     }
   ]
 }
