@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT REFLECT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772031935604
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772031936023
@@ -291,6 +285,12 @@
       "text": "SYNC BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772031944711
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DECAY HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031945409
     }
   ]
 }
