@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "DECAY DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042060284
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT STASIS IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772042068804
+    },
+    {
+      "origin": "STREAM",
+      "text": "SYNC SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772042069098
     }
   ]
 }
