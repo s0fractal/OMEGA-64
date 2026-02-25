@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER IMMUNE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772034338746
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772034338965
@@ -291,6 +285,12 @@
       "text": "GIVING BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772034341596
+    },
+    {
+      "origin": "PARADOX",
+      "text": "SHIELD IMMUNE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772034341972
     }
   ]
 }
