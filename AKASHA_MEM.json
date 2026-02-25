@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "6A00A000",
     "66666600",
     "00000606",
     "FFFF0FFF",
@@ -199,15 +198,10 @@
     "A00A0AAA",
     "A0000A00",
     "66000600",
-    "A00A0A0A"
+    "A00A0A0A",
+    "00FA000A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHIELD REFLECT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772025179376
-    },
     {
       "origin": "REVERSE",
       "text": "RESONATE COHERE GIVING",
@@ -291,6 +285,12 @@
       "text": "PURE GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772025184225
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL BLOOM FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772025184470
     }
   ]
 }
