@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC GIVING SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772035244763
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772035244972
@@ -291,6 +285,12 @@
       "text": "COHERE BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772035247618
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772035247865
     }
   ]
 }
