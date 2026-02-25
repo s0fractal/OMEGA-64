@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH STRIFE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040569125
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SYNC FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772040569679
@@ -291,6 +285,12 @@
       "text": "IMMUNE PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772040572737
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY UNIFY OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772040572895
     }
   ]
 }
