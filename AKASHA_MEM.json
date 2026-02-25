@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE HEAL FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772015743034
-    },
-    {
       "origin": "INTERFACE",
       "text": "SEIZE STRIKE SHOCK",
       "mood": "AGGRESSIVE",
@@ -107,6 +101,12 @@
       "text": "PURE RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772015846035
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME HUNGER HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772015850723
     }
   ]
 }
