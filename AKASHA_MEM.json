@@ -99,12 +99,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SPARK BECOME BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772021578455
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772021580183
@@ -186,6 +180,12 @@
       "text": "STRIFE DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021587097
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772021587297
     }
   ]
 }
