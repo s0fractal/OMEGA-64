@@ -41,12 +41,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019882509
-    },
-    {
       "origin": "INTERFACE",
       "text": "HUNGER SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
@@ -129,6 +123,12 @@
       "text": "PURE STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772019893462
+    },
+    {
+      "origin": "REVERSE",
+      "text": "AWAKEN BECOME DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772019894187
     }
   ]
 }
