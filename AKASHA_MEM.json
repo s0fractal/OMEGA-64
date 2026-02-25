@@ -38,12 +38,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GIVING BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772019775740
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHIELD IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772019776812
@@ -125,6 +119,12 @@
       "text": "WAIT PURE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772019785523
+    },
+    {
+      "origin": "STREAM",
+      "text": "SYNC UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772019786423
     }
   ]
 }
