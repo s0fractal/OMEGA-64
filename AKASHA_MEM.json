@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772024186006
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DREAM BECOME SPARK",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772024188931
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772024189298
     }
   ]
 }
