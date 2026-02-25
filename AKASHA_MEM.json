@@ -173,12 +173,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC UNIFY UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772023216853
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772023217078
@@ -260,6 +254,12 @@
       "text": "FLOW OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772023222576
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SHOCK STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023222809
     }
   ]
 }
