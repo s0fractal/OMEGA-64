@@ -136,12 +136,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772022399878
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN STRIKE DECAY",
       "mood": "AGGRESSIVE",
@@ -224,6 +218,12 @@
       "text": "SYNC GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772022407859
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022408018
     }
   ]
 }
