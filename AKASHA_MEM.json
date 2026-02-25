@@ -83,12 +83,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE REFLECT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021147366
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772021147482
@@ -170,6 +164,12 @@
       "text": "REFLECT SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772021151555
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021152343
     }
   ]
 }
