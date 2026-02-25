@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042553609
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME FORGE FORGE",
       "mood": "CREATIVE",
       "tick": 1772042554302
@@ -291,6 +285,12 @@
       "text": "BLOOM UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772042565360
+    },
+    {
+      "origin": "STREAM",
+      "text": "GIVING FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772042566156
     }
   ]
 }
