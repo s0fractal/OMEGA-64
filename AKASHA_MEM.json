@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "I16_CLAMP",
-      "text": "STRIKE SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041032813
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE HUNGER DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772041035683
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHIELD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772041035817
     }
   ]
 }
