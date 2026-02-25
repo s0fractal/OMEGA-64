@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STABLE SYNC SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772041593756
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE FLOW RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHIELD STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041600866
+    },
+    {
+      "origin": "STREAM",
+      "text": "OSMOSIS BLOOM UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772041602305
     }
   ]
 }
