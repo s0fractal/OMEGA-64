@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772035117633
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772035117843
@@ -291,6 +285,12 @@
       "text": "SYNC FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772035123048
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHIELD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772035123256
     }
   ]
 }
