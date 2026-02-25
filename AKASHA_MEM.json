@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "RESONATE BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772040608662
-    },
-    {
-      "origin": "INTERFACE",
       "text": "HEAL RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772040609007
@@ -291,6 +285,12 @@
       "text": "SHELTER REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040611674
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040611848
     }
   ]
 }
