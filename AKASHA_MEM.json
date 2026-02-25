@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE RESONATE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772040600161
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772040600369
@@ -291,6 +285,12 @@
       "text": "STRIKE DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772040603556
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040603715
     }
   ]
 }
