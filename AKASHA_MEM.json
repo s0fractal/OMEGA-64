@@ -65,12 +65,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE PURE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772020748403
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772020748615
@@ -152,6 +146,12 @@
       "text": "HUNGER CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772020755337
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WAIT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020755636
     }
   ]
 }
