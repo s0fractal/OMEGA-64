@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER GUARD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772031537311
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772031537821
@@ -291,6 +285,12 @@
       "text": "SHIELD IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772031548167
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS IMMUNE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772031548513
     }
   ]
 }
