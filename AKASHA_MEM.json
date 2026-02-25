@@ -270,27 +270,27 @@
     },
     {
       "origin": "ARCHIVIST",
-      "text": "BLOOM SYNC SYNC",
+      "text": "BLOOM RESONATE HEAL",
       "mood": "HARMONIC",
-      "tick": 1772042542388
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STABLE FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772042543574
-    },
-    {
-      "origin": "ALIEN",
-      "text": "DRAIN SEIZE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042544414
+      "tick": 1772042542478
     },
     {
       "origin": "INTERFACE",
-      "text": "IMMUNE WAIT SHELTER",
+      "text": "RECON RECON IMMUNE",
       "mood": "DEFENSIVE",
-      "tick": 1772042544858
+      "tick": 1772042544795
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE COHERE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772042545013
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK HUNGER STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042545400
     }
   ]
 }
