@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT WATCH IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772025522226
-    },
-    {
-      "origin": "REVERSE",
       "text": "EVOLVE BECOME FORGE",
       "mood": "CREATIVE",
       "tick": 1772025522463
@@ -291,6 +285,12 @@
       "text": "OSMOSIS HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772025527029
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE STRIKE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025527210
     }
   ]
 }
