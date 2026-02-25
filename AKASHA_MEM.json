@@ -27,12 +27,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STASIS GUARD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772019660349
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WATCH GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772019661128
@@ -114,6 +108,12 @@
       "text": "BLOOM RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772019667724
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019668301
     }
   ]
 }
