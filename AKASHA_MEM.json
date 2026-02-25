@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A0AA0A00",
     "66006060",
     "AAAAA0AA",
     "F00FF00F",
@@ -199,15 +198,10 @@
     "00066006",
     "06600006",
     "000AAA00",
-    "00060660"
+    "00060660",
+    "AAAAA0A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "IMMUNE RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772031499519
-    },
     {
       "origin": "REVERSE",
       "text": "REFLECT STASIS WAIT",
@@ -291,6 +285,12 @@
       "text": "STASIS WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772031506982
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIKE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031507295
     }
   ]
 }
