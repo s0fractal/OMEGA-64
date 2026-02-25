@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER WAIT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772038624637
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772038624842
@@ -291,6 +285,12 @@
       "text": "DRAIN DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772038628036
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING SYNC SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772038628244
     }
   ]
 }
