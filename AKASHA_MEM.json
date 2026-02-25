@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "OSMOSIS OSMOSIS HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772041824165
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SYNC SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041824692
@@ -291,6 +285,12 @@
       "text": "STABLE HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772041828657
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RECON IMMUNE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772041829131
     }
   ]
 }
