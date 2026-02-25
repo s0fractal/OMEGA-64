@@ -18,15 +18,10 @@
     "BBB00000",
     "00000006",
     "BB0B0000",
-    "ABB00000"
+    "ABB00000",
+    "666A6660"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019478143
-    },
     {
       "origin": "STREAM",
       "text": "STABLE SYNC GIVING",
@@ -110,6 +105,12 @@
       "text": "IMMUNE GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772019486996
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON SHELTER GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772019487603
     }
   ]
 }
