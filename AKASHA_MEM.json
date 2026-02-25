@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING OSMOSIS SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772025684369
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAVE AWAKEN WAVE",
       "mood": "CREATIVE",
       "tick": 1772025684878
@@ -291,6 +285,12 @@
       "text": "STRIKE STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772025689896
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIKE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025690092
     }
   ]
 }
