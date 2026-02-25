@@ -171,12 +171,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE CONSUME SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023147634
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "FLOW OSMOSIS HEAL",
       "mood": "HARMONIC",
@@ -259,6 +253,12 @@
       "text": "DECAY CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023151337
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIKE STRIFE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023151515
     }
   ]
 }
