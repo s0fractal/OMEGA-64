@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIKE BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029969018
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY STABLE STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STASIS SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772029978134
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772029984229
     }
   ]
 }
