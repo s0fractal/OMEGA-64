@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BLOOM UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772040928279
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT WAIT SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772040931903
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS CONSUME HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040932210
     }
   ]
 }
