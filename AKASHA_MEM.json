@@ -164,12 +164,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772022973467
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022973653
@@ -251,6 +245,12 @@
       "text": "WATCH WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022978626
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772022978748
     }
   ]
 }
