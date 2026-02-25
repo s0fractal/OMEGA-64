@@ -106,12 +106,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "BEYOND BECOME DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772021716481
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW FLOW GIVING",
       "mood": "HARMONIC",
@@ -194,6 +188,12 @@
       "text": "STASIS PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772021720623
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE GIVING UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772021720810
     }
   ]
 }
