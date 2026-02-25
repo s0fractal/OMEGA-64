@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW HEAL BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772036897541
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772036897701
@@ -291,6 +285,12 @@
       "text": "STASIS WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772036907678
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WAIT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772036907886
     }
   ]
 }
