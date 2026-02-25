@@ -203,6 +203,24 @@
   ],
   "utterances": [
     {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042494927
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT STASIS SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042496504
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042497260
+    },
+    {
       "origin": "ALIEN",
       "text": "WAIT IMMUNE SHELTER",
       "mood": "DEFENSIVE",
@@ -245,52 +263,34 @@
       "tick": 1772042505112
     },
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE OSMOSIS HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772042507412
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042511045
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "OSMOSIS FLOW HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772042511451
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT WAIT REFLECT",
+      "origin": "ALIEN",
+      "text": "GUARD SHIELD RECON",
       "mood": "DEFENSIVE",
-      "tick": 1772042513164
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER HUNGER SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042514146
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042514803
+      "tick": 1772042507102
     },
     {
       "origin": "REVERSE",
-      "text": "WATCH STASIS WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042515335
+      "text": "VISION FORGE WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772042507410
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SEIZE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042507661
     },
     {
       "origin": "ARCHIVIST",
-      "text": "DRAIN HUNGER STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042516295
+      "text": "REFLECT STASIS SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772042508157
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "COHERE SYNC SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772042514244
     }
   ]
 }
