@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772024452352
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772024452685
@@ -291,6 +285,12 @@
       "text": "BLOOM COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772024459364
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024462048
     }
   ]
 }
