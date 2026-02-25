@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772040409060
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772040409226
@@ -291,6 +285,12 @@
       "text": "COHERE OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772040411488
+    },
+    {
+      "origin": "REVERSE",
+      "text": "AWAKEN EVOLVE WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772040411776
     }
   ]
 }
