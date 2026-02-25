@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020424988
-    },
-    {
       "origin": "INTERFACE",
       "text": "RECON IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
@@ -141,6 +135,12 @@
       "text": "BLOOM GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772020431293
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE UNIFY OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772020431947
     }
   ]
 }
