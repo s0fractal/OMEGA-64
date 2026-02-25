@@ -1,6 +1,6 @@
 ---
-eigenvalue: '0xF0FFF0FF00000008'
-energy: 54
+eigenvalue: '0xF0FFF0FFFFFF000C'
+energy: 50
 x: 692
 'y': 383
 resonance: 1000
@@ -36,6 +36,10 @@ ex:
   - '0xFFFFF0FF0000000A'
   - '0xFFFFF0FF0000000C'
   - '0xFFFFF0FF0000000E'
+  - '0xF0FFF0FFFFFF000C'
+  - '0xF0FFF0FFFFFF000E'
+  - '0xF0FFF0FFFFFF0008'
+  - '0xF0FFF0FFFFFF000A'
 signals: []
 bond_strengths:
   '0x0000000000000A01': 0.9821521870514506
