@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WAIT IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772020636703
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE RECON WAIT",
       "mood": "DEFENSIVE",
@@ -150,6 +144,12 @@
       "text": "CONSUME BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020647768
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE HUNGER DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020648635
     }
   ]
 }
