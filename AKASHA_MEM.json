@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SYNC SYNC OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772041213348
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING FLOW RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BREACH SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772041218905
+    },
+    {
+      "origin": "PARASITE",
+      "text": "WAIT SHELTER WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041219418
     }
   ]
 }
