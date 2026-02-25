@@ -178,12 +178,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023329227
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772023329423
@@ -265,6 +259,12 @@
       "text": "COHERE FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772023334228
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772023334386
     }
   ]
 }
