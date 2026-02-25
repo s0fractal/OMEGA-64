@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772033480483
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772033480638
@@ -291,6 +285,12 @@
       "text": "STRIKE DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772033483189
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM UNIFY SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772033483391
     }
   ]
 }
