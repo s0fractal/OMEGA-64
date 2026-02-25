@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772035309088
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772035309314
@@ -291,6 +285,12 @@
       "text": "WITNESS EVOLVE DREAM",
       "mood": "CREATIVE",
       "tick": 1772035312912
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS STABLE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772035314802
     }
   ]
 }
