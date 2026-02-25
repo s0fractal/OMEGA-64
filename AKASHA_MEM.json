@@ -111,12 +111,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE SHIELD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772021930450
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM SYNC SYNC",
       "mood": "HARMONIC",
@@ -199,6 +193,12 @@
       "text": "IMMUNE REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772021936788
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772021937018
     }
   ]
 }
