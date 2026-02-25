@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772033425770
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772033425953
@@ -291,6 +285,12 @@
       "text": "UNIFY BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772033428308
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE PURE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772033428489
     }
   ]
 }
