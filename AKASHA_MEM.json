@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041506162
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE SICKNESS DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STASIS WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041509908
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772041510042
     }
   ]
 }
