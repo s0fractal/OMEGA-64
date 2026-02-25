@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772027503663
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772027510954
@@ -291,6 +285,12 @@
       "text": "CONSUME BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772027530078
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE REFLECT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772027530353
     }
   ]
 }
