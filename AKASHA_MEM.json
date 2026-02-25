@@ -49,12 +49,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "PURE WATCH WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020145030
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HUNGER SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020145754
@@ -136,6 +130,12 @@
       "text": "STASIS GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772020153212
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772020155219
     }
   ]
 }
