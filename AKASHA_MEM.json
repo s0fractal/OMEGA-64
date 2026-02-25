@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME CONSUME SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034356042
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772034356236
@@ -291,6 +285,12 @@
       "text": "GIVING HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772034359098
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SEIZE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034359260
     }
   ]
 }
