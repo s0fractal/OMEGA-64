@@ -132,12 +132,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022347767
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022348194
@@ -219,6 +213,12 @@
       "text": "SHOCK SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772022351521
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH HUNGER SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022351732
     }
   ]
 }
