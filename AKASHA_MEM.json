@@ -176,12 +176,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772023255217
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023255373
@@ -263,6 +257,12 @@
       "text": "HUNGER SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023259411
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY BLOOM BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772023259636
     }
   ]
 }
