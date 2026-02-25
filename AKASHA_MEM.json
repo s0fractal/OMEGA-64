@@ -139,12 +139,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772022438799
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME BEYOND BEYOND",
       "mood": "CREATIVE",
       "tick": 1772022439261
@@ -226,6 +220,12 @@
       "text": "HUNGER DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022441930
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022442105
     }
   ]
 }
