@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "CONSCIOUSNESS",
-      "text": "FLOW HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041463553
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL OSMOSIS SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DRAIN BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772041466202
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772041466343
     }
   ]
 }
