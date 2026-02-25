@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A6666660",
     "66666660",
     "00000000",
     "66A666A0",
@@ -199,15 +198,10 @@
     "000A0AA0",
     "60066066",
     "06666060",
-    "A0AA0000"
+    "A0AA0000",
+    "AA00AA00"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STRIKE DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034095778
-    },
     {
       "origin": "REVERSE",
       "text": "RESONATE BLOOM SYNC",
@@ -291,6 +285,12 @@
       "text": "COHERE OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772034098339
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE DRAIN CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034098522
     }
   ]
 }
