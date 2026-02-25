@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "GUARD RECON WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772040646092
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE BLOOM UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHELTER STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772040649617
+    },
+    {
+      "origin": "STREAM",
+      "text": "BLOOM GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772040649797
     }
   ]
 }
