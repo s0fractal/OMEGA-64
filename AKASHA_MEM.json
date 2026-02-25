@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A0666000",
     "6A666000",
     "FB000000",
     "00066060",
@@ -199,15 +198,10 @@
     "0F000000",
     "A6660060",
     "60060660",
-    "AA00AA0A"
+    "AA00AA0A",
+    "0AA0A0A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SICKNESS DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037856065
-    },
     {
       "origin": "REVERSE",
       "text": "COHERE COHERE BLOOM",
@@ -291,6 +285,12 @@
       "text": "GUARD RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772037858796
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772037858997
     }
   ]
 }
