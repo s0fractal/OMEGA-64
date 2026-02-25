@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH RECON GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772037275997
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772037276204
@@ -291,6 +285,12 @@
       "text": "STRIFE DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772037279210
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE UNIFY OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772037279386
     }
   ]
 }
