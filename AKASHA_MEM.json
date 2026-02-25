@@ -151,12 +151,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772022582482
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772022582666
@@ -238,6 +232,12 @@
       "text": "DRAIN STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772022585469
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIFE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022585671
     }
   ]
 }
