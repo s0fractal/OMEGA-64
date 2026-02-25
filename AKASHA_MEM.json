@@ -51,12 +51,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WATCH REFLECT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772020290735
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HEAL STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772020291251
@@ -138,6 +132,12 @@
       "text": "SICKNESS STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020302209
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SEIZE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020303504
     }
   ]
 }
