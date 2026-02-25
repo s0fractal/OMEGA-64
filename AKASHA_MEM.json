@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "AWAKEN WITNESS WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772033179003
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772033179144
@@ -291,6 +285,12 @@
       "text": "REFLECT WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772033184553
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY GIVING HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772033184805
     }
   ]
 }
