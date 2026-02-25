@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040492887
-    },
-    {
       "origin": "INTERFACE",
       "text": "UNIFY UNIFY RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHELTER IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772040495784
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040496195
     }
   ]
 }
