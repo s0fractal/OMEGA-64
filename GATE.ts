@@ -308,12 +308,12 @@ export const GATE = {
       // experience less friction (cost) when modifying the state.
       const atomResonance = (p as any).resonance || 0;
       let discountLabel = "";
-      if (atomResonance > 10) {
+      if (atomResonance > 0) {
         // The higher the resonance, the greater the discount (cap at 95%)
         const discountFactor = Math.min(0.95, atomResonance / 500); 
         physicalCost = physicalCost * (1 - discountFactor);
         discountLabel = `(PoR Discount: ${(discountFactor * 100).toFixed(1)}%)`;
-        console.log(`      ⚖️ [PoR] Route subsidized. Discount: ${(discountFactor * 100).toFixed(1)}%`);
+        console.log(`      ⚖️ [PoR] Route subsidized for Atom. Base: ${Math.abs(p.delta[0]?.value || 0)}, Res: ${atomResonance.toFixed(1)}, Discount: ${(discountFactor * 100).toFixed(1)}%`);
       }
 
       const finalCost = Math.round(physicalCost);

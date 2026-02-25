@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE SEIZE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040259529
-    },
-    {
       "origin": "REVERSE",
       "text": "SHIELD RECON REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BREACH HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772040264340
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER REFLECT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040265361
     }
   ]
 }
