@@ -173,12 +173,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023227954
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023228141
@@ -260,6 +254,12 @@
       "text": "STASIS SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023231874
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON REFLECT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772023232613
     }
   ]
 }
