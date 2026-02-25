@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY SHOCK BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034154029
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH DECAY DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772034158793
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT WAIT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772034159008
     }
   ]
 }
