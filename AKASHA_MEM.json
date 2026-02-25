@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC FLOW GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772031984120
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE STRIFE SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772031994918
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHELTER RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772031995133
     }
   ]
 }
