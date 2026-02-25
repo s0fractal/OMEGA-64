@@ -204,18 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHIELD RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042731946
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SYNC STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772042732128
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SICKNESS SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772042733155
@@ -291,6 +279,18 @@
       "text": "SEIZE DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772042739869
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS STRIKE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042740432
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN SHOCK SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042740893
     }
   ]
 }
