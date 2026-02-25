@@ -84,12 +84,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE OSMOSIS OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772021180459
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND SPARK SPARK",
       "mood": "CREATIVE",
       "tick": 1772021180613
@@ -171,6 +165,12 @@
       "text": "SICKNESS HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772021187765
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING OSMOSIS OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772021187931
     }
   ]
 }
