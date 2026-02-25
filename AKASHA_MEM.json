@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA000A00",
     "6A6A66A0",
     "60000A00",
     "AABB0000",
@@ -199,15 +198,10 @@
     "06060660",
     "00006000",
     "60060600",
-    "A00A0AA0"
+    "A00A0AA0",
+    "06660600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "DRAIN STRIFE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024801293
-    },
     {
       "origin": "REVERSE",
       "text": "GUARD GUARD RECON",
@@ -291,6 +285,12 @@
       "text": "STABLE BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772024821030
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM GIVING COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772024821711
     }
   ]
 }
