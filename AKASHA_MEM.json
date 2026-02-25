@@ -183,12 +183,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE FLOW HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772023577099
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH SHIELD WAIT",
       "mood": "DEFENSIVE",
@@ -271,6 +265,12 @@
       "text": "BLOOM BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772023580713
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW RESONATE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772023581988
     }
   ]
 }
