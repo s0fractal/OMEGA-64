@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIFE DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040675136
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS UNIFY SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "CONSUME CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772040678023
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772040678167
     }
   ]
 }
