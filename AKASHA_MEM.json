@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA000AAA",
     "AAA0AA0A",
     "AA0A000A",
     "660000A6",
@@ -199,15 +198,10 @@
     "00F0000F",
     "00066660",
     "AABBC0DD",
-    "66000060"
+    "66000060",
+    "AABB0CDD"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RECON SHIELD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772031167437
-    },
     {
       "origin": "REVERSE",
       "text": "PURE WAIT SHIELD",
@@ -291,6 +285,12 @@
       "text": "HEAL FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772031171613
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY CONSUME STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031171952
     }
   ]
 }
