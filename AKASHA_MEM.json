@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039209416
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772039209636
@@ -291,6 +285,12 @@
       "text": "WATCH REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772039212357
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772039212560
     }
   ]
 }
