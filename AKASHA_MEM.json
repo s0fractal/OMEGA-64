@@ -159,12 +159,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772022785057
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772022786653
@@ -246,6 +240,12 @@
       "text": "DRAIN STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772022792797
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD REFLECT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022793277
     }
   ]
 }
