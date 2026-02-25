@@ -78,12 +78,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "IMMUNE RECON GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021043199
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHOCK DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772021043898
@@ -165,6 +159,12 @@
       "text": "UNIFY FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772021050369
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER STRIKE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021050550
     }
   ]
 }
