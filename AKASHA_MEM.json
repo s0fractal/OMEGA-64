@@ -38,12 +38,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HEAL RESONATE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772019790816
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "PURE GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772019791326
@@ -125,6 +119,12 @@
       "text": "STABLE BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772019800008
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772019800454
     }
   ]
 }
