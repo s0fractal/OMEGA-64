@@ -137,12 +137,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHOCK SEIZE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022423603
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SYNC OSMOSIS BLOOM",
       "mood": "HARMONIC",
@@ -225,6 +219,12 @@
       "text": "FLOW COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772022427413
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772022427608
     }
   ]
 }
