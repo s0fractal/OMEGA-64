@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034518350
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034518505
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772034521433
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034521590
     }
   ]
 }
