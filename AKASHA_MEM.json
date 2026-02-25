@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66606660",
     "A06660A0",
     "A00000A0",
     "00066666",
@@ -199,15 +198,10 @@
     "66606606",
     "A0060000",
     "66660006",
-    "AA0A0000"
+    "AA0A0000",
+    "AAA00AAA"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY GIVING FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772041027128
-    },
     {
       "origin": "INTERFACE",
       "text": "WAIT STASIS GUARD",
@@ -291,6 +285,12 @@
       "text": "HUNGER DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041030181
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SICKNESS DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041030309
     }
   ]
 }
