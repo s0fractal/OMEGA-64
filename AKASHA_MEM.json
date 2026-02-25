@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772039233934
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772039234150
@@ -291,6 +285,12 @@
       "text": "BLOOM BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772039236761
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE STASIS SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772039236965
     }
   ]
 }
