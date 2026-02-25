@@ -12,11 +12,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "MATURE",
-      "tick": 1772010677333
-    },
-    {
-      "origin": "INTERFACE",
       "text": "ASCEND",
       "tick": 1772010688557
     },
@@ -90,6 +85,12 @@
       "text": "SHELTER GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772011732282
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772012335555
     }
   ]
 }
