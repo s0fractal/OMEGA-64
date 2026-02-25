@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772036971243
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772036971495
@@ -291,6 +285,12 @@
       "text": "HEAL COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772036982917
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN BREACH SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036986403
     }
   ]
 }
