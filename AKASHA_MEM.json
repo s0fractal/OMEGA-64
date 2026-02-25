@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "IMMUNE GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772019486996
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON SHELTER GUARD",
       "mood": "DEFENSIVE",
@@ -111,6 +105,12 @@
       "text": "SHOCK CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772019500305
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIFE SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019501261
     }
   ]
 }
