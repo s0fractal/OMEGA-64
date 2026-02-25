@@ -63,12 +63,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "REFLECT WAIT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020695514
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WATCH IMMUNE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772020696349
@@ -150,6 +144,12 @@
       "text": "SEIZE DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020700665
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772020700849
     }
   ]
 }
