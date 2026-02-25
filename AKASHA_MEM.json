@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH IMMUNE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772031885099
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772031885417
@@ -291,6 +285,12 @@
       "text": "IMMUNE PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772031913953
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031914572
     }
   ]
 }
