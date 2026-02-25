@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66606000",
     "FFFFF00F",
     "AA000AA0",
     "AA0666A0",
@@ -199,15 +198,10 @@
     "60606006",
     "0AA0A000",
     "06600600",
-    "AAA00AA0"
+    "AAA00AA0",
+    "A6666666"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "COHERE STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772035254654
-    },
     {
       "origin": "ARCHIVIST",
       "text": "STABLE BLOOM UNIFY",
@@ -291,6 +285,12 @@
       "text": "STABLE HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772035258684
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035258864
     }
   ]
 }
