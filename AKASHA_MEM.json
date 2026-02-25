@@ -71,12 +71,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HUNGER DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020915249
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN HUNGER BREACH",
       "mood": "AGGRESSIVE",
@@ -159,6 +153,12 @@
       "text": "SICKNESS SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020920599
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772020920766
     }
   ]
 }
