@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON WATCH REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772035944255
-    },
-    {
-      "origin": "REVERSE",
       "text": "AWAKEN EVOLVE FORGE",
       "mood": "CREATIVE",
       "tick": 1772035944491
@@ -291,6 +285,12 @@
       "text": "SEIZE DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772035950309
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD REFLECT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772035950493
     }
   ]
 }
