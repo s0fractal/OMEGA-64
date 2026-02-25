@@ -47,12 +47,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SEIZE CONSUME SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020106503
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WATCH IMMUNE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772020107213
@@ -134,6 +128,12 @@
       "text": "RESONATE OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772020116799
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020117112
     }
   ]
 }
