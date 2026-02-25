@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SYNC COHERE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772036323040
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK HUNGER BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772036326766
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772036326939
     }
   ]
 }
