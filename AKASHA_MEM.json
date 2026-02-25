@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SPARK BECOME EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772038645663
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772038645828
@@ -291,6 +285,12 @@
       "text": "OSMOSIS RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772038648401
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DRAIN STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038648603
     }
   ]
 }
