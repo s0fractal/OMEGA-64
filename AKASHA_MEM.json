@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE HEAL UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772040374208
-    },
-    {
       "origin": "STREAM",
       "text": "STABLE HEAL COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DRAIN HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040379803
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE BREACH STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040380561
     }
   ]
 }
