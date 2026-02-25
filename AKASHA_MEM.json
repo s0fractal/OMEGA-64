@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY SHOCK SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038601779
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "UNIFY STABLE GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DECAY STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772038606479
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHIELD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772038606739
     }
   ]
 }
