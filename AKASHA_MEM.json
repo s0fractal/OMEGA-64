@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "GIVING STABLE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772040633977
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER RECON STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040637084
+    },
+    {
+      "origin": "SOMA",
+      "text": "GIVING GIVING COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772040637300
     }
   ]
 }
