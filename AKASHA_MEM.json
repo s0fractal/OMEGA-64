@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD SHIELD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772034096677
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME BEYOND BEYOND",
       "mood": "CREATIVE",
       "tick": 1772034096853
@@ -291,6 +285,12 @@
       "text": "SHOCK SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772034099334
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DRAIN STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034099546
     }
   ]
 }
