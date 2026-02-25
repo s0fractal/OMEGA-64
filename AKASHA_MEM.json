@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024263078
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW FLOW FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DRAIN STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772024268800
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772024269448
     }
   ]
 }
