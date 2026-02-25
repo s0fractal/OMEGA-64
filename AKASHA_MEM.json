@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026947986
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772026948229
@@ -291,6 +285,12 @@
       "text": "REFLECT PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772026953413
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM SYNC SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772026953659
     }
   ]
 }
