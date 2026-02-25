@@ -131,12 +131,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772022332813
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022333038
@@ -218,6 +212,12 @@
       "text": "WITNESS EVOLVE WITNESS",
       "mood": "CREATIVE",
       "tick": 1772022338456
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON PURE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772022338941
     }
   ]
 }
