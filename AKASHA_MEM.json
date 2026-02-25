@@ -52,12 +52,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHELTER SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772020326646
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BREACH SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772020328126
@@ -139,6 +133,12 @@
       "text": "HUNGER DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020335203
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD SHELTER IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020335368
     }
   ]
 }
