@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772032258380
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772032258886
@@ -291,6 +285,12 @@
       "text": "STRIFE HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772032264034
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHELTER GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772032264258
     }
   ]
 }
