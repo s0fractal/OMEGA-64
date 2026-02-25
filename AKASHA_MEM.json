@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772026608046
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772026608319
@@ -291,6 +285,12 @@
       "text": "CONSUME SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772026611855
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772026612227
     }
   ]
 }
