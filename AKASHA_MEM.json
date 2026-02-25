@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE STABLE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772022198921
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022199079
@@ -213,6 +207,12 @@
       "text": "GUARD REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022204920
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE STASIS RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772022205162
     }
   ]
 }
