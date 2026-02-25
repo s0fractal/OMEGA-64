@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "WAIT SHELTER GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772037997129
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER WATCH WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BREACH DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772038000865
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772038001125
     }
   ]
 }
