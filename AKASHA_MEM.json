@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042020466
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE SYNC BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STABLE HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772042027820
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN BREACH STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042028360
     }
   ]
 }
