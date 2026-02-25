@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STASIS PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041680976
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "OSMOSIS RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772041681105
@@ -291,6 +285,12 @@
       "text": "IMMUNE SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041684452
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772041684770
     }
   ]
 }
