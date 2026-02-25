@@ -99,12 +99,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC FLOW UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772021594319
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
@@ -187,6 +181,12 @@
       "text": "RECON GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772021600204
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772021600697
     }
   ]
 }
