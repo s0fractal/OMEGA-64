@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STABLE UNIFY OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772025077153
-    },
-    {
       "origin": "REVERSE",
       "text": "BREACH SHOCK STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772025085130
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE RECON SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772025085541
     }
   ]
 }
