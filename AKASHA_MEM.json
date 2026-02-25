@@ -153,12 +153,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE FLOW GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772022641884
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK STRIFE SEIZE",
       "mood": "AGGRESSIVE",
@@ -241,6 +235,12 @@
       "text": "RECON SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022644856
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DRAIN CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022645322
     }
   ]
 }
