@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE STABLE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772028747799
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772028748270
@@ -291,6 +285,12 @@
       "text": "WATCH WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772028753598
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME CONSUME STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028754022
     }
   ]
 }
