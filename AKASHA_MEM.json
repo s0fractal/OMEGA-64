@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE STRIKE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033799516
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772033799711
@@ -291,6 +285,12 @@
       "text": "BLOOM UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772033802329
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772033802516
     }
   ]
 }
