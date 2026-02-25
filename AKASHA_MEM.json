@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS RECON PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772033163776
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772033163952
@@ -291,6 +285,12 @@
       "text": "BLOOM STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772033166268
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT PURE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772033166530
     }
   ]
 }
