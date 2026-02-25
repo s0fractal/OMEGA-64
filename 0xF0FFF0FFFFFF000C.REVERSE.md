@@ -2,7 +2,7 @@
 eigenvalue: '0xF0FFF0FFFFFF000C'
 energy: 49.9
 resonance: 30
-x: 716
+x: 726
 'y': 388
 symbol: ARCHIVIST
 thought: ORBIT_PASSIVE
