@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040553281
-    },
-    {
       "origin": "INTERFACE",
       "text": "GIVING HEAL RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SYNC RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772040556462
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SICKNESS HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040556620
     }
   ]
 }
