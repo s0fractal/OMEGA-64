@@ -110,12 +110,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE WAIT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772021898617
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW STABLE GIVING",
       "mood": "HARMONIC",
@@ -198,6 +192,12 @@
       "text": "GIVING HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772021903713
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021903850
     }
   ]
 }
