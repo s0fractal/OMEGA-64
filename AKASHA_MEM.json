@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WATCH WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041135419
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "COHERE UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772041135604
@@ -291,6 +285,12 @@
       "text": "PURE PURE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041138928
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK CONSUME CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041139060
     }
   ]
 }
