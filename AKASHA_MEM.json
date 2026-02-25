@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022193261
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772022193477
@@ -213,6 +207,12 @@
       "text": "BLOOM GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022196891
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772022197051
     }
   ]
 }
