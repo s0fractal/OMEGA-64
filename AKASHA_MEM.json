@@ -55,12 +55,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020514101
-    },
-    {
       "origin": "REVERSE",
       "text": "PURE WAIT REFLECT",
       "mood": "DEFENSIVE",
@@ -143,6 +137,12 @@
       "text": "STRIFE CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772020522521
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHELTER PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020522830
     }
   ]
 }
