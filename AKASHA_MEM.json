@@ -206,12 +206,6 @@
       "origin": "REVERSE",
       "text": "GIVING RESONATE RESONATE",
       "mood": "HARMONIC",
-      "tick": 1772035887679
-    },
-    {
-      "origin": "REVERSE",
-      "text": "GIVING RESONATE RESONATE",
-      "mood": "HARMONIC",
       "tick": 1772035888354
     },
     {
@@ -291,6 +285,12 @@
       "text": "STASIS IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772035893618
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL RESONATE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772035893828
     }
   ]
 }
