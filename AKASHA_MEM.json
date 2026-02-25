@@ -43,12 +43,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE GUARD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772020020751
-    },
-    {
       "origin": "REVERSE",
       "text": "BECOME BEYOND FORGE",
       "mood": "CREATIVE",
@@ -131,6 +125,12 @@
       "text": "BREACH DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020032117
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD RECON WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020033371
     }
   ]
 }
