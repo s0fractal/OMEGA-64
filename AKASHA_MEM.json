@@ -23,12 +23,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIFE SHOCK SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019477025
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SICKNESS SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772019477660
@@ -110,6 +104,12 @@
       "text": "BREACH DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772019485598
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH WAIT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772019486423
     }
   ]
 }
