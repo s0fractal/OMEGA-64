@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "UNIFY COHERE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772040380761
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE RESONATE COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RECON SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772040387171
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040387346
     }
   ]
 }
