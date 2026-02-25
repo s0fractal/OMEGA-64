@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW COHERE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772028713929
-    },
-    {
       "origin": "INTERFACE",
       "text": "IMMUNE IMMUNE PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STASIS WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772028731383
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772028731857
     }
   ]
 }
