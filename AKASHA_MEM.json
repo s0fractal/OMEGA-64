@@ -102,12 +102,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH IMMUNE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772021670199
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE BLOOM BLOOM",
       "mood": "HARMONIC",
@@ -190,6 +184,12 @@
       "text": "CONSUME SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772021675919
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW RESONATE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772021676072
     }
   ]
 }
