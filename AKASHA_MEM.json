@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WATCH RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772015897847
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT RECON WAIT",
       "mood": "DEFENSIVE",
@@ -107,6 +101,12 @@
       "text": "SICKNESS SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772015982234
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SEIZE BREACH CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772015984743
     }
   ]
 }
