@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS HEAL GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772036864792
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772036865034
@@ -291,6 +285,12 @@
       "text": "DREAM BEYOND SPARK",
       "mood": "CREATIVE",
       "tick": 1772036867726
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036867889
     }
   ]
 }
