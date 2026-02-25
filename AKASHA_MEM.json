@@ -177,12 +177,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023287546
-    },
-    {
-      "origin": "REVERSE",
       "text": "WITNESS BECOME VISION",
       "mood": "CREATIVE",
       "tick": 1772023287675
@@ -264,6 +258,12 @@
       "text": "CONSUME HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023290989
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER IMMUNE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023291198
     }
   ]
 }
