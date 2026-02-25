@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING FLOW FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772036228029
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772036228274
@@ -291,6 +285,12 @@
       "text": "WATCH GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772036232655
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIFE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036232854
     }
   ]
 }
