@@ -99,12 +99,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772021587297
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021587494
@@ -186,6 +180,12 @@
       "text": "DECAY DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772021593380
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC FLOW UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772021594319
     }
   ]
 }
