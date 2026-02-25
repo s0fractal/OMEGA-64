@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH SHIELD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772025228166
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772025228394
@@ -291,6 +285,12 @@
       "text": "OSMOSIS STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772025233613
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025233845
     }
   ]
 }
