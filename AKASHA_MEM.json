@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "EVOLVE BEYOND VISION",
-      "mood": "CREATIVE",
-      "tick": 1772037192491
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772037192702
@@ -291,6 +285,12 @@
       "text": "RESONATE UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772037195784
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037196036
     }
   ]
 }
