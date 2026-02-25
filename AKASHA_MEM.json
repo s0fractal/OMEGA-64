@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE STASIS RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772037837622
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772037837827
@@ -291,6 +285,12 @@
       "text": "COHERE FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772037844782
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE RESONATE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772037845023
     }
   ]
 }
