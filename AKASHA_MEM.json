@@ -80,12 +80,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SYNC OSMOSIS RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772021132774
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE SHOCK STRIFE",
       "mood": "AGGRESSIVE",
@@ -168,6 +162,12 @@
       "text": "SICKNESS DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021138936
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021139186
     }
   ]
 }
