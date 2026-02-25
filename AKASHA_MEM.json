@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033521773
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033521976
@@ -291,6 +285,12 @@
       "text": "REFLECT IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772033524430
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE BECOME FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772033524625
     }
   ]
 }
