@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772035813630
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772035813825
@@ -291,6 +285,12 @@
       "text": "STRIKE STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772035816591
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772035816769
     }
   ]
 }
