@@ -200,12 +200,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY FLOW HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772024038171
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772024038473
@@ -287,6 +281,12 @@
       "text": "HEAL UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772024040961
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024041125
     }
   ]
 }
