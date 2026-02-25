@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GIVING OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041413502
-    },
-    {
       "origin": "REVERSE",
       "text": "IMMUNE PURE SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772041416149
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE OSMOSIS RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772041416636
     }
   ]
 }
