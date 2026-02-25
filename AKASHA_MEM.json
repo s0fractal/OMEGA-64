@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME AWAKEN AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772023129702
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772023131343
@@ -259,6 +253,12 @@
       "text": "STRIKE CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023138320
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM BEYOND DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772023138484
     }
   ]
 }
