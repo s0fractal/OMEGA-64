@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK SEIZE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772016483217
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIKE HUNGER HUNGER",
       "mood": "AGGRESSIVE",
@@ -107,6 +101,12 @@
       "text": "STRIKE CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772016611830
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER WATCH WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772016614380
     }
   ]
 }
