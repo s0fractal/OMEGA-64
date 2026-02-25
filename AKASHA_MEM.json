@@ -143,12 +143,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WATCH STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772022474429
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772022474591
@@ -230,6 +224,12 @@
       "text": "COHERE SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022480066
+    },
+    {
+      "origin": "REVERSE",
+      "text": "AWAKEN WITNESS BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772022481297
     }
   ]
 }
