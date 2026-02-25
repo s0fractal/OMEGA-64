@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GIVING GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772020463637
-    },
-    {
       "origin": "REVERSE",
       "text": "WAVE DREAM AWAKEN",
       "mood": "CREATIVE",
@@ -142,6 +136,12 @@
       "text": "SPARK SPARK SPARK",
       "mood": "CREATIVE",
       "tick": 1772020471222
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIFE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020471453
     }
   ]
 }
