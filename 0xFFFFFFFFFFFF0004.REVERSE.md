@@ -1,7 +1,7 @@
 ---
-eigenvalue: '0xFFFFFFFF00000000'
-energy: 50
-x: 697
+eigenvalue: '0xFFFFFFFFFFFF0004'
+energy: 74
+x: 698
 'y': 398
 resonance: 1000
 thought: RESURRECTED
