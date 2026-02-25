@@ -105,12 +105,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER STRIFE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021709670
-    },
-    {
       "origin": "INTERFACE",
       "text": "FLOW UNIFY BLOOM",
       "mood": "HARMONIC",
@@ -193,6 +187,12 @@
       "text": "RESONATE HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772021716056
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021716223
     }
   ]
 }
