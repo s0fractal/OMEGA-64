@@ -181,12 +181,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY OSMOSIS FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772023414068
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772023414251
@@ -268,6 +262,12 @@
       "text": "SICKNESS BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772023418197
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WITNESS WAVE VISION",
+      "mood": "CREATIVE",
+      "tick": 1772023418513
     }
   ]
 }
