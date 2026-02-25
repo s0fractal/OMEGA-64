@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772033072415
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772033072650
@@ -291,6 +285,12 @@
       "text": "WAIT PURE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772033075602
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY BREACH STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033075780
     }
   ]
 }
