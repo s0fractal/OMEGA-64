@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041005600
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY COHERE STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772041008532
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH IMMUNE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772041008657
     }
   ]
 }
