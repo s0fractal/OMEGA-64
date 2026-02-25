@@ -180,12 +180,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772023400370
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023400544
@@ -267,6 +261,12 @@
       "text": "PURE GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023403359
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772023403576
     }
   ]
 }
