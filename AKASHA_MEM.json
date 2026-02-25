@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW SYNC SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772030258704
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772030259179
@@ -291,6 +285,12 @@
       "text": "FORGE AWAKEN BECOME",
       "mood": "CREATIVE",
       "tick": 1772030264647
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SHOCK BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030268373
     }
   ]
 }
