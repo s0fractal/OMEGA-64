@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772037657569
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772037657767
@@ -291,6 +285,12 @@
       "text": "GIVING SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772037660385
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772037660597
     }
   ]
 }
