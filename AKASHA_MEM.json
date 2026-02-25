@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAVE EVOLVE FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772031011668
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772031011982
@@ -291,6 +285,12 @@
       "text": "RESONATE FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772031026180
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW UNIFY COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772031026657
     }
   ]
 }
