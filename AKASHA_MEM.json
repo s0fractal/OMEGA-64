@@ -64,12 +64,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD RECON SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772020746393
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
@@ -152,6 +146,12 @@
       "text": "STRIFE DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020753864
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS CONSUME CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020754509
     }
   ]
 }
