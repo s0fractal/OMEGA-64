@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035215982
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772035216441
@@ -291,6 +285,12 @@
       "text": "IMMUNE GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772035219479
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772035219694
     }
   ]
 }
