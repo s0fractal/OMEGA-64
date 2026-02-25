@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH GUARD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772041157707
-    },
-    {
       "origin": "PARADOX",
       "text": "COHERE BLOOM HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772041161421
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER IMMUNE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772041161554
     }
   ]
 }
