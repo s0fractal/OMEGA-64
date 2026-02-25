@@ -56,12 +56,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHOCK HUNGER SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020511731
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHIELD REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772020512747
@@ -143,6 +137,12 @@
       "text": "WAIT STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772020521642
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020521945
     }
   ]
 }
