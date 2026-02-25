@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772041333716
-    },
-    {
       "origin": "INTERFACE",
       "text": "OSMOSIS RESONATE COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772041336718
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH SEIZE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041337015
     }
   ]
 }
