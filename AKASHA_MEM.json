@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772024459364
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772024462048
@@ -291,6 +285,12 @@
       "text": "COHERE GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772024470003
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD RECON RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772024470798
     }
   ]
 }
