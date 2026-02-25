@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD SHELTER STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772041942889
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN STRIFE STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772041948392
+    },
+    {
+      "origin": "STREAM",
+      "text": "WAIT REFLECT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772041948656
     }
   ]
 }
