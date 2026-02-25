@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "GIVING GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772041872343
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON STASIS WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772041877220
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GIVING STABLE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041877381
     }
   ]
 }
