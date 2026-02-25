@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK STRIKE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035469453
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS DECAY HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WATCH GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772035472565
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN CONSUME HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035472766
     }
   ]
 }
