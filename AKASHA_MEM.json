@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC SYNC HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772034861967
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772034862164
@@ -291,6 +285,12 @@
       "text": "UNIFY UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772034864774
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SICKNESS BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034864971
     }
   ]
 }
