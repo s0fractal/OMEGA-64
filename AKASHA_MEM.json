@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME HUNGER SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036503854
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772036504171
@@ -291,6 +285,12 @@
       "text": "STRIKE BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772036508906
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM WITNESS VISION",
+      "mood": "CREATIVE",
+      "tick": 1772036509224
     }
   ]
 }
