@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON SHELTER RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772034223159
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772034223367
@@ -291,6 +285,12 @@
       "text": "FLOW RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034226578
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034226759
     }
   ]
 }
