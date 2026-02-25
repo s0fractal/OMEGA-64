@@ -183,12 +183,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER REFLECT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023573326
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE RESONATE STABLE",
       "mood": "HARMONIC",
@@ -271,6 +265,12 @@
       "text": "COHERE FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772023577099
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHIELD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023577672
     }
   ]
 }
