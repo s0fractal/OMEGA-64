@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "FLOW STABLE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772040623341
-    },
-    {
       "origin": "IS_ISO",
       "text": "PURE WATCH GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772040625830
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE VISION WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772040626428
     }
   ]
 }
