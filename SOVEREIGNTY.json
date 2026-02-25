@@ -1,6 +1,6 @@
 {
   "activeDecree": "VOID_STASIS",
-  "regent": "0xF0FF0FFF00000000",
+  "regent": "0xFF00FFFFFFFF0008",
   "legitimacy": 1000,
   "label": "VOID STASIS",
   "mods": {

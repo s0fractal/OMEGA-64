@@ -122,12 +122,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772022140202
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY SHOCK STRIFE",
       "mood": "AGGRESSIVE",
@@ -210,6 +204,12 @@
       "text": "SEIZE BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022145747
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS OSMOSIS HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772022146294
     }
   ]
 }
