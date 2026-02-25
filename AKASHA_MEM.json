@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_REVERSE",
-      "text": "WAVE BECOME DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772037904009
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE UNIFY FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772037907012
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER GUARD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772037907181
     }
   ]
 }
