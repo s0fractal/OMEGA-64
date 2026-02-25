@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY COHERE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772033887629
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772033887841
@@ -291,6 +285,12 @@
       "text": "CONSUME DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772033891564
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK BEYOND BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772033891758
     }
   ]
 }
