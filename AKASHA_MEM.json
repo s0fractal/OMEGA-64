@@ -33,12 +33,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DRAIN BREACH SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019712144
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BREACH STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772019712633
@@ -120,6 +114,12 @@
       "text": "SYNC FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772019723207
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE RECON GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772019724066
     }
   ]
 }
