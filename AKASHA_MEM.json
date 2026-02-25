@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DREAM FORGE AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772034986885
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE SHELTER SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772034989455
@@ -291,6 +285,12 @@
       "text": "WAIT SHIELD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772034992751
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING OSMOSIS UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772034992957
     }
   ]
 }
