@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAA0A0AA",
     "66666600",
     "00AAAAAA",
     "0B0A0000",
@@ -199,15 +198,10 @@
     "66006606",
     "06066600",
     "0A0A0A00",
-    "06600660"
+    "06600660",
+    "AA0A0000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "IMMUNE SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772033718312
-    },
     {
       "origin": "REVERSE",
       "text": "STABLE HEAL FLOW",
@@ -291,6 +285,12 @@
       "text": "STRIKE SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772033727247
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME HUNGER CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033727438
     }
   ]
 }
