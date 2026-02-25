@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE HUNGER SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038345310
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772038345660
@@ -291,6 +285,12 @@
       "text": "SYNC COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772038350802
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038351074
     }
   ]
 }
