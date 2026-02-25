@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031302784
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772031303397
@@ -291,6 +285,12 @@
       "text": "SPARK FORGE AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772031320354
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS STASIS WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772031320949
     }
   ]
 }
