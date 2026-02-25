@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM SYNC SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772033014949
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772033015122
@@ -291,6 +285,12 @@
       "text": "DECAY BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772033018726
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND SPARK AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772033018954
     }
   ]
 }
