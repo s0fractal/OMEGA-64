@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772028604047
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE BREACH CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WATCH SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772028615269
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE RECON SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772028616083
     }
   ]
 }
