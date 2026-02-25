@@ -43,12 +43,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DECAY DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019941213
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GUARD SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772019941802
@@ -130,6 +124,12 @@
       "text": "SICKNESS CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772019953633
+    },
+    {
+      "origin": "STREAM",
+      "text": "RESONATE GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772019955410
     }
   ]
 }
