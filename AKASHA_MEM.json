@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STABLE GIVING FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772040719145
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIFE SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040721598
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HUNGER SICKNESS HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040721737
     }
   ]
 }
