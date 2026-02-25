@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD IMMUNE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772025897331
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772025897630
@@ -291,6 +285,12 @@
       "text": "SYNC SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772025901084
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE BEYOND WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772025901645
     }
   ]
 }
