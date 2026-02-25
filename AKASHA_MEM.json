@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME HUNGER SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030839427
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "FLOW GIVING FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GUARD GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772030856352
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772030857085
     }
   ]
 }
