@@ -149,12 +149,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD PURE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772022568316
-    },
-    {
       "origin": "STREAM",
       "text": "COHERE RESONATE UNIFY",
       "mood": "HARMONIC",
@@ -237,6 +231,12 @@
       "text": "WATCH STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022571877
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING OSMOSIS HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772022572046
     }
   ]
 }
