@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772040377668
-    },
-    {
       "origin": "REVERSE",
       "text": "IMMUNE RECON SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040385823
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS STABLE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772040386006
     }
   ]
 }
