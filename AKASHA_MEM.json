@@ -56,12 +56,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020532346
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RECON REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020532963
@@ -143,6 +137,12 @@
       "text": "WITNESS EVOLVE BEYOND",
       "mood": "CREATIVE",
       "tick": 1772020541360
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020541499
     }
   ]
 }
