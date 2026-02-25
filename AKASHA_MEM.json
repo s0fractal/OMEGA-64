@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS FLOW UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772032723750
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772032723941
@@ -291,6 +285,12 @@
       "text": "BECOME BEYOND AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772032726479
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032726642
     }
   ]
 }
