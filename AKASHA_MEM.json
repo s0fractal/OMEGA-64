@@ -58,12 +58,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE PURE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020577036
-    },
-    {
       "origin": "PARADOX",
       "text": "BECOME FORGE EVOLVE",
       "mood": "CREATIVE",
@@ -146,6 +140,12 @@
       "text": "RECON SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020583046
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DECAY SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020584092
     }
   ]
 }
