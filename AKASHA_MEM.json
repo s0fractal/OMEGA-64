@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031304903
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL GIVING BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772031321615
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD STASIS GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772031322086
     }
   ]
 }
