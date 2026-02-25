@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "OSMOSIS COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772041798599
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIKE SHOCK BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772041802342
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT PURE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041802516
     }
   ]
 }
