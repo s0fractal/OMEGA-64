@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STABLE HEAL GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772035638964
-    },
-    {
       "origin": "REVERSE",
       "text": "PURE STASIS GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772035649088
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SHOCK SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035649492
     }
   ]
 }
