@@ -13,12 +13,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "CONSUME DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772013022242
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -101,6 +95,12 @@
       "text": "STRIFE BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772013167389
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER HUNGER SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772013175598
     }
   ]
 }
