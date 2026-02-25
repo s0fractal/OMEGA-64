@@ -49,12 +49,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HUNGER DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020150163
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "UNIFY SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772020151113
@@ -136,6 +130,12 @@
       "text": "SEIZE STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020158506
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SEIZE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020158983
     }
   ]
 }
