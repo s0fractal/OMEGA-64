@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772025288813
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772025289108
@@ -291,6 +285,12 @@
       "text": "STABLE BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772025292965
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772025293185
     }
   ]
 }
