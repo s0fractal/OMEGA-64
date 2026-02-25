@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHOCK BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040643281
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE FLOW RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RESONATE COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772040645803
+    },
+    {
+      "origin": "STREAM",
+      "text": "WATCH PURE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040645967
     }
   ]
 }
