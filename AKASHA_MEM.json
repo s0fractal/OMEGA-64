@@ -50,12 +50,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "FORGE AWAKEN SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772020285984
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME DRAIN HUNGER",
       "mood": "AGGRESSIVE",
@@ -138,6 +132,12 @@
       "text": "RESONATE RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772020293725
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020295434
     }
   ]
 }
