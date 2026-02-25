@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STABLE BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040384142
-    },
-    {
       "origin": "REVERSE",
       "text": "BECOME DREAM WAVE",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772040388177
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS FLOW GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772040390068
     }
   ]
 }
