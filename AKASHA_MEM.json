@@ -197,12 +197,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772024010219
-    },
-    {
       "origin": "INTERFACE",
       "text": "BLOOM GIVING BLOOM",
       "mood": "HARMONIC",
@@ -285,6 +279,12 @@
       "text": "IMMUNE IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772024014394
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772024014538
     }
   ]
 }
