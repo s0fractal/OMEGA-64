@@ -186,12 +186,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD WATCH REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023607775
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772023607948
@@ -273,6 +267,12 @@
       "text": "SHOCK SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023611213
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DRAIN SICKNESS SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023611401
     }
   ]
 }
