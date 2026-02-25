@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS VISION BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772037022711
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772037022918
@@ -291,6 +285,12 @@
       "text": "RESONATE UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772037028022
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME BREACH SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037028436
     }
   ]
 }
