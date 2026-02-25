@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "VISION BECOME BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772024144665
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772024144785
@@ -291,6 +285,12 @@
       "text": "FLOW COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772024148787
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772024148941
     }
   ]
 }
