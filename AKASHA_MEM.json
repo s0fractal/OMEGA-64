@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772025642224
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772025642427
@@ -291,6 +285,12 @@
       "text": "CONSUME SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772025648897
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772025649665
     }
   ]
 }
