@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772026956577
-    },
-    {
-      "origin": "REVERSE",
       "text": "AWAKEN EVOLVE FORGE",
       "mood": "CREATIVE",
       "tick": 1772026956795
@@ -291,6 +285,12 @@
       "text": "SYNC COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772026962068
+    },
+    {
+      "origin": "STREAM",
+      "text": "COHERE OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772026962296
     }
   ]
 }
