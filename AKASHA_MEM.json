@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "GUARD PURE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041562771
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE IMMUNE STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772041565851
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH SHIELD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041565997
     }
   ]
 }
