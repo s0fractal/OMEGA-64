@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STASIS PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772041353886
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GUARD SHIELD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041354233
@@ -291,6 +285,12 @@
       "text": "GUARD RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041358955
+    },
+    {
+      "origin": "PARADOX",
+      "text": "DRAIN DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041359122
     }
   ]
 }
