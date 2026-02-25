@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE RESONATE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772027706827
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772027707274
@@ -291,6 +285,12 @@
       "text": "BREACH DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772027715203
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027716582
     }
   ]
 }
