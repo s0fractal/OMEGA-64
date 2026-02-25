@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772030992450
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "FLOW FLOW COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WATCH STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772031002895
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD REFLECT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772031003735
     }
   ]
 }
