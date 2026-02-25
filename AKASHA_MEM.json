@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772034092444
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772034092635
@@ -291,6 +285,12 @@
       "text": "DREAM SPARK EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772034095202
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW STABLE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772034095394
     }
   ]
 }
