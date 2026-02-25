@@ -23,12 +23,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SICKNESS SHOCK STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019477660
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SEIZE BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772019478143
@@ -110,6 +104,12 @@
       "text": "WATCH WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772019486423
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "IMMUNE GUARD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772019486996
     }
   ]
 }
