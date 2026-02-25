@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME EVOLVE WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772040231819
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772040231990
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040240036
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772040240236
     }
   ]
 }
