@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SEIZE SHOCK STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022208756
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HUNGER STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772022208954
@@ -213,6 +207,12 @@
       "text": "WATCH SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022212846
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772022213385
     }
   ]
 }
