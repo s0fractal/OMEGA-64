@@ -192,12 +192,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SEIZE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023787706
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023787881
@@ -279,6 +273,12 @@
       "text": "COHERE UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772023790985
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD PURE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772023791170
     }
   ]
 }
