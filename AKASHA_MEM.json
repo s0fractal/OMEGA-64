@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772036946078
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772036946296
@@ -291,6 +285,12 @@
       "text": "STABLE BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772036949611
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIKE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036949790
     }
   ]
 }
