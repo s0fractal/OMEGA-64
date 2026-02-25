@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772036697182
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772036697412
@@ -291,6 +285,12 @@
       "text": "SEIZE CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772036700238
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772036700457
     }
   ]
 }
