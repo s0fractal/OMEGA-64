@@ -189,12 +189,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON PURE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772023688572
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772023688803
@@ -276,6 +270,12 @@
       "text": "DECAY SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023696434
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DRAIN CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023696688
     }
   ]
 }
