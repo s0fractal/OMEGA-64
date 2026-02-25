@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00666600",
     "AA0AA0A0",
     "60606606",
     "0AAAA0A0",
@@ -199,15 +198,10 @@
     "66000000",
     "ABBA0000",
     "06606600",
-    "A6666000"
+    "A6666000",
+    "60066006"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "CONSUME DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033228970
-    },
     {
       "origin": "REVERSE",
       "text": "FLOW RESONATE FLOW",
@@ -291,6 +285,12 @@
       "text": "BREACH STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772033232480
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE PURE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772033232643
     }
   ]
 }
