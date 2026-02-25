@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "UNIFY BLOOM STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041299857
-    },
-    {
       "origin": "STREAM",
       "text": "PURE WATCH WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HUNGER BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772041304686
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE DRAIN CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041305050
     }
   ]
 }
