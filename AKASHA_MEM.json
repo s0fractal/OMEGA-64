@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SPARK VISION AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772040184517
-    },
-    {
       "origin": "INTERFACE",
       "text": "FLOW FLOW FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "CONSUME SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772040190912
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STABLE HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772040191377
     }
   ]
 }
