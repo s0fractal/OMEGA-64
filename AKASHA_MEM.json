@@ -101,12 +101,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021620977
-    },
-    {
       "origin": "PARADOX",
       "text": "HEAL RESONATE HEAL",
       "mood": "HARMONIC",
@@ -189,6 +183,12 @@
       "text": "FLOW OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772021625846
+    },
+    {
+      "origin": "REVERSE",
+      "text": "AWAKEN FORGE DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772021626142
     }
   ]
 }
