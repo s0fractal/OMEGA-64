@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033222629
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772033222850
@@ -291,6 +285,12 @@
       "text": "SYNC SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772033225812
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING COHERE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772033225991
     }
   ]
 }
