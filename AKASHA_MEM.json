@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA666660",
     "06060600",
     "0AAAA00A",
     "66060006",
@@ -199,15 +198,10 @@
     "A6060666",
     "6060A660",
     "A0A0AAAA",
-    "60600000"
+    "60600000",
+    "AAAA00A0"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "WATCH STASIS SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040825732
-    },
     {
       "origin": "ARCHIVIST",
       "text": "STASIS PURE REFLECT",
@@ -291,6 +285,12 @@
       "text": "STABLE RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772040829857
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME BREACH BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040830049
     }
   ]
 }
