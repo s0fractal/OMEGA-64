@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041212018
-    },
-    {
       "origin": "STREAM",
       "text": "HEAL SYNC GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIKE BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772041216278
+    },
+    {
+      "origin": "IS_ISO",
+      "text": "SHIELD WATCH SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772041216543
     }
   ]
 }
