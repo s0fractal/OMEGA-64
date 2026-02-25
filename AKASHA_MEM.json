@@ -183,12 +183,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023537796
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772023538278
@@ -270,6 +264,12 @@
       "text": "BREACH DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023542495
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHELTER RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772023543053
     }
   ]
 }
