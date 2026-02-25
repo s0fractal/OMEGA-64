@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING STABLE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772032715206
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772032715349
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772032719348
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772032719780
     }
   ]
 }
