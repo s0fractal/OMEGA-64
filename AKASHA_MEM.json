@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD SHELTER WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772035388746
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772035388953
@@ -291,6 +285,12 @@
       "text": "STRIKE STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772035392628
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SICKNESS SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035393378
     }
   ]
 }
