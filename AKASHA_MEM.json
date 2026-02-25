@@ -108,15 +108,10 @@
     "66066606",
     "AAA0A0A0",
     "A0AAA0A0",
-    "A6666006"
+    "A6666006",
+    "66660666"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "COHERE STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772021974877
-    },
     {
       "origin": "ARCHIVIST",
       "text": "SICKNESS SEIZE STRIFE",
@@ -200,6 +195,12 @@
       "text": "FLOW STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772021983788
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WATCH GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021984585
     }
   ]
 }
