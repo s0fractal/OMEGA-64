@@ -1,5 +1,12 @@
 {
   "reservoir": [
+    "06066660",
+    "60660666",
+    "60000600",
+    "60666606",
+    "AAA0AA00",
+    "66060066",
+    "66666666",
     "66606666",
     "66600000",
     "AA0A0A0A",
@@ -187,110 +194,103 @@
     "AA666600",
     "66060660",
     "66660A60",
-    "00A06A00",
+    "BB0A0000",
+    "6AA6AA66",
+    "6A60A6A0",
+    "06AAAA00",
     "ALIEN_17",
-    "A0000000",
-    "60606060",
-    "AA0A0A00",
-    "FFFFF0A0",
-    "000AAAAA",
-    "660AAA60",
-    "A00A0AA0",
-    "A660A660",
-    "A6666600",
-    "66000000",
-    "66A66060"
+    "FFFFF0A0"
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE SHOCK CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042835035
-    },
-    {
-      "origin": "SOMA",
-      "text": "SICKNESS STRIFE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042835446
-    },
-    {
       "origin": "ARCHIVIST",
-      "text": "SHELTER PURE RECON",
+      "text": "SHIELD SHIELD GUARD",
       "mood": "DEFENSIVE",
-      "tick": 1772042835587
+      "tick": 1772042832562
     },
     {
       "origin": "ARCHIVIST",
-      "text": "SYNC FLOW FLOW",
+      "text": "STABLE BLOOM RESONATE",
       "mood": "HARMONIC",
-      "tick": 1772042836137
-    },
-    {
-      "origin": "AUTONOMY_METRIC",
-      "text": "RECON WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042837073
+      "tick": 1772042834162
     },
     {
       "origin": "ARCHIVIST",
-      "text": "SHELTER RECON GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042837341
+      "text": "SHOCK CONSUME HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042834529
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SYNC HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772042834954
     },
     {
       "origin": "REVERSE",
-      "text": "SYNC OSMOSIS FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772042838326
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER IMMUNE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042838615
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "COHERE BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772042839296
+      "text": "EVOLVE DREAM SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772042835230
     },
     {
       "origin": "ALIEN",
-      "text": "SEIZE STRIKE DECAY",
+      "text": "SICKNESS DECAY DECAY",
       "mood": "AGGRESSIVE",
-      "tick": 1772042840039
+      "tick": 1772042835844
     },
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY BREACH STRIFE",
+      "origin": "REVERSE",
+      "text": "HUNGER SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
-      "tick": 1772042840771
+      "tick": 1772042837233
     },
     {
       "origin": "ARCHIVIST",
-      "text": "SEIZE BREACH SEIZE",
+      "text": "SICKNESS DECAY SHOCK",
       "mood": "AGGRESSIVE",
-      "tick": 1772042841894
+      "tick": 1772042837886
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WAIT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772042838438
+    },
+    {
+      "origin": "ALIEN",
+      "text": "RECON RECON SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042839149
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL RESONATE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772042839903
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "COHERE GIVING BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772042842305
     },
     {
       "origin": "ARCHIVIST",
-      "text": "SHIELD GUARD PURE",
+      "text": "CONSUME DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042842715
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STASIS GUARD GUARD",
       "mood": "DEFENSIVE",
-      "tick": 1772042842184
+      "tick": 1772042843874
     },
     {
       "origin": "ARCHIVIST",
-      "text": "RECON PURE SHIELD",
+      "text": "IMMUNE GUARD GUARD",
       "mood": "DEFENSIVE",
-      "tick": 1772042842919
-    },
-    {
-      "origin": "STREAM",
-      "text": "WAIT STASIS GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042844232
+      "tick": 1772042845041
     }
   ]
 }
