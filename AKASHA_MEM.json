@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772037154905
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772037155202
@@ -291,6 +285,12 @@
       "text": "BREACH SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772037161069
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE STRIFE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037161239
     }
   ]
 }
