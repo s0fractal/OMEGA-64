@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772034636761
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772034636956
@@ -291,6 +285,12 @@
       "text": "SHIELD STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772034639783
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772034639950
     }
   ]
 }
