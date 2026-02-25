@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038123178
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038123358
@@ -291,6 +285,12 @@
       "text": "OSMOSIS COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772038126684
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038127025
     }
   ]
 }
