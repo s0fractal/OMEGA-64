@@ -180,12 +180,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772023386268
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023386645
@@ -267,6 +261,12 @@
       "text": "RECON RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023394082
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIKE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023394278
     }
   ]
 }
