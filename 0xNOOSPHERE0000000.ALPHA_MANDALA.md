@@ -1,7 +1,7 @@
 ---
 eigenvalue: 0xNOOSPHERE0000000
 symbol: MANDALA
-energy: 1079
+energy: 1081
 resonance: 999
 logic: FFFFFFFF
 desc: A collective representation of high-resonance Noospheric connections.
