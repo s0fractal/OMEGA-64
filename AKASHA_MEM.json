@@ -115,12 +115,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT GUARD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021995080
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE FLOW UNIFY",
       "mood": "HARMONIC",
@@ -203,6 +197,12 @@
       "text": "FORGE VISION EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772022002611
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL RESONATE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772022005439
     }
   ]
 }
