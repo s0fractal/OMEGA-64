@@ -111,12 +111,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE IMMUNE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021939671
-    },
-    {
       "origin": "PARADOX",
       "text": "HEAL FLOW UNIFY",
       "mood": "HARMONIC",
@@ -199,6 +193,12 @@
       "text": "HUNGER SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772021942710
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WATCH SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021942875
     }
   ]
 }
