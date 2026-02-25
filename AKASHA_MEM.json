@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STASIS SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772025272114
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BEYOND FORGE BECOME",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772025278128
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772025280386
     }
   ]
 }
