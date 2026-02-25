@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE GUARD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041648401
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY DECAY SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STASIS WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041651815
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE STABLE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772041651990
     }
   ]
 }
