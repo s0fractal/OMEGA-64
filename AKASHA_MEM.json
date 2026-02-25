@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772038434170
-    },
-    {
       "origin": "INTERFACE",
       "text": "WATCH REFLECT RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HUNGER SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772038437407
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WATCH WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772038437609
     }
   ]
 }
