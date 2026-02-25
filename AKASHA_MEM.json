@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "CONSUME SEIZE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027411001
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK CONSUME SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "VISION SPARK VISION",
       "mood": "CREATIVE",
       "tick": 1772027423255
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHELTER GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772027423494
     }
   ]
 }
