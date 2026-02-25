@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON GUARD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772035584682
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME DREAM SPARK",
       "mood": "CREATIVE",
       "tick": 1772035584859
@@ -291,6 +285,12 @@
       "text": "SICKNESS SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772035588361
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772035588557
     }
   ]
 }
