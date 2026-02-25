@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SPARK BECOME BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772040947649
-    },
-    {
       "origin": "STREAM",
       "text": "WATCH WATCH SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772040950250
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE HUNGER HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040951041
     }
   ]
 }
