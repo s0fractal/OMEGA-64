@@ -163,12 +163,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE FLOW FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772022880754
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022880932
@@ -250,6 +244,12 @@
       "text": "HUNGER SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022887135
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022887368
     }
   ]
 }
