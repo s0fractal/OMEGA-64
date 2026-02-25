@@ -123,12 +123,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772022143856
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022144015
@@ -210,6 +204,12 @@
       "text": "SYNC COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772022148213
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022148395
     }
   ]
 }
