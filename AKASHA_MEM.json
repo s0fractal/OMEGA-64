@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS WAIT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772028104313
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772028104730
@@ -291,6 +285,12 @@
       "text": "DECAY STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772028113520
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772028114115
     }
   ]
 }
