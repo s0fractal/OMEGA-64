@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025333135
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772025333325
@@ -291,6 +285,12 @@
       "text": "STASIS STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772025341251
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025341649
     }
   ]
 }
