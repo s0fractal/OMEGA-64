@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS STRIFE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034101891
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034102045
@@ -291,6 +285,12 @@
       "text": "SEIZE BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772034105110
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772034105304
     }
   ]
 }
