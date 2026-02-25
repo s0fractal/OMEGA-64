@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772023180104
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023180299
@@ -259,6 +253,12 @@
       "text": "SHOCK CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772023184941
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD RECON RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772023185342
     }
   ]
 }
