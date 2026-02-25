@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC FLOW OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772024333829
-    },
-    {
       "origin": "STREAM",
       "text": "HUNGER SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772024339448
+    },
+    {
+      "origin": "PARADOX",
+      "text": "COHERE UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772024339661
     }
   ]
 }
