@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772040468101
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772040468728
@@ -291,6 +285,12 @@
       "text": "BREACH DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772040471520
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH HUNGER SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040471640
     }
   ]
 }
