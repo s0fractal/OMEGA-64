@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DECAY DRAIN DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772017027418
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STABLE GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772017029893
@@ -107,6 +101,12 @@
       "text": "SICKNESS CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772017112366
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SEIZE BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772017114947
     }
   ]
 }
