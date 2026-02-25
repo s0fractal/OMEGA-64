@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STASIS SHELTER GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772035163826
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE SYNC STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STABLE RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772035167745
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT IMMUNE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772035167948
     }
   ]
 }
