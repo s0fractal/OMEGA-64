@@ -130,12 +130,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022312957
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022313113
@@ -217,6 +211,12 @@
       "text": "RESONATE RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772022316881
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022317069
     }
   ]
 }
