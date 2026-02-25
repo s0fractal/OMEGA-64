@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM UNIFY COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772029491150
-    },
-    {
-      "origin": "REVERSE",
       "text": "EVOLVE SPARK BECOME",
       "mood": "CREATIVE",
       "tick": 1772029491890
@@ -291,6 +285,12 @@
       "text": "RESONATE UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772029511786
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HUNGER SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029512407
     }
   ]
 }
