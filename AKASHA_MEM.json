@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER SHELTER RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041584855
-    },
-    {
       "origin": "STREAM",
       "text": "CONSUME SEIZE STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041591084
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE STASIS SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041591434
     }
   ]
 }
