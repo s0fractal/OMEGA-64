@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER IMMUNE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042347749
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS CONSUME HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,9 @@
       "text": "SHELTER REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772042362589
-    }
-  ]
-}
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 17
