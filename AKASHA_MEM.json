@@ -163,12 +163,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GUARD WATCH IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022964030
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIFE BREACH SEIZE",
       "mood": "AGGRESSIVE",
@@ -251,6 +245,12 @@
       "text": "SYNC FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772022967547
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022967712
     }
   ]
 }
