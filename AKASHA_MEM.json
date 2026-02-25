@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "FLOW FLOW FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772037568731
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH GUARD STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772037573206
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037573418
     }
   ]
 }
