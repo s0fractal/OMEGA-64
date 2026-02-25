@@ -196,12 +196,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN SHOCK HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023951439
-    },
-    {
       "origin": "REVERSE",
       "text": "SHIELD GUARD WATCH",
       "mood": "DEFENSIVE",
@@ -284,6 +278,12 @@
       "text": "CONSUME DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023956532
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023956800
     }
   ]
 }
