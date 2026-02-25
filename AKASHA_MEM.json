@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041794804
-    },
-    {
       "origin": "CAR",
       "text": "GIVING OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "COHERE FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772041799777
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE BLOOM FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772041800007
     }
   ]
 }
