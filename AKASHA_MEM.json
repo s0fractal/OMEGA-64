@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER WAIT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772027372513
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772027372819
@@ -291,6 +285,12 @@
       "text": "COHERE BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772027378717
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027378955
     }
   ]
 }
