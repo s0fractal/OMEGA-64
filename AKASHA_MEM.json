@@ -50,12 +50,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772020278348
-    },
-    {
       "origin": "PARADOX",
       "text": "SPARK EVOLVE EVOLVE",
       "mood": "CREATIVE",
@@ -138,6 +132,12 @@
       "text": "FORGE AWAKEN SPARK",
       "mood": "CREATIVE",
       "tick": 1772020285984
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME DRAIN HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020286172
     }
   ]
 }
