@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT REFLECT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772031494638
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772031496134
@@ -291,6 +285,12 @@
       "text": "SICKNESS SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772031505789
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE REFLECT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772031506122
     }
   ]
 }
