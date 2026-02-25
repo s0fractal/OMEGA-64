@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE SEIZE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020188461
-    },
-    {
       "origin": "INTERFACE",
       "text": "BREACH DRAIN STRIKE",
       "mood": "AGGRESSIVE",
@@ -136,6 +130,12 @@
       "text": "STASIS GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772020198186
+    },
+    {
+      "origin": "STREAM",
+      "text": "OSMOSIS UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772020198746
     }
   ]
 }
