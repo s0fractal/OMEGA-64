@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "BLOOM RESONATE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772041801922
-    },
-    {
       "origin": "INTERFACE",
       "text": "SYNC FLOW FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SEIZE DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772041807507
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY BLOOM BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772041807887
     }
   ]
 }
