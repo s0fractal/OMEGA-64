@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC UNIFY UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772024315243
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772024315437
@@ -291,6 +285,12 @@
       "text": "WATCH SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772024318710
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME BECOME BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772024318938
     }
   ]
 }
