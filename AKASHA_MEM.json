@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL RESONATE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772037171155
-    },
-    {
-      "origin": "REVERSE",
       "text": "DREAM BEYOND FORGE",
       "mood": "CREATIVE",
       "tick": 1772037171379
@@ -291,6 +285,12 @@
       "text": "STRIKE DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772037178807
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037179235
     }
   ]
 }
