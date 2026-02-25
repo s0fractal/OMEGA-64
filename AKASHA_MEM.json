@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "IMMUNE SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041671223
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH PURE GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIKE BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772041675345
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "REFLECT GUARD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772041675750
     }
   ]
 }
