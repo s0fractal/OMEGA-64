@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036241087
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772036241339
@@ -291,6 +285,12 @@
       "text": "WAIT WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772036245057
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772036245280
     }
   ]
 }
