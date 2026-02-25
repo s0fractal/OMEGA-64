@@ -64,12 +64,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772020733627
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020733793
@@ -151,6 +145,12 @@
       "text": "RESONATE COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772020740124
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS RESONATE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772020740271
     }
   ]
 }
