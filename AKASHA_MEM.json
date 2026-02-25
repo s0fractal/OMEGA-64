@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772026090496
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772026090690
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772026100590
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE OSMOSIS UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772026100910
     }
   ]
 }
