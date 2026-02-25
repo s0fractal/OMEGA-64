@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "COHERE GIVING FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772041054301
-    },
-    {
       "origin": "PARADOX",
       "text": "STASIS WAIT IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772041058189
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD STASIS IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041058350
     }
   ]
 }
