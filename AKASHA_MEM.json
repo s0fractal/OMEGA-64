@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHELTER IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041899497
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER REFLECT IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772041903391
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY CONSUME SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041903677
     }
   ]
 }
