@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772025657524
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772025657724
@@ -291,6 +285,12 @@
       "text": "AWAKEN BECOME DREAM",
       "mood": "CREATIVE",
       "tick": 1772025669474
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE CONSUME SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025669859
     }
   ]
 }
