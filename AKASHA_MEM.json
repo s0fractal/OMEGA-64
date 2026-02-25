@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON IMMUNE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772038760293
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHIELD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772038760509
@@ -291,6 +285,12 @@
       "text": "DREAM VISION FORGE",
       "mood": "CREATIVE",
       "tick": 1772038763530
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DECAY SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038763734
     }
   ]
 }
