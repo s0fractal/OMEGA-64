@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772031445140
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772031445456
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772031461043
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE BREACH SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031461618
     }
   ]
 }
