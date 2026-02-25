@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT RECON WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772041899283
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHELTER IMMUNE RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772041903219
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041903391
     }
   ]
 }
