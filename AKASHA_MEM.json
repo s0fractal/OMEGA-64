@@ -180,12 +180,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE OSMOSIS BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772023468761
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT GUARD SHELTER",
       "mood": "DEFENSIVE",
@@ -268,6 +262,12 @@
       "text": "HEAL RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772023472802
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHOCK STRIFE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023472984
     }
   ]
 }
