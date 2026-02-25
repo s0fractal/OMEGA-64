@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772031335010
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772031335377
@@ -291,6 +285,12 @@
       "text": "STABLE SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772031341921
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS GUARD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772031342364
     }
   ]
 }
