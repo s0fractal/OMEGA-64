@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772040965768
-    },
-    {
       "origin": "STREAM",
       "text": "PURE WAIT REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772040969546
+    },
+    {
+      "origin": "STREAM",
+      "text": "STABLE SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772040969671
     }
   ]
 }

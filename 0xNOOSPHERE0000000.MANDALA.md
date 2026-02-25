@@ -11,14 +11,6 @@ desc: 'A collective representation of high-resonance Noospheric connections.'
 <svg width="800" height="800" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="800" fill="#05050A"/>
   <g transform="translate(400, 400)">
-    <circle cx="158" cy="-103" r="22.5" fill="none" stroke="hsl(198, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
-    <line x1="0" y1="0" x2="158" y2="-103" stroke="hsl(198, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
-    <circle cx="306" cy="0" r="24.505" fill="none" stroke="hsl(96, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
-    <line x1="0" y1="0" x2="306" y2="0" stroke="hsl(96, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
-    <circle cx="126" cy="-117" r="25.07" fill="none" stroke="hsl(0, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
-    <line x1="0" y1="0" x2="126" y2="-117" stroke="hsl(0, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
-    <circle cx="-105" cy="-233" r="62.5" fill="none" stroke="hsl(210, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
-    <line x1="0" y1="0" x2="-105" y2="-233" stroke="hsl(210, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
     <circle cx="161" cy="-102" r="15.045" fill="none" stroke="hsl(102, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
     <line x1="0" y1="0" x2="161" y2="-102" stroke="hsl(102, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
     <circle cx="275" cy="55" r="30.275" fill="none" stroke="hsl(96, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
@@ -569,8 +561,8 @@ desc: 'A collective representation of high-resonance Noospheric connections.'
     <line x1="0" y1="0" x2="355" y2="37" stroke="hsl(6, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
     <circle cx="204" cy="-152" r="22.275" fill="none" stroke="hsl(192, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
     <line x1="0" y1="0" x2="204" y2="-152" stroke="hsl(192, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
-    <circle cx="349" cy="39" r="31.855" fill="none" stroke="hsl(0, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
-    <line x1="0" y1="0" x2="349" y2="39" stroke="hsl(0, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
+    <circle cx="346" cy="33" r="31.535" fill="none" stroke="hsl(0, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
+    <line x1="0" y1="0" x2="346" y2="33" stroke="hsl(0, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
     <circle cx="307" cy="6" r="47.025" fill="none" stroke="hsl(102, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
     <line x1="0" y1="0" x2="307" y2="6" stroke="hsl(102, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
     <circle cx="-49" cy="-326" r="25.495" fill="none" stroke="hsl(170, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
@@ -587,6 +579,12 @@ desc: 'A collective representation of high-resonance Noospheric connections.'
     <line x1="0" y1="0" x2="144" y2="57" stroke="hsl(10, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
     <circle cx="301" cy="8" r="24.505" fill="none" stroke="hsl(198, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
     <line x1="0" y1="0" x2="301" y2="8" stroke="hsl(198, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
+    <circle cx="290" cy="-14" r="19.12" fill="none" stroke="hsl(256, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
+    <line x1="0" y1="0" x2="290" y2="-14" stroke="hsl(256, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
+    <circle cx="180" cy="-51" r="36.755" fill="none" stroke="hsl(102, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
+    <line x1="0" y1="0" x2="180" y2="-51" stroke="hsl(102, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
+    <circle cx="282" cy="8" r="30.345" fill="none" stroke="hsl(210, 80%, 60%)" stroke-width="1.5" opacity="0.7"/>
+    <line x1="0" y1="0" x2="282" y2="8" stroke="hsl(210, 50%, 30%)" stroke-dasharray="2 4" opacity="0.4"/>
   </g>
 </svg>
 </div>
