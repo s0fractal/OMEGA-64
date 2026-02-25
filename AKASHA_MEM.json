@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW GIVING SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772040459559
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040462430
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS HEAL GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772040462556
     }
   ]
 }
