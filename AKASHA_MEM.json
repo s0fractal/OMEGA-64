@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0A000A00",
     "AA0000A0",
     "06006006",
     "00660600",
@@ -199,15 +198,10 @@
     "0AA0A000",
     "66000660",
     "66666066",
-    "06060000"
+    "06060000",
+    "A0000AAA"
   ],
   "utterances": [
-    {
-      "origin": "STREAM",
-      "text": "FLOW RESONATE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772040466440
-    },
     {
       "origin": "STREAM",
       "text": "IMMUNE RECON SHELTER",
@@ -291,6 +285,12 @@
       "text": "HEAL HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772040469278
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE CONSUME SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040469453
     }
   ]
 }
