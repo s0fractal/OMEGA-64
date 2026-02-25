@@ -106,12 +106,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD WAIT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772021730523
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS IMMUNE SHELTER",
       "mood": "DEFENSIVE",
@@ -194,6 +188,12 @@
       "text": "BREACH CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772021735807
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE DRAIN SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021735966
     }
   ]
 }
