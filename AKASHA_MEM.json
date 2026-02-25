@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0A000A",
     "660000A6",
     "00B00000",
     "00060660",
@@ -199,15 +198,10 @@
     "AABBC0DD",
     "66000060",
     "AABB0CDD",
-    "0000AAAA"
+    "0000AAAA",
+    "AA6666A6"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STRIFE SICKNESS DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031185274
-    },
     {
       "origin": "REVERSE",
       "text": "BLOOM GIVING COHERE",
@@ -291,6 +285,12 @@
       "text": "GUARD IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772031190943
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE HUNGER DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031191271
     }
   ]
 }
