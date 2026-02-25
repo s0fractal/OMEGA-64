@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772035395699
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772035395942
@@ -291,6 +285,12 @@
       "text": "UNIFY COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772035398748
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035398954
     }
   ]
 }
