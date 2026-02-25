@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHOCK CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019961312
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE OSMOSIS FLOW",
       "mood": "HARMONIC",
@@ -130,6 +124,12 @@
       "text": "IMMUNE PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772019972939
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER WAIT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772019973619
     }
   ]
 }
