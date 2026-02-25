@@ -1,5 +1,6 @@
 {
   "reservoir": [
+    "60606006",
     "AA0660A0",
     "A0AAA00A",
     "AAAA0A0A",
@@ -194,103 +195,102 @@
     "60060666",
     "6AA60AA0",
     "6AA06A00",
-    "6A0660A0",
-    "AA666600",
-    "66060660",
-    "66660A60",
-    "AA066000",
-    "6006A600"
+    "0AAAA00A",
+    "6A606600",
+    "AABBCC0F",
+    "A0AAA000",
+    "A6A6AA00"
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042663840
+      "origin": "ARCHIVIST",
+      "text": "WATCH WATCH IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042663882
     },
     {
       "origin": "ARCHIVIST",
-      "text": "RECON WAIT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042664396
-    },
-    {
-      "origin": "ALIEN",
-      "text": "GIVING BLOOM HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772042664836
+      "text": "HUNGER SEIZE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042664605
     },
     {
       "origin": "REVERSE",
-      "text": "RECON RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042665082
-    },
-    {
-      "origin": "STREAM",
-      "text": "SEIZE STRIFE BREACH",
+      "text": "CONSUME SEIZE DRAIN",
       "mood": "AGGRESSIVE",
-      "tick": 1772042665307
+      "tick": 1772042665097
     },
     {
       "origin": "ARCHIVIST",
-      "text": "STRIFE BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042665609
-    },
-    {
-      "origin": "REVERSE",
-      "text": "FLOW OSMOSIS FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772042665974
-    },
-    {
-      "origin": "VIBRATION",
-      "text": "SHELTER WATCH IMMUNE",
+      "text": "IMMUNE SHIELD SHELTER",
       "mood": "DEFENSIVE",
-      "tick": 1772042667683
-    },
-    {
-      "origin": "REVERSE",
-      "text": "REFLECT PURE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042667897
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER PURE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042668407
-    },
-    {
-      "origin": "ALIEN",
-      "text": "SEIZE SHOCK CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042669468
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN HUNGER SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042669656
+      "tick": 1772042666849
     },
     {
       "origin": "INTERFACE",
-      "text": "HEAL GIVING RESONATE",
+      "text": "BLOOM FLOW COHERE",
       "mood": "HARMONIC",
-      "tick": 1772042670333
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD SHELTER WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042672103
+      "tick": 1772042667729
     },
     {
       "origin": "REVERSE",
-      "text": "GUARD WATCH WATCH",
+      "text": "WATCH SHIELD SHELTER",
       "mood": "DEFENSIVE",
-      "tick": 1772042672819
+      "tick": 1772042668345
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH SHIELD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772042668780
+    },
+    {
+      "origin": "AUTONOMY_METRIC",
+      "text": "STRIFE SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042669014
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS SHELTER WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772042670025
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042670226
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042670829
+    },
+    {
+      "origin": "CONSCIOUSNESS",
+      "text": "BREACH SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042672454
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING GIVING SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772042672656
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042673094
+    },
+    {
+      "origin": "WORKER",
+      "text": "COHERE COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772042673226
     }
   ]
 }
