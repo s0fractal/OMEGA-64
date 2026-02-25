@@ -81,12 +81,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SICKNESS DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021124250
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "CONSUME SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772021124512
@@ -168,6 +162,12 @@
       "text": "BREACH SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772021129175
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE BECOME WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772021129307
     }
   ]
 }
