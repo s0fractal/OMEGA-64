@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772037224919
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772037226260
@@ -291,6 +285,12 @@
       "text": "BLOOM SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772037230969
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE STRIKE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037231222
     }
   ]
 }
