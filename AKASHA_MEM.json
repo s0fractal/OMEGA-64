@@ -91,12 +91,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STASIS WAIT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772021313975
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
@@ -179,6 +173,12 @@
       "text": "WAIT IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772021350186
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHELTER STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772021351282
     }
   ]
 }
