@@ -1,8 +1,8 @@
 ---
 eigenvalue: '0xFFFFFFF0FFFF0A06'
 energy: 45.5
-x: 696
-'y': 424
+x: 695
+'y': 428
 resonance: 50
 thought: ORBIT_MATING
 logic: FFFFFFF0
@@ -46,7 +46,7 @@ ex:
   - '0xFFFFFFF000000A02'
   - '0xFFFFFFF000000A04'
   - '0xFFFFFFF000000A06'
-  - '0xFFFFFFF0FFFF0A04'
+  - '0xFFFFFFF000000A00'
 ---
 
 <div align="center">
