@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT STASIS GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772033864694
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772033865062
@@ -291,6 +285,12 @@
       "text": "STRIKE STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772033868705
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033868913
     }
   ]
 }
