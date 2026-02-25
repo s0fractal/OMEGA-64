@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772036320926
-    },
-    {
-      "origin": "REVERSE",
       "text": "EVOLVE FORGE SPARK",
       "mood": "CREATIVE",
       "tick": 1772036321154
@@ -291,6 +285,12 @@
       "text": "BLOOM FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772036324280
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL OSMOSIS OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772036324781
     }
   ]
 }
