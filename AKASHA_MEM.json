@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DRAIN DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026116682
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772026117135
@@ -291,6 +285,12 @@
       "text": "WAVE WITNESS DREAM",
       "mood": "CREATIVE",
       "tick": 1772026121730
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS VISION EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772026121870
     }
   ]
 }
