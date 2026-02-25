@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER SHIELD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772037551610
-    },
-    {
       "origin": "REVERSE",
       "text": "RECON WATCH SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIFE HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772037557174
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772037557411
     }
   ]
 }
