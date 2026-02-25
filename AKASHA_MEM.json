@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SYNC STABLE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772040606629
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS REFLECT STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772040609481
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS REFLECT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040609662
     }
   ]
 }
