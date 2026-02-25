@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041414936
-    },
-    {
       "origin": "PARADOX",
       "text": "SHOCK SEIZE CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041418268
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041418406
     }
   ]
 }
