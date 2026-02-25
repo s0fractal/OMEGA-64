@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772019977202
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW OSMOSIS GIVING",
       "mood": "HARMONIC",
@@ -130,6 +124,12 @@
       "text": "STRIFE HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772019989425
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS PURE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772019989856
     }
   ]
 }
