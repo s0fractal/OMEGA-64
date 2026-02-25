@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772025307786
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE FLOW UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RESONATE BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772025315149
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025315434
     }
   ]
 }
