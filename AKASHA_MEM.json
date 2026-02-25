@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE RECON PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772037850375
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772037850601
@@ -291,6 +285,12 @@
       "text": "GIVING OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772037853381
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037853580
     }
   ]
 }
