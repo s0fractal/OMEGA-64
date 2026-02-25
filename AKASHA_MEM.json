@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DREAM WITNESS BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772024206140
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE SHOCK DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772024210104
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772024210294
     }
   ]
 }
