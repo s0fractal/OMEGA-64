@@ -112,12 +112,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE DECAY SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021944345
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH GUARD GUARD",
       "mood": "DEFENSIVE",
@@ -200,6 +194,12 @@
       "text": "SHELTER SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772021953587
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE STASIS WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772021954737
     }
   ]
 }
