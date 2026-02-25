@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE REFLECT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023736784
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772023737045
@@ -278,6 +272,12 @@
       "text": "SYNC STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772023741578
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SEIZE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023741806
     }
   ]
 }
