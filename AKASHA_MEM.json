@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036523154
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772036523337
@@ -291,6 +285,12 @@
       "text": "GIVING UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772036529135
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SEIZE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036529302
     }
   ]
 }
