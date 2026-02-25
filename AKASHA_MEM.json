@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020666966
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE DECAY STRIFE",
       "mood": "AGGRESSIVE",
@@ -150,6 +144,12 @@
       "text": "REFLECT SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772020673766
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020674815
     }
   ]
 }
