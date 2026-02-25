@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SHOCK SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035235551
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772035235823
@@ -291,6 +285,12 @@
       "text": "BREACH SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772035239819
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD SHIELD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772035240039
     }
   ]
 }
