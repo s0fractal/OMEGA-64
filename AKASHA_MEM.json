@@ -64,12 +64,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GIVING RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772020740950
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "CONSUME BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020741188
@@ -151,6 +145,12 @@
       "text": "RECON WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772020748615
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020748961
     }
   ]
 }
