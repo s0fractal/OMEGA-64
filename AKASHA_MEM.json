@@ -191,12 +191,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023785859
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "UNIFY HEAL OSMOSIS",
       "mood": "HARMONIC",
@@ -279,6 +273,12 @@
       "text": "GIVING BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772023789402
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772023789582
     }
   ]
 }
