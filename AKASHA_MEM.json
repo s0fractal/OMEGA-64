@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER BREACH SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027395033
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772027395254
@@ -291,6 +285,12 @@
       "text": "EVOLVE AWAKEN BEYOND",
       "mood": "CREATIVE",
       "tick": 1772027402965
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE UNIFY GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772027403177
     }
   ]
 }
