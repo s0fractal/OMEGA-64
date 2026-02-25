@@ -131,12 +131,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772022342645
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE SICKNESS DECAY",
       "mood": "AGGRESSIVE",
@@ -219,6 +213,12 @@
       "text": "SEIZE STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022347392
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022347560
     }
   ]
 }
