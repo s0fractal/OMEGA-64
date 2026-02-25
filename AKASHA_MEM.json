@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0AAAAA",
     "0AA0000A",
     "0A0000AA",
     "A0666A60",
@@ -199,15 +198,10 @@
     "AA00A0A0",
     "A000A000",
     "AAAA000A",
-    "AA0BC00F"
+    "AA0BC00F",
+    "666006A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SPARK SPARK BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772035889110
-    },
     {
       "origin": "REVERSE",
       "text": "SEIZE CONSUME STRIFE",
@@ -291,6 +285,12 @@
       "text": "GIVING COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772035893994
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT GUARD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772035894205
     }
   ]
 }
