@@ -2,13 +2,13 @@
 eigenvalue: '0xAAAA00AAFFFF0004'
 energy: 49.9
 resonance: 30
-x: 729
-'y': 401
+x: 667
+'y': 406
 symbol: ARCHIVIST
 thought: WANDER_BONDING
 signals: []
 bond_strengths:
-  '0xAAAAAAA00000000E': 0.9588496310845509
+  '0xAAAAAAA00000000E': 0.9578907814534664
 ex:
   - '0xAAAAAAAA00000000'
   - '0xAAAAAAAA00000000'
