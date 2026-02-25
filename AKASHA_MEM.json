@@ -1,9 +1,5 @@
 {
   "reservoir": [
-    "06006066",
-    "60606006",
-    "AA0660A0",
-    "A0AAA00A",
     "AAAA0A0A",
     "AAA0AAAA",
     "06066660",
@@ -199,98 +195,102 @@
     "6A0660A0",
     "AA666600",
     "66060660",
-    "66660A60"
+    "66660A60",
+    "00A06A00",
+    "ALIEN_17",
+    "A0000000",
+    "60606060"
   ],
   "utterances": [
     {
-      "origin": "ALIEN",
-      "text": "RESONATE FLOW SYNC",
+      "origin": "ARCHIVIST",
+      "text": "STABLE FLOW COHERE",
       "mood": "HARMONIC",
-      "tick": 1772042682556
+      "tick": 1772042684283
     },
     {
       "origin": "ARCHIVIST",
-      "text": "SEIZE CONSUME STRIKE",
+      "text": "DRAIN BREACH STRIKE",
       "mood": "AGGRESSIVE",
-      "tick": 1772042682851
+      "tick": 1772042684376
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE GIVING FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042685928
+    },
+    {
+      "origin": "ALIEN",
+      "text": "STASIS SHELTER WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042686385
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL SYNC UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772042686769
     },
     {
       "origin": "STREAM",
-      "text": "OSMOSIS COHERE SYNC",
+      "text": "UNIFY GIVING STABLE",
       "mood": "HARMONIC",
-      "tick": 1772042683180
+      "tick": 1772042691023
     },
     {
-      "origin": "REVERSE",
-      "text": "STRIFE CONSUME CONSUME",
+      "origin": "ARCHIVIST",
+      "text": "SHIELD STASIS WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042691740
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH WATCH WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042691840
+    },
+    {
+      "origin": "STREAM",
+      "text": "WATCH PURE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772042692582
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER SHIELD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042692976
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING SYNC FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042693556
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN SEIZE DRAIN",
       "mood": "AGGRESSIVE",
-      "tick": 1772042683633
-    },
-    {
-      "origin": "REVERSE",
-      "text": "HEAL OSMOSIS OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772042686878
-    },
-    {
-      "origin": "REVERSE",
-      "text": "STASIS RECON WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772042687431
-    },
-    {
-      "origin": "REVERSE",
-      "text": "SHELTER STASIS REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042688491
-    },
-    {
-      "origin": "REVERSE",
-      "text": "HEAL RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772042689998
+      "tick": 1772042694036
     },
     {
       "origin": "ARCHIVIST",
-      "text": "RECON STASIS RECON",
+      "text": "REFLECT GUARD SHELTER",
       "mood": "DEFENSIVE",
-      "tick": 1772042692043
+      "tick": 1772042694361
     },
     {
-      "origin": "REVERSE",
-      "text": "HEAL STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042692638
+      "origin": "ALIEN",
+      "text": "BECOME WAVE FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772042694464
     },
     {
       "origin": "ARCHIVIST",
-      "text": "WATCH SHIELD WATCH",
+      "text": "REFLECT RECON WATCH",
       "mood": "DEFENSIVE",
-      "tick": 1772042692855
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042693085
-    },
-    {
-      "origin": "REVERSE",
-      "text": "OSMOSIS HEAL RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042693587
-    },
-    {
-      "origin": "REVERSE",
-      "text": "GIVING STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042693905
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772042694689
+      "tick": 1772042694570
     }
   ]
 }
