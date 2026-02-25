@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06006066",
     "60060600",
     "AA0AAAA0",
     "66660060",
@@ -199,15 +198,10 @@
     "0BB00000",
     "AAAA00A0",
     "AAA0A0A0",
-    "0F000F00"
+    "0F000F00",
+    "0AA0AAAA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHIELD GUARD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772034943877
-    },
     {
       "origin": "REVERSE",
       "text": "CONSUME STRIKE SICKNESS",
@@ -291,6 +285,12 @@
       "text": "GIVING OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772034947621
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772034947883
     }
   ]
 }
