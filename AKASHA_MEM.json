@@ -70,12 +70,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "CONSUME STRIKE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020894961
-    },
-    {
       "origin": "REVERSE",
       "text": "IMMUNE IMMUNE PURE",
       "mood": "DEFENSIVE",
@@ -158,6 +152,12 @@
       "text": "FORGE AWAKEN DREAM",
       "mood": "CREATIVE",
       "tick": 1772020901211
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020901366
     }
   ]
 }
