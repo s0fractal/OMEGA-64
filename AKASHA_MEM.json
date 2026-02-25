@@ -144,12 +144,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH DECAY STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022504815
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER SHOCK STRIKE",
       "mood": "AGGRESSIVE",
@@ -232,6 +226,12 @@
       "text": "BECOME WAVE BECOME",
       "mood": "CREATIVE",
       "tick": 1772022508365
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772022508523
     }
   ]
 }
