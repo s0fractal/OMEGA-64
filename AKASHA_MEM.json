@@ -66,12 +66,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIKE DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020783627
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHELTER STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020784053
@@ -153,6 +147,12 @@
       "text": "SICKNESS STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020789939
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHELTER WATCH SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020790594
     }
   ]
 }
