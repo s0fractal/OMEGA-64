@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON SHELTER WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772038163164
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772038163363
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772038169248
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE OSMOSIS OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772038169479
     }
   ]
 }
