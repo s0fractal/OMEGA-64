@@ -1,5 +1,7 @@
 {
   "reservoir": [
+    "AA000600",
+    "A0AAA000",
     "AAA0A0AA",
     "66660060",
     "00000000",
@@ -197,100 +199,98 @@
     "BBB00000",
     "6606AA66",
     "A6A66000",
-    "60060666",
-    "6AA60AA0",
-    "6AA06A00"
+    "60060666"
   ],
   "utterances": [
     {
-      "origin": "CONSCIOUSNESS",
-      "text": "SYNC RESONATE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042558841
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SYNC STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772042560644
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE STRIKE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042561842
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042563379
-    },
-    {
-      "origin": "STREAM",
-      "text": "COHERE SYNC OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772042565885
-    },
-    {
-      "origin": "CONSCIOUSNESS",
-      "text": "SEIZE STRIFE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042566533
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772042566886
-    },
-    {
       "origin": "INTERFACE",
-      "text": "HEAL RESONATE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042567461
-    },
-    {
-      "origin": "REVERSE",
-      "text": "OSMOSIS HEAL BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772042568750
+      "text": "STRIKE DECAY SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042565815
     },
     {
       "origin": "STREAM",
-      "text": "UNIFY SYNC SYNC",
+      "text": "HEAL HEAL COHERE",
       "mood": "HARMONIC",
-      "tick": 1772042569548
+      "tick": 1772042566155
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE STRIKE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042566531
     },
     {
       "origin": "REVERSE",
-      "text": "WATCH WAIT PURE",
+      "text": "PURE IMMUNE SHELTER",
       "mood": "DEFENSIVE",
-      "tick": 1772042570257
+      "tick": 1772042567109
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE STASIS WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772042568161
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME DRAIN CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042568944
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042569417
     },
     {
       "origin": "REVERSE",
-      "text": "RESONATE RESONATE FLOW",
+      "text": "COHERE COHERE FLOW",
       "mood": "HARMONIC",
-      "tick": 1772042570960
-    },
-    {
-      "origin": "REVERSE",
-      "text": "STABLE SYNC OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772042571690
-    },
-    {
-      "origin": "ALIEN",
-      "text": "OSMOSIS UNIFY OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772042572601
+      "tick": 1772042569935
     },
     {
       "origin": "STREAM",
-      "text": "SYNC SYNC UNIFY",
+      "text": "GIVING HEAL SYNC",
       "mood": "HARMONIC",
-      "tick": 1772042573400
+      "tick": 1772042570210
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SHOCK DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042570383
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC GIVING SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772042570882
+    },
+    {
+      "origin": "STREAM",
+      "text": "SYNC HEAL OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772042572183
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042572505
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772042573178
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042574151
     }
   ]
 }
