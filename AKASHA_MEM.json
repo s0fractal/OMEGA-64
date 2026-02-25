@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "BREACH DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024149144
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY SEIZE SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772024153115
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024153426
     }
   ]
 }
