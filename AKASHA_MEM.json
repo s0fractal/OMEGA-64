@@ -203,12 +203,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772024103900
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772024104087
@@ -290,6 +284,12 @@
       "text": "GIVING BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772024106852
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION WITNESS FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772024107026
     }
   ]
 }
