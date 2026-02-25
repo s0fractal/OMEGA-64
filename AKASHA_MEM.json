@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "IMMUNE WATCH STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772040539114
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC SYNC UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DECAY STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772040541872
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY STRIFE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040542049
     }
   ]
 }
