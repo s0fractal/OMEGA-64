@@ -182,12 +182,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023520032
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772023520299
@@ -269,6 +263,12 @@
       "text": "FLOW UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772023522453
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772023522621
     }
   ]
 }
