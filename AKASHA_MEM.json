@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON SHIELD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772037415046
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772037415264
@@ -291,6 +285,12 @@
       "text": "COHERE UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772037421235
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037421477
     }
   ]
 }
