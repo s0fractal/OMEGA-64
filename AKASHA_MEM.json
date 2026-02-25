@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW HEAL UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772037524790
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772037525009
@@ -291,6 +285,12 @@
       "text": "STASIS RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772037529140
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS REFLECT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772037529410
     }
   ]
 }
