@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK HUNGER HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035740136
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772035740449
@@ -291,6 +285,12 @@
       "text": "STRIFE DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772035745258
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD GUARD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772035745514
     }
   ]
 }
