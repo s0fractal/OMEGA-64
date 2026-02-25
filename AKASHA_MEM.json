@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM FLOW FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772031060811
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772031061181
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772031079241
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE IMMUNE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772031079927
     }
   ]
 }
