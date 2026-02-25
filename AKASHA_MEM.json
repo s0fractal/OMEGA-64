@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772035858218
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772035858438
@@ -291,6 +285,12 @@
       "text": "GIVING UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772035861667
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035861873
     }
   ]
 }
