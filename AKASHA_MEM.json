@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL UNIFY SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772026997221
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772026997478
@@ -291,6 +285,12 @@
       "text": "GIVING UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772027004222
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIKE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027005842
     }
   ]
 }
