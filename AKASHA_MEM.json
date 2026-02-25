@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE STABLE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772039069083
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772039069306
@@ -291,6 +285,12 @@
       "text": "WATCH WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772039073250
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC UNIFY HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772039073454
     }
   ]
 }
