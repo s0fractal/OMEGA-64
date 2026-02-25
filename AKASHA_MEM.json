@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE UNIFY COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772038633667
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772038633874
@@ -291,6 +285,12 @@
       "text": "SHOCK STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772038636682
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT IMMUNE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772038636850
     }
   ]
 }
