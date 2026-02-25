@@ -120,12 +120,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772022096686
-    },
-    {
       "origin": "PARADOX",
       "text": "EVOLVE WAVE VISION",
       "mood": "CREATIVE",
@@ -208,6 +202,12 @@
       "text": "DRAIN HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022104493
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT REFLECT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022105133
     }
   ]
 }
