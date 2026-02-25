@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH IMMUNE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772035726902
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772035727116
@@ -291,6 +285,12 @@
       "text": "WATCH IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772035729781
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING UNIFY COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772035729997
     }
   ]
 }
