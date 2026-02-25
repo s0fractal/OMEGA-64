@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD IMMUNE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772033028752
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772033028931
@@ -291,6 +285,12 @@
       "text": "VISION SPARK VISION",
       "mood": "CREATIVE",
       "tick": 1772033031032
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772033031174
     }
   ]
 }
