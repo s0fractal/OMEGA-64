@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT SHELTER WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040202393
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY CONSUME STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HUNGER SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772040208375
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RESONATE STABLE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772040208747
     }
   ]
 }
