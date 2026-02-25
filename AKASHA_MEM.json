@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE RECON WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772024340324
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772024340504
@@ -291,6 +285,12 @@
       "text": "IMMUNE REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772024343087
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772024343362
     }
   ]
 }
