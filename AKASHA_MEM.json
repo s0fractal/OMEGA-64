@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY HEAL FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772024740014
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772024740694
@@ -291,6 +285,12 @@
       "text": "BLOOM OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772024748309
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE BREACH BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024751130
     }
   ]
 }
