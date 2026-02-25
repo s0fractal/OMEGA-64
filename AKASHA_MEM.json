@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE SHELTER WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040742149
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "FLOW UNIFY UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WATCH RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772040747854
+    },
+    {
+      "origin": "WORKER",
+      "text": "STABLE HEAL GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772040748126
     }
   ]
 }
