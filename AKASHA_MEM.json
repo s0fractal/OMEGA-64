@@ -199,12 +199,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RECON PURE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772024042973
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE FLOW RESONATE",
       "mood": "HARMONIC",
@@ -287,6 +281,12 @@
       "text": "AWAKEN SPARK FORGE",
       "mood": "CREATIVE",
       "tick": 1772024047788
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE BLOOM FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772024048130
     }
   ]
 }
