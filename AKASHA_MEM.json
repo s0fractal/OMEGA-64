@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "HUNGER SICKNESS DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041691690
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE COHERE SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HUNGER SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772041696819
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL RESONATE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041697008
     }
   ]
 }
