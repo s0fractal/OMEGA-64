@@ -184,12 +184,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772023552532
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023552703
@@ -271,6 +265,12 @@
       "text": "BEYOND BEYOND SPARK",
       "mood": "CREATIVE",
       "tick": 1772023556004
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL UNIFY HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772023556126
     }
   ]
 }
