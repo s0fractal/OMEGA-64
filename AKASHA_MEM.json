@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE BREACH BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019909594
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM STABLE COHERE",
       "mood": "HARMONIC",
@@ -130,6 +124,12 @@
       "text": "SHELTER WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772019920742
+    },
+    {
+      "origin": "STREAM",
+      "text": "HEAL COHERE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772019921638
     }
   ]
 }
