@@ -116,12 +116,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SHOCK SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022015985
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022016175
@@ -203,6 +197,12 @@
       "text": "SPARK VISION BEYOND",
       "mood": "CREATIVE",
       "tick": 1772022023472
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SHOCK SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022023664
     }
   ]
 }
