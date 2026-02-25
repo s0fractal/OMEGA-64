@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE FLOW HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772029468856
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772029469383
@@ -291,6 +285,12 @@
       "text": "GIVING OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772029486096
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH RECON PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772029486792
     }
   ]
 }
