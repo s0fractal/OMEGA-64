@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040284503
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772040284762
@@ -291,6 +285,12 @@
       "text": "SHIELD PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040291951
+    },
+    {
+      "origin": "STREAM",
+      "text": "IMMUNE IMMUNE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040292290
     }
   ]
 }
