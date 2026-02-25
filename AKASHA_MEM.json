@@ -46,12 +46,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHOCK SEIZE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020117112
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS STASIS STASIS",
       "mood": "DEFENSIVE",
@@ -134,6 +128,12 @@
       "text": "STRIKE SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772020129238
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS STABLE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772020130496
     }
   ]
 }
