@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS PURE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772029627901
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772029628273
@@ -291,6 +285,12 @@
       "text": "SEIZE SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772029637934
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS STABLE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772029638245
     }
   ]
 }
