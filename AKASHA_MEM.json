@@ -70,12 +70,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME SHOCK CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020901366
-    },
-    {
       "origin": "REVERSE",
       "text": "SPARK AWAKEN VISION",
       "mood": "CREATIVE",
@@ -158,6 +152,12 @@
       "text": "DECAY STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772020906355
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS SHIELD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772020906545
     }
   ]
 }
