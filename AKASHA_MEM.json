@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT WATCH WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772035434973
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772035435192
@@ -291,6 +285,12 @@
       "text": "FLOW BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772035438056
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY HUNGER STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035438331
     }
   ]
 }
