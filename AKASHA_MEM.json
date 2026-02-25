@@ -128,12 +128,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIKE SHOCK SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022298222
-    },
-    {
       "origin": "REVERSE",
       "text": "VISION BEYOND WAVE",
       "mood": "CREATIVE",
@@ -216,6 +210,12 @@
       "text": "HUNGER SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022302881
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE SHOCK HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022304248
     }
   ]
 }
