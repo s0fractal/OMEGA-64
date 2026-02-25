@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GIVING STABLE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041384575
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE BLOOM HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RECON SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772041388942
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN SEIZE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041389148
     }
   ]
 }
