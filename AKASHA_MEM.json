@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM HEAL HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772035459654
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772035459857
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772035463508
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS VISION BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772035464377
     }
   ]
 }
