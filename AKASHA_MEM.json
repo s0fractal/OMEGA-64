@@ -123,12 +123,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022118063
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022118279
@@ -210,6 +204,12 @@
       "text": "OSMOSIS STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772022122390
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772022122602
     }
   ]
 }
