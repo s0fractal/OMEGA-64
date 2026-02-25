@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A00A00A0",
     "660666A6",
     "00000600",
     "00A0A0AA",
@@ -199,15 +198,10 @@
     "000060A0",
     "0A000AAA",
     "60000000",
-    "00606666"
+    "00606666",
+    "A0606606"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SICKNESS SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029823627
-    },
     {
       "origin": "ARCHIVIST",
       "text": "UNIFY RESONATE FLOW",
@@ -291,6 +285,12 @@
       "text": "COHERE UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772029836168
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE CONSUME HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029836972
     }
   ]
 }
