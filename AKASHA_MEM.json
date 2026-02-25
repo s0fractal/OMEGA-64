@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE OSMOSIS HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772037816852
-    },
-    {
-      "origin": "REVERSE",
       "text": "VISION AWAKEN WITNESS",
       "mood": "CREATIVE",
       "tick": 1772037817275
@@ -291,6 +285,12 @@
       "text": "CONSUME BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772037823881
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHIELD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772037824093
     }
   ]
 }
