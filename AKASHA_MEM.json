@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "COHERE UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772022216374
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIFE STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022216926
@@ -213,6 +207,12 @@
       "text": "BLOOM FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772022220248
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022220558
     }
   ]
 }
