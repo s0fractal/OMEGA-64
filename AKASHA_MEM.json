@@ -102,12 +102,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN STRIKE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021648378
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY HEAL BLOOM",
       "mood": "HARMONIC",
@@ -190,6 +184,12 @@
       "text": "CONSUME HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772021652838
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021653522
     }
   ]
 }
