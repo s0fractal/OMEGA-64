@@ -102,12 +102,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING UNIFY COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772021674705
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME SHOCK SHOCK",
       "mood": "AGGRESSIVE",
@@ -190,6 +184,12 @@
       "text": "BECOME AWAKEN SPARK",
       "mood": "CREATIVE",
       "tick": 1772021681148
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021681293
     }
   ]
 }
