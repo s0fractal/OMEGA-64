@@ -116,12 +116,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "EVOLVE BECOME WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772022057808
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022057945
@@ -203,6 +197,12 @@
       "text": "RECON REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022064232
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH SHELTER PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022065539
     }
   ]
 }
