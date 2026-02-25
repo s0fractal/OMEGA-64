@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036245495
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772036245717
@@ -291,6 +285,12 @@
       "text": "OSMOSIS STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772036254002
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772036254231
     }
   ]
 }
