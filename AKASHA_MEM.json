@@ -74,12 +74,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STASIS RECON REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020960775
-    },
-    {
       "origin": "REVERSE",
       "text": "GUARD WATCH WATCH",
       "mood": "DEFENSIVE",
@@ -162,6 +156,12 @@
       "text": "UNIFY HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772020965740
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE BREACH STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020966382
     }
   ]
 }
