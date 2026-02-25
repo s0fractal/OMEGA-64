@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE RESONATE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772025122281
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772025122631
@@ -291,6 +285,12 @@
       "text": "BEYOND FORGE VISION",
       "mood": "CREATIVE",
       "tick": 1772025127990
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772025129122
     }
   ]
 }
