@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER STRIKE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026475883
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772026476142
@@ -291,6 +285,12 @@
       "text": "COHERE GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772026484740
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS SHIELD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772026484951
     }
   ]
 }
