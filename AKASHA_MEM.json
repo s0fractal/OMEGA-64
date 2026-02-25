@@ -96,12 +96,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "FLOW FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772021566586
-    },
-    {
       "origin": "INTERFACE",
       "text": "DRAIN DRAIN DECAY",
       "mood": "AGGRESSIVE",
@@ -184,6 +178,12 @@
       "text": "SHIELD IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772021575382
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE COHERE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772021575889
     }
   ]
 }
