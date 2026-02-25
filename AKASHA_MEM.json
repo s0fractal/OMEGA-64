@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031253977
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772031255287
@@ -291,6 +285,12 @@
       "text": "GUARD WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772031265669
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031268869
     }
   ]
 }
