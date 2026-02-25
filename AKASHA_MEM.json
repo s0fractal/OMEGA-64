@@ -54,12 +54,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIFE SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020410059
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BREACH STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020410505
@@ -141,6 +135,12 @@
       "text": "WATCH STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020417828
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE DECAY DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020418887
     }
   ]
 }
