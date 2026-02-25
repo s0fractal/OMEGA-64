@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA00A00A",
     "00660066",
     "06006660",
     "0000AA00",
@@ -199,15 +198,10 @@
     "66606600",
     "AAAA00AA",
     "AA6660A0",
-    "00600060"
+    "00600060",
+    "00060600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RESONATE RESONATE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772032913342
-    },
     {
       "origin": "REVERSE",
       "text": "PURE RECON WATCH",
@@ -291,6 +285,12 @@
       "text": "UNIFY OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772032916003
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE BLOOM FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772032916186
     }
   ]
 }
