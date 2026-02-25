@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE SYNC OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772034111799
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772034112012
@@ -291,6 +285,12 @@
       "text": "STRIKE SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772034115107
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772034115301
     }
   ]
 }
