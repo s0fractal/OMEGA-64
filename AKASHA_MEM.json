@@ -63,12 +63,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772020733250
-    },
-    {
       "origin": "REVERSE",
       "text": "RECON SHIELD SHIELD",
       "mood": "DEFENSIVE",
@@ -151,6 +145,12 @@
       "text": "WATCH GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772020739251
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE COHERE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772020740124
     }
   ]
 }
