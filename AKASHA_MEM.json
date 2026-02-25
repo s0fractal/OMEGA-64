@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "FLOW UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772027097807
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN BREACH STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WATCH REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772027106257
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772027106472
     }
   ]
 }
