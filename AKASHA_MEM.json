@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0000AA0A",
     "0000AA00",
     "666066A0",
     "66600000",
@@ -199,15 +198,10 @@
     "A06660A0",
     "0AAAAAAA",
     "000A00A0",
-    "000A0A0A"
+    "000A0A0A",
+    "66066000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STRIKE HUNGER DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028249178
-    },
     {
       "origin": "REVERSE",
       "text": "GIVING RESONATE SYNC",
@@ -291,6 +285,12 @@
       "text": "BECOME VISION BECOME",
       "mood": "CREATIVE",
       "tick": 1772028256115
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT RECON SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772028256712
     }
   ]
 }
