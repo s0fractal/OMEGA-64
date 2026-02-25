@@ -125,12 +125,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE REFLECT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022211406
-    },
-    {
       "origin": "INTERFACE",
       "text": "STABLE STABLE HEAL",
       "mood": "HARMONIC",
@@ -213,6 +207,12 @@
       "text": "STRIFE STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022216203
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE UNIFY GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022216374
     }
   ]
 }
