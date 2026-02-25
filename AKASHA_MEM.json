@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "AWAKEN FORGE BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772030193644
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772030194165
@@ -291,6 +285,12 @@
       "text": "DRAIN SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772030205522
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL OSMOSIS BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772030206159
     }
   ]
 }
