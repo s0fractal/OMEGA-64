@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHOCK SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034282444
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL COHERE UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "PURE SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772034285855
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL GIVING UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772034286048
     }
   ]
 }
