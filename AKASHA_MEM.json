@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772025002233
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772025002412
@@ -291,6 +285,12 @@
       "text": "CONSUME SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772025007171
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM UNIFY SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772025008363
     }
   ]
 }
