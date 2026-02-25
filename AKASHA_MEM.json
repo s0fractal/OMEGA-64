@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHIELD STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772041335504
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STASIS IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041335642
@@ -291,6 +285,12 @@
       "text": "OSMOSIS SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772041338294
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE PURE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772041338480
     }
   ]
 }
