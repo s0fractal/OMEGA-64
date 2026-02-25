@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023959171
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772023959528
@@ -284,6 +278,12 @@
       "text": "GUARD SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772023963354
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT WAIT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023964191
     }
   ]
 }
