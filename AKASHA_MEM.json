@@ -19,12 +19,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "GIVING COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772015522116
-    },
-    {
-      "origin": "INTERFACE",
       "text": "PURE WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772015542690
@@ -106,6 +100,12 @@
       "text": "STRIFE SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772015635822
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RESONATE COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772015640954
     }
   ]
 }
