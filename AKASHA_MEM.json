@@ -110,12 +110,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772021841220
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772021841516
@@ -197,6 +191,12 @@
       "text": "COHERE SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772021848786
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE OSMOSIS OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772021848967
     }
   ]
 }
