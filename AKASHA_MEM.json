@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STABLE SYNC OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772019946159
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIKE HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
@@ -130,6 +124,12 @@
       "text": "STRIKE SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772019957072
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772019957949
     }
   ]
 }
