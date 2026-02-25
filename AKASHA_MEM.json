@@ -54,12 +54,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "SHOCK SEIZE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020406671
-    },
-    {
-      "origin": "INTERFACE",
       "text": "PURE SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020407155
@@ -141,6 +135,12 @@
       "text": "CONSUME STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020415941
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STABLE FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772020416492
     }
   ]
 }
