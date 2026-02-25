@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE RESONATE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772034607752
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE CONSUME DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772034613118
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM OSMOSIS HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772034613327
     }
   ]
 }
