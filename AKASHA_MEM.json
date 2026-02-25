@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "COHERE COHERE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772026852439
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY HEAL RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772026857464
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE SPARK SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772026858010
     }
   ]
 }
