@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040690613
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT REFLECT STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772040693563
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SICKNESS SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040693707
     }
   ]
 }
