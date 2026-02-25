@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60606000",
     "00060600",
     "AAA00A0A",
     "00600666",
@@ -199,15 +198,10 @@
     "AA6600A6",
     "AA0A0AAA",
     "A0BBC000",
-    "BB00000C"
+    "BB00000C",
+    "ABBA0000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BREACH STRIFE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035709124
-    },
     {
       "origin": "REVERSE",
       "text": "SEIZE CONSUME SICKNESS",
@@ -291,6 +285,12 @@
       "text": "IMMUNE WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772035712479
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SEIZE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035712717
     }
   ]
 }
