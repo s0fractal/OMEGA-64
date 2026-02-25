@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE DRAIN SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020662650
-    },
-    {
       "origin": "INTERFACE",
       "text": "REFLECT PURE WAIT",
       "mood": "DEFENSIVE",
@@ -150,6 +144,12 @@
       "text": "SEIZE DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772020667290
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE UNIFY COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772020667632
     }
   ]
 }
