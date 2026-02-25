@@ -143,12 +143,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE PURE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022502228
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS SHOCK HUNGER",
       "mood": "AGGRESSIVE",
@@ -231,6 +225,12 @@
       "text": "CONSUME HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022506896
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772022507069
     }
   ]
 }
