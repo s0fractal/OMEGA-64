@@ -59,12 +59,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE COHERE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772020596431
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN SEIZE BREACH",
       "mood": "AGGRESSIVE",
@@ -147,6 +141,12 @@
       "text": "SYNC OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772020602048
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE HEAL RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772020602597
     }
   ]
 }
