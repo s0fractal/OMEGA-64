@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK SICKNESS SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038708258
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038708532
@@ -291,6 +285,12 @@
       "text": "SEIZE CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772038712580
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772038712810
     }
   ]
 }
