@@ -191,15 +191,10 @@
     "66660600",
     "0000FF00",
     "000B0000",
-    "0F0AAAAA"
+    "0F0AAAAA",
+    "AA0A0AAA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RECON RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023921479
-    },
     {
       "origin": "REVERSE",
       "text": "SPARK VISION SPARK",
@@ -283,6 +278,12 @@
       "text": "COHERE FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772023928801
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023929837
     }
   ]
 }
