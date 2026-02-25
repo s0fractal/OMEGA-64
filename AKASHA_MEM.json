@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC FLOW UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772041742712
-    },
-    {
       "origin": "STREAM",
       "text": "SICKNESS STRIKE DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "REFLECT SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041749408
+    },
+    {
+      "origin": "STREAM",
+      "text": "SHELTER SHELTER REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041750295
     }
   ]
 }
