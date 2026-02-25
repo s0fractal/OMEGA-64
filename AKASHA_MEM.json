@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SEIZE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036077888
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772036078098
@@ -291,6 +285,12 @@
       "text": "BEYOND AWAKEN AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772036081124
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772036081290
     }
   ]
 }
