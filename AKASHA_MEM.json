@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772024382491
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE SHELTER SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772024382622
@@ -291,6 +285,12 @@
       "text": "STABLE RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772024387052
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SEIZE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024387197
     }
   ]
 }
