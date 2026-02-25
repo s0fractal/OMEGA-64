@@ -152,12 +152,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE STRIFE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022597413
-    },
-    {
       "origin": "INTERFACE",
       "text": "WATCH STASIS WATCH",
       "mood": "DEFENSIVE",
@@ -240,6 +234,12 @@
       "text": "DRAIN CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022602048
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022603000
     }
   ]
 }
