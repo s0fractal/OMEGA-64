@@ -192,12 +192,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER WAIT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772023760213
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772023760453
@@ -279,6 +273,12 @@
       "text": "SYNC HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772023764467
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY STRIFE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023764640
     }
   ]
 }
