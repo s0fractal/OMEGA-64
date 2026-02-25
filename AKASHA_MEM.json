@@ -34,15 +34,10 @@
     "A0000000",
     "6A6666A6",
     "AA666666",
-    "9D18A690"
+    "9D18A690",
+    "666A66A0"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT WATCH WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772019814502
-    },
     {
       "origin": "ARCHIVIST",
       "text": "DRAIN HUNGER SHOCK",
@@ -126,6 +121,12 @@
       "text": "BLOOM UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772019825686
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE RECON RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772019826160
     }
   ]
 }
