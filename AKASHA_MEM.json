@@ -1,5 +1,6 @@
 {
   "reservoir": [
+    "A0AAA000",
     "AAA0A0AA",
     "66660060",
     "00000000",
@@ -198,99 +199,98 @@
     "6606AA66",
     "A6A66000",
     "60060666",
-    "6AA60AA0",
-    "6AA06A00"
+    "A6666A66"
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE STABLE SYNC",
+      "origin": "INTERFACE",
+      "text": "COHERE SYNC SYNC",
       "mood": "HARMONIC",
-      "tick": 1772042518895
+      "tick": 1772042514244
     },
     {
       "origin": "ARCHIVIST",
-      "text": "COHERE BLOOM OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772042519999
-    },
-    {
-      "origin": "STREAM",
-      "text": "GUARD WAIT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042520680
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE WAIT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772042522441
-    },
-    {
-      "origin": "WORKER",
-      "text": "IMMUNE GUARD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772042523512
+      "text": "SEIZE DECAY STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042518484
     },
     {
       "origin": "INTERFACE",
-      "text": "RECON WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042525260
+      "text": "OSMOSIS SYNC COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772042519273
     },
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS FLOW BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772042527608
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER PURE RECON",
+      "text": "REFLECT RECON SHIELD",
       "mood": "DEFENSIVE",
-      "tick": 1772042528247
+      "tick": 1772042519668
     },
     {
       "origin": "ARCHIVIST",
-      "text": "COHERE UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772042528557
+      "text": "WATCH SHIELD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042521900
     },
     {
-      "origin": "STREAM",
-      "text": "FLOW GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772042528748
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY HEAL RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042529906
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE DECAY BREACH",
+      "origin": "REVERSE",
+      "text": "DECAY CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
-      "tick": 1772042533329
+      "tick": 1772042522113
     },
     {
       "origin": "ARCHIVIST",
-      "text": "PURE IMMUNE WAIT",
+      "text": "IMMUNE SHIELD IMMUNE",
       "mood": "DEFENSIVE",
-      "tick": 1772042534198
+      "tick": 1772042523106
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD WAIT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772042525110
     },
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS UNIFY UNIFY",
+      "text": "STABLE OSMOSIS FLOW",
       "mood": "HARMONIC",
-      "tick": 1772042534525
+      "tick": 1772042526038
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH HUNGER SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042527332
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE SYNC SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772042529486
+    },
+    {
+      "origin": "SUCC",
+      "text": "OSMOSIS STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772042529959
     },
     {
       "origin": "ARCHIVIST",
-      "text": "SHIELD SHIELD PURE",
+      "text": "GUARD GUARD GUARD",
       "mood": "DEFENSIVE",
-      "tick": 1772042535582
+      "tick": 1772042530225
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING FLOW HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772042533525
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT PURE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772042535426
     }
   ]
 }
