@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "HEAL COHERE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772033468331
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH GUARD STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SICKNESS CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772033474936
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT IMMUNE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772033475171
     }
   ]
 }
