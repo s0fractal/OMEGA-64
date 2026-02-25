@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "SUCC",
-      "text": "GIVING OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772042491840
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE RESONATE HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "VISION FORGE WITNESS",
       "mood": "CREATIVE",
       "tick": 1772042507410
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SEIZE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042507661
     }
   ]
 }
