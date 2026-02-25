@@ -36,12 +36,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "STRIFE HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019741930
-    },
-    {
-      "origin": "INTERFACE",
       "text": "SEIZE HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772019743315
@@ -123,6 +117,12 @@
       "text": "HUNGER SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772019754734
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS GIVING HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772019756338
     }
   ]
 }
