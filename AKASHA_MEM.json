@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00FF0FFF",
     "66666060",
     "000000FF",
     "A6666600",
@@ -199,15 +198,10 @@
     "AA00AAAA",
     "A00A0000",
     "00600066",
-    "00AAAA00"
+    "00AAAA00",
+    "AABB0CDD"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STABLE OSMOSIS COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772025860916
-    },
     {
       "origin": "REVERSE",
       "text": "WAIT RECON STASIS",
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772025868108
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025871037
     }
   ]
 }
