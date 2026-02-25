@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE HUNGER STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041046033
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIKE SHOCK SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772041049116
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE GUARD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041049256
     }
   ]
 }
