@@ -24,12 +24,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "SHOCK CONSUME SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019500305
-    },
-    {
-      "origin": "INTERFACE",
       "text": "STRIFE SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772019501261
@@ -111,6 +105,12 @@
       "text": "HEAL HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772019509247
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT SHIELD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772019509543
     }
   ]
 }
