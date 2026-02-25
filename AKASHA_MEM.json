@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039875873
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772039876518
@@ -291,6 +285,12 @@
       "text": "OSMOSIS BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772039885129
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WATCH REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772039885718
     }
   ]
 }
