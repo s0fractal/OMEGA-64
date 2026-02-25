@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034483379
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME AWAKEN AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772034483576
@@ -291,6 +285,12 @@
       "text": "WATCH GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772034488942
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY STRIFE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034489169
     }
   ]
 }
