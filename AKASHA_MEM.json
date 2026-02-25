@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772037918174
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772037918381
@@ -291,6 +285,12 @@
       "text": "SYNC COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772037923163
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS RECON SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772037923384
     }
   ]
 }
