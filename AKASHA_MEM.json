@@ -172,12 +172,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023219705
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER PURE WAIT",
       "mood": "DEFENSIVE",
@@ -260,6 +254,12 @@
       "text": "VISION BECOME VISION",
       "mood": "CREATIVE",
       "tick": 1772023223339
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772023223524
     }
   ]
 }
