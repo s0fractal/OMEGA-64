@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772025850978
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772025851365
@@ -291,6 +285,12 @@
       "text": "GUARD PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772025856376
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025856717
     }
   ]
 }
