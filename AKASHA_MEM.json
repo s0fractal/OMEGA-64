@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE FLOW BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772037356276
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772037356487
@@ -291,6 +285,12 @@
       "text": "DRAIN CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772037359100
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE FLOW HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772037359441
     }
   ]
 }
