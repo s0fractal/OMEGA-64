@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772036616603
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME AWAKEN BECOME",
       "mood": "CREATIVE",
       "tick": 1772036616807
@@ -291,6 +285,12 @@
       "text": "SHELTER WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772036622596
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SICKNESS DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036623680
     }
   ]
 }
