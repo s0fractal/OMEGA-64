@@ -116,12 +116,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL BLOOM STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772022058240
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022058440
@@ -203,6 +197,12 @@
       "text": "PURE RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022066555
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS SPARK WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772022066763
     }
   ]
 }
