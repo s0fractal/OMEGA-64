@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE FLOW UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772030317846
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772030318203
@@ -291,6 +285,12 @@
       "text": "RESONATE RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772030322972
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIFE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030323382
     }
   ]
 }
