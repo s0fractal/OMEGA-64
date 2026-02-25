@@ -82,12 +82,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON STASIS IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021170416
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE HUNGER STRIKE",
       "mood": "AGGRESSIVE",
@@ -170,6 +164,12 @@
       "text": "BREACH DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772021175719
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STASIS RECON RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772021176267
     }
   ]
 }
