@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030806200
-    },
-    {
       "origin": "STREAM",
       "text": "WATCH SHELTER RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772030813151
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030813403
     }
   ]
 }
