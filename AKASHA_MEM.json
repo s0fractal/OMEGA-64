@@ -27,12 +27,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SICKNESS SICKNESS DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019604401
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STASIS REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772019605097
@@ -114,6 +108,12 @@
       "text": "RESONATE BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772019613341
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHIELD PURE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772019613674
     }
   ]
 }
