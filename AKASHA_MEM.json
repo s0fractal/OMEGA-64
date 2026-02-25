@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE FLOW GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041066007
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT SHELTER GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "EVOLVE FORGE DREAM",
       "mood": "CREATIVE",
       "tick": 1772041068615
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041068782
     }
   ]
 }
