@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH STASIS RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772034093847
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772034094046
@@ -291,6 +285,12 @@
       "text": "COHERE RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772034096485
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD SHIELD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772034096677
     }
   ]
 }
