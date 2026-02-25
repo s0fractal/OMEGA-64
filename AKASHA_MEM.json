@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL RESONATE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772031915341
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON GUARD IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772031930486
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM HEAL HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772031930824
     }
   ]
 }
