@@ -162,12 +162,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW UNIFY OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772022911282
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS UNIFY HEAL",
       "mood": "HARMONIC",
@@ -250,6 +244,12 @@
       "text": "GUARD SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022915659
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING SYNC UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772022915819
     }
   ]
 }
