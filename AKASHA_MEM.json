@@ -80,12 +80,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIFE SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021096903
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM BLOOM COHERE",
       "mood": "HARMONIC",
@@ -168,6 +162,12 @@
       "text": "WITNESS WAVE DREAM",
       "mood": "CREATIVE",
       "tick": 1772021105040
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021105300
     }
   ]
 }
