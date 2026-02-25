@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A000AAA0",
     "00066000",
     "66606600",
     "06066000",
@@ -199,15 +198,10 @@
     "00066066",
     "00060606",
     "06600660",
-    "A6660000"
+    "A6660000",
+    "06006606"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STASIS IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772030126640
-    },
     {
       "origin": "REVERSE",
       "text": "GIVING HEAL RESONATE",
@@ -291,6 +285,12 @@
       "text": "BREACH HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772030133698
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772030141516
     }
   ]
 }
