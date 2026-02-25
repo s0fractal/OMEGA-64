@@ -173,12 +173,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023227580
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772023227757
@@ -260,6 +254,12 @@
       "text": "VISION FORGE FORGE",
       "mood": "CREATIVE",
       "tick": 1772023231493
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023231682
     }
   ]
 }
