@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER SEIZE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035582476
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772035582777
@@ -291,6 +285,12 @@
       "text": "BLOOM BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772035586420
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772035586683
     }
   ]
 }
