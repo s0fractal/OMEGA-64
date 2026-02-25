@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772036776475
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772036776692
@@ -291,6 +285,12 @@
       "text": "OSMOSIS UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772036779673
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL SYNC COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772036779895
     }
   ]
 }
