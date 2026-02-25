@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHELTER RECON GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040964145
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME SHOCK DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040967225
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM SYNC COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772040968374
     }
   ]
 }
