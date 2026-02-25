@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040257598
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM UNIFY RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIKE SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772040261807
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STASIS PURE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040262944
     }
   ]
 }
