@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK STRIKE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039069306
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772039069543
@@ -291,6 +285,12 @@
       "text": "SYNC UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772039073454
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER BREACH BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039073651
     }
   ]
 }
