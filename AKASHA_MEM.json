@@ -129,12 +129,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022293676
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772022293835
@@ -216,6 +210,12 @@
       "text": "HUNGER HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022298023
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIKE SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022298222
     }
   ]
 }
