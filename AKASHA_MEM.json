@@ -87,12 +87,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT STASIS STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772021235073
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021235234
@@ -174,6 +168,12 @@
       "text": "HUNGER DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772021238289
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SEIZE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021238586
     }
   ]
 }
