@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SYNC FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772026749625
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL BLOOM COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STABLE SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772026755545
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772026755921
     }
   ]
 }
