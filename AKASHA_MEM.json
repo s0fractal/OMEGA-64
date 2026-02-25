@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772041277478
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS SHIELD SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041281727
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL BLOOM BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772041282138
     }
   ]
 }
