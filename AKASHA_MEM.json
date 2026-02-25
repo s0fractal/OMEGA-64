@@ -135,12 +135,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE COHERE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772022383853
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022384330
@@ -222,6 +216,12 @@
       "text": "REFLECT RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022390181
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022390495
     }
   ]
 }
