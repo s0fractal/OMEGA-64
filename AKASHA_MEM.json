@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00600600",
     "60006600",
     "00660000",
     "00A0AA0A",
@@ -199,15 +198,10 @@
     "AAAA00A0",
     "666006A0",
     "0AAAAAA0",
-    "06060600"
+    "06060600",
+    "AAAAAAA0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHELTER STASIS REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772028752821
-    },
     {
       "origin": "REVERSE",
       "text": "SHOCK STRIFE SICKNESS",
@@ -291,6 +285,12 @@
       "text": "SICKNESS CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772028762368
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK STRIKE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028763455
     }
   ]
 }
