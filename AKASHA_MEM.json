@@ -24,12 +24,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHOCK BREACH HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019568210
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "COHERE STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772019570355
@@ -111,6 +105,12 @@
       "text": "RECON SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772019578463
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WATCH STASIS STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772019578769
     }
   ]
 }
