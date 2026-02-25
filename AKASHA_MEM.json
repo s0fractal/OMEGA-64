@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "COHERE RESONATE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772026742589
-    },
-    {
       "origin": "REVERSE",
       "text": "PURE STASIS SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772026751290
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE RECON STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772026751653
     }
   ]
 }
