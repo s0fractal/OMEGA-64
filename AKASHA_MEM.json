@@ -202,12 +202,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WAIT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772024067035
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772024067471
@@ -289,6 +283,12 @@
       "text": "STABLE UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772024070894
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE COHERE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772024071104
     }
   ]
 }
