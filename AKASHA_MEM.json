@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE HEAL RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772038537805
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772038538036
@@ -291,6 +285,12 @@
       "text": "DECAY SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772038542201
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772038542429
     }
   ]
 }
