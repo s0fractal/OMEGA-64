@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772033771395
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE GIVING OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHOCK SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772033774915
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE DECAY SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033775078
     }
   ]
 }
