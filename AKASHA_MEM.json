@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE COHERE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772024267472
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772024267662
@@ -291,6 +285,12 @@
       "text": "WAIT WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772024273850
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE DREAM AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772024274058
     }
   ]
 }
