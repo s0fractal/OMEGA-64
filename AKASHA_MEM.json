@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772035593876
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772035596513
@@ -291,6 +285,12 @@
       "text": "DECAY CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772035600008
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHELTER WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772035600221
     }
   ]
 }
