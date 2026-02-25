@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD REFLECT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772031743114
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE UNIFY UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DECAY STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772031750254
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING GIVING BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772031750849
     }
   ]
 }
