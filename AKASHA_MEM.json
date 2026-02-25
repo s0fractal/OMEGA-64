@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON STASIS STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772036312356
-    },
-    {
       "origin": "PARADOX",
       "text": "SHELTER STASIS SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772036316404
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DRAIN HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036316610
     }
   ]
 }
