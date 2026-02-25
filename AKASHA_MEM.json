@@ -183,12 +183,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "AWAKEN WITNESS BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772023540871
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023541091
@@ -270,6 +264,12 @@
       "text": "WATCH STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023544047
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DECAY DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023544206
     }
   ]
 }
