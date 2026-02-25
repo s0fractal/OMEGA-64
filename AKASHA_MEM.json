@@ -11,11 +11,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "ASCEND",
-      "tick": 1772010780413
-    },
-    {
       "origin": "INTERFACE",
       "text": "RECLAIM",
       "tick": 1772010852381
@@ -95,6 +90,12 @@
       "text": "RECON WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772012544609
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772012686392
     }
   ]
 }
