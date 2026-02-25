@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME EVOLVE VISION",
-      "mood": "CREATIVE",
-      "tick": 1772034756677
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772034757704
@@ -291,6 +285,12 @@
       "text": "SICKNESS HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772034760514
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHIELD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772034760714
     }
   ]
 }
