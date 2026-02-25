@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "PARADOX",
-      "text": "SHELTER STASIS WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041659272
-    },
-    {
-      "origin": "PARADOX",
       "text": "STRIFE DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041659442
@@ -291,6 +285,12 @@
       "text": "GIVING COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772041661623
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041662054
     }
   ]
 }
