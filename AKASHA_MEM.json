@@ -177,12 +177,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE HUNGER STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023282117
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772023282283
@@ -264,6 +258,12 @@
       "text": "DECAY DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023287546
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS BECOME VISION",
+      "mood": "CREATIVE",
+      "tick": 1772023287675
     }
   ]
 }
