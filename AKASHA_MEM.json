@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WAIT RECON SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772041991861
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SEIZE HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772041992047
@@ -291,6 +285,12 @@
       "text": "BREACH SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041998160
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE OSMOSIS BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772041998387
     }
   ]
 }
