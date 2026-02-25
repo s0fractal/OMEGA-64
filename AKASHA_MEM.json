@@ -49,12 +49,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020190751
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WATCH WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772020191010
@@ -136,6 +130,12 @@
       "text": "WATCH PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020203759
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL OSMOSIS RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772020205250
     }
   ]
 }
