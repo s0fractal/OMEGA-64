@@ -62,12 +62,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020606767
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020606951
@@ -149,6 +143,12 @@
       "text": "SHELTER SHIELD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772020612618
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020612778
     }
   ]
 }
