@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD SHIELD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772035185331
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772035185540
@@ -291,6 +285,12 @@
       "text": "SYNC STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772035188130
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION SPARK VISION",
+      "mood": "CREATIVE",
+      "tick": 1772035188342
     }
   ]
 }
