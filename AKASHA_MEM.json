@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER WAIT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772033841926
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772033842113
@@ -291,6 +285,12 @@
       "text": "UNIFY RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772033847253
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772033847464
     }
   ]
 }
