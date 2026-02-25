@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON IMMUNE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772033842482
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772033842668
@@ -291,6 +285,12 @@
       "text": "SHELTER PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772033847859
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE DRAIN SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033848058
     }
   ]
 }
