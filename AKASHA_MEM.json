@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772025831921
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772025832099
@@ -291,6 +285,12 @@
       "text": "BECOME FORGE WAVE",
       "mood": "CREATIVE",
       "tick": 1772025837981
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY STABLE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772025838120
     }
   ]
 }
