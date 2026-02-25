@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772040462120
-    },
-    {
       "origin": "STREAM",
       "text": "BLOOM HEAL OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "PURE WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772040465573
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY BREACH BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040465691
     }
   ]
 }
