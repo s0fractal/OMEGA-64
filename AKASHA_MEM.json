@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK SEIZE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033918413
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772033918652
@@ -291,6 +285,12 @@
       "text": "HUNGER DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772033921450
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033921624
     }
   ]
 }
