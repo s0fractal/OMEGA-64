@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SEIZE SICKNESS STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041195890
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "CONSUME CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041196201
@@ -291,6 +285,12 @@
       "text": "STRIFE CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772041199981
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772041200588
     }
   ]
 }
