@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772027185567
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772027185836
@@ -291,6 +285,12 @@
       "text": "SICKNESS DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772027190868
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM GIVING SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772027191159
     }
   ]
 }
