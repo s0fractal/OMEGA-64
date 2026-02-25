@@ -145,10 +145,26 @@ async function logAkasha(msg: string) {
         if (systemEnergy < 5000) dynamicInterval = Math.min(10000, 3000 + (5000 - systemEnergy) * 2);
         
         // --- 🏛️ SOVEREIGNTY PHASE ---
-        // Nuclei with high resonance can issue Decrees
-        let potentialRegents = Array.from(lastKnownAtoms.entries())
-            .filter(([_, meta]) => meta.resonance > 100)
-            .sort((a, b) => b[1].resonance - a[1].resonance);
+        // Nuclei with high resonance can issue Decrees. 
+        // We perform a "Hot Scan" of potential candidates to sync with disk.
+        let potentialRegents: [string, any][] = [];
+        for (const [filename, meta] of lastKnownAtoms.entries()) {
+            if (meta.resonance > 80 || filename.includes("NUCLEUS") || filename.includes("INTERFACE")) {
+                try {
+                    const content = await Deno.readTextFile(filename);
+                    const fm = content.match(/^---\n([\s\S]+?)\n---\n/);
+                    if (fm) {
+                        const alpha = parseYaml(fm[1]) as any;
+                        meta.resonance = Number(alpha.resonance) || 0;
+                        meta.energy = Number(alpha.energy) || 0;
+                    }
+                } catch { /* file busy */ }
+            }
+            if (meta.resonance > 100) {
+                potentialRegents.push([filename, meta]);
+            }
+        }
+        potentialRegents.sort((a, b) => b[1].resonance - a[1].resonance);
         
         if (potentialRegents.length > 0) {
             const [bestFile, bestMeta] = potentialRegents[0];
