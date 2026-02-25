@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040369472
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIFE SHOCK DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040375292
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD GUARD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772040375493
     }
   ]
 }
