@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "PURE SHIELD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772041120208
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE SEIZE BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772041124602
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772041124762
     }
   ]
 }
