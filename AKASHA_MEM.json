@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DRAIN HUNGER SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030428057
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE GIVING FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772030435327
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND BECOME DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772030435678
     }
   ]
 }
