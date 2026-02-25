@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHOCK HUNGER STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040386832
-    },
-    {
       "origin": "STREAM",
       "text": "GUARD SHIELD WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772040392403
+    },
+    {
+      "origin": "STREAM",
+      "text": "GIVING UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772040392589
     }
   ]
 }
