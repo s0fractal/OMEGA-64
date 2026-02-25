@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "WATCH PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772041660868
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER DRAIN STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772041664540
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041664757
     }
   ]
 }
