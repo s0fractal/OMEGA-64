@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT GUARD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772035894205
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772035894522
@@ -291,6 +285,12 @@
       "text": "BREACH HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772035899404
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772035899621
     }
   ]
 }
