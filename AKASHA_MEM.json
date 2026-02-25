@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027357600
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772027357896
@@ -291,6 +285,12 @@
       "text": "SHIELD WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772027365834
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON IMMUNE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772027366164
     }
   ]
 }
