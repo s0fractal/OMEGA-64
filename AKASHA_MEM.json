@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER IMMUNE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041917006
-    },
-    {
       "origin": "REVERSE",
       "text": "IMMUNE GUARD RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772041923446
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER PURE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772041923677
     }
   ]
 }
