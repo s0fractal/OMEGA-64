@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "REFLECT GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041635097
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HUNGER SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772041635226
@@ -291,6 +285,12 @@
       "text": "GUARD WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772041637825
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RESONATE STABLE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041637981
     }
   ]
 }
