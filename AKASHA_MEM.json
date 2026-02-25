@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BREACH HUNGER STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040252576
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY UNIFY STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BLOOM UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772040258423
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040258624
     }
   ]
 }
