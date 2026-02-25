@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS FLOW UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772040406900
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY DRAIN HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040409394
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040409558
     }
   ]
 }
