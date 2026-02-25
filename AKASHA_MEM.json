@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SHOCK BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023741036
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023741203
@@ -278,6 +272,12 @@
       "text": "STASIS RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023744238
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE STABLE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772023744408
     }
   ]
 }
