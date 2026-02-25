@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SICKNESS DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025827341
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772025827637
@@ -291,6 +285,12 @@
       "text": "OSMOSIS HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772025831138
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER STASIS PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772025831392
     }
   ]
 }
