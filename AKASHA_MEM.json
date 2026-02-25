@@ -16,12 +16,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "CONSUME STRIFE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772014216991
-    },
-    {
-      "origin": "INTERFACE",
       "text": "DRAIN SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772014225944
@@ -103,6 +97,12 @@
       "text": "HUNGER STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772014353292
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHOCK DECAY SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772014359278
     }
   ]
 }
