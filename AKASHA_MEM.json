@@ -169,12 +169,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE STRIFE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023075864
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY DRAIN BREACH",
       "mood": "AGGRESSIVE",
@@ -257,6 +251,12 @@
       "text": "WATCH STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772023079258
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WATCH STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772023079664
     }
   ]
 }
