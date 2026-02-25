@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE BREACH BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020395143
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME CONSUME SHOCK",
       "mood": "AGGRESSIVE",
@@ -141,6 +135,12 @@
       "text": "SHELTER SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772020404632
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772020405498
     }
   ]
 }
