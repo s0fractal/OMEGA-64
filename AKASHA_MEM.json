@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS RESONATE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041335175
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD STASIS SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772041338123
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041338294
     }
   ]
 }
