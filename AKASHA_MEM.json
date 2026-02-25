@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FORGE VISION FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772024991399
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GIVING GIVING OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772024997603
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772024997772
     }
   ]
 }
