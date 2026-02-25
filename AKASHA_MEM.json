@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772036703583
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772036703788
@@ -291,6 +285,12 @@
       "text": "SHELTER GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772036708075
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK STRIFE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036708380
     }
   ]
 }
