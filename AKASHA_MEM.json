@@ -151,12 +151,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022588027
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIKE DRAIN HUNGER",
       "mood": "AGGRESSIVE",
@@ -239,6 +233,12 @@
       "text": "GIVING OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772022592511
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL BLOOM SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772022592682
     }
   ]
 }
