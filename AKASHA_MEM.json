@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE GUARD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040507894
-    },
-    {
       "origin": "STREAM",
       "text": "SHELTER REFLECT SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772040510577
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY BLOOM FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772040510876
     }
   ]
 }
