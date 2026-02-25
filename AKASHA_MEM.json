@@ -115,12 +115,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772022049445
-    },
-    {
       "origin": "REVERSE",
       "text": "BREACH SICKNESS DECAY",
       "mood": "AGGRESSIVE",
@@ -203,6 +197,12 @@
       "text": "EVOLVE BECOME WITNESS",
       "mood": "CREATIVE",
       "tick": 1772022057808
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772022057945
     }
   ]
 }
