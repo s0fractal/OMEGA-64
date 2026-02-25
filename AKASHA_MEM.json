@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772040498722
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC FLOW STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "PURE GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772040501888
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772040502044
     }
   ]
 }
