@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "COHERE HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041677690
-    },
-    {
       "origin": "STREAM",
       "text": "SHIELD IMMUNE GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772041680718
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHELTER SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041680845
     }
   ]
 }
