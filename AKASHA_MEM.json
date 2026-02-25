@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON WAIT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772041518813
-    },
-    {
       "origin": "STREAM",
       "text": "COHERE UNIFY GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772041522659
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE PURE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041522962
     }
   ]
 }
