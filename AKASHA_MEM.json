@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH SHELTER SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772039129712
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772039129950
@@ -291,6 +285,12 @@
       "text": "SYNC FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772039133005
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039133227
     }
   ]
 }
