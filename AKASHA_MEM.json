@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772022221790
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022221923
@@ -213,6 +207,12 @@
       "text": "FLOW OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772022224913
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022225081
     }
   ]
 }
