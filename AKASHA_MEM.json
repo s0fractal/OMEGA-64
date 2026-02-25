@@ -184,12 +184,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM OSMOSIS FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772023604678
-    },
-    {
       "origin": "REVERSE",
       "text": "BREACH DRAIN STRIKE",
       "mood": "AGGRESSIVE",
@@ -272,6 +266,12 @@
       "text": "SHIELD WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772023608123
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772023608294
     }
   ]
 }
