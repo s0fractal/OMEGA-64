@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772034668398
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE HUNGER CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772034677823
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL BLOOM STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772034678027
     }
   ]
 }
