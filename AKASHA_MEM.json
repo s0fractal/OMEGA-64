@@ -167,12 +167,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SPARK WAVE BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772023033510
-    },
-    {
-      "origin": "REVERSE",
       "text": "FORGE VISION FORGE",
       "mood": "CREATIVE",
       "tick": 1772023033631
@@ -254,6 +248,12 @@
       "text": "SHELTER REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772023037397
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH SHOCK HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023037661
     }
   ]
 }
