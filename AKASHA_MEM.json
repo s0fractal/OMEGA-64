@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE STABLE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772029029288
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772029029592
@@ -291,6 +285,12 @@
       "text": "DRAIN CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772029040402
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD PURE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772029040751
     }
   ]
 }
