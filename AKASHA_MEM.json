@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAVE WAVE BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772023979052
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023979214
@@ -284,6 +278,12 @@
       "text": "HUNGER SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023984677
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE STRIFE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023986858
     }
   ]
 }
