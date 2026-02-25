@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW UNIFY SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772031826376
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772031826744
@@ -291,6 +285,12 @@
       "text": "BREACH SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772031834786
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE STABLE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772031835382
     }
   ]
 }
