@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "HUNGER DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040980462
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT SHIELD WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772040983591
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE WATCH IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040983761
     }
   ]
 }
