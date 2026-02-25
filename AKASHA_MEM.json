@@ -150,12 +150,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS WAVE WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772022565181
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022565363
@@ -237,6 +231,12 @@
       "text": "STASIS WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022567906
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BLOOM HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772022568071
     }
   ]
 }
