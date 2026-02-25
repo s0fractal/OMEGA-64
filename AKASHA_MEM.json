@@ -83,12 +83,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772021168345
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021168859
@@ -170,6 +164,12 @@
       "text": "FLOW UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772021174289
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772021174455
     }
   ]
 }
