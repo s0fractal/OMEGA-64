@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING HEAL GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772034423833
-    },
-    {
-      "origin": "REVERSE",
       "text": "DREAM BECOME FORGE",
       "mood": "CREATIVE",
       "tick": 1772034423999
@@ -291,6 +285,12 @@
       "text": "STABLE COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772034427518
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WAIT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772034427748
     }
   ]
 }
