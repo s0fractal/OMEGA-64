@@ -153,12 +153,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING OSMOSIS HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772022592511
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772022592682
@@ -240,6 +234,12 @@
       "text": "SEIZE STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022597413
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WATCH STASIS WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772022597620
     }
   ]
 }
