@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE PURE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772032978816
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY STRIKE SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHOCK SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772032981920
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WAIT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772032982075
     }
   ]
 }
