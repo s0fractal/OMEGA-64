@@ -70,15 +70,10 @@
     "0D18A098",
     "0000000F",
     "66660000",
-    "000AAAAA"
+    "000AAAAA",
+    "ABBB0000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RESONATE SYNC UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772020966865
-    },
     {
       "origin": "REVERSE",
       "text": "WATCH WAIT PURE",
@@ -162,6 +157,12 @@
       "text": "IMMUNE SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772020976844
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020977241
     }
   ]
 }
