@@ -176,12 +176,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023273381
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023273505
@@ -263,6 +257,12 @@
       "text": "DRAIN DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023276297
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT PURE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023276497
     }
   ]
 }
