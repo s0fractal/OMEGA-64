@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042466990
-    },
-    {
       "origin": "INTERFACE",
       "text": "SYNC RESONATE HEAL",
       "mood": "HARMONIC",
@@ -287,10 +281,16 @@
       "tick": 1772042486055
     },
     {
-      "origin": "STREAM",
-      "text": "SHELTER SHIELD SHIELD",
+      "origin": "ARCHIVIST",
+      "text": "COHERE HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772042486473
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHELTER SHIELD",
       "mood": "DEFENSIVE",
-      "tick": 1772042486394
+      "tick": 1772042487080
     }
   ]
 }
