@@ -83,12 +83,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772021196874
-    },
-    {
       "origin": "INTERFACE",
       "text": "RESONATE GIVING GIVING",
       "mood": "HARMONIC",
@@ -171,6 +165,12 @@
       "text": "BLOOM OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772021203277
+    },
+    {
+      "origin": "STREAM",
+      "text": "SYNC UNIFY GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772021203438
     }
   ]
 }
