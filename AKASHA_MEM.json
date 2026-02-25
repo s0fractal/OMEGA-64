@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER IMMUNE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772033093226
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772033093444
@@ -291,6 +285,12 @@
       "text": "PURE SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772033095916
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE RECON SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772033096120
     }
   ]
 }
