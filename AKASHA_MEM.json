@@ -49,12 +49,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHOCK BREACH HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020127897
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIKE SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772020129238
@@ -136,6 +130,12 @@
       "text": "SEIZE SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020142380
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE AWAKEN WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772020142998
     }
   ]
 }
