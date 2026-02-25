@@ -37,12 +37,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN SHOCK SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019789009
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE SYNC GIVING",
       "mood": "HARMONIC",
@@ -125,6 +119,12 @@
       "text": "SYNC GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772019797718
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WAIT RECON IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772019799310
     }
   ]
 }
