@@ -149,12 +149,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE DECAY SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022542619
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH REFLECT GUARD",
       "mood": "DEFENSIVE",
@@ -237,6 +231,12 @@
       "text": "SHIELD WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022546810
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER PURE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022546983
     }
   ]
 }
