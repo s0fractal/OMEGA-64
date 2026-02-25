@@ -83,12 +83,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY STRIKE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021155618
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772021155780
@@ -170,6 +164,12 @@
       "text": "GIVING GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772021161895
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WATCH IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021162046
     }
   ]
 }
