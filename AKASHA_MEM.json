@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHIELD SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040828763
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SEIZE SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772040828904
@@ -291,6 +285,12 @@
       "text": "SYNC STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772040833137
+    },
+    {
+      "origin": "WORKER",
+      "text": "PURE STASIS SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772040833433
     }
   ]
 }
