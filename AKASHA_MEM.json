@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY FLOW GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041810408
-    },
-    {
       "origin": "SOMA",
       "text": "FLOW FLOW BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HEAL STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772041816008
+    },
+    {
+      "origin": "CAR",
+      "text": "REFLECT STASIS WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772041816191
     }
   ]
 }
