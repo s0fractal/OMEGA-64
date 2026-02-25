@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "REFLECT GUARD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772029245906
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM COHERE HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHELTER IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772029253627
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SEIZE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029254520
     }
   ]
 }
