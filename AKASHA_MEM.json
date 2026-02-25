@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK SEIZE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024592922
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772024593199
@@ -291,6 +285,12 @@
       "text": "DECAY BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772024599845
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772024600022
     }
   ]
 }
