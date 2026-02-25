@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE FLOW OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772020487554
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS SHOCK STRIKE",
       "mood": "AGGRESSIVE",
@@ -142,6 +136,12 @@
       "text": "BREACH SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020496712
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DRAIN SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020497058
     }
   ]
 }
