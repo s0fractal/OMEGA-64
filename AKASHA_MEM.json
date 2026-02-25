@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE RECON SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772024698884
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772024702300
@@ -291,6 +285,12 @@
       "text": "OSMOSIS SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772024725118
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON STASIS SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772024726088
     }
   ]
 }
