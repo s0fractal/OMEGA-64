@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH REFLECT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772033481390
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772033481572
@@ -291,6 +285,12 @@
       "text": "STABLE SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772033484193
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER HUNGER DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033484401
     }
   ]
 }
