@@ -192,12 +192,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS WAVE BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772023805494
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023805688
@@ -279,6 +273,12 @@
       "text": "REFLECT WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023809363
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING GIVING SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772023809790
     }
   ]
 }
