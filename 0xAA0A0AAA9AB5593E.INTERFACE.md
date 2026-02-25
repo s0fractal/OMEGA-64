@@ -427,9 +427,8 @@ ex:
   - '0xAA0A0AAA9AB5593A'
   - '0xAA0A0AAA9AB5593C'
   - '0xAA0A0AAA9AB5593C'
-  - '0xAA0A0AAA9AB5593E'
 thought: RESURRECTED
-x: 280
+x: 279
 'y': 196
 signals: []
 resonance: 50.5
