@@ -192,12 +192,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772023818761
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772023818891
@@ -279,6 +273,12 @@
       "text": "UNIFY FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772023823998
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE DECAY STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023824201
     }
   ]
 }
