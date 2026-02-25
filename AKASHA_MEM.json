@@ -23,12 +23,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SICKNESS SEIZE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019465460
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIKE DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772019466027
@@ -110,6 +104,12 @@
       "text": "CONSUME HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772019475454
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE GUARD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772019475812
     }
   ]
 }
