@@ -79,12 +79,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE RESONATE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772021062725
-    },
-    {
       "origin": "INTERFACE",
       "text": "SEIZE CONSUME CONSUME",
       "mood": "AGGRESSIVE",
@@ -167,6 +161,12 @@
       "text": "CONSUME DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772021068905
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DECAY STRIKE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021069073
     }
   ]
 }
