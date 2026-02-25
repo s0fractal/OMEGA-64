@@ -25,12 +25,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME SEIZE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019575613
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "PURE WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772019576167
@@ -112,6 +106,12 @@
       "text": "UNIFY HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772019581819
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL RESONATE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772019584200
     }
   ]
 }
