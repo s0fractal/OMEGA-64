@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE PURE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772025507726
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS DECAY SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIKE STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772025511418
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE STABLE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772025511607
     }
   ]
 }
