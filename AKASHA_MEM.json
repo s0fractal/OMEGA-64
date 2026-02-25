@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SEIZE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033773310
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772033773481
@@ -291,6 +285,12 @@
       "text": "REFLECT STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772033776142
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS SHIELD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772033776329
     }
   ]
 }
