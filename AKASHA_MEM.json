@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772022197051
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772022197226
@@ -213,6 +207,12 @@
       "text": "SHIELD RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772022201626
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DRAIN DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022202249
     }
   ]
 }
