@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00AAAA00",
     "AABB0CDD",
     "A00A00A0",
     "660666A6",
@@ -199,15 +198,10 @@
     "A00AA000",
     "AA0A00A0",
     "000060A0",
-    "0A000AAA"
+    "0A000AAA",
+    "60000000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "COHERE GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772029729254
-    },
     {
       "origin": "REVERSE",
       "text": "SHIELD WAIT WATCH",
@@ -291,6 +285,12 @@
       "text": "GUARD RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772029745521
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WAIT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772029748243
     }
   ]
 }
