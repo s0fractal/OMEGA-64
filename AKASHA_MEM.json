@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE IMMUNE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772033692897
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772033693085
@@ -291,6 +285,12 @@
       "text": "FLOW COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772033695417
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE PURE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772033695604
     }
   ]
 }
