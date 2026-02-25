@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038082650
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772038082823
@@ -291,6 +285,12 @@
       "text": "HEAL STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772038087550
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772038087783
     }
   ]
 }
