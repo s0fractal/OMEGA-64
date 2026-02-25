@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHELTER PURE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772041039211
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW STABLE OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STASIS RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041043949
+    },
+    {
+      "origin": "STREAM",
+      "text": "STRIKE SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041044235
     }
   ]
 }
