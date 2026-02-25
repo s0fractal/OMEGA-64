@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING UNIFY UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772035756430
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772035756634
@@ -291,6 +285,12 @@
       "text": "WAIT WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772035759271
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SICKNESS HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035759472
     }
   ]
 }
