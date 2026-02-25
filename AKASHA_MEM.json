@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE GUARD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772034389089
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS SHIELD RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034392939
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772034393166
     }
   ]
 }
