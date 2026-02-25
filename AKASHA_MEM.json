@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GUARD WAIT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772041174861
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIFE HUNGER SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772041178894
+    },
+    {
+      "origin": "STREAM",
+      "text": "RECON GUARD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772041179094
     }
   ]
 }
