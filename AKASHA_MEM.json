@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE GUARD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772030232834
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772030236416
@@ -291,6 +285,12 @@
       "text": "HEAL RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772030250635
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW FLOW UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772030250937
     }
   ]
 }
