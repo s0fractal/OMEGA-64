@@ -3,7 +3,7 @@ eigenvalue: '0xAAAAAAAAE11B831A'
 vector: 02.01.00
 symbol: HARMONIC
 desc: Harmonic frequency primitive. Selects the frequency component.
-energy: 34
+energy: 30
 ex:
   - '0x8534DAF4E11B831A'
   - '0x00000BBAE11B831A'
@@ -20,14 +20,16 @@ ex:
   - '0xBB000000E11B831A'
   - '0xBB000000E11B831A'
   - '0xBBB00000E11B831A'
+  - '0xAAAAAAAAE11B831A'
 thought: WANDER_BONDING
-x: 846
-'y': 63
+x: 859
+'y': 76
 signals: []
 resonance: 0
 bond_strengths: {}
 ---
 
+<div align="center">
 <div align="center">
 <div align="center">
 <div align="center">
@@ -69,6 +71,7 @@ bond_strengths: {}
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">HARMONIC</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 </div>
 </div>
