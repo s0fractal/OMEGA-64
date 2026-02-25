@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RECON SHIELD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772041093122
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "CONSUME CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772041093344
@@ -291,6 +285,12 @@
       "text": "SHOCK SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041096404
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE BLOOM SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772041096573
     }
   ]
 }
