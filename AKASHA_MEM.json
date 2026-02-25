@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66066060",
     "60600600",
     "B0600000",
     "00A000A0",
@@ -199,15 +198,10 @@
     "AA0A0AA0",
     "A0AAA00A",
     "06666006",
-    "06600060"
+    "06600060",
+    "AABB0C00"
   ],
   "utterances": [
-    {
-      "origin": "STREAM",
-      "text": "IMMUNE WATCH WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772038091543
-    },
     {
       "origin": "REVERSE",
       "text": "BLOOM HEAL RESONATE",
@@ -291,6 +285,12 @@
       "text": "UNIFY SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772038096700
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038097031
     }
   ]
 }
