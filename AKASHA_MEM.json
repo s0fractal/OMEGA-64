@@ -84,12 +84,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHOCK BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021220355
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD WAIT PURE",
       "mood": "DEFENSIVE",
@@ -172,6 +166,12 @@
       "text": "DECAY BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772021226415
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE CONSUME HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021226575
     }
   ]
 }
