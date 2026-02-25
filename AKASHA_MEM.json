@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772041914726
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER REFLECT WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772041920683
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SYNC COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041920870
     }
   ]
 }
