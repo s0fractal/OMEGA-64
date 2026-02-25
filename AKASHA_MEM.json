@@ -107,12 +107,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021802891
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GUARD GUARD WATCH",
       "mood": "DEFENSIVE",
@@ -195,6 +189,12 @@
       "text": "FLOW UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772021807442
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIKE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021807569
     }
   ]
 }
