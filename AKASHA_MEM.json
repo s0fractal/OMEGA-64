@@ -155,12 +155,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "WAIT RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022734972
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
@@ -243,6 +237,12 @@
       "text": "HEAL RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022740498
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE AWAKEN FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772022740683
     }
   ]
 }
