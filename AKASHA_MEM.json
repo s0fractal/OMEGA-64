@@ -102,12 +102,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772021619382
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772021619548
@@ -189,6 +183,12 @@
       "text": "CONSUME STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021624003
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC RESONATE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772021624133
     }
   ]
 }
