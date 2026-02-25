@@ -153,15 +153,10 @@
     "666A6600",
     "66600600",
     "06666066",
-    "AA0AAAAA"
+    "AA0AAAAA",
+    "06060000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STASIS RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772022771470
-    },
     {
       "origin": "REVERSE",
       "text": "COHERE OSMOSIS UNIFY",
@@ -245,6 +240,12 @@
       "text": "RESONATE GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772022779311
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772022779854
     }
   ]
 }
