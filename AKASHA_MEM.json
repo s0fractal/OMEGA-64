@@ -114,15 +114,10 @@
     "FFFFFFF0",
     "66066600",
     "0000A006",
-    "00AA60A0"
+    "00AA60A0",
+    "06006000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BREACH HUNGER BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022090639
-    },
     {
       "origin": "REVERSE",
       "text": "WAIT REFLECT SHELTER",
@@ -206,6 +201,12 @@
       "text": "REFLECT IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022093246
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY STABLE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772022093409
     }
   ]
 }
