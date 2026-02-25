@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE OSMOSIS BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772028194225
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772028194832
@@ -291,6 +285,12 @@
       "text": "OSMOSIS OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772028201098
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHIELD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772028201620
     }
   ]
 }
