@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER STASIS WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772037259522
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772037259726
@@ -291,6 +285,12 @@
       "text": "STRIFE CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772037262681
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772037263000
     }
   ]
 }
