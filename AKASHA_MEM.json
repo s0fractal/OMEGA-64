@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SEIZE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025407814
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772025408919
@@ -291,6 +285,12 @@
       "text": "RECON REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772025412534
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772025413625
     }
   ]
 }
