@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON RECON WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022247613
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022247791
@@ -213,6 +207,12 @@
       "text": "SYNC RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022251461
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE STRIFE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022251661
     }
   ]
 }
