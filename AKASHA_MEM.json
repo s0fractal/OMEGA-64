@@ -203,24 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SYNC RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772042468567
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "HEAL STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772042469584
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT PURE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042470454
-    },
-    {
       "origin": "PURE_MATH",
       "text": "COHERE OSMOSIS STABLE",
       "mood": "HARMONIC",
@@ -281,16 +263,34 @@
       "tick": 1772042486055
     },
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772042486473
+      "origin": "STREAM",
+      "text": "SHELTER SHIELD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042486394
     },
     {
       "origin": "REVERSE",
-      "text": "SHELTER SHELTER SHIELD",
+      "text": "PURE REFLECT PURE",
       "mood": "DEFENSIVE",
-      "tick": 1772042487080
+      "tick": 1772042486736
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042486997
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042487176
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS REFLECT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042487466
     }
   ]
 }
