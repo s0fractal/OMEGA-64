@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772025350792
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772025351001
@@ -291,6 +285,12 @@
       "text": "SICKNESS SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772025354221
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025354409
     }
   ]
 }
