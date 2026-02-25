@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772031831191
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772031831538
@@ -291,6 +285,12 @@
       "text": "WATCH SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772031839376
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SHOCK SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031840080
     }
   ]
 }
