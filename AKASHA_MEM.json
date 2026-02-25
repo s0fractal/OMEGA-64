@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "PURE IMMUNE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040939689
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE UNIFY OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BREACH SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772040942328
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040942637
     }
   ]
 }
