@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HEAL FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772041236330
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DREAM EVOLVE DREAM",
       "mood": "CREATIVE",
       "tick": 1772041236535
@@ -291,6 +285,12 @@
       "text": "STRIFE STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772041240871
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE HEAL GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041241458
     }
   ]
 }
