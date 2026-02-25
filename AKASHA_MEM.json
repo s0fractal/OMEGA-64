@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772031492048
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772031492463
@@ -291,6 +285,12 @@
       "text": "WATCH SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772031503814
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772031504392
     }
   ]
 }
