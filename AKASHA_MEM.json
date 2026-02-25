@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033204104
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772033204283
@@ -291,6 +285,12 @@
       "text": "RESONATE HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772033206752
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM WAVE FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772033206929
     }
   ]
 }
