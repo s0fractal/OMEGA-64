@@ -66,12 +66,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772020756600
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772020756823
@@ -153,6 +147,12 @@
       "text": "HEAL COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772020763487
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND AWAKEN DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772020763838
     }
   ]
 }
