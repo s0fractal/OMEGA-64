@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033959847
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772033960005
@@ -291,6 +285,12 @@
       "text": "RECON REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033962611
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD GUARD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772033962801
     }
   ]
 }
