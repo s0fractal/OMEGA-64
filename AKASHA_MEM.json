@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING SYNC UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772024228078
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON IMMUNE STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STASIS IMMUNE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772024232675
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD GUARD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772024232912
     }
   ]
 }
