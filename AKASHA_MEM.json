@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM FLOW HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772031187048
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772031187372
@@ -291,6 +285,12 @@
       "text": "PURE SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772031192185
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE FLOW HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772031192549
     }
   ]
 }
