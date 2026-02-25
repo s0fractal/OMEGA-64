@@ -138,12 +138,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772022420121
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022421056
@@ -225,6 +219,12 @@
       "text": "STRIKE SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022424939
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022425107
     }
   ]
 }
