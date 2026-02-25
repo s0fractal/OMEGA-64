@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031845809
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772031857734
@@ -291,6 +285,12 @@
       "text": "PURE STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772031885417
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE HEAL GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772031886050
     }
   ]
 }
