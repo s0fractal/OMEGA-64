@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIFE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030770566
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772030771090
@@ -291,6 +285,12 @@
       "text": "OSMOSIS RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772030782300
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL BLOOM FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772030784636
     }
   ]
 }
