@@ -135,12 +135,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN BREACH BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022389247
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022389441
@@ -222,6 +216,12 @@
       "text": "DRAIN STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022394089
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022394385
     }
   ]
 }
