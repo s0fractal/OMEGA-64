@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE SYNC HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772034257461
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772034257647
@@ -291,6 +285,12 @@
       "text": "BREACH DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772034260857
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER GUARD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772034261026
     }
   ]
 }
