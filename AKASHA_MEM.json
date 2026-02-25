@@ -190,12 +190,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHIELD SHELTER STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772023716212
-    },
-    {
       "origin": "REVERSE",
       "text": "BREACH SEIZE DRAIN",
       "mood": "AGGRESSIVE",
@@ -278,6 +272,12 @@
       "text": "SHELTER RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023720371
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY OSMOSIS BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772023720913
     }
   ]
 }
