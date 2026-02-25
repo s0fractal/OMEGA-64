@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SYNC STABLE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772042007651
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE RESONATE OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RESONATE HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772042015184
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042015416
     }
   ]
 }
