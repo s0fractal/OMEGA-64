@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY FLOW OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772029965609
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH SHOCK BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772029976927
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE OSMOSIS BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772029977720
     }
   ]
 }
