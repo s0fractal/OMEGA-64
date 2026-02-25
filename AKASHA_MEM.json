@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772028444037
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772028444425
@@ -291,6 +285,12 @@
       "text": "CONSUME SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772028457450
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW STABLE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772028457759
     }
   ]
 }
