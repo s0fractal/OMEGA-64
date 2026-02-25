@@ -16,12 +16,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BECOME AWAKEN BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772014279546
-    },
-    {
       "origin": "INTERFACE",
       "text": "GIVING RESONATE UNIFY",
       "mood": "HARMONIC",
@@ -104,6 +98,12 @@
       "text": "GIVING UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772014476066
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE SEIZE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772014478934
     }
   ]
 }
