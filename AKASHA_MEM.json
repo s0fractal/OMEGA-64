@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "UNIFY COHERE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772041609604
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WATCH PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041609789
@@ -291,6 +285,12 @@
       "text": "SYNC OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772041614994
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT PURE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041615407
     }
   ]
 }
