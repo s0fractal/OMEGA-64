@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772041185953
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772041189288
+    },
+    {
+      "origin": "STREAM",
+      "text": "BREACH STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041189459
     }
   ]
 }
