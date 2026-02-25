@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041754510
-    },
-    {
       "origin": "STREAM",
       "text": "PURE SHELTER REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041761642
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS HEAL GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041762146
     }
   ]
 }
