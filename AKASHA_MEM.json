@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT REFLECT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772034623064
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS WATCH SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772034626460
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME DRAIN CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034626656
     }
   ]
 }
