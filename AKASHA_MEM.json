@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772040361534
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT STASIS SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHOCK SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772040368817
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME HUNGER CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040369472
     }
   ]
 }
