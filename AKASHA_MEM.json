@@ -97,12 +97,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WAIT SHELTER SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772021576619
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GUARD PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772021577122
@@ -184,6 +178,12 @@
       "text": "STABLE RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772021583941
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS IMMUNE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772021584088
     }
   ]
 }
