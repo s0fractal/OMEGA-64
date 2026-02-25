@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029895603
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772029896126
@@ -291,6 +285,12 @@
       "text": "DRAIN DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772029905087
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM HEAL HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772029906384
     }
   ]
 }
