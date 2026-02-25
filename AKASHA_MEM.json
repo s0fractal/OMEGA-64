@@ -176,12 +176,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023275017
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772023275488
@@ -263,6 +257,12 @@
       "text": "GIVING FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772023278135
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023278728
     }
   ]
 }
