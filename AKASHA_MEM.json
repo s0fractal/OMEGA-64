@@ -38,15 +38,10 @@
     "666A66A0",
     "BB0BA000",
     "AB0A0000",
-    "A000A000"
+    "A000A000",
+    "600A0A00"
   ],
   "utterances": [
-    {
-      "origin": "INTERFACE",
-      "text": "IMMUNE IMMUNE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772019990704
-    },
     {
       "origin": "REVERSE",
       "text": "DRAIN STRIFE DECAY",
@@ -130,6 +125,12 @@
       "text": "BREACH HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020005907
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT GUARD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772020006411
     }
   ]
 }
