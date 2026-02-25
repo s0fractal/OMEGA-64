@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772032262953
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772032263347
@@ -291,6 +285,12 @@
       "text": "DRAIN STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772032266952
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE SYNC UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772032267125
     }
   ]
 }
