@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06606000",
     "AAA00AA0",
     "AABBCCDD",
     "AAAA00AA",
@@ -199,15 +198,10 @@
     "06666606",
     "AAAAAA00",
     "A6066000",
-    "0AAAA0AA"
+    "0AAAA0AA",
+    "66666060"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "PURE WAIT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041318630
-    },
     {
       "origin": "PURE_MATH",
       "text": "DECAY SHOCK CONSUME",
@@ -291,6 +285,12 @@
       "text": "STABLE OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772041322853
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER REFLECT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772041323056
     }
   ]
 }
