@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SHOCK CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023725056
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023725218
@@ -278,6 +272,12 @@
       "text": "FLOW GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772023727877
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023728004
     }
   ]
 }
