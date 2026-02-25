@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772036695182
-    },
-    {
-      "origin": "REVERSE",
       "text": "FORGE AWAKEN AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772036695389
@@ -291,6 +285,12 @@
       "text": "STABLE HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772036698050
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DECAY HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036698259
     }
   ]
 }
