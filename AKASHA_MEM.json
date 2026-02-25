@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON REFLECT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772040425630
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772040425867
@@ -291,6 +285,12 @@
       "text": "BREACH STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772040428116
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS REFLECT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040428245
     }
   ]
 }
