@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "IMMUNE IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041956525
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT WATCH SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SICKNESS BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772041964121
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD WAIT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041964653
     }
   ]
 }
