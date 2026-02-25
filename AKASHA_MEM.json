@@ -67,12 +67,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FORGE FORGE AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772020792384
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772020792734
@@ -154,6 +148,12 @@
       "text": "DECAY CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020801476
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WAIT PURE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020802096
     }
   ]
 }
