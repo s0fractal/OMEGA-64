@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772038050755
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772038050930
@@ -291,6 +285,12 @@
       "text": "DRAIN DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772038054232
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING STABLE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772038054419
     }
   ]
 }
