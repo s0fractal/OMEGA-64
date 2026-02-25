@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "FLOW UNIFY FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772016141415
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STABLE FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772016153543
@@ -107,6 +101,12 @@
       "text": "SEIZE SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772016229139
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "REFLECT IMMUNE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772016246053
     }
   ]
 }
