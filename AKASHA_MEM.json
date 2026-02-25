@@ -81,12 +81,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "CONSUME SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021123380
-    },
-    {
-      "origin": "INTERFACE",
       "text": "CONSUME SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772021123813
@@ -168,6 +162,12 @@
       "text": "SYNC UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772021128238
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WATCH WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772021128527
     }
   ]
 }
