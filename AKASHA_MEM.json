@@ -192,12 +192,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK CONSUME SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023785498
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHIELD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772023785859
@@ -279,6 +273,12 @@
       "text": "IMMUNE REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023789218
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772023789402
     }
   ]
 }
