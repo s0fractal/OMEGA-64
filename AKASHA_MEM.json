@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025990214
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING HEAL FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FLOW RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772025998595
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE STABLE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772025998870
     }
   ]
 }
