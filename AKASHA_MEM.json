@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BLOOM SYNC UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772019933128
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY FLOW UNIFY",
       "mood": "HARMONIC",
@@ -130,6 +124,12 @@
       "text": "STABLE SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772019946159
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIKE HUNGER SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019946565
     }
   ]
 }
