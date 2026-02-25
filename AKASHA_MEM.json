@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SHOCK DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039969900
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE SHELTER SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772039970448
@@ -291,6 +285,12 @@
       "text": "UNIFY RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772039977657
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DRAIN STRIKE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039978136
     }
   ]
 }
