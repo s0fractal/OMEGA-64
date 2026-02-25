@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_PROOF_OF_RESONANCE",
-      "text": "HEAL BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772041646672
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIFE STRIFE BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772041650154
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041650580
     }
   ]
 }
