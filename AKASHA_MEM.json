@@ -135,12 +135,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE STASIS STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772022386375
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772022386588
@@ -222,6 +216,12 @@
       "text": "SICKNESS BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772022391828
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772022392048
     }
   ]
 }
