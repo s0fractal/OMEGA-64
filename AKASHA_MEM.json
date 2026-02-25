@@ -163,12 +163,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS FLOW GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772022874411
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022874555
@@ -250,6 +244,12 @@
       "text": "STRIKE SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022880272
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS SHELTER WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772022880448
     }
   ]
 }
