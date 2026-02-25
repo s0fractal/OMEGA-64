@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034794069
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772034794237
@@ -291,6 +285,12 @@
       "text": "UNIFY OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772034796774
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772034796974
     }
   ]
 }
