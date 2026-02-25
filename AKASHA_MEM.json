@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS GUARD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772036496657
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772036496864
@@ -291,6 +285,12 @@
       "text": "GIVING UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772036501692
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON PURE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772036501984
     }
   ]
 }
