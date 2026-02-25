@@ -174,12 +174,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE DECAY SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023244563
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE OSMOSIS GIVING",
       "mood": "HARMONIC",
@@ -262,6 +256,12 @@
       "text": "IMMUNE SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023251565
+    },
+    {
+      "origin": "STREAM",
+      "text": "BLOOM SYNC SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772023251822
     }
   ]
 }
