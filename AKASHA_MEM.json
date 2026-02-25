@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SYNC OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041065884
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE FLOW GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STASIS GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041068364
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE FORGE DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772041068615
     }
   ]
 }
