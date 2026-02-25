@@ -192,12 +192,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC HEAL HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772023764467
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772023764640
@@ -279,6 +273,12 @@
       "text": "WATCH GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023767250
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW OSMOSIS RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772023767420
     }
   ]
 }
