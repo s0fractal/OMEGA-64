@@ -33,12 +33,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHOCK CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019722109
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SYNC FLOW STABLE",
       "mood": "HARMONIC",
@@ -121,6 +115,12 @@
       "text": "SEIZE DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772019733142
+    },
+    {
+      "origin": "STREAM",
+      "text": "BLOOM FLOW GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772019733492
     }
   ]
 }
