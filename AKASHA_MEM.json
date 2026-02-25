@@ -15,12 +15,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "SICKNESS CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772013195332
-    },
-    {
-      "origin": "INTERFACE",
       "text": "STASIS STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772013215099
@@ -102,6 +96,12 @@
       "text": "RECON WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772014148428
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME STRIKE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772014154383
     }
   ]
 }
