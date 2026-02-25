@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772026338855
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772026339182
@@ -291,6 +285,12 @@
       "text": "STASIS IMMUNE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772026342855
+    },
+    {
+      "origin": "ALPHA_REVERSE",
+      "text": "WITNESS WAVE DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772026344161
     }
   ]
 }
