@@ -24,12 +24,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DECAY STRIKE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019564855
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHOCK STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772019565898
@@ -111,6 +105,12 @@
       "text": "STRIKE DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772019577016
+    },
+    {
+      "origin": "STREAM",
+      "text": "GIVING RESONATE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772019577449
     }
   ]
 }
