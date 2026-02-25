@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772019652266
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE STASIS WAIT",
       "mood": "DEFENSIVE",
@@ -114,6 +108,12 @@
       "text": "WATCH GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772019661128
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE GUARD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772019661348
     }
   ]
 }
