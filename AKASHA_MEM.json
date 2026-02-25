@@ -170,12 +170,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772023082608
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772023082768
@@ -257,6 +251,12 @@
       "text": "SICKNESS STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772023085854
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD RECON STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772023086023
     }
   ]
 }
