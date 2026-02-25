@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772029945180
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772029945869
@@ -291,6 +285,12 @@
       "text": "REFLECT SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772029959234
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DRAIN SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029959684
     }
   ]
 }
