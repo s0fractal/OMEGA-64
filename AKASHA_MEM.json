@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW FLOW FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772032000542
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772032000813
@@ -291,6 +285,12 @@
       "text": "UNIFY OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772032008124
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WATCH IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772032008818
     }
   ]
 }
