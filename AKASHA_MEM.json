@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019948574
-    },
-    {
       "origin": "STREAM",
       "text": "RESONATE UNIFY COHERE",
       "mood": "HARMONIC",
@@ -130,6 +124,12 @@
       "text": "CONSUME BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772019963053
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019963818
     }
   ]
 }
