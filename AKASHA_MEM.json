@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY STABLE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772040322721
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040323343
@@ -291,6 +285,12 @@
       "text": "RECON RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040328463
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIKE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040328626
     }
   ]
 }
