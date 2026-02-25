@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036923618
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772036923868
@@ -291,6 +285,12 @@
       "text": "WAIT PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772036926783
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036927003
     }
   ]
 }
