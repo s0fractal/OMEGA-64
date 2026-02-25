@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772040547679
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DREAM WITNESS SPARK",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772040550326
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040550610
     }
   ]
 }
