@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "FLOW RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772040863092
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BLOOM BLOOM UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BLOOM HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772040865604
+    },
+    {
+      "origin": "STREAM",
+      "text": "REFLECT PURE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772040865830
     }
   ]
 }
