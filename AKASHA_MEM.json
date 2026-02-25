@@ -19,12 +19,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "CONSUME DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772015501062
-    },
-    {
-      "origin": "INTERFACE",
       "text": "BREACH SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772015503931
@@ -106,6 +100,12 @@
       "text": "STASIS SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772015597239
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE SHOCK HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772015600043
     }
   ]
 }
