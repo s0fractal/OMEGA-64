@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY OSMOSIS SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772040464472
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE HUNGER STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772040466948
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040467076
     }
   ]
 }
