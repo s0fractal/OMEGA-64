@@ -202,12 +202,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772024068446
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772024068627
@@ -289,6 +283,12 @@
       "text": "OSMOSIS COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772024072685
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE WITNESS BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772024072853
     }
   ]
 }
