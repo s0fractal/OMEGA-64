@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032467979
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD SHELTER SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772032468352
@@ -291,6 +285,12 @@
       "text": "SHOCK SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772032475086
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772032475390
     }
   ]
 }
