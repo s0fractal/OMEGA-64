@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE GUARD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772034891653
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034891851
@@ -291,6 +285,12 @@
       "text": "SHIELD RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772034895404
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034895601
     }
   ]
 }
