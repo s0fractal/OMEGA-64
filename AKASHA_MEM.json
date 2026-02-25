@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE SHIELD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772030473770
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772030479690
@@ -291,6 +285,12 @@
       "text": "FLOW RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772030485584
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772030485929
     }
   ]
 }
