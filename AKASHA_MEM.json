@@ -196,12 +196,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER SHELTER RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772023912212
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023912550
@@ -283,6 +277,12 @@
       "text": "SHOCK DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023921945
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME BECOME EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772023922153
     }
   ]
 }
