@@ -163,12 +163,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE STRIKE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022881527
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022881703
@@ -250,6 +244,12 @@
       "text": "STABLE GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772022888496
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SICKNESS STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022888848
     }
   ]
 }
