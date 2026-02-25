@@ -141,12 +141,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING HEAL GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772022467227
-    },
-    {
       "origin": "STREAM",
       "text": "GUARD WAIT RECON",
       "mood": "DEFENSIVE",
@@ -229,6 +223,12 @@
       "text": "DECAY SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022472072
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022473102
     }
   ]
 }
