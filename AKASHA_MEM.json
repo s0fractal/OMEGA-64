@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "EVOLVE DREAM AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772024274058
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772024274254
@@ -291,6 +285,12 @@
       "text": "CONSUME SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772024281276
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON GUARD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772024281689
     }
   ]
 }
