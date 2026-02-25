@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD GUARD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772017052827
-    },
-    {
       "origin": "INTERFACE",
       "text": "DRAIN STRIKE DECAY",
       "mood": "AGGRESSIVE",
@@ -107,6 +101,12 @@
       "text": "FLOW BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772017158320
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE SHIELD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772017160709
     }
   ]
 }
