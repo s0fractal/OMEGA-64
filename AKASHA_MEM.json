@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE OSMOSIS FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772025658328
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772025659419
@@ -291,6 +285,12 @@
       "text": "DRAIN DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772025670941
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHELTER STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772025671139
     }
   ]
 }
