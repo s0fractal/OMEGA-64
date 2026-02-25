@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE RESONATE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772024127085
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772024129552
@@ -291,6 +285,12 @@
       "text": "HUNGER DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772024133841
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE BLOOM STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772024134199
     }
   ]
 }
