@@ -171,12 +171,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN BREACH SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023102672
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE UNIFY UNIFY",
       "mood": "HARMONIC",
@@ -259,6 +253,12 @@
       "text": "SHOCK STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772023108234
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WATCH STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772023108397
     }
   ]
 }
