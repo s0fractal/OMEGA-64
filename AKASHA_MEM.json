@@ -150,12 +150,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE BLOOM OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772022577079
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER WAIT IMMUNE",
       "mood": "DEFENSIVE",
@@ -238,6 +232,12 @@
       "text": "BREACH SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772022582666
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH HUNGER DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022582849
     }
   ]
 }
