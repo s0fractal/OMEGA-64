@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE UNIFY COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772036296864
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772036297060
@@ -291,6 +285,12 @@
       "text": "BREACH DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772036299517
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036299686
     }
   ]
 }
