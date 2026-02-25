@@ -163,12 +163,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIKE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022919606
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772022919797
@@ -250,6 +244,12 @@
       "text": "UNIFY BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772022925518
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022927336
     }
   ]
 }
