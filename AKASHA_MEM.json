@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034686520
-    },
-    {
       "origin": "ALPHA_REVERSE",
       "text": "COHERE OSMOSIS STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GUARD WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772034690818
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT REFLECT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772034691114
     }
   ]
 }
