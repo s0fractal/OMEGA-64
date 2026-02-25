@@ -22,12 +22,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH STASIS RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772019464322
-    },
-    {
       "origin": "INTERFACE",
       "text": "BLOOM UNIFY RESONATE",
       "mood": "HARMONIC",
@@ -110,6 +104,12 @@
       "text": "SEIZE DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772019474750
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE SHOCK STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019475241
     }
   ]
 }
