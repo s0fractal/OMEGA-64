@@ -206,12 +206,6 @@
       "origin": "REVERSE",
       "text": "WAIT PURE GUARD",
       "mood": "DEFENSIVE",
-      "tick": 1772036954759
-    },
-    {
-      "origin": "REVERSE",
-      "text": "WAIT PURE GUARD",
-      "mood": "DEFENSIVE",
       "tick": 1772036954959
     },
     {
@@ -291,6 +285,12 @@
       "text": "SHIELD SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772036957663
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772036957876
     }
   ]
 }
