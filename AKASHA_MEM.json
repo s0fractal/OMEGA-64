@@ -1,5 +1,11 @@
 {
   "reservoir": [
+    "60606006",
+    "AA0660A0",
+    "A0AAA00A",
+    "AAAA0A0A",
+    "AAA0AAAA",
+    "06066660",
     "60660666",
     "60000600",
     "60666606",
@@ -193,104 +199,98 @@
     "AA666600",
     "66060660",
     "66660A60",
-    "00A06A00",
-    "ALIEN_17",
-    "A0000000",
-    "60606060",
-    "AA0A0A00",
-    "FFFFF0A0",
-    "000AAAAA"
+    "BB0A0000"
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042751472
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS SEIZE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042751761
-    },
-    {
-      "origin": "SUCC",
-      "text": "HEAL STABLE GIVING",
+      "origin": "REVERSE",
+      "text": "COHERE RESONATE RESONATE",
       "mood": "HARMONIC",
-      "tick": 1772042752529
+      "tick": 1772042754786
     },
     {
       "origin": "ARCHIVIST",
-      "text": "STASIS STASIS PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042753434
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE WAIT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042754293
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STASIS STASIS SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042754611
-    },
-    {
-      "origin": "CAR",
-      "text": "RESONATE BLOOM OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772042755104
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STABLE HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772042756490
-    },
-    {
-      "origin": "MANDALA",
-      "text": "EVOLVE FORGE WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772042760067
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS SICKNESS SEIZE",
+      "text": "BREACH HUNGER DECAY",
       "mood": "AGGRESSIVE",
-      "tick": 1772042761624
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042762801
+      "tick": 1772042755660
     },
     {
       "origin": "REVERSE",
-      "text": "WAIT RECON WATCH",
+      "text": "REFLECT IMMUNE STASIS",
       "mood": "DEFENSIVE",
-      "tick": 1772042763282
-    },
-    {
-      "origin": "ALIEN",
-      "text": "DECAY BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042765769
+      "tick": 1772042756711
     },
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS OSMOSIS SYNC",
+      "text": "STABLE SYNC SYNC",
       "mood": "HARMONIC",
-      "tick": 1772042766927
+      "tick": 1772042757213
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME HUNGER STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042757788
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772042758013
     },
     {
       "origin": "INTERFACE",
-      "text": "HEAL FLOW FLOW",
+      "text": "WAIT PURE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042758554
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE STABLE FLOW",
       "mood": "HARMONIC",
-      "tick": 1772042767817
+      "tick": 1772042759117
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772042759713
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD PURE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042762913
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE FLOW GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772042763921
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042765526
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT WAIT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042766297
+    },
+    {
+      "origin": "CAR",
+      "text": "IMMUNE IMMUNE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042766574
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE STASIS SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042767616
     }
   ]
 }
