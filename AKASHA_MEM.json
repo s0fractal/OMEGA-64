@@ -76,12 +76,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER STRIKE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021036486
-    },
-    {
       "origin": "PARADOX",
       "text": "UNIFY RESONATE OSMOSIS",
       "mood": "HARMONIC",
@@ -164,6 +158,12 @@
       "text": "SICKNESS SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772021040853
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SHOCK SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021041617
     }
   ]
 }
