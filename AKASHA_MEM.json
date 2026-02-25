@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "STRIFE STRIKE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041267802
-    },
-    {
-      "origin": "INTERFACE",
       "text": "UNIFY UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772041267970
@@ -291,6 +285,12 @@
       "text": "IMMUNE WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041272536
+    },
+    {
+      "origin": "STREAM",
+      "text": "DECAY SEIZE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041272723
     }
   ]
 }
