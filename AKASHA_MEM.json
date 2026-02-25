@@ -70,12 +70,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER GUARD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020903606
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH DECAY STRIKE",
       "mood": "AGGRESSIVE",
@@ -158,6 +152,12 @@
       "text": "BLOOM RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772020908349
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GUARD WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772020908860
     }
   ]
 }
