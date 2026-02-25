@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772032686809
-    },
-    {
       "origin": "STREAM",
       "text": "PURE RECON IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STASIS SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772032694240
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032694386
     }
   ]
 }
