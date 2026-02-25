@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WITNESS WITNESS AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772024514990
-    },
-    {
       "origin": "INTERFACE",
       "text": "BECOME EVOLVE WITNESS",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "SICKNESS BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772024525520
+    },
+    {
+      "origin": "STREAM",
+      "text": "BLOOM HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772024526424
     }
   ]
 }
