@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "EVOLVE WITNESS VISION",
-      "mood": "CREATIVE",
-      "tick": 1772033305336
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772033305483
@@ -291,6 +285,12 @@
       "text": "RECON SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772033310264
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772033310577
     }
   ]
 }
