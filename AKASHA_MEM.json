@@ -178,12 +178,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY OSMOSIS COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772023330330
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772023330510
@@ -265,6 +259,12 @@
       "text": "GUARD STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023335071
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE HUNGER BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023335286
     }
   ]
 }
