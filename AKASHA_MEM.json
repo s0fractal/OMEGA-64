@@ -119,12 +119,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772022082873
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022083101
@@ -206,6 +200,12 @@
       "text": "SEIZE STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022087234
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE GUARD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022087613
     }
   ]
 }
