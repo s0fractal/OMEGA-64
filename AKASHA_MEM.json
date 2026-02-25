@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW OSMOSIS HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772035904676
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK DREAM VISION",
       "mood": "CREATIVE",
       "tick": 1772035906397
@@ -291,6 +285,12 @@
       "text": "SEIZE CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772035912639
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772035912821
     }
   ]
 }
