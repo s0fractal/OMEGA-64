@@ -3,7 +3,7 @@ eigenvalue: '0x00AAAAA0FFFF0A04'
 energy: 49.8
 x: 713
 'y': 409
-resonance: 22.57
+resonance: 37.57
 thought: AVOID_PARASITE_PASSIVE
 logic: 00AAAAA0
 signals: []
