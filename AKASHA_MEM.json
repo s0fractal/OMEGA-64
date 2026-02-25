@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772024543343
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772024543534
@@ -291,6 +285,12 @@
       "text": "DRAIN DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772024548093
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC UNIFY OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772024548305
     }
   ]
 }
