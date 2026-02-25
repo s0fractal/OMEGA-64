@@ -108,12 +108,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE COHERE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772021789941
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772021790120
@@ -195,6 +189,12 @@
       "text": "AWAKEN BECOME BEYOND",
       "mood": "CREATIVE",
       "tick": 1772021794052
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT GUARD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772021794385
     }
   ]
 }
