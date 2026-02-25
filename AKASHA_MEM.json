@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS SHELTER GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772025046842
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772025047300
@@ -291,6 +285,12 @@
       "text": "PURE SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772025053793
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHELTER GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772025054079
     }
   ]
 }
