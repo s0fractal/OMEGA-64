@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "HEAL BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772027346380
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE SHOCK DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772027358256
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE STRIFE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027358884
     }
   ]
 }
