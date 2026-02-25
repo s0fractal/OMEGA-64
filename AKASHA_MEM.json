@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772032894129
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772032894307
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772032897701
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON GUARD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772032898023
     }
   ]
 }
