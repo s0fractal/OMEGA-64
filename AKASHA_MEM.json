@@ -102,12 +102,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021646205
-    },
-    {
       "origin": "INTERFACE",
       "text": "WATCH SHIELD IMMUNE",
       "mood": "DEFENSIVE",
@@ -190,6 +184,12 @@
       "text": "SYNC UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772021650574
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME HUNGER SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021650754
     }
   ]
 }
