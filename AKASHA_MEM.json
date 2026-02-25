@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040990673
-    },
-    {
       "origin": "INTERFACE",
       "text": "DECAY CONSUME CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772040994279
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SEIZE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040994452
     }
   ]
 }
