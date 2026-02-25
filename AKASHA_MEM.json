@@ -50,12 +50,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HEAL COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772020274546
-    },
-    {
       "origin": "PARADOX",
       "text": "BECOME DREAM DREAM",
       "mood": "CREATIVE",
@@ -138,6 +132,12 @@
       "text": "FLOW BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772020284079
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE CONSUME SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020284260
     }
   ]
 }
