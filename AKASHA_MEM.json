@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772026134874
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND VISION DREAM",
       "mood": "CREATIVE",
       "tick": 1772026135403
@@ -291,6 +285,12 @@
       "text": "WAIT IMMUNE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772026148333
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772026148540
     }
   ]
 }
