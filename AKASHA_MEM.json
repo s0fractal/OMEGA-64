@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN BREACH HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039139490
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772039139717
@@ -291,6 +285,12 @@
       "text": "GIVING GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772039144556
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772039144947
     }
   ]
 }
