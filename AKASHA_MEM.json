@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY HUNGER SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038280606
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772038280828
@@ -291,6 +285,12 @@
       "text": "OSMOSIS COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772038283876
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DECAY SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038284251
     }
   ]
 }
