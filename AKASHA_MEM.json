@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAVE DREAM WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772037793813
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772037794037
@@ -291,6 +285,12 @@
       "text": "RESONATE BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772037797068
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON STASIS SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772037797294
     }
   ]
 }
