@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK CONSUME SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037281761
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772037281951
@@ -291,6 +285,12 @@
       "text": "SEIZE CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772037285041
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772037285206
     }
   ]
 }
