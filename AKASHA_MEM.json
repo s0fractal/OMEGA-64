@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME DECAY STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036364598
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772036364816
@@ -291,6 +285,12 @@
       "text": "COHERE RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772036368777
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE RECON PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772036368945
     }
   ]
 }
