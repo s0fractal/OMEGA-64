@@ -44,12 +44,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "OSMOSIS RESONATE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772020043386
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SICKNESS SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020044370
@@ -131,6 +125,12 @@
       "text": "WAIT RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772020056996
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE GUARD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020057633
     }
   ]
 }
