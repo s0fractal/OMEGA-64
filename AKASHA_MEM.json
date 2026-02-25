@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL STABLE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772042106579
-    },
-    {
       "origin": "STREAM",
       "text": "SHOCK DECAY STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772042111669
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042112289
     }
   ]
 }
