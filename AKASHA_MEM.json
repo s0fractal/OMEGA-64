@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL COHERE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772034232170
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772034232367
@@ -291,6 +285,12 @@
       "text": "SHOCK HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772034234930
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772034235147
     }
   ]
 }
