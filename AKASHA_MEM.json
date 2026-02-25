@@ -123,12 +123,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS STASIS IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022120811
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022121266
@@ -210,6 +204,12 @@
       "text": "STRIKE DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022127358
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT IMMUNE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772022128793
     }
   ]
 }
