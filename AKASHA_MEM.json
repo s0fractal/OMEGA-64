@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE HEAL BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772024865126
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772024865705
@@ -291,6 +285,12 @@
       "text": "BLOOM HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772024870142
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE STABLE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772024870402
     }
   ]
 }
