@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SHOCK SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025169501
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772025170760
@@ -291,6 +285,12 @@
       "text": "FLOW RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772025174100
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD PURE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772025174342
     }
   ]
 }
