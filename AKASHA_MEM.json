@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY RESONATE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772041653411
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT RECON PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041656257
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772041657393
     }
   ]
 }
