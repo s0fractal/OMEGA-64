@@ -159,12 +159,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022773820
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022776841
@@ -246,6 +240,12 @@
       "text": "SYNC HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772022783386
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS HUNGER SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022783581
     }
   ]
 }
