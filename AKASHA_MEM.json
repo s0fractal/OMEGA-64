@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60666606",
     "AAA0AA00",
     "66060066",
     "66666666",
@@ -199,33 +198,10 @@
     "FFFFF0A0",
     "000AAAAA",
     "660AAA60",
-    "A00A0AA0"
+    "A00A0AA0",
+    "A660A660"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHIELD SHELTER WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772042792644
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "FLOW COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042792842
-    },
-    {
-      "origin": "REVERSE",
-      "text": "OSMOSIS COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772042795887
-    },
-    {
-      "origin": "REVERSE",
-      "text": "WAIT REFLECT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042796732
-    },
     {
       "origin": "INTERFACE",
       "text": "STASIS SHIELD IMMUNE",
@@ -275,22 +251,46 @@
       "tick": 1772042802780
     },
     {
-      "origin": "REVERSE",
-      "text": "SHIELD IMMUNE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042803757
-    },
-    {
-      "origin": "PARADOX",
-      "text": "RECON SHELTER IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042806119
+      "origin": "ARCHIVIST",
+      "text": "STRIFE SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042803527
     },
     {
       "origin": "ARCHIVIST",
-      "text": "REFLECT IMMUNE STASIS",
+      "text": "SEIZE SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042803783
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772042804764
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SYNC FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772042805319
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH STRIFE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042805540
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772042805746
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH SHIELD WAIT",
       "mood": "DEFENSIVE",
-      "tick": 1772042806926
+      "tick": 1772042806610
     }
   ]
 }
