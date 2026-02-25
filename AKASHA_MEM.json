@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH STRIKE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025345268
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772025345444
@@ -291,6 +285,12 @@
       "text": "UNIFY GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772025349231
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER RECON SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772025349687
     }
   ]
 }
