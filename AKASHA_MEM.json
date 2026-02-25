@@ -70,12 +70,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "OSMOSIS GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772020874120
-    },
-    {
       "origin": "REVERSE",
       "text": "PURE IMMUNE GUARD",
       "mood": "DEFENSIVE",
@@ -158,6 +152,12 @@
       "text": "WAVE SPARK WITNESS",
       "mood": "CREATIVE",
       "tick": 1772020879973
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772020880134
     }
   ]
 }
