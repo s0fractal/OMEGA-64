@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772033130334
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772033130509
@@ -291,6 +285,12 @@
       "text": "WATCH GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772033134218
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772033134405
     }
   ]
 }
