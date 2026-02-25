@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041435218
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM UNIFY FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SEIZE DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041438943
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY FLOW HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041439196
     }
   ]
 }
