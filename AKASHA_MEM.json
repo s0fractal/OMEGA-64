@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL BLOOM STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772033518442
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772033518754
@@ -291,6 +285,12 @@
       "text": "BEYOND EVOLVE DREAM",
       "mood": "CREATIVE",
       "tick": 1772033521200
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SHOCK STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033521383
     }
   ]
 }
