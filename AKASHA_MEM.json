@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD WATCH IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040576780
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772040577069
@@ -291,6 +285,12 @@
       "text": "UNIFY STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772040579819
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040579939
     }
   ]
 }
