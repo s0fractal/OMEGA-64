@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06666060",
     "00606066",
     "A0AA0A00",
     "AABBCCDD",
@@ -199,15 +198,10 @@
     "60060600",
     "AA0A0000",
     "BB000000",
-    "AA00A00A"
+    "AA00A00A",
+    "AABB0C0D"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "FLOW SYNC OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772037112381
-    },
     {
       "origin": "REVERSE",
       "text": "WATCH STASIS GUARD",
@@ -291,6 +285,12 @@
       "text": "RECON RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772037116198
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE HUNGER SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037116392
     }
   ]
 }
