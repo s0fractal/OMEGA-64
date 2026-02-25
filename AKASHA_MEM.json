@@ -128,12 +128,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW UNIFY SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772022285919
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022286109
@@ -215,6 +209,12 @@
       "text": "RECON WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022288782
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS HUNGER SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022288951
     }
   ]
 }
