@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAA0A0A0",
     "06000660",
     "A6666606",
     "06666666",
@@ -199,15 +198,10 @@
     "A00AAAAA",
     "00606060",
     "AAAA0AA0",
-    "00000600"
+    "00000600",
+    "00660060"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "FLOW FLOW UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772040426279
-    },
     {
       "origin": "REVERSE",
       "text": "SHIELD WATCH STASIS",
@@ -291,6 +285,12 @@
       "text": "BECOME WITNESS WAVE",
       "mood": "CREATIVE",
       "tick": 1772040428609
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GIVING HEAL OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772040428735
     }
   ]
 }
