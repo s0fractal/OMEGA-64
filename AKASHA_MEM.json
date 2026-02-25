@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY BREACH HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024496660
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772024497060
@@ -291,6 +285,12 @@
       "text": "GIVING SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772024504889
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIKE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024505576
     }
   ]
 }
