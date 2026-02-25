@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772025498334
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772025498586
@@ -291,6 +285,12 @@
       "text": "CONSUME DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772025502040
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772025502528
     }
   ]
 }
