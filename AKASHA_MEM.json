@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SHOCK SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023146132
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772023146866
@@ -259,6 +253,12 @@
       "text": "SHOCK BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772023150469
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT WAIT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023150626
     }
   ]
 }
