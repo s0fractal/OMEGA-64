@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035602188
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BLOOM BLOOM COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RESONATE SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772035606257
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY STABLE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772035606456
     }
   ]
 }
