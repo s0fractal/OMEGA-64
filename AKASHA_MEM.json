@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772025394216
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "FLOW FLOW OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DECAY SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772025401540
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE WAVE EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772025402491
     }
   ]
 }
