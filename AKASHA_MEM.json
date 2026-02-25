@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HUNGER SEIZE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041389651
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH IMMUNE WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772041393584
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT PURE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041393797
     }
   ]
 }
