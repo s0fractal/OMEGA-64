@@ -81,12 +81,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772021134266
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BLOOM GIVING RESONATE",
       "mood": "HARMONIC",
@@ -169,6 +163,12 @@
       "text": "GUARD IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772021142757
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY HUNGER STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021143174
     }
   ]
 }
