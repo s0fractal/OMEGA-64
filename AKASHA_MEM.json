@@ -22,12 +22,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019457395
-    },
-    {
       "origin": "INTERFACE",
       "text": "HEAL STABLE RESONATE",
       "mood": "HARMONIC",
@@ -110,6 +104,12 @@
       "text": "UNIFY SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772019467181
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY SHOCK HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019467964
     }
   ]
 }
