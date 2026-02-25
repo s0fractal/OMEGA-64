@@ -50,12 +50,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020296337
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER STRIFE STRIFE",
       "mood": "AGGRESSIVE",
@@ -138,6 +132,12 @@
       "text": "DRAIN SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020308100
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON RECON STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772020308276
     }
   ]
 }
