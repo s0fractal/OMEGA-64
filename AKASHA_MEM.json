@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON RECON STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772040730619
-    },
-    {
       "origin": "REVERSE",
       "text": "WAIT IMMUNE STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772040734452
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "FLOW STABLE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772040734684
     }
   ]
 }
