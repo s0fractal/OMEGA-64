@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031458871
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772031459810
@@ -291,6 +285,12 @@
       "text": "DRAIN SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772031466872
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772031467215
     }
   ]
 }
