@@ -99,15 +99,10 @@
     "0B000000",
     "FFFFFFFF",
     "FFFFFF0F",
-    "000AAAA0"
+    "000AAAA0",
+    "66660606"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BREACH HUNGER BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021693849
-    },
     {
       "origin": "REVERSE",
       "text": "GIVING GIVING COHERE",
@@ -191,6 +186,12 @@
       "text": "WATCH RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772021698298
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WAIT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772021698781
     }
   ]
 }
