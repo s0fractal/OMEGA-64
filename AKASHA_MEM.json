@@ -24,12 +24,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019525866
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HUNGER DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772019526882
@@ -111,6 +105,12 @@
       "text": "WATCH SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772019537085
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DECAY DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019537746
     }
   ]
 }
