@@ -38,12 +38,6 @@
   "utterances": [
     {
       "origin": "STREAM",
-      "text": "SYNC UNIFY BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772019786423
-    },
-    {
-      "origin": "STREAM",
       "text": "STABLE FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772019786736
@@ -125,6 +119,12 @@
       "text": "REFLECT GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772019795568
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SEIZE CONSUME HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019796359
     }
   ]
 }
