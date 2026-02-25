@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0A0000",
     "A6600000",
     "0AAAAA0A",
     "A0A0A0A0",
@@ -199,15 +198,10 @@
     "AAAA0A00",
     "60660066",
     "0AA0AA00",
-    "00600000"
+    "00600000",
+    "AA000A0A"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "SYNC SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040894615
-    },
     {
       "origin": "REVERSE",
       "text": "OSMOSIS SYNC HEAL",
@@ -291,6 +285,12 @@
       "text": "PURE SHELTER SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040897092
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040897256
     }
   ]
 }
