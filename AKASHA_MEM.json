@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC OSMOSIS COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772026790558
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772026790827
@@ -291,6 +285,12 @@
       "text": "VISION BECOME AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772026796033
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026796256
     }
   ]
 }
