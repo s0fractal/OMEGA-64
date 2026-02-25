@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042381039
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT SHELTER WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIKE SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772042392869
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042393333
     }
   ]
 }
