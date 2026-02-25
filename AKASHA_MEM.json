@@ -102,12 +102,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT WATCH WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772021604181
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772021604480
@@ -189,6 +183,12 @@
       "text": "BREACH STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772021609011
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE SHELTER GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021609206
     }
   ]
 }
