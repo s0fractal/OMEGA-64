@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772028921338
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE BREACH DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772028928959
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WAIT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772028929270
     }
   ]
 }
