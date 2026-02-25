@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GIVING SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772042342000
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHOCK BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772042342314
@@ -291,6 +285,12 @@
       "text": "WAIT IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772042349980
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER REFLECT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042350087
     }
   ]
 }
