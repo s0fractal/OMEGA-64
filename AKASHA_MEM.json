@@ -179,12 +179,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE PURE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772023337728
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772023338752
@@ -266,6 +260,12 @@
       "text": "SHIELD PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772023341027
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT IMMUNE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772023341208
     }
   ]
 }
