@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "BLOOM OSMOSIS COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041022169
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "FLOW FLOW SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WATCH WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772041025836
+    },
+    {
+      "origin": "GUARDIAN",
+      "text": "STABLE HEAL HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041026010
     }
   ]
 }
