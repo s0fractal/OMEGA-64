@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772034003041
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT PURE STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772034008081
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772034008287
     }
   ]
 }
