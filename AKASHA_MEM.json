@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SHOCK DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029256923
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772029257695
@@ -291,6 +285,12 @@
       "text": "STABLE STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772029264678
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIKE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029265156
     }
   ]
 }
