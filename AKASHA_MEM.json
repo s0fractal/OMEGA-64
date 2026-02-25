@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC STABLE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772029510582
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT IMMUNE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772029511296
@@ -291,6 +285,12 @@
       "text": "UNIFY BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772029519124
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS CONSUME DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029519658
     }
   ]
 }
