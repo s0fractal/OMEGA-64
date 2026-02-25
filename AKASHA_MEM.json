@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE RECON REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041919267
-    },
-    {
       "origin": "I16_CLAMP",
       "text": "UNIFY STABLE GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIKE HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772041924289
+    },
+    {
+      "origin": "STREAM",
+      "text": "WATCH RECON RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772041924483
     }
   ]
 }
