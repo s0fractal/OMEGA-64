@@ -77,12 +77,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE SHOCK SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021041617
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT REFLECT WATCH",
       "mood": "DEFENSIVE",
@@ -165,6 +159,12 @@
       "text": "RESONATE BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772021048491
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772021048883
     }
   ]
 }
