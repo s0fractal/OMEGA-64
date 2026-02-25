@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DRAIN STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037741901
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772037742074
@@ -291,6 +285,12 @@
       "text": "WATCH WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772037745520
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS CONSUME SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037745762
     }
   ]
 }
