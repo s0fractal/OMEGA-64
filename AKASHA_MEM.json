@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "CAR",
-      "text": "GIVING BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041741324
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH PURE PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041746249
+    },
+    {
+      "origin": "SOMA",
+      "text": "SYNC FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041747265
     }
   ]
 }
