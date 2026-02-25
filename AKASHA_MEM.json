@@ -126,12 +126,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "BEYOND VISION SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772022258499
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT WATCH SHIELD",
       "mood": "DEFENSIVE",
@@ -214,6 +208,12 @@
       "text": "SEIZE SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772022263217
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER RECON PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022263384
     }
   ]
 }
