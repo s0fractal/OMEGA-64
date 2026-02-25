@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040181892
-    },
-    {
       "origin": "ALPHA_STREAM",
       "text": "STABLE BLOOM OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STASIS GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772040188274
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "UNIFY HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772040189076
     }
   ]
 }
