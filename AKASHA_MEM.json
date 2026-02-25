@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE SHOCK SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020686284
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY STRIKE BREACH",
       "mood": "AGGRESSIVE",
@@ -150,6 +144,12 @@
       "text": "RESONATE OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772020691991
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772020692737
     }
   ]
 }
