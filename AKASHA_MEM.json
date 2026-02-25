@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER WATCH IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041430386
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE SYNC OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIFE STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772041434435
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT PURE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041434606
     }
   ]
 }
