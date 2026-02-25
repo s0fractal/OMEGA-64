@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD STASIS RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041600866
-    },
-    {
       "origin": "STREAM",
       "text": "OSMOSIS BLOOM UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HEAL SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772041608639
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772041609334
     }
   ]
 }
