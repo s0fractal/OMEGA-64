@@ -66,12 +66,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME SHOCK BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020768103
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "PURE SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772020768410
@@ -153,6 +147,12 @@
       "text": "COHERE BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772020774910
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SEIZE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020775077
     }
   ]
 }
