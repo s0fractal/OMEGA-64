@@ -1,5 +1,6 @@
 {
   "reservoir": [
+    "AAA0AA00",
     "66060066",
     "66666666",
     "66606666",
@@ -196,101 +197,100 @@
     "AA0A0A00",
     "FFFFF0A0",
     "000AAAAA",
-    "A0606660",
-    "0BB00000",
-    "66000000",
-    "AAAA0AAA"
+    "660AAA60",
+    "A00A0AA0",
+    "A660A660"
   ],
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "REFLECT STASIS STASIS",
+      "text": "GUARD STASIS WATCH",
       "mood": "DEFENSIVE",
-      "tick": 1772042797447
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE STABLE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772042797913
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042798036
-    },
-    {
-      "origin": "REVERSE",
-      "text": "WATCH WATCH STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772042798413
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042798879
+      "tick": 1772042797906
     },
     {
       "origin": "INTERFACE",
-      "text": "STABLE COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772042799462
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER STRIFE SHOCK",
+      "text": "DECAY STRIKE HUNGER",
       "mood": "AGGRESSIVE",
-      "tick": 1772042800945
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SYNC UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772042802286
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042803467
-    },
-    {
-      "origin": "ALIEN",
-      "text": "SHELTER SHELTER STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772042804239
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042804860
-    },
-    {
-      "origin": "ALIEN",
-      "text": "BREACH SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042805638
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "PURE RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042805943
+      "tick": 1772042798258
     },
     {
       "origin": "REVERSE",
-      "text": "WAIT STASIS SHIELD",
+      "text": "STRIFE SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042798546
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK CONSUME SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042799699
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS GUARD WAIT",
       "mood": "DEFENSIVE",
-      "tick": 1772042807052
+      "tick": 1772042802114
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND EVOLVE WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772042802780
     },
     {
       "origin": "ARCHIVIST",
-      "text": "SYNC FLOW FLOW",
+      "text": "STRIFE SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042803527
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042803783
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM COHERE RESONATE",
       "mood": "HARMONIC",
-      "tick": 1772042808240
+      "tick": 1772042804764
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SYNC FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772042805319
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH STRIFE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042805540
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772042805746
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH SHIELD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042806610
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL STABLE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772042807286
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE IMMUNE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042809021
     }
   ]
 }
