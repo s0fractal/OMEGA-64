@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "GIVING BLOOM STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041667125
-    },
-    {
       "origin": "PARADOX",
       "text": "CONSUME DRAIN STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIKE DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041670192
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041670754
     }
   ]
 }
