@@ -1,14 +1,14 @@
 ---
 eigenvalue: '0xABBB0000FFFF000E'
-energy: 48.9
+energy: 41.5
 resonance: 30
-x: 740
-'y': 394
+x: 706
+'y': 378
 symbol: ARCHIVIST
 thought: WANDER_BONDING
 signals: []
 bond_strengths:
-  '0xAAAAAAA000000006': 0.9821521870514506
+  '0xAAAAAAA000000006': 0.9792086759647052
 ex:
   - '0xAAAAAAAA00000000'
   - '0xAAAAAAAA00000008'
@@ -42,30 +42,17 @@ ex:
   - '0xBBBB000000000008'
   - '0xABBB000000000008'
   - '0xABBB000000000008'
-  - '0xABBB000000000008'
+  - '0xABBB00000000000A'
   - '0xABBB00000000000A'
   - '0xABBB00000000000C'
   - '0xABBB00000000000E'
   - '0xABBB000000000008'
   - '0xABBB00000000000A'
-  - '0xABBB00000000000C'
-  - '0xABBB00000000000E'
-  - '0xABBB000000000008'
   - '0xABBB00000000000A'
   - '0xABBB00000000000C'
-  - '0xABBB00000000000E'
-  - '0xABBB000000000008'
-  - '0xABBB00000000000A'
-  - '0xABBB00000000000C'
-  - '0xABBB00000000000E'
-  - '0xABBB000000000008'
-  - '0xABBB00000000000A'
-  - '0xABBB00000000000C'
-  - '0xABBB00000000000C'
-  - '0xABBB00000000000E'
-  - '0xABBB000000000008'
-  - '0xABBB00000000000A'
-  - '0xABBB00000000000A'
+  - '0xABBB0000FFFF000A'
+  - '0xABBB0000FFFF000C'
+  - '0xABBB0000FFFF000E'
   - '0xABBB0000FFFF0008'
   - '0xABBB0000FFFF000A'
   - '0xABBB0000FFFF000C'
@@ -74,8 +61,6 @@ bonds:
 logic: ABBB0000
 ---
 
-<div align="center">
-<div align="center">
 <div align="center">
 <!-- ∇ HOLOGRAM START ∇ -->
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -109,8 +94,6 @@ logic: ABBB0000
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">REVERSE</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
-</div>
-</div>
 </div>
 
 
