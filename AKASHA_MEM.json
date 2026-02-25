@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH WATCH WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041659737
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE UNIFY FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STABLE BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772041662317
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772041662616
     }
   ]
 }
