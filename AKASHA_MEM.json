@@ -68,12 +68,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "EVOLVE VISION DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772020832176
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON IMMUNE PURE",
       "mood": "DEFENSIVE",
@@ -156,6 +150,12 @@
       "text": "HEAL BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772020842473
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE CONSUME SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020842665
     }
   ]
 }
