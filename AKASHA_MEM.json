@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON WATCH WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041443927
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD GUARD IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772041447053
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER DECAY CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041447378
     }
   ]
 }
