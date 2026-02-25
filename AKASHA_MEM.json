@@ -59,12 +59,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SICKNESS SEIZE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020576180
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "PURE PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020577036
@@ -146,6 +140,12 @@
       "text": "GUARD RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772020582323
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON SHELTER PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020583046
     }
   ]
 }
