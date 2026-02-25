@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT GUARD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041332522
-    },
-    {
       "origin": "INTERFACE",
       "text": "HUNGER STRIFE BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041335504
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041335642
     }
   ]
 }
