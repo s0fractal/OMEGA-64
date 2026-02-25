@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAVE DREAM SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772032892636
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772032892783
@@ -291,6 +285,12 @@
       "text": "BREACH BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772032895685
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772032895825
     }
   ]
 }
