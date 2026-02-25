@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS WATCH IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772031142812
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772031143132
@@ -291,6 +285,12 @@
       "text": "BLOOM GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772031148432
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER STASIS RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772031148698
     }
   ]
 }
