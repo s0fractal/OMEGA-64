@@ -174,15 +174,10 @@
     "66606666",
     "06660660",
     "60006660",
-    "66066006"
+    "66066006",
+    "A00A000A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WITNESS BEYOND AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772023363954
-    },
     {
       "origin": "REVERSE",
       "text": "BEYOND SPARK BEYOND",
@@ -266,6 +261,12 @@
       "text": "AWAKEN BECOME BEYOND",
       "mood": "CREATIVE",
       "tick": 1772023370913
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE HUNGER DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023371083
     }
   ]
 }
