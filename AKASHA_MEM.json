@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66606600",
     "AA00000A",
     "66666666",
     "FFAAF0FF",
@@ -199,15 +198,10 @@
     "AAA0A0A0",
     "60000606",
     "AA0006A6",
-    "0AA0A0AA"
+    "0AA0A0AA",
+    "AA0A00A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STRIKE DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036875021
-    },
     {
       "origin": "REVERSE",
       "text": "WAIT GUARD SHELTER",
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772036878988
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DECAY SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036879195
     }
   ]
 }
