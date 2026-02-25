@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772023727877
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772023728004
@@ -278,6 +272,12 @@
       "text": "SHELTER WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023730237
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD STASIS SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772023731187
     }
   ]
 }
