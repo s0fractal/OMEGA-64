@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033617917
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772033618119
@@ -291,6 +285,12 @@
       "text": "OSMOSIS GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772033620686
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SHOCK BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033620879
     }
   ]
 }
