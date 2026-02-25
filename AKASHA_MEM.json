@@ -166,12 +166,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT SHELTER IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023047097
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH STASIS IMMUNE",
       "mood": "DEFENSIVE",
@@ -254,6 +248,12 @@
       "text": "FLOW GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772023053895
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH CONSUME HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023055631
     }
   ]
 }
