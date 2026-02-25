@@ -153,12 +153,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772022600014
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772022600586
@@ -240,6 +234,12 @@
       "text": "DRAIN SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022604013
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN CONSUME DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022604324
     }
   ]
 }
