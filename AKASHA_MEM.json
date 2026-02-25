@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033303910
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE HEAL SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WAIT REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772033306704
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIKE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033306983
     }
   ]
 }
