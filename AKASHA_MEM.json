@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772038009191
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772038009385
@@ -291,6 +285,12 @@
       "text": "CONSUME CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772038012218
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS SYNC SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772038013667
     }
   ]
 }
