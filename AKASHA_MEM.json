@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHOCK HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040562743
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "CONSUME HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772040562946
@@ -291,6 +285,12 @@
       "text": "WATCH WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040566240
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC OSMOSIS OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772040566424
     }
   ]
 }
