@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041216278
-    },
-    {
       "origin": "IS_ISO",
       "text": "SHIELD WATCH SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772041221647
+    },
+    {
+      "origin": "STREAM",
+      "text": "SHIELD SHIELD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041221916
     }
   ]
 }
