@@ -87,12 +87,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS SYNC STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772021250161
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY STRIFE STRIFE",
       "mood": "AGGRESSIVE",
@@ -175,6 +169,12 @@
       "text": "DRAIN DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021254312
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE HUNGER STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021254466
     }
   ]
 }
