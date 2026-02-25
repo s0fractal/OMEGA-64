@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032858264
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772032858442
@@ -291,6 +285,12 @@
       "text": "OSMOSIS COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772032860866
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772032861065
     }
   ]
 }
