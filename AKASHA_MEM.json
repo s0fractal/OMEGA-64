@@ -63,12 +63,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH GUARD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772020739251
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE COHERE BLOOM",
       "mood": "HARMONIC",
@@ -151,6 +145,12 @@
       "text": "AWAKEN EVOLVE WITNESS",
       "mood": "CREATIVE",
       "tick": 1772020747054
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE STRIKE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020747285
     }
   ]
 }
