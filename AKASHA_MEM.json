@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE STRIFE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019538292
-    },
-    {
       "origin": "INTERFACE",
       "text": "HUNGER SHOCK CONSUME",
       "mood": "AGGRESSIVE",
@@ -111,6 +105,12 @@
       "text": "SHIELD SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772019546255
+    },
+    {
+      "origin": "PARADOX",
+      "text": "BECOME BEYOND FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772019546842
     }
   ]
 }
