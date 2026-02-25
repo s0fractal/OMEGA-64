@@ -27,12 +27,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WAIT PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772019624294
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIFE SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772019625256
@@ -114,6 +108,12 @@
       "text": "BLOOM SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772019632588
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772019632792
     }
   ]
 }
