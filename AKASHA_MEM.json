@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772033263512
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772033263687
@@ -291,6 +285,12 @@
       "text": "STRIKE SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772033266290
+    },
+    {
+      "origin": "STREAM",
+      "text": "DECAY STRIFE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033266537
     }
   ]
 }
