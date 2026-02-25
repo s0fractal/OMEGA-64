@@ -177,12 +177,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT PURE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772023306878
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023307751
@@ -264,6 +258,12 @@
       "text": "SEIZE DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023311734
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY GIVING HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772023311944
     }
   ]
 }

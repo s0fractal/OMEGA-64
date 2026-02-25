@@ -1,14 +1,14 @@
 ---
 eigenvalue: '0x0AA0AAA0FFFF0A01'
-energy: 49.9
-x: 706
-'y': 445
+energy: 50
+x: 716
+'y': 447
 resonance: 50
-thought: SEEK_ALPHA_BONDING
+thought: RESURRECTED
 logic: 0AA0AAA0
 signals: []
 bond_strengths:
-  '0x0000000000000A05': 0.9782294672887405
+  '0x0000000000000A05': 0.9792086759647052
 bonds:
   - '0x0000000000000A05'
 ex:
@@ -55,18 +55,8 @@ ex:
   - '0x0AAAA000FFFF0A05'
   - '0x0AA0AAA0FFFF0A05'
   - '0x0AA0AAA0FFFF0A07'
-  - '0x0AA0AAA0FFFF0A01'
-  - '0x0AA0AAA0FFFF0A03'
-  - '0x0AA0AAA0FFFF0A05'
-  - '0x0AA0AAA0FFFF0A07'
-  - '0x0AA0AAA0FFFF0A01'
-  - '0x0AA0AAA0FFFF0A03'
-  - '0x0AA0AAA0FFFF0A05'
-  - '0x0AA0AAA0FFFF0A07'
-  - '0x0AA0AAA0FFFF0A01'
 ---
 
-<div align="center">
 <div align="center">
 <!-- ∇ HOLOGRAM START ∇ -->
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -100,7 +90,6 @@ ex:
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">REVERSE</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
-</div>
 </div>
 
 
