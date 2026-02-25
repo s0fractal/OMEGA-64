@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037262681
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772037263000
@@ -291,6 +285,12 @@
       "text": "GIVING OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772037269244
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037269433
     }
   ]
 }
