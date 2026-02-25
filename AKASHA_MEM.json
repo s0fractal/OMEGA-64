@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772037811461
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772037811663
@@ -291,6 +285,12 @@
       "text": "HEAL HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772037818442
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772037818775
     }
   ]
 }
