@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A0666066",
     "A0AA0A0A",
     "00060000",
     "A0AAAA00",
@@ -199,15 +198,10 @@
     "00006060",
     "A0000AA0",
     "60606006",
-    "F0FF000F"
+    "F0FF000F",
+    "00060666"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "DECAY SHOCK HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037360818
-    },
     {
       "origin": "REVERSE",
       "text": "RESONATE GIVING SYNC",
@@ -291,6 +285,12 @@
       "text": "BEYOND SPARK VISION",
       "mood": "CREATIVE",
       "tick": 1772037367461
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772037367652
     }
   ]
 }
