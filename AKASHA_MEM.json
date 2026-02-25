@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772034047619
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772034047816
@@ -291,6 +285,12 @@
       "text": "DECAY STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772034050088
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT PURE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772034050248
     }
   ]
 }
