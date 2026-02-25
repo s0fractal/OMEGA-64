@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028683610
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772028684332
@@ -291,6 +285,12 @@
       "text": "RECON RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772028697436
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DRAIN HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028699854
     }
   ]
 }
