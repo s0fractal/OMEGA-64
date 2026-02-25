@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD WAIT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772037206798
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772037206990
@@ -291,6 +285,12 @@
       "text": "RECON WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772037211212
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT GUARD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772037211398
     }
   ]
 }
