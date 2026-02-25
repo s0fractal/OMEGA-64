@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "RESONATE FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041790247
-    },
-    {
       "origin": "INTERFACE",
       "text": "UNIFY STABLE HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BLOOM BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041798191
+    },
+    {
+      "origin": "STREAM",
+      "text": "OSMOSIS COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772041798599
     }
   ]
 }
