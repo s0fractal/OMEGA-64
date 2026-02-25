@@ -106,15 +106,10 @@
     "A0AA0A0A",
     "00666000",
     "66066606",
-    "AAA0A0A0"
+    "AAA0A0A0",
+    "A0AAA0A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GIVING BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772021911923
-    },
     {
       "origin": "REVERSE",
       "text": "SHELTER WAIT IMMUNE",
@@ -198,6 +193,12 @@
       "text": "HUNGER STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772021919992
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021920277
     }
   ]
 }
