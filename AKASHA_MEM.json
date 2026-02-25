@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66066600",
     "60660066",
     "F00AAA00",
     "AABBCC0D",
@@ -199,15 +198,10 @@
     "66666600",
     "00AAAAAA",
     "0B0A0000",
-    "AAA0AAAA"
+    "AAA0AAAA",
+    "60060060"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GIVING RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772032214790
-    },
     {
       "origin": "REVERSE",
       "text": "STASIS IMMUNE IMMUNE",
@@ -291,6 +285,12 @@
       "text": "DRAIN DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772032220323
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE REFLECT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772032220707
     }
   ]
 }
