@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DECAY DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040329974
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH WATCH RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIFE STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772040336242
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HEAL GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772040336611
     }
   ]
 }
