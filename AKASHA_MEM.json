@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD WAIT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040603991
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STASIS SHELTER SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040607205
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE RESONATE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772040607380
     }
   ]
 }
