@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY STRIKE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024205939
-    },
-    {
-      "origin": "REVERSE",
       "text": "DREAM WITNESS BECOME",
       "mood": "CREATIVE",
       "tick": 1772024206140
@@ -291,6 +285,12 @@
       "text": "FLOW COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772024209877
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772024210104
     }
   ]
 }
