@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772033423236
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772033426453
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772033426627
     }
   ]
 }
