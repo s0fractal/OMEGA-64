@@ -173,12 +173,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE HUNGER BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023229123
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023229506
@@ -260,6 +254,12 @@
       "text": "DRAIN BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772023233360
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772023233520
     }
   ]
 }
