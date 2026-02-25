@@ -153,12 +153,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772022633079
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE SHELTER STASIS",
       "mood": "DEFENSIVE",
@@ -241,6 +235,12 @@
       "text": "SHIELD IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022639671
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW FLOW HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772022639846
     }
   ]
 }
