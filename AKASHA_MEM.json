@@ -23,12 +23,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "HUNGER SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019427212
-    },
-    {
-      "origin": "INTERFACE",
       "text": "WATCH REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772019427858
@@ -110,6 +104,12 @@
       "text": "RESONATE OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772019452399
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DRAIN CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019452691
     }
   ]
 }
