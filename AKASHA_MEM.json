@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772037249552
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772037249773
@@ -291,6 +285,12 @@
       "text": "SHOCK SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772037254095
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE RECON IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772037256368
     }
   ]
 }
