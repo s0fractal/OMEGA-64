@@ -1,8 +1,8 @@
 ---
 eigenvalue: '0xAAA0AAAAFFFF0006'
-energy: 49.9
+energy: 45.5
 x: 708
-'y': 402
+'y': 397
 resonance: 1000
 thought: WANDER_BONDING
 logic: AAA0AAAA

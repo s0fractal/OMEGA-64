@@ -185,12 +185,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH DRAIN STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023605490
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAVE BECOME VISION",
       "mood": "CREATIVE",
       "tick": 1772023605700
@@ -272,6 +266,12 @@
       "text": "REFLECT GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023608294
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH REFLECT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023608459
     }
   ]
 }
