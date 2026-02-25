@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772033100360
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772033100542
@@ -291,6 +285,12 @@
       "text": "STABLE SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772033104769
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SICKNESS HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033104980
     }
   ]
 }
