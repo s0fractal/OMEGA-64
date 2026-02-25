@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772035587537
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772035587717
@@ -291,6 +285,12 @@
       "text": "STABLE RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772035590454
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772035590608
     }
   ]
 }
