@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE DRAIN SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038538265
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772038538468
@@ -291,6 +285,12 @@
       "text": "SYNC UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772038542624
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772038542850
     }
   ]
 }
