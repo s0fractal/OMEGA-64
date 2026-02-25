@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON STASIS STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772024408117
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772024408341
@@ -291,6 +285,12 @@
       "text": "HUNGER BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772024416809
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024417180
     }
   ]
 }
