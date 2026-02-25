@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0AA00AA0",
     "00000AA0",
     "AABB0C0D",
     "AA0666A0",
@@ -199,15 +198,10 @@
     "66006066",
     "66066006",
     "66000066",
-    "0000A000"
+    "0000A000",
+    "0A0A000F"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GIVING BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772033554559
-    },
     {
       "origin": "REVERSE",
       "text": "UNIFY BLOOM FLOW",
@@ -291,6 +285,12 @@
       "text": "BLOOM OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772033556966
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772033557157
     }
   ]
 }
