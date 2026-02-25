@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHELTER WAIT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772025722156
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIKE SEIZE DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772025726141
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING UNIFY STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772025726540
     }
   ]
 }
