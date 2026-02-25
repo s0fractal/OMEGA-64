@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772030708082
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772030708489
@@ -291,6 +285,12 @@
       "text": "BEYOND FORGE DREAM",
       "mood": "CREATIVE",
       "tick": 1772030743226
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE HEAL RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772030743562
     }
   ]
 }
