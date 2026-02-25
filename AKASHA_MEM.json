@@ -50,12 +50,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIFE HUNGER BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020247610
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RESONATE UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772020248100
@@ -137,6 +131,12 @@
       "text": "SICKNESS SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020258193
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DECAY DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020258405
     }
   ]
 }
