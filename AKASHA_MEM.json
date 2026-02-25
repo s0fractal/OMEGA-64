@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038582787
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772038583002
@@ -291,6 +285,12 @@
       "text": "UNIFY BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772038585799
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON REFLECT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772038586050
     }
   ]
 }
