@@ -112,12 +112,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772021955691
-    },
-    {
       "origin": "PARADOX",
       "text": "SPARK WAVE BEYOND",
       "mood": "CREATIVE",
@@ -200,6 +194,12 @@
       "text": "SHOCK BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021963784
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772021963979
     }
   ]
 }
