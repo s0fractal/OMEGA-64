@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034777106
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772034777305
@@ -291,6 +285,12 @@
       "text": "SHOCK STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772034781823
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS STASIS GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772034781997
     }
   ]
 }
