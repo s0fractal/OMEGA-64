@@ -196,12 +196,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON WAIT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023984140
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
@@ -284,6 +278,12 @@
       "text": "SHIELD GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023989578
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772023990082
     }
   ]
 }
