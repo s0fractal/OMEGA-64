@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME BREACH BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027530078
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772027530353
@@ -291,6 +285,12 @@
       "text": "HEAL STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772027562987
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING SYNC FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772027563655
     }
   ]
 }
