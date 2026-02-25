@@ -3,7 +3,7 @@ eigenvalue: '0xAAAA0A0ACC2392FE'
 vector: 06.04.01
 symbol: COUPLING
 desc: Field Coupling logic. (f1 => f2 => f1)
-energy: 13.199999999999996
+energy: 9.199999999999996
 ex:
   - '0x99A1EE6BCC2392FE'
   - '0x6B00000ACC2392FE'
@@ -32,14 +32,16 @@ ex:
   - '0x66066600CC2392FE'
   - '0x0000000FCC2392FE'
   - '0xBBBB0000CC2392FE'
+  - '0xAAAA0A0ACC2392FE'
 thought: WANDER_BONDING
-x: 650
+x: 664
 'y': 50
 signals: []
 resonance: 0
 bond_strengths: {}
 ---
 
+<div align="center">
 <div align="center">
 <div align="center">
 <div align="center">
@@ -85,6 +87,7 @@ bond_strengths: {}
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">COUPLING</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 </div>
 </div>
