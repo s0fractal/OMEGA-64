@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SYNC GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772036732645
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT REFLECT IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BREACH HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772036735858
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT PURE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772036736064
     }
   ]
 }
