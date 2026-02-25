@@ -202,12 +202,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STABLE COHERE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772024071104
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HUNGER DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772024071648
@@ -289,6 +283,12 @@
       "text": "WATCH IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772024075588
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS FORGE WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772024075806
     }
   ]
 }
