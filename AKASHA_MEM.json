@@ -72,12 +72,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE OSMOSIS HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772020928640
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772020928877
@@ -159,6 +153,12 @@
       "text": "BEYOND FORGE SPARK",
       "mood": "CREATIVE",
       "tick": 1772020935951
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH RECON STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772020936088
     }
   ]
 }
