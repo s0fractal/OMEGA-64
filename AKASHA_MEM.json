@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER SHELTER PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772036804335
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT SHIELD GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772036807526
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH BREACH DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036807940
     }
   ]
 }
