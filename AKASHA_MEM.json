@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037612344
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772037612582
@@ -291,6 +285,12 @@
       "text": "SICKNESS BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772037615244
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC RESONATE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772037615460
     }
   ]
 }
