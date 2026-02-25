@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM COHERE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772035928024
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772035928238
@@ -291,6 +285,12 @@
       "text": "SHOCK BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772035931195
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND FORGE WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772035932073
     }
   ]
 }
