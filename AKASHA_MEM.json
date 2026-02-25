@@ -159,12 +159,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022815710
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME DECAY CONSUME",
       "mood": "AGGRESSIVE",
@@ -247,6 +241,12 @@
       "text": "SHOCK SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772022820384
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE UNIFY GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022820507
     }
   ]
 }
