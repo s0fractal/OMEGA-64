@@ -124,12 +124,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "COHERE UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772022173101
-    },
-    {
       "origin": "REVERSE",
       "text": "WAIT SHIELD WAIT",
       "mood": "DEFENSIVE",
@@ -212,6 +206,12 @@
       "text": "HEAL COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772022183636
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022184019
     }
   ]
 }
