@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT PURE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040652337
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE UNIFY OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GUARD GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772040655051
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040655216
     }
   ]
 }
