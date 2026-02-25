@@ -204,18 +204,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "OSMOSIS RESONATE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772042081406
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042082254
-    },
-    {
-      "origin": "INTERFACE",
       "text": "STRIKE HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772042082990
@@ -291,6 +279,18 @@
       "text": "SHIELD GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772042095067
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME DRAIN STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042095395
+    },
+    {
+      "origin": "WORKER",
+      "text": "STRIFE HUNGER STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042095650
     }
   ]
 }
