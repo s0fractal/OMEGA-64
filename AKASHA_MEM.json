@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIKE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036670553
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772036670763
@@ -291,6 +285,12 @@
       "text": "DRAIN CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772036675435
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036675635
     }
   ]
 }
