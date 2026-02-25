@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "IS_ISO",
-      "text": "PURE WAIT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772040869534
-    },
-    {
       "origin": "INTERFACE",
       "text": "HEAL COHERE GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "REFLECT PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772040872018
+    },
+    {
+      "origin": "STREAM",
+      "text": "IMMUNE RECON IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040872155
     }
   ]
 }
