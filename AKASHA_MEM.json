@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE SHELTER RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772035672817
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772035673030
@@ -291,6 +285,12 @@
       "text": "SEIZE DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772035679725
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772035680172
     }
   ]
 }
