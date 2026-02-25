@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023152293
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023152452
@@ -259,6 +253,12 @@
       "text": "GUARD IMMUNE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023155598
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772023155777
     }
   ]
 }
