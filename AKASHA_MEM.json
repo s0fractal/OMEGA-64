@@ -184,12 +184,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BEYOND BEYOND SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772023556004
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772023556126
@@ -271,6 +265,12 @@
       "text": "REFLECT RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023559666
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772023559843
     }
   ]
 }
