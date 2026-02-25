@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772038061052
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772038061282
@@ -291,6 +285,12 @@
       "text": "FLOW RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038068271
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER BREACH SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038068485
     }
   ]
 }
