@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW UNIFY FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772027286758
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772027287097
@@ -291,6 +285,12 @@
       "text": "SHOCK DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772027293383
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS HUNGER BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027293608
     }
   ]
 }
