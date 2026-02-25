@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STASIS WATCH WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041533079
-    },
-    {
       "origin": "PARASITE",
       "text": "STASIS WATCH RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772041538320
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772041538471
     }
   ]
 }
