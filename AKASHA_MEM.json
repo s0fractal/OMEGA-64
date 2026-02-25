@@ -177,12 +177,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "EVOLVE SPARK WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772023290499
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT SHIELD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023290637
@@ -264,6 +258,12 @@
       "text": "SHOCK SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023294689
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023296665
     }
   ]
 }
