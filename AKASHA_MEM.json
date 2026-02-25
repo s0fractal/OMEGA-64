@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772041096573
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041096753
@@ -291,6 +285,12 @@
       "text": "SHIELD REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041100359
+    },
+    {
+      "origin": "PARADOX",
+      "text": "OSMOSIS STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772041101015
     }
   ]
 }
