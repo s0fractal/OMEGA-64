@@ -134,12 +134,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE SHELTER IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022375538
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022377692
@@ -221,6 +215,12 @@
       "text": "STASIS WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022381843
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772022382018
     }
   ]
 }
