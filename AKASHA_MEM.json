@@ -18,12 +18,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HEAL COHERE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772015422587
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE STRIKE SHOCK",
       "mood": "AGGRESSIVE",
@@ -106,6 +100,12 @@
       "text": "PURE WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772015542690
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772015545593
     }
   ]
 }
