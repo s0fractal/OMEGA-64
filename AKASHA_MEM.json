@@ -163,12 +163,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL STABLE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772022889090
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022889281
@@ -250,6 +244,12 @@
       "text": "FLOW SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772022893250
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHIELD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772022894743
     }
   ]
 }
