@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GUARD WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772019965101
-    },
-    {
       "origin": "STREAM",
       "text": "BLOOM OSMOSIS SYNC",
       "mood": "HARMONIC",
@@ -130,6 +124,12 @@
       "text": "DRAIN BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772019975774
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE GUARD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772019977202
     }
   ]
 }
