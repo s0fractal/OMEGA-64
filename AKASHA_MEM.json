@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026331299
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772026331563
@@ -291,6 +285,12 @@
       "text": "STABLE UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772026334449
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT REFLECT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772026334636
     }
   ]
 }
