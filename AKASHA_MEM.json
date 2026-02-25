@@ -196,12 +196,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM COHERE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772023982444
-    },
-    {
       "origin": "INTERFACE",
       "text": "DECAY CONSUME BREACH",
       "mood": "AGGRESSIVE",
@@ -284,6 +278,12 @@
       "text": "DRAIN SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772023989042
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WAIT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023989218
     }
   ]
 }
