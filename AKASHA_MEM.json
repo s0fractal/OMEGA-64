@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772036145159
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772036145382
@@ -291,6 +285,12 @@
       "text": "SHIELD PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772036148250
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772036149528
     }
   ]
 }
