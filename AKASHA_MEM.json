@@ -109,12 +109,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "UNIFY FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772021884949
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH RECON GUARD",
       "mood": "DEFENSIVE",
@@ -197,6 +191,12 @@
       "text": "GUARD STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772021892535
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772021893485
     }
   ]
 }
