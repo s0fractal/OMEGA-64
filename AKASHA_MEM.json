@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026121279
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772026121547
@@ -291,6 +285,12 @@
       "text": "RESONATE BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772026126508
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE CONSUME STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026129152
     }
   ]
 }
