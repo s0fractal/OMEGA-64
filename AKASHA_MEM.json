@@ -104,12 +104,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC FLOW BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772021680924
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME AWAKEN SPARK",
       "mood": "CREATIVE",
       "tick": 1772021681148
@@ -191,6 +185,12 @@
       "text": "RESONATE SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772021685562
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SEIZE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021686012
     }
   ]
 }
