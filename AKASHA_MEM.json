@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772038412325
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772038412533
@@ -291,6 +285,12 @@
       "text": "GUARD WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772038416389
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772038416609
     }
   ]
 }
