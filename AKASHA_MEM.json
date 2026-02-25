@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SHOCK SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027617457
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772027618431
@@ -291,6 +285,12 @@
       "text": "RECON IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772027628737
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772027629594
     }
   ]
 }
