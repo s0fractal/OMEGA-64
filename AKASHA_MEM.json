@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "PURE GUARD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040753706
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SYNC HEAL HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIKE DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772040819951
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS HEAL RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772040820145
     }
   ]
 }
