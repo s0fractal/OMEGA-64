@@ -131,12 +131,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE STABLE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772022366470
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER SHOCK CONSUME",
       "mood": "AGGRESSIVE",
@@ -219,6 +213,12 @@
       "text": "WAVE SPARK VISION",
       "mood": "CREATIVE",
       "tick": 1772022373346
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772022373505
     }
   ]
 }
