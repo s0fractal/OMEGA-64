@@ -19,12 +19,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DRAIN DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772015548014
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STABLE HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772015550604
@@ -106,6 +100,12 @@
       "text": "SEIZE SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772015669155
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772015681926
     }
   ]
 }
