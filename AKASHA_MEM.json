@@ -202,12 +202,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY HUNGER SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024067471
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772024067755
@@ -289,6 +283,12 @@
       "text": "STABLE COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772024071104
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024071648
     }
   ]
 }
