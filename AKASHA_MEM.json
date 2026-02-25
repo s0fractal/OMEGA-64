@@ -182,12 +182,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER RECON PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023541561
-    },
-    {
       "origin": "INTERFACE",
       "text": "BREACH STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -270,6 +264,12 @@
       "text": "PURE WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023545478
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772023545795
     }
   ]
 }
