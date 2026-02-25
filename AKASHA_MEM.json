@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER SEIZE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041164810
-    },
-    {
       "origin": "STREAM",
       "text": "UNIFY BLOOM FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HUNGER DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772041167897
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT WAIT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041168059
     }
   ]
 }
