@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER HUNGER HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037901381
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772037901619
@@ -291,6 +285,12 @@
       "text": "STABLE STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772037904414
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772037904616
     }
   ]
 }
