@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030421669
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772030422006
@@ -291,6 +285,12 @@
       "text": "HEAL FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772030427006
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE BLOOM STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772030427406
     }
   ]
 }
