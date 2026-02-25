@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772036957447
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772036957663
@@ -291,6 +285,12 @@
       "text": "COHERE SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772036960711
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING SYNC FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772036960879
     }
   ]
 }
