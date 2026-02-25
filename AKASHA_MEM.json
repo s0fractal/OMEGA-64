@@ -63,12 +63,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "GUARD STASIS IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020669431
-    },
-    {
-      "origin": "INTERFACE",
       "text": "WAIT WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772020670272
@@ -150,6 +144,12 @@
       "text": "STABLE FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772020677773
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE SYNC UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772020677969
     }
   ]
 }
