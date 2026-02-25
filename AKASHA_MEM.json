@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035748243
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE GIVING RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RECON REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772035751818
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE IMMUNE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772035752020
     }
   ]
 }
