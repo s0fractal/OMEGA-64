@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "GIVING STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772040460741
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIFE CONSUME SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772040464472
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE HUNGER STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040464634
     }
   ]
 }
