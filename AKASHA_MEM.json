@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042040723
-    },
-    {
       "origin": "STREAM",
       "text": "GIVING SYNC FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BLOOM SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772042049142
+    },
+    {
+      "origin": "STREAM",
+      "text": "STABLE RESONATE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772042050889
     }
   ]
 }
