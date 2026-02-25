@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SEIZE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022193817
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022194014
@@ -213,6 +207,12 @@
       "text": "BLOOM HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772022197908
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE WITNESS FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772022198393
     }
   ]
 }
