@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039234919
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772039235124
@@ -291,6 +285,12 @@
       "text": "SHIELD RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772039237744
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE HUNGER SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039237950
     }
   ]
 }
