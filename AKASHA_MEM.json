@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE DRAIN STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027282295
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772027282732
@@ -291,6 +285,12 @@
       "text": "SEIZE HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772027286513
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772027286758
     }
   ]
 }
