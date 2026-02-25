@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SHOCK SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037026939
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772037027137
@@ -291,6 +285,12 @@
       "text": "DRAIN STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772037031493
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS COHERE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772037031743
     }
   ]
 }
