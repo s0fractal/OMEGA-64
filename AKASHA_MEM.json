@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING RESONATE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772030242359
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772030243005
@@ -291,6 +285,12 @@
       "text": "AWAKEN SPARK FORGE",
       "mood": "CREATIVE",
       "tick": 1772030251372
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME HUNGER SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030251770
     }
   ]
 }
