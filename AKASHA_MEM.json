@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE HEAL FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772027773279
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GUARD WAIT SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HUNGER DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772027781734
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT STASIS PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772027782303
     }
   ]
 }
