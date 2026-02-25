@@ -132,12 +132,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY HUNGER DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022357838
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022358022
@@ -219,6 +213,12 @@
       "text": "EVOLVE WAVE AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772022361451
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022361628
     }
   ]
 }
