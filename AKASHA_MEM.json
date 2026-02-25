@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772024951979
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772024952206
@@ -291,6 +285,12 @@
       "text": "RESONATE UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772024958315
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772024958538
     }
   ]
 }
