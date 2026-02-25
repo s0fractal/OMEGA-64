@@ -46,12 +46,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772020094011
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE SYNC FLOW",
       "mood": "HARMONIC",
@@ -134,6 +128,12 @@
       "text": "SEIZE CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020106503
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH IMMUNE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772020107213
     }
   ]
 }
