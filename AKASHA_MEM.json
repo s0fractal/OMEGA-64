@@ -148,12 +148,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772022521769
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS UNIFY STABLE",
       "mood": "HARMONIC",
@@ -236,6 +230,12 @@
       "text": "SICKNESS SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772022525938
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS RECON SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772022526579
     }
   ]
 }
