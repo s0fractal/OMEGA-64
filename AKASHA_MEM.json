@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040577328
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE IMMUNE SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772040580098
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040580513
     }
   ]
 }
