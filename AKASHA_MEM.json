@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772033486547
-    },
-    {
       "origin": "REVERSE",
       "text": "GUARD PURE REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772033491365
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC HEAL GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772033491599
     }
   ]
 }
