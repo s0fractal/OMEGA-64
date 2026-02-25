@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN HUNGER DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025287405
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772025287596
@@ -291,6 +285,12 @@
       "text": "REFLECT REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772025291324
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER STASIS WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772025291558
     }
   ]
 }
