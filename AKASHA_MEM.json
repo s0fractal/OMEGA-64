@@ -107,12 +107,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD IMMUNE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021800589
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN STRIKE HUNGER",
       "mood": "AGGRESSIVE",
@@ -195,6 +189,12 @@
       "text": "SHELTER REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772021804130
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER REFLECT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772021804428
     }
   ]
 }
