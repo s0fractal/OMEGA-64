@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036299517
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772036299686
@@ -291,6 +285,12 @@
       "text": "RESONATE BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772036304098
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH STASIS SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772036304303
     }
   ]
 }
