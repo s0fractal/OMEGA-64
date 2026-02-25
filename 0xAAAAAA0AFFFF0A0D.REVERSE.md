@@ -3,7 +3,7 @@ eigenvalue: '0xAAAAAA0AFFFF0A0D'
 energy: 49.8
 x: 742
 'y': 428
-resonance: 12.53
+resonance: 27.53
 thought: SEEK_ALPHA_PASSIVE
 logic: AAAAAA0A
 signals: []
