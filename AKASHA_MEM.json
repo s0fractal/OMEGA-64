@@ -107,12 +107,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SPARK SPARK BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772021767418
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT SHIELD PURE",
       "mood": "DEFENSIVE",
@@ -195,6 +189,12 @@
       "text": "FLOW FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772021772297
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021772457
     }
   ]
 }
