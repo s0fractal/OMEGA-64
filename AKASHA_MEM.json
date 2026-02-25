@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STASIS GUARD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772040188274
-    },
-    {
       "origin": "INTERFACE",
       "text": "UNIFY HEAL FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WATCH GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040195363
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040195864
     }
   ]
 }
