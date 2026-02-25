@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_STREAM",
-      "text": "STABLE BLOOM OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772040183045
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE OSMOSIS BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772040189076
+    },
+    {
+      "origin": "STREAM",
+      "text": "STASIS WATCH REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040189925
     }
   ]
 }
