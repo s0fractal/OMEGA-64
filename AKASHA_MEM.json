@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772031269652
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772031270589
@@ -291,6 +285,12 @@
       "text": "SHOCK SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772031280724
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHELTER SHELTER RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772031281802
     }
   ]
 }
