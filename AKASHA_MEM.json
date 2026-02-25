@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "WORKER",
-      "text": "BLOOM RESONATE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041713945
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE CONSUME SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HUNGER SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772041718070
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHELTER WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772041718346
     }
   ]
 }
