@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE GUARD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772030099292
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772030099787
@@ -291,6 +285,12 @@
       "text": "BECOME FORGE FORGE",
       "mood": "CREATIVE",
       "tick": 1772030109546
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030109996
     }
   ]
 }
