@@ -164,12 +164,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022975931
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022976375
@@ -251,6 +245,12 @@
       "text": "CONSUME DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772022980489
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022980648
     }
   ]
 }
