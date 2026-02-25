@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE SHELTER IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772032568849
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772032569039
@@ -291,6 +285,12 @@
       "text": "RESONATE SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772032573004
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE HUNGER DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032575960
     }
   ]
 }
