@@ -106,12 +106,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DECAY SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021711039
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772021711208
@@ -193,6 +187,12 @@
       "text": "FLOW FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772021716629
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DECAY STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021716789
     }
   ]
 }
