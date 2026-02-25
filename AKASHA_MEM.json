@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772034035455
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM BLOOM UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WAIT GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772034041210
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE HEAL RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772034041420
     }
   ]
 }
