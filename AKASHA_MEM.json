@@ -144,12 +144,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH REFLECT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022497161
-    },
-    {
-      "origin": "REVERSE",
       "text": "VISION FORGE AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772022497495
@@ -231,6 +225,12 @@
       "text": "GIVING UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772022502095
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE PURE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022502228
     }
   ]
 }
