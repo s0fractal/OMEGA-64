@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029913619
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772029914125
@@ -291,6 +285,12 @@
       "text": "WAIT IMMUNE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772029921796
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE OSMOSIS RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772029922357
     }
   ]
 }
