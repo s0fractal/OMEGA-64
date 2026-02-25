@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW OSMOSIS COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772031747059
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772031747496
@@ -291,6 +285,12 @@
       "text": "FLOW GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772031753111
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS OSMOSIS HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772031753447
     }
   ]
 }
