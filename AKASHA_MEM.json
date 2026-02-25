@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM SYNC STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772026802821
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM OSMOSIS FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RECON SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772026807489
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772026807690
     }
   ]
 }
