@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WAIT WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772034648312
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE GIVING OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772034651537
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WATCH IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772034651730
     }
   ]
 }
