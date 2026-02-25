@@ -44,12 +44,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WAIT STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772019994719
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "COHERE COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772019996269
@@ -131,6 +125,12 @@
       "text": "BLOOM FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772020009110
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772020009318
     }
   ]
 }
