@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HUNGER STRIFE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033660631
-    },
-    {
       "origin": "REVERSE",
       "text": "WAIT PURE IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772033664513
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC HEAL RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772033664663
     }
   ]
 }
