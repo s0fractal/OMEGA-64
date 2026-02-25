@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "UNIFY RESONATE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772033265027
-    },
-    {
       "origin": "REVERSE",
       "text": "RECON GUARD WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772033268216
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK HUNGER DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033268395
     }
   ]
 }
