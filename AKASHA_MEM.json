@@ -75,12 +75,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020968510
-    },
-    {
       "origin": "INTERFACE",
       "text": "WATCH IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
@@ -163,6 +157,12 @@
       "text": "RECON IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772020978527
+    },
+    {
+      "origin": "STREAM",
+      "text": "GUARD WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772020978737
     }
   ]
 }
