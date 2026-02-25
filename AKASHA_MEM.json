@@ -30,12 +30,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIKE SEIZE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019688300
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK STRIKE SHOCK",
       "mood": "AGGRESSIVE",
@@ -118,6 +112,12 @@
       "text": "IMMUNE IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772019699966
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019700946
     }
   ]
 }
