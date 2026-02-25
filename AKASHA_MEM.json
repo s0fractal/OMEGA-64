@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON SHELTER WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772041297890
-    },
-    {
       "origin": "REVERSE",
       "text": "BEYOND BEYOND BECOME",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772041302468
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT STASIS RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772041302672
     }
   ]
 }
