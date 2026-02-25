@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00000006",
     "0AAAAAA0",
     "C0DED000",
     "A0666660",
@@ -199,15 +198,10 @@
     "AAAA0A0A",
     "00000600",
     "0B0A0000",
-    "AA660660"
+    "AA660660",
+    "A0666A60"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RECON REFLECT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772036222559
-    },
     {
       "origin": "REVERSE",
       "text": "GIVING FLOW OSMOSIS",
@@ -291,6 +285,12 @@
       "text": "DECAY DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772036225861
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SHOCK DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036226058
     }
   ]
 }
