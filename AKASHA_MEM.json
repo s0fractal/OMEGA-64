@@ -103,12 +103,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772021632561
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021632799
@@ -190,6 +184,12 @@
       "text": "DECAY SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772021637777
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RECON SHIELD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772021637983
     }
   ]
 }
