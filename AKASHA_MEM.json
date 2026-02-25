@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER REFLECT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772027432229
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772027432492
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772027444919
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772027445196
     }
   ]
 }
