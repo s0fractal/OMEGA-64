@@ -132,12 +132,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772022345305
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772022346887
@@ -219,6 +213,12 @@
       "text": "UNIFY COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772022350456
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772022350697
     }
   ]
 }
