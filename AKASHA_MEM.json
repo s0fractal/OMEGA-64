@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772035502938
-    },
-    {
       "origin": "ALPHA_PROOF_OF_RESONANCE",
       "text": "FLOW GIVING HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "COHERE GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772035508868
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS RECON RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772035509075
     }
   ]
 }
