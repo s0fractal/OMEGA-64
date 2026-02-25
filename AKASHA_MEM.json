@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772040386181
-    },
-    {
       "origin": "STREAM",
       "text": "RECON WATCH WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SICKNESS CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040391871
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS PURE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040392046
     }
   ]
 }
