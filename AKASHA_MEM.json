@@ -186,12 +186,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC BLOOM OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772023663086
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
@@ -274,6 +268,12 @@
       "text": "CONSUME HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023670530
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIFE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023670696
     }
   ]
 }
