@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020369524
-    },
-    {
       "origin": "INTERFACE",
       "text": "DECAY SEIZE BREACH",
       "mood": "AGGRESSIVE",
@@ -141,6 +135,12 @@
       "text": "RECON REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020381441
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE GIVING BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772020382106
     }
   ]
 }
