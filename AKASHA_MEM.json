@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK SEIZE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038069716
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772038069919
@@ -291,6 +285,12 @@
       "text": "OSMOSIS OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772038072969
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHIELD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772038073177
     }
   ]
 }
