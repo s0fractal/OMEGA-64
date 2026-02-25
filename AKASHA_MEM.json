@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE OSMOSIS UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772033999449
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772033999640
@@ -291,6 +285,12 @@
       "text": "BREACH DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772034002142
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772034002316
     }
   ]
 }
