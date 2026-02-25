@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DRAIN STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030667589
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH GUARD IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STASIS STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772030673288
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS SYNC COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772030674474
     }
   ]
 }
