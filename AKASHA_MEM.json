@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772033170512
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772033170695
@@ -291,6 +285,12 @@
       "text": "SHOCK DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772033173712
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772033173887
     }
   ]
 }
