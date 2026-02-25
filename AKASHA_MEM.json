@@ -86,12 +86,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HEAL COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772021227120
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIKE STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772021227604
@@ -173,6 +167,12 @@
       "text": "STABLE COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772021230563
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING UNIFY GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772021231270
     }
   ]
 }
