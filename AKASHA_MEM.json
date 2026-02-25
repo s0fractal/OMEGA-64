@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING UNIFY SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772041032650
-    },
-    {
       "origin": "I16_CLAMP",
       "text": "STRIKE SHOCK STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "BREACH STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041035531
+    },
+    {
+      "origin": "CAR",
+      "text": "SHIELD PURE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041035683
     }
   ]
 }
