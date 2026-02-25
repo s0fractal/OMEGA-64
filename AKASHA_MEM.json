@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK STRIFE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020367320
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY BLOOM RESONATE",
       "mood": "HARMONIC",
@@ -141,6 +135,12 @@
       "text": "UNIFY GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772020379637
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020380117
     }
   ]
 }
