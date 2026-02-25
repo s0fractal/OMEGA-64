@@ -114,12 +114,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SICKNESS HUNGER SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021993512
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SYNC UNIFY UNIFY",
       "mood": "HARMONIC",
@@ -202,6 +196,12 @@
       "text": "HEAL STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772022000416
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DRAIN CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022000659
     }
   ]
 }
