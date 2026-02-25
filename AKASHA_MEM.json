@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE HUNGER DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038748809
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772038748997
@@ -291,6 +285,12 @@
       "text": "UNIFY COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772038751838
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING SYNC COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772038752021
     }
   ]
 }
