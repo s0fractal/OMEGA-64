@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036844453
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772036845937
@@ -291,6 +285,12 @@
       "text": "UNIFY STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772036849726
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772036852395
     }
   ]
 }
