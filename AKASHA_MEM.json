@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE FLOW GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772028820397
-    },
-    {
-      "origin": "REVERSE",
       "text": "WITNESS WAVE WITNESS",
       "mood": "CREATIVE",
       "tick": 1772028821443
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772028833889
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIKE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028834873
     }
   ]
 }
