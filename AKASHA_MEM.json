@@ -95,12 +95,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK SEIZE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021510195
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772021511248
@@ -182,6 +176,12 @@
       "text": "PURE RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772021523444
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772021524271
     }
   ]
 }
