@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE SYNC UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772037772002
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772037772206
@@ -291,6 +285,12 @@
       "text": "STRIFE STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772037775097
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD STASIS GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772037775284
     }
   ]
 }
