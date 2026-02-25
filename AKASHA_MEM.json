@@ -146,12 +146,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT IMMUNE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022510110
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022511477
@@ -233,6 +227,12 @@
       "text": "RESONATE RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022515137
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHELTER REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022515300
     }
   ]
 }
