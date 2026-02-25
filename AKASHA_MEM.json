@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772027539241
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772027541714
@@ -291,6 +285,12 @@
       "text": "SHOCK STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772027568294
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING COHERE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772027569131
     }
   ]
 }
