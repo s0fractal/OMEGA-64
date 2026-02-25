@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "VISION EVOLVE BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772035356392
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772035356608
@@ -291,6 +285,12 @@
       "text": "WATCH STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772035359230
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772035359456
     }
   ]
 }
