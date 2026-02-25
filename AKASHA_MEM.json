@@ -102,12 +102,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY SEIZE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021637777
-    },
-    {
       "origin": "INTERFACE",
       "text": "RECON SHIELD STASIS",
       "mood": "DEFENSIVE",
@@ -190,6 +184,12 @@
       "text": "WATCH WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772021644265
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW RESONATE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772021644453
     }
   ]
 }
