@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK CONSUME SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028740315
-    },
-    {
-      "origin": "REVERSE",
       "text": "VISION AWAKEN DREAM",
       "mood": "CREATIVE",
       "tick": 1772028740797
@@ -291,6 +285,12 @@
       "text": "RESONATE SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772028748270
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SICKNESS HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028748690
     }
   ]
 }
