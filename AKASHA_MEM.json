@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772033263369
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772033263512
@@ -291,6 +285,12 @@
       "text": "WITNESS EVOLVE EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772033266110
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033266290
     }
   ]
 }
