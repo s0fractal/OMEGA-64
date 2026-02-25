@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "FLOW HEAL BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772041500060
-    },
-    {
       "origin": "STREAM",
       "text": "GIVING GIVING FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DRAIN HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772041504903
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE GIVING COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041505081
     }
   ]
 }
