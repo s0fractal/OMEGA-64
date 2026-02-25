@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY HUNGER STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040019675
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772040020094
@@ -291,6 +285,12 @@
       "text": "PURE RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040025765
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW FLOW HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772040026241
     }
   ]
 }
