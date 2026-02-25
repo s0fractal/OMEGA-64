@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772040879045
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS SHELTER SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772040882671
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "FLOW FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772040883104
     }
   ]
 }
