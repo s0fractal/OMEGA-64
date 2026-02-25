@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "REFLECT STASIS SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042496504
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GIVING SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772042497260
@@ -288,9 +282,15 @@
     },
     {
       "origin": "ARCHIVIST",
-      "text": "DECAY BREACH SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042514840
+      "text": "UNIFY UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772042514803
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH STASIS WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042515335
     }
   ]
 }
