@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIFE STRIKE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042115014
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GUARD PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772042115289
@@ -291,6 +285,12 @@
       "text": "SHOCK SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772042125344
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH WATCH REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042125576
     }
   ]
 }
