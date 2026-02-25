@@ -20,12 +20,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK STRIFE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772017467736
-    },
-    {
       "origin": "INTERFACE",
       "text": "OSMOSIS SYNC GIVING",
       "mood": "HARMONIC",
@@ -108,6 +102,12 @@
       "text": "REFLECT PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772017533612
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD IMMUNE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772017535973
     }
   ]
 }
