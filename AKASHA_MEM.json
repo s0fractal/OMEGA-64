@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHOCK STRIFE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041370152
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE COHERE FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RECON WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041373514
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW RESONATE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041373648
     }
   ]
 }
