@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772033766982
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772033767185
@@ -291,6 +285,12 @@
       "text": "PURE WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033770755
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY STABLE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772033770994
     }
   ]
 }
