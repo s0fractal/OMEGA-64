@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING STABLE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772038967895
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772038968115
@@ -291,6 +285,12 @@
       "text": "FLOW STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772038971966
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038972229
     }
   ]
 }
