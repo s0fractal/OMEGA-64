@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHOCK SHOCK STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025691607
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE COHERE HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "AWAKEN SPARK BECOME",
       "mood": "CREATIVE",
       "tick": 1772025696935
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW BLOOM FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772025697193
     }
   ]
 }
