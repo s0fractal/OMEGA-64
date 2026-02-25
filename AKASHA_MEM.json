@@ -69,12 +69,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STASIS REFLECT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020858034
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER CONSUME HUNGER",
       "mood": "AGGRESSIVE",
@@ -157,6 +151,12 @@
       "text": "STRIKE STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020867592
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME BREACH CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020867779
     }
   ]
 }
