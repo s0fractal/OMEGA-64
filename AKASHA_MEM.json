@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "FLOW UNIFY COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772037513645
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING HEAL STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "CONSUME SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772037517520
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER HUNGER HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037517747
     }
   ]
 }
