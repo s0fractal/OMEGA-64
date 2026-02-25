@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772035944039
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772035944255
@@ -291,6 +285,12 @@
       "text": "COHERE OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772035950092
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DRAIN SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035950309
     }
   ]
 }
