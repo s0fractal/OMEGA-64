@@ -43,15 +43,10 @@
     "66A666A0",
     "A000AA00",
     "BA0A0000",
-    "ABBA0000"
+    "ABBA0000",
+    "BB0B0A00"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020127165
-    },
     {
       "origin": "REVERSE",
       "text": "UNIFY RESONATE HEAL",
@@ -135,6 +130,12 @@
       "text": "GIVING RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772020140830
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH SEIZE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020141533
     }
   ]
 }
