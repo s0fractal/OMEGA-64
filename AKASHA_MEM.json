@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK STRIKE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040508867
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772040509031
@@ -291,6 +285,12 @@
       "text": "WAIT REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772040511993
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772040512220
     }
   ]
 }
