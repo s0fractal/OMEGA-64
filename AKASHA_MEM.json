@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHELTER GUARD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772035043144
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIKE DRAIN DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772035046152
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035046381
     }
   ]
 }
