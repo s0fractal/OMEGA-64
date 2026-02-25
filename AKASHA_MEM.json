@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772034633982
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772034634205
@@ -291,6 +285,12 @@
       "text": "PURE STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772034636761
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DECAY SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034636956
     }
   ]
 }
