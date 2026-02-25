@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE SYNC OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772036936226
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772036936452
@@ -291,6 +285,12 @@
       "text": "SYNC FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772036940502
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE AWAKEN DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772036940710
     }
   ]
 }
