@@ -120,12 +120,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022092343
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022092483
@@ -207,6 +201,12 @@
       "text": "FLOW RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022096686
+    },
+    {
+      "origin": "PARADOX",
+      "text": "EVOLVE WAVE VISION",
+      "mood": "CREATIVE",
+      "tick": 1772022096873
     }
   ]
 }
