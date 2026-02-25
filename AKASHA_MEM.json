@@ -17,12 +17,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772015140408
-    },
-    {
       "origin": "INTERFACE",
       "text": "CONSUME HUNGER BREACH",
       "mood": "AGGRESSIVE",
@@ -105,6 +99,12 @@
       "text": "PURE STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772015285302
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772015296048
     }
   ]
 }
