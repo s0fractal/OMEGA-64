@@ -163,12 +163,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE SYNC UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772022954379
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "UNIFY BLOOM STABLE",
       "mood": "HARMONIC",
@@ -251,6 +245,12 @@
       "text": "SICKNESS SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022957386
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHELTER SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772022957683
     }
   ]
 }
