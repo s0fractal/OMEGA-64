@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD SHIELD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041105360
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041105996
@@ -291,6 +285,12 @@
       "text": "STABLE COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041109260
+    },
+    {
+      "origin": "PARADOX",
+      "text": "PURE GUARD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041109801
     }
   ]
 }
