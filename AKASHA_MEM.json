@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH IMMUNE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041906763
-    },
-    {
       "origin": "STREAM",
       "text": "OSMOSIS FLOW BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BREACH BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772041911357
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING UNIFY STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041911583
     }
   ]
 }
