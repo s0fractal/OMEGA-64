@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE STRIKE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040473973
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GIVING OSMOSIS UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STASIS SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772040476566
+    },
+    {
+      "origin": "STREAM",
+      "text": "WAIT WATCH PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040476721
     }
   ]
 }
