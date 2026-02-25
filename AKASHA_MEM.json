@@ -108,12 +108,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021798757
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021798962
@@ -195,6 +189,12 @@
       "text": "SHIELD STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772021802580
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE CONSUME STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021802729
     }
   ]
 }
