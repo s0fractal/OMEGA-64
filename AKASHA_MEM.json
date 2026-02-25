@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A0666066",
     "0A0A00A0",
     "06006000",
     "A000A000",
@@ -199,15 +198,10 @@
     "60006000",
     "00600600",
     "AA0A000A",
-    "A000AA0A"
+    "A000AA0A",
+    "A00AA0AA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "AWAKEN EVOLVE BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772035844820
-    },
     {
       "origin": "REVERSE",
       "text": "GIVING HEAL STABLE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772035850090
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035850316
     }
   ]
 }
