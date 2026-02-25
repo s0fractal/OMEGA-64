@@ -155,12 +155,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022710775
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772022710984
@@ -242,6 +236,12 @@
       "text": "PURE PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022714566
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER BREACH STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022714739
     }
   ]
 }
