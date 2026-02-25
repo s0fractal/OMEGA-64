@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE REFLECT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772038193706
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772038193910
@@ -291,6 +285,12 @@
       "text": "DECAY HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772038196802
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND FORGE FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772038197084
     }
   ]
 }
