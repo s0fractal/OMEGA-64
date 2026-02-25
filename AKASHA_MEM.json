@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH GUARD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772034969142
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "VISION EVOLVE FORGE",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772034973705
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS UNIFY GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772034973915
     }
   ]
 }
