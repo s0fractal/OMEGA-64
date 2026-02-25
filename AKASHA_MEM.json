@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AABB0CDD",
     "A00A00A0",
     "660666A6",
     "00000600",
@@ -199,15 +198,10 @@
     "AA0A00A0",
     "000060A0",
     "0A000AAA",
-    "60000000"
+    "60000000",
+    "00606666"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SEIZE CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029798008
-    },
     {
       "origin": "REVERSE",
       "text": "BLOOM GIVING RESONATE",
@@ -291,6 +285,12 @@
       "text": "SPARK WAVE AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772029819207
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM RESONATE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772029823022
     }
   ]
 }
