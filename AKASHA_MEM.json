@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH PURE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040403624
-    },
-    {
       "origin": "STREAM",
       "text": "FLOW STABLE BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "PURE RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772040406734
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS FLOW UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772040406900
     }
   ]
 }
