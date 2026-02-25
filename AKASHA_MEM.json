@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE OSMOSIS UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772035147681
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772035147882
@@ -291,6 +285,12 @@
       "text": "DECAY SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772035150961
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WATCH PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772035151660
     }
   ]
 }
