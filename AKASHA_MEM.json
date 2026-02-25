@@ -109,12 +109,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GUARD REFLECT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772021886822
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE BLOOM RESONATE",
       "mood": "HARMONIC",
@@ -197,6 +191,12 @@
       "text": "HEAL SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772021894191
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM WITNESS SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772021894361
     }
   ]
 }
