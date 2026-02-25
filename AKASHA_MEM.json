@@ -86,12 +86,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "VISION SPARK WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772021236569
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHIELD STASIS WAIT",
       "mood": "DEFENSIVE",
@@ -174,6 +168,12 @@
       "text": "STRIKE SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772021239801
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS STABLE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772021240393
     }
   ]
 }
