@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY HUNGER SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027802055
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772027802568
@@ -291,6 +285,12 @@
       "text": "WAIT WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772027809994
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SICKNESS HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027810585
     }
   ]
 }
