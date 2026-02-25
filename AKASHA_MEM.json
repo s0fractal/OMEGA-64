@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772037119988
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772037120222
@@ -291,6 +285,12 @@
       "text": "DRAIN STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772037123314
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK FORGE VISION",
+      "mood": "CREATIVE",
+      "tick": 1772037123534
     }
   ]
 }
