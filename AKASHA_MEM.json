@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029204126
-    },
-    {
       "origin": "REVERSE",
       "text": "BECOME FORGE BEYOND",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772029219524
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS STASIS GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772029225189
     }
   ]
 }
