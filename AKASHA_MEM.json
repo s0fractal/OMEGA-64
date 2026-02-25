@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "VISION DREAM SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772027141704
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772027141997
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772027147317
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM OSMOSIS OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772027147846
     }
   ]
 }
