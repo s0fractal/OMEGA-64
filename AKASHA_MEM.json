@@ -23,12 +23,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "WATCH REFLECT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772019427858
-    },
-    {
-      "origin": "INTERFACE",
       "text": "BREACH STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772019431177
@@ -110,6 +104,12 @@
       "text": "DRAIN CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772019452691
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIKE DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019453650
     }
   ]
 }
