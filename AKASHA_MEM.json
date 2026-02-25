@@ -156,12 +156,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772022711437
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022711569
@@ -243,6 +237,12 @@
       "text": "SHELTER REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022716389
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DECAY STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022716809
     }
   ]
 }
