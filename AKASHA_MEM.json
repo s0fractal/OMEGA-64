@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "RESONATE GIVING SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772019658266
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK BREACH DECAY",
       "mood": "AGGRESSIVE",
@@ -114,6 +108,12 @@
       "text": "STABLE UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772019665836
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL RESONATE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772019666075
     }
   ]
 }
