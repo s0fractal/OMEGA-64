@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SPARK WITNESS SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772035014067
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772035014278
@@ -291,6 +285,12 @@
       "text": "STRIFE SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772035017051
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE IMMUNE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772035017266
     }
   ]
 }
