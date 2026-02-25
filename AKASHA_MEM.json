@@ -43,12 +43,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020028604
-    },
-    {
       "origin": "INTERFACE",
       "text": "HEAL OSMOSIS RESONATE",
       "mood": "HARMONIC",
@@ -131,6 +125,12 @@
       "text": "COHERE UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772020040467
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020040995
     }
   ]
 }
