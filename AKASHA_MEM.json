@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE RESONATE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772040259014
-    },
-    {
       "origin": "STREAM",
       "text": "BREACH BREACH DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772040263642
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHIELD SHIELD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040263826
     }
   ]
 }
