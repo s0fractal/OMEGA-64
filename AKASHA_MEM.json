@@ -126,12 +126,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HEAL BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772022253683
-    },
-    {
       "origin": "REVERSE",
       "text": "AWAKEN SPARK AWAKEN",
       "mood": "CREATIVE",
@@ -214,6 +208,12 @@
       "text": "BEYOND EVOLVE FORGE",
       "mood": "CREATIVE",
       "tick": 1772022259942
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SEIZE DRAIN DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022260247
     }
   ]
 }
