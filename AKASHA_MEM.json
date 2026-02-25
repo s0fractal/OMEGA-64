@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT IMMUNE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772026906529
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772026907503
@@ -291,6 +285,12 @@
       "text": "OSMOSIS HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772026912036
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME DRAIN DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026912382
     }
   ]
 }
