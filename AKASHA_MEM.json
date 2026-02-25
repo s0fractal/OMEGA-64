@@ -44,12 +44,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHIELD STASIS IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020042460
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "OSMOSIS RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772020043386
@@ -131,6 +125,12 @@
       "text": "DRAIN STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020055208
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT RECON GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020056996
     }
   ]
 }
