@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026971282
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772026971507
@@ -291,6 +285,12 @@
       "text": "CONSUME BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772026979344
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772026979532
     }
   ]
 }
