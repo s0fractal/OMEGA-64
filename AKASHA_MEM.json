@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC SYNC STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772033863624
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK SICKNESS BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772033868295
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM RESONATE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772033868496
     }
   ]
 }
