@@ -186,12 +186,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE HEAL RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772023607948
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772023608123
@@ -273,6 +267,12 @@
       "text": "DRAIN SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772023611401
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS PURE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772023611653
     }
   ]
 }
