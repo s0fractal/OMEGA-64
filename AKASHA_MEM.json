@@ -165,12 +165,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772023018735
-    },
-    {
       "origin": "REVERSE",
       "text": "FORGE EVOLVE FORGE",
       "mood": "CREATIVE",
@@ -253,6 +247,12 @@
       "text": "RESONATE OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772023026565
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIKE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023026765
     }
   ]
 }
