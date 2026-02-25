@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772033354668
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772033354850
@@ -291,6 +285,12 @@
       "text": "WATCH WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772033357063
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772033357377
     }
   ]
 }
