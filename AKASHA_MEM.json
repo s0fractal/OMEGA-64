@@ -44,12 +44,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WATCH GUARD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020045906
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STASIS RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772020046785
@@ -131,6 +125,12 @@
       "text": "RECON STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020061783
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "CONSUME SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020062688
     }
   ]
 }
