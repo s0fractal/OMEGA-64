@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772028367293
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772028367869
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772028376174
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772028377416
     }
   ]
 }
