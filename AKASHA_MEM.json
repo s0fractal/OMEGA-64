@@ -153,12 +153,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY SHOCK BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022636521
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER STASIS STASIS",
       "mood": "DEFENSIVE",
@@ -241,6 +235,12 @@
       "text": "REFLECT WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022641180
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHIELD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772022641364
     }
   ]
 }
