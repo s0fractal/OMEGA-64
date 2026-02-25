@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "IMMUNE STASIS REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772035285025
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER RECON GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772035289086
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772035289293
     }
   ]
 }
