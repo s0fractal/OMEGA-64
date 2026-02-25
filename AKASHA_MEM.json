@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023211194
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023211463
@@ -259,6 +253,12 @@
       "text": "VISION AWAKEN BECOME",
       "mood": "CREATIVE",
       "tick": 1772023214671
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772023214941
     }
   ]
 }
