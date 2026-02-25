@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAAAA0AA",
     "60600666",
     "0AA00A00",
     "A00A00AA",
@@ -199,15 +198,10 @@
     "600A6000",
     "0AAAA0A0",
     "AA0000A0",
-    "FFFFF00F"
+    "FFFFF00F",
+    "66060666"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "DECAY STRIFE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040542049
-    },
     {
       "origin": "STREAM",
       "text": "SHIELD IMMUNE GUARD",
@@ -291,6 +285,12 @@
       "text": "GIVING BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772040544811
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040544973
     }
   ]
 }
