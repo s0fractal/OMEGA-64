@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON GUARD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772041414137
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY DRAIN STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772041417313
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE OSMOSIS UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772041417449
     }
   ]
 }
