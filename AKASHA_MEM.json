@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772040012202
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772040012676
@@ -291,6 +285,12 @@
       "text": "RESONATE UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772040019239
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY HUNGER STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040019675
     }
   ]
 }
