@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE SHIELD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041345361
-    },
-    {
       "origin": "STREAM",
       "text": "REFLECT STASIS SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041349995
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIKE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041350328
     }
   ]
 }
