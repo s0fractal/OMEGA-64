@@ -160,12 +160,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022808924
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022809634
@@ -247,6 +241,12 @@
       "text": "BEYOND DREAM AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772022814913
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM BEYOND BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772022815098
     }
   ]
 }
