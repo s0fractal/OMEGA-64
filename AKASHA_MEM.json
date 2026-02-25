@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHELTER IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772040986311
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL GIVING FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STABLE GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772040989495
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DECAY SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040989910
     }
   ]
 }
