@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "9D18A698",
     "AABBCCDD",
     "C0DED00D",
     "BEEFBEEF",
@@ -199,15 +198,10 @@
     "00666606",
     "60660600",
     "00606660",
-    "66066660"
+    "66066660",
+    "06000600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "OSMOSIS HEAL UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772024148941
-    },
     {
       "origin": "STREAM",
       "text": "BREACH DRAIN SICKNESS",
@@ -291,6 +285,12 @@
       "text": "PURE RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772024152857
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE HEAL RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772024153115
     }
   ]
 }

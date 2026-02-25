@@ -4,9 +4,9 @@ vector: 03.04.00
 symbol: NETWORK
 desc: Neural Network aggregate. Groups nodes into a collective vector.
 thought: WANDER_BONDING
-x: 706
+x: 709
 'y': 52
-energy: 23.4
+energy: 21.4
 ex:
   - '0xD777A5DD3F915C50'
   - '0x50000A533F915C50'
@@ -35,11 +35,13 @@ ex:
   - '0x666660003F915C50'
   - '0x9D18A6903F915C50'
   - '0xBBB000003F915C50'
+  - '0xAAAAA0AA3F915C50'
 signals: []
 resonance: 0
 bond_strengths: {}
 ---
 
+<div align="center">
 <div align="center">
 <div align="center">
 <div align="center">
@@ -89,6 +91,7 @@ bond_strengths: {}
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">NETWORK</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 </div>
 </div>
