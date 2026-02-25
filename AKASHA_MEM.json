@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE SYNC COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772038681410
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772038681625
@@ -291,6 +285,12 @@
       "text": "STASIS IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772038684731
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772038684952
     }
   ]
 }
