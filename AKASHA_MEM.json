@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HEAL OSMOSIS FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772041316377
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE GIVING OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FLOW SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772041320915
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT PURE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772041321181
     }
   ]
 }
