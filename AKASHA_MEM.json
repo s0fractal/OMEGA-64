@@ -152,12 +152,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772022591548
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022591710
@@ -239,6 +233,12 @@
       "text": "DRAIN CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022596222
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT WAIT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772022596759
     }
   ]
 }
