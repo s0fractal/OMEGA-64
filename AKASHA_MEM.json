@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "CONSCIOUSNESS",
-      "text": "HEAL BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772041427480
-    },
-    {
       "origin": "INTERFACE",
       "text": "HEAL COHERE UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WAIT SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041431295
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT STASIS WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772041432005
     }
   ]
 }
