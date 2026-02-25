@@ -111,12 +111,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SYNC OSMOSIS OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772021934184
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD WAIT SHIELD",
       "mood": "DEFENSIVE",
@@ -199,6 +193,12 @@
       "text": "SYNC RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772021940185
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772021940553
     }
   ]
 }
