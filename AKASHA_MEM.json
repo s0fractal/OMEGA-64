@@ -23,12 +23,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GUARD GUARD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772019435874
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHELTER IMMUNE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772019442206
@@ -110,6 +104,12 @@
       "text": "SICKNESS SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772019454800
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772019455543
     }
   ]
 }
