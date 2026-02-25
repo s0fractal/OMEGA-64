@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041598062
-    },
-    {
       "origin": "INTERFACE",
       "text": "WATCH STASIS IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772041606119
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD GUARD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041606564
     }
   ]
 }
