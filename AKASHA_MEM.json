@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIFE CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024212761
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN BREACH HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772024218728
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY SYNC FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772024218892
     }
   ]
 }
