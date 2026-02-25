@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772035615250
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772035615480
@@ -291,6 +285,12 @@
       "text": "CONSUME DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772035618076
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT IMMUNE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772035618271
     }
   ]
 }
