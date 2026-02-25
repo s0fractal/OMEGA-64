@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA6006A6",
     "AAA0AAA0",
     "B0B0000C",
     "00600000",
@@ -199,15 +198,10 @@
     "60666000",
     "A00A0000",
     "0AA0AA0A",
-    "66006006"
+    "66006006",
+    "0000AAA0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RESONATE FLOW OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772033041457
-    },
     {
       "origin": "REVERSE",
       "text": "SHELTER IMMUNE SHELTER",
@@ -291,6 +285,12 @@
       "text": "UNIFY HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772033044074
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772033044284
     }
   ]
 }
