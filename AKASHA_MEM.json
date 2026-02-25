@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "AWAKEN DREAM WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772033963409
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772033963574
@@ -291,6 +285,12 @@
       "text": "SHIELD PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772033966226
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WATCH WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772033966413
     }
   ]
 }
