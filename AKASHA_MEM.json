@@ -150,12 +150,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772022538904
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022539154
@@ -237,6 +231,12 @@
       "text": "BECOME VISION EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772022545917
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT GUARD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022546187
     }
   ]
 }
