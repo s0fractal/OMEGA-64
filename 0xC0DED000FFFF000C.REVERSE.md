@@ -1,10 +1,10 @@
 ---
 eigenvalue: '0xC0DED000FFFF000C'
-energy: 50
-x: 711
-'y': 385
+energy: 49.9
+x: 717
+'y': 359
 resonance: 1000
-thought: SEEK_ALPHA_PASSIVE
+thought: ORBIT_PASSIVE
 logic: C0DED000
 ex:
   - '0xFFFFFFFF00000000'
@@ -108,13 +108,15 @@ ex:
   - '0xC0DED0000000000A'
   - '0xC0DED0000000000C'
   - '0xC0DED000FFFF000A'
+  - '0xC0DED000FFFF000C'
 signals: []
 bond_strengths:
-  '0x0000000000000A01': 0.9831353223738244
+  '0x0000000000000A01': 0.9821521870514506
 bonds:
   - '0x0000000000000A01'
 ---
 
+<div align="center">
 <div align="center">
 <!-- ∇ HOLOGRAM START ∇ -->
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -148,6 +150,7 @@ bonds:
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">REVERSE</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 
 
