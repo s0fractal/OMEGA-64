@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772027297467
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772027297737
@@ -291,6 +285,12 @@
       "text": "SHIELD SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772027303118
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY HUNGER HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027303338
     }
   ]
 }
