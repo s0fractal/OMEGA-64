@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE PURE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041126249
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY UNIFY UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772041129547
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD PURE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041129742
     }
   ]
 }
