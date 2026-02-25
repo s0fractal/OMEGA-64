@@ -195,12 +195,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023854248
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023854747
@@ -282,6 +276,12 @@
       "text": "STRIFE SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023860329
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772023861678
     }
   ]
 }
