@@ -182,12 +182,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DRAIN DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023520584
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772023520748
@@ -269,6 +263,12 @@
       "text": "FORGE WAVE EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772023522961
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WAIT SHELTER STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772023523165
     }
   ]
 }
