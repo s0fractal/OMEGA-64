@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE STABLE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041423574
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS REFLECT SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041427816
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "UNIFY FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041428122
     }
   ]
 }
