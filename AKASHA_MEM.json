@@ -118,12 +118,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GUARD SHELTER GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022085490
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN SEIZE CONSUME",
       "mood": "AGGRESSIVE",
@@ -206,6 +200,12 @@
       "text": "BREACH HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022090639
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT REFLECT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772022090761
     }
   ]
 }
