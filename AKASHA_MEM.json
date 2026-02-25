@@ -81,12 +81,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS SHOCK STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021137630
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS DRAIN SHOCK",
       "mood": "AGGRESSIVE",
@@ -169,6 +163,12 @@
       "text": "STABLE OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772021144728
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS CONSUME SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021145290
     }
   ]
 }
