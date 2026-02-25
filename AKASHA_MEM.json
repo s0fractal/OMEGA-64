@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM HEAL GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772019562097
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE HEAL HEAL",
       "mood": "HARMONIC",
@@ -111,6 +105,12 @@
       "text": "BREACH SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772019572583
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE SHELTER GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772019572766
     }
   ]
 }
