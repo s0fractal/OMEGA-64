@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024209503
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772024209637
@@ -291,6 +285,12 @@
       "text": "HEAL BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772024213711
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772024213906
     }
   ]
 }
