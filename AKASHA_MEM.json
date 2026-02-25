@@ -18,12 +18,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "PURE STASIS SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772015285302
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER DRAIN DECAY",
       "mood": "AGGRESSIVE",
@@ -106,6 +100,12 @@
       "text": "SICKNESS HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772015414573
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HEAL COHERE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772015422587
     }
   ]
 }
