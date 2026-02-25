@@ -102,12 +102,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021656705
-    },
-    {
       "origin": "REVERSE",
       "text": "RECON WAIT SHIELD",
       "mood": "DEFENSIVE",
@@ -190,6 +184,12 @@
       "text": "FLOW COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772021663916
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021664103
     }
   ]
 }
