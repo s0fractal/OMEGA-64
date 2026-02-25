@@ -16,12 +16,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SICKNESS SICKNESS SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772014273495
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BECOME AWAKEN BECOME",
       "mood": "CREATIVE",
@@ -104,6 +98,12 @@
       "text": "HUNGER CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772014472907
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GIVING UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772014476066
     }
   ]
 }
