@@ -72,12 +72,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BEYOND FORGE SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772020935951
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH RECON STASIS",
       "mood": "DEFENSIVE",
@@ -160,6 +154,12 @@
       "text": "FLOW FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772020941138
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020941507
     }
   ]
 }
