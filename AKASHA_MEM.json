@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "DECAY SEIZE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041451077
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS WAIT SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772041455450
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772041455616
     }
   ]
 }
