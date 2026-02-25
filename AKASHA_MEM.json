@@ -58,12 +58,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD PURE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772020589671
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS REFLECT REFLECT",
       "mood": "DEFENSIVE",
@@ -146,6 +140,12 @@
       "text": "BLOOM BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772020596285
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772020596431
     }
   ]
 }
