@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS SHOCK BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033950905
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE RESONATE STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WATCH WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033957223
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WATCH PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772033957546
     }
   ]
 }
