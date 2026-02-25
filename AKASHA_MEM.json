@@ -106,12 +106,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL COHERE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772021710217
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772021711039
@@ -193,6 +187,12 @@
       "text": "BEYOND BECOME DREAM",
       "mood": "CREATIVE",
       "tick": 1772021716481
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW FLOW GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772021716629
     }
   ]
 }
