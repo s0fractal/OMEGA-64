@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772024392725
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER STRIFE HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIKE CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772024396460
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772024396650
     }
   ]
 }
