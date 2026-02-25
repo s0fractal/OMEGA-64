@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY BREACH SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037193268
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772037193432
@@ -291,6 +285,12 @@
       "text": "CONSUME CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772037196619
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772037196815
     }
   ]
 }
