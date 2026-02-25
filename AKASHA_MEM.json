@@ -102,12 +102,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772021621992
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772021622526
@@ -189,6 +183,12 @@
       "text": "BREACH DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772021627389
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021627611
     }
   ]
 }
