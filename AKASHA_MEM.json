@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HUNGER SHOCK SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019506693
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT GUARD RECON",
       "mood": "DEFENSIVE",
@@ -111,6 +105,12 @@
       "text": "SYNC BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772019513479
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GUARD SHELTER SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772019514014
     }
   ]
 }
