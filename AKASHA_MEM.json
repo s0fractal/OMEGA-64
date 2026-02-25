@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD WAIT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772038712145
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772038712358
@@ -291,6 +285,12 @@
       "text": "BLOOM UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772038716138
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038716378
     }
   ]
 }
