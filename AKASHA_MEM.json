@@ -128,12 +128,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022298023
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIKE SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
@@ -216,6 +210,12 @@
       "text": "BLOOM BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772022301738
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022302881
     }
   ]
 }
