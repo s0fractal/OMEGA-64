@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025836307
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772025836535
@@ -291,6 +285,12 @@
       "text": "WATCH PURE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772025841709
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHIELD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772025841888
     }
   ]
 }
