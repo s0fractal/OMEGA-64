@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SEIZE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038868345
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAVE BECOME WITNESS",
       "mood": "CREATIVE",
       "tick": 1772038868580
@@ -291,6 +285,12 @@
       "text": "SYNC RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772038872164
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHIELD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772038872407
     }
   ]
 }
