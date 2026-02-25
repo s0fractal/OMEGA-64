@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66A066A0",
     "AABBCC0F",
     "00060600",
     "0EE00EEF",
@@ -199,15 +198,10 @@
     "A0BB0000",
     "00660666",
     "0AAAAA0A",
-    "A6060660"
+    "A6060660",
+    "AA0A000A"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "DECAY DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041462663
-    },
     {
       "origin": "ARCHIVIST",
       "text": "WAIT IMMUNE REFLECT",
@@ -291,6 +285,12 @@
       "text": "BREACH SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041465932
+    },
+    {
+      "origin": "STREAM",
+      "text": "SEIZE DRAIN DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041466065
     }
   ]
 }
