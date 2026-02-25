@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022199079
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022199203
@@ -213,6 +207,12 @@
       "text": "PURE STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022205162
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WATCH WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772022205565
     }
   ]
 }
