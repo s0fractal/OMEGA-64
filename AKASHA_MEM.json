@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY GIVING FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772025349231
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER RECON SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772025352576
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025352778
     }
   ]
 }
