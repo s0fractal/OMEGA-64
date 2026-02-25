@@ -132,12 +132,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022366152
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772022366470
@@ -219,6 +213,12 @@
       "text": "DRAIN SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022373197
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE SPARK VISION",
+      "mood": "CREATIVE",
+      "tick": 1772022373346
     }
   ]
 }
