@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772035523211
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772035523455
@@ -291,6 +285,12 @@
       "text": "SHOCK HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772035526329
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772035526514
     }
   ]
 }
