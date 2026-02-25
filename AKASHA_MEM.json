@@ -13,12 +13,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER STRIKE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772012775056
-    },
-    {
       "origin": "INTERFACE",
       "text": "STASIS WATCH RECON",
       "mood": "DEFENSIVE",
@@ -101,6 +95,12 @@
       "text": "CONSUME SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772013027725
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HUNGER BREACH BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772013033494
     }
   ]
 }
