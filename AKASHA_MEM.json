@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036428494
-    },
-    {
       "origin": "REVERSE",
       "text": "WAIT GUARD IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772036432989
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME AWAKEN AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772036433167
     }
   ]
 }
