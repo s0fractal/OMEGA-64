@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772035208902
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772035209080
@@ -291,6 +285,12 @@
       "text": "RECON WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772035211996
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE SHELTER WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772035212533
     }
   ]
 }
