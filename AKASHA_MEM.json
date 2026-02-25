@@ -180,12 +180,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023455757
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL BLOOM RESONATE",
       "mood": "HARMONIC",
@@ -268,6 +262,12 @@
       "text": "SHELTER GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023462583
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SEIZE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023462773
     }
   ]
 }
