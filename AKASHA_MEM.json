@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SEIZE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026103823
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772026104149
@@ -291,6 +285,12 @@
       "text": "UNIFY BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772026112007
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHELTER SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772026112305
     }
   ]
 }
