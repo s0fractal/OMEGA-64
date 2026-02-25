@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023972811
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023972982
@@ -284,6 +278,12 @@
       "text": "SHOCK SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023975704
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WATCH GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023976030
     }
   ]
 }
