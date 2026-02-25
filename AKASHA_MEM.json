@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT WATCH SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772028602995
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772028603404
@@ -291,6 +285,12 @@
       "text": "FLOW SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772028613464
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DECAY SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028613876
     }
   ]
 }
