@@ -103,12 +103,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME HUNGER SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021650754
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772021650935
@@ -190,6 +184,12 @@
       "text": "SHIELD WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772021655567
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHIELD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772021655727
     }
   ]
 }
