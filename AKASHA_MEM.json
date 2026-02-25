@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD STASIS WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772034124029
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772034124237
@@ -291,6 +285,12 @@
       "text": "WATCH WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772034126672
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SEIZE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034126865
     }
   ]
 }
