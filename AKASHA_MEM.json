@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772026868339
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772026868595
@@ -291,6 +285,12 @@
       "text": "STRIFE SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772026877069
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE UNIFY SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772026877269
     }
   ]
 }
