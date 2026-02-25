@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS RESONATE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772025417511
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772025417934
@@ -291,6 +285,12 @@
       "text": "RECON STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772025422435
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772025422804
     }
   ]
 }
