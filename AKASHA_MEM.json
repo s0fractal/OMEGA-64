@@ -163,12 +163,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER WAIT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022900870
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022901042
@@ -250,6 +244,12 @@
       "text": "SEIZE STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022909320
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DECAY SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022909483
     }
   ]
 }
