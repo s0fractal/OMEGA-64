@@ -160,12 +160,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772022818592
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022818937
@@ -247,6 +241,12 @@
       "text": "WITNESS FORGE FORGE",
       "mood": "CREATIVE",
       "tick": 1772022822797
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022822929
     }
   ]
 }
