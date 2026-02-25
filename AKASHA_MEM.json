@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD WATCH WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772022252768
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME EVOLVE BEYOND",
       "mood": "CREATIVE",
       "tick": 1772022252972
@@ -213,6 +207,12 @@
       "text": "RESONATE OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772022258826
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE BLOOM BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772022259007
     }
   ]
 }
