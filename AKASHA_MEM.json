@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY BLOOM OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772034404688
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772034404899
@@ -291,6 +285,12 @@
       "text": "SEIZE SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772034408009
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772034408238
     }
   ]
 }
