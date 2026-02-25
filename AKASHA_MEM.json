@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS SEIZE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025185321
-    },
-    {
       "origin": "STREAM",
       "text": "SHELTER RECON WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772025188420
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS SYNC FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772025188625
     }
   ]
 }
