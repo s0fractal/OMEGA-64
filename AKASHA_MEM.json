@@ -36,12 +36,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHIELD WAIT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772019766993
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STABLE HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772019767804
@@ -123,6 +117,12 @@
       "text": "STABLE GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772019778241
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772019779213
     }
   ]
 }
