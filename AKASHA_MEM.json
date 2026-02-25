@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026165992
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772026166879
@@ -291,6 +285,12 @@
       "text": "DECAY CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772026172595
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772026172777
     }
   ]
 }
