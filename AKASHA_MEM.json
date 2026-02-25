@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035839834
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772035840075
@@ -291,6 +285,12 @@
       "text": "HUNGER DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772035844246
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM DREAM AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772035844423
     }
   ]
 }
