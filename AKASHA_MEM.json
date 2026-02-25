@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW FLOW BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772038672549
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772038672759
@@ -291,6 +285,12 @@
       "text": "HUNGER SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772038675326
+    },
+    {
+      "origin": "REVERSE",
+      "text": "AWAKEN FORGE AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772038675495
     }
   ]
 }
