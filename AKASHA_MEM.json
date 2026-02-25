@@ -202,12 +202,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD GUARD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772024066123
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772024066368
@@ -289,6 +283,12 @@
       "text": "BREACH HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772024070455
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DRAIN SHOCK STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024070632
     }
   ]
 }
