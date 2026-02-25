@@ -2,7 +2,7 @@
 eigenvalue: '0xAAAAAAAA0000000E'
 energy: 50
 resonance: 30
-x: 680
+x: 679
 'y': 605
 symbol: ARCHIVIST
 thought: RESURRECTED
@@ -35,7 +35,7 @@ ex:
   - '0xAAAAAAAA0000000C'
   - '0xAAAAAAAA0000000C'
   - '0xAAAAAAAA0000000C'
-  - '0xAAAAAAAA0000000E'
+  - '0xAAAAAAAA0000000C'
 bonds:
   - '0xAAAAAAA000000006'
 logic: AAAAAAAA
