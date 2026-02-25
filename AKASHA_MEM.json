@@ -143,12 +143,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS SYNC OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772022493828
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIFE SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
@@ -231,6 +225,12 @@
       "text": "WATCH REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022497161
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION FORGE AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772022497495
     }
   ]
 }
