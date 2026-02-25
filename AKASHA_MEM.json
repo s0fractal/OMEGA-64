@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772020619595
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS SYNC COHERE",
       "mood": "HARMONIC",
@@ -150,6 +144,12 @@
       "text": "STRIKE SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020624710
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DECAY CONSUME SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020625157
     }
   ]
 }
