@@ -125,12 +125,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE STRIFE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022216203
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE UNIFY GIVING",
       "mood": "HARMONIC",
@@ -213,6 +207,12 @@
       "text": "COHERE BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772022219705
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772022220248
     }
   ]
 }
