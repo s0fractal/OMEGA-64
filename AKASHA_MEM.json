@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772016675997
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "CONSUME DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772016690055
@@ -107,6 +101,12 @@
       "text": "SHELTER SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772016763072
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772016776933
     }
   ]
 }
