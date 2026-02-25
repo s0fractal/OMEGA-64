@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING STABLE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772041386643
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE STRIKE STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041390098
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772041390369
     }
   ]
 }
