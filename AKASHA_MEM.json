@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE STRIKE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034224822
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY CONSUME CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "EVOLVE WITNESS BECOME",
       "mood": "CREATIVE",
       "tick": 1772034228163
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772034228352
     }
   ]
 }
