@@ -79,12 +79,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD RECON SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772021066429
-    },
-    {
       "origin": "STREAM",
       "text": "OSMOSIS HEAL BLOOM",
       "mood": "HARMONIC",
@@ -167,6 +161,12 @@
       "text": "BREACH STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021071721
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021071888
     }
   ]
 }
