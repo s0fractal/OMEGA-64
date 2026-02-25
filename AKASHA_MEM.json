@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_GUARDIAN",
-      "text": "OSMOSIS SYNC UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772040261073
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE UNIFY RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHELTER IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772040271572
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL SYNC HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772040272169
     }
   ]
 }
