@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIKE SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042171857
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "IMMUNE SHIELD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772042172715
@@ -291,6 +285,12 @@
       "text": "RESONATE HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772042185494
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE SHOCK BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042186107
     }
   ]
 }
