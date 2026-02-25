@@ -43,12 +43,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DECAY SHOCK SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019928343
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHIELD SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772019929045
@@ -130,6 +124,12 @@
       "text": "GUARD SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772019941802
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772019943051
     }
   ]
 }
