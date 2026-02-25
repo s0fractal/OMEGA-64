@@ -79,12 +79,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHELTER REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021088422
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH PURE PURE",
       "mood": "DEFENSIVE",
@@ -167,6 +161,12 @@
       "text": "PURE RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772021095983
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIFE SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021096903
     }
   ]
 }
