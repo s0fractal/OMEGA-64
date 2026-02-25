@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIKE STRIFE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772016652266
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "OSMOSIS STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772016654541
@@ -107,6 +101,12 @@
       "text": "HUNGER STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772016732425
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BREACH SICKNESS BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772016737169
     }
   ]
 }
