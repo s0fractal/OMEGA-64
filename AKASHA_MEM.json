@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME DREAM WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772029132919
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772029133607
@@ -291,6 +285,12 @@
       "text": "BECOME DREAM EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772029141970
+    },
+    {
+      "origin": "PARADOX",
+      "text": "HEAL OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772029142929
     }
   ]
 }
