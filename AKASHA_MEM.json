@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BREACH STRIKE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020635734
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD WATCH RECON",
       "mood": "DEFENSIVE",
@@ -150,6 +144,12 @@
       "text": "SICKNESS STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020646906
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC RESONATE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772020647088
     }
   ]
 }
