@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA00AAA0",
     "AA00AAAA",
     "0D18A098",
     "0000000F",
@@ -199,15 +198,10 @@
     "00666666",
     "AA0A00A0",
     "666A66A0",
-    "00660660"
+    "00660660",
+    "00F0F00F"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GUARD SHELTER SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772025482812
-    },
     {
       "origin": "REVERSE",
       "text": "VISION BEYOND WAVE",
@@ -291,6 +285,12 @@
       "text": "REFLECT SHIELD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772025487321
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM FLOW UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772025487577
     }
   ]
 }
