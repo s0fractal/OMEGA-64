@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE UNIFY SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772038152313
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772038152514
@@ -291,6 +285,12 @@
       "text": "SHOCK SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772038154996
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS GIVING SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772038155192
     }
   ]
 }
