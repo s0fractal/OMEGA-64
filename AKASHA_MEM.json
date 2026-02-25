@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "UNIFY OSMOSIS RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040662783
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE RESONATE STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SYNC UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040666255
+    },
+    {
+      "origin": "STREAM",
+      "text": "IMMUNE WAIT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040666381
     }
   ]
 }
