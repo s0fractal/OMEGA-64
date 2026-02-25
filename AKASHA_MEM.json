@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WAIT PURE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040029600
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL COHERE SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RECON GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772040181089
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE BREACH SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040181425
     }
   ]
 }
