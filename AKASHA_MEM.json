@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038179816
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038180047
@@ -291,6 +285,12 @@
       "text": "STASIS IMMUNE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772038183937
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH HUNGER CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038184139
     }
   ]
 }
