@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BECOME BECOME FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772036375198
-    },
-    {
       "origin": "STREAM",
       "text": "RESONATE FLOW RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FLOW FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772036379138
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772036379346
     }
   ]
 }
