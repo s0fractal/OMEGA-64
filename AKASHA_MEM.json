@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037915325
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772037915502
@@ -291,6 +285,12 @@
       "text": "BREACH DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772037918381
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WATCH WATCH SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772037918669
     }
   ]
 }
