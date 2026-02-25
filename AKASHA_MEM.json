@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW FLOW HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772040026241
-    },
-    {
       "origin": "INTERFACE",
       "text": "BLOOM BLOOM HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "IMMUNE GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772040068514
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW RESONATE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772040178889
     }
   ]
 }
