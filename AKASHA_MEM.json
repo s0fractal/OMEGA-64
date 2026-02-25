@@ -180,12 +180,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023419605
-    },
-    {
       "origin": "STREAM",
       "text": "SHIELD SHIELD GUARD",
       "mood": "DEFENSIVE",
@@ -268,6 +262,12 @@
       "text": "HEAL HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772023422960
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM WAVE AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772023423496
     }
   ]
 }
