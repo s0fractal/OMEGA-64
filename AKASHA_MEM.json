@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD SHELTER RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772031351614
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772031351971
@@ -291,6 +285,12 @@
       "text": "REFLECT SHELTER SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772031356940
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772031357456
     }
   ]
 }
