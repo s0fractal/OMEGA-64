@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER RECON REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772036836462
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772036836731
@@ -291,6 +285,12 @@
       "text": "STRIFE HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772036839206
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY SYNC COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772036839509
     }
   ]
 }
