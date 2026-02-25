@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "IMMUNE IMMUNE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772040909713
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY STRIFE BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772040913555
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHELTER PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040913751
     }
   ]
 }
