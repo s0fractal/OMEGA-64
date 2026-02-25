@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772035634654
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772035634878
@@ -291,6 +285,12 @@
       "text": "PURE STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772035640130
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772035640826
     }
   ]
 }
