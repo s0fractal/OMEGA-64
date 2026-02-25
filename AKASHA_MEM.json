@@ -131,12 +131,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT WAIT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772022337175
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022337392
@@ -218,6 +212,12 @@
       "text": "STRIFE SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022342851
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC RESONATE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022343269
     }
   ]
 }
