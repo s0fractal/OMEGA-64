@@ -158,12 +158,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772022801293
-    },
-    {
       "origin": "REVERSE",
       "text": "IMMUNE PURE SHIELD",
       "mood": "DEFENSIVE",
@@ -246,6 +240,12 @@
       "text": "OSMOSIS COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772022806231
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DECAY CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022806487
     }
   ]
 }
