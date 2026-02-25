@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SEIZE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036360976
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772036361662
@@ -291,6 +285,12 @@
       "text": "STRIKE SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772036364816
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING STABLE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772036365007
     }
   ]
 }
