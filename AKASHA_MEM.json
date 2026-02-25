@@ -19,12 +19,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "AWAKEN VISION DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772015401421
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BREACH HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772015404227
@@ -106,6 +100,12 @@
       "text": "SICKNESS STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772015516659
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHELTER PURE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772015519566
     }
   ]
 }
