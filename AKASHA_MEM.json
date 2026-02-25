@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY CONSUME SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034930582
-    },
-    {
       "origin": "INTERFACE",
       "text": "GIVING BLOOM STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHIELD REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772034933748
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD REFLECT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772034933903
     }
   ]
 }
