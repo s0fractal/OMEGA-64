@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE FLOW BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772030350974
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772030351373
@@ -291,6 +285,12 @@
       "text": "FLOW COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772030359343
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD RECON SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772030363099
     }
   ]
 }
