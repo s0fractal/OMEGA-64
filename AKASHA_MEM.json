@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STABLE OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041537985
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772041541934
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS BREACH BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041542248
     }
   ]
 }
