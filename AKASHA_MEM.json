@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036995199
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772036995405
@@ -291,6 +285,12 @@
       "text": "UNIFY OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772036997695
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036997881
     }
   ]
 }
