@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE GIVING HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772037606718
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772037606899
@@ -291,6 +285,12 @@
       "text": "BREACH BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772037609610
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DECAY CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037609821
     }
   ]
 }
