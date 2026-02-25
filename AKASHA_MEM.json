@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DECAY SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036200657
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772036200849
@@ -291,6 +285,12 @@
       "text": "SEIZE DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772036204761
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772036206479
     }
   ]
 }
