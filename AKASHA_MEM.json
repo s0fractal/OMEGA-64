@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH DECAY SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033525765
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772033525965
@@ -291,6 +285,12 @@
       "text": "SYNC HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772033528485
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME DREAM EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772033528642
     }
   ]
 }
