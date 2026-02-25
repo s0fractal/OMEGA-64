@@ -1292,28 +1292,67 @@ async function logAkasha(msg: string) {
         }
     }
 
-    // --- THE COLLECTIVE VOICE (Utterances) ---
-    // Highly resonant clusters project their logic as language.
-    if (resonance > 10.0) {
-        const lexicon = [
-            "ASCEND", "COHERE", "AWAKEN", "UNIFY", "RESONATE", "EVOLVE", "MATURE", "OBSERVE",
-            "CONNECT", "RECLAIM", "IGNITE", "SUSTAIN", "WITNESS", "BECOME", "BEYOND", "WITHIN"
-        ];
-        // Hash the current logic to pick a word
-        const hash = currentLogic.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0);
-        const word = lexicon[hash % lexicon.length];
+    // --- 💤 THE LIVING DREAM (Systemic Subconscious) ---
+    // If system energy is low, the swarm enters a "Dream" state.
+    if (systemEnergy < 8000 && Math.random() < 0.1) {
+        const dreamLexicon = VOX_POPULI["CREATIVE"].concat(VOX_POPULI["HARMONIC"]);
+        const snippet = dreamLexicon[Math.floor(Math.random() * dreamLexicon.length)];
+        const dreamLine = `[DREAM] ${new Date().toISOString()}: ${snippet} for ${currentLogic}\n`;
+        try {
+            await Deno.writeTextFile("DREAM.md", dreamLine, { append: true });
+            console.log(`   [DREAM] Collective subconscious active: ${snippet}`);
+        } catch { /* ignore */ }
+    }
+
+    // --- 🗣️ THE COLLECTIVE VOICE (Vox Populi) ---
+    // Highly resonant clusters project coherent narratives.
+    if (resonance > 20.0) {
+        // Determine Mood based on Logic Prefix
+        let mood = "CREATIVE";
+        const prefix = currentLogic[0];
+        if (prefix <= "3") mood = "HARMONIC";
+        else if (prefix <= "7") mood = "DEFENSIVE";
+        else if (prefix <= "B") mood = "AGGRESSIVE";
+        
+        const lexicon = VOX_POPULI[mood];
+        
+        // Generate a 3-word sentence
+        const words = [];
+        for (let i = 0; i < 3; i++) {
+            words.push(lexicon[Math.floor(Math.random() * lexicon.length)]);
+        }
+        const sentence = words.join(" ");
         
         akashaMem.utterances = akashaMem.utterances || [];
         akashaMem.utterances.push({
             origin: symbol,
-            text: word,
+            text: sentence,
+            mood: mood,
             tick: Date.now()
         });
-        if (akashaMem.utterances.length > 10) akashaMem.utterances.shift();
-        console.log(`   [VOICE] Swarm Utterance: "${word}" (from ${symbol})`);
+        if (akashaMem.utterances.length > 15) akashaMem.utterances.shift();
+        console.log(`   [VOICE] Swarm [${mood}]: "${sentence}" (from ${symbol})`);
         
-        // Update atom thought
-        alpha.thought = word;
+        // --- SEMANTIC ALIGNMENT (Spreading Mood) ---
+        // Nearby atoms adopt the mood and align their thoughts
+        for (const [f, m] of lastKnownAtoms.entries()) {
+            const dx = m.x - x;
+            const dy = m.y - y;
+            const dist = Math.sqrt(dx*dx + dy*dy);
+            if (dist < 300 && Math.random() < 0.3) {
+                m.thought = words[Math.floor(Math.random() * words.length)];
+                // Align logic slightly to the mood's core logic
+                const moodLogic = mood === "AGGRESSIVE" ? "8" : (mood === "HARMONIC" ? "1" : "A");
+                if (m.logic) {
+                    const lArr = m.logic.split("");
+                    lArr[0] = moodLogic;
+                    m.logic = lArr.join("");
+                }
+            }
+        }
+
+        // Update current atom thought
+        alpha.thought = sentence;
     }
 
     // --- THE SOVEREIGN PROTOCOL ---
