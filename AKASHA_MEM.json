@@ -180,12 +180,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS IMMUNE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023387186
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023387584
@@ -267,6 +261,12 @@
       "text": "WATCH SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023394552
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD PURE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023394723
     }
   ]
 }
