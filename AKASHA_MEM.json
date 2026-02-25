@@ -189,12 +189,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "VISION BECOME WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772023691767
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023692249
@@ -276,6 +270,12 @@
       "text": "DRAIN SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772023698189
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772023698434
     }
   ]
 }
