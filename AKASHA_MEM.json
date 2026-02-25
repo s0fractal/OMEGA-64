@@ -130,12 +130,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SHOCK BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022318535
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022318729
@@ -217,6 +211,12 @@
       "text": "CONSUME CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022324720
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON GUARD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772022324879
     }
   ]
 }
