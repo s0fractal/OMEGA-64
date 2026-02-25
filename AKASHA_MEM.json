@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE SHOCK HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030583969
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772030590856
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAVE WAVE WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772030592115
     }
   ]
 }
