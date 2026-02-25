@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772022197908
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAVE WITNESS FORGE",
       "mood": "CREATIVE",
       "tick": 1772022198393
@@ -213,6 +207,12 @@
       "text": "GUARD GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022203088
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT PURE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772022203564
     }
   ]
 }
