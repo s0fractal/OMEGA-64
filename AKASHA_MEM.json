@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH SHELTER RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772037440664
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772037440865
@@ -291,6 +285,12 @@
       "text": "REFLECT SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772037443779
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772037443974
     }
   ]
 }
