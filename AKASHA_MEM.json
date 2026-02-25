@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER STRIFE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037498036
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772037498246
@@ -291,6 +285,12 @@
       "text": "WATCH PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772037500840
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL COHERE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772037501045
     }
   ]
 }
