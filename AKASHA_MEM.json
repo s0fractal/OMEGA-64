@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034699603
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE DRAIN BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIFE STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772034702914
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772034703157
     }
   ]
 }
