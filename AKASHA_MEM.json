@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE OSMOSIS BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772041322853
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER REFLECT STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DRAIN HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772041325687
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER RECON IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041325971
     }
   ]
 }
