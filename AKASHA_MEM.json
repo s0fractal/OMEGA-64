@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BLOOM GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772041362332
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "IMMUNE STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772041362483
@@ -291,6 +285,12 @@
       "text": "SYNC COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772041365876
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041366037
     }
   ]
 }
