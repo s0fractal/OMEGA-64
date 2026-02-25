@@ -155,12 +155,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FORGE AWAKEN FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772022740683
-    },
-    {
       "origin": "STREAM",
       "text": "WAVE DREAM WAVE",
       "mood": "CREATIVE",
@@ -243,6 +237,12 @@
       "text": "COHERE HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022747160
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772022747480
     }
   ]
 }
