@@ -125,12 +125,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GUARD GUARD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022203088
-    },
-    {
       "origin": "REVERSE",
       "text": "WAIT PURE STASIS",
       "mood": "DEFENSIVE",
@@ -213,6 +207,12 @@
       "text": "SHELTER STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022208581
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE SHOCK STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022208756
     }
   ]
 }
