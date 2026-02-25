@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772034419655
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772034419843
@@ -291,6 +285,12 @@
       "text": "BLOOM HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772034422171
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHELTER WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772034422328
     }
   ]
 }
