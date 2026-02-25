@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SICKNESS HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032838355
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772032838536
@@ -291,6 +285,12 @@
       "text": "CONSUME BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772032845255
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772032845437
     }
   ]
 }
