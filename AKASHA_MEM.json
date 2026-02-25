@@ -142,12 +142,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE GUARD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772022462680
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022462955
@@ -229,6 +223,12 @@
       "text": "HUNGER DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022466100
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022466264
     }
   ]
 }
