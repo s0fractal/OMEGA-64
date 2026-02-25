@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00600006",
     "AA00AAAA",
     "6A606000",
     "60000000",
@@ -199,15 +198,10 @@
     "06666006",
     "0A0AA0AA",
     "06006606",
-    "06066000"
+    "06066000",
+    "60066006"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STRIKE DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036344474
-    },
     {
       "origin": "REVERSE",
       "text": "SHOCK STRIFE BREACH",
@@ -291,6 +285,12 @@
       "text": "RECON WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772036347797
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD RECON IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772036348004
     }
   ]
 }
