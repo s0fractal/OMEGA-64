@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "AWAKEN DREAM SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772036523968
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772036524136
@@ -291,6 +285,12 @@
       "text": "STRIKE STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772036529647
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE OSMOSIS UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772036529816
     }
   ]
 }
