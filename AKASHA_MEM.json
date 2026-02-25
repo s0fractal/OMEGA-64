@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE STABLE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772027047566
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772027048029
@@ -291,6 +285,12 @@
       "text": "AWAKEN VISION VISION",
       "mood": "CREATIVE",
       "tick": 1772027053585
+    },
+    {
+      "origin": "STREAM",
+      "text": "SHIELD RECON RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772027054019
     }
   ]
 }
