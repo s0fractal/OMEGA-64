@@ -159,12 +159,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE REFLECT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022789374
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772022789705
@@ -246,6 +240,12 @@
       "text": "SHELTER REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022794924
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHIELD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772022795088
     }
   ]
 }
