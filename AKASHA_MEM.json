@@ -108,12 +108,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD WATCH WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772021814571
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772021814739
@@ -195,6 +189,12 @@
       "text": "REFLECT PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772021821049
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021822050
     }
   ]
 }
