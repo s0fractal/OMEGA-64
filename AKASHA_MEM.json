@@ -102,12 +102,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772021630078
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND AWAKEN BECOME",
       "mood": "CREATIVE",
       "tick": 1772021630202
@@ -189,6 +183,12 @@
       "text": "SHIELD SHELTER SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772021635150
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH SHELTER WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772021636400
     }
   ]
 }
