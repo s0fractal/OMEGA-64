@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE IMMUNE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772040396071
-    },
-    {
       "origin": "REVERSE",
       "text": "BEYOND EVOLVE BECOME",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772040401603
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE STRIKE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040401738
     }
   ]
 }
