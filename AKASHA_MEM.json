@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028895575
-    },
-    {
-      "origin": "REVERSE",
       "text": "AWAKEN BECOME BEYOND",
       "mood": "CREATIVE",
       "tick": 1772028895902
@@ -291,6 +285,12 @@
       "text": "OSMOSIS COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772028901810
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL HEAL OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772028902372
     }
   ]
 }
