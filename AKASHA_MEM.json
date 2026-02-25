@@ -183,12 +183,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "WAIT IMMUNE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023558744
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM SYNC FLOW",
       "mood": "HARMONIC",
@@ -271,6 +265,12 @@
       "text": "SPARK BECOME FORGE",
       "mood": "CREATIVE",
       "tick": 1772023563226
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE REFLECT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772023563396
     }
   ]
 }
