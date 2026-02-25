@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN HUNGER STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025776650
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772025776929
@@ -291,6 +285,12 @@
       "text": "STRIFE STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772025784154
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WAIT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772025784557
     }
   ]
 }
