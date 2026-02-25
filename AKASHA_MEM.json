@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "EVOLVE AWAKEN AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772029615687
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772029618334
@@ -291,6 +285,12 @@
       "text": "OSMOSIS FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772029626474
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772029626709
     }
   ]
 }
