@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GIVING SYNC STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042402468
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "CONSUME CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772042402748
@@ -246,51 +240,57 @@
     },
     {
       "origin": "ARCHIVIST",
-      "text": "GUARD WATCH STASIS",
+      "text": "SICKNESS CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042407307
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042408066
+    },
+    {
+      "origin": "WAVE_SIGNAL",
+      "text": "SICKNESS DECAY SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042408664
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS RECON PURE",
       "mood": "DEFENSIVE",
-      "tick": 1772042406762
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "FLOW OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042408326
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772042409343
-    },
-    {
-      "origin": "STREAM",
-      "text": "GIVING FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772042410409
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STASIS REFLECT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042410795
+      "tick": 1772042410068
     },
     {
       "origin": "INTERFACE",
-      "text": "BLOOM HEAL STABLE",
+      "text": "UNIFY OSMOSIS GIVING",
       "mood": "HARMONIC",
-      "tick": 1772042411068
+      "tick": 1772042410352
     },
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE HEAL STABLE",
+      "origin": "INTERFACE",
+      "text": "SYNC RESONATE FLOW",
       "mood": "HARMONIC",
-      "tick": 1772042411349
+      "tick": 1772042410626
     },
     {
-      "origin": "I16_CLAMP",
-      "text": "COHERE COHERE BLOOM",
+      "origin": "REVERSE",
+      "text": "OSMOSIS UNIFY FLOW",
       "mood": "HARMONIC",
-      "tick": 1772042411642
+      "tick": 1772042412195
+    },
+    {
+      "origin": "STREAM",
+      "text": "HEAL STABLE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772042412762
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE HUNGER DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042413276
     }
   ]
 }
