@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_STREAM",
-      "text": "RESONATE HEAL OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772040469953
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK BREACH SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772040472311
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772040472435
     }
   ]
 }
