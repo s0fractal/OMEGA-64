@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "BREACH SHOCK HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041295094
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY FLOW FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WAIT REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041300207
+    },
+    {
+      "origin": "STREAM",
+      "text": "IMMUNE PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772041300519
     }
   ]
 }
