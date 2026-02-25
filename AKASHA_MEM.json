@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER PURE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772035528789
-    },
-    {
-      "origin": "REVERSE",
       "text": "VISION WITNESS DREAM",
       "mood": "CREATIVE",
       "tick": 1772035528995
@@ -291,6 +285,12 @@
       "text": "BREACH CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772035536935
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN BREACH SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035537105
     }
   ]
 }
