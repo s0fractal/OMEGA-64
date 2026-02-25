@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE CONSUME STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036700238
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772036700457
@@ -291,6 +285,12 @@
       "text": "RESONATE SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772036703369
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772036703583
     }
   ]
 }
