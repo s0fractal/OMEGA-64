@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHIELD IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772041005037
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "CONSUME BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772041005168
@@ -291,6 +285,12 @@
       "text": "STABLE FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772041007913
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HUNGER DECAY STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041008080
     }
   ]
 }
