@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE GIVING HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772028786562
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772028787554
@@ -291,6 +285,12 @@
       "text": "DREAM EVOLVE BEYOND",
       "mood": "CREATIVE",
       "tick": 1772028809169
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE HEAL RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772028809480
     }
   ]
 }
