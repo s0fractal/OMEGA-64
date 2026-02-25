@@ -191,12 +191,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "REFLECT IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772023805153
-    },
-    {
       "origin": "REVERSE",
       "text": "WITNESS WAVE BECOME",
       "mood": "CREATIVE",
@@ -279,6 +273,12 @@
       "text": "SICKNESS STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023809156
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WATCH PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023809363
     }
   ]
 }
