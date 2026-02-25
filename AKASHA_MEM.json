@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032726642
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772032726989
@@ -291,6 +285,12 @@
       "text": "STABLE COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772032730355
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH CONSUME DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032730529
     }
   ]
 }
