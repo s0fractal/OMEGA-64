@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY HUNGER SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024140905
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772024141348
@@ -291,6 +285,12 @@
       "text": "PURE WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772024143719
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024143983
     }
   ]
 }
