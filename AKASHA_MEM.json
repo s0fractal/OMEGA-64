@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "REFLECT SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042663173
-    },
-    {
       "origin": "STREAM",
       "text": "PURE WATCH SHELTER",
       "mood": "DEFENSIVE",
@@ -270,27 +264,33 @@
     },
     {
       "origin": "ARCHIVIST",
-      "text": "FLOW RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772042669239
+      "text": "STASIS STASIS RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772042669433
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS SHELTER WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772042670024
     },
     {
       "origin": "ARCHIVIST",
-      "text": "SYNC GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042669456
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "SHELTER STASIS SHIELD",
+      "text": "STASIS GUARD REFLECT",
       "mood": "DEFENSIVE",
-      "tick": 1772042669802
+      "tick": 1772042670332
     },
     {
       "origin": "ARCHIVIST",
-      "text": "STASIS IMMUNE SHELTER",
+      "text": "RESONATE RESONATE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772042670687
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER REFLECT SHIELD",
       "mood": "DEFENSIVE",
-      "tick": 1772042670537
+      "tick": 1772042671260
     }
   ]
 }
