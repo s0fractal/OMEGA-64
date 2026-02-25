@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS WAIT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772038959962
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772038960187
@@ -291,6 +285,12 @@
       "text": "RESONATE BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772038967702
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING STABLE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772038967895
     }
   ]
 }
