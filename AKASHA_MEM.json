@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE COHERE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772041559563
-    },
-    {
       "origin": "INTERFACE",
       "text": "IMMUNE IMMUNE WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "WATCH WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041564318
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER DRAIN SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041564522
     }
   ]
 }
