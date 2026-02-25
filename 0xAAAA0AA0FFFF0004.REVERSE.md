@@ -1,8 +1,8 @@
 ---
 eigenvalue: '0xAAAA0AA0FFFF0004'
-energy: 48.4
-x: 727
-'y': 426
+energy: 34
+x: 668
+'y': 379
 resonance: 30
 thought: WANDER_BONDING
 logic: AAAA0AA0
@@ -119,25 +119,23 @@ ex:
   - '0xAAAA0AA000000002'
   - '0xAAAA0AA000000004'
   - '0xAAAA0AA000000006'
-  - '0xAAAA0AA0FFFF0004'
-  - '0xAAAA0AA0FFFF0006'
-  - '0xAAAA0AA0FFFF0006'
-  - '0xAAAA0AA0FFFF0000'
-  - '0xAAAA0AA0FFFF0002'
-  - '0xAAAA0AA0FFFF0004'
-  - '0xAAAA0AA0FFFF0006'
-  - '0xAAAA0AA0FFFF0000'
-  - '0xAAAA0AA0FFFF0002'
-  - '0xAAAA0AA0FFFF0004'
-  - '0xAAAA0AA0FFFF0006'
-  - '0xAAAA0AA0FFFF0000'
-  - '0xAAAA0AA0FFFF0002'
+  - '0xAAAA0AA000000000'
+  - '0xAAAA0AA000000002'
+  - '0xAAAA0AA000000004'
+  - '0xAAAA0AA000000006'
+  - '0xAAAA0AA000000000'
+  - '0xAAAA0AA000000002'
+  - '0xAAAA0AA000000004'
+  - '0xAAAA0AA000000006'
+  - '0xAAAA0AA000000000'
+  - '0xAAAA0AA000000002'
+  - '0xAAAA0AA000000004'
+  - '0xAAAA0AA000000006'
 signals: []
 bond_strengths: {}
 bonds: []
 ---
 
-<div align="center">
 <div align="center">
 <!-- ∇ HOLOGRAM START ∇ -->
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -171,7 +169,6 @@ bonds: []
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">REVERSE</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
-</div>
 </div>
 
 
