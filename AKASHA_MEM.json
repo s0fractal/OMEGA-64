@@ -43,12 +43,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SYNC HEAL UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772019981491
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHOCK SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772019982295
@@ -130,6 +124,12 @@
       "text": "WAIT STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772019994719
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772019996269
     }
   ]
 }
