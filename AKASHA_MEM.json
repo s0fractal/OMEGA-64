@@ -25,12 +25,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019572583
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "IMMUNE SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772019572766
@@ -112,6 +106,12 @@
       "text": "STRIFE DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772019580698
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN DECAY CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019581041
     }
   ]
 }
