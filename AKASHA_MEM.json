@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING COHERE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772038225641
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772038225873
@@ -291,6 +285,12 @@
       "text": "STRIFE DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772038229699
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY STABLE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772038229933
     }
   ]
 }
