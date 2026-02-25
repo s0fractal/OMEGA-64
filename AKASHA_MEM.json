@@ -55,12 +55,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "IMMUNE GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772020432220
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIFE STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020432919
@@ -142,6 +136,12 @@
       "text": "GUARD PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772020441014
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020441494
     }
   ]
 }
