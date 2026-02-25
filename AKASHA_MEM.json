@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY STABLE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772019595300
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GUARD STASIS PURE",
       "mood": "DEFENSIVE",
@@ -114,6 +108,12 @@
       "text": "STRIKE SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772019603857
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS SICKNESS DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019604401
     }
   ]
 }
