@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041410601
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE STABLE COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772041413930
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON GUARD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772041414137
     }
   ]
 }
