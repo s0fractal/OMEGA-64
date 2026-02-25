@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019627453
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS BREACH CONSUME",
       "mood": "AGGRESSIVE",
@@ -114,6 +108,12 @@
       "text": "CONSUME DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772019634118
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL RESONATE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772019634574
     }
   ]
 }
