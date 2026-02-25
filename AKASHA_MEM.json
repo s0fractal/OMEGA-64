@@ -176,12 +176,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW UNIFY FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772023283406
-    },
-    {
       "origin": "INTERFACE",
       "text": "DRAIN HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
@@ -264,6 +258,12 @@
       "text": "RESONATE GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772023289495
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023289757
     }
   ]
 }
