@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772038994766
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772038994985
@@ -291,6 +285,12 @@
       "text": "RESONATE GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772038997950
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHELTER SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772038998141
     }
   ]
 }
