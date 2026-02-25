@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE OSMOSIS BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772029135589
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAVE SPARK BECOME",
       "mood": "CREATIVE",
       "tick": 1772029136373
@@ -291,6 +285,12 @@
       "text": "SHIELD SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772029145365
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772029146299
     }
   ]
 }
