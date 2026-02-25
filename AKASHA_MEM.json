@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "GUARDIAN",
-      "text": "COHERE OSMOSIS FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772041291519
-    },
-    {
       "origin": "STREAM",
       "text": "HEAL SYNC OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RECON SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041297739
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON SHELTER WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772041297890
     }
   ]
 }
