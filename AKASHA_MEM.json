@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK SICKNESS SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030459813
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772030460150
@@ -291,6 +285,12 @@
       "text": "BREACH STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772030467219
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT GUARD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772030467656
     }
   ]
 }
