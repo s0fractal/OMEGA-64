@@ -51,12 +51,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020311710
-    },
-    {
       "origin": "REVERSE",
       "text": "PURE IMMUNE SHELTER",
       "mood": "DEFENSIVE",
@@ -139,6 +133,12 @@
       "text": "STABLE BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772020320754
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DRAIN SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020321285
     }
   ]
 }
