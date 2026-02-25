@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "000A00A0",
     "AAAA0AAA",
     "06006606",
     "00606600",
@@ -199,15 +198,10 @@
     "6666A060",
     "AA0AA0A0",
     "000000A0",
-    "66066666"
+    "66066666",
+    "66666A60"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RECON IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041716869
-    },
     {
       "origin": "ARCHIVIST",
       "text": "STRIFE CONSUME SHOCK",
@@ -291,6 +285,12 @@
       "text": "HUNGER SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772041721363
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON REFLECT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772041721620
     }
   ]
 }
