@@ -70,12 +70,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE SICKNESS STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020895921
-    },
-    {
       "origin": "STREAM",
       "text": "FLOW FLOW SYNC",
       "mood": "HARMONIC",
@@ -158,6 +152,12 @@
       "text": "SPARK AWAKEN VISION",
       "mood": "CREATIVE",
       "tick": 1772020901525
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN DECAY SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020901700
     }
   ]
 }
