@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE CONSUME SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040469453
-    },
-    {
       "origin": "ALPHA_STREAM",
       "text": "RESONATE HEAL OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHIELD PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772040472153
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772040472311
     }
   ]
 }
