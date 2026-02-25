@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY DRAIN DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032266095
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772032266370
@@ -291,6 +285,12 @@
       "text": "WAIT REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772032271178
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772032271503
     }
   ]
 }
