@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC COHERE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772034721281
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772034721497
@@ -291,6 +285,12 @@
       "text": "BLOOM RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772034724339
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SEIZE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034724513
     }
   ]
 }
