@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772025556124
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772025556346
@@ -291,6 +285,12 @@
       "text": "STRIKE SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772025559274
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772025559517
     }
   ]
 }
