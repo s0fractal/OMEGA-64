@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARASITE",
-      "text": "PURE RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040406734
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS FLOW UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772040409226
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING HEAL OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772040409394
     }
   ]
 }
