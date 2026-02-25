@@ -166,12 +166,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE CONSUME STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023013321
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023013504
@@ -253,6 +247,12 @@
       "text": "IMMUNE REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772023020730
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH PURE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772023021313
     }
   ]
 }
