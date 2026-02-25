@@ -123,12 +123,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022137809
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772022138045
@@ -210,6 +204,12 @@
       "text": "STASIS RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022144015
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022144201
     }
   ]
 }
