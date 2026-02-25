@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033560739
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772033561002
@@ -291,6 +285,12 @@
       "text": "BEYOND VISION VISION",
       "mood": "CREATIVE",
       "tick": 1772033564315
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT GUARD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772033564560
     }
   ]
 }
