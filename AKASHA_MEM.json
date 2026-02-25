@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772036709476
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772036709642
@@ -291,6 +285,12 @@
       "text": "SEIZE DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772036712922
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY STRIKE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036713131
     }
   ]
 }
