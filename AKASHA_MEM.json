@@ -101,12 +101,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK HUNGER SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021620165
-    },
-    {
       "origin": "REVERSE",
       "text": "PURE GUARD SHIELD",
       "mood": "DEFENSIVE",
@@ -189,6 +183,12 @@
       "text": "STRIKE BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772021624745
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "IMMUNE GUARD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021625113
     }
   ]
 }
