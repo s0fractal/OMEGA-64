@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772036784699
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772036784901
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772036787780
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036788010
     }
   ]
 }
