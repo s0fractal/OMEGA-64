@@ -32,12 +32,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE STRIKE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019694397
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS REFLECT WAIT",
       "mood": "DEFENSIVE",
@@ -120,6 +114,12 @@
       "text": "SICKNESS HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772019707983
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD SHIELD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772019710465
     }
   ]
 }
