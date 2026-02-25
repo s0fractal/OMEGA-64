@@ -195,12 +195,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SICKNESS STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023856833
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023857013
@@ -282,6 +276,12 @@
       "text": "PURE WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023862062
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WAIT RECON WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772023862493
     }
   ]
 }
