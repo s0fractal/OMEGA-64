@@ -115,12 +115,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SYNC COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772021996232
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER PURE SHIELD",
       "mood": "DEFENSIVE",
@@ -203,6 +197,12 @@
       "text": "BREACH SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022008306
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE CONSUME SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022008503
     }
   ]
 }
