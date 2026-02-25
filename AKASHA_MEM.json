@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK DRAIN DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041144092
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY SICKNESS BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772041149779
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS BREACH SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041149971
     }
   ]
 }
