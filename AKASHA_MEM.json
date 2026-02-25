@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD REFLECT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772030256001
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772030256596
@@ -291,6 +285,12 @@
       "text": "IMMUNE REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772030261787
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE GIVING BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772030262152
     }
   ]
 }
