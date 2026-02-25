@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "UNIFY UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772036118269
-    },
-    {
       "origin": "STREAM",
       "text": "GIVING RESONATE GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BLOOM OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772036121121
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL HEAL GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772036121358
     }
   ]
 }
