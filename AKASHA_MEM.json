@@ -104,12 +104,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772021678105
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021678390
@@ -191,6 +185,12 @@
       "text": "GIVING GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772021684564
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE AWAKEN BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772021684733
     }
   ]
 }
