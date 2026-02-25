@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DRAIN STRIFE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041528995
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BLOOM GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772041529138
@@ -291,6 +285,12 @@
       "text": "STABLE OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772041532914
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS WATCH WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041533079
     }
   ]
 }
