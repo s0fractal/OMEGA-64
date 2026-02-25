@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772040704643
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE STABLE UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIKE SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772040709384
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DRAIN DECAY SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040710138
     }
   ]
 }
