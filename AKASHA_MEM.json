@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "DECAY CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040442825
-    },
-    {
       "origin": "REVERSE",
       "text": "SHIELD SHELTER REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772040447020
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON GUARD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040447265
     }
   ]
 }
