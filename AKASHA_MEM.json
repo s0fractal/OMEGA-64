@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BLOOM COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772040817468
-    },
-    {
       "origin": "REVERSE",
       "text": "BREACH STRIFE SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772040820848
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE RECON GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040821006
     }
   ]
 }
