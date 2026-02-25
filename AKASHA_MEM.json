@@ -130,12 +130,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY STRIKE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022314257
-    },
-    {
-      "origin": "REVERSE",
       "text": "DREAM FORGE AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772022314373
@@ -217,6 +211,12 @@
       "text": "UNIFY RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022318050
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER PURE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022318229
     }
   ]
 }
