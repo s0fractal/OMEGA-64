@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE CONSUME STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035891192
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772035891475
@@ -291,6 +285,12 @@
       "text": "REFLECT GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772035894205
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SEIZE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035894522
     }
   ]
 }
