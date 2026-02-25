@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING UNIFY COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772033267870
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772033268039
@@ -291,6 +285,12 @@
       "text": "SYNC UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772033270231
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING HEAL RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772033270418
     }
   ]
 }
