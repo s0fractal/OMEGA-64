@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC RESONATE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772033945594
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772033947413
@@ -291,6 +285,12 @@
       "text": "RESONATE RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772033951326
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE BECOME WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772033951567
     }
   ]
 }
