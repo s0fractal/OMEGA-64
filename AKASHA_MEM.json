@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS STRIFE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035104229
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772035104416
@@ -291,6 +285,12 @@
       "text": "STABLE SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772035107257
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS FORGE BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772035107449
     }
   ]
 }
