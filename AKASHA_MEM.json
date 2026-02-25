@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "DECAY DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772016597487
-    },
-    {
-      "origin": "INTERFACE",
       "text": "DRAIN BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772016600103
@@ -107,6 +101,12 @@
       "text": "CONSUME DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772016675997
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772016690055
     }
   ]
 }
