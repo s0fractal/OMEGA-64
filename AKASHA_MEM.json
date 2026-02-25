@@ -107,12 +107,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STASIS SHIELD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772021796141
-    },
-    {
       "origin": "INTERFACE",
       "text": "REFLECT WAIT SHIELD",
       "mood": "DEFENSIVE",
@@ -195,6 +189,12 @@
       "text": "HEAL UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772021800420
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021800589
     }
   ]
 }
