@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME SHOCK CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040884778
-    },
-    {
       "origin": "INTERFACE",
       "text": "SYNC COHERE OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FLOW SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772040888005
+    },
+    {
+      "origin": "STREAM",
+      "text": "HUNGER DECAY DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040888247
     }
   ]
 }
