@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW FLOW GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772033928866
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772033929090
@@ -291,6 +285,12 @@
       "text": "UNIFY BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772033931764
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772033931986
     }
   ]
 }
