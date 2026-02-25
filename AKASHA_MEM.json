@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772041672084
-    },
-    {
       "origin": "INTERFACE",
       "text": "STASIS STASIS STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HUNGER SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772041676400
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE STASIS WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772041676532
     }
   ]
 }
