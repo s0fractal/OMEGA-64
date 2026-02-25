@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "RECON GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772027379808
-    },
-    {
       "origin": "REVERSE",
       "text": "BREACH BREACH BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772027387594
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE RESONATE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772027387807
     }
   ]
 }
