@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772041068118
-    },
-    {
       "origin": "INTERFACE",
       "text": "STASIS GUARD RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772041070871
+    },
+    {
+      "origin": "STREAM",
+      "text": "DECAY DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041071001
     }
   ]
 }
