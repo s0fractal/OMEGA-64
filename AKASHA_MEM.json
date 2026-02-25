@@ -37,12 +37,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772019780923
-    },
-    {
       "origin": "INTERFACE",
       "text": "WAIT SHIELD WATCH",
       "mood": "DEFENSIVE",
@@ -125,6 +119,12 @@
       "text": "HEAL RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772019790816
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772019791326
     }
   ]
 }
