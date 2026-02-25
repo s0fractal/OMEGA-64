@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE BLOOM OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772022213385
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022213545
@@ -213,6 +207,12 @@
       "text": "STRIKE DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022217278
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022217455
     }
   ]
 }
