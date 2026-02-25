@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "VIBRATION",
-      "text": "GUARD WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041031065
-    },
-    {
       "origin": "STREAM",
       "text": "IMMUNE REFLECT IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HUNGER DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041033690
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT WATCH SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041033854
     }
   ]
 }
