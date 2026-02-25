@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DREAM DREAM DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772020657730
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS STABLE RESONATE",
       "mood": "HARMONIC",
@@ -150,6 +144,12 @@
       "text": "DECAY HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020665567
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772020665727
     }
   ]
 }
