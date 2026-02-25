@@ -86,12 +86,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH WATCH REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772021239606
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
@@ -174,6 +168,12 @@
       "text": "STRIFE SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772021245107
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL SYNC SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772021245692
     }
   ]
 }
