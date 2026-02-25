@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "CONSUME CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040678023
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE GIVING GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772040682616
+    },
+    {
+      "origin": "STREAM",
+      "text": "CONSUME STRIFE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040683048
     }
   ]
 }
