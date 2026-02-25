@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE RESONATE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772020162191
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD GUARD REFLECT",
       "mood": "DEFENSIVE",
@@ -136,6 +130,12 @@
       "text": "WATCH SHIELD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772020174257
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE CONSUME SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020175369
     }
   ]
 }
