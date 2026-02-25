@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "UNIFY HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772037961122
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT REFLECT SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772037968763
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH GUARD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772037972203
     }
   ]
 }
