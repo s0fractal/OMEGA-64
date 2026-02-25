@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SEIZE STRIKE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040828424
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD SHIELD REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SICKNESS SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772040832962
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772040833137
     }
   ]
 }
