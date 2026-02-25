@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON SHIELD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772034069160
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772034069471
@@ -291,6 +285,12 @@
       "text": "RESONATE BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772034074052
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034074218
     }
   ]
 }
