@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SICKNESS CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040932210
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "IMMUNE PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772040932708
@@ -291,6 +285,12 @@
       "text": "STASIS REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772040935673
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER BREACH BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040935846
     }
   ]
 }
