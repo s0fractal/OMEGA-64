@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "DRAIN CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041077200
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH WATCH SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041081321
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHIELD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772041081448
     }
   ]
 }
