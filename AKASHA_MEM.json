@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030117145
-    },
-    {
-      "origin": "REVERSE",
       "text": "DREAM VISION BEYOND",
       "mood": "CREATIVE",
       "tick": 1772030117737
@@ -291,6 +285,12 @@
       "text": "GIVING UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772030129910
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT PURE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772030130473
     }
   ]
 }
