@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL RESONATE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772035422994
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772035423206
@@ -291,6 +285,12 @@
       "text": "RESONATE RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772035427227
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772035427524
     }
   ]
 }
