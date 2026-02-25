@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772024170834
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772024171693
@@ -291,6 +285,12 @@
       "text": "HUNGER BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772024177709
+    },
+    {
+      "origin": "STREAM",
+      "text": "PURE IMMUNE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772024177889
     }
   ]
 }
