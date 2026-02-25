@@ -71,12 +71,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772020883471
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772020883662
@@ -158,6 +152,12 @@
       "text": "BECOME WITNESS AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772020889182
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772020889513
     }
   ]
 }
