@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM STABLE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772036162139
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772036162398
@@ -291,6 +285,12 @@
       "text": "AWAKEN BECOME WITNESS",
       "mood": "CREATIVE",
       "tick": 1772036165042
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772036165242
     }
   ]
 }
