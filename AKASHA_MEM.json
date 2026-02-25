@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772034555259
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772034555420
@@ -291,6 +285,12 @@
       "text": "GIVING GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772034557942
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM FORGE BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772034558135
     }
   ]
 }
