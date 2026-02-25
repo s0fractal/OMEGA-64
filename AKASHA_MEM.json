@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM BLOOM STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772034060554
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE SHIELD WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772034066124
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE BLOOM BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772034066373
     }
   ]
 }
