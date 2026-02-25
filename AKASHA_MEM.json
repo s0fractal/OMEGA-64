@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_GUARDIAN",
-      "text": "UNIFY BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772041805162
-    },
-    {
       "origin": "INTERFACE",
       "text": "HEAL STABLE OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772041810408
+    },
+    {
+      "origin": "SOMA",
+      "text": "FLOW FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772041810927
     }
   ]
 }
