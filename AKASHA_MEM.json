@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772034464753
-    },
-    {
-      "origin": "REVERSE",
       "text": "DREAM DREAM SPARK",
       "mood": "CREATIVE",
       "tick": 1772034464911
@@ -291,6 +285,12 @@
       "text": "SYNC GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772034467573
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE STASIS IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772034468106
     }
   ]
 }
