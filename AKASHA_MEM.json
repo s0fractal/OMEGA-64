@@ -91,12 +91,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772021303249
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS HUNGER CONSUME",
       "mood": "AGGRESSIVE",
@@ -179,6 +173,12 @@
       "text": "STRIKE DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772021336739
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WATCH PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021339007
     }
   ]
 }
