@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772034949952
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772034950131
@@ -291,6 +285,12 @@
       "text": "CONSUME SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772034957043
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING STABLE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772034957203
     }
   ]
 }
