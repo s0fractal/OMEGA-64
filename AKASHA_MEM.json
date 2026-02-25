@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE SHIELD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772031720872
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772031721672
@@ -291,6 +285,12 @@
       "text": "RESONATE RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772031739860
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031740238
     }
   ]
 }
