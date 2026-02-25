@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD WAIT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772025642598
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772025642803
@@ -291,6 +285,12 @@
       "text": "DECAY SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772025650565
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW UNIFY GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772025650759
     }
   ]
 }
