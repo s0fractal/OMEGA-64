@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS HUNGER SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027177754
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK WAVE SPARK",
       "mood": "CREATIVE",
       "tick": 1772027178035
@@ -291,6 +285,12 @@
       "text": "SHELTER WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772027185132
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW UNIFY SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772027185349
     }
   ]
 }
