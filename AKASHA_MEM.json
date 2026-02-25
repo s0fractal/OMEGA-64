@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035431494
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE RESONATE RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HEAL RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772035435393
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK CONSUME DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035435599
     }
   ]
 }
