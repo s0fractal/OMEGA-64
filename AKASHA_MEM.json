@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019599254
-    },
-    {
       "origin": "INTERFACE",
       "text": "SEIZE BREACH STRIKE",
       "mood": "AGGRESSIVE",
@@ -114,6 +108,12 @@
       "text": "REFLECT SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772019607340
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM COHERE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772019608032
     }
   ]
 }
