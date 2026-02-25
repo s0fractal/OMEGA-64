@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SHOCK HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022237681
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME BEYOND AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772022237943
@@ -213,6 +207,12 @@
       "text": "PURE SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022241368
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN BREACH SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022242525
     }
   ]
 }
