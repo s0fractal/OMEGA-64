@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772039244493
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772039244708
@@ -291,6 +285,12 @@
       "text": "OSMOSIS HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772039247348
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN HUNGER CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039247601
     }
   ]
 }
