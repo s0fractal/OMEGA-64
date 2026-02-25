@@ -182,12 +182,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE SHELTER REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023506967
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023507175
@@ -269,6 +263,12 @@
       "text": "UNIFY BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772023514463
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772023514624
     }
   ]
 }
