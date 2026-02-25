@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "HUNGER DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040888247
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIKE SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772040891040
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIFE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040891219
     }
   ]
 }
