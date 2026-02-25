@@ -127,12 +127,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "IMMUNE SHELTER RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772022292810
-    },
-    {
       "origin": "STREAM",
       "text": "SYNC OSMOSIS COHERE",
       "mood": "HARMONIC",
@@ -215,6 +209,12 @@
       "text": "SEIZE SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772022296620
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SHOCK BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022297081
     }
   ]
 }
