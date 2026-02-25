@@ -159,12 +159,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022784802
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772022785057
@@ -246,6 +240,12 @@
       "text": "BLOOM HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772022792578
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN STRIKE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022792797
     }
   ]
 }
