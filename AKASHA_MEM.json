@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041237742
-    },
-    {
       "origin": "INTERFACE",
       "text": "BLOOM UNIFY SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DRAIN STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772041242031
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE REFLECT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772041242408
     }
   ]
 }
