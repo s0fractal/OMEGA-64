@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "AWAKEN EVOLVE WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772040411776
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772040411956
@@ -291,6 +285,12 @@
       "text": "STRIFE DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040414299
+    },
+    {
+      "origin": "STREAM",
+      "text": "REFLECT GUARD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772040414512
     }
   ]
 }
