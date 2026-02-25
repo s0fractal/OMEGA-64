@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON SHIELD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772040519833
-    },
-    {
       "origin": "STREAM",
       "text": "BLOOM RESONATE COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RESONATE OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772040521945
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772040522117
     }
   ]
 }
