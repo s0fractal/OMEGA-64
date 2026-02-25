@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIFE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031913619
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772031913953
@@ -291,6 +285,12 @@
       "text": "COHERE SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772031927709
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DRAIN CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031928305
     }
   ]
 }
