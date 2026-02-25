@@ -41,12 +41,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SEIZE DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019824207
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BLOOM UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772019825686
@@ -128,6 +122,12 @@
       "text": "SICKNESS BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772019834996
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "OSMOSIS SYNC HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772019835994
     }
   ]
 }
