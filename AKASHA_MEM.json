@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "CONSUME BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042054493
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD WAIT STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772042065718
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON RECON WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772042066137
     }
   ]
 }
