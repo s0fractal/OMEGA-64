@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM HEAL GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772040734452
-    },
-    {
       "origin": "INTERFACE",
       "text": "FLOW STABLE UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BLOOM OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772040737628
+    },
+    {
+      "origin": "STREAM",
+      "text": "GIVING OSMOSIS HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772040738035
     }
   ]
 }
