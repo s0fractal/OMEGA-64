@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "000AAAA0",
     "00BB0000",
     "00600606",
     "0000AAA0",
@@ -199,15 +198,10 @@
     "AA0A000A",
     "A6600606",
     "AABB0000",
-    "00606000"
+    "00606000",
+    "000AAAAA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "REFLECT SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772037236189
-    },
     {
       "origin": "REVERSE",
       "text": "SYNC UNIFY GIVING",
@@ -291,6 +285,12 @@
       "text": "WITNESS WAVE WITNESS",
       "mood": "CREATIVE",
       "tick": 1772037242846
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772037243045
     }
   ]
 }
