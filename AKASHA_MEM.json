@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "GUARD RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772040886928
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC STABLE UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HEAL STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772040889927
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772040890101
     }
   ]
 }
