@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE HEAL UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772039183666
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772039183877
@@ -291,6 +285,12 @@
       "text": "BREACH SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772039186377
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT IMMUNE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772039186581
     }
   ]
 }
