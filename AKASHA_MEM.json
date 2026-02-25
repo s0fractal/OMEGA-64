@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "DRAIN STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040440289
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH BREACH CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772040442825
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHELTER REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040443070
     }
   ]
 }
