@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM OSMOSIS OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772033589700
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772033589922
@@ -291,6 +285,12 @@
       "text": "GIVING SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772033592993
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "IMMUNE GUARD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772033593209
     }
   ]
 }
