@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SEIZE CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041240735
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIFE STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772041240871
@@ -291,6 +285,12 @@
       "text": "SHOCK BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041245063
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT IMMUNE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041245298
     }
   ]
 }
