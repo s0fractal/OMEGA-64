@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW STABLE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772026173937
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772026174145
@@ -291,6 +285,12 @@
       "text": "BLOOM GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772026179894
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM SPARK BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772026180099
     }
   ]
 }
