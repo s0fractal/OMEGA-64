@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIFE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026789930
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772026790141
@@ -291,6 +285,12 @@
       "text": "FORGE BEYOND DREAM",
       "mood": "CREATIVE",
       "tick": 1772026794532
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM HEAL RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772026794793
     }
   ]
 }
