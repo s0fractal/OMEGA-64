@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WAIT SHIELD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772030388909
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME SEIZE CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772030398774
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON PURE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772030399096
     }
   ]
 }
