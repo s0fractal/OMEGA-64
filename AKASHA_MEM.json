@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772026179894
-    },
-    {
-      "origin": "REVERSE",
       "text": "DREAM SPARK BECOME",
       "mood": "CREATIVE",
       "tick": 1772026180099
@@ -291,6 +285,12 @@
       "text": "CONSUME SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772026186070
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW OSMOSIS RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772026186290
     }
   ]
 }
