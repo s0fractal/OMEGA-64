@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE FLOW BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772026794269
-    },
-    {
-      "origin": "REVERSE",
       "text": "FORGE BEYOND DREAM",
       "mood": "CREATIVE",
       "tick": 1772026794532
@@ -291,6 +285,12 @@
       "text": "PURE REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772026800130
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772026800330
     }
   ]
 }
