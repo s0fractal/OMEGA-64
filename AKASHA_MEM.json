@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BREACH HUNGER BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025512423
-    },
-    {
       "origin": "REVERSE",
       "text": "BREACH BREACH STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772025516206
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772025516398
     }
   ]
 }
