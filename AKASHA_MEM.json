@@ -112,12 +112,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAVE BECOME WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772021936598
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772021936788
@@ -199,6 +193,12 @@
       "text": "GUARD REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772021941321
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SEIZE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021941689
     }
   ]
 }
