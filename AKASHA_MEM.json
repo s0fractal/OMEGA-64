@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE UNIFY COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772037119775
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772037119988
@@ -291,6 +285,12 @@
       "text": "PURE GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772037123115
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037123314
     }
   ]
 }
