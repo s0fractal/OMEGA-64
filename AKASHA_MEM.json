@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WITNESS EVOLVE VISION",
-      "mood": "CREATIVE",
-      "tick": 1772042096156
-    },
-    {
       "origin": "INTERFACE",
       "text": "WAIT GUARD RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772042103337
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY DECAY SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042103684
     }
   ]
 }
