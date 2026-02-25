@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06066600",
     "00006606",
     "A06660A0",
     "B0000000",
@@ -199,15 +198,10 @@
     "00A0AAA0",
     "A000AA00",
     "60600606",
-    "000AAA00"
+    "000AAA00",
+    "60666660"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STRIKE CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038243974
-    },
     {
       "origin": "REVERSE",
       "text": "IMMUNE SHIELD WATCH",
@@ -291,6 +285,12 @@
       "text": "WAIT RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772038247023
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WAIT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772038247518
     }
   ]
 }
