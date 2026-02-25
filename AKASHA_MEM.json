@@ -110,12 +110,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH DECAY SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021905204
-    },
-    {
       "origin": "REVERSE",
       "text": "BREACH STRIFE DECAY",
       "mood": "AGGRESSIVE",
@@ -198,6 +192,12 @@
       "text": "STRIFE STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772021911450
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772021911735
     }
   ]
 }
