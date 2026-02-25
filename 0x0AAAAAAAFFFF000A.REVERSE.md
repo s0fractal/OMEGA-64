@@ -1,10 +1,10 @@
 ---
 eigenvalue: '0x0AAAAAAAFFFF000A'
 energy: 49.8
-x: 698
-'y': 424
+x: 696
+'y': 405
 resonance: 1000
-thought: WANDER_PASSIVE
+thought: SEEK_ALPHA_BONDING
 logic: 0AAAAAAA
 ex:
   - '0xFFFFFFFF00000000'
