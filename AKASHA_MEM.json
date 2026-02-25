@@ -160,12 +160,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "RESONATE STABLE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772022821428
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE DRAIN DECAY",
       "mood": "AGGRESSIVE",
@@ -248,6 +242,12 @@
       "text": "WAIT STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022825782
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772022826036
     }
   ]
 }
