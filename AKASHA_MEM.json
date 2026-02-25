@@ -188,15 +188,10 @@
     "0D10A098",
     "AAAA0000",
     "66606060",
-    "66660600"
+    "66660600",
+    "0000FF00"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHIELD STASIS PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023848949
-    },
     {
       "origin": "REVERSE",
       "text": "WATCH WATCH REFLECT",
@@ -280,6 +275,12 @@
       "text": "SEIZE STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772023851648
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING GIVING SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772023851824
     }
   ]
 }
