@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC BLOOM STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772031264111
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772031264373
@@ -291,6 +285,12 @@
       "text": "SPARK SPARK EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772031276026
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE GIVING HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772031277913
     }
   ]
 }
