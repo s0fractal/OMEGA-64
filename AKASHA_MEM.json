@@ -133,15 +133,10 @@
     "AA0A0A0A",
     "AAAAAA00",
     "60060000",
-    "0AAAAA0A"
+    "0AAAAA0A",
+    "0AA0A0A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STABLE BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772022427608
-    },
     {
       "origin": "REVERSE",
       "text": "SICKNESS SICKNESS HUNGER",
@@ -225,6 +220,12 @@
       "text": "GIVING BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772022431007
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL UNIFY GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022431558
     }
   ]
 }
