@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039212151
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772039212357
@@ -291,6 +285,12 @@
       "text": "SICKNESS HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772039214966
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING STABLE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772039215208
     }
   ]
 }
