@@ -149,12 +149,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SYNC SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772022531194
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE BLOOM UNIFY",
       "mood": "HARMONIC",
@@ -237,6 +231,12 @@
       "text": "GUARD PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022535843
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND DREAM WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772022536303
     }
   ]
 }
