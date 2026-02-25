@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772040479298
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772040479593
@@ -291,6 +285,12 @@
       "text": "STRIKE HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772040482077
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE STASIS GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040482201
     }
   ]
 }
