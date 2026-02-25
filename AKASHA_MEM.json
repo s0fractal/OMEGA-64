@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "GUARD IMMUNE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772027423736
-    },
-    {
       "origin": "REVERSE",
       "text": "SHIELD SHIELD WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772027429488
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE UNIFY COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772027429670
     }
   ]
 }
