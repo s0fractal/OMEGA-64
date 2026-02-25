@@ -192,12 +192,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER GUARD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023788057
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023788228
@@ -279,6 +273,12 @@
       "text": "CONSUME SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023791344
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL COHERE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772023791555
     }
   ]
 }
