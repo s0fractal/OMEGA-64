@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033483189
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772033483391
@@ -291,6 +285,12 @@
       "text": "COHERE COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772033486547
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD PURE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772033487183
     }
   ]
 }
