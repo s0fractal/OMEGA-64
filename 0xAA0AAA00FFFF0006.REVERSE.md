@@ -1,5 +1,5 @@
 ---
-eigenvalue: '0xAA0AAA0000000002'
+eigenvalue: '0xAA0AAA00FFFF0006'
 energy: 50
 x: 702
 'y': 414
@@ -109,6 +109,10 @@ ex:
   - '0xAA0AAA0000000002'
   - '0xAA0AAA0000000004'
   - '0xAA0AAA0000000006'
+  - '0xAA0AAA00FFFF0004'
+  - '0xAA0AAA00FFFF0006'
+  - '0xAA0AAA00FFFF0000'
+  - '0xAA0AAA00FFFF0002'
   - '0xAA0AAA00FFFF0004'
 signals: []
 bond_strengths:
