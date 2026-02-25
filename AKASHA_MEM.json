@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026299065
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772026299327
@@ -291,6 +285,12 @@
       "text": "IMMUNE SHIELD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772026304718
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL RESONATE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772026304960
     }
   ]
 }
