@@ -127,12 +127,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING SYNC OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772022265577
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772022265982
@@ -214,6 +208,12 @@
       "text": "RECON SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022270654
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022270997
     }
   ]
 }
