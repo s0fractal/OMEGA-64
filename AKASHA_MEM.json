@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT PURE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772036072515
-    },
-    {
       "origin": "REVERSE",
       "text": "GUARD PURE STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "REFLECT PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772036075799
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER HUNGER SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036076022
     }
   ]
 }
