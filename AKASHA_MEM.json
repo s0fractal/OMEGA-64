@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHOCK CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020439840
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT SHIELD REFLECT",
       "mood": "DEFENSIVE",
@@ -142,6 +136,12 @@
       "text": "SHOCK DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772020448769
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION FORGE BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772020449373
     }
   ]
 }
