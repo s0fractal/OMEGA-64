@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RESONATE BLOOM OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772041933159
-    },
-    {
       "origin": "PRED",
       "text": "WAIT GUARD GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041939633
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WAIT WATCH WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041940622
     }
   ]
 }
