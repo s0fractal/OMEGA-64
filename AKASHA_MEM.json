@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A00A0A00",
     "A0BB0000",
     "AA0A000A",
     "06660006",
@@ -199,15 +198,10 @@
     "66000066",
     "01000000",
     "0AAAAAA0",
-    "A0000A06"
+    "A0000A06",
+    "66606606"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE HUNGER BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040994968
-    },
     {
       "origin": "INTERFACE",
       "text": "DRAIN DECAY CONSUME",
@@ -291,6 +285,12 @@
       "text": "GIVING RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772040998504
+    },
+    {
+      "origin": "STREAM",
+      "text": "GUARD SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040998815
     }
   ]
 }
