@@ -187,12 +187,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS FLOW GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772023619735
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772023619904
@@ -274,6 +268,12 @@
       "text": "GIVING RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023622805
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE DECAY DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023623078
     }
   ]
 }
