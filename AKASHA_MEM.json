@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY OSMOSIS FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772032941413
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772032941594
@@ -291,6 +285,12 @@
       "text": "REFLECT IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772032943775
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE CONSUME SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032943953
     }
   ]
 }
