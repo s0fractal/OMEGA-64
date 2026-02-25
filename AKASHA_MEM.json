@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772040837805
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772040837981
@@ -291,6 +285,12 @@
       "text": "RESONATE HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772040841280
+    },
+    {
+      "origin": "STREAM",
+      "text": "SHELTER PURE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040841408
     }
   ]
 }
