@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040918669
-    },
-    {
       "origin": "INTERFACE",
       "text": "STASIS WATCH IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040921851
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING OSMOSIS BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772040922036
     }
   ]
 }
