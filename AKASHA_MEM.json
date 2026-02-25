@@ -166,12 +166,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023041656
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC HEAL FLOW",
       "mood": "HARMONIC",
@@ -254,6 +248,12 @@
       "text": "REFLECT SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023047097
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH STASIS IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023048119
     }
   ]
 }
