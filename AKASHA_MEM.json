@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER SEIZE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032650269
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772032650456
@@ -291,6 +285,12 @@
       "text": "REFLECT GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772032658084
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW HEAL GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772032658273
     }
   ]
 }
