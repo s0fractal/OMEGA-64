@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM STABLE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041091734
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS BREACH STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772041094757
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING SYNC HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041094955
     }
   ]
 }
