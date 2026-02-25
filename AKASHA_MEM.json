@@ -75,12 +75,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS STRIKE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020962577
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772020962697
@@ -162,6 +156,12 @@
       "text": "CONSUME DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020968510
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WATCH IMMUNE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020969236
     }
   ]
 }
