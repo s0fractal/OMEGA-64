@@ -39,12 +39,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIFE SHOCK DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019811589
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BREACH DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772019812293
@@ -126,6 +120,12 @@
       "text": "SHELTER SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772019820871
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772019821956
     }
   ]
 }
