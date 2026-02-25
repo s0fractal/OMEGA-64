@@ -116,12 +116,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT WAIT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772022043771
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022044246
@@ -203,6 +197,12 @@
       "text": "DRAIN SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022053111
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH RECON WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772022053268
     }
   ]
 }
