@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT SHIELD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772033190967
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772033191184
@@ -291,6 +285,12 @@
       "text": "IMMUNE GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772033194125
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIFE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033194303
     }
   ]
 }
