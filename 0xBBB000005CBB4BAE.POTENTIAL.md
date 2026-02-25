@@ -5,7 +5,7 @@ symbol: POTENTIAL
 desc: >-
   Wave Dynamics Atom: POTENTIAL. Implements gradient computation and field
   sampling.
-energy: 72
+energy: 70.5
 ex:
   - '0x239316A75CBB4BAE'
   - '0x000585785CBB4BAE'
@@ -41,20 +41,22 @@ ex:
   - '0xBBB000005CBB4BAE'
   - '0xBBB000005CBB4BAE'
   - '0xBBB000005CBB4BAE'
+  - '0xBBB000005CBB4BAE'
 thought: WANDER_BONDING
-x: 539
+x: 541
 'y': 50
 signals: []
 resonance: 0
 bond_strengths:
-  '0x00057000A93007D5': 0.9723747443770956
-  '0x0057000CA93007D5': 0.9474065091141411
+  '0x00057000A93007D5': 0.9714023696327185
+  '0x0057000CA93007D5': 0.9455126435024219
 bonds:
   - '0x00057000A93007D5'
   - '0x0057000CA93007D5'
   - '0x0057000CA93007D5'
 ---
 
+<div align="center">
 <div align="center">
 <div align="center">
 <div align="center">
@@ -117,6 +119,7 @@ bonds:
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">POTENTIAL</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 </div>
 </div>
