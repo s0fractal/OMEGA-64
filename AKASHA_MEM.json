@@ -125,12 +125,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WAVE WITNESS FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772022198393
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HEAL OSMOSIS SYNC",
       "mood": "HARMONIC",
@@ -213,6 +207,12 @@
       "text": "WAIT PURE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022203564
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIFE SICKNESS BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022204589
     }
   ]
 }
