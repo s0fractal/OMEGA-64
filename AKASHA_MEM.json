@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW STABLE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772032871663
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772032871836
@@ -291,6 +285,12 @@
       "text": "WAIT PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772032874786
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING SYNC COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772032874965
     }
   ]
 }
