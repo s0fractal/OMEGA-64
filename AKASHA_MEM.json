@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032315523
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772032315893
@@ -291,6 +285,12 @@
       "text": "COHERE SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772032322591
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH CONSUME SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032323135
     }
   ]
 }
