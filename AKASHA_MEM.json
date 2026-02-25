@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SICKNESS DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025314737
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE BLOOM HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772025318097
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WAIT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772025318357
     }
   ]
 }
