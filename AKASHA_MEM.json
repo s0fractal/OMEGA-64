@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHELTER SHELTER STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772024534989
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING OSMOSIS STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BREACH SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772024541800
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH IMMUNE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772024543343
     }
   ]
 }
