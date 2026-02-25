@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS DECAY SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029038630
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772029038918
@@ -291,6 +285,12 @@
       "text": "UNIFY UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772029049875
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIKE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029052520
     }
   ]
 }
