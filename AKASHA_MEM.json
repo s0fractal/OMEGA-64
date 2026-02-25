@@ -17,12 +17,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "SHOCK SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772014258806
-    },
-    {
-      "origin": "INTERFACE",
       "text": "SICKNESS SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772014273495
@@ -104,6 +98,12 @@
       "text": "HUNGER DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772014458438
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HUNGER CONSUME SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772014472907
     }
   ]
 }
