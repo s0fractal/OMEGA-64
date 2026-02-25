@@ -42,12 +42,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GUARD REFLECT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772019869720
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HUNGER DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772019870336
@@ -129,6 +123,12 @@
       "text": "CONSUME STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772019884080
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH STRIKE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019884863
     }
   ]
 }
