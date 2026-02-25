@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024370476
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER GUARD SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "REFLECT STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772024380519
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER STASIS IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772024380763
     }
   ]
 }
