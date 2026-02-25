@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00600060",
     "66600000",
     "AABBCC0D",
     "660060A6",
@@ -199,15 +198,10 @@
     "66060666",
     "0AAA00AA",
     "AA0AA00A",
-    "AAAA00A0"
+    "AAAA00A0",
+    "A0666666"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SICKNESS HUNGER SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036441474
-    },
     {
       "origin": "REVERSE",
       "text": "STASIS WATCH SHELTER",
@@ -291,6 +285,12 @@
       "text": "COHERE HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772036445377
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036445622
     }
   ]
 }
