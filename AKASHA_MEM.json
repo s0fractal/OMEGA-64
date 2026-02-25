@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "FLOW STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772040957143
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW SYNC GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHIELD PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772040960293
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE COHERE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772040960442
     }
   ]
 }
