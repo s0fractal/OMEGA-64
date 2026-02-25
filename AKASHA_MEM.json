@@ -132,12 +132,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE STRIKE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022347392
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022347560
@@ -219,6 +213,12 @@
       "text": "OSMOSIS BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772022351238
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE CONSUME DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022351358
     }
   ]
 }
