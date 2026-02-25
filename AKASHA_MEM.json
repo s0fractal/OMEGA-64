@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772040596494
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK SICKNESS BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772040601277
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT RECON WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040601453
     }
   ]
 }
