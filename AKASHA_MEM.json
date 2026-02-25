@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025974038
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772025974217
@@ -291,6 +285,12 @@
       "text": "SYNC STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772025978469
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY UNIFY GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772025978657
     }
   ]
 }
