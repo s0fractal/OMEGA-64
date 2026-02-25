@@ -44,12 +44,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "BLOOM RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772020063826
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING FLOW HEAL",
       "mood": "HARMONIC",
@@ -132,6 +126,12 @@
       "text": "HEAL STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772020076168
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BREACH DECAY HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020077819
     }
   ]
 }
