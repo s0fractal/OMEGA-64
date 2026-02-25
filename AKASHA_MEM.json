@@ -110,12 +110,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021899481
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE SHOCK STRIFE",
       "mood": "AGGRESSIVE",
@@ -198,6 +192,12 @@
       "text": "OSMOSIS STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772021904582
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH DECAY SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021905204
     }
   ]
 }
