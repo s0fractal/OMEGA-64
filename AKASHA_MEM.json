@@ -167,12 +167,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772023027504
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772023028349
@@ -254,6 +248,12 @@
       "text": "PURE SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023032898
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023033053
     }
   ]
 }
