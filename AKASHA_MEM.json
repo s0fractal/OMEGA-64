@@ -136,15 +136,10 @@
     "0AAAAA0A",
     "0AA0A0A0",
     "60066000",
-    "60666600"
+    "60666600",
+    "BAB00000"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN SEIZE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022452400
-    },
     {
       "origin": "ARCHIVIST",
       "text": "STRIFE SHOCK SICKNESS",
@@ -228,6 +223,12 @@
       "text": "STRIFE STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772022458257
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME BREACH CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022458455
     }
   ]
 }
