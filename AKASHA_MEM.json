@@ -170,12 +170,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE STRIKE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023080448
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023080594
@@ -257,6 +251,12 @@
       "text": "WATCH GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023083550
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY HUNGER CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023083729
     }
   ]
 }
