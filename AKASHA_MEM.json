@@ -58,12 +58,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BREACH SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020579695
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD STASIS RECON",
       "mood": "DEFENSIVE",
@@ -146,6 +140,12 @@
       "text": "DECAY CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020587813
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SHOCK HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020588003
     }
   ]
 }
