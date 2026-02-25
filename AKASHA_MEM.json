@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE STABLE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772037607307
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772037607558
@@ -291,6 +285,12 @@
       "text": "COHERE FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772037610549
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS GIVING FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772037610782
     }
   ]
 }
