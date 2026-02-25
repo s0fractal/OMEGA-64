@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BECOME DREAM WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772040384878
-    },
-    {
       "origin": "INTERFACE",
       "text": "COHERE RESONATE FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772040390068
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "IMMUNE SHIELD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040390271
     }
   ]
 }
