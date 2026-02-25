@@ -109,12 +109,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BEYOND SPARK BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772021833050
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772021833179
@@ -196,6 +190,12 @@
       "text": "SHELTER SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772021839693
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SEIZE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021839893
     }
   ]
 }
