@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE GIVING FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772039180130
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772039180334
@@ -291,6 +285,12 @@
       "text": "BREACH DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772039182889
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND BEYOND DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772039183055
     }
   ]
 }
