@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME VISION BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772028256115
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772028256712
@@ -291,6 +285,12 @@
       "text": "GIVING UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772028265061
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHELTER RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772028265736
     }
   ]
 }
