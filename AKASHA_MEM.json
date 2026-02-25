@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041103255
-    },
-    {
       "origin": "REVERSE",
       "text": "BREACH DRAIN CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041107853
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW OSMOSIS HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041108016
     }
   ]
 }
