@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HEAL GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772040336611
-    },
-    {
       "origin": "REVERSE",
       "text": "EVOLVE BEYOND VISION",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772040344525
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040344724
     }
   ]
 }
