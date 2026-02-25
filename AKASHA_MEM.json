@@ -93,12 +93,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021480874
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK DECAY DRAIN",
       "mood": "AGGRESSIVE",
@@ -181,6 +175,12 @@
       "text": "OSMOSIS HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772021489762
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SICKNESS SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021490108
     }
   ]
 }
