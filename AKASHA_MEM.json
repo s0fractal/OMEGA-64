@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAA0AAAA",
     "60060060",
     "0000F000",
     "A0A0A000",
@@ -199,15 +198,10 @@
     "AA0A0000",
     "00066600",
     "AAA00AA0",
-    "AA0AA000"
+    "AA0AA000",
+    "AABB000D"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "DECAY SEIZE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033753349
-    },
     {
       "origin": "REVERSE",
       "text": "WAIT STASIS GUARD",
@@ -291,6 +285,12 @@
       "text": "DRAIN STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772033758094
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER HUNGER DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033758297
     }
   ]
 }
