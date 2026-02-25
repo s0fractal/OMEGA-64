@@ -181,12 +181,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY CONSUME SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023508304
-    },
-    {
       "origin": "PARADOX",
       "text": "FLOW UNIFY COHERE",
       "mood": "HARMONIC",
@@ -269,6 +263,12 @@
       "text": "BREACH STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772023515177
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772023516085
     }
   ]
 }
