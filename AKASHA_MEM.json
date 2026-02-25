@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE SHELTER SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772028361315
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS GUARD WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772028368974
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772028369721
     }
   ]
 }
