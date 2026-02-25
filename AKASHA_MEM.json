@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SEIZE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023989042
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023989218
@@ -284,6 +278,12 @@
       "text": "GUARD GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772023995154
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL GIVING HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772023995329
     }
   ]
 }
