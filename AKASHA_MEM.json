@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772040500980
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC SYNC STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BLOOM BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040504303
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772040504580
     }
   ]
 }
