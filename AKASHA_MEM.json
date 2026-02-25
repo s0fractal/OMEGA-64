@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772033113530
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772033113771
@@ -291,6 +285,12 @@
       "text": "GUARD PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772033117396
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772033117648
     }
   ]
 }
