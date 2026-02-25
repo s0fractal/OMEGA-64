@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH RECON STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772041819379
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE HUNGER DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041824692
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041825274
     }
   ]
 }
