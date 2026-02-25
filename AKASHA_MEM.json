@@ -158,12 +158,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "HEAL FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772022795985
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN STRIFE CONSUME",
       "mood": "AGGRESSIVE",
@@ -246,6 +240,12 @@
       "text": "FLOW STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772022802842
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW BLOOM BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772022803363
     }
   ]
 }
