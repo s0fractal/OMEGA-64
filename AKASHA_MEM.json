@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAIT RECON PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772034897609
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIKE BREACH HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772034901785
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DRAIN CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034901978
     }
   ]
 }
