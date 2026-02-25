@@ -180,12 +180,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023379995
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023380190
@@ -267,6 +261,12 @@
       "text": "HUNGER SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772023384037
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772023384212
     }
   ]
 }
