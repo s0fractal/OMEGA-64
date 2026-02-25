@@ -119,15 +119,10 @@
     "0000AAAA",
     "AABBC0DD",
     "06666606",
-    "A0AAAAAA"
+    "A0AAAAAA",
+    "60666060"
   ],
   "utterances": [
-    {
-      "origin": "INTERFACE",
-      "text": "BREACH CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022162051
-    },
     {
       "origin": "ARCHIVIST",
       "text": "UNIFY GIVING UNIFY",
@@ -211,6 +206,12 @@
       "text": "STABLE FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022167523
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHELTER SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022167700
     }
   ]
 }
