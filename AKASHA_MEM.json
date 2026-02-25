@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06060660",
     "00AAAAA0",
     "A6066666",
     "AA000A00",
@@ -199,15 +198,10 @@
     "AA0AA00A",
     "60666000",
     "A0600606",
-    "66000060"
+    "66000060",
+    "606660A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STABLE FLOW BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772041047088
-    },
     {
       "origin": "ARCHIVIST",
       "text": "IMMUNE SHELTER SHELTER",
@@ -291,6 +285,12 @@
       "text": "STASIS STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041049764
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041049987
     }
   ]
 }
