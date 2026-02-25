@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0000A0",
     "0A0AA000",
     "AA00A000",
     "FF0AFFFF",
@@ -199,15 +198,10 @@
     "60666660",
     "06606066",
     "A00AA0A0",
-    "AAAA0A0A"
+    "AAAA0A0A",
+    "AA000A0A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STRIKE SICKNESS SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038267061
-    },
     {
       "origin": "REVERSE",
       "text": "STASIS SHIELD PURE",
@@ -291,6 +285,12 @@
       "text": "DRAIN STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772038270211
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038270399
     }
   ]
 }
