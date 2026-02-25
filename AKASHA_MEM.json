@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING UNIFY OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772027089317
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772027089524
@@ -291,6 +285,12 @@
       "text": "GUARD STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772027094526
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE DRAIN STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027094854
     }
   ]
 }
