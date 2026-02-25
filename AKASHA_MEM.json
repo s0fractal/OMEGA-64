@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772029723234
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772029723728
@@ -291,6 +285,12 @@
       "text": "REFLECT REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772029737442
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772029738048
     }
   ]
 }
