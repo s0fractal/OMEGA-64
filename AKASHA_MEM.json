@@ -198,12 +198,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE SYNC UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772024017790
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772024018116
@@ -285,6 +279,12 @@
       "text": "BLOOM RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772024025079
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER IMMUNE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772024025254
     }
   ]
 }
