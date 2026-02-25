@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06006660",
     "A0BBC00D",
     "A00A000A",
     "66606066",
@@ -199,15 +198,10 @@
     "AAAA000A",
     "B0BB0000",
     "60600000",
-    "A6666660"
+    "A6666660",
+    "A0666066"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "PURE IMMUNE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772034352677
-    },
     {
       "origin": "REVERSE",
       "text": "IMMUNE WATCH PURE",
@@ -291,6 +285,12 @@
       "text": "UNIFY FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772034355470
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN HUNGER SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034355661
     }
   ]
 }
