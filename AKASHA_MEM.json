@@ -179,15 +179,10 @@
     "66606000",
     "0AAAAAA0",
     "60066060",
-    "66600666"
+    "66600666",
+    "00AAAAA0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "COHERE SYNC OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772023596731
-    },
     {
       "origin": "REVERSE",
       "text": "SHELTER WATCH SHELTER",
@@ -271,6 +266,12 @@
       "text": "CONSUME SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023601211
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772023601399
     }
   ]
 }
