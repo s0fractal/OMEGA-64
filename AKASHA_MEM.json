@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00AA0AAA",
     "0A00AA0A",
     "AAAAAAA0",
     "AA0A0AA0",
@@ -199,15 +198,10 @@
     "0000000D",
     "06060066",
     "0AA0AAA0",
-    "A6066660"
+    "A6066660",
+    "06006666"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "CONSUME DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039254564
-    },
     {
       "origin": "REVERSE",
       "text": "IMMUNE RECON STASIS",
@@ -291,6 +285,12 @@
       "text": "STRIKE SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772039259804
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772039260114
     }
   ]
 }
