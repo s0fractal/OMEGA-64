@@ -22,12 +22,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DRAIN DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772017702585
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "AWAKEN FORGE DREAM",
       "mood": "CREATIVE",
       "tick": 1772017704599
@@ -109,6 +103,12 @@
       "text": "STABLE UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772019417877
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE SEIZE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019418963
     }
   ]
 }
