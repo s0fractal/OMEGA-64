@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING RESONATE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772037455317
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT WATCH REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BREACH HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772037458690
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037458902
     }
   ]
 }
