@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE FLOW UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772032025288
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772032025949
@@ -291,6 +285,12 @@
       "text": "REFLECT RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772032032492
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD REFLECT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772032033085
     }
   ]
 }
