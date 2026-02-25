@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772037544208
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772037545645
@@ -291,6 +285,12 @@
       "text": "BLOOM OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772037551082
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS UNIFY HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772037551271
     }
   ]
 }
