@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAAA00AA",
     "A0060660",
     "AAA0A0AA",
     "AA0660A0",
@@ -199,15 +198,10 @@
     "00066000",
     "06606060",
     "AA00A0A0",
-    "A0BBC0DD"
+    "A0BBC0DD",
+    "A6666060"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHIELD SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772037723559
-    },
     {
       "origin": "REVERSE",
       "text": "STABLE STABLE HEAL",
@@ -291,6 +285,12 @@
       "text": "BECOME SPARK FORGE",
       "mood": "CREATIVE",
       "tick": 1772037727254
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037727495
     }
   ]
 }
