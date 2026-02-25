@@ -136,12 +136,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT SHELTER REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022404563
-    },
-    {
       "origin": "REVERSE",
       "text": "PURE REFLECT REFLECT",
       "mood": "DEFENSIVE",
@@ -224,6 +218,12 @@
       "text": "STABLE GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772022410627
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DRAIN STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022410828
     }
   ]
 }
