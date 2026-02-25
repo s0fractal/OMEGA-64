@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772041079475
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "DRAIN DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772041082998
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS SEIZE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041083172
     }
   ]
 }
