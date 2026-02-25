@@ -132,12 +132,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE STASIS WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772022370418
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME SHOCK CONSUME",
       "mood": "AGGRESSIVE",
@@ -220,6 +214,12 @@
       "text": "HUNGER HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022377692
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DECAY SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022377961
     }
   ]
 }
