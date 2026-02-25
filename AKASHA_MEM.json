@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS SYNC COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772034184945
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772034185202
@@ -291,6 +285,12 @@
       "text": "OSMOSIS OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772034192689
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SHOCK DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034192981
     }
   ]
 }
