@@ -183,12 +183,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023528545
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772023528698
@@ -270,6 +264,12 @@
       "text": "BREACH DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772023535540
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023535718
     }
   ]
 }
