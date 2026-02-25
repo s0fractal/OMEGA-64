@@ -182,12 +182,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHIELD PURE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023541420
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER RECON PURE",
       "mood": "DEFENSIVE",
@@ -270,6 +264,12 @@
       "text": "DECAY SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023545263
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772023545478
     }
   ]
 }
