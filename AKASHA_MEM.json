@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD SHELTER IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772036581941
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772036582144
@@ -291,6 +285,12 @@
       "text": "WATCH REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772036585039
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD GUARD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772036586443
     }
   ]
 }
