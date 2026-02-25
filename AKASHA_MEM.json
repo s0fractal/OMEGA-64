@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772037712066
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772037712269
@@ -291,6 +285,12 @@
       "text": "SHIELD PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772037714963
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772037715198
     }
   ]
 }
