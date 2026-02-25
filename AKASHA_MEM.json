@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GIVING HEAL RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040553912
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SYNC COHERE FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIKE SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040556620
+    },
+    {
+      "origin": "WORKER",
+      "text": "COHERE COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772040556741
     }
   ]
 }
