@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER SHELTER RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772036703788
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772036704168
@@ -291,6 +285,12 @@
       "text": "SHOCK STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772036708380
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME BREACH STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036708682
     }
   ]
 }
