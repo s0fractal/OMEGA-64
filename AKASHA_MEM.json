@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "STASIS IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772041542728
-    },
-    {
-      "origin": "INTERFACE",
       "text": "OSMOSIS BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041543102
@@ -291,6 +285,12 @@
       "text": "DRAIN HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772041547308
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DECAY STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041547490
     }
   ]
 }
