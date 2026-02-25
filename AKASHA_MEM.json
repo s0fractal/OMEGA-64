@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD WAIT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041361597
-    },
-    {
       "origin": "INTERFACE",
       "text": "OSMOSIS OSMOSIS BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772041364767
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS PURE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041364912
     }
   ]
 }
