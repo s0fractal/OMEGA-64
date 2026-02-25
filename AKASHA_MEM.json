@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SPARK VISION VISION",
-      "mood": "CREATIVE",
-      "tick": 1772034123121
-    },
-    {
       "origin": "STREAM",
       "text": "IMMUNE REFLECT IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772034125889
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772034126080
     }
   ]
 }
