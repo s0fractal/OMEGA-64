@@ -102,12 +102,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STASIS GUARD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772021669588
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH CONSUME DRAIN",
       "mood": "AGGRESSIVE",
@@ -190,6 +184,12 @@
       "text": "GIVING UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772021674705
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SHOCK SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021675510
     }
   ]
 }
