@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "B0BB0000",
     "66666006",
     "AAAA0AA0",
     "00060000",
@@ -199,15 +198,10 @@
     "AA00AAA0",
     "666A6600",
     "0FF0FFF0",
-    "06600006"
+    "06600006",
+    "AA000000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHOCK SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026856984
-    },
     {
       "origin": "REVERSE",
       "text": "UNIFY BLOOM SYNC",
@@ -291,6 +285,12 @@
       "text": "RECON REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772026860890
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026861184
     }
   ]
 }
