@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772025941885
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772025942448
@@ -291,6 +285,12 @@
       "text": "SHOCK SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772025953215
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND AWAKEN DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772025954738
     }
   ]
 }
