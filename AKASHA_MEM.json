@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "OSMOSIS UNIFY SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772040859933
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE REFLECT REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772040862623
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772040862827
     }
   ]
 }
