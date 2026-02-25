@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041544168
-    },
-    {
       "origin": "STREAM",
       "text": "GIVING STABLE BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BREACH STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772041549217
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SEIZE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041549411
     }
   ]
 }
