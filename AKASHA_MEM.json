@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE SYNC SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772035986956
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772035987196
@@ -291,6 +285,12 @@
       "text": "REFLECT WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772035990103
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE BLOOM SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772035990625
     }
   ]
 }
