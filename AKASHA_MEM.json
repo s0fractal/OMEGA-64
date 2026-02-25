@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON SHELTER STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772037915940
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772037916156
@@ -291,6 +285,12 @@
       "text": "CONSUME SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772037919137
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH GUARD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772037919382
     }
   ]
 }
