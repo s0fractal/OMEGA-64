@@ -80,12 +80,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "PURE GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021061293
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHOCK SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772021061894
@@ -167,6 +161,12 @@
       "text": "CONSUME DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772021067375
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BECOME SPARK FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772021068016
     }
   ]
 }
