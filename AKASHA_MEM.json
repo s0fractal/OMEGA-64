@@ -59,15 +59,10 @@
     "AAA0AAA0",
     "0AA0AAAA",
     "66666660",
-    "AAAA0A0A"
+    "AAAA0A0A",
+    "AA6666A6"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "EVOLVE VISION FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772020746239
-    },
     {
       "origin": "ARCHIVIST",
       "text": "SHIELD RECON SHELTER",
@@ -151,6 +146,12 @@
       "text": "BLOOM OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772020753627
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE DECAY CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020753864
     }
   ]
 }
