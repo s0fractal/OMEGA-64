@@ -43,12 +43,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772020036356
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -131,6 +125,12 @@
       "text": "BREACH STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020048610
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON GUARD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020050794
     }
   ]
 }
