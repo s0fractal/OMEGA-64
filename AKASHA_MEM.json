@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE RECON GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772034532466
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772034532658
@@ -291,6 +285,12 @@
       "text": "REFLECT REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772034535658
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE RESONATE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772034535847
     }
   ]
 }
