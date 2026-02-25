@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIKE STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041770838
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GIVING SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772041771567
@@ -291,6 +285,12 @@
       "text": "PURE IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772041778491
+    },
+    {
+      "origin": "STREAM",
+      "text": "STASIS SHELTER WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041778715
     }
   ]
 }
