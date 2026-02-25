@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772034309411
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772034309631
@@ -291,6 +285,12 @@
       "text": "CONSUME SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772034312335
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE DRAIN CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034313820
     }
   ]
 }
