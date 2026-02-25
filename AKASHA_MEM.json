@@ -71,12 +71,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772020889011
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME WITNESS AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772020889182
@@ -158,6 +152,12 @@
       "text": "IMMUNE IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020895734
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SEIZE SICKNESS STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020895921
     }
   ]
 }
