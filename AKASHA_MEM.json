@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A0AA0000",
     "AA00AA00",
     "AAA00000",
     "BB0B0000",
@@ -199,15 +198,10 @@
     "000A0000",
     "06660000",
     "66600666",
-    "AA0666A0"
+    "AA0666A0",
+    "10000000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHIELD SHELTER RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772035601211
-    },
     {
       "origin": "REVERSE",
       "text": "REFLECT STASIS WAIT",
@@ -291,6 +285,12 @@
       "text": "RECON REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772035605039
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC RESONATE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772035605264
     }
   ]
 }
