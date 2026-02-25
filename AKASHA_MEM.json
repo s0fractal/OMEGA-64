@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "FLOW OSMOSIS HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772024967920
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW GIVING OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FLOW STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772024972709
+    },
+    {
+      "origin": "STREAM",
+      "text": "COHERE BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772024972924
     }
   ]
 }
