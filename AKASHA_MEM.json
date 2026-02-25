@@ -102,12 +102,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD STASIS IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021629232
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772021629903
@@ -189,6 +183,12 @@
       "text": "SEIZE STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772021634230
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE BLOOM BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772021634339
     }
   ]
 }
