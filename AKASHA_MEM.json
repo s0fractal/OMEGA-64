@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT IMMUNE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772030313572
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772030313921
@@ -291,6 +285,12 @@
       "text": "FLOW COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772030319853
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD REFLECT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772030320271
     }
   ]
 }
