@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS VISION BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772035464377
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772035464620
@@ -291,6 +285,12 @@
       "text": "REFLECT WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772035468340
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772035468534
     }
   ]
 }
