@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035130719
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772035131219
@@ -291,6 +285,12 @@
       "text": "RESONATE STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772035135246
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD PURE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772035135458
     }
   ]
 }
