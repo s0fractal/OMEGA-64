@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER WAIT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772019973619
-    },
-    {
       "origin": "STREAM",
       "text": "RESONATE GIVING GIVING",
       "mood": "HARMONIC",
@@ -130,6 +124,12 @@
       "text": "SEIZE SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772019984245
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE RESONATE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772019986683
     }
   ]
 }
