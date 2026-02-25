@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE BREACH HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040697007
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772040698072
@@ -291,6 +285,12 @@
       "text": "STRIFE BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772040702300
+    },
+    {
+      "origin": "STREAM",
+      "text": "SHELTER SHIELD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772040702701
     }
   ]
 }
