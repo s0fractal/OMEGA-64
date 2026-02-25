@@ -3,7 +3,7 @@ eigenvalue: '0xBBBB00000000000E'
 energy: 50
 x: 709
 'y': 405
-resonance: 43.67
+resonance: 58.67
 thought: RESURRECTED
 logic: BBBB0000
 ex:
