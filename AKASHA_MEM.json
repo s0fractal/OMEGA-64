@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038042053
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772038042256
@@ -291,6 +285,12 @@
       "text": "WATCH SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772038045937
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038046180
     }
   ]
 }
