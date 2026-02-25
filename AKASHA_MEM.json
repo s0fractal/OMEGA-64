@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041096753
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER WAIT IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772041101015
+    },
+    {
+      "origin": "ALPHA_PROOF_OF_RESONANCE",
+      "text": "OSMOSIS FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041101303
     }
   ]
 }
