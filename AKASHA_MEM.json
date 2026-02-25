@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BLOOM BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772041655981
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHIELD GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041656257
@@ -291,6 +285,12 @@
       "text": "PURE PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041659608
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WATCH WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041659737
     }
   ]
 }
