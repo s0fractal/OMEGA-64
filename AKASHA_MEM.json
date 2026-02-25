@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING HEAL HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772034170945
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034178850
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772034181326
     }
   ]
 }
