@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00060660",
     "06606000",
     "BB000000",
     "AA0A0000",
@@ -199,15 +198,10 @@
     "0000AAAA",
     "AA6666A6",
     "60060600",
-    "66606006"
+    "66606006",
+    "BB0000FC"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "STASIS GUARD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772031195266
-    },
     {
       "origin": "REVERSE",
       "text": "SICKNESS DRAIN BREACH",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772031202653
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031203006
     }
   ]
 }
