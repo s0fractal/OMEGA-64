@@ -70,12 +70,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772020877612
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE IMMUNE WATCH",
       "mood": "DEFENSIVE",
@@ -158,6 +152,12 @@
       "text": "SEIZE STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020883885
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772020884561
     }
   ]
 }
