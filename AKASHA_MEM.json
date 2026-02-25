@@ -170,12 +170,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023077150
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772023077462
@@ -257,6 +251,12 @@
       "text": "RECON WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023080594
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHIELD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772023080727
     }
   ]
 }
