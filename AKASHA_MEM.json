@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH SHIELD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772038709669
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY BLOOM SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RECON PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772038713810
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772038714738
     }
   ]
 }
