@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772036529135
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772036529302
@@ -291,6 +285,12 @@
       "text": "STRIFE CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772036531962
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY CONSUME SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036532260
     }
   ]
 }
