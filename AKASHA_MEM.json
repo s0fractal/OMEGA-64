@@ -24,12 +24,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHELTER WAIT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772019527217
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHELTER WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772019528450
@@ -111,6 +105,12 @@
       "text": "STRIFE STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772019538292
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HUNGER SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019538601
     }
   ]
 }
