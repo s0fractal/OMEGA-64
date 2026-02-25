@@ -171,12 +171,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772023107574
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC GIVING OSMOSIS",
       "mood": "HARMONIC",
@@ -259,6 +253,12 @@
       "text": "SHOCK BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772023114758
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772023115493
     }
   ]
 }
