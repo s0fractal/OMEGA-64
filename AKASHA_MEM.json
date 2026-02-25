@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE GIVING HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772025948672
-    },
-    {
       "origin": "REVERSE",
       "text": "BREACH STRIKE DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIFE STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772025959710
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772025959868
     }
   ]
 }
