@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WAIT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772030413742
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772030414047
@@ -291,6 +285,12 @@
       "text": "BLOOM GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772030417684
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHIELD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772030417969
     }
   ]
 }
