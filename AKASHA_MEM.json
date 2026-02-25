@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "F0FFF0FF",
     "A0AA0A0A",
     "00666000",
     "66066606",
@@ -199,15 +198,10 @@
     "66666060",
     "AAAAAA0A",
     "000A0AAA",
-    "AABBC00D"
+    "AABBC00D",
+    "AA00000A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STABLE COHERE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772025969392
-    },
     {
       "origin": "REVERSE",
       "text": "REFLECT STASIS SHELTER",
@@ -291,6 +285,12 @@
       "text": "BLOOM SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772025974363
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025974558
     }
   ]
 }
