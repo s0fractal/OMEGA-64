@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE STRIFE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029853577
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772029853923
@@ -291,6 +285,12 @@
       "text": "WATCH IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772029863396
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE UNIFY STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772029865511
     }
   ]
 }
