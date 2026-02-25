@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH IMMUNE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023189563
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK WITNESS EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772023189857
@@ -259,6 +253,12 @@
       "text": "SEIZE HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023196928
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SEIZE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023197128
     }
   ]
 }
