@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_REVERSE",
-      "text": "STRIKE DRAIN STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041461437
-    },
-    {
       "origin": "PARADOX",
       "text": "SYNC UNIFY FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772041465091
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041465397
     }
   ]
 }
