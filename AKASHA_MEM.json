@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "UNIFY HEAL RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772041811179
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE GIVING HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "PURE SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772041816390
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041816607
     }
   ]
 }
