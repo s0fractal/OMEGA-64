@@ -45,12 +45,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020072645
-    },
-    {
       "origin": "INTERFACE",
       "text": "HEAL STABLE UNIFY",
       "mood": "HARMONIC",
@@ -133,6 +127,12 @@
       "text": "SICKNESS STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772020089749
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020091153
     }
   ]
 }
