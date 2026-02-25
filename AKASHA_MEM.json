@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS WITNESS WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772038097591
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772038098138
@@ -291,6 +285,12 @@
       "text": "HEAL STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772038104971
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS HUNGER STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038105194
     }
   ]
 }
