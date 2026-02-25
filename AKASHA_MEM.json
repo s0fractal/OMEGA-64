@@ -182,12 +182,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023519335
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772023519556
@@ -269,6 +263,12 @@
       "text": "FLOW OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772023521964
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW RESONATE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772023522124
     }
   ]
 }
