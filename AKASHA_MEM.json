@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038552374
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772038552589
@@ -291,6 +285,12 @@
       "text": "FLOW UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772038557400
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038557630
     }
   ]
 }
