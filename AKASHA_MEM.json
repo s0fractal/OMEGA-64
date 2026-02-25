@@ -96,12 +96,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER SHIELD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021558324
-    },
-    {
       "origin": "REVERSE",
       "text": "PURE REFLECT PURE",
       "mood": "DEFENSIVE",
@@ -184,6 +178,12 @@
       "text": "SEIZE HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772021565710
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE BEYOND WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772021565857
     }
   ]
 }
