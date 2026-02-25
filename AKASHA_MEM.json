@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "I16_CLAMP",
-      "text": "SHOCK STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041487591
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY DRAIN SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041490669
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS WATCH SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041490808
     }
   ]
 }
