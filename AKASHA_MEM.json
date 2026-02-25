@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING SYNC SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772028824723
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772028825364
@@ -291,6 +285,12 @@
       "text": "FLOW COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772028836349
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WAIT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772028836659
     }
   ]
 }
