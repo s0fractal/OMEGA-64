@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE REFLECT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041279068
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT WAIT WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772041283862
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772041283999
     }
   ]
 }
