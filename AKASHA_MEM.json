@@ -196,12 +196,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772023974213
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD WAIT STASIS",
       "mood": "DEFENSIVE",
@@ -284,6 +278,12 @@
       "text": "STRIFE HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772023977160
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WATCH IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023977472
     }
   ]
 }
