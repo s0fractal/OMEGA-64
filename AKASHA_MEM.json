@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE RECON PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772039152433
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772039152629
@@ -291,6 +285,12 @@
       "text": "RESONATE BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772039155400
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DRAIN CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039155611
     }
   ]
 }
