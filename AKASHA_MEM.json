@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0A0A00",
     "0000F000",
     "06060660",
     "00006000",
@@ -199,15 +198,10 @@
     "66660600",
     "AAAAAAAA",
     "66666006",
-    "AA0AAAAA"
+    "AA0AAAAA",
+    "660060A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SYNC HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772028025503
-    },
     {
       "origin": "REVERSE",
       "text": "BREACH CONSUME DECAY",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772028049723
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHIELD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772028050275
     }
   ]
 }
