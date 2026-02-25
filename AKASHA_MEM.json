@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HUNGER HUNGER SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041826211
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "FLOW GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772041826431
@@ -291,6 +285,12 @@
       "text": "COHERE OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772041830216
+    },
+    {
+      "origin": "CAR",
+      "text": "UNIFY SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772041830405
     }
   ]
 }
