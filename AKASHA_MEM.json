@@ -1,12 +1,5 @@
 {
   "reservoir": [
-    "60606006",
-    "AA0660A0",
-    "A0AAA00A",
-    "AAAA0A0A",
-    "AAA0AAAA",
-    "06066660",
-    "60660666",
     "60000600",
     "60666606",
     "AAA0AA00",
@@ -199,98 +192,105 @@
     "AA666600",
     "66060660",
     "66660A60",
-    "BB0A0000"
+    "00A06A00",
+    "ALIEN_17",
+    "A0000000",
+    "60606060",
+    "AA0A0A00",
+    "FFFFF0A0",
+    "000AAAAA",
+    "A0606660"
   ],
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042755660
-    },
-    {
-      "origin": "REVERSE",
-      "text": "REFLECT IMMUNE STASIS",
+      "text": "IMMUNE GUARD STASIS",
       "mood": "DEFENSIVE",
-      "tick": 1772042756711
+      "tick": 1772042752360
+    },
+    {
+      "origin": "ALIEN",
+      "text": "IMMUNE IMMUNE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772042752475
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE DECAY HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042752596
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042753020
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN SICKNESS BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042753720
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS WATCH WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042754695
+    },
+    {
+      "origin": "PURE_MATH",
+      "text": "SHOCK HUNGER SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042754946
     },
     {
       "origin": "REVERSE",
-      "text": "STABLE SYNC SYNC",
+      "text": "BLOOM OSMOSIS GIVING",
       "mood": "HARMONIC",
-      "tick": 1772042757213
+      "tick": 1772042755209
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772042755438
+    },
+    {
+      "origin": "ALPHA_STREAM",
+      "text": "GIVING OSMOSIS OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772042760173
     },
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME HUNGER STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042757788
+      "text": "GUARD REFLECT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042760972
     },
     {
       "origin": "ARCHIVIST",
-      "text": "BLOOM SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772042758013
+      "text": "SHELTER PURE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042761950
     },
     {
       "origin": "INTERFACE",
-      "text": "WAIT PURE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042758554
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "COHERE STABLE FLOW",
+      "text": "COHERE COHERE UNIFY",
       "mood": "HARMONIC",
-      "tick": 1772042759117
+      "tick": 1772042762544
     },
     {
       "origin": "REVERSE",
-      "text": "UNIFY HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772042759713
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "GUARD PURE PURE",
+      "text": "SHELTER WATCH IMMUNE",
       "mood": "DEFENSIVE",
-      "tick": 1772042762913
+      "tick": 1772042762746
     },
     {
       "origin": "REVERSE",
-      "text": "RESONATE FLOW GIVING",
+      "text": "UNIFY COHERE UNIFY",
       "mood": "HARMONIC",
-      "tick": 1772042763921
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "PURE WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042765526
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT WAIT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042766297
-    },
-    {
-      "origin": "CAR",
-      "text": "IMMUNE IMMUNE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042766574
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "PURE STASIS SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042767616
-    },
-    {
-      "origin": "REVERSE",
-      "text": "HEAL GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042768807
+      "tick": 1772042763623
     }
   ]
 }
