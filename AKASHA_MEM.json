@@ -194,12 +194,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023863171
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER SHOCK HUNGER",
       "mood": "AGGRESSIVE",
@@ -282,6 +276,12 @@
       "text": "PURE STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023868234
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD RECON WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023868445
     }
   ]
 }
