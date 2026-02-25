@@ -58,15 +58,10 @@
     "66066000",
     "AAA0AAA0",
     "0AA0AAAA",
-    "66666660"
+    "66666660",
+    "AAAA0A0A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "CONSUME SHOCK SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020714254
-    },
     {
       "origin": "REVERSE",
       "text": "HUNGER CONSUME CONSUME",
@@ -150,6 +145,12 @@
       "text": "STRIFE STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020720855
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SEIZE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020721044
     }
   ]
 }
