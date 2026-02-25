@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772027623928
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772027624544
@@ -291,6 +285,12 @@
       "text": "REFLECT RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772027643942
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL GIVING BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772027644703
     }
   ]
 }
