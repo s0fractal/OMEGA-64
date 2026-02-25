@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "660060A6",
     "60066666",
     "A0AAA0AA",
     "AAAA0A00",
@@ -199,15 +198,10 @@
     "00066660",
     "AAB0000D",
     "A06000A0",
-    "0A000AAA"
+    "0A000AAA",
+    "0BB00000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "PURE PURE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772034917005
-    },
     {
       "origin": "REVERSE",
       "text": "SHOCK STRIFE STRIFE",
@@ -291,6 +285,12 @@
       "text": "COHERE COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772034921076
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE GIVING BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772034921291
     }
   ]
 }
