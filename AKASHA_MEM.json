@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK SEIZE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035500220
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH STASIS WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DRAIN SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772035505124
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY COHERE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772035505345
     }
   ]
 }
