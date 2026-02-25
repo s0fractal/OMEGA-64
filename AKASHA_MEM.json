@@ -163,12 +163,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772022900744
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022900870
@@ -250,6 +244,12 @@
       "text": "SICKNESS DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022909061
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIFE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022909320
     }
   ]
 }
