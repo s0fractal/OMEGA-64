@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT GUARD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772037033569
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772037033793
@@ -291,6 +285,12 @@
       "text": "HUNGER HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772037036436
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND BEYOND SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772037036600
     }
   ]
 }
