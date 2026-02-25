@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD RECON WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772029661480
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772029662129
@@ -291,6 +285,12 @@
       "text": "SHELTER RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772029672375
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029673074
     }
   ]
 }
