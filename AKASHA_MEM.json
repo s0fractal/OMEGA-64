@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031005236
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772031005803
@@ -291,6 +285,12 @@
       "text": "FLOW GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772031012470
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772031013088
     }
   ]
 }
