@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY BREACH BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031082421
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL SYNC FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SICKNESS DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772031092743
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIKE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031094222
     }
   ]
 }
