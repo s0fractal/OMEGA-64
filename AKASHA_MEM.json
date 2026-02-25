@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772034877044
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772034877492
@@ -291,6 +285,12 @@
       "text": "STASIS REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772034882235
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772034882428
     }
   ]
 }
