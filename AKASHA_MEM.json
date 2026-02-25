@@ -24,12 +24,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHELTER WATCH STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772019528450
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SEIZE DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772019528788
@@ -111,6 +105,12 @@
       "text": "HUNGER SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772019538601
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHOCK DECAY SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019539115
     }
   ]
 }
