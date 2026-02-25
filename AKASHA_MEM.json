@@ -77,12 +77,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER STRIKE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021050550
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
@@ -165,6 +159,12 @@
       "text": "IMMUNE WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772021059255
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK SPARK BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772021059435
     }
   ]
 }
