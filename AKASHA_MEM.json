@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SHOCK HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024252362
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND BECOME AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772024252579
@@ -291,6 +285,12 @@
       "text": "SHIELD GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772024255568
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SICKNESS STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024255735
     }
   ]
 }
