@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER SHELTER SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772040899311
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RESONATE OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772040903074
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD SHELTER WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040903240
     }
   ]
 }
