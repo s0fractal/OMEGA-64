@@ -69,12 +69,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER WAIT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772020850623
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK BREACH DECAY",
       "mood": "AGGRESSIVE",
@@ -157,6 +151,12 @@
       "text": "SICKNESS STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020856747
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK WITNESS DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772020856907
     }
   ]
 }
