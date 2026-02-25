@@ -102,12 +102,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WAIT SHIELD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772021655727
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME DECAY BREACH",
       "mood": "AGGRESSIVE",
@@ -190,6 +184,12 @@
       "text": "PURE PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772021661341
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS OSMOSIS RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772021662699
     }
   ]
 }
