@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD SHELTER RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772034337372
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772034337567
@@ -291,6 +285,12 @@
       "text": "SICKNESS DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772034340212
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE SPARK SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772034340444
     }
   ]
 }
