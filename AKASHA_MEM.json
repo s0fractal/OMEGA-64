@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772023718934
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023719173
@@ -278,6 +272,12 @@
       "text": "HEAL UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772023723579
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY STRIKE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023723768
     }
   ]
 }
