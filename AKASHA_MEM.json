@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GIVING FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041506924
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GUARD RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772041507218
@@ -291,6 +285,12 @@
       "text": "IMMUNE WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772041510319
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041510505
     }
   ]
 }
