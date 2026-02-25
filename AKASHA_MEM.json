@@ -108,12 +108,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT WAIT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772021775485
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772021775741
@@ -195,6 +189,12 @@
       "text": "CONSUME STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772021784718
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD STASIS WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772021785005
     }
   ]
 }
