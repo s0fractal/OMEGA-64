@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER PURE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772034766546
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772034766753
@@ -291,6 +285,12 @@
       "text": "SHIELD SHIELD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772034769330
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SICKNESS DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034769533
     }
   ]
 }
