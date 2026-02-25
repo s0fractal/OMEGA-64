@@ -66,12 +66,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIFE BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020763991
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "PURE WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772020764253
@@ -153,6 +147,12 @@
       "text": "PURE SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772020768410
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SEIZE SEIZE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020769407
     }
   ]
 }
