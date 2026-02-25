@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE SYNC UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772030038409
-    },
-    {
       "origin": "STREAM",
       "text": "CONSUME BREACH CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772030056014
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772030056410
     }
   ]
 }
