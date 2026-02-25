@@ -202,12 +202,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772024078596
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND BECOME BEYOND",
       "mood": "CREATIVE",
       "tick": 1772024078827
@@ -289,6 +283,12 @@
       "text": "UNIFY RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772024081928
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHELTER REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772024082102
     }
   ]
 }
