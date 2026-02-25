@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772026572312
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL STABLE HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHELTER RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772026580138
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHIELD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772026580390
     }
   ]
 }
