@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772033828407
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772033828627
@@ -291,6 +285,12 @@
       "text": "COHERE GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772033831252
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033831519
     }
   ]
 }
