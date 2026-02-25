@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY STABLE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772031756550
-    },
-    {
-      "origin": "REVERSE",
       "text": "VISION EVOLVE SPARK",
       "mood": "CREATIVE",
       "tick": 1772031756867
@@ -291,6 +285,12 @@
       "text": "REFLECT STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772031783785
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE UNIFY OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772031785453
     }
   ]
 }
