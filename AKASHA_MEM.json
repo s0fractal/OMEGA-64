@@ -182,12 +182,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WAIT SHELTER STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772023523165
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
@@ -270,6 +264,12 @@
       "text": "STRIKE HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023530983
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772023531495
     }
   ]
 }
