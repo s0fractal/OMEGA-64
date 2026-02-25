@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW GIVING SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772033508610
-    },
-    {
       "origin": "ALPHA_PROOF_OF_RESONANCE",
       "text": "COHERE COHERE RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WATCH GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772033513959
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772033514158
     }
   ]
 }
