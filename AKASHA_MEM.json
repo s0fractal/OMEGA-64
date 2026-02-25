@@ -179,12 +179,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL RESONATE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772023338752
-    },
-    {
-      "origin": "REVERSE",
       "text": "FORGE WITNESS WITNESS",
       "mood": "CREATIVE",
       "tick": 1772023338945
@@ -266,6 +260,12 @@
       "text": "REFLECT IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023341208
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW COHERE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772023341429
     }
   ]
 }
