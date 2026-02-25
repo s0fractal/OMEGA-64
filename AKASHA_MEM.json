@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON WATCH IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772035009707
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772035009949
@@ -291,6 +285,12 @@
       "text": "BLOOM FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772035013499
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035013669
     }
   ]
 }
