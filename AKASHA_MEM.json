@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041081026
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041081321
@@ -291,6 +285,12 @@
       "text": "REFLECT WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041084026
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD REFLECT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772041084168
     }
   ]
 }
