@@ -149,15 +149,10 @@
     "0AA0AA00",
     "0BB00000",
     "AA6066A6",
-    "0AA0AAA0"
+    "0AA0AAA0",
+    "666A6600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BLOOM SYNC OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772022643080
-    },
     {
       "origin": "REVERSE",
       "text": "FLOW GIVING FLOW",
@@ -241,6 +236,12 @@
       "text": "SHOCK SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772022647474
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772022648414
     }
   ]
 }
