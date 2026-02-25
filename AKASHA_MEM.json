@@ -64,12 +64,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL UNIFY OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772020737819
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020738002
@@ -151,6 +145,12 @@
       "text": "DECAY STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020744955
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BREACH DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020745628
     }
   ]
 }
