@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020381250
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON REFLECT REFLECT",
       "mood": "DEFENSIVE",
@@ -141,6 +135,12 @@
       "text": "RESONATE FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772020387981
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772020388128
     }
   ]
 }
