@@ -1,5 +1,9 @@
 {
   "reservoir": [
+    "AA000600",
+    "A0AAA000",
+    "AAA0A0AA",
+    "66660060",
     "00000000",
     "66660000",
     "06006066",
@@ -194,103 +198,99 @@
     "AA00A000",
     "BBB00000",
     "6606AA66",
-    "A6660600",
-    "AA666600",
-    "0AAA0A00",
-    "0A0AA0A0",
-    "0A0A0666",
-    "66A06A00"
+    "A6A66000",
+    "60060666"
   ],
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WAIT SHELTER WAIT",
+      "text": "REFLECT SHELTER REFLECT",
       "mood": "DEFENSIVE",
-      "tick": 1772042505467
+      "tick": 1772042511925
     },
     {
-      "origin": "STREAM",
-      "text": "SHOCK SEIZE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042506741
+      "origin": "WORKER",
+      "text": "RECON SHELTER STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772042512291
     },
     {
       "origin": "ARCHIVIST",
-      "text": "STASIS WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042507108
-    },
-    {
-      "origin": "PARASITE",
-      "text": "RECON WAIT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042510797
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME SEIZE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042511777
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "COHERE COHERE OSMOSIS",
+      "text": "GIVING FLOW BLOOM",
       "mood": "HARMONIC",
-      "tick": 1772042512230
+      "tick": 1772042512851
     },
     {
       "origin": "ARCHIVIST",
-      "text": "WATCH WATCH IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042512588
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD RECON REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042513424
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "SICKNESS BREACH HUNGER",
+      "text": "STRIKE STRIFE SEIZE",
       "mood": "AGGRESSIVE",
-      "tick": 1772042516316
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "PURE GUARD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042518228
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE SEIZE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042519005
+      "tick": 1772042513697
     },
     {
       "origin": "REVERSE",
-      "text": "UNIFY STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772042519386
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE SHOCK SICKNESS",
+      "text": "DRAIN CONSUME HUNGER",
       "mood": "AGGRESSIVE",
-      "tick": 1772042519669
+      "tick": 1772042513838
     },
     {
       "origin": "ARCHIVIST",
-      "text": "DRAIN SICKNESS HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042520275
+      "text": "WATCH SHIELD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042514969
     },
     {
-      "origin": "ARCHIVIST",
-      "text": "HEAL FLOW FLOW",
+      "origin": "STREAM",
+      "text": "SYNC UNIFY OSMOSIS",
       "mood": "HARMONIC",
-      "tick": 1772042522088
+      "tick": 1772042516157
+    },
+    {
+      "origin": "CAR",
+      "text": "OSMOSIS SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772042517718
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042518406
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS IMMUNE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042518766
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE STRIFE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042519718
+    },
+    {
+      "origin": "PURE_MATH",
+      "text": "DECAY SICKNESS HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042519868
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042521886
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON REFLECT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772042522058
+    },
+    {
+      "origin": "WORKER",
+      "text": "UNIFY OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042522419
     }
   ]
 }
