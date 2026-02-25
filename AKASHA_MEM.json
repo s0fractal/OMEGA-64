@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS REFLECT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772037370666
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772037370913
@@ -291,6 +285,12 @@
       "text": "BREACH SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772037375664
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC HEAL OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772037375933
     }
   ]
 }
