@@ -40,12 +40,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GIVING RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772019858278
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BLOOM STABLE UNIFY",
       "mood": "HARMONIC",
@@ -128,6 +122,12 @@
       "text": "DECAY BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772019869234
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD REFLECT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772019869720
     }
   ]
 }
