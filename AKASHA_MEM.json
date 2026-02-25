@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "FLOW STABLE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772032625716
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE SYNC COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SEIZE CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772032628934
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK HUNGER SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032629091
     }
   ]
 }
