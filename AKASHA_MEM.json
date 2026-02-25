@@ -192,12 +192,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS WAIT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023786813
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772023787519
@@ -279,6 +273,12 @@
       "text": "HUNGER SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023790524
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH HUNGER CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023790813
     }
   ]
 }
