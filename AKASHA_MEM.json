@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SEIZE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037411519
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772037411741
@@ -291,6 +285,12 @@
       "text": "HEAL COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772037414558
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772037414807
     }
   ]
 }
