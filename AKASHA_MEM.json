@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RESONATE SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772041512540
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "FLOW HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772041512680
@@ -291,6 +285,12 @@
       "text": "PURE RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041515278
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON REFLECT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041515458
     }
   ]
 }
