@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME SHOCK STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040641640
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GUARD SHIELD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772040641776
@@ -291,6 +285,12 @@
       "text": "BREACH DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772040643744
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772040643912
     }
   ]
 }
