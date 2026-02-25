@@ -16,12 +16,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIFE SEIZE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772014388757
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE SYNC FLOW",
       "mood": "HARMONIC",
@@ -104,6 +98,12 @@
       "text": "WAIT IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772014559607
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DECAY STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772014582689
     }
   ]
 }
