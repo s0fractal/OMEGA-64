@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE STRIKE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040711002
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BLOOM HEAL COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "PURE REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772040714690
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE SHELTER REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040715254
     }
   ]
 }
