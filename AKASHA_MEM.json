@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON WATCH STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772034686306
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772034686520
@@ -291,6 +285,12 @@
       "text": "FLOW FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772034690436
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772034690818
     }
   ]
 }
