@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING BLOOM OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772026190919
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772026191260
@@ -291,6 +285,12 @@
       "text": "WITNESS BEYOND WAVE",
       "mood": "CREATIVE",
       "tick": 1772026197833
+    },
+    {
+      "origin": "STREAM",
+      "text": "SYNC FLOW GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772026198022
     }
   ]
 }
