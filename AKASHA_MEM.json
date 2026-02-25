@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SYNC COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772032649900
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW OSMOSIS STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STASIS WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772032657682
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE GUARD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772032657892
     }
   ]
 }
