@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD WATCH STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772025362076
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772025362396
@@ -291,6 +285,12 @@
       "text": "STRIKE SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772025366335
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM BLOOM FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772025366578
     }
   ]
 }
