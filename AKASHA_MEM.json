@@ -173,12 +173,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS WAIT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023227401
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023227580
@@ -260,6 +254,12 @@
       "text": "WATCH SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772023231205
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION FORGE FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772023231493
     }
   ]
 }
