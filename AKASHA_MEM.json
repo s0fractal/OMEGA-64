@@ -180,12 +180,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772023400544
-    },
-    {
-      "origin": "REVERSE",
       "text": "DREAM WITNESS BECOME",
       "mood": "CREATIVE",
       "tick": 1772023400669
@@ -267,6 +261,12 @@
       "text": "FLOW STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772023403576
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH IMMUNE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772023403748
     }
   ]
 }
