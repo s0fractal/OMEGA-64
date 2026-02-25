@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772036073779
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772036073982
@@ -291,6 +285,12 @@
       "text": "EVOLVE FORGE BEYOND",
       "mood": "CREATIVE",
       "tick": 1772036076897
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772036077071
     }
   ]
 }
