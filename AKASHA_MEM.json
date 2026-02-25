@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON WAIT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772033280942
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772033281120
@@ -291,6 +285,12 @@
       "text": "RESONATE STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772033284164
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033284347
     }
   ]
 }
