@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STASIS WAIT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040597649
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIFE BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772040597827
@@ -291,6 +285,12 @@
       "text": "GIVING BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772040602256
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040602597
     }
   ]
 }
