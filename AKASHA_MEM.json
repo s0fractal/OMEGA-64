@@ -111,12 +111,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "DRAIN SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021908270
-    },
-    {
-      "origin": "INTERFACE",
       "text": "BREACH DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772021908596
@@ -198,6 +192,12 @@
       "text": "HUNGER HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772021915896
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WAIT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772021916336
     }
   ]
 }
