@@ -120,12 +120,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT REFLECT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022092483
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772022092817
@@ -207,6 +201,12 @@
       "text": "EVOLVE WAVE VISION",
       "mood": "CREATIVE",
       "tick": 1772022096873
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WATCH REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022097086
     }
   ]
 }
