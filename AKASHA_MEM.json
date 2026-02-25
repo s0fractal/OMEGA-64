@@ -13,12 +13,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772013090696
-    },
-    {
       "origin": "INTERFACE",
       "text": "SICKNESS DECAY SEIZE",
       "mood": "AGGRESSIVE",
@@ -101,6 +95,12 @@
       "text": "SEIZE CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772013231694
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS CONSUME DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772013248363
     }
   ]
 }
