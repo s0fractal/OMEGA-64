@@ -68,12 +68,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE STRIFE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020835158
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK STRIKE SHOCK",
       "mood": "AGGRESSIVE",
@@ -156,6 +150,12 @@
       "text": "HEAL BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772020844484
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020844694
     }
   ]
 }
