@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A0666660",
     "A00A0AAA",
     "A0000A00",
     "66000600",
@@ -199,15 +198,10 @@
     "000B0000",
     "06006000",
     "600A66A0",
-    "00006000"
+    "00006000",
+    "A0AAA000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RESONATE SYNC COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772028479432
-    },
     {
       "origin": "REVERSE",
       "text": "IMMUNE GUARD GUARD",
@@ -291,6 +285,12 @@
       "text": "SEIZE DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772028487750
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE BREACH SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028488236
     }
   ]
 }
