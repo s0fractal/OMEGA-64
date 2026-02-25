@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD WATCH REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772031642394
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772031642748
@@ -291,6 +285,12 @@
       "text": "SHELTER WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772031646534
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031646850
     }
   ]
 }
