@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772020618678
-    },
-    {
       "origin": "INTERFACE",
       "text": "FLOW RESONATE BLOOM",
       "mood": "HARMONIC",
@@ -150,6 +144,12 @@
       "text": "WATCH SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772020624309
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIFE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020624524
     }
   ]
 }
