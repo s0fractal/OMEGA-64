@@ -40,12 +40,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "COHERE HEAL HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772019832481
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HEAL OSMOSIS STABLE",
       "mood": "HARMONIC",
@@ -128,6 +122,12 @@
       "text": "PURE SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772019842101
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772019842648
     }
   ]
 }
