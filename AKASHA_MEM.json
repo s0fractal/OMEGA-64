@@ -45,12 +45,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING BLOOM OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772020069487
-    },
-    {
-      "origin": "REVERSE",
       "text": "VISION WAVE WITNESS",
       "mood": "CREATIVE",
       "tick": 1772020069733
@@ -132,6 +126,12 @@
       "text": "PURE STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772020087434
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE STRIFE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020088007
     }
   ]
 }
