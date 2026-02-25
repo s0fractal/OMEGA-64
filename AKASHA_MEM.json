@@ -19,15 +19,10 @@
     "00000006",
     "BB0B0000",
     "ABB00000",
-    "666A6660"
+    "666A6660",
+    "0000AA00"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "COHERE STABLE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772019570355
-    },
     {
       "origin": "INTERFACE",
       "text": "FLOW STABLE OSMOSIS",
@@ -111,6 +106,12 @@
       "text": "WATCH STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772019578769
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM RESONATE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772019579275
     }
   ]
 }
