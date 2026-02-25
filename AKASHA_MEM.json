@@ -184,12 +184,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "EVOLVE DREAM SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772023555554
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772023555695
@@ -271,6 +265,12 @@
       "text": "WAIT IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772023558744
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM SYNC FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772023559264
     }
   ]
 }
