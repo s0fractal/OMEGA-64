@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER GUARD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772039225769
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772039225983
@@ -291,6 +285,12 @@
       "text": "STRIFE STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772039229504
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE GUARD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772039229747
     }
   ]
 }
