@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING COHERE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772023165026
-    },
-    {
-      "origin": "REVERSE",
       "text": "WITNESS BEYOND BECOME",
       "mood": "CREATIVE",
       "tick": 1772023165211
@@ -259,6 +253,12 @@
       "text": "RECON GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772023170417
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772023170587
     }
   ]
 }
