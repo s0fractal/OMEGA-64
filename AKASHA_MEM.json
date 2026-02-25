@@ -108,12 +108,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772021761527
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772021762915
@@ -195,6 +189,12 @@
       "text": "WATCH PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772021767049
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK SPARK BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772021767418
     }
   ]
 }
