@@ -134,12 +134,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC UNIFY OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772022374300
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022374508
@@ -221,6 +215,12 @@
       "text": "GIVING RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772022380212
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022380427
     }
   ]
 }
