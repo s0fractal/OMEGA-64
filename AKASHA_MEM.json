@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772037637383
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772037637802
@@ -291,6 +285,12 @@
       "text": "GUARD SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772037641416
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS BREACH BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037641629
     }
   ]
 }
