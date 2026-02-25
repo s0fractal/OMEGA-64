@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT STASIS SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040650772
-    },
-    {
       "origin": "STREAM",
       "text": "HEAL COHERE OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DECAY STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040653367
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GIVING STABLE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772040653499
     }
   ]
 }
