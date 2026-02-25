@@ -1,7 +1,7 @@
 ---
 eigenvalue: '0x00AAAA00FFFF0A03'
 energy: 51.4
-x: 714
+x: 715
 'y': 427
 resonance: 50
 thought: SEEK_ALPHA_PASSIVE
@@ -134,9 +134,9 @@ ex:
   - '0xAA0AAA0000000A03'
   - '0xAA0AAA0000000A05'
   - '0xAA0AAA0000000A07'
-  - '0x00AAAA0000000A01'
-  - '0x00AAAA0000000A03'
-  - '0x00AAAA0000000A05'
+  - '0x00AAAA00FFFF0A05'
+  - '0x00AAAA00FFFF0A07'
+  - '0x00AAAA00FFFF0A01'
 ---
 
 <div align="center">
