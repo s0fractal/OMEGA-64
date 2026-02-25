@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "DRAIN SEIZE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028372982
-    },
-    {
-      "origin": "INTERFACE",
       "text": "STABLE STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772028373702
@@ -291,6 +285,12 @@
       "text": "REFLECT REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772028393746
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE RESONATE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772028394579
     }
   ]
 }
