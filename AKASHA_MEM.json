@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772028593201
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772028600751
@@ -291,6 +285,12 @@
       "text": "REFLECT STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772028608719
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK DRAIN SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028609465
     }
   ]
 }
