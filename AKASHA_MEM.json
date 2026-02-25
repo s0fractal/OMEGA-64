@@ -183,12 +183,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772023525256
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023526773
@@ -270,6 +264,12 @@
       "text": "WATCH STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023534203
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DECAY CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023534693
     }
   ]
 }
