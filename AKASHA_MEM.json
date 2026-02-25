@@ -109,12 +109,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD SHELTER RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772021834556
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772021835766
@@ -196,6 +190,12 @@
       "text": "SICKNESS DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772021840275
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS SHIELD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772021840465
     }
   ]
 }
