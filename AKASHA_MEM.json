@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS SEIZE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028345716
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE HUNGER BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772028363464
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC STABLE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772028364159
     }
   ]
 }
