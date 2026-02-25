@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD SHIELD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772026903339
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772026903601
@@ -291,6 +285,12 @@
       "text": "SHELTER PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772026908484
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SEIZE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026908943
     }
   ]
 }
