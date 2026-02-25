@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAAAAAAA",
     "AA660600",
     "0A0A0A0A",
     "000AAAA0",
@@ -199,15 +198,10 @@
     "0000000F",
     "60066006",
     "00060060",
-    "A6660600"
+    "A6660600",
+    "AA0006A6"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STRIKE SEIZE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038951465
-    },
     {
       "origin": "REVERSE",
       "text": "STRIFE SEIZE STRIFE",
@@ -291,6 +285,12 @@
       "text": "BLOOM RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772038954945
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038955166
     }
   ]
 }
