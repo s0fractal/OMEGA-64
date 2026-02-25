@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772038646060
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772038646225
@@ -291,6 +285,12 @@
       "text": "BREACH DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772038648805
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIFE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038649017
     }
   ]
 }
