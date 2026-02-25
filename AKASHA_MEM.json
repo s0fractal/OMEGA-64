@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM STABLE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772034476001
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772034476169
@@ -291,6 +285,12 @@
       "text": "DECAY STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772034483379
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME AWAKEN AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772034483576
     }
   ]
 }
