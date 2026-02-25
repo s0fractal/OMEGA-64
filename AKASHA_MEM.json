@@ -130,12 +130,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772022326839
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022327288
@@ -217,6 +211,12 @@
       "text": "IMMUNE WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022333038
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772022333994
     }
   ]
 }
