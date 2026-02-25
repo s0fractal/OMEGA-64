@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SEIZE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027614188
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772027615179
@@ -291,6 +285,12 @@
       "text": "STRIFE CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772027624544
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND AWAKEN FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772027625311
     }
   ]
 }
