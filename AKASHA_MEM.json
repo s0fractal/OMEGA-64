@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FORGE BEYOND EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772019956775
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE SEIZE STRIKE",
       "mood": "AGGRESSIVE",
@@ -130,6 +124,12 @@
       "text": "SHOCK BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772019969710
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE STRIFE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019970390
     }
   ]
 }
