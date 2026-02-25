@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06606060",
     "00660060",
     "60066006",
     "60060660",
@@ -199,15 +198,10 @@
     "FF0FFF00",
     "00600006",
     "66600600",
-    "00AAAAA0"
+    "00AAAAA0",
+    "60006060"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SEIZE BREACH SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033104586
-    },
     {
       "origin": "REVERSE",
       "text": "STABLE SYNC BLOOM",
@@ -291,6 +285,12 @@
       "text": "GIVING RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772033114018
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772033114261
     }
   ]
 }
