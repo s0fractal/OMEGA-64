@@ -128,12 +128,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022288414
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022288579
@@ -215,6 +209,12 @@
       "text": "IMMUNE SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022292810
+    },
+    {
+      "origin": "STREAM",
+      "text": "SYNC OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772022293050
     }
   ]
 }
