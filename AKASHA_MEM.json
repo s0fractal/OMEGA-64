@@ -107,12 +107,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021737683
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772021737844
@@ -194,6 +188,12 @@
       "text": "SYNC SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772021740490
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD PURE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021740606
     }
   ]
 }
