@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STABLE STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772041469583
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIFE SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041472881
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041473025
     }
   ]
 }
