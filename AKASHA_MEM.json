@@ -27,12 +27,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIFE CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019648305
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GUARD WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772019650312
@@ -114,6 +108,12 @@
       "text": "SHOCK BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772019658463
+    },
+    {
+      "origin": "STREAM",
+      "text": "UNIFY UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772019658883
     }
   ]
 }
