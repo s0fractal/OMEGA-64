@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_PROOF_OF_RESONANCE",
-      "text": "STABLE COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041820398
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE COHERE RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RESONATE GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772041826047
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER HUNGER SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041826211
     }
   ]
 }
