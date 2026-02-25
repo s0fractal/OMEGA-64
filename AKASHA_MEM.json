@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER BREACH BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041562397
-    },
-    {
       "origin": "STREAM",
       "text": "GUARD PURE SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772041565660
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "COHERE OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041565851
     }
   ]
 }
