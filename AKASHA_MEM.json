@@ -71,12 +71,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW OSMOSIS OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772020929262
-    },
-    {
       "origin": "INTERFACE",
       "text": "STABLE OSMOSIS GIVING",
       "mood": "HARMONIC",
@@ -159,6 +153,12 @@
       "text": "HUNGER DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772020936599
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "OSMOSIS STABLE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772020936788
     }
   ]
 }
