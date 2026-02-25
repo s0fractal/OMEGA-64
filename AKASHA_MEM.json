@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772032949941
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772032951015
@@ -291,6 +285,12 @@
       "text": "BEYOND BECOME VISION",
       "mood": "CREATIVE",
       "tick": 1772032957228
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772032957396
     }
   ]
 }
