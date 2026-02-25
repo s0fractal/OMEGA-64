@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT STASIS SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772036161922
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772036162139
@@ -291,6 +285,12 @@
       "text": "OSMOSIS OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772036164838
+    },
+    {
+      "origin": "REVERSE",
+      "text": "AWAKEN BECOME WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772036165042
     }
   ]
 }
