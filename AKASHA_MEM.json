@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "CONSUME DRAIN STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041667263
-    },
-    {
       "origin": "INTERFACE",
       "text": "UNIFY GIVING OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIFE BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041670754
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE RECON GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041671054
     }
   ]
 }
