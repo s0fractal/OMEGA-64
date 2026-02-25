@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772024112308
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER RECON SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "REFLECT RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772024115415
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772024115588
     }
   ]
 }
