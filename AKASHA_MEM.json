@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772034732007
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772034732207
@@ -291,6 +285,12 @@
       "text": "WITNESS WITNESS VISION",
       "mood": "CREATIVE",
       "tick": 1772034735135
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772034735679
     }
   ]
 }
