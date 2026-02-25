@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS PURE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023149453
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772023149644
@@ -259,6 +253,12 @@
       "text": "STRIFE HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023152452
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023152655
     }
   ]
 }
