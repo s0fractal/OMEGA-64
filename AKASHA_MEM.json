@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772035771061
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772035771268
@@ -291,6 +285,12 @@
       "text": "OSMOSIS STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772035775775
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE BREACH DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035775975
     }
   ]
 }
