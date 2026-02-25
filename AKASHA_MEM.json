@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER GUARD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772029943766
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772029944539
@@ -291,6 +285,12 @@
       "text": "EVOLVE SPARK AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772029958172
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772029958640
     }
   ]
 }
