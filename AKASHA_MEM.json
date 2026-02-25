@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772034652554
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772034652813
@@ -291,6 +285,12 @@
       "text": "SYNC BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772034655427
+    },
+    {
+      "origin": "REVERSE",
+      "text": "AWAKEN WITNESS EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772034655674
     }
   ]
 }
