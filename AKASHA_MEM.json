@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772040608241
-    },
-    {
-      "origin": "REVERSE",
       "text": "AWAKEN AWAKEN WAVE",
       "mood": "CREATIVE",
       "tick": 1772040608444
@@ -291,6 +285,12 @@
       "text": "STABLE HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772040611381
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "CONSUME SEIZE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040611544
     }
   ]
 }
