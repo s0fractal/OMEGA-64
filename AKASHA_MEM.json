@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WAIT SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042186819
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK STRIFE CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772042199192
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD WATCH SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772042201928
     }
   ]
 }
