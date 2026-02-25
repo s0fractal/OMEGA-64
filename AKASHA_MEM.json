@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "6A666660",
     "A0A0AAAA",
     "AAAA000A",
     "AA00A0A0",
@@ -199,15 +198,10 @@
     "A0000000",
     "0AA00A0A",
     "FF00FF00",
-    "AA0AA000"
+    "AA0AA000",
+    "A00AAA0A"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE COHERE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772025691959
-    },
     {
       "origin": "REVERSE",
       "text": "IMMUNE REFLECT STASIS",
@@ -291,6 +285,12 @@
       "text": "FLOW BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772025697193
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIKE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025697486
     }
   ]
 }
