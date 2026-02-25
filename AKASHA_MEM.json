@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "SUCC",
-      "text": "STRIFE STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041129974
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON IMMUNE SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772041133938
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH SHELTER SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041134093
     }
   ]
 }
