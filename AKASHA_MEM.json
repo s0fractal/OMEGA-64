@@ -50,12 +50,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STASIS IMMUNE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020285686
-    },
-    {
       "origin": "PARADOX",
       "text": "FORGE AWAKEN SPARK",
       "mood": "CREATIVE",
@@ -138,6 +132,12 @@
       "text": "SHIELD STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772020293332
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE RESONATE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772020293725
     }
   ]
 }
