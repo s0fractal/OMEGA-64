@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041929233
-    },
-    {
       "origin": "STREAM",
       "text": "HEAL GIVING BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SEIZE DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041934344
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WATCH REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041934918
     }
   ]
 }
