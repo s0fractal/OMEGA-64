@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE BLOOM HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772026126508
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE CONSUME STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIFE STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772026134239
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE VISION BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772026134446
     }
   ]
 }
