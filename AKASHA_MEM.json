@@ -44,12 +44,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020068277
-    },
-    {
       "origin": "REVERSE",
       "text": "SPARK EVOLVE AWAKEN",
       "mood": "CREATIVE",
@@ -132,6 +126,12 @@
       "text": "SYNC COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772020085626
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER CONSUME STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020086475
     }
   ]
 }
