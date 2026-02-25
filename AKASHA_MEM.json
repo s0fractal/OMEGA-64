@@ -163,12 +163,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE IMMUNE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022955279
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON WATCH SHELTER",
       "mood": "DEFENSIVE",
@@ -251,6 +245,12 @@
       "text": "HUNGER CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022959288
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHELTER PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022959683
     }
   ]
 }
