@@ -110,12 +110,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH RECON GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021885438
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772021885689
@@ -197,6 +191,12 @@
       "text": "SYNC SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772021893485
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM COHERE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772021893651
     }
   ]
 }
