@@ -101,12 +101,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH DRAIN DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021627389
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE DECAY DRAIN",
       "mood": "AGGRESSIVE",
@@ -189,6 +183,12 @@
       "text": "STRIFE STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021632799
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER BREACH STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021632981
     }
   ]
 }
