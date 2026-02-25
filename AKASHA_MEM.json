@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "IMMUNE REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041400009
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GUARD WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041400184
@@ -291,6 +285,12 @@
       "text": "SYNC BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041403872
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH SICKNESS HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041404274
     }
   ]
 }
