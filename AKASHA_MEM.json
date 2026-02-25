@@ -50,12 +50,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WAIT WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772020237190
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "CONSUME STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020237811
@@ -137,6 +131,12 @@
       "text": "STASIS SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020245280
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WAIT RECON IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020246119
     }
   ]
 }
