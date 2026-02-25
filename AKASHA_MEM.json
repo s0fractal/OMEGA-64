@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY UNIFY UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772035104416
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772035104628
@@ -291,6 +285,12 @@
       "text": "WITNESS FORGE BEYOND",
       "mood": "CREATIVE",
       "tick": 1772035107449
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DECAY CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035107633
     }
   ]
 }
