@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAA0AAA0",
     "0AA0AAAA",
     "66666660",
     "AAAA0A0A",
@@ -199,15 +198,10 @@
     "00066600",
     "BBB00000",
     "00600600",
-    "60006600"
+    "60006600",
+    "00660000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STASIS RECON STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772025273682
-    },
     {
       "origin": "REVERSE",
       "text": "FLOW FLOW HEAL",
@@ -291,6 +285,12 @@
       "text": "STASIS SHELTER SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772025281551
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS RESONATE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772025281741
     }
   ]
 }
