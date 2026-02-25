@@ -79,12 +79,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SPARK SPARK BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772021059435
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772021059549
@@ -166,6 +160,12 @@
       "text": "STABLE SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772021065603
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WAIT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772021066194
     }
   ]
 }
