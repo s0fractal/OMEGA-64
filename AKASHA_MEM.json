@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK SICKNESS SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025541126
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772025541688
@@ -291,6 +285,12 @@
       "text": "FORGE AWAKEN DREAM",
       "mood": "CREATIVE",
       "tick": 1772025545665
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS RECON PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772025546775
     }
   ]
 }
