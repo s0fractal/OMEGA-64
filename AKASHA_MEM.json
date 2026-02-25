@@ -153,12 +153,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC HEAL BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772022593491
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022593944
@@ -240,6 +234,12 @@
       "text": "BREACH STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772022599072
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION BEYOND BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772022599451
     }
   ]
 }
