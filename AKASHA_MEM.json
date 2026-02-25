@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS HUNGER HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038306374
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772038306597
@@ -291,6 +285,12 @@
       "text": "STASIS STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772038309838
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD IMMUNE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772038310070
     }
   ]
 }
