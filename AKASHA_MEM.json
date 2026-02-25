@@ -102,12 +102,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHOCK BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021664638
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIKE SEIZE DECAY",
       "mood": "AGGRESSIVE",
@@ -190,6 +184,12 @@
       "text": "DECAY DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021672640
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIFE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021672793
     }
   ]
 }
