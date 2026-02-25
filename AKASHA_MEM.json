@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "DECAY STRIFE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041046278
-    },
-    {
       "origin": "PARASITE",
       "text": "SHIELD WATCH WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772041049427
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY OSMOSIS UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772041049553
     }
   ]
 }
