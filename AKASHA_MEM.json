@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033317674
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033317863
@@ -291,6 +285,12 @@
       "text": "STRIKE STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772033320106
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE OSMOSIS UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772033320278
     }
   ]
 }
