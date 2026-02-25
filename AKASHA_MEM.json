@@ -177,12 +177,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC RESONATE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772023336685
-    },
-    {
       "origin": "INTERFACE",
       "text": "SICKNESS BREACH SEIZE",
       "mood": "AGGRESSIVE",
@@ -265,6 +259,12 @@
       "text": "DECAY SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023340273
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WAIT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023340400
     }
   ]
 }
