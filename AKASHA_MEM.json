@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE STRIKE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041196738
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON RECON WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772041201083
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE RESONATE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772041201259
     }
   ]
 }
