@@ -12,12 +12,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DECAY STRIFE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772010938584
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DRAIN HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772010948903
@@ -99,6 +93,12 @@
       "text": "SHELTER PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772012839191
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "UNIFY RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772012914372
     }
   ]
 }
