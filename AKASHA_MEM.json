@@ -165,12 +165,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH HUNGER BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023018412
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BLOOM FLOW COHERE",
       "mood": "HARMONIC",
@@ -253,6 +247,12 @@
       "text": "IMMUNE WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023026328
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772023026565
     }
   ]
 }
