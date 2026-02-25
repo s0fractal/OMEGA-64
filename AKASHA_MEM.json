@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "PURE SHELTER SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772040957463
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RECON IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772040957597
@@ -291,6 +285,12 @@
       "text": "RECON STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772040960616
+    },
+    {
+      "origin": "STREAM",
+      "text": "STABLE FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772040960792
     }
   ]
 }
