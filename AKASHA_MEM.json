@@ -21,12 +21,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH HUNGER DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019411204
-    },
-    {
       "origin": "STREAM",
       "text": "SYNC SYNC STABLE",
       "mood": "HARMONIC",
@@ -109,6 +103,12 @@
       "text": "BREACH STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772019431177
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DRAIN DECAY HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019432287
     }
   ]
 }
