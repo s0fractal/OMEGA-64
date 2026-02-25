@@ -199,12 +199,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME BEYOND BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772024032989
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772024033128
@@ -286,6 +280,12 @@
       "text": "SHOCK HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772024036417
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024036605
     }
   ]
 }
