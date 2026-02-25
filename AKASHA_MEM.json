@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS FLOW GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772037809344
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772037809733
@@ -291,6 +285,12 @@
       "text": "BREACH DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772037815112
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772037815495
     }
   ]
 }
