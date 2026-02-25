@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STASIS GUARD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772040543598
-    },
-    {
       "origin": "STREAM",
       "text": "DRAIN SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WATCH SHIELD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772040546013
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN DECAY DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040546135
     }
   ]
 }
