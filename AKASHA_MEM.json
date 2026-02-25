@@ -145,12 +145,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022507234
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIKE HUNGER STRIKE",
       "mood": "AGGRESSIVE",
@@ -233,6 +227,12 @@
       "text": "SHIELD IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022511477
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK BEYOND AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772022511663
     }
   ]
 }
