@@ -154,12 +154,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BEYOND AWAKEN FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772022603394
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022603552
@@ -241,6 +235,12 @@
       "text": "WAVE WAVE EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772022607232
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022607347
     }
   ]
 }
