@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE FLOW FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772040970576
-    },
-    {
       "origin": "INTERFACE",
       "text": "RESONATE BLOOM SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHELTER STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772040973186
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DRAIN BREACH CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040973406
     }
   ]
 }
