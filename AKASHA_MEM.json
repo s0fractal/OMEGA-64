@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00000000",
     "66A666A0",
     "60606000",
     "60666600",
@@ -199,15 +198,10 @@
     "06666060",
     "A0AA0000",
     "AA00AA00",
-    "AAA00000"
+    "AAA00000",
+    "BB0B0000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "UNIFY RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772034113838
-    },
     {
       "origin": "REVERSE",
       "text": "STASIS RECON WATCH",
@@ -291,6 +285,12 @@
       "text": "PURE RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772034116468
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034116655
     }
   ]
 }
