@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772023171232
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023173136
@@ -259,6 +253,12 @@
       "text": "PURE PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023178382
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023178561
     }
   ]
 }
