@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER PURE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772025999075
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772025999300
@@ -291,6 +285,12 @@
       "text": "RECON WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772026004786
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772026004995
     }
   ]
 }
