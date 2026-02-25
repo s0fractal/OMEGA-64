@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DRAIN STRIFE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041640447
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "UNIFY SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772041640714
@@ -291,6 +285,12 @@
       "text": "SYNC SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772041643804
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041643940
     }
   ]
 }
