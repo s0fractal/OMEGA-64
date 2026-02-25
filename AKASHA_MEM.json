@@ -45,12 +45,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SPARK EVOLVE AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772020069286
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772020069487
@@ -132,6 +126,12 @@
       "text": "HUNGER CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772020086475
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE STASIS GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020087434
     }
   ]
 }
