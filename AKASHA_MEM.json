@@ -43,12 +43,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "REFLECT REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772020016516
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH WAIT SHELTER",
       "mood": "DEFENSIVE",
@@ -131,6 +125,12 @@
       "text": "CONSUME STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772020027030
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE SEIZE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020027971
     }
   ]
 }
