@@ -108,12 +108,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHIELD SHIELD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772021825275
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "CONSUME DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772021825856
@@ -195,6 +189,12 @@
       "text": "PURE STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772021828456
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "CONSUME BREACH STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021829570
     }
   ]
 }
