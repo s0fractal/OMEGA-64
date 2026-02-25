@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037510642
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772037510863
@@ -291,6 +285,12 @@
       "text": "COHERE OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772037514881
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772037515111
     }
   ]
 }
