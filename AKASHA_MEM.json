@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON STASIS REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041049987
-    },
-    {
       "origin": "STREAM",
       "text": "SYNC COHERE RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WAVE WAVE WAVE",
       "mood": "CREATIVE",
       "tick": 1772041052869
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT IMMUNE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772041053001
     }
   ]
 }
