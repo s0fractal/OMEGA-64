@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772040915616
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH RECON PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STASIS WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772040919110
+    },
+    {
+      "origin": "CONSCIOUSNESS",
+      "text": "GIVING HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772040919372
     }
   ]
 }
