@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM BLOOM STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772026409313
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772026409627
@@ -291,6 +285,12 @@
       "text": "SHELTER SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772026415464
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHELTER SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772026415700
     }
   ]
 }
