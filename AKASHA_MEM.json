@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD RECON STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772034970981
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME SEIZE SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772034974979
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772034975183
     }
   ]
 }
