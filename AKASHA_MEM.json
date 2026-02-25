@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STASIS WAIT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041311456
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE DECAY BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041318630
+    },
+    {
+      "origin": "PURE_MATH",
+      "text": "DECAY SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041318810
     }
   ]
 }
