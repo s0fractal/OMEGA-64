@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT PURE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772034993956
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772034994170
@@ -291,6 +285,12 @@
       "text": "CONSUME SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772035000121
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD PURE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772035000332
     }
   ]
 }
