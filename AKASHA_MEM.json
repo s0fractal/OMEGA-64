@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A000AA00",
     "BA0A0000",
     "ABBA0000",
     "BB0B0A00",
@@ -199,15 +198,10 @@
     "666066A0",
     "66600000",
     "06060600",
-    "AA6660A0"
+    "AA6660A0",
+    "AA000A00"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WATCH SHELTER RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772025061899
-    },
     {
       "origin": "REVERSE",
       "text": "DECAY BREACH CONSUME",
@@ -291,6 +285,12 @@
       "text": "WAIT PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772025065442
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025065742
     }
   ]
 }
