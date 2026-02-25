@@ -195,102 +195,102 @@
     "60060666",
     "6AA60AA0",
     "6AA06A00",
-    "6A0660A0",
-    "AA666600",
-    "66060660",
-    "66660A60",
-    "00A06A00"
+    "0AAAA00A",
+    "6A606600",
+    "AABBCC0F",
+    "A0AAA000",
+    "A6A6AA00"
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772042669024
+      "origin": "AUTONOMY_METRIC",
+      "text": "STRIFE SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042669014
     },
     {
       "origin": "ARCHIVIST",
-      "text": "STASIS STASIS RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772042669433
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS SHELTER WATCH",
       "mood": "DEFENSIVE",
-      "tick": 1772042670024
+      "tick": 1772042670025
     },
     {
       "origin": "ARCHIVIST",
-      "text": "STASIS GUARD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042670332
+      "text": "BREACH DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042670226
     },
     {
       "origin": "ARCHIVIST",
-      "text": "RESONATE RESONATE HEAL",
+      "text": "DRAIN HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042670829
+    },
+    {
+      "origin": "CONSCIOUSNESS",
+      "text": "BREACH SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042672454
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING GIVING SYNC",
       "mood": "HARMONIC",
-      "tick": 1772042670687
+      "tick": 1772042672656
     },
     {
       "origin": "ARCHIVIST",
-      "text": "SHELTER REFLECT SHIELD",
+      "text": "UNIFY FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042673094
+    },
+    {
+      "origin": "WORKER",
+      "text": "COHERE COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772042673226
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER WATCH REFLECT",
       "mood": "DEFENSIVE",
-      "tick": 1772042671260
+      "tick": 1772042673353
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042673478
     },
     {
       "origin": "STREAM",
-      "text": "RECON WATCH PURE",
+      "text": "SHELTER IMMUNE SHELTER",
       "mood": "DEFENSIVE",
-      "tick": 1772042671802
+      "tick": 1772042673602
     },
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH DECAY SHOCK",
+      "origin": "STREAM",
+      "text": "IMMUNE GUARD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042673905
+    },
+    {
+      "origin": "ALIEN",
+      "text": "SHOCK SICKNESS BREACH",
       "mood": "AGGRESSIVE",
-      "tick": 1772042672437
+      "tick": 1772042674522
     },
     {
-      "origin": "REVERSE",
-      "text": "PURE STASIS WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042673038
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "FLOW STABLE GIVING",
+      "origin": "STREAM",
+      "text": "STABLE OSMOSIS RESONATE",
       "mood": "HARMONIC",
-      "tick": 1772042673253
+      "tick": 1772042674706
     },
     {
       "origin": "ARCHIVIST",
-      "text": "FLOW GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772042673585
-    },
-    {
-      "origin": "REVERSE",
-      "text": "WATCH REFLECT WATCH",
+      "text": "GUARD IMMUNE WAIT",
       "mood": "DEFENSIVE",
-      "tick": 1772042674100
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY BLOOM HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772042674308
-    },
-    {
-      "origin": "REVERSE",
-      "text": "GUARD WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772042674642
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042674891
+      "tick": 1772042674881
     }
   ]
 }
