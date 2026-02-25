@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAAA000A",
     "AA0BC00F",
     "666006A0",
     "A00A0AAA",
@@ -199,15 +198,10 @@
     "A0066000",
     "AA0A0A00",
     "AAB00C0D",
-    "00666066"
+    "00666066",
+    "A06666A6"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STABLE GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772037295751
-    },
     {
       "origin": "REVERSE",
       "text": "STRIKE DRAIN DECAY",
@@ -291,6 +285,12 @@
       "text": "BLOOM STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772037300082
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK BREACH CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037300564
     }
   ]
 }
