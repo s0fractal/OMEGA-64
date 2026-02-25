@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772025738199
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772025738436
@@ -291,6 +285,12 @@
       "text": "BREACH STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772025745392
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHELTER SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772025746203
     }
   ]
 }
