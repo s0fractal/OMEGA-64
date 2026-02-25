@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE STABLE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040551754
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772040551925
@@ -291,6 +285,12 @@
       "text": "STASIS WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772040555039
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH BREACH STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040555166
     }
   ]
 }
