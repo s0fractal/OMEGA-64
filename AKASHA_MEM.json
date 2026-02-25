@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHIELD WAIT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041968553
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY STRIFE SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772041974694
+    },
+    {
+      "origin": "STREAM",
+      "text": "WAIT IMMUNE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772041975257
     }
   ]
 }
