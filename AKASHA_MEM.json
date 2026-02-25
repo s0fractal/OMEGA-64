@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030527918
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772030528636
@@ -291,6 +285,12 @@
       "text": "OSMOSIS SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772030542729
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY STRIFE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030543199
     }
   ]
 }
