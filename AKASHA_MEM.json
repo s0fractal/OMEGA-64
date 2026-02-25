@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BREACH HUNGER HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019534705
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK DECAY DECAY",
       "mood": "AGGRESSIVE",
@@ -111,6 +105,12 @@
       "text": "RESONATE COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772019543533
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019544406
     }
   ]
 }
