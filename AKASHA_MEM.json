@@ -115,12 +115,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY FLOW OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772021989963
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772021990178
@@ -202,6 +196,12 @@
       "text": "RESONATE UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772021997951
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021998286
     }
   ]
 }
