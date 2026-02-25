@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER STRIKE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022248270
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772022248995
@@ -213,6 +207,12 @@
       "text": "BECOME EVOLVE BEYOND",
       "mood": "CREATIVE",
       "tick": 1772022252972
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022253143
     }
   ]
 }
