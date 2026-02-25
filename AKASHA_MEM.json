@@ -116,12 +116,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772022063856
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022064232
@@ -203,6 +197,12 @@
       "text": "GIVING COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022069850
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND FORGE VISION",
+      "mood": "CREATIVE",
+      "tick": 1772022070030
     }
   ]
 }
