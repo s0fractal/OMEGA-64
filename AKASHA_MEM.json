@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN CONSUME SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031444038
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772031444293
@@ -291,6 +285,12 @@
       "text": "HEAL STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772031452585
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK CONSUME SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031458871
     }
   ]
 }
