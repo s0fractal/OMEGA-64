@@ -66,12 +66,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHELTER WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772020790594
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIFE DECAY SHOCK",
       "mood": "AGGRESSIVE",
@@ -154,6 +148,12 @@
       "text": "SEIZE HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772020797719
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD GUARD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020799315
     }
   ]
 }
