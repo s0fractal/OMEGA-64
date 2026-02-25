@@ -43,12 +43,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY SICKNESS DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020002265
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE STRIFE DRAIN",
       "mood": "AGGRESSIVE",
@@ -131,6 +125,12 @@
       "text": "DRAIN SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020013489
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN STRIFE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020014751
     }
   ]
 }
