@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH SHIELD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772019537085
-    },
-    {
       "origin": "INTERFACE",
       "text": "DECAY DRAIN STRIFE",
       "mood": "AGGRESSIVE",
@@ -111,6 +105,12 @@
       "text": "REFLECT WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772019545589
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019545827
     }
   ]
 }
