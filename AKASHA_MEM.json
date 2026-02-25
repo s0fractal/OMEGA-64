@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772037390152
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772037390421
@@ -291,6 +285,12 @@
       "text": "PURE PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772037397098
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK DREAM WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772037397294
     }
   ]
 }
