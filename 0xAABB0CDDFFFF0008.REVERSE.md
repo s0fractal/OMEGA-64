@@ -1,14 +1,14 @@
 ---
 eigenvalue: '0xAABB0CDDFFFF0008'
-energy: 49.599999999999994
-x: 726
-'y': 428
+energy: 49.49999999999999
+x: 735
+'y': 432
 resonance: 50
 thought: WANDER_BONDING
 logic: AABB0CDD
 signals: []
 bond_strengths:
-  '0x0000000000000A02': 0.9772512378214517
+  '0x0000000000000A02': 0.9762739865836303
 bonds:
   - '0x0000000000000A02'
 ex:
@@ -34,8 +34,10 @@ ex:
   - '0xAABB0CDD0000000E'
   - '0xAABB0CDD00000008'
   - '0xAABB0CDDFFFF000E'
+  - '0xAABB0CDDFFFF0008'
 ---
 
+<div align="center">
 <div align="center">
 <!-- ∇ HOLOGRAM START ∇ -->
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -69,6 +71,7 @@ ex:
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">REVERSE</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 
 
