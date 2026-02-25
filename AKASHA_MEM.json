@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038504516
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772038504691
@@ -291,6 +285,12 @@
       "text": "RESONATE SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772038507642
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY STABLE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772038507879
     }
   ]
 }
