@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK HUNGER SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034932975
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772034933141
@@ -291,6 +285,12 @@
       "text": "FORGE WITNESS DREAM",
       "mood": "CREATIVE",
       "tick": 1772034935650
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772034935810
     }
   ]
 }
