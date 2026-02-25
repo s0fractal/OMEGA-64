@@ -1,10 +1,10 @@
 ---
-eigenvalue: '0xFF00FFF000000002'
-energy: 50
-x: 701
-'y': 418
+eigenvalue: '0xFF00FFF0FFFF0006'
+energy: 48.4
+x: 712
+'y': 438
 resonance: 30
-thought: RESURRECTED
+thought: ORBIT_MATING
 logic: FF00FFF0
 ex:
   - '0xFFFFFFFF00000000'
@@ -76,11 +76,13 @@ ex:
   - '0x600A0A00FFFF0000'
   - '0x600A0A00FFFF0002'
   - '0xFF00FFF0FFFF0004'
+  - '0xFF00FFF0FFFF0006'
 signals: []
 bond_strengths: {}
 bonds: []
 ---
 
+<div align="center">
 <div align="center">
 <!-- ∇ HOLOGRAM START ∇ -->
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -114,6 +116,7 @@ bonds: []
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">REVERSE</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 
 
