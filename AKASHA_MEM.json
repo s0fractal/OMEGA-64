@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE PURE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772034210600
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772034210810
@@ -291,6 +285,12 @@
       "text": "BECOME WAVE WITNESS",
       "mood": "CREATIVE",
       "tick": 1772034213495
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772034213709
     }
   ]
 }
