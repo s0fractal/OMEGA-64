@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "FLOW FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040993629
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE SYNC COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SEIZE DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772040996890
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT STASIS PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040997091
     }
   ]
 }
