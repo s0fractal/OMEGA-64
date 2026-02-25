@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772032114575
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772032115342
@@ -291,6 +285,12 @@
       "text": "SYNC UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772032133969
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS BREACH STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032134894
     }
   ]
 }
