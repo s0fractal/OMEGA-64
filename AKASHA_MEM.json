@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HEAL OSMOSIS SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772040824359
-    },
-    {
       "origin": "STREAM",
       "text": "SYNC SYNC HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772040828424
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040828763
     }
   ]
 }
