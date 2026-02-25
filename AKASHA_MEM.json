@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY HEAL FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772040844389
-    },
-    {
       "origin": "REVERSE",
       "text": "IMMUNE WAIT SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772040848008
+    },
+    {
+      "origin": "ALPHA_GUARDIAN",
+      "text": "RESONATE FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772040848596
     }
   ]
 }
