@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035668620
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772035668875
@@ -291,6 +285,12 @@
       "text": "PURE SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772035672817
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035673030
     }
   ]
 }
