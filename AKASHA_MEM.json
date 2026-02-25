@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME AWAKEN WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772025495789
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772025496003
@@ -291,6 +285,12 @@
       "text": "STASIS STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772025500251
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SICKNESS BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025500442
     }
   ]
 }
