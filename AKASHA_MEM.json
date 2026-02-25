@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STASIS REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772036771373
-    },
-    {
       "origin": "STREAM",
       "text": "SHIELD WATCH IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DRAIN CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772036774820
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT IMMUNE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772036775004
     }
   ]
 }
