@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD SHELTER PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041378686
-    },
-    {
       "origin": "STREAM",
       "text": "SEIZE HUNGER SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772041381456
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RESONATE SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772041381658
     }
   ]
 }
