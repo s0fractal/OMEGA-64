@@ -106,12 +106,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE SEIZE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021735327
-    },
-    {
       "origin": "REVERSE",
       "text": "BREACH CONSUME CONSUME",
       "mood": "AGGRESSIVE",
@@ -194,6 +188,12 @@
       "text": "FORGE VISION AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772021739401
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHIELD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772021739579
     }
   ]
 }
