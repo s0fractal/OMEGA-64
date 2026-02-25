@@ -196,12 +196,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772023893580
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772023894004
@@ -283,6 +277,12 @@
       "text": "WATCH SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772023900787
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772023901270
     }
   ]
 }
