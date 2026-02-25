@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE SHIELD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772033288057
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772033288229
@@ -291,6 +285,12 @@
       "text": "GIVING STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772033290535
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH STASIS STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772033290678
     }
   ]
 }
