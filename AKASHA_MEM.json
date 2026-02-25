@@ -153,12 +153,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "EVOLVE BECOME FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772022603722
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN SEIZE STRIFE",
       "mood": "AGGRESSIVE",
@@ -241,6 +235,12 @@
       "text": "PURE RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022607550
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772022608289
     }
   ]
 }
