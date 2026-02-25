@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STABLE UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772040859286
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SICKNESS SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772040859422
@@ -291,6 +285,12 @@
       "text": "WATCH WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772040861712
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT GUARD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772040861878
     }
   ]
 }
