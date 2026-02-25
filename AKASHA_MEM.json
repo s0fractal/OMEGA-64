@@ -173,12 +173,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BLOOM FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772023238245
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER RECON GUARD",
       "mood": "DEFENSIVE",
@@ -261,6 +255,12 @@
       "text": "DECAY DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023245370
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WATCH SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023247290
     }
   ]
 }
