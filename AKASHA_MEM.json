@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH RECON WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772034738407
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE OSMOSIS GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WAIT WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772034743797
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM STABLE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772034744067
     }
   ]
 }
