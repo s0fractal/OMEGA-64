@@ -71,12 +71,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHOCK STRIKE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020912048
-    },
-    {
       "origin": "REVERSE",
       "text": "IMMUNE RECON IMMUNE",
       "mood": "DEFENSIVE",
@@ -159,6 +153,12 @@
       "text": "RESONATE HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772020917614
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM SYNC FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772020917766
     }
   ]
 }
