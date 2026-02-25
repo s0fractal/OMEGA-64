@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM FLOW OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772041492064
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE RESONATE RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RESONATE STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772041495752
+    },
+    {
+      "origin": "CAR",
+      "text": "GUARD STASIS WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772041495930
     }
   ]
 }
