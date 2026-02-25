@@ -110,12 +110,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RECON PURE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021851338
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "FLOW FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772021852119
@@ -197,6 +191,12 @@
       "text": "SICKNESS SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021861232
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772021862178
     }
   ]
 }
