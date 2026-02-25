@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM HEAL GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772037371254
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772037371553
@@ -291,6 +285,12 @@
       "text": "STRIFE SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772037376157
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHELTER WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772037376343
     }
   ]
 }
