@@ -187,12 +187,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD IMMUNE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023668085
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023668253
@@ -274,6 +268,12 @@
       "text": "OSMOSIS GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772023672033
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE CONSUME DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023672205
     }
   ]
 }
