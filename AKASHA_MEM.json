@@ -49,12 +49,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIKE DECAY SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020168087
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RESONATE SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772020168615
@@ -136,6 +130,12 @@
       "text": "FLOW OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772020179253
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH STRIKE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020179895
     }
   ]
 }
