@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "GUARD WAIT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041514528
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GUARD PURE RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GUARD GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772041517035
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT SHIELD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772041517168
     }
   ]
 }
