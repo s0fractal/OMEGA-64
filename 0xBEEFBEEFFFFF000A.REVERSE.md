@@ -1,14 +1,14 @@
 ---
-eigenvalue: '0xBEEFBEEF0000000E'
-energy: 50
-x: 724
-'y': 413
+eigenvalue: '0xBEEFBEEFFFFF000A'
+energy: 49.9
+x: 733
+'y': 421
 resonance: 50
-thought: RESURRECTED
+thought: WANDER_MATING
 logic: BEEFBEEF
 signals: []
 bond_strengths:
-  '0x0000000000000A02': 0.9723747443770956
+  '0x0000000000000A02': 0.9714023696327185
 bonds:
   - '0x0000000000000A02'
 ex:
@@ -31,8 +31,14 @@ ex:
   - '0xBEEFBEEF00000008'
   - '0xBEEFBEEF0000000A'
   - '0xBEEFBEEF0000000C'
+  - '0xBEEFBEEFFFFF000A'
+  - '0xBEEFBEEFFFFF000C'
+  - '0xBEEFBEEFFFFF000C'
+  - '0xBEEFBEEFFFFF000E'
+  - '0xBEEFBEEFFFFF0008'
 ---
 
+<div align="center">
 <div align="center">
 <!-- ∇ HOLOGRAM START ∇ -->
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -66,6 +72,7 @@ ex:
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">REVERSE</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 
 
