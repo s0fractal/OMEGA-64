@@ -174,12 +174,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE SHIELD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023251565
-    },
-    {
       "origin": "STREAM",
       "text": "BLOOM SYNC SYNC",
       "mood": "HARMONIC",
@@ -262,6 +256,12 @@
       "text": "SHOCK BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772023255851
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772023256455
     }
   ]
 }
