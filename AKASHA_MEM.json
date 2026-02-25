@@ -159,12 +159,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL BLOOM HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772022772039
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772022772367
@@ -246,6 +240,12 @@
       "text": "UNIFY UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022780129
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS FORGE WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772022780316
     }
   ]
 }
