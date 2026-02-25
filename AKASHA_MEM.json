@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SEIZE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035422573
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772035422782
@@ -291,6 +285,12 @@
       "text": "SYNC HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772035426575
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772035426887
     }
   ]
 }
