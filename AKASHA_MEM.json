@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0AA0AAAA",
     "66666660",
     "AAAA0A0A",
     "AA6666A6",
@@ -199,15 +198,10 @@
     "BBB00000",
     "00600600",
     "60006600",
-    "00660000"
+    "00660000",
+    "00A0AA0A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHIELD STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772025274141
-    },
     {
       "origin": "REVERSE",
       "text": "WITNESS WAVE BEYOND",
@@ -291,6 +285,12 @@
       "text": "DRAIN SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772025282020
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772025283005
     }
   ]
 }
