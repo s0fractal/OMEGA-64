@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIFE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034145959
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND EVOLVE BEYOND",
       "mood": "CREATIVE",
       "tick": 1772034146124
@@ -291,6 +285,12 @@
       "text": "PURE WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772034148664
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034148893
     }
   ]
 }
