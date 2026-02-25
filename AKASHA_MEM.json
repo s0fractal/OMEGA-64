@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032404825
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772032408034
@@ -291,6 +285,12 @@
       "text": "DREAM DREAM BECOME",
       "mood": "CREATIVE",
       "tick": 1772032420093
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772032428232
     }
   ]
 }
