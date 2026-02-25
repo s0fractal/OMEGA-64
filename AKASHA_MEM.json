@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "RECON GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772041179094
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS STRIFE CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772041182253
+    },
+    {
+      "origin": "STREAM",
+      "text": "HEAL BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041182702
     }
   ]
 }
