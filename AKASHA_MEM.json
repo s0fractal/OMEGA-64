@@ -47,15 +47,10 @@
     "BB0B0A00",
     "66666000",
     "AAA0AAAA",
-    "66AA66A0"
+    "66AA66A0",
+    "0A000A00"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHOCK CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020330920
-    },
     {
       "origin": "ARCHIVIST",
       "text": "STRIKE STRIKE BREACH",
@@ -139,6 +134,12 @@
       "text": "DECAY SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020337568
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM RESONATE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772020338451
     }
   ]
 }
