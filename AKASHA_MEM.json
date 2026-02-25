@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "CONSUME BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030039791
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY BLOOM COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "COHERE GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772030056410
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE UNIFY SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772030057038
     }
   ]
 }
