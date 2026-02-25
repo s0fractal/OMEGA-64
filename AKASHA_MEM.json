@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66AA66A0",
     "0A000A00",
     "AB000000",
     "6A00A000",
@@ -199,15 +198,10 @@
     "AA00A000",
     "66606660",
     "A0666660",
-    "A00A0AAA"
+    "A00A0AAA",
+    "A0000A00"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GUARD SHELTER IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772025129738
-    },
     {
       "origin": "REVERSE",
       "text": "STASIS REFLECT PURE",
@@ -291,6 +285,12 @@
       "text": "UNIFY UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772025135377
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS CONSUME SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025135556
     }
   ]
 }
