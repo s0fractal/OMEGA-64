@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BREACH SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772016737169
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE SEIZE SEIZE",
       "mood": "AGGRESSIVE",
@@ -107,6 +101,12 @@
       "text": "OSMOSIS FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772016844491
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DECAY CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772016849116
     }
   ]
 }
