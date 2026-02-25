@@ -47,12 +47,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "PURE PURE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020114653
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SEIZE SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020115960
@@ -134,6 +128,12 @@
       "text": "SHOCK SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020127165
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY RESONATE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772020127709
     }
   ]
 }
