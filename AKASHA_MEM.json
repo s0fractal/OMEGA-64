@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037088448
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772037088842
@@ -291,6 +285,12 @@
       "text": "OSMOSIS GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772037092213
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SEIZE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037092496
     }
   ]
 }
