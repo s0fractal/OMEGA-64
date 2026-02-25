@@ -72,12 +72,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020935619
-    },
-    {
       "origin": "REVERSE",
       "text": "BEYOND FORGE SPARK",
       "mood": "CREATIVE",
@@ -160,6 +154,12 @@
       "text": "BLOOM RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772020940677
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW FLOW GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772020941138
     }
   ]
 }
