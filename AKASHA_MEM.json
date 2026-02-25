@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035403331
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772035403596
@@ -291,6 +285,12 @@
       "text": "SHELTER GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772035408553
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON STASIS WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772035408720
     }
   ]
 }
