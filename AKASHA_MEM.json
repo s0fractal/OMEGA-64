@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC FLOW BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772026312340
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772026312608
@@ -291,6 +285,12 @@
       "text": "SHELTER REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772026317319
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772026317556
     }
   ]
 }
