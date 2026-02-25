@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038659188
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772038659813
@@ -291,6 +285,12 @@
       "text": "RESONATE FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038662562
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038662769
     }
   ]
 }
