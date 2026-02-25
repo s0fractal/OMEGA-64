@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE GUARD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772025439294
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS GIVING BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WAIT REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772025445777
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL BLOOM STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772025446041
     }
   ]
 }
