@@ -142,12 +142,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772022456852
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022457049
@@ -229,6 +223,12 @@
       "text": "DECAY SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022462288
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022462452
     }
   ]
 }
