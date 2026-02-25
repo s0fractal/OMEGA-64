@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039752697
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772039755150
@@ -291,6 +285,12 @@
       "text": "OSMOSIS HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772039805023
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WATCH SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772039805472
     }
   ]
 }
