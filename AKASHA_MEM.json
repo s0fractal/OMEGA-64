@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772038226525
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772038226765
@@ -291,6 +285,12 @@
       "text": "BREACH SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772038231823
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY SYNC HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772038232015
     }
   ]
 }
