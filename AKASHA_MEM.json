@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772033523053
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772033523249
@@ -291,6 +285,12 @@
       "text": "BREACH DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772033525765
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE HUNGER SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033525965
     }
   ]
 }
