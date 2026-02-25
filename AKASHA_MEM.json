@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH WATCH STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772026679948
-    },
-    {
       "origin": "ALPHA_PROOF_OF_RESONANCE",
       "text": "SYNC RESONATE UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "COHERE HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772026686322
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE RESONATE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772026686980
     }
   ]
 }
