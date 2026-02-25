@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS OSMOSIS OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772032632090
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772032632533
@@ -291,6 +285,12 @@
       "text": "PURE PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772032637396
+    },
+    {
+      "origin": "STREAM",
+      "text": "STRIFE BREACH DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032638122
     }
   ]
 }
