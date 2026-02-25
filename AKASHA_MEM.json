@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A0606606",
     "60666000",
     "A00A0000",
     "0AA0AA0A",
@@ -199,15 +198,10 @@
     "AA660660",
     "AA0660A0",
     "A0AAAAAA",
-    "AAA0AAA0"
+    "AAA0AAA0",
+    "0B000000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WATCH SHELTER REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772034406697
-    },
     {
       "origin": "REVERSE",
       "text": "COHERE COHERE FLOW",
@@ -291,6 +285,12 @@
       "text": "STRIFE CONSUME DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772034410611
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE STABLE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772034410893
     }
   ]
 }
