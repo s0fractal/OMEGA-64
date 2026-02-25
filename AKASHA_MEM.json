@@ -120,12 +120,6 @@
   "utterances": [
     {
       "origin": "STREAM",
-      "text": "RESONATE BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772022094583
-    },
-    {
-      "origin": "STREAM",
       "text": "GIVING COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772022096057
@@ -207,6 +201,12 @@
       "text": "FLOW BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772022101996
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WATCH WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022102286
     }
   ]
 }
