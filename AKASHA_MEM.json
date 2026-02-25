@@ -104,12 +104,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BECOME SPARK SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772021695225
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD WAIT WATCH",
       "mood": "DEFENSIVE",
@@ -192,6 +186,12 @@
       "text": "HEAL COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772021700562
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH WAIT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021700856
     }
   ]
 }
