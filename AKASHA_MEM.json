@@ -199,12 +199,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WAIT WATCH REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772024043498
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS CONSUME CONSUME",
       "mood": "AGGRESSIVE",
@@ -287,6 +281,12 @@
       "text": "GUARD STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772024048349
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE EVOLVE AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772024048731
     }
   ]
 }
