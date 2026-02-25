@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772025338332
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT WAIT RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772025344018
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772025344204
     }
   ]
 }
