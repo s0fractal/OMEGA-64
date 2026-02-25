@@ -82,12 +82,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER DRAIN STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021147482
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN STRIFE STRIFE",
       "mood": "AGGRESSIVE",
@@ -170,6 +164,12 @@
       "text": "SICKNESS STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772021152343
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772021152473
     }
   ]
 }
