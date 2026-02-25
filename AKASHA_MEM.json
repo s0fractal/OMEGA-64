@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE OSMOSIS BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772028129238
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772028129892
@@ -291,6 +285,12 @@
       "text": "SICKNESS SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772028139252
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS HEAL RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772028139824
     }
   ]
 }
