@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER SICKNESS STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024639927
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772024640669
@@ -291,6 +285,12 @@
       "text": "GUARD STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772024662127
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM UNIFY OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772024662410
     }
   ]
 }
