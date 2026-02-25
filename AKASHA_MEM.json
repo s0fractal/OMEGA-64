@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772035726729
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH IMMUNE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772035726902
@@ -291,6 +285,12 @@
       "text": "SHOCK SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772035729572
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH IMMUNE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772035729781
     }
   ]
 }
