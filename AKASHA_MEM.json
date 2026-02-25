@@ -77,12 +77,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021016229
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772021017082
@@ -164,6 +158,12 @@
       "text": "BLOOM FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772021021970
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE CONSUME SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021022163
     }
   ]
 }
