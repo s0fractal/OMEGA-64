@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772034040024
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE DECAY HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772034043657
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON IMMUNE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772034043862
     }
   ]
 }
