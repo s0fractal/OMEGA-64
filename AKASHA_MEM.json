@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BEYOND SPARK BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772040228700
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WATCH RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040228935
@@ -291,6 +285,12 @@
       "text": "SEIZE BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772040233538
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WATCH SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040233693
     }
   ]
 }
