@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041441267
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS BREACH DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772041444391
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE STASIS RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772041444709
     }
   ]
 }
