@@ -76,12 +76,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY DRAIN HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021017283
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME DECAY BREACH",
       "mood": "AGGRESSIVE",
@@ -164,6 +158,12 @@
       "text": "OSMOSIS STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772021022655
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION SPARK VISION",
+      "mood": "CREATIVE",
+      "tick": 1772021023200
     }
   ]
 }
