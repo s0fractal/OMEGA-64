@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS HUNGER STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038105194
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772038105385
@@ -291,6 +285,12 @@
       "text": "COHERE GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772038109216
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038109447
     }
   ]
 }
