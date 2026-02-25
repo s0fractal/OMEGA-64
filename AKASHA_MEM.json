@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039195617
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772039195787
@@ -291,6 +285,12 @@
       "text": "GIVING HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772039199116
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039199354
     }
   ]
 }
