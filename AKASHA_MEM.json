@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035354349
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772035354555
@@ -291,6 +285,12 @@
       "text": "SHELTER PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772035357223
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772035357434
     }
   ]
 }
