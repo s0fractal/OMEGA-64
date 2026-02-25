@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60600600",
     "00660600",
     "06066660",
     "A6666000",
@@ -199,15 +198,10 @@
     "060666A6",
     "A0000AAA",
     "00BB0000",
-    "AAAAAA00"
+    "AAAAAA00",
+    "66606660"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "REFLECT IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772032943775
-    },
     {
       "origin": "REVERSE",
       "text": "SEIZE CONSUME SEIZE",
@@ -291,6 +285,12 @@
       "text": "SICKNESS DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772032946258
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772032946399
     }
   ]
 }
