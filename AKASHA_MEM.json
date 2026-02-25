@@ -131,12 +131,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE WAIT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022333038
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022333994
@@ -218,6 +212,12 @@
       "text": "RECON PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772022338941
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE SHOCK HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022339190
     }
   ]
 }
