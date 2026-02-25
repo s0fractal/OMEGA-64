@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772036695760
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772036695968
@@ -291,6 +285,12 @@
       "text": "SYNC COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772036698731
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WAIT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772036698949
     }
   ]
 }
