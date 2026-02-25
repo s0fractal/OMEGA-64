@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "REFLECT SHELTER PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041474721
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER SHOCK SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HUNGER DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772041478029
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772041478181
     }
   ]
 }
