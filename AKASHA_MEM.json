@@ -179,12 +179,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY BREACH HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023349020
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772023350593
@@ -266,6 +260,12 @@
       "text": "PURE STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023352890
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE STABLE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772023353207
     }
   ]
 }
