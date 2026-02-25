@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD PURE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772024341000
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772024341185
@@ -291,6 +285,12 @@
       "text": "SEIZE CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772024344360
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER PURE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772024344517
     }
   ]
 }
