@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STASIS GUARD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040588930
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIKE SEIZE STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772040591404
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "IMMUNE SHELTER WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040591791
     }
   ]
 }
