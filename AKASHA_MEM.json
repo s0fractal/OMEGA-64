@@ -132,12 +132,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS GIVING FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772022349087
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022349251
@@ -219,6 +213,12 @@
       "text": "VISION VISION EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772022353355
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM GIVING FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772022353583
     }
   ]
 }
