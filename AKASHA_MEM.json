@@ -202,12 +202,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772024081433
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772024081614
@@ -289,6 +283,12 @@
       "text": "RESONATE STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772024088279
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH REFLECT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772024088740
     }
   ]
 }
