@@ -190,12 +190,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HEAL BLOOM STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772023753788
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS HUNGER STRIFE",
       "mood": "AGGRESSIVE",
@@ -278,6 +272,12 @@
       "text": "SHIELD IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772023759503
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772023759689
     }
   ]
 }
