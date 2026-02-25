@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC UNIFY BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772034935459
-    },
-    {
-      "origin": "REVERSE",
       "text": "FORGE WITNESS DREAM",
       "mood": "CREATIVE",
       "tick": 1772034935650
@@ -291,6 +285,12 @@
       "text": "SYNC UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772034940508
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772034940729
     }
   ]
 }
