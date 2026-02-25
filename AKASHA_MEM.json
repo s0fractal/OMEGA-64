@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SYNC FLOW BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772041178282
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GUARD WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772041178701
@@ -291,6 +285,12 @@
       "text": "RESONATE FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772041181428
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SEIZE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041181917
     }
   ]
 }
