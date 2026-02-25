@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STASIS WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772032989934
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE GIVING STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772032992805
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER RECON SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772032992938
     }
   ]
 }
