@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772040874570
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772040874741
@@ -291,6 +285,12 @@
       "text": "SEIZE CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772040878103
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HEAL STABLE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772040878595
     }
   ]
 }
