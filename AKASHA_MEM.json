@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HEAL SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041355675
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "PURE RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041355901
@@ -291,6 +285,12 @@
       "text": "COHERE BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772041360351
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GIVING FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772041360808
     }
   ]
 }
