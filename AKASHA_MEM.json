@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FORGE EVOLVE BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772037659655
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772037659815
@@ -291,6 +285,12 @@
       "text": "SHOCK DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772037662450
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE GIVING BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772037662810
     }
   ]
 }
