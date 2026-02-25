@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SYNC BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772016444844
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY STRIKE HUNGER",
       "mood": "AGGRESSIVE",
@@ -107,6 +101,12 @@
       "text": "UNIFY HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772016566720
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DRAIN STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772016585599
     }
   ]
 }
