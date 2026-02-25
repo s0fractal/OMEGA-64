@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041864065
-    },
-    {
       "origin": "STREAM",
       "text": "COHERE RESONATE COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RESONATE HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772041867554
+    },
+    {
+      "origin": "WORKER",
+      "text": "STABLE UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772041867799
     }
   ]
 }
