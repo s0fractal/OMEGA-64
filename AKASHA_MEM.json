@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "EVOLVE SPARK VISION",
-      "mood": "CREATIVE",
-      "tick": 1772024605422
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN CONSUME CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772024613390
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772024613597
     }
   ]
 }
