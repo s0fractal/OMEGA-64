@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60066666",
     "666060A6",
     "AAAAAAAA",
     "A0AAA0AA",
@@ -199,15 +198,10 @@
     "A6666660",
     "AA00A0AA",
     "66066600",
-    "60660066"
+    "60660066",
+    "F00AAA00"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "UNIFY GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772027425514
-    },
     {
       "origin": "REVERSE",
       "text": "BREACH HUNGER SHOCK",
@@ -291,6 +285,12 @@
       "text": "REFLECT SHIELD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772027431320
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND WAVE DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772027431772
     }
   ]
 }
