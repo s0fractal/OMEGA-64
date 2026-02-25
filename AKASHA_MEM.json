@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772030956589
-    },
-    {
       "origin": "REVERSE",
       "text": "SHIELD SHELTER WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SEIZE DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772030971989
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772030972793
     }
   ]
 }
