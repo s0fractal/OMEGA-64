@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GIVING OSMOSIS UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772040474177
-    },
-    {
       "origin": "STREAM",
       "text": "FLOW COHERE SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WAIT WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772040476721
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772040476842
     }
   ]
 }
