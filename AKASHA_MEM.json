@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772038984894
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772038985112
@@ -291,6 +285,12 @@
       "text": "REFLECT REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772038987993
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038988188
     }
   ]
 }
