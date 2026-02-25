@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER DECAY SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033638416
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772033638607
@@ -291,6 +285,12 @@
       "text": "SICKNESS DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772033642122
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033642323
     }
   ]
 }
