@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE HUNGER HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040692408
-    },
-    {
       "origin": "INTERFACE",
       "text": "DECAY SHOCK SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772040695431
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT SHELTER WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040695594
     }
   ]
 }
