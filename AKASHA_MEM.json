@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60600600",
     "AAAA0000",
     "000B0000",
     "06600666",
@@ -199,15 +198,10 @@
     "AAAAAAAA",
     "A0666066",
     "A0AA0A0A",
-    "00060000"
+    "00060000",
+    "A0AAAA00"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GIVING HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772035988734
-    },
     {
       "origin": "REVERSE",
       "text": "WAIT IMMUNE WATCH",
@@ -291,6 +285,12 @@
       "text": "BREACH DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772035992295
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SHOCK SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035993470
     }
   ]
 }
