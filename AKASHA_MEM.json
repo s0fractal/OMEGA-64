@@ -163,12 +163,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022976954
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE OSMOSIS SYNC",
       "mood": "HARMONIC",
@@ -251,6 +245,12 @@
       "text": "WAIT GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022981088
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE REFLECT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772022981418
     }
   ]
 }
