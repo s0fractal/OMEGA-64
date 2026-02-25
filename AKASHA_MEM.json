@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE SHELTER REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772035033145
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772035033383
@@ -291,6 +285,12 @@
       "text": "HUNGER BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772035036575
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772035037042
     }
   ]
 }
