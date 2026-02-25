@@ -107,12 +107,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021814860
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER CONSUME DRAIN",
       "mood": "AGGRESSIVE",
@@ -195,6 +189,12 @@
       "text": "STABLE UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772021822230
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL RESONATE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772021822472
     }
   ]
 }
