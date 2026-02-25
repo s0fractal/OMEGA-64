@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW STABLE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772029791517
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772029792632
@@ -291,6 +285,12 @@
       "text": "SYNC RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772029814990
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND BEYOND FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772029815619
     }
   ]
 }
