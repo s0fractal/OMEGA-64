@@ -1,9 +1,9 @@
 ---
-eigenvalue: '0x00005700C7FC2F9C'
+eigenvalue: '0xBBBB0000C7FC2F9C'
 vector: 04.03.01
 symbol: BECOME
 desc: Actor state transition logic.
-energy: 48
+energy: 46
 ex:
   - '0x91DB9B72C7FC2F9C'
   - '0xBB200009C7FC2F9C'
@@ -13,9 +13,10 @@ ex:
   - '0x00005700C7FC2F9C'
   - '0x00005700C7FC2F9C'
   - '0x00005700C7FC2F9C'
-thought: SEEK_ALPHA_PASSIVE
-x: 570
-'y': 89
+  - '0x0005700CC7FC2F9C'
+thought: WANDER_BONDING
+x: 577
+'y': 101
 signals: []
 resonance: 0
 bond_strengths: {}
@@ -29,32 +30,32 @@ bond_strengths: {}
 <!-- ∇ HOLOGRAM START ∇ -->
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <radialGradient id="grad_00005700C7FC2F9C" cx="50%" cy="50%" r="50%">
+    <radialGradient id="grad_BBBB0000C7FC2F9C" cx="50%" cy="50%" r="50%">
       <stop offset="0%" stop-color="hsl(66, 20%, 15%)" />
       <stop offset="100%" stop-color="#090909" />
     </radialGradient>
-    <filter id="glow_00005700C7FC2F9C" x="-20%" y="-20%" width="140%" height="140%">
+    <filter id="glow_BBBB0000C7FC2F9C" x="-20%" y="-20%" width="140%" height="140%">
       <feGaussianBlur stdDeviation="4" result="blur" />
       <feComposite in="SourceGraphic" in2="blur" operator="over" />
     </filter>
   </defs>
   
-  <rect width="200" height="200" fill="url(#grad_00005700C7FC2F9C)" rx="24"/>
+  <rect width="200" height="200" fill="url(#grad_BBBB0000C7FC2F9C)" rx="24"/>
   
   <circle cx="100" cy="100" r="85" stroke="hsl(66, 30%, 30%)" stroke-width="1" fill="none" stroke-dasharray="2 6"/>
   
   <g>
     <animateTransform attributeName="transform" type="rotate" from="180 100 100" to="540 100 100" dur="26s" repeatCount="indefinite" />
     
-    <polygon points="100.0,36.0 155.4,132.0 44.6,132.0" fill="none" stroke="hsl(246, 60%, 40%)" stroke-width="1.5" opacity="0.6"/>
-    <polygon points="100.0,64.0 131.2,118.0 68.8,118.0" fill="none" stroke="hsl(66, 80%, 60%)" stroke-width="2" filter="url(#glow_00005700C7FC2F9C)"/>
+    <polygon points="100.0,36.0 160.9,80.2 137.6,151.8 62.4,151.8 39.1,80.2" fill="none" stroke="hsl(246, 60%, 40%)" stroke-width="1.5" opacity="0.6"/>
+    <polygon points="100.0,64.0 134.2,88.9 121.2,129.1 78.8,129.1 65.8,88.9" fill="none" stroke="hsl(66, 80%, 60%)" stroke-width="2" filter="url(#glow_BBBB0000C7FC2F9C)"/>
     
     <circle cx="100" cy="100" r="36" stroke="hsl(66, 60%, 50%)" stroke-width="0.5" fill="none" opacity="0.5"/>
   </g>
   
-  <circle cx="100" cy="100" r="3" fill="hsl(246, 80%, 70%)" filter="url(#glow_00005700C7FC2F9C)"/>
+  <circle cx="100" cy="100" r="3" fill="hsl(246, 80%, 70%)" filter="url(#glow_BBBB0000C7FC2F9C)"/>
   
-  <text x="100" y="105" fill="hsl(66, 70%, 80%)" font-family="monospace" font-size="10" text-anchor="middle" letter-spacing="1" opacity="0.9">0x0000</text>
+  <text x="100" y="105" fill="hsl(66, 70%, 80%)" font-family="monospace" font-size="10" text-anchor="middle" letter-spacing="1" opacity="0.9">0xBBBB</text>
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">BECOME</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
