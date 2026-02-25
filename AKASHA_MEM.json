@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD STASIS GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772033743503
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772033743696
@@ -291,6 +285,12 @@
       "text": "SHELTER STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772033751149
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772033751354
     }
   ]
 }
