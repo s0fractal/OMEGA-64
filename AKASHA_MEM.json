@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "RESONATE OSMOSIS HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772037867260
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE RESONATE COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIKE DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772037870075
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS SHELTER SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772037870282
     }
   ]
 }
