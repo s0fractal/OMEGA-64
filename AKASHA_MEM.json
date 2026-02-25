@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA660600",
     "0A0A0A0A",
     "000AAAA0",
     "A0AA000A",
@@ -199,15 +198,10 @@
     "60066006",
     "00060060",
     "A6660600",
-    "AA0006A6"
+    "AA0006A6",
+    "AA0A00A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "FLOW OSMOSIS HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772038952565
-    },
     {
       "origin": "REVERSE",
       "text": "PURE STASIS STASIS",
@@ -291,6 +285,12 @@
       "text": "RESONATE OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772038956029
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK STRIFE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038956240
     }
   ]
 }
