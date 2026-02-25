@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020471453
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH WATCH PURE",
       "mood": "DEFENSIVE",
@@ -142,6 +136,12 @@
       "text": "STRIFE SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020478733
+    },
+    {
+      "origin": "STREAM",
+      "text": "BLOOM BLOOM UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772020479114
     }
   ]
 }
