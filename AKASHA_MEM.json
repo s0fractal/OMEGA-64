@@ -79,12 +79,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021059255
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK SPARK BECOME",
       "mood": "CREATIVE",
       "tick": 1772021059435
@@ -166,6 +160,12 @@
       "text": "HUNGER HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772021065410
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772021065603
     }
   ]
 }
