@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE STASIS IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772034868886
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772034869080
@@ -291,6 +285,12 @@
       "text": "SEIZE CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772034871478
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772034871638
     }
   ]
 }
