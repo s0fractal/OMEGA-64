@@ -131,12 +131,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022354224
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT REFLECT PURE",
       "mood": "DEFENSIVE",
@@ -219,6 +213,12 @@
       "text": "GIVING FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772022357670
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY HUNGER DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022357838
     }
   ]
 }
