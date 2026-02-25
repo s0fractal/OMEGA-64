@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY BREACH HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040865309
-    },
-    {
       "origin": "INTERFACE",
       "text": "PURE GUARD SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "REFLECT STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772040867874
+    },
+    {
+      "origin": "STREAM",
+      "text": "STRIFE HUNGER BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040868031
     }
   ]
 }
