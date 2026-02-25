@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAAAAA00",
     "0B0A0000",
     "A6666666",
     "00660006",
@@ -199,15 +198,10 @@
     "06666066",
     "00000660",
     "BBB000FC",
-    "000AAAA0"
+    "000AAAA0",
+    "BB000FFC"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "HEAL UNIFY SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772031956247
-    },
     {
       "origin": "REVERSE",
       "text": "WAIT WATCH GUARD",
@@ -291,6 +285,12 @@
       "text": "SICKNESS SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772031970361
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031970694
     }
   ]
 }
