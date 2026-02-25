@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE FLOW GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772029958640
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772029959234
@@ -291,6 +285,12 @@
       "text": "STRIKE STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772029970417
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029971322
     }
   ]
 }
