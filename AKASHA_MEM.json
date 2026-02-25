@@ -203,18 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042296429
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SYNC COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042298603
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER WATCH SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +279,18 @@
       "text": "DRAIN SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772042308424
+    },
+    {
+      "origin": "STREAM",
+      "text": "SHIELD GUARD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772042308862
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY OSMOSIS OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772042309197
     }
   ]
 }
