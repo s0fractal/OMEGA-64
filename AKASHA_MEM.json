@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SHOCK DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037232845
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772037233070
@@ -291,6 +285,12 @@
       "text": "STRIKE DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772037235987
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772037236189
     }
   ]
 }
