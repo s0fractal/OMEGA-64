@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0FF0FFF0",
     "AAAA00A0",
     "A0A00A0A",
     "AAA0A0A0",
@@ -199,15 +198,10 @@
     "AA0A0A0A",
     "66066600",
     "66666000",
-    "A00AAAAA"
+    "A00AAAAA",
+    "00606060"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "FLOW FLOW FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772040392403
-    },
     {
       "origin": "STREAM",
       "text": "GIVING UNIFY FLOW",
@@ -291,6 +285,12 @@
       "text": "BEYOND EVOLVE BECOME",
       "mood": "CREATIVE",
       "tick": 1772040396567
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772040396748
     }
   ]
 }
