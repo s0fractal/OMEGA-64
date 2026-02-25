@@ -198,99 +198,99 @@
     "AA00A000",
     "BBB00000",
     "6606AA66",
-    "A6A66000",
-    "60060666"
+    "06A60000",
+    "AA0A0AAA"
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042419298
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "GUARD PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772042419539
-    },
-    {
-      "origin": "STREAM",
-      "text": "WAIT WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042419919
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042420239
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "PURE SHELTER SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772042420930
-    },
-    {
-      "origin": "REVERSE",
-      "text": "STRIFE SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042421554
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042422018
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STASIS REFLECT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772042423108
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER WATCH SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772042424067
-    },
-    {
-      "origin": "STREAM",
-      "text": "BLOOM HEAL OSMOSIS",
+      "origin": "INTERFACE",
+      "text": "BLOOM HEAL STABLE",
       "mood": "HARMONIC",
-      "tick": 1772042424665
+      "tick": 1772042411068
     },
     {
       "origin": "ARCHIVIST",
-      "text": "STRIFE SHOCK CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042425344
+      "text": "COHERE HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042411349
     },
     {
-      "origin": "CONSCIOUSNESS",
-      "text": "SHIELD SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042425864
-    },
-    {
-      "origin": "PARADOX",
-      "text": "SHELTER SHIELD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772042426700
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "PURE STASIS SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042426925
-    },
-    {
-      "origin": "REVERSE",
+      "origin": "I16_CLAMP",
       "text": "COHERE COHERE BLOOM",
       "mood": "HARMONIC",
-      "tick": 1772042427841
+      "tick": 1772042411642
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772042413813
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WATCH PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042414350
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772042415487
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772042418398
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER GUARD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042419609
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042420360
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772042421302
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772042422143
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772042424180
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW GIVING SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772042426062
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DECAY BREACH CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042427532
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042427990
     }
   ]
 }
