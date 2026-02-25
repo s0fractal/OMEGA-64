@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY FLOW OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772035079955
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772035080308
@@ -291,6 +285,12 @@
       "text": "DRAIN DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772035083791
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE PURE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772035083995
     }
   ]
 }
