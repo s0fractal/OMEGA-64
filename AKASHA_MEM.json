@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772038947931
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772038948117
@@ -291,6 +285,12 @@
       "text": "DREAM WITNESS EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772038951878
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WAIT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772038952067
     }
   ]
 }
