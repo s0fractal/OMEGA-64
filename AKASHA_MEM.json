@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH BREACH SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038069919
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038070093
@@ -291,6 +285,12 @@
       "text": "REFLECT SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772038073177
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772038073393
     }
   ]
 }
