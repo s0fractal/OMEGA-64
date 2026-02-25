@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON REFLECT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042673333
-    },
-    {
       "origin": "GUARDIAN",
       "text": "OSMOSIS FLOW BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HEAL OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772042686878
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS RECON WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772042687431
     }
   ]
 }
