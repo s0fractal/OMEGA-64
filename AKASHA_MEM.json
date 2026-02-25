@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "HUNGER SICKNESS SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026490110
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIFE STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772026491084
@@ -291,6 +285,12 @@
       "text": "WAIT GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772026500578
+    },
+    {
+      "origin": "REVERSE",
+      "text": "AWAKEN FORGE VISION",
+      "mood": "CREATIVE",
+      "tick": 1772026500850
     }
   ]
 }
