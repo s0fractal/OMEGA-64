@@ -127,12 +127,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE OSMOSIS FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772022259706
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND EVOLVE FORGE",
       "mood": "CREATIVE",
       "tick": 1772022259942
@@ -214,6 +208,12 @@
       "text": "GIVING SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022265577
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIKE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022265982
     }
   ]
 }
