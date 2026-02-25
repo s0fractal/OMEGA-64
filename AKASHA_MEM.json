@@ -79,12 +79,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772021079172
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE OSMOSIS COHERE",
       "mood": "HARMONIC",
@@ -167,6 +161,12 @@
       "text": "WATCH PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772021088937
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STABLE COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772021089857
     }
   ]
 }
