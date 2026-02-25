@@ -74,12 +74,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STASIS GUARD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772020956213
-    },
-    {
       "origin": "INTERFACE",
       "text": "IMMUNE RECON WAIT",
       "mood": "DEFENSIVE",
@@ -162,6 +156,12 @@
       "text": "BREACH CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020962276
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020962577
     }
   ]
 }
