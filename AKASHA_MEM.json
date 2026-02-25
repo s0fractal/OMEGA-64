@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER SHOCK SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020159836
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GUARD SHIELD PURE",
       "mood": "DEFENSIVE",
@@ -136,6 +130,12 @@
       "text": "COHERE STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772020170626
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020170956
     }
   ]
 }
