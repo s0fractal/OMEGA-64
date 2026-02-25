@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "WAIT SHELTER SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772041796393
-    },
-    {
-      "origin": "INTERFACE",
       "text": "RESONATE BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772041796843
@@ -291,6 +285,12 @@
       "text": "RECON GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772041801103
+    },
+    {
+      "origin": "STREAM",
+      "text": "WATCH WATCH IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041801306
     }
   ]
 }
