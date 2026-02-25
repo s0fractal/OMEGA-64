@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER PURE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772039856464
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772039856983
@@ -291,6 +285,12 @@
       "text": "SHOCK STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772039863348
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC COHERE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772039863869
     }
   ]
 }
