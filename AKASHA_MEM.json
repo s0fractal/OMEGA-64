@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772035519715
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772035520205
@@ -291,6 +285,12 @@
       "text": "COHERE UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772035523211
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE RECON WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772035523455
     }
   ]
 }
