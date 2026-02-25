@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "OSMOSIS HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772040720877
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC FLOW OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHIELD GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772040724074
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040724210
     }
   ]
 }
