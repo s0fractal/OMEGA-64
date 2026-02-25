@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE RESONATE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772033903822
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772033904023
@@ -291,6 +285,12 @@
       "text": "STASIS WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772033908217
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS HUNGER CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033908470
     }
   ]
 }
