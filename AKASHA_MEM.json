@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772027302672
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE SHIELD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772027302886
@@ -291,6 +285,12 @@
       "text": "BEYOND FORGE VISION",
       "mood": "CREATIVE",
       "tick": 1772027309311
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772027309697
     }
   ]
 }
