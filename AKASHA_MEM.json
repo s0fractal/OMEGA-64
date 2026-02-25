@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WAIT WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041549074
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BREACH STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772041549217
@@ -291,6 +285,12 @@
       "text": "HEAL STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772041553400
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY RESONATE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772041553584
     }
   ]
 }
