@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME SHOCK SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040459727
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WAIT STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772040459856
@@ -291,6 +285,12 @@
       "text": "OSMOSIS HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772040462556
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIKE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040462812
     }
   ]
 }
