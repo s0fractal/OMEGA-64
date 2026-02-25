@@ -202,12 +202,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772024072515
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772024072685
@@ -289,6 +283,12 @@
       "text": "STABLE OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772024076536
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY SEIZE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024076820
     }
   ]
 }
