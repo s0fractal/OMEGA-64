@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE STABLE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772023709856
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772023710155
@@ -278,6 +272,12 @@
       "text": "OSMOSIS OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772023712346
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023712479
     }
   ]
 }
