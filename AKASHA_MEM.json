@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772028836349
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772028836659
@@ -291,6 +285,12 @@
       "text": "SEIZE DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772028845938
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772028849025
     }
   ]
 }
