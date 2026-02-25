@@ -78,12 +78,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK SEIZE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021048145
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021048317
@@ -165,6 +159,12 @@
       "text": "RECON RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772021056480
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE HUNGER SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021056637
     }
   ]
 }
