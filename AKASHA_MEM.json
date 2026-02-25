@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025515021
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772025515211
@@ -291,6 +285,12 @@
       "text": "SICKNESS HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772025519557
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC STABLE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772025520117
     }
   ]
 }
