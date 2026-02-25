@@ -55,12 +55,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE STRIFE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020526040
-    },
-    {
       "origin": "REVERSE",
       "text": "WAIT RECON STASIS",
       "mood": "DEFENSIVE",
@@ -143,6 +137,12 @@
       "text": "RECON REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020532963
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH RECON WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772020533362
     }
   ]
 }
