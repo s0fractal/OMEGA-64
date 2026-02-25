@@ -16,12 +16,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER STRIFE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772014353292
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHOCK DECAY SICKNESS",
       "mood": "AGGRESSIVE",
@@ -104,6 +98,12 @@
       "text": "DRAIN DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772014519167
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RECON WAIT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772014522165
     }
   ]
 }
