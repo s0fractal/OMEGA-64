@@ -127,12 +127,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY STRIFE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022266190
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022267406
@@ -214,6 +208,12 @@
       "text": "SICKNESS SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772022272485
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS RECON STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772022272662
     }
   ]
 }
