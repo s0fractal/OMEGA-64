@@ -9,15 +9,10 @@
     "00000000",
     "66666666",
     "BBB0000C",
-    "BBBB0000"
+    "BBBB0000",
+    "60000000"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772013113442
-    },
     {
       "origin": "INTERFACE",
       "text": "BREACH DRAIN CONSUME",
@@ -101,6 +96,12 @@
       "text": "FLOW COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772013253903
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GUARD STASIS PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772013273206
     }
   ]
 }
