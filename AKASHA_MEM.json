@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIKE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026186469
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772026186711
@@ -291,6 +285,12 @@
       "text": "GIVING BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772026190919
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER PURE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772026191260
     }
   ]
 }
