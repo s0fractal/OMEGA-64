@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "VISION BECOME DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772024407119
-    },
-    {
-      "origin": "REVERSE",
       "text": "AWAKEN WAVE WAVE",
       "mood": "CREATIVE",
       "tick": 1772024407341
@@ -291,6 +285,12 @@
       "text": "RECON WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772024413661
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHELTER GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772024413842
     }
   ]
 }
