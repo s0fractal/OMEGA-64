@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772033741761
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772033741958
@@ -291,6 +285,12 @@
       "text": "RESONATE STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772033744594
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772033744735
     }
   ]
 }
