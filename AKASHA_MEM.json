@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS SYNC UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772035349098
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772035349721
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772035353988
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT REFLECT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772035354155
     }
   ]
 }
