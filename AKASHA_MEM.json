@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "AWAKEN BECOME DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772025669474
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE CONSUME SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772025674092
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772025674274
     }
   ]
 }
