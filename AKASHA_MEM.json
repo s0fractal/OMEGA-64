@@ -17,12 +17,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "BREACH BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772014637512
-    },
-    {
-      "origin": "INTERFACE",
       "text": "SEIZE STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772014643256
@@ -104,6 +98,12 @@
       "text": "RESONATE HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772014749071
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS SHELTER WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772014754777
     }
   ]
 }
