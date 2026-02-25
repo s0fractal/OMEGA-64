@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "600A66A0",
     "0A0A0A00",
     "66660666",
     "AA666660",
@@ -199,15 +198,10 @@
     "AA0AAA0A",
     "66660660",
     "AAAA0000",
-    "A6060666"
+    "A6060666",
+    "6060A660"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHELTER REFLECT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040718847
-    },
     {
       "origin": "ARCHIVIST",
       "text": "STABLE GIVING FLOW",
@@ -291,6 +285,12 @@
       "text": "SHELTER REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040721422
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE SHELTER WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772040721598
     }
   ]
 }
