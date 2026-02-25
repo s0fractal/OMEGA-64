@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM SYNC UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772034277784
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772034277977
@@ -291,6 +285,12 @@
       "text": "BREACH BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772034283505
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SEIZE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034283739
     }
   ]
 }
