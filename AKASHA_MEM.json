@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE HEAL GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772040973003
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER STASIS PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040976321
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SEIZE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040976662
     }
   ]
 }
