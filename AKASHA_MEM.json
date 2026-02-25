@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772035472565
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772035472766
@@ -291,6 +285,12 @@
       "text": "COHERE OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772035475625
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DECAY STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035475807
     }
   ]
 }
