@@ -139,12 +139,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WAVE SPARK VISION",
-      "mood": "CREATIVE",
-      "tick": 1772022446353
-    },
-    {
       "origin": "STREAM",
       "text": "BLOOM RESONATE BLOOM",
       "mood": "HARMONIC",
@@ -227,6 +221,12 @@
       "text": "SHOCK DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022449956
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SICKNESS BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022451344
     }
   ]
 }
