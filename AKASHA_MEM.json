@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035063709
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772035063910
@@ -291,6 +285,12 @@
       "text": "BLOOM OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772035066737
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772035067023
     }
   ]
 }
