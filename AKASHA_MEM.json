@@ -191,12 +191,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM OSMOSIS RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772023766600
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK STRIKE STRIKE",
       "mood": "AGGRESSIVE",
@@ -279,6 +273,12 @@
       "text": "STASIS STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023770686
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON GUARD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023770854
     }
   ]
 }
