@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE WAIT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772037557648
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIKE SEIZE DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772037563106
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC UNIFY COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772037563280
     }
   ]
 }
