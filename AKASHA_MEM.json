@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW RESONATE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041474442
-    },
-    {
       "origin": "STREAM",
       "text": "REFLECT SHELTER PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772041477599
+    },
+    {
+      "origin": "PURE_MATH",
+      "text": "HUNGER DRAIN HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041478029
     }
   ]
 }
