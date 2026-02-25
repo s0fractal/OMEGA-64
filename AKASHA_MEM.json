@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032662830
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772032662988
@@ -291,6 +285,12 @@
       "text": "OSMOSIS UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772032666985
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH HUNGER STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032667201
     }
   ]
 }
