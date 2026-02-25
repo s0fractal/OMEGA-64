@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SICKNESS SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038023703
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772038023893
@@ -291,6 +285,12 @@
       "text": "BECOME BEYOND BEYOND",
       "mood": "CREATIVE",
       "tick": 1772038027224
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772038027434
     }
   ]
 }
