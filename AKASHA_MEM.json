@@ -17,12 +17,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SICKNESS HUNGER SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772015124124
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE HEAL SYNC",
       "mood": "HARMONIC",
@@ -105,6 +99,12 @@
       "text": "DRAIN DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772015274669
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON SHIELD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772015279966
     }
   ]
 }
