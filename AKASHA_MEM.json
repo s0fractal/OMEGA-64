@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GIVING GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772041593531
-    },
-    {
       "origin": "INTERFACE",
       "text": "STABLE SYNC SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GUARD REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772041599457
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD STASIS RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772041600866
     }
   ]
 }
