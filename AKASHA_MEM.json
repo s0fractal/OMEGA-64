@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035351555
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772035351850
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772035354349
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772035354555
     }
   ]
 }
