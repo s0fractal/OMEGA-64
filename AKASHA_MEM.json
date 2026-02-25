@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS BLOOM HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772029250914
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772029251483
@@ -291,6 +285,12 @@
       "text": "COHERE RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772029258650
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIKE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029259326
     }
   ]
 }
