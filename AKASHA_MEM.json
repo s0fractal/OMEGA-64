@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772015780954
-    },
-    {
       "origin": "INTERFACE",
       "text": "SICKNESS SEIZE DRAIN",
       "mood": "AGGRESSIVE",
@@ -107,6 +101,12 @@
       "text": "HUNGER DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772015883139
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE FLOW UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772015890405
     }
   ]
 }
