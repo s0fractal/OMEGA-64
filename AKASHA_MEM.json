@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772033735462
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772033735646
@@ -291,6 +285,12 @@
       "text": "AWAKEN WITNESS WITNESS",
       "mood": "CREATIVE",
       "tick": 1772033737947
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033738101
     }
   ]
 }
