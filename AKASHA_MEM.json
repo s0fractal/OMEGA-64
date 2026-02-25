@@ -127,12 +127,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE SHELTER IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022270303
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772022270474
@@ -214,6 +208,12 @@
       "text": "GIVING STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022275221
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY STRIFE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022275399
     }
   ]
 }
