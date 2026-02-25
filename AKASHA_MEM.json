@@ -85,12 +85,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772021219263
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD PURE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772021219950
@@ -172,6 +166,12 @@
       "text": "STRIKE SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772021225655
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "IMMUNE WAIT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021225843
     }
   ]
 }
