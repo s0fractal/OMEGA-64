@@ -3,7 +3,7 @@ eigenvalue: '0xAAAAAA0A00000A0B'
 energy: 45.5
 x: 690
 'y': 373
-resonance: 65
+resonance: 80
 thought: WANDER_BONDING
 logic: AAAAAA0A
 signals: []
