@@ -179,12 +179,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772023348313
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023348641
@@ -266,6 +260,12 @@
       "text": "UNIFY BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772023352481
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772023352718
     }
   ]
 }
