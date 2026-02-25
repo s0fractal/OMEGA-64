@@ -180,12 +180,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023407803
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS SHIELD WAIT",
       "mood": "DEFENSIVE",
@@ -268,6 +262,12 @@
       "text": "OSMOSIS FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772023410831
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023411031
     }
   ]
 }
