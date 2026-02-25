@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM UNIFY OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772038023070
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772038023311
@@ -291,6 +285,12 @@
       "text": "FLOW FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772038026570
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER RECON IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772038026786
     }
   ]
 }
