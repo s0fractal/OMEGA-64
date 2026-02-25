@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035152861
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE SICKNESS DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772035157478
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035157710
     }
   ]
 }
