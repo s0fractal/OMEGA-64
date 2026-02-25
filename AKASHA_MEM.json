@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772035619014
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772035619206
@@ -291,6 +285,12 @@
       "text": "UNIFY BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772035621820
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SEIZE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035622034
     }
   ]
 }
