@@ -171,12 +171,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH WATCH WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023210047
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN STRIFE SHOCK",
       "mood": "AGGRESSIVE",
@@ -259,6 +253,12 @@
       "text": "GIVING UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772023213060
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023213241
     }
   ]
 }
