@@ -163,12 +163,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772022885664
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022885863
@@ -250,6 +244,12 @@
       "text": "FLOW SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022890373
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022891200
     }
   ]
 }
