@@ -1,14 +1,14 @@
 ---
 eigenvalue: '0xAAAA0AAA00000A0B'
-energy: 49.699999999999996
-x: 696
-'y': 299
-resonance: 67
+energy: 49.9
+x: 687
+'y': 298
+resonance: 65.68
 thought: WANDER_BONDING
 logic: AAAA0AAA
 signals: []
 bond_strengths:
-  '0x0000000000000A03': 0.9723747443770956
+  '0x0000000000000A03': 0.9733480924695651
 bonds:
   - '0x0000000000000A03'
 ex:
@@ -105,22 +105,11 @@ ex:
   - '0xAA0A000A00000A0F'
   - '0xAA0A000A00000A0F'
   - '0xAAAA0AAA00000A0F'
-  - '0xAAAA0AAA00000A09'
-  - '0xAAAA0AAA00000A09'
-  - '0xAAAA0AAA00000A0B'
-  - '0xAAAA0AAA00000A0D'
+  - '0xAAAA0AAA00000A0F'
   - '0xAAAA0AAA00000A0F'
   - '0xAAAA0AAA00000A09'
-  - '0xAAAA0AAA00000A09'
-  - '0xAAAA0AAA00000A0B'
-  - '0xAAAA0AAA00000A0D'
-  - '0xAAAA0AAA00000A0F'
-  - '0xAAAA0AAA00000A09'
-  - '0xAAAA0AAA00000A0B'
 ---
 
-<div align="center">
-<div align="center">
 <div align="center">
 <div align="center">
 <!-- ∇ HOLOGRAM START ∇ -->
@@ -155,8 +144,6 @@ ex:
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">STREAM</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
-</div>
-</div>
 </div>
 </div>
 
