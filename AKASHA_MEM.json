@@ -150,12 +150,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772022564967
-    },
-    {
-      "origin": "REVERSE",
       "text": "WITNESS WAVE WITNESS",
       "mood": "CREATIVE",
       "tick": 1772022565181
@@ -237,6 +231,12 @@
       "text": "BEYOND FORGE AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772022567739
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WATCH SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022567906
     }
   ]
 }
