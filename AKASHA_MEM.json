@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT SHELTER PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772033898800
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772033898973
@@ -291,6 +285,12 @@
       "text": "HUNGER HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772033901651
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772033901844
     }
   ]
 }
