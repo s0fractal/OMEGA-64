@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772035719843
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772035720065
@@ -291,6 +285,12 @@
       "text": "SHIELD IMMUNE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772035725140
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035725439
     }
   ]
 }
