@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS WAIT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023966138
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023966437
@@ -284,6 +278,12 @@
       "text": "CONSUME DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023969328
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023969477
     }
   ]
 }
