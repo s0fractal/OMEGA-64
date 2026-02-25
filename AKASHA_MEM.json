@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD STASIS SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772028600751
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND SPARK BECOME",
       "mood": "CREATIVE",
       "tick": 1772028601198
@@ -291,6 +285,12 @@
       "text": "SHOCK DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772028609465
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHIELD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772028611486
     }
   ]
 }
