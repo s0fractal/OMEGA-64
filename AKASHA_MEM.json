@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SHOCK SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037977840
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772037979161
@@ -291,6 +285,12 @@
       "text": "SHIELD REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772037981964
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD REFLECT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772037982219
     }
   ]
 }
