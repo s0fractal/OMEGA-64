@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772034578515
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772034578711
@@ -291,6 +285,12 @@
       "text": "FLOW FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772034581813
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD PURE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772034582021
     }
   ]
 }
