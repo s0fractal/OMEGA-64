@@ -72,12 +72,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772020905526
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020905863
@@ -159,6 +153,12 @@
       "text": "HUNGER DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020910388
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020910512
     }
   ]
 }
