@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS WITNESS VISION",
-      "mood": "CREATIVE",
-      "tick": 1772034735135
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772034735679
@@ -291,6 +285,12 @@
       "text": "SEIZE HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772034742402
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772034742702
     }
   ]
 }
