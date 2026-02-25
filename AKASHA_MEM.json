@@ -93,12 +93,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772021353145
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772021362731
@@ -180,6 +174,12 @@
       "text": "WAIT SHIELD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772021388977
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021389344
     }
   ]
 }
