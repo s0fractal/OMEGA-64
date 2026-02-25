@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK SHOCK SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025058978
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM UNIFY FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "REFLECT IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772025063580
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE SYNC SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772025063774
     }
   ]
 }
