@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STABLE UNIFY BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772041293477
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY BLOOM HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STASIS STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772041299272
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041299445
     }
   ]
 }
