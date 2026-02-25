@@ -101,12 +101,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW BLOOM HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772021616901
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH DRAIN CONSUME",
       "mood": "AGGRESSIVE",
@@ -189,6 +183,12 @@
       "text": "HEAL BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772021621566
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE GIVING FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772021621764
     }
   ]
 }
