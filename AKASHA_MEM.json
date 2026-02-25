@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772036568274
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772036568471
@@ -291,6 +285,12 @@
       "text": "STABLE GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772036571210
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW UNIFY STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772036571485
     }
   ]
 }
