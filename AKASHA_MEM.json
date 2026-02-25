@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772030524461
-    },
-    {
-      "origin": "REVERSE",
       "text": "EVOLVE FORGE SPARK",
       "mood": "CREATIVE",
       "tick": 1772030525297
@@ -291,6 +285,12 @@
       "text": "RESONATE SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772030540033
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE BLOOM STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772030540635
     }
   ]
 }
