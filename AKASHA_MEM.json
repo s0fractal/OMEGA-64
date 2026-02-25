@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772034133561
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772034133776
@@ -291,6 +285,12 @@
       "text": "HUNGER DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772034136254
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772034136452
     }
   ]
 }
