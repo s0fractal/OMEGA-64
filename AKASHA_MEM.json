@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING FLOW UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772035827154
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772035827546
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772035832175
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE GUARD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772035832453
     }
   ]
 }
