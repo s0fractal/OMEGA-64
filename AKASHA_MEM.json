@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM STABLE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772038632878
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772038633054
@@ -291,6 +285,12 @@
       "text": "REFLECT RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772038635919
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SICKNESS DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038636121
     }
   ]
 }
