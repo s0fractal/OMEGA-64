@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "COHERE FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772042393862
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH REFLECT PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIKE SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772042406450
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD WATCH STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772042406762
     }
   ]
 }
