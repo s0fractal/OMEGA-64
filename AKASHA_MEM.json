@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD REFLECT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040474692
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER WATCH SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772040477194
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WATCH GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040477330
     }
   ]
 }
