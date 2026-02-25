@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER IMMUNE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772028200652
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772028201098
@@ -291,6 +285,12 @@
       "text": "HUNGER DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772028208606
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT REFLECT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772028209289
     }
   ]
 }
