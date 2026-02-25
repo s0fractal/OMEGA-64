@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772035518552
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772035518915
@@ -291,6 +285,12 @@
       "text": "DRAIN SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772035522797
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER REFLECT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772035522999
     }
   ]
 }
