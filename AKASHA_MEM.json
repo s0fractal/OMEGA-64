@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "WORKER",
-      "text": "HEAL HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772040514656
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS HEAL UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772040517894
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT SHELTER GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040518065
     }
   ]
 }
