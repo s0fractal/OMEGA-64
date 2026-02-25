@@ -65,12 +65,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE SEIZE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020769407
-    },
-    {
       "origin": "REVERSE",
       "text": "WITNESS WITNESS WAVE",
       "mood": "CREATIVE",
@@ -153,6 +147,12 @@
       "text": "DRAIN BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020775280
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BREACH STRIFE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020775886
     }
   ]
 }
