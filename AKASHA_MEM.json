@@ -24,12 +24,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "IMMUNE PURE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772019492377
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SICKNESS SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772019493314
@@ -111,6 +105,12 @@
       "text": "STABLE FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772019502762
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS STRIKE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019502920
     }
   ]
 }
