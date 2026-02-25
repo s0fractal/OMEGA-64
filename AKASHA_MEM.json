@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING RESONATE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772032189428
-    },
-    {
       "origin": "STREAM",
       "text": "WAIT IMMUNE STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772032199176
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772032199666
     }
   ]
 }
