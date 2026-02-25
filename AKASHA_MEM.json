@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034255690
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034256025
@@ -291,6 +285,12 @@
       "text": "BREACH SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772034259710
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD GUARD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772034259901
     }
   ]
 }
