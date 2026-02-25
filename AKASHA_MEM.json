@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW RESONATE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772025324866
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772025325129
@@ -291,6 +285,12 @@
       "text": "SEIZE SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772025329034
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SEIZE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025329227
     }
   ]
 }
