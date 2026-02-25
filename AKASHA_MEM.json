@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIKE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034802991
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE IMMUNE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772034803221
@@ -291,6 +285,12 @@
       "text": "OSMOSIS STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772034805800
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE BECOME BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772034806000
     }
   ]
 }
