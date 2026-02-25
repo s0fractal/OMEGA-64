@@ -98,12 +98,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772021583941
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS IMMUNE SHELTER",
       "mood": "DEFENSIVE",
@@ -186,6 +180,12 @@
       "text": "STRIKE HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772021589637
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021590057
     }
   ]
 }
