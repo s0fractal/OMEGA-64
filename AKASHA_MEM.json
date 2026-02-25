@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SICKNESS SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026386569
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772026386756
@@ -291,6 +285,12 @@
       "text": "WAIT IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772026391984
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772026392539
     }
   ]
 }
