@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER SEIZE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037569633
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772037569855
@@ -291,6 +285,12 @@
       "text": "UNIFY UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772037574231
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037575184
     }
   ]
 }
