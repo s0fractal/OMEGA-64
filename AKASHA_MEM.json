@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772026804393
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772026804630
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772026809887
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026810375
     }
   ]
 }
