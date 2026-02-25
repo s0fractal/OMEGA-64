@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "FLOW STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772040403782
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING SYNC BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772040406900
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY DRAIN HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040407067
     }
   ]
 }
