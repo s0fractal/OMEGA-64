@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772034044791
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772034044954
@@ -291,6 +285,12 @@
       "text": "RESONATE COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772034047619
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY GIVING COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772034047816
     }
   ]
 }
