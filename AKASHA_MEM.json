@@ -138,12 +138,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH CONSUME SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022433022
-    },
-    {
       "origin": "INTERFACE",
       "text": "COHERE RESONATE FLOW",
       "mood": "HARMONIC",
@@ -226,6 +220,12 @@
       "text": "SHOCK STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772022437819
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE HEAL RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772022438026
     }
   ]
 }
