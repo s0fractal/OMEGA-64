@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AABB0CDD",
     "0000AAAA",
     "AA6666A6",
     "60060600",
@@ -199,15 +198,10 @@
     "000A0A00",
     "A0AAA0A0",
     "C0DED00D",
-    "06660600"
+    "06660600",
+    "A06660A6"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHOCK SICKNESS HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033347016
-    },
     {
       "origin": "REVERSE",
       "text": "CONSUME SICKNESS DECAY",
@@ -291,6 +285,12 @@
       "text": "RECON STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772033354269
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY CONSUME CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033354471
     }
   ]
 }
