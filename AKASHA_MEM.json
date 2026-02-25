@@ -85,12 +85,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021217547
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772021217710
@@ -172,6 +166,12 @@
       "text": "STRIFE SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772021221677
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772021222637
     }
   ]
 }
