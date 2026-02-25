@@ -55,12 +55,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RECON PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772020542354
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW UNIFY OSMOSIS",
       "mood": "HARMONIC",
@@ -143,6 +137,12 @@
       "text": "STRIFE STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020550840
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT PURE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020551106
     }
   ]
 }
