@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS STRIFE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035689216
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER GUARD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772035689415
@@ -291,6 +285,12 @@
       "text": "DRAIN HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772035694713
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING UNIFY SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772035694950
     }
   ]
 }
