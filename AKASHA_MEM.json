@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT WATCH IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772025115122
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772025115308
@@ -291,6 +285,12 @@
       "text": "BLOOM STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772025119124
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DRAIN STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025119415
     }
   ]
 }
