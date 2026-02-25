@@ -176,12 +176,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DRAIN STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023267240
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023267444
@@ -263,6 +257,12 @@
       "text": "FLOW OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772023271907
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS REFLECT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772023272050
     }
   ]
 }
