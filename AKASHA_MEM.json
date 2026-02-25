@@ -33,12 +33,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIKE SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019703588
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HEAL OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772019703862
@@ -120,6 +114,12 @@
       "text": "SHELTER SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772019718914
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DRAIN STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019719407
     }
   ]
 }
