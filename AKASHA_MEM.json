@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE DRAIN SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025143771
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND FORGE BECOME",
       "mood": "CREATIVE",
       "tick": 1772025144478
@@ -291,6 +285,12 @@
       "text": "HUNGER STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772025148425
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025148694
     }
   ]
 }
