@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE DECAY SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034542479
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772034542702
@@ -291,6 +285,12 @@
       "text": "COHERE UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772034545061
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHIELD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772034545261
     }
   ]
 }
