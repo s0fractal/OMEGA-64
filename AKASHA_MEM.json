@@ -198,12 +198,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772024003730
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772024004310
@@ -285,6 +279,12 @@
       "text": "SICKNESS SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772024008336
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS PURE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772024008579
     }
   ]
 }
