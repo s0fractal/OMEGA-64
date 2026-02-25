@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS UNIFY UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772037169632
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772037169836
@@ -291,6 +285,12 @@
       "text": "BECOME SPARK AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772037175939
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772037176107
     }
   ]
 }
