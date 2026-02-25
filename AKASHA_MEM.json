@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772034983148
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772034983350
@@ -291,6 +285,12 @@
       "text": "SYNC HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772034986723
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DREAM FORGE AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772034986885
     }
   ]
 }
