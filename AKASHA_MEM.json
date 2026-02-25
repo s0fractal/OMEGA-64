@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023712479
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023712616
@@ -278,6 +272,12 @@
       "text": "SHELTER IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023714797
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK STRIFE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023714952
     }
   ]
 }
