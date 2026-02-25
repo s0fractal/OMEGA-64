@@ -50,12 +50,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "COHERE OSMOSIS HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772020246751
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "HUNGER STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020247362
@@ -137,6 +131,12 @@
       "text": "SEIZE SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020256557
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH HUNGER SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020257534
     }
   ]
 }
