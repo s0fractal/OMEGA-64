@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DECAY SEIZE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772016343243
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIKE CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772016348086
@@ -107,6 +101,12 @@
       "text": "SYNC BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772016444844
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY STRIKE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772016454469
     }
   ]
 }
