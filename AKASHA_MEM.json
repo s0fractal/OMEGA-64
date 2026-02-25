@@ -50,12 +50,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHIELD STASIS WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772020293332
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE RESONATE OSMOSIS",
       "mood": "HARMONIC",
@@ -138,6 +132,12 @@
       "text": "COHERE COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772020305500
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE REFLECT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020306163
     }
   ]
 }
