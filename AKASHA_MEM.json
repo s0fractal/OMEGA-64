@@ -103,12 +103,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH SHIELD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021669058
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772021669588
@@ -190,6 +184,12 @@
       "text": "OSMOSIS COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772021673450
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING UNIFY COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772021674705
     }
   ]
 }
