@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033069355
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772033069510
@@ -291,6 +285,12 @@
       "text": "RECON RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772033071954
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL SYNC UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772033072239
     }
   ]
 }
