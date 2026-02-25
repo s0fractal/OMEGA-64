@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE STRIFE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027289138
-    },
-    {
       "origin": "INTERFACE",
       "text": "UNIFY UNIFY RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "PURE PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772027294403
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SICKNESS BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027294755
     }
   ]
 }
