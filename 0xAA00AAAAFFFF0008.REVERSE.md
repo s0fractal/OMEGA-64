@@ -1,14 +1,14 @@
 ---
 eigenvalue: '0xAA00AAAAFFFF0008'
 energy: 50
-x: 678
-'y': 373
+x: 723
+'y': 424
 resonance: 50
 thought: RESURRECTED
 logic: AA00AAAA
 signals: []
 bond_strengths:
-  '0x0000000000000A02': 0.9890548353295385
+  '0x0000000000000A02': 0.988065780494209
 bonds:
   - '0x0000000000000A02'
 ex:
