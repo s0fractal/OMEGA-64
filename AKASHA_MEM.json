@@ -112,12 +112,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING RESONATE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772021937018
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772021937562
@@ -199,6 +193,12 @@
       "text": "WATCH SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772021941946
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE SPARK BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772021942090
     }
   ]
 }
