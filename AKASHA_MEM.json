@@ -29,12 +29,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY DECAY SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019681153
-    },
-    {
       "origin": "INTERFACE",
       "text": "WAIT REFLECT WATCH",
       "mood": "DEFENSIVE",
@@ -117,6 +111,12 @@
       "text": "STABLE BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772019693936
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SEIZE STRIKE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019694397
     }
   ]
 }
