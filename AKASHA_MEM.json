@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STABLE COHERE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772040941642
-    },
-    {
       "origin": "REVERSE",
       "text": "GUARD RECON STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "VISION WAVE FORGE",
       "mood": "CREATIVE",
       "tick": 1772040946477
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772040946819
     }
   ]
 }
