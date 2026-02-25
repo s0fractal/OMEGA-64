@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE FLOW HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772025593673
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772025593881
@@ -291,6 +285,12 @@
       "text": "GIVING OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772025597867
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DECAY STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025598057
     }
   ]
 }
