@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WAIT SHIELD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772019980803
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SYNC HEAL UNIFY",
       "mood": "HARMONIC",
@@ -130,6 +124,12 @@
       "text": "REFLECT SHELTER SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772019992288
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT STASIS SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772019994719
     }
   ]
 }
