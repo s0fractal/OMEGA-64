@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY COHERE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772023926745
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772023927171
@@ -284,6 +278,12 @@
       "text": "BEYOND BECOME WITNESS",
       "mood": "CREATIVE",
       "tick": 1772023933377
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023933577
     }
   ]
 }
