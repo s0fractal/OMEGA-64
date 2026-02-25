@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW FLOW HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772034970284
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772034970561
@@ -291,6 +285,12 @@
       "text": "RECON SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772034974344
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034974557
     }
   ]
 }
