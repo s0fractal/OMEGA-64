@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0AAAA000",
     "66060066",
     "06066666",
     "AAAAAAAA",
@@ -199,15 +198,10 @@
     "AA0066A0",
     "AA0BC00F",
     "600666A0",
-    "AA0AAAAA"
+    "AA0AAAAA",
+    "00006060"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "COHERE HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772037345290
-    },
     {
       "origin": "REVERSE",
       "text": "DECAY DECAY HUNGER",
@@ -291,6 +285,12 @@
       "text": "WITNESS FORGE EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772037350838
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS GIVING COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772037351046
     }
   ]
 }
