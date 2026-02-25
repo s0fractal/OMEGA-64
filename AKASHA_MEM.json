@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD REFLECT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041384399
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GIVING STABLE GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WAIT SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772041388429
+    },
+    {
+      "origin": "STREAM",
+      "text": "RECON SHELTER WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772041388942
     }
   ]
 }
