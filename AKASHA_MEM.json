@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034762411
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772034762579
@@ -291,6 +285,12 @@
       "text": "SICKNESS SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772034765245
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SEIZE SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034765478
     }
   ]
 }
