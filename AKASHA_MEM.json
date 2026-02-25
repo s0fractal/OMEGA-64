@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE SHELTER PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020458209
-    },
-    {
       "origin": "INTERFACE",
       "text": "GUARD GUARD SHELTER",
       "mood": "DEFENSIVE",
@@ -142,6 +136,12 @@
       "text": "WAVE DREAM AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772020464248
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD REFLECT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020464417
     }
   ]
 }
