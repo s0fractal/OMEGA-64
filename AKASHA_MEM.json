@@ -201,12 +201,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT SHELTER REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772024082102
-    },
-    {
       "origin": "STREAM",
       "text": "BLOOM HEAL COHERE",
       "mood": "HARMONIC",
@@ -289,6 +283,12 @@
       "text": "SEIZE HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772024089703
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024090280
     }
   ]
 }
