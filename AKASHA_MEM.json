@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66606666",
     "06660660",
     "60006660",
     "66066006",
@@ -199,15 +198,10 @@
     "FA0AAA00",
     "A0AA0A00",
     "66006060",
-    "AAAAA0AA"
+    "AAAAA0AA",
+    "F00FF00F"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHELTER STASIS RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772027057984
-    },
     {
       "origin": "REVERSE",
       "text": "STABLE STABLE COHERE",
@@ -291,6 +285,12 @@
       "text": "UNIFY STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772027063523
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE BEYOND WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772027063783
     }
   ]
 }
