@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD PURE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772031332147
-    },
-    {
       "origin": "ALPHA_REVERSE",
       "text": "OSMOSIS BLOOM HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SEIZE CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772031340076
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT IMMUNE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772031340422
     }
   ]
 }
