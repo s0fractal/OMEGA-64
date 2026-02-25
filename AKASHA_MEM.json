@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772028811745
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772028812424
@@ -291,6 +285,12 @@
       "text": "COHERE FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772028820397
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS WAVE WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772028821443
     }
   ]
 }
