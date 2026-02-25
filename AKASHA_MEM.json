@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC HEAL BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772040311980
-    },
-    {
       "origin": "INTERFACE",
       "text": "DECAY STRIKE SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STASIS IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772040319344
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040319526
     }
   ]
 }
