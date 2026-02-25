@@ -132,12 +132,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SPARK BEYOND BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772022355408
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022355583
@@ -219,6 +213,12 @@
       "text": "FLOW COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772022359619
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DECAY CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022359777
     }
   ]
 }
