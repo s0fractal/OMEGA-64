@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040421917
-    },
-    {
       "origin": "INTERFACE",
       "text": "DECAY HUNGER DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772040424586
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772040424763
     }
   ]
 }
