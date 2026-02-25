@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SEIZE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036738123
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772036740279
@@ -291,6 +285,12 @@
       "text": "SHOCK BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772036742895
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772036743102
     }
   ]
 }
