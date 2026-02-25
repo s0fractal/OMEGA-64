@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020147180
-    },
-    {
       "origin": "REVERSE",
       "text": "BREACH HUNGER HUNGER",
       "mood": "AGGRESSIVE",
@@ -136,6 +130,12 @@
       "text": "GIVING GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772020156255
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020157238
     }
   ]
 }
