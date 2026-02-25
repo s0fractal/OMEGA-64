@@ -157,12 +157,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING SYNC HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772022764225
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BLOOM BLOOM STABLE",
       "mood": "HARMONIC",
@@ -245,6 +239,12 @@
       "text": "SICKNESS STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772022772367
+    },
+    {
+      "origin": "REVERSE",
+      "text": "AWAKEN WITNESS BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772022772663
     }
   ]
 }
