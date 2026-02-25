@@ -68,12 +68,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHIELD SHIELD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772020831524
-    },
-    {
       "origin": "REVERSE",
       "text": "EVOLVE VISION DREAM",
       "mood": "CREATIVE",
@@ -156,6 +150,12 @@
       "text": "REFLECT PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772020840920
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL BLOOM COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772020842473
     }
   ]
 }
