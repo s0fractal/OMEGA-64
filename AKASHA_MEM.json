@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE GUARD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772026357085
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772026358460
@@ -291,6 +285,12 @@
       "text": "RECON GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772026363948
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY OSMOSIS UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772026364166
     }
   ]
 }
