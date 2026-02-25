@@ -61,12 +61,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772020605857
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH STRIKE SHOCK",
       "mood": "AGGRESSIVE",
@@ -149,6 +143,12 @@
       "text": "STASIS PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772020611528
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772020612263
     }
   ]
 }
