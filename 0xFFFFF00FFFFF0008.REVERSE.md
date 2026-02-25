@@ -1,8 +1,8 @@
 ---
 eigenvalue: '0xFFFFF00FFFFF0008'
 energy: 49.9
-resonance: 21.98
-x: 626
+resonance: 29.41
+x: 627
 'y': 334
 symbol: ARCHIVIST
 thought: ORBIT_MATING
