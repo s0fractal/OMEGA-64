@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772034291789
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772034291972
@@ -291,6 +285,12 @@
       "text": "SYNC FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034294312
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT WATCH SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772034294495
     }
   ]
 }
