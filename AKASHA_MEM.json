@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME DRAIN DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040548443
-    },
-    {
       "origin": "I16_CLAMP",
       "text": "UNIFY COHERE STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772040550977
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772040551098
     }
   ]
 }
