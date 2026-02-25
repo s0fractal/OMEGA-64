@@ -69,12 +69,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SPARK BEYOND SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772020839945
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772020840138
@@ -156,6 +150,12 @@
       "text": "WAIT WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772020846521
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DECAY HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020846777
     }
   ]
 }
