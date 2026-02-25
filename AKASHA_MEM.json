@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772030416258
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772030416500
@@ -291,6 +285,12 @@
       "text": "WAIT RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772030422427
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE CONSUME SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030422825
     }
   ]
 }
