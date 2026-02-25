@@ -110,12 +110,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH STRIFE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021880286
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772021880496
@@ -197,6 +191,12 @@
       "text": "RESONATE BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772021887514
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772021887682
     }
   ]
 }
