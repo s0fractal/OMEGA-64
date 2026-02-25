@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME CONSUME SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040925744
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772040926214
@@ -291,6 +285,12 @@
       "text": "SHIELD REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772040928936
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "GIVING RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772040929276
     }
   ]
 }
