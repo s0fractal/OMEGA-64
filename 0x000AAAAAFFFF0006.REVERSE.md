@@ -1,11 +1,11 @@
 ---
 eigenvalue: '0x000AAAAAFFFF0006'
-energy: 45
+energy: 50
 resonance: 30
 x: 639
 'y': 400
 symbol: ARCHIVIST
-thought: SEEK_ALPHA_PASSIVE
+thought: RESURRECTED
 signals: []
 bond_strengths:
   '0xAAAAAAA00000000E': 0.9714023696327185
@@ -86,7 +86,7 @@ ex:
   - '0x000AAAAAFFFF0004'
 bonds:
   - '0xAAAAAAA00000000E'
-logic: AAAAAAAA
+logic: 000AAAAA
 ---
 
 <div align="center">
