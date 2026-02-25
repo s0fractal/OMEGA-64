@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE SHOCK SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026882491
-    },
-    {
       "origin": "REVERSE",
       "text": "PURE REFLECT WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772026888913
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772026889081
     }
   ]
 }
