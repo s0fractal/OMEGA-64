@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIKE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029660874
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772029661480
@@ -291,6 +285,12 @@
       "text": "FLOW STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772029671795
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER RECON PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772029672375
     }
   ]
 }
