@@ -203,18 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042285881
-    },
-    {
-      "origin": "REVERSE",
-      "text": "WAIT RECON GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042286150
-    },
-    {
       "origin": "I16_CLAMP",
       "text": "BREACH HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +279,18 @@
       "text": "SYNC COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772042298603
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WATCH SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772042299611
+    },
+    {
+      "origin": "STREAM",
+      "text": "REFLECT WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042301342
     }
   ]
 }
