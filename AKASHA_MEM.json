@@ -200,12 +200,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024052455
-    },
-    {
       "origin": "INTERFACE",
       "text": "PURE SHIELD RECON",
       "mood": "DEFENSIVE",
@@ -288,6 +282,12 @@
       "text": "WATCH SHELTER SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772024056073
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772024056328
     }
   ]
 }
