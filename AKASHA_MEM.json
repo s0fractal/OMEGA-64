@@ -70,12 +70,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE IMMUNE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020895734
-    },
-    {
       "origin": "INTERFACE",
       "text": "SEIZE SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
@@ -158,6 +152,12 @@
       "text": "CONSUME SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020901366
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK AWAKEN VISION",
+      "mood": "CREATIVE",
+      "tick": 1772020901525
     }
   ]
 }
