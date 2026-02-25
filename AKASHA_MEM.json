@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0D10A098",
     "AAAAA000",
     "00B0C00D",
     "AA00A0AA",
@@ -199,15 +198,10 @@
     "A0000AA0",
     "A6006000",
     "AAA0A00A",
-    "A06AA0A0"
+    "A06AA0A0",
+    "06006006"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE BREACH BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041973178
-    },
     {
       "origin": "ARCHIVIST",
       "text": "UNIFY UNIFY COHERE",
@@ -291,6 +285,12 @@
       "text": "GUARD WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772041979901
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY SYNC UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772041980377
     }
   ]
 }
