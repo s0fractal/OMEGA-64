@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772034871293
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772034871478
@@ -291,6 +285,12 @@
       "text": "OSMOSIS SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772034874419
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772034874625
     }
   ]
 }
