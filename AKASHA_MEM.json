@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772041205171
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772041205626
@@ -291,6 +285,12 @@
       "text": "PURE REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041209480
+    },
+    {
+      "origin": "CAR",
+      "text": "SEIZE SEIZE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041209613
     }
   ]
 }
