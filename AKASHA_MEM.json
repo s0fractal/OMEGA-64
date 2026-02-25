@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER WAIT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772025165634
-    },
-    {
       "origin": "REVERSE",
       "text": "BREACH STRIFE STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772025172270
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772025172468
     }
   ]
 }
