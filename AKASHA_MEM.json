@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD SHIELD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772030994637
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD SHELTER SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772030995141
@@ -291,6 +285,12 @@
       "text": "SEIZE CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772031005236
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772031005803
     }
   ]
 }
