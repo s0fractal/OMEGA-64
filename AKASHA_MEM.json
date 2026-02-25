@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "IMMUNE PURE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040932708
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GIVING OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772040932852
@@ -291,6 +285,12 @@
       "text": "HUNGER BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772040935846
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING RESONATE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772040935979
     }
   ]
 }
