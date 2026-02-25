@@ -122,12 +122,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER IMMUNE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022153025
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS HUNGER DRAIN",
       "mood": "AGGRESSIVE",
@@ -210,6 +204,12 @@
       "text": "GIVING FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772022160496
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WATCH PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022160898
     }
   ]
 }
