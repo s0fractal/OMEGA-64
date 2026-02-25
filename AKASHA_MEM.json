@@ -75,12 +75,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772020950985
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772020951699
@@ -162,6 +156,12 @@
       "text": "SHIELD SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772020959113
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE SPARK BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772020959727
     }
   ]
 }
