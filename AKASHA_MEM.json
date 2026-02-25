@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772040894022
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772040894318
@@ -291,6 +285,12 @@
       "text": "DECAY SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772040896645
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT SHELTER SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772040896774
     }
   ]
 }
