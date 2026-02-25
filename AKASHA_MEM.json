@@ -35,12 +35,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HEAL UNIFY COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772019764382
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE HUNGER CONSUME",
       "mood": "AGGRESSIVE",
@@ -123,6 +117,12 @@
       "text": "SHIELD IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772019776812
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772019777537
     }
   ]
 }
