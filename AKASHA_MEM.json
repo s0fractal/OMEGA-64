@@ -113,12 +113,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL UNIFY OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772021947166
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021947445
@@ -200,6 +194,12 @@
       "text": "STASIS RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772021956249
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SEIZE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021957767
     }
   ]
 }
