@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS BEYOND BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772023165211
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023165347
@@ -259,6 +253,12 @@
       "text": "COHERE STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772023170587
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHELTER IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023170751
     }
   ]
 }
