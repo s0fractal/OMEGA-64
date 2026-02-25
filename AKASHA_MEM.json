@@ -176,12 +176,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023271378
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023271595
@@ -263,6 +257,12 @@
       "text": "GIVING STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772023274390
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772023274559
     }
   ]
 }
