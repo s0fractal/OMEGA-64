@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SEIZE HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041091169
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN SEIZE STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041094206
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY RESONATE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041094507
     }
   ]
 }
