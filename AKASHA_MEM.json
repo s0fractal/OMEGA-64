@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "UNIFY STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772040227569
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BEYOND SPARK BEYOND",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772040233382
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE BREACH CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040233538
     }
   ]
 }
