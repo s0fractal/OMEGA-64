@@ -110,12 +110,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE FLOW OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772021869498
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772021869916
@@ -197,6 +191,12 @@
       "text": "RECON RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772021874667
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS SYNC FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772021875590
     }
   ]
 }
