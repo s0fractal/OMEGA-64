@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "POTENTIAL",
-      "text": "STRIKE CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042445654
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE SHIELD WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "WATCH IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772042463551
+    },
+    {
+      "origin": "STREAM",
+      "text": "WATCH STASIS WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772042464500
     }
   ]
 }
