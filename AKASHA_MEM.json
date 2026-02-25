@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS IMMUNE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772025831743
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772025831921
@@ -291,6 +285,12 @@
       "text": "SHIELD STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772025837691
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME FORGE WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772025837981
     }
   ]
 }
