@@ -132,12 +132,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772022356084
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022356568
@@ -219,6 +213,12 @@
       "text": "IMMUNE REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022360285
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SEIZE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022360471
     }
   ]
 }
