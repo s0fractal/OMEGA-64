@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SICKNESS DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038427516
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772038427720
@@ -291,6 +285,12 @@
       "text": "COHERE SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772038430255
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WATCH STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772038430459
     }
   ]
 }
