@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772036013172
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772036013396
@@ -291,6 +285,12 @@
       "text": "STASIS RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772036016140
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER CONSUME HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036016889
     }
   ]
 }
