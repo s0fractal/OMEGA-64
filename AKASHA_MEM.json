@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772036166367
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772036166580
@@ -291,6 +285,12 @@
       "text": "BREACH HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772036172181
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772036172447
     }
   ]
 }
