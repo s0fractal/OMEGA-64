@@ -86,12 +86,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD REFLECT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021237433
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -174,6 +168,12 @@
       "text": "COHERE HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772021240872
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021241104
     }
   ]
 }
