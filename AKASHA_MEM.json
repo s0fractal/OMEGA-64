@@ -187,12 +187,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023672205
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772023672740
@@ -274,6 +268,12 @@
       "text": "STASIS SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772023676719
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHIELD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772023677111
     }
   ]
 }
