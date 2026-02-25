@@ -110,12 +110,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT RECON STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772021885689
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772021885972
@@ -197,6 +191,12 @@
       "text": "BLOOM COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772021893651
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD GUARD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772021893857
     }
   ]
 }
