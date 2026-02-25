@@ -84,12 +84,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "IMMUNE WAIT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021225843
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK STRIKE BREACH",
       "mood": "AGGRESSIVE",
@@ -172,6 +166,12 @@
       "text": "STABLE HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772021229511
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021229661
     }
   ]
 }
