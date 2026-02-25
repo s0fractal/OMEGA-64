@@ -187,12 +187,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL STABLE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772023631039
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772023634191
@@ -274,6 +268,12 @@
       "text": "BECOME SPARK VISION",
       "mood": "CREATIVE",
       "tick": 1772023638596
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023638816
     }
   ]
 }
