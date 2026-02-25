@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025489392
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772025489564
@@ -291,6 +285,12 @@
       "text": "UNIFY FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772025494356
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025494928
     }
   ]
 }
