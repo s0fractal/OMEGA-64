@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARASITE",
-      "text": "WAIT SHELTER WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041219418
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE WAIT SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BREACH SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772041223362
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041223496
     }
   ]
 }
