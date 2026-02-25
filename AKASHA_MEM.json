@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DREAM EVOLVE VISION",
-      "mood": "CREATIVE",
-      "tick": 1772033790757
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772033790931
@@ -291,6 +285,12 @@
       "text": "STRIFE STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772033794247
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE STASIS GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772033794416
     }
   ]
 }
