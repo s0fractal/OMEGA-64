@@ -63,12 +63,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH SHELTER WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020741857
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE DRAIN DECAY",
       "mood": "AGGRESSIVE",
@@ -151,6 +145,12 @@
       "text": "GUARD WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772020752566
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER HUNGER BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020752772
     }
   ]
 }
