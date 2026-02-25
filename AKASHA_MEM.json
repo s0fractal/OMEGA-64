@@ -70,12 +70,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RECON IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772020874809
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY OSMOSIS UNIFY",
       "mood": "HARMONIC",
@@ -158,6 +152,12 @@
       "text": "BEYOND FORGE BEYOND",
       "mood": "CREATIVE",
       "tick": 1772020882176
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020882360
     }
   ]
 }
