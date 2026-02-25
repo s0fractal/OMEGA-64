@@ -187,12 +187,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE WATCH SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772023641235
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772023641500
@@ -274,6 +268,12 @@
       "text": "HEAL COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772023647945
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SEIZE SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023648575
     }
   ]
 }
