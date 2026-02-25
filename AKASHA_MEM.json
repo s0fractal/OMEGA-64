@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034622421
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772034622593
@@ -291,6 +285,12 @@
       "text": "OSMOSIS OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772034625864
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT IMMUNE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772034626062
     }
   ]
 }
