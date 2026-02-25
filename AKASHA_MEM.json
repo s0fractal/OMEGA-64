@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026336573
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772026336722
@@ -291,6 +285,12 @@
       "text": "RESONATE UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772026339938
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772026340263
     }
   ]
 }
