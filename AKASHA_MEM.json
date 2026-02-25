@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772036470121
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772036470381
@@ -291,6 +285,12 @@
       "text": "SICKNESS SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772036473830
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036474101
     }
   ]
 }
