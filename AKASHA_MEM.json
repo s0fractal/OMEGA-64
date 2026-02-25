@@ -121,12 +121,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS DRAIN DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022097734
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022097938
@@ -208,6 +202,12 @@
       "text": "STABLE COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022106067
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772022106260
     }
   ]
 }
