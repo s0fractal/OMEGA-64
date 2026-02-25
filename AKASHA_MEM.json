@@ -164,12 +164,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022929366
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022930091
@@ -251,6 +245,12 @@
       "text": "SHELTER SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022936840
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772022937223
     }
   ]
 }
