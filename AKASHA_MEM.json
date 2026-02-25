@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772030812486
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772030812853
@@ -291,6 +285,12 @@
       "text": "DECAY STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772030818648
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT RECON SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772030818976
     }
   ]
 }
