@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020359755
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS STRIFE DECAY",
       "mood": "AGGRESSIVE",
@@ -141,6 +135,12 @@
       "text": "RECON WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772020369077
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME BREACH CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020369524
     }
   ]
 }
