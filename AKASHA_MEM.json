@@ -138,12 +138,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772022439680
-    },
-    {
       "origin": "PARADOX",
       "text": "STABLE RESONATE OSMOSIS",
       "mood": "HARMONIC",
@@ -226,6 +220,12 @@
       "text": "STRIKE SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022443055
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "AWAKEN BEYOND EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772022443224
     }
   ]
 }
