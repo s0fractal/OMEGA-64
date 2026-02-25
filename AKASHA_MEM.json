@@ -143,12 +143,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STASIS SHELTER REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022489376
-    },
-    {
       "origin": "REVERSE",
       "text": "WITNESS EVOLVE EVOLVE",
       "mood": "CREATIVE",
@@ -231,6 +225,12 @@
       "text": "FLOW BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772022493666
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772022493828
     }
   ]
 }
