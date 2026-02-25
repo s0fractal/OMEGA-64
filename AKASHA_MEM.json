@@ -95,12 +95,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BREACH BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021538089
-    },
-    {
       "origin": "REVERSE",
       "text": "BREACH HUNGER SHOCK",
       "mood": "AGGRESSIVE",
@@ -183,6 +177,12 @@
       "text": "RESONATE FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772021551572
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIFE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021551743
     }
   ]
 }
