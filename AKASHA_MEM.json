@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WAIT STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772042029911
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "COHERE RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772042030110
@@ -291,6 +285,12 @@
       "text": "BREACH DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772042038352
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE SYNC HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772042038703
     }
   ]
 }
