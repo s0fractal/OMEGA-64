@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON WATCH WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772033319119
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772033319280
@@ -291,6 +285,12 @@
       "text": "STABLE COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772033321571
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033321749
     }
   ]
 }
