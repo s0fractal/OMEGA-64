@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "CONSUME STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019637555
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS STRIKE BREACH",
       "mood": "AGGRESSIVE",
@@ -114,6 +108,12 @@
       "text": "STRIFE CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772019648305
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD WATCH SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772019650312
     }
   ]
 }
