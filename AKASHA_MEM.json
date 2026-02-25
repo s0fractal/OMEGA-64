@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HUNGER STRIFE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020461608
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE SYNC GIVING",
       "mood": "HARMONIC",
@@ -142,6 +136,12 @@
       "text": "WATCH REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772020468245
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD GUARD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020468975
     }
   ]
 }
