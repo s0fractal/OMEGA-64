@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "I16_CLAMP",
-      "text": "BLOOM COHERE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772041036291
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIKE DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772041039613
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772041039746
     }
   ]
 }
