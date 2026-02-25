@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772037082497
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772037082707
@@ -291,6 +285,12 @@
       "text": "BLOOM SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772037085342
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772037085540
     }
   ]
 }
