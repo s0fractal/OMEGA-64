@@ -162,12 +162,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772022911654
-    },
-    {
       "origin": "REVERSE",
       "text": "PURE IMMUNE SHELTER",
       "mood": "DEFENSIVE",
@@ -250,6 +244,12 @@
       "text": "GIVING SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022915819
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM HEAL OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772022916060
     }
   ]
 }
