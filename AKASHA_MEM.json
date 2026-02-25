@@ -155,12 +155,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GIVING OSMOSIS OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772022722475
-    },
-    {
       "origin": "REVERSE",
       "text": "SHIELD RECON GUARD",
       "mood": "DEFENSIVE",
@@ -243,6 +237,12 @@
       "text": "RESONATE SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022734402
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE CONSUME SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022734753
     }
   ]
 }
