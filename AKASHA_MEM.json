@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE RESONATE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772040381173
-    },
-    {
       "origin": "STREAM",
       "text": "WATCH REFLECT WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHOCK CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772040387346
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE BEYOND FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772040387766
     }
   ]
 }
