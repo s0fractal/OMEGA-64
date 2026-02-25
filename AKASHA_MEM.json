@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SICKNESS DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030108990
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME FORGE FORGE",
       "mood": "CREATIVE",
       "tick": 1772030109546
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772030124349
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS SPARK SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772030124828
     }
   ]
 }
