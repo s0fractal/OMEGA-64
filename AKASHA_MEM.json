@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038347244
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772038347479
@@ -291,6 +285,12 @@
       "text": "RECON REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772038352156
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE RESONATE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772038352359
     }
   ]
 }
