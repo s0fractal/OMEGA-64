@@ -85,12 +85,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SICKNESS DRAIN SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021221325
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIFE SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772021221677
@@ -172,6 +166,12 @@
       "text": "RECON REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772021227776
+    },
+    {
+      "origin": "STREAM",
+      "text": "STABLE SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772021227936
     }
   ]
 }
