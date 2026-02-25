@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025402904
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772025403112
@@ -291,6 +285,12 @@
       "text": "BREACH SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772025407814
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT PURE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772025408919
     }
   ]
 }
