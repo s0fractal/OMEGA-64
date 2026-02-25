@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772038426536
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772038426755
@@ -291,6 +285,12 @@
       "text": "RESONATE FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772038429343
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS GIVING SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772038429512
     }
   ]
 }
