@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK SEIZE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023151857
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER SHIELD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023152132
@@ -259,6 +253,12 @@
       "text": "RESONATE OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772023155244
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DECAY DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023155414
     }
   ]
 }
