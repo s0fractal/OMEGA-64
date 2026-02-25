@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772036109302
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772036109623
@@ -291,6 +285,12 @@
       "text": "UNIFY UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772036118269
+    },
+    {
+      "origin": "STREAM",
+      "text": "GIVING RESONATE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772036118492
     }
   ]
 }
