@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA666666",
     "00000006",
     "0AAAAAA0",
     "C0DED000",
@@ -199,15 +198,10 @@
     "A00A00A0",
     "AAAA0A0A",
     "00000600",
-    "0B0A0000"
+    "0B0A0000",
+    "AA660660"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "COHERE COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772036222329
-    },
     {
       "origin": "REVERSE",
       "text": "RECON REFLECT IMMUNE",
@@ -291,6 +285,12 @@
       "text": "STASIS WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772036225641
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DRAIN CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036225861
     }
   ]
 }
