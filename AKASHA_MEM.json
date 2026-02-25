@@ -157,12 +157,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "FLOW GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772022768063
-    },
-    {
       "origin": "REVERSE",
       "text": "PURE WATCH SHELTER",
       "mood": "DEFENSIVE",
@@ -245,6 +239,12 @@
       "text": "SEIZE BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022778597
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD IMMUNE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022778869
     }
   ]
 }
