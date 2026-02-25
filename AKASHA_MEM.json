@@ -93,12 +93,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE STASIS WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772021433454
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE SHOCK SEIZE",
       "mood": "AGGRESSIVE",
@@ -181,6 +175,12 @@
       "text": "WATCH PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772021468714
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY BREACH SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021470023
     }
   ]
 }
