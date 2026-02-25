@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BREACH BREACH HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041011533
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GUARD REFLECT WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041014759
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH BREACH SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041014929
     }
   ]
 }
