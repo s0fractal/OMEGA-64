@@ -164,12 +164,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE HEAL UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772022984051
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022984283
@@ -251,6 +245,12 @@
       "text": "BLOOM BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772022987257
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772022987471
     }
   ]
 }
