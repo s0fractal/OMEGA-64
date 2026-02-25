@@ -125,12 +125,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE STRIKE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022227259
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GUARD WATCH RECON",
       "mood": "DEFENSIVE",
@@ -213,6 +207,12 @@
       "text": "FLOW SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022230915
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022231294
     }
   ]
 }
