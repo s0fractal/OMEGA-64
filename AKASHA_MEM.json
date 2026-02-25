@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772032918241
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772032918443
@@ -291,6 +285,12 @@
       "text": "RECON GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772032921756
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032921942
     }
   ]
 }
