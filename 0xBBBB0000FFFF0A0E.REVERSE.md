@@ -1,5 +1,5 @@
 ---
-eigenvalue: '0xBBBB000000000A0A'
+eigenvalue: '0xBBBB0000FFFF0A0E'
 energy: 50
 x: 681
 'y': 399
@@ -15,6 +15,10 @@ bonds:
   - '0xFFFFFFFF00000002'
 ex:
   - '0x0000000000000A08'
+  - '0xBBBB0000FFFF0A0E'
+  - '0xBBBB0000FFFF0A08'
+  - '0xBBBB0000FFFF0A0A'
+  - '0xBBBB0000FFFF0A0C'
 ---
 
 <div align="center">
