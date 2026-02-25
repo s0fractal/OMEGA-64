@@ -81,12 +81,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS WAVE DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772021105040
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772021105300
@@ -168,6 +162,12 @@
       "text": "REFLECT IMMUNE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772021110665
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY GIVING UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772021110969
     }
   ]
 }
