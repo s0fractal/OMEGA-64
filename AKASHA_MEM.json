@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GUARD SHIELD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041623695
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME DRAIN SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SICKNESS SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772041627761
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE HUNGER CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041628514
     }
   ]
 }
