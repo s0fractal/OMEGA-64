@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE GUARD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772035236656
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GIVING GIVING STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FLOW UNIFY HEAL",
       "mood": "HARMONIC",
       "tick": 1772035240916
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772035241127
     }
   ]
 }
