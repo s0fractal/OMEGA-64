@@ -16,12 +16,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE SHELTER GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772014255695
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHOCK SICKNESS BREACH",
       "mood": "AGGRESSIVE",
@@ -104,6 +98,12 @@
       "text": "DRAIN HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772014429394
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER DECAY SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772014458438
     }
   ]
 }
