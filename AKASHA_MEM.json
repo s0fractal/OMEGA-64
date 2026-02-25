@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "PURE SHIELD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772019987623
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -130,6 +124,12 @@
       "text": "DRAIN HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020000915
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SICKNESS DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020002265
     }
   ]
 }
