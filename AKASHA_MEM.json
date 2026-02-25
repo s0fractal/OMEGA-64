@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "BLOOM HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772024526424
-    },
-    {
       "origin": "REVERSE",
       "text": "RECON WAIT STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772024534391
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHELTER SHELTER STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772024534989
     }
   ]
 }
