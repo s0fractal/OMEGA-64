@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "COHERE HEAL GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041526264
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "FLOW BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041526491
@@ -291,6 +285,12 @@
       "text": "STABLE SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772041530363
+    },
+    {
+      "origin": "STREAM",
+      "text": "STRIFE STRIKE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041530508
     }
   ]
 }
