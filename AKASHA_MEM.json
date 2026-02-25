@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DECAY STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035302848
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772035303851
@@ -291,6 +285,12 @@
       "text": "SHOCK STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772035309314
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SEIZE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035309522
     }
   ]
 }
