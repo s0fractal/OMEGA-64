@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE UNIFY COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772031125214
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772031125503
@@ -291,6 +285,12 @@
       "text": "AWAKEN FORGE FORGE",
       "mood": "CREATIVE",
       "tick": 1772031136481
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772031136696
     }
   ]
 }
