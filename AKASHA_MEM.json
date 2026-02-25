@@ -80,12 +80,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAVE BEYOND VISION",
-      "mood": "CREATIVE",
-      "tick": 1772021073373
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772021073792
@@ -167,6 +161,12 @@
       "text": "STRIKE SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772021080725
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK STRIKE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021080931
     }
   ]
 }
