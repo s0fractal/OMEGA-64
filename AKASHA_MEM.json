@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME HUNGER HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020691781
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE OSMOSIS FLOW",
       "mood": "HARMONIC",
@@ -150,6 +144,12 @@
       "text": "STASIS SHIELD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772020698727
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM RESONATE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772020698985
     }
   ]
 }
