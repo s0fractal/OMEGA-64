@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00660600",
     "06606006",
     "60066600",
     "66600006",
@@ -199,15 +198,10 @@
     "06060000",
     "A0000AAA",
     "AA0A0AA0",
-    "0BBB0000"
+    "0BBB0000",
+    "00000660"
   ],
   "utterances": [
-    {
-      "origin": "INTERFACE",
-      "text": "PURE SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040481339
-    },
     {
       "origin": "REVERSE",
       "text": "STRIFE SICKNESS SICKNESS",
@@ -291,6 +285,12 @@
       "text": "FLOW GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772040483811
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772040483986
     }
   ]
 }
