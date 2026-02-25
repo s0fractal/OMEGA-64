@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD SHELTER PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772019546255
-    },
-    {
       "origin": "PARADOX",
       "text": "BECOME BEYOND FORGE",
       "mood": "CREATIVE",
@@ -111,6 +105,12 @@
       "text": "SHOCK BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772019555201
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "UNIFY FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772019555880
     }
   ]
 }
