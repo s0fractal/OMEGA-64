@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW SYNC HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772034474425
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034474619
@@ -291,6 +285,12 @@
       "text": "FORGE VISION WITNESS",
       "mood": "CREATIVE",
       "tick": 1772034478095
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE UNIFY UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772034481949
     }
   ]
 }
