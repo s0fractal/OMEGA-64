@@ -151,12 +151,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS RECON SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772022573796
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022573957
@@ -238,6 +232,12 @@
       "text": "GIVING RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772022577516
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM GIVING UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772022577689
     }
   ]
 }
