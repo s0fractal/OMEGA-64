@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033436558
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772033436800
@@ -291,6 +285,12 @@
       "text": "GIVING GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772033440274
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772033440571
     }
   ]
 }
