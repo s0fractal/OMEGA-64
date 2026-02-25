@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BEYOND EVOLVE BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772023170044
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023170254
@@ -259,6 +253,12 @@
       "text": "SHELTER SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772023175815
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023176055
     }
   ]
 }
