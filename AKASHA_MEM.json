@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS STRIFE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026047927
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE OSMOSIS BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RECON SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772026052573
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE OSMOSIS UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772026052769
     }
   ]
 }
