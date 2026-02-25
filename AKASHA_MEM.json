@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE FLOW UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772024169273
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772024169531
@@ -291,6 +285,12 @@
       "text": "BLOOM BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772024176973
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD PURE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772024177139
     }
   ]
 }
