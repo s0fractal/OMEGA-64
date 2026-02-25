@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON STASIS PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772038426325
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772038426536
@@ -291,6 +285,12 @@
       "text": "STABLE GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772038429141
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772038429343
     }
   ]
 }
