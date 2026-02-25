@@ -171,12 +171,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHIELD REFLECT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023212416
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY UNIFY RESONATE",
       "mood": "HARMONIC",
@@ -259,6 +253,12 @@
       "text": "SPARK SPARK FORGE",
       "mood": "CREATIVE",
       "tick": 1772023215892
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIKE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023216229
     }
   ]
 }
