@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STASIS PURE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041936507
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WATCH REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041937565
@@ -291,6 +285,12 @@
       "text": "GUARD SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041942889
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN STRIFE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041943227
     }
   ]
 }
