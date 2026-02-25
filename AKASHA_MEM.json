@@ -180,12 +180,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SICKNESS DECAY STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023443095
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE SYNC HEAL",
       "mood": "HARMONIC",
@@ -268,6 +262,12 @@
       "text": "CONSUME DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023447383
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE OSMOSIS OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772023447648
     }
   ]
 }
