@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "I16_CLAMP",
-      "text": "COHERE COHERE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772042411642
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL SYNC OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GIVING RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772042430946
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON RECON SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042433698
     }
   ]
 }
