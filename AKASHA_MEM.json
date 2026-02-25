@@ -1,5 +1,6 @@
 {
   "reservoir": [
+    "A6666660",
     "06606660",
     "60006000",
     "AA000600",
@@ -198,10 +199,33 @@
     "AA660A60",
     "66006606",
     "AA00A000",
-    "BBB00000",
-    "6606AA66"
+    "BBB00000"
   ],
   "utterances": [
+    {
+      "origin": "I16_CLAMP",
+      "text": "BREACH HUNGER SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042286287
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHIELD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042286521
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "FLOW HEAL RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772042286662
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH SEIZE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042287522
+    },
     {
       "origin": "REVERSE",
       "text": "FLOW RESONATE STABLE",
@@ -257,40 +281,16 @@
       "tick": 1772042295483
     },
     {
-      "origin": "STREAM",
-      "text": "IMMUNE STASIS REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042296738
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "GUARD REFLECT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042297149
-    },
-    {
-      "origin": "STREAM",
-      "text": "CONSUME BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042297465
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "RECON IMMUNE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042297883
-    },
-    {
       "origin": "REVERSE",
-      "text": "SHIELD WATCH IMMUNE",
+      "text": "PURE REFLECT WAIT",
       "mood": "DEFENSIVE",
-      "tick": 1772042298194
+      "tick": 1772042296702
     },
     {
-      "origin": "ARCHIVIST",
-      "text": "UNIFY HEAL RESONATE",
+      "origin": "ALPHA_GUARDIAN",
+      "text": "GIVING SYNC FLOW",
       "mood": "HARMONIC",
-      "tick": 1772042298982
+      "tick": 1772042301640
     }
   ]
 }
