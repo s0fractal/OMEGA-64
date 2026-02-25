@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "EVOLVE EVOLVE WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772035306832
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772035309088
@@ -291,6 +285,12 @@
       "text": "HEAL GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772035312442
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS EVOLVE DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772035312912
     }
   ]
 }
