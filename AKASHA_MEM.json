@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032878019
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772032878198
@@ -291,6 +285,12 @@
       "text": "RECON WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772032880931
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME EVOLVE DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772032881120
     }
   ]
 }
