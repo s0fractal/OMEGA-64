@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIKE SHOCK DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020336253
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH GUARD RECON",
       "mood": "DEFENSIVE",
@@ -141,6 +135,12 @@
       "text": "SICKNESS BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772020344283
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHOCK SEIZE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020345402
     }
   ]
 }
