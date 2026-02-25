@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BEYOND AWAKEN AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772036081124
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772036081290
@@ -291,6 +285,12 @@
       "text": "HUNGER DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772036085656
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036086006
     }
   ]
 }
