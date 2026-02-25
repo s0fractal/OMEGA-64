@@ -102,12 +102,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SICKNESS HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021613357
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772021613508
@@ -189,6 +183,12 @@
       "text": "SYNC HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772021619382
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD IMMUNE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772021619548
     }
   ]
 }
