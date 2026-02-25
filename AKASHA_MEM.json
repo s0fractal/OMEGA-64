@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AABBC0DD",
     "06666606",
     "A0AAAAAA",
     "60666060",
@@ -199,15 +198,10 @@
     "AAAA000A",
     "A000A000",
     "06606666",
-    "000AA0A0"
+    "000AA0A0",
+    "0A000A0A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GIVING HEAL OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772026269794
-    },
     {
       "origin": "REVERSE",
       "text": "DRAIN STRIKE STRIFE",
@@ -291,6 +285,12 @@
       "text": "UNIFY COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772026277801
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING GIVING BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772026278158
     }
   ]
 }
