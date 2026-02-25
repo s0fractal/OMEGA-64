@@ -170,12 +170,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH SHIELD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023088018
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023088187
@@ -257,6 +251,12 @@
       "text": "REFLECT RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772023093362
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023093680
     }
   ]
 }
