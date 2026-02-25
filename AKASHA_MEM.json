@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036729255
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772036729448
@@ -291,6 +285,12 @@
       "text": "HEAL OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772036731918
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND BEYOND SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772036732105
     }
   ]
 }
