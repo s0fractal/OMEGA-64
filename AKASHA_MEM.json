@@ -112,12 +112,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021914304
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772021914939
@@ -199,6 +193,12 @@
       "text": "REFLECT WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772021923351
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772021923578
     }
   ]
 }
