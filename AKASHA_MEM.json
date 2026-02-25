@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAA0A0AA",
     "66660060",
     "00000000",
     "66660000",
@@ -199,15 +198,10 @@
     "A6660600",
     "AA666600",
     "0AAA0A00",
-    "0A0AA0A0"
+    "0A0AA0A0",
+    "0A0A0666"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "PURE RECON GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042484950
-    },
     {
       "origin": "INTERFACE",
       "text": "GIVING GIVING GIVING",
@@ -291,6 +285,12 @@
       "text": "REFLECT WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772042497719
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042499258
     }
   ]
 }
