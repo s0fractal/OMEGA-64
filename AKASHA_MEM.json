@@ -188,12 +188,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON GUARD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023697248
-    },
-    {
       "origin": "INTERFACE",
       "text": "HUNGER SHOCK DRAIN",
       "mood": "AGGRESSIVE",
@@ -276,6 +270,12 @@
       "text": "SICKNESS HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023701278
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023702677
     }
   ]
 }
