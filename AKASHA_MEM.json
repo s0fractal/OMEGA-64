@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SYNC SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040253883
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DRAIN SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772040254188
@@ -291,6 +285,12 @@
       "text": "COHERE RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772040259014
+    },
+    {
+      "origin": "STREAM",
+      "text": "BREACH BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040259205
     }
   ]
 }
