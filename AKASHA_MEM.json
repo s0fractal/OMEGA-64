@@ -108,12 +108,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "IMMUNE WAIT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772021772873
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DECAY SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772021773785
@@ -195,6 +189,12 @@
       "text": "FLOW FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772021781131
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DECAY STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021781297
     }
   ]
 }
