@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "PURE IMMUNE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040429504
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW STABLE COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STASIS WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772040433012
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772040433229
     }
   ]
 }
