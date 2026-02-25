@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "IMMUNE PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772034733740
-    },
-    {
       "origin": "STREAM",
       "text": "SHIELD SHELTER IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772034740942
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SEIZE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034741233
     }
   ]
 }
