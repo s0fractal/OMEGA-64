@@ -139,12 +139,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY RESONATE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772022438208
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772022438416
@@ -226,6 +220,12 @@
       "text": "FLOW OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772022441253
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY OSMOSIS RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772022441554
     }
   ]
 }
