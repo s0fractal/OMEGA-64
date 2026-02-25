@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE SYNC UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772030816676
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE FLOW BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIFE STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772030821564
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHELTER IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772030821964
     }
   ]
 }
