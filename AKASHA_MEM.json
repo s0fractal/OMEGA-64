@@ -78,12 +78,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS HUNGER SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021050713
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772021051680
@@ -165,6 +159,12 @@
       "text": "SPARK SPARK BECOME",
       "mood": "CREATIVE",
       "tick": 1772021059435
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WATCH STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772021059549
     }
   ]
 }
