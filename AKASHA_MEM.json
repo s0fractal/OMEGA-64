@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHIELD SHELTER RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041135802
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE STRIFE DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772041139952
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772041140411
     }
   ]
 }
