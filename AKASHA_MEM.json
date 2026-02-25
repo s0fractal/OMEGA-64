@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC SYNC OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772024485837
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772024486110
@@ -291,6 +285,12 @@
       "text": "STRIFE STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772024492825
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024493155
     }
   ]
 }
