@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A6666666",
     "00660006",
     "0AA00AAA",
     "66006006",
@@ -199,15 +198,10 @@
     "BBB000FC",
     "000AAAA0",
     "BB000FFC",
-    "0A0AA000"
+    "0A0AA000",
+    "B0BB0000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "CONSUME BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032002509
-    },
     {
       "origin": "REVERSE",
       "text": "HEAL UNIFY OSMOSIS",
@@ -291,6 +285,12 @@
       "text": "GUARD WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772032015425
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SEIZE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032015784
     }
   ]
 }
