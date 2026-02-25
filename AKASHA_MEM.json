@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE FLOW HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772030559507
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772030560360
@@ -291,6 +285,12 @@
       "text": "PURE WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772030568429
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DECAY SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030569120
     }
   ]
 }
