@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772033369275
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772033369482
@@ -291,6 +285,12 @@
       "text": "GIVING RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772033372053
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH GUARD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772033372242
     }
   ]
 }
