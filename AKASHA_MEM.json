@@ -76,12 +76,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STASIS IMMUNE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021035035
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER RECON GUARD",
       "mood": "DEFENSIVE",
@@ -164,6 +158,12 @@
       "text": "UNIFY BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772021039823
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM GIVING HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772021039997
     }
   ]
 }
