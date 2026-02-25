@@ -203,18 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "SOMA",
-      "text": "HEAL GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772042613229
-    },
-    {
-      "origin": "WORKER",
-      "text": "COHERE COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772042614520
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIKE BREACH STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +279,18 @@
       "text": "RESONATE SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772042625354
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE BLOOM STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042625604
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SEIZE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042625847
     }
   ]
 }
