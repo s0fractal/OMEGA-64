@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FORGE AWAKEN DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772025545665
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS RECON PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772025557177
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772025557529
     }
   ]
 }
