@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040428449
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BECOME WITNESS WAVE",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772040430801
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772040430973
     }
   ]
 }
