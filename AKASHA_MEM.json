@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING HEAL BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772040685549
-    },
-    {
       "origin": "INTERFACE",
       "text": "GUARD RECON IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "REFLECT WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772040689406
+    },
+    {
+      "origin": "STREAM",
+      "text": "HEAL FLOW UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772040689561
     }
   ]
 }
