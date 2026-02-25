@@ -136,12 +136,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE CONSUME SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022399693
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BLOOM FLOW RESONATE",
       "mood": "HARMONIC",
@@ -224,6 +218,12 @@
       "text": "HEAL COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772022407635
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC GIVING FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772022407859
     }
   ]
 }
