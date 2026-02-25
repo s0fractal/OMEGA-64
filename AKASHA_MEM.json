@@ -22,12 +22,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "WATCH IMMUNE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772017625701
-    },
-    {
-      "origin": "INTERFACE",
       "text": "COHERE FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772017638850
@@ -109,6 +103,12 @@
       "text": "SICKNESS STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772019409343
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019410416
     }
   ]
 }
