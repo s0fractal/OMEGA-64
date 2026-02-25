@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA000AAA",
     "66066066",
     "0AAAAAA0",
     "00006066",
@@ -199,15 +198,10 @@
     "A0BBC000",
     "66006660",
     "A0666000",
-    "66000000"
+    "66000000",
+    "A00A0A00"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SYNC RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772038771595
-    },
     {
       "origin": "REVERSE",
       "text": "PURE WAIT WAIT",
@@ -291,6 +285,12 @@
       "text": "COHERE GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038774871
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SHOCK DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038775099
     }
   ]
 }
