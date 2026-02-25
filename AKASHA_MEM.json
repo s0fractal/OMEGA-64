@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_PROOF_OF_RESONANCE",
-      "text": "RESONATE BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772025321171
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM SYNC FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "CONSUME BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772025327172
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS GIVING UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772025327795
     }
   ]
 }
