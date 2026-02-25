@@ -167,12 +167,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772023030375
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023031667
@@ -254,6 +248,12 @@
       "text": "SHOCK CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023034507
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD PURE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023034924
     }
   ]
 }
