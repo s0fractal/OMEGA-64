@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW STABLE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772036093714
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH SHOCK BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WATCH PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772036099442
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHIELD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772036099661
     }
   ]
 }
