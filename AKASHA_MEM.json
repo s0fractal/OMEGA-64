@@ -166,12 +166,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE GUARD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772023014691
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023018094
@@ -253,6 +247,12 @@
       "text": "HEAL SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772023024487
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772023024681
     }
   ]
 }
