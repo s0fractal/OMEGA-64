@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "AWAKEN SPARK WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772038465936
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772038466124
@@ -291,6 +285,12 @@
       "text": "DRAIN SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772038472412
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772038473752
     }
   ]
 }
