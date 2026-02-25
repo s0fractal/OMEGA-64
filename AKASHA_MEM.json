@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING HEAL GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772030986931
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772030987583
@@ -291,6 +285,12 @@
       "text": "SHOCK HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772030996874
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS IMMUNE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772030997706
     }
   ]
 }
