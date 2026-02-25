@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW GIVING HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772034133156
-    },
-    {
       "origin": "INTERFACE",
       "text": "DRAIN CONSUME STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772034135896
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH PURE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772034136088
     }
   ]
 }
