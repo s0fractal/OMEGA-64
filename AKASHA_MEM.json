@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE SICKNESS SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040693707
-    },
-    {
       "origin": "STREAM",
       "text": "SHOCK DRAIN DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIFE BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040697007
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772040698072
     }
   ]
 }
