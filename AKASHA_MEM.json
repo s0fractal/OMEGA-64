@@ -67,12 +67,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD GUARD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772020792734
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020793125
@@ -154,6 +148,12 @@
       "text": "WAIT PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772020802096
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "CONSUME DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020802733
     }
   ]
 }
