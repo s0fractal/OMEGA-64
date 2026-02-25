@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK STRIFE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035005233
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772035005444
@@ -291,6 +285,12 @@
       "text": "HEAL SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772035008096
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772035008292
     }
   ]
 }
