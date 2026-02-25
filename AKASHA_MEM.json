@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772028568903
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772028569418
@@ -291,6 +285,12 @@
       "text": "BLOOM RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772028579751
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772028580220
     }
   ]
 }
