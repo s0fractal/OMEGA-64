@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "OSMOSIS GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772028257366
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS BLOOM STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "PURE SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772028266337
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772028267867
     }
   ]
 }
