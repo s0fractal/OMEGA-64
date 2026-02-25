@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "UNIFY RESONATE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772016314410
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE RESONATE COHERE",
       "mood": "HARMONIC",
@@ -107,6 +101,12 @@
       "text": "SICKNESS STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772016401415
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN STRIKE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772016411097
     }
   ]
 }
