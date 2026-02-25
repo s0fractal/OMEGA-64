@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772035832756
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772035833036
@@ -291,6 +285,12 @@
       "text": "STRIKE DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772035839834
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772035840075
     }
   ]
 }
