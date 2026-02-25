@@ -77,12 +77,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE SHOCK BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021044499
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -165,6 +159,12 @@
       "text": "SICKNESS HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772021050713
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC RESONATE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772021051680
     }
   ]
 }
