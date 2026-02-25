@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00BB0000",
     "00600606",
     "0000AAA0",
     "06606000",
@@ -199,15 +198,10 @@
     "A6600606",
     "AABB0000",
     "00606000",
-    "000AAAAA"
+    "000AAAAA",
+    "AAAAA0A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "FLOW OSMOSIS FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772037251683
-    },
     {
       "origin": "REVERSE",
       "text": "IMMUNE IMMUNE STASIS",
@@ -291,6 +285,12 @@
       "text": "STRIKE BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772037258336
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DECAY SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037258538
     }
   ]
 }
