@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00060600",
     "06666000",
     "060666A6",
     "A0000AAA",
@@ -199,15 +198,10 @@
     "06660060",
     "00600606",
     "AA0A0AAA",
-    "A6660660"
+    "A6660660",
+    "06666666"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "VISION VISION DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772034160848
-    },
     {
       "origin": "REVERSE",
       "text": "COHERE STABLE BLOOM",
@@ -291,6 +285,12 @@
       "text": "SHOCK SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772034164535
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS STABLE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772034164731
     }
   ]
 }
