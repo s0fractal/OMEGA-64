@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772038755129
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772038755322
@@ -291,6 +285,12 @@
       "text": "STRIKE DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772038758742
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER REFLECT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772038759220
     }
   ]
 }
