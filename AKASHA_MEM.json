@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME FORGE AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772029088469
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772029088886
@@ -291,6 +285,12 @@
       "text": "REFLECT SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772029097263
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE PURE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772029097618
     }
   ]
 }
