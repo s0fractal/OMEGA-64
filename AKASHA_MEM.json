@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "UNIFY BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772041728829
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WATCH GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041729067
@@ -291,6 +285,12 @@
       "text": "DECAY SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041736231
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041737643
     }
   ]
 }
