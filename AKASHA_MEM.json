@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DRAIN STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039916968
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772039917385
@@ -291,6 +285,12 @@
       "text": "SYNC UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772039923836
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WATCH STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772039924297
     }
   ]
 }
