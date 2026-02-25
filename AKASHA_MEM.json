@@ -115,12 +115,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE CONSUME SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022008503
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER BREACH STRIFE",
       "mood": "AGGRESSIVE",
@@ -203,6 +197,12 @@
       "text": "FLOW BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772022014267
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHIELD SHELTER WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022015450
     }
   ]
 }
