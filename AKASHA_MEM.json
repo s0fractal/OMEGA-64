@@ -184,12 +184,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772023569374
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772023569584
@@ -271,6 +265,12 @@
       "text": "HUNGER SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023572939
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW SYNC COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772023573193
     }
   ]
 }
