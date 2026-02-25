@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA000000",
     "06060006",
     "00666666",
     "AA0AAA00",
@@ -199,15 +198,10 @@
     "00600660",
     "A0000A00",
     "00000606",
-    "66000000"
+    "66000000",
+    "60000060"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GUARD IMMUNE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772036169363
-    },
     {
       "origin": "REVERSE",
       "text": "REFLECT GUARD PURE",
@@ -291,6 +285,12 @@
       "text": "GIVING HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772036174585
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD SHELTER STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772036174792
     }
   ]
 }
