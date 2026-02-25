@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "REFLECT SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040495543
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE WATCH SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY RESONATE HEAL",
       "mood": "HARMONIC",
       "tick": 1772040497994
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040498118
     }
   ]
 }
