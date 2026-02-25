@@ -171,12 +171,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "REFLECT REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772023173333
-    },
-    {
       "origin": "INTERFACE",
       "text": "SYNC OSMOSIS SYNC",
       "mood": "HARMONIC",
@@ -259,6 +253,12 @@
       "text": "STASIS SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023178746
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING RESONATE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772023178929
     }
   ]
 }
