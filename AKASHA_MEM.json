@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS RECON SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772030128505
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME VISION WAVE",
       "mood": "CREATIVE",
       "tick": 1772030129013
@@ -291,6 +285,12 @@
       "text": "STRIKE SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772030153822
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030154154
     }
   ]
 }
