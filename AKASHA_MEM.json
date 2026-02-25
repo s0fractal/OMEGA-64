@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STASIS RECON SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772040455065
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040457590
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772040457776
     }
   ]
 }
