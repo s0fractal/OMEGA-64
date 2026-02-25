@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041829831
-    },
-    {
       "origin": "INTERFACE",
       "text": "HEAL BLOOM GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FLOW RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041835068
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN HUNGER HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041835546
     }
   ]
 }
