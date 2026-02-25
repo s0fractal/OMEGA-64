@@ -184,12 +184,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772023555828
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND BEYOND SPARK",
       "mood": "CREATIVE",
       "tick": 1772023556004
@@ -271,6 +265,12 @@
       "text": "RECON SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023559492
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT RECON IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023559666
     }
   ]
 }
