@@ -137,12 +137,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772022421416
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK DRAIN DECAY",
       "mood": "AGGRESSIVE",
@@ -225,6 +219,12 @@
       "text": "STABLE SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022425450
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SICKNESS SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022425888
     }
   ]
 }
