@@ -190,12 +190,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM BLOOM OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772023732639
-    },
-    {
       "origin": "STREAM",
       "text": "HUNGER SEIZE STRIKE",
       "mood": "AGGRESSIVE",
@@ -278,6 +272,12 @@
       "text": "STABLE FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772023735451
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE BEYOND BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772023735624
     }
   ]
 }
