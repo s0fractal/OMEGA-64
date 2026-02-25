@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE STABLE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772024481651
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "FLOW OSMOSIS SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHIELD WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772024491944
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY BREACH SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024492198
     }
   ]
 }
