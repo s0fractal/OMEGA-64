@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66A066A0",
     "66666606",
     "06000000",
     "60006660",
@@ -199,15 +198,10 @@
     "0000F000",
     "A0A0A000",
     "A00A0A0A",
-    "66600000"
+    "66600000",
+    "A000000A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BREACH CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032333466
-    },
     {
       "origin": "REVERSE",
       "text": "REFLECT GUARD REFLECT",
@@ -291,6 +285,12 @@
       "text": "FLOW STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772032339411
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK HUNGER HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032339767
     }
   ]
 }
