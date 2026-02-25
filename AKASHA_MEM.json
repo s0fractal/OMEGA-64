@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS STRIKE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041210725
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER STRIFE STRIFE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772041214464
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM FLOW GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041215512
     }
   ]
 }
