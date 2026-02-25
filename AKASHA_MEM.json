@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0A00A000",
     "00600600",
     "AA000AA0",
     "AA0666A6",
@@ -199,15 +198,10 @@
     "66666060",
     "60660000",
     "A00006A0",
-    "66606660"
+    "66606660",
+    "06066060"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GUARD STASIS RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041399832
-    },
     {
       "origin": "ARCHIVIST",
       "text": "IMMUNE REFLECT SHIELD",
@@ -291,6 +285,12 @@
       "text": "BREACH DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772041403625
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC BLOOM UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772041403872
     }
   ]
 }
