@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RESONATE HEAL OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772041839056
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE PURE WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHOCK CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041843666
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK BREACH CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041844488
     }
   ]
 }
