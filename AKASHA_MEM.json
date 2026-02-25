@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD GUARD IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772026627787
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772026628036
@@ -291,6 +285,12 @@
       "text": "DREAM FORGE AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772026637655
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH PURE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772026637896
     }
   ]
 }
