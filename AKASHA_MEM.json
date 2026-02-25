@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PURE_MATH",
-      "text": "CONSUME SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041754238
-    },
-    {
       "origin": "REVERSE",
       "text": "IMMUNE WATCH RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772041761397
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772041761642
     }
   ]
 }
