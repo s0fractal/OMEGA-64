@@ -181,12 +181,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE FLOW GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772023410476
-    },
-    {
-      "origin": "REVERSE",
       "text": "WITNESS DREAM SPARK",
       "mood": "CREATIVE",
       "tick": 1772023410662
@@ -268,6 +262,12 @@
       "text": "GIVING STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772023414880
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772023415105
     }
   ]
 }
