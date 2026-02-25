@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "PURE WATCH WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772040883980
-    },
-    {
       "origin": "WORKER",
       "text": "COHERE RESONATE HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GUARD RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772040886928
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC STABLE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772040887089
     }
   ]
 }
