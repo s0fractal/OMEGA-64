@@ -144,12 +144,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE SYNC UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772022480066
-    },
-    {
-      "origin": "REVERSE",
       "text": "AWAKEN WITNESS BEYOND",
       "mood": "CREATIVE",
       "tick": 1772022481297
@@ -231,6 +225,12 @@
       "text": "SHELTER SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022484293
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE UNIFY OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772022484538
     }
   ]
 }
