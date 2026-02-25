@@ -139,12 +139,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME BEYOND BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772022439261
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022439483
@@ -226,6 +220,12 @@
       "text": "CONSUME DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022442105
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772022442302
     }
   ]
 }
