@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS FLOW COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772037979777
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772037979986
@@ -291,6 +285,12 @@
       "text": "WATCH RECON WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772037983136
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL SYNC SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772037983354
     }
   ]
 }
