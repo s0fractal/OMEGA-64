@@ -43,12 +43,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BECOME BEYOND FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772020021154
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN STRIKE DRAIN",
       "mood": "AGGRESSIVE",
@@ -131,6 +125,12 @@
       "text": "GUARD RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772020033371
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "REFLECT SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020033564
     }
   ]
 }
