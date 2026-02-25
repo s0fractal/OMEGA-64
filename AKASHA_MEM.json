@@ -190,12 +190,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023702677
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772023702878
@@ -277,6 +271,12 @@
       "text": "CONSUME SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023705127
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD IMMUNE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772023705312
     }
   ]
 }
