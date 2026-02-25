@@ -50,12 +50,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIFE DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020260873
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH SICKNESS DECAY",
       "mood": "AGGRESSIVE",
@@ -138,6 +132,12 @@
       "text": "RESONATE OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772020270876
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020271408
     }
   ]
 }
