@@ -128,12 +128,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022286775
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772022286939
@@ -215,6 +209,12 @@
       "text": "GIVING HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772022289436
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772022289749
     }
   ]
 }
