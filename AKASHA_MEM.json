@@ -71,12 +71,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM SYNC FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772020917766
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIKE DRAIN BREACH",
       "mood": "AGGRESSIVE",
@@ -159,6 +153,12 @@
       "text": "DRAIN HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020923945
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HEAL RESONATE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772020924348
     }
   ]
 }
