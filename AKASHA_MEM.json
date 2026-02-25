@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS FLOW GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772040390068
-    },
-    {
       "origin": "INTERFACE",
       "text": "IMMUNE SHIELD PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD SHIELD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040394630
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SICKNESS STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040394921
     }
   ]
 }
