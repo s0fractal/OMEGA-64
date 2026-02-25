@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS HUNGER STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028443630
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772028444037
@@ -291,6 +285,12 @@
       "text": "GIVING SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772028456879
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SICKNESS DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028457450
     }
   ]
 }
