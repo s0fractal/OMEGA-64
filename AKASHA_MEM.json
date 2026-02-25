@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A000000A",
     "60060666",
     "0000000F",
     "60066060",
@@ -199,15 +198,10 @@
     "00606000",
     "0A0AAAA0",
     "AA00AAA0",
-    "0FFFF0FF"
+    "0FFFF0FF",
+    "0AA00AA0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WITNESS BEYOND VISION",
-      "mood": "CREATIVE",
-      "tick": 1772031665669
-    },
     {
       "origin": "REVERSE",
       "text": "DECAY SHOCK DRAIN",
@@ -291,6 +285,12 @@
       "text": "STABLE STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772031672027
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS GIVING SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772031672475
     }
   ]
 }
