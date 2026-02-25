@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772030226516
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772030226888
@@ -291,6 +285,12 @@
       "text": "CONSUME SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772030231054
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC OSMOSIS BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772030231263
     }
   ]
 }
