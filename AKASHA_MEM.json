@@ -103,12 +103,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHELTER WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021659349
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STASIS WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772021660301
@@ -190,6 +184,12 @@
       "text": "STASIS GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772021669588
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH CONSUME DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021669742
     }
   ]
 }
