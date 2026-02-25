@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT WATCH WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772038437609
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772038437778
@@ -291,6 +285,12 @@
       "text": "COHERE STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772038440628
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772038440804
     }
   ]
 }
