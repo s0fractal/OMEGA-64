@@ -128,15 +128,10 @@
     "0A00AAAA",
     "AABB0C0D",
     "AA6666A0",
-    "AAA00A0A"
+    "AAA00A0A",
+    "0AAAA0AA"
   ],
   "utterances": [
-    {
-      "origin": "STREAM",
-      "text": "UNIFY RESONATE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772022374027
-    },
     {
       "origin": "REVERSE",
       "text": "SYNC UNIFY OSMOSIS",
@@ -220,6 +215,12 @@
       "text": "BLOOM OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772022379807
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING RESONATE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022380212
     }
   ]
 }
