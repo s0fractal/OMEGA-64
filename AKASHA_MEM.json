@@ -94,12 +94,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772021446393
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772021447585
@@ -181,6 +175,12 @@
       "text": "WAIT SHELTER PURE",
       "mood": "DEFENSIVE",
       "tick": 1772021474851
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772021476159
     }
   ]
 }
