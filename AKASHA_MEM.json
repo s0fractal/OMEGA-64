@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON SHELTER WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772026336906
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772026337109
@@ -291,6 +285,12 @@
       "text": "STRIKE STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772026340535
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772026340736
     }
   ]
 }
