@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK STRIFE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034879722
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS HEAL STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHIELD WATCH RECON",
       "mood": "DEFENSIVE",
       "tick": 1772034883522
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SEIZE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034883736
     }
   ]
 }
