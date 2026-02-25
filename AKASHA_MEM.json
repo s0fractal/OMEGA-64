@@ -86,12 +86,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772021229511
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME DRAIN DECAY",
       "mood": "AGGRESSIVE",
@@ -174,6 +168,12 @@
       "text": "REFLECT STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772021235073
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SEIZE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021235234
     }
   ]
 }
