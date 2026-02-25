@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772028616929
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER WATCH WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DRAIN SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772028630680
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772028631238
     }
   ]
 }
