@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS SHIELD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772033776329
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772033776554
@@ -291,6 +285,12 @@
       "text": "IMMUNE WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033778895
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772033779084
     }
   ]
 }
