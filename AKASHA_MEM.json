@@ -170,12 +170,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE RECON STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772023083085
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME WAVE SPARK",
       "mood": "CREATIVE",
       "tick": 1772023083239
@@ -257,6 +251,12 @@
       "text": "BLOOM FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023086815
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE IMMUNE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023086939
     }
   ]
 }
