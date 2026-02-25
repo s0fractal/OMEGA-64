@@ -162,12 +162,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "STABLE STABLE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772022836952
-    },
-    {
-      "origin": "INTERFACE",
       "text": "STRIFE DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772022837199
@@ -249,6 +243,12 @@
       "text": "FLOW STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022847172
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS CONSUME HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022849442
     }
   ]
 }
