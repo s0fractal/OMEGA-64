@@ -66,12 +66,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "DRAIN STRIFE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020757185
-    },
-    {
-      "origin": "INTERFACE",
       "text": "SEIZE DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020757793
@@ -153,6 +147,12 @@
       "text": "PURE WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772020764253
+    },
+    {
+      "origin": "STREAM",
+      "text": "OSMOSIS COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772020764567
     }
   ]
 }
