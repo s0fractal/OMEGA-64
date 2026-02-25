@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041213006
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772041217375
+    },
+    {
+      "origin": "ALPHA_STREAM",
+      "text": "OSMOSIS GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772041218679
     }
   ]
 }
