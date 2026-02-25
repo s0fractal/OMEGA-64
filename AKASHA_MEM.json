@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE SYNC STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772040478122
-    },
-    {
       "origin": "STREAM",
       "text": "PURE PURE REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772040480803
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING SYNC UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772040480920
     }
   ]
 }
