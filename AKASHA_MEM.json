@@ -137,12 +137,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022421592
-    },
-    {
       "origin": "REVERSE",
       "text": "BECOME FORGE WITNESS",
       "mood": "CREATIVE",
@@ -225,6 +219,12 @@
       "text": "BREACH SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022425888
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD SHIELD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022426081
     }
   ]
 }
