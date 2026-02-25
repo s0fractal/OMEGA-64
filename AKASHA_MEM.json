@@ -63,12 +63,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHELTER WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020639897
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SEIZE SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020640366
@@ -150,6 +144,12 @@
       "text": "SICKNESS SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772020650230
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772020650949
     }
   ]
 }
