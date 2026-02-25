@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "PURE WAIT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041483351
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY CONSUME BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772041487463
+    },
+    {
+      "origin": "I16_CLAMP",
+      "text": "SHOCK STRIKE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041487591
     }
   ]
 }
