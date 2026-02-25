@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY STRIKE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034591748
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772034592153
@@ -291,6 +285,12 @@
       "text": "RESONATE FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772034595543
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772034595739
     }
   ]
 }
