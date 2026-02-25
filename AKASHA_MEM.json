@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT RECON WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040677884
-    },
-    {
       "origin": "INTERFACE",
       "text": "CONSUME CONSUME BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772040682413
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING RESONATE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772040682616
     }
   ]
 }
