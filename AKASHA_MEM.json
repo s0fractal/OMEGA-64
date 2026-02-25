@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GUARD STASIS PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772019595482
-    },
-    {
       "origin": "INTERFACE",
       "text": "CONSUME STRIFE STRIKE",
       "mood": "AGGRESSIVE",
@@ -114,6 +108,12 @@
       "text": "SICKNESS SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772019604401
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS REFLECT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772019605097
     }
   ]
 }
