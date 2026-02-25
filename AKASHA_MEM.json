@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772035544389
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772035544596
@@ -291,6 +285,12 @@
       "text": "SHELTER STASIS WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772035552800
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RESONATE COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772035553088
     }
   ]
 }
