@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DECAY BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772016930360
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "IMMUNE REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772016935018
@@ -107,6 +101,12 @@
       "text": "CONSUME BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772017011294
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE SHELTER GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772017015905
     }
   ]
 }
