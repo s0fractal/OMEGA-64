@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "AWAKEN WAVE WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772024407341
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772024407641
@@ -291,6 +285,12 @@
       "text": "REFLECT SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772024413842
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772024414160
     }
   ]
 }
