@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040020917
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772040021395
@@ -291,6 +285,12 @@
       "text": "OSMOSIS SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772040027349
+    },
+    {
+      "origin": "STREAM",
+      "text": "PURE GUARD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772040027946
     }
   ]
 }
