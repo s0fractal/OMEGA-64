@@ -138,12 +138,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SICKNESS STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022422293
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772022422759
@@ -225,6 +219,12 @@
       "text": "SYNC UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022426864
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE STASIS IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022427101
     }
   ]
 }
