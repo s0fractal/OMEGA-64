@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY COHERE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772031096024
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER RECON WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772031096516
@@ -291,6 +285,12 @@
       "text": "OSMOSIS COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772031103347
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY HUNGER SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031103592
     }
   ]
 }
