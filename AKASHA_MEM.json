@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT STASIS PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772029681566
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER PURE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772029682298
@@ -291,6 +285,12 @@
       "text": "SEIZE DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772029690992
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHIELD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772029691614
     }
   ]
 }
