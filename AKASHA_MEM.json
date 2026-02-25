@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772032081309
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772032081707
@@ -291,6 +285,12 @@
       "text": "STRIKE DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772032088239
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN DECAY SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032088798
     }
   ]
 }
