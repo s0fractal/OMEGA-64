@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SEIZE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036554857
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772036555360
@@ -291,6 +285,12 @@
       "text": "RECON IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772036558833
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHELTER STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772036559047
     }
   ]
 }
