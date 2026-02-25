@@ -71,12 +71,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020917975
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS HEAL HEAL",
       "mood": "HARMONIC",
@@ -159,6 +153,12 @@
       "text": "HEAL RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772020924348
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020924955
     }
   ]
 }
