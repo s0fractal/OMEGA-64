@@ -54,12 +54,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WAIT REFLECT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020373965
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIFE CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020375070
@@ -141,6 +135,12 @@
       "text": "SYNC STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772020382748
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING RESONATE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772020383289
     }
   ]
 }
