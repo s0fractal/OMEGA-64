@@ -1,11 +1,11 @@
 ---
 eigenvalue: '0xBEEFBEEFFFFF0008'
-energy: 49
+energy: 45.5
 resonance: 30
-x: 819
-'y': 374
+x: 807
+'y': 361
 symbol: ARCHIVIST
-thought: WANDER_BONDING
+thought: WANDER_MATING
 signals: []
 bond_strengths:
   '0xAAAAAAA000000006': 0.9792086759647052
@@ -80,7 +80,6 @@ logic: BEEFBEEF
 ---
 
 <div align="center">
-<div align="center">
 <!-- ∇ HOLOGRAM START ∇ -->
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
   <defs>
@@ -113,7 +112,6 @@ logic: BEEFBEEF
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">REVERSE</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
-</div>
 </div>
 
 
