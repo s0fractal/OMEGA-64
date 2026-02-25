@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0000AAA0",
     "AABBCCDD",
     "AAAAAAA0",
     "60066666",
@@ -199,15 +198,10 @@
     "A00AAA00",
     "AA0A0AAA",
     "A0660600",
-    "A6666660"
+    "A6666660",
+    "AA00A0AA"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "PURE SHIELD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772027403600
-    },
     {
       "origin": "REVERSE",
       "text": "IMMUNE WATCH SHIELD",
@@ -291,6 +285,12 @@
       "text": "CONSUME SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772027411001
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK CONSUME SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027411269
     }
   ]
 }
