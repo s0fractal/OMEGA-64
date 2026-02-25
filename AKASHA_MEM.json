@@ -99,12 +99,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN HUNGER SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021583548
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772021583725
@@ -186,6 +180,12 @@
       "text": "CONSUME BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772021588748
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME STRIFE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021589116
     }
   ]
 }
