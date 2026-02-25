@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "HEAL OSMOSIS RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772025482313
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE UNIFY UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SEIZE BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772025486636
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS OSMOSIS UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772025486973
     }
   ]
 }
