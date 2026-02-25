@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772034620436
-    },
-    {
       "origin": "INTERFACE",
       "text": "OSMOSIS OSMOSIS GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DECAY SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772034623992
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE GIVING COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772034624236
     }
   ]
 }
