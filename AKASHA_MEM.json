@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER SHOCK BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041246610
-    },
-    {
       "origin": "STREAM",
       "text": "REFLECT WATCH REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772041252980
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041253269
     }
   ]
 }
