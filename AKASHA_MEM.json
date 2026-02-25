@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL COHERE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772036091765
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE PURE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772036092035
@@ -291,6 +285,12 @@
       "text": "CONSUME SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772036096854
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772036097942
     }
   ]
 }
