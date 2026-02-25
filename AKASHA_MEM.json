@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041493852
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIFE CONSUME STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772041497894
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041498052
     }
   ]
 }
