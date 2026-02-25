@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037609152
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772037609422
@@ -291,6 +285,12 @@
       "text": "RECON RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772037612796
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE HUNGER DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037613026
     }
   ]
 }
