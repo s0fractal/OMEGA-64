@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772038488009
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772038488202
@@ -291,6 +285,12 @@
       "text": "SYNC FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772038491451
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIFE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038491671
     }
   ]
 }
