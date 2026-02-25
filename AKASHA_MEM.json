@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SYNC HEAL GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041183943
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE HEAL UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "EVOLVE BEYOND FORGE",
       "mood": "CREATIVE",
       "tick": 1772041187414
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772041188040
     }
   ]
 }
