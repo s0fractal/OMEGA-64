@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "IMMUNE REFLECT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040841843
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW COHERE HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "IMMUNE WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772040845038
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING OSMOSIS UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772040845209
     }
   ]
 }
