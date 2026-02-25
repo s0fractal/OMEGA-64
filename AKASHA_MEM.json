@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD GUARD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772040393990
-    },
-    {
       "origin": "STREAM",
       "text": "STRIKE DRAIN CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772040397787
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS PURE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040398547
     }
   ]
 }
