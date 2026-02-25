@@ -1184,6 +1184,7 @@ async function logAkasha(msg: string) {
         const proposal = {
             proposal_id: `prop_${Date.now()}`,
             tick: state.tick,
+            base_state_hash: state.state_hash, // REQUIRED BY GATE
             agent_id: PULSE_ID,
             delta: [{ level: 0, value: 10 }], // Symbolic cost
             confidence: 1.0,
