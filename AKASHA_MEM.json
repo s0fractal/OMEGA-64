@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SICKNESS HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036489569
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772036489916
@@ -291,6 +285,12 @@
       "text": "HEAL HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772036493635
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772036493954
     }
   ]
 }
