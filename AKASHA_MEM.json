@@ -117,15 +117,10 @@
     "00AA60A0",
     "06006000",
     "0000AAAA",
-    "AABBC0DD"
+    "AABBC0DD",
+    "06666606"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "UNIFY HEAL FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772022110440
-    },
     {
       "origin": "REVERSE",
       "text": "SHOCK DECAY BREACH",
@@ -209,6 +204,12 @@
       "text": "BLOOM SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022115533
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772022115743
     }
   ]
 }
