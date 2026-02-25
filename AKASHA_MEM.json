@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC RESONATE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772034401599
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH STASIS PURE",
       "mood": "DEFENSIVE",
       "tick": 1772034401808
@@ -291,6 +285,12 @@
       "text": "STRIKE DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772034404466
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772034404688
     }
   ]
 }
