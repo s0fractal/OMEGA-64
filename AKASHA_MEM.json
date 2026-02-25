@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STABLE BLOOM STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772016297072
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER REFLECT SHIELD",
       "mood": "DEFENSIVE",
@@ -107,6 +101,12 @@
       "text": "HUNGER STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772016382252
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "CONSUME STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772016386900
     }
   ]
 }
