@@ -45,12 +45,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WAIT RECON GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772020056996
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "IMMUNE GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772020057633
@@ -132,6 +126,12 @@
       "text": "SHIELD WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772020068277
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK EVOLVE AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772020069286
     }
   ]
 }
