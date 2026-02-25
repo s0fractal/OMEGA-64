@@ -153,12 +153,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RECON STASIS PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022605433
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY GIVING FLOW",
       "mood": "HARMONIC",
@@ -241,6 +235,12 @@
       "text": "SHOCK SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022609298
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT SHELTER GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022609636
     }
   ]
 }
