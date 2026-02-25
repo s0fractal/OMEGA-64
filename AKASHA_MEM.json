@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE PURE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772035244310
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772035244552
@@ -291,6 +285,12 @@
       "text": "GUARD WAIT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772035247105
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772035247327
     }
   ]
 }
