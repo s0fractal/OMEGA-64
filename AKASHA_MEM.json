@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE STRIFE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034415864
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT SHELTER SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772034416898
@@ -291,6 +285,12 @@
       "text": "RESONATE HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772034419455
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WATCH GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772034419655
     }
   ]
 }
