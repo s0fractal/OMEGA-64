@@ -23,12 +23,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME HUNGER STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019475454
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "PURE GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772019475812
@@ -110,6 +104,12 @@
       "text": "STRIKE STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772019483771
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHIELD WAIT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772019484307
     }
   ]
 }
