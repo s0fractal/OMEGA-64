@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON SHIELD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772040257404
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE BREACH STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772040261624
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIKE SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040261807
     }
   ]
 }
