@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "VISION FORGE WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772034899559
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK SEIZE SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772034902864
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE RESONATE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772034903065
     }
   ]
 }
