@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER DRAIN SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041640979
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS SHELTER GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772041644251
+    },
+    {
+      "origin": "STREAM",
+      "text": "STABLE GIVING COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041644388
     }
   ]
 }
