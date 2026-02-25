@@ -192,12 +192,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023755848
-    },
-    {
-      "origin": "REVERSE",
       "text": "EVOLVE DREAM WITNESS",
       "mood": "CREATIVE",
       "tick": 1772023756032
@@ -279,6 +273,12 @@
       "text": "COHERE COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023760637
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIFE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023760777
     }
   ]
 }
