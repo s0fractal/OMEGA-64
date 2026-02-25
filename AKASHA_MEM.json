@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033418367
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON REFLECT STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772033424536
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033424716
     }
   ]
 }
