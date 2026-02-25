@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER STRIFE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032135637
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER HUNGER BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772032147361
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032148131
     }
   ]
 }
