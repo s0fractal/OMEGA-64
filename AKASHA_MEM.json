@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE GIVING SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772024212571
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIFE CONSUME CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772024218534
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIFE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024218728
     }
   ]
 }
