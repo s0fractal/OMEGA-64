@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS OSMOSIS FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772028168125
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772028168729
@@ -291,6 +285,12 @@
       "text": "SHIELD WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772028184978
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS FORGE AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772028185479
     }
   ]
 }
