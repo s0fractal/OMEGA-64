@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035206167
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772035206368
@@ -291,6 +285,12 @@
       "text": "WATCH WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772035209340
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772035209574
     }
   ]
 }
