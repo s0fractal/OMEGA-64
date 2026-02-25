@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER DECAY CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040821493
-    },
-    {
       "origin": "INTERFACE",
       "text": "IMMUNE WATCH STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772040825302
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER STASIS PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040825482
     }
   ]
 }
