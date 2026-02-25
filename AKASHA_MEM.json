@@ -199,12 +199,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024030638
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772024030892
@@ -286,6 +280,12 @@
       "text": "UNIFY BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772024034186
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW STABLE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772024034506
     }
   ]
 }
