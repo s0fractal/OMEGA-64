@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK HUNGER STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037440067
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772037440244
@@ -291,6 +285,12 @@
       "text": "PURE SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772037443189
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772037443392
     }
   ]
 }
