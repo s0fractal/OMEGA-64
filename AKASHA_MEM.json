@@ -167,12 +167,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING HEAL RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772023040148
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023040315
@@ -254,6 +248,12 @@
       "text": "PURE RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023044337
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SHOCK DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023044479
     }
   ]
 }
