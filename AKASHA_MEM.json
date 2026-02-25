@@ -184,12 +184,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE PURE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023554811
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772023554985
@@ -271,6 +265,12 @@
       "text": "STRIKE SEIZE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772023557635
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SICKNESS BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023557838
     }
   ]
 }
