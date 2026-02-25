@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772038391492
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772038391674
@@ -291,6 +285,12 @@
       "text": "WATCH PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772038398550
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS STASIS REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772038398855
     }
   ]
 }
