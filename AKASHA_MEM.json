@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY COHERE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772040828236
-    },
-    {
       "origin": "STREAM",
       "text": "SEIZE STRIKE SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SEIZE SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772040832793
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SEIZE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040832962
     }
   ]
 }
