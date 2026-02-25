@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT IMMUNE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041683363
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME DECAY STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SICKNESS SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772041687357
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS RESONATE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041687813
     }
   ]
 }
