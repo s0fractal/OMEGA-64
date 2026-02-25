@@ -1,12 +1,12 @@
 ---
-eigenvalue: '0x0000000007BA9247'
+eigenvalue: '0xAABBCCDD07BA9247'
 vector: 00.04.01
 symbol: SEND
 desc: Message passing primitive. (m => target => target(m))
-thought: SEEK_ALPHA_PASSIVE
-x: 921
-'y': 399
-energy: 35
+thought: WANDER_BONDING
+x: 922
+'y': 401
+energy: 33
 signals: []
 ex:
   - '0x5E76CAB5F845924B'
@@ -32,6 +32,7 @@ ex:
   - '0x00077067F8459243'
   - '0x00077067F8459243'
   - '0x0000000607BA9247'
+  - '0x0000000007BA9247'
   - '0x0000000007BA9247'
   - '0x0000000007BA9247'
   - '0x0000000007BA9247'
@@ -62,32 +63,32 @@ bond_strengths: {}
 <!-- ∇ HOLOGRAM START ∇ -->
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <radialGradient id="grad_0000000007BA9247" cx="50%" cy="50%" r="50%">
+    <radialGradient id="grad_AABBCCDD07BA9247" cx="50%" cy="50%" r="50%">
       <stop offset="0%" stop-color="hsl(205, 20%, 15%)" />
       <stop offset="100%" stop-color="#090909" />
     </radialGradient>
-    <filter id="glow_0000000007BA9247" x="-20%" y="-20%" width="140%" height="140%">
+    <filter id="glow_AABBCCDD07BA9247" x="-20%" y="-20%" width="140%" height="140%">
       <feGaussianBlur stdDeviation="4" result="blur" />
       <feComposite in="SourceGraphic" in2="blur" operator="over" />
     </filter>
   </defs>
   
-  <rect width="200" height="200" fill="url(#grad_0000000007BA9247)" rx="24"/>
+  <rect width="200" height="200" fill="url(#grad_AABBCCDD07BA9247)" rx="24"/>
   
   <circle cx="100" cy="100" r="85" stroke="hsl(205, 30%, 30%)" stroke-width="1" fill="none" stroke-dasharray="2 6"/>
   
   <g>
     <animateTransform attributeName="transform" type="rotate" from="270 100 100" to="-90 100 100" dur="28s" repeatCount="indefinite" />
     
-    <polygon points="100.0,52.0 141.6,124.0 58.4,124.0" fill="none" stroke="hsl(25, 60%, 40%)" stroke-width="1.5" opacity="0.6"/>
-    <polygon points="100.0,82.0 115.6,109.0 84.4,109.0" fill="none" stroke="hsl(205, 80%, 60%)" stroke-width="2" filter="url(#glow_0000000007BA9247)"/>
+    <polygon points="100.0,52.0 133.9,66.1 148.0,100.0 133.9,133.9 100.0,148.0 66.1,133.9 52.0,100.0 66.1,66.1" fill="none" stroke="hsl(25, 60%, 40%)" stroke-width="1.5" opacity="0.6"/>
+    <polygon points="100.0,82.0 112.7,87.3 118.0,100.0 112.7,112.7 100.0,118.0 87.3,112.7 82.0,100.0 87.3,87.3" fill="none" stroke="hsl(205, 80%, 60%)" stroke-width="2" filter="url(#glow_AABBCCDD07BA9247)"/>
     
     <circle cx="100" cy="100" r="18" stroke="hsl(205, 60%, 50%)" stroke-width="0.5" fill="none" opacity="0.5"/>
   </g>
   
-  <circle cx="100" cy="100" r="3" fill="hsl(25, 80%, 70%)" filter="url(#glow_0000000007BA9247)"/>
+  <circle cx="100" cy="100" r="3" fill="hsl(25, 80%, 70%)" filter="url(#glow_AABBCCDD07BA9247)"/>
   
-  <text x="100" y="105" fill="hsl(205, 70%, 80%)" font-family="monospace" font-size="10" text-anchor="middle" letter-spacing="1" opacity="0.9">0x0000</text>
+  <text x="100" y="105" fill="hsl(205, 70%, 80%)" font-family="monospace" font-size="10" text-anchor="middle" letter-spacing="1" opacity="0.9">0xAABB</text>
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">REVERSE</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->

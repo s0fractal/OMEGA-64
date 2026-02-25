@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772020465330
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS STRIFE DRAIN",
       "mood": "AGGRESSIVE",
@@ -142,6 +136,12 @@
       "text": "SHELTER SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020472656
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772020473157
     }
   ]
 }
