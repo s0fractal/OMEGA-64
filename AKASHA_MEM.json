@@ -180,12 +180,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SICKNESS DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023417708
-    },
-    {
       "origin": "REVERSE",
       "text": "RECON GUARD WATCH",
       "mood": "DEFENSIVE",
@@ -268,6 +262,12 @@
       "text": "SHIELD WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772023421683
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772023421930
     }
   ]
 }
