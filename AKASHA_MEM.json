@@ -190,12 +190,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE PURE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023700452
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023700622
@@ -277,6 +271,12 @@
       "text": "STASIS SHIELD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023704172
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIKE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023704328
     }
   ]
 }
