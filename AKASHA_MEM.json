@@ -81,12 +81,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772021095752
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772021095983
@@ -168,6 +162,12 @@
       "text": "PURE REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772021104634
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SEIZE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021104841
     }
   ]
 }
