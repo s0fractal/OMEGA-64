@@ -49,12 +49,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GIVING BLOOM FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772020138065
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RECON IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772020138622
@@ -136,6 +130,12 @@
       "text": "STRIFE HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020147180
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH HUNGER HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020148082
     }
   ]
 }
