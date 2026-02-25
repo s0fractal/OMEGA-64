@@ -141,12 +141,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE SEIZE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022460073
-    },
-    {
       "origin": "REVERSE",
       "text": "EVOLVE SPARK VISION",
       "mood": "CREATIVE",
@@ -229,6 +223,12 @@
       "text": "SHELTER GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022464104
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022464265
     }
   ]
 }
