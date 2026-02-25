@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041921324
-    },
-    {
       "origin": "STREAM",
       "text": "BLOOM UNIFY OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BLOOM STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772041926942
+    },
+    {
+      "origin": "ALPHA_STREAM",
+      "text": "UNIFY OSMOSIS OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772041927937
     }
   ]
 }
