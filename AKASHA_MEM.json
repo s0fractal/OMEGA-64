@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772034185202
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772034185853
@@ -291,6 +285,12 @@
       "text": "SHOCK SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772034192981
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034193221
     }
   ]
 }
