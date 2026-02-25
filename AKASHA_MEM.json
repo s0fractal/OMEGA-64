@@ -184,12 +184,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772023553333
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772023553493
@@ -271,6 +265,12 @@
       "text": "STABLE GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772023556471
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WATCH GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023557039
     }
   ]
 }
