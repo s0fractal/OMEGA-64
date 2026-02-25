@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772034889065
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772034889241
@@ -291,6 +285,12 @@
       "text": "RECON SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772034892052
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034892263
     }
   ]
 }
