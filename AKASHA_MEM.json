@@ -129,15 +129,10 @@
     "AABB0C0D",
     "AA6666A0",
     "AAA00A0A",
-    "0AAAA0AA"
+    "0AAAA0AA",
+    "AA0A0A0A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "REFLECT SHIELD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772022382230
-    },
     {
       "origin": "REVERSE",
       "text": "IMMUNE PURE REFLECT",
@@ -221,6 +216,12 @@
       "text": "DRAIN BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022389247
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SHOCK DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022389441
     }
   ]
 }
