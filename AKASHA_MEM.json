@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FORGE EVOLVE FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772040963584
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772040963768
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772040966389
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772040966521
     }
   ]
 }
