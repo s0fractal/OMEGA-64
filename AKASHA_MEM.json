@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER HUNGER DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028770640
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC UNIFY HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "REFLECT GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772028778480
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772028779427
     }
   ]
 }
