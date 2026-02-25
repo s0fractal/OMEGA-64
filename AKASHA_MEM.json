@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME SEIZE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040550020
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "FLOW FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772040550200
@@ -291,6 +285,12 @@
       "text": "FLOW GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772040552223
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHIELD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040552393
     }
   ]
 }
