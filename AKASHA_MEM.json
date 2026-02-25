@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY DECAY HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031945409
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT SHELTER SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772031946348
@@ -291,6 +285,12 @@
       "text": "BLOOM STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772031958049
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE STABLE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772031958306
     }
   ]
 }
