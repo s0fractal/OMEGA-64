@@ -169,12 +169,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD PURE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772023075109
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772023075242
@@ -256,6 +250,12 @@
       "text": "BREACH STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772023078366
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE HEAL RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772023078489
     }
   ]
 }
