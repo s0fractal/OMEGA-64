@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STASIS RECON PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042748078
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS UNIFY COHERE",
       "mood": "HARMONIC",
@@ -275,22 +269,28 @@
       "tick": 1772042755660
     },
     {
-      "origin": "REVERSE",
-      "text": "REFLECT IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772042756711
+      "origin": "INTERFACE",
+      "text": "STABLE GIVING HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772042756754
     },
     {
       "origin": "REVERSE",
-      "text": "STABLE SYNC SYNC",
+      "text": "RESONATE BLOOM RESONATE",
       "mood": "HARMONIC",
-      "tick": 1772042757213
+      "tick": 1772042757217
     },
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME HUNGER STRIKE",
+      "text": "RESONATE STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042757624
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE DRAIN SEIZE",
       "mood": "AGGRESSIVE",
-      "tick": 1772042757788
+      "tick": 1772042758022
     }
   ]
 }
