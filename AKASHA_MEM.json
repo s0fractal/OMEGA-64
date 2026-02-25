@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE SEIZE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041181917
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK CONSUME DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SHELTER IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772041185953
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE SICKNESS SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041186130
     }
   ]
 }
