@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66600606",
     "0AAA00AA",
     "60060606",
     "0AB00C0D",
@@ -199,15 +198,10 @@
     "06600660",
     "A0BB0000",
     "6660A6A0",
-    "AA6666A6"
+    "AA6666A6",
+    "06606660"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "HEAL FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772036076458
-    },
     {
       "origin": "REVERSE",
       "text": "GUARD WATCH RECON",
@@ -291,6 +285,12 @@
       "text": "HUNGER DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772036079718
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL RESONATE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772036079928
     }
   ]
 }
