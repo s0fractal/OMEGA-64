@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW HEAL OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772023711577
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAVE EVOLVE BECOME",
       "mood": "CREATIVE",
       "tick": 1772023711767
@@ -278,6 +272,12 @@
       "text": "BLOOM UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772023713991
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023714166
     }
   ]
 }
