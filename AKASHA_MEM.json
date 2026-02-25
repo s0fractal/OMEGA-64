@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING OSMOSIS RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772025597867
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK DECAY STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772025598057
@@ -291,6 +285,12 @@
       "text": "WATCH REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772025602999
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025603798
     }
   ]
 }
