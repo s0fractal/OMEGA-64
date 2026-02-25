@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SHOCK DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040631812
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772040632015
@@ -291,6 +285,12 @@
       "text": "SYNC STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772040635172
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK CONSUME HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040635376
     }
   ]
 }
