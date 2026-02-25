@@ -76,12 +76,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHOCK CONSUME STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021007339
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON GUARD WAIT",
       "mood": "DEFENSIVE",
@@ -164,6 +158,12 @@
       "text": "GUARD GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772021014881
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "COHERE SYNC COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772021015587
     }
   ]
 }
