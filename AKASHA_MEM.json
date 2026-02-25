@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON SHELTER STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772034638166
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772034638485
@@ -291,6 +285,12 @@
       "text": "STABLE FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772034641156
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING GIVING FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772034641350
     }
   ]
 }
