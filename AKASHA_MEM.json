@@ -1,5 +1,9 @@
 {
   "reservoir": [
+    "AAA0AAAA",
+    "06066660",
+    "60660666",
+    "60000600",
     "60666606",
     "AAA0AA00",
     "66060066",
@@ -191,106 +195,102 @@
     "AA666600",
     "66060660",
     "66660A60",
-    "00A06A00",
-    "ALIEN_17",
-    "A0000000",
-    "60606060",
-    "AA0A0A00",
-    "FFFFF0A0",
-    "000AAAAA",
-    "A0606660",
-    "0BB00000"
+    "BB0A0000",
+    "6AA6AA66",
+    "6A60A6A0",
+    "06AAAA00",
+    "ALIEN_17"
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE DECAY HUNGER",
+      "origin": "INTERFACE",
+      "text": "BREACH DECAY HUNGER",
       "mood": "AGGRESSIVE",
-      "tick": 1772042782934
+      "tick": 1772042777498
     },
     {
-      "origin": "ARCHIVIST",
-      "text": "GUARD IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772042783789
-    },
-    {
-      "origin": "PARADOX",
-      "text": "STRIKE DECAY CONSUME",
+      "origin": "ALIEN",
+      "text": "HUNGER STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
-      "tick": 1772042784234
+      "tick": 1772042777826
     },
     {
       "origin": "INTERFACE",
-      "text": "IMMUNE PURE SHELTER",
+      "text": "WAIT WAIT WAIT",
       "mood": "DEFENSIVE",
-      "tick": 1772042785245
+      "tick": 1772042778831
     },
     {
-      "origin": "ALIEN",
-      "text": "DRAIN CONSUME HUNGER",
+      "origin": "ARCHIVIST",
+      "text": "SEIZE DECAY DECAY",
       "mood": "AGGRESSIVE",
-      "tick": 1772042785615
+      "tick": 1772042779129
     },
     {
       "origin": "ARCHIVIST",
-      "text": "REFLECT WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772042786674
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE SHOCK SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042786925
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "WAIT WAIT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042787886
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM FLOW HEAL",
+      "text": "COHERE COHERE RESONATE",
       "mood": "HARMONIC",
-      "tick": 1772042788395
+      "tick": 1772042779396
     },
     {
-      "origin": "ALIEN",
-      "text": "STRIKE CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042788910
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "PURE SHELTER WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042789348
+      "origin": "STREAM",
+      "text": "FLOW FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042779856
     },
     {
       "origin": "REVERSE",
-      "text": "STASIS SHELTER WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042789692
+      "text": "STABLE BLOOM STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042782532
     },
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME STRIKE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042789903
+      "text": "SYNC COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772042782911
     },
     {
       "origin": "ARCHIVIST",
-      "text": "GUARD SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042790269
+      "text": "OSMOSIS STABLE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772042783666
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772042784387
     },
     {
       "origin": "REVERSE",
-      "text": "HEAL GIVING GIVING",
+      "text": "GUARD WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772042784987
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW OSMOSIS STABLE",
       "mood": "HARMONIC",
-      "tick": 1772042790372
+      "tick": 1772042786147
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT STASIS RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772042787162
+    },
+    {
+      "origin": "ALIEN",
+      "text": "CONSUME HUNGER CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042788859
+    },
+    {
+      "origin": "ALPHA_GUARDIAN",
+      "text": "OSMOSIS GIVING BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772042791120
     }
   ]
 }
