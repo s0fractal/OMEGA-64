@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD SHIELD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772042541937
-    },
-    {
       "origin": "INTERFACE",
       "text": "OSMOSIS HEAL FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772042555440
+    },
+    {
+      "origin": "CAR",
+      "text": "BREACH HUNGER SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042556015
     }
   ]
 }
