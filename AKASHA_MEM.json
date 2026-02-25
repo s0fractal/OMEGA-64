@@ -68,15 +68,10 @@
     "AA00AAA0",
     "AA00AAAA",
     "0D18A098",
-    "0000000F"
+    "0000000F",
+    "66660000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "COHERE COHERE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772020940516
-    },
     {
       "origin": "ARCHIVIST",
       "text": "BLOOM RESONATE HEAL",
@@ -160,6 +155,12 @@
       "text": "SYNC OSMOSIS BLOOM",
       "mood": "HARMONIC",
       "tick": 1772020947430
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772020947607
     }
   ]
 }
