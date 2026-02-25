@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "PURE SHELTER STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772041595745
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIFE STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIFE SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041604099
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "FLOW FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772041604541
     }
   ]
 }
