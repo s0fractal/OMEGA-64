@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT PURE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772038607870
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN HUNGER STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772038608076
@@ -291,6 +285,12 @@
       "text": "STABLE RESONATE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772038611487
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772038611894
     }
   ]
 }
