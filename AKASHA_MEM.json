@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH PURE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772041706618
-    },
-    {
       "origin": "INTERFACE",
       "text": "PURE GUARD GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SEIZE HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772041712696
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER WAIT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772041713104
     }
   ]
 }
