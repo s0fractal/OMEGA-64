@@ -144,15 +144,10 @@
     "66660660",
     "AA00A00A",
     "06660006",
-    "06066600"
+    "06066600",
+    "AA0AAA00"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "GIVING RESONATE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772022524995
-    },
     {
       "origin": "REVERSE",
       "text": "SYNC GIVING STABLE",
@@ -236,6 +231,12 @@
       "text": "SHIELD SHELTER SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772022530017
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SEIZE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022530539
     }
   ]
 }
