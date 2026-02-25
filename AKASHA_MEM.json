@@ -130,12 +130,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON GUARD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022305380
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772022305626
@@ -217,6 +211,12 @@
       "text": "WATCH WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022309143
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022309355
     }
   ]
 }
