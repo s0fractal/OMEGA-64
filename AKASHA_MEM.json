@@ -106,12 +106,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BREACH DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021719832
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT IMMUNE WAIT",
       "mood": "DEFENSIVE",
@@ -194,6 +188,12 @@
       "text": "SHIELD RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772021725794
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772021726198
     }
   ]
 }
