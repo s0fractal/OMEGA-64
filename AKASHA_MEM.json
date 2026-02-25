@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM RESONATE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772038301732
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD REFLECT GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772038305177
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME WAVE FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772038305426
     }
   ]
 }
