@@ -187,12 +187,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772023613885
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023614267
@@ -274,6 +268,12 @@
       "text": "GIVING BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772023620072
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772023620392
     }
   ]
 }
