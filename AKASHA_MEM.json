@@ -163,12 +163,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022872510
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022872812
@@ -250,6 +244,12 @@
       "text": "GUARD REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772022876030
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD RECON GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022876625
     }
   ]
 }
