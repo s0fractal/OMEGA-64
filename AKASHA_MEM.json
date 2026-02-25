@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772027409516
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772027409748
@@ -291,6 +285,12 @@
       "text": "SEIZE CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772027414148
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772027414529
     }
   ]
 }
