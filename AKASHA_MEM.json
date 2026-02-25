@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS STRIKE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027625972
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772027626679
@@ -291,6 +285,12 @@
       "text": "GUARD GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772027646050
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD GUARD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772027646657
     }
   ]
 }
