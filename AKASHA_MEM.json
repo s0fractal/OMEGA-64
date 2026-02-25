@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772036781125
-    },
-    {
       "origin": "INTERFACE",
       "text": "FLOW GIVING OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DECAY DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772036784329
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW RESONATE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772036784499
     }
   ]
 }
