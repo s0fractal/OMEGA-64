@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH SHELTER RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772031503814
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772031504392
@@ -291,6 +285,12 @@
       "text": "BREACH DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772031509173
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772031509585
     }
   ]
 }
