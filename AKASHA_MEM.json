@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60660666",
     "60000600",
     "60666606",
     "AAA0AA00",
@@ -199,15 +198,10 @@
     "60606060",
     "AA0A0A00",
     "FFFFF0A0",
-    "000AAAAA"
+    "000AAAAA",
+    "A0606660"
   ],
   "utterances": [
-    {
-      "origin": "INTERFACE",
-      "text": "STRIFE SEIZE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042736438
-    },
     {
       "origin": "ARCHIVIST",
       "text": "COHERE RESONATE GIVING",
@@ -291,6 +285,12 @@
       "text": "RESONATE STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772042745069
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE HUNGER SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042746061
     }
   ]
 }
