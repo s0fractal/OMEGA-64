@@ -1,8 +1,8 @@
 ---
-eigenvalue: '0x00AAAAAA00000A01'
+eigenvalue: '0x00AAAAAAFFFF0A05'
 energy: 50
-x: 716
-'y': 412
+x: 722
+'y': 404
 resonance: 50
 thought: RESURRECTED
 logic: 00AAAAAA

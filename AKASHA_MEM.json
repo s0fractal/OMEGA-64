@@ -105,12 +105,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HEAL COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772021700562
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH WAIT PURE",
       "mood": "DEFENSIVE",
@@ -193,6 +187,12 @@
       "text": "IMMUNE WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772021706069
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT WATCH IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772021706229
     }
   ]
 }
