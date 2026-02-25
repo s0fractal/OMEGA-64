@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772039936872
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772039937288
@@ -291,6 +285,12 @@
       "text": "DECAY SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772039944774
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772039945234
     }
   ]
 }
