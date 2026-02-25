@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS SHIELD SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772034134000
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772034134167
@@ -291,6 +285,12 @@
       "text": "IMMUNE RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772034136653
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034136963
     }
   ]
 }
