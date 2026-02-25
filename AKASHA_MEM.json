@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC HEAL STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772041020697
-    },
-    {
       "origin": "SUCC",
       "text": "OSMOSIS STABLE STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RECON WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041024093
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041024624
     }
   ]
 }
