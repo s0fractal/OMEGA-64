@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "GIVING SYNC UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772024504889
-    },
-    {
       "origin": "REVERSE",
       "text": "BREACH STRIKE DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SEIZE HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772024515688
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772024515926
     }
   ]
 }
