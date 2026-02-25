@@ -153,12 +153,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME STRIFE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022614080
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE SYNC HEAL",
       "mood": "HARMONIC",
@@ -241,6 +235,12 @@
       "text": "SICKNESS BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772022619505
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772022620161
     }
   ]
 }
