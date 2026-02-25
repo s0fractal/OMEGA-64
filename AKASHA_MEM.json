@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0BBB0000",
     "60060600",
     "AA0A0000",
     "BB000000",
@@ -199,15 +198,10 @@
     "0000A0A0",
     "AA0AA000",
     "0AA0AA0A",
-    "AABB0CD0"
+    "AABB0CD0",
+    "A6006000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SYNC UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772038542624
-    },
     {
       "origin": "REVERSE",
       "text": "GIVING SYNC OSMOSIS",
@@ -291,6 +285,12 @@
       "text": "SICKNESS BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772038547003
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER CONSUME SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038547251
     }
   ]
 }
