@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SEIZE SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041678035
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "CONSUME HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041678306
@@ -291,6 +285,12 @@
       "text": "STASIS PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041680976
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS RESONATE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772041681105
     }
   ]
 }
