@@ -1,12 +1,12 @@
 ---
-eigenvalue: '0x606666005CCB80CE'
+eigenvalue: '0xBBBB00005CCB80CE'
 vector: 07.03.01
 symbol: COMM
 desc: Communication bridge. (is => m => is(s1 => s2 => m))
-thought: AVOID_PARASITE_PASSIVE
-x: 218
-'y': 320
-energy: 6.399999999999999
+thought: WANDER_BONDING
+x: 232
+'y': 314
+energy: 0.3999999999999986
 signals: []
 resonance: 0
 bond_strengths: {}
@@ -38,6 +38,7 @@ ex:
   - '0xBBB000005CCB80CE'
   - '0xBBB000005CCB80CE'
   - '0x606666005CCB80CE'
+  - '0x606666005CCB80CE'
 ---
 
 <div align="center">
@@ -63,32 +64,32 @@ ex:
 <!-- ∇ HOLOGRAM START ∇ -->
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <radialGradient id="grad_606666005CCB80CE" cx="50%" cy="50%" r="50%">
+    <radialGradient id="grad_BBBB00005CCB80CE" cx="50%" cy="50%" r="50%">
       <stop offset="0%" stop-color="hsl(181, 20%, 15%)" />
       <stop offset="100%" stop-color="#090909" />
     </radialGradient>
-    <filter id="glow_606666005CCB80CE" x="-20%" y="-20%" width="140%" height="140%">
+    <filter id="glow_BBBB00005CCB80CE" x="-20%" y="-20%" width="140%" height="140%">
       <feGaussianBlur stdDeviation="4" result="blur" />
       <feComposite in="SourceGraphic" in2="blur" operator="over" />
     </filter>
   </defs>
   
-  <rect width="200" height="200" fill="url(#grad_606666005CCB80CE)" rx="24"/>
+  <rect width="200" height="200" fill="url(#grad_BBBB00005CCB80CE)" rx="24"/>
   
   <circle cx="100" cy="100" r="85" stroke="hsl(181, 30%, 30%)" stroke-width="1" fill="none" stroke-dasharray="2 6"/>
   
   <g>
     <animateTransform attributeName="transform" type="rotate" from="270 100 100" to="630 100 100" dur="25s" repeatCount="indefinite" />
     
-    <polygon points="100.0,41.0 151.1,129.5 48.9,129.5" fill="none" stroke="hsl(1, 60%, 40%)" stroke-width="1.5" opacity="0.6"/>
-    <polygon points="100.0,80.0 117.3,110.0 82.7,110.0" fill="none" stroke="hsl(181, 80%, 60%)" stroke-width="2" filter="url(#glow_606666005CCB80CE)"/>
+    <polygon points="100.0,41.0 156.1,81.8 134.7,147.7 65.3,147.7 43.9,81.8" fill="none" stroke="hsl(1, 60%, 40%)" stroke-width="1.5" opacity="0.6"/>
+    <polygon points="100.0,80.0 119.0,93.8 111.8,116.2 88.2,116.2 81.0,93.8" fill="none" stroke="hsl(181, 80%, 60%)" stroke-width="2" filter="url(#glow_BBBB00005CCB80CE)"/>
     
     <circle cx="100" cy="100" r="20" stroke="hsl(181, 60%, 50%)" stroke-width="0.5" fill="none" opacity="0.5"/>
   </g>
   
-  <circle cx="100" cy="100" r="3" fill="hsl(1, 80%, 70%)" filter="url(#glow_606666005CCB80CE)"/>
+  <circle cx="100" cy="100" r="3" fill="hsl(1, 80%, 70%)" filter="url(#glow_BBBB00005CCB80CE)"/>
   
-  <text x="100" y="105" fill="hsl(181, 70%, 80%)" font-family="monospace" font-size="10" text-anchor="middle" letter-spacing="1" opacity="0.9">0x6066</text>
+  <text x="100" y="105" fill="hsl(181, 70%, 80%)" font-family="monospace" font-size="10" text-anchor="middle" letter-spacing="1" opacity="0.9">0xBBBB</text>
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">COMM</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
