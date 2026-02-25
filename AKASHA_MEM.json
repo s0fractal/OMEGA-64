@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE STASIS PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023713727
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023713851
@@ -278,6 +272,12 @@
       "text": "FLOW GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772023716052
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHIELD SHELTER STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772023716212
     }
   ]
 }
