@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772026911533
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772026911798
@@ -291,6 +285,12 @@
       "text": "FORGE FORGE AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772026917657
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WATCH IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772026917915
     }
   ]
 }
