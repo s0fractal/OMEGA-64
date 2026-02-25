@@ -151,12 +151,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772022572984
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022573105
@@ -238,6 +232,12 @@
       "text": "RESONATE BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022577079
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772022577358
     }
   ]
 }
