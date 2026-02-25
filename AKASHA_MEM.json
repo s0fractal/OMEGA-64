@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HEAL OSMOSIS UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772042117056
-    },
-    {
       "origin": "PARASITE",
       "text": "REFLECT STASIS WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772042126082
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER DRAIN STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042127018
     }
   ]
 }
