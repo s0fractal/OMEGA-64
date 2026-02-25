@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WATCH PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772040867743
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT STASIS GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772040870355
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HEAL HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772040870503
     }
   ]
 }
