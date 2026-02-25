@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STASIS PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772040610309
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RECON GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772040610578
@@ -291,6 +285,12 @@
       "text": "GUARD WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040612970
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772040613174
     }
   ]
 }
