@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD REFLECT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772029765769
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772029767447
@@ -291,6 +285,12 @@
       "text": "BLOOM GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772029803568
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029810033
     }
   ]
 }
