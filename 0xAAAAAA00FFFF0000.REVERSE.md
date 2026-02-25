@@ -1,10 +1,10 @@
 ---
 eigenvalue: '0xAAAAAA00FFFF0000'
-energy: 59.4
-x: 702
-'y': 357
+energy: 45.5
+x: 689
+'y': 455
 resonance: 1000
-thought: WANDER_BONDING
+thought: AVOID_PARASITE_BONDING
 logic: AAAAAA00
 ex:
   - '0xFFFFFFFF00000000'
@@ -109,7 +109,7 @@ ex:
   - '0xAAAAAA00FFFF0000'
 signals: []
 bond_strengths:
-  '0x66660600FFFF0004': 0.9782294672887405
+  '0x66660600FFFF0004': 0.9772512378214517
 bonds:
   - '0x66660600FFFF0004'
 ---
