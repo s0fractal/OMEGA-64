@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772033680103
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033680280
@@ -291,6 +285,12 @@
       "text": "GIVING STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772033683723
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK HUNGER STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033684139
     }
   ]
 }
