@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHOCK SEIZE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020345402
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE UNIFY RESONATE",
       "mood": "HARMONIC",
@@ -141,6 +135,12 @@
       "text": "CONSUME STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020354847
+    },
+    {
+      "origin": "STREAM",
+      "text": "FLOW UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772020355018
     }
   ]
 }
