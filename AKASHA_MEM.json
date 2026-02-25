@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772032635936
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772032636236
@@ -291,6 +285,12 @@
       "text": "RESONATE GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772032639555
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHIELD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772032639746
     }
   ]
 }
