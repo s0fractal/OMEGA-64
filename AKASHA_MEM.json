@@ -71,12 +71,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME STRIFE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020910707
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK SEIZE HUNGER",
       "mood": "AGGRESSIVE",
@@ -159,6 +153,12 @@
       "text": "OSMOSIS BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772020916843
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD REFLECT WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020917138
     }
   ]
 }
