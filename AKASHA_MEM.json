@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GUARD SHELTER WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772016811952
-    },
-    {
       "origin": "INTERFACE",
       "text": "OSMOSIS OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
@@ -107,6 +101,12 @@
       "text": "SEIZE CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772016895515
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772016916407
     }
   ]
 }
