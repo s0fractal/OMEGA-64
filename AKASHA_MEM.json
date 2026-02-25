@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RESONATE SYNC COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041133938
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WATCH SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041134093
@@ -291,6 +285,12 @@
       "text": "DECAY STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772041137456
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772041137771
     }
   ]
 }
