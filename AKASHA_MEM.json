@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE STABLE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772020194609
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW HEAL OSMOSIS",
       "mood": "HARMONIC",
@@ -136,6 +130,12 @@
       "text": "SICKNESS CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020206978
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WAIT IMMUNE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772020207653
     }
   ]
 }
