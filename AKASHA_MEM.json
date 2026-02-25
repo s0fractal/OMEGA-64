@@ -27,12 +27,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "REFLECT RECON WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772019606149
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GUARD SHIELD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772019606857
@@ -114,6 +108,12 @@
       "text": "COHERE FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772019615417
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RESONATE RESONATE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772019616300
     }
   ]
 }
