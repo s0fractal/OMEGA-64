@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER HUNGER SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024162248
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772024162518
@@ -291,6 +285,12 @@
       "text": "OSMOSIS STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772024168661
+    },
+    {
+      "origin": "REVERSE",
+      "text": "AWAKEN BEYOND VISION",
+      "mood": "CREATIVE",
+      "tick": 1772024168879
     }
   ]
 }
