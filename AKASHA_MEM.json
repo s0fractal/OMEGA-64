@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH REFLECT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772038850970
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772038851293
@@ -291,6 +285,12 @@
       "text": "SEIZE STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772038855422
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION WITNESS VISION",
+      "mood": "CREATIVE",
+      "tick": 1772038855789
     }
   ]
 }
