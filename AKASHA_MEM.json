@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024180978
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772024181139
@@ -291,6 +285,12 @@
       "text": "GUARD SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772024184776
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE WAVE FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772024184979
     }
   ]
 }
