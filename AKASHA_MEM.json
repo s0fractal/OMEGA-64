@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH RECON PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772035685416
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772035685649
@@ -291,6 +285,12 @@
       "text": "SYNC SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772035690539
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH BREACH BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035691113
     }
   ]
 }
