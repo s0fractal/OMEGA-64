@@ -24,12 +24,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "REFLECT WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772019511057
-    },
-    {
-      "origin": "INTERFACE",
       "text": "WAIT IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772019512014
@@ -111,6 +105,12 @@
       "text": "RECON SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772019518246
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY DRAIN CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019518926
     }
   ]
 }
