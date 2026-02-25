@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE COHERE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772039175127
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772039175292
@@ -291,6 +285,12 @@
       "text": "GIVING GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772039178066
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON PURE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772039178244
     }
   ]
 }
