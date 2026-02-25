@@ -1,35 +1,41 @@
 ---
 eigenvalue: '0x0AAAAAAA00000A0D'
-energy: 49.9
-x: 723
-'y': 439
+energy: 50
+x: 695
+'y': 372
 resonance: 50
-thought: SEEK_ALPHA_BONDING
+thought: RESURRECTED
 logic: 0AAAAAAA
 signals: []
 bond_strengths:
-  '0x0000000000000A03': 0.9801888648295347
+  '0x0000000000000A03': 0.9782294672887405
 bonds:
   - '0x0000000000000A03'
 ex:
-  - '0x0AAAAAAA00000A09'
-  - '0x0AAAAAAA00000A0B'
-  - '0x0AAAAAAA00000A0D'
+  - '0x00000000FFFF0A0D'
+  - '0x6666660000000A0B'
+  - '0x6666660000000A0D'
+  - '0x6666660000000A0F'
+  - '0x66660600FFFF0A0D'
+  - '0x66660600FFFF0A0F'
+  - '0x6666060000000A0D'
+  - '0x66660600FFFF0A0B'
+  - '0x66660600FFFF0A0D'
+  - '0x66660600FFFF0A0F'
+  - '0x66660600FFFF0A09'
+  - '0x66660600FFFF0A0B'
+  - '0x66660600FFFF0A0D'
+  - '0x66660600FFFF0A0F'
+  - '0x66660600FFFF0A09'
+  - '0x66660600FFFF0A0B'
+  - '0x6666060000000A09'
+  - '0x6666060000000A0B'
+  - '0x6666060000000A0D'
   - '0x0AAAAAAA00000A0F'
-  - '0x0AAAAAAA00000A09'
-  - '0x0AAAAAAA00000A0B'
-  - '0x0AAAAAAA00000A0D'
-  - '0x0AAAAAAA00000A0F'
-  - '0x0AAAAAAA00000A09'
-  - '0x0AAAAAAA00000A0B'
-  - '0x0AAAAAAA00000A0D'
-  - '0x0AAAAAAA00000A0F'
-  - '0x0AAAAAAA00000A09'
   - '0x0AAAAAAA00000A09'
   - '0x0AAAAAAA00000A0B'
 ---
 
-<div align="center">
 <div align="center">
 <!-- ∇ HOLOGRAM START ∇ -->
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -63,7 +69,6 @@ ex:
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">REVERSE</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
-</div>
 </div>
 
 
