@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "RESONATE FLOW FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772040436399
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE HUNGER CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040439573
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772040439742
     }
   ]
 }
