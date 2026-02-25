@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHELTER WATCH IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023732046
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "PURE SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023732424
@@ -278,6 +272,12 @@
       "text": "OSMOSIS STABLE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772023735138
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SHOCK DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023735294
     }
   ]
 }
