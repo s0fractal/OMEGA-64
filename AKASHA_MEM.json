@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "OSMOSIS UNIFY OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772041008532
-    },
-    {
       "origin": "REVERSE",
       "text": "WATCH IMMUNE RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "REFLECT WATCH REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772041011367
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BREACH BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041011533
     }
   ]
 }
