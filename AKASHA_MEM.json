@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042268469
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING GIVING COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIKE SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772042274895
+    },
+    {
+      "origin": "STREAM",
+      "text": "STASIS GUARD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772042276388
     }
   ]
 }
