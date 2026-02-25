@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC STABLE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772040635172
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK CONSUME HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772040638211
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772040638382
     }
   ]
 }
