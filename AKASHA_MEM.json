@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033666731
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772033666878
@@ -291,6 +285,12 @@
       "text": "PURE GUARD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772033671454
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772033671649
     }
   ]
 }
