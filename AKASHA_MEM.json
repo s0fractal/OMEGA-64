@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS SHOCK BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036395389
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE SHOCK DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772036399544
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE SYNC GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772036399719
     }
   ]
 }
