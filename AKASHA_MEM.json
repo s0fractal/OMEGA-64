@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772028840021
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772028840336
@@ -291,6 +285,12 @@
       "text": "WAIT GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772028866301
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIKE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028866803
     }
   ]
 }
