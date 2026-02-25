@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "FLOW RESONATE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772025268093
-    },
-    {
       "origin": "REVERSE",
       "text": "SHIELD STASIS SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772025272582
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL STABLE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772025272859
     }
   ]
 }
