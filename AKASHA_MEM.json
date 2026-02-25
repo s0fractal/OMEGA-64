@@ -16,12 +16,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772014519167
-    },
-    {
       "origin": "INTERFACE",
       "text": "RECON WAIT WAIT",
       "mood": "DEFENSIVE",
@@ -104,6 +98,12 @@
       "text": "DECAY DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772014649159
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772014657613
     }
   ]
 }
