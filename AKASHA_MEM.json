@@ -198,12 +198,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY HUNGER SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024004936
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772024005851
@@ -285,6 +279,12 @@
       "text": "FLOW COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772024008820
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD IMMUNE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772024009216
     }
   ]
 }
