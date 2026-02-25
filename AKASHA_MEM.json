@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL SYNC COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772037105303
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772037105529
@@ -291,6 +285,12 @@
       "text": "HEAL GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772037108480
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037109717
     }
   ]
 }
