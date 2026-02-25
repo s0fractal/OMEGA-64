@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER STASIS REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040000106
-    },
-    {
-      "origin": "REVERSE",
       "text": "FORGE BEYOND FORGE",
       "mood": "CREATIVE",
       "tick": 1772040000625
@@ -291,6 +285,12 @@
       "text": "UNIFY SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772040007678
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHELTER PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040008214
     }
   ]
 }
