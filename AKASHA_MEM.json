@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032025949
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772032026607
@@ -291,6 +285,12 @@
       "text": "SHIELD REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772032033085
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772032033708
     }
   ]
 }
