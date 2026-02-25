@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW RESONATE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772026124772
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772026124970
@@ -291,6 +285,12 @@
       "text": "HEAL BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772026133180
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE WITNESS SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772026133370
     }
   ]
 }
