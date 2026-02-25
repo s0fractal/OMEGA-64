@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028323121
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE HUNGER SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772028323744
@@ -291,6 +285,12 @@
       "text": "STABLE SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772028332369
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM RESONATE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772028332987
     }
   ]
 }
