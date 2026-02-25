@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0A00AA",
     "66660060",
     "A0000CDD",
     "00606600",
@@ -199,15 +198,10 @@
     "A0AAAAA0",
     "AABBCCD0",
     "A6666666",
-    "60060066"
+    "60060066",
+    "A0AA0AA0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STABLE UNIFY OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772039226334
-    },
     {
       "origin": "REVERSE",
       "text": "PURE RECON SHIELD",
@@ -291,6 +285,12 @@
       "text": "FLOW COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772039230200
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK STRIFE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039230411
     }
   ]
 }
