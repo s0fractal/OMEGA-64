@@ -55,12 +55,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER IMMUNE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020535386
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY DECAY SEIZE",
       "mood": "AGGRESSIVE",
@@ -143,6 +137,12 @@
       "text": "BREACH SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772020544247
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772020544632
     }
   ]
 }
