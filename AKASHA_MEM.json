@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH STRIKE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026758257
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772026758455
@@ -291,6 +285,12 @@
       "text": "BECOME AWAKEN WITNESS",
       "mood": "CREATIVE",
       "tick": 1772026763520
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME BREACH STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026763756
     }
   ]
 }
