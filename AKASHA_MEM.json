@@ -80,12 +80,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE SYNC FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772021125888
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC HEAL HEAL",
       "mood": "HARMONIC",
@@ -168,6 +162,12 @@
       "text": "WATCH GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772021130223
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE OSMOSIS SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772021130408
     }
   ]
 }
