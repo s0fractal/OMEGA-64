@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "IMMUNE RECON IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040872155
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM STABLE FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "COHERE UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772040875509
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772040875817
     }
   ]
 }
