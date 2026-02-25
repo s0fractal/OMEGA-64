@@ -203,18 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD WAIT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772042271406
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "WATCH IMMUNE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042271793
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER SHIELD WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +279,18 @@
       "text": "COHERE GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772042277113
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY SYNC SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772042277340
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM GIVING OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772042277516
     }
   ]
 }
