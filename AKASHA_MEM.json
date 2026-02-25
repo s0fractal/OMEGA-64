@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "STREAM",
-      "text": "FLOW UNIFY BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772040180546
-    },
-    {
-      "origin": "STREAM",
       "text": "BLOOM RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772040180760
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772040186643
+    },
+    {
+      "origin": "STREAM",
+      "text": "GIVING FLOW GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772040186840
     }
   ]
 }
