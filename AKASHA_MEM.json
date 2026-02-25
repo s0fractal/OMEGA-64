@@ -63,12 +63,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT WAIT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020707047
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020707235
@@ -150,6 +144,12 @@
       "text": "IMMUNE PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772020712280
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020714254
     }
   ]
 }
