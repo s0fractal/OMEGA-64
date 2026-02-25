@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040942637
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "FLOW STABLE STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "UNIFY RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772040947446
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SPARK BECOME BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772040947649
     }
   ]
 }
