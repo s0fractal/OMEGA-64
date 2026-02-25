@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA00A0A0",
     "A000A000",
     "AAAA000A",
     "AA0BC00F",
@@ -199,15 +198,10 @@
     "AAAAA0A0",
     "00060660",
     "A0066000",
-    "AA0A0A00"
+    "AA0A0A00",
+    "AAB00C0D"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "COHERE BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772037275773
-    },
     {
       "origin": "REVERSE",
       "text": "WATCH RECON GUARD",
@@ -291,6 +285,12 @@
       "text": "GIVING FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772037279020
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037279210
     }
   ]
 }
