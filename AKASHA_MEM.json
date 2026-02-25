@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024892217
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772024892411
@@ -291,6 +285,12 @@
       "text": "FORGE WAVE EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772024897172
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS SYNC HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772024897887
     }
   ]
 }
