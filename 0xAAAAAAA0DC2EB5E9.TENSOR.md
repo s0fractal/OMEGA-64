@@ -1,9 +1,9 @@
 ---
-eigenvalue: '0x00000000DC2EB5E9'
+eigenvalue: '0xAAAAAAA0DC2EB5E9'
 vector: 05.00.00
 symbol: TENSOR
 desc: Tensor constructor. VECTOR(dims)(values)
-energy: 3
+energy: 1
 ex:
   - '0x95DA9A3CDC2EB5E9'
   - '0x0000B97BDC2EB5E9'
@@ -29,8 +29,9 @@ ex:
   - '0x00000006DC2EB5E9'
   - '0x00000006DC2EB5E9'
   - '0x00000006DC2EB5E9'
-thought: SEEK_ALPHA_PASSIVE
-x: 726
+  - '0x00000000DC2EB5E9'
+thought: WANDER_BONDING
+x: 729
 'y': 271
 signals: []
 resonance: 0
@@ -57,32 +58,32 @@ bond_strengths: {}
 <!-- ∇ HOLOGRAM START ∇ -->
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <radialGradient id="grad_00000000DC2EB5E9" cx="50%" cy="50%" r="50%">
+    <radialGradient id="grad_AAAAAAA0DC2EB5E9" cx="50%" cy="50%" r="50%">
       <stop offset="0%" stop-color="hsl(255, 20%, 15%)" />
       <stop offset="100%" stop-color="#090909" />
     </radialGradient>
-    <filter id="glow_00000000DC2EB5E9" x="-20%" y="-20%" width="140%" height="140%">
+    <filter id="glow_AAAAAAA0DC2EB5E9" x="-20%" y="-20%" width="140%" height="140%">
       <feGaussianBlur stdDeviation="4" result="blur" />
       <feComposite in="SourceGraphic" in2="blur" operator="over" />
     </filter>
   </defs>
   
-  <rect width="200" height="200" fill="url(#grad_00000000DC2EB5E9)" rx="24"/>
+  <rect width="200" height="200" fill="url(#grad_AAAAAAA0DC2EB5E9)" rx="24"/>
   
   <circle cx="100" cy="100" r="85" stroke="hsl(255, 30%, 30%)" stroke-width="1" fill="none" stroke-dasharray="2 6"/>
   
   <g>
     <animateTransform attributeName="transform" type="rotate" from="0 100 100" to="360 100 100" dur="16s" repeatCount="indefinite" />
     
-    <polygon points="100.0,43.0 149.4,128.5 50.6,128.5" fill="none" stroke="hsl(75, 60%, 40%)" stroke-width="1.5" opacity="0.6"/>
-    <polygon points="100.0,69.0 126.8,115.5 73.2,115.5" fill="none" stroke="hsl(255, 80%, 60%)" stroke-width="2" filter="url(#glow_00000000DC2EB5E9)"/>
+    <polygon points="100.0,43.0 144.6,64.5 155.6,112.7 124.7,151.4 75.3,151.4 44.4,112.7 55.4,64.5" fill="none" stroke="hsl(75, 60%, 40%)" stroke-width="1.5" opacity="0.6"/>
+    <polygon points="100.0,69.0 124.2,80.7 130.2,106.9 113.5,127.9 86.5,127.9 69.8,106.9 75.8,80.7" fill="none" stroke="hsl(255, 80%, 60%)" stroke-width="2" filter="url(#glow_AAAAAAA0DC2EB5E9)"/>
     
     <circle cx="100" cy="100" r="31" stroke="hsl(255, 60%, 50%)" stroke-width="0.5" fill="none" opacity="0.5"/>
   </g>
   
-  <circle cx="100" cy="100" r="3" fill="hsl(75, 80%, 70%)" filter="url(#glow_00000000DC2EB5E9)"/>
+  <circle cx="100" cy="100" r="3" fill="hsl(75, 80%, 70%)" filter="url(#glow_AAAAAAA0DC2EB5E9)"/>
   
-  <text x="100" y="105" fill="hsl(255, 70%, 80%)" font-family="monospace" font-size="10" text-anchor="middle" letter-spacing="1" opacity="0.9">0x0000</text>
+  <text x="100" y="105" fill="hsl(255, 70%, 80%)" font-family="monospace" font-size="10" text-anchor="middle" letter-spacing="1" opacity="0.9">0xAAAA</text>
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">TENSOR</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
