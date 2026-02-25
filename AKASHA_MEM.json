@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS OSMOSIS UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772038532261
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772038532543
@@ -291,6 +285,12 @@
       "text": "RECON PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772038535878
+    },
+    {
+      "origin": "ALPHA_REVERSE",
+      "text": "GIVING FLOW HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772038536151
     }
   ]
 }
