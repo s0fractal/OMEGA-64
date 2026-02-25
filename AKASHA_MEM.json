@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772023149644
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772023149815
@@ -259,6 +253,12 @@
       "text": "STRIFE SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772023152655
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023152832
     }
   ]
 }
