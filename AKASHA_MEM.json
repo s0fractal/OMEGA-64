@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772040330734
-    },
-    {
       "origin": "SUCC",
       "text": "SICKNESS DRAIN HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772040336611
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE BEYOND VISION",
+      "mood": "CREATIVE",
+      "tick": 1772040337733
     }
   ]
 }
