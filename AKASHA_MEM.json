@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STABLE BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772040292474
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SICKNESS SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772040293246
@@ -291,6 +285,12 @@
       "text": "SICKNESS SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772040298219
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772040298388
     }
   ]
 }
