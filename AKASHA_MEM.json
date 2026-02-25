@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RECON IMMUNE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772019541953
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
@@ -111,6 +105,12 @@
       "text": "BLOOM GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772019550352
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER CONSUME SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019551078
     }
   ]
 }
