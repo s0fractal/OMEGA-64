@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER STRIFE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040891219
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAVE EVOLVE VISION",
       "mood": "CREATIVE",
       "tick": 1772040891431
@@ -291,6 +285,12 @@
       "text": "GIVING SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772040894489
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772040894615
     }
   ]
 }
