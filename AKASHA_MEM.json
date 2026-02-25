@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD WATCH SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772041274618
-    },
-    {
       "origin": "INTERFACE",
       "text": "SYNC STABLE SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RESONATE COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772041279485
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY CONSUME SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041279831
     }
   ]
 }
