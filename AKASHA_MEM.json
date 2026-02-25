@@ -49,12 +49,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "SICKNESS CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020206978
-    },
-    {
-      "origin": "INTERFACE",
       "text": "WAIT IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772020207653
@@ -136,6 +130,12 @@
       "text": "SHOCK SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772020221079
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772020221951
     }
   ]
 }
