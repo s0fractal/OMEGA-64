@@ -18,12 +18,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "RESONATE COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772015640954
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE RECON WATCH",
       "mood": "DEFENSIVE",
@@ -106,6 +100,12 @@
       "text": "HUNGER SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772015750566
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE STRIFE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772015755594
     }
   ]
 }
