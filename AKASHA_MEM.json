@@ -104,12 +104,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE SYNC STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772021685562
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772021686012
@@ -191,6 +185,12 @@
       "text": "OSMOSIS COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772021693188
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH HUNGER BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021693849
     }
   ]
 }
