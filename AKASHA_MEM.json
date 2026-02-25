@@ -183,12 +183,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER RECON STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772023556290
-    },
-    {
       "origin": "STREAM",
       "text": "STABLE GIVING GIVING",
       "mood": "HARMONIC",
@@ -271,6 +265,12 @@
       "text": "SHOCK SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023560033
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772023560257
     }
   ]
 }
