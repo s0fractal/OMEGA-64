@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE STRIFE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038301302
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772038301519
@@ -291,6 +285,12 @@
       "text": "SHELTER RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772038304673
+    },
+    {
+      "origin": "STREAM",
+      "text": "RESONATE UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772038304911
     }
   ]
 }
