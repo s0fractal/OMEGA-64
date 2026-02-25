@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772041970541
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BLOOM HEAL OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041976891
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DECAY SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041977253
     }
   ]
 }
