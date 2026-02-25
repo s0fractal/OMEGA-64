@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GIVING SYNC COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772033040299
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE STABLE HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "CONSUME CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772033043781
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772033043934
     }
   ]
 }
