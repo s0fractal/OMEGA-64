@@ -180,12 +180,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD SHIELD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772023380849
-    },
-    {
-      "origin": "REVERSE",
       "text": "WITNESS WITNESS BECOME",
       "mood": "CREATIVE",
       "tick": 1772023381056
@@ -267,6 +261,12 @@
       "text": "STABLE BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772023384874
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE IMMUNE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772023385327
     }
   ]
 }

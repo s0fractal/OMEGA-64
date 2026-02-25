@@ -1,10 +1,10 @@
 ---
 eigenvalue: '0xAABBCCDDFFFF0002'
-energy: 30.799999999999997
-x: 690
-'y': 382
+energy: 66
+x: 718
+'y': 426
 resonance: 1000
-thought: SEEK_ALPHA_PASSIVE
+thought: RESURRECTED
 logic: AABBCCDD
 ex:
   - '0xFFFFFFFF00000000'
