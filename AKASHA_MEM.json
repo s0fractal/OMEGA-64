@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DREAM WAVE WAVE",
-      "mood": "CREATIVE",
-      "tick": 1772026160968
-    },
-    {
       "origin": "INTERFACE",
       "text": "WAIT STASIS REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772026169354
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE RECON PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772026169599
     }
   ]
 }
