@@ -176,12 +176,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT STASIS SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023277174
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT SHIELD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772023277509
@@ -263,6 +257,12 @@
       "text": "HUNGER DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023282448
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD PURE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772023282610
     }
   ]
 }
