@@ -70,12 +70,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FORGE AWAKEN DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772020901211
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME SHOCK CONSUME",
       "mood": "AGGRESSIVE",
@@ -158,6 +152,12 @@
       "text": "EVOLVE WAVE EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772020906184
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY STRIFE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020906355
     }
   ]
 }
