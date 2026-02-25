@@ -130,12 +130,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD RECON PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022313113
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772022313265
@@ -217,6 +211,12 @@
       "text": "CONSUME SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772022317069
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER DECAY STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022317291
     }
   ]
 }
