@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN STRIKE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041005296
-    },
-    {
       "origin": "REVERSE",
       "text": "STRIFE STRIFE CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772041008207
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041008345
     }
   ]
 }
