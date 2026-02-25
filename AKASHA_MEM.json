@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772030688482
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772030689742
@@ -291,6 +285,12 @@
       "text": "FLOW HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772030696977
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030699245
     }
   ]
 }
