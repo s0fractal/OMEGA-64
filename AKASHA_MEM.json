@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH RECON STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772035592112
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772035592318
@@ -291,6 +285,12 @@
       "text": "WAIT SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772035598215
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE SPARK WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772035598428
     }
   ]
 }
