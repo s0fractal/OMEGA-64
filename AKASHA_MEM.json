@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00000660",
     "BBB000FC",
     "000AAAA0",
     "BB000FFC",
@@ -199,15 +198,10 @@
     "AA0000A0",
     "AAB00CD0",
     "AA0A00AA",
-    "AAA00AAA"
+    "AAA00AAA",
+    "A00A0AA0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GIVING GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772033631463
-    },
     {
       "origin": "REVERSE",
       "text": "HUNGER DECAY SICKNESS",
@@ -291,6 +285,12 @@
       "text": "DRAIN SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772033636648
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SEIZE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033636796
     }
   ]
 }
