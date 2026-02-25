@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN SICKNESS DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037563504
-    },
-    {
       "origin": "INTERFACE",
       "text": "WATCH WAIT REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772037568284
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY UNIFY STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772037568505
     }
   ]
 }
