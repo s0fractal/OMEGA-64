@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY DECAY SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033291059
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE GIVING UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIFE STRIKE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772033294051
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON PURE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772033294214
     }
   ]
 }
