@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "IMMUNE SHELTER WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041966830
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "PURE IMMUNE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772041967044
@@ -291,6 +285,12 @@
       "text": "COHERE RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772041972506
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STASIS RECON PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041972741
     }
   ]
 }
