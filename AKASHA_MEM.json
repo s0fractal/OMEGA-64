@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE OSMOSIS HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772041166389
-    },
-    {
       "origin": "REVERSE",
       "text": "WAIT SHELTER RECON",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772041169725
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS STASIS SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772041169918
     }
   ]
 }
