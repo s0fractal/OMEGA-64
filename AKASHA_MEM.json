@@ -154,12 +154,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN CONSUME STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022602048
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772022603000
@@ -241,6 +235,12 @@
       "text": "FORGE VISION SPARK",
       "mood": "CREATIVE",
       "tick": 1772022606556
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE FORGE SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772022606820
     }
   ]
 }
