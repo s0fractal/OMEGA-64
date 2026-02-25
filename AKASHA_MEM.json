@@ -41,12 +41,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GIVING UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772019877520
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIKE HUNGER DRAIN",
       "mood": "AGGRESSIVE",
@@ -129,6 +123,12 @@
       "text": "GIVING OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772019889881
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019890619
     }
   ]
 }
