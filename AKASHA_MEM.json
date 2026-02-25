@@ -85,12 +85,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE WATCH SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772021220145
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021220355
@@ -172,6 +166,12 @@
       "text": "SHOCK STRIKE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772021226244
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021226415
     }
   ]
 }
