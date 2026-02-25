@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER RECON PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041013975
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT SHELTER GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772041017252
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041017629
     }
   ]
 }
