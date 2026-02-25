@@ -171,12 +171,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STASIS SHIELD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772023148723
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME BREACH DECAY",
       "mood": "AGGRESSIVE",
@@ -259,6 +253,12 @@
       "text": "SHOCK SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023151857
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHIELD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772023152132
     }
   ]
 }
