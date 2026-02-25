@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772038249808
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772038249988
@@ -291,6 +285,12 @@
       "text": "BREACH STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772038262293
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772038262556
     }
   ]
 }
