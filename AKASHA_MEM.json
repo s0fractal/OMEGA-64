@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE STABLE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772036833041
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772036833205
@@ -291,6 +285,12 @@
       "text": "SHIELD RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772036836136
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772036836462
     }
   ]
 }
