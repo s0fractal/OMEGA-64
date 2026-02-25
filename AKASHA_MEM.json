@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772038049884
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038050104
@@ -291,6 +285,12 @@
       "text": "RESONATE COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772038053332
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIKE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038053580
     }
   ]
 }
