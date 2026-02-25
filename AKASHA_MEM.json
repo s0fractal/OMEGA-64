@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE CONSUME SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025393840
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772025394216
@@ -291,6 +285,12 @@
       "text": "IMMUNE PURE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772025401067
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SHOCK HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025401540
     }
   ]
 }
