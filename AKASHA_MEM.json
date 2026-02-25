@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT GUARD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772039253051
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772039253277
@@ -291,6 +285,12 @@
       "text": "FLOW BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772039256581
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772039256793
     }
   ]
 }
