@@ -1437,6 +1437,31 @@ async function logAkasha(msg: string) {
             if (oldest) lastKnownAtoms.delete(oldest);
         }
 
+        // --- 🛸 P2P MEMBRANE DIFFUSION (Multiplayer) ---
+        // Highly resonant atoms have a chance to escape the local dimension and broadcast out
+        if (resonance > 60 && Math.random() < 0.1) {
+            const payload = {
+                eigenvalue: `0xALIEN_${Date.now()}_${eigenvalue.slice(-4)}`,
+                symbol: symbol,
+                energy: energy,
+                resonance: resonance,
+                logic: newLogic,
+                thought: `CROSSED_THE_MEMBRANE_FROM_${eigenvalue}`,
+                desc: `Alien transmission from an external Flatland node.`
+            };
+            
+            // Fire and forget fetch to the P2P Synapse (could be external IP in the future)
+            fetch("http://localhost:8081/mutate", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            }).then(res => {
+                if (res.ok) console.log(`   [P2P] 🛸 Atom ${eigenvalue} successfully diffused through the membrane!`);
+            }).catch(() => {
+                // Connection failed (no synapse listening), fail silently
+            });
+        }
+
     // --- 🔆 THE NOOSPHERIC MANDALA (High-Level Synthesis) ---
     // The swarm generates a collective SVG representation of its most resonant concepts.
     const highlyResonant = Array.from(lastKnownAtoms.entries()).filter(([f, m]) => Number(m.resonance) > 30);

@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHIELD SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041996096
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RECON GUARD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772042002725
+    },
+    {
+      "origin": "STREAM",
+      "text": "COHERE UNIFY HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772042003210
     }
   ]
 }
