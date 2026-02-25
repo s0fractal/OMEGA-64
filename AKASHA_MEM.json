@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME CONSUME SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042774227
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RECON STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772042774841
@@ -291,6 +285,12 @@
       "text": "STRIFE SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772042786925
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT WAIT GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042787886
     }
   ]
 }
