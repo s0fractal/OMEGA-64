@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC RESONATE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772034907058
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER STRIKE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772034907281
@@ -291,6 +285,12 @@
       "text": "STRIKE SHOCK SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772034910463
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY STABLE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772034910624
     }
   ]
 }
