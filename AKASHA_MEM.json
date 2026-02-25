@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM OSMOSIS UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772034392939
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772034393166
@@ -291,6 +285,12 @@
       "text": "REFLECT RECON SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772034397674
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772034397873
     }
   ]
 }
