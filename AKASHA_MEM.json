@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE GUARD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772036132705
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE GIVING RESONATE",
       "mood": "HARMONIC",
       "tick": 1772036132973
@@ -291,6 +285,12 @@
       "text": "STRIKE SEIZE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772036136925
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS OSMOSIS RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772036137094
     }
   ]
 }
