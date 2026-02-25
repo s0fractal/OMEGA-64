@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SHOCK SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027459464
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772027459833
@@ -291,6 +285,12 @@
       "text": "STRIKE SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772027474821
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SHOCK STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027475156
     }
   ]
 }
