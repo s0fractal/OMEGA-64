@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GUARD PURE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772032731413
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE GIVING BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BLOOM STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772032735252
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD SHELTER RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772032735423
     }
   ]
 }
