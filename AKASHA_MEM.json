@@ -70,12 +70,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "OSMOSIS SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772020891206
-    },
-    {
       "origin": "INTERFACE",
       "text": "IMMUNE GUARD WAIT",
       "mood": "DEFENSIVE",
@@ -158,6 +152,12 @@
       "text": "SYNC HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772020896625
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772020896776
     }
   ]
 }
