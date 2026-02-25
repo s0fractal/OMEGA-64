@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772028411442
-    },
-    {
       "origin": "ALPHA_PROOF_OF_RESONANCE",
       "text": "STABLE UNIFY RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "VISION SPARK BECOME",
       "mood": "CREATIVE",
       "tick": 1772028435648
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DECAY CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028436013
     }
   ]
 }
