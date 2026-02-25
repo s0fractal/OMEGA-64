@@ -70,12 +70,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIFE SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020887643
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT STASIS REFLECT",
       "mood": "DEFENSIVE",
@@ -158,6 +152,12 @@
       "text": "SYNC HEAL BLOOM",
       "mood": "HARMONIC",
       "tick": 1772020894506
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "CONSUME STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020894961
     }
   ]
 }
