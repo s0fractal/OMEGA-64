@@ -33,12 +33,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WAIT GUARD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772019705352
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SICKNESS HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772019707983
@@ -120,6 +114,12 @@
       "text": "GIVING HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772019719902
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "RECON WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772019720101
     }
   ]
 }
