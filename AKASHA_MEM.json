@@ -148,12 +148,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "RESONATE BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772022523351
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER SICKNESS BREACH",
       "mood": "AGGRESSIVE",
@@ -236,6 +230,12 @@
       "text": "HEAL OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772022527273
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE CONSUME SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022527630
     }
   ]
 }
