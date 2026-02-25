@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS HEAL HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772040446740
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE SYNC COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STABLE RESONATE GIVING",
       "mood": "HARMONIC",
       "tick": 1772040451512
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT PURE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040451842
     }
   ]
 }
