@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW OSMOSIS BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772029868432
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD SHELTER PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SPARK BEYOND WAVE",
       "mood": "CREATIVE",
       "tick": 1772029877685
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD REFLECT STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772029877911
     }
   ]
 }
