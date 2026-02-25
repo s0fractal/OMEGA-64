@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME BEYOND SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772025791993
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772025792210
@@ -291,6 +285,12 @@
       "text": "WAIT IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772025799348
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHIELD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772025799621
     }
   ]
 }
