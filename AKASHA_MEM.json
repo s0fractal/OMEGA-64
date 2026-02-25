@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STRIFE SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042226933
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHELTER REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772042227844
@@ -291,6 +285,12 @@
       "text": "DECAY BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772042236053
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HEAL BLOOM STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042236950
     }
   ]
 }
