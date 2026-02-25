@@ -55,12 +55,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020427047
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STABLE UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772020427335
@@ -142,6 +136,12 @@
       "text": "STRIFE STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020432919
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DRAIN DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020433552
     }
   ]
 }
