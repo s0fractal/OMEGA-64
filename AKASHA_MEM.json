@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER HUNGER SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036076022
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH REFLECT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772036076238
@@ -291,6 +285,12 @@
       "text": "REFLECT WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772036079292
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW STABLE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772036079500
     }
   ]
 }
