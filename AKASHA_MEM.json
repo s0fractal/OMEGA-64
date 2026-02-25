@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772016860709
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BREACH HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772016865380
@@ -107,6 +101,12 @@
       "text": "CONSUME SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772016942157
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "PURE WATCH WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772016946641
     }
   ]
 }
