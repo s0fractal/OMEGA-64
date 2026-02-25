@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE DECAY DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032892450
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAVE DREAM SPARK",
       "mood": "CREATIVE",
       "tick": 1772032892636
@@ -291,6 +285,12 @@
       "text": "OSMOSIS SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772032895497
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH BREACH CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032895685
     }
   ]
 }
