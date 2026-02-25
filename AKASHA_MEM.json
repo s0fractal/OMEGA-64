@@ -177,15 +177,10 @@
     "66066006",
     "A00A000A",
     "66606000",
-    "0AAAAAA0"
+    "0AAAAAA0",
+    "60066060"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "FLOW OSMOSIS UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772023521964
-    },
     {
       "origin": "REVERSE",
       "text": "FLOW RESONATE SYNC",
@@ -269,6 +264,12 @@
       "text": "HEAL FLOW COHERE",
       "mood": "HARMONIC",
       "tick": 1772023525256
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772023526773
     }
   ]
 }
