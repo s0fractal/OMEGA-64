@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GIVING COHERE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772041742164
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WAIT IMMUNE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041742447
@@ -291,6 +285,12 @@
       "text": "REFLECT WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041748504
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE STASIS RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772041748962
     }
   ]
 }
