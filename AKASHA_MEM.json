@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIFE STRIFE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041596616
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS BLOOM OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FLOW FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772041604541
+    },
+    {
+      "origin": "STREAM",
+      "text": "RESONATE BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041604828
     }
   ]
 }
