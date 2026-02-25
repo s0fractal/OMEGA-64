@@ -122,12 +122,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "IMMUNE REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772022157222
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW HEAL BLOOM",
       "mood": "HARMONIC",
@@ -210,6 +204,12 @@
       "text": "BEYOND EVOLVE BECOME",
       "mood": "CREATIVE",
       "tick": 1772022163396
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772022164281
     }
   ]
 }
