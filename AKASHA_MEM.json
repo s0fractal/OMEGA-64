@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW OSMOSIS HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772026341816
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772026342026
@@ -291,6 +285,12 @@
       "text": "STABLE UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772026350993
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE UNIFY GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772026351269
     }
   ]
 }
