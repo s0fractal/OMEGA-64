@@ -196,12 +196,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STASIS PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772023976979
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE HUNGER STRIKE",
       "mood": "AGGRESSIVE",
@@ -284,6 +278,12 @@
       "text": "WAIT SHIELD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023979511
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT REFLECT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023979680
     }
   ]
 }
