@@ -63,12 +63,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SEIZE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020665166
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020665365
@@ -150,6 +144,12 @@
       "text": "WAIT WAIT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772020670272
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIKE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020670908
     }
   ]
 }
