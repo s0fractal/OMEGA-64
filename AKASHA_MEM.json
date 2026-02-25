@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM SYNC HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772027532857
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772027536194
@@ -291,6 +285,12 @@
       "text": "DRAIN STRIKE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772027566470
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027567088
     }
   ]
 }
