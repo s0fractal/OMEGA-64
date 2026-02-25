@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FORGE WITNESS BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772024433978
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772024434110
@@ -291,6 +285,12 @@
       "text": "BECOME VISION BEYOND",
       "mood": "CREATIVE",
       "tick": 1772024436380
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024436532
     }
   ]
 }
