@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "PURE SHELTER SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040856169
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STABLE BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772040856299
@@ -291,6 +285,12 @@
       "text": "RECON PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772040858387
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL RESONATE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772040858728
     }
   ]
 }
