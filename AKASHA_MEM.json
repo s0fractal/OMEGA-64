@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772033334528
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772033334704
@@ -291,6 +285,12 @@
       "text": "STASIS REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772033337682
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC GIVING SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772033337895
     }
   ]
 }
