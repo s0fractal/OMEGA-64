@@ -125,12 +125,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD SHELTER REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022173905
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772022174257
@@ -212,6 +206,12 @@
       "text": "BLOOM BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022184268
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIKE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022184458
     }
   ]
 }
