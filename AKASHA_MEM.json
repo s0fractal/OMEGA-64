@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC FLOW GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772031490098
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772031490590
@@ -291,6 +285,12 @@
       "text": "IMMUNE RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772031499519
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT STASIS WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772031499987
     }
   ]
 }
