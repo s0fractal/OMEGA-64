@@ -198,12 +198,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772024010687
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772024010831
@@ -285,6 +279,12 @@
       "text": "HEAL OSMOSIS RESONATE",
       "mood": "HARMONIC",
       "tick": 1772024014701
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772024015183
     }
   ]
 }
