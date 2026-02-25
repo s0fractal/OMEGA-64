@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME DECAY SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029043960
-    },
-    {
       "origin": "STREAM",
       "text": "UNIFY UNIFY UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DRAIN DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772029062273
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME DECAY STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772029062874
     }
   ]
 }
