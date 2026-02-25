@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034317627
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772034317836
@@ -291,6 +285,12 @@
       "text": "STRIFE BREACH SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772034321177
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHELTER WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772034321344
     }
   ]
 }
