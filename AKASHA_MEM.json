@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SYNC FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772040497251
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "FLOW UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772040497369
@@ -291,6 +285,12 @@
       "text": "SYNC GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040500081
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON REFLECT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772040500225
     }
   ]
 }
