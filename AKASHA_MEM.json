@@ -153,12 +153,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772022626356
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT PURE IMMUNE",
       "mood": "DEFENSIVE",
@@ -241,6 +235,12 @@
       "text": "SHIELD RECON GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022631203
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022631825
     }
   ]
 }
