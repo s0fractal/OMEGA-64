@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RECON SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041579906
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHOCK SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772041580061
@@ -291,6 +285,12 @@
       "text": "RECON REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041583437
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772041583577
     }
   ]
 }
