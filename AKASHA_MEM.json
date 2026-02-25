@@ -54,12 +54,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "FLOW BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772020364916
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHOCK BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772020365518
@@ -141,6 +135,12 @@
       "text": "PURE WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772020376767
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DRAIN STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020377752
     }
   ]
 }
