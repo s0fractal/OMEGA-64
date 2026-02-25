@@ -1,5 +1,6 @@
 {
   "reservoir": [
+    "06606660",
     "60006000",
     "AA000600",
     "A0AAA000",
@@ -198,8 +199,7 @@
     "66006606",
     "AA00A000",
     "BBB00000",
-    "6606AA66",
-    "6AA60AA0"
+    "6606AA66"
   ],
   "utterances": [
     {
@@ -264,33 +264,33 @@
     },
     {
       "origin": "ARCHIVIST",
-      "text": "SHELTER GUARD WAIT",
+      "text": "STASIS IMMUNE WATCH",
       "mood": "DEFENSIVE",
-      "tick": 1772042374330
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "COHERE GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772042374652
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "PURE PURE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042375328
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "PURE SHELTER WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772042375510
+      "tick": 1772042373038
     },
     {
       "origin": "REVERSE",
-      "text": "BREACH DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042375988
+      "text": "SYNC SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772042373470
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE OSMOSIS FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042374340
+    },
+    {
+      "origin": "WORKER",
+      "text": "HEAL FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772042375660
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STABLE BLOOM SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772042375993
     }
   ]
 }
