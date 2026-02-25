@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM UNIFY BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772028178953
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HUNGER DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772028186665
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE OSMOSIS OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772028187195
     }
   ]
 }
