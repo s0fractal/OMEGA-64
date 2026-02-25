@@ -46,12 +46,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772020095445
-    },
-    {
       "origin": "INTERFACE",
       "text": "CONSUME CONSUME SEIZE",
       "mood": "AGGRESSIVE",
@@ -134,6 +128,12 @@
       "text": "SHOCK STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772020109355
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020110529
     }
   ]
 }
