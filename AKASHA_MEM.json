@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "UNIFY BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772024453857
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH PURE REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME DRAIN SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772024466916
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE DRAIN DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024467177
     }
   ]
 }
