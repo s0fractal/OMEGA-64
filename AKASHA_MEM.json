@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DRAIN DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019893061
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE STASIS STASIS",
       "mood": "DEFENSIVE",
@@ -130,6 +124,12 @@
       "text": "COHERE HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772019904450
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHOCK HUNGER CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019905176
     }
   ]
 }
