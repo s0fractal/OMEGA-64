@@ -187,12 +187,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023670365
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023670530
@@ -274,6 +268,12 @@
       "text": "BEYOND BECOME SPARK",
       "mood": "CREATIVE",
       "tick": 1772023675047
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772023675174
     }
   ]
 }
