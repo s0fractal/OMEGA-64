@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "COHERE FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772033999839
-    },
-    {
       "origin": "STREAM",
       "text": "UNIFY STABLE UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "CONSUME SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772034002507
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM STABLE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772034002711
     }
   ]
 }
