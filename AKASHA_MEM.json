@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GUARD RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042309308
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SYNC FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772042309600
@@ -291,6 +285,12 @@
       "text": "SPARK SPARK BECOME",
       "mood": "CREATIVE",
       "tick": 1772042315274
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STABLE FLOW UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772042316462
     }
   ]
 }
