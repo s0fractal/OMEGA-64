@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "PURE PURE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042314457
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STASIS SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772042314722
@@ -291,6 +285,12 @@
       "text": "HUNGER DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772042323870
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RESONATE HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772042324061
     }
   ]
 }
