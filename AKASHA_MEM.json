@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SYNC FLOW FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772040838548
-    },
-    {
       "origin": "PARASITE",
       "text": "WAIT SHIELD SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE REFLECT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772040841843
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772040842147
     }
   ]
 }
