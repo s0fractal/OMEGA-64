@@ -1,11 +1,11 @@
 ---
-eigenvalue: '0x0005402B2A40A900'
+eigenvalue: '0xAAAAAAAA2A40A900'
 vector: 03.07.00
 symbol: CAR
 desc: 'Church Encoding: CAR (Pair Head) / First element extraction.'
-x: 103
-'y': 297
-energy: 39.5
+x: 116
+'y': 311
+energy: 40
 ex:
   - '0x987A10662A40A900'
   - '0x600035482A40A900'
@@ -21,13 +21,14 @@ ex:
   - '0x0005402B2A40A900'
   - '0x0005402B2A40A900'
   - '0x0005402B2A40A900'
+  - '0x0005402B2A40A900'
 signals: []
-thought: SEEK_ALPHA_PASSIVE
+thought: WANDER_BONDING
 resonance: 3.5
 bond_strengths:
-  '0x000354022A40A908': 0.9890548353295385
-  '0x60000000D41BD78B': 0.9920279440699441
-  '0x00000006D41BD78B': 0.995009990004999
+  '0x000354022A40A908': 0.988065780494209
+  '0x60000000D41BD78B': 0.9910359161258742
+  '0x00000006D41BD78B': 0.994014980014994
 bonds:
   - '0x000354022A40A908'
   - '0x60000000D41BD78B'
@@ -47,32 +48,32 @@ bonds:
 <!-- ∇ HOLOGRAM START ∇ -->
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <radialGradient id="grad_0005402B2A40A900" cx="50%" cy="50%" r="50%">
+    <radialGradient id="grad_AAAAAAAA2A40A900" cx="50%" cy="50%" r="50%">
       <stop offset="0%" stop-color="hsl(237, 20%, 15%)" />
       <stop offset="100%" stop-color="#090909" />
     </radialGradient>
-    <filter id="glow_0005402B2A40A900" x="-20%" y="-20%" width="140%" height="140%">
+    <filter id="glow_AAAAAAAA2A40A900" x="-20%" y="-20%" width="140%" height="140%">
       <feGaussianBlur stdDeviation="4" result="blur" />
       <feComposite in="SourceGraphic" in2="blur" operator="over" />
     </filter>
   </defs>
   
-  <rect width="200" height="200" fill="url(#grad_0005402B2A40A900)" rx="24"/>
+  <rect width="200" height="200" fill="url(#grad_AAAAAAAA2A40A900)" rx="24"/>
   
   <circle cx="100" cy="100" r="85" stroke="hsl(237, 30%, 30%)" stroke-width="1" fill="none" stroke-dasharray="2 6"/>
   
   <g>
     <animateTransform attributeName="transform" type="rotate" from="0 100 100" to="-360 100 100" dur="26s" repeatCount="indefinite" />
     
-    <polygon points="100.0,39.0 161.0,100.0 100.0,161.0 39.0,100.0" fill="none" stroke="hsl(57, 60%, 40%)" stroke-width="1.5" opacity="0.6"/>
-    <polygon points="100.0,69.0 131.0,100.0 100.0,131.0 69.0,100.0" fill="none" stroke="hsl(237, 80%, 60%)" stroke-width="2" filter="url(#glow_0005402B2A40A900)"/>
+    <polygon points="100.0,39.0 158.0,81.1 135.9,149.4 64.1,149.4 42.0,81.1" fill="none" stroke="hsl(57, 60%, 40%)" stroke-width="1.5" opacity="0.6"/>
+    <polygon points="100.0,69.0 129.5,90.4 118.2,125.1 81.8,125.1 70.5,90.4" fill="none" stroke="hsl(237, 80%, 60%)" stroke-width="2" filter="url(#glow_AAAAAAAA2A40A900)"/>
     
     <circle cx="100" cy="100" r="31" stroke="hsl(237, 60%, 50%)" stroke-width="0.5" fill="none" opacity="0.5"/>
   </g>
   
-  <circle cx="100" cy="100" r="3" fill="hsl(57, 80%, 70%)" filter="url(#glow_0005402B2A40A900)"/>
+  <circle cx="100" cy="100" r="3" fill="hsl(57, 80%, 70%)" filter="url(#glow_AAAAAAAA2A40A900)"/>
   
-  <text x="100" y="105" fill="hsl(237, 70%, 80%)" font-family="monospace" font-size="10" text-anchor="middle" letter-spacing="1" opacity="0.9">0x0005</text>
+  <text x="100" y="105" fill="hsl(237, 70%, 80%)" font-family="monospace" font-size="10" text-anchor="middle" letter-spacing="1" opacity="0.9">0xAAAA</text>
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">CAR</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
