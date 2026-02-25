@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE WATCH SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772039805472
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772039805942
@@ -291,6 +285,12 @@
       "text": "GIVING HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772039819769
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER CONSUME SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039820230
     }
   ]
 }
