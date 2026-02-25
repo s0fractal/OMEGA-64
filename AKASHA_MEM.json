@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031470122
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772031470412
@@ -291,6 +285,12 @@
       "text": "PURE WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772031475732
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE UNIFY COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772031476156
     }
   ]
 }
