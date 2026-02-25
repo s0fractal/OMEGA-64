@@ -50,15 +50,10 @@
     "66AA66A0",
     "0A000A00",
     "AB000000",
-    "6A00A000"
+    "6A00A000",
+    "66666600"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME BREACH HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020497812
-    },
     {
       "origin": "REVERSE",
       "text": "OSMOSIS FLOW SYNC",
@@ -142,6 +137,12 @@
       "text": "REFLECT STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772020506177
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE SHELTER SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772020506615
     }
   ]
 }
