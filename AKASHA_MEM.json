@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FORGE BEYOND BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772033762333
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772033762530
@@ -291,6 +285,12 @@
       "text": "SHELTER SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772033765222
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC COHERE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772033765463
     }
   ]
 }
