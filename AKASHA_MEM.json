@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A0AAAA0A",
     "60000666",
     "66000006",
     "00000006",
@@ -199,15 +198,10 @@
     "06006666",
     "FF0AFFFA",
     "66006660",
-    "0AA0A00A"
+    "0AA0A00A",
+    "00006060"
   ],
   "utterances": [
-    {
-      "origin": "INTERFACE",
-      "text": "STASIS WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772034666060
-    },
     {
       "origin": "REVERSE",
       "text": "SYNC FLOW OSMOSIS",
@@ -291,6 +285,12 @@
       "text": "IMMUNE SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772034669181
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772034669417
     }
   ]
 }
