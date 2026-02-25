@@ -87,12 +87,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT STASIS WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772021245937
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772021246178
@@ -174,6 +168,12 @@
       "text": "HEAL GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772021251651
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE IMMUNE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772021252065
     }
   ]
 }
