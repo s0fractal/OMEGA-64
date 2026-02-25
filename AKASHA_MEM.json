@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SHOCK HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036289099
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772036289298
@@ -291,6 +285,12 @@
       "text": "SHELTER REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772036292188
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772036292391
     }
   ]
 }
