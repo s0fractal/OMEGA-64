@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA000AA0",
     "66666606",
     "A6666606",
     "06660600",
@@ -199,15 +198,10 @@
     "66666600",
     "AABBCC0D",
     "06066600",
-    "00006606"
+    "00006606",
+    "A06660A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "REFLECT PURE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772036736064
-    },
     {
       "origin": "REVERSE",
       "text": "FLOW FLOW RESONATE",
@@ -291,6 +285,12 @@
       "text": "SHIELD WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772036741124
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE CONSUME SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036741292
     }
   ]
 }
