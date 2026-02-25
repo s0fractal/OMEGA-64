@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772034636394
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772034636596
@@ -291,6 +285,12 @@
       "text": "DECAY CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772034639302
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH PURE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772034639541
     }
   ]
 }
