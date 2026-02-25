@@ -113,15 +113,10 @@
     "0D180098",
     "FFFFFFF0",
     "66066600",
-    "0000A006"
+    "0000A006",
+    "00AA60A0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SYNC HEAL HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772022078875
-    },
     {
       "origin": "REVERSE",
       "text": "SICKNESS BREACH SICKNESS",
@@ -205,6 +200,12 @@
       "text": "STRIFE SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022083101
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772022083290
     }
   ]
 }
