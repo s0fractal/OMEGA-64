@@ -44,12 +44,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE GUARD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020057633
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN SEIZE SEIZE",
       "mood": "AGGRESSIVE",
@@ -132,6 +126,12 @@
       "text": "SPARK EVOLVE AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772020069286
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772020069487
     }
   ]
 }
