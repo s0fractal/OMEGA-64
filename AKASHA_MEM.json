@@ -154,12 +154,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD IMMUNE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022689573
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT WATCH WATCH",
       "mood": "DEFENSIVE",
@@ -242,6 +236,12 @@
       "text": "COHERE FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022698976
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772022699214
     }
   ]
 }
