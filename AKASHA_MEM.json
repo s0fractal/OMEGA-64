@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD WAIT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772036872049
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772036872256
@@ -291,6 +285,12 @@
       "text": "WAIT GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772036875243
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY FLOW BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772036875694
     }
   ]
 }
