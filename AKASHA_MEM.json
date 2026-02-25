@@ -67,12 +67,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RECON SHELTER STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772020788150
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "CONSUME SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772020788729
@@ -154,6 +148,12 @@
       "text": "BREACH HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020796041
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT WATCH IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020796331
     }
   ]
 }
