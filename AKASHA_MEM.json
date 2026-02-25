@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "IMMUNE GUARD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040876129
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "UNIFY HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772040876256
@@ -291,6 +285,12 @@
       "text": "GUARD REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040880330
+    },
+    {
+      "origin": "STREAM",
+      "text": "SYNC GIVING COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772040880479
     }
   ]
 }
