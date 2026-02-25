@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SHOCK STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035348484
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772035348656
@@ -291,6 +285,12 @@
       "text": "SYNC FLOW UNIFY",
       "mood": "HARMONIC",
       "tick": 1772035353390
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WAIT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772035353589
     }
   ]
 }
