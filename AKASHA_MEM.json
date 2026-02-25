@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WITNESS WAVE SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772024261771
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772024262151
@@ -291,6 +285,12 @@
       "text": "STRIKE STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772024267927
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE DECAY HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024268175
     }
   ]
 }
