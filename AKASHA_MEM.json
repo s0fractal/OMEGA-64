@@ -76,12 +76,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW OSMOSIS OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772020984998
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT GUARD WAIT",
       "mood": "DEFENSIVE",
@@ -164,6 +158,12 @@
       "text": "STASIS REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772020993868
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE RESONATE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772020994034
     }
   ]
 }
