@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD PURE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772026727981
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772026728374
@@ -291,6 +285,12 @@
       "text": "DRAIN DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772026734014
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER REFLECT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772026734227
     }
   ]
 }
