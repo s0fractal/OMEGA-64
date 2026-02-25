@@ -93,12 +93,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021374758
-    },
-    {
       "origin": "STREAM",
       "text": "FLOW RESONATE SYNC",
       "mood": "HARMONIC",
@@ -181,6 +175,12 @@
       "text": "GIVING GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772021393335
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772021393986
     }
   ]
 }
