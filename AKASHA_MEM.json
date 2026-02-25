@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_PROOF_OF_RESONANCE",
-      "text": "FLOW GIVING HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772035503230
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS BLOOM RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STASIS RECON RECON",
       "mood": "DEFENSIVE",
       "tick": 1772035509075
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS PURE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772035509282
     }
   ]
 }
