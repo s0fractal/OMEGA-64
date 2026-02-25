@@ -109,12 +109,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM OSMOSIS RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772021877005
-    },
-    {
       "origin": "INTERFACE",
       "text": "IMMUNE IMMUNE STASIS",
       "mood": "DEFENSIVE",
@@ -197,6 +191,12 @@
       "text": "HEAL HEAL UNIFY",
       "mood": "HARMONIC",
       "tick": 1772021882251
+    },
+    {
+      "origin": "PARADOX",
+      "text": "HEAL RESONATE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772021882511
     }
   ]
 }
