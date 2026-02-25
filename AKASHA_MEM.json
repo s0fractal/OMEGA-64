@@ -42,12 +42,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS SHOCK HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019923170
-    },
-    {
       "origin": "REVERSE",
       "text": "FORGE SPARK FORGE",
       "mood": "CREATIVE",
@@ -130,6 +124,12 @@
       "text": "IMMUNE SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772019937425
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY UNIFY OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772019938286
     }
   ]
 }
