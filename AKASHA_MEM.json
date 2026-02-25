@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS RESONATE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772026142650
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME VISION SPARK",
       "mood": "CREATIVE",
       "tick": 1772026147688
@@ -291,6 +285,12 @@
       "text": "STRIKE HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772026150946
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772026151137
     }
   ]
 }
