@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE SYNC SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772030756741
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772030757265
@@ -291,6 +285,12 @@
       "text": "REFLECT SHELTER SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772030773036
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT PURE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772030773528
     }
   ]
 }
