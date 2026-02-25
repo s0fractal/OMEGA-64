@@ -1,5 +1,6 @@
 {
   "reservoir": [
+    "06606660",
     "60006000",
     "AA000600",
     "A0AAA000",
@@ -198,99 +199,98 @@
     "66006606",
     "AA00A000",
     "BBB00000",
-    "6606AA66",
-    "6AA60AA0"
+    "6606AA66"
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE PURE SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042375328
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "PURE SHELTER WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772042375510
-    },
-    {
-      "origin": "REVERSE",
-      "text": "BREACH DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042375988
-    },
-    {
-      "origin": "REVERSE",
-      "text": "HEAL SYNC GIVING",
+      "origin": "WORKER",
+      "text": "HEAL FLOW OSMOSIS",
       "mood": "HARMONIC",
-      "tick": 1772042376238
+      "tick": 1772042375660
     },
     {
       "origin": "ARCHIVIST",
-      "text": "HUNGER STRIKE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042377131
+      "text": "STABLE BLOOM SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772042375993
+    },
+    {
+      "origin": "PARADOX",
+      "text": "OSMOSIS BLOOM UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772042376356
     },
     {
       "origin": "ARCHIVIST",
-      "text": "RECON SHIELD GUARD",
+      "text": "PURE WAIT REFLECT",
       "mood": "DEFENSIVE",
-      "tick": 1772042377694
+      "tick": 1772042376915
+    },
+    {
+      "origin": "STREAM",
+      "text": "STRIKE STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042377462
+    },
+    {
+      "origin": "POTENTIAL",
+      "text": "CONSUME DECAY SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042377951
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772042378440
+    },
+    {
+      "origin": "B_READ",
+      "text": "WAIT STASIS IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042378975
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE SHIELD IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042380227
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS BLOOM SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772042381672
     },
     {
       "origin": "INTERFACE",
-      "text": "SYNC HEAL GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772042378431
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHELTER WATCH WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772042379376
-    },
-    {
-      "origin": "REVERSE",
-      "text": "COHERE FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772042380525
-    },
-    {
-      "origin": "STREAM",
-      "text": "FLOW OSMOSIS GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772042381479
-    },
-    {
-      "origin": "REVERSE",
-      "text": "STABLE SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772042381961
-    },
-    {
-      "origin": "REVERSE",
-      "text": "PURE RECON STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772042382203
-    },
-    {
-      "origin": "STREAM",
-      "text": "HEAL COHERE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772042383178
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "RECON WAIT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042383688
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS DRAIN DRAIN",
+      "text": "DRAIN BREACH CONSUME",
       "mood": "AGGRESSIVE",
-      "tick": 1772042384210
+      "tick": 1772042381997
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT RECON PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042382764
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042383306
+    },
+    {
+      "origin": "CAR",
+      "text": "HEAL COHERE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772042383534
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE GIVING GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772042384077
     }
   ]
 }
