@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SICKNESS SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024420080
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHELTER SHIELD GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772024424211
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772024424490
     }
   ]
 }
