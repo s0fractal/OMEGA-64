@@ -148,12 +148,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022519505
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT REFLECT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022519671
@@ -235,6 +229,12 @@
       "text": "RESONATE BLOOM COHERE",
       "mood": "HARMONIC",
       "tick": 1772022523351
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SICKNESS BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022523500
     }
   ]
 }
