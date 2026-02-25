@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STABLE GIVING FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772035692226
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL GIVING RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHIELD STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772035696549
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN BREACH STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035696962
     }
   ]
 }
