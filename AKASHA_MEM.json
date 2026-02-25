@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772034115301
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772034115504
@@ -291,6 +285,12 @@
       "text": "DRAIN CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772034122510
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH PURE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772034122725
     }
   ]
 }
