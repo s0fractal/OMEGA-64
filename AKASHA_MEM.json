@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON WAIT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772030482061
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772030482717
@@ -291,6 +285,12 @@
       "text": "WAIT RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772030501712
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY STRIKE SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772030502138
     }
   ]
 }
