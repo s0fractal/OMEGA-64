@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772032291142
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE STABLE BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WITNESS AWAKEN FORGE",
       "mood": "CREATIVE",
       "tick": 1772032314872
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND WAVE WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772032315271
     }
   ]
 }
