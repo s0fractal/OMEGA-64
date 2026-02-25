@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60606666",
     "AA0066A0",
     "AA0BC00F",
     "600666A0",
@@ -199,15 +198,10 @@
     "00AA0000",
     "AAAAAA0A",
     "AA066000",
-    "AAA0A00A"
+    "AAA0A00A",
+    "AAAAAA00"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STRIFE SEIZE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038736577
-    },
     {
       "origin": "REVERSE",
       "text": "BLOOM RESONATE BLOOM",
@@ -291,6 +285,12 @@
       "text": "STABLE GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772038739614
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER CONSUME CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038739826
     }
   ]
 }
