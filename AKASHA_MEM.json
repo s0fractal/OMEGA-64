@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH WAIT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772031426340
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS IMMUNE STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772031438000
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE CONSUME SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031438422
     }
   ]
 }
