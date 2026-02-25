@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM SYNC UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772032145005
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772032145557
@@ -291,6 +285,12 @@
       "text": "GUARD WAIT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772032155132
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032155833
     }
   ]
 }
