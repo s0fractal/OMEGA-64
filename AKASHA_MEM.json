@@ -76,12 +76,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON REFLECT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772021027508
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW UNIFY SYNC",
       "mood": "HARMONIC",
@@ -164,6 +158,12 @@
       "text": "SHOCK BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021036315
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021036486
     }
   ]
 }
