@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE WAIT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772040233856
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHIELD SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772040234018
@@ -291,6 +285,12 @@
       "text": "SEIZE SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772040243372
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772040243852
     }
   ]
 }
