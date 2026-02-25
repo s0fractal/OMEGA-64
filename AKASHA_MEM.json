@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BECOME FORGE SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772040854204
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BLOOM SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772040857221
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040857401
     }
   ]
 }
