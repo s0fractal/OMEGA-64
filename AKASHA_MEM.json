@@ -141,12 +141,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022464265
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER SHELTER RECON",
       "mood": "DEFENSIVE",
@@ -229,6 +223,12 @@
       "text": "COHERE BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022467616
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772022468710
     }
   ]
 }
