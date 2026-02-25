@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING FLOW STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772027224320
-    },
-    {
-      "origin": "REVERSE",
       "text": "WITNESS BECOME BEYOND",
       "mood": "CREATIVE",
       "tick": 1772027224617
@@ -291,6 +285,12 @@
       "text": "UNIFY STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772027231471
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY CONSUME SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027231668
     }
   ]
 }
