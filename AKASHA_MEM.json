@@ -166,12 +166,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772023037397
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH SHOCK HUNGER",
       "mood": "AGGRESSIVE",
@@ -254,6 +248,12 @@
       "text": "SYNC HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772023042834
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772023043011
     }
   ]
 }
