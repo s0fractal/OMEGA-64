@@ -27,12 +27,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GUARD WATCH SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772019650312
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "RESONATE STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772019650878
@@ -114,6 +108,12 @@
       "text": "UNIFY UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772019658883
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BREACH DECAY BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019659373
     }
   ]
 }
