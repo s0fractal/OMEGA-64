@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE STASIS WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772034992313
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER WAIT REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772034992536
@@ -291,6 +285,12 @@
       "text": "COHERE FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772034995276
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772034995751
     }
   ]
 }
