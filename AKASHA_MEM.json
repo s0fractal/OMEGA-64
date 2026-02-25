@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772032641801
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772032642000
@@ -291,6 +285,12 @@
       "text": "FLOW GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772032645469
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT PURE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772032645877
     }
   ]
 }
