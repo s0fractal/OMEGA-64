@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772025837004
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772025837296
@@ -291,6 +285,12 @@
       "text": "WATCH WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772025842288
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025842474
     }
   ]
 }
