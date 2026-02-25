@@ -167,12 +167,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772023032411
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023032564
@@ -254,6 +248,12 @@
       "text": "GUARD REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772023035801
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772023036130
     }
   ]
 }
