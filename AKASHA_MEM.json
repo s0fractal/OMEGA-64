@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GUARD SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040816237
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GUARD RECON REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIFE SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772040820294
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY BREACH STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040820508
     }
   ]
 }
