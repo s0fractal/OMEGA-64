@@ -203,18 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALIEN",
-      "text": "EVOLVE SPARK FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772042812527
-    },
-    {
-      "origin": "REVERSE",
-      "text": "STASIS SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042812688
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON GUARD PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +279,18 @@
       "text": "SYNC UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772042826728
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042827895
+    },
+    {
+      "origin": "STREAM",
+      "text": "GUARD GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042828174
     }
   ]
 }
