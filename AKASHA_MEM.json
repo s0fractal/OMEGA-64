@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772028327051
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772028328309
@@ -291,6 +285,12 @@
       "text": "OSMOSIS STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772028336508
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS OSMOSIS UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772028337080
     }
   ]
 }
