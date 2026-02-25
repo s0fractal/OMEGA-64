@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL SYNC RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772025409147
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772025409517
@@ -291,6 +285,12 @@
       "text": "SEIZE SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772025414024
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SPARK DREAM WAVE",
+      "mood": "CREATIVE",
+      "tick": 1772025414281
     }
   ]
 }
