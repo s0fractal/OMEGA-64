@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE STRIFE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772015755594
-    },
-    {
       "origin": "INTERFACE",
       "text": "SEIZE BREACH STRIFE",
       "mood": "AGGRESSIVE",
@@ -107,6 +101,12 @@
       "text": "STRIKE CONSUME DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772015855977
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DECAY SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772015878046
     }
   ]
 }
