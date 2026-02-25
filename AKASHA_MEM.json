@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STABLE SYNC BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772040969671
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HEAL COHERE SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "REFLECT IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772040972005
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD REFLECT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772040972255
     }
   ]
 }
