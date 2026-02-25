@@ -143,12 +143,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GIVING SYNC SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772022493309
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW BLOOM STABLE",
       "mood": "HARMONIC",
@@ -231,6 +225,12 @@
       "text": "SICKNESS SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772022496285
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER SHELTER RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772022496972
     }
   ]
 }
