@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772023742193
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE SHIELD WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772023742350
@@ -278,6 +272,12 @@
       "text": "HUNGER SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023747386
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772023747651
     }
   ]
 }
