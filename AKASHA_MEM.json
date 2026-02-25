@@ -21,12 +21,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772017603807
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN SHOCK SHOCK",
       "mood": "AGGRESSIVE",
@@ -109,6 +103,12 @@
       "text": "AWAKEN FORGE DREAM",
       "mood": "CREATIVE",
       "tick": 1772017704599
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY STRIKE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772017706693
     }
   ]
 }
