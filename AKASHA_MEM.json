@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "BREACH DRAIN DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041222385
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS RECON WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772041226500
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT SHELTER RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772041226814
     }
   ]
 }
