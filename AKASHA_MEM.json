@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "FLOW OSMOSIS BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772020455033
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD RECON WATCH",
       "mood": "DEFENSIVE",
@@ -142,6 +136,12 @@
       "text": "SPARK AWAKEN BECOME",
       "mood": "CREATIVE",
       "tick": 1772020462628
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772020462800
     }
   ]
 }
