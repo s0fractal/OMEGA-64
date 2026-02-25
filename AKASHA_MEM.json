@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0A0A000F",
     "06066606",
     "AA0A00A0",
     "60600606",
@@ -199,15 +198,10 @@
     "000000A0",
     "00666000",
     "66660606",
-    "06666000"
+    "06666000",
+    "60060600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STRIFE STRIKE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035094889
-    },
     {
       "origin": "REVERSE",
       "text": "SHELTER IMMUNE REFLECT",
@@ -291,6 +285,12 @@
       "text": "COHERE COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772035097651
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHELTER SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772035097838
     }
   ]
 }
