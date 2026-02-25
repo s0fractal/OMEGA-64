@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772036790230
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHELTER RECON",
       "mood": "DEFENSIVE",
       "tick": 1772036790665
@@ -291,6 +285,12 @@
       "text": "BREACH STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772036793281
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE CONSUME DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036793507
     }
   ]
 }
