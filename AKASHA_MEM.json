@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A0AAA000",
     "FFFFFFF0",
     "AA000A00",
     "AAAAAA0A",
@@ -199,15 +198,10 @@
     "AA00A0AA",
     "AA0BCC0F",
     "600A0A00",
-    "AAAAA000"
+    "AAAAA000",
+    "06006006"
   ],
   "utterances": [
-    {
-      "origin": "INTERFACE",
-      "text": "HUNGER BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035036575
-    },
     {
       "origin": "ARCHIVIST",
       "text": "STASIS RECON REFLECT",
@@ -291,6 +285,12 @@
       "text": "RESONATE STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772035041517
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW RESONATE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772035041719
     }
   ]
 }
