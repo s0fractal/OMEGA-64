@@ -115,12 +115,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SICKNESS SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021998286
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL BLOOM COHERE",
       "mood": "HARMONIC",
@@ -203,6 +197,12 @@
       "text": "SICKNESS DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022010983
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE GUARD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022011193
     }
   ]
 }
