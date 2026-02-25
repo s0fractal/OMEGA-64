@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE FLOW FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772026795820
-    },
-    {
-      "origin": "REVERSE",
       "text": "VISION BECOME AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772026796033
@@ -291,6 +285,12 @@
       "text": "BLOOM HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772026800850
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER CONSUME CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026801168
     }
   ]
 }
