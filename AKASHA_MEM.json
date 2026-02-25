@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WATCH REFLECT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041546171
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STRIFE BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772041546384
@@ -291,6 +285,12 @@
       "text": "UNIFY FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772041550230
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE SICKNESS HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041550950
     }
   ]
 }
