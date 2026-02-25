@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "66666660",
     "AA0A0AAA",
     "06606666",
     "BB00000C",
@@ -199,15 +198,10 @@
     "06066060",
     "60006660",
     "66600060",
-    "00600066"
+    "00600066",
+    "A0BB0000"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "STABLE STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041411024
-    },
     {
       "origin": "REVERSE",
       "text": "FLOW OSMOSIS FLOW",
@@ -291,6 +285,12 @@
       "text": "RECON GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041414137
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041414472
     }
   ]
 }
