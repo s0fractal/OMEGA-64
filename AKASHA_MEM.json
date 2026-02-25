@@ -1,9 +1,5 @@
 {
   "reservoir": [
-    "A6666660",
-    "06606660",
-    "60006000",
-    "AA000600",
     "A0AAA000",
     "AAA0A0AA",
     "66660060",
@@ -199,98 +195,102 @@
     "AA660A60",
     "66006606",
     "AA00A000",
-    "BBB00000"
+    "A0AA0A00",
+    "0A666660",
+    "AABB0C00",
+    "66006000",
+    "A6666000"
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH STASIS SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772042258933
+      "origin": "REVERSE",
+      "text": "STRIKE HUNGER SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042256306
     },
     {
-      "origin": "CAR",
-      "text": "HEAL HEAL COHERE",
+      "origin": "ARCHIVIST",
+      "text": "SYNC GIVING HEAL",
       "mood": "HARMONIC",
-      "tick": 1772042259200
+      "tick": 1772042256805
     },
     {
       "origin": "REVERSE",
-      "text": "UNIFY STABLE GIVING",
+      "text": "OSMOSIS OSMOSIS UNIFY",
       "mood": "HARMONIC",
-      "tick": 1772042261669
+      "tick": 1772042257326
     },
     {
       "origin": "ARCHIVIST",
-      "text": "STRIFE CONSUME DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042262216
+      "text": "COHERE HEAL UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772042257697
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042258512
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT PURE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772042259402
     },
     {
       "origin": "INTERFACE",
-      "text": "SHIELD STASIS STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772042262339
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "OSMOSIS SYNC FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772042263205
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042263605
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM RESONATE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772042264053
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "STASIS IMMUNE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772042264964
-    },
-    {
-      "origin": "WORKER",
-      "text": "WAIT SHELTER STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772042265264
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "DECAY DECAY SICKNESS",
+      "text": "STRIKE CONSUME DRAIN",
       "mood": "AGGRESSIVE",
-      "tick": 1772042266285
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "COHERE STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772042267875
-    },
-    {
-      "origin": "STREAM",
-      "text": "STASIS RECON GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772042268134
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042268469
+      "tick": 1772042261882
     },
     {
       "origin": "REVERSE",
-      "text": "GIVING GIVING COHERE",
+      "text": "COHERE COHERE BLOOM",
       "mood": "HARMONIC",
-      "tick": 1772042269042
+      "tick": 1772042262257
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER IMMUNE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042263622
+    },
+    {
+      "origin": "STREAM",
+      "text": "WAIT PURE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772042265043
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT GUARD RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772042265344
+    },
+    {
+      "origin": "STREAM",
+      "text": "SYNC STABLE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772042265669
+    },
+    {
+      "origin": "IS_ISO",
+      "text": "STRIKE CONSUME SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042267731
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772042268712
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW UNIFY COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772042269211
     }
   ]
 }
