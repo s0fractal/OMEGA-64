@@ -196,12 +196,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAVE BECOME FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772023895904
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023896156
@@ -283,6 +277,12 @@
       "text": "BREACH SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023902109
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023902317
     }
   ]
 }
