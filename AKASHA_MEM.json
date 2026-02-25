@@ -83,15 +83,10 @@
     "6A666660",
     "A0A0AAAA",
     "AAAA000A",
-    "AA00A0A0"
+    "AA00A0A0",
+    "ABA00000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RESONATE COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772021253945
-    },
     {
       "origin": "REVERSE",
       "text": "FORGE BEYOND SPARK",
@@ -175,6 +170,12 @@
       "text": "STASIS SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772021259854
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021260042
     }
   ]
 }
