@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "WORKER",
-      "text": "SYNC COHERE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772042102534
-    },
-    {
       "origin": "STREAM",
       "text": "HEAL COHERE RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STABLE COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772042109159
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON SHELTER SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772042109427
     }
   ]
 }
