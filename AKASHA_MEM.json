@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WATCH WAIT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772037563741
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME STRIKE DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772037568505
+    },
+    {
+      "origin": "STREAM",
+      "text": "FLOW FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772037568731
     }
   ]
 }
