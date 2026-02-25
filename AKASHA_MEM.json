@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE STASIS REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772038033711
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772038034071
@@ -291,6 +285,12 @@
       "text": "COHERE BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772038038703
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772038038877
     }
   ]
 }
