@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM UNIFY SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772036020302
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772036020507
@@ -291,6 +285,12 @@
       "text": "DECAY HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772036022933
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE DREAM SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772036023128
     }
   ]
 }
