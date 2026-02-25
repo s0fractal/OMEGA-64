@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772036890003
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772036890208
@@ -291,6 +285,12 @@
       "text": "SICKNESS HUNGER STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772036892840
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WATCH STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772036893051
     }
   ]
 }
