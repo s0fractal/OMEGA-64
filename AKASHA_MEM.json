@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING OSMOSIS SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772036391646
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY RESONATE COHERE",
       "mood": "HARMONIC",
       "tick": 1772036391873
@@ -291,6 +285,12 @@
       "text": "UNIFY STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772036394946
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE CONSUME SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036395169
     }
   ]
 }
