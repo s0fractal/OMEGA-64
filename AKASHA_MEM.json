@@ -127,12 +127,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT STASIS WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022273059
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772022273293
@@ -214,6 +208,12 @@
       "text": "STRIFE DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022276287
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS CONSUME SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022276588
     }
   ]
 }
