@@ -171,12 +171,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "CONSUME STRIFE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023194204
-    },
-    {
       "origin": "REVERSE",
       "text": "GUARD PURE GUARD",
       "mood": "DEFENSIVE",
@@ -259,6 +253,12 @@
       "text": "DECAY BREACH STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772023200486
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772023200676
     }
   ]
 }
