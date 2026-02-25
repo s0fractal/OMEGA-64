@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "EVOLVE BEYOND SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772032321330
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT WATCH GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772032321673
@@ -291,6 +285,12 @@
       "text": "DRAIN STRIFE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772032332655
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS STABLE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772032333159
     }
   ]
 }
