@@ -1,5 +1,8 @@
 {
   "reservoir": [
+    "AAAA0A0A",
+    "AAA0AAAA",
+    "06066660",
     "60660666",
     "60000600",
     "60666606",
@@ -193,104 +196,101 @@
     "AA666600",
     "66060660",
     "66660A60",
-    "00A06A00",
-    "ALIEN_17",
-    "A0000000",
-    "60606060",
-    "AA0A0A00",
-    "FFFFF0A0",
-    "000AAAAA"
+    "A000A660",
+    "A0AA0A00",
+    "A66666A0",
+    "A6A6AAA0"
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042730023
+      "origin": "INTERFACE",
+      "text": "STABLE COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772042729073
     },
     {
       "origin": "STREAM",
-      "text": "SHOCK DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042730919
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "FLOW COHERE OSMOSIS",
+      "text": "FLOW HEAL GIVING",
       "mood": "HARMONIC",
-      "tick": 1772042731499
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042731840
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "COHERE RESONATE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772042732027
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME SHOCK CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042732491
+      "tick": 1772042730645
     },
     {
       "origin": "REVERSE",
-      "text": "STRIFE SEIZE HUNGER",
+      "text": "SEIZE SICKNESS BREACH",
       "mood": "AGGRESSIVE",
-      "tick": 1772042732955
+      "tick": 1772042731403
     },
     {
       "origin": "ARCHIVIST",
-      "text": "SYNC RESONATE SYNC",
+      "text": "SYNC UNIFY RESONATE",
       "mood": "HARMONIC",
-      "tick": 1772042733863
+      "tick": 1772042731602
     },
     {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD PURE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772042733972
-    },
-    {
-      "origin": "REVERSE",
-      "text": "WATCH RECON WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772042734113
-    },
-    {
-      "origin": "ALIEN",
-      "text": "DRAIN SEIZE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042734787
-    },
-    {
-      "origin": "REVERSE",
-      "text": "DECAY SEIZE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042735332
-    },
-    {
-      "origin": "ALIEN",
-      "text": "CONSUME DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042736006
+      "origin": "IS_ISO",
+      "text": "FLOW BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772042731909
     },
     {
       "origin": "INTERFACE",
-      "text": "STRIFE SEIZE BREACH",
+      "text": "BREACH STRIFE SEIZE",
       "mood": "AGGRESSIVE",
-      "tick": 1772042736438
+      "tick": 1772042732601
     },
     {
       "origin": "ARCHIVIST",
-      "text": "COHERE RESONATE GIVING",
+      "text": "DECAY SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042733141
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH DECAY DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042733326
+    },
+    {
+      "origin": "STREAM",
+      "text": "SHIELD WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772042734053
+    },
+    {
+      "origin": "PARADOX",
+      "text": "REFLECT PURE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772042734364
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WAIT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042734800
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT STASIS RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772042735059
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY SYNC SYNC",
       "mood": "HARMONIC",
-      "tick": 1772042736895
+      "tick": 1772042736391
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772042737063
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE DECAY SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042737404
     }
   ]
 }
