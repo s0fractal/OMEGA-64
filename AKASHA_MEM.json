@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035186372
-    },
-    {
-      "origin": "REVERSE",
       "text": "VISION EVOLVE WITNESS",
       "mood": "CREATIVE",
       "tick": 1772035186540
@@ -291,6 +285,12 @@
       "text": "UNIFY STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772035189144
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WATCH WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772035189390
     }
   ]
 }
