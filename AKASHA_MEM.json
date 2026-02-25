@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE PURE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772031271745
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772031272606
@@ -291,6 +285,12 @@
       "text": "WAIT IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772031283401
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772031284387
     }
   ]
 }
