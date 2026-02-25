@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY SYNC SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772033821257
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772033821766
@@ -291,6 +285,12 @@
       "text": "GUARD STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772033828627
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD SHIELD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772033828844
     }
   ]
 }
