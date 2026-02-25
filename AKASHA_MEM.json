@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE SYNC OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772033020783
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772033020933
@@ -291,6 +285,12 @@
       "text": "STASIS GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772033023588
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE VISION FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772033023763
     }
   ]
 }
