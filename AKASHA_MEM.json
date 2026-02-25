@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "PURE REFLECT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772025208232
-    },
-    {
       "origin": "INTERFACE",
       "text": "RECON STASIS GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772025217526
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SHOCK CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025217800
     }
   ]
 }
