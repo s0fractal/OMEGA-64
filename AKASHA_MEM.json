@@ -170,12 +170,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SEIZE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023078172
-    },
-    {
-      "origin": "REVERSE",
       "text": "BREACH STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772023078366
@@ -257,6 +251,12 @@
       "text": "COHERE RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772023081103
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD RECON REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023081276
     }
   ]
 }
