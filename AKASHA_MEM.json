@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037301485
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772037301638
@@ -291,6 +285,12 @@
       "text": "CONSUME SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772037304544
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC STABLE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772037304714
     }
   ]
 }
