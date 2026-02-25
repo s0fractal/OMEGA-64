@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD WATCH RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772027013856
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS RECON SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772027014135
@@ -291,6 +285,12 @@
       "text": "WITNESS FORGE WAVE",
       "mood": "CREATIVE",
       "tick": 1772027017243
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772027017618
     }
   ]
 }
