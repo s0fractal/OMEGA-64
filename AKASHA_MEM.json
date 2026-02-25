@@ -21,12 +21,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772017619168
-    },
-    {
       "origin": "INTERFACE",
       "text": "WATCH IMMUNE SHIELD",
       "mood": "DEFENSIVE",
@@ -109,6 +103,12 @@
       "text": "HEAL OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772017717559
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS STRIKE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019409343
     }
   ]
 }
