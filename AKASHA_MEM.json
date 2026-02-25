@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SPARK VISION SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772023921709
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023921945
@@ -284,6 +278,12 @@
       "text": "SEIZE SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772023929837
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE STABLE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772023930519
     }
   ]
 }
