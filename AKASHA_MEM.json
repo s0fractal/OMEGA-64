@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "WAIT IMMUNE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040961123
-    },
-    {
       "origin": "REVERSE",
       "text": "SHIELD GUARD SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME SHOCK DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772040964454
+    },
+    {
+      "origin": "STREAM",
+      "text": "WATCH RECON GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040964604
     }
   ]
 }
