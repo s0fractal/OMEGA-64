@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772034536569
-    },
-    {
-      "origin": "REVERSE",
       "text": "FORGE SPARK EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772034536963
@@ -291,6 +285,12 @@
       "text": "UNIFY COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772034540332
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BREACH STRIFE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034540603
     }
   ]
 }
