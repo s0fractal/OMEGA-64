@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "UNIFY FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040452962
-    },
-    {
       "origin": "REVERSE",
       "text": "REFLECT SHELTER GUARD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040456013
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040456170
     }
   ]
 }
