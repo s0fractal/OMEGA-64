@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT IMMUNE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041835764
-    },
-    {
       "origin": "SOMA",
       "text": "BREACH CONSUME SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772041839804
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041840204
     }
   ]
 }
