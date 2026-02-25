@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD PURE WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772035784845
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772035785277
@@ -291,6 +285,12 @@
       "text": "SICKNESS CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772035788357
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT RECON SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772035788595
     }
   ]
 }
