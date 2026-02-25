@@ -98,12 +98,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "EVOLVE WITNESS VISION",
-      "mood": "CREATIVE",
-      "tick": 1772021580393
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK CONSUME DRAIN",
       "mood": "AGGRESSIVE",
@@ -186,6 +180,12 @@
       "text": "SEIZE STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021587494
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SEIZE SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021587878
     }
   ]
 }
