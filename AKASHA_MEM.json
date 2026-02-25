@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HUNGER SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038728770
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK HUNGER CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772038733114
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND WAVE FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772038733356
     }
   ]
 }
