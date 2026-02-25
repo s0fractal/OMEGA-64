@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER WAIT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041053181
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE PURE WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHIELD GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772041057636
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STABLE HEAL OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772041057941
     }
   ]
 }
