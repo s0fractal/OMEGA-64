@@ -95,15 +95,10 @@
     "66666060",
     "000000FF",
     "A6666600",
-    "06600000"
+    "06600000",
+    "0B000000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SYNC COHERE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772021600866
-    },
     {
       "origin": "REVERSE",
       "text": "PURE PURE STASIS",
@@ -187,6 +182,12 @@
       "text": "GIVING STABLE SYNC",
       "mood": "HARMONIC",
       "tick": 1772021605728
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772021605997
     }
   ]
 }
