@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN HUNGER BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035433550
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772035433720
@@ -291,6 +285,12 @@
       "text": "SYNC RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772035436908
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772035437120
     }
   ]
 }
