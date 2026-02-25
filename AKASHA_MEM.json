@@ -63,12 +63,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH BREACH SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020655543
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772020655832
@@ -150,6 +144,12 @@
       "text": "DRAIN HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020663447
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM GIVING UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772020663768
     }
   ]
 }
