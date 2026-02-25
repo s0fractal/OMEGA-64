@@ -180,12 +180,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME DRAIN DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023387948
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023388288
@@ -267,6 +261,12 @@
       "text": "RESONATE GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772023394897
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WATCH SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772023395086
     }
   ]
 }
