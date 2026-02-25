@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "FF00FF0F",
     "01000000",
     "00100000",
     "66606666",
@@ -199,15 +198,10 @@
     "AAAAA0A0",
     "66600600",
     "60666060",
-    "FA0AAA00"
+    "FA0AAA00",
+    "A0AA0A00"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "STABLE FLOW OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772026959759
-    },
     {
       "origin": "REVERSE",
       "text": "COHERE UNIFY HEAL",
@@ -291,6 +285,12 @@
       "text": "GIVING UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772026965576
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIFE HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026965983
     }
   ]
 }
