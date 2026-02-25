@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAAAA000",
     "60606006",
     "FFFFF00F",
     "00066600",
@@ -199,15 +198,10 @@
     "66A666A0",
     "60606000",
     "60666600",
-    "AA660660"
+    "AA660660",
+    "66606600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "UNIFY BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772032885051
-    },
     {
       "origin": "REVERSE",
       "text": "SHIELD SHIELD WATCH",
@@ -291,6 +285,12 @@
       "text": "HUNGER HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772032889308
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT SHIELD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772032889455
     }
   ]
 }
