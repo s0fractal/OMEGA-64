@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH DECAY STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039182889
-    },
-    {
-      "origin": "REVERSE",
       "text": "BEYOND BEYOND DREAM",
       "mood": "CREATIVE",
       "tick": 1772039183055
@@ -291,6 +285,12 @@
       "text": "HEAL BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772039185784
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS SYNC COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772039185975
     }
   ]
 }
