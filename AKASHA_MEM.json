@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DECAY BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042829333
-    },
-    {
       "origin": "REVERSE",
       "text": "PURE RECON SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIFE BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772042842332
+    },
+    {
+      "origin": "ALIEN",
+      "text": "HUNGER SEIZE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042842741
     }
   ]
 }
