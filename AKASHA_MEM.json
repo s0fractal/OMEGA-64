@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD STASIS IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772033867380
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772033867537
@@ -291,6 +285,12 @@
       "text": "WAIT GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772033870113
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033870308
     }
   ]
 }
