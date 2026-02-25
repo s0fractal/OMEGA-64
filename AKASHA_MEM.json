@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE DRAIN CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034404466
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772034404688
@@ -291,6 +285,12 @@
       "text": "GUARD PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772034407771
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE SEIZE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034408009
     }
   ]
 }
