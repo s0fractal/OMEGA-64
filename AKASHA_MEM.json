@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "BEEFBEEF",
     "AAAAAAA0",
     "AAAAAAAA",
     "00000000",
@@ -199,15 +198,10 @@
     "66066660",
     "06000600",
     "06666600",
-    "000A0A00"
+    "000A0A00",
+    "0000AAA0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SYNC GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772024191315
-    },
     {
       "origin": "REVERSE",
       "text": "OSMOSIS COHERE HEAL",
@@ -291,6 +285,12 @@
       "text": "WAIT WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772024194541
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING SYNC SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772024194895
     }
   ]
 }
