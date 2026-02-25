@@ -70,12 +70,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIFE CONSUME CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020878561
-    },
-    {
       "origin": "REVERSE",
       "text": "BEYOND SPARK AWAKEN",
       "mood": "CREATIVE",
@@ -158,6 +152,12 @@
       "text": "UNIFY COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772020884742
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION BECOME VISION",
+      "mood": "CREATIVE",
+      "tick": 1772020885054
     }
   ]
 }
