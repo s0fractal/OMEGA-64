@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SHOCK HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036874174
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK WITNESS WAVE",
       "mood": "CREATIVE",
       "tick": 1772036874414
@@ -291,6 +285,12 @@
       "text": "STRIFE CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772036877352
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY RESONATE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772036878352
     }
   ]
 }
