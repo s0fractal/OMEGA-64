@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A0AA0AA0",
     "000A00A0",
     "AAAA0AAA",
     "06006606",
@@ -199,15 +198,10 @@
     "AA000000",
     "6666A060",
     "AA0AA0A0",
-    "000000A0"
+    "000000A0",
+    "66066666"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "COHERE RESONATE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772041708180
-    },
     {
       "origin": "STREAM",
       "text": "HUNGER SICKNESS SICKNESS",
@@ -291,6 +285,12 @@
       "text": "STASIS IMMUNE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041714704
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT WAIT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041714847
     }
   ]
 }
