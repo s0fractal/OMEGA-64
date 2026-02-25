@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK STRIFE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034423412
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772034423623
@@ -291,6 +285,12 @@
       "text": "OSMOSIS GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772034426791
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER STASIS WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772034427230
     }
   ]
 }
