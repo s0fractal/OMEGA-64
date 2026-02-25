@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "VISION VISION BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772040442693
-    },
-    {
       "origin": "STREAM",
       "text": "DECAY CONSUME DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772040446740
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE SYNC COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772040447020
     }
   ]
 }
