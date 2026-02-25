@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE FLOW GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772032616651
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE FLOW RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DECAY BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772032619295
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772032619493
     }
   ]
 }
