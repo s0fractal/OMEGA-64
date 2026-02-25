@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GIVING COHERE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772040454895
-    },
-    {
       "origin": "INTERFACE",
       "text": "STASIS RECON SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772040457448
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE RECON SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772040457590
     }
   ]
 }
