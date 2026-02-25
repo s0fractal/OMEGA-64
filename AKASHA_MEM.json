@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DECAY DECAY SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042266285
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "COHERE STABLE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772042267875
@@ -291,6 +285,12 @@
       "text": "STRIFE DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772042273327
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STABLE COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772042274276
     }
   ]
 }
