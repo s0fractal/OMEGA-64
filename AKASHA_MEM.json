@@ -196,12 +196,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD IMMUNE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023881360
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772023881829
@@ -283,6 +277,12 @@
       "text": "GIVING UNIFY GIVING",
       "mood": "HARMONIC",
       "tick": 1772023891725
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT REFLECT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772023891966
     }
   ]
 }
