@@ -36,12 +36,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "DRAIN HUNGER SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019763858
-    },
-    {
-      "origin": "INTERFACE",
       "text": "HEAL UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772019764382
@@ -123,6 +117,12 @@
       "text": "GIVING BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772019775740
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD IMMUNE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772019776812
     }
   ]
 }
