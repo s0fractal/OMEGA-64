@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "REFLECT GUARD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772020402825
-    },
-    {
       "origin": "STREAM",
       "text": "BLOOM RESONATE STABLE",
       "mood": "HARMONIC",
@@ -141,6 +135,12 @@
       "text": "BREACH STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772020410505
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772020411068
     }
   ]
 }
