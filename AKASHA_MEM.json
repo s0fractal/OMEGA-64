@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE BREACH HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036174384
-    },
-    {
       "origin": "PARADOX",
       "text": "GIVING HEAL HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SYNC GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772036177188
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD SHIELD WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772036177632
     }
   ]
 }
