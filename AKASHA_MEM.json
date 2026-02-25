@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK DECAY SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040275334
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE RESONATE STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BLOOM GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772040280963
+    },
+    {
+      "origin": "STREAM",
+      "text": "PURE SHELTER IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040281212
     }
   ]
 }
