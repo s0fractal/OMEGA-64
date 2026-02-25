@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM UNIFY OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772041647735
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS FLOW HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RECON PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041651372
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "UNIFY RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041651534
     }
   ]
 }
