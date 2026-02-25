@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BLOOM COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772025200944
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW COHERE BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RECON STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772025208775
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER STRIFE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025209414
     }
   ]
 }
