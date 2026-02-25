@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "STREAM",
-      "text": "WAIT GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772041228588
-    },
-    {
-      "origin": "STREAM",
       "text": "HUNGER BREACH STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772041228877
@@ -291,6 +285,12 @@
       "text": "SHIELD REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041234934
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH DRAIN STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041235173
     }
   ]
 }
