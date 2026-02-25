@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHIELD WAIT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772038261753
-    },
-    {
       "origin": "INTERFACE",
       "text": "SEIZE BREACH STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772038265128
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD STASIS RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772038265365
     }
   ]
 }
