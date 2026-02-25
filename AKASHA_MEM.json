@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW BLOOM OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772041052660
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAVE WAVE WAVE",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "WATCH GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041056713
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "UNIFY COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772041056834
     }
   ]
 }
