@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025675399
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE UNIFY RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "REFLECT SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772025679435
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS SHELTER IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772025680845
     }
   ]
 }
