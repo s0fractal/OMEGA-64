@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "STASIS STASIS STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772040845344
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM STABLE STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WAIT GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772040848903
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WAIT SHIELD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040849046
     }
   ]
 }
