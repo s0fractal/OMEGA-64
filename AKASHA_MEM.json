@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE WAIT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772041323900
-    },
-    {
       "origin": "REVERSE",
       "text": "DECAY STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772041328979
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE GIVING STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772041329212
     }
   ]
 }
