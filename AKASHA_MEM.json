@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772023735451
-    },
-    {
-      "origin": "REVERSE",
       "text": "EVOLVE BEYOND BEYOND",
       "mood": "CREATIVE",
       "tick": 1772023735624
@@ -278,6 +272,12 @@
       "text": "RECON WATCH WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772023740325
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SHOCK STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023740499
     }
   ]
 }
