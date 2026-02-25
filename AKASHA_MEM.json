@@ -162,15 +162,10 @@
     "AAAAA0A0",
     "B0BB0000",
     "66666006",
-    "AAAA0AA0"
+    "AAAA0AA0",
+    "00060000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "OSMOSIS STABLE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772023053193
-    },
     {
       "origin": "REVERSE",
       "text": "STABLE FLOW FLOW",
@@ -254,6 +249,12 @@
       "text": "BREACH DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772023058738
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW RESONATE SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772023059040
     }
   ]
 }
