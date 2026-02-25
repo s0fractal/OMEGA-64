@@ -118,12 +118,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING HEAL UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772022089547
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GUARD WATCH SHIELD",
       "mood": "DEFENSIVE",
@@ -206,6 +200,12 @@
       "text": "REFLECT REFLECT IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022092483
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022092817
     }
   ]
 }
