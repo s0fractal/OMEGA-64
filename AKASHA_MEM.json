@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041955742
-    },
-    {
       "origin": "INTERFACE",
       "text": "HEAL UNIFY STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "REFLECT PURE PURE",
       "mood": "DEFENSIVE",
       "tick": 1772041961663
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE SHOCK BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041962617
     }
   ]
 }
