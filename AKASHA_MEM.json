@@ -123,12 +123,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FORGE FORGE BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772022116772
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHOCK SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022117400
@@ -210,6 +204,12 @@
       "text": "STRIFE DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772022121518
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DECAY SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022121751
     }
   ]
 }
