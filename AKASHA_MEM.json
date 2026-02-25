@@ -63,12 +63,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GUARD SHIELD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772020729195
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIKE CONSUME SEIZE",
       "mood": "AGGRESSIVE",
@@ -151,6 +145,12 @@
       "text": "CONSUME DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772020735462
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020736143
     }
   ]
 }
