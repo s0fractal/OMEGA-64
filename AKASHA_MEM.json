@@ -22,12 +22,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "RESONATE COHERE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772017570938
-    },
-    {
-      "origin": "INTERFACE",
       "text": "SYNC UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772017573426
@@ -109,6 +103,12 @@
       "text": "STRIFE DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772017643227
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772017645620
     }
   ]
 }
