@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772035051462
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE WAIT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772035051681
@@ -291,6 +285,12 @@
       "text": "DRAIN DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772035054413
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772035054622
     }
   ]
 }
