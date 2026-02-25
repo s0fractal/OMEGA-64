@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY STRIKE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034556786
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772034556979
@@ -291,6 +285,12 @@
       "text": "COHERE COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772034559565
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE SHIELD GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772034559773
     }
   ]
 }
