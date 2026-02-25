@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0A0AA0",
     "A0AAA00A",
     "06666006",
     "06600060",
@@ -199,15 +198,10 @@
     "A6066660",
     "06006666",
     "A6600606",
-    "BB0B0000"
+    "BB0B0000",
+    "A0606606"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STRIKE STRIFE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039273778
-    },
     {
       "origin": "REVERSE",
       "text": "UNIFY STABLE RESONATE",
@@ -291,6 +285,12 @@
       "text": "STRIKE DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772039288417
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SICKNESS DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039289405
     }
   ]
 }
