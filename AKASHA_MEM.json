@@ -57,12 +57,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "OSMOSIS STABLE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772020564274
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHELTER RECON STASIS",
       "mood": "DEFENSIVE",
@@ -145,6 +139,12 @@
       "text": "DRAIN DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020571580
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020571933
     }
   ]
 }
