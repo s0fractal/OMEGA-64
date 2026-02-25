@@ -203,18 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SEIZE BREACH DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042718225
-    },
-    {
-      "origin": "INTERFACE",
-      "text": "SHOCK BREACH CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042719148
-    },
-    {
       "origin": "STREAM",
       "text": "SYNC OSMOSIS UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +279,18 @@
       "text": "STABLE FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772042728973
+    },
+    {
+      "origin": "ALIEN",
+      "text": "STRIFE CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042729538
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM HEAL STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042729810
     }
   ]
 }
