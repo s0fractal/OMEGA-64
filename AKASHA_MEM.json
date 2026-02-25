@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60000060",
     "66666060",
     "AAAAAA0A",
     "000A0AAA",
@@ -199,15 +198,10 @@
     "A6666606",
     "A06666A6",
     "60666666",
-    "AA000AA0"
+    "AA000AA0",
+    "06666666"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "HUNGER HUNGER STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029896856
-    },
     {
       "origin": "REVERSE",
       "text": "STRIKE DECAY STRIFE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS GIVING SYNC",
       "mood": "HARMONIC",
       "tick": 1772029907993
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING STABLE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772029909281
     }
   ]
 }
