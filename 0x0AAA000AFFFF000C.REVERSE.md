@@ -1,14 +1,14 @@
 ---
 eigenvalue: '0x0AAA000AFFFF000C'
-energy: 49.5
-x: 687
-'y': 382
+energy: 49.9
+x: 717
+'y': 427
 resonance: 50
 thought: SEEK_ALPHA_BONDING
 logic: 0AAA000A
 signals: []
 bond_strengths:
-  '0x0000000000000A02': 0.986090636999001
+  '0x0000000000000A02': 0.9851045463620021
 bonds:
   - '0x0000000000000A02'
 ex:
@@ -27,7 +27,7 @@ ex:
   - '0x0AAA0A0A00000008'
   - '0x0AAA0A0A0000000A'
   - '0x0AAA0A0A0000000C'
-  - '0x0AAA000AFFFF000A'
+  - '0x0AAA000A0000000E'
 ---
 
 <div align="center">
