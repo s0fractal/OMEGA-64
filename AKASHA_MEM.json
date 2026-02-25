@@ -156,12 +156,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE WAIT IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772022719960
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022720173
@@ -243,6 +237,12 @@
       "text": "FLOW OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772022728437
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BREACH SEIZE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022728693
     }
   ]
 }
