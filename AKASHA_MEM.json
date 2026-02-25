@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL HEAL FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772020687038
-    },
-    {
       "origin": "INTERFACE",
       "text": "WAIT REFLECT REFLECT",
       "mood": "DEFENSIVE",
@@ -150,6 +144,12 @@
       "text": "HEAL HEAL RESONATE",
       "mood": "HARMONIC",
       "tick": 1772020692907
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020693243
     }
   ]
 }
