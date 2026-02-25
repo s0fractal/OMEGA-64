@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE CONSUME SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039035146
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772039035373
@@ -291,6 +285,12 @@
       "text": "UNIFY SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772039041971
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE RECON GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772039045599
     }
   ]
 }
