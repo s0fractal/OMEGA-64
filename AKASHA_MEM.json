@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041609961
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "CONSUME DRAIN CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772041610552
@@ -291,6 +285,12 @@
       "text": "SYNC UNIFY STABLE",
       "mood": "HARMONIC",
       "tick": 1772041615596
+    },
+    {
+      "origin": "SOMA",
+      "text": "SHIELD SHIELD WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772041615793
     }
   ]
 }
