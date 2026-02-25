@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS COHERE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772025139789
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "COHERE SYNC HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SEIZE DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772025143771
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND FORGE BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772025144478
     }
   ]
 }
