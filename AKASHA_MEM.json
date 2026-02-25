@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772036443540
-    },
-    {
-      "origin": "REVERSE",
       "text": "FORGE WITNESS AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772036443756
@@ -291,6 +285,12 @@
       "text": "DRAIN DECAY SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772036447387
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE GIVING FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772036447627
     }
   ]
 }
