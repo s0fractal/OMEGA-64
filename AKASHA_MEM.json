@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN STRIKE SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038822296
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772038822533
@@ -291,6 +285,12 @@
       "text": "STASIS SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772038825798
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE GIVING COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772038826048
     }
   ]
 }
