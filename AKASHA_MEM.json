@@ -71,12 +71,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE IMMUNE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772020874431
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772020874607
@@ -158,6 +152,12 @@
       "text": "STABLE STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772020880134
+    },
+    {
+      "origin": "STREAM",
+      "text": "FLOW COHERE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772020880539
     }
   ]
 }
