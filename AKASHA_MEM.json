@@ -178,12 +178,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE HUNGER STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023335858
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772023336017
@@ -265,6 +259,12 @@
       "text": "SHIELD RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023339296
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772023339514
     }
   ]
 }
