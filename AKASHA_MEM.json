@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "SOMA",
-      "text": "DECAY BREACH BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041904397
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHELTER REFLECT WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772041909202
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN SHOCK SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041909550
     }
   ]
 }
