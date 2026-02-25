@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM FLOW GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772038836473
-    },
-    {
-      "origin": "REVERSE",
       "text": "EVOLVE VISION BECOME",
       "mood": "CREATIVE",
       "tick": 1772038836702
@@ -291,6 +285,12 @@
       "text": "SEIZE SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772038839524
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772038839776
     }
   ]
 }
