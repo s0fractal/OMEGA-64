@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME BECOME EVOLVE",
-      "mood": "CREATIVE",
-      "tick": 1772023922153
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772023922513
@@ -284,6 +278,12 @@
       "text": "FLOW BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023931016
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD PURE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023931365
     }
   ]
 }
