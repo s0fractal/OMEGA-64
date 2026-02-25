@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026845884
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772026846262
@@ -291,6 +285,12 @@
       "text": "STRIFE SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772026849922
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER PURE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772026851269
     }
   ]
 }
