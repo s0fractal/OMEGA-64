@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RECON REFLECT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041241756
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STABLE OSMOSIS FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHOCK CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772041246389
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SHOCK BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041246610
     }
   ]
 }
