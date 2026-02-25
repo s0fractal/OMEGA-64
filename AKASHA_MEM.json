@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "COHERE COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772020474008
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DECAY HUNGER BREACH",
       "mood": "AGGRESSIVE",
@@ -142,6 +136,12 @@
       "text": "HEAL COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772020481831
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772020482018
     }
   ]
 }
