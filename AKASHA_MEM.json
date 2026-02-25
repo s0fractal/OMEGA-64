@@ -63,12 +63,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SEIZE BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020729928
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS STRIFE HUNGER",
       "mood": "AGGRESSIVE",
@@ -151,6 +145,12 @@
       "text": "DECAY BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020736809
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON SHELTER RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772020737457
     }
   ]
 }
