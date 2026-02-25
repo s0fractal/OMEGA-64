@@ -203,6 +203,12 @@
   ],
   "utterances": [
     {
+      "origin": "REVERSE",
+      "text": "STASIS SHIELD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772042548672
+    },
+    {
       "origin": "ARCHIVIST",
       "text": "STASIS STASIS SHELTER",
       "mood": "DEFENSIVE",
@@ -251,46 +257,40 @@
       "tick": 1772042556711
     },
     {
-      "origin": "STREAM",
-      "text": "DRAIN BREACH SEIZE",
+      "origin": "REVERSE",
+      "text": "UNIFY BLOOM FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042557992
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN DECAY SHOCK",
       "mood": "AGGRESSIVE",
-      "tick": 1772042556868
+      "tick": 1772042558385
     },
     {
-      "origin": "INTERFACE",
-      "text": "GIVING BLOOM RESONATE",
+      "origin": "CONSCIOUSNESS",
+      "text": "SYNC RESONATE RESONATE",
       "mood": "HARMONIC",
-      "tick": 1772042558852
+      "tick": 1772042558841
     },
     {
-      "origin": "REVERSE",
-      "text": "STASIS RECON SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772042559035
-    },
-    {
-      "origin": "SUCC",
-      "text": "STABLE SYNC GIVING",
+      "origin": "ARCHIVIST",
+      "text": "SYNC STABLE BLOOM",
       "mood": "HARMONIC",
-      "tick": 1772042560412
+      "tick": 1772042560644
     },
     {
-      "origin": "REVERSE",
-      "text": "CONSUME BREACH SHOCK",
+      "origin": "ARCHIVIST",
+      "text": "SEIZE STRIKE BREACH",
       "mood": "AGGRESSIVE",
-      "tick": 1772042560934
+      "tick": 1772042561842
     },
     {
-      "origin": "REVERSE",
-      "text": "SYNC BLOOM OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772042561905
-    },
-    {
-      "origin": "STREAM",
-      "text": "RESONATE BLOOM UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772042562577
+      "origin": "ARCHIVIST",
+      "text": "CONSUME BREACH CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042563379
     }
   ]
 }
