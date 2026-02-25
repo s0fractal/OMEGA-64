@@ -80,12 +80,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DRAIN CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021091320
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT GUARD STASIS",
       "mood": "DEFENSIVE",
@@ -168,6 +162,12 @@
       "text": "STRIKE DRAIN SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772021099881
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD IMMUNE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772021100058
     }
   ]
 }
