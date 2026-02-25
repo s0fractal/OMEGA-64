@@ -125,12 +125,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE FLOW BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772022167523
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772022167700
@@ -212,6 +206,12 @@
       "text": "GUARD SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022173905
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE BREACH HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022174257
     }
   ]
 }
