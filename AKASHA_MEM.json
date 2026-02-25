@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "EVOLVE WAVE BECOME",
-      "mood": "CREATIVE",
-      "tick": 1772039014978
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772039015243
@@ -291,6 +285,12 @@
       "text": "WATCH PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772039020643
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772039020871
     }
   ]
 }
