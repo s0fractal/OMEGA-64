@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER WATCH STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772035525895
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772035526102
@@ -291,6 +285,12 @@
       "text": "SHELTER PURE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772035528789
+    },
+    {
+      "origin": "REVERSE",
+      "text": "VISION WITNESS DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772035528995
     }
   ]
 }
