@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "CAR",
-      "text": "WATCH PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041701387
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIFE CONSUME BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STABLE FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772041707348
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772041707559
     }
   ]
 }
