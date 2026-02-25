@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE RESONATE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772036417320
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772036417520
@@ -291,6 +285,12 @@
       "text": "STRIFE DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772036420186
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772036420396
     }
   ]
 }
