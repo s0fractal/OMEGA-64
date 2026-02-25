@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "EVOLVE EVOLVE SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772025994050
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772025996515
@@ -291,6 +285,12 @@
       "text": "UNIFY BLOOM GIVING",
       "mood": "HARMONIC",
       "tick": 1772026001128
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026001336
     }
   ]
 }
