@@ -183,12 +183,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT IMMUNE IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772023545962
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772023546129
@@ -270,6 +264,12 @@
       "text": "GIVING OSMOSIS HEAL",
       "mood": "HARMONIC",
       "tick": 1772023550737
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772023551011
     }
   ]
 }
