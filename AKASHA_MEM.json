@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK DECAY SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028816902
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772028817393
@@ -291,6 +285,12 @@
       "text": "SPARK WAVE EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772028827149
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT WAIT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772028827572
     }
   ]
 }
