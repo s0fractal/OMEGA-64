@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GUARD IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041636780
-    },
-    {
       "origin": "INTERFACE",
       "text": "SYNC COHERE HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DRAIN CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772041640050
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN STRIFE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041640447
     }
   ]
 }
