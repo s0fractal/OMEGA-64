@@ -101,12 +101,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DRAIN SEIZE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021627092
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH DRAIN DRAIN",
       "mood": "AGGRESSIVE",
@@ -189,6 +183,12 @@
       "text": "OSMOSIS OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772021632561
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIFE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021632799
     }
   ]
 }
