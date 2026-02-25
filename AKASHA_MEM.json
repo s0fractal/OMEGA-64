@@ -55,12 +55,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DECAY HUNGER STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020441664
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BREACH STRIFE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020442653
@@ -142,6 +136,12 @@
       "text": "SHELTER PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772020450734
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STASIS GUARD SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772020450965
     }
   ]
 }
