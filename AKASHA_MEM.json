@@ -110,12 +110,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "FLOW OSMOSIS HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772021903072
-    },
-    {
       "origin": "PARADOX",
       "text": "GIVING HEAL HEAL",
       "mood": "HARMONIC",
@@ -198,6 +192,12 @@
       "text": "RESONATE COHERE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772021908027
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "DRAIN SHOCK DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021908270
     }
   ]
 }
