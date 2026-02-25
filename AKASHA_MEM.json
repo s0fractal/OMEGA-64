@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772026170678
-    },
-    {
-      "origin": "REVERSE",
       "text": "FORGE WITNESS WITNESS",
       "mood": "CREATIVE",
       "tick": 1772026171011
@@ -291,6 +285,12 @@
       "text": "COHERE GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772026174348
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772026174551
     }
   ]
 }
