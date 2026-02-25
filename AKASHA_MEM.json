@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772025966706
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772025967107
@@ -291,6 +285,12 @@
       "text": "FLOW UNIFY OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772025971347
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING COHERE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772025971679
     }
   ]
 }
