@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH REFLECT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772030991949
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE COHERE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772030992450
@@ -291,6 +285,12 @@
       "text": "SEIZE BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772031002276
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH STASIS PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772031002895
     }
   ]
 }
