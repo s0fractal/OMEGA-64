@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772032261286
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772032261483
@@ -291,6 +285,12 @@
       "text": "DECAY DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772032266095
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT PURE PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772032266370
     }
   ]
 }
