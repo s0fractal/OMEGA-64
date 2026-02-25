@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00660606",
     "AAAAAAAA",
     "00FFF00F",
     "A000A000",
@@ -199,15 +198,10 @@
     "AAAAA0AA",
     "00066000",
     "0AAAA000",
-    "66060066"
+    "66060066",
+    "00660006"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "RESONATE HEAL OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772034020852
-    },
     {
       "origin": "REVERSE",
       "text": "WAIT STASIS WATCH",
@@ -291,6 +285,12 @@
       "text": "STABLE RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772034025339
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE OSMOSIS RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772034025557
     }
   ]
 }
