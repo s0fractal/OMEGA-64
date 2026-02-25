@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WATCH WATCH WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772035056977
-    },
-    {
       "origin": "INTERFACE",
       "text": "REFLECT GUARD SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SHOCK STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772035061475
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING HEAL OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772035061687
     }
   ]
 }
