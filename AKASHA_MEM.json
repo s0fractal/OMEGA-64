@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WATCH RECON PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772025132284
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING FLOW OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FLOW RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772025137416
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH PURE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772025137665
     }
   ]
 }
