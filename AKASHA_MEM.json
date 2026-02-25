@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "CONSCIOUSNESS",
-      "text": "SHIELD SHIELD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042425864
-    },
-    {
       "origin": "PARADOX",
       "text": "SHELTER SHIELD STASIS",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772042445287
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE PURE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772042445680
     }
   ]
 }
