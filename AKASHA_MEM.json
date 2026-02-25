@@ -163,12 +163,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BECOME SPARK FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772022896772
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER SHIELD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022896995
@@ -250,6 +244,12 @@
       "text": "SHIELD WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022905058
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022906402
     }
   ]
 }
