@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY BREACH HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037985070
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772037985278
@@ -291,6 +285,12 @@
       "text": "BLOOM HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772037988382
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772037988598
     }
   ]
 }
