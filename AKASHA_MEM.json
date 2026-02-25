@@ -177,12 +177,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772023303508
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772023304896
@@ -264,6 +258,12 @@
       "text": "STRIKE CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772023309865
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT IMMUNE WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772023310017
     }
   ]
 }
