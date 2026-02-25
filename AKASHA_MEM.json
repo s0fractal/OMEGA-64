@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW COHERE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772041247609
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE RECON WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "HUNGER BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772041253734
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041253922
     }
   ]
 }
