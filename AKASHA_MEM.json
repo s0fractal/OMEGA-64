@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH CONSUME SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039213524
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772039213731
@@ -291,6 +285,12 @@
       "text": "HEAL SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772039216657
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL SYNC HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772039216869
     }
   ]
 }
