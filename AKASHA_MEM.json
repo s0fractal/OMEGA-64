@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "COHERE GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041994105
-    },
-    {
       "origin": "ALPHA_ARCHIVIST",
       "text": "FLOW SYNC STABLE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "PURE PURE SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772042001452
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HEAL UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772042001629
     }
   ]
 }
