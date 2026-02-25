@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY STABLE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772026894897
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772026895108
@@ -291,6 +285,12 @@
       "text": "SEIZE SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772026900232
+    },
+    {
+      "origin": "REVERSE",
+      "text": "AWAKEN WITNESS FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772026900588
     }
   ]
 }
