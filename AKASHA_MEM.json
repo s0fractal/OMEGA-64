@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM BLOOM GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772034684372
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772034684555
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772034687488
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE COHERE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772034687945
     }
   ]
 }
