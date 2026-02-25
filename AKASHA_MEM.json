@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS UNIFY COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772027928408
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772027928989
@@ -291,6 +285,12 @@
       "text": "GIVING RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772027946574
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DECAY CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027948689
     }
   ]
 }
