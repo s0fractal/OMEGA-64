@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK STRIFE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039138892
-    },
-    {
       "origin": "REVERSE",
       "text": "GUARD WATCH PURE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772039143762
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME HUNGER HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039144100
     }
   ]
 }
