@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "RESONATE FLOW GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772035570417
-    },
-    {
       "origin": "REVERSE",
       "text": "BECOME BECOME FORGE",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS GIVING OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772035574724
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772035575237
     }
   ]
 }
