@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIFE SEIZE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038951649
-    },
-    {
-      "origin": "REVERSE",
       "text": "DREAM WITNESS EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772038951878
@@ -291,6 +285,12 @@
       "text": "DECAY DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772038955166
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM RESONATE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772038955362
     }
   ]
 }
