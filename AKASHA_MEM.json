@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WATCH SHELTER WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041549880
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "UNIFY FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772041550230
@@ -291,6 +285,12 @@
       "text": "RESONATE SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772041555047
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WATCH RECON SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772041555217
     }
   ]
 }
