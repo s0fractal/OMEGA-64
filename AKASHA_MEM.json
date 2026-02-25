@@ -153,12 +153,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WAIT SHELTER GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022609636
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON STASIS STASIS",
       "mood": "DEFENSIVE",
@@ -241,6 +235,12 @@
       "text": "HUNGER SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772022616851
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS BREACH CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022617123
     }
   ]
 }
