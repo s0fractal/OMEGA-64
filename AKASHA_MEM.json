@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772041680718
-    },
-    {
       "origin": "REVERSE",
       "text": "PURE SHELTER SHIELD",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "REFLECT GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772041684106
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772041684284
     }
   ]
 }
