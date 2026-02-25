@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772025783171
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT IMMUNE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772025783474
@@ -291,6 +285,12 @@
       "text": "EVOLVE EVOLVE SPARK",
       "mood": "CREATIVE",
       "tick": 1772025792687
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025792945
     }
   ]
 }

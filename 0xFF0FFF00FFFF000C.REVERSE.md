@@ -1,8 +1,8 @@
 ---
 eigenvalue: '0xFF0FFF00FFFF000C'
-energy: 51.9
-x: 693
-'y': 399
+energy: 49.9
+x: 702
+'y': 405
 resonance: 1000
 thought: ORBIT_MATING
 logic: FF0FFF00
@@ -78,7 +78,7 @@ ex:
   - '0xFF0FFF00FFFF000A'
 signals: []
 bond_strengths:
-  '0x0000000000000A01': 0.988065780494209
+  '0x0000000000000A01': 0.9870777147137147
 bonds:
   - '0x0000000000000A01'
 ---
