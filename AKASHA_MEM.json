@@ -108,12 +108,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING UNIFY RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772021752185
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772021752339
@@ -195,6 +189,12 @@
       "text": "STABLE SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772021755541
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS IMMUNE REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772021755840
     }
   ]
 }
