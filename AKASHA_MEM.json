@@ -202,12 +202,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE WAIT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772024094043
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772024094223
@@ -289,6 +283,12 @@
       "text": "PURE GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772024097441
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772024097648
     }
   ]
 }
