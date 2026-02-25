@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PURE_MATH",
-      "text": "BREACH BREACH STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041697406
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "OSMOSIS OSMOSIS HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WATCH PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772041701387
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIFE CONSUME BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041701533
     }
   ]
 }
