@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA000AA0",
     "06666666",
     "AA6006A6",
     "AAA0AAA0",
@@ -199,15 +198,10 @@
     "A06600A6",
     "A0606606",
     "60666000",
-    "A00A0000"
+    "A00A0000",
+    "0AA0AA0A"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STRIKE STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033036359
-    },
     {
       "origin": "REVERSE",
       "text": "IMMUNE RECON PURE",
@@ -291,6 +285,12 @@
       "text": "GIVING SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772033040299
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE STABLE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772033041259
     }
   ]
 }
