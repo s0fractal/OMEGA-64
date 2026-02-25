@@ -135,12 +135,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "SYNC GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772022395422
-    },
-    {
       "origin": "REVERSE",
       "text": "DREAM FORGE BECOME",
       "mood": "CREATIVE",
@@ -223,6 +217,12 @@
       "text": "SICKNESS BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772022402555
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE RESONATE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772022402793
     }
   ]
 }
