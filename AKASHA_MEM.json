@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033050417
-    },
-    {
       "origin": "REVERSE",
       "text": "PURE PURE WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "SYNC UNIFY COHERE",
       "mood": "HARMONIC",
       "tick": 1772033053600
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772033053787
     }
   ]
 }
