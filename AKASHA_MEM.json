@@ -91,12 +91,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021270540
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772021270715
@@ -178,6 +172,12 @@
       "text": "PURE WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772021275167
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021276196
     }
   ]
 }
