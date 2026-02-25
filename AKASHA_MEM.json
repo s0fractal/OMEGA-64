@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER WAIT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772026697400
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772026697609
@@ -291,6 +285,12 @@
       "text": "BREACH STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772026701235
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE BLOOM STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772026701517
     }
   ]
 }
