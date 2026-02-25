@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH STRIFE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041549217
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS SEIZE DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772041553584
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SEIZE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041554145
     }
   ]
 }
