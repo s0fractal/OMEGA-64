@@ -110,12 +110,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC OSMOSIS STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772021899314
-    },
-    {
       "origin": "INTERFACE",
       "text": "SEIZE SHOCK DRAIN",
       "mood": "AGGRESSIVE",
@@ -198,6 +192,12 @@
       "text": "SEIZE STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772021904169
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS STABLE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772021904582
     }
   ]
 }
