@@ -197,12 +197,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE IMMUNE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772023966437
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023966611
@@ -284,6 +278,12 @@
       "text": "CONSUME DRAIN BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023969477
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY STRIFE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023969619
     }
   ]
 }
