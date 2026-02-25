@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BREACH SEIZE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040503393
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE BLOOM FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RECON STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772040505965
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040506212
     }
   ]
 }
