@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE GIVING RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772039920307
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772039921047
@@ -291,6 +285,12 @@
       "text": "COHERE SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772039929727
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIFE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039930215
     }
   ]
 }
