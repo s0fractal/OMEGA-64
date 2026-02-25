@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034496768
-    },
-    {
       "origin": "REVERSE",
       "text": "HEAL FLOW GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RESONATE GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772034501781
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME BREACH SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772034501985
     }
   ]
 }
