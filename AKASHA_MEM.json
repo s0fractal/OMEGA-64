@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042114161
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE STRIKE CONSUME",
       "mood": "AGGRESSIVE",
@@ -264,33 +258,39 @@
     },
     {
       "origin": "ARCHIVIST",
-      "text": "BLOOM HEAL COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772042122336
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "IMMUNE SHIELD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772042122973
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "COHERE GIVING FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772042123558
+      "text": "CONSUME SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042122450
     },
     {
       "origin": "INTERFACE",
-      "text": "UNIFY STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772042124488
+      "text": "PURE STASIS STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772042123706
     },
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME DRAIN DRAIN",
+      "text": "SHIELD IMMUNE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772042123949
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC STABLE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772042124634
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHELTER IMMUNE SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772042125104
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SEIZE DRAIN",
       "mood": "AGGRESSIVE",
-      "tick": 1772042124751
+      "tick": 1772042125344
     }
   ]
 }
