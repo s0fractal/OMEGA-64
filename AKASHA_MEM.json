@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "CAR",
-      "text": "RECON STASIS SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040903374
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS GUARD IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE SHIELD RECON",
       "mood": "DEFENSIVE",
       "tick": 1772040906440
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD IMMUNE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772040906740
     }
   ]
 }
