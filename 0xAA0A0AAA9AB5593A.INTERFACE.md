@@ -427,13 +427,14 @@ ex:
   - '0xAA0A0AAA9AB5593A'
   - '0xAA0A0AAA9AB5593C'
   - '0xAA0A0AAA9AB5593C'
+  - '0xAA0A0AAA9AB5593C'
   - '0xAA0A0AAA9AB5593E'
   - '0xAA0A0AAA9AB55938'
 thought: RESURRECTED
-x: 279
+x: 282
 'y': 196
 signals: []
-resonance: 50.5
+resonance: 50.99
 bonds: []
 bond_strengths: {}
 logic: AA0A0AAA
