@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH HUNGER STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028444965
-    },
-    {
-      "origin": "REVERSE",
       "text": "WITNESS WITNESS EVOLVE",
       "mood": "CREATIVE",
       "tick": 1772028445353
@@ -291,6 +285,12 @@
       "text": "HEAL OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772028458066
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME DECAY SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028458382
     }
   ]
 }
