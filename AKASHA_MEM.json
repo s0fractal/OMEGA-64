@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "00606066",
     "AA6666A6",
     "0AA0A0AA",
     "A0000A00",
@@ -199,15 +198,10 @@
     "66666606",
     "A6666606",
     "06660600",
-    "00AA0A0A"
+    "00AA0A0A",
+    "60666006"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SYNC GIVING HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772035352064
-    },
     {
       "origin": "REVERSE",
       "text": "SHOCK DECAY DRAIN",
@@ -291,6 +285,12 @@
       "text": "STRIKE SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772035354799
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT REFLECT SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772035355005
     }
   ]
 }
