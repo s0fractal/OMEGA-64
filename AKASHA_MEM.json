@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024409715
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS CONSUME BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772024410783
@@ -291,6 +285,12 @@
       "text": "UNIFY SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772024417551
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE STABLE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772024417723
     }
   ]
 }
