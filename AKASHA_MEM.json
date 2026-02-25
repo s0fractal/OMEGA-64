@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030119699
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772030124349
@@ -291,6 +285,12 @@
       "text": "FLOW RESONATE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772030130942
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT STASIS WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772030131503
     }
   ]
 }
