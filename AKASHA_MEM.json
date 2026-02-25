@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GUARD PURE SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772036027026
-    },
-    {
       "origin": "REVERSE",
       "text": "SEIZE SEIZE SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "IMMUNE SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772036029874
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM GIVING COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772036030095
     }
   ]
 }
