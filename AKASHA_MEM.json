@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE OSMOSIS HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772026695001
-    },
-    {
-      "origin": "REVERSE",
       "text": "AWAKEN EVOLVE WITNESS",
       "mood": "CREATIVE",
       "tick": 1772026695382
@@ -291,6 +285,12 @@
       "text": "SEIZE CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772026698455
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE SEIZE SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772026698624
     }
   ]
 }
