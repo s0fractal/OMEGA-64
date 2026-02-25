@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "60000600",
     "00666660",
     "00006660",
     "AA000AAA",
@@ -199,15 +198,10 @@
     "A0666666",
     "00066000",
     "00666060",
-    "00F0000F"
+    "00F0000F",
+    "00066660"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SHELTER STASIS RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772031148698
-    },
     {
       "origin": "ARCHIVIST",
       "text": "DECAY CONSUME SEIZE",
@@ -291,6 +285,12 @@
       "text": "REFLECT WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772031155035
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE RESONATE GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772031155365
     }
   ]
 }
