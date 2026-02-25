@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE SHIELD RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772038856082
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772038856419
@@ -291,6 +285,12 @@
       "text": "SEIZE SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772038861915
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD IMMUNE SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772038862291
     }
   ]
 }
