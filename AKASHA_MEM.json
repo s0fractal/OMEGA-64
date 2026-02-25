@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772033169948
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS GIVING UNIFY",
       "mood": "HARMONIC",
       "tick": 1772033170125
@@ -291,6 +285,12 @@
       "text": "SHIELD STASIS STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772033173174
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW COHERE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772033173352
     }
   ]
 }
