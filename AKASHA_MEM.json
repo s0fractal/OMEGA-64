@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772027063523
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAVE BEYOND WITNESS",
       "mood": "CREATIVE",
       "tick": 1772027063783
@@ -291,6 +285,12 @@
       "text": "UNIFY OSMOSIS OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772027068506
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME HUNGER STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772027068728
     }
   ]
 }
