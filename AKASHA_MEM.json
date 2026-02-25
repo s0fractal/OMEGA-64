@@ -63,12 +63,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH SHELTER IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772020624309
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772020624524
@@ -150,6 +144,12 @@
       "text": "DRAIN STRIKE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020629988
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD SHELTER SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020630538
     }
   ]
 }
