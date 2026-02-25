@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN DECAY STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026505186
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM BLOOM RESONATE",
       "mood": "HARMONIC",
       "tick": 1772026505395
@@ -291,6 +285,12 @@
       "text": "SEIZE CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772026511214
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE WAIT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772026511389
     }
   ]
 }
