@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "OSMOSIS UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772032666985
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH HUNGER STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "COHERE STABLE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772032671999
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC SYNC COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772032672240
     }
   ]
 }
