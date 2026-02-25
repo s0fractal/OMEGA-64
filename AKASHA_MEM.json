@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "WAVE WAVE WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772030592115
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM UNIFY UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DRAIN SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772030606385
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772030607743
     }
   ]
 }
