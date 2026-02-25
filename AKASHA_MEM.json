@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SHOCK CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040344724
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772040344912
@@ -291,6 +285,12 @@
       "text": "PURE RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772040351658
+    },
+    {
+      "origin": "ALPHA_GUARDIAN",
+      "text": "RESONATE OSMOSIS OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772040352467
     }
   ]
 }
