@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT PURE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772040418178
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING BLOOM STABLE",
       "mood": "HARMONIC",
       "tick": 1772040418351
@@ -291,6 +285,12 @@
       "text": "CONSUME CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772040420813
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON REFLECT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772040420935
     }
   ]
 }
