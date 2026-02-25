@@ -171,12 +171,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STASIS RECON WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772023099357
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS PURE WATCH",
       "mood": "DEFENSIVE",
@@ -259,6 +253,12 @@
       "text": "RESONATE UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772023103621
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH PURE WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772023103796
     }
   ]
 }
