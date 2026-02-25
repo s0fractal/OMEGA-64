@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD WAIT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772038867846
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW HEAL COHERE",
       "mood": "HARMONIC",
       "tick": 1772038868099
@@ -291,6 +285,12 @@
       "text": "DECAY STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772038871774
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WATCH RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772038871958
     }
   ]
 }
