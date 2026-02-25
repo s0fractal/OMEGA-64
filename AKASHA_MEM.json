@@ -23,12 +23,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SEIZE SEIZE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019418963
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DECAY DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772019422175
@@ -110,6 +104,12 @@
       "text": "IMMUNE WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772019447978
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIKE SICKNESS STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019449349
     }
   ]
 }
