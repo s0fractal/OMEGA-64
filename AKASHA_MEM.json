@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW RESONATE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772040178889
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "UNIFY FLOW SYNC",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FLOW FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772040184914
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FORGE WAVE BECOME",
+      "mood": "CREATIVE",
+      "tick": 1772040185860
     }
   ]
 }
