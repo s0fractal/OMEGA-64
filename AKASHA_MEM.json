@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "IMMUNE SHELTER WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041090158
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BLOOM BLOOM GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SEIZE DECAY BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772041092856
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "RECON SHIELD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772041093122
     }
   ]
 }
