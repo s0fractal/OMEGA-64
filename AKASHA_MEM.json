@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON IMMUNE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772035368382
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772035368635
@@ -291,6 +285,12 @@
       "text": "DRAIN SHOCK STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772035372486
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS UNIFY OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772035372865
     }
   ]
 }
