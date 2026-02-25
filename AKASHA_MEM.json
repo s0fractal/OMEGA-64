@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL COHERE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772040562033
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON STASIS IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "REFLECT GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772040564879
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE IMMUNE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040565119
     }
   ]
 }
