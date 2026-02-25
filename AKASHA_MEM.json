@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "UNIFY BLOOM SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772019610743
-    },
-    {
       "origin": "INTERFACE",
       "text": "DECAY SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
@@ -114,6 +108,12 @@
       "text": "FLOW BLOOM UNIFY",
       "mood": "HARMONIC",
       "tick": 1772019625885
+    },
+    {
+      "origin": "STREAM",
+      "text": "RESONATE UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772019626098
     }
   ]
 }
