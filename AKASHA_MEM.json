@@ -110,12 +110,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WAIT SHELTER STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772021904006
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE STRIKE DECAY",
       "mood": "AGGRESSIVE",
@@ -198,6 +192,12 @@
       "text": "HUNGER STRIKE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772021908954
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS STASIS RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772021909332
     }
   ]
 }
