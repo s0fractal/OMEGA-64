@@ -165,15 +165,10 @@
     "AAAA0AA0",
     "00060000",
     "FF0AFFFF",
-    "0AAAAAAA"
+    "0AAAAAAA",
+    "A0AA0A00"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "PURE REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772023088508
-    },
     {
       "origin": "REVERSE",
       "text": "BEYOND BEYOND VISION",
@@ -257,6 +252,12 @@
       "text": "WAIT SHIELD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772023094271
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023094648
     }
   ]
 }
