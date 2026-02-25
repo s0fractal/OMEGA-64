@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM SYNC HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772024777819
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE DRAIN CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772024793442
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE AWAKEN DREAM",
+      "mood": "CREATIVE",
+      "tick": 1772024794154
     }
   ]
 }
