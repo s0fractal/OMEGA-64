@@ -171,12 +171,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE COHERE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772023102484
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "DRAIN BREACH SICKNESS",
       "mood": "AGGRESSIVE",
@@ -259,6 +253,12 @@
       "text": "REFLECT SHIELD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772023108113
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023108234
     }
   ]
 }
