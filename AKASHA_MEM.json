@@ -62,12 +62,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HUNGER SHOCK BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020683392
-    },
-    {
       "origin": "REVERSE",
       "text": "SICKNESS STRIFE SHOCK",
       "mood": "AGGRESSIVE",
@@ -150,6 +144,12 @@
       "text": "DRAIN SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772020690242
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME SICKNESS SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020690662
     }
   ]
 }
