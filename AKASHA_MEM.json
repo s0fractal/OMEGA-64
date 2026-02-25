@@ -111,12 +111,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER WATCH IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772021929813
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SEIZE CONSUME DECAY",
       "mood": "AGGRESSIVE",
@@ -199,6 +193,12 @@
       "text": "OSMOSIS HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772021936378
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE BECOME WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772021936598
     }
   ]
 }
