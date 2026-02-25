@@ -74,12 +74,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BLOOM RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772020940677
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "FLOW FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772020941138
@@ -161,6 +155,12 @@
       "text": "RECON PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772020947607
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME DRAIN CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020947815
     }
   ]
 }
