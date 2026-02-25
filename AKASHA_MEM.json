@@ -44,12 +44,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "VISION WAVE WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772020069733
-    },
-    {
       "origin": "STREAM",
       "text": "GIVING STABLE OSMOSIS",
       "mood": "HARMONIC",
@@ -132,6 +126,12 @@
       "text": "STRIKE STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772020088007
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SICKNESS STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020088185
     }
   ]
 }
