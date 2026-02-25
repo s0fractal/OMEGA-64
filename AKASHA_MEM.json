@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "WATCH REFLECT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040381345
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH SHELTER REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "FORGE BEYOND FORGE",
       "mood": "CREATIVE",
       "tick": 1772040387766
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772040387960
     }
   ]
 }
