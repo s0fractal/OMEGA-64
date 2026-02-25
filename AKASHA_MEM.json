@@ -63,12 +63,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "DRAIN SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020707385
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WATCH WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772020709049
@@ -150,6 +144,12 @@
       "text": "HUNGER CONSUME CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772020714684
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DECAY SEIZE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020714865
     }
   ]
 }
