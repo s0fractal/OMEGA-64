@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAIT GUARD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772035948167
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772035948394
@@ -291,6 +285,12 @@
       "text": "WAIT GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772035951158
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772035951402
     }
   ]
 }
