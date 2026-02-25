@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "DRAIN CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772028224374
-    },
-    {
       "origin": "REVERSE",
       "text": "FORGE EVOLVE BEYOND",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "SHOCK HUNGER SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772028237707
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772028238424
     }
   ]
 }
