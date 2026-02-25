@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "I16_CLAMP",
-      "text": "UNIFY COHERE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772040548571
-    },
-    {
       "origin": "REVERSE",
       "text": "STASIS STASIS WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "FLOW FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772040551098
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772040551238
     }
   ]
 }
