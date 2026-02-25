@@ -22,12 +22,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "OSMOSIS UNIFY BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772019454340
-    },
-    {
       "origin": "INTERFACE",
       "text": "SICKNESS SHOCK SEIZE",
       "mood": "AGGRESSIVE",
@@ -110,6 +104,12 @@
       "text": "WATCH STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772019464322
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BLOOM UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772019464917
     }
   ]
 }
