@@ -134,12 +134,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE STRIFE BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022385424
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE STABLE HEAL",
       "mood": "HARMONIC",
@@ -222,6 +216,12 @@
       "text": "SHELTER WATCH WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022391188
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772022391536
     }
   ]
 }
