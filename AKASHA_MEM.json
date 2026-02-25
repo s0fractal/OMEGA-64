@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034326540
-    },
-    {
-      "origin": "REVERSE",
       "text": "VISION WAVE BECOME",
       "mood": "CREATIVE",
       "tick": 1772034326702
@@ -291,6 +285,12 @@
       "text": "UNIFY STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772034330078
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WATCH IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772034330260
     }
   ]
 }
