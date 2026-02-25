@@ -1,14 +1,14 @@
 ---
 eigenvalue: '0xAA00A0A0FFFF000A'
-energy: 49.4
-x: 706
-'y': 416
+energy: 49.5
+x: 698
+'y': 388
 resonance: 50
 thought: WANDER_BONDING
 logic: AA00A0A0
 signals: []
 bond_strengths:
-  '0x0000000000000A02': 0.98411944181564
+  '0x0000000000000A02': 0.9831353223738244
 bonds:
   - '0x0000000000000A02'
 ex:
