@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RECON GUARD PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042813701
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "BLOOM UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772042814347
@@ -291,6 +285,12 @@
       "text": "GUARD GUARD PURE",
       "mood": "DEFENSIVE",
       "tick": 1772042828174
+    },
+    {
+      "origin": "ALIEN",
+      "text": "BREACH SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042828395
     }
   ]
 }
