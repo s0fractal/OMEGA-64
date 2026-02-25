@@ -141,12 +141,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STASIS RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772022448610
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022448792
@@ -228,6 +222,12 @@
       "text": "STABLE OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772022454340
+    },
+    {
+      "origin": "STREAM",
+      "text": "STRIFE SEIZE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022455053
     }
   ]
 }
