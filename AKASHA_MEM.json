@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772037679127
-    },
-    {
-      "origin": "REVERSE",
       "text": "WAIT PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772037679341
@@ -291,6 +285,12 @@
       "text": "RESONATE HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772037681855
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE SYNC STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772037682066
     }
   ]
 }
