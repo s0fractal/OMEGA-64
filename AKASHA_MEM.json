@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "SHOCK CONSUME SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041843666
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SHOCK BREACH CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772041844488
@@ -291,6 +285,12 @@
       "text": "RECON IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772041848628
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE SICKNESS HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041849011
     }
   ]
 }
