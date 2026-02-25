@@ -146,12 +146,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "OSMOSIS RESONATE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772022505523
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY RESONATE SYNC",
       "mood": "HARMONIC",
       "tick": 1772022505704
@@ -233,6 +227,12 @@
       "text": "FLOW GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022508876
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH SEIZE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022509053
     }
   ]
 }
