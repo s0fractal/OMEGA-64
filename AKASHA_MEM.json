@@ -181,12 +181,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023446886
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME DRAIN DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772023447383
@@ -268,6 +262,12 @@
       "text": "PURE REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023451439
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE REFLECT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772023451618
     }
   ]
 }
