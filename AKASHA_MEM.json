@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "HEAL BLOOM STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772040205884
-    },
-    {
       "origin": "STREAM",
       "text": "DECAY CONSUME DECAY",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "GIVING UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772040217381
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HUNGER STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040217575
     }
   ]
 }
