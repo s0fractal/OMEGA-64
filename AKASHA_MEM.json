@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE SHIELD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772032745140
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772032745315
@@ -291,6 +285,12 @@
       "text": "SPARK VISION BECOME",
       "mood": "CREATIVE",
       "tick": 1772032752074
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING UNIFY STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772032752253
     }
   ]
 }
