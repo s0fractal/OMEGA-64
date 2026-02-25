@@ -50,12 +50,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HUNGER SEIZE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020277851
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD IMMUNE STASIS",
       "mood": "DEFENSIVE",
@@ -138,6 +132,12 @@
       "text": "STASIS IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020285686
+    },
+    {
+      "origin": "PARADOX",
+      "text": "FORGE AWAKEN SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772020285984
     }
   ]
 }
