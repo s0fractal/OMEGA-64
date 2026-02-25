@@ -142,12 +142,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022459544
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "SEIZE SEIZE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022460073
@@ -229,6 +223,12 @@
       "text": "HUNGER STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772022463952
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER GUARD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772022464104
     }
   ]
 }
