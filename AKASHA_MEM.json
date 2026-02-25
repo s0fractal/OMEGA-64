@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW GIVING UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772023192305
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE DRAIN DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023192575
@@ -259,6 +253,12 @@
       "text": "AWAKEN BEYOND AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772023198310
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE SEIZE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023198461
     }
   ]
 }
