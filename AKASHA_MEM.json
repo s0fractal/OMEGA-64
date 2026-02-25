@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAAA0A0A",
     "AA6666A6",
     "0A000000",
     "F0FFF00F",
@@ -199,15 +198,10 @@
     "60006600",
     "00660000",
     "00A0AA0A",
-    "AAB0C00D"
+    "AAB0C00D",
+    "AAAAA000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WAIT REFLECT WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772025284362
-    },
     {
       "origin": "REVERSE",
       "text": "REFLECT SHIELD SHIELD",
@@ -291,6 +285,12 @@
       "text": "SHIELD STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772025288813
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772025289108
     }
   ]
 }
