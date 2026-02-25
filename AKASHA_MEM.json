@@ -107,12 +107,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHOCK BREACH SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021809919
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE BLOOM UNIFY",
       "mood": "HARMONIC",
@@ -195,6 +189,12 @@
       "text": "GUARD PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772021816277
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS RECON GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772021816415
     }
   ]
 }
