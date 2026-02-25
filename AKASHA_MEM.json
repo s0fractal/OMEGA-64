@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHELTER PURE PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772036736679
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS GIVING FLOW",
       "mood": "HARMONIC",
       "tick": 1772036736889
@@ -291,6 +285,12 @@
       "text": "STRIKE STRIFE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772036741678
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772036741878
     }
   ]
 }
