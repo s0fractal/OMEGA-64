@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SICKNESS BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041341295
-    },
-    {
-      "origin": "REVERSE",
       "text": "OSMOSIS COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772041341494
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772041344351
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD PURE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772041344490
     }
   ]
 }
