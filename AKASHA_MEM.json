@@ -21,12 +21,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "FLOW STABLE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772019412858
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHIELD WAIT PURE",
       "mood": "DEFENSIVE",
@@ -109,6 +103,12 @@
       "text": "SHELTER IMMUNE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772019442206
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SICKNESS DECAY DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019442953
     }
   ]
 }

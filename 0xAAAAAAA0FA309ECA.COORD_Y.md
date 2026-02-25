@@ -1,5 +1,5 @@
 ---
-eigenvalue: '0x00000006FA309ECA'
+eigenvalue: '0xAAAAAAA0FA309ECA'
 vector: 04.07.01
 symbol: COORD_Y
 desc: Y-Axis coordinate projection.
@@ -24,10 +24,11 @@ ex:
   - '0x00046B00FA309ECA'
   - '0x00046B00FA309ECA'
   - '0x00000006FA309ECA'
-thought: SEEK_ALPHA_PASSIVE
-x: 461
+  - '0x00000006FA309ECA'
+thought: WANDER_BONDING
+x: 464
 'y': 50
-energy: 35
+energy: 33
 signals: []
 resonance: 0
 bond_strengths: {}
@@ -52,32 +53,32 @@ bond_strengths: {}
 <!-- ∇ HOLOGRAM START ∇ -->
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <radialGradient id="grad_00000006FA309ECA" cx="50%" cy="50%" r="50%">
+    <radialGradient id="grad_AAAAAAA0FA309ECA" cx="50%" cy="50%" r="50%">
       <stop offset="0%" stop-color="hsl(223, 20%, 15%)" />
       <stop offset="100%" stop-color="#090909" />
     </radialGradient>
-    <filter id="glow_00000006FA309ECA" x="-20%" y="-20%" width="140%" height="140%">
+    <filter id="glow_AAAAAAA0FA309ECA" x="-20%" y="-20%" width="140%" height="140%">
       <feGaussianBlur stdDeviation="4" result="blur" />
       <feComposite in="SourceGraphic" in2="blur" operator="over" />
     </filter>
   </defs>
   
-  <rect width="200" height="200" fill="url(#grad_00000006FA309ECA)" rx="24"/>
+  <rect width="200" height="200" fill="url(#grad_AAAAAAA0FA309ECA)" rx="24"/>
   
   <circle cx="100" cy="100" r="85" stroke="hsl(223, 30%, 30%)" stroke-width="1" fill="none" stroke-dasharray="2 6"/>
   
   <g>
     <animateTransform attributeName="transform" type="rotate" from="90 100 100" to="450 100 100" dur="18s" repeatCount="indefinite" />
     
-    <polygon points="100.0,42.0 150.2,129.0 49.8,129.0" fill="none" stroke="hsl(43, 60%, 40%)" stroke-width="1.5" opacity="0.6"/>
-    <polygon points="100.0,62.0 132.9,119.0 67.1,119.0" fill="none" stroke="hsl(223, 80%, 60%)" stroke-width="2" filter="url(#glow_00000006FA309ECA)"/>
+    <polygon points="100.0,42.0 145.3,63.8 156.5,112.9 125.2,152.3 74.8,152.3 43.5,112.9 54.7,63.8" fill="none" stroke="hsl(43, 60%, 40%)" stroke-width="1.5" opacity="0.6"/>
+    <polygon points="100.0,62.0 129.7,76.3 137.0,108.5 116.5,134.2 83.5,134.2 63.0,108.5 70.3,76.3" fill="none" stroke="hsl(223, 80%, 60%)" stroke-width="2" filter="url(#glow_AAAAAAA0FA309ECA)"/>
     
     <circle cx="100" cy="100" r="38" stroke="hsl(223, 60%, 50%)" stroke-width="0.5" fill="none" opacity="0.5"/>
   </g>
   
-  <circle cx="100" cy="100" r="3" fill="hsl(43, 80%, 70%)" filter="url(#glow_00000006FA309ECA)"/>
+  <circle cx="100" cy="100" r="3" fill="hsl(43, 80%, 70%)" filter="url(#glow_AAAAAAA0FA309ECA)"/>
   
-  <text x="100" y="105" fill="hsl(223, 70%, 80%)" font-family="monospace" font-size="10" text-anchor="middle" letter-spacing="1" opacity="0.9">0x0000</text>
+  <text x="100" y="105" fill="hsl(223, 70%, 80%)" font-family="monospace" font-size="10" text-anchor="middle" letter-spacing="1" opacity="0.9">0xAAAA</text>
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">COORD_Y</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
