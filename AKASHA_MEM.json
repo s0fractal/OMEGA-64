@@ -112,12 +112,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021936788
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING RESONATE STABLE",
       "mood": "HARMONIC",
       "tick": 1772021937018
@@ -199,6 +193,12 @@
       "text": "CONSUME SEIZE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772021941689
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHELTER WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772021941946
     }
   ]
 }
