@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "FLOW UNIFY BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772025412218
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON REFLECT IMMUNE",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIKE DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772025417203
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS RESONATE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772025417511
     }
   ]
 }
