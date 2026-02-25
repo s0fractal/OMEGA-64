@@ -69,12 +69,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC HEAL BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772020857068
-    },
-    {
       "origin": "INTERFACE",
       "text": "DECAY CONSUME DRAIN",
       "mood": "AGGRESSIVE",
@@ -157,6 +151,12 @@
       "text": "BREACH DRAIN SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020866060
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020867311
     }
   ]
 }
