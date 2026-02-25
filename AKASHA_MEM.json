@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING RESONATE OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772029333375
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772029334475
@@ -291,6 +285,12 @@
       "text": "FLOW SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772029342592
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772029343144
     }
   ]
 }
