@@ -56,12 +56,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH STRIFE DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020508491
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "STABLE HEAL OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772020509112
@@ -143,6 +137,12 @@
       "text": "REFLECT STASIS SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772020519027
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH DRAIN STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020519248
     }
   ]
 }
