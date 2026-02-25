@@ -84,12 +84,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "CONSUME BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021221135
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SICKNESS DRAIN SHOCK",
       "mood": "AGGRESSIVE",
@@ -172,6 +166,12 @@
       "text": "STRIKE STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772021227604
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON REFLECT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772021227776
     }
   ]
 }
