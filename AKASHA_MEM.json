@@ -162,12 +162,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SEIZE SEIZE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022881888
-    },
-    {
       "origin": "REVERSE",
       "text": "SHELTER WATCH WAIT",
       "mood": "DEFENSIVE",
@@ -250,6 +244,12 @@
       "text": "HEAL STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022889090
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW SYNC UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772022889281
     }
   ]
 }
