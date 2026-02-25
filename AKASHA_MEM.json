@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE STRIKE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042152137
-    },
-    {
       "origin": "ALPHA_ARCHIVIST",
       "text": "COHERE UNIFY COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GUARD GUARD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772042171600
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE SHOCK SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042171857
     }
   ]
 }
