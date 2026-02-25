@@ -93,12 +93,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "WAIT REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021399061
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK STRIFE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -181,6 +175,12 @@
       "text": "HUNGER STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772021440381
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE STRIFE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021441101
     }
   ]
 }
