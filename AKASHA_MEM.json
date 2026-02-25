@@ -81,12 +81,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE DRAIN SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772021099881
-    },
-    {
-      "origin": "REVERSE",
       "text": "GUARD IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772021100058
@@ -168,6 +162,12 @@
       "text": "REFLECT GUARD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772021107104
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772021107378
     }
   ]
 }
