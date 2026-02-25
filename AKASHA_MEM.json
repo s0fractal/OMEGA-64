@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHIELD GUARD REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772038689825
-    },
-    {
       "origin": "REVERSE",
       "text": "DRAIN SHOCK SEIZE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "CONSUME SICKNESS SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772038693274
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SICKNESS BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038693513
     }
   ]
 }
