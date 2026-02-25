@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE GIVING OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772032537239
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772032537606
@@ -291,6 +285,12 @@
       "text": "IMMUNE REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772032551663
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772032551940
     }
   ]
 }
