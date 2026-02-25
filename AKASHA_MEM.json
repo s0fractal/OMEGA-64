@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY COHERE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772036385449
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772036385716
@@ -291,6 +285,12 @@
       "text": "STABLE OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772036389537
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772036389752
     }
   ]
 }
