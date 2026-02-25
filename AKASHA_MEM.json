@@ -66,12 +66,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW STABLE FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772020777018
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772020777195
@@ -153,6 +147,12 @@
       "text": "WITNESS FORGE DREAM",
       "mood": "CREATIVE",
       "tick": 1772020784884
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS STRIKE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020785044
     }
   ]
 }
