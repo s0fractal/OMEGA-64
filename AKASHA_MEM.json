@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "SHOCK CONSUME STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040520649
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING BLOOM BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "RESONATE GIVING HEAL",
       "mood": "HARMONIC",
       "tick": 1772040522816
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD STASIS SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772040523005
     }
   ]
 }
