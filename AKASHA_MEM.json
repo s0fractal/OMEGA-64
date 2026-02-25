@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE STRIFE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038308371
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE SHELTER SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772038308596
@@ -291,6 +285,12 @@
       "text": "SICKNESS STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772038311880
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME STRIFE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038312071
     }
   ]
 }
