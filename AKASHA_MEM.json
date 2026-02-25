@@ -47,12 +47,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RECON SHIELD GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772020112147
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "REFLECT REFLECT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772020112746
@@ -134,6 +128,12 @@
       "text": "CONSUME BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772020122070
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING RESONATE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772020122927
     }
   ]
 }
