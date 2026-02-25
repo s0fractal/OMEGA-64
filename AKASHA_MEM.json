@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "WAIT REFLECT WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772041537077
-    },
-    {
       "origin": "REVERSE",
       "text": "BLOOM BLOOM COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "FLOW GIVING BLOOM",
       "mood": "HARMONIC",
       "tick": 1772041541311
+    },
+    {
+      "origin": "STREAM",
+      "text": "HEAL HEAL COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041541470
     }
   ]
 }
