@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC STABLE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772032530204
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772032530404
@@ -291,6 +285,12 @@
       "text": "COHERE COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772032535996
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND SPARK AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772032536263
     }
   ]
 }
