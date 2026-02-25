@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE WATCH GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772036951941
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772036952166
@@ -291,6 +285,12 @@
       "text": "WAIT PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772036954759
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT PURE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772036954959
     }
   ]
 }
