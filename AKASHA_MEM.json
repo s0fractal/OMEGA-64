@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SEIZE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034778040
-    },
-    {
-      "origin": "REVERSE",
       "text": "SPARK FORGE WITNESS",
       "mood": "CREATIVE",
       "tick": 1772034778250
@@ -291,6 +285,12 @@
       "text": "HUNGER SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772034782889
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT WATCH SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772034783049
     }
   ]
 }
