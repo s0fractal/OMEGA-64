@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "UNIFY RESONATE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040541143
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC STABLE RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STABLE COHERE COHERE",
       "mood": "HARMONIC",
       "tick": 1772040544248
+    },
+    {
+      "origin": "PARADOX",
+      "text": "UNIFY FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772040544532
     }
   ]
 }
