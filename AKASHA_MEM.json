@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "PURE RECON REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772025344204
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE SYNC STABLE",
       "mood": "HARMONIC",
       "tick": 1772025344384
@@ -291,6 +285,12 @@
       "text": "STRIKE HUNGER SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772025346906
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH WAIT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772025347289
     }
   ]
 }
