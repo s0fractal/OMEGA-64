@@ -156,12 +156,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING UNIFY FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772022761775
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE FLOW STABLE",
       "mood": "HARMONIC",
       "tick": 1772022762779
@@ -243,6 +237,12 @@
       "text": "PURE WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772022768388
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIFE CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022768698
     }
   ]
 }
