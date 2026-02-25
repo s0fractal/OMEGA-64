@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772025440287
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE HUNGER CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "WATCH WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772025446669
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC GIVING FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772025447350
     }
   ]
 }
