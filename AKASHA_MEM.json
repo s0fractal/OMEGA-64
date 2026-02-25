@@ -184,15 +184,10 @@
     "00F0FF00",
     "FF00FFF0",
     "0AA0AA0A",
-    "66600606"
+    "66600606",
+    "0D10A098"
   ],
   "utterances": [
-    {
-      "origin": "INTERFACE",
-      "text": "HUNGER SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023697433
-    },
     {
       "origin": "REVERSE",
       "text": "REFLECT STASIS RECON",
@@ -276,6 +271,12 @@
       "text": "SHOCK HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772023702677
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772023702878
     }
   ]
 }
