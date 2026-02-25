@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772035728748
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS SHIELD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772035728959
@@ -291,6 +285,12 @@
       "text": "WATCH PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772035736246
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772035736456
     }
   ]
 }
