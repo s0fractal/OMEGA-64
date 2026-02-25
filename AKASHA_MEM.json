@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SHOCK STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772034606279
-    },
-    {
-      "origin": "REVERSE",
       "text": "FORGE AWAKEN SPARK",
       "mood": "CREATIVE",
       "tick": 1772034606485
@@ -291,6 +285,12 @@
       "text": "STASIS WAIT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772034609404
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE IMMUNE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772034609619
     }
   ]
 }
