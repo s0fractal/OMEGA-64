@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD WAIT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772028897225
-    },
-    {
-      "origin": "REVERSE",
       "text": "REFLECT WAIT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772028897734
@@ -291,6 +285,12 @@
       "text": "SEIZE BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772028903652
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS BLOOM RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772028904116
     }
   ]
 }
