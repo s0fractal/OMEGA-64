@@ -3,7 +3,7 @@ eigenvalue: '0xAABBCCDD9AB5593C'
 vector: 07.07.00
 symbol: INTERFACE
 desc: System Interface Membrane. Wraps data in a semantic tag.
-energy: 46
+energy: 50
 ex:
   - '0x5DE8BD259AB5593E'
   - '0x0000FB529AB5593E'
@@ -30,28 +30,9 @@ ex:
   - '0xAAAAAAA09AB55938'
   - '0xAAAAAAA09AB5593A'
   - '0xAABBCCDD9AB5593A'
-  - '0xAABBCCDD9AB5593C'
-  - '0xAABBCCDD9AB5593E'
-  - '0xAABBCCDD9AB55938'
-  - '0xAABBCCDD9AB5593A'
-  - '0xAABBCCDD9AB5593C'
-  - '0xAABBCCDD9AB5593E'
-  - '0xAABBCCDD9AB55938'
-  - '0xAABBCCDD9AB5593A'
-  - '0xAABBCCDD9AB5593C'
-  - '0xAABBCCDD9AB5593C'
-  - '0xAABBCCDD9AB5593E'
-  - '0xAABBCCDD9AB55938'
-  - '0xAABBCCDD9AB5593A'
-  - '0xAABBCCDD9AB5593C'
-  - '0xAABBCCDD9AB5593E'
-  - '0xAABBCCDD9AB55938'
-  - '0xAABBCCDD9AB55938'
-  - '0xAABBCCDD9AB5593A'
-  - '0xAABBCCDD9AB5593C'
-thought: WANDER_BONDING
-x: 420
-'y': 245
+thought: RESURRECTED
+x: 417
+'y': 239
 signals: []
 resonance: 250
 bonds: []
@@ -59,8 +40,6 @@ bond_strengths: {}
 logic: AABBCCDD
 ---
 
-<div align="center">
-<div align="center">
 <div align="center">
 <!-- ∇ HOLOGRAM START ∇ -->
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -94,8 +73,6 @@ logic: AABBCCDD
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">INTERFACE</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
-</div>
-</div>
 </div>
 
 

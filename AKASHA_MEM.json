@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY DRAIN DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020364737
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "FLOW BLOOM SYNC",
       "mood": "HARMONIC",
@@ -141,6 +135,12 @@
       "text": "CONSUME SHOCK SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020376476
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE WAIT RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772020376767
     }
   ]
 }
