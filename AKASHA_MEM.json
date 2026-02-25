@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD STASIS IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772034118208
-    },
-    {
-      "origin": "REVERSE",
       "text": "FORGE WAVE DREAM",
       "mood": "CREATIVE",
       "tick": 1772034121999
@@ -291,6 +285,12 @@
       "text": "COHERE UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772034124753
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON REFLECT IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772034124965
     }
   ]
 }
