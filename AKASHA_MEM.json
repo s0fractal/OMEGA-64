@@ -189,12 +189,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "EVOLVE AWAKEN FORGE",
-      "mood": "CREATIVE",
-      "tick": 1772023682166
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023682336
@@ -276,6 +270,12 @@
       "text": "STASIS GUARD SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023686689
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIKE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023686833
     }
   ]
 }
