@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY STRIKE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772032769009
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772032769237
@@ -291,6 +285,12 @@
       "text": "RESONATE SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772032772831
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE SYNC RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772032773009
     }
   ]
 }
