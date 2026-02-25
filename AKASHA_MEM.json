@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE UNIFY UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772027244189
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME DECAY HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772027244518
@@ -291,6 +285,12 @@
       "text": "OSMOSIS SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772027254057
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS IMMUNE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772027254276
     }
   ]
 }
