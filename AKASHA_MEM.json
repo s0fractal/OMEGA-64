@@ -53,12 +53,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "RESONATE BLOOM HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772020387045
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "BREACH SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
@@ -141,6 +135,12 @@
       "text": "REFLECT SHELTER REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772020396597
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD GUARD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772020397803
     }
   ]
 }
