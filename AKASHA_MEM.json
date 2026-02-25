@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM GIVING COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772031185708
-    },
-    {
       "origin": "STREAM",
       "text": "UNIFY STABLE OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIFE HUNGER DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772031191271
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE STRIFE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031191537
     }
   ]
 }
