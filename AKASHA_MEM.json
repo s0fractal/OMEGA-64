@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "CONSUME CONSUME STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041566470
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "UNIFY STABLE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041566681
@@ -291,6 +285,12 @@
       "text": "STABLE SYNC RESONATE",
       "mood": "HARMONIC",
       "tick": 1772041574744
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772041575216
     }
   ]
 }
