@@ -188,12 +188,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "RESONATE OSMOSIS UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772023694567
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RESONATE RESONATE HEAL",
       "mood": "HARMONIC",
@@ -276,6 +270,12 @@
       "text": "SHIELD SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772023698743
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS WAVE WITNESS",
+      "mood": "CREATIVE",
+      "tick": 1772023698898
     }
   ]
 }
