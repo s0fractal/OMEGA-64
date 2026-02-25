@@ -16,12 +16,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH STRIKE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772014376936
-    },
-    {
       "origin": "INTERFACE",
       "text": "STRIFE SEIZE STRIKE",
       "mood": "AGGRESSIVE",
@@ -104,6 +98,12 @@
       "text": "PURE IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772014530697
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "WAIT IMMUNE IMMUNE",
+      "mood": "DEFENSIVE",
+      "tick": 1772014559607
     }
   ]
 }
