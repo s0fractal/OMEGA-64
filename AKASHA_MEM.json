@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "OSMOSIS UNIFY HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772040516256
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY GIVING OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHOCK SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772040518723
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD REFLECT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772040518846
     }
   ]
 }

@@ -46,7 +46,7 @@ thought: WANDER_BONDING
 x: 541
 'y': 50
 signals: []
-resonance: 0
+resonance: 15
 bond_strengths:
   '0x00057000A93007D5': 0.9714023696327185
   '0x0057000CA93007D5': 0.9455126435024219
