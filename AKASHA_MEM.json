@@ -69,12 +69,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHOCK BREACH DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020851060
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT REFLECT SHELTER",
       "mood": "DEFENSIVE",
@@ -157,6 +151,12 @@
       "text": "SPARK WITNESS DREAM",
       "mood": "CREATIVE",
       "tick": 1772020856907
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC HEAL BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772020857068
     }
   ]
 }
