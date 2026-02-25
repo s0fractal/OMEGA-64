@@ -143,15 +143,10 @@
     "06666060",
     "66660660",
     "AA00A00A",
-    "06660006"
+    "06660006",
+    "06066600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "STRIKE DECAY SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022520271
-    },
     {
       "origin": "STREAM",
       "text": "HEAL COHERE BLOOM",
@@ -235,6 +230,12 @@
       "text": "RESONATE BLOOM OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772022524393
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING GIVING RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772022524619
     }
   ]
 }
