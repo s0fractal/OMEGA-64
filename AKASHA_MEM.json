@@ -61,15 +61,10 @@
     "66666660",
     "AAAA0A0A",
     "AA6666A6",
-    "0A000000"
+    "0A000000",
+    "F0FFF00F"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "WITNESS FORGE DREAM",
-      "mood": "CREATIVE",
-      "tick": 1772020784884
-    },
     {
       "origin": "REVERSE",
       "text": "SICKNESS STRIKE DECAY",
@@ -153,6 +148,12 @@
       "text": "STABLE COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772020791658
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FORGE FORGE AWAKEN",
+      "mood": "CREATIVE",
+      "tick": 1772020792384
     }
   ]
 }
