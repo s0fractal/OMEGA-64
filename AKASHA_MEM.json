@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE STRIFE STRIKE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026340535
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE GIVING GIVING",
       "mood": "HARMONIC",
       "tick": 1772026340736
@@ -291,6 +285,12 @@
       "text": "WITNESS AWAKEN VISION",
       "mood": "CREATIVE",
       "tick": 1772026347320
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772026347720
     }
   ]
 }
