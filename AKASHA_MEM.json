@@ -63,12 +63,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SHOCK DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020621313
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW OSMOSIS STABLE",
       "mood": "HARMONIC",
       "tick": 1772020621522
@@ -150,6 +144,12 @@
       "text": "SHOCK CONSUME SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772020626441
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "STRIFE BREACH SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020626807
     }
   ]
 }
