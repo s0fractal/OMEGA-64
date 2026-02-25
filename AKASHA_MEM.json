@@ -70,12 +70,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH DRAIN SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772020866060
-    },
-    {
       "origin": "REVERSE",
       "text": "HUNGER SHOCK SEIZE",
       "mood": "AGGRESSIVE",
@@ -158,6 +152,12 @@
       "text": "OSMOSIS FLOW BLOOM",
       "mood": "HARMONIC",
       "tick": 1772020872797
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE RECON RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772020872965
     }
   ]
 }
