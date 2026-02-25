@@ -12,12 +12,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "HUNGER DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772012367482
-    },
-    {
-      "origin": "INTERFACE",
       "text": "STRIFE DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772012399990
@@ -99,6 +93,12 @@
       "text": "DRAIN DECAY CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772012996132
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE SHOCK DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772013000029
     }
   ]
 }
