@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE RECON SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772037732570
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772037732776
@@ -291,6 +285,12 @@
       "text": "SEIZE CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772037735817
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772037736061
     }
   ]
 }
