@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "GUARD WATCH WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772040635039
-    },
-    {
       "origin": "REVERSE",
       "text": "SYNC STABLE UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WATCH WAIT GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772040637900
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772040638211
     }
   ]
 }
