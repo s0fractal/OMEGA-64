@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BREACH DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772042420907
-    },
-    {
       "origin": "INTERFACE",
       "text": "IMMUNE PURE WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "WATCH SHIELD STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772042432601
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM STABLE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772042434341
     }
   ]
 }
