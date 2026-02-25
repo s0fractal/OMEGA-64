@@ -127,12 +127,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH SHIELD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772022270131
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022270303
@@ -214,6 +208,12 @@
       "text": "DECAY HUNGER BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022274695
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772022275221
     }
   ]
 }
