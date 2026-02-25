@@ -79,12 +79,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "PURE SHIELD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772021062077
-    },
-    {
       "origin": "REVERSE",
       "text": "RESONATE RESONATE STABLE",
       "mood": "HARMONIC",
@@ -167,6 +161,12 @@
       "text": "DRAIN STRIFE HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772021068540
+    },
+    {
+      "origin": "REVERSE",
+      "text": "CONSUME DECAY SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021068905
     }
   ]
 }
