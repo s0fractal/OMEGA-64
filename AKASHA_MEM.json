@@ -172,12 +172,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023122164
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING UNIFY BLOOM",
       "mood": "HARMONIC",
       "tick": 1772023122338
@@ -259,6 +253,12 @@
       "text": "BLOOM FLOW FLOW",
       "mood": "HARMONIC",
       "tick": 1772023127800
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME BEYOND EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772023128577
     }
   ]
 }
