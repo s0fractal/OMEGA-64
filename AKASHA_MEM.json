@@ -41,12 +41,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "RECON PURE REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772019841175
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "PURE SHIELD REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772019842101
@@ -128,6 +122,12 @@
       "text": "SEIZE SICKNESS SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772019851980
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD RECON STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772019852637
     }
   ]
 }
