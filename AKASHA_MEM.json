@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SYNC RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772033905269
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE STRIFE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772033905454
@@ -291,6 +285,12 @@
       "text": "GIVING HEAL FLOW",
       "mood": "HARMONIC",
       "tick": 1772033909758
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT IMMUNE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772033909970
     }
   ]
 }
