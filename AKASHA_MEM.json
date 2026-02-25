@@ -71,12 +71,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "AWAKEN WITNESS AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772020870544
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772020870786
@@ -158,6 +152,12 @@
       "text": "UNIFY OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772020875740
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "HUNGER DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020876219
     }
   ]
 }
