@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STABLE UNIFY COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772037994426
-    },
-    {
-      "origin": "REVERSE",
       "text": "HUNGER DRAIN STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772037994663
@@ -291,6 +285,12 @@
       "text": "STASIS PURE RECON",
       "mood": "DEFENSIVE",
       "tick": 1772037998280
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SICKNESS DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037998492
     }
   ]
 }
