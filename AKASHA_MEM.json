@@ -54,12 +54,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "PURE RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772020470035
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
@@ -142,6 +136,12 @@
       "text": "GIVING HEAL STABLE",
       "mood": "HARMONIC",
       "tick": 1772020477037
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "WAIT RECON WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772020477353
     }
   ]
 }
