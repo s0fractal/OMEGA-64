@@ -163,12 +163,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD SHELTER GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022915659
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING SYNC UNIFY",
       "mood": "HARMONIC",
       "tick": 1772022915819
@@ -250,6 +244,12 @@
       "text": "COHERE GIVING STABLE",
       "mood": "HARMONIC",
       "tick": 1772022922708
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME WAVE VISION",
+      "mood": "CREATIVE",
+      "tick": 1772022923195
     }
   ]
 }
