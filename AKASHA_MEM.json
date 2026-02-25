@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL GIVING SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772034434903
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "UNIFY OSMOSIS COHERE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "IMMUNE IMMUNE STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772034443090
+    },
+    {
+      "origin": "REVERSE",
+      "text": "EVOLVE BECOME SPARK",
+      "mood": "CREATIVE",
+      "tick": 1772034443358
     }
   ]
 }
