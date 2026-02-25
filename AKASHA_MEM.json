@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ALPHA_GUARDIAN",
-      "text": "RESONATE OSMOSIS OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772040352467
-    },
-    {
       "origin": "REVERSE",
       "text": "COHERE STABLE UNIFY",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GUARD RECON PURE",
       "mood": "DEFENSIVE",
       "tick": 1772040358729
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY COHERE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772040359168
     }
   ]
 }
