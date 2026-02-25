@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "BB0BA000",
     "AB0A0000",
     "A000A000",
     "600A0A00",
@@ -199,15 +198,10 @@
     "AA00AA00",
     "BBBB0000",
     "A00AAAA0",
-    "0000AA0A"
+    "0000AA0A",
+    "0000AA00"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GUARD PURE RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772024910148
-    },
     {
       "origin": "REVERSE",
       "text": "BEYOND VISION BECOME",
@@ -291,6 +285,12 @@
       "text": "WAIT REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772024917384
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BLOOM STABLE OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772024917597
     }
   ]
 }
