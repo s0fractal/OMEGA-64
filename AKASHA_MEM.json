@@ -107,12 +107,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING OSMOSIS COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772021772703
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE WAIT SHELTER",
       "mood": "DEFENSIVE",
@@ -195,6 +189,12 @@
       "text": "REFLECT RECON REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772021780817
+    },
+    {
+      "origin": "STREAM",
+      "text": "FLOW FLOW RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772021781131
     }
   ]
 }
