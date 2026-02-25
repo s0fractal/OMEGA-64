@@ -120,12 +120,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RECON REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772022091959
-    },
-    {
-      "origin": "REVERSE",
       "text": "DECAY HUNGER CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772022092162
@@ -207,6 +201,12 @@
       "text": "HEAL COHERE BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022096289
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772022096464
     }
   ]
 }
