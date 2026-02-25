@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "COHERE GIVING GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772041161056
-    },
-    {
       "origin": "STREAM",
       "text": "HEAL UNIFY FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GUARD WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041164360
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GIVING RESONATE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772041164673
     }
   ]
 }
