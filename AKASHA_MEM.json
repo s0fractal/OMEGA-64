@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL HEAL RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772032659308
-    },
-    {
-      "origin": "REVERSE",
       "text": "SICKNESS DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772032659488
@@ -291,6 +285,12 @@
       "text": "SICKNESS SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772032661934
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL FLOW COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772032662082
     }
   ]
 }
