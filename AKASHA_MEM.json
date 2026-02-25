@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY BLOOM HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772022237519
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SHOCK HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772022237681
@@ -213,6 +207,12 @@
       "text": "WATCH WATCH IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772022241074
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772022241368
     }
   ]
 }
