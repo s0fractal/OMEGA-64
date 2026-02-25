@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STABLE SYNC OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772024574748
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME SHOCK BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIFE SEIZE SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772024583967
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS HEAL OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772024586107
     }
   ]
 }
