@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "DECAY SHOCK STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037802264
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHIELD GUARD REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY FLOW OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772037809111
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS FLOW GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772037809344
     }
   ]
 }
