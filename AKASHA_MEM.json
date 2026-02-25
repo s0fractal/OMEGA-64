@@ -123,12 +123,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING OSMOSIS BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772022133482
-    },
-    {
-      "origin": "REVERSE",
       "text": "AWAKEN BEYOND SPARK",
       "mood": "CREATIVE",
       "tick": 1772022133663
@@ -210,6 +204,12 @@
       "text": "WAIT WATCH PURE",
       "mood": "DEFENSIVE",
       "tick": 1772022137809
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE OSMOSIS GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772022138045
     }
   ]
 }
