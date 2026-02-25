@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "IMMUNE RECON WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772038662176
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS GIVING RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "GUARD GUARD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772038665331
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD WATCH GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772038665540
     }
   ]
 }
