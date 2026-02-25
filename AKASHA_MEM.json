@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "UNIFY BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772033535707
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE PURE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772033535920
@@ -291,6 +285,12 @@
       "text": "STABLE SYNC SYNC",
       "mood": "HARMONIC",
       "tick": 1772033538980
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT IMMUNE GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772033539171
     }
   ]
 }
