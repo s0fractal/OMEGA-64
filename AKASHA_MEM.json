@@ -123,12 +123,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAVE AWAKEN BEYOND",
-      "mood": "CREATIVE",
-      "tick": 1772022152732
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER IMMUNE WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772022153025
@@ -210,6 +204,12 @@
       "text": "BREACH DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022160157
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING FLOW FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772022160496
     }
   ]
 }
