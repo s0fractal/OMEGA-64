@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BLOOM STABLE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772033287026
-    },
-    {
-      "origin": "REVERSE",
       "text": "SEIZE SEIZE CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772033287245
@@ -291,6 +285,12 @@
       "text": "VISION WITNESS SPARK",
       "mood": "CREATIVE",
       "tick": 1772033289457
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE COHERE UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772033289665
     }
   ]
 }
