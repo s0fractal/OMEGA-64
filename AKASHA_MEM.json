@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING FLOW HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772040281410
-    },
-    {
       "origin": "INTERFACE",
       "text": "SHELTER WAIT SHELTER",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772040289039
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD SHELTER SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772040289251
     }
   ]
 }
