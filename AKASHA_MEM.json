@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HEAL COHERE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772038480378
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN SICKNESS DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772038480585
@@ -291,6 +285,12 @@
       "text": "GIVING RESONATE RESONATE",
       "mood": "HARMONIC",
       "tick": 1772038483341
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY CONSUME STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038483563
     }
   ]
 }
