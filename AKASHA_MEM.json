@@ -83,12 +83,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE IMMUNE STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772021177101
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772021177272
@@ -170,6 +164,12 @@
       "text": "DRAIN STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772021182523
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "IMMUNE GUARD STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772021182792
     }
   ]
 }
