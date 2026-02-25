@@ -20,12 +20,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "BREACH CONSUME DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772017251412
-    },
-    {
       "origin": "INTERFACE",
       "text": "SICKNESS SHOCK DECAY",
       "mood": "AGGRESSIVE",
@@ -108,6 +102,12 @@
       "text": "BLOOM BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772017334759
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "COHERE FLOW STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772017341523
     }
   ]
 }
