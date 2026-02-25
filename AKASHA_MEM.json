@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STASIS GUARD SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772028872795
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS HEAL HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "BREACH SICKNESS SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772028885763
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SICKNESS DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772028886320
     }
   ]
 }
