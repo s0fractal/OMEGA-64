@@ -191,12 +191,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BREACH SEIZE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023811801
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME CONSUME STRIFE",
       "mood": "AGGRESSIVE",
@@ -279,6 +273,12 @@
       "text": "HEAL RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772023818761
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772023818891
     }
   ]
 }
