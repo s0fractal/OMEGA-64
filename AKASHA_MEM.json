@@ -70,12 +70,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BECOME WITNESS AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772020889182
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH WATCH RECON",
       "mood": "DEFENSIVE",
@@ -158,6 +152,12 @@
       "text": "SEIZE SICKNESS STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772020895921
+    },
+    {
+      "origin": "STREAM",
+      "text": "FLOW FLOW SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772020896423
     }
   ]
 }
