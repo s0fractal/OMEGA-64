@@ -26,12 +26,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DECAY SHOCK SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019611157
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STASIS STASIS WAIT",
       "mood": "DEFENSIVE",
@@ -114,6 +108,12 @@
       "text": "RESONATE UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772019626098
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH SICKNESS SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019626778
     }
   ]
 }
