@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "06060666",
     "AAA00AAA",
     "AABBC0DD",
     "66660600",
@@ -199,15 +198,10 @@
     "06066660",
     "AA0A00AA",
     "66660060",
-    "A0000CDD"
+    "A0000CDD",
+    "00606600"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "COHERE FLOW SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772037976762
-    },
     {
       "origin": "REVERSE",
       "text": "HUNGER STRIFE DECAY",
@@ -291,6 +285,12 @@
       "text": "DRAIN DECAY STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772037981034
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SYNC UNIFY BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772037981253
     }
   ]
 }
