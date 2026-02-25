@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DRAIN DRAIN BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772015843506
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE RECON SHIELD",
       "mood": "DEFENSIVE",
@@ -107,6 +101,12 @@
       "text": "STRIFE DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772015922622
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "FLOW HEAL SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772015927582
     }
   ]
 }
