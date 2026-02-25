@@ -150,12 +150,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SICKNESS SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772022538704
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772022538904
@@ -237,6 +231,12 @@
       "text": "SYNC SYNC BLOOM",
       "mood": "HARMONIC",
       "tick": 1772022545766
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME VISION EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772022545917
     }
   ]
 }
