@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK SICKNESS DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772027707680
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772027708045
@@ -291,6 +285,12 @@
       "text": "BECOME BECOME BEYOND",
       "mood": "CREATIVE",
       "tick": 1772027717369
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER IMMUNE STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772027718332
     }
   ]
 }
