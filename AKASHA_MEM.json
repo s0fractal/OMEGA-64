@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "WAIT REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772019544880
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "REFLECT WATCH WAIT",
       "mood": "DEFENSIVE",
@@ -111,6 +105,12 @@
       "text": "BREACH SHOCK SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772019554231
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH SEIZE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019554784
     }
   ]
 }
