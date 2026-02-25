@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "0A000A00",
     "60660000",
     "BEE0BEEF",
     "0AA0AAAA",
@@ -199,15 +198,10 @@
     "AAA0AAA0",
     "B0B0000C",
     "00600000",
-    "A1000000"
+    "A1000000",
+    "00066066"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BREACH HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772030051577
-    },
     {
       "origin": "REVERSE",
       "text": "UNIFY OSMOSIS RESONATE",
@@ -291,6 +285,12 @@
       "text": "WATCH SHELTER STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772030062308
+    },
+    {
+      "origin": "REVERSE",
+      "text": "UNIFY BLOOM OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772030072280
     }
   ]
 }
