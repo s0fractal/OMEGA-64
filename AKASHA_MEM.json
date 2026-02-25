@@ -19,12 +19,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIFE CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772016884124
-    },
-    {
       "origin": "INTERFACE",
       "text": "STASIS SHELTER SHIELD",
       "mood": "DEFENSIVE",
@@ -107,6 +101,12 @@
       "text": "STRIFE STRIKE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772016976689
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BREACH CONSUME STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772016979109
     }
   ]
 }
