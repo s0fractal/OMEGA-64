@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SYNC FLOW RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772041104404
-    },
-    {
       "origin": "INTERFACE",
       "text": "STASIS STASIS REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "BLOOM RESONATE UNIFY",
       "mood": "HARMONIC",
       "tick": 1772041108562
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL RESONATE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041108901
     }
   ]
 }
