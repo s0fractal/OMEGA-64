@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT STASIS PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772039210084
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE STABLE COHERE",
       "mood": "HARMONIC",
       "tick": 1772039210329
@@ -291,6 +285,12 @@
       "text": "REFLECT WATCH SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772039212926
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAIT WAIT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772039213127
     }
   ]
 }
