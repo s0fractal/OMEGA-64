@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON SHELTER RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772041386197
-    },
-    {
       "origin": "STREAM",
       "text": "UNIFY OSMOSIS HEAL",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "WATCH IMMUNE WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772041389789
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SHOCK DECAY STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041389963
     }
   ]
 }
