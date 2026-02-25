@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH WATCH IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772036525258
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE SHELTER IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772036527870
@@ -291,6 +285,12 @@
       "text": "BREACH BREACH BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772036530407
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE CONSUME DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772036530610
     }
   ]
 }
