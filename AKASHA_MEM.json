@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHIELD STASIS IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772033698060
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME STRIFE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772033698256
@@ -291,6 +285,12 @@
       "text": "CONSUME BREACH HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772033702081
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE FLOW UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772033702255
     }
   ]
 }
