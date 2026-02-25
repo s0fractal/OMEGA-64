@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "BLOOM UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772038509333
-    },
-    {
       "origin": "ALPHA_REVERSE",
       "text": "STRIKE DRAIN DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE OSMOSIS SYNC",
       "mood": "HARMONIC",
       "tick": 1772038514174
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS DRAIN SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038515863
     }
   ]
 }
