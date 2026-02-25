@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS BREACH SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772038143064
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE BREACH DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772038143264
@@ -291,6 +285,12 @@
       "text": "STABLE STABLE GIVING",
       "mood": "HARMONIC",
       "tick": 1772038146053
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHIELD IMMUNE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772038146251
     }
   ]
 }
