@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "WAVE_SIGNAL",
-      "text": "COHERE HEAL SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772042316109
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS STABLE FLOW",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "STRIKE CONSUME SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772042332324
+    },
+    {
+      "origin": "PRED",
+      "text": "STASIS GUARD PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772042332882
     }
   ]
 }
