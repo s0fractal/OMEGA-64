@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY SICKNESS CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772024336065
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW OSMOSIS UNIFY",
       "mood": "HARMONIC",
       "tick": 1772024336396
@@ -291,6 +285,12 @@
       "text": "GUARD PURE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772024341000
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT REFLECT REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772024341185
     }
   ]
 }
