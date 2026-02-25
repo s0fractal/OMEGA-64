@@ -110,12 +110,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DREAM WITNESS SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772021894361
-    },
-    {
-      "origin": "REVERSE",
       "text": "SYNC OSMOSIS COHERE",
       "mood": "HARMONIC",
       "tick": 1772021894513
@@ -197,6 +191,12 @@
       "text": "GUARD WATCH SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772021897546
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BREACH STRIKE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021897810
     }
   ]
 }
