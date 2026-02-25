@@ -191,12 +191,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "REFLECT STASIS WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772023729791
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772023729970
@@ -278,6 +272,12 @@
       "text": "SHIELD GUARD WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772023733765
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DRAIN SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023733939
     }
   ]
 }
