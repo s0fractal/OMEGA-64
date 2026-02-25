@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STABLE GIVING STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772040555438
-    },
-    {
       "origin": "REVERSE",
       "text": "VISION SPARK AWAKEN",
       "mood": "CREATIVE",
@@ -291,6 +285,12 @@
       "text": "RECON STASIS SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772040557775
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "UNIFY BLOOM HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772040557935
     }
   ]
 }
