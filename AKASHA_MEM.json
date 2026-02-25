@@ -72,12 +72,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "GIVING UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772020935438
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE SHOCK SEIZE",
       "mood": "AGGRESSIVE",
@@ -160,6 +154,12 @@
       "text": "COHERE COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772020940516
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "BLOOM RESONATE HEAL",
+      "mood": "HARMONIC",
+      "tick": 1772020940677
     }
   ]
 }
