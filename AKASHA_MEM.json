@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "PURE RECON SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772015846035
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "CONSUME HUNGER HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772015850723
@@ -107,6 +101,12 @@
       "text": "FLOW HEAL SYNC",
       "mood": "HARMONIC",
       "tick": 1772015927582
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "CONSUME SICKNESS CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772015947594
     }
   ]
 }
