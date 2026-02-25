@@ -164,12 +164,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD WATCH WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772022998379
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE HUNGER DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772022998495
@@ -251,6 +245,12 @@
       "text": "DRAIN STRIKE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772023006410
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK DECAY SEIZE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023006525
     }
   ]
 }
