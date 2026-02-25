@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "VISION VISION AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772036496015
-    },
-    {
-      "origin": "REVERSE",
       "text": "STASIS STASIS RECON",
       "mood": "DEFENSIVE",
       "tick": 1772036496190
@@ -291,6 +285,12 @@
       "text": "FLOW UNIFY FLOW",
       "mood": "HARMONIC",
       "tick": 1772036499066
+    },
+    {
+      "origin": "REVERSE",
+      "text": "REFLECT IMMUNE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772036501257
     }
   ]
 }
