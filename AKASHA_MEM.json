@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FLOW GIVING BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772026733801
-    },
-    {
-      "origin": "REVERSE",
       "text": "DRAIN DECAY SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772026734014
@@ -291,6 +285,12 @@
       "text": "STASIS STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772026740481
+    },
+    {
+      "origin": "REVERSE",
+      "text": "OSMOSIS UNIFY FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772026740813
     }
   ]
 }
