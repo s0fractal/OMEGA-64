@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "660666A6",
     "AA0A000A",
     "00600066",
     "0000AA0A",
@@ -199,15 +198,10 @@
     "FFFFF00F",
     "AA000AA0",
     "AA0666A0",
-    "AA00AA0A"
+    "AA00AA0A",
+    "A6666606"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "GIVING OSMOSIS HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772033795425
-    },
     {
       "origin": "REVERSE",
       "text": "RESONATE RESONATE BLOOM",
@@ -291,6 +285,12 @@
       "text": "SEIZE BREACH DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772033798724
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SEIZE BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772033798907
     }
   ]
 }
