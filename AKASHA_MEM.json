@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "HUNGER DRAIN SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035844246
-    },
-    {
-      "origin": "REVERSE",
       "text": "DREAM DREAM AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772035844423
@@ -291,6 +285,12 @@
       "text": "PURE PURE IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772035849379
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RECON WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772035849586
     }
   ]
 }
