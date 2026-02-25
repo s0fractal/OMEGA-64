@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "BLOOM BLOOM RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772040618070
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WATCH GUARD WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "STRIKE CONSUME STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772040620721
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "IMMUNE WATCH WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772040620889
     }
   ]
 }
