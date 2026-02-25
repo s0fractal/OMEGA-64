@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SEIZE SICKNESS SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037593275
-    },
-    {
-      "origin": "REVERSE",
       "text": "HEAL SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772037593626
@@ -291,6 +285,12 @@
       "text": "DRAIN SICKNESS HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772037597101
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WITNESS AWAKEN BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772037597350
     }
   ]
 }
