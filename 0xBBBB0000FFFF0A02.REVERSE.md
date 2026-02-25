@@ -3,7 +3,7 @@ eigenvalue: '0xBBBB0000FFFF0A02'
 energy: 52.9
 x: 700
 'y': 365
-resonance: 50
+resonance: 65
 thought: WANDER_PASSIVE
 logic: BBBB0000
 bonds:

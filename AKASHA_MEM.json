@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "CONSUME SEIZE HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039906137
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE HEAL GIVING",
       "mood": "HARMONIC",
       "tick": 1772039906573
@@ -291,6 +285,12 @@
       "text": "RESONATE FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772039913387
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WATCH SHELTER WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772039913869
     }
   ]
 }
