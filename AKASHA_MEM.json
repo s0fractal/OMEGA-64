@@ -199,12 +199,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING GIVING FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772024029500
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIKE DECAY DECAY",
       "mood": "AGGRESSIVE",
       "tick": 1772024029721
@@ -286,6 +280,12 @@
       "text": "CONSUME CONSUME STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772024032312
+    },
+    {
+      "origin": "REVERSE",
+      "text": "AWAKEN VISION EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772024032807
     }
   ]
 }
