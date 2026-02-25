@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GUARD WAIT SHELTER",
-      "mood": "DEFENSIVE",
-      "tick": 1772040309352
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE UNIFY UNIFY",
       "mood": "HARMONIC",
       "tick": 1772040309582
@@ -291,6 +285,12 @@
       "text": "CONSUME SEIZE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772040314131
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BECOME VISION BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772040314747
     }
   ]
 }
