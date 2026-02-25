@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIFE DECAY BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040664280
-    },
-    {
       "origin": "INTERFACE",
       "text": "UNIFY UNIFY RESONATE",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SYNC SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772040667669
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHIELD SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040667800
     }
   ]
 }
