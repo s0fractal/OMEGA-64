@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "IMMUNE IMMUNE WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772042061718
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "PURE REFLECT PURE",
       "mood": "DEFENSIVE",
       "tick": 1772042062579
@@ -291,6 +285,12 @@
       "text": "RECON WATCH STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772042072672
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE GIVING SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772042075052
     }
   ]
 }
