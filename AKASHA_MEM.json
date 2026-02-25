@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "SHELTER STASIS PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772040973186
-    },
-    {
       "origin": "INTERFACE",
       "text": "DRAIN BREACH CONSUME",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "SEIZE SEIZE SHOCK",
       "mood": "AGGRESSIVE",
       "tick": 1772040976662
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SYNC COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772040976802
     }
   ]
 }
