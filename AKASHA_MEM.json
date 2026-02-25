@@ -146,12 +146,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SPARK BEYOND AWAKEN",
-      "mood": "CREATIVE",
-      "tick": 1772022511663
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH STASIS GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022511857
@@ -233,6 +227,12 @@
       "text": "RECON STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772022515498
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE RESONATE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772022516059
     }
   ]
 }
