@@ -81,12 +81,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE HEAL HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772021143470
-    },
-    {
       "origin": "REVERSE",
       "text": "EVOLVE DREAM VISION",
       "mood": "CREATIVE",
@@ -169,6 +163,12 @@
       "text": "HEAL RESONATE FLOW",
       "mood": "HARMONIC",
       "tick": 1772021149130
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772021149391
     }
   ]
 }
