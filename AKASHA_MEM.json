@@ -22,12 +22,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "GIVING OSMOSIS SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772019476610
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "STRIFE SHOCK SHOCK",
       "mood": "AGGRESSIVE",
@@ -110,6 +104,12 @@
       "text": "STABLE FLOW RESONATE",
       "mood": "HARMONIC",
       "tick": 1772019485037
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "BREACH DECAY SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019485598
     }
   ]
 }
