@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "PURE GUARD WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772040027946
-    },
-    {
       "origin": "REVERSE",
       "text": "UNIFY RESONATE BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "HUNGER CONSUME HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772040179312
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SYNC STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772040179763
     }
   ]
 }
