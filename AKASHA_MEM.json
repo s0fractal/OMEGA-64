@@ -201,12 +201,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GUARD PURE GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772024060129
-    },
-    {
       "origin": "REVERSE",
       "text": "OSMOSIS STABLE STABLE",
       "mood": "HARMONIC",
@@ -289,6 +283,12 @@
       "text": "HEAL SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772024068627
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "OSMOSIS COHERE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772024068845
     }
   ]
 }
