@@ -71,12 +71,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WAVE SPARK WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772020879973
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE STABLE FLOW",
       "mood": "HARMONIC",
       "tick": 1772020880134
@@ -158,6 +152,12 @@
       "text": "BREACH BREACH SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772020887122
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SEIZE BREACH DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020887476
     }
   ]
 }
