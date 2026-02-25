@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE RESONATE UNIFY",
-      "mood": "HARMONIC",
-      "tick": 1772032771469
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM COHERE FLOW",
       "mood": "HARMONIC",
       "tick": 1772032771657
@@ -291,6 +285,12 @@
       "text": "BREACH STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772032776248
+    },
+    {
+      "origin": "REVERSE",
+      "text": "AWAKEN EVOLVE BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772032777815
     }
   ]
 }
