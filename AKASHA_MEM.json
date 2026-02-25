@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "GIVING FLOW OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772040676526
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DECAY STRIFE STRIFE",
       "mood": "AGGRESSIVE",
       "tick": 1772040676781
@@ -291,6 +285,12 @@
       "text": "WATCH SHELTER WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772040680365
+    },
+    {
+      "origin": "GUARDIAN",
+      "text": "COHERE GIVING FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772040680538
     }
   ]
 }
