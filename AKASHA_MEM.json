@@ -49,12 +49,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "WAIT REFLECT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772020137283
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "GIVING BLOOM FLOW",
       "mood": "HARMONIC",
       "tick": 1772020138065
@@ -136,6 +130,12 @@
       "text": "REFLECT STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772020146631
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE HUNGER DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020147180
     }
   ]
 }
