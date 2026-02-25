@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "BREACH CONSUME STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041755405
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "WAIT STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772041755936
@@ -291,6 +285,12 @@
       "text": "PURE RECON IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772041763218
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "REFLECT SHELTER PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041763714
     }
   ]
 }
