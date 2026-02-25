@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHIELD WAIT PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772019484307
-    },
-    {
       "origin": "STREAM",
       "text": "SYNC STABLE FLOW",
       "mood": "HARMONIC",
@@ -111,6 +105,12 @@
       "text": "OSMOSIS HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772019495545
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIKE HUNGER STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772019496249
     }
   ]
 }
