@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SHOCK STRIFE SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772035546503
-    },
-    {
-      "origin": "REVERSE",
       "text": "FLOW UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772035546716
@@ -291,6 +285,12 @@
       "text": "OSMOSIS SYNC HEAL",
       "mood": "HARMONIC",
       "tick": 1772035556475
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY SHOCK STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035556652
     }
   ]
 }
