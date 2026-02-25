@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "A0606606",
     "00066060",
     "06606600",
     "0D10A098",
@@ -199,15 +198,10 @@
     "6A060A60",
     "BBBB0000",
     "0A0A0A00",
-    "A0000AA0"
+    "A0000AA0",
+    "A6006000"
   ],
   "utterances": [
-    {
-      "origin": "INTERFACE",
-      "text": "DRAIN STRIFE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041889997
-    },
     {
       "origin": "REVERSE",
       "text": "IMMUNE PURE WAIT",
@@ -291,6 +285,12 @@
       "text": "SYNC HEAL HEAL",
       "mood": "HARMONIC",
       "tick": 1772041895756
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE HUNGER HUNGER",
+      "mood": "AGGRESSIVE",
+      "tick": 1772041895966
     }
   ]
 }
