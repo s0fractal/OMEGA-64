@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "STRIFE SHOCK SEIZE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019501261
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "IMMUNE PURE PURE",
       "mood": "DEFENSIVE",
@@ -111,6 +105,12 @@
       "text": "WAIT SHIELD GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772019509543
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHIELD SHELTER WAIT",
+      "mood": "DEFENSIVE",
+      "tick": 1772019510054
     }
   ]
 }
