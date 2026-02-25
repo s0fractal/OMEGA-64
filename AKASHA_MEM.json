@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING STABLE COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772032562748
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE COHERE SYNC",
       "mood": "HARMONIC",
       "tick": 1772032562955
@@ -291,6 +285,12 @@
       "text": "GIVING GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772032565700
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE STASIS GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772032565892
     }
   ]
 }
