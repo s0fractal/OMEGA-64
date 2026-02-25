@@ -48,12 +48,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "OSMOSIS UNIFY BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772020198746
-    },
-    {
       "origin": "INTERFACE",
       "text": "CONSUME SEIZE HUNGER",
       "mood": "AGGRESSIVE",
@@ -136,6 +130,12 @@
       "text": "SHELTER PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772020214524
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "DRAIN BREACH SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020215592
     }
   ]
 }
