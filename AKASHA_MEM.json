@@ -70,12 +70,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "GUARD RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772020862126
-    },
-    {
       "origin": "REVERSE",
       "text": "PURE WATCH WAIT",
       "mood": "DEFENSIVE",
@@ -158,6 +152,12 @@
       "text": "AWAKEN WITNESS AWAKEN",
       "mood": "CREATIVE",
       "tick": 1772020870544
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SICKNESS SEIZE STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772020870786
     }
   ]
 }
