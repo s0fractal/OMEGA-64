@@ -195,12 +195,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE STABLE STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772023887595
-    },
-    {
       "origin": "STREAM",
       "text": "HEAL BLOOM GIVING",
       "mood": "HARMONIC",
@@ -283,6 +277,12 @@
       "text": "GIVING SYNC OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772023895204
+    },
+    {
+      "origin": "REVERSE",
+      "text": "WAVE BECOME FORGE",
+      "mood": "CREATIVE",
+      "tick": 1772023895904
     }
   ]
 }
