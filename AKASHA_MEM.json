@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH SHOCK SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033327361
-    },
-    {
-      "origin": "REVERSE",
       "text": "RECON STASIS IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772033327520
@@ -291,6 +285,12 @@
       "text": "RECON IMMUNE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772033329933
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE BLOOM GIVING",
+      "mood": "HARMONIC",
+      "tick": 1772033330076
     }
   ]
 }
