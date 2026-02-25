@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE RESONATE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772035175325
-    },
-    {
-      "origin": "REVERSE",
       "text": "RESONATE STABLE HEAL",
       "mood": "HARMONIC",
       "tick": 1772035175527
@@ -291,6 +285,12 @@
       "text": "EVOLVE FORGE BEYOND",
       "mood": "CREATIVE",
       "tick": 1772035178273
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "STRIFE STRIKE STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035178476
     }
   ]
 }
