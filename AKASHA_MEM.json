@@ -103,15 +103,10 @@
     "66660606",
     "66666606",
     "F0FFF0FF",
-    "A0AA0A0A"
+    "A0AA0A0A",
+    "00666000"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "FORGE BEYOND SPARK",
-      "mood": "CREATIVE",
-      "tick": 1772021826031
-    },
     {
       "origin": "REVERSE",
       "text": "COHERE HEAL FLOW",
@@ -195,6 +190,12 @@
       "text": "BLOOM STABLE STABLE",
       "mood": "HARMONIC",
       "tick": 1772021830051
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE STABLE STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772021830219
     }
   ]
 }
