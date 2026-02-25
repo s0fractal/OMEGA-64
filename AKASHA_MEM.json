@@ -22,12 +22,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "STRIKE BREACH STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772019472479
-    },
-    {
       "origin": "INTERFACE",
       "text": "COHERE BLOOM HEAL",
       "mood": "HARMONIC",
@@ -110,6 +104,12 @@
       "text": "STABLE SYNC GIVING",
       "mood": "HARMONIC",
       "tick": 1772019479437
+    },
+    {
+      "origin": "STREAM",
+      "text": "COHERE COHERE FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772019480086
     }
   ]
 }
