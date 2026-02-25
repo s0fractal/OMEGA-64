@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE STRIKE SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772033838768
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772033838944
@@ -291,6 +285,12 @@
       "text": "STRIKE DECAY SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772033841242
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND DREAM BEYOND",
+      "mood": "CREATIVE",
+      "tick": 1772033841456
     }
   ]
 }
