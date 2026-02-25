@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "HUNGER CONSUME HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040465456
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "PURE WAIT REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS COHERE STABLE",
       "mood": "HARMONIC",
       "tick": 1772040467852
+    },
+    {
+      "origin": "ALPHA_PROOF_OF_RESONANCE",
+      "text": "SYNC UNIFY OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772040467978
     }
   ]
 }
