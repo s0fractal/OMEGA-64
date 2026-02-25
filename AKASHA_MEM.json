@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE SEIZE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040371958
-    },
-    {
       "origin": "STREAM",
       "text": "SHIELD SHIELD WAIT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "RESONATE COHERE GIVING",
       "mood": "HARMONIC",
       "tick": 1772040377145
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE UNIFY SYNC",
+      "mood": "HARMONIC",
+      "tick": 1772040377454
     }
   ]
 }
