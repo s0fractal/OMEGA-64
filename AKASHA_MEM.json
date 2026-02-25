@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DECAY DECAY SICKNESS",
-      "mood": "AGGRESSIVE",
-      "tick": 1772036501498
-    },
-    {
-      "origin": "REVERSE",
       "text": "GIVING UNIFY SYNC",
       "mood": "HARMONIC",
       "tick": 1772036501692
@@ -291,6 +285,12 @@
       "text": "RESONATE SYNC FLOW",
       "mood": "HARMONIC",
       "tick": 1772036506795
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHELTER WATCH SHIELD",
+      "mood": "DEFENSIVE",
+      "tick": 1772036507202
     }
   ]
 }
