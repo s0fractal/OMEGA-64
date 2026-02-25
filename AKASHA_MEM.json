@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "BREACH CONSUME BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037723122
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE COHERE OSMOSIS",
       "mood": "HARMONIC",
       "tick": 1772037723332
@@ -291,6 +285,12 @@
       "text": "FLOW GIVING COHERE",
       "mood": "HARMONIC",
       "tick": 1772037726648
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE HUNGER BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772037727079
     }
   ]
 }
