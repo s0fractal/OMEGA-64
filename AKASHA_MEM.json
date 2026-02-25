@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "606A0600",
     "66006600",
     "A000000A",
     "60060666",
@@ -199,15 +198,10 @@
     "66660066",
     "60600606",
     "00606000",
-    "0A0AAAA0"
+    "0A0AAAA0",
+    "AA00AAA0"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "SICKNESS HUNGER CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772031651953
-    },
     {
       "origin": "REVERSE",
       "text": "BLOOM FLOW UNIFY",
@@ -291,6 +285,12 @@
       "text": "UNIFY OSMOSIS GIVING",
       "mood": "HARMONIC",
       "tick": 1772031662339
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIKE CONSUME STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772031662959
     }
   ]
 }
