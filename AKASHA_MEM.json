@@ -23,12 +23,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "HEAL HEAL RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772019509247
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "WAIT SHIELD GUARD",
       "mood": "DEFENSIVE",
@@ -111,6 +105,12 @@
       "text": "IMMUNE SHELTER WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772019515791
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "GUARD REFLECT SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772019516280
     }
   ]
 }
