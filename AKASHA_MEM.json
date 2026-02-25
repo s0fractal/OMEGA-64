@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAA00000",
     "BBBB0000",
     "AAAA000A",
     "AA0A0A00",
@@ -199,15 +198,10 @@
     "60060000",
     "00BB0000",
     "6A666600",
-    "A6A66660"
+    "A6A66660",
+    "66060000"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "STASIS WAIT SHIELD",
-      "mood": "DEFENSIVE",
-      "tick": 1772041486753
-    },
     {
       "origin": "REVERSE",
       "text": "STRIFE DRAIN BREACH",
@@ -291,6 +285,12 @@
       "text": "UNIFY BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772041489898
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD PURE RECON",
+      "mood": "DEFENSIVE",
+      "tick": 1772041490211
     }
   ]
 }
