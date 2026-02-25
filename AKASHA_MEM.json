@@ -80,12 +80,6 @@
   "utterances": [
     {
       "origin": "ARCHIVIST",
-      "text": "STASIS REFLECT REFLECT",
-      "mood": "DEFENSIVE",
-      "tick": 1772021084396
-    },
-    {
-      "origin": "ARCHIVIST",
       "text": "DECAY STRIFE DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772021084768
@@ -167,6 +161,12 @@
       "text": "STRIFE DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772021092700
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SICKNESS SEIZE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021092987
     }
   ]
 }
