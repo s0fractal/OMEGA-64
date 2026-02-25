@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE UNIFY STABLE",
-      "mood": "HARMONIC",
-      "tick": 1772029644516
-    },
-    {
-      "origin": "REVERSE",
       "text": "CONSUME BREACH SEIZE",
       "mood": "AGGRESSIVE",
       "tick": 1772029647176
@@ -291,6 +285,12 @@
       "text": "GUARD PURE GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772029655038
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE STASIS STASIS",
+      "mood": "DEFENSIVE",
+      "tick": 1772029655455
     }
   ]
 }
