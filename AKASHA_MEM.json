@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE BLOOM OSMOSIS",
-      "mood": "HARMONIC",
-      "tick": 1772038038703
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER WAIT SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772038038877
@@ -291,6 +285,12 @@
       "text": "SICKNESS SHOCK CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772038041869
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DECAY DRAIN BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038042053
     }
   ]
 }
