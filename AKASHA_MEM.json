@@ -70,12 +70,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE WAIT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772020854825
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE BLOOM BLOOM",
       "mood": "HARMONIC",
       "tick": 1772020855331
@@ -157,6 +151,12 @@
       "text": "HUNGER SEIZE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772020859660
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "COHERE COHERE RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772020861556
     }
   ]
 }
