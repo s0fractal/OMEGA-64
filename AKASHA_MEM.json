@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "SICKNESS STRIKE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772037168080
-    },
-    {
-      "origin": "REVERSE",
       "text": "PURE IMMUNE REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772037168276
@@ -291,6 +285,12 @@
       "text": "CONSUME STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772037170981
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL RESONATE BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772037171155
     }
   ]
 }
