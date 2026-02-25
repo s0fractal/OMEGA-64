@@ -3,7 +3,7 @@ eigenvalue: '0xAAAAAAA0776A52D1'
 vector: 07.06.01
 symbol: IS_ISO
 desc: Isomorphism check. Maps to REFL.
-energy: 35
+energy: 31
 ex:
   - '0x68477B56776A52D1'
   - '0xB5606681776A52D1'
@@ -20,14 +20,16 @@ ex:
   - '0x00000000776A52D1'
   - '0x00000000776A52D1'
   - '0x00000000776A52D1'
+  - '0xAAAAAAA0776A52D1'
 thought: WANDER_BONDING
-x: 197
+x: 217
 'y': 464
 signals: []
 resonance: 0
 bond_strengths: {}
 ---
 
+<div align="center">
 <div align="center">
 <div align="center">
 <div align="center">
@@ -71,6 +73,7 @@ bond_strengths: {}
   <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">IS_ISO</text>
 </svg>
 <!-- Δ HOLOGRAM END Δ -->
+</div>
 </div>
 </div>
 </div>
