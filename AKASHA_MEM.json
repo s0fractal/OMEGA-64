@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "HEAL COHERE RESONATE",
-      "mood": "HARMONIC",
-      "tick": 1772031468784
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "GIVING FLOW BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DRAIN SEIZE SICKNESS",
       "mood": "AGGRESSIVE",
       "tick": 1772031475122
+    },
+    {
+      "origin": "REVERSE",
+      "text": "COHERE HEAL FLOW",
+      "mood": "HARMONIC",
+      "tick": 1772031475440
     }
   ]
 }
