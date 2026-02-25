@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "FORGE BEYOND WITNESS",
-      "mood": "CREATIVE",
-      "tick": 1772025901645
-    },
-    {
-      "origin": "REVERSE",
       "text": "BLOOM FLOW GIVING",
       "mood": "HARMONIC",
       "tick": 1772025902290
@@ -291,6 +285,12 @@
       "text": "SHIELD PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772025913106
+    },
+    {
+      "origin": "STREAM",
+      "text": "IMMUNE SHIELD REFLECT",
+      "mood": "DEFENSIVE",
+      "tick": 1772025913455
     }
   ]
 }
