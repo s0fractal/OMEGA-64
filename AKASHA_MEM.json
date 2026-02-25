@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HUNGER SICKNESS STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772029512407
-    },
-    {
       "origin": "REVERSE",
       "text": "FLOW OSMOSIS BLOOM",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "DRAIN SHOCK STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772029520976
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL UNIFY OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772029521646
     }
   ]
 }
