@@ -102,15 +102,10 @@
     "000AAAA0",
     "66660606",
     "66666606",
-    "F0FFF0FF"
+    "F0FFF0FF",
+    "A0AA0A0A"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "PURE WAIT GUARD",
-      "mood": "DEFENSIVE",
-      "tick": 1772021744937
-    },
     {
       "origin": "REVERSE",
       "text": "WAIT SHELTER WAIT",
@@ -194,6 +189,12 @@
       "text": "DECAY SICKNESS CONSUME",
       "mood": "AGGRESSIVE",
       "tick": 1772021752785
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STRIFE HUNGER STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772021752930
     }
   ]
 }
