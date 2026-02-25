@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "COHERE BLOOM BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772026675056
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE FLOW OSMOSIS",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "SHIELD STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772026685001
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GUARD SHELTER SHELTER",
+      "mood": "DEFENSIVE",
+      "tick": 1772026685745
     }
   ]
 }
