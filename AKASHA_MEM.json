@@ -180,15 +180,10 @@
     "0AAAAAA0",
     "60066060",
     "66600666",
-    "00AAAAA0"
+    "00AAAAA0",
+    "00F0FF00"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "BREACH HUNGER DECAY",
-      "mood": "AGGRESSIVE",
-      "tick": 1772023606001
-    },
     {
       "origin": "REVERSE",
       "text": "HUNGER SHOCK CONSUME",
@@ -272,6 +267,12 @@
       "text": "PURE REFLECT SHELTER",
       "mood": "DEFENSIVE",
       "tick": 1772023609296
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING UNIFY RESONATE",
+      "mood": "HARMONIC",
+      "tick": 1772023609489
     }
   ]
 }
