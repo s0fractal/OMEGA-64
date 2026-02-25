@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "STRIKE SEIZE DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041072008
-    },
-    {
-      "origin": "REVERSE",
       "text": "UNIFY SYNC COHERE",
       "mood": "HARMONIC",
       "tick": 1772041072509
@@ -291,6 +285,12 @@
       "text": "PURE PURE SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772041075600
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE SHELTER GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772041075844
     }
   ]
 }
