@@ -203,36 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "SHELTER GUARD STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772042012411
-    },
-    {
-      "origin": "STREAM",
-      "text": "WATCH REFLECT RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772042012593
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "SHIELD STASIS WATCH",
-      "mood": "DEFENSIVE",
-      "tick": 1772042013005
-    },
-    {
-      "origin": "PARADOX",
-      "text": "BLOOM STABLE SYNC",
-      "mood": "HARMONIC",
-      "tick": 1772042014486
-    },
-    {
-      "origin": "ARCHIVIST",
-      "text": "RESONATE HEAL FLOW",
-      "mood": "HARMONIC",
-      "tick": 1772042015184
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "HUNGER SICKNESS STRIFE",
       "mood": "AGGRESSIVE",
@@ -275,22 +245,52 @@
       "tick": 1772042018124
     },
     {
-      "origin": "ARCHIVIST",
-      "text": "RECON WATCH PURE",
-      "mood": "DEFENSIVE",
-      "tick": 1772042019617
+      "origin": "REVERSE",
+      "text": "CONSUME SICKNESS STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042018648
     },
     {
       "origin": "ARCHIVIST",
-      "text": "STASIS WATCH SHIELD",
+      "text": "REFLECT WATCH REFLECT",
       "mood": "DEFENSIVE",
-      "tick": 1772042020280
+      "tick": 1772042018936
     },
     {
       "origin": "ARCHIVIST",
-      "text": "GUARD REFLECT STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772042021685
+      "text": "COHERE OSMOSIS STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772042019119
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "HUNGER CONSUME STRIKE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042019922
+    },
+    {
+      "origin": "INTERFACE",
+      "text": "SEIZE DRAIN CONSUME",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042020466
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "COHERE SYNC BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772042020990
+    },
+    {
+      "origin": "STREAM",
+      "text": "HUNGER STRIKE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772042021499
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW OSMOSIS COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772042021777
     }
   ]
 }
