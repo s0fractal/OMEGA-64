@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN SEIZE STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039006297
-    },
-    {
-      "origin": "REVERSE",
       "text": "STABLE BLOOM SYNC",
       "mood": "HARMONIC",
       "tick": 1772039006481
@@ -291,6 +285,12 @@
       "text": "SHOCK DECAY DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772039009282
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIKE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772039009883
     }
   ]
 }
