@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "DRAIN HUNGER BREACH",
-      "mood": "AGGRESSIVE",
-      "tick": 1772026304444
-    },
-    {
-      "origin": "REVERSE",
       "text": "IMMUNE SHIELD IMMUNE",
       "mood": "DEFENSIVE",
       "tick": 1772026304718
@@ -291,6 +285,12 @@
       "text": "COHERE OSMOSIS FLOW",
       "mood": "HARMONIC",
       "tick": 1772026307515
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HEAL OSMOSIS BLOOM",
+      "mood": "HARMONIC",
+      "tick": 1772026307724
     }
   ]
 }
