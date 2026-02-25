@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AAA00AA0",
     "AABBCCDD",
     "AAAA00AA",
     "0A00A000",
@@ -199,15 +198,10 @@
     "AAAAAA00",
     "A6066000",
     "0AAAA0AA",
-    "66666060"
+    "66666060",
+    "60660000"
   ],
   "utterances": [
-    {
-      "origin": "ARCHIVIST",
-      "text": "CONSUME DECAY SHOCK",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041320504
-    },
     {
       "origin": "ARCHIVIST",
       "text": "WAIT SHELTER WAIT",
@@ -291,6 +285,12 @@
       "text": "STASIS REFLECT WAIT",
       "mood": "DEFENSIVE",
       "tick": 1772041323710
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "PURE WAIT PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772041323900
     }
   ]
 }
