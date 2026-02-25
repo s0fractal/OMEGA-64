@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STASIS RECON RECON",
-      "mood": "DEFENSIVE",
-      "tick": 1772028822537
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "SHOCK STRIFE STRIKE",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "DECAY DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772028835418
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BEYOND SPARK EVOLVE",
+      "mood": "CREATIVE",
+      "tick": 1772028835719
     }
   ]
 }
