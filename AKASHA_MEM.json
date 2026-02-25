@@ -171,12 +171,6 @@
   ],
   "utterances": [
     {
-      "origin": "ARCHIVIST",
-      "text": "FLOW OSMOSIS HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772023147924
-    },
-    {
       "origin": "INTERFACE",
       "text": "STASIS SHIELD WATCH",
       "mood": "DEFENSIVE",
@@ -259,6 +253,12 @@
       "text": "STRIKE STRIFE BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772023151515
+    },
+    {
+      "origin": "REVERSE",
+      "text": "SHOCK SEIZE DECAY",
+      "mood": "AGGRESSIVE",
+      "tick": 1772023151857
     }
   ]
 }
