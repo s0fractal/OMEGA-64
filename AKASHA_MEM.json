@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "SHIELD STASIS STASIS",
-      "mood": "DEFENSIVE",
-      "tick": 1772040673495
-    },
-    {
       "origin": "REVERSE",
       "text": "SHOCK DECAY HUNGER",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "HEAL COHERE HEAL",
       "mood": "HARMONIC",
       "tick": 1772040677142
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING BLOOM STABLE",
+      "mood": "HARMONIC",
+      "tick": 1772040677402
     }
   ]
 }
