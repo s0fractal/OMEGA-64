@@ -163,12 +163,6 @@
   ],
   "utterances": [
     {
-      "origin": "PARADOX",
-      "text": "STABLE UNIFY GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772022983515
-    },
-    {
       "origin": "REVERSE",
       "text": "GIVING HEAL SYNC",
       "mood": "HARMONIC",
@@ -251,6 +245,12 @@
       "text": "SHOCK SICKNESS BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772022986834
+    },
+    {
+      "origin": "REVERSE",
+      "text": "BREACH STRIKE SICKNESS",
+      "mood": "AGGRESSIVE",
+      "tick": 1772022986997
     }
   ]
 }
