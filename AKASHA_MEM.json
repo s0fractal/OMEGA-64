@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "GIVING SYNC GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772035919287
-    },
-    {
-      "origin": "REVERSE",
       "text": "WATCH WAIT RECON",
       "mood": "DEFENSIVE",
       "tick": 1772035919544
@@ -291,6 +285,12 @@
       "text": "STRIKE DRAIN HUNGER",
       "mood": "AGGRESSIVE",
       "tick": 1772035926179
+    },
+    {
+      "origin": "REVERSE",
+      "text": "HUNGER HUNGER STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772035926357
     }
   ]
 }
