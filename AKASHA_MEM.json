@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "REVERSE",
-      "text": "STRIKE DECAY DRAIN",
-      "mood": "AGGRESSIVE",
-      "tick": 1772041642112
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "RECON PURE REFLECT",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "WAIT RECON STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772041645902
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STABLE RESONATE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772041646239
     }
   ]
 }
