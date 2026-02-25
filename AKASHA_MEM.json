@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "WORKER",
-      "text": "UNIFY COHERE GIVING",
-      "mood": "HARMONIC",
-      "tick": 1772040412599
-    },
-    {
       "origin": "REVERSE",
       "text": "IMMUNE REFLECT WATCH",
       "mood": "DEFENSIVE",
@@ -291,6 +285,12 @@
       "text": "UNIFY UNIFY RESONATE",
       "mood": "HARMONIC",
       "tick": 1772040415979
+    },
+    {
+      "origin": "REVERSE",
+      "text": "STASIS WATCH GUARD",
+      "mood": "DEFENSIVE",
+      "tick": 1772040416208
     }
   ]
 }
