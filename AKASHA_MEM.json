@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "IMMUNE WATCH IMMUNE",
-      "mood": "DEFENSIVE",
-      "tick": 1772037339319
-    },
-    {
-      "origin": "REVERSE",
       "text": "COHERE BLOOM HEAL",
       "mood": "HARMONIC",
       "tick": 1772037339524
@@ -291,6 +285,12 @@
       "text": "REFLECT STASIS WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772037344272
+    },
+    {
+      "origin": "REVERSE",
+      "text": "IMMUNE WAIT WATCH",
+      "mood": "DEFENSIVE",
+      "tick": 1772037344536
     }
   ]
 }
