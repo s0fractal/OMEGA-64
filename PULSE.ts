@@ -28,6 +28,15 @@ async function logAkasha(msg: string) {
         "MUTATIVE_FEVER": { decay: 1.5, speed: 1.3, mutation: 4.0, label: "MUTATIVE FEVER" },
         "VOID_STASIS": { decay: 0.5, speed: 0.2, mutation: 0.1, label: "VOID STASIS" }
     };
+
+    // --- 🧠 VOX POPULI (Collective Lexicon) ---
+    const VOX_POPULI: Record<string, string[]> = {
+        "HARMONIC": ["COHERE", "UNIFY", "RESONATE", "HEAL", "SYNC", "OSMOSIS", "FLOW", "BLOOM", "GIVING", "STABLE"],
+        "AGGRESSIVE": ["STRIKE", "DRAIN", "SHOCK", "SEIZE", "HUNGER", "CONSUME", "BREACH", "SICKNESS", "DECAY", "STRIFE"],
+        "CREATIVE": ["EVOLVE", "FORGE", "DREAM", "AWAKEN", "BEYOND", "BECOME", "WITNESS", "VISION", "WAVE", "SPARK"],
+        "DEFENSIVE": ["SHIELD", "WATCH", "GUARD", "STASIS", "IMMUNE", "SHELTER", "WAIT", "REFLECT", "PURE", "RECON"]
+    };
+
     let activeDecree = "NONE";
     let regent = "NONE";
     let legitimacy = 0;
