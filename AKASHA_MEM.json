@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "DRAIN STRIKE CONSUME",
-      "mood": "AGGRESSIVE",
-      "tick": 1772039978136
-    },
-    {
       "origin": "REVERSE",
       "text": "CONSUME SICKNESS DRAIN",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "OSMOSIS FLOW SYNC",
       "mood": "HARMONIC",
       "tick": 1772039992592
+    },
+    {
+      "origin": "REVERSE",
+      "text": "PURE STASIS PURE",
+      "mood": "DEFENSIVE",
+      "tick": 1772039993633
     }
   ]
 }
