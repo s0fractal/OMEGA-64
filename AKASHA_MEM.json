@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "WATCH GUARD WAIT",
-      "mood": "DEFENSIVE",
-      "tick": 1772024436203
-    },
-    {
-      "origin": "REVERSE",
       "text": "BECOME VISION BEYOND",
       "mood": "CREATIVE",
       "tick": 1772024436380
@@ -291,6 +285,12 @@
       "text": "WAIT REFLECT WATCH",
       "mood": "DEFENSIVE",
       "tick": 1772024439638
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SHOCK SICKNESS STRIFE",
+      "mood": "AGGRESSIVE",
+      "tick": 1772024439884
     }
   ]
 }
