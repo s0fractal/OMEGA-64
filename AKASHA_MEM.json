@@ -204,12 +204,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "COHERE BLOOM COHERE",
-      "mood": "HARMONIC",
-      "tick": 1772038713031
-    },
-    {
-      "origin": "REVERSE",
       "text": "SHELTER GUARD SHIELD",
       "mood": "DEFENSIVE",
       "tick": 1772038713216
@@ -291,6 +285,12 @@
       "text": "WAIT REFLECT STASIS",
       "mood": "DEFENSIVE",
       "tick": 1772038717222
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN SICKNESS BREACH",
+      "mood": "AGGRESSIVE",
+      "tick": 1772038717497
     }
   ]
 }
