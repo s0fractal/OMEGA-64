@@ -20,12 +20,6 @@
   "utterances": [
     {
       "origin": "INTERFACE",
-      "text": "FLOW RESONATE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772016253341
-    },
-    {
-      "origin": "INTERFACE",
       "text": "UNIFY FLOW HEAL",
       "mood": "HARMONIC",
       "tick": 1772016282540
@@ -107,6 +101,12 @@
       "text": "STRIKE SHOCK DRAIN",
       "mood": "AGGRESSIVE",
       "tick": 1772016365081
+    },
+    {
+      "origin": "ARCHIVIST",
+      "text": "SEIZE HUNGER SHOCK",
+      "mood": "AGGRESSIVE",
+      "tick": 1772016372377
     }
   ]
 }
