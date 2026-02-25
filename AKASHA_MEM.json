@@ -126,12 +126,6 @@
   "utterances": [
     {
       "origin": "REVERSE",
-      "text": "RESONATE STABLE BLOOM",
-      "mood": "HARMONIC",
-      "tick": 1772022227014
-    },
-    {
-      "origin": "REVERSE",
       "text": "STRIFE STRIKE STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772022227259
@@ -213,6 +207,12 @@
       "text": "WATCH SHELTER GUARD",
       "mood": "DEFENSIVE",
       "tick": 1772022230744
+    },
+    {
+      "origin": "REVERSE",
+      "text": "FLOW SYNC OSMOSIS",
+      "mood": "HARMONIC",
+      "tick": 1772022230915
     }
   ]
 }
