@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "INTERFACE",
-      "text": "HUNGER HUNGER HUNGER",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040926815
-    },
-    {
       "origin": "ARCHIVIST",
       "text": "CONSUME HUNGER BREACH",
       "mood": "AGGRESSIVE",
@@ -291,6 +285,12 @@
       "text": "PURE STASIS REFLECT",
       "mood": "DEFENSIVE",
       "tick": 1772040929702
+    },
+    {
+      "origin": "REVERSE",
+      "text": "DRAIN STRIFE DRAIN",
+      "mood": "AGGRESSIVE",
+      "tick": 1772040929830
     }
   ]
 }
