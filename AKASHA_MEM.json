@@ -203,12 +203,6 @@
   ],
   "utterances": [
     {
-      "origin": "STREAM",
-      "text": "STRIKE DRAIN STRIFE",
-      "mood": "AGGRESSIVE",
-      "tick": 1772040688327
-    },
-    {
       "origin": "REVERSE",
       "text": "STABLE UNIFY GIVING",
       "mood": "HARMONIC",
@@ -291,6 +285,12 @@
       "text": "CONSUME SHOCK BREACH",
       "mood": "AGGRESSIVE",
       "tick": 1772040691265
+    },
+    {
+      "origin": "REVERSE",
+      "text": "RESONATE FLOW UNIFY",
+      "mood": "HARMONIC",
+      "tick": 1772040691450
     }
   ]
 }
