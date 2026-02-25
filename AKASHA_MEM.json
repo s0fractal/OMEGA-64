@@ -1,6 +1,5 @@
 {
   "reservoir": [
-    "AA0A00A0",
     "60600606",
     "60606660",
     "AAAA0A0A",
@@ -199,15 +198,10 @@
     "66660606",
     "06666000",
     "60060600",
-    "0D10A008"
+    "0D10A008",
+    "06660006"
   ],
   "utterances": [
-    {
-      "origin": "REVERSE",
-      "text": "FLOW RESONATE HEAL",
-      "mood": "HARMONIC",
-      "tick": 1772035106912
-    },
     {
       "origin": "REVERSE",
       "text": "GIVING GIVING SYNC",
@@ -291,6 +285,12 @@
       "text": "CONSUME DRAIN STRIKE",
       "mood": "AGGRESSIVE",
       "tick": 1772035109523
+    },
+    {
+      "origin": "REVERSE",
+      "text": "GIVING COHERE COHERE",
+      "mood": "HARMONIC",
+      "tick": 1772035109720
     }
   ]
 }
